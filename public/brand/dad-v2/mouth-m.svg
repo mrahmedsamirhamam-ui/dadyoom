@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+<path
+d="M122 198
+Q150 205 178 198"
+fill="none"
+stroke="#2B1E1A"
+stroke-width="6"
+stroke-linecap="round"/>
+
+<path
+d="M128 197
+Q150 202 172 197"
+fill="none"
+stroke="#8A4A4A"
+stroke-width="2"
+stroke-linecap="round"
+opacity=".45"/>
+
+<circle cx="150" cy="198" r="1.5" fill="#2B1E1A" opacity=".25"/>
+</svg>

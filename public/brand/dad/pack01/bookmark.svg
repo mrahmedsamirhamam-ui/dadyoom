@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 640">
+  <defs>
+    <linearGradient id="ribbon" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD75A"/>
+      <stop offset="100%" stop-color="#F2B705"/>
+    </linearGradient>
+  </defs>
+  <path d="M359 66
+           L409 66
+           L409 174
+           L384 153
+           L359 174Z"
+        fill="url(#ribbon)" stroke="#B98200" stroke-width="5"/>
+</svg>

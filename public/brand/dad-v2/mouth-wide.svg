@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+<defs>
+  <linearGradient id="mouthWide" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#3A1F1F"/>
+    <stop offset="100%" stop-color="#1C0D0D"/>
+  </linearGradient>
+</defs>
+
+<ellipse
+cx="150"
+cy="202"
+rx="34"
+ry="18"
+fill="url(#mouthWide)"
+stroke="#2B1E1A"
+stroke-width="3"/>
+
+<ellipse
+cx="150"
+cy="210"
+rx="18"
+ry="7"
+fill="#F08A96"/>
+
+<path
+d="M118 188
+Q150 176 182 188"
+fill="none"
+stroke="#8A3E3E"
+stroke-width="2"
+stroke-linecap="round"
+opacity=".45"/>
+</svg>

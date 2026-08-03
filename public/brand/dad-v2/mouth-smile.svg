@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+<defs>
+  <linearGradient id="lip" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#A32020"/>
+    <stop offset="100%" stop-color="#7A1515"/>
+  </linearGradient>
+</defs>
+
+<path
+d="M118 191
+Q150 228 182 191
+Q176 215 150 221
+Q124 215 118 191Z"
+fill="#FFFFFF"
+stroke="#2B1E1A"
+stroke-width="3"/>
+
+<path
+d="M123 194
+Q150 213 177 194"
+fill="none"
+stroke="url(#lip)"
+stroke-width="4"
+stroke-linecap="round"/>
+
+<ellipse
+cx="150"
+cy="208"
+rx="10"
+ry="3"
+fill="#F3B0B0"
+opacity=".45"/>
+</svg>

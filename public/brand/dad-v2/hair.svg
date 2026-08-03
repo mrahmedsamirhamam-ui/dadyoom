@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+<defs>
+  <linearGradient id="hair" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#2F3742"/>
+    <stop offset="100%" stop-color="#1E252E"/>
+  </linearGradient>
+</defs>
+
+<path
+d="M72 116
+C72 56 108 24 151 24
+C197 24 229 52 232 113
+C220 98 206 90 188 88
+C182 72 166 63 149 69
+C133 58 113 63 101 80
+C88 82 79 93 72 116Z"
+fill="url(#hair)"/>
+
+<path
+d="M97 47
+C126 24 170 24 199 49"
+fill="none"
+stroke="#596270"
+stroke-width="7"
+stroke-linecap="round"
+opacity=".55"/>
+
+<path
+d="M116 39
+C138 29 162 30 183 42"
+fill="none"
+stroke="#6B7280"
+stroke-width="5"
+stroke-linecap="round"
+opacity=".45"/>
+</svg>

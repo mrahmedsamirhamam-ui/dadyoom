@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F7C79E"/>
+      <stop offset="100%" stop-color="#D88C5F"/>
+    </linearGradient>
+
+    <radialGradient id="faceLight" cx="38%" cy="28%" r="72%">
+      <stop offset="0%" stop-color="#FFE1C4" stop-opacity=".72"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#0F172A" flood-opacity=".18"/>
+    </filter>
+  </defs>
+
+  <!-- ears -->
+  <ellipse cx="53" cy="157" rx="24" ry="34" fill="url(#skin)"/>
+  <ellipse cx="247" cy="157" rx="24" ry="34" fill="url(#skin)"/>
+
+  <!-- inner ears -->
+  <path d="M51 145 C40 149 40 166 51 172" fill="none" stroke="#BE7350" stroke-width="5" stroke-linecap="round" opacity=".55"/>
+  <path d="M249 145 C260 149 260 166 249 172" fill="none" stroke="#BE7350" stroke-width="5" stroke-linecap="round" opacity=".55"/>
+
+  <!-- face -->
+  <path
+    d="M150 38
+       C211 38 239 82 238 145
+       C237 214 201 259 150 262
+       C99 259 63 214 62 145
+       C61 82 89 38 150 38Z"
+    fill="url(#skin)"
+    stroke="#B96F4B"
+    stroke-width="4"
+    filter="url(#softShadow)"
+  />
+
+  <!-- soft face highlight -->
+  <path
+    d="M150 48
+       C200 48 225 85 224 143
+       C223 195 199 228 166 241
+       C124 225 90 186 89 134
+       C88 89 108 55 150 48Z"
+    fill="url(#faceLight)"
+    opacity=".55"
+  />
+
+  <!-- cheeks -->
+  <ellipse cx="92" cy="189" rx="22" ry="9" fill="#EF9A8D" opacity=".42"/>
+  <ellipse cx="208" cy="189" rx="22" ry="9" fill="#EF9A8D" opacity=".42"/>
+
+  <!-- nose base -->
+  <path
+    d="M150 127
+       C141 144 140 161 150 166
+       C158 163 162 156 159 149"
+    fill="none"
+    stroke="#B86B48"
+    stroke-width="5"
+    stroke-linecap="round"
+  />
+
+  <!-- subtle chin -->
+  <path
+    d="M126 229 C140 237 160 237 174 229"
+    fill="none"
+    stroke="#B86B48"
+    stroke-width="3"
+    stroke-linecap="round"
+    opacity=".35"
+  />
+</svg>

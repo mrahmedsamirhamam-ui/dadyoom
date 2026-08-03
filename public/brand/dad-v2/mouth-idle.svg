@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+<path
+d="M122 196
+Q150 212 178 196"
+fill="none"
+stroke="#2B1E1A"
+stroke-width="6"
+stroke-linecap="round"/>
+
+<path
+d="M128 198
+Q150 208 172 198"
+fill="none"
+stroke="#7A4B3A"
+stroke-width="2"
+stroke-linecap="round"
+opacity=".35"/>
+</svg>

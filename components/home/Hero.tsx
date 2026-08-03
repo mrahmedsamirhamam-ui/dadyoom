@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 export default function Hero() {
   return (
     <section className="py-20 text-center bg-slate-50">
@@ -14,9 +15,8 @@ export default function Hero() {
         إنها هوية وثقافة ورسالة.
       </p>
 
-      <button className="mt-10 bg-teal-700 hover:bg-teal-800 text-white px-8 py-4 rounded-xl transition">
-        ابدأ رحلتك
-      </button>
+     
+<Button>ابدأ رحلتك</Button>
     </section>
   );
 }

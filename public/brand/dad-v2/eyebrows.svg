@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <!-- Left eyebrow -->
+  <path
+    d="M88 96
+       C100 88 117 86 132 92"
+    fill="none"
+    stroke="#3A2A22"
+    stroke-width="8"
+    stroke-linecap="round"/>
+
+  <!-- Right eyebrow -->
+  <path
+    d="M168 92
+       C183 86 200 88 212 96"
+    fill="none"
+    stroke="#3A2A22"
+    stroke-width="8"
+    stroke-linecap="round"/>
+
+  <!-- Soft highlights -->
+  <path
+    d="M92 95 C103 89 117 88 129 92"
+    fill="none"
+    stroke="#6B4A3A"
+    stroke-width="2"
+    stroke-linecap="round"
+    opacity=".35"/>
+
+  <path
+    d="M171 92 C183 88 197 89 208 95"
+    fill="none"
+    stroke="#6B4A3A"
+    stroke-width="2"
+    stroke-linecap="round"
+    opacity=".35"/>
+</svg>

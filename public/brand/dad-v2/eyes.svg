@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+<!-- Left eye -->
+<ellipse cx="108" cy="126" rx="18" ry="14" fill="#ffffff"/>
+<circle cx="108" cy="126" r="7" fill="#5B3A29"/>
+<circle cx="108" cy="126" r="3.5" fill="#111827"/>
+<circle cx="111" cy="123" r="1.6" fill="#ffffff"/>
+
+<!-- Right eye -->
+<ellipse cx="192" cy="126" rx="18" ry="14" fill="#ffffff"/>
+<circle cx="192" cy="126" r="7" fill="#5B3A29"/>
+<circle cx="192" cy="126" r="3.5" fill="#111827"/>
+<circle cx="195" cy="123" r="1.6" fill="#ffffff"/>
+
+<!-- Eyelids -->
+<path d="M90 126 Q108 112 126 126" fill="none" stroke="#C98A67" stroke-width="2" opacity=".45"/>
+<path d="M174 126 Q192 112 210 126" fill="none" stroke="#C98A67" stroke-width="2" opacity=".45"/>
+</svg>
