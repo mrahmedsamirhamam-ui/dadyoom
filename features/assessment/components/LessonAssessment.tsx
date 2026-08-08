@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import {
   useCallback,
   useEffect,
@@ -76,6 +78,7 @@ type SubmitResponse = {
 
 type LessonAssessmentProps = {
   lessonId: string;
+  nextLessonId?: string | null;
 };
 
 function difficultyLabel(
@@ -94,6 +97,7 @@ function difficultyLabel(
 
 export default function LessonAssessment({
   lessonId,
+  nextLessonId = null,
 }: LessonAssessmentProps) {
   const [assessment, setAssessment] =
     useState<Assessment | null>(
@@ -596,6 +600,7 @@ export default function LessonAssessment({
           </p>
         </div>
 
+        {/* ASSESSMENT_SMART_NEXT_ACTIONS */}         <div className="mt-6 flex flex-wrap gap-3">           {score >= 90 ? (             nextLessonId ? (               <Link                 href={`/lessons/${nextLessonId}`}                 className="inline-flex rounded-xl bg-emerald-600 px-7 py-3 font-black text-white transition hover:bg-emerald-700"               >                 انتقل إلى الدرس التالي ←               </Link>             ) : (               <Link                 href="/student"                 className="inline-flex rounded-xl bg-emerald-600 px-7 py-3 font-black text-white transition hover:bg-emerald-700"               >                 أحسنت! العودة إلى لوحة الطالب               </Link>             )           ) : (             <Link               href={`/lessons/${lessonId}#weak-questions-review`}               className="inline-flex rounded-xl bg-amber-600 px-7 py-3 font-black text-white transition hover:bg-amber-700"             >               راجع نقاط ضعفك             </Link>           )}            <Link             href="/student"             className="inline-flex rounded-xl border border-slate-300 bg-white px-7 py-3 font-black text-slate-700 transition hover:bg-slate-50"           >             العودة إلى لوحة الطالب           </Link>         </div> 
         <button
           type="button"
           onClick={() => {

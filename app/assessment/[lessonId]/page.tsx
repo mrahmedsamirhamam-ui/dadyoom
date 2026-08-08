@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import LessonAssessment from "@/features/assessment/components/LessonAssessment";
+import { getLessonById } from "@/features/lessons/queries/getLessonById";
 
 type AssessmentPageProps = {
   params: Promise<{
@@ -13,6 +14,15 @@ export default async function AssessmentPage({
 }: AssessmentPageProps) {
   const { lessonId } = await params;
 
+  const lesson =
+    await getLessonById(
+      lessonId
+    );
+
+  const nextLessonId =
+    lesson?.nextLesson?.id ??
+    null;
+
   return (
     <main
       dir="rtl"
@@ -20,6 +30,9 @@ export default async function AssessmentPage({
     >
       <LessonAssessment
         lessonId={lessonId}
+        nextLessonId={
+          nextLessonId
+        }
       />
 
       <Link
