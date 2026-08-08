@@ -42,3 +42,6 @@ next-env.d.ts
 
 # Large curriculum PDF kept locally only
 /dadyoom/public/books/ARA04Read.pdf
+
+# Local curriculum books
+/public/books/
