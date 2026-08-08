@@ -1,0 +1,126 @@
+import { NextResponse } from "next/server";
+import { createClient } from "@/lib/supabase/server";
+
+type CompleteLessonBody = {
+  lessonId?: string;
+};
+
+export async function POST(request: Request) {
+  try {
+    const supabase = await createClient();
+
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser();
+
+    if (userError || !user) {
+      return NextResponse.json(
+        { success: false, error: "يجب تسجيل الدخول أولًا." },
+        { status: 401 }
+      );
+    }
+
+    const body = (await request.json()) as CompleteLessonBody;
+    const lessonId = body.lessonId?.trim();
+
+    if (!lessonId) {
+      return NextResponse.json(
+        { success: false, error: "معرّف الدرس غير موجود." },
+        { status: 400 }
+      );
+    }
+
+    const { data: lesson, error: lessonError } = await supabase
+      .from("edu_lessons")
+      .select("id,points_reward,is_published")
+      .eq("id", lessonId)
+      .eq("is_published", true)
+      .maybeSingle();
+
+    if (lessonError) {
+      return NextResponse.json(
+        { success: false, error: lessonError.message },
+        { status: 500 }
+      );
+    }
+
+    if (!lesson) {
+      return NextResponse.json(
+        { success: false, error: "الدرس غير موجود أو غير منشور." },
+        { status: 404 }
+      );
+    }
+
+    const now = new Date().toISOString();
+
+    const { error: progressError } = await supabase
+      .from("edu_learner_progress")
+      .upsert(
+        {
+          student_id: user.id,
+          lesson_id: lessonId,
+          status: "completed",
+          progress_percent: 100,
+          score: 100,
+          started_at: now,
+          completed_at: now,
+          last_opened_at: now,
+        },
+        {
+          onConflict: "student_id,lesson_id",
+        }
+      );
+
+    if (progressError) {
+      return NextResponse.json(
+        { success: false, error: progressError.message },
+        { status: 500 }
+      );
+    }
+
+    const { count } = await supabase
+      .from("edu_point_transactions")
+      .select("id", { count: "exact", head: true })
+      .eq("student_id", user.id)
+      .eq("lesson_id", lessonId)
+      .eq("reason", "lesson_completed");
+
+    if ((count ?? 0) === 0) {
+      const { error: pointsError } = await supabase
+        .from("edu_point_transactions")
+        .insert({
+          student_id: user.id,
+          lesson_id: lessonId,
+          points: Number(lesson.points_reward ?? 10),
+          reason: "lesson_completed",
+          metadata: {
+            source: "api/lessons/complete",
+          },
+        });
+
+      if (pointsError) {
+        console.warn(
+          "LESSON_POINTS_WARNING",
+          pointsError.message
+        );
+      }
+    }
+
+    return NextResponse.json({
+      success: true,
+      lessonId,
+    });
+  } catch (cause) {
+    return NextResponse.json(
+      {
+        success: false,
+        error:
+          cause instanceof Error
+            ? cause.message
+            : "حدث خطأ أثناء إكمال الدرس.",
+      },
+      { status: 500 }
+    );
+  }
+}

@@ -1,3 +1,4 @@
+import { logger } from "@/lib/logger";
 import { createHash } from "node:crypto";
 import { spawn } from "node:child_process";
 import {
@@ -5,6 +6,7 @@ import {
   readFile,
   stat,
 } from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
 
 import { NextResponse } from "next/server";
@@ -34,8 +36,8 @@ const VOICE =
   "ar-SA-ZariyahNeural";
 
 const CACHE_DIRECTORY = path.join(
-  process.cwd(),
-  ".cache",
+  os.tmpdir(),
+  "dadyoom",
   "dad-voice"
 );
 
@@ -164,11 +166,29 @@ function runEdgeTts(params: {
        * لا نستخدم shell حتى يظل النص آرمنًا
        * ولا يُفسر كأوامر PowerShell.
        */
+      const pythonExecutable =
+
+        process.env.EDGE_TTS_PYTHON?.trim() ||
+
+        "python";
+
+
+      logger.info(
+
+        "EDGE_TTS_PYTHON_EXECUTABLE:",
+
+        pythonExecutable
+
+      );
+
+
       const processHandle = spawn(
-        "py",
+
+        pythonExecutable,
+
         args,
+
         {
-          cwd: process.cwd(),
           windowsHide: true,
           stdio: [
             "ignore",
@@ -299,7 +319,7 @@ export async function POST(
       await fileExists(outputPath);
 
     if (!cached) {
-      console.info(
+      logger.info(
         "EDGE_TTS_GENERATING:",
         {
           voice: VOICE,
@@ -327,7 +347,7 @@ export async function POST(
       );
     }
 
-    console.info(
+    logger.info(
       "DAD_TTS_SUCCESS:",
       {
         provider: "edge-tts",

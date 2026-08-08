@@ -42,9 +42,9 @@ type LessonRow = {
   unit_id: string | null;
 };
 
+// Helper Decoders & Transformers
 function asStringArray(value: unknown): string[] {
   if (!Array.isArray(value)) return [];
-
   return value
     .filter((item): item is string => typeof item === "string")
     .map((item) => item.trim())
@@ -53,84 +53,46 @@ function asStringArray(value: unknown): string[] {
 
 function asVocabulary(value: unknown): VocabularyItem[] {
   if (!Array.isArray(value)) return [];
-
   return value
     .filter(
       (item): item is Record<string, unknown> =>
-        Boolean(item) &&
-        typeof item === "object" &&
-        !Array.isArray(item)
+        Boolean(item) && typeof item === "object" && !Array.isArray(item)
     )
     .map((item) => ({
-      word:
-        typeof item.word === "string"
-          ? item.word.trim()
-          : "",
-      meaning:
-        typeof item.meaning === "string"
-          ? item.meaning.trim()
-          : "",
-      example:
-        typeof item.example === "string"
-          ? item.example.trim()
-          : "",
+      word: typeof item.word === "string" ? item.word.trim() : "",
+      meaning: typeof item.meaning === "string" ? item.meaning.trim() : "",
+      example: typeof item.example === "string" ? item.example.trim() : "",
     }))
-    .filter(
-      (item) =>
-        item.word || item.meaning || item.example
-    );
+    .filter((item) => item.word || item.meaning || item.example);
 }
 
 function asActivities(value: unknown): ActivityItem[] {
   if (!Array.isArray(value)) return [];
-
   return value
     .filter(
       (item): item is Record<string, unknown> =>
-        Boolean(item) &&
-        typeof item === "object" &&
-        !Array.isArray(item)
+        Boolean(item) && typeof item === "object" && !Array.isArray(item)
     )
     .map((item) => ({
-      title:
-        typeof item.title === "string"
-          ? item.title.trim()
-          : "",
+      title: typeof item.title === "string" ? item.title.trim() : "",
       instructions:
-        typeof item.instructions === "string"
-          ? item.instructions.trim()
-          : "",
+        typeof item.instructions === "string" ? item.instructions.trim() : "",
     }))
-    .filter(
-      (item) =>
-        item.title || item.instructions
-    );
+    .filter((item) => item.title || item.instructions);
 }
 
 function asAssessment(value: unknown): AssessmentItem[] {
   if (!Array.isArray(value)) return [];
-
   return value
     .filter(
       (item): item is Record<string, unknown> =>
-        Boolean(item) &&
-        typeof item === "object" &&
-        !Array.isArray(item)
+        Boolean(item) && typeof item === "object" && !Array.isArray(item)
     )
     .map((item) => ({
-      question:
-        typeof item.question === "string"
-          ? item.question.trim()
-          : "",
-      answer:
-        typeof item.answer === "string"
-          ? item.answer.trim()
-          : "",
+      question: typeof item.question === "string" ? item.question.trim() : "",
+      answer: typeof item.answer === "string" ? item.answer.trim() : "",
     }))
-    .filter(
-      (item) =>
-        item.question || item.answer
-    );
+    .filter((item) => item.question || item.answer);
 }
 
 function decodeSlug(value: string) {
@@ -141,42 +103,31 @@ function decodeSlug(value: string) {
   }
 }
 
-export default async function LessonPage({
-  params,
-}: PageProps) {
+export default async function LessonPage({ params }: PageProps) {
   const { id } = await params;
   const decodedSlug = decodeSlug(id);
 
   const supabase = await createClient();
 
+  // 1. التحقق من جلسة المستخدم
   const {
     data: { user },
     error: userError,
   } = await supabase.auth.getUser();
 
   if (userError || !user) {
-    redirect(
-      `/login?next=${encodeURIComponent(
-        `/lessons/${decodedSlug}`
-      )}`
-    );
+    redirect(`/login?next=${encodeURIComponent(`/lessons/${decodedSlug}`)}`);
   }
 
-  const { data: visibleLessons, error: visibleLessonsError } =
-    await supabase
-      .from("lessons")
-      .select("id,title,is_published")
-      .limit(10);
-
-  console.log("VISIBLE_LESSONS:", visibleLessons);
-  console.log("VISIBLE_LESSONS_ERROR:", visibleLessonsError);
-
+  // 2. جلب بيانات الدرس المحدد
   const { data, error } = await supabase
     .from("lessons")
     .select(
       "id,title,skill,difficulty_level,estimated_minutes,points,objectives,introduction,explanation,vocabulary,activities,assessment,homework,is_published,unit_id"
     )
     .eq("id", decodedSlug)
+    // إذا كنت تستخدم slug بدلاً من id استخدم: .eq("slug", decodedSlug)
+    .eq("is_published", true) // التأكد من جلب الدروس المنشورة فقط للطلاب
     .maybeSingle();
 
   if (error) {
@@ -184,23 +135,13 @@ export default async function LessonPage({
       message: error.message,
       code: error.code,
       details: error.details,
-      hint: error.hint,
       requestedSlug: id,
-      decodedSlug,
     });
 
-    throw new Error(
-      "تعذر تحميل الدرس في الوقت الحالي."
-    );
+    throw new Error("تعذر تحميل الدرس في الوقت الحالي.");
   }
 
   if (!data) {
-    console.error("LESSON_NOT_FOUND:", {
-      requestedSlug: id,
-      decodedSlug,
-      userId: user.id,
-    });
-
     notFound();
   }
 
@@ -212,27 +153,15 @@ export default async function LessonPage({
         id: lesson.id,
         title: lesson.title,
         skill: lesson.skill ?? "general",
-        difficultyLevel:
-          lesson.difficulty_level ?? "beginner",
-        estimatedMinutes:
-          lesson.estimated_minutes ?? 20,
+        difficultyLevel: lesson.difficulty_level ?? "beginner",
+        estimatedMinutes: lesson.estimated_minutes ?? 20,
         points: lesson.points ?? 10,
-        objectives: asStringArray(
-          lesson.objectives
-        ),
-        introduction:
-          lesson.introduction ?? "",
-        explanation:
-          lesson.explanation ?? "",
-        vocabulary: asVocabulary(
-          lesson.vocabulary
-        ),
-        activities: asActivities(
-          lesson.activities
-        ),
-        assessment: asAssessment(
-          lesson.assessment
-        ),
+        objectives: asStringArray(lesson.objectives),
+        introduction: lesson.introduction ?? "",
+        explanation: lesson.explanation ?? "",
+        vocabulary: asVocabulary(lesson.vocabulary),
+        activities: asActivities(lesson.activities),
+        assessment: asAssessment(lesson.assessment),
         homework: lesson.homework ?? "",
       }}
     />

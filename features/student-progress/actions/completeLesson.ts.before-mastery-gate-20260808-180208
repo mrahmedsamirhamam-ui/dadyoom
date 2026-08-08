@@ -1,0 +1,190 @@
+"use server";
+
+import { revalidatePath } from "next/cache";
+
+import { createClient } from "@/lib/supabase/server";
+import { invalidateStudentCaches } from "@/features/student-progress/services/invalidate-student-caches";
+import { syncLearningProfile } from "@/features/learning-profile/services/sync-profile";
+
+import { completeLesson } from "../services/progress";
+
+type QuestionRow = {
+  id: string;
+};
+
+type AttemptRow = {
+  question_id: string;
+  is_correct: boolean;
+};
+
+export async function completeLessonAction(
+  progressId: string
+) {
+  const supabase =
+    await createClient();
+
+  const {
+    data: { user },
+    error: authError,
+  } =
+    await supabase.auth.getUser();
+
+  if (authError || !user) {
+    throw new Error(
+      "يجب تسجيل الدخول لإكمال الدرس."
+    );
+  }
+
+  const {
+    data: progress,
+    error: progressError,
+  } = await supabase
+    .from("student_lesson_progress")
+    .select(`
+      id,
+      student_id,
+      lesson_id,
+      best_score
+    `)
+    .eq("id", progressId)
+    .eq("student_id", user.id)
+    .maybeSingle();
+
+  if (progressError) {
+    throw progressError;
+  }
+
+  if (!progress) {
+    throw new Error(
+      "لم يتم العثور على تقدم هذا الدرس."
+    );
+  }
+
+  const {
+    data: questions,
+    error: questionsError,
+  } = await supabase
+    .from("questions")
+    .select("id")
+    .eq(
+      "lesson_id",
+      progress.lesson_id
+    );
+
+  if (questionsError) {
+    throw questionsError;
+  }
+
+  const questionRows =
+    (questions ?? []) as QuestionRow[];
+
+  const questionIds =
+    questionRows.map(
+      (question) =>
+        question.id
+    );
+
+  let score = 100;
+  let answeredQuestions = 0;
+  let correctAnswers = 0;
+
+  if (questionIds.length > 0) {
+    const {
+      data: attempts,
+      error: attemptsError,
+    } = await supabase
+      .from("question_attempts")
+      .select(`
+        question_id,
+        is_correct
+      `)
+      .eq("user_id", user.id)
+      .in(
+        "question_id",
+        questionIds
+      );
+
+    if (attemptsError) {
+      throw attemptsError;
+    }
+
+    const attemptRows =
+      (attempts ?? []) as AttemptRow[];
+
+    const attemptedQuestionIds =
+      new Set(
+        attemptRows.map(
+          (attempt) =>
+            attempt.question_id
+        )
+      );
+
+    answeredQuestions =
+      attemptedQuestionIds.size;
+
+    if (
+      answeredQuestions <
+      questionIds.length
+    ) {
+      throw new Error(
+        `أجب عن جميع أسئلة الدرس أولًا. أجبت عن ${answeredQuestions} من ${questionIds.length}.`
+      );
+    }
+
+    correctAnswers =
+      attemptRows.filter(
+        (attempt) =>
+          attempt.is_correct
+      ).length;
+
+    score =
+      Math.round(
+        (
+          correctAnswers /
+          questionIds.length
+        ) * 100
+      );
+  }
+
+  const result =
+    await completeLesson(
+      progressId,
+      score,
+      Number(
+        progress.best_score ??
+        0
+      )
+    );
+
+  await syncLearningProfile(
+    user.id
+  );
+
+  await invalidateStudentCaches({
+    studentId: user.id,
+    studentEmail: user.email,
+    supabase,
+  });
+
+  revalidatePath("/student");
+  revalidatePath("/lessons");
+  revalidatePath(
+    `/lessons/${progress.lesson_id}`
+  );
+
+  return {
+    progress: result,
+    lessonId:
+      progress.lesson_id,
+    score,
+    xp:
+      Number(
+        result?.xp ??
+        0
+      ),
+    correctAnswers,
+    answeredQuestions,
+    totalQuestions:
+      questionIds.length,
+  };
+}

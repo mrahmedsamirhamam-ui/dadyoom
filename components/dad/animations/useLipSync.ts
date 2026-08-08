@@ -1,28 +1,49 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 
-export type MouthShape = "idle" | "a" | "e" | "o" | "u" | "m";
+export type MouthShape =
+  | "idle"
+  | "a"
+  | "e"
+  | "o"
+  | "u"
+  | "m";
 
-export function useLipSync(active: boolean) {
-  const [shape, setShape] = useState<MouthShape>("idle");
+export function useLipSync(
+  active: boolean
+): MouthShape {
+  const [shape, setShape] =
+    useState<MouthShape>("a");
 
   useEffect(() => {
     if (!active) {
-      setShape("idle");
       return;
     }
 
-    const frames: MouthShape[] = ["a", "e", "o", "u", "m", "a", "o", "e"];
+    const frames: MouthShape[] = [
+      "a",
+      "e",
+      "o",
+      "u",
+      "m",
+      "a",
+      "o",
+      "e",
+    ];
+
     let index = 0;
 
-    const timer = setInterval(() => {
+    const timer = window.setInterval(() => {
       setShape(frames[index]);
-      index = (index + 1) % frames.length;
+      index =
+        (index + 1) % frames.length;
     }, 90);
 
-    return () => clearInterval(timer);
+    return () => {
+      window.clearInterval(timer);
+    };
   }, [active]);
 
-  return shape;
+  return active ? shape : "idle";
 }

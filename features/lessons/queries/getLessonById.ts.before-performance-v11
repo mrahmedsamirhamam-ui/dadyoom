@@ -1,0 +1,131 @@
+import { createClient } from "@/lib/supabase/server";
+
+export async function getLessonById(
+  id: string
+) {
+  const supabase = await createClient();
+
+  console.time(
+    "LESSON_QUERY_BASE_ROW"
+  );
+
+  const { data: lesson, error } =
+    await supabase
+      .from("lessons")
+      .select("*")
+      .eq("id", id)
+      .eq("status", "published")
+      .maybeSingle();
+
+  console.timeEnd(
+    "LESSON_QUERY_BASE_ROW"
+  );
+
+  if (error) {
+    console.error(
+      "Failed to load lesson:",
+      error
+    );
+
+    throw error;
+  }
+
+  if (!lesson) {
+    return null;
+  }
+
+  console.time(
+    "LESSON_QUERY_NEIGHBORS"
+  );
+
+  const [
+    previousLessonResult,
+    nextLessonResult,
+  ] = await Promise.all([
+    supabase
+      .from("lessons")
+      .select(
+        "id,title,lesson_number"
+      )
+      .eq(
+        "unit_id",
+        lesson.unit_id
+      )
+      .eq(
+        "status",
+        "published"
+      )
+      .lt(
+        "lesson_number",
+        lesson.lesson_number
+      )
+      .order(
+        "lesson_number",
+        {
+          ascending: false,
+        }
+      )
+      .limit(1)
+      .maybeSingle(),
+
+    supabase
+      .from("lessons")
+      .select(
+        "id,title,lesson_number"
+      )
+      .eq(
+        "unit_id",
+        lesson.unit_id
+      )
+      .eq(
+        "status",
+        "published"
+      )
+      .gt(
+        "lesson_number",
+        lesson.lesson_number
+      )
+      .order(
+        "lesson_number",
+        {
+          ascending: true,
+        }
+      )
+      .limit(1)
+      .maybeSingle(),
+  ]);
+
+  console.timeEnd(
+    "LESSON_QUERY_NEIGHBORS"
+  );
+
+  if (
+    previousLessonResult.error
+  ) {
+    console.warn(
+      "Failed to load previous lesson:",
+      previousLessonResult.error
+    );
+  }
+
+  if (
+    nextLessonResult.error
+  ) {
+    console.warn(
+      "Failed to load next lesson:",
+      nextLessonResult.error
+    );
+  }
+
+  return {
+    ...lesson,
+
+    previousLesson:
+      previousLessonResult.data ??
+      null,
+
+    nextLesson:
+      nextLessonResult.data ??
+      null,
+  };
+}

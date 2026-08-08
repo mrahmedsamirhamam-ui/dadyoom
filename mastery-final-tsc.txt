@@ -1,0 +1,3 @@
+npm notice run dadyoom@0.1.0 npx
+npm notice run tsc --noEmit
+app/lessons/[id]/page.tsx(438,22): error TS2741: Property 'lessonId' is missing in type '{ questionId: string; userId: string | null; question: string; choices: QuestionOption[]; correctAnswer: string; explanation: string | null; }' but required in type 'Props'.

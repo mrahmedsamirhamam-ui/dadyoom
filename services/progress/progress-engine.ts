@@ -104,22 +104,23 @@ export async function updateProgress(
   supabase: SupabaseClient,
   input: UpdateProgressInput
 ): Promise<void> {
-  if (!input.correct) {
-    return;
+  if (input.correct) {
+    await awardXp({
+      supabase,
+      studentEmail:
+        input.studentEmail,
+      skill:
+        input.skill,
+      xp: 20,
+      reason:
+        "Correct assessment answer",
+    });
   }
-
-  await awardXp({
-    supabase,
-    studentEmail: input.studentEmail,
-    skill: input.skill,
-    xp: 20,
-    reason: "Correct assessment answer",
-  });
 
   await increaseSkill(
     supabase,
     input.studentEmail,
     input.skill,
-    3
+    input.correct ? 10 : -5
   );
 }

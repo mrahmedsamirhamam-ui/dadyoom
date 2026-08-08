@@ -9,7 +9,14 @@
     "lint": "eslint",
     "test": "vitest",
     "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "import:book": "tsx importer/index.ts",
+    "upload:lesson": "tsx importer/uploader/upload-first-lesson.ts",
+    "ai:test": "tsx importer/ai/test.ts",
+    "detect:lessons": "tsx importer/detect-lessons.ts",
+    "repair:lessons": "tsx importer/repair-lessons-from-pdf.ts",
+    "embed:lessons": "tsx importer/embeddings/generate-lesson-embeddings.ts",
+    "search:semantic": "tsx importer/embeddings/test-semantic-search.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
@@ -20,9 +27,13 @@
     "@supabase/supabase-js": "^2.110.8",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dotenv": "^17.4.2",
+    "fast-glob": "^3.3.3",
     "lucide-react": "^1.27.0",
     "motion": "^12.43.0",
     "next": "16.2.11",
+    "pdf-lib": "^1.17.1",
+    "pdf-parse": "^2.4.5",
     "playht": "^0.21.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
@@ -33,12 +44,15 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/pdf-parse": "^1.1.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitest/coverage-v8": "^4.1.10",
     "eslint": "^9",
     "eslint-config-next": "16.2.11",
+    "supabase": "^2.111.0",
     "tailwindcss": "^4",
+    "tsx": "^4.23.5",
     "typescript": "^5",
     "vitest": "^4.1.10"
   }

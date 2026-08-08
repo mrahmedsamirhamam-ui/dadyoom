@@ -1,5 +1,7 @@
 "use server";
 
+import { logger } from "@/lib/logger";
+
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
@@ -285,7 +287,7 @@ export async function createLesson(
   const rawGeneratedContent =
     formData.get("generated_content");
 
-  console.log(
+  logger.debug(
     "GENERATED_CONTENT_RAW:",
     rawGeneratedContent
   );
@@ -293,7 +295,7 @@ export async function createLesson(
   const generatedLesson =
     parseGeneratedLesson(rawGeneratedContent);
 
-  console.log(
+  logger.debug(
     "GENERATED_LESSON_PARSED:",
     generatedLesson
   );
@@ -332,6 +334,7 @@ export async function createLesson(
     await supabase
       .from("lessons")
       .insert({
+        created_by: user.id,
         title,
         slug: createSlug(title),
         unit_id: unitId,
@@ -367,7 +370,7 @@ export async function createLesson(
     );
   }
 
-  console.log(
+  logger.debug(
     "LESSON_CREATED_SUCCESSFULLY:",
     insertedLesson
   );

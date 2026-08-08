@@ -1,0 +1,25 @@
+import { createClient } from "@/lib/supabase/server";
+
+export async function getContinueLesson(
+  studentId: string
+) {
+  const supabase = await createClient();
+
+  const { data } =
+    await supabase
+      .from("student_lesson_progress")
+      .select(`
+        lesson_id,
+        status,
+        lessons(title)
+      `)
+      .eq("student_id", studentId)
+      .neq("status", "mastered")
+      .order("updated_at", {
+        ascending: false,
+      })
+      .limit(1)
+      .maybeSingle();
+
+  return data;
+}

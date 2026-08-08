@@ -18,6 +18,8 @@ export interface StudentAiContext {
   weakestSkillScore: number;
 
   mostFrequentMistake: string | null;
+  memorySummary?: string;
+  recentFocusSkills?: string[];
 }
 
 export interface AiRecommendation {

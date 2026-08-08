@@ -1,0 +1,222 @@
+import type { User } from "@supabase/supabase-js";
+import type {
+  LessonRow,
+  StudentProgressRow,
+  LearningProfileRow,
+} from "@/types/database";
+import { redirect } from "next/navigation";
+import { createClient } from "@/lib/supabase/server";
+
+type ServerSupabaseClient = Awaited<ReturnType<typeof createClient>>;
+
+export type DashboardLesson = {
+  id: string;
+  title: string;
+  objective: string | null;
+  estimatedMinutes: number;
+  points: number;
+  completed: boolean;
+  progressPercent: number;
+};
+
+export type DashboardBadge = {
+  id: string;
+  title: string;
+  icon: string | null;
+  awardedAt: string | null;
+};
+
+export type StudentDashboardData = {
+  studentName: string;
+  completedLessons: number;
+  totalLessons: number;
+  progressPercent: number;
+  points: number;
+  averageScore: number;
+  badgesCount: number;
+  latestBadge: DashboardBadge | null;
+  continueLesson: DashboardLesson | null;
+  lessons: DashboardLesson[];
+};
+
+type BadgeWithEduBadge = {
+  awarded_at?: string | null;
+  edu_badges?: {
+    id: string;
+    title: string;
+    icon?: string | null;
+  } | null;
+};
+
+export async function getStudentDashboard(
+  supabase: ServerSupabaseClient,
+  user: User | null
+): Promise<StudentDashboardData> {
+  if (!user) {
+    redirect("/login");
+  }
+
+  const [
+    profileResult,
+    lessonsResult,
+    progressResult,
+    pointsResult,
+    badgesResult,
+  ] = await Promise.all([
+    supabase
+      .from("profiles")
+      .select("full_name")
+      .eq("id", user.id)
+      .maybeSingle<LearningProfileRow>(),
+
+    supabase
+      .from("edu_lessons")
+      .select(`
+        id,
+        title,
+        objective,
+        estimated_minutes,
+        points_reward,
+        order_no,
+        edu_units!inner (
+          id,
+          title,
+          order_no,
+          edu_subjects!inner (
+            id,
+            name_ar,
+            order_no
+          )
+        )
+      `)
+      .eq("is_published", true)
+      .order("order_no", { ascending: true }),
+
+    supabase
+      .from("edu_learner_progress")
+      .select(`
+        lesson_id,
+        status,
+        progress_percent,
+        score,
+        completed_at,
+        last_opened_at
+      `)
+      .eq("student_id", user.id)
+      .order("last_opened_at", { ascending: false }),
+
+    supabase
+      .from("edu_point_transactions")
+      .select("points")
+      .eq("student_id", user.id),
+
+    supabase
+      .from("edu_student_badges")
+      .select(`
+        awarded_at,
+        edu_badges (
+          id,
+          title,
+          icon
+        )
+      `)
+      .eq("student_id", user.id)
+      .order("awarded_at", { ascending: false }),
+  ]);
+
+  if (lessonsResult.error) {
+    console.warn("DASHBOARD_LESSONS_WARNING", lessonsResult.error.message);
+  }
+
+  if (progressResult.error) {
+    console.warn("DASHBOARD_PROGRESS_WARNING", progressResult.error.message);
+  }
+
+  if (pointsResult.error) {
+    console.warn("DASHBOARD_POINTS_WARNING", pointsResult.error.message);
+  }
+
+  if (badgesResult.error) {
+    console.warn("DASHBOARD_BADGES_WARNING", badgesResult.error.message);
+  }
+
+  const progressRows = (progressResult.data ?? []) as unknown as StudentProgressRow[];
+  const progressByLesson = new Map<string, StudentProgressRow>(
+    progressRows.map((row) => [row.lesson_id, row])
+  );
+
+  const lessons: DashboardLesson[] = ((lessonsResult.data ?? []) as unknown as LessonRow[]).map(
+    (lesson) => {
+      const progress = progressByLesson.get(lesson.id);
+
+      return {
+        id: lesson.id,
+        title: lesson.title ?? "Ø¯Ø±Ø³ Ø¨Ø¯ÙˆÙ† Ø¹Ù†ÙˆØ§Ù†",
+        objective: lesson.objective ?? null,
+        estimatedMinutes: Number(lesson.estimated_minutes ?? 10),
+        points: Number(lesson.points_reward ?? 10),
+        completed: progress?.status === "completed",
+        progressPercent: Number(progress?.progress_percent ?? 0),
+      };
+    }
+  );
+
+  const completedRows = progressRows.filter(
+    (row) => row.status === "completed"
+  );
+
+  const scores = completedRows
+    .map((row) => Number(row.score))
+    .filter((score) => Number.isFinite(score));
+
+  const averageScore =
+    scores.length > 0
+      ? Math.round(scores.reduce((sum, score) => sum + score, 0) / scores.length)
+      : 0;
+
+  const points = ((pointsResult.data ?? []) as unknown as Array<{ points?: number }>).reduce(
+    (sum, row) => sum + Number(row.points ?? 0),
+    0
+  );
+
+  const badgeRows = (badgesResult.data ?? []) as unknown as BadgeWithEduBadge[];
+
+  const latestBadgeRow = badgeRows[0];
+  const latestBadge = latestBadgeRow?.edu_badges
+    ? {
+        id: latestBadgeRow.edu_badges.id,
+        title: latestBadgeRow.edu_badges.title,
+        icon: latestBadgeRow.edu_badges.icon ?? null,
+        awardedAt: latestBadgeRow.awarded_at ?? null,
+      }
+    : null;
+
+  const totalLessons = lessons.length;
+  const completedLessons = lessons.filter((lesson) => lesson.completed).length;
+  const progressPercent =
+    totalLessons > 0
+      ? Math.round((completedLessons / totalLessons) * 100)
+      : 0;
+
+  const continueLesson =
+    lessons.find((lesson) => !lesson.completed) ?? null;
+
+  const studentName =
+    profileResult.data?.full_name ||
+    user.user_metadata?.full_name ||
+    user.email?.split("@")[0] ||
+    "Ø·Ø§Ù„Ø¨ Ø¶Ø§Ø¯ÙŠÙˆÙ…";
+
+  return {
+    studentName,
+    completedLessons,
+    totalLessons,
+    progressPercent,
+    points,
+    averageScore,
+    badgesCount: badgeRows.length,
+    latestBadge,
+    continueLesson,
+    lessons,
+  };
+}

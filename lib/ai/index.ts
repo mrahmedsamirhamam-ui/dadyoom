@@ -21,7 +21,7 @@ class FallbackAIProvider implements AIProvider {
         context
       );
     } catch (error) {
-      console.error(
+      console.warn(
         "PRIMARY_AI_RECOMMENDATION_ERROR",
         error
       );
@@ -40,7 +40,7 @@ class FallbackAIProvider implements AIProvider {
         context
       );
     } catch (error) {
-      console.error(
+      console.warn(
         "PRIMARY_AI_LEARNING_PLAN_ERROR",
         error
       );

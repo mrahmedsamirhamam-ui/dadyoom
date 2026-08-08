@@ -1,0 +1,120 @@
+import { createClient } from "@/lib/supabase/server";
+
+type NeighborLesson = {
+  id: string;
+  title: string;
+  lesson_number: number;
+};
+
+export type BundledLessonQuestion = {
+  id: string;
+  lesson_id: string;
+  question_order: number;
+  question: string;
+  question_type: string;
+  options: unknown;
+  correct_answer: string;
+  explanation: string | null;
+  points: number;
+  created_at: string;
+  updated_at: string;
+};
+
+export type BundledLesson = {
+  id: string;
+  unit_id: string;
+  title: string;
+  lesson_number: number;
+  status: string;
+  lesson_type: string | null;
+  content: string | null;
+  summary: string | null;
+  instructions: unknown;
+  learning_objectives: unknown;
+  vocabulary: unknown;
+  estimated_minutes: number | null;
+  source_page_start: number | null;
+  source_page_end: number | null;
+  source_pdf_url: string | null;
+  previousLesson: NeighborLesson | null;
+  nextLesson: NeighborLesson | null;
+};
+
+type BundleLearningProgress = {
+  id: string;
+  status: string;
+  progress_percent: number;
+  best_score: number;
+  last_score: number;
+  xp: number;
+  attempts: number;
+  time_spent_seconds: number;
+};
+
+type BundleQuestionAttempt = {
+  question_id: string;
+  is_correct: boolean;
+};
+
+type BundleTutorMessage = {
+  id: string;
+  role: "student" | "tutor";
+  content: string;
+  created_at: string;
+};
+
+type LessonPageBundle = {
+  lesson: BundledLesson;
+
+  questions:
+    BundledLessonQuestion[];
+
+  student: {
+    id: string;
+  } | null;
+
+  completed: boolean;
+
+  learningProgress:
+    BundleLearningProgress | null;
+
+  questionAttempts:
+    BundleQuestionAttempt[];
+
+  tutorMessages:
+    BundleTutorMessage[];
+};
+
+export async function getLessonPageBundle(
+  lessonId: string
+): Promise<LessonPageBundle | null> {
+  const supabase =
+    await createClient();
+
+
+  const {
+    data,
+    error,
+  } = await supabase.rpc(
+    "get_lesson_page_bundle",
+    {
+      p_lesson_id: lessonId,
+    }
+  );
+
+
+  if (error) {
+    console.error(
+      "Failed to load lesson page bundle:",
+      error
+    );
+
+    throw error;
+  }
+
+  if (!data) {
+    return null;
+  }
+
+  return data as LessonPageBundle;
+}

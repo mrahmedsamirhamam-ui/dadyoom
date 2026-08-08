@@ -55,11 +55,16 @@ export default function SignupPage() {
       } else {
         setSuccess("تم إنشاء الحساب بنجاح! يرجى مراجعة بريدك الإلكتروني لتأكيد الحساب.");
       }
-    } catch (cause: any) {
-      if (cause?.message?.includes("already registered")) {
+    } catch (cause: unknown) {
+      const message =
+        cause instanceof Error
+          ? cause.message
+          : "حدث خطأ غير متوقع.";
+
+      if (message.includes("already registered")) {
         setError("هذا البريد الإلكتروني مُسجّل بالفعل.");
       } else {
-        setError(cause?.message || "تعذر إنشاء الحساب. حاول مرة أخرى.");
+        setError(message);
       }
     } finally {
       setLoading(false);

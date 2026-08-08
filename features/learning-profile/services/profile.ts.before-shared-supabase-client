@@ -1,0 +1,20 @@
+import { createClient } from "@/lib/supabase/server";
+
+export async function getLearningProfile(
+  studentId: string
+) {
+  const supabase = await createClient();
+
+  const { data, error } =
+    await supabase
+      .from("student_learning_profile")
+      .select("*")
+      .eq("student_id", studentId)
+      .maybeSingle();
+
+  if (error) {
+    throw error;
+  }
+
+  return data;
+}

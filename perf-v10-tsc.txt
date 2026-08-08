@@ -1,0 +1,8 @@
+npm notice run dadyoom@0.1.0 npx
+npm notice run tsc --noEmit
+.next/dev/types/validator.ts(134,15): error TS1005: ';' expected.
+.next/dev/types/validator.ts(134,17): error TS1002: Unterminated string literal.
+.next/dev/types/validator.ts(138,1): error TS1128: Declaration or statement expected.
+.next/dev/types/validator.ts(350,2): error TS1128: Declaration or statement expected.
+.next/dev/types/validator.ts(350,60): error TS1109: Expression expected.
+.next/dev/types/validator.ts(355,1): error TS1128: Declaration or statement expected.

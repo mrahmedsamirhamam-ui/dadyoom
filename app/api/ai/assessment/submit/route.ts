@@ -1,66 +1,385 @@
-import { NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase/server";
-import { updateProgress } from "@/services/progress/progress-engine";
+import { invalidateStudentCaches } from "@/features/student-progress/services/invalidate-student-caches";
+import {
+  NextResponse,
+} from "next/server";
 
-export async function POST(request: Request) {
-  const supabase = await createClient();
+import {
+  createClient,
+} from "@/lib/supabase/server";
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+import {
+  updateProgress,
+} from "@/services/progress/progress-engine";
 
-  if (!user?.email) {
+import {
+  updateLessonMastery,
+} from "@/features/semantic-search/services/updateLessonMastery";
+
+import {
+  saveAssessmentSessionAnswer,
+} from "@/features/assessment/services/saveAssessmentSessionAnswer";
+
+import {
+  updateStudentMemory,
+} from "@/features/student-memory/services/updateStudentMemory";
+
+type SubmitBody = {
+  assessmentId?: string;
+  sessionId?: string;
+  answer?: number;
+};
+
+export async function POST(
+  request: Request
+) {
+  const supabase =
+    await createClient();
+
+  let claimedAssessmentId:
+    string | null = null;
+
+  try {
+    const {
+      data: { user },
+      error: userError,
+    } =
+      await supabase.auth.getUser();
+
+    if (
+      userError ||
+      !user?.email
+    ) {
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            "يجب تسجيل الدخول أولًا.",
+        },
+        {
+          status: 401,
+        }
+      );
+    }
+
+    const body =
+      (await request.json()) as
+        SubmitBody;
+
+    const assessmentId =
+      body.assessmentId?.trim();
+
+    const sessionId =
+      body.sessionId?.trim();
+
+    const answer =
+      body.answer;
+
+    if (
+      !assessmentId ||
+      !sessionId ||
+      typeof answer !== "number" ||
+      !Number.isInteger(answer) ||
+      answer < 0
+    ) {
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            "بيانات الإجابة غير صالحة.",
+        },
+        {
+          status: 400,
+        }
+      );
+    }
+
+    const {
+      data: assessment,
+      error: assessmentError,
+    } = await supabase
+      .from("ai_assessments")
+      .select(`
+        id,
+        lesson_id,
+        student_email,
+        question,
+        choices,
+        correct_answer,
+        explanation,
+        skill,
+        completed
+      `)
+      .eq("id", assessmentId)
+      .eq(
+        "student_email",
+        user.email
+      )
+      .maybeSingle();
+
+    if (
+      assessmentError ||
+      !assessment
+    ) {
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            "لم يتم العثور على الاختبار.",
+        },
+        {
+          status: 404,
+        }
+      );
+    }
+
+    if (assessment.completed) {
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            "تم إرسال إجابة هذا السؤال سابقًا.",
+        },
+        {
+          status: 409,
+        }
+      );
+    }
+
+    /*
+     * حجز السؤال قبل منح XP.
+     * يمنع الضغط المتكرر من احتساب النتيجة أكثر من مرة.
+     */
+    const {
+      data: claimedAssessment,
+      error: claimError,
+    } = await supabase
+      .from("ai_assessments")
+      .update({
+        completed: true,
+      })
+      .eq("id", assessmentId)
+      .eq(
+        "student_email",
+        user.email
+      )
+      .eq("completed", false)
+      .select("id")
+      .maybeSingle();
+
+    if (
+      claimError ||
+      !claimedAssessment
+    ) {
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            "تم إرسال إجابة هذا السؤال سابقًا.",
+        },
+        {
+          status: 409,
+        }
+      );
+    }
+
+    claimedAssessmentId =
+      claimedAssessment.id;
+
+    const {
+      data: assessmentSession,
+      error: sessionError,
+    } = await supabase
+      .from("assessment_sessions")
+      .select(`
+        id,
+        lesson_id,
+        student_id,
+        finished
+      `)
+      .eq("id", sessionId)
+      .eq("student_id", user.id)
+      .maybeSingle();
+
+    if (
+      sessionError ||
+      !assessmentSession
+    ) {
+      throw new Error(
+        "لم يتم العثور على جلسة الاختبار."
+      );
+    }
+
+    if (
+      assessmentSession.finished
+    ) {
+      throw new Error(
+        "جلسة الاختبار منتهية بالفعل."
+      );
+    }
+
+    if (
+      !assessment.lesson_id ||
+      assessmentSession.lesson_id !==
+        assessment.lesson_id
+    ) {
+      throw new Error(
+        "السؤال لا ينتمي إلى جلسة الاختبار الحالية."
+      );
+    }
+
+    const correct =
+      answer ===
+      assessment.correct_answer;
+
+    const selectedChoice =
+      Array.isArray(
+        assessment.choices
+      ) &&
+      answer <
+        assessment.choices.length
+        ? assessment.choices.at(
+            answer
+          ) ?? null
+        : null;
+
+    await saveAssessmentSessionAnswer({
+      supabase,
+      sessionId,
+      assessmentId,
+      studentId:
+        user.id,
+      lessonId:
+        assessment.lesson_id,
+      skill:
+        assessment.skill,
+      selectedAnswer:
+        answer,
+      correctAnswer:
+        assessment.correct_answer,
+      isCorrect:
+        correct,
+    });
+
+    if (assessment.lesson_id) {
+      await updateLessonMastery({
+        supabase,
+        studentId: user.id,
+        lessonId:
+          assessment.lesson_id,
+        userQuestion:
+          assessment.question,
+        assistantAnswer:
+          typeof selectedChoice ===
+            "string"
+            ? selectedChoice
+            : String(answer),
+        answeredCorrectly:
+          correct,
+      });
+    }
+
+    await updateProgress(
+      supabase,
+      {
+        studentEmail:
+          user.email,
+        skill:
+          assessment.skill,
+        correct,
+      }
+    );
+
+    
+
+    await updateStudentMemory({
+      supabase,
+      studentId:
+        user.id,
+    });
+
+    /*
+     * بعد تسجيل نتيجة جديدة تصبح الخطة القديمة غير محدثة.
+     * إغلاقها يجبر النظام على إنشاء خطة جديدة في الزيارة التالية.
+     */
+    const {
+      error: planInvalidationError,
+    } = await supabase
+      .from("learning_plans")
+      .update({
+        completed: true,
+      })
+      .eq(
+        "student_email",
+        user.email
+      )
+      .or(
+        "completed.eq.false,completed.is.null"
+      );
+
+    if (planInvalidationError) {
+      console.error(
+        "LEARNING_PLAN_INVALIDATION_FAILED",
+        planInvalidationError
+      );
+    }
+    // STUDENT_CACHE_INVALIDATION_POINT
+    await invalidateStudentCaches({
+      studentId: user.id,
+      studentEmail: user.email,
+      supabase,
+    });
+return NextResponse.json({
+      success: true,
+      correct,
+      score:
+        correct ? 100 : 0,
+      correctAnswer:
+        assessment.correct_answer,
+      explanation:
+        assessment.explanation,
+    });
+  } catch (error) {
+    /*
+     * إذا فشل تحديث الإتقان أو XP بعد حجز السؤال،
+     * نعيده إلى غير مكتمل حتى يمكن المحاولة مجددًا.
+     */
+    if (claimedAssessmentId) {
+      const {
+        error: rollbackError,
+      } = await supabase
+        .from("ai_assessments")
+        .update({
+          completed: false,
+        })
+        .eq(
+          "id",
+          claimedAssessmentId
+        );
+
+      if (rollbackError) {
+        console.error(
+          "ASSESSMENT_CLAIM_ROLLBACK_FAILED",
+          rollbackError
+        );
+      }
+    }
+
+    console.error(
+      "ASSESSMENT_SUBMIT_FAILED",
+      error
+    );
+
     return NextResponse.json(
       {
         success: false,
-        message: "Unauthorized",
+        message:
+          error instanceof Error
+            ? error.message
+            : "حدث خطأ أثناء تصحيح الإجابة.",
       },
-      { status: 401 }
-    );
-  }
-
-  const body = await request.json();
-
-  const assessmentId = body.assessmentId;
-  const answer = body.answer;
-
-  const { data, error } = await supabase
-    .from("ai_assessments")
-    .select("*")
-    .eq("id", assessmentId)
-    .single();
-
-  if (error || !data) {
-    return NextResponse.json(
       {
-        success: false,
-      },
-      { status: 404 }
+        status: 500,
+      }
     );
   }
-
-  const correct = answer === data.correct_answer;
-
-  // تحديث تقدم الطالب ومهاراته ونقاطه عبر المحرك الموحد
-  await updateProgress(supabase, {
-    studentEmail: user.email,
-    skill: data.skill,
-    correct,
-  });
-
-  // تحديث حالة التقييم إلى مكتمل
-  await supabase
-    .from("ai_assessments")
-    .update({
-      completed: true,
-    })
-    .eq("id", assessmentId);
-
-  return NextResponse.json({
-    success: true,
-    correct,
-    score: correct ? 100 : 0,
-    correctAnswer: data.correct_answer,
-    explanation: data.explanation,
-  });
 }

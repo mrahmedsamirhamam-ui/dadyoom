@@ -1,5 +1,7 @@
 "use client";
 
+import { logger } from "@/lib/logger";
+
 import {
   useMemo,
   useState,
@@ -356,7 +358,7 @@ export default function LessonForm({
 
       setGeneratedLesson(data.lesson);
 
-      console.log(
+      logger.debug(
         "GENERATED_LESSON:",
         data.lesson
       );

@@ -1,0 +1,37 @@
+"use server";
+
+import { revalidatePath } from "next/cache";
+import { createClient } from "@/lib/supabase/server";
+
+import { completeLesson } from "../services/progress";
+import { syncLearningProfile } from "@/features/learning-profile/services/sync-profile";
+
+export async function completeLessonAction(
+  progressId: string,
+  score: number
+) {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser();
+
+  if (authError || !user) {
+    throw new Error(
+      "يجب تسجيل الدخول لإكمال الدرس."
+    );
+  }
+
+  const result = await completeLesson(
+    progressId,
+    score
+  );
+
+  await syncLearningProfile(user.id);
+
+  revalidatePath("/student");
+  revalidatePath("/lessons");
+
+  return result;
+}

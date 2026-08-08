@@ -1,5 +1,7 @@
 "use client";
 
+import { logger } from "@/lib/logger";
+
 import { AnimatePresence, motion } from "motion/react";
 import {
   FormEvent,
@@ -268,7 +270,7 @@ export default function DadCompanion({
     function handleLessonCompleted(event: Event) {
       const customEvent = event as LessonCompletedEvent;
 
-      console.info(
+      logger.info(
         "DAD_COMPANION_LESSON_COMPLETED:",
         customEvent.detail
       );

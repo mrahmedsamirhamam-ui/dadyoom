@@ -63,20 +63,15 @@ export function useArabicSpeech() {
 
   const [error, setError] = useState("");
 
-  const [isMounted, setIsMounted] =
-    useState(false);
+  const [isMounted] = useState(() => typeof window !== "undefined");
 
-  const [isSupported, setIsSupported] =
-    useState(false);
+  const [isSupported] = useState(() => typeof window !== "undefined");
 
   useEffect(() => {
-    setIsMounted(true);
 
     const supported =
       "speechSynthesis" in window &&
       "SpeechSynthesisUtterance" in window;
-
-    setIsSupported(supported);
 
     if (!supported) {
       return;

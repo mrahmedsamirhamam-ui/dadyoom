@@ -1,0 +1,4 @@
+npm notice run dadyoom@0.1.0 npx
+npm notice run tsc --noEmit
+features/adaptive-learning/queries/getAdaptiveLessonData.ts(133,9): error TS1434: Unexpected keyword or identifier.
+features/adaptive-learning/queries/getAdaptiveLessonData.ts(133,28): error TS1011: An element access expression should take an argument.

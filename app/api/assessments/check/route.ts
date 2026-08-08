@@ -1,3 +1,5 @@
+import { invalidateStudentCaches } from "@/features/student-progress/services/invalidate-student-caches";
+import { logger } from "@/lib/logger";
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
@@ -224,9 +226,32 @@ async function updateStudentMistake(
   }
 }
 
+type GeminiApiError = {
+  code?: number | string;
+  message?: string;
+  status?: string;
+};
+
+type GeminiContentPart = {
+  text?: string;
+};
+
+type GeminiCandidate = {
+  content?: {
+    parts?: GeminiContentPart[];
+    role?: string;
+  };
+  finishReason?: string;
+};
+
+type GeminiApiResponse = {
+  error?: GeminiApiError;
+  candidates?: GeminiCandidate[];
+};
+
 type GeminiAttemptResult = {
   response: Response;
-  data: Record<string, any>;
+  data: GeminiApiResponse;
   keyIndex: number;
 };
 
@@ -236,7 +261,7 @@ async function requestGeminiWithFallback(
   requestBody: unknown
 ): Promise<GeminiAttemptResult> {
   let lastResponse: Response | null = null;
-  let lastData: Record<string, any> = {};
+  let lastData: GeminiApiResponse = {};
 
   for (
     let keyIndex = 0;
@@ -257,14 +282,14 @@ async function requestGeminiWithFallback(
 
     const data = (await response
       .json()
-      .catch(() => ({}))) as Record<string, any>;
+      .catch(() => ({}))) as GeminiApiResponse;
 
     lastResponse = response;
     lastData = data;
 
     if (response.ok) {
       if (keyIndex > 0) {
-        console.info(
+        logger.info(
           "GEMINI_BACKUP_KEY_USED",
           {
             keyIndex,
@@ -541,7 +566,7 @@ ${JSON.stringify(safeItems)}
       geminiRequestBody
     );
 
-    console.info("GEMINI_GRADING_KEY", {
+    logger.info("GEMINI_GRADING_KEY", {
       key:
         usedKeyIndex === 0
           ? "primary"
@@ -710,6 +735,13 @@ ${JSON.stringify(safeItems)}
         );
       }
     }
+    // STUDENT_CACHE_INVALIDATION_POINT
+    await invalidateStudentCaches({
+      studentId: user.id,
+      studentEmail: user.email,
+      supabase,
+    });
+
 
     return NextResponse.json({
       success: true,

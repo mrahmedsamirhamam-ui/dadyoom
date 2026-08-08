@@ -1,0 +1,3 @@
+npm notice run dadyoom@0.1.0 npx
+npm notice run tsc --noEmit
+app/lessons/[id]/page.tsx(173,9): error TS1434: Unexpected keyword or identifier.

@@ -1,3 +1,7 @@
+import type {
+  StudentProgressRow,
+  LearningProfileRow,
+} from "@/types/database";
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 export type StudentProgressItem = {
@@ -22,19 +26,18 @@ async function resolveStudentId(
   }
 
   if (email) {
-    const { data } = await (
-      supabase.from("profiles") as any
-    )
+    const { data } = await supabase
+      .from("profiles")
       .select("id")
       .eq("email", email)
-      .maybeSingle();
+      .maybeSingle<LearningProfileRow>();
 
     if (data?.id) {
       return data.id;
     }
   }
 
-  throw new Error("تعذر تحديد الطالب الحالي.");
+  throw new Error("ØªØ¹Ø°Ø± ØªØ­Ø¯ÙŠØ¯ Ø§Ù„Ø·Ø§Ù„Ø¨ Ø§Ù„Ø­Ø§Ù„ÙŠ.");
 }
 
 export async function getStudentProgress(
@@ -46,9 +49,8 @@ export async function getStudentProgress(
     email
   );
 
-  const { data, error } = await (
-    supabase.from("edu_learner_progress") as any
-  )
+  const { data, error } = await supabase
+    .from("edu_learner_progress")
     .select(`
       lesson_id,
       status,
@@ -63,7 +65,9 @@ export async function getStudentProgress(
     throw new Error(error.message);
   }
 
-  return (data ?? []).map((item: any) => ({
+  const progressData = (data ?? []) as unknown as StudentProgressRow[];
+
+  return progressData.map((item: StudentProgressRow) => ({
     lesson_id: item.lesson_id,
     completed: item.status === "completed",
     completed_at: item.completed_at ?? null,
@@ -72,6 +76,6 @@ export async function getStudentProgress(
       item.score === null || item.score === undefined
         ? null
         : Number(item.score),
-    status: item.status,
+    status: item.status as "not_started" | "in_progress" | "completed",
   }));
 }

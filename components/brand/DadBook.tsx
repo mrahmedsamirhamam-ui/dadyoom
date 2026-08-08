@@ -126,16 +126,28 @@ export default function DadBook() {
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    setMessages([
-      {
-        id: createId(),
-        role: "assistant",
-        content: getPageGreeting(pathname),
-      },
-    ]);
+    let cancelled = false;
 
-    setInput("");
-    setIsOpen(false);
+    queueMicrotask(() => {
+      if (cancelled) {
+        return;
+      }
+
+      setMessages([
+        {
+          id: createId(),
+          role: "assistant",
+          content: getPageGreeting(pathname),
+        },
+      ]);
+
+      setInput("");
+      setIsOpen(false);
+    });
+
+    return () => {
+      cancelled = true;
+    };
   }, [pathname]);
 
   useEffect(() => {

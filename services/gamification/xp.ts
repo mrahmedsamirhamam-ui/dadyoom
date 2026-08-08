@@ -1,3 +1,4 @@
+import { logger } from "@/lib/logger";
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 import type { Skill } from "@/lib/constants/skills";
@@ -34,7 +35,7 @@ export async function awardXp({
     awardedXp
   );
 
-  console.info("XP awarded", {
+  logger.info("XP awarded", {
     studentEmail,
     skill,
     xp: awardedXp,

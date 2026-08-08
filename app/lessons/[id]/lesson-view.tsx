@@ -107,7 +107,7 @@ export default function LessonView({ lesson }: LessonViewProps) {
   );
 
   // حالة المكون المرئية لـ "ضاد"
-  const [dadVisualState, setDadVisualState] = useState<DadState>("idle");
+  const [, setDadVisualState] = useState<DadState>("idle");
 
   const gradingResultValues = Object.values(gradingResults);
 

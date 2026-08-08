@@ -1,3 +1,4 @@
+import { logger } from "@/lib/logger";
 import type { DadState } from "./dad-state";
 
 const DAD_STATE_EVENT = "dadyoom:dad-state-change";
@@ -17,7 +18,7 @@ function setState(state: DadState): void {
       )
     );
 
-    console.info("DAD_STATE_CHANGED:", state);
+    logger.info("DAD_STATE_CHANGED:", state);
   }
 }
 

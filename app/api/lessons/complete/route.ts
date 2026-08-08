@@ -1,21 +1,9 @@
+import { invalidateStudentCaches } from "@/features/student-progress/services/invalidate-student-caches";
 import { NextResponse } from "next/server";
-
 import { createClient } from "@/lib/supabase/server";
-import { completeLesson } from "@/services/lessons/complete-lesson";
 
-type CompleteLessonRequest = {
-  lessonId?: unknown;
-};
-
-type ProgressRow = {
-  lesson_id: string | null;
-  completed: boolean | null;
-};
-
-type LessonRow = {
-  id: string;
-  lesson_order: number | null;
-  created_at: string | null;
+type CompleteLessonBody = {
+  lessonId?: string;
 };
 
 export async function POST(request: Request) {
@@ -27,119 +15,117 @@ export async function POST(request: Request) {
       error: userError,
     } = await supabase.auth.getUser();
 
-    if (userError || !user?.email) {
+    if (userError || !user) {
       return NextResponse.json(
-        {
-          success: false,
-          error: "يجب تسجيل الدخول أولًا.",
-        },
+        { success: false, error: "يجب تسجيل الدخول أولًا." },
         { status: 401 }
       );
     }
 
-    const body =
-      (await request.json()) as CompleteLessonRequest;
-
-    const lessonId = String(
-      body.lessonId ?? ""
-    ).trim();
+    const body = (await request.json()) as CompleteLessonBody;
+    const lessonId = body.lessonId?.trim();
 
     if (!lessonId) {
       return NextResponse.json(
-        {
-          success: false,
-          error: "معرّف الدرس مطلوب.",
-        },
+        { success: false, error: "معرّف الدرس غير موجود." },
         { status: 400 }
       );
     }
 
-    const result = await completeLesson({
-      supabase,
-      studentEmail: user.email,
-      lessonId,
-    });
+    const { data: lesson, error: lessonError } = await supabase
+      .from("edu_lessons")
+      .select("id,points_reward,is_published")
+      .eq("id", lessonId)
+      .eq("is_published", true)
+      .maybeSingle();
 
-    /*
-     * بعد تسجيل إكمال الدرس، نجلب جميع الدروس المكتملة
-     * ثم نختار أول درس منشور غير مكتمل.
-     */
-    const {
-      data: progressData,
-      error: progressError,
-    } = await supabase
-      .from("student_progress")
-      .select("lesson_id, completed")
-      .eq("student_email", user.email)
-      .eq("completed", true);
+    if (lessonError) {
+      return NextResponse.json(
+        { success: false, error: lessonError.message },
+        { status: 500 }
+      );
+    }
+
+    if (!lesson) {
+      return NextResponse.json(
+        { success: false, error: "الدرس غير موجود أو غير منشور." },
+        { status: 404 }
+      );
+    }
+
+    const now = new Date().toISOString();
+
+    const { error: progressError } = await supabase
+      .from("edu_learner_progress")
+      .upsert(
+        {
+          student_id: user.id,
+          lesson_id: lessonId,
+          status: "completed",
+          progress_percent: 100,
+          score: 100,
+          started_at: now,
+          completed_at: now,
+          last_opened_at: now,
+        },
+        {
+          onConflict: "student_id,lesson_id",
+        }
+      );
 
     if (progressError) {
-      throw progressError;
+      return NextResponse.json(
+        { success: false, error: progressError.message },
+        { status: 500 }
+      );
     }
 
-    const progressRows =
-      (progressData ?? []) as ProgressRow[];
+    const { count } = await supabase
+      .from("edu_point_transactions")
+      .select("id", { count: "exact", head: true })
+      .eq("student_id", user.id)
+      .eq("lesson_id", lessonId)
+      .eq("reason", "lesson_completed");
 
-    const completedLessonIds = new Set(
-      progressRows
-        .filter(
-          (row) =>
-            row.completed === true &&
-            Boolean(row.lesson_id)
-        )
-        .map((row) => row.lesson_id as string)
-    );
+    if ((count ?? 0) === 0) {
+      const { error: pointsError } = await supabase
+        .from("edu_point_transactions")
+        .insert({
+          student_id: user.id,
+          lesson_id: lessonId,
+          points: Number(lesson.points_reward ?? 10),
+          reason: "lesson_completed",
+          metadata: {
+            source: "api/lessons/complete",
+          },
+        });
 
-    const {
-      data: lessonsData,
-      error: lessonsError,
-    } = await supabase
-      .from("lessons")
-      .select("id, lesson_order, created_at")
-      .eq("is_published", true)
-      .order("lesson_order", {
-        ascending: true,
-      })
-      .order("created_at", {
-        ascending: true,
-      });
-
-    if (lessonsError) {
-      throw lessonsError;
+      if (pointsError) {
+        console.warn(
+          "LESSON_POINTS_WARNING",
+          pointsError.message
+        );
+      }
     }
 
-    const lessonRows =
-      (lessonsData ?? []) as LessonRow[];
-
-    const nextLesson =
-      lessonRows.find(
-        (lesson) =>
-          lesson.id !== lessonId &&
-          !completedLessonIds.has(lesson.id)
-      ) ?? null;
-
+    // STUDENT_CACHE_INVALIDATION_POINT
+    await invalidateStudentCaches({
+      studentId: user.id,
+      studentEmail: user.email,
+      supabase,
+    });
     return NextResponse.json({
       success: true,
-      newlyCompleted: result.newlyCompleted,
-
-      earnedPoints:
-        result.progress?.awardedXp ?? 0,
-
-      nextLessonId:
-        nextLesson?.id ?? null,
-
-      progress: result.progress,
+      lessonId,
     });
-  } catch (error) {
-    console.error(
-      "Complete lesson error:",
-      error
-    );
-
+  } catch (cause) {
     return NextResponse.json(
       {
         success: false,
-        error: "تعذر إكمال الدرس الآن.",
+        error:
+          cause instanceof Error
+            ? cause.message
+            : "حدث خطأ أثناء إكمال الدرس.",
       },
       { status: 500 }
     );

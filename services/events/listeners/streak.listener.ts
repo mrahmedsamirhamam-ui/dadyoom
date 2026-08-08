@@ -1,3 +1,4 @@
+import { logger } from "@/lib/logger";
 import { updateStreak } from "@/services/gamification/streak";
 
 import { subscribeToStudentEvent } from "../dispatcher";
@@ -12,6 +13,6 @@ subscribeToStudentEvent(
       activityDate: event.createdAt,
     });
 
-    console.info("Streak updated", streak);
+    logger.info("Streak updated", streak);
   }
 );

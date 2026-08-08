@@ -1,0 +1,4 @@
+npm notice run dadyoom@0.1.0 npx
+npm notice run tsc --noEmit
+app/lessons/[id]/page.tsx(439,23): error TS2322: Type '{ lessonId: string; questionId: string; userId: string | null; question: string; choices: QuestionOption[]; correctAnswer: string; explanation: string | null; }' is not assignable to type 'IntrinsicAttributes & Props'.
+  Property 'lessonId' does not exist on type 'IntrinsicAttributes & Props'.

@@ -1,163 +1,75 @@
+import type { User } from "@supabase/supabase-js";
 import { redirect } from "next/navigation";
 
 import { createClient } from "@/lib/supabase/server";
-import { getLatestLearningPlan } from "@/services/ai/get-learning-plan.service";
-import { getLatestRecommendation } from "@/services/ai/get-latest-recommendation";
 
-import type {
-  ContinueLessonData,
-  JourneyLessonData,
-  LatestAssessment,
-  StudentDashboardData,
-  StudentMistake,
-  StudentSkill,
-} from "@/types/student-dashboard";
-
-const FALLBACK_TOTAL_LESSONS = 20;
-
-type SkillRow = {
-  skill: string | null;
-  score: number | null;
-  attempts: number | null;
-  correct_attempts: number | null;
-};
-
-type MistakeRow = {
-  category: string | null;
-  mistake_count: number | null;
-};
-
-type AssessmentRow = {
-  score: number | null;
-  correct: boolean | null;
-  feedback: string | null;
-  teacher_comment: string | null;
-  recommendation: string | null;
-  skill: string | null;
-  created_at: string | null;
-};
-
-type ProgressRow = {
-  lesson_id: string | null;
-  completed: boolean | null;
-  earned_points: number | null;
-};
+type ServerSupabaseClient =
+  Awaited<ReturnType<typeof createClient>>;
 
 type LessonRow = {
   id: string;
   title: string | null;
-  summary: string | null;
-  points: number | null;
-  lesson_order: number | null;
-  created_at: string | null;
-  is_published: boolean | null;
+  estimated_minutes: number | null;
+  lesson_number: number | null;
 };
 
-type SupabaseErrorLike = {
-  message?: string;
-  details?: string;
-  hint?: string;
-  code?: string;
+type ProgressRow = {
+  lesson_id: string;
+  status: string;
+  progress_percent: number | null;
+  best_score: number | null;
+  last_score: number | null;
+  xp: number | null;
+  updated_at: string | null;
 };
 
-function clampScore(
-  value: number | null | undefined
-): number {
-  return Math.max(
-    0,
-    Math.min(100, Math.round(value ?? 0))
-  );
-}
+export type DashboardLesson = {
+  id: string;
+  title: string;
+  objective: string | null;
+  estimatedMinutes: number;
+  points: number;
+  completed: boolean;
+  progressPercent: number;
+  status:
+    | "not_started"
+    | "in_progress"
+    | "completed"
+    | "mastered";
+};
 
-function logDashboardWarning(
-  section: string,
-  error: SupabaseErrorLike | null
-): void {
-  if (!error) {
-    return;
-  }
+export type DashboardBadge = {
+  id: string;
+  title: string;
+  icon: string | null;
+  awardedAt: string | null;
+};
 
-  console.warn(`DASHBOARD_${section}_WARNING`, {
-    message: error.message ?? "رسالة الخطأ غير متاحة",
-    details: error.details ?? null,
-    hint: error.hint ?? null,
-    code: error.code ?? null,
-  });
-}
+export type StudentDashboardData = {
+  studentName: string;
+  completedLessons: number;
+  totalLessons: number;
+  progressPercent: number;
+  points: number;
+  averageScore: number;
+  badgesCount: number;
+  latestBadge: DashboardBadge | null;
+  continueLesson: DashboardLesson | null;
+  lessons: DashboardLesson[];
+};
 
-function buildAiMessage(
-  skills: StudentSkill[],
-  mistakes: StudentMistake[],
-  latestAssessment: LatestAssessment | null
-): string {
-  const weakestSkill = [...skills].sort(
-    (firstSkill, secondSkill) =>
-      firstSkill.score - secondSkill.score
-  )[0];
-
-  const mostFrequentMistake = mistakes[0];
-
-  if (latestAssessment?.recommendation) {
-    return latestAssessment.recommendation;
-  }
-
-  if (mostFrequentMistake) {
-    return `ركّز اليوم على مراجعة «${mostFrequentMistake.category}»؛ فهو أكثر الأخطاء تكرارًا لديك.`;
-  }
-
-  if (weakestSkill) {
-    return `خصص عشر دقائق اليوم لتطوير مهارة ${weakestSkill.name}.`;
-  }
-
-  return "ابدأ أول تقييم لك، وسأبني لك خطة تعلم شخصية تناسب مستواك.";
-}
-
-function getLessonTitle(
-  lesson: LessonRow,
-  index: number
-): string {
-  return lesson.title ?? `الدرس ${index + 1}`;
-}
-
-function getLessonDescription(
-  lesson: LessonRow
-): string {
-  return (
-    lesson.summary ??
-    "تدريب جديد لتطوير مهاراتك في اللغة العربية."
-  );
-}
-
-function getLessonOrder(
-  lesson: LessonRow,
-  index: number
-): number {
-  return lesson.lesson_order ?? index + 1;
-}
-
-export async function getStudentDashboard(): Promise<StudentDashboardData> {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-    error: userError,
-  } = await supabase.auth.getUser();
-
-  if (userError || !user?.email) {
+export async function getStudentDashboard(
+  supabase: ServerSupabaseClient,
+  user: User | null
+): Promise<StudentDashboardData> {
+  if (!user) {
     redirect("/login");
   }
 
-  const studentEmail = user.email;
-
   const [
     profileResult,
-    progressResult,
     lessonsResult,
-    skillsResult,
-    mistakesResult,
-    assessmentResult,
-    aiRecommendation,
-    learningPlan,
+    progressResult,
   ] = await Promise.all([
     supabase
       .from("profiles")
@@ -166,367 +78,213 @@ export async function getStudentDashboard(): Promise<StudentDashboardData> {
       .maybeSingle(),
 
     supabase
-      .from("student_progress")
-      .select(
-        "lesson_id, completed, earned_points"
-      )
-      .eq("student_email", studentEmail)
-      .eq("completed", true),
-
-    supabase
       .from("lessons")
-      .select(
-        `
-          id,
-          title,
-          summary,
-          points,
-          lesson_order,
-          created_at,
-          is_published
-        `
-      )
-      .eq("is_published", true)
-      .order("lesson_order", { ascending: true })
-      .order("created_at", { ascending: true }),
-
-    supabase
-      .from("student_skills")
-      .select(
-        "skill, score, attempts, correct_attempts"
-      )
-      .eq("student_email", studentEmail)
-      .order("score", {
-        ascending: false,
+      .select(`
+        id,
+        title,
+        estimated_minutes,
+        lesson_number
+      `)
+      .eq("status", "published")
+      .order("lesson_number", {
+        ascending: true,
       }),
 
     supabase
-      .from("student_mistakes")
-      .select(
-        "category, mistake_count"
-      )
-      .eq("student_email", studentEmail)
-      .order("mistake_count", {
+      .from("student_lesson_progress")
+      .select(`
+        lesson_id,
+        status,
+        progress_percent,
+        best_score,
+        last_score,
+        xp,
+        updated_at
+      `)
+      .eq("student_id", user.id)
+      .order("updated_at", {
         ascending: false,
-      })
-      .limit(5),
-
-    supabase
-      .from("student_assessments")
-      .select(
-        `
-          score,
-          correct,
-          feedback,
-          teacher_comment,
-          recommendation,
-          skill,
-          created_at
-        `
-      )
-      .eq("student_email", studentEmail)
-      .order("created_at", {
-        ascending: false,
-      })
-      .limit(1)
-      .maybeSingle(),
-
-    getLatestRecommendation(
-      supabase,
-      studentEmail
-    ),
-
-    getLatestLearningPlan(
-      supabase,
-      studentEmail
-    ),
+      }),
   ]);
 
-  logDashboardWarning(
-    "PROFILE",
-    profileResult.error
-  );
+  if (lessonsResult.error) {
+    console.warn(
+      "DASHBOARD_LESSONS_WARNING",
+      lessonsResult.error.message
+    );
+  }
 
-  logDashboardWarning(
-    "PROGRESS",
-    progressResult.error
-  );
-
-  logDashboardWarning(
-    "LESSONS",
-    lessonsResult.error
-  );
-
-  logDashboardWarning(
-    "SKILLS",
-    skillsResult.error
-  );
-
-  logDashboardWarning(
-    "MISTAKES",
-    mistakesResult.error
-  );
-
-  logDashboardWarning(
-    "ASSESSMENT",
-    assessmentResult.error
-  );
-
-  const studentName =
-    profileResult.data?.full_name ||
-    user.user_metadata?.full_name ||
-    studentEmail.split("@")[0] ||
-    "بطل ضاديوم";
-
-  const progressRows =
-    (progressResult.data ?? []) as ProgressRow[];
-
-  const completedLessonIds = new Set(
-    progressRows
-      .filter(
-        (row) =>
-          row.completed === true &&
-          Boolean(row.lesson_id)
-      )
-      .map(
-        (row) => row.lesson_id as string
-      )
-  );
+  if (progressResult.error) {
+    console.warn(
+      "DASHBOARD_PROGRESS_WARNING",
+      progressResult.error.message
+    );
+  }
 
   const lessonRows =
     (lessonsResult.data ?? []) as LessonRow[];
 
-  const journeyLessons: JourneyLessonData[] =
-    lessonRows
-      .filter(
-        (lesson) =>
-          Boolean(lesson.id) &&
-          lesson.is_published === true
-      )
-      .map((lesson, index) => ({
+  const progressRows =
+    (progressResult.data ?? []) as ProgressRow[];
+
+  const progressByLesson =
+    new Map<string, ProgressRow>();
+
+  for (const row of progressRows) {
+    progressByLesson.set(
+      row.lesson_id,
+      row
+    );
+  }
+
+  const lessons: DashboardLesson[] =
+    lessonRows.map((lesson) => {
+      const progress =
+        progressByLesson.get(lesson.id);
+
+      const rawStatus =
+        progress?.status ??
+        "not_started";
+
+      const status: DashboardLesson["status"] =
+        rawStatus === "mastered"
+          ? "mastered"
+          : rawStatus === "completed"
+          ? "completed"
+          : rawStatus === "in_progress"
+          ? "in_progress"
+          : "not_started";
+
+      const completed =
+        status === "completed" ||
+        status === "mastered";
+
+      return {
         id: lesson.id,
-        title: getLessonTitle(
-          lesson,
-          index
-        ),
-        description:
-          getLessonDescription(lesson),
-        points: lesson.points ?? 10,
-        order: getLessonOrder(
-          lesson,
-          index
-        ),
-        completed:
-          completedLessonIds.has(
-            lesson.id
+        title:
+          lesson.title ??
+          "درس بدون عنوان",
+        objective: null,
+        estimatedMinutes:
+          Number(
+            lesson.estimated_minutes ??
+            10
           ),
-      }))
-      .sort(
-        (
-          firstLesson,
-          secondLesson
-        ) => {
-          if (
-            firstLesson.order !==
-            secondLesson.order
-          ) {
-            return (
-              firstLesson.order -
-              secondLesson.order
-            );
-          }
-
-          return firstLesson.title.localeCompare(
-            secondLesson.title,
-            "ar"
-          );
-        }
-      );
-
-  const nextJourneyLesson =
-    journeyLessons.find(
-      (lesson) => !lesson.completed
-    ) ?? null;
-
-  const continueLesson:
-    | ContinueLessonData
-    | null =
-    nextJourneyLesson
-      ? {
-          id: nextJourneyLesson.id,
-          title:
-            nextJourneyLesson.title,
-          description:
-            nextJourneyLesson.description,
-          points:
-            nextJourneyLesson.points,
-          order:
-            nextJourneyLesson.order,
-        }
-      : null;
-
-  const completedLessons =
-    journeyLessons.length > 0
-      ? journeyLessons.filter(
-          (lesson) => lesson.completed
-        ).length
-      : completedLessonIds.size;
-
-  const totalLessons =
-    journeyLessons.length > 0
-      ? journeyLessons.length
-      : FALLBACK_TOTAL_LESSONS;
-
-  const progress =
-    totalLessons > 0
-      ? Math.min(
-          Math.round(
-            (completedLessons /
-              totalLessons) *
-              100
+        points:
+          Number(
+            progress?.xp ??
+            0
           ),
-          100
-        )
-      : 0;
+        completed,
+        progressPercent:
+          Number(
+            progress?.progress_percent ??
+            0
+          ),
+        status,
+      };
+    });
 
-  const savedPoints =
-    progressRows.reduce(
-      (total, row) =>
-        total +
-        (row.earned_points ?? 0),
-      0
+  const completedRows =
+    progressRows.filter(
+      (row) =>
+        row.status === "completed" ||
+        row.status === "mastered"
     );
 
   const points =
-    savedPoints > 0
-      ? savedPoints
-      : journeyLessons
-          .filter(
-            (lesson) =>
-              lesson.completed
-          )
-          .reduce(
-            (total, lesson) =>
-              total + lesson.points,
-            0
-          );
+    progressRows.reduce(
+      (sum, row) =>
+        sum +
+        Number(row.xp ?? 0),
+      0
+    );
 
-  const skillRows =
-    (skillsResult.data ?? []) as SkillRow[];
-
-  const skills: StudentSkill[] =
-    skillRows
-      .filter(
-        (row) =>
-          Boolean(row.skill)
-      )
-      .map((row) => ({
-        name:
-          row.skill ??
-          "مهارة عامة",
-        score:
-          clampScore(row.score),
-        attempts:
-          row.attempts ?? 0,
-        correctAttempts:
-          row.correct_attempts ?? 0,
-      }));
-
-  const mistakeRows =
-    (mistakesResult.data ??
-      []) as MistakeRow[];
-
-  const mistakes: StudentMistake[] =
-    mistakeRows
-      .filter(
-        (row) =>
-          Boolean(row.category)
-      )
-      .map((row) => ({
-        category:
-          row.category ??
-          "غير مصنف",
-        count:
-          row.mistake_count ?? 0,
-      }));
-
-  const assessmentRow =
-    assessmentResult.data as
-      | AssessmentRow
-      | null;
-
-  const latestAssessment:
-    | LatestAssessment
-    | null =
-    assessmentRow
-      ? {
-          score: clampScore(
-            assessmentRow.score
-          ),
-          correct: Boolean(
-            assessmentRow.correct
-          ),
-          feedback:
-            assessmentRow.feedback ??
-            "لا توجد ملاحظات بعد.",
-          teacherComment:
-            assessmentRow.teacher_comment ??
-            "واصل التدريب والتقدم.",
-          recommendation:
-            assessmentRow.recommendation ??
-            "راجع المهارة ثم جرّب تدريبًا جديدًا.",
-          skill:
-            assessmentRow.skill ??
-            "مهارة عامة",
-          createdAt:
-            assessmentRow.created_at,
-        }
-      : null;
-
-  const overallScore =
-    skills.length > 0
-      ? Math.round(
-          skills.reduce(
-            (
-              totalScore,
-              skill
-            ) =>
-              totalScore +
-              skill.score,
-            0
-          ) / skills.length
+  const scores =
+    completedRows
+      .map((row) =>
+        Number(
+          row.best_score ??
+          row.last_score ??
+          0
         )
-      : latestAssessment?.score ?? 0;
+      )
+      .filter(
+        (score) =>
+          Number.isFinite(score) &&
+          score > 0
+      );
+
+  const averageScore =
+    scores.length > 0
+      ? Math.round(
+          scores.reduce(
+            (sum, score) =>
+              sum + score,
+            0
+          ) / scores.length
+        )
+      : 0;
+
+  const completedLessons =
+    lessons.filter(
+      (lesson) =>
+        lesson.completed
+    ).length;
+
+  const totalLessons =
+    lessons.length;
+
+  const progressPercent =
+    totalLessons > 0
+      ? Math.round(
+          (
+            completedLessons /
+            totalLessons
+          ) * 100
+        )
+      : 0;
+
+  const inProgressLesson =
+    lessons.find(
+      (lesson) =>
+        lesson.status ===
+        "in_progress"
+    );
+
+  const firstUnfinishedLesson =
+    lessons.find(
+      (lesson) =>
+        !lesson.completed
+    );
+
+  const continueLesson =
+    inProgressLesson ??
+    firstUnfinishedLesson ??
+    null;
+
+  const studentName =
+    (
+      profileResult.data as
+        | {
+            full_name?: string | null;
+          }
+        | null
+    )?.full_name ||
+    user.user_metadata?.full_name ||
+    user.email?.split("@")[0] ||
+    "طالب ضاديوم";
 
   return {
     studentName,
     completedLessons,
     totalLessons,
-    progress,
+    progressPercent,
     points,
-    badges:
-      Math.floor(
-        completedLessons / 3
-      ),
-    streakDays:
-      Math.min(
-        completedLessons,
-        7
-      ),
-    overallScore,
-    skills,
-    mistakes,
-    latestAssessment,
-    journeyLessons,
+    averageScore,
+    badgesCount: 0,
+    latestBadge: null,
     continueLesson,
-    aiRecommendation,
-    learningPlan,
-    aiMessage:
-      aiRecommendation?.message ??
-      buildAiMessage(
-        skills,
-        mistakes,
-        latestAssessment
-      ),
+    lessons,
   };
 }

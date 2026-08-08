@@ -1,7 +1,16 @@
-import type { SupabaseClient } from "@supabase/supabase-js";
+﻿import type {
+  SupabaseClient,
+} from "@supabase/supabase-js";
+
+import type {
+  Database,
+} from "@/types/supabase";
+
+type TypedSupabaseClient =
+  SupabaseClient<Database>;
 
 async function getCurrentStudentId(
-  supabase: SupabaseClient,
+  supabase: TypedSupabaseClient,
   fallbackEmail?: string
 ): Promise<string> {
   const {
@@ -14,9 +23,11 @@ async function getCurrentStudentId(
   }
 
   if (fallbackEmail) {
-    const { data: profile, error: profileError } = await (
-      supabase.from("profiles") as any
-    )
+    const {
+      data: profile,
+      error: profileError,
+    } = await supabase
+      .from("profiles")
       .select("id")
       .eq("email", fallbackEmail)
       .maybeSingle();
@@ -26,28 +37,30 @@ async function getCurrentStudentId(
     }
   }
 
-  throw new Error("تعذر تحديد حساب الطالب الحالي.");
+  throw new Error(
+    "تعذر تحديد حساب الطالب الحالي."
+  );
 }
 
-/**
- * يحافظ على التوقيع القديم حتى لا تتعطل الاستدعاءات الحالية.
- * studentEmail يُستخدم كخيار احتياطي فقط.
- */
 export async function completeLesson(
-  supabase: SupabaseClient,
+  supabase: TypedSupabaseClient,
   studentEmail: string,
   lessonId: string
 ) {
-  const studentId = await getCurrentStudentId(
-    supabase,
-    studentEmail
-  );
+  const studentId =
+    await getCurrentStudentId(
+      supabase,
+      studentEmail
+    );
 
-  const completedAt = new Date().toISOString();
+  const completedAt =
+    new Date().toISOString();
 
-  const { data: lesson, error: lessonError } = await (
-    supabase.from("edu_lessons") as any
-  )
+  const {
+    data: lesson,
+    error: lessonError,
+  } = await supabase
+    .from("edu_lessons")
     .select("points_reward")
     .eq("id", lessonId)
     .single();
@@ -56,9 +69,11 @@ export async function completeLesson(
     throw new Error(lessonError.message);
   }
 
-  const { data, error } = await (
-    supabase.from("edu_learner_progress") as any
-  )
+  const {
+    data,
+    error,
+  } = await supabase
+    .from("edu_learner_progress")
     .upsert(
       {
         student_id: studentId,
@@ -71,7 +86,8 @@ export async function completeLesson(
         last_opened_at: completedAt,
       },
       {
-        onConflict: "student_id,lesson_id",
+        onConflict:
+          "student_id,lesson_id",
       }
     )
     .select()
@@ -81,21 +97,24 @@ export async function completeLesson(
     throw new Error(error.message);
   }
 
-  const points = Number(lesson?.points_reward ?? 10);
+  const points = Number(
+    lesson?.points_reward ?? 10
+  );
 
-  const { error: pointsError } = await (
-    supabase.from("edu_point_transactions") as any
-  ).insert({
-    student_id: studentId,
-    lesson_id: lessonId,
-    points,
-    reason: "lesson_completed",
-    metadata: {
-      source: "services/progress.ts",
-    },
-  });
+  const {
+    error: pointsError,
+  } = await supabase
+    .from("edu_point_transactions")
+    .insert({
+      student_id: studentId,
+      lesson_id: lessonId,
+      points,
+      reason: "lesson_completed",
+      metadata: {
+        source: "services/progress.ts",
+      },
+    });
 
-  // لا نفشل إكمال الدرس إذا كانت سياسة إدخال النقاط لم تُفعّل بعد.
   if (pointsError) {
     console.warn(
       "POINT_TRANSACTION_INSERT_FAILED",

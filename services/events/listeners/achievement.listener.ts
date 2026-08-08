@@ -1,3 +1,4 @@
+import { logger } from "@/lib/logger";
 import { unlockAchievement } from "@/services/gamification/achievements";
 
 import { subscribeToStudentEvent } from "../dispatcher";
@@ -16,7 +17,7 @@ subscribeToStudentEvent(
     });
 
     if (result.newlyUnlocked) {
-      console.info(
+      logger.info(
         "Achievement unlocked:",
         event.studentEmail,
         "FIRST_LESSON"

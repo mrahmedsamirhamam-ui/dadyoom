@@ -1,0 +1,103 @@
+"use client";
+
+import Link from "next/link";
+import {
+  useState,
+  useTransition,
+} from "react";
+
+import {
+  completeLessonAction,
+} from "../actions/completeLesson";
+
+type Props = {
+  progressId: string;
+  score: number;
+  nextLessonId?: string | null;
+};
+
+export default function CompleteLessonButton({
+  progressId,
+  score,
+  nextLessonId = null,
+}: Props) {
+  const [
+    isPending,
+    startTransition,
+  ] = useTransition();
+
+  const [
+    awardedXP,
+    setAwardedXP,
+  ] = useState<number | null>(
+    null
+  );
+
+  if (awardedXP !== null) {
+    return (
+      <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+        <div className="text-4xl">
+          🎉
+        </div>
+
+        <h3 className="mt-3 text-xl font-black text-emerald-900">
+          أحسنت! أنهيت الدرس
+        </h3>
+
+        <p className="mt-2 text-emerald-800">
+          أضفنا إلى رصيدك{" "}
+          <strong>
+            {awardedXP} XP
+          </strong>
+        </p>
+
+        <div className="mt-5 flex flex-wrap gap-3">
+          {nextLessonId ? (
+            <Link
+              href={`/lessons/${nextLessonId}`}
+              className="rounded-xl bg-emerald-600 px-5 py-3 font-bold text-white hover:bg-emerald-700"
+            >
+              الدرس التالي ←
+            </Link>
+          ) : null}
+
+          <Link
+            href="/student"
+            className="rounded-xl border border-emerald-300 bg-white px-5 py-3 font-bold text-emerald-800 hover:bg-emerald-100"
+          >
+            لوحة الطالب
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <button
+      disabled={isPending}
+      onClick={() =>
+        startTransition(
+          async () => {
+            const result =
+              await completeLessonAction(
+                progressId,
+                score
+              );
+
+            setAwardedXP(
+              Number(
+                result?.xp ??
+                0
+              )
+            );
+          }
+        )
+      }
+      className="rounded-xl bg-green-600 px-5 py-3 font-bold text-white hover:bg-green-700 disabled:opacity-50"
+    >
+      {isPending
+        ? "جارٍ حفظ النتيجة..."
+        : "إنهاء الدرس"}
+    </button>
+  );
+}

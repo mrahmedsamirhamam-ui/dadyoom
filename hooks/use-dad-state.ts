@@ -13,10 +13,9 @@ import {
 
 export function useDadState(): DadState {
   const [dadState, setDadState] =
-    useState<DadState>("idle");
+    useState<DadState>(() => DadAI.getState());
 
   useEffect(() => {
-    setDadState(DadAI.getState());
 
     function handleDadState(
       event: Event

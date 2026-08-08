@@ -1,6 +1,19 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 
+type CourseCategory = {
+  name: string | null;
+};
+
+type CourseRow = {
+  id: string;
+  title: string;
+  level: string | null;
+  published: boolean | null;
+  created_at: string | null;
+  categories: CourseCategory[] | CourseCategory | null;
+};
+
 export default async function AdminCoursesPage() {
   const supabase = await createClient();
 
@@ -25,6 +38,9 @@ export default async function AdminCoursesPage() {
       </main>
     );
   }
+
+  // تحويل نوع البيانات القادمة من Supabase إلى النوع المعرف مع تجنب مشاكل الاستنتاج
+  const typedCourses = (courses ?? []) as unknown as CourseRow[];
 
   return (
     <main className="max-w-7xl mx-auto p-8" dir="rtl">
@@ -52,48 +68,55 @@ export default async function AdminCoursesPage() {
           </thead>
 
           <tbody>
-            {courses?.map((course: any) => (
-              <tr key={course.id} className="border-t">
-                <td className="p-4">{course.title}</td>
+            {typedCourses.map((course) => {
+              // لمعالجة ما إذا كانت العلاقة ترجع كائنًا واحدًا أو مصفوفة
+              const categoryName = Array.isArray(course.categories)
+                ? course.categories[0]?.name
+                : course.categories?.name;
 
-                <td className="p-4">
-                  {course.categories?.name ?? "-"}
-                </td>
+              return (
+                <tr key={course.id} className="border-t">
+                  <td className="p-4">{course.title}</td>
 
-                <td className="p-4">{course.level}</td>
+                  <td className="p-4">
+                    {categoryName ?? "-"}
+                  </td>
 
-                <td className="p-4">
-                  {course.published ? "🟢 منشورة" : "⚪ غير منشورة"}
-                </td>
+                  <td className="p-4">{course.level ?? "-"}</td>
 
-                <td className="p-4 flex gap-3">
-                  <Link
-                    href={`/admin/courses/${course.id}/edit`}
-                    className="text-blue-600"
-                  >
-                    ✏️ تعديل
-                  </Link>
+                  <td className="p-4">
+                    {course.published ? "🟢 منشورة" : "⚪ غير منشورة"}
+                  </td>
 
-                  <Link
-                    href={`/admin/lessons?course=${course.id}`}
-                    className="text-green-600"
-                  >
-                    📚 الدروس
-                  </Link>
+                  <td className="p-4 flex gap-3">
+                    <Link
+                      href={`/admin/courses/${course.id}/edit`}
+                      className="text-blue-600"
+                    >
+                      ✏️ تعديل
+                    </Link>
 
-                  <Link
-                    href={`/courses/${course.id}`}
-                    className="text-gray-600"
-                  >
-                    👁️ معاينة
-                  </Link>
-                </td>
-              </tr>
-            ))}
+                    <Link
+                      href={`/admin/lessons?course=${course.id}`}
+                      className="text-green-600"
+                    >
+                      📚 الدروس
+                    </Link>
+
+                    <Link
+                      href={`/courses/${course.id}`}
+                      className="text-gray-600"
+                    >
+                      👁️ معاينة
+                    </Link>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
 
-        {courses?.length === 0 && (
+        {typedCourses.length === 0 && (
           <div className="p-8 text-center text-gray-500">
             لا توجد دورات حتى الآن.
           </div>

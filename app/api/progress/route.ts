@@ -1,3 +1,4 @@
+import { invalidateStudentCaches } from "@/features/student-progress/services/invalidate-student-caches";
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 
@@ -40,6 +41,12 @@ export async function POST(request: Request) {
       error: error.message,
     });
   }
+    // STUDENT_CACHE_INVALIDATION_POINT
+    await invalidateStudentCaches({
+      studentId: user.id,
+      studentEmail: user.email,
+      supabase,
+    });
 
   return NextResponse.json({
     success: true,

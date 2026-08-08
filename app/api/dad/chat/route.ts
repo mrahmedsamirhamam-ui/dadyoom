@@ -1,3 +1,5 @@
+import { createClient } from "@/lib/supabase/server";
+
 type ChatMessage = {
   role: "system" | "user" | "assistant";
   content: string;
@@ -12,6 +14,24 @@ type DadChatRequest = {
 
 export async function POST(request: Request) {
   try {
+    const supabase = await createClient();
+
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser();
+
+    if (authError || !user) {
+      return Response.json(
+        {
+          error: "يجب تسجيل الدخول لاستخدام ضاد.",
+        },
+        {
+          status: 401,
+        }
+      );
+    }
+
     const apiKey = process.env.GEMINI_API_KEY;
     const model = process.env.GEMINI_MODEL ?? "gemini-2.5-flash";
 

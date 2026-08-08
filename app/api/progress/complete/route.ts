@@ -1,3 +1,4 @@
+import { invalidateStudentCaches } from "@/features/student-progress/services/invalidate-student-caches";
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 
@@ -43,6 +44,13 @@ export async function POST(request: Request) {
 
     // الرمز 23505 يعني أن السجل موجود سابقًا؛ نعتبر العملية ناجحة.
     if (error?.code === "23505") {
+      // STUDENT_CACHE_INVALIDATION_POINT_ALREADY
+      await invalidateStudentCaches({
+        studentId: user.id,
+        studentEmail: user.email,
+        supabase,
+      });
+
       return NextResponse.json({
         success: true,
         alreadyCompleted: true,
@@ -59,6 +67,13 @@ export async function POST(request: Request) {
         { status: 500 }
       );
     }
+    // STUDENT_CACHE_INVALIDATION_POINT_NEW
+    await invalidateStudentCaches({
+      studentId: user.id,
+      studentEmail: user.email,
+      supabase,
+    });
+
 
     return NextResponse.json({
       success: true,
