@@ -316,6 +316,24 @@ if (masterySkillsError) {
   const recommendedLessonTitle =
     recommendedLesson?.title ?? "ابدأ الدرس المقترح";
 
+  // Unified Gamification source
+  const unlockedBadges =
+    stats?.badges.filter(
+      (badge) => badge.unlocked
+    ) ?? [];
+
+  const latestUnlockedBadge =
+    unlockedBadges.length > 0
+      ? unlockedBadges[
+          unlockedBadges.length - 1
+        ]
+      : null;
+
+  const gamificationXP =
+    stats?.totalXP ??
+    dashboard.points;
+
+
   return (
     <main dir="rtl" className="min-h-screen bg-slate-50 px-4 py-6 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
@@ -851,26 +869,12 @@ if (masterySkillsError) {
           </div>
 
           <div className="space-y-6">
-            <aside className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-              <h2 className="text-xl font-black text-slate-900">إنجازاتك</h2>
-              <div className="mt-5 grid grid-cols-2 gap-3">
-                <Metric label="الشارات" value={dashboard.badgesCount} />
-                <Metric label="النقاط" value={dashboard.points} />
-              </div>
-              <div className="mt-5 rounded-2xl bg-amber-50 p-4">
-                <div className="text-3xl">
-                  {dashboard.latestBadge?.icon ?? "🌱"}
-                </div>
-                <div className="mt-2 font-black text-amber-900">
-                  {dashboard.latestBadge?.title ?? "ابدأ أول درس"}
-                </div>
-                <p className="mt-1 text-sm leading-6 text-amber-800">
-                  {dashboard.latestBadge
-                    ? "هذه أحدث شارة حصلت عليها."
-                    : "أكمل الدرس الأول لتحصل على أول شارة."}
-                </p>
-              </div>
-            </aside>
+            <aside className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">               <div className="flex items-center justify-between gap-3">                 <div>                   <p className="text-sm font-bold text-amber-600">                     إنجازاتك                   </p>                    <h2 className="mt-1 text-xl font-black text-slate-900">                     تقدمك ومكافآتك                   </h2>                 </div>                  <div className="rounded-full bg-emerald-50 px-3 py-1 text-sm font-black text-emerald-700">                   المستوى {stats?.level.level ?? 1}                 </div>               </div>                <div className="mt-5 grid grid-cols-2 gap-3">                 <Metric                   label="الشارات"                   value={unlockedBadges.length}                 />                  <Metric                   label="النقاط"                   value={gamificationXP}                 />               </div>                <div className="mt-5 rounded-2xl bg-amber-50 p-4">                 <div className="text-3xl">                   {latestUnlockedBadge?.icon ?? "🌱"}                 </div>                  <div className="mt-2 font-black text-amber-900">                   {latestUnlockedBadge?.title ??                     "ابدأ رحلتك"}                 </div>                  <p className="mt-1 text-sm leading-6 text-amber-800">                   {latestUnlockedBadge                     ? `لديك ${unlockedBadges.length} من الشارات المفتوحة حتى الآن.`                     : "أكمل أول درس لفتح أول شارة."}                 </p>               </div>                {stats ? (                 <div className="mt-4 rounded-2xl bg-slate-50 p-4">                   <div className="flex items-center justify-between text-sm font-bold text-slate-600">                     <span>                       تقدم المستوى                     </span>                      <span
+                  dir="ltr"
+                  className="inline-block"
+                >
+                  {stats.level.currentXP} / {stats.level.nextLevelXP} XP
+                </span>                   </div>                    <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-200">                     <div                       className="h-full rounded-full bg-emerald-600 transition-all"                       style={{                         width: `${stats.level.percent}%`,                       }}                     />                   </div>                 </div>               ) : null}             </aside>
 
             <aside className="rounded-3xl bg-gradient-to-br from-indigo-600 to-violet-600 p-6 text-white shadow-sm">
               <div className="text-5xl">🤖</div>
@@ -924,3 +928,4 @@ function Metric({
     </div>
   );
 }
+

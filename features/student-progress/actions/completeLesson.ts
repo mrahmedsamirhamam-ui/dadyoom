@@ -8,6 +8,9 @@ import { syncLearningProfile } from "@/features/learning-profile/services/sync-p
 import { syncLessonMasteryAction } from "@/features/lesson-mastery/actions/syncLessonMastery";
 
 import { completeLesson } from "../services/progress";
+import { calculateLevel } from "../services/level";
+import { calculateBadges } from "../services/badges";
+import { calculateAchievements } from "../services/achievements";
 
 type QuestionRow = {
   id: string;
@@ -18,7 +21,65 @@ type AttemptRow = {
   is_correct: boolean;
 };
 
+type ProgressGamificationRow = {
+  id: string;
+  status: string;
+  xp: number | null;
+};
+
 const REQUIRED_MASTERY_SCORE = 90;
+
+function createGamificationSnapshot(
+  rows: ProgressGamificationRow[]
+) {
+  const totalXP =
+    rows.reduce(
+      (sum, row) =>
+        sum +
+        Number(row.xp ?? 0),
+      0
+    );
+
+  const completed =
+    rows.filter(
+      (row) =>
+        row.status === "completed" ||
+        row.status === "mastered"
+    ).length;
+
+  const mastered =
+    rows.filter(
+      (row) =>
+        row.status === "mastered"
+    ).length;
+
+  const level =
+    calculateLevel(totalXP);
+
+  const badges =
+    calculateBadges({
+      totalXP,
+      completed,
+      mastered,
+    });
+
+  const achievements =
+    calculateAchievements({
+      lessons: rows.length,
+      completed,
+      mastered,
+      totalXP,
+    });
+
+  return {
+    totalXP,
+    completed,
+    mastered,
+    level,
+    badges,
+    achievements,
+  };
+}
 
 export async function completeLessonAction(
   progressId: string
@@ -63,6 +124,37 @@ export async function completeLessonAction(
     );
   }
 
+  /*
+   * نحفظ حالة Gamification قبل الإنهاء،
+   * حتى نعرف ما الذي كسبه الطالب فعلًا الآن.
+   */
+  const {
+    data: beforeProgressData,
+    error: beforeProgressError,
+  } = await supabase
+    .from("student_lesson_progress")
+    .select(`
+      id,
+      status,
+      xp
+    `)
+    .eq(
+      "student_id",
+      user.id
+    );
+
+  if (beforeProgressError) {
+    throw beforeProgressError;
+  }
+
+  const beforeSnapshot =
+    createGamificationSnapshot(
+      (
+        beforeProgressData ??
+        []
+      ) as ProgressGamificationRow[]
+    );
+
   const {
     data: questions,
     error: questionsError,
@@ -101,7 +193,10 @@ export async function completeLessonAction(
         question_id,
         is_correct
       `)
-      .eq("user_id", user.id)
+      .eq(
+        "user_id",
+        user.id
+      )
       .in(
         "question_id",
         questionIds
@@ -180,6 +275,101 @@ export async function completeLessonAction(
       )
     );
 
+  /*
+   * نقرأ الحالة بعد الإنهاء،
+   * ثم نقارنها بما قبل الإنهاء.
+   */
+  const {
+    data: afterProgressData,
+    error: afterProgressError,
+  } = await supabase
+    .from("student_lesson_progress")
+    .select(`
+      id,
+      status,
+      xp
+    `)
+    .eq(
+      "student_id",
+      user.id
+    );
+
+  if (afterProgressError) {
+    throw afterProgressError;
+  }
+
+  const afterSnapshot =
+    createGamificationSnapshot(
+      (
+        afterProgressData ??
+        []
+      ) as ProgressGamificationRow[]
+    );
+
+  const xpGained =
+    Math.max(
+      0,
+      afterSnapshot.totalXP -
+      beforeSnapshot.totalXP
+    );
+
+  const beforeBadgeIds =
+    new Set(
+      beforeSnapshot.badges
+        .filter(
+          (badge) =>
+            badge.unlocked
+        )
+        .map(
+          (badge) =>
+            badge.id
+        )
+    );
+
+  const unlockedBadges =
+    afterSnapshot.badges.filter(
+      (badge) =>
+        badge.unlocked &&
+        !beforeBadgeIds.has(
+          badge.id
+        )
+    );
+
+  const beforeAchievementIds =
+    new Set(
+      beforeSnapshot.achievements
+        .filter(
+          (achievement) =>
+            achievement.completed
+        )
+        .map(
+          (achievement) =>
+            achievement.id
+        )
+    );
+
+  const completedAchievements =
+    afterSnapshot.achievements.filter(
+      (achievement) =>
+        achievement.completed &&
+        !beforeAchievementIds.has(
+          achievement.id
+        )
+    );
+
+  const levelUp =
+    afterSnapshot.level.level >
+    beforeSnapshot.level.level
+      ? {
+          from:
+            beforeSnapshot.level
+              .level,
+          to:
+            afterSnapshot.level
+              .level,
+        }
+      : null;
+
   await syncLearningProfile(
     user.id
   );
@@ -205,11 +395,29 @@ export async function completeLessonAction(
 
     score,
 
+    /*
+     * xp = ما اكتسبه الطالب في هذه العملية فقط.
+     */
     xp:
+      xpGained,
+
+    lessonXP:
       Number(
         result?.xp ??
         0
       ),
+
+    totalXP:
+      afterSnapshot.totalXP,
+
+    level:
+      afterSnapshot.level.level,
+
+    levelUp,
+
+    unlockedBadges,
+
+    completedAchievements,
 
     correctAnswers,
 

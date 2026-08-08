@@ -1,4 +1,4 @@
-﻿import {
+import {
   createLessonProgress,
   getLessonProgress,
   updateLessonProgress,
@@ -49,11 +49,11 @@ export async function completeLesson(
   const result = await updateLessonProgress(
     progressId,
     {
-      status: calculateMastery(score),
+      status: calculateMastery(bestScore),
       progress_percent: 100,
       last_score: score,
       best_score: bestScore,
-      xp: calculateXP(score),
+      xp: calculateXP(bestScore),
       completed_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
     }
