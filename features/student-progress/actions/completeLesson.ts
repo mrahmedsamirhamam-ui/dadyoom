@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/server";
 import { invalidateStudentCaches } from "@/features/student-progress/services/invalidate-student-caches";
 import { syncLearningProfile } from "@/features/learning-profile/services/sync-profile";
 import { syncLessonMasteryAction } from "@/features/lesson-mastery/actions/syncLessonMastery";
+import { completeAdaptiveStep } from "@/features/learning-plan/services/adaptive-path-lifecycle";
 
 import { completeLesson } from "../services/progress";
 import { calculateLevel } from "../services/level";
@@ -123,6 +124,33 @@ export async function completeLessonAction(
       "لم يتم العثور على تقدم هذا الدرس."
     );
   }
+
+  /*
+   * نقرأ مهارة الدرس حتى يستطيع
+   * المسار التكيفي إنشاء نفسه تلقائيًا.
+   */
+  const {
+    data: adaptiveLesson,
+    error: adaptiveLessonError,
+  } = await supabase
+    .from("lessons")
+    .select("skill")
+    .eq(
+      "id",
+      progress.lesson_id
+    )
+    .maybeSingle();
+
+  if (adaptiveLessonError) {
+    throw adaptiveLessonError;
+  }
+
+  const adaptiveFocusSkill =
+    typeof adaptiveLesson?.skill ===
+      "string" &&
+    adaptiveLesson.skill.trim()
+      ? adaptiveLesson.skill.trim()
+      : "general";
 
   /*
    * نحفظ حالة Gamification قبل الإنهاء،
@@ -276,6 +304,29 @@ export async function completeLessonAction(
     );
 
   /*
+   * بعد نجاح إكمال الدرس الحقيقي،
+   * نغلق خطوة lesson في المسار التكيفي
+   * ونفتح الخطوة التالية تلقائيًا.
+   *
+   * العملية idempotent داخل Lifecycle،
+   * لذلك إعادة المحاولة لا تعيد إكمال
+   * الخطوة إذا كانت مكتملة بالفعل.
+   */
+  const adaptiveLessonStep =
+    await completeAdaptiveStep({
+      supabase,
+      studentId:
+        user.id,
+      lessonId:
+        progress.lesson_id,
+      stepType:
+        "lesson",
+
+      focusSkill:
+        adaptiveFocusSkill,
+    });
+
+  /*
    * نقرأ الحالة بعد الإنهاء،
    * ثم نقارنها بما قبل الإنهاء.
    */
@@ -392,6 +443,23 @@ export async function completeLessonAction(
 
     lessonId:
       progress.lesson_id,
+
+    adaptivePath: {
+      updated:
+        adaptiveLessonStep.updated,
+
+      reason:
+        adaptiveLessonStep.reason,
+
+      pathCompleted:
+        adaptiveLessonStep.pathCompleted,
+
+      currentStep:
+        adaptiveLessonStep.currentStep,
+
+      nextStep:
+        adaptiveLessonStep.nextStep,
+    },
 
     score,
 

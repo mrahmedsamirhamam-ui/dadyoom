@@ -14,6 +14,10 @@ import {
   getAssessmentSessionAnalytics,
 } from "@/features/assessment/services/getAssessmentSessionAnalytics";
 
+import {
+  completeAdaptiveStep,
+} from "@/features/learning-plan/services/adaptive-path-lifecycle";
+
 type NextQuestionBody = {
   sessionId?: string;
   correct?: boolean;
@@ -107,6 +111,28 @@ export async function POST(
           })
         : null;
 
+    /*
+     * لا نغلق خطوة assessment إلا عندما
+     * تنتهي جلسة الاختبار فعليًا.
+     *
+     * completeAdaptiveStep عملية idempotent،
+     * لذلك إعادة الطلب بعد اكتمال الخطوة
+     * لا تعيد إكمالها مرة أخرى.
+     */
+    const adaptiveAssessmentStep =
+      session.finished &&
+      session.lesson_id
+        ? await completeAdaptiveStep({
+            supabase,
+            studentId:
+              user.id,
+            lessonId:
+              session.lesson_id,
+            stepType:
+              "assessment",
+          })
+        : null;
+
     return NextResponse.json({
       success: true,
       session: {
@@ -128,6 +154,26 @@ export async function POST(
         score,
       },
       analytics,
+
+      adaptivePath:
+        adaptiveAssessmentStep
+          ? {
+              updated:
+                adaptiveAssessmentStep.updated,
+
+              reason:
+                adaptiveAssessmentStep.reason,
+
+              pathCompleted:
+                adaptiveAssessmentStep.pathCompleted,
+
+              currentStep:
+                adaptiveAssessmentStep.currentStep,
+
+              nextStep:
+                adaptiveAssessmentStep.nextStep,
+            }
+          : null,
     });
   } catch (error) {
     console.error(
