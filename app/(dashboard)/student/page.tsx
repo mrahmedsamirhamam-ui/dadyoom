@@ -16,6 +16,7 @@ import { generateStudentLearningPlan } from "@/services/ai/learning-plan.service
 import { getRecommendedLessonsWithFallback } from "@/features/student-progress/services/recommendations-with-fallback";
 import { getStudentProgressBundleCached } from "@/features/student-progress/services/progress-bundle-cached";
 import { getStudentMasteryCached } from "@/features/student-progress/services/mastery-cached";
+import { getStudentLearningRhythm } from "@/features/student-progress/services/learning-rhythm";
 
 import { getLatestAssessmentAnalyticsCached } from "@/features/assessment/services/getLatestAssessmentAnalyticsCached";
 
@@ -28,6 +29,7 @@ import ContinueLearningCard from "@/features/student-progress/components/Continu
 import AchievementsCard from "@/features/student-progress/components/AchievementsCard";
 import RecommendedLessons from "@/features/student-progress/components/RecommendedLessons";
 import MasteryMapCard from "@/features/student-progress/components/MasteryMapCard";
+import LearningRhythmCard from "@/features/student-progress/components/LearningRhythmCard";
 
 type ContinueLessonRelation =
   | {
@@ -99,6 +101,13 @@ export default async function StudentPage() {
   let latestAssessmentAnalytics = null;
   let adaptiveSteps: AdaptiveStepRow[] = [];
   let masterySkills: MasterySkill[] = [];
+  let learningRhythm:
+    Awaited<
+      ReturnType<
+        typeof getStudentLearningRhythm
+      >
+    >
+    | null = null;
 
   let dashboard:
     Awaited<ReturnType<typeof getStudentDashboardCached>>
@@ -119,6 +128,7 @@ export default async function StudentPage() {
       learningPlanData,
       dashboardData,
       masterySkillsResult,
+      learningRhythmData,
     ] = await Promise.all([
       getLearningProfileCached(
         user.id,
@@ -140,6 +150,11 @@ export default async function StudentPage() {
         user.email!,
         supabase
       ),
+
+      getStudentLearningRhythm(
+        supabase,
+        user.id
+      ),
     ]);
 
     learningProfile =
@@ -150,6 +165,9 @@ export default async function StudentPage() {
 
     dashboard =
       dashboardData;
+
+    learningRhythm =
+      learningRhythmData;
 
 const {
       data: masterySkillRows,
@@ -558,6 +576,14 @@ if (masterySkillsError) {
                 <RecommendedLessons lessons={recommendedLessons} />
               </div>
             )}
+
+            {learningRhythm ? (
+              <div className="mt-6">
+                <LearningRhythmCard
+                  rhythm={learningRhythm}
+                />
+              </div>
+            ) : null}
 
             {/* خريطة إتقان المهارات والملف الشخصي */}
             <div className="mt-6 space-y-6">
