@@ -6,6 +6,27 @@ import { useRouter } from "next/navigation";
 
 import AuthShell from "@/components/auth/AuthShell";
 import { getSupabaseBrowserClient } from "@/lib/auth/supabase-browser";
+import type { SupabaseClient } from "@supabase/supabase-js";
+
+type AccountRole = "student" | "teacher" | "parent" | "school" | "admin";
+
+function getRoleDestination(role: string | null | undefined) {
+  const normalizedRole = role?.trim().toLowerCase();
+
+  switch (normalizedRole) {
+    case "teacher":
+      return "/teacher";
+    case "parent":
+      return "/parent";
+    case "school":
+      return "/school";
+    case "admin":
+      return "/admin";
+    case "student":
+    default:
+      return "/student";
+  }
+}
 
 export default function LoginPage() {
   const router = useRouter();
@@ -22,14 +43,47 @@ export default function LoginPage() {
     try {
       const supabase = getSupabaseBrowserClient();
 
-      const { error: signInError } = await supabase.auth.signInWithPassword({
-        email: email.trim(),
-        password,
-      });
+      const { data, error: signInError } =
+        await supabase.auth.signInWithPassword({
+          email: email.trim(),
+          password,
+        });
 
       if (signInError) throw signInError;
 
-      router.replace("/student");
+      const user = data.user;
+
+      if (!user) {
+        throw new Error("تعذر قراءة بيانات الحساب بعد تسجيل الدخول.");
+      }
+
+      let role: AccountRole | null = null;
+
+      const profileDb =
+        supabase as unknown as SupabaseClient;
+
+      const { data: profile, error: profileError } =
+        await profileDb
+          .from("profiles")
+          .select("role")
+          .eq("id", user.id)
+          .maybeSingle();
+
+      if (!profileError && profile?.role) {
+        role = profile.role.trim().toLowerCase() as AccountRole;
+      }
+
+      if (!role) {
+        const metadataRole = user.user_metadata?.role;
+
+        if (typeof metadataRole === "string") {
+          role = metadataRole.trim().toLowerCase() as AccountRole;
+        }
+      }
+
+      const destination = getRoleDestination(role);
+
+      router.replace(destination);
       router.refresh();
     } catch (cause) {
       setError(
@@ -83,7 +137,10 @@ export default function LoginPage() {
 
       <p className="mt-6 text-center text-sm text-slate-600">
         ليس لديك حساب؟{" "}
-        <Link href="/signup" className="font-black text-teal-700 hover:underline">
+        <Link
+          href="/signup"
+          className="font-black text-teal-700 hover:underline"
+        >
           أنشئ حسابًا
         </Link>
       </p>
@@ -108,7 +165,10 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-sm font-black text-slate-700">{label}</span>
+      <span className="mb-2 block text-sm font-black text-slate-700">
+        {label}
+      </span>
+
       <input
         required
         type={type}

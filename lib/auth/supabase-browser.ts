@@ -1,19 +1,37 @@
 "use client";
 
-import { createClient } from "@supabase/supabase-js";
+import {
+  createBrowserClient,
+} from "@supabase/ssr";
 
-let client: ReturnType<typeof createClient> | null = null;
+let client:
+  ReturnType<
+    typeof createBrowserClient
+  >
+  | null = null;
 
 export function getSupabaseBrowserClient() {
-  if (client) return client;
-
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!url || !anonKey) {
-    throw new Error("بيانات Supabase غير موجودة في .env.local");
+  if (client) {
+    return client;
   }
 
-  client = createClient(url, anonKey);
+  const url =
+    process.env.NEXT_PUBLIC_SUPABASE_URL;
+
+  const anonKey =
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!url || !anonKey) {
+    throw new Error(
+      "بيانات Supabase غير موجودة في .env.local"
+    );
+  }
+
+  client =
+    createBrowserClient(
+      url,
+      anonKey
+    );
+
   return client;
 }
