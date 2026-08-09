@@ -31,6 +31,12 @@ import RecommendedLessons from "@/features/student-progress/components/Recommend
 import MasteryMapCard from "@/features/student-progress/components/MasteryMapCard";
 import LearningRhythmCard from "@/features/student-progress/components/LearningRhythmCard";
 
+import StudentClassroomCard from "@/features/student-classroom/components/StudentClassroomCard";
+import {
+  getMyTeacherClasses,
+  type StudentTeacherClass,
+} from "@/features/student-classroom/services/student-classes";
+
 type ContinueLessonRelation =
   | {
       title: string | null;
@@ -85,7 +91,20 @@ type DisplayAdaptiveStep = {
     | "completed";
 };
 
-export default async function StudentPage() {
+type StudentPageProps = {
+  searchParams: Promise<{
+    classroomSuccess?: string;
+    classroomError?: string;
+  }>;
+};
+
+export default async function StudentPage({
+  searchParams,
+}: StudentPageProps) {
+  const {
+    classroomSuccess,
+    classroomError,
+  } = await searchParams;
   const supabase = await createClient();
 
   const {
@@ -101,6 +120,9 @@ export default async function StudentPage() {
   let latestAssessmentAnalytics = null;
   let adaptiveSteps: AdaptiveStepRow[] = [];
   let masterySkills: MasterySkill[] = [];
+
+let teacherClasses:
+StudentTeacherClass[] = [];
   let learningRhythm:
     Awaited<
       ReturnType<
@@ -124,12 +146,13 @@ export default async function StudentPage() {
 
 
     const [
-      learningProfileData,
-      learningPlanData,
-      dashboardData,
-      masterySkillsResult,
-      learningRhythmData,
-    ] = await Promise.all([
+  learningProfileData,
+  learningPlanData,
+  dashboardData,
+  masterySkillsResult,
+  learningRhythmData,
+  teacherClassesData,
+] = await Promise.all([
       getLearningProfileCached(
         user.id,
         supabase
@@ -155,7 +178,10 @@ export default async function StudentPage() {
         supabase,
         user.id
       ),
-    ]);
+    
+  getMyTeacherClasses(
+    supabase
+  ),]);
 
     learningProfile =
       learningProfileData;
@@ -165,6 +191,11 @@ export default async function StudentPage() {
 
     dashboard =
       dashboardData;
+
+
+    teacherClasses =
+
+      teacherClassesData;
 
     learningRhythm =
       learningRhythmData;
@@ -394,6 +425,16 @@ if (masterySkillsError) {
             </div>
           </div>
         </section>
+
+        <StudentClassroomCard
+          classes={teacherClasses}
+          successMessage={
+            classroomSuccess
+          }
+          errorMessage={
+            classroomError
+          }
+        />
 
         {/* Completed Lessons Progress Banner */}
         <section className="mt-6 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
