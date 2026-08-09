@@ -31,6 +31,9 @@ import RecommendedLessons from "@/features/student-progress/components/Recommend
 import MasteryMapCard from "@/features/student-progress/components/MasteryMapCard";
 import LearningRhythmCard from "@/features/student-progress/components/LearningRhythmCard";
 
+import StudentParentLinkCard from "@/features/parent-link/components/StudentParentLinkCard";
+import { getActiveParentLinkCode, type ActiveParentLinkCode } from "@/features/parent-link/services/student-parent-link";
+
 import StudentClassroomCard from "@/features/student-classroom/components/StudentClassroomCard";
 import {
   getMyTeacherClasses,
@@ -121,6 +124,8 @@ export default async function StudentPage({
   let adaptiveSteps: AdaptiveStepRow[] = [];
   let masterySkills: MasterySkill[] = [];
 
+let parentLinkCode: ActiveParentLinkCode | null = null;
+
 let teacherClasses:
 StudentTeacherClass[] = [];
   let learningRhythm:
@@ -196,6 +201,8 @@ StudentTeacherClass[] = [];
     teacherClasses =
 
       teacherClassesData;
+
+    parentLinkCode = await getActiveParentLinkCode(supabase);
 
     learningRhythm =
       learningRhythmData;
@@ -425,6 +432,8 @@ if (masterySkillsError) {
             </div>
           </div>
         </section>
+
+        <StudentParentLinkCard code={parentLinkCode} />
 
         <StudentClassroomCard
           classes={teacherClasses}
