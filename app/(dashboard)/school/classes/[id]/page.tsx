@@ -382,7 +382,14 @@ export default async function SchoolClassDetailsPage({
 
                         </div>
 
-                      </article>
+                      
+                        <Link
+                          href={`/school/students/${studentId}`}
+                          className="mt-5 inline-flex w-full items-center justify-center rounded-xl border border-indigo-200 bg-indigo-50 px-5 py-3 text-sm font-black text-indigo-700 transition hover:bg-indigo-100"
+                        >
+                          عرض تفاصيل الطالب
+                        </Link>
+</article>
                     );
                   }
                 )}

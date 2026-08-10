@@ -109,6 +109,8 @@ export default async function SchoolTeacherDetailsPage({
       }
     );
 
+  console.info("SCHOOL_TEACHER_DETAILS_DEBUG",{userId:user.id,requestedTeacherId:id,rpcError:error?.message ?? null,dataIsArray:Array.isArray(data),rowsCount:Array.isArray(data)?data.length:null,data:data});
+
   if (error) {
     throw error;
   }
