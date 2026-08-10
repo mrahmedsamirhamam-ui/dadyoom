@@ -43,6 +43,48 @@ type SchoolTeacherRow = {
   class_count: number | string | null;
   student_count: number | string | null;
 };
+type SchoolAnalyticsRow = {
+  total_teachers:
+    | number
+    | string
+    | null;
+
+  total_classes:
+    | number
+    | string
+    | null;
+
+  total_students:
+    | number
+    | string
+    | null;
+
+  active_students:
+    | number
+    | string
+    | null;
+
+  completed_lessons:
+    | number
+    | string
+    | null;
+
+  mastered_lessons:
+    | number
+    | string
+    | null;
+
+  average_best_score:
+    | number
+    | string
+    | null;
+
+  total_xp:
+    | number
+    | string
+    | null;
+};
+
 type SchoolPageProps = {
   searchParams: Promise<{
     success?: string;
@@ -265,6 +307,32 @@ const schoolTeachers =
     []
   ) as SchoolTeacherRow[];
 
+
+const {
+  data: schoolAnalyticsData,
+  error: schoolAnalyticsError,
+} = await db.rpc(
+  "get_school_analytics_v1"
+);
+
+if (schoolAnalyticsError) {
+  throw schoolAnalyticsError;
+}
+
+const analyticsRow =
+  Array.isArray(
+    schoolAnalyticsData
+  )
+    ? schoolAnalyticsData[0]
+    : schoolAnalyticsData;
+
+const analytics =
+  analyticsRow
+    ? (
+        analyticsRow as SchoolAnalyticsRow
+      )
+    : null;
+
 const teacherCount =
     toNumber(
       dashboard.teacher_count
@@ -278,6 +346,33 @@ const teacherCount =
   const studentCount =
     toNumber(
       dashboard.student_count
+    );
+
+  const activeStudents =
+    toNumber(
+      analytics?.active_students
+    );
+
+  const completedLessons =
+    toNumber(
+      analytics?.completed_lessons
+    );
+
+  const masteredLessons =
+    toNumber(
+      analytics?.mastered_lessons
+    );
+
+  const averageBestScore =
+    Math.round(
+      toNumber(
+        analytics?.average_best_score
+      )
+    );
+
+  const schoolXP =
+    toNumber(
+      analytics?.total_xp
     );
 
 
@@ -351,7 +446,162 @@ const teacherCount =
         </section>
 
 
-        <SchoolTeacherLinkCard successMessage={success} errorMessage={errorMessage} />
+                <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+
+          <div>
+            <p className="text-sm font-black text-violet-700">
+              📊 تحليلات المدرسة
+            </p>
+
+            <h2 className="mt-1 text-2xl font-black text-slate-900">
+              الأداء التعليمي في ضاديوم
+            </h2>
+
+            <p className="mt-2 text-sm leading-7 text-slate-500">
+              نظرة شاملة على نشاط الطلاب والإنجاز والإتقان داخل فصول المدرسة.
+            </p>
+          </div>
+
+
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+
+            <div className="rounded-2xl bg-indigo-50 p-5">
+              <div className="text-sm font-black text-indigo-700">
+                الطلاب النشطون
+              </div>
+
+              <div className="mt-2 text-3xl font-black text-slate-900">
+                {activeStudents}
+              </div>
+
+              <p className="mt-2 text-xs leading-5 text-slate-500">
+                طلاب لديهم نشاط تعلم مسجل.
+              </p>
+            </div>
+
+
+            <div className="rounded-2xl bg-emerald-50 p-5">
+              <div className="text-sm font-black text-emerald-700">
+                الدروس المكتملة
+              </div>
+
+              <div className="mt-2 text-3xl font-black text-slate-900">
+                {completedLessons}
+              </div>
+
+              <p className="mt-2 text-xs leading-5 text-slate-500">
+                إجمالي الدروس المكتملة داخل المدرسة.
+              </p>
+            </div>
+
+
+            <div className="rounded-2xl bg-teal-50 p-5">
+              <div className="text-sm font-black text-teal-700">
+                الدروس المتقنة
+              </div>
+
+              <div className="mt-2 text-3xl font-black text-slate-900">
+                {masteredLessons}
+              </div>
+
+              <p className="mt-2 text-xs leading-5 text-slate-500">
+                الدروس التي وصل فيها الطلاب إلى الإتقان.
+              </p>
+            </div>
+
+
+            <div className="rounded-2xl bg-amber-50 p-5">
+              <div className="text-sm font-black text-amber-700">
+                متوسط الأداء
+              </div>
+
+              <div className="mt-2 text-3xl font-black text-slate-900">
+                {averageBestScore}%
+              </div>
+
+              <p className="mt-2 text-xs leading-5 text-slate-500">
+                متوسط أفضل الدرجات المسجلة.
+              </p>
+            </div>
+
+
+            <div className="rounded-2xl bg-purple-50 p-5">
+              <div className="text-sm font-black text-purple-700">
+                إجمالي XP
+              </div>
+
+              <div className="mt-2 text-3xl font-black text-slate-900">
+                {schoolXP}
+              </div>
+
+              <p className="mt-2 text-xs leading-5 text-slate-500">
+                مجموع نقاط الخبرة المكتسبة.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+              <div>
+                <div className="font-black text-slate-900">
+                  نسبة الإتقان من الدروس المكتملة
+                </div>
+
+                <p className="mt-1 text-sm text-slate-500">
+                  مؤشر سريع لجودة الإنجاز وليس عدد الدروس فقط.
+                </p>
+              </div>
+
+              <div className="text-3xl font-black text-violet-700">
+                {
+                  completedLessons > 0
+                    ? Math.round(
+                        (
+                          masteredLessons /
+                          completedLessons
+                        ) *
+                          100
+                      )
+                    : 0
+                }%
+              </div>
+
+            </div>
+
+
+            <div className="mt-4 h-3 overflow-hidden rounded-full bg-slate-200">
+
+              <div
+                className="h-full rounded-full bg-violet-600"
+                style={{
+                  width: `${
+                    completedLessons > 0
+                      ? Math.min(
+                          100,
+                          Math.round(
+                            (
+                              masteredLessons /
+                              completedLessons
+                            ) *
+                              100
+                          )
+                        )
+                      : 0
+                  }%`,
+                }}
+              />
+
+            </div>
+
+          </div>
+
+        </section>
+
+<SchoolTeacherLinkCard successMessage={success} errorMessage={errorMessage} />
 
     <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
 
