@@ -35,6 +35,14 @@ type SchoolDashboardRow = {
     | null;
 };
 
+type SchoolTeacherRow = {
+  teacher_id: string;
+  teacher_name: string | null;
+  teacher_email: string | null;
+  joined_at: string | null;
+  class_count: number | string | null;
+  student_count: number | string | null;
+};
 type SchoolPageProps = {
   searchParams: Promise<{
     success?: string;
@@ -240,7 +248,24 @@ export default async function SchoolPage({
   }
 
 
-  const teacherCount =
+  const {
+  data: schoolTeachersData,
+  error: schoolTeachersError,
+} = await db.rpc(
+  "get_school_teachers"
+);
+
+if (schoolTeachersError) {
+  throw schoolTeachersError;
+}
+
+const schoolTeachers =
+  (
+    schoolTeachersData ??
+    []
+  ) as SchoolTeacherRow[];
+
+const teacherCount =
     toNumber(
       dashboard.teacher_count
     );
@@ -328,6 +353,146 @@ export default async function SchoolPage({
 
         <SchoolTeacherLinkCard successMessage={success} errorMessage={errorMessage} />
 
+    <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+
+        <div>
+          <p className="text-sm font-black text-indigo-700">
+            👨‍🏫 فريق التدريس
+          </p>
+
+          <h2 className="mt-1 text-2xl font-black text-slate-900">
+            معلمو المدرسة المرتبطون
+          </h2>
+
+          <p className="mt-2 text-sm text-slate-500">
+            المعلمون الذين تم ربط حساباتهم بهذه المدرسة.
+          </p>
+        </div>
+
+        <div className="rounded-full bg-indigo-50 px-4 py-2 text-sm font-black text-indigo-700">
+          {schoolTeachers.length} معلم
+        </div>
+
+      </div>
+
+
+      {schoolTeachers.length > 0 ? (
+
+        <div className="mt-6 grid gap-4">
+
+          {schoolTeachers.map(
+            (teacher) => {
+
+              const teacherClassCount =
+                toNumber(
+                  teacher.class_count
+                );
+
+              const teacherStudentCount =
+                toNumber(
+                  teacher.student_count
+                );
+
+              const teacherInitial =
+                (
+                  teacher.teacher_name ??
+                  "م"
+                )
+                  .trim()
+                  .charAt(0);
+
+              return (
+
+                <article
+                  key={teacher.teacher_id}
+                  className="rounded-2xl border border-slate-200 p-5 transition hover:border-indigo-300 hover:shadow-sm"
+                >
+
+                  <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+
+                    <div className="flex items-start gap-4">
+
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-xl font-black text-indigo-700">
+                        {teacherInitial}
+                      </div>
+
+                      <div>
+
+                        <h3 className="text-xl font-black text-slate-900">
+                          {
+                            teacher.teacher_name ??
+                            "معلم"
+                          }
+                        </h3>
+
+                        <p
+                          dir="ltr"
+                          className="mt-1 text-right text-sm text-slate-500"
+                        >
+                          {
+                            teacher.teacher_email ??
+                            ""
+                          }
+                        </p>
+
+                        <div className="mt-3 flex flex-wrap gap-2">
+
+                          <span className="rounded-full bg-violet-50 px-3 py-1 text-xs font-black text-violet-700">
+                            {teacherClassCount} فصل
+                          </span>
+
+                          <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-black text-emerald-700">
+                            {teacherStudentCount} طالب
+                          </span>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+
+                    <a
+                      href={`/school/teachers/${teacher.teacher_id}`}
+                      className="inline-flex items-center justify-center rounded-xl bg-indigo-600 px-5 py-3 text-sm font-black text-white transition hover:bg-indigo-700"
+                    >
+                      عرض التفاصيل
+                    </a>
+
+                  </div>
+
+                </article>
+
+              );
+            }
+          )}
+
+        </div>
+
+      ) : (
+
+        <div className="mt-6 rounded-2xl border border-dashed border-slate-300 p-8 text-center">
+
+          <div className="text-4xl">
+            👨‍🏫
+          </div>
+
+          <h3 className="mt-3 text-lg font-black text-slate-900">
+            لا يوجد معلمون مرتبطون بعد
+          </h3>
+
+          <p className="mt-2 text-sm text-slate-500">
+            استخدم كود المعلم أعلاه لربط أول معلم بالمدرسة.
+          </p>
+
+        </div>
+
+      )}
+
+    </section>
+
         <section className="rounded-3xl border border-indigo-200 bg-indigo-50 p-6">
 
           <h2 className="text-xl font-black text-indigo-900">
@@ -335,8 +500,8 @@ export default async function SchoolPage({
           </h2>
 
           <p className="mt-2 leading-7 text-indigo-800">
-            سنضيف الآن نظام ربط المعلمين بالمدرسة،
-            وبعده ستظهر الفصول والطلاب تلقائيًا من النظام الحالي.
+            تم تفعيل نظام ربط المعلمين بالمدرسة،
+            والخطوة التالية هي إضافة صفحة تفاصيل كل معلم وفصوله وطلابه.
           </p>
 
         </section>
