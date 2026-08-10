@@ -99,3 +99,81 @@ export async function createSchoolAction(
       )
   );
 }
+
+export async function linkTeacherToSchoolAction(
+  formData: FormData
+) {
+  const codeValue =
+    formData.get("teacherCode");
+
+  const code =
+    typeof codeValue === "string"
+      ? codeValue.trim().toUpperCase()
+      : "";
+
+  if (!code) {
+    redirect(
+      "/school?error=" +
+        encodeURIComponent(
+          "أدخل كود المعلم."
+        )
+    );
+  }
+
+  const supabase =
+    await createClient();
+
+  const {
+    data: { user },
+  } =
+    await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+
+  const db =
+    supabase as unknown as SupabaseClient;
+
+  const {
+    data,
+    error,
+  } =
+    await db.rpc(
+      "link_teacher_to_school_by_code",
+      {
+        p_code: code,
+      }
+    );
+
+  if (error) {
+    redirect(
+      "/school?error=" +
+        encodeURIComponent(
+          error.message
+        )
+    );
+  }
+
+  const result =
+    Array.isArray(data)
+      ? data[0]
+      : data;
+
+  const message =
+    result?.already_linked
+      ? "هذا المعلم مرتبط بالمدرسة بالفعل."
+      : `تم ربط ${
+          result?.teacher_name ??
+          "المعلم"
+        } بالمدرسة بنجاح.`;
+
+  revalidatePath("/school");
+
+  redirect(
+    "/school?success=" +
+      encodeURIComponent(
+        message
+      )
+  );
+}

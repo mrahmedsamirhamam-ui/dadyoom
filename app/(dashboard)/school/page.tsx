@@ -1,3 +1,4 @@
+import SchoolTeacherLinkCard from "@/features/school-link/components/SchoolTeacherLinkCard";
 import {
   redirect,
 } from "next/navigation";
@@ -324,6 +325,8 @@ export default async function SchoolPage({
 
         </section>
 
+
+        <SchoolTeacherLinkCard successMessage={success} errorMessage={errorMessage} />
 
         <section className="rounded-3xl border border-indigo-200 bg-indigo-50 p-6">
 

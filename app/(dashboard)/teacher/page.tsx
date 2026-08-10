@@ -1,3 +1,6 @@
+import { getActiveSchoolTeacherLinkCode, type ActiveSchoolTeacherLinkCode } from "@/features/school-link/services/teacher-school-link";
+import TeacherSchoolLinkCard from "@/features/school-link/components/TeacherSchoolLinkCard";
+
 import Link from "next/link";
 import {
   redirect,
@@ -40,8 +43,13 @@ type LessonRow = {
 };
 
 export default async function TeacherPage() {
+let schoolLinkCode: ActiveSchoolTeacherLinkCode | null = null;
   const supabase =
     await createClient();
+
+  schoolLinkCode = await getActiveSchoolTeacherLinkCode(
+    supabase as unknown as SupabaseClient
+  );
 
   const {
     data: { user },
@@ -509,6 +517,8 @@ export default async function TeacherPage() {
           </section>
         </section>
 
+
+        <TeacherSchoolLinkCard code={schoolLinkCode} />
 
         <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
           <div className="flex flex-wrap items-center justify-between gap-4">
