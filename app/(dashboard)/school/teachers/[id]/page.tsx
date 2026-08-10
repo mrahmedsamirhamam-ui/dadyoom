@@ -340,7 +340,7 @@ export default async function SchoolTeacherDetailsPage({
 
 
                       <Link
-                        href={`/teacher/classes/${classId}`}
+                        href={`/school/classes/${classId}`}
                         className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-indigo-600 px-5 py-3 font-black text-white transition hover:bg-indigo-700"
                       >
                         عرض الفصل
