@@ -86,6 +86,49 @@ type SchoolAnalyticsRow = {
     | null;
 };
 
+type SchoolInsightRow = {
+  insight_type: string;
+  severity: string;
+
+  teacher_id: string;
+  teacher_name: string | null;
+
+  class_id: string;
+  class_name: string;
+
+  student_count:
+    | number
+    | string
+    | null;
+
+  active_student_count:
+    | number
+    | string
+    | null;
+
+  completed_lessons:
+    | number
+    | string
+    | null;
+
+  mastered_lessons:
+    | number
+    | string
+    | null;
+
+  average_best_score:
+    | number
+    | string
+    | null;
+
+  mastery_rate:
+    | number
+    | string
+    | null;
+
+  message: string;
+};
+
 type SchoolTeacherClassAnalyticsRow = {
   teacher_id: string;
   teacher_name: string | null;
@@ -403,6 +446,41 @@ const rankedTeacherClasses =
         )
     );
 
+const {
+  data: schoolInsightsData,
+  error: schoolInsightsError,
+} = await db.rpc(
+  "get_school_insights_v1"
+);
+
+if (schoolInsightsError) {
+  throw schoolInsightsError;
+}
+
+const schoolInsights =
+  (
+    schoolInsightsData ??
+    []
+  ) as SchoolInsightRow[];
+
+const highPriorityInsights =
+  schoolInsights.filter(
+    (item) =>
+      item.severity === "high"
+  );
+
+const mediumPriorityInsights =
+  schoolInsights.filter(
+    (item) =>
+      item.severity === "medium"
+  );
+
+const positiveInsights =
+  schoolInsights.filter(
+    (item) =>
+      item.severity === "positive"
+  );
+
 const teacherCount =
     toNumber(
       dashboard.teacher_count
@@ -671,7 +749,203 @@ const teacherCount =
 
         </section>
 
-        <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+
+            <div>
+              <p className="text-sm font-black text-rose-700">
+                🚦 رؤى وتنبيهات المدرسة
+              </p>
+
+              <h2 className="mt-1 text-2xl font-black text-slate-900">
+                ما الذي يحتاج انتباه الإدارة؟
+              </h2>
+
+              <p className="mt-2 max-w-3xl text-sm leading-7 text-slate-500">
+                مؤشرات آلية مستخرجة من أداء الفصول لمساعدة الإدارة على اكتشاف ما يحتاج متابعة بسرعة.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+
+              <span className="rounded-full bg-rose-50 px-4 py-2 text-sm font-black text-rose-700">
+                {highPriorityInsights.length} عاجل
+              </span>
+
+              <span className="rounded-full bg-amber-50 px-4 py-2 text-sm font-black text-amber-700">
+                {mediumPriorityInsights.length} متابعة
+              </span>
+
+              <span className="rounded-full bg-emerald-50 px-4 py-2 text-sm font-black text-emerald-700">
+                {positiveInsights.length} إيجابي
+              </span>
+
+            </div>
+
+          </div>
+
+
+          {schoolInsights.length > 0 ? (
+
+            <div className="mt-6 grid gap-4 lg:grid-cols-2">
+
+              {schoolInsights.map(
+                (
+                  insight
+                ) => {
+
+                  const severityStyles =
+                    insight.severity === "high"
+                      ? "border-rose-200 bg-rose-50"
+                      : insight.severity === "medium"
+                        ? "border-amber-200 bg-amber-50"
+                        : insight.severity === "positive"
+                          ? "border-emerald-200 bg-emerald-50"
+                          : "border-slate-200 bg-slate-50";
+
+                  const badgeStyles =
+                    insight.severity === "high"
+                      ? "bg-rose-100 text-rose-700"
+                      : insight.severity === "medium"
+                        ? "bg-amber-100 text-amber-700"
+                        : insight.severity === "positive"
+                          ? "bg-emerald-100 text-emerald-700"
+                          : "bg-slate-200 text-slate-700";
+
+                  const severityLabel =
+                    insight.severity === "high"
+                      ? "عاجل"
+                      : insight.severity === "medium"
+                        ? "يحتاج متابعة"
+                        : insight.severity === "positive"
+                          ? "أداء قوي"
+                          : "مستقر";
+
+                  return (
+
+                    <article
+                      key={`${insight.class_id}-${insight.insight_type}`}
+                      className={`rounded-2xl border p-5 ${severityStyles}`}
+                    >
+
+                      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+
+                        <div className="min-w-0">
+
+                          <div className="flex flex-wrap items-center gap-2">
+
+                            <span className={`rounded-full px-3 py-1 text-xs font-black ${badgeStyles}`}>
+                              {severityLabel}
+                            </span>
+
+                            <Link
+                              href={`/school/classes/${insight.class_id}`}
+                              className="font-black text-slate-900 hover:underline"
+                            >
+                              {insight.class_name}
+                            </Link>
+
+                          </div>
+
+
+                          <p className="mt-3 leading-7 text-slate-700">
+                            {insight.message}
+                          </p>
+
+
+                          <div className="mt-4 flex flex-wrap gap-2 text-xs font-bold text-slate-600">
+
+                            <Link
+                              href={`/school/teachers/${insight.teacher_id}`}
+                              className="rounded-full bg-white/70 px-3 py-1 hover:underline"
+                            >
+                              👨‍🏫 {
+                                insight.teacher_name ??
+                                "معلم"
+                              }
+                            </Link>
+
+                            <span className="rounded-full bg-white/70 px-3 py-1">
+                              👨‍🎓 {
+                                toNumber(
+                                  insight.student_count
+                                )
+                              } طالب
+                            </span>
+
+                            <span className="rounded-full bg-white/70 px-3 py-1">
+                              ⚡ {
+                                toNumber(
+                                  insight.active_student_count
+                                )
+                              } نشط
+                            </span>
+
+                            <span className="rounded-full bg-white/70 px-3 py-1">
+                              📈 {
+                                Math.round(
+                                  toNumber(
+                                    insight.average_best_score
+                                  )
+                                )
+                              }%
+                            </span>
+
+                            <span className="rounded-full bg-white/70 px-3 py-1">
+                              ⭐ {
+                                Math.round(
+                                  toNumber(
+                                    insight.mastery_rate
+                                  )
+                                )
+                              }% إتقان
+                            </span>
+
+                          </div>
+
+                        </div>
+
+
+                        <Link
+                          href={`/school/classes/${insight.class_id}`}
+                          className="shrink-0 rounded-xl bg-white px-4 py-2 text-sm font-black text-slate-800 shadow-sm ring-1 ring-slate-200 transition hover:bg-slate-50"
+                        >
+                          فتح الفصل
+                        </Link>
+
+                      </div>
+
+                    </article>
+                  );
+                }
+              )}
+
+            </div>
+
+          ) : (
+
+            <div className="mt-6 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center">
+
+              <div className="text-4xl">
+                ✅
+              </div>
+
+              <h3 className="mt-3 font-black text-slate-900">
+                لا توجد تنبيهات حاليًا
+              </h3>
+
+              <p className="mt-2 text-sm text-slate-500">
+                ستظهر هنا تلقائيًا أي مؤشرات تحتاج إلى تدخل أو متابعة.
+              </p>
+
+            </div>
+
+          )}
+
+        </section>
+
+<section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
 
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
 
