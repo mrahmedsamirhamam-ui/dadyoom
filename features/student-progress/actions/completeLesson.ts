@@ -125,32 +125,15 @@ export async function completeLessonAction(
     );
   }
 
+
   /*
-   * نقرأ مهارة الدرس حتى يستطيع
-   * المسار التكيفي إنشاء نفسه تلقائيًا.
+   * The current lessons table does not require a skill column.
+   * Until curriculum skill metadata is added explicitly,
+   * adaptive completion uses a safe general focus.
    */
-  const {
-    data: adaptiveLesson,
-    error: adaptiveLessonError,
-  } = await supabase
-    .from("lessons")
-    .select("skill")
-    .eq(
-      "id",
-      progress.lesson_id
-    )
-    .maybeSingle();
-
-  if (adaptiveLessonError) {
-    throw adaptiveLessonError;
-  }
-
   const adaptiveFocusSkill =
-    typeof adaptiveLesson?.skill ===
-      "string" &&
-    adaptiveLesson.skill.trim()
-      ? adaptiveLesson.skill.trim()
-      : "general";
+    "general";
+
 
   /*
    * نحفظ حالة Gamification قبل الإنهاء،
@@ -183,99 +166,326 @@ export async function completeLessonAction(
       ) as ProgressGamificationRow[]
     );
 
+
+  /*
+   * Interactive activities are the primary assessment
+   * when a lesson has gradable lesson_activities.
+   *
+   * Older lessons without activities keep using questions.
+   */
+
   const {
-    data: questions,
-    error: questionsError,
+    data: activityRows,
+    error: activitiesError,
   } = await supabase
-    .from("questions")
-    .select("id")
+    .from("lesson_activities")
+    .select(`
+      id,
+      answer,
+      points
+    `)
     .eq(
       "lesson_id",
       progress.lesson_id
+    )
+    .eq(
+      "is_published",
+      true
     );
 
-  if (questionsError) {
-    throw questionsError;
+  if (activitiesError) {
+    throw activitiesError;
   }
 
-  const questionRows =
-    (questions ?? []) as QuestionRow[];
+  const gradableActivities =
+    (activityRows ?? []).filter(
+      (activity) => {
+        if (
+          typeof activity.answer !== "object" ||
+          activity.answer === null ||
+          Array.isArray(activity.answer)
+        ) {
+          return false;
+        }
 
-  const questionIds =
-    questionRows.map(
-      (question) =>
-        question.id
+        return (
+          Object.keys(
+            activity.answer as object
+          ).length > 0
+        );
+      }
     );
 
   let score = 100;
   let answeredQuestions = 0;
   let correctAnswers = 0;
+  let totalQuestions = 0;
 
-  if (questionIds.length > 0) {
+  /*
+   * This variable is deliberately kept because the
+   * existing mastery guard below uses questionIds.length.
+   * For activity lessons it contains activity IDs.
+   */
+  let questionIds: string[] = [];
+
+  if (
+    gradableActivities.length > 0
+  ) {
+
+    const activityIds =
+      gradableActivities.map(
+        (activity) =>
+          activity.id
+      );
+
+    questionIds =
+      activityIds;
+
+    totalQuestions =
+      gradableActivities.length;
+
     const {
-      data: attempts,
-      error: attemptsError,
+      data: activityAttempts,
+      error: activityAttemptsError,
     } = await supabase
-      .from("question_attempts")
+      .from("lesson_activity_attempts")
       .select(`
-        question_id,
-        is_correct
+        activity_id,
+        earned_points,
+        max_points,
+        is_correct,
+        attempt_number
       `)
       .eq(
         "user_id",
         user.id
       )
       .in(
-        "question_id",
-        questionIds
+        "activity_id",
+        activityIds
       );
 
-    if (attemptsError) {
-      throw attemptsError;
+    if (activityAttemptsError) {
+      throw activityAttemptsError;
     }
 
-    const attemptRows =
-      (attempts ?? []) as AttemptRow[];
-
-    const latestAttempts =
-      new Map<string, boolean>();
+    const bestByActivity =
+      new Map<
+        string,
+        {
+          earned: number;
+          max: number;
+          correct: boolean;
+        }
+      >();
 
     for (
       const attempt of
-      attemptRows
+      activityAttempts ?? []
     ) {
-      latestAttempts.set(
-        attempt.question_id,
-        attempt.is_correct
-      );
+
+      const earned =
+        Number(
+          attempt.earned_points ??
+          0
+        );
+
+      const max =
+        Number(
+          attempt.max_points ??
+          0
+        );
+
+      const previous =
+        bestByActivity.get(
+          attempt.activity_id
+        );
+
+      /*
+       * Keep the best attempt for every activity.
+       */
+      if (
+        !previous ||
+        earned > previous.earned
+      ) {
+        bestByActivity.set(
+          attempt.activity_id,
+          {
+            earned,
+            max,
+            correct:
+              Boolean(
+                attempt.is_correct
+              ),
+          }
+        );
+      }
     }
 
     answeredQuestions =
-      latestAttempts.size;
+      bestByActivity.size;
 
     if (
       answeredQuestions <
-      questionIds.length
+      totalQuestions
     ) {
       throw new Error(
-        `أجب عن جميع أسئلة الدرس أولًا. أجبت عن ${answeredQuestions} من ${questionIds.length}.`
+        "\u0623\u0643\u0645\u0644 \u062c\u0645\u064a\u0639 \u0627\u0644\u0623\u0646\u0634\u0637\u0629 \u0627\u0644\u0642\u0627\u0628\u0644\u0629 \u0644\u0644\u062a\u0635\u062d\u064a\u062d \u0623\u0648\u0644\u0627\u064b. " +
+        answeredQuestions +
+        " / " +
+        totalQuestions
       );
     }
 
+    const totalPossible =
+      gradableActivities.reduce(
+        (
+          total,
+          activity
+        ) =>
+          total +
+          Number(
+            activity.points ??
+            0
+          ),
+        0
+      );
+
+    const totalEarned =
+      gradableActivities.reduce(
+        (
+          total,
+          activity
+        ) =>
+          total +
+          (
+            bestByActivity.get(
+              activity.id
+            )?.earned ??
+            0
+          ),
+        0
+      );
+
     correctAnswers =
       Array.from(
-        latestAttempts.values()
-      ).filter(Boolean).length;
+        bestByActivity.values()
+      ).filter(
+        (attempt) =>
+          attempt.correct
+      ).length;
 
     score =
-      Math.round(
-        (
-          correctAnswers /
-          questionIds.length
-        ) * 100
-      );
-  }
+      totalPossible > 0
+        ? Math.round(
+            (
+              totalEarned /
+              totalPossible
+            ) * 100
+          )
+        : 100;
 
+  } else {
+
+    /*
+     * Legacy questions fallback.
+     */
+
+    const {
+      data: questions,
+      error: questionsError,
+    } = await supabase
+      .from("questions")
+      .select("id")
+      .eq(
+        "lesson_id",
+        progress.lesson_id
+      );
+
+    if (questionsError) {
+      throw questionsError;
+    }
+
+    const questionRows =
+      (questions ?? []) as QuestionRow[];
+
+    questionIds =
+      questionRows.map(
+        (question) =>
+          question.id
+      );
+
+    totalQuestions =
+      questionIds.length;
+
+    if (
+      questionIds.length > 0
+    ) {
+
+      const {
+        data: attempts,
+        error: attemptsError,
+      } = await supabase
+        .from("question_attempts")
+        .select(`
+          question_id,
+          is_correct
+        `)
+        .eq(
+          "user_id",
+          user.id
+        )
+        .in(
+          "question_id",
+          questionIds
+        );
+
+      if (attemptsError) {
+        throw attemptsError;
+      }
+
+      const attemptRows =
+        (attempts ?? []) as AttemptRow[];
+
+      const latestAttempts =
+        new Map<string, boolean>();
+
+      for (
+        const attempt of
+        attemptRows
+      ) {
+        latestAttempts.set(
+          attempt.question_id,
+          attempt.is_correct
+        );
+      }
+
+      answeredQuestions =
+        latestAttempts.size;
+
+      if (
+        answeredQuestions <
+        questionIds.length
+      ) {
+        throw new Error(
+          "\u0623\u062c\u0628 \u0639\u0646 \u062c\u0645\u064a\u0639 \u0623\u0633\u0626\u0644\u0629 \u0627\u0644\u062f\u0631\u0633 \u0623\u0648\u0644\u0627\u064b."
+        );
+      }
+
+      correctAnswers =
+        Array.from(
+          latestAttempts.values()
+        ).filter(Boolean).length;
+
+      score =
+        Math.round(
+          (
+            correctAnswers /
+            questionIds.length
+          ) * 100
+        );
+    }
+  }
   await syncLessonMasteryAction(
     progress.lesson_id
   );

@@ -20,6 +20,29 @@ export type BundledLessonQuestion = {
   updated_at: string;
 };
 
+export type BundledLessonActivity = {
+  id: string;
+  lesson_id: string;
+  title: string;
+  activity_type:
+    | "listening"
+    | "speaking"
+    | "reading"
+    | "multiple_choice"
+    | "matching"
+    | "writing"
+    | "fill_blank"
+    | string;
+  instructions: string | null;
+  content: Record<string, unknown>;
+  activity_order: number;
+  points: number;
+  is_published: boolean;
+  section: string;
+  created_at: string;
+  updated_at: string;
+};
+
 export type BundledLesson = {
   id: string;
   unit_id: string;
@@ -69,6 +92,9 @@ type LessonPageBundle = {
   questions:
     BundledLessonQuestion[];
 
+  activities:
+    BundledLessonActivity[];
+
   student: {
     id: string;
   } | null;
@@ -91,7 +117,6 @@ export async function getLessonPageBundle(
   const supabase =
     await createClient();
 
-
   const {
     data,
     error,
@@ -101,7 +126,6 @@ export async function getLessonPageBundle(
       p_lesson_id: lessonId,
     }
   );
-
 
   if (error) {
     console.error(

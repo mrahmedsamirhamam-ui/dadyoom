@@ -1,0 +1,640 @@
+﻿import { NextResponse } from "next/server";
+import { createClient } from "@/lib/supabase/server";
+
+type RequestBody = {
+  activityId?: string;
+  answer?: string[];
+};
+
+function normalizeStrings(
+  value: unknown
+): string[] {
+  return Array.isArray(value)
+    ? value.filter(
+        (item): item is string =>
+          typeof item === "string"
+      )
+    : [];
+}
+
+function hasCorrectAnswer(
+  value: unknown
+): boolean {
+  if (
+    typeof value !== "object" ||
+    value === null ||
+    Array.isArray(value)
+  ) {
+    return false;
+  }
+
+  const data =
+    value as Record<string, unknown>;
+
+  return (
+    typeof data.correct === "string" ||
+    (
+      Array.isArray(data.correct) &&
+      data.correct.length > 0
+    )
+  );
+}
+
+export async function POST(
+  request: Request
+) {
+  try {
+    const body =
+      (await request.json()) as RequestBody;
+
+    const activityId =
+      typeof body.activityId === "string"
+        ? body.activityId.trim()
+        : "";
+
+    const studentAnswer =
+      normalizeStrings(body.answer)
+        .map((item) => item.trim())
+        .filter(Boolean);
+
+    if (!activityId) {
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            "معرّف النشاط غير موجود.",
+        },
+        {
+          status: 400,
+        }
+      );
+    }
+
+    const supabase =
+      await createClient();
+
+    const {
+      data: { user },
+    } =
+      await supabase.auth.getUser();
+
+    if (!user) {
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            "سجّل الدخول أولًا.",
+        },
+        {
+          status: 401,
+        }
+      );
+    }
+
+
+    // ========================================================
+    // النشاط الحالي
+    // ========================================================
+
+    const {
+      data: activity,
+      error: activityError,
+    } =
+      await supabase
+        .from("lesson_activities")
+        .select(
+          "id,lesson_id,activity_type,answer,points,is_published"
+        )
+        .eq(
+          "id",
+          activityId
+        )
+        .eq(
+          "is_published",
+          true
+        )
+        .maybeSingle();
+
+    if (activityError) {
+      throw activityError;
+    }
+
+    if (!activity) {
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            "النشاط غير موجود.",
+        },
+        {
+          status: 404,
+        }
+      );
+    }
+
+
+    // ========================================================
+    // تصحيح الإجابة
+    // ========================================================
+
+    const answerData =
+      activity.answer &&
+      typeof activity.answer ===
+        "object"
+        ? (
+            activity.answer as Record<
+              string,
+              unknown
+            >
+          )
+        : {};
+
+    const rawCorrect =
+      answerData.correct;
+
+    const correctAnswers =
+      typeof rawCorrect === "string"
+        ? [rawCorrect]
+        : normalizeStrings(
+            rawCorrect
+          );
+
+    const normalizedCorrect =
+      [...correctAnswers]
+        .map(
+          (item) =>
+            item.trim()
+        )
+        .sort();
+
+    const normalizedStudent =
+      [...studentAnswer]
+        .map(
+          (item) =>
+            item.trim()
+        )
+        .sort();
+
+    const isCorrect =
+      normalizedCorrect.length > 0 &&
+      normalizedCorrect.length ===
+        normalizedStudent.length &&
+      normalizedCorrect.every(
+        (
+          value,
+          index
+        ) =>
+          value ===
+          normalizedStudent[index]
+      );
+
+    const maxPoints =
+      Number(
+        activity.points ?? 0
+      );
+
+    const earnedPoints =
+      isCorrect
+        ? maxPoints
+        : 0;
+
+
+    // ========================================================
+    // رقم المحاولة
+    // ========================================================
+
+    const {
+      data: previousAttempts,
+      error: attemptsError,
+    } =
+      await supabase
+        .from(
+          "lesson_activity_attempts"
+        )
+        .select(
+          "attempt_number"
+        )
+        .eq(
+          "user_id",
+          user.id
+        )
+        .eq(
+          "activity_id",
+          activityId
+        )
+        .order(
+          "attempt_number",
+          {
+            ascending:
+              false,
+          }
+        )
+        .limit(1);
+
+    if (attemptsError) {
+      throw attemptsError;
+    }
+
+    const lastAttempt =
+      Array.isArray(
+        previousAttempts
+      ) &&
+      previousAttempts.length > 0
+        ? Number(
+            previousAttempts[0]
+              .attempt_number ??
+            0
+          )
+        : 0;
+
+    const nextAttemptNumber =
+      lastAttempt + 1;
+
+
+    // ========================================================
+    // حفظ المحاولة
+    // ========================================================
+
+    const {
+      error: insertError,
+    } =
+      await supabase
+        .from(
+          "lesson_activity_attempts"
+        )
+        .insert({
+          user_id:
+            user.id,
+
+          activity_id:
+            activityId,
+
+          selected_answer:
+            studentAnswer,
+
+          is_correct:
+            isCorrect,
+
+          earned_points:
+            earnedPoints,
+
+          max_points:
+            maxPoints,
+
+          attempt_number:
+            nextAttemptNumber,
+        });
+
+    if (insertError) {
+      throw insertError;
+    }
+
+
+    // ========================================================
+    // الأنشطة التي يمكن تصحيحها تلقائيًا في هذا الدرس
+    // ========================================================
+
+    const {
+      data: lessonActivities,
+      error: lessonActivitiesError,
+    } =
+      await supabase
+        .from(
+          "lesson_activities"
+        )
+        .select(
+          "id,answer,points"
+        )
+        .eq(
+          "lesson_id",
+          activity.lesson_id
+        )
+        .eq(
+          "is_published",
+          true
+        );
+
+    if (lessonActivitiesError) {
+      throw lessonActivitiesError;
+    }
+
+    const gradableActivities =
+      (
+        lessonActivities ??
+        []
+      ).filter(
+        (item) =>
+          hasCorrectAnswer(
+            item.answer
+          )
+      );
+
+    const gradableIds =
+      gradableActivities.map(
+        (item) =>
+          item.id
+      );
+
+
+    // ========================================================
+    // أفضل محاولة لكل نشاط
+    // ========================================================
+
+    let currentScore = 0;
+
+    if (
+      gradableIds.length > 0
+    ) {
+      const {
+        data: allAttempts,
+        error: allAttemptsError,
+      } =
+        await supabase
+          .from(
+            "lesson_activity_attempts"
+          )
+          .select(
+            "activity_id,earned_points,max_points,answered_at"
+          )
+          .eq(
+            "user_id",
+            user.id
+          )
+          .in(
+            "activity_id",
+            gradableIds
+          );
+
+      if (allAttemptsError) {
+        throw allAttemptsError;
+      }
+
+      const bestByActivity =
+        new Map<
+          string,
+          {
+            earned:
+              number;
+            max:
+              number;
+          }
+        >();
+
+      for (
+        const attempt
+        of allAttempts ?? []
+      ) {
+        const current =
+          bestByActivity.get(
+            attempt.activity_id
+          );
+
+        const attemptEarned =
+          Number(
+            attempt.earned_points ??
+            0
+          );
+
+        const attemptMax =
+          Number(
+            attempt.max_points ??
+            0
+          );
+
+        if (
+          !current ||
+          attemptEarned >
+            current.earned
+        ) {
+          bestByActivity.set(
+            attempt.activity_id,
+            {
+              earned:
+                attemptEarned,
+
+              max:
+                attemptMax,
+            }
+          );
+        }
+      }
+
+      const totalPossible =
+        gradableActivities.reduce(
+          (
+            total,
+            item
+          ) =>
+            total +
+            Number(
+              item.points ??
+              0
+            ),
+          0
+        );
+
+      const totalEarned =
+        gradableActivities.reduce(
+          (
+            total,
+            item
+          ) =>
+            total +
+            (
+              bestByActivity.get(
+                item.id
+              )?.earned ??
+              0
+            ),
+          0
+        );
+
+      currentScore =
+        totalPossible > 0
+          ? Math.round(
+              (
+                totalEarned /
+                totalPossible
+              ) *
+                100
+            )
+          : 0;
+    }
+
+
+    // ========================================================
+    // إنشاء/قراءة Progress
+    // ========================================================
+
+    const {
+      data: existingProgress,
+      error: progressReadError,
+    } =
+      await supabase
+        .from(
+          "student_lesson_progress"
+        )
+        .select(
+          "id,best_score,attempts,status"
+        )
+        .eq(
+          "student_id",
+          user.id
+        )
+        .eq(
+          "lesson_id",
+          activity.lesson_id
+        )
+        .maybeSingle();
+
+    if (progressReadError) {
+      throw progressReadError;
+    }
+
+    const previousBest =
+      Number(
+        existingProgress
+          ?.best_score ??
+        0
+      );
+
+    const newBest =
+      Math.max(
+        previousBest,
+        currentScore
+      );
+
+
+    if (existingProgress) {
+
+      const {
+        error: progressUpdateError,
+      } =
+        await supabase
+          .from(
+            "student_lesson_progress"
+          )
+          .update({
+            status:
+              existingProgress.status ===
+              "not_started"
+                ? "in_progress"
+                : existingProgress.status,
+
+            last_score:
+              currentScore,
+
+            best_score:
+              newBest,
+
+            attempts:
+              Number(
+                existingProgress
+                  .attempts ??
+                0
+              ) + 1,
+
+            updated_at:
+              new Date()
+                .toISOString(),
+          })
+          .eq(
+            "id",
+            existingProgress.id
+          );
+
+      if (progressUpdateError) {
+        throw progressUpdateError;
+      }
+
+    } else {
+
+      const {
+        error: progressInsertError,
+      } =
+        await supabase
+          .from(
+            "student_lesson_progress"
+          )
+          .insert({
+            student_id:
+              user.id,
+
+            lesson_id:
+              activity.lesson_id,
+
+            status:
+              "in_progress",
+
+            progress_percent:
+              0,
+
+            attempts:
+              1,
+
+            best_score:
+              newBest,
+
+            last_score:
+              currentScore,
+
+            xp:
+              0,
+
+            time_spent_seconds:
+              0,
+
+            started_at:
+              new Date()
+                .toISOString(),
+
+            updated_at:
+              new Date()
+                .toISOString(),
+          });
+
+      if (progressInsertError) {
+        throw progressInsertError;
+      }
+    }
+
+
+    return NextResponse.json({
+      success: true,
+
+      correct:
+        isCorrect,
+
+      earnedPoints,
+
+      maxPoints,
+
+      attemptNumber:
+        nextAttemptNumber,
+
+      lessonScore:
+        currentScore,
+
+      bestLessonScore:
+        newBest,
+    });
+
+  } catch (error) {
+
+    console.error(
+      "Activity checking error:",
+      error
+    );
+
+    return NextResponse.json(
+      {
+        success: false,
+        message:
+          "تعذر تصحيح أو حفظ النشاط.",
+      },
+      {
+        status: 500,
+      }
+    );
+  }
+}

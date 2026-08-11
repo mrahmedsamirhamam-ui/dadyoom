@@ -442,12 +442,15 @@ export default async function TeacherClassPage({
                               </div>
 
                               <div>
-                                <div className="font-black text-slate-900">
-                                  {
-                                    student.full_name ??
-                                    "طالب"
-                                  }
-                                </div>
+                                <Link
+  href={`/teacher/classes/${teacherClass.id}/students/${student.student_id}`}
+  className="font-black text-slate-900 transition hover:text-emerald-700 hover:underline"
+>
+  {
+    student.full_name ??
+    "طالب"
+  }
+</Link>
 
                                 <div
                                   dir="ltr"

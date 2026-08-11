@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import {
   redirect,
 } from "next/navigation";
@@ -295,12 +297,15 @@ export default async function ParentPage() {
                         </div>
 
                         <div>
-                          <h3 className="text-xl font-black text-slate-900">
-                            {
-                              child.full_name ??
-                              "طالب"
-                            }
-                          </h3>
+                          <Link
+  href={`/parent/children/${child.student_id}`}
+  className="text-xl font-black text-slate-900 transition hover:text-sky-700 hover:underline"
+>
+  {
+    child.full_name ??
+    "الطالب"
+  }
+</Link>
 
                           <p
                             dir="ltr"

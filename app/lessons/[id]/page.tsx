@@ -1,4 +1,5 @@
 import Link from "next/link";
+import InteractiveLessonActivities from "@/features/lessons/components/InteractiveLessonActivities";
 import LessonSemanticSearch from "@/features/semantic-search/components/LessonSemanticSearch";
 import LessonMasteryCard from "@/features/lesson-mastery/components/LessonMasteryCard";
 import { notFound } from "next/navigation";
@@ -49,6 +50,19 @@ type LessonQuestion = {
   points: number;
 };
 
+
+type LessonActivity = {
+  id: string;
+  lesson_id?: string;
+  title: string;
+  activity_type: string;
+  instructions: string | null;
+  content: Record<string, unknown>;
+  activity_order: number;
+  points: number;
+  is_published?: boolean;
+  section: string;
+};
 type LearningProgress = {
   id: string;
   status: string;
@@ -78,6 +92,12 @@ export default async function LessonPage({
 
   const lessonQuestions =
     bundle.questions;
+
+  const lessonActivities: LessonActivity[] =
+    Array.isArray(bundle.activities)
+      ? (bundle.activities as LessonActivity[])
+      : [];
+
 
   const user =
     bundle.student;
@@ -361,7 +381,15 @@ export default async function LessonPage({
               )}
             </ol>
           </section>
+        ) : null}        {/* lesson-interactive-activities-marker */}
+
+        {lessonActivities.length > 0 ? (
+          <InteractiveLessonActivities
+            activities={lessonActivities}
+          />
         ) : null}
+
+
 
         <section className="rounded-3xl bg-white p-6 shadow-sm">
           <h2 className="mb-4 text-2xl font-bold">

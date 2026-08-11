@@ -47,7 +47,7 @@ export async function createSchoolAction(
     redirect(
       "/school?error=" +
         encodeURIComponent(
-          "اسم المدرسة مطلوب."
+          "Ø§Ø³Ù… Ø§Ù„Ù…Ø¯Ø±Ø³Ø© Ù…Ø·Ù„ÙˆØ¨."
         )
     );
   }
@@ -95,7 +95,7 @@ export async function createSchoolAction(
   redirect(
     "/school?success=" +
       encodeURIComponent(
-        "تم إنشاء ملف المدرسة بنجاح."
+        "ØªÙ… Ø¥Ù†Ø´Ø§Ø¡ Ù…Ù„Ù Ø§Ù„Ù…Ø¯Ø±Ø³Ø© Ø¨Ù†Ø¬Ø§Ø­."
       )
   );
 }
@@ -115,7 +115,7 @@ export async function linkTeacherToSchoolAction(
     redirect(
       "/school?error=" +
         encodeURIComponent(
-          "أدخل كود المعلم."
+          "Ø£Ø¯Ø®Ù„ ÙƒÙˆØ¯ Ø§Ù„Ù…Ø¹Ù„Ù…."
         )
     );
   }
@@ -162,11 +162,11 @@ export async function linkTeacherToSchoolAction(
 
   const message =
     result?.already_linked
-      ? "هذا المعلم مرتبط بالمدرسة بالفعل."
-      : `تم ربط ${
+      ? "Ù‡Ø°Ø§ Ø§Ù„Ù…Ø¹Ù„Ù… Ù…Ø±ØªØ¨Ø· Ø¨Ø§Ù„Ù…Ø¯Ø±Ø³Ø© Ø¨Ø§Ù„ÙØ¹Ù„."
+      : `ØªÙ… Ø±Ø¨Ø· ${
           result?.teacher_name ??
-          "المعلم"
-        } بالمدرسة بنجاح.`;
+          "Ø§Ù„Ù…Ø¹Ù„Ù…"
+        } Ø¨Ø§Ù„Ù…Ø¯Ø±Ø³Ø© Ø¨Ù†Ø¬Ø§Ø­.`;
 
   revalidatePath("/school");
 
@@ -177,3 +177,299 @@ export async function linkTeacherToSchoolAction(
       )
   );
 }
+
+export async function createSchoolInterventionAction(
+  formData: FormData
+) {
+  const teacherIdValue =
+    formData.get("teacherId");
+
+  const classIdValue =
+    formData.get("classId");
+
+  
+  const studentIdValue =
+    formData.get("studentId");
+
+const insightTypeValue =
+    formData.get("insightType");
+
+  const titleValue =
+    formData.get("title");
+
+  const notesValue =
+    formData.get("notes");
+
+  const priorityValue =
+    formData.get("priority");
+
+
+  const teacherId =
+    typeof teacherIdValue === "string"
+      ? teacherIdValue.trim()
+      : "";
+
+  const classId =
+    typeof classIdValue === "string"
+      ? classIdValue.trim()
+      : "";
+
+  
+  const studentId =
+    typeof studentIdValue === "string"
+      ? studentIdValue.trim()
+      : "";
+
+const insightType =
+    typeof insightTypeValue === "string"
+      ? insightTypeValue.trim()
+      : "";
+
+  const title =
+    typeof titleValue === "string"
+      ? titleValue.trim()
+      : "";
+
+  const notes =
+    typeof notesValue === "string"
+      ? notesValue.trim()
+      : "";
+
+  const priority =
+    typeof priorityValue === "string"
+      ? priorityValue.trim()
+      : "medium";
+
+
+  if (!classId || !title) {
+    redirect(
+      "/school?error=" +
+        encodeURIComponent(
+          "Ø¨ÙŠØ§Ù†Ø§Øª Ø¥Ø¬Ø±Ø§Ø¡ Ø§Ù„Ù…ØªØ§Ø¨Ø¹Ø© ØºÙŠØ± Ù…ÙƒØªÙ…Ù„Ø©."
+        )
+    );
+  }
+
+
+  const supabase =
+    await createClient();
+
+  const {
+    data: { user },
+  } =
+    await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+
+  const db =
+    supabase as unknown as SupabaseClient;
+
+
+  const {
+    error,
+  } =
+    await db.rpc(
+      "create_school_intervention",
+      {
+        p_teacher_id:
+          teacherId || null,
+
+        p_class_id:
+          classId || null,
+
+        p_student_id:
+          studentId || null,
+
+        p_insight_type:
+          insightType || null,
+
+        p_action_type:
+          "academic_follow_up",
+
+        p_title:
+          title,
+
+        p_notes:
+          notes || null,
+
+        p_priority:
+          priority,
+
+        p_due_date:
+          null,
+      }
+    );
+
+
+  if (error) {
+    redirect(
+      "/school?error=" +
+        encodeURIComponent(
+          error.message
+        )
+    );
+  }
+
+  revalidatePath("/school");
+
+  if (studentId) {
+    revalidatePath(
+      `/school/students/${studentId}`
+    );
+  }
+  return;
+}
+
+
+export async function updateSchoolInterventionStatusAction(
+  formData: FormData
+) {
+  const interventionIdValue =
+    formData.get("interventionId");
+
+  const statusValue =
+    formData.get("status");
+
+
+  const interventionId =
+    typeof interventionIdValue === "string"
+      ? interventionIdValue.trim()
+      : "";
+
+  const status =
+    typeof statusValue === "string"
+      ? statusValue.trim()
+      : "";
+
+
+  if (
+    !interventionId ||
+    ![
+      "open",
+      "in_progress",
+      "resolved",
+    ].includes(status)
+  ) {
+    redirect(
+      "/school?error=" +
+        encodeURIComponent(
+          "Ø¨ÙŠØ§Ù†Ø§Øª ØªØ­Ø¯ÙŠØ« Ø§Ù„Ø¥Ø¬Ø±Ø§Ø¡ ØºÙŠØ± ØµØ­ÙŠØ­Ø©."
+        )
+    );
+  }
+
+
+  const supabase =
+    await createClient();
+
+  const {
+    data: { user },
+  } =
+    await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+
+  const db =
+    supabase as unknown as SupabaseClient;
+
+
+  const {
+    error,
+  } =
+    await db.rpc(
+      "update_school_intervention_status",
+      {
+        p_intervention_id:
+          interventionId,
+
+        p_status:
+          status,
+      }
+    );
+
+
+  if (error) {
+    redirect(
+      "/school?error=" +
+        encodeURIComponent(
+          error.message
+        )
+    );
+  }
+
+
+  revalidatePath("/school");
+
+  redirect(
+    "/school?success=" +
+      encodeURIComponent(
+        "ØªÙ… ØªØ­Ø¯ÙŠØ« Ø­Ø§Ù„Ø© Ø¥Ø¬Ø±Ø§Ø¡ Ø§Ù„Ù…ØªØ§Ø¨Ø¹Ø©."
+      )
+  );
+}
+
+
+export async function deleteSchoolInterventionAction(
+  formData: FormData
+) {
+  const interventionIdValue =
+    formData.get("interventionId");
+
+  const interventionId =
+    typeof interventionIdValue === "string"
+      ? interventionIdValue.trim()
+      : "";
+
+  if (!interventionId) {
+    redirect(
+      "/school?error=" +
+        encodeURIComponent(
+          "معرّف إجراء المتابعة غير موجود."
+        )
+    );
+  }
+
+  const supabase =
+    await createClient();
+
+  const {
+    data: { user },
+  } =
+    await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+
+  const db =
+    supabase as unknown as SupabaseClient;
+
+  const {
+    error,
+  } =
+    await db.rpc(
+      "delete_school_intervention",
+      {
+        p_intervention_id:
+          interventionId,
+      }
+    );
+
+  if (error) {
+    redirect(
+      "/school?error=" +
+        encodeURIComponent(
+          error.message
+        )
+    );
+  }
+
+  revalidatePath("/school");
+
+  return;
+}
+

@@ -1,0 +1,86 @@
+﻿[
+    {
+        "grade":  1,
+        "grade_name":  "الصف الأول",
+        "semester":  1,
+        "type":  "student_book",
+        "url":  "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_1/e_books/Arabic-Baraem-G1-P1-2026/Arabic%20Baraem%20G1%20P1%202026/index.html"
+    },
+    {
+        "grade":  2,
+        "grade_name":  "الصف الثاني",
+        "semester":  1,
+        "type":  "student_book",
+        "url":  "https://www.edunet.bh/e_content/level_1/stage_2/subject_ID_1/Part_1/e_books/Arabic-Baraem-G2-P1-2026/Arabic%20Baraem%20G2%20P1%202026/index.html"
+    },
+    {
+        "grade":  2,
+        "grade_name":  "الصف الثاني",
+        "semester":  1,
+        "type":  "workbook",
+        "url":  "https://www.edunet.bh/e_content/level_1/stage_2/subject_ID_1/Part_1/e_books/Arabic-Baraem-G2-P1-WB-2026/Arabic%20Baraem%20G2%20P1%20WB%202026/index.html"
+    },
+    {
+        "grade":  3,
+        "grade_name":  "الصف الثالث",
+        "semester":  1,
+        "type":  "workbook",
+        "url":  "https://www.edunet.bh/e_content/level_1/stage_3/subject_ID_1/Part_1/e_books/Arabic-G3-Baraem-P1-WB-2022/Arabic%20G3%20Baraem%20P1%20WB%202022/index.html"
+    },
+    {
+        "grade":  4,
+        "grade_name":  "الصف الرابع",
+        "semester":  1,
+        "type":  "student_book",
+        "url":  "https://www.edunet.bh/e_content/level_1/stage_4/subject_ID_1/Part_1/e_books/Arabic-G4-2023/Arabic%20G4%202023/index.html"
+    },
+    {
+        "grade":  5,
+        "grade_name":  "الصف الخامس",
+        "semester":  1,
+        "type":  "workbook",
+        "url":  "https://www.edunet.bh/e_content/level_1/stage_5/subject_ID_1/Part_1/e_books/Arabic-G5-P1-WB-2023/Arabic%20G5%20P1%20WB%202023/index.html"
+    },
+    {
+        "grade":  5,
+        "grade_name":  "الصف الخامس",
+        "semester":  1,
+        "type":  "reading_book",
+        "url":  "https://www.edunet.bh/e_content/level_1/stage_5/subject_ID_1/Part_1/e_books/Arabic-G5-Reading-2022(2)/Arabic%20G5%20Reading%202022/index.html"
+    },
+    {
+        "grade":  6,
+        "grade_name":  "الصف السادس",
+        "semester":  1,
+        "type":  "reading_book",
+        "url":  "https://www.edunet.bh/e_content/level_1/stage_6/subject_ID_1/Part_1/e_books/Arabic-G6-Reading-2024/Arabic%20G6%20Reading%202024/index.html"
+    },
+    {
+        "grade":  6,
+        "grade_name":  "الصف السادس",
+        "semester":  1,
+        "type":  "workbook",
+        "url":  "https://www.edunet.bh/e_content/level_1/stage_6/subject_ID_1/Part_1/e_books/Arabic-G6-P1-WB-2023/Arabic%20G6%20P1%20WB%202023/index.html"
+    },
+    {
+        "grade":  7,
+        "grade_name":  "الصف السابع",
+        "semester":  1,
+        "type":  "student_book",
+        "url":  "https://www.edunet.bh/e_content/level_2/stage_7/subject_ID_1/Part_1/e_books/Arabic-G7-P1-2023(1)/Arabic%20G7%20P1%202023/index.html"
+    },
+    {
+        "grade":  8,
+        "grade_name":  "الصف الثامن",
+        "semester":  1,
+        "type":  "student_book",
+        "url":  "https://www.edunet.bh/e_content/level_2/stage_8/subject_ID_1/Part_1/e_books/Arabic-G8-P1-2017(3)/Arabic%20G8%20P1%202017/index.html"
+    },
+    {
+        "grade":  9,
+        "grade_name":  "الصف التاسع",
+        "semester":  1,
+        "type":  "student_book",
+        "url":  "https://www.edunet.bh/e_content/level_2/stage_9/subject_ID_1/Part_1/e_books/Arabic-G9-P1-2018(3)/Arabic%20G9%20P1%202018/index.html"
+    }
+]

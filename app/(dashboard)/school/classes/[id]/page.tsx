@@ -13,6 +13,10 @@ import {
   createClient,
 } from "@/lib/supabase/server";
 
+import {
+  createSchoolInterventionAction,
+} from "../../actions";
+
 type SchoolClassRow = {
   class_id: string;
   class_name: string;
@@ -200,7 +204,97 @@ export default async function SchoolClassDetailsPage({
         )
       : 0;
 
-  return (
+  
+
+  const classMasteryRate =
+    totalCompleted > 0
+      ? Math.round(
+          (
+            totalMastered /
+            totalCompleted
+          ) *
+            100
+        )
+      : 0;
+
+
+  const rankedStudents =
+    [...students].sort(
+      (a, b) =>
+        toNumber(
+          b.average_best_score
+        ) -
+        toNumber(
+          a.average_best_score
+        )
+    );
+
+
+  const topStudents =
+    rankedStudents.slice(
+      0,
+      3
+    );
+
+
+  const studentsNeedingSupport =
+    rankedStudents.filter(
+      (student) =>
+        toNumber(
+          student.average_best_score
+        ) < 70
+    );
+
+
+  const urgentStudents =
+    rankedStudents.filter(
+      (student) =>
+        toNumber(
+          student.average_best_score
+        ) < 50
+    );
+
+
+  const classAcademicStatus =
+    totalStudents === 0
+      ? "بانتظار بيانات"
+      : averageScore >= 85 &&
+          classMasteryRate >= 70
+        ? "أداء متميز"
+        : averageScore >= 70
+          ? "أداء جيد"
+          : averageScore >= 50
+            ? "يحتاج متابعة"
+            : "يحتاج تدخل عاجل";
+
+
+  const suggestedClassPriority =
+    totalStudents === 0
+      ? "low"
+      : averageScore < 50 ||
+          urgentStudents.length >=
+            Math.ceil(
+              totalStudents * 0.3
+            )
+        ? "high"
+        : averageScore < 70 ||
+            studentsNeedingSupport.length > 0
+          ? "medium"
+          : "low";
+
+
+  const classRecommendation =
+    totalStudents === 0
+      ? "لا توجد بيانات طلاب كافية حتى الآن لإصدار توصية أكاديمية."
+      : averageScore >= 85 &&
+          classMasteryRate >= 70
+        ? "الفصل يحقق أداءً مرتفعًا. يوصى بالاستمرار في أنشطة الإثراء ودعم الطلاب للحفاظ على مستوى الإتقان."
+        : averageScore >= 70
+          ? "أداء الفصل جيد بصورة عامة، مع أهمية متابعة الطلاب الأقل أداءً وتعزيز المهارات التي لم تصل بعد إلى مستوى الإتقان."
+          : averageScore >= 50
+            ? "يحتاج الفصل إلى خطة تعزيز أكاديمية مركزة مع متابعة الطلاب الذين تقل نتائجهم عن المستوى المستهدف."
+            : "تظهر بيانات الفصل حاجة إلى تدخل أكاديمي مبكر وخطة متابعة مكثفة للطلاب ذوي الأداء المنخفض.";
+return (
     <main
       dir="rtl"
       className="min-h-screen bg-slate-50 px-4 py-8 sm:px-6 lg:px-8"
@@ -269,7 +363,356 @@ export default async function SchoolClassDetailsPage({
         </section>
 
 
-        <section className="grid gap-5 lg:grid-cols-3">
+        
+
+        {/* class_intelligence_marker */}
+
+        <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+
+            <div>
+
+              <p className="text-sm font-black text-violet-700">
+                🧠 التحليل الأكاديمي للفصل
+              </p>
+
+              <h2 className="mt-1 text-2xl font-black text-slate-900">
+                قراءة ذكية لأداء الفصل
+              </h2>
+
+              <p className="mt-2 max-w-3xl text-sm leading-7 text-slate-500">
+                تحليل يعتمد على متوسط النتائج ونسبة الإتقان وأداء الطلاب المسجل داخل المنصة.
+              </p>
+
+            </div>
+
+            <span
+              className={
+                "inline-flex shrink-0 rounded-full px-4 py-2 text-sm font-black " +
+                (
+                  classAcademicStatus === "أداء متميز"
+                    ? "bg-emerald-100 text-emerald-700"
+                    : classAcademicStatus === "أداء جيد"
+                      ? "bg-sky-100 text-sky-700"
+                      : classAcademicStatus === "يحتاج متابعة"
+                        ? "bg-amber-100 text-amber-700"
+                        : classAcademicStatus === "يحتاج تدخل عاجل"
+                          ? "bg-rose-100 text-rose-700"
+                          : "bg-slate-100 text-slate-700"
+                )
+              }
+            >
+              {classAcademicStatus}
+            </span>
+
+          </div>
+
+
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+
+            <ClassInsightMetric
+              label="نسبة الإتقان"
+              value={`${classMasteryRate}%`}
+            />
+
+            <ClassInsightMetric
+              label="يحتاجون متابعة"
+              value={studentsNeedingSupport.length}
+            />
+
+            <ClassInsightMetric
+              label="تدخل عاجل"
+              value={urgentStudents.length}
+            />
+
+            <ClassInsightMetric
+              label="الأولوية"
+              value={
+                suggestedClassPriority === "high"
+                  ? "عالية"
+                  : suggestedClassPriority === "medium"
+                    ? "متوسطة"
+                    : "منخفضة"
+              }
+            />
+
+          </div>
+
+
+          <div className="mt-6 grid gap-5 lg:grid-cols-2">
+
+            <div className="rounded-2xl bg-emerald-50 p-5 ring-1 ring-emerald-100">
+
+              <h3 className="font-black text-emerald-900">
+                🏆 أعلى الطلاب أداءً
+              </h3>
+
+              {topStudents.length > 0 ? (
+
+                <div className="mt-4 space-y-3">
+
+                  {topStudents.map(
+                    (student, index) => (
+
+                      <Link
+                        key={
+                          student.student_id ??
+                          index
+                        }
+                        href={`/school/students/${student.student_id}`}
+                        className="flex items-center justify-between rounded-xl bg-white p-4 ring-1 ring-emerald-100 transition hover:ring-emerald-300"
+                      >
+
+                        <div className="min-w-0">
+
+                          <div className="font-black text-slate-900">
+                            {index + 1}.{" "}
+                            {
+                              student.student_name ??
+                              "طالب"
+                            }
+                          </div>
+
+                          <div className="mt-1 text-xs text-slate-500">
+                            {
+                              toNumber(
+                                student.mastered_lessons
+                              )
+                            }{" "}
+                            درس متقن
+                          </div>
+
+                        </div>
+
+                        <div className="text-xl font-black text-emerald-700">
+                          {
+                            Math.round(
+                              toNumber(
+                                student.average_best_score
+                              )
+                            )
+                          }%
+                        </div>
+
+                      </Link>
+
+                    )
+                  )}
+
+                </div>
+
+              ) : (
+
+                <p className="mt-4 text-sm text-emerald-800">
+                  لا توجد بيانات طلاب بعد.
+                </p>
+
+              )}
+
+            </div>
+
+
+            <div className="rounded-2xl bg-amber-50 p-5 ring-1 ring-amber-100">
+
+              <h3 className="font-black text-amber-900">
+                ⚠️ الطلاب الذين يحتاجون متابعة
+              </h3>
+
+              {studentsNeedingSupport.length > 0 ? (
+
+                <div className="mt-4 space-y-3">
+
+                  {studentsNeedingSupport
+                    .slice(0, 5)
+                    .map(
+                      (student) => (
+
+                        <Link
+                          key={student.student_id}
+                          href={`/school/students/${student.student_id}`}
+                          className="flex items-center justify-between rounded-xl bg-white p-4 ring-1 ring-amber-100 transition hover:ring-amber-300"
+                        >
+
+                          <span className="font-black text-slate-900">
+                            {
+                              student.student_name ??
+                              "طالب"
+                            }
+                          </span>
+
+                          <span
+                            className={
+                              "font-black " +
+                              (
+                                toNumber(
+                                  student.average_best_score
+                                ) < 50
+                                  ? "text-rose-700"
+                                  : "text-amber-700"
+                              )
+                            }
+                          >
+                            {
+                              Math.round(
+                                toNumber(
+                                  student.average_best_score
+                                )
+                              )
+                            }%
+                          </span>
+
+                        </Link>
+
+                      )
+                    )}
+
+                </div>
+
+              ) : (
+
+                <p className="mt-4 text-sm text-emerald-700">
+                  لا يوجد طلاب تحت مستوى المتابعة حاليًا.
+                </p>
+
+              )}
+
+            </div>
+
+          </div>
+
+
+          <div className="mt-5 rounded-2xl bg-slate-50 p-5">
+
+            <p className="text-sm font-black text-slate-900">
+              التوصية الأكاديمية
+            </p>
+
+            <p className="mt-2 text-sm leading-7 text-slate-600">
+              {classRecommendation}
+            </p>
+
+          </div>
+
+
+          <form
+            action={createSchoolInterventionAction}
+            className="mt-6 rounded-2xl border border-violet-200 bg-violet-50 p-5"
+          >
+
+            <input
+              type="hidden"
+              name="teacherId"
+              value={classInfo.teacher_id}
+            />
+
+            <input
+              type="hidden"
+              name="classId"
+              value={classInfo.class_id}
+            />
+
+            <input
+              type="hidden"
+              name="studentId"
+              value=""
+            />
+
+            <input
+              type="hidden"
+              name="insightType"
+              value="class_academic_follow_up"
+            />
+
+
+            <div className="flex flex-col gap-2">
+
+              <p className="font-black text-violet-900">
+                🎯 إنشاء إجراء متابعة للفصل
+              </p>
+
+              <p className="text-sm leading-6 text-violet-700">
+                سيظهر الإجراء مباشرة في قسم متابعة القرارات والإجراءات في لوحة المدرسة.
+              </p>
+
+            </div>
+
+
+            <div className="mt-5 grid gap-4 md:grid-cols-2">
+
+              <label>
+
+                <span className="text-sm font-black text-slate-700">
+                  عنوان المتابعة
+                </span>
+
+                <input
+                  name="title"
+                  required
+                  defaultValue={`متابعة أكاديمية للفصل - ${classInfo.class_name}`}
+                  className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:border-violet-500"
+                />
+
+              </label>
+
+
+              <label>
+
+                <span className="text-sm font-black text-slate-700">
+                  الأولوية
+                </span>
+
+                <select
+                  name="priority"
+                  defaultValue={suggestedClassPriority}
+                  className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:border-violet-500"
+                >
+                  <option value="low">
+                    منخفضة
+                  </option>
+
+                  <option value="medium">
+                    متوسطة
+                  </option>
+
+                  <option value="high">
+                    عالية
+                  </option>
+                </select>
+
+              </label>
+
+            </div>
+
+
+            <label className="mt-4 block">
+
+              <span className="text-sm font-black text-slate-700">
+                ملاحظات المتابعة
+              </span>
+
+              <textarea
+                name="notes"
+                rows={4}
+                defaultValue={classRecommendation}
+                className="mt-2 w-full resize-y rounded-xl border border-slate-300 bg-white px-4 py-3 leading-7 outline-none focus:border-violet-500"
+              />
+
+            </label>
+
+
+            <button
+              type="submit"
+              className="mt-4 rounded-xl bg-violet-700 px-6 py-3 text-sm font-black text-white transition hover:bg-violet-800"
+            >
+              ➕ إنشاء متابعة للفصل
+            </button>
+
+          </form>
+
+        </section>
+
+<section className="grid gap-5 lg:grid-cols-3">
 
           <article className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 lg:col-span-2">
 
@@ -495,6 +938,30 @@ export default async function SchoolClassDetailsPage({
   );
 }
 
+
+
+
+function ClassInsightMetric({
+  label,
+  value,
+}: {
+  label: string;
+  value: number | string;
+}) {
+  return (
+    <div className="rounded-2xl bg-slate-50 p-5 text-center ring-1 ring-slate-200">
+
+      <div className="text-2xl font-black text-slate-900">
+        {value}
+      </div>
+
+      <div className="mt-1 text-xs font-bold text-slate-500">
+        {label}
+      </div>
+
+    </div>
+  );
+}
 
 function Metric({
   label,
