@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+﻿import { createClient } from "@/lib/supabase/server";
 import { redirect, notFound } from "next/navigation";
 import { getLessonForEdit } from "@/features/teacher/queries/getLessonForEdit";
 import { updateLesson } from "@/features/teacher/actions/updateLesson";
@@ -6,6 +6,7 @@ import { updateLessonStatus } from "@/features/teacher/actions/updateLessonStatu
 import LessonEditor from "@/features/teacher/components/LessonEditor";
 import { getLessonVocabulary } from "@/features/vocabulary/queries/getLessonVocabulary";
 import VocabularyManager from "@/features/vocabulary/components/VocabularyManager";
+import LessonObjectivesEditor from "@/features/teacher/components/LessonObjectivesEditor";
 
 type Props = {
   params: Promise<{
@@ -104,6 +105,22 @@ export default async function EditLessonPage({ params }: Props) {
   }
 
   const vocabulary = await getLessonVocabulary(lesson.id);
+
+  const objectives: string[] =
+    Array.isArray(
+      lesson.learning_objectives
+    )
+      ? lesson.learning_objectives
+          .filter(
+            (item: unknown): item is string =>
+              typeof item === "string"
+          )
+          .map(
+            (item: string) =>
+              item.trim()
+          )
+          .filter(Boolean)
+      : [];
 
   return (
     <main dir="rtl" className="min-h-screen bg-slate-50 p-8">
@@ -232,10 +249,11 @@ export default async function EditLessonPage({ params }: Props) {
             </div>
           }
           objectives={
-            <div className="rounded-2xl border bg-white p-6">
-              <h2 className="text-2xl font-bold">أهداف التعلم</h2>
-              <p className="mt-4 text-slate-500">سيتم تعديل الأهداف هنا.</p>
-            </div>
+            <LessonObjectivesEditor
+              key="lesson-objectives"
+              lessonId={lesson.id}
+              objectives={objectives}
+            />
           }
           media={
             <div className="rounded-2xl border bg-white p-6">
