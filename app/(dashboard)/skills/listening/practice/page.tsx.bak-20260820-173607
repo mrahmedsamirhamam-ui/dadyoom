@@ -1,0 +1,611 @@
+﻿"use client";
+
+import Link from "next/link";
+
+import {
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+
+import ListenButton from "@/features/lesson-activities/components/ListenButton";
+
+import {
+  saveSkillProgress,
+} from "@/features/skills-progress/saveSkillProgress";
+
+type Difficulty =
+  | "starter"
+  | "foundation"
+  | "guided"
+  | "standard"
+  | "challenge";
+
+type Question = {
+  question: string;
+  options: string[];
+  correct: string;
+  explanation: string;
+  skill: string;
+};
+
+type Exercise = {
+  title: string;
+  passage: string;
+  questions: Question[];
+};
+
+const allowed =
+  new Set<Difficulty>([
+    "starter",
+    "foundation",
+    "guided",
+    "standard",
+    "challenge",
+  ]);
+
+function getDifficulty():
+  Difficulty {
+  if (
+    typeof window ===
+      "undefined"
+  ) {
+    return "starter";
+  }
+
+  const value =
+    new URLSearchParams(
+      window.location.search
+    ).get(
+      "difficulty"
+    );
+
+  return (
+    value &&
+    allowed.has(
+      value as Difficulty
+    )
+  )
+    ? value as Difficulty
+    : "starter";
+}
+
+const skillLabels:
+  Record<string, string> = {
+    direct:
+      "فهم مباشر",
+
+    vocabulary:
+      "مفردات",
+
+    sequence:
+      "ترتيب الأحداث",
+
+    inference:
+      "استنتاج",
+
+    main_idea:
+      "الفكرة الرئيسية",
+  };
+
+export default function ListeningPracticePage() {
+  const [
+    difficulty,
+    setDifficulty,
+  ] =
+    useState<Difficulty>(
+      "starter"
+    );
+
+  const [
+    difficultyLabel,
+    setDifficultyLabel,
+  ] =
+    useState(
+      "استكشافي"
+    );
+
+  const [
+    exercise,
+    setExercise,
+  ] =
+    useState<
+      Exercise | null
+    >(null);
+
+  const [
+    loading,
+    setLoading,
+  ] =
+    useState(true);
+
+  const [
+    error,
+    setError,
+  ] =
+    useState("");
+
+  const [
+    answers,
+    setAnswers,
+  ] =
+    useState<
+      Record<
+        number,
+        string
+      >
+    >({});
+
+  const [
+    checked,
+    setChecked,
+  ] =
+    useState(false);
+
+  const [
+    saved,
+    setSaved,
+  ] =
+    useState(false);
+
+  const [
+    generation,
+    setGeneration,
+  ] =
+    useState(0);
+
+  useEffect(() => {
+    const current =
+      getDifficulty();
+
+    setDifficulty(
+      current
+    );
+  }, []);
+
+  useEffect(() => {
+    let active = true;
+
+    async function load() {
+      setLoading(true);
+      setError("");
+      setExercise(null);
+      setAnswers({});
+      setChecked(false);
+      setSaved(false);
+
+      try {
+        const response =
+          await fetch(
+            "/api/skills/listening/adaptive",
+            {
+              method:
+                "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json",
+              },
+
+              body:
+                JSON.stringify({
+                  difficulty,
+                }),
+            }
+          );
+
+        const data =
+          await response
+            .json();
+
+        if (
+          !response.ok ||
+          !data.ok
+        ) {
+          throw new Error(
+            data.error ||
+            "تعذر إنشاء التدريب."
+          );
+        }
+
+        if (active) {
+          setExercise(
+            data.exercise
+          );
+
+          setDifficultyLabel(
+            data.difficultyLabel
+          );
+        }
+      }
+      catch (requestError) {
+        if (active) {
+          setError(
+            requestError
+              instanceof Error
+              ? requestError.message
+              : "تعذر تحميل التدريب."
+          );
+        }
+      }
+      finally {
+        if (active) {
+          setLoading(false);
+        }
+      }
+    }
+
+    void load();
+
+    return () => {
+      active = false;
+    };
+  }, [
+    difficulty,
+    generation,
+  ]);
+
+  const score =
+    useMemo(
+      () =>
+        exercise
+          ? exercise.questions
+              .reduce(
+                (
+                  total,
+                  question,
+                  index
+                ) =>
+                  total +
+                  (
+                    answers[index] ===
+                    question.correct
+                      ? 1
+                      : 0
+                  ),
+                0
+              )
+          : 0,
+      [
+        answers,
+        exercise,
+      ]
+    );
+
+  const percentage =
+    exercise &&
+    exercise.questions
+      .length > 0
+      ? Math.round(
+          (
+            score /
+            exercise
+              .questions
+              .length
+          ) * 100
+        )
+      : 0;
+
+  async function check() {
+    if (!exercise) {
+      return;
+    }
+
+    setChecked(true);
+
+    const result =
+      await saveSkillProgress(
+        "listening",
+        percentage
+      );
+
+    setSaved(
+      Boolean(result)
+    );
+  }
+
+  function newTraining() {
+    setGeneration(
+      value =>
+        value + 1
+    );
+  }
+
+  return (
+    <main
+      dir="rtl"
+      className="mx-auto max-w-6xl p-4 sm:p-6 lg:p-8"
+    >
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <Link
+          href="/skills/adaptive"
+          className="font-black text-blue-700 hover:underline"
+        >
+          ← العودة إلى التدريب التكيفي
+        </Link>
+
+        <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-black text-blue-800">
+          المستوى: {difficultyLabel}
+        </span>
+      </div>
+
+      <section className="mt-5 rounded-3xl bg-gradient-to-l from-sky-500 via-blue-600 to-indigo-700 p-7 text-white shadow-xl sm:p-9">
+        <p className="text-sm font-black text-blue-100">
+          ضاديوم • الاستماع التكيفي
+        </p>
+
+        <h1 className="mt-2 text-3xl font-black sm:text-4xl">
+          🎧 استمع ثم فكّر
+        </h1>
+
+        <p className="mt-4 max-w-3xl leading-8 text-blue-50">
+          التدريب يتغير حسب مستواك ونتائجك، وليس تمرينًا ثابتًا للجميع.
+        </p>
+      </section>
+
+      {loading ? (
+        <section className="mt-6 rounded-3xl bg-white p-10 text-center shadow-sm">
+          <div className="text-4xl">
+            🎧
+          </div>
+
+          <p className="mt-4 font-black text-slate-700">
+            ضاد يُعِدُّ تدريبًا مناسبًا لك...
+          </p>
+        </section>
+      ) : error ? (
+        <section className="mt-6 rounded-3xl border border-rose-200 bg-rose-50 p-6 font-bold text-rose-700">
+          {error}
+        </section>
+      ) : exercise ? (
+        <>
+          <section className="mt-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+            <p className="text-sm font-black text-blue-700">
+              نص الاستماع
+            </p>
+
+            <h2 className="mt-2 text-2xl font-black text-slate-950">
+              {exercise.title}
+            </h2>
+
+            <p className="mt-3 text-slate-500">
+              استمع جيدًا قبل البدء بالإجابة.
+            </p>
+
+            <div className="mt-6">
+              <ListenButton
+                text={
+                  exercise.passage
+                }
+                mood="normal"
+              />
+            </div>
+
+            <details className="mt-5 rounded-2xl bg-slate-50 p-4">
+              <summary className="cursor-pointer font-black text-slate-600">
+                أظهر النص بعد الاستماع
+              </summary>
+
+              <p className="mt-4 text-lg font-bold leading-9 text-slate-800">
+                {
+                  exercise.passage
+                }
+              </p>
+            </details>
+          </section>
+
+          <section className="mt-6 space-y-5">
+            {exercise.questions
+              .map(
+                (
+                  question,
+                  index
+                ) => {
+                  const selected =
+                    answers[
+                      index
+                    ];
+
+                  const correct =
+                    selected ===
+                    question.correct;
+
+                  return (
+                    <article
+                      key={
+                        `${index}-${question.question}`
+                      }
+                      className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+                    >
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 font-black text-blue-700">
+                          {index + 1}
+                        </span>
+
+                        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-600">
+                          {
+                            skillLabels[
+                              question.skill
+                            ] ??
+                            question.skill
+                          }
+                        </span>
+                      </div>
+
+                      <h3 className="mt-4 text-xl font-black leading-8 text-slate-900">
+                        {
+                          question.question
+                        }
+                      </h3>
+
+                      <div className="mt-4 grid gap-3">
+                        {question.options
+                          .map(
+                            option => {
+                              const chosen =
+                                selected ===
+                                option;
+
+                              const correctOption =
+                                checked &&
+                                option ===
+                                  question.correct;
+
+                              const wrong =
+                                checked &&
+                                chosen &&
+                                !correctOption;
+
+                              return (
+                                <button
+                                  key={
+                                    option
+                                  }
+                                  type="button"
+                                  disabled={
+                                    checked
+                                  }
+                                  onClick={() =>
+                                    setAnswers(
+                                      previous => ({
+                                        ...previous,
+                                        [index]:
+                                          option,
+                                      })
+                                    )
+                                  }
+                                  className={[
+                                    "rounded-2xl border p-4 text-right font-bold transition",
+                                    chosen
+                                      ? "border-blue-500 bg-blue-50"
+                                      : "border-slate-200 bg-slate-50 hover:border-blue-300",
+                                    correctOption
+                                      ? "border-emerald-500 bg-emerald-50 text-emerald-900"
+                                      : "",
+                                    wrong
+                                      ? "border-rose-500 bg-rose-50 text-rose-900"
+                                      : "",
+                                  ].join(
+                                    " "
+                                  )}
+                                >
+                                  {
+                                    option
+                                  }
+                                </button>
+                              );
+                            }
+                          )}
+                      </div>
+
+                      {checked ? (
+                        <div
+                          className={[
+                            "mt-5 rounded-2xl p-4",
+                            correct
+                              ? "bg-emerald-50 text-emerald-900"
+                              : "bg-amber-50 text-amber-900",
+                          ].join(
+                            " "
+                          )}
+                        >
+                          <p className="font-black">
+                            {correct
+                              ? "✓ إجابة صحيحة"
+                              : `✗ الإجابة الصحيحة: ${question.correct}`}
+                          </p>
+
+                          <p className="mt-2 leading-7">
+                            {
+                              question.explanation
+                            }
+                          </p>
+                        </div>
+                      ) : null}
+                    </article>
+                  );
+                }
+              )}
+          </section>
+
+          <section className="mt-6 rounded-3xl bg-slate-950 p-6 text-white">
+            {!checked ? (
+              <button
+                type="button"
+                disabled={
+                  Object.keys(
+                    answers
+                  ).length !==
+                  exercise.questions
+                    .length
+                }
+                onClick={check}
+                className="rounded-2xl bg-blue-500 px-7 py-3 font-black transition hover:bg-blue-400 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                تحقق من الإجابات
+              </button>
+            ) : (
+              <div className="grid gap-6 sm:grid-cols-[200px_1fr]">
+                <div>
+                  <p className="text-sm font-black text-slate-400">
+                    نتيجتك
+                  </p>
+
+                  <p className="mt-2 text-5xl font-black">
+                    {percentage}%
+                  </p>
+
+                  <p className="mt-2 text-slate-300">
+                    {score} من{" "}
+                    {
+                      exercise
+                        .questions
+                        .length
+                    }
+                  </p>
+                </div>
+
+                <div>
+                  <h2 className="text-2xl font-black">
+                    {percentage >=
+                    90
+                      ? "ممتاز 🌟"
+                      : percentage >=
+                          70
+                        ? "أحسنت 👏"
+                        : "واصل التدريب 🎧"}
+                  </h2>
+
+                  <p className="mt-3 leading-8 text-slate-300">
+                    {saved
+                      ? "تم حفظ نتيجتك، وسيستخدمها ضاد في اختيار التدريب القادم."
+                      : "ظهرت نتيجتك. إذا كنت مسجلًا فسيحاول ضاد حفظ تقدمك."}
+                  </p>
+
+                  <div className="mt-5 flex flex-wrap gap-3">
+                    <button
+                      type="button"
+                      onClick={
+                        newTraining
+                      }
+                      className="rounded-2xl bg-white px-6 py-3 font-black text-slate-900"
+                    >
+                      تدريب جديد بنفس المستوى
+                    </button>
+
+                    <Link
+                      href="/skills/adaptive"
+                      className="rounded-2xl border border-slate-600 px-6 py-3 font-black text-white"
+                    >
+                      ماذا أتدرب بعد ذلك؟
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            )}
+          </section>
+        </>
+      ) : null}
+    </main>
+  );
+}

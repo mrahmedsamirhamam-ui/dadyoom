@@ -7,6 +7,10 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 
 type GeneratedLesson = {
+  sourceText: string;
+  sourceUrl: string;
+  sourceLocked: boolean;
+
   objectives: string[];
   introduction: string;
   explanation: string;
@@ -21,6 +25,8 @@ type GeneratedLesson = {
   }>;
   assessment: Array<{
     question: string;
+    options: string[];
+    correctAnswer: string;
     answer: string;
   }>;
   homework: string;
@@ -164,6 +170,35 @@ function parseGeneratedLesson(
               typeof item.question === "string"
                 ? item.question.trim()
                 : "",
+
+            options:
+              Array.isArray(item.options)
+                ? Array.from(
+                    new Set(
+                      item.options
+                        .filter(
+                          (option): option is string =>
+                            typeof option === "string"
+                        )
+                        .map(
+                          (option) =>
+                            option.trim()
+                        )
+                        .filter(Boolean)
+                    )
+                  ).slice(
+                    0,
+                    4
+                  )
+                : [],
+
+            correctAnswer:
+              typeof item.correctAnswer === "string"
+                ? item.correctAnswer.trim()
+                : typeof item.correct_answer === "string"
+                  ? item.correct_answer.trim()
+                  : "",
+
             answer:
               typeof item.answer === "string"
                 ? item.answer.trim()
@@ -171,12 +206,34 @@ function parseGeneratedLesson(
           }))
           .filter(
             (item) =>
-              item.question || item.answer
+              item.question ||
+              item.answer ||
+              item.options.length > 0
           )
-          .slice(0, 15)
+          .slice(
+            0,
+            15
+          )
       : [];
 
     const generatedLesson: GeneratedLesson = {
+      sourceText:
+        typeof data.sourceText === "string"
+          ? data.sourceText
+              .trim()
+              .slice(0, 18000)
+          : "",
+
+      sourceUrl:
+        typeof data.sourceUrl === "string"
+          ? data.sourceUrl
+              .trim()
+              .slice(0, 2000)
+          : "",
+
+      sourceLocked:
+        data.sourceLocked === true,
+
       objectives,
       introduction:
         typeof data.introduction === "string"
@@ -275,12 +332,6 @@ export async function createLesson(
       1
     );
 
-  const points = parsePositiveNumber(
-    formData.get("points"),
-    10,
-    0
-  );
-
   const isPublished =
     formData.get("is_published") === "true";
 
@@ -330,6 +381,311 @@ export async function createLesson(
     );
   }
 
+
+  if (
+    generatedLesson.sourceLocked &&
+    (
+      generatedLesson.sourceText.length < 160 ||
+      !generatedLesson.sourceUrl
+    )
+  ) {
+    redirect(
+      "/admin/lessons/new?error=\u0646\u0635 \u0627\u0644\u0645\u0635\u062f\u0631 \u0627\u0644\u0645\u0642\u0641\u0644 \u063a\u064a\u0631 \u0645\u0643\u062a\u0645\u0644"
+    );
+  }
+
+  /*
+   * CANONICAL_GENERATED_LESSON_SAVE_V1
+   *
+   * الحقول التي يستخدمها مسار الطالب الحقيقي.
+   */
+  const vocabularyText =
+    generatedLesson.vocabulary.length > 0
+      ? [
+          "المفردات:",
+          ...generatedLesson.vocabulary.map(
+            (item) =>
+              `- ${item.word}: ${item.meaning}${
+                item.example
+                  ? ` — مثال: ${item.example}`
+                  : ""
+              }`
+          ),
+        ].join("\n")
+      : "";
+
+  const activitiesText =
+    generatedLesson.activities.length > 0
+      ? [
+          "الأنشطة:",
+          ...generatedLesson.activities.map(
+            (item, index) =>
+              `${index + 1}. ${item.title}
+${item.instructions}`
+          ),
+        ].join("\n\n")
+      : "";
+
+  const assessmentText =
+    generatedLesson.assessment.length > 0
+      ? [
+          "التقويم:",
+          ...generatedLesson.assessment.map(
+            (item, index) =>
+              `${index + 1}. ${item.question}
+الإجابة النموذجية: ${item.answer}`
+          ),
+        ].join("\n\n")
+      : "";
+
+  const canonicalContent =
+    [
+      generatedLesson.sourceText
+        ? `\u0646\u0635 \u0627\u0644\u0645\u0635\u062f\u0631:
+${generatedLesson.sourceText}`
+        : "",
+
+      generatedLesson.introduction
+        ? `التمهيد:
+${generatedLesson.introduction}`
+        : "",
+
+      generatedLesson.explanation
+        ? `شرح ضاديوم:
+${generatedLesson.explanation}`
+        : "",
+
+      vocabularyText,
+
+      activitiesText,
+
+      assessmentText,
+
+      generatedLesson.homework
+        ? `الواجب المنزلي:
+${generatedLesson.homework}`
+        : "",
+    ]
+      .filter(Boolean)
+      .join("\n\n")
+      .trim();
+
+  const canonicalSummary =
+    (
+      generatedLesson.introduction ||
+      generatedLesson.explanation
+    )
+      .trim()
+      .slice(
+        0,
+        1000
+      );
+
+  const canonicalStatus =
+    isPublished
+      ? "published"
+      : "draft";
+
+  /*
+   * URL_LESSON_INTERACTIVE_V2
+   *
+   * ????? ?????? ?????? ??????
+   * ?????? ???????.
+   */
+
+  type InteractiveQuestionTemplate = {
+    question_order: number;
+    question: string;
+    question_type: string;
+
+    options: Array<{
+      id: string;
+      text: string;
+    }>;
+
+    correct_answer: string;
+
+    explanation:
+      string | null;
+
+    points: number;
+  };
+
+
+  const interactiveQuestionTemplates:
+    InteractiveQuestionTemplate[] =
+      [];
+
+
+  for (
+    const item of
+      generatedLesson.assessment
+  ) {
+    const options =
+      Array.from(
+        new Set(
+          item.options
+            .map(
+              (option) =>
+                option.trim()
+            )
+            .filter(Boolean)
+        )
+      ).slice(
+        0,
+        4
+      );
+
+
+    if (
+      !item.question.trim() ||
+      options.length !== 4
+    ) {
+      continue;
+    }
+
+
+    const correctAnswer =
+      item.correctAnswer.trim();
+
+
+    if (
+      !correctAnswer ||
+      !options.includes(
+        correctAnswer
+      )
+    ) {
+      continue;
+    }
+
+
+    /*
+     * ???? id = text.
+     *
+     * ???? ???? correct_answer ???????? ????
+     * ????? ????? ?????? ?? ???? ??????
+     * ?? ?? ?? ??????.
+     */
+    interactiveQuestionTemplates.push({
+      question_order:
+        interactiveQuestionTemplates.length +
+        1,
+
+      question:
+        item.question.trim(),
+
+      question_type:
+        "multiple_choice",
+
+      options:
+        options.map(
+          (text) => ({
+            id:
+              text,
+
+            text,
+          })
+        ),
+
+      correct_answer:
+        correctAnswer,
+
+      explanation:
+        item.answer.trim() ||
+        null,
+
+      points:
+        1,
+    });
+  }
+
+
+  /*
+   * ???? ???? ?????? ???? ?? reading.
+   * ?? ????? ?????? ?? ?????? ??? ?????.
+   */
+  const interactiveActivityTemplates =
+    generatedLesson.activities
+      .map(
+        (
+          item,
+          index
+        ) => {
+          const activityText =
+            (
+              item.instructions ||
+              item.title
+            ).trim();
+
+
+          return {
+            title:
+              item.title.trim() ||
+              `???? ${index + 1}`,
+
+            activity_type:
+              "reading",
+
+            instructions:
+              item.instructions.trim() ||
+              null,
+
+            content: {
+              text:
+                activityText,
+            },
+
+            activity_order:
+              index + 1,
+
+            points:
+              5,
+
+            is_published:
+              false,
+
+            section:
+              "\u0623\u0646\u0634\u0637\u0629 \u0627\u0644\u062f\u0631\u0633",
+
+            prompt:
+              item.instructions.trim() ||
+              null,
+
+            answer: {},
+
+            is_required:
+              true,
+          };
+        }
+      )
+      .filter(
+        (item) =>
+          Boolean(
+            item.content.text
+          )
+      );
+
+
+  if (
+    interactiveQuestionTemplates
+      .length === 0
+  ) {
+    redirect(
+      "/admin/lessons/new?error=??? ????? ????? ??? ????? ???????? ?? ????? ??? ??????"
+    );
+  }
+
+
+  if (
+    interactiveActivityTemplates
+      .length === 0
+  ) {
+    redirect(
+      "/admin/lessons/new?error=??? ????? ????? ??? ??????? ??? ??????"
+    );
+  }
+
+
   const { data: insertedLesson, error } =
     await supabase
       .from("lessons")
@@ -338,21 +694,21 @@ export async function createLesson(
         title,
         slug: createSlug(title),
         unit_id: unitId,
-        skill,
-        difficulty_level: difficultyLevel,
+        lesson_type: skill,
         estimated_minutes: estimatedMinutes,
-        points,
-        is_published: isPublished,
-        objectives: generatedLesson.objectives,
-        introduction:
-          generatedLesson.introduction || null,
-        explanation:
-          generatedLesson.explanation || null,
+status:
+          "draft",
+
+        content:
+          canonicalContent,
+
+        summary:
+          canonicalSummary ||
+          null,
+
+        learning_objectives:
+          generatedLesson.objectives,
         vocabulary: generatedLesson.vocabulary,
-        activities: generatedLesson.activities,
-        assessment: generatedLesson.assessment,
-        homework:
-          generatedLesson.homework || null,
       })
       .select("id,slug")
       .single();
@@ -370,6 +726,151 @@ export async function createLesson(
     );
   }
 
+  /*
+   * QUESTIONS
+   */
+
+  const {
+    error:
+      questionsError,
+  } =
+    await supabase
+      .from(
+        "questions"
+      )
+      .insert(
+        interactiveQuestionTemplates.map(
+          (item) => ({
+            ...item,
+
+            lesson_id:
+              insertedLesson.id,
+          })
+        )
+      );
+
+
+  if (questionsError) {
+    console.error(
+      "CREATE_LESSON_QUESTIONS_ERROR:",
+      questionsError
+    );
+
+    redirect(
+      `/admin/lessons/new?error=${encodeURIComponent(
+        `?? ??? ????? ??????? ??? ???? ??? ???????: ${questionsError.message}`
+      )}`
+    );
+  }
+
+
+  /*
+   * ACTIVITIES
+   */
+
+  const {
+    error:
+      activitiesError,
+  } =
+    await supabase
+      .from(
+        "lesson_activities"
+      )
+      .insert(
+        interactiveActivityTemplates.map(
+          (item) => ({
+            ...item,
+
+            lesson_id:
+              insertedLesson.id,
+          })
+        )
+      );
+
+
+  if (activitiesError) {
+    console.error(
+      "CREATE_LESSON_ACTIVITIES_ERROR:",
+      activitiesError
+    );
+
+    redirect(
+      `/admin/lessons/new?error=${encodeURIComponent(
+        `?? ??? ????? ??????? ??? ???? ??? ???????: ${activitiesError.message}`
+      )}`
+    );
+  }
+
+
+  /*
+   * PUBLISH LAST
+   *
+   * ?? ???? ????? ??? ???? ???? ???????.
+   */
+
+  if (
+    canonicalStatus ===
+    "published"
+  ) {
+    const {
+      error:
+        activitiesPublishError,
+    } =
+      await supabase
+        .from(
+          "lesson_activities"
+        )
+        .update({
+          is_published:
+            true,
+        })
+        .eq(
+          "lesson_id",
+          insertedLesson.id
+        );
+
+
+    if (
+      activitiesPublishError
+    ) {
+      redirect(
+        `/admin/lessons/new?error=${encodeURIComponent(
+          `?? ????? ????? ????? ??? ??? ??????? ????: ${activitiesPublishError.message}`
+        )}`
+      );
+    }
+
+
+    const {
+      error:
+        lessonPublishError,
+    } =
+      await supabase
+        .from(
+          "lessons"
+        )
+        .update({
+          status:
+            "published",
+        })
+        .eq(
+          "id",
+          insertedLesson.id
+        );
+
+
+    if (
+      lessonPublishError
+    ) {
+      redirect(
+        `/admin/lessons/new?error=${encodeURIComponent(
+          `?? ????? ??????? ???? ???? ??? ?????: ${lessonPublishError.message}`
+        )}`
+      );
+    }
+  }
+
+
   logger.debug(
     "LESSON_CREATED_SUCCESSFULLY:",
     insertedLesson
@@ -377,7 +878,7 @@ export async function createLesson(
 
   revalidatePath("/admin/lessons");
   revalidatePath(
-    `/lessons/${insertedLesson.slug}`
+    `/lessons/${insertedLesson.id}`
   );
 
   redirect("/admin/lessons");

@@ -7,6 +7,8 @@ const eslintConfig = defineConfig([
     ignores: [
       ".next/**",
       "node_modules/**",
+      "_backups/**",
+      "**/_backups/**",
       "app/(dashboard)/types/**",
       "importer/output/**",
     ],
@@ -16,6 +18,8 @@ const eslintConfig = defineConfig([
   globalIgnores([
     ".next/**",
     "node_modules/**",
+      "_backups/**",
+      "**/_backups/**",
     "out/**",
     "build/**",
     "next-env.d.ts",

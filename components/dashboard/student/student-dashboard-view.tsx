@@ -1,3 +1,4 @@
+import SkillsProgressCard from "@/components/dashboard/student/skills-progress-card";
 import Link from "next/link";
 
 import type {
@@ -288,6 +289,31 @@ export function StudentDashboardView({
           />
         </section>
 
+        <section className="rounded-3xl border border-violet-200 bg-gradient-to-l from-violet-50 via-white to-teal-50 p-6 shadow-sm sm:p-8">
+          <div className="flex flex-col justify-between gap-5 md:flex-row md:items-center">
+            <div>
+              <p className="text-sm font-black text-violet-700">
+                🧭 رحلة اليوم الذكية
+              </p>
+
+              <h2 className="mt-2 text-2xl font-black text-slate-950">
+                درس + مهارة + تقييم في مسار واحد
+              </h2>
+
+              <p className="mt-3 max-w-2xl leading-8 text-slate-600">
+                دع ضاد يرتب لك ما تفعله الآن بناءً على تقدمك الحقيقي.
+              </p>
+            </div>
+
+            <Link
+              href="/journey/daily"
+              className="inline-flex min-h-12 shrink-0 items-center justify-center rounded-2xl bg-violet-700 px-7 font-black text-white transition hover:bg-violet-800"
+            >
+              ابدأ رحلة اليوم ←
+            </Link>
+          </div>
+        </section>
+
         <JourneyCard lessons={data.journeyLessons} />
 
         <section className="grid gap-6 lg:grid-cols-2">
@@ -321,7 +347,11 @@ export function StudentDashboardView({
           />
         </section>
       </div>
-    </main>
+    
+      <div className="mt-6">
+        <SkillsProgressCard />
+      </div>
+</main>
   );
 }
 

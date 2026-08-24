@@ -1,68 +1,118 @@
-import { createClient } from "@/lib/supabase/server";
+﻿import type {
+  SupabaseClient,
+} from "@supabase/supabase-js";
 
-type ServerSupabaseClient =
-  Awaited<ReturnType<typeof createClient>>;
-import { calculateLevel } from "./level";
-import { calculateBadges } from "./badges";
-import { calculateAchievements } from "./achievements";
+import {
+  createClient,
+} from "@/lib/supabase/server";
+
+import {
+  calculateLevel,
+} from "./level";
+
+import {
+  calculateBadges,
+} from "./badges";
+
+import {
+  calculateAchievements,
+} from "./achievements";
+
+import {
+  getUnifiedGamificationXP,
+} from "./unified-gamification";
 
 export async function getStudentStatistics(
   studentId: string,
-  supabaseClient?: ServerSupabaseClient
+  supabaseClient?: SupabaseClient
 ) {
   const supabase =
     supabaseClient ??
     (await createClient());
 
-  const { data } = await supabase
-    .from("student_lesson_progress")
-    .select(`
-      xp,
-      status
-    `)
-    .eq("student_id", studentId);
+  const {
+    data,
+    error,
+  } =
+    await supabase
+      .from("student_lesson_progress")
+      .select(`
+        xp,
+        status
+      `)
+      .eq(
+        "student_id",
+        studentId
+      );
 
-  const rows = data ?? [];
+  if (error) {
+    throw error;
+  }
 
-  const totalXP = rows.reduce(
-    (sum, row) => sum + (row.xp ?? 0),
-    0
-  );
+  const rows =
+    data ?? [];
 
-  const completed = rows.filter(
-    (row) =>
-      row.status === "completed" ||
-      row.status === "mastered"
-  ).length;
+  const lessons =
+    rows.length;
 
-  const mastered = rows.filter(
-    (row) => row.status === "mastered"
-  ).length;
+  const completed =
+    rows.filter(
+      row =>
+        row.status === "completed" ||
+        row.status === "mastered"
+    ).length;
 
-  const lessons = rows.length;
+  const mastered =
+    rows.filter(
+      row =>
+        row.status === "mastered"
+    ).length;
 
-  const level = calculateLevel(totalXP);
-
-  const badges = calculateBadges({
+  const {
+    lessonXP,
+    skillXP,
     totalXP,
-    completed,
-    mastered,
-  });
+  } =
+    await getUnifiedGamificationXP(
+      studentId,
+      supabase
+    );
 
-  const achievements = calculateAchievements({
-    lessons,
-    completed,
-    mastered,
-    totalXP,
-  });
+  const level =
+    calculateLevel(totalXP);
+
+  const badges =
+    calculateBadges({
+      totalXP,
+      completed,
+      mastered,
+    });
+
+  const achievements =
+    calculateAchievements({
+      lessons,
+      completed,
+      mastered,
+      totalXP,
+    });
 
   return {
     totalXP,
-    completed,
-    mastered,
+
+    lessonXP,
+
+    skillXP,
+
     lessons,
+
+    completed,
+
+    mastered,
+
     level,
+
     badges,
+
     achievements,
   };
 }

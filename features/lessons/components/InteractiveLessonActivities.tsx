@@ -1,6 +1,7 @@
 "use client";
 
 import ListenButton from "@/features/lesson-activities/components/ListenButton";
+import LessonActivityImage from "@/features/lesson-activities/components/LessonActivityImage";
 
 import HandwritingCanvas from "@/features/lesson-activities/components/HandwritingCanvas";
 
@@ -508,10 +509,34 @@ export default function InteractiveLessonActivities({
             const content =
               activity.content ?? {};
 
+            const showActivityImages =
+              false;
+
             const imageUrl =
+              showActivityImages &&
               typeof content.image_url === "string"
                 ? content.image_url
                 : null;
+
+        const imageRegion =
+          typeof content.image_region === "object" &&
+          content.image_region !== null
+            ? (
+                content.image_region as {
+                  x?: unknown;
+                  y?: unknown;
+                  width?: unknown;
+                  height?: unknown;
+                }
+              )
+            : null;
+
+        const hasImageRegion =
+          imageRegion !== null &&
+          typeof imageRegion.x === "number" &&
+          typeof imageRegion.y === "number" &&
+          typeof imageRegion.width === "number" &&
+          typeof imageRegion.height === "number";
 
           const audioText =
             typeof content.audio_text === "string"
@@ -523,31 +548,114 @@ export default function InteractiveLessonActivities({
               ? content.audio_url
               : null;
           const imageOptions =
-            Array.isArray(content.image_options)
-              ? content.image_options.filter(
-                  (item) =>
-                    typeof item === "object" &&
-                    item !== null &&
-                    typeof (
-                      item as {
-                        label?: unknown;
+            showActivityImages &&
+            Array.isArray(
+              content.image_options
+            )
+              ? content.image_options
+                  .filter(
+                    (item) =>
+                      typeof item === "object" &&
+                      item !== null
+                  )
+                  .map(
+                    (item) => {
+                      const row =
+                        item as Record<
+                          string,
+                          unknown
+                        >;
+
+                      const region =
+                        typeof row.region === "object" &&
+                        row.region !== null
+                          ? row.region as Record<
+                              string,
+                              unknown
+                            >
+                          : null;
+
+                      if (
+                        typeof row.label !== "string" ||
+                        typeof row.image_url !== "string" ||
+                        !region ||
+                        typeof region.x !== "number" ||
+                        typeof region.y !== "number" ||
+                        typeof region.width !== "number" ||
+                        typeof region.height !== "number"
+                      ) {
+                        return null;
                       }
-                    ).label === "string" &&
-                    typeof (
-                      item as {
-                        image_url?: unknown;
-                      }
-                    ).image_url === "string"
-                ) as Array<{
-                  label: string;
-                  image_url: string;
-                }>
+
+                      return {
+                        index:
+                          typeof row.index === "number"
+                            ? row.index
+                            : null,
+
+                        label:
+                          row.label,
+
+                        image_url:
+                          row.image_url,
+
+                        region: {
+                          x:
+                            region.x,
+
+                          y:
+                            region.y,
+
+                          width:
+                            region.width,
+
+                          height:
+                            region.height,
+                        },
+                      };
+                    }
+                  )
+                  .filter(
+                    (
+                      item
+                    ): item is {
+                      index:
+                        number | null;
+
+                      label:
+                        string;
+
+                      image_url:
+                        string;
+
+                      region: {
+                        x: number;
+                        y: number;
+                        width: number;
+                        height: number;
+                      };
+                    } =>
+                      item !== null
+                  )
               : [];
 
           const options =
-              strings(
-                content.options
+            (() => {
+              const explicit =
+                strings(
+                  content.options
+                );
+
+              if (
+                explicit.length > 0
+              ) {
+                return explicit;
+              }
+
+              return strings(
+                content.imageLabels
               );
+            })();
 
             const words =
               strings(
@@ -734,10 +842,19 @@ export default function InteractiveLessonActivities({
 
 {imageUrl ? (
                   <div className="mt-5 overflow-hidden rounded-2xl bg-white p-3 ring-1 ring-slate-200">
-                    <img
+                    <LessonActivityImage
                       src={imageUrl}
                       alt={activity.title}
-                      className="mx-auto max-h-[520px] w-auto rounded-xl object-contain"
+                      region={
+                        hasImageRegion && imageRegion
+                          ? {
+                              x: imageRegion.x as number,
+                              y: imageRegion.y as number,
+                              width: imageRegion.width as number,
+                              height: imageRegion.height as number,
+                            }
+                          : null
+                      }
                     />
                   </div>
                 ) : null}
@@ -870,13 +987,19 @@ export default function InteractiveLessonActivities({
 
                                 return (
                                   <div className="flex flex-col items-center gap-3">
-                                    <img
-                                      src={
-                                        imageOption.image_url
-                                      }
-                                      alt={option}
-                                      className="h-40 w-full rounded-xl object-contain"
-                                    />
+                                    <div className="w-full overflow-hidden rounded-xl">
+                                      <LessonActivityImage
+                                        src={
+                                          imageOption.image_url
+                                        }
+                                        alt={
+                                          option
+                                        }
+                                        region={
+                                          imageOption.region
+                                        }
+                                      />
+                                    </div>
 
                                     <span className="text-lg font-black">
                                       {option}
@@ -928,59 +1051,93 @@ export default function InteractiveLessonActivities({
                             {leftValue}
                           </div>
 
-                          <select
-                            value={
-                              match[
-                                leftValue
-                              ] ?? ""
-                            }
-                            onChange={(event) => {
-
-                              clear(
-                                activity.id
-                              );
-
-                              setMatching(
-                                (current) => ({
-                                  ...current,
-
-                                  [activity.id]: {
-                                    ...(
-                                      current[
-                                        activity.id
-                                      ] ?? {}
-                                    ),
-
-                                    [leftValue]:
-                                      event.target.value,
-                                  },
-                                })
-                              );
-                            }}
-                            className="rounded-xl border border-slate-300 bg-white px-3 py-2 font-bold"
-                          >
-
-                            <option value="">
-                              {T.chooseMatch}
-                            </option>
-
+                          <div className="grid gap-2 sm:grid-cols-2">
                             {right.map(
                               (
                                 rightValue,
                                 rightIndex
-                              ) => (
-                                <option
-                                  key={`${activity.id}-${leftIndex}-${rightIndex}`}
-                                  value={
-                                    rightValue
-                                  }
-                                >
-                                  {rightValue}
-                                </option>
-                              )
-                            )}
+                              ) => {
+                                const active =
+                                  match[
+                                    leftValue
+                                  ] ===
+                                  rightValue;
 
-                          </select>
+                                const imageOption =
+                                  imageOptions.find(
+                                    (item) =>
+                                      item.index ===
+                                        rightIndex + 1 ||
+                                      (
+                                        item.index === null &&
+                                        item.label ===
+                                          rightValue
+                                      )
+                                  );
+
+                                return (
+                                  <button
+                                    key={`${activity.id}-${leftIndex}-${rightIndex}`}
+                                    type="button"
+                                    onClick={() => {
+                                      clear(
+                                        activity.id
+                                      );
+
+                                      setMatching(
+                                        (current) => ({
+                                          ...current,
+
+                                          [activity.id]: {
+                                            ...(
+                                              current[
+                                                activity.id
+                                              ] ?? {}
+                                            ),
+
+                                            [leftValue]:
+                                              rightValue,
+                                          },
+                                        })
+                                      );
+                                    }}
+                                    className={
+                                      "rounded-xl border p-3 text-center font-bold transition " +
+                                      (
+                                        active
+                                          ? "border-violet-500 bg-violet-100 text-violet-900"
+                                          : "border-slate-200 bg-white text-slate-700 hover:border-violet-300 hover:bg-violet-50"
+                                      )
+                                    }
+                                  >
+                                    {imageOption ? (
+                                      <div className="flex flex-col items-center gap-2">
+                                        <div className="w-full overflow-hidden rounded-lg">
+                                          <LessonActivityImage
+                                            src={
+                                              imageOption.image_url
+                                            }
+                                            alt={
+                                              rightValue
+                                            }
+                                            region={
+                                              imageOption.region
+                                            }
+                                          />
+                                        </div>
+
+                                        <span>
+                                          {rightValue}
+                                        </span>
+                                      </div>
+                                    ) : (
+                                      rightValue
+                                    )}
+                                  </button>
+                                );
+                              }
+                            )}
+                          </div>
 
                         </div>
                       )
@@ -1201,13 +1358,19 @@ export default function InteractiveLessonActivities({
 
                                 return (
                                   <div className="flex flex-col items-center gap-3">
-                                    <img
-                                      src={
-                                        imageOption.image_url
-                                      }
-                                      alt={option}
-                                      className="h-40 w-full rounded-xl object-contain"
-                                    />
+                                    <div className="w-full overflow-hidden rounded-xl">
+                                      <LessonActivityImage
+                                        src={
+                                          imageOption.image_url
+                                        }
+                                        alt={
+                                          option
+                                        }
+                                        region={
+                                          imageOption.region
+                                        }
+                                      />
+                                    </div>
 
                                     <span className="text-lg font-black">
                                       {option}

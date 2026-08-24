@@ -1,0 +1,4098 @@
+﻿============================================================
+DADYOOM - CURRENT IMAGE PIPELINE
+Generated: 08/12/2026 15:18:17
+============================================================
+
+############################################################
+FILE: lib\lesson-ai\image-options.ts
+############################################################
+00001: export type ImageOptionRegion = {
+00002:   x: number;
+00003:   y: number;
+00004:   width: number;
+00005:   height: number;
+00006: };
+00007: 
+00008: export type ActivityImageOption = {
+00009:   label: string;
+00010:   image_url: string;
+00011:   region: ImageOptionRegion;
+00012:   confidence?: number;
+00013: };
+00014: 
+00015: type JsonObject =
+00016:   Record<string, unknown>;
+00017: 
+00018: function isObject(
+00019:   value: unknown
+00020: ): value is JsonObject {
+00021:   return Boolean(
+00022:     value &&
+00023:     typeof value === "object" &&
+00024:     !Array.isArray(value)
+00025:   );
+00026: }
+00027: 
+00028: function cleanText(
+00029:   value: unknown
+00030: ): string {
+00031:   return typeof value === "string"
+00032:     ? value.trim()
+00033:     : "";
+00034: }
+00035: 
+00036: function finiteNumber(
+00037:   value: unknown
+00038: ): number | null {
+00039:   const number =
+00040:     typeof value === "number"
+00041:       ? value
+00042:       : typeof value === "string" &&
+00043:           value.trim()
+00044:         ? Number(value)
+00045:         : NaN;
+00046: 
+00047:   return Number.isFinite(number)
+00048:     ? number
+00049:     : null;
+00050: }
+00051: 
+00052: function clamp(
+00053:   value: number
+00054: ): number {
+00055:   return Math.max(
+00056:     0,
+00057:     Math.min(
+00058:       100,
+00059:       value
+00060:     )
+00061:   );
+00062: }
+00063: 
+00064: export function normalizeOptionRegion(
+00065:   value: unknown
+00066: ): ImageOptionRegion | null {
+00067:   if (!isObject(value)) {
+00068:     return null;
+00069:   }
+00070: 
+00071:   let x =
+00072:     finiteNumber(
+00073:       value.x
+00074:     );
+00075: 
+00076:   let y =
+00077:     finiteNumber(
+00078:       value.y
+00079:     );
+00080: 
+00081:   let width =
+00082:     finiteNumber(
+00083:       value.width
+00084:     );
+00085: 
+00086:   let height =
+00087:     finiteNumber(
+00088:       value.height
+00089:     );
+00090: 
+00091:   if (
+00092:     x === null ||
+00093:     y === null ||
+00094:     width === null ||
+00095:     height === null
+00096:   ) {
+00097:     return null;
+00098:   }
+00099: 
+00100:   /*
+00101:    * Gemini vision commonly returns normalized image
+00102:    * coordinates on a 0..1000 scale even when a prompt
+00103:    * requests percentages.
+00104:    *
+00105:    * Dadyoom stores regions as 0..100 percentages.
+00106:    *
+00107:    * Support both contracts automatically:
+00108:    *
+00109:    * 0..100  -> already percentages
+00110:    * 0..1000 -> divide every coordinate by 10
+00111:    */
+00112:   const maximum =
+00113:     Math.max(
+00114:       x,
+00115:       y,
+00116:       width,
+00117:       height
+00118:     );
+00119: 
+00120:   if (
+00121:     maximum > 100 &&
+00122:     maximum <= 1000
+00123:   ) {
+00124:     x /= 10;
+00125:     y /= 10;
+00126:     width /= 10;
+00127:     height /= 10;
+00128:   }
+00129: 
+00130:   /*
+00131:    * Anything still outside the percentage coordinate
+00132:    * system is considered unsafe rather than guessing.
+00133:    */
+00134:   if (
+00135:     x < 0 ||
+00136:     y < 0 ||
+00137:     width <= 0 ||
+00138:     height <= 0 ||
+00139:     x > 100 ||
+00140:     y > 100
+00141:   ) {
+00142:     return null;
+00143:   }
+00144: 
+00145:   width =
+00146:     Math.min(
+00147:       width,
+00148:       100 - x
+00149:     );
+00150: 
+00151:   height =
+00152:     Math.min(
+00153:       height,
+00154:       100 - y
+00155:     );
+00156: 
+00157:   if (
+00158:     width <= 0 ||
+00159:     height <= 0
+00160:   ) {
+00161:     return null;
+00162:   }
+00163: 
+00164:   return {
+00165:     x,
+00166:     y,
+00167:     width,
+00168:     height,
+00169:   };
+00170: }
+00171: 
+00172: export function getRequiredImageLabels(
+00173:   activityType: unknown,
+00174:   contentValue: unknown
+00175: ): string[] {
+00176:   if (!isObject(contentValue)) {
+00177:     return [];
+00178:   }
+00179: 
+00180:   const content =
+00181:     contentValue;
+00182: 
+00183:   /*
+00184:    * Image multiple-choice.
+00185:    */
+00186:   if (
+00187:     Array.isArray(
+00188:       content.imageLabels
+00189:     )
+00190:   ) {
+00191:     const labels =
+00192:       content.imageLabels
+00193:         .map(cleanText)
+00194:         .filter(Boolean);
+00195: 
+00196:     if (labels.length > 0) {
+00197:       return Array.from(
+00198:         new Set(labels)
+00199:       );
+00200:     }
+00201:   }
+00202: 
+00203:   /*
+00204:    * Matching exercises whose right side
+00205:    * represents pictures.
+00206:    */
+00207:   if (
+00208:     activityType === "matching" &&
+00209:     Array.isArray(
+00210:       content.right
+00211:     )
+00212:   ) {
+00213:     const labels =
+00214:       content.right
+00215:         .map(cleanText)
+00216:         .filter(
+00217:           (value) =>
+00218:             value.startsWith(
+00219:               "صورة"
+00220:             )
+00221:         );
+00222: 
+00223:     if (labels.length > 0) {
+00224:       return Array.from(
+00225:         new Set(labels)
+00226:       );
+00227:     }
+00228:   }
+00229: 
+00230:   return [];
+00231: }
+00232: 
+00233: export function normalizeImageOptions(
+00234:   rawValue: unknown,
+00235:   requestedLabels: string[],
+00236:   imageUrl: string
+00237: ): {
+00238:   options: ActivityImageOption[];
+00239:   missing: string[];
+00240:   complete: boolean;
+00241: } {
+00242:   const rawOptions =
+00243:     isObject(rawValue) &&
+00244:     Array.isArray(
+00245:       rawValue.options
+00246:     )
+00247:       ? rawValue.options
+00248:       : [];
+00249: 
+00250:   const byLabel =
+00251:     new Map<
+00252:       string,
+00253:       ActivityImageOption
+00254:     >();
+00255: 
+00256:   for (
+00257:     const rawOption of
+00258:       rawOptions
+00259:   ) {
+00260:     if (!isObject(rawOption)) {
+00261:       continue;
+00262:     }
+00263: 
+00264:     /*
+00265:      * PRIMARY IDENTITY:
+00266:      * Gemini returns the 1-based number of the requested
+00267:      * picture. We therefore never depend on Gemini spelling
+00268:      * the Arabic label exactly.
+00269:      */
+00270:     const rawIndex =
+00271:       finiteNumber(
+00272:         rawOption.index
+00273:       );
+00274: 
+00275:     const index =
+00276:       rawIndex !== null
+00277:         ? Math.round(
+00278:             rawIndex
+00279:           ) - 1
+00280:         : -1;
+00281: 
+00282:     let label =
+00283:       index >= 0 &&
+00284:       index <
+00285:         requestedLabels.length
+00286:         ? requestedLabels[
+00287:             index
+00288:           ]
+00289:         : "";
+00290: 
+00291:     /*
+00292:      * Backward-compatible fallback for old responses.
+00293:      */
+00294:     if (!label) {
+00295:       const returnedLabel =
+00296:         cleanText(
+00297:           rawOption.label
+00298:         );
+00299: 
+00300:       if (
+00301:         requestedLabels.includes(
+00302:           returnedLabel
+00303:         )
+00304:       ) {
+00305:         label =
+00306:           returnedLabel;
+00307:       }
+00308:     }
+00309: 
+00310:     if (!label) {
+00311:       continue;
+00312:     }
+00313: 
+00314:     const region =
+00315:       normalizeOptionRegion(
+00316:         rawOption
+00317:       );
+00318: 
+00319:     if (!region) {
+00320:       continue;
+00321:     }
+00322: 
+00323:     const confidenceValue =
+00324:       finiteNumber(
+00325:         rawOption.confidence
+00326:       );
+00327: 
+00328:     const option:
+00329:       ActivityImageOption = {
+00330:         label,
+00331: 
+00332:         image_url:
+00333:           imageUrl,
+00334: 
+00335:         region,
+00336:     };
+00337: 
+00338:     if (
+00339:       confidenceValue !== null
+00340:     ) {
+00341:       option.confidence =
+00342:         Math.round(
+00343:           clamp(
+00344:             confidenceValue
+00345:           )
+00346:         );
+00347:     }
+00348: 
+00349:     const existing =
+00350:       byLabel.get(
+00351:         label
+00352:       );
+00353: 
+00354:     if (
+00355:       !existing ||
+00356:       (
+00357:         option.confidence ??
+00358:         0
+00359:       ) >
+00360:       (
+00361:         existing.confidence ??
+00362:         0
+00363:       )
+00364:     ) {
+00365:       byLabel.set(
+00366:         label,
+00367:         option
+00368:       );
+00369:     }
+00370:   }
+00371: 
+00372:   const options =
+00373:     requestedLabels
+00374:       .map(
+00375:         (label) =>
+00376:           byLabel.get(
+00377:             label
+00378:           )
+00379:       )
+00380:       .filter(
+00381:         (
+00382:           item
+00383:         ): item is
+00384:           ActivityImageOption =>
+00385:           Boolean(item)
+00386:       );
+00387: 
+00388:   const missing =
+00389:     requestedLabels.filter(
+00390:       (label) =>
+00391:         !byLabel.has(
+00392:           label
+00393:         )
+00394:     );
+00395: 
+00396:   return {
+00397:     options,
+00398: 
+00399:     missing,
+00400: 
+00401:     complete:
+00402:       requestedLabels.length >
+00403:         0 &&
+00404:       missing.length === 0,
+00405:   };
+00406: }
+00407: 
+00408: export function imageOptionsCoverLabels(
+00409:   contentValue: unknown,
+00410:   labels: string[]
+00411: ): boolean {
+00412:   if (
+00413:     !isObject(contentValue) ||
+00414:     !Array.isArray(
+00415:       contentValue.image_options
+00416:     ) ||
+00417:     labels.length === 0
+00418:   ) {
+00419:     return false;
+00420:   }
+00421: 
+00422:   const available =
+00423:     new Set(
+00424:       contentValue
+00425:         .image_options
+00426:         .filter(isObject)
+00427:         .filter(
+00428:           (item) =>
+00429:             cleanText(
+00430:               item.image_url
+00431:             ) &&
+00432:             normalizeOptionRegion(
+00433:               item.region
+00434:             )
+00435:         )
+00436:         .map(
+00437:           (item) =>
+00438:             cleanText(
+00439:               item.label
+00440:             )
+00441:         )
+00442:         .filter(Boolean)
+00443:     );
+00444: 
+00445:   return labels.every(
+00446:     (label) =>
+00447:       available.has(
+00448:         label
+00449:       )
+00450:   );
+00451: }
+
+############################################################
+FILE: lib\lesson-ai\activity-media.ts
+############################################################
+00001: export type JsonObject =
+00002:   Record<string, unknown>;
+00003: 
+00004: export type ActivityImageRegion = {
+00005:   x: number;
+00006:   y: number;
+00007:   width: number;
+00008:   height: number;
+00009: };
+00010: 
+00011: export type ActivityMediaInput = {
+00012:   sourcePage?: unknown;
+00013:   imageUrl?: unknown;
+00014:   audioText?: unknown;
+00015: 
+00016:   region?: {
+00017:     x?: unknown;
+00018:     y?: unknown;
+00019:     width?: unknown;
+00020:     height?: unknown;
+00021:   } | null;
+00022: };
+00023: 
+00024: function isObject(
+00025:   value: unknown
+00026: ): value is JsonObject {
+00027:   return Boolean(
+00028:     value &&
+00029:     typeof value ===
+00030:       "object" &&
+00031:     !Array.isArray(value)
+00032:   );
+00033: }
+00034: 
+00035: function cleanText(
+00036:   value: unknown
+00037: ): string {
+00038:   return typeof value ===
+00039:     "string"
+00040:     ? value.trim()
+00041:     : "";
+00042: }
+00043: 
+00044: function finiteNumber(
+00045:   value: unknown
+00046: ): number | null {
+00047:   const number =
+00048:     typeof value ===
+00049:       "number"
+00050:       ? value
+00051:       : typeof value ===
+00052:           "string" &&
+00053:           value.trim()
+00054:         ? Number(value)
+00055:         : NaN;
+00056: 
+00057:   return Number.isFinite(
+00058:     number
+00059:   )
+00060:     ? number
+00061:     : null;
+00062: }
+00063: 
+00064: function clampPercent(
+00065:   value: number
+00066: ): number {
+00067:   return Math.max(
+00068:     0,
+00069:     Math.min(
+00070:       100,
+00071:       value
+00072:     )
+00073:   );
+00074: }
+00075: 
+00076: export function normalizeActivityImageRegion(
+00077:   value:
+00078:     ActivityMediaInput["region"]
+00079: ): ActivityImageRegion | null {
+00080:   if (!value) {
+00081:     return null;
+00082:   }
+00083: 
+00084:   const rawX =
+00085:     finiteNumber(value.x);
+00086: 
+00087:   const rawY =
+00088:     finiteNumber(value.y);
+00089: 
+00090:   const rawWidth =
+00091:     finiteNumber(
+00092:       value.width
+00093:     );
+00094: 
+00095:   const rawHeight =
+00096:     finiteNumber(
+00097:       value.height
+00098:     );
+00099: 
+00100:   if (
+00101:     rawX === null ||
+00102:     rawY === null ||
+00103:     rawWidth === null ||
+00104:     rawHeight === null
+00105:   ) {
+00106:     return null;
+00107:   }
+00108: 
+00109:   let x =
+00110:     clampPercent(rawX);
+00111: 
+00112:   let y =
+00113:     clampPercent(rawY);
+00114: 
+00115:   let width =
+00116:     clampPercent(
+00117:       rawWidth
+00118:     );
+00119: 
+00120:   let height =
+00121:     clampPercent(
+00122:       rawHeight
+00123:     );
+00124: 
+00125:   if (
+00126:     width <= 0 ||
+00127:     height <= 0
+00128:   ) {
+00129:     return null;
+00130:   }
+00131: 
+00132:   width =
+00133:     Math.min(
+00134:       width,
+00135:       100 - x
+00136:     );
+00137: 
+00138:   height =
+00139:     Math.min(
+00140:       height,
+00141:       100 - y
+00142:     );
+00143: 
+00144:   if (
+00145:     width <= 0 ||
+00146:     height <= 0
+00147:   ) {
+00148:     return null;
+00149:   }
+00150: 
+00151:   return {
+00152:     x,
+00153:     y,
+00154:     width,
+00155:     height,
+00156:   };
+00157: }
+00158: 
+00159: export function mergeActivityMedia(
+00160:   value: unknown,
+00161:   media: ActivityMediaInput
+00162: ): JsonObject {
+00163:   const content =
+00164:     isObject(value)
+00165:       ? {
+00166:           ...value,
+00167:         }
+00168:       : {};
+00169: 
+00170:   const sourcePage =
+00171:     finiteNumber(
+00172:       media.sourcePage
+00173:     );
+00174: 
+00175:   if (
+00176:     sourcePage !== null &&
+00177:     sourcePage > 0
+00178:   ) {
+00179:     content.source_page =
+00180:       Math.round(
+00181:         sourcePage
+00182:       );
+00183:   }
+00184: 
+00185:   const imageUrl =
+00186:     cleanText(
+00187:       media.imageUrl
+00188:     );
+00189: 
+00190:   if (
+00191:     imageUrl &&
+00192:     !cleanText(
+00193:       content.image_url
+00194:     )
+00195:   ) {
+00196:     content.image_url =
+00197:       imageUrl;
+00198:   }
+00199: 
+00200:   const audioText =
+00201:     cleanText(
+00202:       media.audioText
+00203:     );
+00204: 
+00205:   if (
+00206:     audioText &&
+00207:     !cleanText(
+00208:       content.audio_text
+00209:     )
+00210:   ) {
+00211:     content.audio_text =
+00212:       audioText;
+00213:   }
+00214: 
+00215:   const imageRegion =
+00216:     normalizeActivityImageRegion(
+00217:       media.region
+00218:     );
+00219: 
+00220:   if (
+00221:     imageRegion &&
+00222:     !isObject(
+00223:       content.image_region
+00224:     )
+00225:   ) {
+00226:     content.image_region =
+00227:       imageRegion;
+00228:   }
+00229: 
+00230:   return content;
+00231: }
+
+############################################################
+FILE: lib\lesson-ai\activity-validator.ts
+############################################################
+00001: export type ActivityValidationInput = {
+00002:   title?: unknown;
+00003:   activity_type?: unknown;
+00004:   content?: unknown;
+00005:   answer?: unknown;
+00006: };
+00007: 
+00008: export type ActivityIssue = {
+00009:   code: string;
+00010:   level:
+00011:     | "error"
+00012:     | "warning";
+00013:   message: string;
+00014: };
+00015: 
+00016: export type ActivityValidationResult = {
+00017:   validForPublish: boolean;
+00018:   score: number;
+00019:   issues: ActivityIssue[];
+00020: };
+00021: 
+00022: function isObject(
+00023:   value: unknown
+00024: ): value is Record<
+00025:   string,
+00026:   unknown
+00027: > {
+00028:   return Boolean(
+00029:     value &&
+00030:     typeof value ===
+00031:       "object" &&
+00032:     !Array.isArray(value)
+00033:   );
+00034: }
+00035: 
+00036: function nonEmptyArray(
+00037:   value: unknown
+00038: ): value is unknown[] {
+00039:   return (
+00040:     Array.isArray(value) &&
+00041:     value.length > 0
+00042:   );
+00043: }
+00044: 
+00045: function cleanText(
+00046:   value: unknown
+00047: ): string {
+00048:   return typeof value ===
+00049:     "string"
+00050:     ? value.trim()
+00051:     : "";
+00052: }
+00053: 
+00054: function looksLikeImageLabel(
+00055:   value: unknown
+00056: ): boolean {
+00057:   const text =
+00058:     cleanText(value);
+00059: 
+00060:   return (
+00061:     text.startsWith(
+00062:       "صورة "
+00063:     ) ||
+00064:     text.startsWith(
+00065:       "الصورة "
+00066:     )
+00067:   );
+00068: }
+00069: 
+00070: export function validateActivity(
+00071:   activity:
+00072:     ActivityValidationInput
+00073: ): ActivityValidationResult {
+00074:   const issues:
+00075:     ActivityIssue[] = [];
+00076: 
+00077:   const type =
+00078:     cleanText(
+00079:       activity.activity_type
+00080:     );
+00081: 
+00082:   const title =
+00083:     cleanText(
+00084:       activity.title
+00085:     );
+00086: 
+00087:   const content =
+00088:     isObject(
+00089:       activity.content
+00090:     )
+00091:       ? activity.content
+00092:       : {};
+00093: 
+00094:   const answer =
+00095:     isObject(
+00096:       activity.answer
+00097:     )
+00098:       ? activity.answer
+00099:       : {};
+00100: 
+00101:   if (!title) {
+00102:     issues.push({
+00103:       code:
+00104:         "MISSING_TITLE",
+00105:       level:
+00106:         "error",
+00107:       message:
+00108:         "عنوان النشاط غير موجود.",
+00109:     });
+00110:   }
+00111: 
+00112:   if (!type) {
+00113:     issues.push({
+00114:       code:
+00115:         "MISSING_TYPE",
+00116:       level:
+00117:         "error",
+00118:       message:
+00119:         "نوع النشاط غير موجود.",
+00120:     });
+00121:   }
+00122: 
+00123:   if (
+00124:     Object.keys(
+00125:       content
+00126:     ).length === 0
+00127:   ) {
+00128:     issues.push({
+00129:       code:
+00130:         "EMPTY_CONTENT",
+00131:       level:
+00132:         "error",
+00133:       message:
+00134:         "محتوى النشاط فارغ.",
+00135:     });
+00136:   }
+00137: 
+00138:   if (
+00139:     type ===
+00140:     "matching"
+00141:   ) {
+00142:     const left =
+00143:       content.left;
+00144: 
+00145:     const right =
+00146:       content.right;
+00147: 
+00148:     const pairs =
+00149:       answer.pairs;
+00150: 
+00151:     if (
+00152:       !nonEmptyArray(left) ||
+00153:       !nonEmptyArray(right)
+00154:     ) {
+00155:       issues.push({
+00156:         code:
+00157:           "MATCHING_OPTIONS_MISSING",
+00158:         level:
+00159:           "error",
+00160:         message:
+00161:           "نشاط التوصيل يحتاج قائمتي left وright.",
+00162:       });
+00163:     }
+00164: 
+00165:     if (
+00166:       !nonEmptyArray(
+00167:         pairs
+00168:       )
+00169:     ) {
+00170:       issues.push({
+00171:         code:
+00172:           "MATCHING_ANSWER_MISSING",
+00173:         level:
+00174:           "error",
+00175:         message:
+00176:           "إجابات pairs غير موجودة.",
+00177:       });
+00178:     }
+00179: 
+00180:     if (
+00181:       nonEmptyArray(
+00182:         right
+00183:       ) &&
+00184:       right.some(
+00185:         looksLikeImageLabel
+00186:       )
+00187:     ) {
+00188:       issues.push({
+00189:         code:
+00190:           "IMAGE_PLACEHOLDER_ONLY",
+00191:         level:
+00192:           "warning",
+00193:         message:
+00194:           "النشاط يشير إلى صور بوصف نصي فقط ويحتاج صورًا فعلية.",
+00195:       });
+00196:     }
+00197:   }
+00198: 
+00199:   if (
+00200:     type ===
+00201:     "multiple_choice"
+00202:   ) {
+00203:     const options =
+00204:       content.options;
+00205: 
+00206:     const questions =
+00207:       content.questions;
+00208: 
+00209:     const items =
+00210:       content.items;
+00211: 
+00212:     const imageLabels =
+00213:       content.imageLabels;
+00214: 
+00215:     const hasOptions =
+00216:       nonEmptyArray(
+00217:         options
+00218:       );
+00219: 
+00220:     const hasQuestions =
+00221:       nonEmptyArray(
+00222:         questions
+00223:       );
+00224: 
+00225:     const hasItems =
+00226:       nonEmptyArray(
+00227:         items
+00228:       );
+00229: 
+00230:     const itemsHaveOptions =
+00231:       hasItems &&
+00232:       items.every(
+00233:         (item) =>
+00234:           isObject(item) &&
+00235:           nonEmptyArray(
+00236:             item.options
+00237:           )
+00238:       );
+00239: 
+00240:     const hasImages =
+00241:       nonEmptyArray(
+00242:         imageLabels
+00243:       );
+00244: 
+00245:     if (
+00246:       !hasOptions &&
+00247:       !hasQuestions &&
+00248:       !hasItems &&
+00249:       !hasImages
+00250:     ) {
+00251:       issues.push({
+00252:         code:
+00253:           "MCQ_STRUCTURE_MISSING",
+00254:         level:
+00255:           "error",
+00256:         message:
+00257:           "نشاط الاختيار لا يحتوي بنية خيارات قابلة للتنفيذ.",
+00258:       });
+00259:     }
+00260: 
+00261:     if (
+00262:       hasImages
+00263:     ) {
+00264:       issues.push({
+00265:         code:
+00266:           "IMAGE_OPTIONS_NEED_ASSETS",
+00267:         level:
+00268:           "warning",
+00269:         message:
+00270:           "أسماء الصور موجودة ولكن يجب ربطها بصور فعلية.",
+00271:       });
+00272:     }
+00273: 
+00274:     if (
+00275:       hasItems &&
+00276:       !hasOptions &&
+00277:       !itemsHaveOptions
+00278:     ) {
+00279:       issues.push({
+00280:         code:
+00281:           "MCQ_ITEMS_NEED_NORMALIZATION",
+00282:         level:
+00283:           "warning",
+00284:         message:
+00285:           "عناصر النشاط تحتاج تحويل الخيارات النصية إلى options منظمة.",
+00286:       });
+00287:     }
+00288:   }
+00289: 
+00290:   if (
+00291:     type ===
+00292:     "fill_blank"
+00293:   ) {
+00294:     if (
+00295:       !nonEmptyArray(
+00296:         content.items
+00297:       )
+00298:     ) {
+00299:       issues.push({
+00300:         code:
+00301:           "FILL_ITEMS_MISSING",
+00302:         level:
+00303:           "error",
+00304:         message:
+00305:           "نشاط إكمال الفراغ يحتاج items.",
+00306:       });
+00307:     }
+00308: 
+00309:     if (
+00310:       !nonEmptyArray(
+00311:         answer.answers
+00312:       ) &&
+00313:       !nonEmptyArray(
+00314:         answer.correct_values
+00315:       )
+00316:     ) {
+00317:       issues.push({
+00318:         code:
+00319:           "FILL_ANSWERS_MISSING",
+00320:         level:
+00321:           "error",
+00322:         message:
+00323:           "إجابات نشاط الفراغ غير موجودة.",
+00324:       });
+00325:     }
+00326:   }
+00327: 
+00328:   if (
+00329:     type ===
+00330:       "reading" ||
+00331:     type ===
+00332:       "speaking" ||
+00333:     type ===
+00334:       "listening"
+00335:   ) {
+00336:     /*
+00337:      * هذه الأنشطة لا تشترط دائمًا
+00338:      * وجود answer.
+00339:      */
+00340:   }
+00341: 
+00342:   const errors =
+00343:     issues.filter(
+00344:       (issue) =>
+00345:         issue.level ===
+00346:         "error"
+00347:     ).length;
+00348: 
+00349:   const warnings =
+00350:     issues.filter(
+00351:       (issue) =>
+00352:         issue.level ===
+00353:         "warning"
+00354:     ).length;
+00355: 
+00356:   const score =
+00357:     Math.max(
+00358:       0,
+00359:       100 -
+00360:         errors * 40 -
+00361:         warnings * 15
+00362:     );
+00363: 
+00364:   return {
+00365:     validForPublish:
+00366:       errors === 0 &&
+00367:       warnings === 0,
+00368: 
+00369:     score,
+00370: 
+00371:     issues,
+00372:   };
+00373: }
+
+############################################################
+FILE: app\api\admin\lessons\generate-image-options\route.ts
+############################################################
+00001: import {
+00002:   NextResponse,
+00003: } from "next/server";
+00004: 
+00005: import {
+00006:   readFile,
+00007: } from "node:fs/promises";
+00008: 
+00009: import path from "node:path";
+00010: 
+00011: import {
+00012:   createClient,
+00013: } from "@/lib/supabase/server";
+00014: 
+00015: import {
+00016:   getRequiredImageLabels,
+00017:   normalizeImageOptions,
+00018: } from "@/lib/lesson-ai/image-options";
+00019: 
+00020: export const runtime =
+00021:   "nodejs";
+00022: 
+00023: export const dynamic =
+00024:   "force-dynamic";
+00025: 
+00026: type RequestBody = {
+00027:   lessonId?: string;
+00028:   apply?: boolean;
+00029:   activityOrders?: number[];
+00030: };
+00031: 
+00032: type JsonObject =
+00033:   Record<string, unknown>;
+00034: 
+00035: function isObject(
+00036:   value: unknown
+00037: ): value is JsonObject {
+00038:   return Boolean(
+00039:     value &&
+00040:     typeof value === "object" &&
+00041:     !Array.isArray(value)
+00042:   );
+00043: }
+00044: 
+00045: function cleanText(
+00046:   value: unknown
+00047: ): string {
+00048:   return typeof value ===
+00049:     "string"
+00050:     ? value.trim()
+00051:     : "";
+00052: }
+00053: 
+00054: function resolvePublicImagePath(
+00055:   imageUrl: string
+00056: ): string {
+00057:   const clean =
+00058:     imageUrl
+00059:       .trim()
+00060:       .replace(
+00061:         /^\/+/,
+00062:         ""
+00063:       );
+00064: 
+00065:   if (
+00066:     !clean ||
+00067:     clean.includes("..")
+00068:   ) {
+00069:     throw new Error(
+00070:       "مسار الصورة غير صالح."
+00071:     );
+00072:   }
+00073: 
+00074:   const publicRoot =
+00075:     path.resolve(
+00076:       process.cwd(),
+00077:       "public"
+00078:     );
+00079: 
+00080:   const filePath =
+00081:     path.resolve(
+00082:       publicRoot,
+00083:       clean
+00084:     );
+00085: 
+00086:   if (
+00087:     !filePath.startsWith(
+00088:       publicRoot
+00089:     )
+00090:   ) {
+00091:     throw new Error(
+00092:       "مسار الصورة خارج public."
+00093:     );
+00094:   }
+00095: 
+00096:   return filePath;
+00097: }
+00098: 
+00099: function mimeTypeFromPath(
+00100:   filePath: string
+00101: ): string {
+00102:   const extension =
+00103:     path
+00104:       .extname(
+00105:         filePath
+00106:       )
+00107:       .toLowerCase();
+00108: 
+00109:   if (
+00110:     extension === ".png"
+00111:   ) {
+00112:     return "image/png";
+00113:   }
+00114: 
+00115:   if (
+00116:     extension === ".webp"
+00117:   ) {
+00118:     return "image/webp";
+00119:   }
+00120: 
+00121:   return "image/jpeg";
+00122: }
+00123: 
+00124: function extractGeminiText(
+00125:   value: unknown
+00126: ): string {
+00127:   if (!isObject(value)) {
+00128:     return "";
+00129:   }
+00130: 
+00131:   const candidates =
+00132:     Array.isArray(
+00133:       value.candidates
+00134:     )
+00135:       ? value.candidates
+00136:       : [];
+00137: 
+00138:   const first =
+00139:     candidates[0];
+00140: 
+00141:   if (!isObject(first)) {
+00142:     return "";
+00143:   }
+00144: 
+00145:   const candidateContent =
+00146:     first.content;
+00147: 
+00148:   if (
+00149:     !isObject(
+00150:       candidateContent
+00151:     )
+00152:   ) {
+00153:     return "";
+00154:   }
+00155: 
+00156:   const parts =
+00157:     Array.isArray(
+00158:       candidateContent.parts
+00159:     )
+00160:       ? candidateContent.parts
+00161:       : [];
+00162: 
+00163:   for (
+00164:     const part of
+00165:       parts
+00166:   ) {
+00167:     if (
+00168:       isObject(part) &&
+00169:       typeof part.text ===
+00170:         "string"
+00171:     ) {
+00172:       return part.text.trim();
+00173:     }
+00174:   }
+00175: 
+00176:   return "";
+00177: }
+00178: 
+00179: export async function POST(
+00180:   request: Request
+00181: ) {
+00182:   try {
+00183:     const supabase =
+00184:       await createClient();
+00185: 
+00186:     const {
+00187:       data: {
+00188:         user,
+00189:       },
+00190:     } =
+00191:       await supabase
+00192:         .auth
+00193:         .getUser();
+00194: 
+00195:     if (!user) {
+00196:       return NextResponse.json(
+00197:         {
+00198:           error:
+00199:             "يجب تسجيل الدخول.",
+00200:         },
+00201:         {
+00202:           status: 401,
+00203:         }
+00204:       );
+00205:     }
+00206: 
+00207:     const {
+00208:       data: profile,
+00209:       error:
+00210:         profileError,
+00211:     } =
+00212:       await supabase
+00213:         .from("profiles")
+00214:         .select("role")
+00215:         .eq(
+00216:           "id",
+00217:           user.id
+00218:         )
+00219:         .maybeSingle();
+00220: 
+00221:     if (
+00222:       profileError ||
+00223:       !profile ||
+00224:       String(
+00225:         profile.role ??
+00226:         ""
+00227:       )
+00228:         .trim()
+00229:         .toLowerCase() !==
+00230:         "admin"
+00231:     ) {
+00232:       return NextResponse.json(
+00233:         {
+00234:           error:
+00235:             "هذه الخاصية متاحة للمدير فقط.",
+00236:         },
+00237:         {
+00238:           status: 403,
+00239:         }
+00240:       );
+00241:     }
+00242: 
+00243:     const body =
+00244:       (
+00245:         await request.json()
+00246:       ) as RequestBody;
+00247: 
+00248:     const lessonId =
+00249:       cleanText(
+00250:         body.lessonId
+00251:       );
+00252: 
+00253:     if (!lessonId) {
+00254:       return NextResponse.json(
+00255:         {
+00256:           error:
+00257:             "lessonId مطلوب.",
+00258:         },
+00259:         {
+00260:           status: 400,
+00261:         }
+00262:       );
+00263:     }
+00264: 
+00265:     const apply =
+00266:       body.apply === true;
+00267: 
+00268:     const selectedOrders =
+00269:       Array.isArray(
+00270:         body.activityOrders
+00271:       )
+00272:         ? new Set(
+00273:             body.activityOrders
+00274:               .filter(
+00275:                 (value) =>
+00276:                   Number.isFinite(
+00277:                     value
+00278:                   ) &&
+00279:                   value > 0
+00280:               )
+00281:               .map(
+00282:                 (value) =>
+00283:                   Math.round(
+00284:                     value
+00285:                   )
+00286:               )
+00287:           )
+00288:         : null;
+00289: 
+00290:     const apiKey =
+00291:       (
+00292:         process.env
+00293:           .GEMINI_API_KEY_BACKUP ||
+00294:         process.env
+00295:           .GEMINI_API_KEY
+00296:       )?.trim();
+00297: 
+00298:     const model =
+00299:       (
+00300:         process.env
+00301:           .GEMINI_MODEL_BACKUP ||
+00302:         process.env
+00303:           .GEMINI_MODEL ||
+00304:         "gemini-3.5-flash-lite"
+00305:       ).trim();
+00306: 
+00307:     if (!apiKey) {
+00308:       return NextResponse.json(
+00309:         {
+00310:           error:
+00311:             "GEMINI_API_KEY غير موجود.",
+00312:         },
+00313:         {
+00314:           status: 500,
+00315:         }
+00316:       );
+00317:     }
+00318: 
+00319:     const {
+00320:       data:
+00321:         activities,
+00322:       error:
+00323:         activitiesError,
+00324:     } =
+00325:       await supabase
+00326:         .from(
+00327:           "lesson_activities"
+00328:         )
+00329:         .select(`
+00330:           id,
+00331:           title,
+00332:           activity_type,
+00333:           activity_order,
+00334:           instructions,
+00335:           content,
+00336:           answer,
+00337:           is_published
+00338:         `)
+00339:         .eq(
+00340:           "lesson_id",
+00341:           lessonId
+00342:         )
+00343:         .eq(
+00344:           "is_published",
+00345:           false
+00346:         )
+00347:         .order(
+00348:           "activity_order",
+00349:           {
+00350:             ascending: true,
+00351:           }
+00352:         );
+00353: 
+00354:     if (
+00355:       activitiesError
+00356:     ) {
+00357:       throw activitiesError;
+00358:     }
+00359: 
+00360:     const targets =
+00361:       (
+00362:         activities ??
+00363:         []
+00364:       )
+00365:         .filter(
+00366:           (activity) =>
+00367:             !selectedOrders ||
+00368:             selectedOrders
+00369:               .size === 0 ||
+00370:             selectedOrders.has(
+00371:               Number(
+00372:                 activity
+00373:                   .activity_order
+00374:               )
+00375:             )
+00376:         )
+00377:         .map(
+00378:           (activity) => {
+00379:             const content =
+00380:               isObject(
+00381:                 activity.content
+00382:               )
+00383:                 ? activity.content
+00384:                 : {};
+00385: 
+00386:             return {
+00387:               activity,
+00388:               content,
+00389: 
+00390:               labels:
+00391:                 getRequiredImageLabels(
+00392:                   activity
+00393:                     .activity_type,
+00394:                   content
+00395:                 ),
+00396: 
+00397:               imageUrl:
+00398:                 cleanText(
+00399:                   content
+00400:                     .image_url
+00401:                 ),
+00402:             };
+00403:           }
+00404:         )
+00405:         .filter(
+00406:           (item) =>
+00407:             item.labels.length >
+00408:               0 &&
+00409:             Boolean(
+00410:               item.imageUrl
+00411:             )
+00412:         );
+00413: 
+00414:     const endpoint =
+00415:       "https://generativelanguage.googleapis.com/v1beta/models/" +
+00416:       `${encodeURIComponent(model)}:generateContent`;
+00417: 
+00418:     const results = [];
+00419: 
+00420:     let complete =
+00421:       0;
+00422: 
+00423:     let incomplete =
+00424:       0;
+00425: 
+00426:     let updated =
+00427:       0;
+00428: 
+00429:     for (
+00430:       const target of
+00431:         targets
+00432:     ) {
+00433:       const {
+00434:         activity,
+00435:         content,
+00436:         labels,
+00437:         imageUrl,
+00438:       } =
+00439:         target;
+00440: 
+00441:       const filePath =
+00442:         resolvePublicImagePath(
+00443:           imageUrl
+00444:         );
+00445: 
+00446:       const bytes =
+00447:         await readFile(
+00448:           filePath
+00449:         );
+00450: 
+00451:       if (
+00452:         bytes.length === 0
+00453:       ) {
+00454:         throw new Error(
+00455:           `صورة النشاط #${activity.activity_order} فارغة.`
+00456:         );
+00457:       }
+00458: 
+00459:       const base64 =
+00460:         bytes.toString(
+00461:           "base64"
+00462:         );
+00463: 
+00464:       const prompt =
+00465:         `
+00466: أنت محلل بصري دقيق لصفحات كتب اللغة العربية.
+00467: 
+00468: نريد استخراج الصور الموجودة داخل نشاط واحد فقط من الصفحة المرفقة.
+00469: 
+00470: بيانات النشاط:
+00471: - رقم النشاط: ${activity.activity_order}
+00472: - النوع: ${activity.activity_type}
+00473: - العنوان: ${activity.title}
+00474: - التعليمات: ${activity.instructions ?? ""}
+00475: 
+00476: هذه هي أسماء الصور المطلوبة حرفيًا:
+00477: ${labels
+00478:   .map(
+00479:     (label, index) =>
+00480:       `${index + 1}. ${label}`
+00481:   )
+00482:   .join("\n")}
+00483: 
+00484: المطلوب:
+00485: - كل عنصر في قائمة الصور المطلوبة له رقم ثابت يبدأ من 1.
+00486: - لكل صورة استطعت تحديدها أعد index فقط، وهو رقم العنصر في القائمة.
+00487: - لا تعد كتابة اسم الصورة، ولا تعتمد على label.
+00488: - index يجب أن يطابق رقم العنصر المطلوب بالضبط.
+00489: - x و y و width و height نسب مئوية من الصفحة كاملة من 0 إلى 100.
+00490: - اجعل المستطيل محكمًا حول الصورة نفسها فقط.
+00491: - لا تدخل عنوان النشاط أو نص السؤال أو أرقام الصفحة داخل المستطيل.
+00492: - لا تخترع صورة غير موجودة.
+00493: - إذا لم تستطع تحديد صورة بثقة فلا ترجع هذا index.
+00494: - لا تكرر index نفسه أكثر من مرة.
+00495: - confidence من 0 إلى 100.
+00496: 
+00497: أرجع JSON فقط.
+00498:         `.trim();
+00499: 
+00500:       const geminiResponse =
+00501:         await fetch(
+00502:           endpoint,
+00503:           {
+00504:             method:
+00505:               "POST",
+00506: 
+00507:             headers: {
+00508:               "Content-Type":
+00509:                 "application/json",
+00510: 
+00511:               "x-goog-api-key":
+00512:                 apiKey,
+00513:             },
+00514: 
+00515:             body:
+00516:               JSON.stringify({
+00517:                 contents: [
+00518:                   {
+00519:                     role:
+00520:                       "user",
+00521: 
+00522:                     parts: [
+00523:                       {
+00524:                         inline_data: {
+00525:                           mime_type:
+00526:                             mimeTypeFromPath(
+00527:                               filePath
+00528:                             ),
+00529: 
+00530:                           data:
+00531:                             base64,
+00532:                         },
+00533:                       },
+00534: 
+00535:                       {
+00536:                         text:
+00537:                           prompt,
+00538:                       },
+00539:                     ],
+00540:                   },
+00541:                 ],
+00542: 
+00543:                 generationConfig: {
+00544:                   temperature:
+00545:                     0.05,
+00546: 
+00547:                   topP:
+00548:                     0.7,
+00549: 
+00550:                   maxOutputTokens:
+00551:                     4000,
+00552: 
+00553:                   responseMimeType:
+00554:                     "application/json",
+00555: 
+00556:                   responseSchema: {
+00557:                     type:
+00558:                       "OBJECT",
+00559: 
+00560:                     properties: {
+00561:                       options: {
+00562:                         type:
+00563:                           "ARRAY",
+00564: 
+00565:                         items: {
+00566:                           type:
+00567:                             "OBJECT",
+00568: 
+00569:                           properties: {
+00570:                             index: {
+00571:                               type:
+00572:                                 "NUMBER",
+00573:                             },
+00574: 
+00575:                             x: {
+00576:                               type:
+00577:                                 "NUMBER",
+00578:                             },
+00579: 
+00580:                             y: {
+00581:                               type:
+00582:                                 "NUMBER",
+00583:                             },
+00584: 
+00585:                             width: {
+00586:                               type:
+00587:                                 "NUMBER",
+00588:                             },
+00589: 
+00590:                             height: {
+00591:                               type:
+00592:                                 "NUMBER",
+00593:                             },
+00594: 
+00595:                             confidence: {
+00596:                               type:
+00597:                                 "NUMBER",
+00598:                             },
+00599:                           },
+00600: 
+00601:                           required: [
+00602:                             "index",
+00603:                             "x",
+00604:                             "y",
+00605:                             "width",
+00606:                             "height",
+00607:                             "confidence",
+00608:                           ],
+00609:                         },
+00610:                       },
+00611:                     },
+00612: 
+00613:                     required: [
+00614:                       "options",
+00615:                     ],
+00616:                   },
+00617:                 },
+00618:               }),
+00619: 
+00620:             cache:
+00621:               "no-store",
+00622:           }
+00623:         );
+00624: 
+00625:       const raw =
+00626:         await geminiResponse
+00627:           .json();
+00628: 
+00629:       if (
+00630:         !geminiResponse.ok
+00631:       ) {
+00632:         results.push({
+00633:           activityOrder:
+00634:             activity
+00635:               .activity_order,
+00636: 
+00637:           title:
+00638:             activity.title,
+00639: 
+00640:           labels,
+00641: 
+00642:           complete:
+00643:             false,
+00644: 
+00645:           missing:
+00646:             labels,
+00647: 
+00648:           error:
+00649:             isObject(raw) &&
+00650:             isObject(
+00651:               raw.error
+00652:             )
+00653:               ? cleanText(
+00654:                   raw.error
+00655:                     .message
+00656:                 )
+00657:               : "Gemini request failed.",
+00658:         });
+00659: 
+00660:         incomplete +=
+00661:           1;
+00662: 
+00663:         continue;
+00664:       }
+00665: 
+00666:       const responseText =
+00667:         extractGeminiText(
+00668:           raw
+00669:         );
+00670: 
+00671:       let parsed:
+00672:         unknown = {};
+00673: 
+00674:       try {
+00675:         parsed =
+00676:           responseText
+00677:             ? JSON.parse(
+00678:                 responseText
+00679:               )
+00680:             : {};
+00681:       }
+00682:       catch {
+00683:         parsed = {};
+00684:       }
+00685: 
+00686:       const normalized =
+00687:         normalizeImageOptions(
+00688:           parsed,
+00689:           labels,
+00690:           imageUrl
+00691:         );
+00692: 
+00693:       if (
+00694:         normalized.complete
+00695:       ) {
+00696:         complete +=
+00697:           1;
+00698:       }
+00699:       else {
+00700:         incomplete +=
+00701:           1;
+00702:       }
+00703: 
+00704:       let didUpdate =
+00705:         false;
+00706: 
+00707:       /*
+00708:        * Safety gate:
+00709:        * Never write partial image option sets.
+00710:        */
+00711:       if (
+00712:         apply &&
+00713:         normalized.complete
+00714:       ) {
+00715:         const nextContent = {
+00716:           ...content,
+00717: 
+00718:           image_options:
+00719:             normalized.options,
+00720:         };
+00721: 
+00722:         const {
+00723:           error:
+00724:             updateError,
+00725:         } =
+00726:           await supabase
+00727:             .from(
+00728:               "lesson_activities"
+00729:             )
+00730:             .update({
+00731:               content:
+00732:                 nextContent,
+00733: 
+00734:               updated_at:
+00735:                 new Date()
+00736:                   .toISOString(),
+00737:             })
+00738:             .eq(
+00739:               "id",
+00740:               activity.id
+00741:             )
+00742:             .eq(
+00743:               "is_published",
+00744:               false
+00745:             );
+00746: 
+00747:         if (
+00748:           updateError
+00749:         ) {
+00750:           throw updateError;
+00751:         }
+00752: 
+00753:         updated +=
+00754:           1;
+00755: 
+00756:         didUpdate =
+00757:           true;
+00758:       }
+00759: 
+00760:       results.push({
+00761:         activityOrder:
+00762:           activity
+00763:             .activity_order,
+00764: 
+00765:         title:
+00766:           activity.title,
+00767: 
+00768:         labels,
+00769: 
+00770:         found:
+00771:           normalized
+00772:             .options
+00773:             .length,
+00774: 
+00775:         required:
+00776:           labels.length,
+00777: 
+00778:         complete:
+00779:           normalized.complete,
+00780: 
+00781:         missing:
+00782:           normalized.missing,
+00783: 
+00784:         updated:
+00785:           didUpdate,
+00786: 
+00787:         options:
+00788:           normalized.options,
+00789: 
+00790:         aiReturned:
+00791:           isObject(parsed) &&
+00792:           Array.isArray(
+00793:             parsed.options
+00794:           )
+00795:             ? parsed.options.length
+00796:             : 0,
+00797: 
+00798:         rawOptions:
+00799:           !apply &&
+00800:           isObject(parsed) &&
+00801:           Array.isArray(
+00802:             parsed.options
+00803:           )
+00804:             ? parsed.options
+00805:             : undefined,
+00806: 
+00807:       });
+00808:     }
+00809: 
+00810:     return NextResponse.json({
+00811:       success: true,
+00812: 
+00813:       mode:
+00814:         apply
+00815:           ? "apply"
+00816:           : "preview",
+00817: 
+00818:       lessonId,
+00819: 
+00820:       summary: {
+00821:         targets:
+00822:           targets.length,
+00823: 
+00824:         complete,
+00825: 
+00826:         incomplete,
+00827: 
+00828:         updated,
+00829:       },
+00830: 
+00831:       results,
+00832:     });
+00833:   }
+00834:   catch (error) {
+00835:     console.error(
+00836:       "GENERATE_IMAGE_OPTIONS_ERROR:",
+00837:       error
+00838:     );
+00839: 
+00840:     return NextResponse.json(
+00841:       {
+00842:         success: false,
+00843: 
+00844:         error:
+00845:           error instanceof Error
+00846:             ? error.message
+00847:             : "تعذر توليد خيارات الصور.",
+00848:       },
+00849:       {
+00850:         status: 500,
+00851:       }
+00852:     );
+00853:   }
+00854: }
+
+############################################################
+FILE: features\lesson-activities\components\LessonActivityImage.tsx
+############################################################
+00001: "use client";
+00002: 
+00003: import {
+00004:   useState,
+00005: } from "react";
+00006: 
+00007: type ImageRegion = {
+00008:   x: number;
+00009:   y: number;
+00010:   width: number;
+00011:   height: number;
+00012: };
+00013: 
+00014: type Props = {
+00015:   src: string;
+00016:   alt: string;
+00017:   region?: ImageRegion | null;
+00018: };
+00019: 
+00020: export default function LessonActivityImage({
+00021:   src,
+00022:   alt,
+00023:   region,
+00024: }: Props) {
+00025:   const [naturalSize, setNaturalSize] =
+00026:     useState<{
+00027:       width: number;
+00028:       height: number;
+00029:     } | null>(null);
+00030: 
+00031:   if (!region) {
+00032:     return (
+00033:       <img
+00034:         src={src}
+00035:         alt={alt}
+00036:         className="mx-auto max-h-[520px] w-auto rounded-xl object-contain"
+00037:       />
+00038:     );
+00039:   }
+00040: 
+00041:   const validRegion =
+00042:     region.width > 0 &&
+00043:     region.height > 0 &&
+00044:     region.x >= 0 &&
+00045:     region.y >= 0 &&
+00046:     region.x + region.width <= 100 &&
+00047:     region.y + region.height <= 100;
+00048: 
+00049:   if (!validRegion) {
+00050:     return (
+00051:       <img
+00052:         src={src}
+00053:         alt={alt}
+00054:         className="mx-auto max-h-[520px] w-auto rounded-xl object-contain"
+00055:       />
+00056:     );
+00057:   }
+00058: 
+00059:   const sourceAspect =
+00060:     naturalSize
+00061:       ? naturalSize.width /
+00062:         naturalSize.height
+00063:       : 1;
+00064: 
+00065:   const cropAspect =
+00066:     sourceAspect *
+00067:     (region.width /
+00068:       region.height);
+00069: 
+00070:   return (
+00071:     <div
+00072:       className="mx-auto w-full max-w-3xl overflow-hidden rounded-xl bg-white"
+00073:       style={{
+00074:         aspectRatio:
+00075:           cropAspect > 0
+00076:             ? String(cropAspect)
+00077:             : undefined,
+00078:         position: "relative",
+00079:       }}
+00080:     >
+00081:       <img
+00082:         src={src}
+00083:         alt={alt}
+00084:         onLoad={(event) => {
+00085:           const image =
+00086:             event.currentTarget;
+00087: 
+00088:           setNaturalSize({
+00089:             width:
+00090:               image.naturalWidth,
+00091:             height:
+00092:               image.naturalHeight,
+00093:           });
+00094:         }}
+00095:         style={{
+00096:           position: "absolute",
+00097:           width:
+00098:             `${10000 / region.width}%`,
+00099:           maxWidth: "none",
+00100:           left:
+00101:             `${-(region.x / region.width) * 100}%`,
+00102:           top:
+00103:             `${-(region.y / region.height) * 100}%`,
+00104:         }}
+00105:       />
+00106:     </div>
+00107:   );
+00108: }
+
+############################################################
+FILE: features\lessons\components\InteractiveLessonActivities.tsx
+############################################################
+00001: "use client";
+00002: 
+00003: import ListenButton from "@/features/lesson-activities/components/ListenButton";
+00004: import LessonActivityImage from "@/features/lesson-activities/components/LessonActivityImage";
+00005: 
+00006: import HandwritingCanvas from "@/features/lesson-activities/components/HandwritingCanvas";
+00007: 
+00008: import {
+00009:   useMemo,
+00010:   useState,
+00011: } from "react";
+00012: 
+00013: type LessonActivity = {
+00014:   id: string;
+00015:   title: string;
+00016:   activity_type: string;
+00017:   instructions: string | null;
+00018:   content: Record<string, unknown>;
+00019:   activity_order: number;
+00020:   points: number;
+00021:   section: string;
+00022: };
+00023: 
+00024: type Props = {
+00025:   activities: LessonActivity[];
+00026: };
+00027: 
+00028: type Result = {
+00029:   correct: boolean;
+00030:   earnedPoints: number;
+00031:   maxPoints: number;
+00032:   completionOnly?: boolean;
+00033:   progressPercent?: number;
+00034:   lessonScore?: number;
+00035: };
+00036: 
+00037: type ApiResult = {
+00038:   success: boolean;
+00039:   correct?: boolean;
+00040:   earnedPoints?: number;
+00041:   maxPoints?: number;
+00042:   completionOnly?: boolean;
+00043:   progressPercent?: number;
+00044:   lessonScore?: number;
+00045:   message?: string;
+00046: };
+00047: 
+00048: type FillItem = {
+00049:   sentence: string;
+00050:   options: string[];
+00051: };
+00052: 
+00053: function strings(value: unknown): string[] {
+00054:   return Array.isArray(value)
+00055:     ? value.filter(
+00056:         (item): item is string =>
+00057:           typeof item === "string"
+00058:       )
+00059:     : [];
+00060: }
+00061: 
+00062: function getFillItems(
+00063:   value: unknown
+00064: ): FillItem[] {
+00065:   if (!Array.isArray(value)) {
+00066:     return [];
+00067:   }
+00068: 
+00069:   return value
+00070:     .map((item) => {
+00071:       if (
+00072:         typeof item !== "object" ||
+00073:         item === null ||
+00074:         Array.isArray(item)
+00075:       ) {
+00076:         return null;
+00077:       }
+00078: 
+00079:       const row =
+00080:         item as Record<string, unknown>;
+00081: 
+00082:       if (
+00083:         typeof row.sentence !== "string"
+00084:       ) {
+00085:         return null;
+00086:       }
+00087: 
+00088:       return {
+00089:         sentence:
+00090:           row.sentence,
+00091: 
+00092:         options:
+00093:           strings(
+00094:             row.options
+00095:           ),
+00096:       };
+00097:     })
+00098:     .filter(
+00099:       (item): item is FillItem =>
+00100:         item !== null
+00101:     );
+00102: }
+00103: 
+00104: const T = {
+00105:   activities:
+00106:     "\u0627\u0644\u0623\u0646\u0634\u0637\u0629 \u0627\u0644\u062a\u0641\u0627\u0639\u0644\u064a\u0629",
+00107: 
+00108:   train:
+00109:     "\u062a\u062f\u0631\u0628 \u062e\u0637\u0648\u0629 \u0628\u062e\u0637\u0648\u0629",
+00110: 
+00111:   activity:
+00112:     "\u0646\u0634\u0627\u0637",
+00113: 
+00114:   points:
+00115:     "\u0646\u0642\u0637\u0629",
+00116: 
+00117:   check:
+00118:     "\u062a\u062d\u0642\u0642 \u0645\u0646 \u0627\u0644\u0625\u062c\u0627\u0628\u0629",
+00119: 
+00120:   checking:
+00121:     "\u062c\u0627\u0631\u064a \u0627\u0644\u062a\u0635\u062d\u064a\u062d...",
+00122: 
+00123:   completeFirst:
+00124:     "\u0623\u0643\u0645\u0644 \u0627\u0644\u0646\u0634\u0627\u0637 \u0623\u0648\u0644\u0627\u064b.",
+00125: 
+00126:   completed:
+00127:     "\u062a\u0645 \u0627\u0644\u0646\u0634\u0627\u0637",
+00128: 
+00129:   markComplete:
+00130:     "\u062a\u0645\u0645\u062a \u0627\u0644\u0646\u0634\u0627\u0637",
+00131: 
+00132:   progress:
+00133:     "\u062a\u0642\u062f\u0645 \u0627\u0644\u062f\u0631\u0633",
+00134: 
+00135:   chooseMatch:
+00136:     "\u0627\u062e\u062a\u0631 \u0627\u0644\u0645\u0637\u0627\u0628\u0642\u0629",
+00137: 
+00138:   checkMatch:
+00139:     "\u062a\u062d\u0642\u0642 \u0645\u0646 \u0627\u0644\u0645\u0637\u0627\u0628\u0642\u0629",
+00140: 
+00141:   reset:
+00142:     "\u0625\u0639\u0627\u062f\u0629",
+00143: 
+00144:   checkOrder:
+00145:     "\u062a\u062d\u0642\u0642 \u0645\u0646 \u0627\u0644\u062a\u0631\u062a\u064a\u0628",
+00146: 
+00147:   orderedPrompt:
+00148:     "\u0627\u0636\u063a\u0637 \u0627\u0644\u0643\u0644\u0645\u0627\u062a \u0628\u0627\u0644\u062a\u0631\u062a\u064a\u0628:",
+00149: 
+00150:   emptyOrder:
+00151:     "\u0644\u0645 \u062a\u062e\u062a\u0631 \u0643\u0644\u0645\u0627\u062a \u0628\u0639\u062f",
+00152: 
+00153:   checkAnswers:
+00154:     "\u062a\u062d\u0642\u0642 \u0645\u0646 \u0627\u0644\u0625\u062c\u0627\u0628\u0627\u062a",
+00155: 
+00156:   letterPlaceholder:
+00157:     "\u0627\u0643\u062a\u0628 \u0627\u0644\u062d\u0631\u0641",
+00158: 
+00159:   checkLetter:
+00160:     "\u062a\u062d\u0642\u0642 \u0645\u0646 \u0627\u0644\u062d\u0631\u0641",
+00161: 
+00162:   writing:
+00163:     "\u0645\u0633\u0627\u062d\u0629 \u062a\u062f\u0631\u064a\u0628 \u0627\u0644\u0643\u062a\u0627\u0628\u0629",
+00164: 
+00165:   success:
+00166:     "\u0623\u062d\u0633\u0646\u062a!",
+00167: 
+00168:   retry:
+00169:     "\u062d\u0627\u0648\u0644 \u0645\u0631\u0629 \u0623\u062e\u0631\u0649.",
+00170: 
+00171:   recorded:
+00172:     "\u062a\u0645 \u062a\u0633\u062c\u064a\u0644 \u0625\u0646\u062c\u0627\u0632 \u0627\u0644\u0646\u0634\u0627\u0637.",
+00173: 
+00174:   listening:
+00175:     "\u0627\u0644\u0627\u0633\u062a\u0645\u0627\u0639",
+00176: 
+00177:   speaking:
+00178:     "\u0627\u0644\u062a\u062d\u062f\u062b",
+00179: 
+00180:   reading:
+00181:     "\u0627\u0644\u0642\u0631\u0627\u0621\u0629",
+00182: 
+00183:   writingSection:
+00184:     "\u0627\u0644\u0643\u062a\u0627\u0628\u0629",
+00185: 
+00186:   training:
+00187:     "\u0627\u0644\u062a\u062f\u0631\u064a\u0628",
+00188: 
+00189:   languageTraining:
+00190:     "\u0627\u0644\u062a\u062f\u0631\u064a\u0628 \u0627\u0644\u0644\u063a\u0648\u064a",
+00191: };
+00192: 
+00193: export default function InteractiveLessonActivities({
+00194:   activities,
+00195: }: Props) {
+00196: 
+00197:   const sorted =
+00198:     useMemo(
+00199:       () =>
+00200:         [...activities].sort(
+00201:           (a, b) =>
+00202:             a.activity_order -
+00203:             b.activity_order
+00204:         ),
+00205:       [activities]
+00206:     );
+00207: 
+00208:   const [
+00209:     selected,
+00210:     setSelected,
+00211:   ] =
+00212:     useState<
+00213:       Record<string, string[]>
+00214:     >({});
+00215: 
+00216:   const [
+00217:     matching,
+00218:     setMatching,
+00219:   ] =
+00220:     useState<
+00221:       Record<
+00222:         string,
+00223:         Record<string, string>
+00224:       >
+00225:     >({});
+00226: 
+00227:   const [
+00228:     fills,
+00229:     setFills,
+00230:   ] =
+00231:     useState<
+00232:       Record<string, string[]>
+00233:     >({});
+00234: 
+00235:   const [
+00236:     letters,
+00237:     setLetters,
+00238:   ] =
+00239:     useState<
+00240:       Record<string, string>
+00241:     >({});
+00242: 
+00243:   const [
+00244:     ordered,
+00245:     setOrdered,
+00246:   ] =
+00247:     useState<
+00248:       Record<string, string[]>
+00249:     >({});
+00250: 
+00251:   const [
+00252:     results,
+00253:     setResults,
+00254:   ] =
+00255:     useState<
+00256:       Record<string, Result>
+00257:     >({});
+00258: 
+00259:   const [
+00260:     loading,
+00261:     setLoading,
+00262:   ] =
+00263:     useState<
+00264:       Record<string, boolean>
+00265:     >({});
+00266: 
+00267:   const [
+00268:     errors,
+00269:     setErrors,
+00270:   ] =
+00271:     useState<
+00272:       Record<string, string>
+00273:     >({});
+00274: 
+00275: 
+00276:   function clear(
+00277:     id: string
+00278:   ) {
+00279:     setResults(
+00280:       (current) => {
+00281:         const next = {
+00282:           ...current,
+00283:         };
+00284: 
+00285:         delete next[id];
+00286: 
+00287:         return next;
+00288:       }
+00289:     );
+00290: 
+00291:     setErrors(
+00292:       (current) => ({
+00293:         ...current,
+00294:         [id]: "",
+00295:       })
+00296:     );
+00297:   }
+00298: 
+00299: 
+00300:   async function submit(
+00301:     activityId: string,
+00302:     answer: string[]
+00303:   ) {
+00304: 
+00305:     const clean =
+00306:       answer.filter(Boolean);
+00307: 
+00308:     if (
+00309:       clean.length === 0
+00310:     ) {
+00311:       setErrors(
+00312:         (current) => ({
+00313:           ...current,
+00314:           [activityId]:
+00315:             T.completeFirst,
+00316:         })
+00317:       );
+00318: 
+00319:       return;
+00320:     }
+00321: 
+00322:     setLoading(
+00323:       (current) => ({
+00324:         ...current,
+00325:         [activityId]:
+00326:           true,
+00327:       })
+00328:     );
+00329: 
+00330:     setErrors(
+00331:       (current) => ({
+00332:         ...current,
+00333:         [activityId]:
+00334:           "",
+00335:       })
+00336:     );
+00337: 
+00338:     try {
+00339: 
+00340:       const response =
+00341:         await fetch(
+00342:           "/api/lesson-activities/check",
+00343:           {
+00344:             method: "POST",
+00345: 
+00346:             headers: {
+00347:               "Content-Type":
+00348:                 "application/json",
+00349:             },
+00350: 
+00351:             body:
+00352:               JSON.stringify({
+00353:                 activityId,
+00354:                 answer:
+00355:                   clean,
+00356:               }),
+00357:           }
+00358:         );
+00359: 
+00360:       const text =
+00361:         await response.text();
+00362: 
+00363:       let data:
+00364:         ApiResult;
+00365: 
+00366:       try {
+00367:         data =
+00368:           JSON.parse(
+00369:             text
+00370:           ) as ApiResult;
+00371:       } catch {
+00372:         throw new Error(
+00373:           "Invalid server response."
+00374:         );
+00375:       }
+00376: 
+00377:       if (
+00378:         !response.ok ||
+00379:         !data.success
+00380:       ) {
+00381:         throw new Error(
+00382:           data.message ??
+00383:           "Activity request failed."
+00384:         );
+00385:       }
+00386: 
+00387:       setResults(
+00388:         (current) => ({
+00389:           ...current,
+00390: 
+00391:           [activityId]: {
+00392:             correct:
+00393:               Boolean(
+00394:                 data.correct
+00395:               ),
+00396: 
+00397:             earnedPoints:
+00398:               Number(
+00399:                 data.earnedPoints ??
+00400:                 0
+00401:               ),
+00402: 
+00403:             maxPoints:
+00404:               Number(
+00405:                 data.maxPoints ??
+00406:                 0
+00407:               ),
+00408: 
+00409:             completionOnly:
+00410:               data.completionOnly,
+00411: 
+00412:             progressPercent:
+00413:               data.progressPercent,
+00414: 
+00415:             lessonScore:
+00416:               data.lessonScore,
+00417:           },
+00418:         })
+00419:       );
+00420: 
+00421:     } catch (error) {
+00422: 
+00423:       setErrors(
+00424:         (current) => ({
+00425:           ...current,
+00426: 
+00427:           [activityId]:
+00428:             error instanceof Error
+00429:               ? error.message
+00430:               : "Request failed.",
+00431:         })
+00432:       );
+00433: 
+00434:     } finally {
+00435: 
+00436:       setLoading(
+00437:         (current) => ({
+00438:           ...current,
+00439:           [activityId]:
+00440:             false,
+00441:         })
+00442:       );
+00443:     }
+00444:   }
+00445: 
+00446: 
+00447:   const progressValues =
+00448:     Object.values(
+00449:       results
+00450:     )
+00451:       .map(
+00452:         (result) =>
+00453:           result.progressPercent
+00454:       )
+00455:       .filter(
+00456:         (
+00457:           value
+00458:         ): value is number =>
+00459:           typeof value === "number"
+00460:       );
+00461: 
+00462:   const latestProgress =
+00463:     progressValues.length > 0
+00464:       ? progressValues[
+00465:           progressValues.length - 1
+00466:         ]
+00467:       : null;
+00468: 
+00469: 
+00470:   return (
+00471:     <section className="rounded-3xl bg-white p-6 shadow-sm">
+00472: 
+00473:       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+00474: 
+00475:         <div>
+00476:           <p className="text-sm font-black text-violet-700">
+00477:             {"\ud83c\udfae"} {T.activities}
+00478:           </p>
+00479: 
+00480:           <h2 className="mt-1 text-2xl font-black text-slate-900">
+00481:             {T.train}
+00482:           </h2>
+00483:         </div>
+00484: 
+00485:         <div className="flex flex-wrap gap-2">
+00486: 
+00487:           <span className="rounded-full bg-violet-50 px-4 py-2 text-sm font-black text-violet-700">
+00488:             {sorted.length} {T.activity}
+00489:           </span>
+00490: 
+00491:           {latestProgress !== null ? (
+00492:             <span className="rounded-full bg-sky-50 px-4 py-2 text-sm font-black text-sky-700">
+00493:               {T.progress}: {latestProgress}%
+00494:             </span>
+00495:           ) : null}
+00496: 
+00497:         </div>
+00498:       </div>
+00499: 
+00500: 
+00501:       <div className="mt-6 space-y-5">
+00502: 
+00503:         {sorted.map(
+00504:           (
+00505:             activity,
+00506:             index
+00507:           ) => {
+00508: 
+00509:             const content =
+00510:               activity.content ?? {};
+00511: 
+00512:             const imageUrl =
+00513:               typeof content.image_url === "string"
+00514:                 ? content.image_url
+00515:                 : null;
+00516: 
+00517:         const imageRegion =
+00518:           typeof content.image_region === "object" &&
+00519:           content.image_region !== null
+00520:             ? (
+00521:                 content.image_region as {
+00522:                   x?: unknown;
+00523:                   y?: unknown;
+00524:                   width?: unknown;
+00525:                   height?: unknown;
+00526:                 }
+00527:               )
+00528:             : null;
+00529: 
+00530:         const hasImageRegion =
+00531:           imageRegion !== null &&
+00532:           typeof imageRegion.x === "number" &&
+00533:           typeof imageRegion.y === "number" &&
+00534:           typeof imageRegion.width === "number" &&
+00535:           typeof imageRegion.height === "number";
+00536: 
+00537:           const audioText =
+00538:             typeof content.audio_text === "string"
+00539:               ? content.audio_text
+00540:               : null;
+00541: 
+00542:           const audioUrl =
+00543:             typeof content.audio_url === "string"
+00544:               ? content.audio_url
+00545:               : null;
+00546:           const imageOptions =
+00547:             Array.isArray(content.image_options)
+00548:               ? content.image_options.filter(
+00549:                   (item) =>
+00550:                     typeof item === "object" &&
+00551:                     item !== null &&
+00552:                     typeof (
+00553:                       item as {
+00554:                         label?: unknown;
+00555:                       }
+00556:                     ).label === "string" &&
+00557:                     typeof (
+00558:                       item as {
+00559:                         image_url?: unknown;
+00560:                       }
+00561:                     ).image_url === "string"
+00562:                 ) as Array<{
+00563:                   label: string;
+00564:                   image_url: string;
+00565:                 }>
+00566:               : [];
+00567: 
+00568:           const options =
+00569:               strings(
+00570:                 content.options
+00571:               );
+00572: 
+00573:             const words =
+00574:               strings(
+00575:                 content.words
+00576:               );
+00577: 
+00578:             const questions =
+00579:               strings(
+00580:                 content.questions
+00581:               );
+00582: 
+00583:             const examples =
+00584:               strings(
+00585:                 content.examples
+00586:               );
+00587: 
+00588:             const left =
+00589:               strings(
+00590:                 content.left
+00591:               );
+00592: 
+00593:             const right =
+00594:               strings(
+00595:                 content.right
+00596:               );
+00597: 
+00598:             const items =
+00599:               getFillItems(
+00600:                 content.items
+00601:               );
+00602: 
+00603:             const answer =
+00604:               selected[
+00605:                 activity.id
+00606:               ] ?? [];
+00607: 
+00608:             const match =
+00609:               matching[
+00610:                 activity.id
+00611:               ] ?? {};
+00612: 
+00613:             const fill =
+00614:               fills[
+00615:                 activity.id
+00616:               ] ?? [];
+00617: 
+00618:             const letter =
+00619:               letters[
+00620:                 activity.id
+00621:               ] ?? "";
+00622: 
+00623:             const order =
+00624:               ordered[
+00625:                 activity.id
+00626:               ] ?? [];
+00627: 
+00628:             const result =
+00629:               results[
+00630:                 activity.id
+00631:               ];
+00632: 
+00633:             const error =
+00634:               errors[
+00635:                 activity.id
+00636:               ];
+00637: 
+00638:             const busy =
+00639:               loading[
+00640:                 activity.id
+00641:               ] ?? false;
+00642: 
+00643: 
+00644:             const hasOptions =
+00645:               options.length > 0;
+00646: 
+00647:             const hasMatching =
+00648:               activity.activity_type ===
+00649:                 "matching" &&
+00650:               left.length > 0 &&
+00651:               right.length > 0;
+00652: 
+00653:             const hasOrdering =
+00654:               activity.activity_type ===
+00655:                 "matching" &&
+00656:               words.length > 0 &&
+00657:               left.length === 0;
+00658: 
+00659:             const hasFill =
+00660:               activity.activity_type ===
+00661:                 "fill_blank" &&
+00662:               items.length > 0;
+00663: 
+00664:             const hasLetter =
+00665:               activity.activity_type ===
+00666:                 "fill_blank" &&
+00667:               items.length === 0 &&
+00668:               words.length > 0;
+00669: 
+00670:             const completionOnly =
+00671:               !hasOptions &&
+00672:               !hasMatching &&
+00673:               !hasOrdering &&
+00674:               !hasFill &&
+00675:               !hasLetter;
+00676: 
+00677: 
+00678:             const section =
+00679:               activity.section ||
+00680:               (
+00681:                 activity.activity_type ===
+00682:                 "listening"
+00683:                   ? T.listening
+00684: 
+00685:                   : activity.activity_type ===
+00686:                       "speaking"
+00687:                     ? T.speaking
+00688: 
+00689:                     : activity.activity_type ===
+00690:                         "reading"
+00691:                       ? T.reading
+00692: 
+00693:                       : activity.activity_type ===
+00694:                           "writing"
+00695:                         ? T.writingSection
+00696: 
+00697:                         : activity.activity_type ===
+00698:                             "matching"
+00699:                           ? T.training
+00700: 
+00701:                           : activity.activity_type ===
+00702:                               "fill_blank"
+00703:                             ? T.languageTraining
+00704: 
+00705:                             : T.activity
+00706:               );
+00707: 
+00708: 
+00709:             return (
+00710:               <article
+00711:                 key={activity.id}
+00712:                 className="rounded-2xl border border-slate-200 bg-slate-50 p-5"
+00713:               >
+00714: 
+00715:                 <div className="flex gap-4">
+00716: 
+00717:                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-violet-600 text-sm font-black text-white">
+00718:                     {index + 1}
+00719:                   </span>
+00720: 
+00721:                   <div className="min-w-0 flex-1">
+00722: 
+00723:                     <div className="flex flex-wrap items-center gap-2">
+00724: 
+00725:                       <span className="rounded-full bg-violet-100 px-3 py-1 text-xs font-black text-violet-700">
+00726:                         {section}
+00727:                       </span>
+00728: 
+00729:                       <span className="rounded-full bg-white px-3 py-1 text-xs font-bold text-slate-500 ring-1 ring-slate-200">
+00730:                         {activity.points} {T.points}
+00731:                       </span>
+00732: 
+00733:                     </div>
+00734: 
+00735:                     <h3 className="mt-3 text-lg font-black text-slate-900">
+00736:                       {activity.title}
+00737:                     </h3>
+00738: 
+00739:                     {activity.instructions ? (
+00740:                       <p className="mt-2 leading-7 text-slate-600">
+00741:                         {activity.instructions}
+00742:                       </p>
+00743:                     ) : null}
+00744: 
+00745:                   </div>
+00746:                 </div>
+00747: 
+00748: 
+00749:                                                 {audioText ? (
+00750:                   <ListenButton
+00751:                     text={audioText}
+00752:                     audioUrl={audioUrl}
+00753:                   />
+00754:                 ) : null}
+00755: 
+00756: {imageUrl ? (
+00757:                   <div className="mt-5 overflow-hidden rounded-2xl bg-white p-3 ring-1 ring-slate-200">
+00758:                     <LessonActivityImage
+00759:                       src={imageUrl}
+00760:                       alt={activity.title}
+00761:                       region={
+00762:                         hasImageRegion && imageRegion
+00763:                           ? {
+00764:                               x: imageRegion.x as number,
+00765:                               y: imageRegion.y as number,
+00766:                               width: imageRegion.width as number,
+00767:                               height: imageRegion.height as number,
+00768:                             }
+00769:                           : null
+00770:                       }
+00771:                     />
+00772:                   </div>
+00773:                 ) : null}
+00774: 
+00775: {questions.length > 0 ? (
+00776:                   <div className="mt-5 space-y-2 rounded-xl bg-white p-4 ring-1 ring-slate-200">
+00777:                     {questions.map(
+00778:                       (
+00779:                         question,
+00780:                         questionIndex
+00781:                       ) => (
+00782:                         <p
+00783:                           key={`${activity.id}-q-${questionIndex}`}
+00784:                           className="leading-7 text-slate-700"
+00785:                         >
+00786:                           {questionIndex + 1}. {question}
+00787:                         </p>
+00788:                       )
+00789:                     )}
+00790:                   </div>
+00791:                 ) : null}
+00792: 
+00793: 
+00794:                 {examples.length > 0 ? (
+00795:                   <div className="mt-5 flex flex-wrap gap-2">
+00796:                     {examples.map(
+00797:                       (
+00798:                         example,
+00799:                         exampleIndex
+00800:                       ) => (
+00801:                         <span
+00802:                           key={`${activity.id}-example-${exampleIndex}`}
+00803:                           className="rounded-xl bg-violet-50 px-4 py-2 text-lg font-black text-violet-800"
+00804:                         >
+00805:                           {example}
+00806:                         </span>
+00807:                       )
+00808:                     )}
+00809:                   </div>
+00810:                 ) : null}
+00811: 
+00812: 
+00813:                 {hasOptions ? (
+00814:                   <div className="mt-5">
+00815: 
+00816:                     <div className="grid gap-3 sm:grid-cols-2">
+00817: 
+00818:                       {options.map(
+00819:                         (
+00820:                           option,
+00821:                           optionIndex
+00822:                         ) => {
+00823: 
+00824:                           const multi =
+00825:                             options.length > 3;
+00826: 
+00827:                           const active =
+00828:                             answer.includes(
+00829:                               option
+00830:                             );
+00831: 
+00832:                           return (
+00833:                             <button
+00834:                               key={`${activity.id}-option-${optionIndex}`}
+00835:                               type="button"
+00836:                               onClick={() => {
+00837: 
+00838:                                 clear(
+00839:                                   activity.id
+00840:                                 );
+00841: 
+00842:                                 setSelected(
+00843:                                   (current) => {
+00844: 
+00845:                                     const old =
+00846:                                       current[
+00847:                                         activity.id
+00848:                                       ] ?? [];
+00849: 
+00850:                                     if (
+00851:                                       !multi
+00852:                                     ) {
+00853:                                       return {
+00854:                                         ...current,
+00855:                                         [activity.id]:
+00856:                                           [option],
+00857:                                       };
+00858:                                     }
+00859: 
+00860:                                     return {
+00861:                                       ...current,
+00862: 
+00863:                                       [activity.id]:
+00864:                                         old.includes(
+00865:                                           option
+00866:                                         )
+00867:                                           ? old.filter(
+00868:                                               (item) =>
+00869:                                                 item !==
+00870:                                                 option
+00871:                                             )
+00872:                                           : [
+00873:                                               ...old,
+00874:                                               option,
+00875:                                             ],
+00876:                                     };
+00877:                                   }
+00878:                                 );
+00879:                               }}
+00880:                               className={
+00881:                                 "rounded-xl border px-4 py-3 text-right font-bold transition " +
+00882:                                 (
+00883:                                   active
+00884:                                     ? "border-violet-500 bg-violet-100 text-violet-900"
+00885:                                     : "border-slate-200 bg-white text-slate-700 hover:border-violet-300 hover:bg-violet-50"
+00886:                                 )
+00887:                               }
+00888:                             >
+00889:                               {(() => {
+00890:                                 const imageOption =
+00891:                                   imageOptions.find(
+00892:                                     (item) =>
+00893:                                       item.label ===
+00894:                                       option
+00895:                                   );
+00896: 
+00897:                                 if (!imageOption) {
+00898:                                   return option;
+00899:                                 }
+00900: 
+00901:                                 return (
+00902:                                   <div className="flex flex-col items-center gap-3">
+00903:                                     <img
+00904:                                       src={
+00905:                                         imageOption.image_url
+00906:                                       }
+00907:                                       alt={option}
+00908:                                       className="h-40 w-full rounded-xl object-contain"
+00909:                                     />
+00910: 
+00911:                                     <span className="text-lg font-black">
+00912:                                       {option}
+00913:                                     </span>
+00914:                                   </div>
+00915:                                 );
+00916:                               })()}
+00917:                             </button>
+00918:                           );
+00919:                         }
+00920:                       )}
+00921: 
+00922:                     </div>
+00923: 
+00924:                     <button
+00925:                       type="button"
+00926:                       disabled={busy}
+00927:                       onClick={() =>
+00928:                         submit(
+00929:                           activity.id,
+00930:                           answer
+00931:                         )
+00932:                       }
+00933:                       className="mt-4 rounded-xl bg-violet-600 px-5 py-3 font-black text-white disabled:opacity-60"
+00934:                     >
+00935:                       {busy
+00936:                         ? T.checking
+00937:                         : T.check}
+00938:                     </button>
+00939: 
+00940:                   </div>
+00941:                 ) : null}
+00942: 
+00943: 
+00944:                 {hasMatching ? (
+00945:                   <div className="mt-5 space-y-4">
+00946: 
+00947:                     {left.map(
+00948:                       (
+00949:                         leftValue,
+00950:                         leftIndex
+00951:                       ) => (
+00952:                         <div
+00953:                           key={`${activity.id}-match-${leftIndex}`}
+00954:                           className="grid gap-3 rounded-xl bg-white p-4 ring-1 ring-slate-200 sm:grid-cols-2"
+00955:                         >
+00956: 
+00957:                           <div className="font-bold text-slate-800">
+00958:                             {leftValue}
+00959:                           </div>
+00960: 
+00961:                           <select
+00962:                             value={
+00963:                               match[
+00964:                                 leftValue
+00965:                               ] ?? ""
+00966:                             }
+00967:                             onChange={(event) => {
+00968: 
+00969:                               clear(
+00970:                                 activity.id
+00971:                               );
+00972: 
+00973:                               setMatching(
+00974:                                 (current) => ({
+00975:                                   ...current,
+00976: 
+00977:                                   [activity.id]: {
+00978:                                     ...(
+00979:                                       current[
+00980:                                         activity.id
+00981:                                       ] ?? {}
+00982:                                     ),
+00983: 
+00984:                                     [leftValue]:
+00985:                                       event.target.value,
+00986:                                   },
+00987:                                 })
+00988:                               );
+00989:                             }}
+00990:                             className="rounded-xl border border-slate-300 bg-white px-3 py-2 font-bold"
+00991:                           >
+00992: 
+00993:                             <option value="">
+00994:                               {T.chooseMatch}
+00995:                             </option>
+00996: 
+00997:                             {right.map(
+00998:                               (
+00999:                                 rightValue,
+01000:                                 rightIndex
+01001:                               ) => (
+01002:                                 <option
+01003:                                   key={`${activity.id}-${leftIndex}-${rightIndex}`}
+01004:                                   value={
+01005:                                     rightValue
+01006:                                   }
+01007:                                 >
+01008:                                   {rightValue}
+01009:                                 </option>
+01010:                               )
+01011:                             )}
+01012: 
+01013:                           </select>
+01014: 
+01015:                         </div>
+01016:                       )
+01017:                     )}
+01018: 
+01019:                     <button
+01020:                       type="button"
+01021:                       disabled={busy}
+01022:                       onClick={() =>
+01023:                         submit(
+01024:                           activity.id,
+01025:                           left.map(
+01026:                             (leftValue) => {
+01027:                               const rightValue =
+01028:                                 match[
+01029:                                   leftValue
+01030:                                 ];
+01031: 
+01032:                               return rightValue
+01033:                                 ? `${leftValue}|||${rightValue}`
+01034:                                 : "";
+01035:                             }
+01036:                           )
+01037:                         )
+01038:                       }
+01039:                       className="rounded-xl bg-violet-600 px-5 py-3 font-black text-white disabled:opacity-60"
+01040:                     >
+01041:                       {T.checkMatch}
+01042:                     </button>
+01043: 
+01044:                   </div>
+01045:                 ) : null}
+01046: 
+01047: 
+01048:                 {hasOrdering ? (
+01049:                   <div className="mt-5">
+01050: 
+01051:                     <p className="mb-3 font-black text-slate-600">
+01052:                       {T.orderedPrompt}
+01053:                     </p>
+01054: 
+01055:                     <div className="flex flex-wrap gap-2">
+01056: 
+01057:                       {[...words]
+01058:                         .reverse()
+01059:                         .map(
+01060:                           (
+01061:                             word,
+01062:                             wordIndex
+01063:                           ) => (
+01064:                             <button
+01065:                               key={`${activity.id}-word-${wordIndex}`}
+01066:                               type="button"
+01067:                               onClick={() => {
+01068: 
+01069:                                 clear(
+01070:                                   activity.id
+01071:                                 );
+01072: 
+01073:                                 setOrdered(
+01074:                                   (current) => ({
+01075:                                     ...current,
+01076: 
+01077:                                     [activity.id]: [
+01078:                                       ...(
+01079:                                         current[
+01080:                                           activity.id
+01081:                                         ] ?? []
+01082:                                       ),
+01083:                                       word,
+01084:                                     ],
+01085:                                   })
+01086:                                 );
+01087:                               }}
+01088:                               className="rounded-xl bg-white px-4 py-2 font-black text-slate-800 ring-1 ring-slate-200"
+01089:                             >
+01090:                               {word}
+01091:                             </button>
+01092:                           )
+01093:                         )}
+01094: 
+01095:                     </div>
+01096: 
+01097:                     <div className="mt-4 min-h-14 rounded-xl border-2 border-dashed border-violet-200 bg-white p-4 font-bold">
+01098:                       {order.length > 0
+01099:                         ? order.join(" \u2190 ")
+01100:                         : T.emptyOrder}
+01101:                     </div>
+01102: 
+01103:                     <div className="mt-3 flex gap-2">
+01104: 
+01105:                       <button
+01106:                         type="button"
+01107:                         onClick={() => {
+01108: 
+01109:                           clear(
+01110:                             activity.id
+01111:                           );
+01112: 
+01113:                           setOrdered(
+01114:                             (current) => ({
+01115:                               ...current,
+01116:                               [activity.id]:
+01117:                                 [],
+01118:                             })
+01119:                           );
+01120:                         }}
+01121:                         className="rounded-xl bg-slate-200 px-4 py-2 font-bold text-slate-700"
+01122:                       >
+01123:                         {T.reset}
+01124:                       </button>
+01125: 
+01126:                       <button
+01127:                         type="button"
+01128:                         disabled={busy}
+01129:                         onClick={() =>
+01130:                           submit(
+01131:                             activity.id,
+01132:                             order
+01133:                           )
+01134:                         }
+01135:                         className="rounded-xl bg-violet-600 px-5 py-2 font-black text-white disabled:opacity-60"
+01136:                       >
+01137:                         {T.checkOrder}
+01138:                       </button>
+01139: 
+01140:                     </div>
+01141: 
+01142:                   </div>
+01143:                 ) : null}
+01144: 
+01145: 
+01146:                 {hasFill ? (
+01147:                   <div className="mt-5 space-y-4">
+01148: 
+01149:                     {items.map(
+01150:                       (
+01151:                         item,
+01152:                         itemIndex
+01153:                       ) => (
+01154:                         <div
+01155:                           key={`${activity.id}-fill-${itemIndex}`}
+01156:                           className="rounded-xl bg-white p-4 ring-1 ring-slate-200"
+01157:                         >
+01158: 
+01159:                           <p className="mb-3 font-black text-slate-800">
+01160:                             {item.sentence}
+01161:                           </p>
+01162: 
+01163:                           <div className="flex flex-wrap gap-2">
+01164: 
+01165:                             {item.options.map(
+01166:                               (
+01167:                                 option,
+01168:                                 optionIndex
+01169:                               ) => {
+01170: 
+01171:                                 const active =
+01172:                                   fill[
+01173:                                     itemIndex
+01174:                                   ] ===
+01175:                                   option;
+01176: 
+01177:                                 return (
+01178:                                   <button
+01179:                                     key={`${activity.id}-${itemIndex}-${optionIndex}`}
+01180:                                     type="button"
+01181:                                     onClick={() => {
+01182: 
+01183:                                       clear(
+01184:                                         activity.id
+01185:                                       );
+01186: 
+01187:                                       setFills(
+01188:                                         (current) => {
+01189: 
+01190:                                           const next = [
+01191:                                             ...(
+01192:                                               current[
+01193:                                                 activity.id
+01194:                                               ] ?? []
+01195:                                             ),
+01196:                                           ];
+01197: 
+01198:                                           next[
+01199:                                             itemIndex
+01200:                                           ] =
+01201:                                             option;
+01202: 
+01203:                                           return {
+01204:                                             ...current,
+01205:                                             [activity.id]:
+01206:                                               next,
+01207:                                           };
+01208:                                         }
+01209:                                       );
+01210:                                     }}
+01211:                                     className={
+01212:                                       "rounded-xl border px-4 py-2 font-bold " +
+01213:                                       (
+01214:                                         active
+01215:                                           ? "border-violet-500 bg-violet-100 text-violet-900"
+01216:                                           : "border-slate-200 bg-white text-slate-700"
+01217:                                       )
+01218:                                     }
+01219:                                   >
+01220:                                     {(() => {
+01221:                                 const imageOption =
+01222:                                   imageOptions.find(
+01223:                                     (item) =>
+01224:                                       item.label ===
+01225:                                       option
+01226:                                   );
+01227: 
+01228:                                 if (!imageOption) {
+01229:                                   return option;
+01230:                                 }
+01231: 
+01232:                                 return (
+01233:                                   <div className="flex flex-col items-center gap-3">
+01234:                                     <img
+01235:                                       src={
+01236:                                         imageOption.image_url
+01237:                                       }
+01238:                                       alt={option}
+01239:                                       className="h-40 w-full rounded-xl object-contain"
+01240:                                     />
+01241: 
+01242:                                     <span className="text-lg font-black">
+01243:                                       {option}
+01244:                                     </span>
+01245:                                   </div>
+01246:                                 );
+01247:                               })()}
+01248:                                   </button>
+01249:                                 );
+01250:                               }
+01251:                             )}
+01252: 
+01253:                           </div>
+01254:                         </div>
+01255:                       )
+01256:                     )}
+01257: 
+01258:                     <button
+01259:                       type="button"
+01260:                       disabled={busy}
+01261:                       onClick={() =>
+01262:                         submit(
+01263:                           activity.id,
+01264:                           fill
+01265:                         )
+01266:                       }
+01267:                       className="rounded-xl bg-violet-600 px-5 py-3 font-black text-white disabled:opacity-60"
+01268:                     >
+01269:                       {T.checkAnswers}
+01270:                     </button>
+01271: 
+01272:                   </div>
+01273:                 ) : null}
+01274: 
+01275: 
+01276:                 {hasLetter ? (
+01277:                   <div className="mt-5">
+01278: 
+01279:                     <div className="flex flex-wrap gap-2">
+01280: 
+01281:                       {words.map(
+01282:                         (
+01283:                           word,
+01284:                           wordIndex
+01285:                         ) => (
+01286:                           <span
+01287:                             key={`${activity.id}-letter-word-${wordIndex}`}
+01288:                             className="rounded-xl bg-white px-4 py-2 font-black text-slate-800 ring-1 ring-slate-200"
+01289:                           >
+01290:                             {word}
+01291:                           </span>
+01292:                         )
+01293:                       )}
+01294: 
+01295:                     </div>
+01296: 
+01297:                     <input
+01298:                       value={letter}
+01299:                       maxLength={1}
+01300:                       placeholder={
+01301:                         T.letterPlaceholder
+01302:                       }
+01303:                       onChange={(event) => {
+01304: 
+01305:                         clear(
+01306:                           activity.id
+01307:                         );
+01308: 
+01309:                         setLetters(
+01310:                           (current) => ({
+01311:                             ...current,
+01312:                             [activity.id]:
+01313:                               event.target.value,
+01314:                           })
+01315:                         );
+01316:                       }}
+01317:                       className="mt-4 w-40 rounded-xl border border-slate-300 px-4 py-3 text-center text-3xl font-black"
+01318:                     />
+01319: 
+01320:                     <button
+01321:                       type="button"
+01322:                       disabled={busy}
+01323:                       onClick={() =>
+01324:                         submit(
+01325:                           activity.id,
+01326:                           letter
+01327:                             ? [letter]
+01328:                             : []
+01329:                         )
+01330:                       }
+01331:                       className="mt-4 block rounded-xl bg-violet-600 px-5 py-3 font-black text-white disabled:opacity-60"
+01332:                     >
+01333:                       {T.checkLetter}
+01334:                     </button>
+01335: 
+01336:                   </div>
+01337:                 ) : null}
+01338: 
+01339: 
+01340:                 {activity.activity_type === "writing" ? (
+01341:   <div className="mt-5">
+01342:     <HandwritingCanvas
+01343:       letter={
+01344:         typeof content.letter === "string"
+01345:           ? content.letter
+01346:           : "\u0628"
+01347:       }
+01348:     />
+01349:   </div>
+01350: ) : null}
+01351: 
+01352: 
+01353:                 {completionOnly ? (
+01354:                   <button
+01355:                     type="button"
+01356:                     disabled={
+01357:                       busy ||
+01358:                       result?.correct
+01359:                     }
+01360:                     onClick={() =>
+01361:                       submit(
+01362:                         activity.id,
+01363:                         [
+01364:                           "__completed__",
+01365:                         ]
+01366:                       )
+01367:                     }
+01368:                     className="mt-5 rounded-xl bg-emerald-600 px-5 py-3 font-black text-white disabled:opacity-60"
+01369:                   >
+01370:                     {result?.correct
+01371:                       ? "\u2705 " +
+01372:                         T.completed
+01373:                       : T.markComplete}
+01374:                   </button>
+01375:                 ) : null}
+01376: 
+01377: 
+01378:                 {result ? (
+01379:                   <div
+01380:                     className={
+01381:                       "mt-4 rounded-xl p-4 font-black " +
+01382:                       (
+01383:                         result.correct
+01384:                           ? "bg-emerald-50 text-emerald-700"
+01385:                           : "bg-rose-50 text-rose-700"
+01386:                       )
+01387:                     }
+01388:                   >
+01389: 
+01390:                     {result.correct
+01391:                       ? result.completionOnly
+01392:                         ? "\u2705 " +
+01393:                           T.recorded
+01394:                         : "\u2705 " +
+01395:                           T.success +
+01396:                           ` ${result.earnedPoints}/${result.maxPoints}`
+01397:                       : "\u274c " +
+01398:                         T.retry}
+01399: 
+01400:                     {typeof result.progressPercent ===
+01401:                     "number" ? (
+01402:                       <div className="mt-2 text-sm">
+01403:                         {T.progress}:{" "}
+01404:                         {result.progressPercent}%
+01405:                       </div>
+01406:                     ) : null}
+01407: 
+01408:                   </div>
+01409:                 ) : null}
+01410: 
+01411: 
+01412:                 {error ? (
+01413:                   <p className="mt-3 font-bold text-rose-600">
+01414:                     {error}
+01415:                   </p>
+01416:                 ) : null}
+01417: 
+01418:               </article>
+01419:             );
+01420:           }
+01421:         )}
+01422: 
+01423:       </div>
+01424:     </section>
+01425:   );
+01426: }
+
+############################################################
+FILE: tests\lesson-ai\image-options.test.ts
+############################################################
+00001: import {
+00002:   describe,
+00003:   expect,
+00004:   it,
+00005: } from "vitest";
+00006: 
+00007: import {
+00008:   getRequiredImageLabels,
+00009:   imageOptionsCoverLabels,
+00010:   normalizeImageOptions,
+00011: } from "@/lib/lesson-ai/image-options";
+00012: 
+00013: describe(
+00014:   "activity image options",
+00015:   () => {
+00016:     it(
+00017:       "reads image labels from multiple choice",
+00018:       () => {
+00019:         expect(
+00020:           getRequiredImageLabels(
+00021:             "multiple_choice",
+00022:             {
+00023:               imageLabels: [
+00024:                 "باب",
+00025:                 "بيت",
+00026:               ],
+00027:             }
+00028:           )
+00029:         ).toEqual([
+00030:           "باب",
+00031:           "بيت",
+00032:         ]);
+00033:       }
+00034:     );
+00035: 
+00036:     it(
+00037:       "reads picture labels from matching right values",
+00038:       () => {
+00039:         expect(
+00040:           getRequiredImageLabels(
+00041:             "matching",
+00042:             {
+00043:               right: [
+00044:                 "صورة ولد",
+00045:                 "صورة بنت",
+00046:               ],
+00047:             }
+00048:           )
+00049:         ).toEqual([
+00050:           "صورة ولد",
+00051:           "صورة بنت",
+00052:         ]);
+00053:       }
+00054:     );
+00055: 
+00056:     it(
+00057:       "matches Gemini results by stable requested index",
+00058:       () => {
+00059:         const result =
+00060:           normalizeImageOptions(
+00061:             {
+00062:               options: [
+00063:                 {
+00064:                   index: 1,
+00065:                   x: 10,
+00066:                   y: 20,
+00067:                   width: 20,
+00068:                   height: 20,
+00069:                   confidence: 95,
+00070:                 },
+00071:                 {
+00072:                   index: 2,
+00073:                   x: 40,
+00074:                   y: 20,
+00075:                   width: 25,
+00076:                   height: 20,
+00077:                   confidence: 92,
+00078:                 },
+00079:               ],
+00080:             },
+00081:             [
+00082:               "صورة بنت (رحاب)",
+00083:               "صورة ولد (باسِم)",
+00084:             ],
+00085:             "/page.jpg"
+00086:           );
+00087: 
+00088:         expect(
+00089:           result.complete
+00090:         ).toBe(true);
+00091: 
+00092:         expect(
+00093:           result.options
+00094:             .map(
+00095:               (item) =>
+00096:                 item.label
+00097:             )
+00098:         ).toEqual([
+00099:           "صورة بنت (رحاب)",
+00100:           "صورة ولد (باسِم)",
+00101:         ]);
+00102:       }
+00103:     );
+00104: 
+00105:     it(
+00106:       "requires full coverage before apply",
+00107:       () => {
+00108:         const result =
+00109:           normalizeImageOptions(
+00110:             {
+00111:               options: [
+00112:                 {
+00113:                   index: 1,
+00114:                   x: 10,
+00115:                   y: 20,
+00116:                   width: 20,
+00117:                   height: 20,
+00118:                   confidence: 95,
+00119:                 },
+00120:               ],
+00121:             },
+00122:             [
+00123:               "باب",
+00124:               "بيت",
+00125:             ],
+00126:             "/book/page.jpg"
+00127:           );
+00128: 
+00129:         expect(
+00130:           result.complete
+00131:         ).toBe(false);
+00132: 
+00133:         expect(
+00134:           result.missing
+00135:         ).toEqual([
+00136:           "بيت",
+00137:         ]);
+00138:       }
+00139:     );
+00140: 
+00141:     it(
+00142:       "creates page-backed cropped image options",
+00143:       () => {
+00144:         const result =
+00145:           normalizeImageOptions(
+00146:             {
+00147:               options: [
+00148:                 {
+00149:                   index: 1,
+00150:                   x: 10,
+00151:                   y: 20,
+00152:                   width: 20,
+00153:                   height: 30,
+00154:                   confidence: 96,
+00155:                 },
+00156:                 {
+00157:                   index: 2,
+00158:                   x: 40,
+00159:                   y: 20,
+00160:                   width: 25,
+00161:                   height: 30,
+00162:                   confidence: 92,
+00163:                 },
+00164:               ],
+00165:             },
+00166:             [
+00167:               "باب",
+00168:               "بيت",
+00169:             ],
+00170:             "/book/page.jpg"
+00171:           );
+00172: 
+00173:         expect(
+00174:           result.complete
+00175:         ).toBe(true);
+00176: 
+00177:         expect(
+00178:           result.options
+00179:         ).toHaveLength(2);
+00180: 
+00181:         expect(
+00182:           result.options[0]
+00183:             .image_url
+00184:         ).toBe(
+00185:           "/book/page.jpg"
+00186:         );
+00187: 
+00188:         expect(
+00189:           result.options[0]
+00190:             .region
+00191:         ).toEqual({
+00192:           x: 10,
+00193:           y: 20,
+00194:           width: 20,
+00195:           height: 30,
+00196:         });
+00197:       }
+00198:     );
+00199: 
+00200:     it(
+00201:       "still accepts legacy exact labels",
+00202:       () => {
+00203:         const result =
+00204:           normalizeImageOptions(
+00205:             {
+00206:               options: [
+00207:                 {
+00208:                   label:
+00209:                     "باب",
+00210:                   x: 1,
+00211:                   y: 2,
+00212:                   width: 20,
+00213:                   height: 20,
+00214:                   confidence: 90,
+00215:                 },
+00216:               ],
+00217:             },
+00218:             [
+00219:               "باب",
+00220:             ],
+00221:             "/page.jpg"
+00222:           );
+00223: 
+00224:         expect(
+00225:           result.complete
+00226:         ).toBe(true);
+00227:       }
+00228:     );
+00229: 
+00230:     it(
+00231:       "converts Gemini 0..1000 coordinates to percentages",
+00232:       () => {
+00233:         const result =
+00234:           normalizeImageOptions(
+00235:             {
+00236:               options: [
+00237:                 {
+00238:                   index: 1,
+00239:                   x: 305,
+00240:                   y: 709,
+00241:                   width: 84,
+00242:                   height: 74,
+00243:                   confidence: 99,
+00244:                 },
+00245:                 {
+00246:                   index: 2,
+00247:                   x: 298,
+00248:                   y: 786,
+00249:                   width: 80,
+00250:                   height: 65,
+00251:                   confidence: 99,
+00252:                 },
+00253:               ],
+00254:             },
+00255:             [
+00256:               "???? ???",
+00257:               "???? ???",
+00258:             ],
+00259:             "/page.jpg"
+00260:           );
+00261: 
+00262:         expect(
+00263:           result.complete
+00264:         ).toBe(true);
+00265: 
+00266:         const first =
+00267:           result.options.find(
+00268:             (item) =>
+00269:               item.label ===
+00270:               "???? ???"
+00271:           );
+00272: 
+00273:         const second =
+00274:           result.options.find(
+00275:             (item) =>
+00276:               item.label ===
+00277:               "???? ???"
+00278:           );
+00279: 
+00280:         expect(
+00281:           first?.region
+00282:         ).toEqual({
+00283:           x: 30.5,
+00284:           y: 70.9,
+00285:           width: 8.4,
+00286:           height: 7.4,
+00287:         });
+00288: 
+00289:         expect(
+00290:           second?.region
+00291:         ).toEqual({
+00292:           x: 29.8,
+00293:           y: 78.6,
+00294:           width: 8,
+00295:           height: 6.5,
+00296:         });
+00297:       }
+00298:     );
+00299: 
+00300:     it(
+00301:       "detects complete stored image assets",
+00302:       () => {
+00303:         expect(
+00304:           imageOptionsCoverLabels(
+00305:             {
+00306:               image_options: [
+00307:                 {
+00308:                   label:
+00309:                     "باب",
+00310: 
+00311:                   image_url:
+00312:                     "/page.jpg",
+00313: 
+00314:                   region: {
+00315:                     x: 1,
+00316:                     y: 2,
+00317:                     width: 20,
+00318:                     height: 20,
+00319:                   },
+00320:                 },
+00321:               ],
+00322:             },
+00323:             [
+00324:               "باب",
+00325:             ]
+00326:           )
+00327:         ).toBe(true);
+00328:       }
+00329:     );
+00330:   }
+00331: );
+
+############################################################
+FILE: tests\lesson-ai\activity-media.test.ts
+############################################################
+00001: import {
+00002:   describe,
+00003:   expect,
+00004:   it,
+00005: } from "vitest";
+00006: 
+00007: import {
+00008:   mergeActivityMedia,
+00009:   normalizeActivityImageRegion,
+00010: } from "@/lib/lesson-ai/activity-media";
+00011: 
+00012: describe(
+00013:   "lesson activity media contract",
+00014:   () => {
+00015:     it(
+00016:       "adds source page, image, region and audio text",
+00017:       () => {
+00018:         const content =
+00019:           mergeActivityMedia(
+00020:             {
+00021:               words: [
+00022:                 "باء",
+00023:               ],
+00024:             },
+00025:             {
+00026:               sourcePage:
+00027:                 31,
+00028: 
+00029:               imageUrl:
+00030:                 "/book/page-031.jpg",
+00031: 
+00032:               audioText:
+00033:                 "اقرأ الكلمات.",
+00034: 
+00035:               region: {
+00036:                 x: 10,
+00037:                 y: 20,
+00038:                 width: 40,
+00039:                 height: 30,
+00040:               },
+00041:             }
+00042:           );
+00043: 
+00044:         expect(
+00045:           content.source_page
+00046:         ).toBe(31);
+00047: 
+00048:         expect(
+00049:           content.image_url
+00050:         ).toBe(
+00051:           "/book/page-031.jpg"
+00052:         );
+00053: 
+00054:         expect(
+00055:           content.audio_text
+00056:         ).toBe(
+00057:           "اقرأ الكلمات."
+00058:         );
+00059: 
+00060:         expect(
+00061:           content.image_region
+00062:         ).toEqual({
+00063:           x: 10,
+00064:           y: 20,
+00065:           width: 40,
+00066:           height: 30,
+00067:         });
+00068: 
+00069:         expect(
+00070:           content.words
+00071:         ).toEqual([
+00072:           "باء",
+00073:         ]);
+00074:       }
+00075:     );
+00076: 
+00077:     it(
+00078:       "does not overwrite existing explicit media",
+00079:       () => {
+00080:         const content =
+00081:           mergeActivityMedia(
+00082:             {
+00083:               image_url:
+00084:                 "/custom.jpg",
+00085: 
+00086:               audio_text:
+00087:                 "صوت مخصص",
+00088: 
+00089:               image_region: {
+00090:                 x: 1,
+00091:                 y: 2,
+00092:                 width: 3,
+00093:                 height: 4,
+00094:               },
+00095:             },
+00096:             {
+00097:               sourcePage:
+00098:                 5,
+00099: 
+00100:               imageUrl:
+00101:                 "/generated.jpg",
+00102: 
+00103:               audioText:
+00104:                 "صوت مولد",
+00105: 
+00106:               region: {
+00107:                 x: 20,
+00108:                 y: 20,
+00109:                 width: 20,
+00110:                 height: 20,
+00111:               },
+00112:             }
+00113:           );
+00114: 
+00115:         expect(
+00116:           content.image_url
+00117:         ).toBe(
+00118:           "/custom.jpg"
+00119:         );
+00120: 
+00121:         expect(
+00122:           content.audio_text
+00123:         ).toBe(
+00124:           "صوت مخصص"
+00125:         );
+00126: 
+00127:         expect(
+00128:           content.image_region
+00129:         ).toEqual({
+00130:           x: 1,
+00131:           y: 2,
+00132:           width: 3,
+00133:           height: 4,
+00134:         });
+00135:       }
+00136:     );
+00137: 
+00138:     it(
+00139:       "keeps regions inside page bounds",
+00140:       () => {
+00141:         expect(
+00142:           normalizeActivityImageRegion({
+00143:             x: 90,
+00144:             y: 80,
+00145:             width: 50,
+00146:             height: 40,
+00147:           })
+00148:         ).toEqual({
+00149:           x: 90,
+00150:           y: 80,
+00151:           width: 10,
+00152:           height: 20,
+00153:         });
+00154:       }
+00155:     );
+00156: 
+00157:     it(
+00158:       "rejects invalid image regions",
+00159:       () => {
+00160:         expect(
+00161:           normalizeActivityImageRegion({
+00162:             x: 10,
+00163:             y: 10,
+00164:             width: 0,
+00165:             height: 20,
+00166:           })
+00167:         ).toBeNull();
+00168: 
+00169:         expect(
+00170:           normalizeActivityImageRegion({
+00171:             x: "bad",
+00172:             y: 10,
+00173:             width: 20,
+00174:             height: 20,
+00175:           })
+00176:         ).toBeNull();
+00177:       }
+00178:     );
+00179:   }
+00180: );
+
+============================================================
+GIT STATUS
+============================================================
+ M app/api/lesson-activities/check/route.ts
+ M features/lessons/components/InteractiveLessonActivities.tsx
+ M public/curriculum/bahrain/grade-01/lesson-02/page-022.jpg
+?? DADYOOM-FULL-PROJECT-MAP.txt
+?? DADYOOM-IMAGE-PIPELINE-CURRENT.txt
+?? analyze-page-full.txt
+?? app/admin/ai-lesson/
+?? app/api/admin/lessons/analyze-lesson/
+?? app/api/admin/lessons/analyze-page/
+?? app/api/admin/lessons/analyze-pages/
+?? app/api/admin/lessons/backfill-activity-media/
+?? app/api/admin/lessons/create-reject-candidates/
+?? app/api/admin/lessons/generate-image-options/
+?? app/api/admin/lessons/rematch-proposals/
+?? app/api/admin/lessons/review-activities/
+?? app/api/lesson-activities/check/route.ts.before-final-grading-call-fix-20260812-142818
+?? app/api/lesson-activities/check/route.ts.before-final-grading-name-fix-20260812-143106
+?? app/api/lesson-activities/check/route.ts.before-grading-contract-20260812-142310
+?? dadyoom-batch2-deep-inspection.txt
+?? features/lesson-activities/components/LessonActivityImage.tsx
+?? features/lessons/components/InteractiveLessonActivities.tsx.before-image-region-20260811-173521
+?? features/lessons/components/InteractiveLessonActivities.tsx.before-image-region-v2-20260811-173735
+?? gemini-search.txt
+?? lesson-ai-final-audit.txt
+?? lib/lesson-activities/
+?? lib/lesson-ai/
+?? public/curriculum/bahrain/grade-01/lesson-02/page-023.jpg
+?? public/curriculum/bahrain/grade-01/lesson-02/page-024.jpg
+?? public/curriculum/bahrain/grade-01/lesson-02/page-025.jpg
+?? public/curriculum/bahrain/grade-01/lesson-02/page-026.jpg
+?? public/curriculum/bahrain/grade-01/lesson-02/page-027.jpg
+?? public/curriculum/bahrain/grade-01/lesson-02/page-028.jpg
+?? public/curriculum/bahrain/grade-01/lesson-02/page-029.jpg
+?? public/curriculum/bahrain/grade-01/lesson-02/page-030.jpg
+?? public/curriculum/bahrain/grade-01/lesson-02/page-031.jpg
+?? public/curriculum/bahrain/grade-01/lesson-02/page-032.jpg
+?? public/curriculum/bahrain/grade-01/lesson-02/page-033.jpg
+?? public/curriculum/bahrain/grade-01/lesson-02/page-034.jpg
+?? tests/lesson-ai/
+
+============================================================
+GIT DIFF - IMAGE PIPELINE
+============================================================
+diff --git a/features/lessons/components/InteractiveLessonActivities.tsx b/features/lessons/components/InteractiveLessonActivities.tsx
+index 3751273..30e0258 100644
+--- a/features/lessons/components/InteractiveLessonActivities.tsx
++++ b/features/lessons/components/InteractiveLessonActivities.tsx
+@@ -1,6 +1,7 @@
+ "use client";
+ 
+ import ListenButton from "@/features/lesson-activities/components/ListenButton";
++import LessonActivityImage from "@/features/lesson-activities/components/LessonActivityImage";
+ 
+ import HandwritingCanvas from "@/features/lesson-activities/components/HandwritingCanvas";
+ 
+@@ -513,6 +514,26 @@ export default function InteractiveLessonActivities({
+                 ? content.image_url
+                 : null;
+ 
++        const imageRegion =
++          typeof content.image_region === "object" &&
++          content.image_region !== null
++            ? (
++                content.image_region as {
++                  x?: unknown;
++                  y?: unknown;
++                  width?: unknown;
++                  height?: unknown;
++                }
++              )
++            : null;
++
++        const hasImageRegion =
++          imageRegion !== null &&
++          typeof imageRegion.x === "number" &&
++          typeof imageRegion.y === "number" &&
++          typeof imageRegion.width === "number" &&
++          typeof imageRegion.height === "number";
++
+           const audioText =
+             typeof content.audio_text === "string"
+               ? content.audio_text
+@@ -734,10 +755,19 @@ export default function InteractiveLessonActivities({
+ 
+ {imageUrl ? (
+                   <div className="mt-5 overflow-hidden rounded-2xl bg-white p-3 ring-1 ring-slate-200">
+-                    <img
++                    <LessonActivityImage
+                       src={imageUrl}
+                       alt={activity.title}
+-                      className="mx-auto max-h-[520px] w-auto rounded-xl object-contain"
++                      region={
++                        hasImageRegion && imageRegion
++                          ? {
++                              x: imageRegion.x as number,
++                              y: imageRegion.y as number,
++                              width: imageRegion.width as number,
++                              height: imageRegion.height as number,
++                            }
++                          : null
++                      }
+                     />
+                   </div>
+                 ) : null}

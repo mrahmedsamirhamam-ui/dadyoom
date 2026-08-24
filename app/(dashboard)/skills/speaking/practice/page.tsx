@@ -1,0 +1,1206 @@
+"use client";
+
+import Link from "next/link";
+
+import {
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+
+import ListenButton from "@/features/lesson-activities/components/ListenButton";
+import { saveSkillProgress } from "@/features/skills-progress/saveSkillProgress";
+
+type PracticeItem = {
+  text: string;
+  tip: string;
+};
+
+type AudioEvaluation = {
+  transcript: string;
+  overallScore: number;
+  pronunciationScore: number;
+  fluencyScore: number;
+  clarityScore: number;
+  accuracyScore: number;
+  strengths: string[];
+  improvements: string[];
+  wordsToPractice: string[];
+  feedback: string;
+};
+
+const items:
+  PracticeItem[] = [
+    {
+      text:
+        "أَنَا أُحِبُّ اللُّغَةَ العَرَبِيَّةَ.",
+
+      tip:
+        "تحدث بهدوء، واجعل كل كلمة واضحة.",
+    },
+
+    {
+      text:
+        "ذَهَبَ سَالِمٌ إِلَى المَدْرَسَةِ صَبَاحًا.",
+
+      tip:
+        "حافظ على سرعة معتدلة ولا تبتلع نهاية الكلمات.",
+    },
+
+    {
+      text:
+        "تُشْرِقُ الشَّمْسُ فِي الصَّبَاحِ.",
+
+      tip:
+        "استمع إلى ضاد أولًا ثم حاول محاكاة النطق.",
+    },
+
+    {
+      text:
+        "أَحْرِصُ عَلَى قِرَاءَةِ كِتَابٍ مُفِيدٍ كُلَّ يَوْمٍ.",
+
+      tip:
+        "اقرأ الجملة في نفس واحد قدر الإمكان دون استعجال.",
+    },
+  ];
+
+function ScoreCard({
+  title,
+  score,
+}: {
+  title: string;
+  score: number;
+}) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm">
+      <p className="text-sm font-black text-slate-500">
+        {title}
+      </p>
+
+      <p className="mt-2 text-3xl font-black text-orange-700">
+        {score}%
+      </p>
+    </div>
+  );
+}
+
+function writeAscii(
+  view: DataView,
+  offset: number,
+  value: string
+) {
+  for (
+    let i = 0;
+    i < value.length;
+    i++
+  ) {
+    view.setUint8(
+      offset + i,
+      value.charCodeAt(i)
+    );
+  }
+}
+
+function encodeWav(
+  audioBuffer:
+    AudioBuffer
+): ArrayBuffer {
+  const channels =
+    audioBuffer
+      .numberOfChannels;
+
+  const length =
+    audioBuffer.length;
+
+  const mono =
+    new Float32Array(
+      length
+    );
+
+  for (
+    let channel = 0;
+    channel < channels;
+    channel++
+  ) {
+    const data =
+      audioBuffer
+        .getChannelData(
+          channel
+        );
+
+    for (
+      let i = 0;
+      i < length;
+      i++
+    ) {
+      mono[i] +=
+        data[i] /
+        channels;
+    }
+  }
+
+  const buffer =
+    new ArrayBuffer(
+      44 +
+      mono.length * 2
+    );
+
+  const view =
+    new DataView(
+      buffer
+    );
+
+  const sampleRate =
+    audioBuffer
+      .sampleRate;
+
+  writeAscii(
+    view,
+    0,
+    "RIFF"
+  );
+
+  view.setUint32(
+    4,
+    36 +
+      mono.length * 2,
+    true
+  );
+
+  writeAscii(
+    view,
+    8,
+    "WAVE"
+  );
+
+  writeAscii(
+    view,
+    12,
+    "fmt "
+  );
+
+  view.setUint32(
+    16,
+    16,
+    true
+  );
+
+  view.setUint16(
+    20,
+    1,
+    true
+  );
+
+  view.setUint16(
+    22,
+    1,
+    true
+  );
+
+  view.setUint32(
+    24,
+    sampleRate,
+    true
+  );
+
+  view.setUint32(
+    28,
+    sampleRate * 2,
+    true
+  );
+
+  view.setUint16(
+    32,
+    2,
+    true
+  );
+
+  view.setUint16(
+    34,
+    16,
+    true
+  );
+
+  writeAscii(
+    view,
+    36,
+    "data"
+  );
+
+  view.setUint32(
+    40,
+    mono.length * 2,
+    true
+  );
+
+  let offset = 44;
+
+  for (
+    let i = 0;
+    i < mono.length;
+    i++
+  ) {
+    const sample =
+      Math.max(
+        -1,
+        Math.min(
+          1,
+          mono[i]
+        )
+      );
+
+    view.setInt16(
+      offset,
+      sample < 0
+        ? sample * 0x8000
+        : sample * 0x7fff,
+      true
+    );
+
+    offset += 2;
+  }
+
+  return buffer;
+}
+
+async function convertToWav(
+  blob: Blob
+): Promise<Blob> {
+  const input =
+    await blob
+      .arrayBuffer();
+
+  const context =
+    new AudioContext();
+
+  try {
+    const decoded =
+      await context
+        .decodeAudioData(
+          input.slice(0)
+        );
+
+    const wav =
+      encodeWav(
+        decoded
+      );
+
+    return new Blob(
+      [wav],
+      {
+        type:
+          "audio/wav",
+      }
+    );
+  }
+  finally {
+    await context.close();
+  }
+}
+
+type AdaptiveSpeakingDifficulty =
+  | "starter"
+  | "foundation"
+  | "guided"
+  | "standard"
+  | "challenge";
+
+type AdaptiveSpeakingTask = {
+  title: string;
+  prompt: string;
+  referenceText: string;
+  tips: string[];
+  minimumSeconds: number;
+  targetSeconds: number;
+};
+
+const adaptiveSpeakingDifficulties =
+  new Set<AdaptiveSpeakingDifficulty>([
+    "starter",
+    "foundation",
+    "guided",
+    "standard",
+    "challenge",
+  ]);
+
+function getAdaptiveSpeakingDifficulty():
+  AdaptiveSpeakingDifficulty {
+  if (typeof window === "undefined") {
+    return "starter";
+  }
+
+  const value =
+    new URLSearchParams(
+      window.location.search
+    ).get("difficulty");
+
+  return (
+    value &&
+    adaptiveSpeakingDifficulties.has(
+      value as AdaptiveSpeakingDifficulty
+    )
+  )
+    ? value as AdaptiveSpeakingDifficulty
+    : "starter";
+}
+export default function SpeakingPracticePage() {
+  const [
+    adaptiveDifficulty,
+    setAdaptiveDifficulty,
+  ] =
+    useState<AdaptiveSpeakingDifficulty>(
+      "starter"
+    );
+
+  const [
+    adaptiveDifficultyLabel,
+    setAdaptiveDifficultyLabel,
+  ] =
+    useState("استكشافي");
+
+  const [
+    adaptiveSpeakingTask,
+    setAdaptiveSpeakingTask,
+  ] =
+    useState<AdaptiveSpeakingTask | null>(
+      null
+    );
+
+  const [
+    adaptiveTaskLoading,
+    setAdaptiveTaskLoading,
+  ] =
+    useState(true);
+
+  const [
+    adaptiveTaskError,
+    setAdaptiveTaskError,
+  ] =
+    useState("");
+
+  const [
+    adaptiveGeneration,
+    setAdaptiveGeneration,
+  ] =
+    useState(0);
+
+  const [
+    currentIndex,
+    setCurrentIndex,
+  ] =
+    useState(0);
+
+  const [
+    recording,
+    setRecording,
+  ] =
+    useState(false);
+
+  const [
+    evaluating,
+    setEvaluating,
+  ] =
+    useState(false);
+
+  const [
+    error,
+    setError,
+  ] =
+    useState("");
+
+  const [
+    evaluation,
+    setEvaluation,
+  ] =
+    useState<
+      AudioEvaluation | null
+    >(null);
+
+  const [
+    recordingUrl,
+    setRecordingUrl,
+  ] =
+    useState<
+      string | null
+    >(null);
+
+  const [
+    attempts,
+    setAttempts,
+  ] =
+    useState(0);
+
+  const recorderRef =
+    useRef<
+      MediaRecorder | null
+    >(null);
+
+  const streamRef =
+    useRef<
+      MediaStream | null
+    >(null);
+
+  const chunksRef =
+    useRef<Blob[]>([]);
+
+  const item =
+    items[currentIndex];
+
+  // ADAPTIVE_SPEAKING_TASK_LOADER
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setAdaptiveDifficulty(
+      getAdaptiveSpeakingDifficulty()
+    );
+  }, []);
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadAdaptiveSpeakingTask() {
+      setAdaptiveTaskLoading(true);
+      setAdaptiveTaskError("");
+
+      try {
+        const response =
+          await fetch(
+            "/api/skills/speaking/adaptive",
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json",
+              },
+
+              body:
+                JSON.stringify({
+                  difficulty:
+                    adaptiveDifficulty,
+                }),
+            }
+          );
+
+        const data =
+          await response.json();
+
+        if (
+          !response.ok ||
+          !data.ok
+        ) {
+          throw new Error(
+            data.error ||
+            "تعذر إنشاء تدريب التحدث."
+          );
+        }
+
+        if (active) {
+          setAdaptiveSpeakingTask(
+            data.task
+          );
+
+          setAdaptiveDifficultyLabel(
+            data.difficultyLabel
+          );
+        }
+      }
+      catch (error) {
+        if (active) {
+          setAdaptiveTaskError(
+            error instanceof Error
+              ? error.message
+              : "تعذر إنشاء التدريب."
+          );
+        }
+      }
+      finally {
+        if (active) {
+          setAdaptiveTaskLoading(false);
+        }
+      }
+    }
+
+    void loadAdaptiveSpeakingTask();
+
+    return () => {
+      active = false;
+    };
+  }, [
+    adaptiveDifficulty,
+    adaptiveGeneration,
+  ]);
+  function clearRecordingUrl() {
+    if (
+      recordingUrl
+    ) {
+      URL.revokeObjectURL(
+        recordingUrl
+      );
+
+      setRecordingUrl(
+        null
+      );
+    }
+  }
+
+  async function evaluateAudio(
+    originalBlob: Blob
+  ) {
+    setEvaluating(true);
+    setError("");
+    setEvaluation(null);
+
+    try {
+      const wavBlob =
+        await convertToWav(
+          originalBlob
+        );
+
+      const form =
+        new FormData();
+
+      form.append(
+        "audio",
+        wavBlob,
+        "student.wav"
+      );
+
+      form.append(
+        "expectedText",
+        item.text
+      );
+
+      const response =
+        await fetch(
+          "/api/skills/speaking/evaluate",
+          {
+            method:
+              "POST",
+
+            body:
+              form,
+          }
+        );
+
+      const data =
+        await response
+          .json();
+
+      if (
+        !response.ok ||
+        !data.ok
+      ) {
+        throw new Error(
+          data.error ||
+          "تعذر تقييم التسجيل."
+        );
+      }
+
+      setEvaluation(
+        data.evaluation
+      );
+
+      await saveSkillProgress(
+        "speaking",
+        data.evaluation.overallScore
+      );
+    }
+    catch (requestError) {
+      setError(
+        requestError
+          instanceof Error
+          ? requestError
+              .message
+          : "تعذر تحليل الصوت."
+      );
+    }
+    finally {
+      setEvaluating(false);
+    }
+  }
+
+  async function startRecording() {
+    setError("");
+    setEvaluation(null);
+
+    clearRecordingUrl();
+
+    if (
+      !navigator.mediaDevices
+        ?.getUserMedia
+    ) {
+      setError(
+        "المتصفح لا يدعم تسجيل الصوت."
+      );
+
+      return;
+    }
+
+    if (
+      typeof MediaRecorder ===
+        "undefined"
+    ) {
+      setError(
+        "MediaRecorder غير مدعوم في هذا المتصفح."
+      );
+
+      return;
+    }
+
+    try {
+      const stream =
+        await navigator
+          .mediaDevices
+          .getUserMedia({
+            audio: {
+              echoCancellation:
+                true,
+
+              noiseSuppression:
+                true,
+
+              autoGainControl:
+                true,
+            },
+          });
+
+      streamRef.current =
+        stream;
+
+      chunksRef.current =
+        [];
+
+      const preferred =
+        [
+          "audio/webm;codecs=opus",
+          "audio/webm",
+          "audio/ogg;codecs=opus",
+        ].find(
+          type =>
+            MediaRecorder
+              .isTypeSupported(
+                type
+              )
+        );
+
+      const recorder =
+        preferred
+          ? new MediaRecorder(
+              stream,
+              {
+                mimeType:
+                  preferred,
+              }
+            )
+          : new MediaRecorder(
+              stream
+            );
+
+      recorderRef.current =
+        recorder;
+
+      recorder.ondataavailable =
+        event => {
+          if (
+            event.data.size > 0
+          ) {
+            chunksRef.current
+              .push(
+                event.data
+              );
+          }
+        };
+
+      recorder.onstop =
+        async () => {
+          const blob =
+            new Blob(
+              chunksRef.current,
+              {
+                type:
+                  recorder
+                    .mimeType ||
+                  "audio/webm",
+              }
+            );
+
+          stream
+            .getTracks()
+            .forEach(
+              track =>
+                track.stop()
+            );
+
+          streamRef.current =
+            null;
+
+          if (
+            blob.size === 0
+          ) {
+            setError(
+              "لم يتم تسجيل صوت. حاول مرة أخرى."
+            );
+
+            return;
+          }
+
+          const url =
+            URL.createObjectURL(
+              blob
+            );
+
+          setRecordingUrl(
+            url
+          );
+
+          setAttempts(
+            value =>
+              value + 1
+          );
+
+          await evaluateAudio(
+            blob
+          );
+        };
+
+      recorder.onerror =
+        () => {
+          setRecording(
+            false
+          );
+
+          setError(
+            "حدث خطأ أثناء تسجيل الصوت."
+          );
+        };
+
+      recorder.start();
+
+      setRecording(
+        true
+      );
+    }
+    catch (recordError) {
+      setRecording(
+        false
+      );
+
+      setError(
+        recordError
+          instanceof Error
+          ? recordError
+              .message
+          : "تعذر الوصول إلى الميكروفون."
+      );
+    }
+  }
+
+  function stopRecording() {
+    if (
+      recorderRef.current &&
+      recorderRef.current
+        .state !==
+        "inactive"
+    ) {
+      recorderRef.current
+        .stop();
+    }
+
+    setRecording(
+      false
+    );
+  }
+
+  function move(
+    direction: number
+  ) {
+    if (recording) {
+      stopRecording();
+    }
+
+    clearRecordingUrl();
+
+    setEvaluation(null);
+    setError("");
+
+    setCurrentIndex(
+      current =>
+        (
+          current +
+          direction +
+          items.length
+        ) %
+        items.length
+    );
+  }
+
+  return (
+    <main
+      dir="rtl"
+      className="mx-auto max-w-6xl p-4 sm:p-6 lg:p-8"
+    >
+      <Link
+        href="/skills/speaking"
+        className="font-black text-orange-700 hover:underline"
+      >
+        ← العودة إلى مهارة التحدث
+      </Link>
+
+      <section className="mt-5 rounded-3xl bg-gradient-to-l from-orange-500 via-rose-600 to-pink-700 p-7 text-white shadow-xl sm:p-9">
+        <p className="text-sm font-black text-orange-100">
+          ضاديوم • استوديو التحدث
+        </p>
+
+        <h1 className="mt-2 text-3xl font-black sm:text-4xl">
+          🎙️ استمع، تحدث، وتحسّن
+        </h1>
+
+        <p className="mt-4 max-w-3xl leading-8 text-orange-50">
+          استمع إلى نموذج ضاد، ثم سجل صوتك.
+          سيحلل ضاد التسجيل نفسه ويعطيك ملاحظات تساعدك على تحسين القراءة والطلاقة والوضوح.
+        </p>
+
+        <div className="mt-6 flex flex-wrap gap-3">
+          <span className="rounded-full bg-white/15 px-4 py-2 font-black">
+            التدريب {currentIndex + 1} / {items.length}
+          </span>
+
+          <span className="rounded-full bg-white/15 px-4 py-2 font-black">
+            المحاولات: {attempts}
+          </span>
+        </div>
+      </section>
+
+      <section className="mt-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+        <p className="text-sm font-black text-orange-600">
+          اقرأ الجملة
+        </p>
+
+        <p className="mt-3 text-2xl font-black leading-[2] text-slate-950 sm:text-3xl">
+          {item.text}
+        </p>
+
+        <ListenButton
+          text={item.text}
+          mood="normal"
+        />
+
+        <div className="mt-5 rounded-2xl bg-orange-50 p-4">
+          <p className="font-black text-orange-900">
+            💡 نصيحة ضاد
+          </p>
+
+          <p className="mt-2 leading-7 text-orange-800">
+            {item.tip}
+          </p>
+        </div>
+      </section>
+
+      <section className="mt-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+        <h2 className="text-2xl font-black text-slate-900">
+          دورك الآن
+        </h2>
+
+        <p className="mt-2 text-slate-600">
+          اضغط التسجيل، اقرأ الجملة، ثم اضغط إيقاف وإرسال للتقييم.
+        </p>
+
+        <div className="mt-6 flex flex-wrap gap-3">
+          {/* DADYOOM_ADAPTIVE_SPEAKING_PANEL */}
+        <section className="mb-6 rounded-3xl border border-violet-200 bg-gradient-to-l from-violet-50 to-fuchsia-50 p-6">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <p className="text-sm font-black text-violet-700">
+                ضاديوم • التحدث التكيفي
+              </p>
+
+              <h2 className="mt-1 text-2xl font-black text-slate-950">
+                🎙️ تدريب مناسب لمستواك
+              </h2>
+            </div>
+
+            <span className="rounded-full bg-violet-100 px-4 py-2 text-sm font-black text-violet-800">
+              {adaptiveDifficultyLabel}
+            </span>
+          </div>
+
+          {adaptiveTaskLoading ? (
+            <p className="mt-5 rounded-2xl bg-white p-5 text-center font-black text-slate-600">
+              ضاد يُعِدُّ مهمة التحدث...
+            </p>
+          ) : adaptiveTaskError ? (
+            <p className="mt-5 rounded-2xl bg-rose-50 p-4 font-bold text-rose-700">
+              {adaptiveTaskError}
+            </p>
+          ) : adaptiveSpeakingTask ? (
+            <>
+              <h3 className="mt-5 text-xl font-black text-violet-950">
+                {adaptiveSpeakingTask.title}
+              </h3>
+
+              <p className="mt-3 text-lg font-bold leading-8 text-slate-800">
+                {adaptiveSpeakingTask.prompt}
+              </p>
+
+              {adaptiveSpeakingTask.referenceText ? (
+                <div className="mt-4 rounded-2xl bg-white p-5">
+                  <p className="text-xs font-black text-violet-600">
+                    {adaptiveDifficulty === "starter" ||
+                    adaptiveDifficulty === "foundation"
+                      ? "النص المطلوب"
+                      : "أفكار تساعدك"}
+                  </p>
+
+                  <p className="mt-2 text-lg font-black leading-9 text-slate-900">
+                    {adaptiveSpeakingTask.referenceText}
+                  </p>
+                </div>
+              ) : null}
+
+              <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                {adaptiveSpeakingTask.tips.map(
+                  (tip, index) => (
+                    <div
+                      key={`${tip}-${index}`}
+                      className="rounded-2xl bg-white p-4 text-sm font-bold leading-7 text-slate-700"
+                    >
+                      💡 {tip}
+                    </div>
+                  )
+                )}
+              </div>
+
+              <div className="mt-4 flex flex-wrap gap-3">
+                <span className="rounded-full bg-white px-4 py-2 text-sm font-black">
+                  الحد الأدنى:{" "}
+                  {adaptiveSpeakingTask.minimumSeconds} ث
+                </span>
+
+                <span className="rounded-full bg-violet-100 px-4 py-2 text-sm font-black text-violet-800">
+                  الهدف:{" "}
+                  {adaptiveSpeakingTask.targetSeconds} ث
+                </span>
+              </div>
+
+              <button
+                type="button"
+                disabled={recording || evaluating}
+                onClick={() =>
+                  setAdaptiveGeneration(
+                    value => value + 1
+                  )
+                }
+                className="mt-5 rounded-xl border border-violet-300 bg-white px-5 py-3 font-black text-violet-800"
+              >
+                مهمة جديدة بنفس المستوى
+              </button>
+            </>
+          ) : null}
+        </section>
+        {!recording ? (
+            <button
+              type="button"
+              disabled={evaluating}
+              onClick={startRecording}
+              className="rounded-2xl bg-rose-600 px-7 py-4 text-lg font-black text-white transition hover:bg-rose-700 disabled:opacity-50"
+            >
+              🎙️ ابدأ التسجيل
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={stopRecording}
+              className="animate-pulse rounded-2xl bg-slate-950 px-7 py-4 text-lg font-black text-white"
+            >
+              ⏹ إيقاف وإرسال للتقييم
+            </button>
+          )}
+        </div>
+
+        {recording ? (
+          <div className="mt-5 rounded-2xl border border-rose-200 bg-rose-50 p-4 font-black text-rose-700">
+            🔴 التسجيل جارٍ... اقرأ الجملة الآن.
+          </div>
+        ) : null}
+
+        {evaluating ? (
+          <div className="mt-5 rounded-2xl border border-violet-200 bg-violet-50 p-4 font-black text-violet-800">
+            🧠 ضاد يستمع إلى تسجيلك ويحلله...
+          </div>
+        ) : null}
+
+        {recordingUrl ? (
+          <div className="mt-6 rounded-2xl bg-slate-50 p-5">
+            <p className="mb-3 font-black text-slate-700">
+              🎧 استمع إلى تسجيلك
+            </p>
+
+            <audio
+              controls
+              src={recordingUrl}
+              className="w-full"
+            />
+          </div>
+        ) : null}
+
+        {error ? (
+          <div
+            role="alert"
+            className="mt-5 rounded-2xl border border-rose-200 bg-rose-50 p-4 font-bold text-rose-700"
+          >
+            {error}
+          </div>
+        ) : null}
+      </section>
+
+      {evaluation ? (
+        <section className="mt-7 space-y-6">
+          <article className="rounded-3xl border border-orange-200 bg-orange-50 p-7 text-center">
+            <p className="text-sm font-black text-orange-700">
+              تقييم ضاد للتسجيل
+            </p>
+
+            <p className="mt-2 text-6xl font-black text-orange-800">
+              {evaluation.overallScore}%
+            </p>
+
+            <p className="mx-auto mt-4 max-w-3xl text-lg font-bold leading-8 text-orange-950">
+              {evaluation.feedback}
+            </p>
+          </article>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <ScoreCard
+              title="النطق"
+              score={evaluation.pronunciationScore}
+            />
+
+            <ScoreCard
+              title="الطلاقة"
+              score={evaluation.fluencyScore}
+            />
+
+            <ScoreCard
+              title="وضوح الصوت"
+              score={evaluation.clarityScore}
+            />
+
+            <ScoreCard
+              title="دقة القراءة"
+              score={evaluation.accuracyScore}
+            />
+          </div>
+
+          {evaluation.transcript ? (
+            <article className="rounded-3xl border border-sky-200 bg-sky-50 p-6">
+              <h3 className="text-xl font-black text-sky-900">
+                📝 ما سمعه ضاد
+              </h3>
+
+              <p className="mt-3 text-xl font-bold leading-9 text-slate-800">
+                {evaluation.transcript}
+              </p>
+            </article>
+          ) : null}
+
+          <div className="grid gap-6 lg:grid-cols-2">
+            <article className="rounded-3xl border border-emerald-200 bg-white p-6">
+              <h3 className="text-xl font-black text-emerald-800">
+                🌟 نقاط قوتك
+              </h3>
+
+              <ul className="mt-4 space-y-3 leading-7 text-slate-700">
+                {evaluation.strengths.length > 0
+                  ? evaluation.strengths.map(
+                      (item, index) => (
+                        <li key={`${item}-${index}`}>
+                          ✓ {item}
+                        </li>
+                      )
+                    )
+                  : (
+                    <li>
+                      ✓ استمر في التدريب.
+                    </li>
+                  )}
+              </ul>
+            </article>
+
+            <article className="rounded-3xl border border-amber-200 bg-white p-6">
+              <h3 className="text-xl font-black text-amber-800">
+                🎯 كيف تتحسن؟
+              </h3>
+
+              <ul className="mt-4 space-y-3 leading-7 text-slate-700">
+                {evaluation.improvements.length > 0
+                  ? evaluation.improvements.map(
+                      (item, index) => (
+                        <li key={`${item}-${index}`}>
+                          • {item}
+                        </li>
+                      )
+                    )
+                  : (
+                    <li>
+                      • استمع إلى النموذج وكرر الجملة.
+                    </li>
+                  )}
+              </ul>
+            </article>
+          </div>
+
+          {evaluation.wordsToPractice.length > 0 ? (
+            <article className="rounded-3xl border border-violet-200 bg-violet-50 p-6">
+              <h3 className="text-xl font-black text-violet-900">
+                🔁 كلمات تستحق إعادة التدريب
+              </h3>
+
+              <div className="mt-4 flex flex-wrap gap-3">
+                {evaluation.wordsToPractice.map(
+                  (word, index) => (
+                    <div
+                      key={`${word}-${index}`}
+                      className="rounded-2xl bg-white px-4 py-3 font-black text-violet-800 shadow-sm"
+                    >
+                      {word}
+
+                      <ListenButton
+                        text={word}
+                        mood="encouraging"
+                      />
+                    </div>
+                  )
+                )}
+              </div>
+            </article>
+          ) : null}
+        </section>
+      ) : null}
+
+      <section className="mt-7 flex flex-wrap justify-between gap-3">
+        <button
+          type="button"
+          disabled={recording || evaluating}
+          onClick={() => move(-1)}
+          className="rounded-2xl border border-slate-300 bg-white px-6 py-3 font-black text-slate-700 disabled:opacity-40"
+        >
+          السابق
+        </button>
+
+        <button
+          type="button"
+          disabled={recording || evaluating}
+          onClick={() => move(1)}
+          className="rounded-2xl bg-orange-600 px-7 py-3 font-black text-white disabled:opacity-40"
+        >
+          التدريب التالي
+        </button>
+      </section>
+
+      <p className="mt-6 text-center text-sm leading-7 text-slate-500">
+        تقييم ضاد هنا مساعد تعليمي يعتمد على تحليل التسجيل الصوتي،
+        وليس فحصًا طبيًا أو قياسًا مخبريًا لمخارج الحروف.
+      </p>
+    </main>
+  );
+}

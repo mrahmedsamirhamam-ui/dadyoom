@@ -1,3 +1,6 @@
+import { redirect } from "next/navigation";
+import StudentGamificationHub from "@/features/gamification/components/StudentGamificationHub";
+import SkillsProgressCard from "@/components/dashboard/student/skills-progress-card";
 import Link from "next/link";
 
 import { buildAdaptiveLearningPlan } from "@/features/learning-plan/services/buildAdaptiveLearningPlan";
@@ -114,7 +117,58 @@ export default async function StudentPage({
     data: { user },
   } = await supabase.auth.getUser();
 
-  let completedLessonsCount = 0;
+  
+  /*
+   * STUDENT_ROLE_GUARD
+   * صفحة الطالب متاحة للطالب أو مدير النظام فقط.
+   */
+  if (!user) {
+    redirect("/login");
+  }
+
+  const {
+    data: studentProfile,
+    error: studentProfileError,
+  } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
+    .maybeSingle();
+
+  if (
+    studentProfileError ||
+    !studentProfile
+  ) {
+    throw new Error(
+      "تعذر تحميل بيانات حساب الطالب."
+    );
+  }
+
+  const studentRole =
+    studentProfile.role
+      ?.trim()
+      .toLowerCase() ??
+    "";
+
+  if (
+    studentRole !== "student" &&
+    studentRole !== "admin"
+  ) {
+    if (studentRole === "teacher") {
+      redirect("/teacher");
+    }
+
+    if (studentRole === "parent") {
+      redirect("/parent");
+    }
+
+    if (studentRole === "school") {
+      redirect("/school");
+    }
+
+    redirect("/");
+  }
+let completedLessonsCount = 0;
   let stats = null;
   let continueLesson = null;
   let recommendedLessons: RecommendedLesson[] = [];
@@ -459,6 +513,20 @@ if (masterySkillsError) {
             واصل التعلم وأكمل المزيد من الدروس
           </p>
         </section>
+
+        {/* Skills Progress */}
+        <div className="mt-6">
+          <SkillsProgressCard />
+
+          <div className="mt-4">
+            <Link
+              href="/skills/adaptive"
+              className="inline-flex rounded-2xl bg-violet-700 px-6 py-3 font-black text-white transition hover:bg-violet-800"
+            >
+              🧠 اسأل ضاد: ماذا أتدرب الآن؟
+            </Link>
+          </div>
+        </div>
 
         {/* Main Content Grid */}
         <section className="mt-6 grid gap-6 lg:grid-cols-[1.4fr_.8fr]">
@@ -945,12 +1013,9 @@ if (masterySkillsError) {
           </div>
 
           <div className="space-y-6">
-            <aside className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">               <div className="flex items-center justify-between gap-3">                 <div>                   <p className="text-sm font-bold text-amber-600">                     إنجازاتك                   </p>                    <h2 className="mt-1 text-xl font-black text-slate-900">                     تقدمك ومكافآتك                   </h2>                 </div>                  <div className="rounded-full bg-emerald-50 px-3 py-1 text-sm font-black text-emerald-700">                   المستوى {stats?.level.level ?? 1}                 </div>               </div>                <div className="mt-5 grid grid-cols-2 gap-3">                 <Metric                   label="الشارات"                   value={unlockedBadges.length}                 />                  <Metric                   label="النقاط"                   value={gamificationXP}                 />               </div>                <div className="mt-5 rounded-2xl bg-amber-50 p-4">                 <div className="text-3xl">                   {latestUnlockedBadge?.icon ?? "🌱"}                 </div>                  <div className="mt-2 font-black text-amber-900">                   {latestUnlockedBadge?.title ??                     "ابدأ رحلتك"}                 </div>                  <p className="mt-1 text-sm leading-6 text-amber-800">                   {latestUnlockedBadge                     ? `لديك ${unlockedBadges.length} من الشارات المفتوحة حتى الآن.`                     : "أكمل أول درس لفتح أول شارة."}                 </p>               </div>                {stats ? (                 <div className="mt-4 rounded-2xl bg-slate-50 p-4">                   <div className="flex items-center justify-between text-sm font-bold text-slate-600">                     <span>                       تقدم المستوى                     </span>                      <span
-                  dir="ltr"
-                  className="inline-block"
-                >
-                  {stats.level.currentXP} / {stats.level.nextLevelXP} XP
-                </span>                   </div>                    <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-200">                     <div                       className="h-full rounded-full bg-emerald-600 transition-all"                       style={{                         width: `${stats.level.percent}%`,                       }}                     />                   </div>                 </div>               ) : null}             </aside>
+            <StudentGamificationHub
+              level={stats?.level}
+            />
 
             <aside className="rounded-3xl bg-gradient-to-br from-indigo-600 to-violet-600 p-6 text-white shadow-sm">
               <div className="text-5xl">🤖</div>
@@ -1004,4 +1069,6 @@ function Metric({
     </div>
   );
 }
+
+
 

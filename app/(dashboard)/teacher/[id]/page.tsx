@@ -1,3 +1,5 @@
+import { createClient } from "@/lib/supabase/server";
+import { redirect, notFound } from "next/navigation";
 import { getLessonForEdit } from "@/features/teacher/queries/getLessonForEdit";
 import { updateLesson } from "@/features/teacher/actions/updateLesson";
 import { updateLessonStatus } from "@/features/teacher/actions/updateLessonStatus";
@@ -14,7 +16,93 @@ type Props = {
 export default async function EditLessonPage({ params }: Props) {
   const { id } = await params;
 
+  /*
+   * TEACHER_LESSON_EDIT_SECURITY_GUARD
+   *
+   * يسمح فقط للمعلم صاحب الدرس أو مدير النظام
+   * بفتح واجهة تحرير الدرس.
+   */
+  const supabase =
+    await createClient();
+
+  const {
+    data: { user },
+    error: authError,
+  } =
+    await supabase.auth.getUser();
+
+  if (
+    authError ||
+    !user
+  ) {
+    redirect("/login");
+  }
+
+  const {
+    data: profile,
+    error: profileError,
+  } =
+    await supabase
+      .from("profiles")
+      .select("role")
+      .eq(
+        "id",
+        user.id
+      )
+      .maybeSingle();
+
+  if (
+    profileError ||
+    !profile
+  ) {
+    throw new Error(
+      "تعذر التحقق من صلاحيات الحساب."
+    );
+  }
+
+  const role =
+    profile.role
+      ?.trim()
+      .toLowerCase() ??
+    "";
+
+  if (
+    role !== "teacher" &&
+    role !== "admin"
+  ) {
+    if (
+      role === "student"
+    ) {
+      redirect("/student");
+    }
+
+    if (
+      role === "parent"
+    ) {
+      redirect("/parent");
+    }
+
+    if (
+      role === "school"
+    ) {
+      redirect("/school");
+    }
+
+    redirect("/");
+  }
+
   const lesson = await getLessonForEdit(id);
+  if (
+    role === "teacher" &&
+    lesson.created_by !== user.id
+  ) {
+    /*
+     * لا نكشف للمعلم أن الدرس
+     * موجود أصلًا إذا لم يكن ملكه.
+     */
+    notFound();
+  }
+
   const vocabulary = await getLessonVocabulary(lesson.id);
 
   return (

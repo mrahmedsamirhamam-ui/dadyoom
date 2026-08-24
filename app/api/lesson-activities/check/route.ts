@@ -1,5 +1,9 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import {
+  getCorrectAnswerSpec,
+} from "@/lib/lesson-activities/grading";
+
 
 type RequestBody = {
   activityId?: string;
@@ -90,179 +94,6 @@ function getAnswerRecord(
   }
 
   return {};
-}
-
-function getCorrectAnswer(
-  answer: JsonRecord
-):
-  | {
-      mode:
-        | "unordered"
-        | "ordered"
-        | "matching"
-        | "single_letter";
-      values: string[];
-    }
-  | null {
-
-  // ----------------------------------------------------------
-  // multiple choice / multi select
-  // ----------------------------------------------------------
-
-  if (
-    typeof answer.correct ===
-    "string"
-  ) {
-    return {
-      mode:
-        "unordered",
-
-      values: [
-        answer.correct,
-      ],
-    };
-  }
-
-  const correctArray =
-    stringArray(
-      answer.correct
-    );
-
-  if (
-    correctArray.length > 0
-  ) {
-    return {
-      mode:
-        "unordered",
-
-      values:
-        correctArray,
-    };
-  }
-
-
-  // ----------------------------------------------------------
-  // fill blank answers
-  // ----------------------------------------------------------
-
-  const answers =
-    stringArray(
-      answer.answers
-    );
-
-  if (
-    answers.length > 0
-  ) {
-    return {
-      mode:
-        "ordered",
-
-      values:
-        answers,
-    };
-  }
-
-
-  // ----------------------------------------------------------
-  // ترتيب الكلمات
-  // ----------------------------------------------------------
-
-  const correctWords =
-    stringArray(
-      answer.correct_words
-    );
-
-  if (
-    correctWords.length > 0
-  ) {
-    return {
-      mode:
-        "ordered",
-
-      values:
-        correctWords,
-    };
-  }
-
-
-  // ----------------------------------------------------------
-  // حرف واحد
-  // ----------------------------------------------------------
-
-  if (
-    typeof answer.correct_letter ===
-    "string"
-  ) {
-    return {
-      mode:
-        "single_letter",
-
-      values: [
-        answer.correct_letter,
-      ],
-    };
-  }
-
-
-  // ----------------------------------------------------------
-  // matching pairs
-  // ----------------------------------------------------------
-
-  if (
-    Array.isArray(
-      answer.pairs
-    )
-  ) {
-
-    const pairs =
-      answer.pairs
-        .filter(
-          (
-            pair
-          ): pair is unknown[] =>
-            Array.isArray(
-              pair
-            )
-        )
-        .map(
-          (pair) => {
-
-            const left =
-              typeof pair[0] ===
-              "string"
-                ? pair[0].trim()
-                : "";
-
-            const right =
-              typeof pair[1] ===
-              "string"
-                ? pair[1].trim()
-                : "";
-
-            return (
-              left &&
-              right
-                ? `${left}|||${right}`
-                : ""
-            );
-          }
-        )
-        .filter(Boolean);
-
-    if (
-      pairs.length > 0
-    ) {
-      return {
-        mode:
-          "matching",
-
-        values:
-          pairs,
-      };
-    }
-  }
-
-  return null;
 }
 
 export async function POST(
@@ -381,7 +212,7 @@ export async function POST(
       );
 
     const correctSpec =
-      getCorrectAnswer(
+      getCorrectAnswerSpec(
         answerData
       );
 
@@ -721,7 +552,7 @@ export async function POST(
             ...item,
 
             correctSpec:
-              getCorrectAnswer(
+              getCorrectAnswerSpec(
                 getAnswerRecord(
                   item.answer
                 )

@@ -602,13 +602,137 @@ ${JSON.stringify(safeItems)}
             mistakes: correct ? [] : ["الإجابة غير مطابقة"],
           };
         });
+        /*
+         * FALLBACK_ASSESSMENT_PERSISTENCE
+         *
+         * عند تعذر Gemini بسبب 429 تمر النتيجة الاحتياطية
+         * بنفس مسار الحفظ والتقدم للنتيجة الطبيعية.
+         */
+        const fallbackAssessmentRows =
+          results.map(
+            (
+              result: GradingResult,
+              index: number
+            ) => ({
+              student_email:
+                user.email!,
+
+              lesson_id:
+                lessonId,
+
+              question:
+                safeItems[index].question,
+
+              student_answer:
+                safeItems[index].studentAnswer,
+
+              model_answer:
+                safeItems[index].modelAnswer,
+
+              score:
+                result.score,
+
+              correct:
+                result.correct,
+
+              feedback:
+                result.feedback,
+
+              teacher_comment:
+                result.teacherComment,
+
+              skill:
+                result.skill,
+
+              mistake_category:
+                result.mistakeCategory,
+
+              difficulty:
+                result.difficulty,
+
+              recommendation:
+                result.recommendation,
+
+              strengths:
+                result.strengths,
+
+              mistakes:
+                result.mistakes,
+            })
+          );
+
+        const {
+          error:
+            fallbackAssessmentError,
+        } =
+          await supabase
+            .from(
+              "student_assessments"
+            )
+            .insert(
+              fallbackAssessmentRows
+            );
+
+        if (
+          fallbackAssessmentError
+        ) {
+          console.error(
+            "FALLBACK_ASSESSMENT_SAVE_ERROR:",
+            fallbackAssessmentError
+          );
+
+          return NextResponse.json(
+            {
+              success: false,
+              message:
+                "تم التصحيح الاحتياطي، لكن تعذر حفظ النتائج.",
+              error:
+                fallbackAssessmentError.message,
+            },
+            {
+              status: 500,
+            }
+          );
+        }
+
+        for (
+          const result
+          of results
+        ) {
+          await updateStudentSkill(
+            supabase,
+            user.email,
+            result.skill,
+            result.score,
+            result.correct
+          );
+
+          if (
+            !result.correct &&
+            result.mistakeCategory
+          ) {
+            await updateStudentMistake(
+              supabase,
+              user.email,
+              result.mistakeCategory,
+              lessonId
+            );
+          }
+        }
+
+        await invalidateStudentCaches({
+          studentId:
+            user.id,
+          studentEmail:
+            user.email,
+          supabase,
+        });
 
         return NextResponse.json({
           success: true,
           fallback: true,
           results,
-        });
-      }
+        });}
 
       console.error(
         "GEMINI_GRADING_ERROR:",
