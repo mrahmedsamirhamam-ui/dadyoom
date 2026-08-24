@@ -191,15 +191,33 @@ export default async function EditLessonPage({ params }: Props) {
             </form>
           }
           content={
-            <div className="rounded-2xl border bg-white p-6">
+            <form
+              action={updateLesson}
+              className="space-y-5 rounded-2xl border bg-white p-6"
+            >
+              <input
+                type="hidden"
+                name="id"
+                value={lesson.id}
+              />
+
               <h2 className="mb-4 text-2xl font-bold">محتوى الدرس</h2>
+
               <textarea
                 name="content"
-                defaultValue={lesson.content}
+                defaultValue={lesson.content ?? ""}
                 rows={18}
                 className="w-full rounded-xl border p-4"
               />
-            </div>
+
+              <button
+                type="submit"
+                data-testid="lesson-content-save"
+                className="rounded-xl bg-emerald-600 px-8 py-3 font-bold text-white transition-colors hover:bg-emerald-700"
+              >
+                {"\u062d\u0641\u0638 \u0627\u0644\u0645\u062d\u062a\u0648\u0649"}
+              </button>
+            </form>
           }
           vocabulary={
             <VocabularyManager
