@@ -1,12 +1,5 @@
-import { DadCharacterV2 } from "@/components/dad-v2";
+import { redirect } from "next/navigation";
 
-export default function Page() {
-  return (
-    <main className="min-h-screen flex items-center justify-center bg-slate-100">
-      <DadCharacterV2
-        state="idle"
-        size={220}
-      />
-    </main>
-  );
+export default function LegacyDadDemoPage() {
+  redirect("/ask");
 }

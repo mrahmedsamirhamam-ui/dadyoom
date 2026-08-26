@@ -117,7 +117,7 @@ export default async function StudentPage({
     data: { user },
   } = await supabase.auth.getUser();
 
-  
+
   /*
    * STUDENT_ROLE_GUARD
    * صفحة الطالب متاحة للطالب أو مدير النظام فقط.
@@ -237,7 +237,7 @@ StudentTeacherClass[] = [];
         supabase,
         user.id
       ),
-    
+
   getMyTeacherClasses(
     supabase
   ),]);
@@ -425,23 +425,6 @@ if (masterySkillsError) {
 
   const recommendedLessonTitle =
     recommendedLesson?.title ?? "ابدأ الدرس المقترح";
-
-  // Unified Gamification source
-  const unlockedBadges =
-    stats?.badges.filter(
-      (badge) => badge.unlocked
-    ) ?? [];
-
-  const latestUnlockedBadge =
-    unlockedBadges.length > 0
-      ? unlockedBadges[
-          unlockedBadges.length - 1
-        ]
-      : null;
-
-  const gamificationXP =
-    stats?.totalXP ??
-    dashboard.points;
 
 
   return (
@@ -1054,21 +1037,3 @@ function Stat({
     </div>
   );
 }
-
-function Metric({
-  label,
-  value,
-}: {
-  label: string;
-  value: number;
-}) {
-  return (
-    <div className="rounded-2xl bg-slate-50 p-4 text-center">
-      <div className="text-2xl font-black text-teal-700">{value}</div>
-      <div className="mt-1 text-xs font-bold text-slate-500">{label}</div>
-    </div>
-  );
-}
-
-
-

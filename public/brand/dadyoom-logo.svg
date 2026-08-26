@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 300" role="img" aria-labelledby="title desc">
+  <title id="title">ضاديوم — بيت العربية الرقمي</title>
+  <desc id="desc">الشعار الرسمي لمنصة ضاديوم</desc>
+  <rect x="20" y="20" width="260" height="260" rx="66" fill="#174f47"/>
+  <path d="M70 225h160" stroke="#f5cf7a" stroke-width="12" stroke-linecap="round" opacity=".8"/>
+  <text x="150" y="194" text-anchor="middle" fill="#f5cf7a" font-family="Noto Kufi Arabic, Arial, sans-serif" font-size="138" font-weight="800">ض</text>
+  <text x="920" y="135" text-anchor="end" fill="#174f47" font-family="Noto Kufi Arabic, Arial, sans-serif" font-size="96" font-weight="800">ضاديوم</text>
+  <text x="920" y="205" text-anchor="end" fill="#6d6255" font-family="Noto Kufi Arabic, Arial, sans-serif" font-size="34" font-weight="600">بيت العربية الرقمي</text>
+</svg>

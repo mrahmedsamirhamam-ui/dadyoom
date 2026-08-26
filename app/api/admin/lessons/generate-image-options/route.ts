@@ -277,7 +277,7 @@ export async function POST(
       return NextResponse.json(
         {
           error:
-            "includePublished ???? ?? ??? preview ???.",
+            "includePublished متاح في وضع المعاينة فقط.",
         },
         {
           status: 400,

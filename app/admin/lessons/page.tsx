@@ -1,8 +1,5 @@
 import Link from "next/link";
 
-import AutoBuildAllLessons
-  from "./auto-build-all-lessons";
-
 import {
   createClient,
 } from "@/lib/supabase/server";
@@ -262,70 +259,6 @@ export default async function AdminLessonsPage() {
         "draft"
     ).length;
 
-  /*
-   * Build only Bahrain Grade 1 lessons that
-   * have a valid source-page range.
-   *
-   * Folder numbering follows source-page order,
-   * not lesson_number, because lesson_number can
-   * repeat between units.
-   */
-  const gradeOneLessons =
-    lessons
-      .filter(
-        (lesson) => {
-          const unit =
-            getRelation(
-              lesson.units
-            );
-
-          const grade =
-            getRelation(
-              unit?.grades ??
-                null
-            );
-
-          return (
-            grade?.grade_number ===
-              1 &&
-            typeof lesson.source_page_start ===
-              "number" &&
-            typeof lesson.source_page_end ===
-              "number"
-          );
-        }
-      )
-      .sort(
-        (a, b) =>
-          Number(
-            a.source_page_start
-          ) -
-          Number(
-            b.source_page_start
-          )
-      )
-      .map(
-        (
-          lesson,
-          index
-        ) => ({
-          id:
-            lesson.id,
-
-          title:
-            lesson.title,
-
-          folderNumber:
-            index + 1,
-
-          sourcePageStart:
-            lesson.source_page_start as number,
-
-          sourcePageEnd:
-            lesson.source_page_end as number,
-        })
-      );
-
   return (
     <div
       className="space-y-6"
@@ -338,17 +271,25 @@ export default async function AdminLessonsPage() {
           </h1>
 
           <p className="mt-1 text-muted-foreground">
-            عرض الدروس وإدارة محتوى منصة ضاديوم وبناء الدروس تلقائيًا.
+            راجع الدروس المنشورة وأثرِ محتواها؛ المنهج الأساسي يأتي من حزم المناهج الموثقة.
           </p>
         </div>
 
-        <Button
-          render={
-            <Link href="/admin/lessons/new" />
-          }
-        >
-          إضافة درس جديد
-        </Button>
+        <div className="flex flex-wrap gap-2">
+          <Link
+            href="/admin/curriculum"
+            className="rounded-full border border-[#d3c099] bg-[#fffaf0] px-5 py-2.5 text-sm font-black text-[#6f572d]"
+          >
+            بوابة المناهج
+          </Link>
+
+          <Link
+            href="/courses"
+            className="rounded-full bg-[#123f39] px-5 py-2.5 text-sm font-black text-white"
+          >
+            معاينة المنشور
+          </Link>
+        </div>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">
@@ -382,12 +323,6 @@ export default async function AdminLessonsPage() {
           </p>
         </div>
       </div>
-
-      <AutoBuildAllLessons
-        lessons={
-          gradeOneLessons
-        }
-      />
 
       <div className="overflow-hidden rounded-xl border bg-card">
         <Table>

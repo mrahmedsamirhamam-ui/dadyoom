@@ -5,19 +5,13 @@ import { usePathname } from "next/navigation";
 import {
   BookOpen,
   Bot,
-  ChartNoAxesCombined,
-  FileQuestion,
   GraduationCap,
   LayoutDashboard,
   LibraryBig,
-  Map,
-  Settings,
-  ShieldCheck,
   Users,
 } from "lucide-react";
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
+import DadyoomLogo from "@/components/brand/DadyoomLogo";
 import {
   Sidebar,
   SidebarContent,
@@ -35,12 +29,14 @@ import {
 type MenuItem = {
   title: string;
   href: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: React.ComponentType<{
+    className?: string;
+  }>;
 };
 
 const mainItems: MenuItem[] = [
   {
-    title: "الرئيسية",
+    title: "نظرة عامة",
     href: "/admin",
     icon: LayoutDashboard,
   },
@@ -58,13 +54,8 @@ const mainItems: MenuItem[] = [
 
 const contentItems: MenuItem[] = [
   {
-    title: "الدول",
-    href: "/admin/countries",
-    icon: Map,
-  },
-  {
-    title: "المناهج",
-    href: "/admin/curricula",
+    title: "بوابة المناهج",
+    href: "/admin/curriculum",
     icon: LibraryBig,
   },
   {
@@ -73,27 +64,9 @@ const contentItems: MenuItem[] = [
     icon: BookOpen,
   },
   {
-    title: "الاختبارات",
-    href: "/admin/questions",
-    icon: FileQuestion,
-  },
-];
-
-const systemItems: MenuItem[] = [
-  {
-    title: "ضاد الذكي",
-    href: "/admin/ai",
+    title: "مساعد المحتوى",
+    href: "/admin/ai-lesson",
     icon: Bot,
-  },
-  {
-    title: "الإحصائيات",
-    href: "/admin/analytics",
-    icon: ChartNoAxesCombined,
-  },
-  {
-    title: "الإعدادات",
-    href: "/admin/settings",
-    icon: Settings,
   },
 ];
 
@@ -111,12 +84,17 @@ function MenuSection({
       return pathname === "/admin";
     }
 
-    return pathname === href || pathname.startsWith(`${href}/`);
+    return (
+      pathname === href ||
+      pathname.startsWith(`${href}/`)
+    );
   }
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>{label}</SidebarGroupLabel>
+      <SidebarGroupLabel>
+        {label}
+      </SidebarGroupLabel>
 
       <SidebarGroupContent>
         <SidebarMenu>
@@ -149,29 +127,11 @@ export function AdminSidebar() {
     <Sidebar
       side="right"
       collapsible="icon"
-      className="border-l"
+      className="border-l border-[#dfcfad]"
       dir="rtl"
     >
-      <SidebarHeader className="border-b p-4">
-        <div className="flex items-center gap-3">
-          <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary text-lg font-bold text-primary-foreground">
-            ض
-          </div>
-
-          <div className="grid min-w-0 flex-1 text-right leading-tight group-data-[collapsible=icon]:hidden">
-            <span className="truncate font-bold">ضاديوم</span>
-            <span className="truncate text-xs text-muted-foreground">
-              بيت العربية الرقمي
-            </span>
-          </div>
-
-          <Badge
-            variant="secondary"
-            className="group-data-[collapsible=icon]:hidden"
-          >
-            مدير
-          </Badge>
-        </div>
+      <SidebarHeader className="border-b border-[#dfcfad] p-4">
+        <DadyoomLogo />
       </SidebarHeader>
 
       <SidebarContent>
@@ -182,35 +142,14 @@ export function AdminSidebar() {
         />
 
         <MenuSection
-          label="المحتوى التعليمي"
+          label="المحتوى"
           items={contentItems}
-          pathname={pathname}
-        />
-
-        <MenuSection
-          label="النظام"
-          items={systemItems}
           pathname={pathname}
         />
       </SidebarContent>
 
-      <SidebarFooter className="border-t p-3">
-        <div className="flex items-center gap-3 rounded-lg p-2">
-          <Avatar className="size-9 shrink-0">
-            <AvatarFallback>أح</AvatarFallback>
-          </Avatar>
-
-          <div className="min-w-0 flex-1 text-right group-data-[collapsible=icon]:hidden">
-            <p className="truncate text-sm font-medium">
-              أحمد سمير
-            </p>
-            <p className="truncate text-xs text-muted-foreground">
-              مدير المنصة
-            </p>
-          </div>
-
-          <ShieldCheck className="size-4 shrink-0 text-muted-foreground group-data-[collapsible=icon]:hidden" />
-        </div>
+      <SidebarFooter className="border-t border-[#dfcfad] p-4 text-xs font-black text-[#796f62]">
+        المنهج حزمة موثقة، والمعلم يضيف الإثراء.
       </SidebarFooter>
 
       <SidebarRail />

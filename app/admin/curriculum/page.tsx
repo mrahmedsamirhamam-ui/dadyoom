@@ -1,456 +1,342 @@
-import {
-  createCountryAction,
-  createCurriculumAction,
-  createGradeAction,
-  createSubjectAction,
-  createUnitAction,
-} from "./actions";
+import Link from "next/link";
 
-import {
-  createClient,
-} from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/server";
 
-const field =
-  "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-teal-500";
+type CountryRow = {
+  id: string;
+  code: string;
+  name_ar: string;
+  is_active: boolean;
+};
 
-const button =
-  "rounded-xl bg-teal-700 px-5 py-3 font-black text-white hover:bg-teal-800";
+type CurriculumRelation =
+  | {
+      name_ar: string;
+      code: string;
+    }
+  | {
+      name_ar: string;
+      code: string;
+    }[]
+  | null;
+
+type CurriculumRow = {
+  id: string;
+  name_ar: string;
+  academic_year: string | null;
+  is_active: boolean;
+  countries: CurriculumRelation;
+};
+
+function relationOne<T>(
+  value: T | T[] | null
+): T | null {
+  if (!value) {
+    return null;
+  }
+
+  return Array.isArray(value)
+    ? value[0] ?? null
+    : value;
+}
+
+async function countTable(
+  query: PromiseLike<{
+    count: number | null;
+    error: {
+      message: string;
+    } | null;
+  }>,
+  label: string
+) {
+  const result = await query;
+
+  if (result.error) {
+    throw new Error(
+      `${label}: ${result.error.message}`
+    );
+  }
+
+  return result.count ?? 0;
+}
 
 export default async function CurriculumPage() {
-  const supabase =
-    await createClient();
+  const supabase = await createClient();
 
   const [
     countriesResult,
     curriculaResult,
-    gradesResult,
-    subjectsResult,
-    unitsResult,
-  ] =
-    await Promise.all([
-      supabase
-        .from("edu_countries")
-        .select(
-          "id,name_ar,name_en"
+    gradeCount,
+    unitCount,
+    lessonCount,
+    publishedCount,
+  ] = await Promise.all([
+    supabase
+      .from("countries")
+      .select("id,code,name_ar,is_active")
+      .order("name_ar"),
+
+    supabase
+      .from("curricula")
+      .select(`
+        id,
+        name_ar,
+        academic_year,
+        is_active,
+        countries (
+          name_ar,
+          code
         )
-        .order("name_ar"),
+      `)
+      .order("created_at", { ascending: false }),
 
+    countTable(
       supabase
-        .from("edu_curricula")
-        .select(
-          "id,name_ar,country_id"
-        )
-        .order("name_ar"),
+        .from("grades")
+        .select("id", { count: "exact", head: true }),
+      "grades"
+    ),
 
+    countTable(
       supabase
-        .from("edu_grades")
-        .select(
-          "id,name_ar,curriculum_id,order_no"
-        )
-        .order(
-          "order_no"
-        ),
+        .from("units")
+        .select("id", { count: "exact", head: true }),
+      "units"
+    ),
 
+    countTable(
       supabase
-        .from("edu_subjects")
-        .select(
-          "id,name_ar,grade_id,icon,order_no"
-        )
-        .order(
-          "order_no"
-        ),
+        .from("lessons")
+        .select("id", { count: "exact", head: true }),
+      "lessons"
+    ),
 
+    countTable(
       supabase
-        .from("edu_units")
-        .select(
-          "id,title,subject_id,order_no,is_published"
-        )
-        .order(
-          "order_no"
-        ),
-    ]);
+        .from("lessons")
+        .select("id", { count: "exact", head: true })
+        .eq("status", "published"),
+      "published lessons"
+    ),
+  ]);
 
-  const error =
-    countriesResult.error ||
-    curriculaResult.error ||
-    gradesResult.error ||
-    subjectsResult.error ||
-    unitsResult.error;
+  if (countriesResult.error) {
+    throw new Error(
+      countriesResult.error.message
+    );
+  }
 
-  if (error) {
-    throw error;
+  if (curriculaResult.error) {
+    throw new Error(
+      curriculaResult.error.message
+    );
   }
 
   const countries =
-    countriesResult.data ?? [];
+    (countriesResult.data ?? []) as CountryRow[];
 
   const curricula =
-    curriculaResult.data ?? [];
+    (curriculaResult.data ?? []) as unknown as CurriculumRow[];
 
-  const grades =
-    gradesResult.data ?? [];
-
-  const subjects =
-    subjectsResult.data ?? [];
-
-  const units =
-    unitsResult.data ?? [];
+  const activeCountries =
+    countries.filter(
+      (country) => country.is_active
+    ).length;
 
   return (
     <main
       dir="rtl"
-      className="mx-auto max-w-7xl space-y-8 p-6"
+      className="px-4 py-7 sm:px-6 lg:px-8"
     >
-      <section className="rounded-3xl bg-gradient-to-l from-teal-700 to-emerald-600 p-7 text-white">
-        <p className="text-sm font-black text-teal-100">
-          إدارة المحتوى الأكاديمي
-        </p>
+      <div className="mx-auto max-w-7xl space-y-7">
+        <section className="relative overflow-hidden rounded-[2.5rem] border border-[#cdb778] bg-[#123f39] p-7 text-white shadow-xl sm:p-10">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 opacity-20 dad-arabesque"
+          />
 
-        <h1 className="mt-2 text-3xl font-black">
-          هيكل مناهج ضاديوم
-        </h1>
+          <div className="relative">
+            <span className="inline-flex rounded-full border border-[#f3d18b]/30 bg-white/10 px-4 py-2 text-xs font-black text-[#ffe8b2]">
+              المصدر القياسي للمحتوى
+            </span>
 
-        <p className="mt-3 max-w-3xl leading-8 text-teal-50">
-          الدولة ← المنهج ← الصف ← المادة ← الوحدة ← الدرس
-        </p>
+            <h1 className="mt-4 font-arabic-display text-3xl font-black sm:text-5xl">
+              بوابة المناهج
+            </h1>
 
-        <div className="mt-6 grid gap-3 sm:grid-cols-5">
-          <Stat title="الدول" value={countries.length} />
-          <Stat title="المناهج" value={curricula.length} />
-          <Stat title="الصفوف" value={grades.length} />
-          <Stat title="المواد" value={subjects.length} />
-          <Stat title="الوحدات" value={units.length} />
-        </div>
-      </section>
+            <p className="mt-4 max-w-4xl font-arabic-reading text-xl leading-9 text-[#e7f1ed]">
+              الدولة ← السنة الدراسية ← المنهج ← المرحلة ← الصف ← الفصل
+              ← اللغة العربية ← الوحدة ← الدرس. المناهج الأساسية تُحمّل
+              كحزم موثقة، ولا نطلب من المعلم إنشاءها يدويًا.
+            </p>
+          </div>
+        </section>
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        <Card title="🌍 إضافة دولة">
-          <form
-            action={createCountryAction}
-            className="space-y-3"
-          >
-            <input
-              name="name_ar"
-              required
-              placeholder="اسم الدولة بالعربية"
-              className={field}
-            />
+        <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <Metric label="الدول المسجلة" value={countries.length} />
+          <Metric label="الدول النشطة" value={activeCountries} />
+          <Metric label="الصفوف" value={gradeCount} />
+          <Metric label="الوحدات" value={unitCount} />
+          <Metric
+            label="الدروس المنشورة"
+            value={publishedCount}
+            note={`من ${lessonCount}`}
+          />
+        </section>
 
-            <input
-              name="name_en"
-              placeholder="اسم الدولة بالإنجليزية"
-              className={field}
-            />
+        <section className="grid gap-5 lg:grid-cols-[1fr_.85fr]">
+          <div className="rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-6 shadow-sm">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <p className="text-xs font-black text-[#9a7028]">
+                  المناهج الموجودة في قاعدة البيانات
+                </p>
+                <h2 className="mt-1 font-arabic-display text-2xl font-black text-[#123f39]">
+                  الحزم والمسارات
+                </h2>
+              </div>
 
-            <button className={button}>
-              إضافة الدولة
-            </button>
-          </form>
-        </Card>
+              <div className="flex flex-wrap gap-2">
+                <Link
+                  href="/admin/curriculum/packs"
+                  className="rounded-full bg-[#123f39] px-5 py-2.5 text-sm font-black text-white"
+                >
+                  مركز حزم المناهج
+                </Link>
 
-        <Card title="📚 إضافة منهج">
-          <form
-            action={createCurriculumAction}
-            className="space-y-3"
-          >
-            <select
-              name="country_id"
-              required
-              className={field}
-            >
-              <option value="">
-                اختر الدولة
-              </option>
-
-              {countries.map(
-                (country) => (
-                  <option
-                    key={country.id}
-                    value={country.id}
-                  >
-                    {country.name_ar}
-                  </option>
-                )
-              )}
-            </select>
-
-            <input
-              name="name_ar"
-              required
-              placeholder="اسم المنهج"
-              className={field}
-            />
-
-            <input
-              name="name_en"
-              placeholder="الاسم بالإنجليزية"
-              className={field}
-            />
-
-            <button className={button}>
-              إضافة المنهج
-            </button>
-          </form>
-        </Card>
-
-        <Card title="🎓 إضافة صف">
-          <form
-            action={createGradeAction}
-            className="space-y-3"
-          >
-            <select
-              name="curriculum_id"
-              required
-              className={field}
-            >
-              <option value="">
-                اختر المنهج
-              </option>
-
-              {curricula.map(
-                (curriculum) => (
-                  <option
-                    key={curriculum.id}
-                    value={curriculum.id}
-                  >
-                    {curriculum.name_ar}
-                  </option>
-                )
-              )}
-            </select>
-
-            <input
-              name="name_ar"
-              required
-              placeholder="مثال: الصف الرابع"
-              className={field}
-            />
-
-            <input
-              name="name_en"
-              placeholder="Grade 4"
-              className={field}
-            />
-
-            <input
-              name="order_no"
-              type="number"
-              min="0"
-              defaultValue="1"
-              className={field}
-            />
-
-            <button className={button}>
-              إضافة الصف
-            </button>
-          </form>
-        </Card>
-
-        <Card title="📖 إضافة مادة">
-          <form
-            action={createSubjectAction}
-            className="space-y-3"
-          >
-            <select
-              name="grade_id"
-              required
-              className={field}
-            >
-              <option value="">
-                اختر الصف
-              </option>
-
-              {grades.map(
-                (grade) => (
-                  <option
-                    key={grade.id}
-                    value={grade.id}
-                  >
-                    {grade.name_ar}
-                  </option>
-                )
-              )}
-            </select>
-
-            <input
-              name="name_ar"
-              required
-              placeholder="مثال: اللغة العربية"
-              className={field}
-            />
-
-            <input
-              name="name_en"
-              placeholder="Arabic Language"
-              className={field}
-            />
-
-            <div className="grid grid-cols-2 gap-3">
-              <input
-                name="icon"
-                placeholder="📘"
-                className={field}
-              />
-
-              <input
-                name="color"
-                placeholder="#0f766e"
-                className={field}
-              />
+                <Link
+                  href="/courses"
+                  className="rounded-full border border-[#d3c099] bg-[#fffaf0] px-5 py-2.5 text-sm font-black text-[#6f572d]"
+                >
+                  معاينة بوابة الطالب
+                </Link>
+              </div>
             </div>
 
-            <input
-              name="order_no"
-              type="number"
-              min="0"
-              defaultValue="1"
-              className={field}
-            />
-
-            <button className={button}>
-              إضافة المادة
-            </button>
-          </form>
-        </Card>
-
-        <Card title="🗂️ إضافة وحدة">
-          <form
-            action={createUnitAction}
-            className="space-y-3"
-          >
-            <select
-              name="subject_id"
-              required
-              className={field}
-            >
-              <option value="">
-                اختر المادة
-              </option>
-
-              {subjects.map(
-                (subject) => (
-                  <option
-                    key={subject.id}
-                    value={subject.id}
-                  >
-                    {subject.icon ?? "📘"}{" "}
-                    {subject.name_ar}
-                  </option>
-                )
-              )}
-            </select>
-
-            <input
-              name="title"
-              required
-              placeholder="عنوان الوحدة"
-              className={field}
-            />
-
-            <textarea
-              name="description"
-              placeholder="وصف الوحدة"
-              rows={3}
-              className={field}
-            />
-
-            <input
-              name="order_no"
-              type="number"
-              min="0"
-              defaultValue="1"
-              className={field}
-            />
-
-            <label className="flex items-center gap-2 font-bold text-slate-700">
-              <input
-                type="checkbox"
-                name="is_published"
-              />
-              نشر الوحدة
-            </label>
-
-            <button className={button}>
-              إضافة الوحدة
-            </button>
-          </form>
-        </Card>
-
-        <Card title="📊 المحتوى الحالي">
-          <div className="space-y-4">
-            {subjects.map(
-              (subject) => {
-                const subjectUnits =
-                  units.filter(
-                    (unit) =>
-                      unit.subject_id ===
-                      subject.id
-                  );
+            <div className="mt-5 space-y-3">
+              {curricula.map((curriculum) => {
+                const country =
+                  relationOne(curriculum.countries);
 
                 return (
-                  <div
-                    key={subject.id}
-                    className="rounded-2xl border border-slate-200 p-4"
+                  <article
+                    key={curriculum.id}
+                    className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[#e5d8bf] bg-white p-4"
                   >
-                    <div className="font-black text-slate-900">
-                      {subject.icon ?? "📘"}{" "}
-                      {subject.name_ar}
+                    <div>
+                      <div className="text-xs font-black text-[#9a7028]">
+                        {country?.name_ar ?? "دولة غير محددة"} •{" "}
+                        {curriculum.academic_year ?? "السنة غير محددة"}
+                      </div>
+
+                      <h3 className="mt-1 font-black text-[#123f39]">
+                        {curriculum.name_ar}
+                      </h3>
                     </div>
 
-                    <div className="mt-2 text-sm text-slate-500">
-                      {subjectUnits.length} وحدات
-                    </div>
-                  </div>
+                    <span
+                      className={`rounded-full px-3 py-1.5 text-xs font-black ${
+                        curriculum.is_active
+                          ? "bg-[#e3f2e8] text-[#1b6748]"
+                          : "bg-[#f4ecdd] text-[#806632]"
+                      }`}
+                    >
+                      {curriculum.is_active ? "نشط" : "غير نشط"}
+                    </span>
+                  </article>
                 );
-              }
-            )}
+              })}
 
-            {subjects.length === 0 ? (
-              <p className="text-slate-500">
-                لا توجد مواد حتى الآن.
-              </p>
-            ) : null}
+              {curricula.length === 0 ? (
+                <div className="rounded-2xl border border-dashed border-[#d7c49d] p-8 text-center font-bold text-[#746a5e]">
+                  لم تُحمّل أي حزمة منهج بعد.
+                </div>
+              ) : null}
+            </div>
           </div>
-        </Card>
+
+          <aside className="space-y-5">
+            <section className="rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-6 shadow-sm">
+              <p className="text-xs font-black text-[#9a7028]">
+                قاعدة ضاديوم
+              </p>
+
+              <h2 className="mt-1 font-arabic-display text-2xl font-black text-[#123f39]">
+                الحزمة قبل الكود
+              </h2>
+
+              <p className="mt-3 font-arabic-reading text-lg leading-8 text-[#73695d]">
+                إضافة مصر أو السعودية أو المغرب أو أي دولة لا تحتاج صفحة
+                React جديدة. نضيف Curriculum Pack موثقة ثم يشغّل المحرك
+                نفس الهيكل تلقائيًا.
+              </p>
+
+              <div className="mt-5 space-y-2 text-sm font-black text-[#5e554a]">
+                <Rule text="لا ننسخ كتابًا محميًا كاملًا دون حق استخدام." />
+                <Rule text="لا ننشر منهجًا غير موثّق لمجرد ملء القائمة." />
+                <Rule text="شرح ضاديوم وأنشطته وأسئلته أصلية أو مرخصة." />
+                <Rule text="المعلم يثري الدرس الموجود ولا يبني المنهج من الصفر." />
+              </div>
+            </section>
+
+            <Link
+              href="/admin/lessons"
+              className="block rounded-[2rem] bg-[#123f39] p-6 text-white shadow-sm"
+            >
+              <div className="text-xs font-black text-[#f5cf7a]">
+                المكتبة الحالية
+              </div>
+              <div className="mt-2 font-arabic-display text-2xl font-black">
+                افتح إدارة الدروس
+              </div>
+              <div className="mt-3 text-sm font-bold text-[#e2eeea]">
+                راجع المحتوى المنشور والإثراء دون إنشاء مسار منهجي يدوي.
+              </div>
+            </Link>
+          </aside>
+        </section>
       </div>
     </main>
   );
 }
 
-function Card({
-  title,
-  children,
+function Metric({
+  label,
+  value,
+  note,
 }: {
-  title: string;
-  children: React.ReactNode;
+  label: string;
+  value: number;
+  note?: string;
 }) {
   return (
-    <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-      <h2 className="mb-5 text-xl font-black text-slate-900">
-        {title}
-      </h2>
-
-      {children}
-    </section>
+    <article className="rounded-[1.6rem] border border-[#dfcfad] bg-[#fffdf8] p-5 shadow-sm">
+      <div className="text-xs font-black text-[#8b7040]">
+        {label}
+      </div>
+      <div className="mt-2 text-3xl font-black text-[#123f39]">
+        {value}
+      </div>
+      {note ? (
+        <div className="mt-1 text-[11px] font-bold text-[#85796a]">
+          {note}
+        </div>
+      ) : null}
+    </article>
   );
 }
 
-function Stat({
-  title,
-  value,
+function Rule({
+  text,
 }: {
-  title: string;
-  value: number;
+  text: string;
 }) {
   return (
-    <div className="rounded-2xl bg-white/15 p-3 text-center">
-      <div className="text-2xl font-black">
-        {value}
-      </div>
-
-      <div className="text-xs font-bold text-teal-50">
-        {title}
-      </div>
+    <div className="flex gap-2 rounded-xl bg-[#f7f0e3] p-3">
+      <span className="text-[#a8782f]">
+        ✓
+      </span>
+      <span>{text}</span>
     </div>
   );
 }

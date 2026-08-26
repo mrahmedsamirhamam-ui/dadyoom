@@ -15,7 +15,7 @@ export default function Hero() {
         إنها هوية وثقافة ورسالة.
       </p>
 
-     
+
 <Button>ابدأ رحلتك</Button>
     </section>
   );

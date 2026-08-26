@@ -264,19 +264,6 @@ export async function GET() {
             "mastered"
       ).length;
 
-    const lessonXp =
-      lessonProgress.reduce(
-        (
-          total,
-          row
-        ) =>
-          total +
-          Number(
-            row.xp ?? 0
-          ),
-        0
-      );
-
     const skillProgress:
       SkillProgressInput[] =
       (skillsResult.data ?? [])
@@ -445,17 +432,6 @@ export async function GET() {
               ),
           }
         : recommendedDailyChallenge;
-    const skillsXp =
-      skillProgress.reduce(
-        (
-          total,
-          row
-        ) =>
-          total +
-          row.xp,
-        0
-      );
-
     const {
       totalXP: totalXp,
     } =

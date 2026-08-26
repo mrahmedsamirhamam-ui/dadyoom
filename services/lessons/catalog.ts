@@ -1,8 +1,4 @@
-import type {
-  LessonRow,
-  StudentProgressRow,
-} from "@/types/database";
-import { notFound } from "next/navigation";
+import type { StudentProgressRow } from "@/types/database";
 import { createClient } from "@/lib/supabase/server";
 
 export type LessonCatalogItem = {
@@ -52,22 +48,7 @@ export type UnitCatalog = {
   lessons: LessonCatalogItem[];
 };
 
-export type LessonDetails = {
-  id: string;
-  title: string;
-  objective: string | null;
-  content: {
-    sections?: Array<Record<string, unknown>>;
-    [key: string]: unknown;
-  };
-  estimatedMinutes: number;
-  difficulty: "beginner" | "intermediate" | "advanced";
-  points: number;
-  unitTitle: string;
-  subjectName: string;
-  completed: boolean;
-  progressPercent: number;
-};
+
 
 /*
  * CANONICAL_STUDENT_CATALOG_V1
@@ -116,16 +97,7 @@ type UnitWithRelations = {
   lessons?: CanonicalLessonCatalogRow[];
 };
 
-type LessonDetailsRow = LessonRow & {
-  slug?: string;
-  is_published?: boolean;
-  edu_units: {
-    title: string;
-    edu_subjects: {
-      name_ar: string;
-    };
-  };
-};
+
 
 export async function getPublishedUnits(): Promise<UnitCatalog[]> {
   const supabase =
@@ -506,108 +478,4 @@ export async function getPublishedUnits(): Promise<UnitCatalog[]> {
       (unit) =>
         unit.lessons.length > 0
     );
-}
-
-
-export async function getLessonDetails(
-  lessonId: string
-): Promise<LessonDetails> {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  // --- Ø§Ù„ØªØ¹Ø¯ÙŠÙ„ Ø§Ù„Ù…Ø¶Ø§Ù: ÙÙƒ Ø§Ù„ØªØ±Ù…ÙŠØ² ÙˆØ§Ù„ØªØ­Ù‚Ù‚ Ù‡Ù„ Ø§Ù„Ù…Ø¹Ø±Ù UUID Ø£Ù… Slug ---
-  const decodedLessonId = decodeURIComponent(lessonId);
-  const isUuid =
-    /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
-      decodedLessonId
-    );
-
-  let lessonQuery = supabase
-    .from("edu_lessons")
-    .select(`
-      id,
-      title,
-      slug,
-      objective,
-      content,
-      estimated_minutes,
-      difficulty,
-      points_reward,
-      is_published,
-      edu_units!inner (
-        title,
-        edu_subjects!inner (
-          name_ar
-        )
-      )
-    `)
-    .eq("is_published", true);
-
-  lessonQuery = isUuid
-    ? lessonQuery.eq("id", decodedLessonId)
-    : lessonQuery.eq("slug", decodedLessonId);
-
-  const { data, error } = await lessonQuery.maybeSingle();
-
-  if (error) {
-    throw new Error(error.message);
-  }
-
-  if (!data) {
-    notFound();
-  }
-
-  const lessonData = data as unknown as LessonDetailsRow;
-  let progress: StudentProgressRow | null = null;
-
-  if (user) {
-    const { data: progressData } = await supabase
-      .from("edu_learner_progress")
-      .select("status,progress_percent")
-      .eq("student_id", user.id)
-      .eq("lesson_id", lessonData.id)
-      .maybeSingle();
-
-    progress = (progressData ?? null) as unknown as StudentProgressRow | null;
-
-    await supabase.from("edu_learner_progress").upsert(
-      {
-        student_id: user.id,
-        lesson_id: lessonData.id,
-        status:
-          progress?.status === "completed" ? "completed" : "in_progress",
-        progress_percent:
-          progress?.status === "completed"
-            ? 100
-            : Math.max(Number(progress?.progress_percent ?? 0), 10),
-        started_at: new Date().toISOString(),
-        last_opened_at: new Date().toISOString(),
-      },
-      { onConflict: "student_id,lesson_id" }
-    );
-  }
-
-  return {
-    id: lessonData.id,
-    title: lessonData.title,
-    objective: lessonData.objective ?? null,
-    content:
-      lessonData.content && typeof lessonData.content === "object"
-        ? (lessonData.content as Record<string, unknown>)
-        : {},
-    estimatedMinutes: Number(lessonData.estimated_minutes ?? 10),
-    difficulty:
-      lessonData.difficulty === "advanced" ||
-      lessonData.difficulty === "intermediate"
-        ? lessonData.difficulty
-        : "beginner",
-    points: Number(lessonData.points_reward ?? 10),
-    unitTitle: lessonData.edu_units.title,
-    subjectName: lessonData.edu_units.edu_subjects.name_ar,
-    completed: progress?.status === "completed",
-    progressPercent: Number(progress?.progress_percent ?? 0),
-  };
 }

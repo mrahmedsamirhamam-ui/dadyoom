@@ -1,22 +1,69 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Noto_Kufi_Arabic, Noto_Naskh_Arabic } from "next/font/google";
 import DadCompanion from "@/components/dad-ai/DadCompanion";
+import {
+  getSiteUrl,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_TAGLINE,
+} from "@/lib/site";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const kufi = Noto_Kufi_Arabic({
+  variable: "--font-arabic-kufi",
+  subsets: ["arabic"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const naskh = Noto_Naskh_Arabic({
+  variable: "--font-arabic-naskh",
+  subsets: ["arabic"],
+  display: "swap",
 });
+
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
-  title: "ضاديوم | بيت العربية الرقمي",
-  description:
-    "منصة تفاعلية لتعليم اللغة العربية وتنمية مهارات القراءة والكتابة والاستماع والتحدث.",
+  metadataBase: new URL(siteUrl),
+  applicationName: SITE_NAME,
+  title: {
+    default: `${SITE_NAME} | ${SITE_TAGLINE}`,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  category: "education",
+  openGraph: {
+    type: "website",
+    locale: "ar_AR",
+    url: "/",
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} | ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary",
+    title: `${SITE_NAME} | ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  manifest: "/manifest.webmanifest",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#174f47",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
@@ -28,10 +75,10 @@ export default function RootLayout({
     <html
       lang="ar"
       dir="rtl"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${kufi.variable} ${naskh.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col bg-[#FFFDF7] text-slate-900">
+      <body className="flex min-h-full flex-col bg-[#fffaf0] text-[#27231f]">
         {children}
         <DadCompanion pageTitle="ضاديوم" />
       </body>

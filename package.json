@@ -16,7 +16,13 @@
     "detect:lessons": "tsx importer/detect-lessons.ts",
     "repair:lessons": "tsx importer/repair-lessons-from-pdf.ts",
     "embed:lessons": "tsx importer/embeddings/generate-lesson-embeddings.ts",
-    "search:semantic": "tsx importer/embeddings/test-semantic-search.ts"
+    "search:semantic": "tsx importer/embeddings/test-semantic-search.ts",
+    "curriculum:export:bahrain": "node scripts/export-bahrain-curriculum-pack.mjs",
+    "curriculum:verify": "node scripts/verify-curriculum-packs.mjs",
+    "curriculum:import": "node scripts/import-curriculum-pack.mjs",
+    "release:audit": "node scripts/release-audit.mjs",
+    "curriculum:coverage": "node scripts/curriculum-coverage.mjs",
+    "release:final-audit": "node scripts/final-mvp-audit.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

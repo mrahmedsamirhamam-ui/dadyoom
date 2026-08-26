@@ -159,7 +159,7 @@ if (error) {
     throw error;
   }
 
-  
+
 
   const {
     data: teacherAnalyticsData,
@@ -219,7 +219,7 @@ const rows =
       0
     );
 
-  
+
 
   const analyticsCompleted =
     teacherClassAnalytics.reduce(
@@ -395,7 +395,7 @@ return (
               value={totalStudents}
             />
 
-          
+
 
             {/* teacher_mastery_metric_marker */}
 
@@ -423,7 +423,7 @@ return (
         </section>
 
 
-        
+
 
         {/* teacher_intelligence_marker */}
 

@@ -1375,7 +1375,7 @@ const proposals =
         imageUrl,
         analysis:
           result,
-      
+
         proposals,
 },
       {

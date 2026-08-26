@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="128" fill="#174f47"/>
+  <path d="M105 392h302" stroke="#f5cf7a" stroke-width="22" stroke-linecap="round" opacity=".78"/>
+  <text x="256" y="334" text-anchor="middle" fill="#f5cf7a" font-family="Noto Kufi Arabic, Arial, sans-serif" font-size="260" font-weight="800">ض</text>
+</svg>

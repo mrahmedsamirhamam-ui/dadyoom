@@ -47,7 +47,7 @@ export async function createSchoolAction(
     redirect(
       "/school?error=" +
         encodeURIComponent(
-          "Ø§Ø³Ù… Ø§Ù„Ù…Ø¯Ø±Ø³Ø© Ù…Ø·Ù„ÙˆØ¨."
+          "اسم المدرسة مطلوب."
         )
     );
   }
@@ -95,7 +95,7 @@ export async function createSchoolAction(
   redirect(
     "/school?success=" +
       encodeURIComponent(
-        "ØªÙ… Ø¥Ù†Ø´Ø§Ø¡ Ù…Ù„Ù Ø§Ù„Ù…Ø¯Ø±Ø³Ø© Ø¨Ù†Ø¬Ø§Ø­."
+        "تم إنشاء ملف المدرسة بنجاح."
       )
   );
 }
@@ -115,7 +115,7 @@ export async function linkTeacherToSchoolAction(
     redirect(
       "/school?error=" +
         encodeURIComponent(
-          "Ø£Ø¯Ø®Ù„ ÙƒÙˆØ¯ Ø§Ù„Ù…Ø¹Ù„Ù…."
+          "أدخل كود المعلم."
         )
     );
   }
@@ -162,11 +162,11 @@ export async function linkTeacherToSchoolAction(
 
   const message =
     result?.already_linked
-      ? "Ù‡Ø°Ø§ Ø§Ù„Ù…Ø¹Ù„Ù… Ù…Ø±ØªØ¨Ø· Ø¨Ø§Ù„Ù…Ø¯Ø±Ø³Ø© Ø¨Ø§Ù„ÙØ¹Ù„."
-      : `ØªÙ… Ø±Ø¨Ø· ${
+      ? "هذا المعلم مرتبط بالمدرسة بالفعل."
+      : `تم ربط ${
           result?.teacher_name ??
-          "Ø§Ù„Ù…Ø¹Ù„Ù…"
-        } Ø¨Ø§Ù„Ù…Ø¯Ø±Ø³Ø© Ø¨Ù†Ø¬Ø§Ø­.`;
+          "المعلم"
+        } بالمدرسة بنجاح.`;
 
   revalidatePath("/school");
 
@@ -187,7 +187,7 @@ export async function createSchoolInterventionAction(
   const classIdValue =
     formData.get("classId");
 
-  
+
   const studentIdValue =
     formData.get("studentId");
 
@@ -214,7 +214,7 @@ const insightTypeValue =
       ? classIdValue.trim()
       : "";
 
-  
+
   const studentId =
     typeof studentIdValue === "string"
       ? studentIdValue.trim()
@@ -245,7 +245,7 @@ const insightType =
     redirect(
       "/school?error=" +
         encodeURIComponent(
-          "Ø¨ÙŠØ§Ù†Ø§Øª Ø¥Ø¬Ø±Ø§Ø¡ Ø§Ù„Ù…ØªØ§Ø¨Ø¹Ø© ØºÙŠØ± Ù…ÙƒØªÙ…Ù„Ø©."
+          "بيانات إجراء المتابعة غير مكتملة."
         )
     );
   }
@@ -355,7 +355,7 @@ export async function updateSchoolInterventionStatusAction(
     redirect(
       "/school?error=" +
         encodeURIComponent(
-          "Ø¨ÙŠØ§Ù†Ø§Øª ØªØ­Ø¯ÙŠØ« Ø§Ù„Ø¥Ø¬Ø±Ø§Ø¡ ØºÙŠØ± ØµØ­ÙŠØ­Ø©."
+          "بيانات تحديث الإجراء غير صحيحة."
         )
     );
   }
@@ -407,7 +407,7 @@ export async function updateSchoolInterventionStatusAction(
   redirect(
     "/school?success=" +
       encodeURIComponent(
-        "ØªÙ… ØªØ­Ø¯ÙŠØ« Ø­Ø§Ù„Ø© Ø¥Ø¬Ø±Ø§Ø¡ Ø§Ù„Ù…ØªØ§Ø¨Ø¹Ø©."
+        "تم تحديث حالة إجراء المتابعة."
       )
   );
 }
@@ -472,4 +472,3 @@ export async function deleteSchoolInterventionAction(
 
   return;
 }
-

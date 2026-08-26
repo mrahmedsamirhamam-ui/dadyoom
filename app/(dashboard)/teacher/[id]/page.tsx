@@ -1,4 +1,4 @@
-﻿import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/server";
 import { redirect, notFound } from "next/navigation";
 import { getLessonForEdit } from "@/features/teacher/queries/getLessonForEdit";
 import { updateLesson } from "@/features/teacher/actions/updateLesson";
@@ -7,6 +7,10 @@ import LessonEditor from "@/features/teacher/components/LessonEditor";
 import { getLessonVocabulary } from "@/features/vocabulary/queries/getLessonVocabulary";
 import VocabularyManager from "@/features/vocabulary/components/VocabularyManager";
 import LessonObjectivesEditor from "@/features/teacher/components/LessonObjectivesEditor";
+import LessonQuestionsEditor from "@/features/teacher/components/LessonQuestionsEditor";
+import { getLessonQuestions } from "@/features/teacher/queries/getLessonQuestions";
+import LessonMediaEditor from "@/features/teacher/components/LessonMediaEditor";
+import { getLessonMediaActivities } from "@/features/teacher/queries/getLessonMediaActivities";
 
 type Props = {
   params: Promise<{
@@ -105,6 +109,10 @@ export default async function EditLessonPage({ params }: Props) {
   }
 
   const vocabulary = await getLessonVocabulary(lesson.id);
+
+  const questions = await getLessonQuestions(lesson.id);
+
+  const mediaActivities = await getLessonMediaActivities(lesson.id);
 
   const objectives: string[] =
     Array.isArray(
@@ -243,10 +251,11 @@ export default async function EditLessonPage({ params }: Props) {
             />
           }
           questions={
-            <div className="rounded-2xl border bg-white p-6">
-              <h2 className="text-2xl font-bold">الأسئلة</h2>
-              <p className="mt-4 text-slate-500">سيتم إدارة الأسئلة من هنا.</p>
-            </div>
+            <LessonQuestionsEditor
+              key="lesson-questions"
+              lessonId={lesson.id}
+              questions={questions}
+            />
           }
           objectives={
             <LessonObjectivesEditor
@@ -256,12 +265,11 @@ export default async function EditLessonPage({ params }: Props) {
             />
           }
           media={
-            <div className="rounded-2xl border bg-white p-6">
-              <h2 className="text-2xl font-bold">الوسائط</h2>
-              <p className="mt-4 text-slate-500">
-                سيتم رفع الصور والملفات الصوتية هنا.
-              </p>
-            </div>
+            <LessonMediaEditor
+              key="lesson-media"
+              lessonId={lesson.id}
+              activities={mediaActivities}
+            />
           }
         />
       </div>

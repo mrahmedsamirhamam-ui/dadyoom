@@ -979,7 +979,7 @@ export async function POST(
 
     for (
       const [
-        _key,
+        ,
         group
       ]
       of batchGroups

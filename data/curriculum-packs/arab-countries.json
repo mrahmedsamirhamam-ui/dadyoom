@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "countries": [
+    {
+      "code": "BH",
+      "nameAr": "مملكة البحرين",
+      "nameEn": "Kingdom of Bahrain",
+      "contentStatus": "published"
+    },
+    {
+      "code": "SA",
+      "nameAr": "السعودية",
+      "nameEn": "Saudi Arabia",
+      "contentStatus": "official-source-required"
+    },
+    {
+      "code": "AE",
+      "nameAr": "الإمارات العربية المتحدة",
+      "nameEn": "United Arab Emirates",
+      "contentStatus": "official-source-required"
+    },
+    {
+      "code": "QA",
+      "nameAr": "قطر",
+      "nameEn": "Qatar",
+      "contentStatus": "official-source-required"
+    },
+    {
+      "code": "KW",
+      "nameAr": "الكويت",
+      "nameEn": "Kuwait",
+      "contentStatus": "official-source-required"
+    },
+    {
+      "code": "OM",
+      "nameAr": "عُمان",
+      "nameEn": "Oman",
+      "contentStatus": "official-source-required"
+    },
+    {
+      "code": "EG",
+      "nameAr": "مصر",
+      "nameEn": "Egypt",
+      "contentStatus": "official-source-required"
+    },
+    {
+      "code": "JO",
+      "nameAr": "الأردن",
+      "nameEn": "Jordan",
+      "contentStatus": "official-source-required"
+    },
+    {
+      "code": "LB",
+      "nameAr": "لبنان",
+      "nameEn": "Lebanon",
+      "contentStatus": "official-source-required"
+    },
+    {
+      "code": "SY",
+      "nameAr": "سوريا",
+      "nameEn": "Syria",
+      "contentStatus": "official-source-required"
+    },
+    {
+      "code": "IQ",
+      "nameAr": "العراق",
+      "nameEn": "Iraq",
+      "contentStatus": "official-source-required"
+    },
+    {
+      "code": "PS",
+      "nameAr": "فلسطين",
+      "nameEn": "Palestine",
+      "contentStatus": "official-source-required"
+    },
+    {
+      "code": "YE",
+      "nameAr": "اليمن",
+      "nameEn": "Yemen",
+      "contentStatus": "official-source-required"
+    },
+    {
+      "code": "MA",
+      "nameAr": "المغرب",
+      "nameEn": "Morocco",
+      "contentStatus": "official-source-required"
+    },
+    {
+      "code": "DZ",
+      "nameAr": "الجزائر",
+      "nameEn": "Algeria",
+      "contentStatus": "official-source-required"
+    },
+    {
+      "code": "TN",
+      "nameAr": "تونس",
+      "nameEn": "Tunisia",
+      "contentStatus": "official-source-required"
+    },
+    {
+      "code": "LY",
+      "nameAr": "ليبيا",
+      "nameEn": "Libya",
+      "contentStatus": "official-source-required"
+    },
+    {
+      "code": "SD",
+      "nameAr": "السودان",
+      "nameEn": "Sudan",
+      "contentStatus": "official-source-required"
+    },
+    {
+      "code": "SO",
+      "nameAr": "الصومال",
+      "nameEn": "Somalia",
+      "contentStatus": "official-source-required"
+    },
+    {
+      "code": "DJ",
+      "nameAr": "جيبوتي",
+      "nameEn": "Djibouti",
+      "contentStatus": "official-source-required"
+    },
+    {
+      "code": "KM",
+      "nameAr": "جزر القمر",
+      "nameEn": "Comoros",
+      "contentStatus": "official-source-required"
+    },
+    {
+      "code": "MR",
+      "nameAr": "موريتانيا",
+      "nameEn": "Mauritania",
+      "contentStatus": "official-source-required"
+    }
+  ]
+}

@@ -37,5 +37,16 @@
     "**/*.mts",
     ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules", "_backups", "**/_backups/**"]
+  "exclude": [
+    "node_modules",
+    "_backups",
+    "**/_backups/**",
+    ".dadyoom-backups",
+    "**/*.bak",
+    "**/*.bak-*",
+    "**/*.before-*",
+    "**/*.backup",
+    "**/*.old",
+    "supabase/.temp"
+  ]
 }

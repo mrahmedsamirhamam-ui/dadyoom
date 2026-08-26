@@ -1,72 +1,28 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
 
-const stages = [
-  {
-    id: 1,
-    title: "بوابة ضاديوم",
-    subtitle: "بداية الرحلة",
-    icon: "🏛️",
-    description: "تعرّف على رحلتك التعليمية وحدد هدفك.",
-    href: "/student",
-    requiredLessons: 0,
-  },
-  {
-    id: 2,
-    title: "مدينة الحروف",
-    subtitle: "الحروف والأصوات",
-    icon: "🌱",
-    description: "تعلّم الحروف العربية وأصواتها وطريقة كتابتها.",
-    href: "/courses?stage=letters",
-    requiredLessons: 1,
-  },
-  {
-    id: 3,
-    title: "وادي القراءة",
-    subtitle: "القراءة والفهم",
-    icon: "📖",
-    description: "طوّر مهارات القراءة وفهم النصوص والمفردات.",
-    href: "/courses?stage=reading",
-    requiredLessons: 4,
-  },
-  {
-    id: 4,
-    title: "واحة الكتابة",
-    subtitle: "الكتابة والإملاء",
-    icon: "✍️",
-    description: "تدرّب على الإملاء وتكوين الجمل والكتابة السليمة.",
-    href: "/courses?stage=writing",
-    requiredLessons: 8,
-  },
-  {
-    id: 5,
-    title: "جبل التعبير",
-    subtitle: "التحدث والتعبير",
-    icon: "🗣️",
-    description: "عبّر عن أفكارك بثقة شفهياً وكتابياً.",
-    href: "/courses?stage=speaking",
-    requiredLessons: 12,
-  },
-  {
-    id: 6,
-    title: "مكتبة العربية",
-    subtitle: "النحو والأدب",
-    icon: "📚",
-    description: "اكتشف النحو والأدب والقصص العربية.",
-    href: "/courses?stage=library",
-    requiredLessons: 16,
-  },
-  {
-    id: 7,
-    title: "قصر البلاغة",
-    subtitle: "مرحلة الإتقان",
-    icon: "🏆",
-    description: "أكمل التحديات النهائية واحصل على شهادة الإنجاز.",
-    href: "/courses?stage=mastery",
-    requiredLessons: 20,
-  },
-];
+import { createClient } from "@/lib/supabase/server";
+import { getPublishedUnits } from "@/services/lessons/catalog";
+
+type SkillRow = {
+  skill: string;
+  score: number;
+};
+
+function skillLabel(skill: string) {
+  switch (skill) {
+    case "reading":
+      return "القراءة";
+    case "writing":
+      return "الكتابة";
+    case "listening":
+      return "الاستماع";
+    case "speaking":
+      return "التحدث";
+    default:
+      return skill;
+  }
+}
 
 export default async function JourneyPage() {
   const supabase = await createClient();
@@ -79,188 +35,398 @@ export default async function JourneyPage() {
     redirect("/login");
   }
 
-  const { count } = await supabase
-    .from("student_progress")
-    .select("*", { count: "exact", head: true })
-    .eq("student_id", user.id)
-    .eq("completed", true);
+  const [
+    catalog,
+    profileResult,
+    progressResult,
+    skillsResult,
+    statsResult,
+  ] = await Promise.all([
+    getPublishedUnits(),
 
-  const completedLessons = count ?? 0;
+    supabase
+      .from("profiles")
+      .select("full_name,country,role")
+      .eq("id", user.id)
+      .maybeSingle(),
 
-  const currentStageIndex = stages.reduce((currentIndex, stage, index) => {
-    if (completedLessons >= stage.requiredLessons) {
-      return index;
-    }
+    supabase
+      .from("student_lesson_progress")
+      .select(
+        "lesson_id,status,progress_percent,best_score,xp,updated_at"
+      )
+      .eq("student_id", user.id),
 
-    return currentIndex;
-  }, 0);
+    user.email
+      ? supabase
+          .from("student_skills")
+          .select("skill,score")
+          .eq("student_email", user.email)
+      : Promise.resolve({
+          data: [],
+          error: null,
+        }),
+
+    user.email
+      ? supabase
+          .from("student_stats")
+          .select(
+            "points,completed_lessons,completed_courses"
+          )
+          .eq("student_email", user.email)
+          .maybeSingle()
+      : Promise.resolve({
+          data: null,
+          error: null,
+        }),
+  ]);
+
+  const allLessons =
+    catalog.flatMap(
+      (unit) =>
+        unit.lessons.map(
+          (lesson) => ({
+            ...lesson,
+            unitTitle: unit.title,
+            countryName:
+              unit.country.name,
+            curriculumName:
+              unit.curriculum.name,
+            gradeName:
+              unit.grade.name,
+          })
+        )
+    );
+
+  const progressRows =
+    progressResult.data ?? [];
+
+  const completedIds =
+    new Set(
+      progressRows
+        .filter(
+          (row) =>
+            row.status ===
+              "completed" ||
+            row.status ===
+              "mastered"
+        )
+        .map(
+          (row) =>
+            row.lesson_id
+        )
+    );
+
+  const nextLesson =
+    allLessons.find(
+      (lesson) =>
+        !completedIds.has(
+          lesson.id
+        )
+    ) ??
+    allLessons[0] ??
+    null;
+
+  const completedLessons =
+    completedIds.size;
+
+  const totalLessons =
+    allLessons.length;
+
+  const curriculumPercent =
+    totalLessons > 0
+      ? Math.min(
+          100,
+          Math.round(
+            (
+              completedLessons /
+              totalLessons
+            ) *
+              100
+          )
+        )
+      : 0;
+
+  const skillRows =
+    (
+      skillsResult.data ??
+      []
+    ) as SkillRow[];
+
+  const skillScores =
+    new Map(
+      skillRows.map(
+        (row) => [
+          row.skill,
+          Number(
+            row.score ?? 0
+          ),
+        ]
+      )
+    );
+
+  const stats =
+    statsResult.data;
+
+  const displayName =
+    profileResult.data
+      ?.full_name
+      ?.trim() ||
+    user.email?.split(
+      "@"
+    )[0] ||
+    "صديق العربية";
+
+  const assessmentHref =
+    nextLesson
+      ? `/assessment/${nextLesson.id}`
+      : "/courses";
 
   return (
     <main
       dir="rtl"
-      className="min-h-screen bg-gradient-to-b from-teal-50 via-white to-amber-50 px-4 py-8 text-slate-800 sm:px-6 lg:px-10"
+      className="min-h-screen px-4 py-7 sm:px-6 lg:px-8"
     >
-      <div className="mx-auto max-w-5xl">
-        <header className="mb-10 text-center">
-          <p className="text-sm font-bold text-teal-700">
-            ضاديوم — بيت العربية الرقمي
-          </p>
+      <div className="mx-auto max-w-7xl space-y-7">
+        <section className="relative overflow-hidden rounded-[2.5rem] border border-[#cdb778] bg-[#123f39] p-7 text-white shadow-xl sm:p-10">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 opacity-20 dad-arabesque"
+          />
 
-          <h1 className="mt-3 text-3xl font-black sm:text-5xl">
-            رحلة الضاد
-          </h1>
+          <div className="relative grid gap-8 lg:grid-cols-[1fr_360px] lg:items-center">
+            <div>
+              <span className="inline-flex rounded-full border border-[#f3d18b]/30 bg-white/10 px-4 py-2 text-xs font-black text-[#ffe8b2]">
+                رحلتك الشخصية في بيت العربية الرقمي
+              </span>
 
-          <p className="mx-auto mt-4 max-w-2xl leading-8 text-slate-600">
-            تقدّم خطوة بعد خطوة، وأكمل الدروس لفتح مراحل جديدة في رحلتك
-            نحو إتقان اللغة العربية.
-          </p>
+              <h1 className="mt-4 font-arabic-display text-3xl font-black sm:text-5xl">
+                أهلاً {displayName}
+              </h1>
 
-          <div className="mx-auto mt-6 max-w-xl">
-            <div className="flex items-center justify-between text-sm font-bold">
-              <span>تقدمك في الرحلة</span>
-              <span>{completedLessons} درسًا مكتملًا</span>
+              <p className="mt-4 max-w-3xl font-arabic-reading text-xl leading-9 text-[#e7f1ed]">
+                المنهج يعطيك الطريق، والمهارات تمنحك الممارسة،
+                والتقييم يحدد خطوتك التالية، وضاد يرافقك للفهم
+                دون أن يحل مكانك.
+              </p>
+
+              <div className="mt-6 flex flex-wrap gap-2 text-xs font-black">
+                <span className="rounded-full bg-white/10 px-4 py-2">
+                  {profileResult.data?.country ??
+                    "الدولة من ملفك"}
+                </span>
+                <span className="rounded-full bg-white/10 px-4 py-2">
+                  {completedLessons} درس مكتمل
+                </span>
+                <span className="rounded-full bg-white/10 px-4 py-2">
+                  {Number(
+                    stats?.points ??
+                      0
+                  )}{" "}
+                  نقطة
+                </span>
+              </div>
             </div>
 
-            <div className="mt-3 h-3 overflow-hidden rounded-full bg-slate-200">
-              <div
-                className="h-full rounded-full bg-gradient-to-l from-teal-700 to-amber-400 transition-all duration-700"
-                style={{
-                  width: `${Math.min(
-                    (completedLessons / 20) * 100,
-                    100
-                  )}%`,
-                }}
-              />
+            <div className="rounded-[2rem] border border-white/10 bg-white/10 p-5 backdrop-blur">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-black text-[#ffe3a6]">
+                    تقدم المنهج
+                  </p>
+                  <p className="mt-1 text-3xl font-black">
+                    {curriculumPercent}%
+                  </p>
+                </div>
+                <div className="grid h-16 w-16 place-items-center rounded-2xl bg-[#f5cf7a] text-2xl">
+                  📚
+                </div>
+              </div>
+
+              <div className="mt-4 h-3 overflow-hidden rounded-full bg-white/10">
+                <div
+                  className="h-full rounded-full bg-[#f5cf7a]"
+                  style={{
+                    width: `${curriculumPercent}%`,
+                  }}
+                />
+              </div>
+
+              <p className="mt-3 text-sm font-bold text-[#e6f1ed]">
+                {completedLessons} من{" "}
+                {totalLessons} درس
+                ظاهر في مسارك الحالي.
+              </p>
             </div>
-          </div>
-        </header>
-
-        <section className="relative">
-          <div className="absolute bottom-20 right-1/2 top-20 hidden w-1 translate-x-1/2 rounded-full bg-slate-200 md:block" />
-
-          <div className="space-y-8">
-            {stages.map((stage, index) => {
-              const isCompleted = index < currentStageIndex;
-              const isCurrent = index === currentStageIndex;
-              const isLocked = index > currentStageIndex;
-
-              return (
-                <article
-                  key={stage.id}
-                  className={`relative z-10 flex ${
-                    index % 2 === 0
-                      ? "md:justify-start"
-                      : "md:justify-end"
-                  }`}
-                >
-                  <div
-                    className={`w-full rounded-3xl border p-6 shadow-sm transition md:w-[46%] ${
-                      isCurrent
-                        ? "border-teal-500 bg-white ring-4 ring-teal-100"
-                        : isCompleted
-                        ? "border-amber-300 bg-amber-50"
-                        : "border-slate-200 bg-slate-100 opacity-75"
-                    }`}
-                  >
-                    <div className="flex items-start gap-4">
-                      <div
-                        className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl text-3xl ${
-                          isCurrent
-                            ? "bg-teal-700 text-white"
-                            : isCompleted
-                            ? "bg-amber-200"
-                            : "bg-slate-200"
-                        }`}
-                      >
-                        {isLocked ? "🔒" : stage.icon}
-                      </div>
-
-                      <div className="min-w-0 flex-1">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <h2 className="text-xl font-black">
-                            {stage.title}
-                          </h2>
-
-                          {isCompleted && (
-                            <span className="rounded-full bg-amber-200 px-3 py-1 text-xs font-bold text-amber-900">
-                              مكتملة
-                            </span>
-                          )}
-
-                          {isCurrent && (
-                            <span className="rounded-full bg-teal-100 px-3 py-1 text-xs font-bold text-teal-800">
-                              مرحلتك الحالية
-                            </span>
-                          )}
-
-                          {isLocked && (
-                            <span className="rounded-full bg-slate-200 px-3 py-1 text-xs font-bold text-slate-500">
-                              مغلقة
-                            </span>
-                          )}
-                        </div>
-
-                        <p className="mt-1 text-sm font-semibold text-teal-700">
-                          {stage.subtitle}
-                        </p>
-
-                        <p className="mt-3 text-sm leading-7 text-slate-600">
-                          {stage.description}
-                        </p>
-
-                        <p className="mt-3 text-xs font-semibold text-slate-500">
-                          شرط الفتح: إكمال {stage.requiredLessons} من الدروس
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="mt-6">
-                      {isLocked ? (
-                        <button
-                          disabled
-                          className="w-full cursor-not-allowed rounded-2xl bg-slate-200 px-5 py-3 font-bold text-slate-500"
-                        >
-                          أكمل المرحلة السابقة أولًا
-                        </button>
-                      ) : (
-                        <Link
-                          href={stage.href}
-                          className={`inline-flex w-full items-center justify-center rounded-2xl px-5 py-3 font-bold transition ${
-                            isCurrent
-                              ? "bg-teal-700 text-white hover:bg-teal-800"
-                              : "bg-amber-200 text-amber-950 hover:bg-amber-300"
-                          }`}
-                        >
-                          {isCurrent ? "ابدأ المرحلة" : "مراجعة المرحلة"}
-                        </Link>
-                      )}
-                    </div>
-                  </div>
-
-                  <div
-                    className={`absolute right-1/2 top-10 hidden h-6 w-6 translate-x-1/2 rounded-full border-4 border-white md:block ${
-                      isCurrent
-                        ? "bg-teal-600"
-                        : isCompleted
-                        ? "bg-amber-400"
-                        : "bg-slate-300"
-                    }`}
-                  />
-                </article>
-              );
-            })}
           </div>
         </section>
 
-        <div className="mt-12 text-center">
-          <Link
-            href="/student"
-            className="inline-flex items-center justify-center rounded-2xl border border-teal-700 px-6 py-3 font-bold text-teal-700 transition hover:bg-teal-50"
-          >
-            العودة إلى لوحة الطالب
-          </Link>
-        </div>
+        {nextLesson ? (
+          <section className="arabic-panel grid gap-5 rounded-[2rem] border border-[#dfcfad] p-6 shadow-sm lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <p className="text-xs font-black text-[#9a7028]">
+                خطوتك التالية
+              </p>
+              <h2 className="mt-2 font-arabic-display text-2xl font-black text-[#123f39]">
+                {nextLesson.title}
+              </h2>
+              <p className="mt-2 font-arabic-reading text-lg leading-8 text-[#73695d]">
+                {nextLesson.countryName} •{" "}
+                {nextLesson.gradeName} •{" "}
+                {nextLesson.unitTitle}
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              <Link
+                href={`/lessons/${nextLesson.id}`}
+                className="rounded-full bg-[#123f39] px-6 py-3 text-sm font-black text-white"
+              >
+                أكمل التعلم
+              </Link>
+
+              <Link
+                href="/journey/daily"
+                className="rounded-full border border-[#d2bd92] bg-[#fffaf0] px-6 py-3 text-sm font-black text-[#735b2e]"
+              >
+                رحلة اليوم
+              </Link>
+            </div>
+          </section>
+        ) : null}
+
+        <section>
+          <div className="mb-4">
+            <p className="text-xs font-black text-[#9a7028]">
+              منظومة تعلم واحدة
+            </p>
+            <h2 className="mt-1 font-arabic-display text-3xl font-black text-[#123f39]">
+              كل أدوات ضاديوم في رحلة واحدة
+            </h2>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <HubCard icon="📚" title="منهجي" text="الوحدات والدروس الأساسية الجاهزة حسب الدولة والصف والسنة." href="/courses" action="افتح المنهج" />
+            <HubCard icon="🧭" title="رحلة اليوم" text="خطة قصيرة تجمع درسًا ومهارة وتقييمًا وتحديًا يوميًا." href="/journey/daily" action="ابدأ اليوم" />
+            <HubCard icon="🧠" title="المهارات الأربع" text="قراءة وكتابة واستماع وتحدث مع تدريب تكيفي حسب مستواك." href="/skills" action="تدرّب" />
+            <HubCard icon="📖" title="تحدي القراءة" text="جواز قراءة، ملخصات، فهم، تفكير ناقد واستجابة إبداعية." href="/reading-challenge" action="افتح الجواز" />
+            <HubCard icon="🔎" title="قاموس السياق" text="اكتشف معنى الكلمة داخل الجملة لا بعيدًا عن سياقها." href="/dictionary" action="حلّل كلمة" />
+            <HubCard icon="🎯" title="التقييم الذكي" text="اعرف ما أتقنته وما يحتاج تدريبًا، ثم خذ خطوتك التالية." href={assessmentHref} action="قيّم مستواي" />
+            <HubCard icon="🤖" title="ضاد" text="رفيق عربي يعرف سياق الدرس ويعطي تفسيرًا وتلميحًا لا إجابة جاهزة." href="/ask" action="اسأل ضاد" />
+            <HubCard icon="🏆" title="التقدم والتحفيز" text="XP ومستويات وإنجازات وتحديات يومية تجمع رحلتك في مكان واحد." href="/student" action="شاهد إنجازاتي" />
+          </div>
+        </section>
+
+        <section className="arabic-panel rounded-[2rem] border border-[#dfcfad] p-6 shadow-sm">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-xs font-black text-[#9a7028]">
+                نبض المهارات
+              </p>
+              <h2 className="mt-1 font-arabic-display text-2xl font-black text-[#123f39]">
+                أين أقف الآن؟
+              </h2>
+            </div>
+
+            <Link
+              href="/skills/adaptive"
+              className="rounded-full border border-[#d3c099] bg-[#fffaf0] px-5 py-2.5 text-sm font-black text-[#6f572d]"
+            >
+              تدريب تكيفي
+            </Link>
+          </div>
+
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              ["reading", "📖"],
+              ["writing", "✍️"],
+              ["listening", "🎧"],
+              ["speaking", "🎙️"],
+            ].map(
+              ([skill, icon]) => {
+                const score =
+                  Math.max(
+                    0,
+                    Math.min(
+                      100,
+                      skillScores.get(
+                        skill
+                      ) ?? 0
+                    )
+                  );
+
+                return (
+                  <div
+                    key={skill}
+                    className="rounded-2xl border border-[#e1d4bb] bg-[#fffdf8] p-4"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-2xl">
+                        {icon}
+                      </span>
+                      <strong className="text-[#123f39]">
+                        {score}%
+                      </strong>
+                    </div>
+                    <div className="mt-3 font-black text-[#37352f]">
+                      {skillLabel(
+                        skill
+                      )}
+                    </div>
+                    <div className="mt-3 h-2 overflow-hidden rounded-full bg-[#eee6d7]">
+                      <div
+                        className="h-full rounded-full bg-[#174f47]"
+                        style={{
+                          width: `${score}%`,
+                        }}
+                      />
+                    </div>
+                  </div>
+                );
+              }
+            )}
+          </div>
+        </section>
       </div>
     </main>
+  );
+}
+
+function HubCard({
+  icon,
+  title,
+  text,
+  href,
+  action,
+}: {
+  icon: string;
+  title: string;
+  text: string;
+  href: string;
+  action: string;
+}) {
+  return (
+    <Link
+      href={href}
+      className="group rounded-[1.7rem] border border-[#dfcfad] bg-[#fffdf8] p-5 shadow-sm transition hover:-translate-y-1 hover:border-[#b9944e] hover:shadow-lg"
+    >
+      <div className="flex items-center justify-between">
+        <span className="text-3xl">
+          {icon}
+        </span>
+        <span className="text-[#b28a3f] transition group-hover:translate-x-[-3px]">
+          ←
+        </span>
+      </div>
+      <h3 className="mt-4 font-arabic-display text-xl font-black text-[#123f39]">
+        {title}
+      </h3>
+      <p className="mt-2 min-h-20 font-arabic-reading text-base leading-7 text-[#73695d]">
+        {text}
+      </p>
+      <div className="mt-4 text-sm font-black text-[#8a6527]">
+        {action}
+      </div>
+    </Link>
   );
 }

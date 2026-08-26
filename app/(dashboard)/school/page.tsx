@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import SchoolTeacherLinkCard from "@/features/school-link/components/SchoolTeacherLinkCard";
 import {
   redirect,
@@ -1221,7 +1221,7 @@ const teacherCount =
           </div>
 
 
-          
+
 
           {/* school_intervention_filters_marker */}
 
@@ -1597,7 +1597,7 @@ const teacherCount =
 
                           ) : null}
 
-                        
+
 
                       {/* delete_school_intervention_marker */}
 

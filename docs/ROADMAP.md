@@ -1,96 +1,25 @@
-# Dadyoom Roadmap
 
-## Vision
+# ضاديوم — حالة المنتج
 
-To become the largest AI-powered Arabic learning platform in the world.
+## النواة الجاهزة للإطلاق
 
----
+- المصادقة وتوجيه الأدوار.
+- رحلة الطالب والمناهج والدروس والتقدم.
+- المهارات الأربع والتدريب التكيفي.
+- قاموس السياق و«ضاد» الرفيق التعليمي.
+- التقييم الذكي وخطة التعلم والتوصيات.
+- XP والمستويات والشارات والتحدي اليومي.
+- لوحة المعلم والفصول والطلاب ومحرر الدرس.
+- بوابتا ولي الأمر والمدرسة وتقارير المتابعة.
+- إدارة المناهج والدروس وأدوات مراجعة المحتوى.
+- SEO وrobots وsitemap وmanifest للإنتاج.
 
-# Phase 1 — Foundation ✅
+## توسعات ما بعد الإطلاق
 
-- Authentication
-- Dashboard
-- Courses
-- Lessons
-- Progress Tracking
-- AI Recommendation
-- Learning Plan
-- AI Assessment
-- Progress Engine
+هذه توسعات محتوى ومنتج وليست صفحات وهمية داخل الإصدار الأساسي:
 
-Status: Completed
-
----
-
-# Phase 2 — Smart Learning 🚧
-
-## Student
-
-- AI Assessments
-- Adaptive Difficulty
-- Smart Dictionary
-- AI Companion
-- Personalized Journey
-
-Status: In Progress
-
----
-
-# Phase 3 — Gamification
-
-- XP
-- Levels
-- Streak
-- Badges
-- Leaderboards
-- Daily Challenges
-
-Status: Planned
-
----
-
-# Phase 4 — Teacher Platform
-
-- Teacher Dashboard
-- Student Analytics
-- AI Lesson Generator
-- Assignment Builder
-- Exam Generator
-
-Status: Planned
-
----
-
-# Phase 5 — Parent Portal
-
-- Child Progress
-- Weekly Reports
-- AI Recommendations
-- Notifications
-
-Status: Planned
-
----
-
-# Phase 6 — School Platform
-
-- School Dashboard
-- Classes
-- Teachers
-- Reports
-- Attendance
-- Administration
-
-Status: Planned
-
----
-
-# Phase 7 — Arabic World Platform
-
-- Arabic Curricula
-- Country-specific Books
-- Teacher Marketplace
-- Community
-- Certifications
-
-Status: Planned
+- توسيع تغطية مناهج الدول العربية والصفوف.
+- أكاديمية تدريب المعلمين والدورات المهنية.
+- تحديات وفعاليات قراءة موسمية على مستوى المدارس.
+- مجتمع المعلمين وسوق الموارد التعليمية بعد اكتمال سياسات الجودة والحقوق.
+- تطبيقات أصلية للهواتف عند ثبات استخدام الويب.

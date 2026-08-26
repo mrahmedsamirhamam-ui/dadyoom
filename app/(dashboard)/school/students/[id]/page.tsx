@@ -178,7 +178,7 @@ export default async function SchoolStudentDetailsPage({
   const student =
     rows[0];
 
-  
+
 
   const {
     data: studentInterventionsData,
@@ -242,7 +242,7 @@ const completedLessons =
       student.total_xp
     );
 
-  
+
 
   const masteryRate =
     completedLessons > 0
@@ -413,7 +413,7 @@ return (
 
             </div>
 
-          
+
 
             {/* student_intervention_form_marker */}
 
@@ -632,7 +632,7 @@ return (
 </article>
 
 
-          
+
 
           {/* student_intervention_history_marker */}
 

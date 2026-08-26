@@ -289,7 +289,7 @@ export async function POST(
       }
     );
 
-    
+
 
     await updateStudentMemory({
       supabase,

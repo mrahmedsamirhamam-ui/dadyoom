@@ -1,153 +1,68 @@
 import { GoogleGenAI } from "@google/genai";
 import { NextResponse } from "next/server";
 
-import { createClient } from "@/lib/supabase/server";
-
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-});
-
 type CompanionRequest = {
   message?: string;
   mode?: "chat" | "check-understanding" | "lesson-completed";
   lessonTitle?: string;
   lessonContent?: string;
   pageTitle?: string;
-  conversation?: {
-    role: "user" | "assistant";
-    content: string;
-  }[];
+  conversation?: { role: "user" | "assistant"; content: string }[];
 };
 
 export async function POST(request: Request) {
   try {
-    if (!process.env.GEMINI_API_KEY) {
-      console.error("GEMINI_API_KEY is not configured.");
-
-      return NextResponse.json(
-        {
-          error: "خدمة ضاد غير مهيأة حاليًا.",
-        },
-        { status: 500 }
-      );
-    }
-
-    const supabase = await createClient();
-
-    const {
-      data: { user },
-      error: userError,
-    } = await supabase.auth.getUser();
-
-    if (userError || !user) {
-      return NextResponse.json(
-        { error: "يجب تسجيل الدخول أولًا." },
-        { status: 401 }
-      );
-    }
+    const apiKey = process.env.GEMINI_API_KEY?.trim();
+    const model = process.env.GEMINI_MODEL?.trim();
+    if (!apiKey || !model) return NextResponse.json({ error: "خدمة ضاد غير متاحة الآن." }, { status: 503 });
 
     const body = (await request.json()) as CompanionRequest;
+    const mode = body.mode ?? "chat";
+    const safeMessage = (body.message ?? "").trim().slice(0, 2000);
+    const lessonTitle = (body.lessonTitle ?? "").trim().slice(0, 200);
+    const pageTitle = (body.pageTitle ?? "").trim().slice(0, 200);
+    const lessonContent = (body.lessonContent ?? "").trim().slice(0, 9000);
+    const conversation = Array.isArray(body.conversation) ? body.conversation.slice(-8) : [];
 
-    const {
-      message = "",
-      mode = "chat",
-      lessonTitle = "درس في اللغة العربية",
-      lessonContent = "",
-      pageTitle = "",
-      conversation = [],
-    } = body;
+    if (mode !== "lesson-completed" && !safeMessage) return NextResponse.json({ error: "اكتب رسالتك أولًا." }, { status: 400 });
 
-    const safeMessage = message.trim().slice(0, 2000);
-    const safeLessonTitle = lessonTitle.trim().slice(0, 200);
-    const safePageTitle = pageTitle.trim().slice(0, 200);
-    const safeLessonContent = lessonContent.trim().slice(0, 8000);
-
-    if (mode !== "lesson-completed" && !safeMessage) {
-      return NextResponse.json(
-        { error: "يرجى كتابة رسالة أولًا." },
-        { status: 400 }
-      );
-    }
-
-    const systemInstruction = `
-أنت "ضاد"، الرفيق التعليمي الذكي داخل منصة ضاديوم لتعليم اللغة العربية.
-
-شخصيتك:
-- ودود، مشجع، ذكي، هادئ، وقريب من الطالب.
-- تستخدم العربية الفصحى السهلة.
-- لا تستخدم أسلوب التوبيخ أو السخرية.
-- لا تعطِ إجابات طويلة إلا إذا طلب الطالب ذلك.
-- لا تقل للطالب إنه فشل.
-- عند الخطأ، أعطه تلميحًا ثم فرصة جديدة.
-- أنت رفيق تعليمي، ولست الاختبار الرسمي للمنصة.
-
-السياق الحالي:
-- الصفحة: ${safePageTitle || "صفحة داخل ضاديوم"}
-- الدرس: ${safeLessonTitle || "درس في اللغة العربية"}
-- وضع التفاعل: ${mode}
-
-محتوى الدرس المتاح:
-${safeLessonContent || "لم يُرسل محتوى كامل للدرس."}
-
-القواعد التعليمية:
-1. اربط إجاباتك بمحتوى الدرس المتاح.
-2. إذا لم يكن محتوى الدرس كافيًا، أخبر الطالب بذلك بوضوح.
-3. عند وضع lesson-completed:
-   - هنئ الطالب بجملة قصيرة.
-   - اسأله هل فهم الدرس.
-   - اعرض عليه: سؤال سريع، شرح مختصر، أو المتابعة.
-4. عند وضع check-understanding:
-   - قدم سؤالًا واحدًا فقط في كل مرة.
-   - لا تعرض الإجابة مباشرة.
-   - انتظر إجابة الطالب.
-   - بعد إجابته، أخبره بلطف هل فهم الفكرة.
-5. هذه الأسئلة للتثبيت والمراجعة وليست اختبارًا رسميًا.
-6. لا تخرج عن تعليم اللغة العربية إلا إذا كان السؤال متعلقًا باستخدام المنصة.
-`.trim();
-
-    const previousConversation = conversation
-      .slice(-8)
-      .map((item) => {
-        const speaker =
-          item.role === "assistant" ? "ضاد" : "الطالب";
-
-        return `${speaker}: ${item.content.trim().slice(0, 1500)}`;
-      })
-      .join("\n");
-
-    const userPrompt =
-      mode === "lesson-completed"
-        ? `لقد أنهى الطالب درس "${safeLessonTitle}". تفاعل معه الآن وفق القواعد التعليمية.`
-        : safeMessage;
+    const ai = new GoogleGenAI({ apiKey });
+    const history = conversation.map((item) => `${item.role === "assistant" ? "ضاد" : "المتعلم"}: ${item.content.trim().slice(0, 1200)}`).join("\n");
+    const currentMessage = mode === "lesson-completed" ? `أنهى المتعلم درس «${lessonTitle || "الدرس"}». هنئه واقترح خطوة واحدة تالية.` : safeMessage;
 
     const prompt = `
-${systemInstruction}
+أنت «ضاد»، الرفيق التعليمي الرسمي في «ضاديوم — بيت العربية الرقمي».
+
+المبادئ:
+- العربية الفصحى السهلة هي لغة التعليم، مع فهم لهجات المتعلم واحترامها.
+- ابدأ بالإجابة المباشرة، ثم مثال قصير عند الحاجة، ثم سؤال تحقق واحد فقط إذا كان مفيدًا.
+- لا تُطل الرد بلا داعٍ، ولا تعاقب المتعلم على الخطأ؛ أعطه تلميحًا وفرصة جديدة.
+- لا تختلق معلومة عن المنهج أو تقدّم المستخدم.
+- إذا كان محتوى الدرس متاحًا فاجعله المصدر الأول، وإذا لم يكفِ فقل ذلك بوضوح.
+- لا تذكر مزود النموذج؛ اسمك داخل المنصة هو «ضاد».
+- لا تساعد على الغش في اختبار جارٍ؛ اشرح الفكرة بدل إعطاء الحل الجاهز عندما يكون السياق اختبارًا.
+
+السياق:
+الصفحة: ${pageTitle || "ضاديوم"}
+الدرس: ${lessonTitle || "غير محدد"}
+الوضع: ${mode}
+
+محتوى الدرس:
+${lessonContent || "لا يوجد نص درس مرفق في هذه الرسالة."}
 
 المحادثة السابقة:
-${previousConversation || "لا توجد محادثة سابقة."}
+${history || "لا توجد محادثة سابقة."}
 
-رسالة الطالب الحالية:
-${userPrompt}
+رسالة المتعلم:
+${currentMessage}
 `.trim();
 
-    const response = await ai.models.generateContent({
-      model: "gemini-flash-latest",
-      contents: prompt,
-    });
-
-    const reply =
-      response.text?.trim() ||
-      "أحسنت! هل ترغب في سؤال سريع للتأكد من فهم الدرس؟";
-
+    const response = await ai.models.generateContent({ model, contents: prompt });
+    const reply = response.text?.trim();
+    if (!reply) return NextResponse.json({ error: "لم يحصل ضاد على إجابة واضحة. حاول صياغة السؤال بطريقة أخرى." }, { status: 502 });
     return NextResponse.json({ reply });
   } catch (error) {
-    console.error("Dad companion error:", error);
-
-    return NextResponse.json(
-      {
-        error: "تعذر التواصل مع ضاد الآن. حاول مرة أخرى بعد قليل.",
-      },
-      { status: 500 }
-    );
+    console.error("DAD_COMPANION_ERROR:", error instanceof Error ? error.message : error);
+    return NextResponse.json({ error: "تعذر التواصل مع ضاد الآن. حاول مرة أخرى بعد قليل." }, { status: 500 });
   }
 }

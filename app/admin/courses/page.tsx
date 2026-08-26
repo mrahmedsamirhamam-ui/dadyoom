@@ -88,27 +88,9 @@ export default async function AdminCoursesPage() {
                     {course.published ? "🟢 منشورة" : "⚪ غير منشورة"}
                   </td>
 
-                  <td className="p-4 flex gap-3">
-                    <Link
-                      href={`/admin/courses/${course.id}/edit`}
-                      className="text-blue-600"
-                    >
-                      ✏️ تعديل
-                    </Link>
-
-                    <Link
-                      href={`/admin/lessons?course=${course.id}`}
-                      className="text-green-600"
-                    >
-                      📚 الدروس
-                    </Link>
-
-                    <Link
-                      href={`/courses/${course.id}`}
-                      className="text-gray-600"
-                    >
-                      👁️ معاينة
-                    </Link>
+                  <td className="p-4 flex flex-wrap gap-3">
+                    <Link href="/admin/lessons" className="font-bold text-green-700">📚 إدارة الدروس</Link>
+                    <Link href="/courses" className="font-bold text-slate-600">👁️ معاينة المنهج المنشور</Link>
                   </td>
                 </tr>
               );

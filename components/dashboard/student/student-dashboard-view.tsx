@@ -347,7 +347,7 @@ export function StudentDashboardView({
           />
         </section>
       </div>
-    
+
       <div className="mt-6">
         <SkillsProgressCard />
       </div>

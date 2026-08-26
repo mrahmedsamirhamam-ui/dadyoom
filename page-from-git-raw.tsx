@@ -524,7 +524,7 @@ export default async function LessonPage({
           </div>
         </section>
       </div>
-    
+
 <section className="mt-8 rounded-3xl bg-white p-6 shadow-sm">
 
 <h2 className="text-2xl font-bold">

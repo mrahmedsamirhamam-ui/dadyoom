@@ -45,7 +45,7 @@ async function resolveStudentId(
     }
   }
 
-  throw new Error("ØªØ¹Ø°Ø± ØªØ­Ø¯ÙŠØ¯ Ø§Ù„Ø·Ø§Ù„Ø¨ Ø§Ù„Ø­Ø§Ù„ÙŠ.");
+  throw new Error("تعذر تحديد الطالب الحالي.");
 }
 
 export async function getStudentStats(

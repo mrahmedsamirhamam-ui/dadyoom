@@ -690,7 +690,7 @@ export async function POST(
       deleteProposalsError
     ) {
       throw new Error(
-        `???? ??? ????? ??????? ???????: ${deleteProposalsError.message}`
+        `تعذر حذف مقترحات التحليل السابقة: ${deleteProposalsError.message}`
       );
     }
 
@@ -868,7 +868,7 @@ export async function POST(
         insertProposalsError
       ) {
         throw new Error(
-          `???? ??? ????? ????? ?????? ?????????: ${insertProposalsError.message}`
+          `تعذر حفظ مقترحات تحليل الأنشطة: ${insertProposalsError.message}`
         );
       }
     }

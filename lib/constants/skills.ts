@@ -14,4 +14,3 @@ export const SKILLS = {
 
 export type Skill =
   (typeof SKILLS)[keyof typeof SKILLS];
-  

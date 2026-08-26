@@ -1,8 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import InteractiveLessonActivities from "@/features/lessons/components/InteractiveLessonActivities";
 import LessonSemanticSearch from "@/features/semantic-search/components/LessonSemanticSearch";
 import LessonMasteryCard from "@/features/lesson-mastery/components/LessonMasteryCard";
 import { notFound } from "next/navigation";
+import { createClient } from "@/lib/supabase/server";
+import { SITE_DESCRIPTION } from "@/lib/site";
 import {
   getLessonPageBundle,
 } from "@/features/lessons/queries/getLessonPageBundle";
@@ -22,12 +25,51 @@ import LessonProgressCard from "@/features/student-progress/components/LessonPro
 import StartLessonButton from "@/features/student-progress/components/StartLessonButton";
 import LearningCompleteLessonButton from "@/features/student-progress/components/CompleteLessonButton";
 import LessonTutor from "@/features/ai-tutor/components/LessonTutor";
+import DadLessonContext from "@/components/dad-ai/DadLessonContext";
 
 type LessonPageProps = {
   params: Promise<{
     id: string;
   }>;
 };
+
+
+export async function generateMetadata({ params }: LessonPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("lessons")
+    .select("title,summary")
+    .eq("id", id)
+    .eq("status", "published")
+    .maybeSingle();
+
+  if (error || !data) {
+    return {
+      title: "درس العربية",
+      description: SITE_DESCRIPTION,
+      robots: { index: false, follow: true },
+    };
+  }
+
+  const title = data.title?.trim() || "درس العربية";
+  const description =
+    data.summary?.trim().slice(0, 170) ||
+    `تعلّم ${title} في ضاديوم من خلال المحتوى والأنشطة والأسئلة التفاعلية.`;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: `/lessons/${id}` },
+    openGraph: {
+      type: "article",
+      url: `/lessons/${id}`,
+      title,
+      description,
+    },
+  };
+}
 
 type VocabularyItem = {
   word: string;
@@ -219,12 +261,31 @@ export default async function LessonPage({
       ? (lessonQuestions as LessonQuestion[])
       : [];
 
+  const multipleChoiceQuestions =
+    questionsList.filter(
+      (item) =>
+        item.question_type ===
+        "multiple_choice"
+    );
+
+  const multipleChoiceQuestionIds =
+    new Set(
+      multipleChoiceQuestions.map(
+        (item) => item.id
+      )
+    );
+
   return (
     <main
       dir="rtl"
-      className="min-h-screen bg-slate-50 px-4 py-8"
+      className="lesson-arabic-shell min-h-screen px-4 py-8"
     >
-      <div className="mx-auto max-w-4xl space-y-6">
+      <DadLessonContext
+        pageTitle={`درس: ${lesson.title}`}
+        lessonTitle={lesson.title}
+        lessonContent={lesson.content ?? ""}
+      />
+      <div className="mx-auto max-w-5xl space-y-6">
         <div>
           <Link
             href="/student"
@@ -234,7 +295,7 @@ export default async function LessonPage({
           </Link>
         </div>
 
-        <section className="rounded-3xl bg-white p-6 shadow-sm">
+        <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
           <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-slate-500">
             <span>
               الدرس {lesson.lesson_number}
@@ -247,7 +308,7 @@ export default async function LessonPage({
             ) : null}
           </div>
 
-          <h1 className="text-3xl font-bold text-slate-900">
+          <h1 className="font-arabic-display text-3xl font-black text-[#173f38] sm:text-4xl">
             {lesson.title}
           </h1>
 
@@ -266,7 +327,7 @@ export default async function LessonPage({
         </section>
 
         {user ? (
-          <section className="space-y-4 rounded-3xl bg-white p-6 shadow-sm">
+          <section className="lesson-arabic-card space-y-4 rounded-3xl bg-white p-6 shadow-sm">
             <LessonProgressCard
               progress={learningProgress}
             />
@@ -299,8 +360,8 @@ export default async function LessonPage({
         )}
 
         {objectives.length > 0 ? (
-          <section className="rounded-3xl bg-white p-6 shadow-sm">
-            <h2 className="mb-4 text-2xl font-bold text-slate-900">
+          <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
+            <h2 className="mb-4 font-arabic-display text-2xl font-black text-[#173f38]">
               أهداف التعلم
             </h2>
 
@@ -322,19 +383,19 @@ export default async function LessonPage({
           </section>
         ) : null}
 
-        <section className="rounded-3xl bg-white p-6 shadow-sm">
-          <h2 className="mb-4 text-2xl font-bold text-slate-900">
+        <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
+          <h2 className="mb-4 font-arabic-display text-2xl font-black text-[#173f38]">
             نص الدرس
           </h2>
 
-          <div className="whitespace-pre-line text-lg leading-10 text-slate-800">
+          <div className="whitespace-pre-line font-arabic-reading text-xl leading-[2.15] text-[#3f3931]">
             {lesson.content}
           </div>
         </section>
 
         {vocabulary.length > 0 ? (
-          <section className="rounded-3xl bg-white p-6 shadow-sm">
-            <h2 className="mb-4 text-2xl font-bold text-slate-900">
+          <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
+            <h2 className="mb-4 font-arabic-display text-2xl font-black text-[#173f38]">
               المفردات
             </h2>
 
@@ -356,8 +417,8 @@ export default async function LessonPage({
         ) : null}
 
         {instructions.length > 0 ? (
-          <section className="rounded-3xl bg-white p-6 shadow-sm">
-            <h2 className="mb-4 text-2xl font-bold text-slate-900">
+          <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
+            <h2 className="mb-4 font-arabic-display text-2xl font-black text-[#173f38]">
               أنشطة الدرس
             </h2>
 
@@ -391,7 +452,7 @@ export default async function LessonPage({
 
 
 
-        <section className="rounded-3xl bg-white p-6 shadow-sm">
+        <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
           <h2 className="mb-4 text-2xl font-bold">
             معلومات الدرس
           </h2>
@@ -417,7 +478,7 @@ export default async function LessonPage({
         </section>
 
         {lesson.source_pdf_url ? (
-          <section className="rounded-3xl bg-white p-6 shadow-sm">
+          <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
             <Link
               href={lesson.source_pdf_url}
               target="_blank"
@@ -441,17 +502,10 @@ export default async function LessonPage({
           </section>
         ) : null}
 
-        {questionsList.length > 0 ? (
+        {multipleChoiceQuestions.length > 0 ? (
           <section className="space-y-6">
-            {questionsList.map(
+            {multipleChoiceQuestions.map(
               (item: LessonQuestion) => {
-                if (
-                  item.question_type !==
-                  "multiple_choice"
-                ) {
-                  return null;
-                }
-
                 return (
                   <div
                     key={item.id}
@@ -493,17 +547,20 @@ export default async function LessonPage({
           />
         ) : null}
 
-        <ScoreCard
-          score={
-            bundle.questionAttempts.filter(
-              (attempt) =>
-                attempt.is_correct
-            ).length
-          }
-          total={
-            questionsList.length
-          }
-        />
+        {multipleChoiceQuestions.length > 0 ? (
+          <ScoreCard
+            score={
+              bundle.questionAttempts.filter(
+                (attempt) =>
+                  attempt.is_correct &&
+                  multipleChoiceQuestionIds.has(
+                    attempt.question_id
+                  )
+              ).length
+            }
+            total={multipleChoiceQuestions.length}
+          />
+        ) : null}
 
 
         {user ? (
@@ -523,7 +580,7 @@ export default async function LessonPage({
 
         <LessonMasteryCard lessonId={lesson.id} />
 
-        <section className="rounded-3xl bg-white p-6 shadow-sm">
+        <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
           <div className="flex flex-wrap items-center justify-between gap-4">
             {lesson.previousLesson ? (
               <Link
@@ -552,7 +609,7 @@ export default async function LessonPage({
           </div>
         </section>
       </div>
-    
+
 <section className="mt-8 rounded-3xl bg-white p-6 shadow-sm">
 
 <h2 className="text-2xl font-bold">

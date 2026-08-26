@@ -500,7 +500,7 @@ export default function LessonForm({
     }
 
 
-    
+
     const normalizedSourceUrl =
       sourceUrl.trim();
 

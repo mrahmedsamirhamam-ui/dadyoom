@@ -2,16 +2,15 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
 import { getSupabaseBrowserClient } from "@/lib/auth/supabase-browser";
 
-export default function LogoutButton() {
+export default function LogoutButton({ compact = false }: { compact?: boolean }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   async function logout() {
+    if (loading) return;
     setLoading(true);
-
     try {
       const supabase = getSupabaseBrowserClient();
       await supabase.auth.signOut();
@@ -27,9 +26,11 @@ export default function LogoutButton() {
       type="button"
       onClick={logout}
       disabled={loading}
-      className="rounded-xl border border-slate-300 px-4 py-2 text-sm font-black text-slate-700 transition hover:border-red-300 hover:bg-red-50 hover:text-red-700 disabled:opacity-60"
+      aria-label="تسجيل الخروج"
+      title="تسجيل الخروج"
+      className="rounded-full border border-[#d8c9aa] bg-[#fffaf0] px-3 py-2.5 text-xs font-black text-[#765f3d] transition hover:border-[#b98a35] hover:bg-[#fff4dc] hover:text-[#123f39] disabled:opacity-60"
     >
-      {loading ? "جارٍ الخروج..." : "تسجيل الخروج"}
+      {loading ? "…" : compact ? "خروج" : "تسجيل الخروج"}
     </button>
   );
 }

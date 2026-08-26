@@ -1710,6 +1710,63 @@ export type Database = {
         }
         Relationships: []
       }
+      reading_passport_entries: {
+        Row: {
+          completed_at: string | null
+          comprehension_score: number | null
+          created_at: string
+          creative_response: string | null
+          critical_reflection: string | null
+          id: string
+          lesson_id: string
+          status: string
+          student_id: string
+          summary: string | null
+          updated_at: string
+        }
+        Insert: {
+          completed_at?: string | null
+          comprehension_score?: number | null
+          created_at?: string
+          creative_response?: string | null
+          critical_reflection?: string | null
+          id?: string
+          lesson_id: string
+          status?: string
+          student_id: string
+          summary?: string | null
+          updated_at?: string
+        }
+        Update: {
+          completed_at?: string | null
+          comprehension_score?: number | null
+          created_at?: string
+          creative_response?: string | null
+          critical_reflection?: string | null
+          id?: string
+          lesson_id?: string
+          status?: string
+          student_id?: string
+          summary?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reading_passport_entries_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "lessons"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "reading_passport_entries_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       question_attempts: {
         Row: {
           answered_at: string | null

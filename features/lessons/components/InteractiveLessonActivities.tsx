@@ -510,7 +510,8 @@ export default function InteractiveLessonActivities({
               activity.content ?? {};
 
             const showActivityImages =
-              false;
+              content.teacher_media_enabled === true ||
+              content.image_source === "teacher";
 
             const imageUrl =
               showActivityImages &&

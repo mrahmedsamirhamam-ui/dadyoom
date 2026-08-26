@@ -45,3 +45,43 @@ next-env.d.ts
 
 # Local curriculum books
 /public/books/
+
+# DADYOOM_FINAL_RELEASE_HYGIENE
+.dadyoom-backups/
+_backups/
+**/_backups/**
+*.bak
+*.bak-*
+*.backup
+*.before-*
+*.old
+*.orig
+*.tmp
+*.zip
+supabase/.temp/
+/dadyoom-final-*/
+/dadyoom-*.txt
+/*-audit.txt
+/*-debug.txt
+/*-dump.txt
+.env
+.env.*
+!.env.example
+/*.txt
+.dadyoom-final-patch-result.json
+
+# DADYOOM_STEP1_CORE_RELEASE_HYGIENE
+.next/
+node_modules/
+*.log
+.dadyoom-step1-core-final.json
+
+# Dadyoom local release artifacts
+encoding-backup*
+dadyoom-*.log
+dadyoom-*.txt
+
+# Dadyoom local/recovery artifacts
+.vs/
+.dadyoom-mvp-completion.json
+*.encoding-backup

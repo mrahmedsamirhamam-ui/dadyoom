@@ -204,7 +204,7 @@ export default async function SchoolClassDetailsPage({
         )
       : 0;
 
-  
+
 
   const classMasteryRate =
     totalCompleted > 0
@@ -363,7 +363,7 @@ return (
         </section>
 
 
-        
+
 
         {/* class_intelligence_marker */}
 
@@ -825,7 +825,7 @@ return (
 
                         </div>
 
-                      
+
                         <Link
                           href={`/school/students/${studentId}`}
                           className="mt-5 inline-flex w-full items-center justify-center rounded-xl border border-indigo-200 bg-indigo-50 px-5 py-3 text-sm font-black text-indigo-700 transition hover:bg-indigo-100"

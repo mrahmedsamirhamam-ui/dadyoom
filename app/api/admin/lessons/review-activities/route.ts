@@ -1,4 +1,4 @@
-﻿import {
+import {
   NextResponse,
 } from "next/server";
 
@@ -399,7 +399,7 @@ export async function PATCH(
             success: false,
 
             error:
-              "?? ???? ??? ?????? ??? ?????? ??? ??????.",
+              "لا يمكن نشر النشاط قبل معالجة مشكلات التحقق.",
 
             validation,
           },
@@ -429,7 +429,7 @@ export async function PATCH(
         return NextResponse.json(
           {
             error:
-              "image_options ?????? ?? mediaOnly.",
+              "image_options مطلوبة عند استخدام mediaOnly.",
           },
           {
             status: 400,

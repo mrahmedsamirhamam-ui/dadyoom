@@ -1,4 +1,5 @@
-﻿"use client";
+﻿/* eslint-disable @next/next/no-img-element -- Raw img is intentional for source-region cropping and natural-size measurement. */
+"use client";
 
 import {
   useState,
