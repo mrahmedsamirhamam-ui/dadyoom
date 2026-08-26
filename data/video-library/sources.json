@@ -1,0 +1,90 @@
+{
+  "target": 500,
+  "policy": {
+    "purpose": "Arabic language education only",
+    "presentation": "teacher-led and professional source curation",
+    "religionRule": "Do not infer a person's religion from name, clothing, face, or appearance. Prefer sources that explicitly describe their educational or faith-related context when relevant."
+  },
+  "sources": [
+    {
+      "key": "hidaya",
+      "name": "Hidaya Center - Learning Arabic",
+      "url": "https://www.youtube.com/@HidayaCenter/videos",
+      "room": "non-native",
+      "instructionLanguage": "arabic",
+      "presentation": "professional",
+      "quota": 80,
+      "scan": 260
+    },
+    {
+      "key": "arabic101",
+      "name": "Arabic 101",
+      "url": "https://www.youtube.com/@Arabic101/videos",
+      "room": "non-native",
+      "instructionLanguage": "mixed",
+      "presentation": "professional",
+      "quota": 60,
+      "scan": 240
+    },
+    {
+      "key": "khatawaat",
+      "name": "Arabic Khatawaat",
+      "url": "https://www.youtube.com/@ArabicKhatawaat/videos",
+      "room": "non-native",
+      "instructionLanguage": "mixed",
+      "presentation": "professional",
+      "quota": 50,
+      "scan": 220
+    },
+    {
+      "key": "arabicpod101",
+      "name": "Learn Arabic with ArabicPod101.com",
+      "url": "https://www.youtube.com/@ArabicPod101/videos",
+      "room": "non-native",
+      "instructionLanguage": "mixed",
+      "presentation": "professional",
+      "quota": 70,
+      "scan": 320
+    },
+    {
+      "key": "master-arabic",
+      "name": "أتقن العربية | Master Arabic",
+      "url": "https://www.youtube.com/@masterarabic1/videos",
+      "room": "both",
+      "instructionLanguage": "arabic",
+      "presentation": "professional",
+      "quota": 40,
+      "scan": 220
+    },
+    {
+      "key": "reda-farouk",
+      "name": "Reda El Farouk - رضا الفاروق",
+      "url": "https://www.youtube.com/@redaelfaroukofficial/videos",
+      "room": "native",
+      "instructionLanguage": "arabic",
+      "presentation": "professional",
+      "quota": 90,
+      "scan": 260
+    },
+    {
+      "key": "bassthalk",
+      "name": "بسطتهالك - أ. محمد صلاح",
+      "url": "https://www.youtube.com/@mohamedsalah.bassthalk/videos",
+      "room": "native",
+      "instructionLanguage": "arabic",
+      "presentation": "professional",
+      "quota": 95,
+      "scan": 280
+    },
+    {
+      "key": "native-dhad",
+      "name": "عاشق الضاد والنحو",
+      "url": "https://www.youtube.com/@MMA1973/videos",
+      "room": "native",
+      "instructionLanguage": "arabic",
+      "presentation": "professional",
+      "quota": 15,
+      "scan": 240
+    }
+  ]
+}

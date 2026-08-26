@@ -2,6 +2,7 @@ import RolePortalLayout from "@/components/roles/RolePortalLayout";
 
 const links = [
   { href: "/teacher", label: "لوحة المعلم", icon: "🏠" },
+  { href: "/teacher/academy", label: "غرفة تدريب المعلم", icon: "🎓" },
   { href: "/courses", label: "المناهج الجاهزة", icon: "📚" },
   { href: "/skills", label: "المهارات الأربع", icon: "🧠" },
   { href: "/reading-challenge", label: "القراءة", icon: "📖" },
