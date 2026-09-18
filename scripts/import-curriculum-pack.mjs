@@ -168,7 +168,7 @@ for (const unitPack of pack.units) {
       vocabulary: lessonPack.vocabulary,
       source_page_start: lessonPack.source?.pageStart ?? null,
       source_page_end: lessonPack.source?.pageEnd ?? null,
-      source_pdf_url: null,
+      source_pdf_url: lessonPack.source?.url ?? null,
       is_free: true,
       status: "published",
     };

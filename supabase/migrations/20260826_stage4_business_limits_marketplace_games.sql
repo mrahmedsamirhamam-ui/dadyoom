@@ -1,0 +1,15 @@
+-- Production migration is already applied to the connected Dadyoom project.
+-- Core lesson summary/slides: no daily generation gate for normal viewing,
+-- printing, or downloading.
+-- Free AI creation limits:
+--   video_ai=5/day
+--   custom_pptx=5/day
+--   custom_summary=5/day
+--   flashcards=10/day
+--   study_guide=5/day
+--   concept_map=5/day
+--   notebook_answer=25/day
+-- Plus: no daily feature limits inside Dadyoom; ads disabled.
+-- Free: light ads enabled outside sensitive learning/private pages.
+-- Marketplace default commission: teacher 85%, Dadyoom 15%.
+-- Payment rails: PayPal Orders + manual bank/IBAN confirmation.

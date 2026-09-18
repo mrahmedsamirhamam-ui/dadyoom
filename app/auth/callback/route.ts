@@ -6,6 +6,7 @@ import { isCountryCode } from "@/lib/countries";
 
 const roleDestinations: Record<string, string> = {
   student: "/student",
+  child: "/child",
   teacher: "/teacher",
   parent: "/parent",
   school: "/school",
@@ -25,7 +26,7 @@ function parseIntent(raw: string | undefined) {
     const role = typeof value.role === "string" ? value.role.trim().toLowerCase() : "student";
     const country = typeof value.country === "string" ? value.country.trim().toUpperCase() : "";
     const fullName = typeof value.fullName === "string" ? value.fullName.trim().slice(0, 120) : "";
-    if (!fullName || !new Set(["student", "teacher", "parent", "school"]).has(role) || !isCountryCode(country)) return null;
+    if (!fullName || !new Set(["student", "child", "teacher", "parent", "school"]).has(role) || !isCountryCode(country)) return null;
     return { fullName, role, country };
   } catch {
     return null;
@@ -49,14 +50,14 @@ export async function GET(request: Request) {
 
   const { data: existingProfile } = await supabase
     .from("profiles")
-    .select("role")
+    .select("role,country,full_name")
     .eq("id", user.id)
     .maybeSingle();
 
   const cookieStore = await cookies();
   const intent = parseIntent(cookieStore.get("dadyoom_oauth_intent")?.value);
 
-  if (existingProfile?.role) {
+  if (existingProfile?.role && existingProfile?.country && existingProfile?.full_name?.trim()) {
     const role = existingProfile.role.trim().toLowerCase();
     const response = NextResponse.redirect(new URL(requestedNext || roleDestinations[role] || "/student", origin));
     response.cookies.delete("dadyoom_oauth_intent");
@@ -75,21 +76,26 @@ export async function GET(request: Request) {
     user.email.split("@")[0];
 
   const admin = createAdminClient();
-  const { error: profileError } = await admin.from("profiles").insert({
-    id: user.id,
-    email: user.email,
-    full_name: fullName,
-    role: intent.role,
-    country: intent.country,
-  });
+  const { error: profileError } = await admin.from("profiles").upsert(
+    {
+      id: user.id,
+      email: user.email,
+      full_name: fullName,
+      role: intent.role,
+      country: intent.country,
+    },
+    {
+      onConflict: "id",
+    }
+  );
 
   if (profileError) {
     const { data: racedProfile } = await supabase
       .from("profiles")
-      .select("role")
+      .select("role,country,full_name")
       .eq("id", user.id)
       .maybeSingle();
-    if (!racedProfile?.role) {
+    if (!racedProfile?.role || !racedProfile?.country || !racedProfile?.full_name?.trim()) {
       console.error("GOOGLE_PROFILE_INSERT_ERROR:", profileError.message);
       return NextResponse.redirect(new URL("/onboarding?error=profile_create", origin));
     }

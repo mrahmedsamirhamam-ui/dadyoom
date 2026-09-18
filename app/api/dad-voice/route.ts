@@ -184,6 +184,7 @@ function runEdgeTts(params: {
 
       const processHandle = spawn(
 
+        /* turbopackIgnore: true */
         pythonExecutable,
 
         args,

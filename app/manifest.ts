@@ -1,17 +1,39 @@
-
 import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
+    id: "/",
     name: "ضاديوم — بيت العربية الرقمي",
     short_name: "ضاديوم",
     description:
-      "منصة ذكية لتعلّم اللغة العربية وتنمية القراءة والكتابة والاستماع والتحدث.",
+      "منصة عربية رقمية للمناهج والمهارات والقراءة والتعلم الذكي.",
     start_url: "/",
+    scope: "/",
     display: "standalone",
-    background_color: "#fffdf7",
-    theme_color: "#0f766e",
+    background_color: "#fbf6ea",
+    theme_color: "#123f39",
     lang: "ar",
     dir: "rtl",
+    categories: ["education"],
+    icons: [
+      {
+        src: "/pwa/icon-192.png",
+        sizes: "192x192",
+        type: "image/png",
+        purpose: "any",
+      },
+      {
+        src: "/pwa/icon-512.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "any",
+      },
+      {
+        src: "/icon.svg",
+        sizes: "any",
+        type: "image/svg+xml",
+        purpose: "any",
+      },
+    ],
   };
 }

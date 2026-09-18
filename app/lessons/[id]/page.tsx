@@ -160,8 +160,37 @@ export default async function LessonPage({
   let weakQuestions: WeakQuestion[] = [];
 
   if (user) {
-    const attempts =
+    // DADYOOM_ACTIVITY_AWARE_ADAPTIVE_V2
+    const questionAttempts =
       bundle.questionAttempts ?? [];
+
+    const activityAttempts =
+      bundle.activityAttempts ?? [];
+
+    const attemptedActivityIds =
+      new Set(
+        activityAttempts.map(
+          (attempt) =>
+            attempt.activity_id
+        )
+      );
+
+    const attempts: Array<{
+      question_id: string;
+      is_correct: boolean;
+    }> =
+      questionAttempts.length > 0
+        ? questionAttempts
+        : lessonActivities.map(
+            (activity) => ({
+              question_id:
+                activity.id,
+              is_correct:
+                attemptedActivityIds.has(
+                  activity.id
+                ),
+            })
+          );
 
     const totalQuestions =
       attempts.length;
@@ -195,7 +224,7 @@ export default async function LessonPage({
 
     const weakQuestionIds =
       new Set(
-        attempts
+        questionAttempts
           .filter(
             (attempt) =>
               !attempt.is_correct
@@ -286,6 +315,41 @@ export default async function LessonPage({
         lessonContent={lesson.content ?? ""}
       />
       <div className="mx-auto max-w-5xl space-y-6">
+        <section className="lesson-arabic-card rounded-3xl border border-[#d7bd83] bg-[#fff7e3] p-5 shadow-sm">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <div className="text-xs font-black text-[#9f7426]">العب وتعلّم</div>
+              <h2 className="mt-1 font-arabic-display text-xl font-black text-[#173f38]">
+                ألعاب عربية من نفس الدرس
+              </h2>
+            </div>
+            <Link
+              href={`/lessons/${lesson.id}/games`}
+              className="dadyoom-arabic-button rounded-2xl px-5 py-3 text-center font-black text-white"
+            >
+              افتح الألعاب
+            </Link>
+          </div>
+        </section>
+        <section className="lesson-arabic-card rounded-3xl border border-[#dcc899] bg-[#fffaf0] p-5 shadow-sm">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <div className="text-xs font-black text-[#a16f18]">
+                استوديو الدرس الذكي
+              </div>
+              <h2 className="mt-1 font-arabic-display text-xl font-black text-[#173f38]">
+                ملخص • PowerPoint • دفتري • فيديو AI
+              </h2>
+            </div>
+            <Link
+              href={`/lessons/${lesson.id}/study`}
+              className="rounded-2xl bg-[#173f38] px-5 py-3 text-center font-black text-white"
+            >
+              افتح استوديو الدرس
+            </Link>
+          </div>
+        </section>
+
         <div>
           <Link
             href="/student"

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { isCountryCode } from "@/lib/countries";
 
-const allowedRoles = new Set(["student", "teacher", "parent", "school"]);
+const allowedRoles = new Set(["student", "child", "teacher", "parent", "school"]);
 
 export async function POST(request: Request) {
   let body: { fullName?: string; role?: string; country?: string };

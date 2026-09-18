@@ -49,6 +49,8 @@
 }
 
 :root {
+  --font-arabic-kufi: "Noto Kufi Arabic", Tahoma, Arial, sans-serif;
+  --font-arabic-naskh: "Noto Naskh Arabic", "Traditional Arabic", "Times New Roman", serif;
   --background: #fffaf0;
   --foreground: #27231f;
   --card: #fffef9;
@@ -239,3 +241,299 @@
 @media (prefers-reduced-motion: reduce) {
   .dad-dot { animation: none; }
 }
+
+/* DADYOOM_RESPONSIVE_PORTAL_V1 */
+html,body{max-width:100%;overflow-x:hidden}
+.role-portal-body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}
+.role-portal-body>*{min-width:0;max-width:100%}
+
+/* DADYOOM_ARABIC_DESERT_GOLD_V1 */
+:root {
+  --dadyoom-green: #123f39;
+  --dadyoom-green-deep: #0b2e2a;
+  --dadyoom-gold: #c69a45;
+  --dadyoom-gold-soft: #ead29a;
+  --dadyoom-sand: #f3e4c4;
+  --dadyoom-ivory: #fffaf0;
+}
+
+.dadyoom-arabic-surface {
+  background:
+    radial-gradient(circle at 10% 12%, rgba(198,154,69,.14), transparent 22rem),
+    radial-gradient(circle at 90% 0%, rgba(18,63,57,.10), transparent 28rem),
+    linear-gradient(180deg, #fffdf7 0%, #f8efd9 100%);
+  position: relative;
+}
+
+.dadyoom-arabic-surface::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: auto 0 0 0;
+  height: 150px;
+  opacity: .12;
+  background:
+    radial-gradient(80px 44px at 6% 100%, #9a762f 0 48%, transparent 50%),
+    radial-gradient(120px 55px at 22% 100%, #c69a45 0 48%, transparent 50%),
+    radial-gradient(100px 45px at 46% 100%, #a77a2c 0 48%, transparent 50%),
+    radial-gradient(140px 62px at 70% 100%, #c69a45 0 48%, transparent 50%),
+    radial-gradient(105px 48px at 92% 100%, #9a762f 0 48%, transparent 50%);
+  z-index: 0;
+}
+
+.dadyoom-arabic-surface > * {
+  position: relative;
+  z-index: 1;
+}
+
+.dadyoom-arabic-button {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, #0e3732 0%, #18564d 52%, #0e3732 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(234,210,154,.25),
+    0 8px 24px rgba(18,63,57,.15);
+}
+
+.dadyoom-arabic-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .18;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent 0 10px,
+      rgba(234,210,154,.75) 10px 11px,
+      transparent 11px 20px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0 10px,
+      rgba(234,210,154,.55) 10px 11px,
+      transparent 11px 20px
+    );
+}
+
+.dadyoom-sand-button {
+  background:
+    radial-gradient(circle at 16% 25%, rgba(198,154,69,.22), transparent 42%),
+    linear-gradient(135deg, #fff8e7, #efd7a4);
+  border-color: #d4b56e;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.6);
+}
+
+.dadyoom-course-pattern {
+  background:
+    linear-gradient(155deg, rgba(18,63,57,.94), rgba(18,63,57,.72)),
+    repeating-linear-gradient(
+      45deg,
+      transparent 0 13px,
+      rgba(234,210,154,.45) 13px 14px,
+      transparent 14px 27px
+    );
+  position: relative;
+  overflow: hidden;
+}
+
+.dadyoom-course-pattern::after {
+  content: "";
+  position: absolute;
+  width: 72px;
+  height: 110px;
+  right: 28px;
+  bottom: -38px;
+  border-radius: 50% 50% 12% 12%;
+  border: 3px solid rgba(234,210,154,.55);
+  transform: rotate(-8deg);
+}
+
+.dadyoom-game-tab {
+  border: 1px solid #d8c08d;
+  background:
+    linear-gradient(180deg, #fffdf8, #f2e1bd);
+  color: #173f38;
+}
+
+.dadyoom-game-tab.is-active {
+  background:
+    linear-gradient(135deg, #123f39, #1b5b51);
+  color: white;
+  border-color: #c69a45;
+}
+
+.dadyoom-plan-bar {
+  background:
+    radial-gradient(circle at 92% 40%, rgba(198,154,69,.15), transparent 28%),
+    linear-gradient(90deg, #fffaf0, #f7e8c8);
+}
+
+/* DADYOOM_PRINT_LESSON_ASSETS_V1 */
+@media print {
+  body {
+    background: #ffffff !important;
+  }
+
+  nav,
+  header,
+  footer,
+  .print\:hidden,
+  button,
+  [data-dadyoom-adsense="1"] {
+    display: none !important;
+  }
+
+  .dadyoom-print-surface {
+    border: 0 !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+  }
+
+  .dadyoom-print-surface * {
+    color: #111111 !important;
+  }
+}
+/* DADYOOM_RESPONSIVE_PORTAL_V2
+   The app must fit at browser zoom 100%; never require 75% zoom. */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip;
+}
+
+body,
+main,
+section,
+article,
+aside,
+header,
+footer {
+  min-width: 0;
+}
+
+.role-portal-body,
+.role-portal-body > *,
+.lesson-arabic-shell,
+.dadyoom-arabic-surface,
+.dadyoom-print-surface {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.role-portal-body {
+  overflow-x: clip;
+}
+
+.role-portal-body img,
+.role-portal-body video,
+.role-portal-body canvas,
+.role-portal-body svg,
+.lesson-arabic-shell img,
+.lesson-arabic-shell video,
+.lesson-arabic-shell canvas,
+.lesson-arabic-shell svg {
+  max-width: 100%;
+}
+
+pre,
+code {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1536px) {
+  .role-portal-body > main,
+  .lesson-arabic-shell,
+  .dadyoom-arabic-surface {
+    padding-inline: clamp(0.75rem, 2vw, 1.25rem);
+  }
+}
+
+@media (max-width: 1024px) {
+  .role-portal-body .grid {
+    min-width: 0;
+  }
+
+  .role-portal-body input,
+  .role-portal-body select,
+  .role-portal-body textarea,
+  .role-portal-body button {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .lesson-arabic-shell,
+  .dadyoom-arabic-surface {
+    padding-inline: 0.75rem;
+  }
+
+  .lesson-arabic-shell h1,
+  .dadyoom-arabic-surface h1 {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+    line-height: 1.35;
+  }
+}
+
+
+/* DADYOOM_NATIVE_MOBILE_APP_V1 - Capacitor only; normal website unchanged */
+html.dadyoom-native-app {
+  width:100%; max-width:100vw; overflow-x:hidden;
+  overscroll-behavior-y:contain; -webkit-text-size-adjust:100%;
+}
+html.dadyoom-native-app body.dadyoom-native-body {
+  width:100%; max-width:100vw; min-height:100dvh; overflow-x:hidden;
+  padding-top:env(safe-area-inset-top);
+  padding-bottom:calc(76px + env(safe-area-inset-bottom));
+}
+html.dadyoom-native-app main { width:100%; max-width:100vw; overflow-x:clip; }
+html.dadyoom-native-app img,
+html.dadyoom-native-app video,
+html.dadyoom-native-app canvas { max-width:100%; }
+html.dadyoom-native-app button,
+html.dadyoom-native-app a[href],
+html.dadyoom-native-app [role="button"] {
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:rgba(197,144,53,.22);
+}
+html.dadyoom-native-app button:not(:disabled):active,
+html.dadyoom-native-app a[href]:active,
+html.dadyoom-native-app [role="button"]:active {
+  transform:scale(.975); opacity:.88;
+}
+html.dadyoom-native-app button,
+html.dadyoom-native-app input,
+html.dadyoom-native-app select,
+html.dadyoom-native-app textarea { font-size:16px; }
+html.dadyoom-native-app button,
+html.dadyoom-native-app [role="button"] { min-height:44px; }
+html.dadyoom-native-app input,
+html.dadyoom-native-app select,
+html.dadyoom-native-app textarea { max-width:100%; }
+html.dadyoom-native-app [role="dialog"] {
+  width:min(calc(100vw - 24px),42rem);
+  max-width:calc(100vw - 24px);
+  max-height:calc(100dvh - 28px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  overflow:auto;
+}
+html.dadyoom-native-app .dadyoom-native-bottom-nav {
+  position:fixed; z-index:2147483000; inset-inline:0; bottom:0;
+  display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:2px;
+  padding:7px 6px calc(7px + env(safe-area-inset-bottom));
+  border-top:1px solid rgba(18,63,57,.14);
+  background:rgba(255,253,248,.96);
+  box-shadow:0 -8px 28px rgba(18,63,57,.09);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+}
+html.dadyoom-native-app .dadyoom-native-nav-item {
+  display:flex; min-width:0; min-height:52px; flex-direction:column;
+  align-items:center; justify-content:center; gap:2px; border-radius:14px;
+  padding:4px 2px; color:#123f39; font-size:11px; font-weight:900;
+  line-height:1.15; text-decoration:none; user-select:none;
+}
+html.dadyoom-native-app .dadyoom-native-nav-item:active { background:#f2e5c9; }

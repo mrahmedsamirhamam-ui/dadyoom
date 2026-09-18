@@ -43,13 +43,8 @@ type LessonRow = {
 };
 
 export default async function TeacherPage() {
-let schoolLinkCode: ActiveSchoolTeacherLinkCode | null = null;
   const supabase =
     await createClient();
-
-  schoolLinkCode = await getActiveSchoolTeacherLinkCode(
-    supabase as unknown as SupabaseClient
-  );
 
   const {
     data: { user },
@@ -103,6 +98,12 @@ let schoolLinkCode: ActiveSchoolTeacherLinkCode | null = null;
       "/student"
     );
   }
+
+  const schoolLinkCode: ActiveSchoolTeacherLinkCode | null =
+    await getActiveSchoolTeacherLinkCode(
+      supabase as unknown as SupabaseClient
+    );
+
 
   /*
    * جداول Classroom أضيفت بعد آخر

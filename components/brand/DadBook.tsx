@@ -350,7 +350,7 @@ export default function DadBook() {
             <header className="flex items-center justify-between bg-gradient-to-l from-teal-800 to-teal-600 px-4 py-3 text-white">
               <div className="flex items-center gap-3">
                 <Image
-                  src="/brand/dad-book.png"
+                  src="/brand/dadyoom-chatbot-static.svg"
                   alt=""
                   width={48}
                   height={54}
@@ -575,7 +575,7 @@ export default function DadBook() {
           }}
         >
           <Image
-            src="/brand/dad-book.png"
+            src="/brand/dadyoom-chatbot-static.svg"
             alt="ضاد"
             width={105}
             height={118}
@@ -647,3 +647,4 @@ export default function DadBook() {
     </div>
   );
 }
+

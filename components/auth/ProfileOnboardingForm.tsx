@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { getArabicCountryOptions } from "@/lib/countries";
 
 const roles = [
+  { value: "child", label: "طفل", note: "أتعلم من الصغر" },
   { value: "student", label: "طالب", note: "أتعلم وأتدرب" },
   { value: "teacher", label: "معلم", note: "أدرّس وأتابع طلابي" },
   { value: "parent", label: "ولي أمر", note: "أتابع تقدّم أبنائي" },

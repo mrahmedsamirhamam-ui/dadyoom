@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import { createClient } from "@/lib/supabase/server";
+import { getCorrectAnswerSpec } from "@/lib/lesson-activities/grading";
 import { invalidateStudentCaches } from "@/features/student-progress/services/invalidate-student-caches";
 import { syncLearningProfile } from "@/features/learning-profile/services/sync-profile";
 import { syncLessonMasteryAction } from "@/features/lesson-mastery/actions/syncLessonMastery";
@@ -182,7 +183,8 @@ export async function completeLessonAction(
     .select(`
       id,
       answer,
-      points
+      points,
+      is_required
     `)
     .eq(
       "lesson_id",
@@ -197,24 +199,77 @@ export async function completeLessonAction(
     throw activitiesError;
   }
 
+  // DADYOOM_CANONICAL_ACTIVITY_GRADING_V2
+  const answerRecord = (
+    value: unknown
+  ): Record<string, unknown> => {
+    if (
+      typeof value === "object" &&
+      value !== null &&
+      !Array.isArray(value)
+    ) {
+      return value as Record<string, unknown>;
+    }
+
+    return {};
+  };
+
   const gradableActivities =
     (activityRows ?? []).filter(
-      (activity) => {
-        if (
-          typeof activity.answer !== "object" ||
-          activity.answer === null ||
-          Array.isArray(activity.answer)
-        ) {
-          return false;
-        }
-
-        return (
-          Object.keys(
-            activity.answer as object
-          ).length > 0
-        );
-      }
+      (activity) =>
+        getCorrectAnswerSpec(
+          answerRecord(activity.answer)
+        ) !== null
     );
+
+  const requiredCompletionActivities =
+    (activityRows ?? []).filter(
+      (activity) =>
+        activity.is_required === true &&
+        getCorrectAnswerSpec(
+          answerRecord(activity.answer)
+        ) === null
+    );
+
+  // DADYOOM_REQUIRED_COMPLETION_ACTIVITY_GATE
+  if (requiredCompletionActivities.length > 0) {
+    const requiredIds =
+      requiredCompletionActivities.map(
+        (activity) => activity.id
+      );
+
+    const {
+      data: requiredAttempts,
+      error: requiredAttemptsError,
+    } = await supabase
+      .from("lesson_activity_attempts")
+      .select("activity_id")
+      .eq("user_id", user.id)
+      .in("activity_id", requiredIds);
+
+    if (requiredAttemptsError) {
+      throw requiredAttemptsError;
+    }
+
+    const completedRequired =
+      new Set(
+        (requiredAttempts ?? []).map(
+          (attempt) => attempt.activity_id
+        )
+      ).size;
+
+    if (
+      completedRequired <
+      requiredCompletionActivities.length
+    ) {
+      throw new Error(
+        "أكمل أنشطة التقويم المطلوبة أولًا. " +
+        completedRequired +
+        " / " +
+        requiredCompletionActivities.length
+      );
+    }
+  }
 
   let score = 100;
   let answeredQuestions = 0;

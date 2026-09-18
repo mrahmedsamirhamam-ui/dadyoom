@@ -428,8 +428,8 @@ if (masterySkillsError) {
 
 
   return (
-    <main dir="rtl" className="min-h-screen bg-slate-50 px-4 py-6 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
+    <main dir="rtl" className="min-h-screen w-full min-w-0 overflow-x-hidden bg-slate-50 px-3 py-5 sm:px-5 lg:px-7">
+      <div className="mx-auto w-full min-w-0 max-w-7xl">
         {/* Banner Section */}
         <section className="overflow-hidden rounded-3xl bg-gradient-to-l from-teal-700 via-teal-600 to-emerald-500 p-6 text-white shadow-xl sm:p-8">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
@@ -512,7 +512,7 @@ if (masterySkillsError) {
         </div>
 
         {/* Main Content Grid */}
-        <section className="mt-6 grid gap-6 lg:grid-cols-[1.4fr_.8fr]">
+        <section className="mt-6">
           <div className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-6">
             <div className="flex items-center justify-between gap-4">
               <div>

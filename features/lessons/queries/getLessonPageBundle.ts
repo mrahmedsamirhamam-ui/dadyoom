@@ -79,6 +79,12 @@ type BundleQuestionAttempt = {
   is_correct: boolean;
 };
 
+export type BundleActivityAttempt = {
+  activity_id: string;
+  is_correct: boolean;
+  attempt_number: number;
+};
+
 type BundleTutorMessage = {
   id: string;
   role: "student" | "tutor";
@@ -88,25 +94,18 @@ type BundleTutorMessage = {
 
 type LessonPageBundle = {
   lesson: BundledLesson;
-
-  questions:
-    BundledLessonQuestion[];
-
-  activities:
-    BundledLessonActivity[];
-
+  questions: BundledLessonQuestion[];
+  activities: BundledLessonActivity[];
   student: {
     id: string;
   } | null;
-
   completed: boolean;
-
   learningProgress:
     BundleLearningProgress | null;
-
   questionAttempts:
     BundleQuestionAttempt[];
-
+  activityAttempts:
+    BundleActivityAttempt[];
   tutorMessages:
     BundleTutorMessage[];
 };
@@ -140,5 +139,54 @@ export async function getLessonPageBundle(
     return null;
   }
 
-  return data as LessonPageBundle;
+  const bundle =
+    data as unknown as Omit<
+      LessonPageBundle,
+      "activityAttempts"
+    >;
+
+  // DADYOOM_ACTIVITY_ATTEMPTS_BUNDLE_V2
+  if (
+    !bundle.student ||
+    !Array.isArray(bundle.activities) ||
+    bundle.activities.length === 0
+  ) {
+    return {
+      ...bundle,
+      activityAttempts: [],
+    };
+  }
+
+  const activityIds =
+    bundle.activities.map(
+      (activity) => activity.id
+    );
+
+  const {
+    data: activityAttemptsData,
+    error: activityAttemptsError,
+  } = await supabase
+    .from("lesson_activity_attempts")
+    .select("activity_id,is_correct,attempt_number")
+    .eq(
+      "user_id",
+      bundle.student.id
+    )
+    .in(
+      "activity_id",
+      activityIds
+    );
+
+  if (activityAttemptsError) {
+    throw activityAttemptsError;
+  }
+
+  return {
+    ...bundle,
+    activityAttempts:
+      (
+        activityAttemptsData ??
+        []
+      ) as unknown as BundleActivityAttempt[],
+  };
 }

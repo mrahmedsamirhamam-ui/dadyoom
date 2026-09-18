@@ -85,3 +85,57 @@ dadyoom-*.txt
 .vs/
 .dadyoom-mvp-completion.json
 *.encoding-backup
+
+# DADYOOM_ANDROID_RUNTIME_LOCAL_ARTIFACTS
+.dadyoom-runtime/
+android/**/build/
+android/.gradle/
+ios/**/build/
+
+# DADYOOM_SECRET_HARDENING_V1
+.env.local
+.env.*.local
+.env.production
+.env.development
+.dadyoom-deploy/
+!.env.sample
+
+# DADYOOM local / secret files
+.env.local
+.env.production
+.env.development
+.env.test
+.env.*.local
+# Build/runtime
+__pycache__/
+# Local recovery / generated backups
+.c-drive-rescue/
+_curriculum-backup-*/
+_curriculum-forensic-baseline-*/
+# DADYOOM local research/runtime artifacts
+.dadyoom-archive/
+.dadyoom-audits/
+.dadyoom-closure/
+# Curriculum browser/research caches
+data/curriculum-sources/**/browser-profile/
+data/curriculum-sources/**/html-cache/
+data/curriculum-sources/**/dom-cache/
+# Deep temporary research corpus - not required by production runtime
+data/curriculum-v14/**/all22-comprehensive-curriculum-research/
+# Local runtime/build
+# Secrets
+# DADYOOM local / secret files
+.env.local
+.env.production
+.env.development
+.env.test
+.env.*.local
+# Build/runtime
+__pycache__/
+# Local recovery / generated backups
+.c-drive-rescue/
+_curriculum-backup-*/
+_curriculum-forensic-baseline-*/
+temp/
+diagnostics/
+PROJECT/

@@ -1,10 +1,20 @@
-import { invalidateStudentCaches } from "@/features/student-progress/services/invalidate-student-caches";
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
+
+import { completeLessonAction } from "@/features/student-progress/actions/completeLesson";
 import { createClient } from "@/lib/supabase/server";
 
 type CompleteLessonBody = {
   lessonId?: string;
 };
+
+function isCompletionGateError(message: string) {
+  return (
+    message.includes("أكمل أنشطة التقويم المطلوبة") ||
+    message.includes("مستوى إتقانك الحالي") ||
+    message.includes("المطلوب 90%") ||
+    message.includes("إنهاء الدرس")
+  );
+}
 
 export async function POST(request: Request) {
   try {
@@ -17,117 +27,124 @@ export async function POST(request: Request) {
 
     if (userError || !user) {
       return NextResponse.json(
-        { success: false, error: "يجب تسجيل الدخول أولًا." },
-        { status: 401 }
+        {
+          success: false,
+          error: "يجب تسجيل الدخول أولًا.",
+        },
+        {
+          status: 401,
+        }
       );
     }
 
-    const body = (await request.json()) as CompleteLessonBody;
-    const lessonId = body.lessonId?.trim();
+    const body =
+      (await request.json()) as CompleteLessonBody;
+
+    const lessonId =
+      body.lessonId?.trim();
 
     if (!lessonId) {
       return NextResponse.json(
-        { success: false, error: "معرّف الدرس غير موجود." },
-        { status: 400 }
-      );
-    }
-
-    const { data: lesson, error: lessonError } = await supabase
-      .from("edu_lessons")
-      .select("id,points_reward,is_published")
-      .eq("id", lessonId)
-      .eq("is_published", true)
-      .maybeSingle();
-
-    if (lessonError) {
-      return NextResponse.json(
-        { success: false, error: lessonError.message },
-        { status: 500 }
-      );
-    }
-
-    if (!lesson) {
-      return NextResponse.json(
-        { success: false, error: "الدرس غير موجود أو غير منشور." },
-        { status: 404 }
-      );
-    }
-
-    const now = new Date().toISOString();
-
-    const { error: progressError } = await supabase
-      .from("edu_learner_progress")
-      .upsert(
         {
-          student_id: user.id,
-          lesson_id: lessonId,
-          status: "completed",
-          progress_percent: 100,
-          score: 100,
-          started_at: now,
-          completed_at: now,
-          last_opened_at: now,
+          success: false,
+          error: "معرّف الدرس غير موجود.",
         },
         {
-          onConflict: "student_id,lesson_id",
+          status: 400,
         }
       );
+    }
+
+    /*
+     * DADYOOM_CANONICAL_LEGACY_COMPLETION_BRIDGE_V1
+     *
+     * This endpoint is retained only for compatibility.
+     * It MUST NOT mark a lesson complete directly.
+     *
+     * All completion semantics are delegated to
+     * completeLessonAction(), which enforces:
+     *
+     * - authenticated ownership
+     * - required activity completion
+     * - activity/question grading
+     * - >= 90% mastery
+     * - lesson mastery synchronization
+     * - canonical student_lesson_progress
+     * - gamification/cache/adaptive side effects
+     */
+
+    const {
+      data: progress,
+      error: progressError,
+    } = await supabase
+      .from("student_lesson_progress")
+      .select(
+        "id,student_id,lesson_id,status,progress_percent,best_score"
+      )
+      .eq(
+        "student_id",
+        user.id
+      )
+      .eq(
+        "lesson_id",
+        lessonId
+      )
+      .maybeSingle();
 
     if (progressError) {
       return NextResponse.json(
-        { success: false, error: progressError.message },
-        { status: 500 }
+        {
+          success: false,
+          error: progressError.message,
+        },
+        {
+          status: 500,
+        }
       );
     }
 
-    const { count } = await supabase
-      .from("edu_point_transactions")
-      .select("id", { count: "exact", head: true })
-      .eq("student_id", user.id)
-      .eq("lesson_id", lessonId)
-      .eq("reason", "lesson_completed");
-
-    if ((count ?? 0) === 0) {
-      const { error: pointsError } = await supabase
-        .from("edu_point_transactions")
-        .insert({
-          student_id: user.id,
-          lesson_id: lessonId,
-          points: Number(lesson.points_reward ?? 10),
-          reason: "lesson_completed",
-          metadata: {
-            source: "api/lessons/complete",
-          },
-        });
-
-      if (pointsError) {
-        console.warn(
-          "LESSON_POINTS_WARNING",
-          pointsError.message
-        );
-      }
+    if (!progress) {
+      return NextResponse.json(
+        {
+          success: false,
+          error:
+            "ابدأ الدرس ونفّذ أنشطته المطلوبة قبل محاولة إنهائه.",
+          canonicalGate: true,
+        },
+        {
+          status: 409,
+        }
+      );
     }
 
-    // STUDENT_CACHE_INVALIDATION_POINT
-    await invalidateStudentCaches({
-      studentId: user.id,
-      studentEmail: user.email,
-      supabase,
-    });
+    await completeLessonAction(
+      progress.id
+    );
+
     return NextResponse.json({
       success: true,
       lessonId,
+      canonicalGate: true,
+      message:
+        "تم إكمال الدرس عبر بوابة ضاديوم المعتمدة.",
     });
   } catch (cause) {
+    const message =
+      cause instanceof Error
+        ? cause.message
+        : "حدث خطأ أثناء إكمال الدرس.";
+
     return NextResponse.json(
       {
         success: false,
-        error:
-          cause instanceof Error
-            ? cause.message
-            : "حدث خطأ أثناء إكمال الدرس.",
+        error: message,
+        canonicalGate: true,
       },
-      { status: 500 }
+      {
+        status: isCompletionGateError(message)
+          ? 409
+          : 500,
+      }
     );
   }
 }

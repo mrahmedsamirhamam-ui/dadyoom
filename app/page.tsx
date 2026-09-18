@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import DadyoomLogo, { DadyoomMark } from "@/components/brand/DadyoomLogo";
 
+import HomeInteractionPanel from "@/components/home/HomeInteractionPanel";
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
@@ -14,10 +15,10 @@ const pillars = [
 ];
 
 const skills = [
-  { icon: "📖", title: "القراءة", text: "فهم النص والسياق" },
-  { icon: "✍️", title: "الكتابة", text: "الإملاء والتعبير" },
-  { icon: "🎧", title: "الاستماع", text: "فهم المسموع" },
-  { icon: "🎙️", title: "التحدث", text: "النطق والتعبير" },
+  { icon: "📖", title: "القراءة", text: "فهم النص والسياق", href: "/skills/reading/practice" },
+  { icon: "✍️", title: "الكتابة", text: "الإملاء والتعبير", href: "/skills/writing/practice" },
+  { icon: "🎧", title: "الاستماع", text: "فهم المسموع", href: "/skills/listening/practice" },
+  { icon: "🎙️", title: "التحدث", text: "النطق والتعبير", href: "/skills/speaking/practice" },
 ];
 
 export default function HomePage() {
@@ -113,7 +114,7 @@ export default function HomePage() {
           <SectionHeading eyebrow="المهارات الأربع" title="نتعلم العربية كما نستخدمها" text="القراءة والكتابة والاستماع والتحدث متصلة بالتقدم والتدريب، وليست صفحات منفصلة للعرض فقط." />
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {skills.map((skill) => (
-              <Link key={skill.title} href="/skills" className="rounded-3xl border border-[#dfd0b3] bg-[#fffef9] p-6 transition hover:-translate-y-1 hover:border-[#7fa79d] hover:shadow-md">
+              <Link key={skill.title} href={skill.href} className="rounded-3xl border border-[#dfd0b3] bg-[#fffef9] p-6 transition hover:-translate-y-1 hover:border-[#7fa79d] hover:shadow-md">
                 <div className="text-4xl">{skill.icon}</div>
                 <h3 className="mt-4 font-arabic-display text-xl font-black text-[#174f47]">{skill.title}</h3>
                 <p className="mt-2 text-sm font-bold text-[#766c60]">{skill.text}</p>
@@ -143,7 +144,8 @@ export default function HomePage() {
           <div className="text-sm">© 2026 ضاديوم</div>
         </div>
       </footer>
-    </main>
+          <HomeInteractionPanel />
+</main>
   );
 }
 

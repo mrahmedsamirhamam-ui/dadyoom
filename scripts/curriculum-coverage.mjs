@@ -48,14 +48,19 @@ const countryCodes =
     )
   );
 
-const packFiles =
-  fs.readdirSync(dir)
-    .filter(
-      (name) =>
-        name.endsWith(".json") &&
-        name !== "arab-countries.json"
-    )
-    .sort();
+const registryFiles = new Set([
+  "arab-countries.json",
+  "official-sources-2026.json",
+]);
+
+const packFiles = fs
+  .readdirSync(dir)
+  .filter(
+    (name) =>
+      name.endsWith(".json") &&
+      !registryFiles.has(name),
+  )
+  .sort();
 
 const keys =
   new Set();

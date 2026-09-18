@@ -1,16 +1,20 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { authorizeSession } from "@/lib/auth/authorization";
 
 export async function proxy(request: NextRequest) {
   const pathname =
     request.nextUrl.pathname;
 
-  /*
-   * هذه المسارات تتحقق من المصادقة داخلها بالفعل،
-   * لذلك لا نكرر auth.getUser() داخل الـ proxy.
-   */
+  const roles = /^\/api\/admin(?:\/|$)/u.test(pathname)
+    ? ["admin"]
+    : /^\/api\/teacher(?:\/|$)/u.test(pathname)
+      ? ["teacher", "admin"]
+      : undefined;
+
+  // Gate privileged API namespaces before any handler can run.
   if (
-    pathname.startsWith("/api/")
+    pathname.startsWith("/api/") && !roles
   ) {
     return NextResponse.next();
   }
@@ -71,13 +75,30 @@ export async function proxy(request: NextRequest) {
       }
     );
 
-  await supabase.auth.getUser();
+  if (roles) {
+    const access = await authorizeSession(supabase, roles);
+    if (!access.ok) {
+      const denied = NextResponse.json(
+        { error: access.error },
+        { status: access.status, headers: { "Cache-Control": "no-store" } },
+      );
+      for (const cookie of response.cookies.getAll()) {
+        denied.cookies.set(cookie);
+      }
+      return denied;
+    }
+    response.headers.set("Cache-Control", "no-store");
+  } else {
+    await supabase.auth.getUser();
+  }
 
   return response;
 }
 
 export const config = {
   matcher: [
+    "/api/admin/:path*",
+    "/api/teacher/:path*",
     "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };

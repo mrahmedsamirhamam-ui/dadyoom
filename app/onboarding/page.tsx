@@ -6,13 +6,14 @@ import { isCountryCode } from "@/lib/countries";
 
 const destinations: Record<string, string> = {
   student: "/student",
+  child: "/child",
   teacher: "/teacher",
   parent: "/parent",
   school: "/school",
   admin: "/admin",
 };
 
-const allowedRoles = new Set(["student", "teacher", "parent", "school"]);
+const allowedRoles = new Set(["student", "child", "teacher", "parent", "school"]);
 
 export default async function OnboardingPage() {
   const supabase = await createClient();
@@ -40,7 +41,7 @@ export default async function OnboardingPage() {
     <AuthShell title="أكمل ملفك" description="خطوة واحدة فقط لنختار التجربة الأنسب لك داخل ضاديوم.">
       <ProfileOnboardingForm
         defaultName={metadataName || user.email?.split("@")[0] || ""}
-        defaultRole={allowedRoles.has(metadataRole) ? metadataRole as "student" | "teacher" | "parent" | "school" : "student"}
+        defaultRole={allowedRoles.has(metadataRole) ? metadataRole as "student" | "child" | "teacher" | "parent" | "school" : "student"}
         defaultCountry={isCountryCode(metadataCountry) ? metadataCountry : "BH"}
       />
     </AuthShell>

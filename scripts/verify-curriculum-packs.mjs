@@ -4,7 +4,18 @@ import path from "node:path";
 import { validateCurriculumPack } from "../lib/curriculum-packs/validate.mjs";
 
 const dir = path.resolve(process.cwd(), "data/curriculum-packs");
-const files = fs.readdirSync(dir).filter((name) => name.endsWith(".json") && name !== "arab-countries.json");
+const registryFiles = new Set([
+  "arab-countries.json",
+  "official-sources-2026.json",
+]);
+
+const files = fs
+  .readdirSync(dir)
+  .filter(
+    (name) =>
+      name.endsWith(".json") &&
+      !registryFiles.has(name),
+  );
 if (!files.length) throw new Error("No curriculum pack files found.");
 let lessons = 0;
 for (const name of files) {

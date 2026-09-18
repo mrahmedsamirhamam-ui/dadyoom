@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f766e"/>
+      <stop offset="100%" stop-color="#134e4a"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="178" fill="#f8fafc" opacity="0.98"/>
+  <circle cx="256" cy="256" r="158" fill="#fffaf0"/>
+  <text
+    x="256"
+    y="315"
+    text-anchor="middle"
+    direction="rtl"
+    font-family="Arial, Tahoma, sans-serif"
+    font-size="230"
+    font-weight="700"
+    fill="#0f766e"
+  >ض</text>
+  <circle cx="345" cy="145" r="22" fill="#d4a017"/>
+  <path d="M145 385 Q256 430 367 385" fill="none" stroke="#d4a017" stroke-width="16" stroke-linecap="round"/>
+</svg>

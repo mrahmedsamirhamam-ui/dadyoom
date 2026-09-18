@@ -4,6 +4,7 @@ import {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 
@@ -20,11 +21,14 @@ type SpeakOptions = {
 };
 
 function findArabicVoice(
-  voices: SpeechSynthesisVoice[]
+  voices: SpeechSynthesisVoice[],
 ): SpeechSynthesisVoice | null {
-  const arabicVoices = voices.filter((voice) =>
-    voice.lang.toLowerCase().startsWith("ar")
-  );
+  const arabicVoices =
+    voices.filter((voice) =>
+      voice.lang
+        .toLowerCase()
+        .startsWith("ar"),
+    );
 
   if (arabicVoices.length === 0) {
     return null;
@@ -41,11 +45,13 @@ function findArabicVoice(
 
   return (
     arabicVoices.find((voice) => {
-      const searchableVoice =
-        `${voice.name} ${voice.lang}`.toLowerCase();
+      const searchable =
+        `${voice.name} ${voice.lang}`
+          .toLowerCase();
 
-      return preferredNames.some((name) =>
-        searchableVoice.includes(name)
+      return preferredNames.some(
+        (name) =>
+          searchable.includes(name),
       );
     }) ??
     arabicVoices[0] ??
@@ -54,170 +60,446 @@ function findArabicVoice(
 }
 
 export function useArabicSpeech() {
-  const [voices, setVoices] = useState<
-    SpeechSynthesisVoice[]
-  >([]);
-
+  const [voices, setVoices] =
+    useState<SpeechSynthesisVoice[]>(
+      [],
+    );
   const [status, setStatus] =
     useState<SpeechStatus>("idle");
+  const [error, setError] =
+    useState("");
 
-  const [error, setError] = useState("");
+  const audioRef =
+    useRef<HTMLAudioElement | null>(
+      null,
+    );
+  const audioUrlRef =
+    useRef<string | null>(null);
 
-  const [isMounted] = useState(() => typeof window !== "undefined");
+  const isMounted = true;
+  const isSupported = true;
 
-  const [isSupported] = useState(() => typeof window !== "undefined");
+  const browserSpeechSupported =
+    useMemo(
+      () =>
+        typeof window !==
+          "undefined" &&
+        "speechSynthesis" in
+          window &&
+        "SpeechSynthesisUtterance" in
+          window,
+      [],
+    );
 
   useEffect(() => {
-
-    const supported =
-      "speechSynthesis" in window &&
-      "SpeechSynthesisUtterance" in window;
-
-    if (!supported) {
+    if (
+      !browserSpeechSupported
+    ) {
       return;
     }
 
-    const synthesis = window.speechSynthesis;
+    const synthesis =
+      window.speechSynthesis;
 
     function loadVoices() {
-      setVoices(synthesis.getVoices());
+      setVoices(
+        synthesis.getVoices(),
+      );
     }
 
     loadVoices();
 
     synthesis.addEventListener(
       "voiceschanged",
-      loadVoices
+      loadVoices,
     );
 
     return () => {
       synthesis.removeEventListener(
         "voiceschanged",
-        loadVoices
+        loadVoices,
       );
-
       synthesis.cancel();
     };
-  }, []);
+  }, [browserSpeechSupported]);
 
-  const arabicVoice = useMemo(
-    () => findArabicVoice(voices),
-    [voices]
-  );
+  const arabicVoice =
+    useMemo(
+      () =>
+        findArabicVoice(voices),
+      [voices],
+    );
 
-  const stop = useCallback(() => {
-    if (!isSupported) {
-      return;
-    }
+  const releaseServerAudio =
+    useCallback(() => {
+      const audio =
+        audioRef.current;
 
-    window.speechSynthesis.cancel();
-    setStatus("idle");
-  }, [isSupported]);
+      if (audio) {
+        audio.pause();
+        audio.src = "";
+        audioRef.current = null;
+      }
 
-  const pause = useCallback(() => {
-    if (!isSupported) {
-      return;
-    }
-
-    window.speechSynthesis.pause();
-    setStatus("paused");
-  }, [isSupported]);
-
-  const resume = useCallback(() => {
-    if (!isSupported) {
-      return;
-    }
-
-    window.speechSynthesis.resume();
-    setStatus("speaking");
-  }, [isSupported]);
-
-  const speak = useCallback(
-    (
-      text: string,
-      options: SpeakOptions = {}
-    ) => {
-      if (!isSupported) {
-        setError(
-          "هذا المتصفح لا يدعم تشغيل الصوت."
+      if (audioUrlRef.current) {
+        URL.revokeObjectURL(
+          audioUrlRef.current,
         );
-        setStatus("error");
-        return;
+        audioUrlRef.current =
+          null;
+      }
+    }, []);
+
+  const stop =
+    useCallback(() => {
+      releaseServerAudio();
+
+      if (
+        typeof window !==
+          "undefined" &&
+        "speechSynthesis" in
+          window
+      ) {
+        window.speechSynthesis
+          .cancel();
       }
 
-      const cleanText = text.trim();
+      setStatus("idle");
+    }, [releaseServerAudio]);
 
-      if (!cleanText) {
-        setError("لا يوجد نص لقراءته.");
-        return;
-      }
-
-      const synthesis =
-        window.speechSynthesis;
-
-      synthesis.cancel();
-
-      const utterance =
-        new SpeechSynthesisUtterance(
-          cleanText
-        );
-
-      utterance.lang =
-        arabicVoice?.lang ?? "ar-SA";
-
-      if (arabicVoice) {
-        utterance.voice = arabicVoice;
-      }
-
-      utterance.rate =
-        options.rate ?? 0.9;
-
-      utterance.pitch =
-        options.pitch ?? 1;
-
-      utterance.volume =
-        options.volume ?? 1;
-
-      utterance.onstart = () => {
-        setError("");
-        setStatus("speaking");
-      };
-
-      utterance.onpause = () => {
-        setStatus("paused");
-      };
-
-      utterance.onresume = () => {
-        setStatus("speaking");
-      };
-
-      utterance.onend = () => {
-        setStatus("idle");
-      };
-
-      utterance.onerror = (event) => {
+  const playBrowserSpeech =
+    useCallback(
+      async (
+        cleanText: string,
+        options: SpeakOptions,
+      ) => {
         if (
-          event.error === "canceled" ||
-          event.error === "interrupted"
+          !browserSpeechSupported
         ) {
-          setStatus("idle");
+          throw new Error(
+            "Web Speech غير متاح.",
+          );
+        }
+
+        await new Promise<void>(
+          (resolve, reject) => {
+            const synthesis =
+              window.speechSynthesis;
+
+            synthesis.cancel();
+
+            const utterance =
+              new SpeechSynthesisUtterance(
+                cleanText,
+              );
+
+            utterance.lang =
+              arabicVoice?.lang ??
+              "ar-SA";
+
+            if (arabicVoice) {
+              utterance.voice =
+                arabicVoice;
+            }
+
+            utterance.rate =
+              options.rate ?? 0.9;
+            utterance.pitch =
+              options.pitch ?? 1;
+            utterance.volume =
+              options.volume ?? 1;
+
+            utterance.onstart =
+              () => {
+                setError("");
+                setStatus(
+                  "speaking",
+                );
+              };
+
+            utterance.onpause =
+              () =>
+                setStatus(
+                  "paused",
+                );
+
+            utterance.onresume =
+              () =>
+                setStatus(
+                  "speaking",
+                );
+
+            utterance.onend =
+              () => {
+                setStatus("idle");
+                resolve();
+              };
+
+            utterance.onerror =
+              (event) => {
+                if (
+                  event.error ===
+                    "canceled" ||
+                  event.error ===
+                    "interrupted"
+                ) {
+                  setStatus(
+                    "idle",
+                  );
+                  resolve();
+                  return;
+                }
+
+                reject(
+                  new Error(
+                    `Web Speech: ${event.error}`,
+                  ),
+                );
+              };
+
+            synthesis.speak(
+              utterance,
+            );
+          },
+        );
+      },
+      [
+        arabicVoice,
+        browserSpeechSupported,
+      ],
+    );
+
+  const playServerSpeech =
+    useCallback(
+      async (
+        cleanText: string,
+      ) => {
+        releaseServerAudio();
+
+        const response =
+          await fetch(
+            "/api/dad-voice",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type":
+                  "application/json",
+              },
+              body:
+                JSON.stringify({
+                  text: cleanText,
+                  mood: "normal",
+                }),
+            },
+          );
+
+        if (!response.ok) {
+          let message =
+            "تعذر إنشاء صوت ضاد.";
+
+          try {
+            const data =
+              (await response
+                .json()) as {
+                error?: string;
+              };
+
+            if (data.error) {
+              message =
+                data.error;
+            }
+          } catch {
+            // Keep safe fallback.
+          }
+
+          throw new Error(
+            message,
+          );
+        }
+
+        const blob =
+          await response.blob();
+
+        if (blob.size === 0) {
+          throw new Error(
+            "خدمة الصوت أعادت ملفًا فارغًا.",
+          );
+        }
+
+        const url =
+          URL.createObjectURL(blob);
+        const audio =
+          new Audio(url);
+
+        audioUrlRef.current = url;
+        audioRef.current = audio;
+
+        audio.preload = "auto";
+
+        await new Promise<void>(
+          (resolve, reject) => {
+            audio.onplay = () => {
+              setError("");
+              setStatus(
+                "speaking",
+              );
+            };
+
+            audio.onended = () => {
+              releaseServerAudio();
+              setStatus("idle");
+              resolve();
+            };
+
+            audio.onerror = () => {
+              releaseServerAudio();
+              reject(
+                new Error(
+                  "تعذر تشغيل ملف صوت ضاد.",
+                ),
+              );
+            };
+
+            audio.play().catch(
+              (cause) => {
+                releaseServerAudio();
+                reject(cause);
+              },
+            );
+          },
+        );
+      },
+      [releaseServerAudio],
+    );
+
+  const speak =
+    useCallback(
+      async (
+        text: string,
+        options: SpeakOptions = {},
+      ) => {
+        const cleanText =
+          text.trim();
+
+        if (!cleanText) {
+          setError(
+            "لا يوجد نص لقراءته.",
+          );
+          setStatus("error");
           return;
         }
 
-        console.error(
-          "Arabic speech error:",
-          event.error
-        );
+        stop();
+        setError("");
+        setStatus("speaking");
 
-        setError(
-          "تعذر تشغيل صوت ضاد الآن."
-        );
-        setStatus("error");
-      };
+        try {
+          await playServerSpeech(
+            cleanText,
+          );
+          return;
+        } catch (
+          serverCause
+        ) {
+          console.warn(
+            "DADYOOM_SERVER_TTS_FALLBACK:",
+            serverCause,
+          );
+        }
 
-      synthesis.speak(utterance);
+        try {
+          await playBrowserSpeech(
+            cleanText,
+            options,
+          );
+        } catch (
+          browserCause
+        ) {
+          console.error(
+            "DADYOOM_VOICE_ERROR:",
+            browserCause,
+          );
+
+          setError(
+            "تعذر تشغيل الصوت. تأكد من تشغيل خادم ضاديوم واتصال التطبيق به.",
+          );
+          setStatus("error");
+        }
+      },
+      [
+        playBrowserSpeech,
+        playServerSpeech,
+        stop,
+      ],
+    );
+
+  const pause =
+    useCallback(() => {
+      if (
+        audioRef.current &&
+        !audioRef.current.paused
+      ) {
+        audioRef.current.pause();
+        setStatus("paused");
+        return;
+      }
+
+      if (
+        browserSpeechSupported
+      ) {
+        window.speechSynthesis
+          .pause();
+        setStatus("paused");
+      }
+    }, [browserSpeechSupported]);
+
+  const resume =
+    useCallback(() => {
+      if (
+        audioRef.current &&
+        audioRef.current.paused
+      ) {
+        void audioRef.current
+          .play()
+          .then(() =>
+            setStatus(
+              "speaking",
+            ),
+          )
+          .catch(() => {
+            setError(
+              "تعذر استئناف الصوت.",
+            );
+            setStatus("error");
+          });
+
+        return;
+      }
+
+      if (
+        browserSpeechSupported
+      ) {
+        window.speechSynthesis
+          .resume();
+        setStatus("speaking");
+      }
+    }, [browserSpeechSupported]);
+
+  useEffect(
+    () => () => {
+      releaseServerAudio();
+
+      if (
+        typeof window !==
+          "undefined" &&
+        "speechSynthesis" in
+          window
+      ) {
+        window.speechSynthesis
+          .cancel();
+      }
     },
-    [arabicVoice, isSupported]
+    [releaseServerAudio],
   );
 
   return {
@@ -234,6 +516,7 @@ export function useArabicSpeech() {
     isPaused:
       status === "paused",
     voiceName:
-      arabicVoice?.name ?? null,
+      arabicVoice?.name ??
+      "Dadyoom Voice",
   };
 }

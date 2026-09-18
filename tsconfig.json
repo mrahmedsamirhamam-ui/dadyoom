@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "allowImportingTsExtensions": true,
     "target": "ES2017",
     "lib": [
       "dom",
@@ -39,6 +40,7 @@
   ],
   "exclude": [
     "node_modules",
+    "diagnostics/release-backups",
     "_backups",
     "**/_backups/**",
     ".dadyoom-backups",
@@ -50,3 +52,4 @@
     "supabase/.temp"
   ]
 }
+

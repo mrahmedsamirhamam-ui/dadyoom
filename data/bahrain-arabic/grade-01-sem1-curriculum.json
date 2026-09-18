@@ -1,184 +1,197 @@
 {
-    "country":  "البحرين",
-    "curriculum":  "منهج اللغة العربية",
-    "grade":  1,
-    "grade_name":  "الصف الأول",
-    "subject":  "اللغة العربية",
-    "semester":  1,
-    "book":  {
-                 "title":  "براعم العربية",
-                 "subtitle":  "كتاب الطالب (الجزء الأول)",
-                 "edition":  "الطبعة الثانية",
-                 "academic_year":  "2026",
-                 "source":  "وزارة التربية والتعليم - مملكة البحرين",
-                 "source_type":  "official_edunet"
-             },
-    "introduction_page":  6,
-    "units":  [
-                  {
-                      "order_no":  1,
-                      "title":  "الوحدة الأولى: عائلتنا",
-                      "short_title":  "عائلتنا",
-                      "lessons":  [
-                                      {
-                                          "order_no":  1,
-                                          "title":  "الدرس الأول: حرف (ب) (1)",
-                                          "short_title":  "حرف (ب) (1)",
-                                          "type":  "lesson",
-                                          "primary_skill":  "لغة عربية",
-                                          "start_page":  8
-                                      },
-                                      {
-                                          "order_no":  2,
-                                          "title":  "الدرس الثاني: حرف (ب) (2)",
-                                          "short_title":  "حرف (ب) (2)",
-                                          "type":  "lesson",
-                                          "primary_skill":  "لغة عربية",
-                                          "start_page":  22
-                                      },
-                                      {
-                                          "order_no":  3,
-                                          "title":  "الدرس الثالث: حرف (م)",
-                                          "short_title":  "حرف (م)",
-                                          "type":  "lesson",
-                                          "primary_skill":  "لغة عربية",
-                                          "start_page":  35
-                                      },
-                                      {
-                                          "order_no":  4,
-                                          "title":  "الدرس الرابع: حرف (د)",
-                                          "short_title":  "حرف (د)",
-                                          "type":  "lesson",
-                                          "primary_skill":  "لغة عربية",
-                                          "start_page":  49
-                                      },
-                                      {
-                                          "order_no":  5,
-                                          "title":  "الدرس الخامس: أعزز مكتسباتي",
-                                          "short_title":  "أعزز مكتسباتي",
-                                          "type":  "review",
-                                          "primary_skill":  "مراجعة وتقويم",
-                                          "start_page":  62
-                                      },
-                                      {
-                                          "order_no":  6,
-                                          "title":  "أنشودة الوحدة: أسرتي",
-                                          "short_title":  "أسرتي",
-                                          "type":  "song",
-                                          "primary_skill":  "استماع وتحدث",
-                                          "start_page":  66
-                                      }
-                                  ]
-                  },
-                  {
-                      "order_no":  2,
-                      "title":  "الوحدة الثانية: مدرستنا",
-                      "short_title":  "مدرستنا",
-                      "lessons":  [
-                                      {
-                                          "order_no":  1,
-                                          "title":  "الدرس السادس: حرف (ح)",
-                                          "short_title":  "حرف (ح)",
-                                          "type":  "lesson",
-                                          "primary_skill":  "لغة عربية",
-                                          "start_page":  68
-                                      },
-                                      {
-                                          "order_no":  2,
-                                          "title":  "الدرس السابع: حرف (ر)",
-                                          "short_title":  "حرف (ر)",
-                                          "type":  "lesson",
-                                          "primary_skill":  "لغة عربية",
-                                          "start_page":  82
-                                      },
-                                      {
-                                          "order_no":  3,
-                                          "title":  "الدرس الثامن: حرف (س)",
-                                          "short_title":  "حرف (س)",
-                                          "type":  "lesson",
-                                          "primary_skill":  "لغة عربية",
-                                          "start_page":  97
-                                      },
-                                      {
-                                          "order_no":  4,
-                                          "title":  "الدرس التاسع: حرف (ل)",
-                                          "short_title":  "حرف (ل)",
-                                          "type":  "lesson",
-                                          "primary_skill":  "لغة عربية",
-                                          "start_page":  110
-                                      },
-                                      {
-                                          "order_no":  5,
-                                          "title":  "الدرس العاشر: أعزز مكتسباتي",
-                                          "short_title":  "أعزز مكتسباتي",
-                                          "type":  "review",
-                                          "primary_skill":  "مراجعة وتقويم",
-                                          "start_page":  124
-                                      },
-                                      {
-                                          "order_no":  6,
-                                          "title":  "أنشودة الوحدة: مدرستي",
-                                          "short_title":  "مدرستي",
-                                          "type":  "song",
-                                          "primary_skill":  "استماع وتحدث",
-                                          "start_page":  130
-                                      }
-                                  ]
-                  },
-                  {
-                      "order_no":  3,
-                      "title":  "الوحدة الثالثة: حينا",
-                      "short_title":  "حينا",
-                      "lessons":  [
-                                      {
-                                          "order_no":  1,
-                                          "title":  "الدرس الحادي عشر: حرف (ج)",
-                                          "short_title":  "حرف (ج)",
-                                          "type":  "lesson",
-                                          "primary_skill":  "لغة عربية",
-                                          "start_page":  132
-                                      },
-                                      {
-                                          "order_no":  2,
-                                          "title":  "الدرس الثاني عشر: حرف (ن)",
-                                          "short_title":  "حرف (ن)",
-                                          "type":  "lesson",
-                                          "primary_skill":  "لغة عربية",
-                                          "start_page":  145
-                                      },
-                                      {
-                                          "order_no":  3,
-                                          "title":  "الدرس الثالث عشر: حرف (ع)",
-                                          "short_title":  "حرف (ع)",
-                                          "type":  "lesson",
-                                          "primary_skill":  "لغة عربية",
-                                          "start_page":  157
-                                      },
-                                      {
-                                          "order_no":  4,
-                                          "title":  "الدرس الرابع عشر: حرف (ت)",
-                                          "short_title":  "حرف (ت)",
-                                          "type":  "lesson",
-                                          "primary_skill":  "لغة عربية",
-                                          "start_page":  169
-                                      },
-                                      {
-                                          "order_no":  5,
-                                          "title":  "الدرس الخامس عشر: أعزز مكتسباتي",
-                                          "short_title":  "أعزز مكتسباتي",
-                                          "type":  "review",
-                                          "primary_skill":  "مراجعة وتقويم",
-                                          "start_page":  182
-                                      },
-                                      {
-                                          "order_no":  6,
-                                          "title":  "أنشودة الوحدة: جاري",
-                                          "short_title":  "جاري",
-                                          "type":  "song",
-                                          "primary_skill":  "استماع وتحدث",
-                                          "start_page":  187
-                                      }
-                                  ]
-                  }
-              ]
+  "country": "البحرين",
+  "curriculum": "منهج اللغة العربية",
+  "grade": 1,
+  "grade_name": "الصف الأول",
+  "subject": "اللغة العربية",
+  "semester": 1,
+  "book": {
+    "title": "براعم العربية",
+    "subtitle": "كتاب الطالب (الجزء الأول)",
+    "edition": "الطبعة الثانية",
+    "academic_year": "2026",
+    "source": "وزارة التربية والتعليم بمملكة البحرين — eduNET",
+    "source_type": "official_edunet",
+    "source_url": "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_1/e_books/Arabic-Baraem-G1-P1-2026/Arabic%20Baraem%20G1%20P1%202026/index.html"
+  },
+  "introduction_page": 6,
+  "units": [
+    {
+      "order_no": 1,
+      "title": "الوحدة الأولى: عائلتنا",
+      "short_title": "عائلتنا",
+      "lessons": [
+        {
+          "order_no": 1,
+          "title": "الدرس الأول: حرف (ب) (1)",
+          "short_title": "حرف (ب) (1)",
+          "type": "lesson",
+          "primary_skill": "لغة عربية",
+          "start_page": 8
+        },
+        {
+          "order_no": 2,
+          "title": "الدرس الثاني: حرف (ب) (2)",
+          "short_title": "حرف (ب) (2)",
+          "type": "lesson",
+          "primary_skill": "لغة عربية",
+          "start_page": 22
+        },
+        {
+          "order_no": 3,
+          "title": "الدرس الثالث: حرف (م)",
+          "short_title": "حرف (م)",
+          "type": "lesson",
+          "primary_skill": "لغة عربية",
+          "start_page": 35
+        },
+        {
+          "order_no": 4,
+          "title": "الدرس الرابع: حرف (د)",
+          "short_title": "حرف (د)",
+          "type": "lesson",
+          "primary_skill": "لغة عربية",
+          "start_page": 49
+        },
+        {
+          "order_no": 5,
+          "title": "الدرس الخامس: أعزز مكتسباتي",
+          "short_title": "أعزز مكتسباتي",
+          "type": "review",
+          "primary_skill": "مراجعة وتقويم",
+          "start_page": 62
+        },
+        {
+          "order_no": 6,
+          "title": "أنشودة الوحدة: أسرتي",
+          "short_title": "أسرتي",
+          "type": "song",
+          "primary_skill": "استماع وتحدث",
+          "start_page": 66
+        }
+      ]
+    },
+    {
+      "order_no": 2,
+      "title": "الوحدة الثانية: مدرستنا",
+      "short_title": "مدرستنا",
+      "lessons": [
+        {
+          "order_no": 1,
+          "title": "الدرس السادس: حرف (ح)",
+          "short_title": "حرف (ح)",
+          "type": "lesson",
+          "primary_skill": "لغة عربية",
+          "start_page": 68
+        },
+        {
+          "order_no": 2,
+          "title": "الدرس السابع: حرف (ر)",
+          "short_title": "حرف (ر)",
+          "type": "lesson",
+          "primary_skill": "لغة عربية",
+          "start_page": 82
+        },
+        {
+          "order_no": 3,
+          "title": "الدرس الثامن: حرف (س)",
+          "short_title": "حرف (س)",
+          "type": "lesson",
+          "primary_skill": "لغة عربية",
+          "start_page": 97
+        },
+        {
+          "order_no": 4,
+          "title": "الدرس التاسع: حرف (ل)",
+          "short_title": "حرف (ل)",
+          "type": "lesson",
+          "primary_skill": "لغة عربية",
+          "start_page": 110
+        },
+        {
+          "order_no": 5,
+          "title": "الدرس العاشر: أعزز مكتسباتي",
+          "short_title": "أعزز مكتسباتي",
+          "type": "review",
+          "primary_skill": "مراجعة وتقويم",
+          "start_page": 124
+        },
+        {
+          "order_no": 6,
+          "title": "أنشودة الوحدة: مدرستي",
+          "short_title": "مدرستي",
+          "type": "song",
+          "primary_skill": "استماع وتحدث",
+          "start_page": 130
+        }
+      ]
+    },
+    {
+      "order_no": 3,
+      "title": "الوحدة الثالثة: حينا",
+      "short_title": "حينا",
+      "lessons": [
+        {
+          "order_no": 1,
+          "title": "الدرس الحادي عشر: حرف (ج)",
+          "short_title": "حرف (ج)",
+          "type": "lesson",
+          "primary_skill": "لغة عربية",
+          "start_page": 132
+        },
+        {
+          "order_no": 2,
+          "title": "الدرس الثاني عشر: حرف (ن)",
+          "short_title": "حرف (ن)",
+          "type": "lesson",
+          "primary_skill": "لغة عربية",
+          "start_page": 145
+        },
+        {
+          "order_no": 3,
+          "title": "الدرس الثالث عشر: حرف (ع)",
+          "short_title": "حرف (ع)",
+          "type": "lesson",
+          "primary_skill": "لغة عربية",
+          "start_page": 157
+        },
+        {
+          "order_no": 4,
+          "title": "الدرس الرابع عشر: حرف (ت)",
+          "short_title": "حرف (ت)",
+          "type": "lesson",
+          "primary_skill": "لغة عربية",
+          "start_page": 169
+        },
+        {
+          "order_no": 5,
+          "title": "الدرس الخامس عشر: أعزز مكتسباتي",
+          "short_title": "أعزز مكتسباتي",
+          "type": "review",
+          "primary_skill": "مراجعة وتقويم",
+          "start_page": 182
+        },
+        {
+          "order_no": 6,
+          "title": "أنشودة الوحدة: جاري",
+          "short_title": "جاري",
+          "type": "song",
+          "primary_skill": "استماع وتحدث",
+          "start_page": 187
+        }
+      ]
+    }
+  ],
+  "official_plan": {
+    "label": "خطة المحتوى الدراسي لمادة اللغة العربية للتعليم الأساسي - الفصل الأول من العام الدراسي 2026-2027م",
+    "academic_year": "2026-2027",
+    "semester": 1,
+    "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+    "verified": true,
+    "verification": {
+      "comparison_result": "OFFICIAL_PLAN_STRONGLY_SUPPORTS_CURRENT_GRADE1_STRUCTURE",
+      "anchors_found": 17,
+      "anchors_missing": 0
+    }
+  }
 }

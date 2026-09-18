@@ -163,7 +163,7 @@ export default async function RolePortalLayout({
         </div>
       </section>
 
-      <div className="role-portal-body">
+      <div className="role-portal-body dadyoom-arabic-surface w-full min-w-0 max-w-full overflow-x-hidden">
         {children}
       </div>
     </div>

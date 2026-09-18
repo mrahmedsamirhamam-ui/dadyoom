@@ -1,64 +1,64 @@
-
+import { createClient } from "@supabase/supabase-js";
 import type { MetadataRoute } from "next";
-import { createClient as createSupabaseClient } from "@supabase/supabase-js";
-import { getSiteUrl } from "@/lib/site";
-
-export const revalidate = 3600;
-
-type PublishedLesson = {
-  id: string;
-  updated_at: string | null;
-};
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const siteUrl = getSiteUrl();
-  const now = new Date();
+  const base =
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/u, "") ||
+    "http://localhost:3000";
 
-  const publicRoutes: MetadataRoute.Sitemap = [
-    { url: `${siteUrl}/`, lastModified: now, changeFrequency: "weekly", priority: 1 },
-    { url: `${siteUrl}/courses`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
-    { url: `${siteUrl}/skills`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
-    { url: `${siteUrl}/dictionary`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${siteUrl}/ask`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+  const staticRoutes: MetadataRoute.Sitemap = [
+    { url: base, changeFrequency: "weekly", priority: 1 },
+    { url: `${base}/courses`, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${base}/skills`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/dictionary`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/pricing`, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/marketplace`, changeFrequency: "daily", priority: 0.9 },
   ];
 
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.trim();
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
 
-  if (!supabaseUrl || !anonKey) {
-    return publicRoutes;
-  }
+  if (!url || !key) return staticRoutes;
 
-  try {
-    const supabase = createSupabaseClient(supabaseUrl, anonKey, {
-      auth: { persistSession: false, autoRefreshToken: false },
-    });
+  const db = createClient(url, key, {
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false,
+    },
+  });
 
-    const { data, error } = await supabase
+  const [{ data: courses }, { data: lessons }] = await Promise.all([
+    db
+      .from("edu_marketplace_courses")
+      .select("slug,updated_at")
+      .eq("status", "published")
+      .limit(5000),
+    db
       .from("lessons")
       .select("id,updated_at")
       .eq("status", "published")
-      .order("updated_at", { ascending: false })
-      .limit(5000);
+      .limit(5000),
+  ]);
 
-    if (error) {
-      console.warn("SITEMAP_LESSONS_WARNING:", error.message);
-      return publicRoutes;
-    }
-
-    const lessons = (data ?? []) as PublishedLesson[];
-
-    return [
-      ...publicRoutes,
-      ...lessons.map((lesson) => ({
-        url: `${siteUrl}/lessons/${lesson.id}`,
-        lastModified: lesson.updated_at ? new Date(lesson.updated_at) : now,
-        changeFrequency: "monthly" as const,
-        priority: 0.7,
-      })),
-    ];
-  } catch (error) {
-    console.warn("SITEMAP_BUILD_WARNING:", error);
-    return publicRoutes;
-  }
+  return [
+    ...staticRoutes,
+    ...(courses ?? []).map((course) => ({
+      url: `${base}/marketplace/${course.slug}`,
+      lastModified:
+        course.updated_at
+          ? new Date(course.updated_at)
+          : undefined,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
+    ...(lessons ?? []).map((lesson) => ({
+      url: `${base}/lessons/${lesson.id}`,
+      lastModified:
+        lesson.updated_at
+          ? new Date(lesson.updated_at)
+          : undefined,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+  ];
 }

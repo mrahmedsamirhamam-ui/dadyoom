@@ -1,3 +1,4 @@
+import NotificationBell from "@/components/notifications/NotificationBell";
 import Link from "next/link";
 import DadyoomLogo from "@/components/brand/DadyoomLogo";
 import LogoutButton from "@/components/auth/LogoutButton";
@@ -70,7 +71,8 @@ export default async function Navbar() {
               {item.label}
             </Link>
           ))}
-        </nav>
+                <NotificationBell />
+    </nav>
 
         {user ? (
           <div className="flex items-center gap-2">
@@ -106,3 +108,4 @@ export default async function Navbar() {
     </header>
   );
 }
+

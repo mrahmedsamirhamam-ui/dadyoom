@@ -1,6 +1,6 @@
+import MobileOAuthBridge from "@/components/mobile/MobileOAuthBridge";
+import DadyoomAds from "@/components/ads/DadyoomAds";
 import type { Metadata, Viewport } from "next";
-import { Noto_Kufi_Arabic, Noto_Naskh_Arabic } from "next/font/google";
-import DadCompanion from "@/components/dad-ai/DadCompanion";
 import {
   getSiteUrl,
   SITE_DESCRIPTION,
@@ -9,17 +9,11 @@ import {
 } from "@/lib/site";
 import "./globals.css";
 
-const kufi = Noto_Kufi_Arabic({
-  variable: "--font-arabic-kufi",
-  subsets: ["arabic"],
-  display: "swap",
-});
+import NativeMobileShell from "@/components/mobile/NativeMobileShell";
+import DadCompanion from "@/components/dad-ai/DadCompanion";
+import DadyoomInstallPrompt from "@/components/pwa/DadyoomInstallPrompt";
+import DadyoomAutoUpdate from "@/components/pwa/DadyoomAutoUpdate";
 
-const naskh = Noto_Naskh_Arabic({
-  variable: "--font-arabic-naskh",
-  subsets: ["arabic"],
-  display: "swap",
-});
 
 const siteUrl = getSiteUrl();
 
@@ -75,12 +69,18 @@ export default function RootLayout({
     <html
       lang="ar"
       dir="rtl"
-      className={`${kufi.variable} ${naskh.variable} h-full antialiased`}
+      className={`h-full antialiased`}
       suppressHydrationWarning
-    >
+     data-scroll-behavior="smooth">
       <body className="flex min-h-full flex-col bg-[#fffaf0] text-[#27231f]">
+        <DadyoomAds />
+          <MobileOAuthBridge />
+        <NativeMobileShell />
+        <DadyoomInstallPrompt />
+        <DadyoomAutoUpdate />
+        <DadCompanion />
         {children}
-        <DadCompanion pageTitle="ضاديوم" />
+        
       </body>
     </html>
   );

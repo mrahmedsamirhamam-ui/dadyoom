@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import DadRobot from "@/components/dad-ai/DadRobot";
 import DadBrain from "@/components/dad/services/DadBrain";
+import DadLessonVideoButton from "@/components/dad-ai/DadLessonVideoButton";
 import { DAD_LESSON_CONTEXT_EVENT, type DadLessonContextPayload } from "@/components/dad-ai/DadLessonContext";
 import { useDadState } from "@/hooks/use-dad-state";
 import { DadAI, DadVoice } from "@/services/dad-ai";
@@ -269,6 +270,11 @@ export default function DadCompanion({
                   </button>
                 ))}
               </div>
+              {hasLessonContext ? (
+                <DadLessonVideoButton
+                  lessonTitle={context.lessonTitle}
+                />
+              ) : null}
               <form onSubmit={sendMessage} className="flex items-end gap-2">
                 <textarea
                   value={input}

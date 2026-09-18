@@ -51,7 +51,7 @@ for (const unit of units || []) {
       content: lesson.content || "", objectives: Array.isArray(lesson.learning_objectives) ? lesson.learning_objectives : [],
       vocabulary: (vocab || []).map((v) => ({ word: v.word, meaning: v.meaning, example: v.example })),
       questions: (questions || []).map((q) => ({ question: q.question, type: q.question_type, options: Array.isArray(q.options) ? q.options : [], correctAnswer: q.correct_answer, explanation: q.explanation, points: q.points })),
-      source: { label: "مسار ضاديوم التعليمي للبحرين", url: null, pageStart: lesson.source_page_start, pageEnd: lesson.source_page_end },
+      source: { label: "براعم العربية — الصف الأول — كتاب الطالب (الجزء الأول) — وزارة التربية والتعليم بمملكة البحرين", url: "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_1/e_books/Arabic-Baraem-G1-P1-2026/Arabic%20Baraem%20G1%20P1%202026/index.html", pageStart: lesson.source_page_start, pageEnd: lesson.source_page_end },
     });
   }
   packUnits.push({ number: Number(unit.unit_number), title: unit.title, description: unit.description, lessons: packLessons });
@@ -61,13 +61,13 @@ const pack = {
   schemaVersion: 1,
   packKey: "BH:2026:arabic:primary:1:s1",
   country: { code: "BH", nameAr: "مملكة البحرين", nameEn: "Kingdom of Bahrain" },
-  academicYear: curriculum.academic_year || "2026",
+  academicYear: "2026-2027",
   subject: { code: "arabic", nameAr: "اللغة العربية" },
   stage: { code: "primary", nameAr: "المرحلة الابتدائية" },
   grade: { number: 1, nameAr: grade.name_ar, nameEn: grade.name_en },
   semester: 1,
   curriculum: { nameAr: "اللغة العربية", nameEn: "Arabic Language", description: curriculum.description },
-  rights: { contentOwner: "dadyoom", sourceLabel: "ترتيب منهجي موثّق ومحتوى تعليمي أصلي لضاديوم", sourceUrl: null, verified: true },
+  rights: { contentOwner: "dadyoom", sourceLabel: "الترتيب المنهجي موثّق من الخطة الرسمية لوزارة التربية والتعليم بمملكة البحرين؛ الشرح والأنشطة والأسئلة داخل ضاديوم محتوى أصلي لضاديوم", sourceUrl: "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf", verified: true },
   units: packUnits,
 };
 const validation = validateCurriculumPack(pack);

@@ -1,3 +1,5 @@
+import { askDadyoomHybrid } from "@/lib/mobile/hybrid-ai";
+
 export type DadMessage = {
   role: "system" | "user" | "assistant";
   content: string;
@@ -23,25 +25,31 @@ export type DadBrainResponse = {
 export default class DadBrain {
   async ask(
     input: DadBrainRequest,
-    options: { signal?: AbortSignal } = {}
+    options: {
+      signal?: AbortSignal;
+    } = {},
   ): Promise<DadBrainResponse> {
-    const response = await fetch("/api/dad/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(input),
-      signal: options.signal,
-    });
-
-    const data = (await response.json()) as DadBrainResponse | { error?: string };
-
-    if (!response.ok) {
-      throw new Error("error" in data && data.error ? data.error : "تعذر الحصول على رد من ضاد.");
+    if (options.signal?.aborted) {
+      throw new DOMException(
+        "Aborted",
+        "AbortError",
+      );
     }
 
-    if (!("reply" in data) || typeof data.reply !== "string" || !data.reply.trim()) {
-      throw new Error("لم يصل رد واضح من ضاد. حاول مرة أخرى.");
+    const result = await askDadyoomHybrid(
+      input.message,
+      input,
+    );
+
+    if (options.signal?.aborted) {
+      throw new DOMException(
+        "Aborted",
+        "AbortError",
+      );
     }
 
-    return { reply: data.reply.trim() };
+    return {
+      reply: result.text,
+    };
   }
 }

@@ -78,6 +78,16 @@ export default async function AdminLayout({
                 {item.label}
               </Link>
             ))}
+          
+            <Link href="/admin/payments">المدفوعات والاستلام</Link>
+          
+            <Link href="/admin/subscriptions">
+              الاشتراكات والعروض
+            </Link>
+          
+            <Link href="/admin/monetization">
+              تحقيق الدخل
+            </Link>
           </nav>
 
           <div className="flex items-center gap-2">
