@@ -268,23 +268,7 @@ export async function getLessonPageBundle(
   } =
     await admin
       .from("lessons")
-      .select(
-        id,
-        unit_id,
-        title,
-        lesson_number,
-        status,
-        lesson_type,
-        content,
-        summary,
-        instructions,
-        learning_objectives,
-        vocabulary,
-        estimated_minutes,
-        source_page_start,
-        source_page_end,
-        source_pdf_url
-      )
+      .select("id,unit_id,title,lesson_number,status,lesson_type,content,summary,instructions,learning_objectives,vocabulary,estimated_minutes,source_page_start,source_page_end,source_pdf_url")
       .eq(
         "id",
         lessonId
@@ -469,19 +453,7 @@ export async function getLessonPageBundle(
 
       admin
         .from("questions")
-        .select(
-          id,
-          lesson_id,
-          question_order,
-          question,
-          question_type,
-          options,
-          correct_answer,
-          explanation,
-          points,
-          created_at,
-          updated_at
-        )
+        .select("id,lesson_id,question_order,question,question_type,options,correct_answer,explanation,points,created_at,updated_at")
         .eq(
           "lesson_id",
           lesson.id
@@ -495,20 +467,7 @@ export async function getLessonPageBundle(
 
       admin
         .from("lesson_activities")
-        .select(
-          id,
-          lesson_id,
-          title,
-          activity_type,
-          instructions,
-          content,
-          activity_order,
-          points,
-          is_published,
-          section,
-          created_at,
-          updated_at
-        )
+        .select("id,lesson_id,title,activity_type,instructions,content,activity_order,points,is_published,section,created_at,updated_at")
         .eq(
           "lesson_id",
           lesson.id
@@ -526,16 +485,7 @@ export async function getLessonPageBundle(
 
       admin
         .from("student_lesson_progress")
-        .select(
-          id,
-          status,
-          progress_percent,
-          best_score,
-          last_score,
-          xp,
-          attempts,
-          time_spent_seconds
-        )
+        .select("id,status,progress_percent,best_score,last_score,xp,attempts,time_spent_seconds")
         .eq(
           "student_id",
           user.id
