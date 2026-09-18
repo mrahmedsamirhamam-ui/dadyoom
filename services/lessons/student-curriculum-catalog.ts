@@ -124,7 +124,7 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
           x.status === "published" ||
           (
             allowBahrainDraftPreview &&
-            countryCode === "BH" &&
+            String(country.code).trim().toUpperCase() === "BH" &&
             x.status === "draft"
           )
       )
