@@ -17,6 +17,8 @@ import AdaptiveRecommendationCard from "@/features/adaptive-learning/components/
 import WeakQuestionsReview from "@/features/adaptive-learning/components/WeakQuestionsReview";
 
 import LessonProgress from "@/components/lesson/LessonProgress";
+import LessonLearningSlides from "@/components/lesson/LessonLearningSlides";
+import StructuredLessonText from "@/components/lesson/StructuredLessonText";
 import VocabularyCard from "@/components/lesson/VocabularyCard";
 import MultipleChoiceQuestion from "@/components/lesson/MultipleChoiceQuestion";
 import ScoreCard from "@/components/lesson/ScoreCard";
@@ -447,15 +449,13 @@ export default async function LessonPage({
           </section>
         ) : null}
 
-        <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
-          <h2 className="mb-4 font-arabic-display text-2xl font-black text-[#173f38]">
-            نص الدرس
-          </h2>
+        <LessonLearningSlides
+          instructions={lesson.instructions}
+        />
 
-          <div className="whitespace-pre-line font-arabic-reading text-xl leading-[2.15] text-[#3f3931]">
-            {lesson.content}
-          </div>
-        </section>
+        <StructuredLessonText
+          content={lesson.content}
+        />
 
         {vocabulary.length > 0 ? (
           <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
