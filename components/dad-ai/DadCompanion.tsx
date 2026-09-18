@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import DadRobot from "@/components/dad-ai/DadRobot";
+import DadMark from "@/components/dad-ai/DadMark";
 import DadBrain from "@/components/dad/services/DadBrain";
 import DadLessonVideoButton from "@/components/dad-ai/DadLessonVideoButton";
 import { DAD_LESSON_CONTEXT_EVENT, type DadLessonContextPayload } from "@/components/dad-ai/DadLessonContext";
@@ -190,11 +190,11 @@ export default function DadCompanion({
               <div aria-hidden="true" className="absolute inset-0 opacity-15 dad-arabesque" />
               <div className="relative flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <DadRobot state={dadState} size={60} />
+                  <DadMark state={dadState} size={54} />
                   <div>
                     <div className="flex items-center gap-2">
                       <h2 className="font-arabic-display text-xl font-black">ضاد</h2>
-                      <span className="rounded-full bg-[#f5cf7a] px-2 py-0.5 text-[9px] font-black text-[#523b10]">رفيق العربية</span>
+                      <span className="rounded-full bg-[#f5cf7a] px-2 py-0.5 text-[9px] font-black text-[#523b10]">ضاد AI</span>
                     </div>
                     <p className="mt-1 text-[11px] font-bold text-[#dcece7]">
                       {hasLessonContext ? `معك في: ${context.lessonTitle}` : "اسأل، افهم، ثم جرّب بنفسك"}
@@ -325,11 +325,11 @@ export default function DadCompanion({
           onClick={() => setIsOpen((value) => !value)}
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.97 }}
-          className="relative grid h-[82px] w-[82px] place-items-center rounded-[1.8rem] border border-[#d3ba7e] bg-[#fffdf8] shadow-2xl shadow-[#123f39]/20"
+          className="relative grid h-[78px] w-[78px] place-items-center overflow-hidden rounded-[1.65rem] border border-[#d3ba7e] bg-gradient-to-br from-[#fffdf8] to-[#f6eddc] shadow-2xl shadow-[#123f39]/20"
           aria-label={isOpen ? "إغلاق ضاد" : "فتح ضاد"}
         >
           <span className="absolute -right-1 -top-1 h-3.5 w-3.5 rounded-full border-2 border-[#fffdf8] bg-[#2f9f72]" />
-          <DadRobot state={dadState} size={66} />
+          <DadMark state={dadState} size={64} />
         </motion.button>
       </div>
     </div>
