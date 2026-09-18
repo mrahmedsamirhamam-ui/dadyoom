@@ -10,5 +10,6 @@
     "cover": "/lesson-packs/notebook-style/nakira-marifa/cover.png",
     "preview": "/lesson-packs/notebook-style/nakira-marifa/preview.png"
   },
-  "note_ar": "مرجع بصري تجريبي داخل ضاديوم."
+  "note_ar": "مرجع بصري تجريبي داخل ضاديوم.",
+  "preview_probe": "netlify-pr-test-20260919"
 }
