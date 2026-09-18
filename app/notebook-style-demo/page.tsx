@@ -5,7 +5,7 @@ import { useState } from "react";
 const slides = Array.from(
   { length: 11 },
   (_, index) =>
-    `/lesson-packs/notebook-style/nakira-marifa/slides/${String(index + 1).padStart(2, "0")}.webp`
+    `/lesson-packs/notebook-style/nakira-marifa/slides/${String(index + 1).padStart(2, "0")}.svg`
 );
 
 export default function NotebookStyleDemoPage() {
@@ -32,7 +32,7 @@ export default function NotebookStyleDemoPage() {
               النكرة والمعرفة
             </h1>
             <p className="mt-1 text-sm font-bold text-[#756b5c]">
-              عرض بصري كامل بصورة واحدة لكل شريحة، بدون تراكب عناصر.
+              عرض بصري كامل بصورة واحدة لكل شريحة، بدون تراكب عناصر أو كروت متداخلة.
             </p>
           </div>
 
@@ -99,7 +99,7 @@ export default function NotebookStyleDemoPage() {
         </section>
 
         <p className="mt-4 text-center text-xs font-bold text-[#857866]">
-          هذا نموذج مرجعي بصري داخل ضاديوم، وليس ربطًا بمنهج البحرين بعد.
+          هذا نموذج بصري مولّد داخل ضاديوم مستوحى من المرجع المرفوع، وليس نسخًا حرفيًا ولا ربطًا بمنهج البحرين بعد.
         </p>
       </div>
     </main>
