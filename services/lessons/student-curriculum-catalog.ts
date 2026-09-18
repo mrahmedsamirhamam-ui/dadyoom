@@ -1,6 +1,7 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 export type StudentCatalogLesson = {
   id: string; title: string; objective: string | null;
@@ -53,7 +54,40 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  const { data, error } = await supabase.from("units").select(`
+  let allowBahrainDraftPreview = false;
+
+  if (
+    user &&
+    process.env.DADYOOM_BAHRAIN_PREVIEW === "true"
+  ) {
+    const { data: previewProfile } =
+      await supabase
+        .from("profiles")
+        .select("country")
+        .eq("id", user.id)
+        .maybeSingle();
+
+    const previewCountry =
+      String(
+        previewProfile?.country ??
+        user.user_metadata?.country ??
+        ""
+      )
+        .trim()
+        .toUpperCase();
+
+    allowBahrainDraftPreview =
+      previewCountry === "BH" ||
+      previewCountry === "BAHRAIN" ||
+      previewCountry === "البحرين";
+  }
+
+  const catalogDb =
+    allowBahrainDraftPreview
+      ? createAdminClient()
+      : supabase;
+
+  const { data, error } = await catalogDb.from("units").select(`
     id,title,description,sort_order,unit_number,
     grades!inner(
       id,name_ar,grade_number,
@@ -85,7 +119,15 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
     if (!grade || !curriculum || !country || !curriculum.is_active || !country.is_active) continue;
 
     const lessons = (raw.lessons ?? [])
-      .filter((x) => x.status === "published")
+      .filter(
+        (x) =>
+          x.status === "published" ||
+          (
+            allowBahrainDraftPreview &&
+            countryCode === "BH" &&
+            x.status === "draft"
+          )
+      )
       .sort((a,b) => Number(a.sort_order ?? a.lesson_number ?? 9999) - Number(b.sort_order ?? b.lesson_number ?? 9999));
     if (!lessons.length) continue;
 
@@ -115,9 +157,31 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
     });
   }
 
-  return out.sort((a,b) =>
-    Number(a.grade.number ?? 999) - Number(b.grade.number ?? 999) ||
-    a.curriculum.name.localeCompare(b.curriculum.name, "ar") ||
-    a.order - b.order
-  );
+  return out.sort((a,b) => {
+    if (allowBahrainDraftPreview) {
+      const aBh =
+        String(a.country.code).trim().toUpperCase() === "BH"
+          ? 0
+          : 1;
+
+      const bBh =
+        String(b.country.code).trim().toUpperCase() === "BH"
+          ? 0
+          : 1;
+
+      if (aBh !== bBh) {
+        return aBh - bBh;
+      }
+    }
+
+    return (
+      Number(a.grade.number ?? 999) -
+        Number(b.grade.number ?? 999) ||
+      a.curriculum.name.localeCompare(
+        b.curriculum.name,
+        "ar"
+      ) ||
+      a.order - b.order
+    );
+  });
 }
