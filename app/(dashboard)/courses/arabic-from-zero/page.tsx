@@ -1,4 +1,5 @@
 import Link from "next/link";
+import RoomVideoLibrary from "@/components/courses/RoomVideoLibrary";
 
 import {
   arabicFromZeroCourse,
@@ -138,6 +139,22 @@ export default function ArabicFromZeroCoursePage() {
             )
           )}
         </div>
+
+        <section className="rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-6 shadow-sm">
+          <div className="text-xs font-black text-[#9a7028]">
+            بعد الدروس الأساسية
+          </div>
+          <h2 className="mt-2 font-arabic-display text-3xl font-black text-[#123f39]">
+            واصل التعلّم من مكتبة غير الناطقين
+          </h2>
+          <p className="mt-3 font-arabic-reading text-base leading-8 text-[#6d645a]">
+            بعد مسار البداية، ستجد هنا مئات الفيديوهات المصنفة للحروف
+            والمفردات والنطق والاستماع والمحادثة والقراءة بدل توقف
+            الرحلة عند سبعة فيديوهات فقط.
+          </p>
+        </section>
+
+        <RoomVideoLibrary room="non-native" />
 
         <section className="rounded-[2rem] bg-[#123f39] p-7 text-white">
           <h2 className="font-arabic-display text-2xl font-black">
