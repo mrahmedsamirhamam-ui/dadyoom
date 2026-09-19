@@ -131,7 +131,7 @@ export default async function StudentPage({
     error: studentProfileError,
   } = await supabase
     .from("profiles")
-    .select("role")
+    .select("role,grade_number,onboarding_completed,country")
     .eq("id", user.id)
     .maybeSingle();
 
@@ -149,6 +149,18 @@ export default async function StudentPage({
       ?.trim()
       .toLowerCase() ??
     "";
+
+  if (
+    studentRole === "student" &&
+    (
+      studentProfile.onboarding_completed !== true ||
+      !Number.isInteger(Number(studentProfile.grade_number)) ||
+      Number(studentProfile.grade_number) < 1 ||
+      Number(studentProfile.grade_number) > 12
+    )
+  ) {
+    redirect("/onboarding");
+  }
 
   if (
     studentRole !== "student" &&
