@@ -1,6 +1,10 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { authorizeSession } from "@/lib/auth/authorization";
+import {
+  SUPABASE_PUBLIC_KEY,
+  SUPABASE_PUBLIC_URL,
+} from "@/lib/supabase/public-config";
 
 export async function proxy(request: NextRequest) {
   const pathname =
@@ -19,17 +23,8 @@ export async function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const supabaseUrl =
-    process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseAnonKey =
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!supabaseUrl || !supabaseAnonKey) {
-    return NextResponse.json(
-      { error: "AUTH_CONFIG_MISSING" },
-      { status: 503, headers: { "Cache-Control": "no-store" } },
-    );
-  }
+  const supabaseUrl = SUPABASE_PUBLIC_URL;
+  const supabaseAnonKey = SUPABASE_PUBLIC_KEY;
 
   let response =
     NextResponse.next({
