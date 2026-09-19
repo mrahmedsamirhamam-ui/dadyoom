@@ -1,6 +1,4 @@
-import { promises as fs } from "node:fs";
-import path from "node:path";
-
+import catalogData from "@/data/video-library/catalog.json";
 import ShortsFeed from "./ShortsFeed";
 
 export const revalidate = 3600;
@@ -12,23 +10,39 @@ type SafeVideo = {
   rightsClass: string;
 };
 
-async function loadVideos() {
-  try {
-    const file = path.join(
-      process.cwd(),
-      "data",
-      "videos",
-      "safe-youtube-embeds.json"
-    );
+type CatalogVideo = {
+  id: string;
+  title: string;
+  channel: string;
+  presentation?: string;
+  room?: "non-native" | "native" | "both";
+};
 
-    const raw = await fs.readFile(file, "utf8");
-    return JSON.parse(raw) as SafeVideo[];
-  } catch {
-    return [];
-  }
+const catalog =
+  catalogData as {
+    videos: CatalogVideo[];
+  };
+
+function loadVideos(): SafeVideo[] {
+  return catalog.videos
+    .filter(
+      (video) =>
+        Boolean(video.id) &&
+        video.presentation === "professional",
+    )
+    .slice(0, 160)
+    .map((video) => ({
+      id: video.id,
+      title: video.title || "فيديو عربي",
+      channel: video.channel || "مصدر تعليمي",
+      rightsClass: "youtube-embed",
+    }));
 }
 
-export default async function ShortsPage() {
-  const videos = await loadVideos();
-  return <ShortsFeed videos={videos} />;
+export default function ShortsPage() {
+  return (
+    <ShortsFeed
+      videos={loadVideos()}
+    />
+  );
 }
