@@ -60,11 +60,28 @@ async function dadyoomServerThrottledSignIn(
     }
   );
 
-  const payload = (await response.json()) as {
+  const raw = await response.text();
+  let payload: {
     error?: string;
     access_token?: string;
     refresh_token?: string;
-  };
+  } = {};
+
+  if (raw) {
+    try {
+      payload = JSON.parse(raw) as typeof payload;
+    } catch {
+      payload = {
+        error: response.ok
+          ? "وصل رد غير صالح من خدمة تسجيل الدخول."
+          : `تعذر تسجيل الدخول (HTTP ${response.status}).`,
+      };
+    }
+  } else if (!response.ok) {
+    payload = {
+      error: `تعذر تسجيل الدخول (HTTP ${response.status}).`,
+    };
+  }
 
   if (
     !response.ok ||
