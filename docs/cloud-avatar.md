@@ -65,6 +65,20 @@ Lightning AI:
 - Good for testing.
 - Initial credits are not an unlimited renewable production resource.
 
+## Five free / free-start avatar engines
+
+Dadyoom's automatic free-first order is:
+
+1. **HF ZeroGPU + SadTalker** — open-source talking-head renderer on a Dadyoom-owned Gradio ZeroGPU Space.
+2. **HF ZeroGPU + MuseTalk** — open-source lip-sync renderer on a second Dadyoom-owned ZeroGPU Space.
+3. **Tavus Developer Basic** — provider API with free developer capacity.
+4. **AKOOL** — use complimentary/signup API credits when available.
+5. **D-ID** — use trial/API credits when available.
+
+After those five, Dadyoom can fall through to **Creatify** and **HeyGen** only when their credentials/credits are configured.
+
+"Free" is deliberately treated as quota/availability, not as unlimited production capacity. If a provider returns exhausted credits, rate limiting, authentication failure, timeout, or server failure, Dadyoom records a cooldown and moves to the next configured provider.
+
 ## Dadyoom fallback chain
 
 Recommended:
