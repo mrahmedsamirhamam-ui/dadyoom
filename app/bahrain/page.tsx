@@ -76,22 +76,16 @@ export default function BahrainPage() {
         window.location.search
       );
 
-    if (q.get("qa") === "1") {
-      setStudent("QA Student");
-      setReady(true);
-    }
+    const qaMode =
+      q.get("qa") === "1";
 
     const qGrade =
       Number(
         q.get("grade") || "1"
       );
 
-    if (
-      qGrade >= 1 &&
-      qGrade <= 9
-    ) {
-      setGrade(qGrade);
-    }
+    let restoredCompleted: string[] =
+      [];
 
     try {
       const old =
@@ -102,9 +96,35 @@ export default function BahrainPage() {
         );
 
       if (Array.isArray(old)) {
-        setCompleted(old);
+        restoredCompleted =
+          old.filter(
+            (item): item is string =>
+              typeof item === "string",
+          );
       }
     } catch {}
+
+    queueMicrotask(() => {
+      if (qaMode) {
+        setStudent("QA Student");
+        setReady(true);
+      }
+
+      if (
+        qGrade >= 1 &&
+        qGrade <= 9
+      ) {
+        setGrade(qGrade);
+      }
+
+      if (
+        restoredCompleted.length
+      ) {
+        setCompleted(
+          restoredCompleted,
+        );
+      }
+    });
   }, []);
 
   const lessons =
