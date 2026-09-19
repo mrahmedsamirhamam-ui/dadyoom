@@ -27,10 +27,9 @@ function loadVideos(): SafeVideo[] {
   return catalog.videos
     .filter(
       (video) =>
-        Boolean(video.id) &&
-        video.presentation === "professional",
+        Boolean(video.id),
     )
-    .slice(0, 160)
+    .slice(0, 200)
     .map((video) => ({
       id: video.id,
       title: video.title || "فيديو عربي",
