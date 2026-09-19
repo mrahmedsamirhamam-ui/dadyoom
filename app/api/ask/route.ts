@@ -200,8 +200,20 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ answer }, { status: 200 });
   } catch (error) {
-    console.error("ASK_ROUTE_UNEXPECTED_ERROR:", error);
-    return NextResponse.json({ answer: "تعذر التواصل مع ضاد الآن. حاول مرة أخرى بعد قليل." }, { status: 500 });
+    console.error(
+      "ASK_ROUTE_UNEXPECTED_ERROR:",
+      error instanceof Error
+        ? error.message
+        : error,
+    );
+
+    return NextResponse.json(
+      {
+        answer:
+          "ضاد مشغول الآن قليلًا ولم أتمكن من إكمال الإجابة. حاول مرة أخرى بعد لحظات.",
+      },
+      { status: 503 },
+    );
   }
 }
 
