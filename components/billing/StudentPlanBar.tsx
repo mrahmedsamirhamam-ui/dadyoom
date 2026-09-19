@@ -26,7 +26,7 @@ export default function StudentPlanBar() {
   return (
     <div
       dir="rtl"
-      className="dadyoom-plan-bar mx-auto mb-4 flex w-full max-w-[1500px] flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#d9c08b] bg-[#fff9ea] px-4 py-3 text-sm"
+      className="dadyoom-plan-bar mx-auto flex w-full items-center justify-between gap-3 rounded-2xl border border-[#d9c08b] bg-gradient-to-l from-[#fff7df] to-[#fffdf8] px-4 py-2.5 text-sm shadow-sm"
     >
       <div>
         <b className="text-[#123f39]">
@@ -40,7 +40,7 @@ export default function StudentPlanBar() {
 
       <Link
         href="/pricing"
-        className="dadyoom-arabic-button rounded-xl px-4 py-2 font-black text-white"
+        className="dadyoom-arabic-button shrink-0 rounded-xl px-4 py-2 font-black text-white"
       >
         {plan === "plus" ? "إدارة Plus" : "اكتشف Plus"}
       </Link>
