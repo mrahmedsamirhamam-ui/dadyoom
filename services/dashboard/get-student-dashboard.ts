@@ -66,29 +66,77 @@ export async function getStudentDashboard(
     redirect("/login");
   }
 
-  const [
-    profileResult,
-    lessonsResult,
-    progressResult,
-  ] = await Promise.all([
-    supabase
+  const profileResult =
+    await supabase
       .from("profiles")
-      .select("full_name")
+      .select("full_name,role,country,grade_number")
       .eq("id", user.id)
-      .maybeSingle(),
+      .maybeSingle();
 
+  const profile =
+    profileResult.data as
+      | {
+          full_name?: string | null;
+          role?: string | null;
+          country?: string | null;
+          grade_number?: number | null;
+        }
+      | null;
+
+  const role =
+    profile?.role?.trim().toLowerCase() ?? "student";
+
+  const gradeNumber =
+    Number(profile?.grade_number);
+
+  const countryCode =
+    profile?.country?.trim().toUpperCase() || "BH";
+
+  let lessonsQuery =
     supabase
       .from("lessons")
       .select(`
         id,
         title,
         estimated_minutes,
-        lesson_number
+        lesson_number,
+        units!inner(
+          grades!inner(
+            grade_number,
+            curricula!inner(
+              countries!inner(code)
+            )
+          )
+        )
       `)
       .eq("status", "published")
       .order("lesson_number", {
         ascending: true,
-      }),
+      });
+
+  if (
+    role === "student" &&
+    Number.isInteger(gradeNumber) &&
+    gradeNumber >= 1 &&
+    gradeNumber <= 12
+  ) {
+    lessonsQuery =
+      lessonsQuery
+        .eq(
+          "units.grades.grade_number",
+          gradeNumber,
+        )
+        .eq(
+          "units.grades.curricula.countries.code",
+          countryCode,
+        );
+  }
+
+  const [
+    lessonsResult,
+    progressResult,
+  ] = await Promise.all([
+    lessonsQuery,
 
     supabase
       .from("student_lesson_progress")
@@ -264,13 +312,7 @@ export async function getStudentDashboard(
     null;
 
   const studentName =
-    (
-      profileResult.data as
-        | {
-            full_name?: string | null;
-          }
-        | null
-    )?.full_name ||
+    profile?.full_name ||
     user.user_metadata?.full_name ||
     user.email?.split("@")[0] ||
     "طالب ضاديوم";
