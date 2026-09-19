@@ -26,11 +26,13 @@ const PAGE_SIZE = 24;
 
 export default function VideoLibraryClient({
   videos,
+  initialRoom = "all",
 }: {
   videos: VideoItem[];
+  initialRoom?: "all" | "non-native" | "native";
 }) {
   const [room, setRoom] =
-    useState("all");
+    useState(initialRoom);
 
   const [category, setCategory] =
     useState("all");
