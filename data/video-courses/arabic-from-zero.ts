@@ -174,7 +174,7 @@ export const arabicFromZeroCourse = {
         "كوّن حوارًا قصيرًا من أربع جمل.",
         "تدرّب مع ضاد على محادثة تعارف بسيطة.",
       ],
-    },,
+    },
     {
       id: "intro-conversation",
       title: "التعارف والمحادثة الأولى",
