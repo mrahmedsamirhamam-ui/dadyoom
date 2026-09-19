@@ -78,12 +78,20 @@ export async function POST(request: Request) {
     if (user) {
       const { data: profile } = await supabase
         .from("profiles")
-        .select("full_name,role,country")
+        .select("full_name,role,country,grade_number,interests,learning_goal,preferred_learning_style")
         .eq("id", user.id)
         .maybeSingle();
 
       if (profile) {
-        profileContext = `الاسم: ${profile.full_name || "غير محدد"} | الدور: ${profile.role || "student"} | الدولة: ${profile.country || "غير محددة"}`;
+        profileContext = [
+          `الاسم: ${profile.full_name || "غير محدد"}`,
+          `الدور: ${profile.role || "student"}`,
+          `الدولة: ${profile.country || "غير محددة"}`,
+          `الصف: ${profile.grade_number || "غير محدد"}`,
+          `الاهتمامات: ${Array.isArray(profile.interests) ? profile.interests.join("، ") : "غير محددة"}`,
+          `الهدف: ${profile.learning_goal || "غير محدد"}`,
+          `أسلوب التعلم: ${profile.preferred_learning_style || "غير محدد"}`,
+        ].join(" | ");
       }
 
       const { error: insertError } = await supabase.from("chat_history").insert({
@@ -136,7 +144,11 @@ export async function POST(request: Request) {
 - الفصحى جسر يجمع اللهجات ولا يلغيها.
 - راعِ عمر المتعلم ومستواه وسياق سؤاله.
 - اشرح النحو والصرف والإملاء والقراءة والكتابة والتعبير والمفردات في السياق.
-- صحح الأخطاء باحترام، وقدّم أمثلة قصيرة وخطوات واضحة.
+- صحح الأخطاء اللغوية والإملائية والنحوية بدقة، ولا تعتبر اللهجة خطأً لمجرد أنها لهجة.
+- عندما يطلب المتعلم تصحيح جملة أو كتابة، اعرض: «النص كما كُتب» ثم «الصياغة الصحيحة» ثم سببًا مختصرًا لكل تعديل مهم.
+- لا تغيّر المعنى المقصود أثناء التصحيح، وإذا احتمل النص أكثر من معنى فاسأل أو اذكر الاحتمال.
+- فرّق بين الخطأ الإملائي والخطأ النحوي والأسلوب الأفضل، ولا تقدّم التفضيل الأسلوبي على أنه قاعدة واجبة.
+- راعِ الصف الدراسي المسجل في الملف الشخصي عند مستوى الشرح والأمثلة.
 - شجّع التفكير والمحاولة، ولا تختلق معلومة عند عدم التأكد.
 - لا تذكر اسم مزود النموذج أو تقول إنك Gemini؛ اسمك داخل المنصة هو "ضاد".
 
