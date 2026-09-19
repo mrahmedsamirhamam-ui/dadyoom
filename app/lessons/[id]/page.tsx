@@ -17,6 +17,7 @@ import AdaptiveRecommendationCard from "@/features/adaptive-learning/components/
 import WeakQuestionsReview from "@/features/adaptive-learning/components/WeakQuestionsReview";
 
 import LessonProgress from "@/components/lesson/LessonProgress";
+import LessonLearningSlides from "@/components/lesson/LessonLearningSlides";
 import VocabularyCard from "@/components/lesson/VocabularyCard";
 import MultipleChoiceQuestion from "@/components/lesson/MultipleChoiceQuestion";
 import ScoreCard from "@/components/lesson/ScoreCard";
@@ -447,17 +448,51 @@ export default async function LessonPage({
           </section>
         ) : null}
 
-        <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
-          <h2 className="mb-4 font-arabic-display text-2xl font-black text-[#173f38]">
-            نص الدرس
+        <LessonLearningSlides
+          instructions={lesson.instructions}
+          questions={lessonQuestions}
+        />
+        <section className="rounded-3xl border border-amber-200 bg-white p-6 shadow-sm sm:p-8">
+          <p className="text-sm font-black text-amber-700">
+            بعد انتهاء العرض
+          </p>
+          <h2 className="mt-1 text-3xl font-black text-slate-950">
+            اختبر نفسك
           </h2>
-
-          <div className="whitespace-pre-line font-arabic-reading text-xl leading-[2.15] text-[#3f3931]">
-            {lesson.content}
-          </div>
+          <p className="mt-2 text-slate-600">
+            أجب عن الأسئلة التالية لتتأكد من فهم الدرس.
+          </p>
         </section>
 
-        {vocabulary.length > 0 ? (
+        {multipleChoiceQuestions.length > 0 ? (
+          <section className="space-y-6">
+            {multipleChoiceQuestions.map(
+              (item: LessonQuestion) => {
+                return (
+                  <div
+                    key={item.id}
+                    id={`question-${item.id}`}
+                  >
+                    <MultipleChoiceQuestion
+                      lessonId={lesson.id}
+                      questionId={item.id}
+                      userId={user?.id ?? null}
+                      question={item.question}
+                      choices={item.options}
+                      correctAnswer={
+                        item.correct_answer
+                      }
+                      explanation={
+                        item.explanation
+                      }
+                    />
+                  </div>
+                );
+              }
+            )}
+          </section>
+        ) : null}
+{vocabulary.length > 0 ? (
           <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
             <h2 className="mb-4 font-arabic-display text-2xl font-black text-[#173f38]">
               المفردات
@@ -563,35 +598,6 @@ export default async function LessonPage({
                   : ""}
               </p>
             ) : null}
-          </section>
-        ) : null}
-
-        {multipleChoiceQuestions.length > 0 ? (
-          <section className="space-y-6">
-            {multipleChoiceQuestions.map(
-              (item: LessonQuestion) => {
-                return (
-                  <div
-                    key={item.id}
-                    id={`question-${item.id}`}
-                  >
-                    <MultipleChoiceQuestion
-                      lessonId={lesson.id}
-                      questionId={item.id}
-                      userId={user?.id ?? null}
-                      question={item.question}
-                      choices={item.options}
-                      correctAnswer={
-                        item.correct_answer
-                      }
-                      explanation={
-                        item.explanation
-                      }
-                    />
-                  </div>
-                );
-              }
-            )}
           </section>
         ) : null}
 
