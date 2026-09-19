@@ -1020,11 +1020,7 @@ function configuredProviders(excluded: Set<string>) {
       isCinematicProviderId(value),
     );
 
-  const defaultOrder: CinematicProviderId[] = [
-    // Dadyoom policy: HeyGen is the primary cinematic avatar engine.
-    // If it is unavailable, out of credits, rate-limited, or not configured,
-    // automatically fall through to the remaining configured engines.
-    "heygen",
+  const fallbackOrder: CinematicProviderId[] = [
     "hf-sadtalker",
     "hf-musetalk",
     "tavus",
@@ -1033,7 +1029,20 @@ function configuredProviders(excluded: Set<string>) {
     "creatify",
   ];
 
-  const order = requestedOrder.length ? requestedOrder : defaultOrder;
+  // Product rule: HeyGen is always the primary engine when configured.
+  // VIDEO_PROVIDER_ORDER may only refine the fallback order after HeyGen.
+  const requestedFallbacks = requestedOrder.filter(
+    (id) => id !== "heygen",
+  );
+
+  const order: CinematicProviderId[] = [
+    "heygen",
+    ...requestedFallbacks,
+    ...fallbackOrder.filter(
+      (id) => !requestedFallbacks.includes(id),
+    ),
+  ];
+
   const rank = new Map(order.map((id, index) => [id, index]));
 
   return providers
