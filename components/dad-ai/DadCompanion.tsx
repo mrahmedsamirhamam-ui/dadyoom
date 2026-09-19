@@ -4,7 +4,6 @@ import { AnimatePresence, motion, useDragControls } from "motion/react";
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import DadMark from "@/components/dad-ai/DadMark";
 import DadBrain from "@/components/dad/services/DadBrain";
-import DadLessonVideoButton from "@/components/dad-ai/DadLessonVideoButton";
 import { DAD_LESSON_CONTEXT_EVENT, type DadLessonContextPayload } from "@/components/dad-ai/DadLessonContext";
 import { useDadState } from "@/hooks/use-dad-state";
 import { DadAI, DadVoice } from "@/services/dad-ai";
@@ -167,63 +166,6 @@ export default function DadCompanion({
     setMessages(updatedConversation);
     setInput("");
 
-    const hasLessonContextNow =
-      Boolean(
-        context.lessonTitle &&
-        context.lessonContent,
-      );
-
-    if (
-      hasLessonContextNow &&
-      /(?:فيديو|video)/iu.test(
-        cleanInput,
-      )
-    ) {
-      const reply =
-        "حاضر. سأبدأ تجهيز فيديو AI لهذا الدرس من محتواه الآن.";
-
-      setMessages((current) => [
-        ...current,
-        {
-          role:
-            "assistant",
-          content:
-            reply,
-        },
-      ]);
-
-      window.dispatchEvent(
-        new CustomEvent(
-          "dadyoom:create-lesson-video",
-        ),
-      );
-
-      DadAI.talk();
-
-      if (voiceEnabled) {
-        void DadVoice
-          .speak(
-            reply,
-            {
-              mood:
-                "normal",
-            },
-          )
-          .catch(
-            () =>
-              undefined,
-          );
-      }
-
-      window.setTimeout(
-        () =>
-          DadAI.idle(),
-        900,
-      );
-
-      return;
-    }
-
     await requestCompanionResponse(
       cleanInput,
       cleanInput === "اختبر فهمي"
@@ -358,11 +300,6 @@ export default function DadCompanion({
                   </button>
                 ))}
               </div>
-              {hasLessonContext ? (
-                <DadLessonVideoButton
-                  lessonTitle={context.lessonTitle}
-                />
-              ) : null}
               <form onSubmit={sendMessage} className="flex items-end gap-2">
                 <textarea
                   value={input}
