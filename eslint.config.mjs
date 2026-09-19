@@ -9,6 +9,8 @@ const releaseIgnores = [
   "android/**",
   "ios/**",
   ".next/**",
+  "dist/**",
+  ".wrangler/**",
   "node_modules/**",
   "_backups/**",
   "**/_backups/**",
