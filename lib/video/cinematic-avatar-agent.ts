@@ -1021,15 +1021,16 @@ function configuredProviders(excluded: Set<string>) {
     );
 
   const defaultOrder: CinematicProviderId[] = [
-    // Renewable/open-source capacity first, then free/trial credits,
-    // then paid/credit fallbacks. Unconfigured providers are skipped.
+    // Dadyoom policy: HeyGen is the primary cinematic avatar engine.
+    // If it is unavailable, out of credits, rate-limited, or not configured,
+    // automatically fall through to the remaining configured engines.
+    "heygen",
     "hf-sadtalker",
     "hf-musetalk",
     "tavus",
     "akool",
     "did",
     "creatify",
-    "heygen",
   ];
 
   const order = requestedOrder.length ? requestedOrder : defaultOrder;
