@@ -1024,9 +1024,9 @@ function configuredProviders(excluded: Set<string>) {
     "tavus",
     "akool",
     "did",
-    "creatify",
     "hf-sadtalker",
     "hf-musetalk",
+    "creatify",
     "heygen",
   ];
 
