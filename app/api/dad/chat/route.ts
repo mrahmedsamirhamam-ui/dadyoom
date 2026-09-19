@@ -58,7 +58,6 @@ const ARABIC_TOPIC_MARKERS = [
   "العربية",
   "عربي",
   "فصحى",
-  "لغة",
   "نحو",
   "صرف",
   "إملاء",
@@ -154,6 +153,19 @@ export async function POST(request: Request) {
     );
 
     if (
+      /(?:فيديو|video)/iu.test(message)
+    ) {
+      return NextResponse.json(
+        {
+          reply: hasLessonContext
+            ? "أستطيع تجهيز فيديو تعليمي لهذا الدرس. اطلب مني «اعمل فيديو للدرس» أو استخدم زر «إنشاء فيديو الدرس بالـ AI» داخل نافذة ضاد."
+            : "أستطيع إنشاء فيديو AI مرتبط بالدرس. افتح الدرس المطلوب أولًا، ثم افتح ضاد وقل «اعمل فيديو للدرس».",
+        },
+        { status: 200 },
+      );
+    }
+
+    if (
       !isArabicLearningIntent(
         message,
         hasLessonContext,
@@ -163,19 +175,6 @@ export async function POST(request: Request) {
         {
           reply:
             OUT_OF_SCOPE_REPLY,
-        },
-        { status: 200 },
-      );
-    }
-
-    if (
-      /(?:فيديو|video)/iu.test(message)
-    ) {
-      return NextResponse.json(
-        {
-          reply: hasLessonContext
-            ? "أستطيع تجهيز فيديو تعليمي لهذا الدرس. استخدم زر «إنشاء فيديو الدرس بالـ AI» داخل نافذة ضاد، وسيتم بناء السيناريو من محتوى الدرس ثم إنشاء الفيديو."
-            : "أستطيع إنشاء فيديو AI مرتبط بالدرس. افتح الدرس المطلوب أولًا، ثم افتح ضاد واضغط «إنشاء فيديو الدرس بالـ AI».",
         },
         { status: 200 },
       );
