@@ -219,6 +219,105 @@ function fallbackDeck(
   };
 }
 
+
+function fallbackVideoStoryboard(
+  lesson: LessonRow,
+): Deck {
+  const source =
+    sourceSentences(
+      lesson,
+    );
+
+  const rows =
+    source.length > 0
+      ? source
+      : [
+          `نتعلم اليوم أهم أفكار درس ${lesson.title}.`,
+          "نقرأ الفكرة الأساسية ثم نوضحها بمثال قصير.",
+          "نراجع المفردات المهمة داخل السياق.",
+          "نختم بسؤال سريع لنتأكد من الفهم.",
+        ];
+
+  const slides: RichSlide[] = [
+    {
+      title:
+        lesson.title,
+      bullets: [
+        "فيديو ضاديوم التعليمي",
+      ],
+      narration:
+        `مرحبًا بك في ضاديوم. في هذا الفيديو سنتعلم درس ${lesson.title} بطريقة سهلة ومختصرة.`,
+      seconds: 7,
+    },
+    {
+      title:
+        "الفكرة الأساسية",
+      bullets:
+        rows.slice(0, 3),
+      narration:
+        rows.slice(0, 3).join(". "),
+      seconds: 10,
+    },
+    {
+      title:
+        "نفهم أكثر",
+      bullets:
+        rows.slice(3, 6).length
+          ? rows.slice(3, 6)
+          : rows.slice(0, 3),
+      narration:
+        (
+          rows.slice(3, 6).length
+            ? rows.slice(3, 6)
+            : rows.slice(0, 3)
+        ).join(". "),
+      seconds: 10,
+    },
+    {
+      title:
+        "مفاتيح الدرس",
+      bullets:
+        rows.slice(6, 9).length
+          ? rows.slice(6, 9)
+          : [
+              "اقرأ الفكرة بصوت واضح.",
+              "اربط بين الكلمات والمعنى.",
+              "حاول شرح الفكرة بأسلوبك.",
+            ],
+      narration:
+        "ركز على الكلمات المهمة، واربط كل كلمة بالمعنى العام للدرس.",
+      seconds: 9,
+    },
+    {
+      title:
+        "تطبيق سريع",
+      bullets: [
+        "اذكر أهم فكرة تعلمتها.",
+        "اختر كلمة جديدة واشرح معناها.",
+        "كوّن جملة مرتبطة بالدرس.",
+      ],
+      narration:
+        "توقف قليلًا وحاول الإجابة بنفسك: ما أهم فكرة تعلمتها من هذا الدرس؟",
+      seconds: 9,
+    },
+    {
+      title:
+        "مراجعة",
+      bullets:
+        rows.slice(-3),
+      narration:
+        "راجع هذه النقاط، ثم أكمل أسئلة ضاديوم التفاعلية للتأكد من فهمك.",
+      seconds: 8,
+    },
+  ];
+
+  return {
+    title:
+      lesson.title,
+    slides,
+  };
+}
+
 function slidePrompt(
   custom: boolean,
 ) {
@@ -874,39 +973,108 @@ export async function POST(
       );
     }
 
-    const result =
-      await runAgentJson<
-        Record<
-          string,
-          unknown
-        >
-      >({
-        agent:
-          agentFor(task),
-        context,
-        profile,
-        preferredProviders:
-          task === "slides" ||
-          task ===
-            "custom_slides"
-            ? preferredSlideProviders()
-            : undefined,
-        maxTokens:
-          task ===
-          "video_storyboard"
-            ? 3200
-            : task ===
-                "slides" ||
-              task ===
-                "custom_slides"
+    let result;
+
+    try {
+      result =
+        await runAgentJson<
+          Record<
+            string,
+            unknown
+          >
+        >({
+          agent:
+            agentFor(task),
+          context,
+          profile,
+          preferredProviders:
+            task === "slides" ||
+            task ===
+              "custom_slides"
+              ? preferredSlideProviders()
+              : undefined,
+          maxTokens:
+            task ===
+            "video_storyboard"
               ? 3200
-              : 2400,
-        prompt:
-          promptFor(
-            task,
-            question,
-          ),
-      });
+              : task ===
+                  "slides" ||
+                task ===
+                  "custom_slides"
+                ? 3200
+                : 2400,
+          prompt:
+            promptFor(
+              task,
+              question,
+            ),
+        });
+    } catch (error) {
+      if (
+        task !==
+        "video_storyboard"
+      ) {
+        throw error;
+      }
+
+      console.error(
+        "VIDEO_DIRECTOR_AGENT_FALLBACK",
+        error instanceof Error
+          ? error.message
+          : error,
+      );
+
+      const fallback =
+        fallbackVideoStoryboard(
+          lesson,
+        );
+
+      if (
+        db &&
+        kind
+      ) {
+        await db
+          .from(
+            "edu_lesson_ai_artifacts",
+          )
+          .upsert(
+            {
+              lesson_id:
+                lessonId,
+              kind,
+              prompt_version:
+                promptVersion(
+                  task,
+                ),
+              content:
+                fallback,
+              provider:
+                "dadyoom-fallback",
+              model:
+                "source-grounded-video-v1",
+              updated_at:
+                new Date().toISOString(),
+            },
+            {
+              onConflict:
+                "lesson_id,kind,prompt_version",
+            },
+          );
+      }
+
+      return NextResponse.json(
+        {
+          data:
+            fallback,
+          provider:
+            "dadyoom-fallback",
+          model:
+            "source-grounded-video-v1",
+          cached: false,
+          degraded: true,
+        },
+      );
+    }
 
     if (
       db &&
@@ -956,15 +1124,20 @@ export async function POST(
       },
     );
   } catch (error) {
+    console.error(
+      "LESSON_STUDY_INTERNAL_ERROR",
+      error instanceof Error
+        ? error.message
+        : error,
+    );
+
     return NextResponse.json(
       {
         error:
-          error instanceof Error
-            ? error.message
-            : "تعذر تشغيل أداة الدراسة.",
+          "تعذر تشغيل أداة الدراسة الآن. حاول مرة أخرى بعد قليل.",
       },
       {
-        status: 500,
+        status: 503,
       },
     );
   }
