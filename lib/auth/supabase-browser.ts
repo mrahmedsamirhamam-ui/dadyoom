@@ -3,6 +3,10 @@
 import {
   createBrowserClient,
 } from "@supabase/ssr";
+import {
+  SUPABASE_PUBLIC_KEY,
+  SUPABASE_PUBLIC_URL,
+} from "@/lib/supabase/public-config";
 
 let client:
   ReturnType<
@@ -15,22 +19,10 @@ export function getSupabaseBrowserClient() {
     return client;
   }
 
-  const url =
-    process.env.NEXT_PUBLIC_SUPABASE_URL;
-
-  const anonKey =
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!url || !anonKey) {
-    throw new Error(
-      "بيانات Supabase غير موجودة في .env.local"
-    );
-  }
-
   client =
     createBrowserClient(
-      url,
-      anonKey
+      SUPABASE_PUBLIC_URL,
+      SUPABASE_PUBLIC_KEY
     );
 
   return client;
