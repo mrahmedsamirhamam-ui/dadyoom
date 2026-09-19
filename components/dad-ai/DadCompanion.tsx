@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useDragControls } from "motion/react";
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import DadMark from "@/components/dad-ai/DadMark";
 import DadBrain from "@/components/dad/services/DadBrain";
@@ -42,6 +42,8 @@ export default function DadCompanion({
 }: DadCompanionProps) {
   const dadState = useDadState();
   const brain = useMemo(() => new DadBrain(), []);
+  const dragControls = useDragControls();
+  const dragBoundsRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [voiceEnabled, setVoiceEnabled] = useState(true);
@@ -175,7 +177,20 @@ export default function DadCompanion({
   const hasLessonContext = Boolean(context.lessonTitle && context.lessonContent);
 
   return (
-    <div dir="rtl" className="fixed bottom-4 left-4 z-[9999] sm:bottom-6 sm:left-6">
+    <div
+      ref={dragBoundsRef}
+      className="pointer-events-none fixed inset-2 z-[9999] sm:inset-4"
+    >
+      <motion.div
+        dir="rtl"
+        drag
+        dragControls={dragControls}
+        dragListener={false}
+        dragConstraints={dragBoundsRef}
+        dragMomentum={false}
+        dragElastic={0.06}
+        className="pointer-events-auto absolute bottom-0 left-0"
+      >
       <AnimatePresence>
         {isOpen ? (
           <motion.section
@@ -187,6 +202,15 @@ export default function DadCompanion({
             className="mb-4 flex h-[min(600px,calc(100vh-7rem))] w-[calc(100vw-2rem)] max-w-[410px] flex-col overflow-hidden rounded-[2rem] border border-[#d7c391] bg-[#fffdf8] shadow-2xl shadow-[#123f39]/20"
           >
             <header className="relative overflow-hidden bg-gradient-to-l from-[#123f39] via-[#17564d] to-[#1f665c] px-5 py-4 text-white">
+              <button
+                type="button"
+                onPointerDown={(event) => dragControls.start(event)}
+                className="absolute left-1/2 top-1 z-20 -translate-x-1/2 cursor-grab touch-none select-none rounded-full bg-white/10 px-3 py-1 text-[10px] font-black text-white/80 active:cursor-grabbing"
+                aria-label="اسحب لتحريك ضاد"
+                title="اسحب لتحريك ضاد"
+              >
+                ⋮⋮ اسحب
+              </button>
               <div aria-hidden="true" className="absolute inset-0 opacity-15 dad-arabesque" />
               <div className="relative flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
@@ -305,7 +329,18 @@ export default function DadCompanion({
         ) : null}
       </AnimatePresence>
 
-      <div className="flex items-end gap-2">
+      <div className="relative flex items-end gap-2">
+        {!isOpen ? (
+          <button
+            type="button"
+            onPointerDown={(event) => dragControls.start(event)}
+            className="absolute -top-8 left-0 z-20 cursor-grab touch-none select-none rounded-full border border-[#d7c391] bg-[#fffdf8] px-3 py-1 text-[10px] font-black text-[#6e572c] shadow-md active:cursor-grabbing"
+            aria-label="اسحب لتحريك ضاد"
+            title="اسحب لتحريك ضاد"
+          >
+            ⋮⋮ اسحب
+          </button>
+        ) : null}
         <AnimatePresence>
           {!isOpen ? (
             <motion.div
@@ -332,6 +367,7 @@ export default function DadCompanion({
           <DadMark state={dadState} size={64} />
         </motion.button>
       </div>
+      </motion.div>
     </div>
   );
 }
