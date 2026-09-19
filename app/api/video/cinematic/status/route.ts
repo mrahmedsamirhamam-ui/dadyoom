@@ -3,7 +3,8 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import {
   cinematicVideoConfigured,
-  getTwoAvatarLessonVideoStatus,
+  getCinematicVideoStatus,
+  isCinematicProviderId,
 } from "@/lib/video/cinematic-avatar-agent";
 
 export const runtime = "nodejs";
@@ -46,6 +47,13 @@ export async function GET(request: Request) {
         ) ?? "",
       ).trim();
 
+    const provider =
+      String(
+        url.searchParams.get(
+          "provider",
+        ) ?? "",
+      ).trim();
+
     const videoId =
       String(
         url.searchParams.get(
@@ -54,6 +62,10 @@ export async function GET(request: Request) {
       ).trim();
 
     if (
+      !provider ||
+      !isCinematicProviderId(
+        provider,
+      ) ||
       !sessionId ||
       !safeId(sessionId) ||
       (
@@ -71,7 +83,8 @@ export async function GET(request: Request) {
     }
 
     const result =
-      await getTwoAvatarLessonVideoStatus({
+      await getCinematicVideoStatus({
+        provider,
         sessionId,
         videoId:
           videoId ||
