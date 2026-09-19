@@ -191,9 +191,7 @@ async function askCloud(
       status: timedOut ? 408 : 0,
       error: timedOut
         ? "استغرق الرد وقتًا أطول من المتوقع. حاول مرة أخرى بعد لحظات."
-        : cause instanceof Error
-          ? cause.message
-          : "تعذر الاتصال بضاد الآن.",
+        : "تعذر الاتصال بضاد الآن. حاول مرة أخرى بعد قليل.",
     };
   } finally {
     window.clearTimeout(timeoutId);
