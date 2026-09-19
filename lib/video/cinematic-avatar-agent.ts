@@ -1,43 +1,22 @@
-type HeyGenError = {
-  code?: string | number;
-  message?: string;
-};
-
-type HeyGenSessionEnvelope = {
-  error?: HeyGenError | null;
-  data?: {
-    session_id?: string;
-    status?:
-      | "thinking"
-      | "waiting_for_input"
-      | "reviewing"
-      | "generating"
-      | "completed"
-      | "failed";
-    progress?: number;
-    video_id?: string | null;
-  };
-};
-
-type HeyGenVideoEnvelope = {
-  error?: HeyGenError | null;
-  data?: {
-    id?: string;
-    status?: "pending" | "processing" | "completed" | "failed";
-    video_url?: string | null;
-    thumbnail_url?: string | null;
-    duration?: number | null;
-    failure_message?: string | null;
-  };
-};
+export type CinematicProviderId =
+  | "tavus"
+  | "akool"
+  | "did"
+  | "creatify"
+  | "hf-sadtalker"
+  | "hf-musetalk"
+  | "heygen";
 
 export type CinematicVideoStart = {
+  provider: CinematicProviderId;
   sessionId: string;
   videoId?: string;
   status: "queued" | "generating" | "completed";
+  degraded?: boolean;
 };
 
 export type CinematicVideoStatus = {
+  provider: CinematicProviderId;
   status: "queued" | "generating" | "completed" | "failed";
   videoId?: string;
   videoUrl?: string;
@@ -46,291 +25,974 @@ export type CinematicVideoStatus = {
   message?: string;
 };
 
-const HEYGEN_BASE_URL = "https://api.heygen.com";
+type LessonVideoInput = {
+  title: string;
+  summary?: string | null;
+  content?: string | null;
+  excludeProviders?: string[];
+};
 
-function apiKey() {
-  return process.env.HEYGEN_API_KEY?.trim() || "";
+type Provider = {
+  id: CinematicProviderId;
+  configured: () => boolean;
+  start: (input: LessonVideoInput) => Promise<CinematicVideoStart>;
+  status: (input: {
+    sessionId: string;
+    videoId?: string;
+  }) => Promise<CinematicVideoStatus>;
+};
+
+const PUBLIC_FAILURE =
+  "تعذر إنشاء الفيديو بهذا المحرك. سيحاول ضاديوم محركًا آخر تلقائيًا.";
+
+function env(name: string) {
+  return process.env[name]?.trim() || "";
 }
 
-function headers() {
-  const key = apiKey();
-
-  if (!key) {
-    throw new Error("CINEMATIC_VIDEO_NOT_CONFIGURED");
-  }
-
-  return {
-    "X-Api-Key": key,
-    "Content-Type": "application/json",
-    Accept: "application/json",
-  };
-}
-
-function publicFailure() {
-  return "تعذر إنشاء الفيديو السينمائي الآن. حاول مرة أخرى بعد قليل.";
-}
-
-function sourceText(value: string | null | undefined, max: number) {
+function compactText(value: string | null | undefined, max: number) {
   return String(value ?? "")
     .replace(/\s+/gu, " ")
     .trim()
     .slice(0, max);
 }
 
-function buildTwoAvatarPrompt(input: {
-  title: string;
-  summary?: string | null;
-  content?: string | null;
-}) {
-  const title = sourceText(input.title, 180);
-  const summary = sourceText(input.summary, 1800);
-  const content = sourceText(input.content, 9000);
+function lessonSentences(input: LessonVideoInput) {
+  const raw = [
+    compactText(input.summary, 2200),
+    compactText(input.content, 9000),
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const parts = raw
+    .split(/(?<=[.!؟؛])\s+/u)
+    .map((item) => item.trim())
+    .filter((item) => item.length >= 12)
+    .slice(0, 8);
+
+  if (parts.length >= 4) {
+    return parts;
+  }
+
+  return [
+    `موضوع درسنا اليوم هو ${compactText(input.title, 180)}.`,
+    "سنفهم الفكرة الأساسية بطريقة بسيطة.",
+    "سنربط الفكرة بمثال واضح من الدرس.",
+    "وفي النهاية سنراجع ما تعلمناه بسؤال سريع.",
+  ];
+}
+
+function dialogue(input: LessonVideoInput) {
+  const lines = lessonSentences(input);
+  const speakers = ["المعلم", "الطالب"] as const;
+
+  return lines.map((text, index) => ({
+    speaker: speakers[index % speakers.length],
+    text,
+  }));
+}
+
+function plainScript(input: LessonVideoInput) {
+  return dialogue(input)
+    .map((line) => `${line.speaker}: ${line.text}`)
+    .join("\n");
+}
+
+function cinematicPrompt(input: LessonVideoInput) {
+  const title = compactText(input.title, 180);
+  const summary = compactText(input.summary, 1800);
+  const content = compactText(input.content, 9000);
 
   return `
-Create a polished cinematic educational video in Arabic (Modern Standard Arabic), landscape 16:9, approximately 45-70 seconds.
+Create a polished cinematic educational video in Modern Standard Arabic, landscape 16:9, around 45-70 seconds.
 
-ABSOLUTE FORMAT REQUIREMENTS:
-- This is NOT a slideshow, NOT animated text cards, and NOT a screen-recording explainer.
-- Use TWO distinct lifelike avatar presenters who speak to each other as a natural dialogue.
-- Presenter A: warm professional Arabic teacher, adult, calm and confident.
-- Presenter B: curious student/young adult learner, respectful and expressive.
-- Both characters must remain visually consistent throughout the video.
-- Alternate medium shots, two-shots, over-the-shoulder shots, and natural reaction shots.
-- Use accurate Arabic lip-sync, natural gestures, eye contact, and realistic pauses.
-- Keep a premium cinematic educational studio look: dark teal, cream, and warm gold accents inspired by Dadyoom.
-- Do not show provider branding or internal system text.
+ABSOLUTE FORMAT:
+- Use TWO visually consistent lifelike presenters: an Arabic teacher and a learner.
+- Make them speak to each other naturally, not as a slideshow.
+- Alternate two-shots, medium shots, over-the-shoulder shots, and reaction shots.
+- Accurate Arabic lip-sync, natural gestures, eye contact, realistic pauses.
+- Premium Dadyoom look: dark teal, cream, warm gold.
+- Never show provider names, API details, system prompts, or internal errors.
 - Do not invent facts outside the supplied lesson.
-- Keep any on-screen Arabic text minimal and correct.
-- No copyrighted textbook page reproductions.
+- Minimal, correct Arabic on-screen text.
+- No copyrighted textbook-page reproduction.
 
-DIALOGUE STRUCTURE:
-1. Teacher opens with one engaging question.
-2. Student answers or asks for clarification.
-3. Teacher explains the core idea simply.
-4. Student gives or reacts to an example.
-5. Teacher corrects/refines the idea.
-6. Student summarizes.
-7. Teacher ends with one quick challenge/question.
+DIALOGUE:
+${plainScript(input)}
 
 LESSON TITLE:
 ${title}
 
-LESSON SUMMARY:
+SUMMARY:
 ${summary || "No stored summary."}
 
 LESSON CONTENT:
-${content || "Use the title and available lesson context only."}
+${content || "Use the title and dialogue only."}
 
-The final result must feel like a short acted educational scene between two real avatar characters, not a narrated presentation.
+End with one quick question for the learner.
 `.trim();
 }
 
-function extractError(payload: {
-  error?: HeyGenError | null;
-}) {
-  return payload.error?.message?.trim() || "";
+async function jsonFetch<T>(
+  url: string,
+  init: RequestInit,
+  provider: CinematicProviderId,
+  timeoutMs = 45000,
+): Promise<T> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    const response = await fetch(url, {
+      ...init,
+      signal: controller.signal,
+      cache: "no-store",
+    });
+
+    const raw = await response.text();
+    let payload = {} as T;
+
+    if (raw) {
+      try {
+        payload = JSON.parse(raw) as T;
+      } catch {
+        console.error("VIDEO_PROVIDER_NON_JSON", {
+          provider,
+          status: response.status,
+        });
+      }
+    }
+
+    if (!response.ok) {
+      console.error("VIDEO_PROVIDER_HTTP_ERROR", {
+        provider,
+        status: response.status,
+        body: raw.slice(0, 600),
+      });
+      throw new Error(
+        response.status === 402 || response.status === 429
+          ? "VIDEO_PROVIDER_QUOTA_OR_RATE_LIMIT"
+          : "VIDEO_PROVIDER_REQUEST_FAILED",
+      );
+    }
+
+    return payload;
+  } catch (error) {
+    if (
+      error instanceof Error &&
+      error.name === "AbortError"
+    ) {
+      throw new Error("VIDEO_PROVIDER_TIMEOUT");
+    }
+    throw error;
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
-async function heyGenFetch<T>(
-  path: string,
-  init?: RequestInit,
-): Promise<T> {
-  const response = await fetch(
-    `${HEYGEN_BASE_URL}${path}`,
-    {
-      ...init,
-      headers: {
-        ...headers(),
-        ...(init?.headers ?? {}),
+const tavus: Provider = {
+  id: "tavus",
+  configured: () =>
+    Boolean(env("TAVUS_API_KEY") && env("TAVUS_REPLICA_ID")),
+  async start(input) {
+    const payload = await jsonFetch<{
+      video_id?: string;
+      status?: string;
+      hosted_url?: string;
+      download_url?: string;
+    }>(
+      "https://tavusapi.com/v2/videos",
+      {
+        method: "POST",
+        headers: {
+          "x-api-key": env("TAVUS_API_KEY"),
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          replica_id: env("TAVUS_REPLICA_ID"),
+          script: plainScript(input).slice(0, 5000),
+          video_name: `Dadyoom - ${compactText(input.title, 120)}`,
+        }),
       },
-      cache: "no-store",
+      "tavus",
+    );
+
+    if (!payload.video_id) {
+      throw new Error("TAVUS_MISSING_VIDEO_ID");
+    }
+
+    return {
+      provider: "tavus",
+      sessionId: payload.video_id,
+      videoId: payload.video_id,
+      status: payload.status === "ready" ? "completed" : "queued",
+      degraded: true,
+    };
+  },
+  async status(input) {
+    const payload = await jsonFetch<{
+      video_id?: string;
+      status?: string;
+      hosted_url?: string;
+      download_url?: string;
+      stream_url?: string;
+      status_details?: string;
+    }>(
+      `https://tavusapi.com/v2/videos/${encodeURIComponent(input.videoId || input.sessionId)}`,
+      {
+        method: "GET",
+        headers: {
+          "x-api-key": env("TAVUS_API_KEY"),
+        },
+      },
+      "tavus",
+    );
+
+    if (payload.status === "ready") {
+      return {
+        provider: "tavus",
+        status: "completed",
+        videoId: payload.video_id || input.videoId || input.sessionId,
+        videoUrl:
+          payload.download_url ||
+          payload.hosted_url ||
+          payload.stream_url,
+      };
+    }
+
+    if (payload.status === "error" || payload.status === "deleted") {
+      return {
+        provider: "tavus",
+        status: "failed",
+        message: PUBLIC_FAILURE,
+      };
+    }
+
+    return {
+      provider: "tavus",
+      status: payload.status === "queued" ? "queued" : "generating",
+      videoId: payload.video_id || input.videoId || input.sessionId,
+    };
+  },
+};
+
+const akool: Provider = {
+  id: "akool",
+  configured: () =>
+    Boolean(
+      env("AKOOL_API_KEY") &&
+        env("AKOOL_AVATAR_ID") &&
+        env("AKOOL_VOICE_ID"),
+    ),
+  async start(input) {
+    const payload = await jsonFetch<{
+      code?: number;
+      msg?: string;
+      data?: {
+        _id?: string;
+        video_status?: number;
+        video?: string;
+      };
+    }>(
+      "https://openapi.akool.com/api/open/v3/talkingavatar/create",
+      {
+        method: "POST",
+        headers: {
+          "x-api-key": env("AKOOL_API_KEY"),
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          avatar_from: 2,
+          avatar_id: env("AKOOL_AVATAR_ID"),
+          voice_id: env("AKOOL_VOICE_ID"),
+          input_text: plainScript(input).slice(0, 4800),
+          width: 1280,
+          height: 720,
+        }),
+      },
+      "akool",
+    );
+
+    if (payload.code !== 1000 || !payload.data?._id) {
+      console.error("AKOOL_CREATE_ERROR", {
+        code: payload.code,
+        msg: payload.msg,
+      });
+      throw new Error("AKOOL_CREATE_FAILED");
+    }
+
+    return {
+      provider: "akool",
+      sessionId: payload.data._id,
+      videoId: payload.data._id,
+      status:
+        payload.data.video_status === 3
+          ? "completed"
+          : payload.data.video_status === 1
+            ? "queued"
+            : "generating",
+      degraded: true,
+    };
+  },
+  async status(input) {
+    const id = input.videoId || input.sessionId;
+    const payload = await jsonFetch<{
+      code?: number;
+      msg?: string;
+      data?: {
+        _id?: string;
+        video_status?: number;
+        video?: string;
+      };
+    }>(
+      `https://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=${encodeURIComponent(id)}`,
+      {
+        method: "GET",
+        headers: {
+          "x-api-key": env("AKOOL_API_KEY"),
+        },
+      },
+      "akool",
+    );
+
+    if (payload.code !== 1000) {
+      return {
+        provider: "akool",
+        status: "failed",
+        message: PUBLIC_FAILURE,
+      };
+    }
+
+    if (payload.data?.video_status === 3 && payload.data.video) {
+      return {
+        provider: "akool",
+        status: "completed",
+        videoId: payload.data._id || id,
+        videoUrl: payload.data.video,
+      };
+    }
+
+    if (payload.data?.video_status === 4) {
+      return {
+        provider: "akool",
+        status: "failed",
+        videoId: payload.data._id || id,
+        message: PUBLIC_FAILURE,
+      };
+    }
+
+    return {
+      provider: "akool",
+      status: payload.data?.video_status === 1 ? "queued" : "generating",
+      videoId: payload.data?._id || id,
+    };
+  },
+};
+
+const did: Provider = {
+  id: "did",
+  configured: () =>
+    Boolean(
+      env("DID_API_KEY") &&
+        env("DID_SOURCE_IMAGE_URL") &&
+        env("DID_VOICE_ID"),
+    ),
+  async start(input) {
+    const payload = await jsonFetch<{
+      id?: string;
+      status?: string;
+      result_url?: string;
+    }>(
+      "https://api.d-id.com/talks",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Basic ${env("DID_API_KEY")}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          source_url: env("DID_SOURCE_IMAGE_URL"),
+          script: {
+            type: "text",
+            input: plainScript(input).slice(0, 5000),
+            provider: {
+              type: "microsoft",
+              voice_id: env("DID_VOICE_ID"),
+            },
+          },
+          name: `Dadyoom - ${compactText(input.title, 120)}`,
+        }),
+      },
+      "did",
+    );
+
+    if (!payload.id) {
+      throw new Error("DID_MISSING_TALK_ID");
+    }
+
+    return {
+      provider: "did",
+      sessionId: payload.id,
+      videoId: payload.id,
+      status: payload.status === "done" ? "completed" : "queued",
+      degraded: true,
+    };
+  },
+  async status(input) {
+    const id = input.videoId || input.sessionId;
+    const payload = await jsonFetch<{
+      id?: string;
+      status?: string;
+      result_url?: string;
+      error?: unknown;
+    }>(
+      `https://api.d-id.com/talks/${encodeURIComponent(id)}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Basic ${env("DID_API_KEY")}`,
+        },
+      },
+      "did",
+    );
+
+    if (payload.status === "done" && payload.result_url) {
+      return {
+        provider: "did",
+        status: "completed",
+        videoId: payload.id || id,
+        videoUrl: payload.result_url,
+      };
+    }
+
+    if (payload.status === "error" || payload.status === "rejected") {
+      return {
+        provider: "did",
+        status: "failed",
+        videoId: payload.id || id,
+        message: PUBLIC_FAILURE,
+      };
+    }
+
+    return {
+      provider: "did",
+      status: payload.status === "created" ? "queued" : "generating",
+      videoId: payload.id || id,
+    };
+  },
+};
+
+function creatifyScenes(input: LessonVideoInput) {
+  const avatarA = env("CREATIFY_AVATAR_A_ID");
+  const avatarB = env("CREATIFY_AVATAR_B_ID");
+  const voiceA = env("CREATIFY_VOICE_A_ID");
+  const voiceB = env("CREATIFY_VOICE_B_ID");
+
+  return dialogue(input).map((line, index) => ({
+    character: {
+      type: "avatar",
+      avatar_id: index % 2 === 0 ? avatarA : avatarB,
+      avatar_style: "normal",
+      offset: {
+        x: -0.15,
+        y: 0.25,
+      },
     },
-  );
+    voice: {
+      type: "text",
+      input_text: line.text,
+      voice_id: index % 2 === 0 ? voiceA : voiceB,
+    },
+  }));
+}
 
-  const raw = await response.text();
-  let payload = {} as T;
+const creatify: Provider = {
+  id: "creatify",
+  configured: () =>
+    Boolean(
+      env("CREATIFY_API_ID") &&
+        env("CREATIFY_API_KEY") &&
+        env("CREATIFY_AVATAR_A_ID") &&
+        env("CREATIFY_AVATAR_B_ID") &&
+        env("CREATIFY_VOICE_A_ID") &&
+        env("CREATIFY_VOICE_B_ID"),
+    ),
+  async start(input) {
+    const payload = await jsonFetch<{
+      id?: string;
+      status?: string;
+      output?: string;
+    }>(
+      "https://api.creatify.ai/api/lipsyncs_v2/",
+      {
+        method: "POST",
+        headers: {
+          "X-API-ID": env("CREATIFY_API_ID"),
+          "X-API-KEY": env("CREATIFY_API_KEY"),
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          video_inputs: creatifyScenes(input),
+          aspect_ratio: "16x9",
+          model_version: "standard",
+          name: `Dadyoom - ${compactText(input.title, 120)}`,
+        }),
+      },
+      "creatify",
+    );
 
-  if (raw) {
+    if (!payload.id) {
+      throw new Error("CREATIFY_MISSING_JOB_ID");
+    }
+
+    return {
+      provider: "creatify",
+      sessionId: payload.id,
+      videoId: payload.id,
+      status: payload.status === "done" ? "completed" : "queued",
+    };
+  },
+  async status(input) {
+    const id = input.videoId || input.sessionId;
+    const payload = await jsonFetch<{
+      id?: string;
+      status?: string;
+      output?: string | null;
+      video_thumbnail?: string | null;
+      duration?: number;
+      failed_reason?: string | null;
+    }>(
+      `https://api.creatify.ai/api/lipsyncs_v2/${encodeURIComponent(id)}/`,
+      {
+        method: "GET",
+        headers: {
+          "X-API-ID": env("CREATIFY_API_ID"),
+          "X-API-KEY": env("CREATIFY_API_KEY"),
+        },
+      },
+      "creatify",
+    );
+
+    if (payload.status === "done" && payload.output) {
+      return {
+        provider: "creatify",
+        status: "completed",
+        videoId: payload.id || id,
+        videoUrl: payload.output,
+        thumbnailUrl: payload.video_thumbnail || undefined,
+        duration: payload.duration,
+      };
+    }
+
+    if (
+      payload.status === "error" ||
+      payload.status === "failed" ||
+      payload.failed_reason
+    ) {
+      return {
+        provider: "creatify",
+        status: "failed",
+        videoId: payload.id || id,
+        message: PUBLIC_FAILURE,
+      };
+    }
+
+    return {
+      provider: "creatify",
+      status: payload.status === "pending" ? "queued" : "generating",
+      videoId: payload.id || id,
+    };
+  },
+};
+
+function hfGatewayProvider(
+  id: "hf-sadtalker" | "hf-musetalk",
+  urlEnv: string,
+): Provider {
+  return {
+    id,
+    configured: () => Boolean(env(urlEnv)),
+    async start(input) {
+      const payload = await jsonFetch<{
+        id?: string;
+        job_id?: string;
+        status?: string;
+        video_url?: string;
+      }>(
+        env(urlEnv),
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            ...(env("HF_TOKEN")
+              ? { Authorization: `Bearer ${env("HF_TOKEN")}` }
+              : {}),
+          },
+          body: JSON.stringify({
+            title: compactText(input.title, 180),
+            script: plainScript(input),
+            prompt: cinematicPrompt(input),
+            teacher_image_url: env("HF_TEACHER_IMAGE_URL"),
+            student_image_url: env("HF_STUDENT_IMAGE_URL"),
+            language: "ar",
+          }),
+        },
+        id,
+        90000,
+      );
+
+      const jobId = payload.job_id || payload.id;
+      if (!jobId) {
+        throw new Error("HF_AVATAR_MISSING_JOB_ID");
+      }
+
+      return {
+        provider: id,
+        sessionId: jobId,
+        videoId: jobId,
+        status: payload.status === "completed" ? "completed" : "queued",
+        degraded: true,
+      };
+    },
+    async status(input) {
+      const base = env(urlEnv).replace(/\/$/u, "");
+      const idValue = input.videoId || input.sessionId;
+      const payload = await jsonFetch<{
+        id?: string;
+        job_id?: string;
+        status?: string;
+        video_url?: string;
+        output?: string;
+        error?: string;
+      }>(
+        `${base}/${encodeURIComponent(idValue)}`,
+        {
+          method: "GET",
+          headers: env("HF_TOKEN")
+            ? { Authorization: `Bearer ${env("HF_TOKEN")}` }
+            : {},
+        },
+        id,
+        90000,
+      );
+
+      const state = String(payload.status ?? "").toLowerCase();
+      const videoUrl = payload.video_url || payload.output;
+
+      if (
+        ["completed", "done", "success"].includes(state) &&
+        videoUrl
+      ) {
+        return {
+          provider: id,
+          status: "completed",
+          videoId: payload.job_id || payload.id || idValue,
+          videoUrl,
+        };
+      }
+
+      if (["failed", "error", "rejected"].includes(state)) {
+        return {
+          provider: id,
+          status: "failed",
+          videoId: payload.job_id || payload.id || idValue,
+          message: PUBLIC_FAILURE,
+        };
+      }
+
+      return {
+        provider: id,
+        status: ["queued", "pending"].includes(state)
+          ? "queued"
+          : "generating",
+        videoId: payload.job_id || payload.id || idValue,
+      };
+    },
+  };
+}
+
+type HeyGenEnvelope = {
+  error?: {
+    code?: string | number;
+    message?: string;
+  } | null;
+  data?: {
+    session_id?: string;
+    status?: string;
+    video_id?: string | null;
+  };
+};
+
+const heygen: Provider = {
+  id: "heygen",
+  configured: () => Boolean(env("HEYGEN_API_KEY")),
+  async start(input) {
+    const body: Record<string, unknown> = {
+      prompt: cinematicPrompt(input),
+      mode: "generate",
+      orientation: "landscape",
+      auto_proceed: true,
+      incognito_mode: false,
+    };
+
+    if (env("HEYGEN_VIDEO_STYLE_ID")) {
+      body.style_id = env("HEYGEN_VIDEO_STYLE_ID");
+    }
+
+    if (env("HEYGEN_BRAND_KIT_ID")) {
+      body.brand_kit_id = env("HEYGEN_BRAND_KIT_ID");
+    }
+
+    const payload = await jsonFetch<HeyGenEnvelope>(
+      "https://api.heygen.com/v3/video-agents",
+      {
+        method: "POST",
+        headers: {
+          "X-Api-Key": env("HEYGEN_API_KEY"),
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(body),
+      },
+      "heygen",
+    );
+
+    if (payload.error?.message) {
+      throw new Error("HEYGEN_CREATE_FAILED");
+    }
+
+    const sessionId = payload.data?.session_id?.trim();
+    if (!sessionId) {
+      throw new Error("HEYGEN_MISSING_SESSION_ID");
+    }
+
+    return {
+      provider: "heygen",
+      sessionId,
+      videoId: payload.data?.video_id?.trim() || undefined,
+      status: payload.data?.status === "completed" ? "completed" : "generating",
+    };
+  },
+  async status(input) {
+    let videoId = input.videoId?.trim() || "";
+
+    if (!videoId) {
+      const session = await jsonFetch<HeyGenEnvelope>(
+        `https://api.heygen.com/v3/video-agents/${encodeURIComponent(input.sessionId)}`,
+        {
+          method: "GET",
+          headers: {
+            "X-Api-Key": env("HEYGEN_API_KEY"),
+            Accept: "application/json",
+          },
+        },
+        "heygen",
+      );
+
+      if (session.data?.status === "failed") {
+        return {
+          provider: "heygen",
+          status: "failed",
+          message: PUBLIC_FAILURE,
+        };
+      }
+
+      videoId = session.data?.video_id?.trim() || "";
+
+      if (!videoId) {
+        return {
+          provider: "heygen",
+          status: session.data?.status === "thinking" ? "queued" : "generating",
+        };
+      }
+    }
+
+    const video = await jsonFetch<{
+      error?: { message?: string } | null;
+      data?: {
+        id?: string;
+        status?: string;
+        video_url?: string | null;
+        thumbnail_url?: string | null;
+        duration?: number | null;
+      };
+    }>(
+      `https://api.heygen.com/v3/videos/${encodeURIComponent(videoId)}`,
+      {
+        method: "GET",
+        headers: {
+          "X-Api-Key": env("HEYGEN_API_KEY"),
+          Accept: "application/json",
+        },
+      },
+      "heygen",
+    );
+
+    if (video.data?.status === "completed" && video.data.video_url) {
+      return {
+        provider: "heygen",
+        status: "completed",
+        videoId,
+        videoUrl: video.data.video_url,
+        thumbnailUrl: video.data.thumbnail_url || undefined,
+        duration: video.data.duration || undefined,
+      };
+    }
+
+    if (video.data?.status === "failed") {
+      return {
+        provider: "heygen",
+        status: "failed",
+        videoId,
+        message: PUBLIC_FAILURE,
+      };
+    }
+
+    return {
+      provider: "heygen",
+      status: video.data?.status === "pending" ? "queued" : "generating",
+      videoId,
+    };
+  },
+};
+
+const providers: Provider[] = [
+  tavus,
+  akool,
+  did,
+  creatify,
+  hfGatewayProvider("hf-sadtalker", "HF_SADTALKER_GATEWAY_URL"),
+  hfGatewayProvider("hf-musetalk", "HF_MUSETALK_GATEWAY_URL"),
+  heygen,
+];
+
+const allowedProviderIds = new Set<CinematicProviderId>(
+  providers.map((provider) => provider.id),
+);
+
+export function isCinematicProviderId(
+  value: string,
+): value is CinematicProviderId {
+  return allowedProviderIds.has(value as CinematicProviderId);
+}
+
+function configuredProviders(excluded: Set<string>) {
+  const requestedOrder = env("VIDEO_PROVIDER_ORDER")
+    .split(",")
+    .map((value) => value.trim())
+    .filter((value): value is CinematicProviderId =>
+      isCinematicProviderId(value),
+    );
+
+  const defaultOrder: CinematicProviderId[] = [
+    "tavus",
+    "akool",
+    "did",
+    "creatify",
+    "hf-sadtalker",
+    "hf-musetalk",
+    "heygen",
+  ];
+
+  const order = requestedOrder.length ? requestedOrder : defaultOrder;
+  const rank = new Map(order.map((id, index) => [id, index]));
+
+  return providers
+    .filter((provider) => provider.configured() && !excluded.has(provider.id))
+    .sort(
+      (a, b) =>
+        (rank.get(a.id) ?? 999) - (rank.get(b.id) ?? 999),
+    );
+}
+
+export function cinematicVideoConfigured() {
+  return configuredProviders(new Set()).length > 0;
+}
+
+export function configuredCinematicProviderIds() {
+  return configuredProviders(new Set()).map((provider) => provider.id);
+}
+
+export async function startCinematicLessonVideo(
+  input: LessonVideoInput,
+): Promise<CinematicVideoStart> {
+  const excluded = new Set(input.excludeProviders ?? []);
+  const candidates = configuredProviders(excluded);
+
+  if (!candidates.length) {
+    throw new Error("CINEMATIC_VIDEO_NOT_CONFIGURED");
+  }
+
+  const failures: string[] = [];
+
+  for (const provider of candidates) {
     try {
-      payload = JSON.parse(raw) as T;
-    } catch {
-      console.error("HEYGEN_NON_JSON_RESPONSE", {
-        status: response.status,
+      const result = await provider.start(input);
+      console.info("VIDEO_PROVIDER_SELECTED", {
+        provider: provider.id,
+        excluded: [...excluded],
+      });
+      return result;
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : String(error);
+      failures.push(`${provider.id}:${message}`);
+      console.error("VIDEO_PROVIDER_START_FAILED", {
+        provider: provider.id,
+        error: message,
       });
     }
   }
 
-  if (!response.ok) {
-    console.error("HEYGEN_HTTP_ERROR", {
-      status: response.status,
-      body: raw.slice(0, 500),
-    });
-    throw new Error("CINEMATIC_VIDEO_PROVIDER_FAILED");
-  }
-
-  return payload;
+  console.error("VIDEO_ALL_CONFIGURED_PROVIDERS_FAILED", failures);
+  throw new Error("CINEMATIC_VIDEO_ALL_PROVIDERS_FAILED");
 }
 
-export function cinematicVideoConfigured() {
-  return Boolean(apiKey());
-}
-
-export async function startTwoAvatarLessonVideo(input: {
-  title: string;
-  summary?: string | null;
-  content?: string | null;
-}): Promise<CinematicVideoStart> {
-  const body: Record<string, unknown> = {
-    prompt: buildTwoAvatarPrompt(input),
-    mode: "generate",
-    orientation: "landscape",
-    auto_proceed: true,
-    incognito_mode: false,
-  };
-
-  const styleId =
-    process.env.HEYGEN_VIDEO_STYLE_ID?.trim();
-
-  const brandKitId =
-    process.env.HEYGEN_BRAND_KIT_ID?.trim();
-
-  if (styleId) {
-    body.style_id = styleId;
-  }
-
-  if (brandKitId) {
-    body.brand_kit_id = brandKitId;
-  }
-
-  const payload =
-    await heyGenFetch<HeyGenSessionEnvelope>(
-      "/v3/video-agents",
-      {
-        method: "POST",
-        body: JSON.stringify(body),
-      },
-    );
-
-  const envelopeError = extractError(payload);
-  if (envelopeError) {
-    console.error("HEYGEN_CREATE_ERROR", envelopeError);
-    throw new Error("CINEMATIC_VIDEO_PROVIDER_FAILED");
-  }
-
-  const sessionId =
-    payload.data?.session_id?.trim();
-
-  if (!sessionId) {
-    console.error("HEYGEN_CREATE_MISSING_SESSION");
-    throw new Error("CINEMATIC_VIDEO_PROVIDER_FAILED");
-  }
-
-  if (payload.data?.status === "failed") {
-    throw new Error("CINEMATIC_VIDEO_PROVIDER_FAILED");
-  }
-
-  const videoId =
-    payload.data?.video_id?.trim() || undefined;
-
-  return {
-    sessionId,
-    videoId,
-    status:
-      payload.data?.status === "completed"
-        ? "completed"
-        : "generating",
-  };
-}
-
-export async function getTwoAvatarLessonVideoStatus(input: {
+export async function getCinematicVideoStatus(input: {
+  provider: CinematicProviderId;
   sessionId: string;
   videoId?: string;
-}): Promise<CinematicVideoStatus> {
-  let videoId = input.videoId?.trim() || "";
+}) {
+  const provider = providers.find((item) => item.id === input.provider);
 
-  if (!videoId) {
-    const session =
-      await heyGenFetch<HeyGenSessionEnvelope>(
-        `/v3/video-agents/${encodeURIComponent(input.sessionId)}`,
-      );
-
-    const envelopeError = extractError(session);
-    if (envelopeError) {
-      console.error("HEYGEN_SESSION_ERROR", envelopeError);
-      return {
-        status: "failed",
-        message: publicFailure(),
-      };
-    }
-
-    if (session.data?.status === "failed") {
-      return {
-        status: "failed",
-        message: publicFailure(),
-      };
-    }
-
-    videoId =
-      session.data?.video_id?.trim() || "";
-
-    if (!videoId) {
-      return {
-        status:
-          session.data?.status === "thinking"
-            ? "queued"
-            : "generating",
-      };
-    }
-  }
-
-  const video =
-    await heyGenFetch<HeyGenVideoEnvelope>(
-      `/v3/videos/${encodeURIComponent(videoId)}`,
-    );
-
-  const envelopeError = extractError(video);
-  if (envelopeError) {
-    console.error("HEYGEN_VIDEO_ERROR", envelopeError);
+  if (!provider || !provider.configured()) {
     return {
-      status: "failed",
-      videoId,
-      message: publicFailure(),
+      provider: input.provider,
+      status: "failed" as const,
+      message: PUBLIC_FAILURE,
     };
   }
 
-  if (video.data?.status === "failed") {
-    console.error(
-      "HEYGEN_VIDEO_RENDER_FAILED",
-      video.data?.failure_message ?? "",
-    );
+  try {
+    return await provider.status({
+      sessionId: input.sessionId,
+      videoId: input.videoId,
+    });
+  } catch (error) {
+    console.error("VIDEO_PROVIDER_STATUS_FAILED", {
+      provider: input.provider,
+      error: error instanceof Error ? error.message : error,
+    });
 
     return {
-      status: "failed",
-      videoId,
-      message: publicFailure(),
+      provider: input.provider,
+      status: "failed" as const,
+      message: PUBLIC_FAILURE,
     };
   }
+}
 
-  if (
-    video.data?.status === "completed" &&
-    video.data.video_url
-  ) {
-    return {
-      status: "completed",
-      videoId,
-      videoUrl: video.data.video_url,
-      thumbnailUrl:
-        video.data.thumbnail_url ?? undefined,
-      duration:
-        video.data.duration ?? undefined,
-    };
-  }
+// Backward-compatible aliases for older imports while the app migrates.
+export const startTwoAvatarLessonVideo = startCinematicLessonVideo;
 
-  return {
-    status:
-      video.data?.status === "pending"
-        ? "queued"
-        : "generating",
-    videoId,
-  };
+export async function getTwoAvatarLessonVideoStatus(input: {
+  provider?: CinematicProviderId;
+  sessionId: string;
+  videoId?: string;
+}) {
+  return getCinematicVideoStatus({
+    provider: input.provider ?? "heygen",
+    sessionId: input.sessionId,
+    videoId: input.videoId,
+  });
 }
