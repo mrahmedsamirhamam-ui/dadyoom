@@ -592,9 +592,15 @@ export async function routeAi(input: AiRequest): Promise<AiResult> {
     }
   }
 
-  throw new Error(
-    `AI_ALL_PROVIDERS_FAILED:${failures.join(" | ").slice(0, 1800)}`,
-  );
+  console.error("AI_ALL_PROVIDERS_FAILED", {
+    profile,
+    providers: order.filter((provider) => !excluded.has(provider)),
+    failures: failures.slice(0, 12),
+  });
+
+  // Never expose provider names, configuration state, API errors,
+  // model names, or upstream response bodies to the learner.
+  throw makeError("DAD_AI_TEMPORARILY_UNAVAILABLE", 503);
 }
 
 export function stripThinking(value: string): string {
