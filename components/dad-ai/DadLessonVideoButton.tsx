@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type Slide = {
   title: string;
@@ -363,6 +363,24 @@ export default function DadLessonVideoButton({
       setBusy(false);
     }
   }
+
+  useEffect(() => {
+    function handleCreateVideo() {
+      void makeVideo();
+    }
+
+    window.addEventListener(
+      "dadyoom:create-lesson-video",
+      handleCreateVideo,
+    );
+
+    return () => {
+      window.removeEventListener(
+        "dadyoom:create-lesson-video",
+        handleCreateVideo,
+      );
+    };
+  });
 
   return (
     <div className="mb-3 rounded-2xl border border-[#d8c493] bg-[#fff8e8] p-3">
