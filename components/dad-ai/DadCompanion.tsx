@@ -166,7 +166,71 @@ export default function DadCompanion({
     const updatedConversation = [...messagesRef.current, userMessage];
     setMessages(updatedConversation);
     setInput("");
-    await requestCompanionResponse(cleanInput, cleanInput === "اختبر فهمي" ? "check-understanding" : "chat", updatedConversation);
+
+    const hasLessonContextNow =
+      Boolean(
+        context.lessonTitle &&
+        context.lessonContent,
+      );
+
+    if (
+      hasLessonContextNow &&
+      /(?:فيديو|video)/iu.test(
+        cleanInput,
+      )
+    ) {
+      const reply =
+        "حاضر. سأبدأ تجهيز فيديو AI لهذا الدرس من محتواه الآن.";
+
+      setMessages((current) => [
+        ...current,
+        {
+          role:
+            "assistant",
+          content:
+            reply,
+        },
+      ]);
+
+      window.dispatchEvent(
+        new CustomEvent(
+          "dadyoom:create-lesson-video",
+        ),
+      );
+
+      DadAI.talk();
+
+      if (voiceEnabled) {
+        void DadVoice
+          .speak(
+            reply,
+            {
+              mood:
+                "normal",
+            },
+          )
+          .catch(
+            () =>
+              undefined,
+          );
+      }
+
+      window.setTimeout(
+        () =>
+          DadAI.idle(),
+        900,
+      );
+
+      return;
+    }
+
+    await requestCompanionResponse(
+      cleanInput,
+      cleanInput === "اختبر فهمي"
+        ? "check-understanding"
+        : "chat",
+      updatedConversation,
+    );
   }
 
   async function sendMessage(event: FormEvent<HTMLFormElement>) {
