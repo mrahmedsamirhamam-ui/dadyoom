@@ -12,11 +12,23 @@ export async function proxy(request: NextRequest) {
       ? ["teacher", "admin"]
       : undefined;
 
-  // Gate privileged API namespaces before any handler can run.
-  if (
-    pathname.startsWith("/api/") && !roles
-  ) {
+  // Cloudflare/Vinext: only privileged API namespaces need proxy auth.
+  // Public pages and ordinary APIs must not depend on Supabase runtime env
+  // before the actual route/page executes.
+  if (!roles) {
     return NextResponse.next();
+  }
+
+  const supabaseUrl =
+    process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey =
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    return NextResponse.json(
+      { error: "AUTH_CONFIG_MISSING" },
+      { status: 503, headers: { "Cache-Control": "no-store" } },
+    );
   }
 
   let response =
@@ -28,8 +40,8 @@ export async function proxy(request: NextRequest) {
 
   const supabase =
     createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      supabaseUrl,
+      supabaseAnonKey,
       {
         cookies: {
           getAll() {
@@ -75,23 +87,19 @@ export async function proxy(request: NextRequest) {
       }
     );
 
-  if (roles) {
-    const access = await authorizeSession(supabase, roles);
-    if (!access.ok) {
-      const denied = NextResponse.json(
-        { error: access.error },
-        { status: access.status, headers: { "Cache-Control": "no-store" } },
-      );
-      for (const cookie of response.cookies.getAll()) {
-        denied.cookies.set(cookie);
-      }
-      return denied;
+  const access = await authorizeSession(supabase, roles);
+  if (!access.ok) {
+    const denied = NextResponse.json(
+      { error: access.error },
+      { status: access.status, headers: { "Cache-Control": "no-store" } },
+    );
+    for (const cookie of response.cookies.getAll()) {
+      denied.cookies.set(cookie);
     }
-    response.headers.set("Cache-Control", "no-store");
-  } else {
-    await supabase.auth.getUser();
+    return denied;
   }
 
+  response.headers.set("Cache-Control", "no-store");
   return response;
 }
 
