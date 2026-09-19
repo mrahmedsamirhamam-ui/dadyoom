@@ -283,16 +283,24 @@ export async function POST(request: Request) {
         "لم يصلني رد عربي تعليمي واضح هذه المرة. أعد صياغة سؤالك ببساطة وسأجيبك من الدرس خطوة بخطوة.";
     }
 
+    console.info(
+      "DAD_CHAT_PROVIDER_OK",
+      {
+        provider:
+          used.provider,
+        model:
+          used.model,
+        latencyMs:
+          used.latencyMs,
+      },
+    );
+
     return NextResponse.json(
       {
         reply,
-        provider: used.provider,
-        model: used.model,
       },
       {
-        headers: {
-          "X-Dadyoom-AI-Provider": used.provider,
-        },
+        status: 200,
       },
     );
   } catch (error) {
