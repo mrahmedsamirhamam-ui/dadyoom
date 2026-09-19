@@ -107,8 +107,10 @@ async function dadyoomServerThrottledSignIn(
 }
 export default function EmailPasswordAuthForm({
   mode,
+  nextPath = "",
 }: {
   mode: Mode;
+  nextPath?: string;
 }) {
   const router = useRouter();
   const countries = useMemo(() => getArabicCountryOptions(), []);
@@ -227,7 +229,11 @@ export default function EmailPasswordAuthForm({
             : undefined,
         );
 
-        router.replace(destination);
+        router.replace(
+          destination === "/onboarding"
+            ? destination
+            : nextPath || destination,
+        );
         router.refresh();
         return;
       }
@@ -490,6 +496,7 @@ export default function EmailPasswordAuthForm({
             fullName={fullName}
             role={role}
             country={country}
+            nextPath={nextPath}
           />
 
           <p className="text-center text-sm font-bold text-[#685b47]">
