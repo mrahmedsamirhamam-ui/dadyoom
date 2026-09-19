@@ -55,11 +55,9 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
   const { data: { user } } = await supabase.auth.getUser();
 
   let allowBahrainDraftPreview = false;
+  let preferredCountryCode = "";
 
-  if (
-    user &&
-    process.env.DADYOOM_BAHRAIN_PREVIEW === "true"
-  ) {
+  if (user) {
     const { data: previewProfile } =
       await supabase
         .from("profiles")
@@ -67,7 +65,7 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
         .eq("id", user.id)
         .maybeSingle();
 
-    const previewCountry =
+    const profileCountry =
       String(
         previewProfile?.country ??
         user.user_metadata?.country ??
@@ -76,10 +74,15 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
         .trim()
         .toUpperCase();
 
+    preferredCountryCode =
+      profileCountry === "BAHRAIN" ||
+      profileCountry === "البحرين"
+        ? "BH"
+        : profileCountry;
+
     allowBahrainDraftPreview =
-      previewCountry === "BH" ||
-      previewCountry === "BAHRAIN" ||
-      previewCountry === "البحرين";
+      process.env.DADYOOM_BAHRAIN_PREVIEW === "true" &&
+      preferredCountryCode === "BH";
   }
 
   const catalogDb =
@@ -158,19 +161,19 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
   }
 
   return out.sort((a,b) => {
-    if (allowBahrainDraftPreview) {
-      const aBh =
-        String(a.country.code).trim().toUpperCase() === "BH"
+    if (preferredCountryCode) {
+      const aPreferred =
+        String(a.country.code).trim().toUpperCase() === preferredCountryCode
           ? 0
           : 1;
 
-      const bBh =
-        String(b.country.code).trim().toUpperCase() === "BH"
+      const bPreferred =
+        String(b.country.code).trim().toUpperCase() === preferredCountryCode
           ? 0
           : 1;
 
-      if (aBh !== bBh) {
-        return aBh - bBh;
+      if (aPreferred !== bPreferred) {
+        return aPreferred - bPreferred;
       }
     }
 
