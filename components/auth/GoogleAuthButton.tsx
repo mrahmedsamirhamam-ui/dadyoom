@@ -11,6 +11,7 @@ type Props = {
   fullName?: string;
   role?: string;
   country?: string;
+  nextPath?: string;
 };
 
 const NATIVE_CALLBACK = "dadyoom://auth/callback";
@@ -30,6 +31,7 @@ export default function GoogleAuthButton({
   fullName = "",
   role = "student",
   country = "",
+  nextPath = "",
 }: Props) {
   const [loading, setLoading] = useState(false);
   const [providerEnabled, setProviderEnabled] =
@@ -128,7 +130,7 @@ export default function GoogleAuthButton({
           options: {
             redirectTo: isNative
               ? NATIVE_CALLBACK
-              : `${window.location.origin}/auth/callback`,
+              : `${window.location.origin}/auth/callback${nextPath ? `?next=${encodeURIComponent(nextPath)}` : ""}`,
             skipBrowserRedirect: isNative,
             queryParams: {
               prompt: "select_account",
