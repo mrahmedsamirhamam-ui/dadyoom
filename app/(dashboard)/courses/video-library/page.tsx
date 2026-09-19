@@ -1,7 +1,5 @@
-import fs from "node:fs";
-import path from "node:path";
-
 import VideoLibraryClient from "@/components/courses/VideoLibraryClient";
+import catalogData from "@/data/video-library/catalog.json";
 
 type Catalog = {
   generatedAt: string;
@@ -34,36 +32,10 @@ export const metadata = {
 export const dynamic =
   "force-static";
 
-function readCatalog():
-  Catalog {
-  const file =
-    path.resolve(
-      process.cwd(),
-      "data/video-library/catalog.json"
-    );
-
-  if (
-    !fs.existsSync(
-      file
-    )
-  ) {
-    throw new Error(
-      "VIDEO_LIBRARY_CATALOG_MISSING: run scripts/fetch-youtube-video-library.py first"
-    );
-  }
-
-  return JSON.parse(
-    fs.readFileSync(
-      file,
-      "utf8"
-    )
-  ) as Catalog;
-}
+const catalog =
+  catalogData as Catalog;
 
 export default function VideoLibraryPage() {
-  const catalog =
-    readCatalog();
-
   return (
     <main
       dir="rtl"
