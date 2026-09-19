@@ -22,6 +22,7 @@ type LessonsPayload = {
 };
 
 type CreateVideoPayload = {
+  requestId?: string;
   provider?: string;
   sessionId?: string;
   videoId?: string;
@@ -233,6 +234,7 @@ export default function AskPage() {
     );
 
     const attemptedProviders: string[] = [];
+    let requestId = "";
 
     try {
       for (
@@ -254,8 +256,11 @@ export default function AskPage() {
                 JSON.stringify({
                   lessonId:
                     selectedLessonId,
-                  excludeProviders:
-                    attemptedProviders,
+                  ...(requestId
+                    ? {
+                        requestId,
+                      }
+                    : {}),
                 }),
             },
           );
@@ -272,6 +277,13 @@ export default function AskPage() {
             created.error ??
               "لا يوجد محرك فيديو متاح الآن.",
           );
+        }
+
+        if (
+          created.requestId
+        ) {
+          requestId =
+            created.requestId;
         }
 
         const provider =
