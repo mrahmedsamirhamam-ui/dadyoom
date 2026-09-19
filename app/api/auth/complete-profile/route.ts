@@ -1,9 +1,30 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
-import { isCountryCode } from "@/lib/countries";
 
-const allowedRoles = new Set(["student", "child", "teacher", "parent", "school"]);
+import { isCountryCode } from "@/lib/countries";
+import { createAdminClient } from "@/lib/supabase/admin";
+import { createClient } from "@/lib/supabase/server";
+import {
+  currentAcademicYear,
+} from "@/lib/student/academic-year";
+
+const allowedRoles =
+  new Set([
+    "student",
+    "child",
+    "teacher",
+    "parent",
+    "school",
+  ]);
+
+const allowedStyles =
+  new Set([
+    "visual",
+    "practice",
+    "reading",
+    "mixed",
+    "",
+  ]);
+
 const destinations: Record<string, string> = {
   student: "/student",
   child: "/child",
@@ -13,69 +34,319 @@ const destinations: Record<string, string> = {
   admin: "/admin",
 };
 
-export async function POST(request: Request) {
-  const supabase = await createClient();
-  const { data: { user }, error: userError } = await supabase.auth.getUser();
+type ProfileBody = {
+  fullName?: unknown;
+  role?: unknown;
+  country?: unknown;
+  gradeNumber?: unknown;
+  interests?: unknown;
+  learningGoal?: unknown;
+  preferredLearningStyle?: unknown;
+};
 
-  if (userError || !user || !user.email) {
-    return NextResponse.json({ error: "يجب تسجيل الدخول أولًا." }, { status: 401 });
+function cleanText(
+  value: unknown,
+  max: number,
+): string {
+  return typeof value === "string"
+    ? value.trim().slice(0, max)
+    : "";
+}
+
+function detectEdgeCountry(
+  request: Request,
+): string {
+  const candidate =
+    (
+      request.headers.get(
+        "cf-ipcountry",
+      ) ??
+      request.headers.get(
+        "x-vercel-ip-country",
+      ) ??
+      ""
+    )
+      .trim()
+      .toUpperCase();
+
+  return isCountryCode(
+    candidate,
+  )
+    ? candidate
+    : "";
+}
+
+export async function POST(
+  request: Request,
+) {
+  const supabase =
+    await createClient();
+
+  const {
+    data: { user },
+    error: userError,
+  } =
+    await supabase.auth.getUser();
+
+  if (
+    userError ||
+    !user ||
+    !user.email
+  ) {
+    return NextResponse.json(
+      {
+        error:
+          "يجب تسجيل الدخول أولًا.",
+      },
+      { status: 401 },
+    );
   }
 
-  const { data: existing } = await supabase
-    .from("profiles")
-    .select("role,country,full_name")
-    .eq("id", user.id)
-    .maybeSingle();
+  let body: ProfileBody;
 
-  if (existing?.role && existing?.country && existing?.full_name?.trim()) {
-    const role = existing.role.trim().toLowerCase();
-    return NextResponse.json({ ok: true, destination: destinations[role] || "/student" });
-  }
-
-  let body: { fullName?: string; role?: string; country?: string };
   try {
-    body = (await request.json()) as typeof body;
+    body =
+      (await request.json()) as
+        ProfileBody;
   } catch {
-    return NextResponse.json({ error: "بيانات الحساب غير صالحة." }, { status: 400 });
+    return NextResponse.json(
+      {
+        error:
+          "بيانات الحساب غير صالحة.",
+      },
+      { status: 400 },
+    );
   }
 
-  const fullName = typeof body.fullName === "string" ? body.fullName.trim().slice(0, 120) : "";
-  const role = typeof body.role === "string" ? body.role.trim().toLowerCase() : "student";
-  const country = typeof body.country === "string" ? body.country.trim().toUpperCase() : "";
+  const fullName =
+    cleanText(
+      body.fullName,
+      120,
+    );
 
-  if (!fullName) return NextResponse.json({ error: "اكتب الاسم الكامل." }, { status: 400 });
-  if (!allowedRoles.has(role)) return NextResponse.json({ error: "نوع الحساب غير صالح." }, { status: 400 });
-  if (!isCountryCode(country)) return NextResponse.json({ error: "اختر دولة صحيحة." }, { status: 400 });
+  const role =
+    cleanText(
+      body.role,
+      30,
+    ).toLowerCase() ||
+    "student";
 
-  const admin = createAdminClient();
-  const { error: insertError } = await admin.from("profiles").upsert(
-    {
-      id: user.id,
-      email: user.email,
-      full_name: fullName,
-      role,
-      country,
-    },
-    {
-      onConflict: "id",
-    }
-  );
+  const manualCountry =
+    cleanText(
+      body.country,
+      8,
+    ).toUpperCase();
 
-  if (insertError) {
-    const { data: racedProfile } = await supabase
+  const metadataCountry =
+    cleanText(
+      user.user_metadata?.country ??
+        user.user_metadata?.country_code,
+      8,
+    ).toUpperCase();
+
+  const edgeCountry =
+    detectEdgeCountry(request);
+
+  const country =
+    [
+      manualCountry,
+      metadataCountry,
+      edgeCountry,
+      "BH",
+    ].find(isCountryCode) ??
+    "BH";
+
+  const studentLike =
+    role === "student" ||
+    role === "child";
+
+  const gradeNumber =
+    Number(body.gradeNumber);
+
+  const interests =
+    Array.isArray(
+      body.interests,
+    )
+      ? body.interests
+          .filter(
+            (
+              item,
+            ): item is string =>
+              typeof item ===
+              "string",
+          )
+          .map((item) =>
+            item
+              .trim()
+              .slice(0, 50),
+          )
+          .filter(Boolean)
+          .slice(0, 6)
+      : [];
+
+  const learningGoal =
+    cleanText(
+      body.learningGoal,
+      160,
+    );
+
+  const preferredLearningStyle =
+    cleanText(
+      body.preferredLearningStyle,
+      30,
+    );
+
+  if (!fullName) {
+    return NextResponse.json(
+      {
+        error:
+          "اكتب الاسم الكامل.",
+      },
+      { status: 400 },
+    );
+  }
+
+  if (
+    !allowedRoles.has(role)
+  ) {
+    return NextResponse.json(
+      {
+        error:
+          "نوع الحساب غير صالح.",
+      },
+      { status: 400 },
+    );
+  }
+
+  if (
+    !isCountryCode(country)
+  ) {
+    return NextResponse.json(
+      {
+        error:
+          "تعذر تحديد الدولة.",
+      },
+      { status: 400 },
+    );
+  }
+
+  if (
+    studentLike &&
+    (
+      !Number.isInteger(
+        gradeNumber,
+      ) ||
+      gradeNumber < 1 ||
+      gradeNumber > 12
+    )
+  ) {
+    return NextResponse.json(
+      {
+        error:
+          "اختر صفًا دراسيًا صحيحًا.",
+      },
+      { status: 400 },
+    );
+  }
+
+  if (
+    !allowedStyles.has(
+      preferredLearningStyle,
+    )
+  ) {
+    return NextResponse.json(
+      {
+        error:
+          "طريقة التعلم المختارة غير صالحة.",
+      },
+      { status: 400 },
+    );
+  }
+
+  const countrySource =
+    isCountryCode(
+      manualCountry,
+    )
+      ? "manual"
+      : isCountryCode(
+            metadataCountry,
+          )
+        ? "google-metadata"
+        : edgeCountry
+          ? "cloudflare"
+          : "default";
+
+  const admin =
+    createAdminClient();
+
+  const payload = {
+    id: user.id,
+    email: user.email,
+    full_name: fullName,
+    role,
+    country,
+    grade_number:
+      studentLike
+        ? gradeNumber
+        : null,
+    interests:
+      studentLike
+        ? interests
+        : [],
+    learning_goal:
+      studentLike &&
+      learningGoal
+        ? learningGoal
+        : null,
+    preferred_learning_style:
+      studentLike &&
+      preferredLearningStyle
+        ? preferredLearningStyle
+        : null,
+    onboarding_completed:
+      true,
+    grade_academic_year:
+      studentLike
+        ? currentAcademicYear()
+        : null,
+    country_source:
+      countrySource,
+    onboarding_updated_at:
+      new Date().toISOString(),
+  };
+
+  const { error: upsertError } =
+    await admin
       .from("profiles")
-      .select("role,country,full_name")
-      .eq("id", user.id)
-      .maybeSingle();
+      .upsert(
+        payload,
+        {
+          onConflict: "id",
+        },
+      );
 
-    if (!racedProfile?.role || !racedProfile?.country || !racedProfile?.full_name?.trim()) {
-      console.error("PROFILE_COMPLETION_ERROR:", insertError.message);
-      return NextResponse.json({ error: "تعذر إكمال ملف الحساب." }, { status: 500 });
-    }
+  if (upsertError) {
+    console.error(
+      "PROFILE_COMPLETION_ERROR:",
+      upsertError.message,
+    );
 
-    const racedRole = racedProfile.role.trim().toLowerCase();
-    return NextResponse.json({ ok: true, destination: destinations[racedRole] || "/student" });
+    return NextResponse.json(
+      {
+        error:
+          "تعذر إكمال ملف الحساب.",
+      },
+      { status: 500 },
+    );
   }
 
-  return NextResponse.json({ ok: true, destination: destinations[role] || "/student" });
+  return NextResponse.json(
+    {
+      ok: true,
+      destination:
+        destinations[role] ||
+        "/student",
+    },
+    { status: 200 },
+  );
 }
