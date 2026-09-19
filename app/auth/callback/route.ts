@@ -48,7 +48,9 @@ export async function GET(request: Request) {
   const { data: { user }, error: userError } = await supabase.auth.getUser();
   if (userError || !user || !user.email) return NextResponse.redirect(new URL("/login?error=oauth_user", origin));
 
-  const { data: existingProfile } = await supabase
+  const admin = createAdminClient();
+
+  const { data: existingProfile } = await admin
     .from("profiles")
     .select("role,country,full_name")
     .eq("id", user.id)
@@ -75,7 +77,6 @@ export async function GET(request: Request) {
     (typeof user.user_metadata?.name === "string" ? user.user_metadata.name.trim() : "") ||
     user.email.split("@")[0];
 
-  const admin = createAdminClient();
   const { error: profileError } = await admin.from("profiles").upsert(
     {
       id: user.id,
@@ -90,7 +91,7 @@ export async function GET(request: Request) {
   );
 
   if (profileError) {
-    const { data: racedProfile } = await supabase
+    const { data: racedProfile } = await admin
       .from("profiles")
       .select("role,country,full_name")
       .eq("id", user.id)
