@@ -1,5 +1,25 @@
 import Link from "next/link";
 
+const links = [
+  {
+    href: "/courses",
+    label: "المناهج",
+  },
+  {
+    href: "/courses/rooms/non-native",
+    label: "العربية لغير الناطقين",
+  },
+  {
+    href: "/courses/rooms/native-arabic",
+    label: "العربية للعرب",
+  },
+  {
+    href: "/courses/arabic-from-zero",
+    label: "العربية من الصفر",
+    primary: true,
+  },
+];
+
 export default function CoursesLayout({
   children,
 }: {
@@ -13,37 +33,23 @@ export default function CoursesLayout({
       >
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
           <div className="text-sm font-black text-[#123f39]">
-            ضاديوم يجمع المناهج الدراسية ودورات المهارات في مكان واحد.
+            المناهج الرسمية ومسارا العربية بالفيديو في مكان واحد.
           </div>
 
           <div className="flex flex-wrap gap-2">
-            <Link
-              href="/courses"
-              className="rounded-full border border-[#d3c099] bg-white px-4 py-2 text-xs font-black text-[#6f572d]"
-            >
-              المناهج
-            </Link>
-
-            <Link
-              href="/courses/video-library"
-              className="rounded-full border border-[#d3c099] bg-white px-4 py-2 text-xs font-black text-[#6f572d]"
-            >
-              مكتبة 500 فيديو
-            </Link>
-
-            <Link
-              href="/courses/rooms"
-              className="rounded-full border border-[#d3c099] bg-white px-4 py-2 text-xs font-black text-[#6f572d]"
-            >
-              غرف الكورسات
-            </Link>
-
-            <Link
-              href="/courses/arabic-from-zero"
-              className="rounded-full bg-[#123f39] px-4 py-2 text-xs font-black text-white"
-            >
-              العربية من الصفر
-            </Link>
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={
+                  link.primary
+                    ? "rounded-full bg-[#123f39] px-4 py-2 text-xs font-black text-white"
+                    : "rounded-full border border-[#d3c099] bg-white px-4 py-2 text-xs font-black text-[#6f572d]"
+                }
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
