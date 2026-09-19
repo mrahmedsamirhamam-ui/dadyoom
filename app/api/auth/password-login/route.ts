@@ -4,6 +4,10 @@ import { NextResponse } from "next/server";
 import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 
 import { createAdminClient } from "@/lib/supabase/admin";
+import {
+  SUPABASE_PUBLIC_KEY,
+  SUPABASE_PUBLIC_URL,
+} from "@/lib/supabase/public-config";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -146,27 +150,9 @@ export async function POST(request: Request) {
     );
   }
 
-  const supabaseUrl =
-    process.env.NEXT_PUBLIC_SUPABASE_URL ||
-    process.env.SUPABASE_URL ||
-    "";
-  const publishableKey =
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-    "";
-
-  if (!supabaseUrl || !publishableKey) {
-    console.error("DADYOOM_PASSWORD_LOGIN_PUBLIC_CONFIG_MISSING");
-
-    return NextResponse.json(
-      { error: "خدمة تسجيل الدخول غير مهيأة." },
-      { status: 503 }
-    );
-  }
-
   const authClient = createSupabaseClient(
-    supabaseUrl,
-    publishableKey,
+    SUPABASE_PUBLIC_URL,
+    SUPABASE_PUBLIC_KEY,
     {
       auth: {
         persistSession: false,
