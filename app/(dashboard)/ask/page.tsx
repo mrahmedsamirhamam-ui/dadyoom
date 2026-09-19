@@ -22,13 +22,17 @@ type LessonsPayload = {
 };
 
 type CreateVideoPayload = {
+  provider?: string;
   sessionId?: string;
   videoId?: string;
   status?: string;
+  degraded?: boolean;
+  configuredProviders?: string[];
   error?: string;
 };
 
 type VideoStatusPayload = {
+  provider?: string;
   status?: "queued" | "generating" | "completed" | "failed";
   videoId?: string;
   videoUrl?: string;
@@ -225,133 +229,173 @@ export default function AskPage() {
     setVideoError("");
     setVideoUrl("");
     setVideoStatus(
-      "ضاد يجهز سيناريو الحوار بين الأفاتارين...",
+      "ضاد يبحث عن أفضل محرك فيديو متاح...",
     );
 
+    const attemptedProviders: string[] = [];
+
     try {
-      const createResponse =
-        await fetch(
-          "/api/video/cinematic",
-          {
-            method:
-              "POST",
-            headers: {
-              "Content-Type":
-                "application/json",
-            },
-            body:
-              JSON.stringify({
-                lessonId:
-                  selectedLessonId,
-              }),
-          },
-        );
-
-      const created =
-        (await createResponse.json()) as CreateVideoPayload;
-
-      if (
-        !createResponse.ok ||
-        !created.sessionId
-      ) {
-        throw new Error(
-          created.error ??
-            "تعذر بدء إنشاء الفيديو.",
-        );
-      }
-
-      let videoId =
-        created.videoId ??
-        "";
-
-      setVideoStatus(
-        "يتم الآن تمثيل الدرس بأفاتارين وحوار عربي سينمائي...",
-      );
-
       for (
-        let attempt = 0;
-        attempt < 90;
-        attempt += 1
+        let providerAttempt = 0;
+        providerAttempt < 8;
+        providerAttempt += 1
       ) {
-        await wait(
-          attempt < 12
-            ? 5000
-            : 10000,
-        );
-
-        const query =
-          new URLSearchParams({
-            sessionId:
-              created.sessionId,
-            ...(videoId
-              ? {
-                  videoId,
-                }
-              : {}),
-          });
-
-        const statusResponse =
+        const createResponse =
           await fetch(
-            `/api/video/cinematic/status?${query.toString()}`,
+            "/api/video/cinematic",
             {
-              cache:
-                "no-store",
+              method:
+                "POST",
+              headers: {
+                "Content-Type":
+                  "application/json",
+              },
+              body:
+                JSON.stringify({
+                  lessonId:
+                    selectedLessonId,
+                  excludeProviders:
+                    attemptedProviders,
+                }),
             },
           );
 
-        const status =
-          (await statusResponse.json()) as VideoStatusPayload;
+        const created =
+          (await createResponse.json()) as CreateVideoPayload;
 
         if (
-          !statusResponse.ok
+          !createResponse.ok ||
+          !created.sessionId ||
+          !created.provider
         ) {
           throw new Error(
-            status.message ??
-              "تعذر متابعة حالة الفيديو.",
+            created.error ??
+              "لا يوجد محرك فيديو متاح الآن.",
           );
         }
 
-        if (
-          status.videoId
-        ) {
-          videoId =
-            status.videoId;
-        }
+        const provider =
+          created.provider;
 
         if (
-          status.status ===
-            "completed" &&
-          status.videoUrl
+          !attemptedProviders.includes(
+            provider,
+          )
         ) {
-          setVideoUrl(
-            status.videoUrl,
+          attemptedProviders.push(
+            provider,
           );
+        }
+
+        let videoId =
+          created.videoId ??
+          "";
+
+        setVideoStatus(
+          created.degraded
+            ? "تم اختيار محرك احتياطي. يتم إنشاء فيديو أفاتار من محتوى الدرس..."
+            : "يتم الآن تمثيل الدرس بحوار عربي سينمائي...",
+        );
+
+        let providerFailed =
+          false;
+
+        for (
+          let attempt = 0;
+          attempt < 90;
+          attempt += 1
+        ) {
+          await wait(
+            attempt < 12
+              ? 5000
+              : 10000,
+          );
+
+          const query =
+            new URLSearchParams({
+              provider,
+              sessionId:
+                created.sessionId,
+              ...(videoId
+                ? {
+                    videoId,
+                  }
+                : {}),
+            });
+
+          const statusResponse =
+            await fetch(
+              `/api/video/cinematic/status?${query.toString()}`,
+              {
+                cache:
+                  "no-store",
+              },
+            );
+
+          const status =
+            (await statusResponse.json()) as VideoStatusPayload;
+
+          if (
+            !statusResponse.ok
+          ) {
+            providerFailed =
+              true;
+            break;
+          }
+
+          if (
+            status.videoId
+          ) {
+            videoId =
+              status.videoId;
+          }
+
+          if (
+            status.status ===
+              "completed" &&
+            status.videoUrl
+          ) {
+            setVideoUrl(
+              status.videoUrl,
+            );
+            setVideoStatus(
+              "تم إنشاء فيديو الدرس بنجاح ✅",
+            );
+            return;
+          }
+
+          if (
+            status.status ===
+            "failed"
+          ) {
+            providerFailed =
+              true;
+            break;
+          }
+
           setVideoStatus(
-            "تم إنشاء فيديو الأفاتارين بنجاح ✅",
+            status.status ===
+              "queued"
+              ? "الفيديو في قائمة المعالجة..."
+              : "يتم تصوير وتجهيز المشاهد الآن...",
           );
-          return;
         }
 
         if (
-          status.status ===
-          "failed"
+          !providerFailed
         ) {
           throw new Error(
-            status.message ??
-              "تعذر إنشاء الفيديو السينمائي.",
+            "استغرق إنشاء الفيديو وقتًا أطول من المتوقع.",
           );
         }
 
         setVideoStatus(
-          status.status ===
-            "queued"
-            ? "الفيديو في قائمة المعالجة..."
-            : "الأفاتاران يصوران المشاهد الآن...",
+          "المحرك الحالي لم يكمل الفيديو. ضاد ينتقل تلقائيًا للمحرك التالي...",
         );
       }
 
       throw new Error(
-        "استغرق إنشاء الفيديو وقتًا أطول من المتوقع. حاول تحديث الصفحة بعد قليل.",
+        "جُرّبت المحركات المتاحة ولم يكتمل الفيديو الآن. حاول مرة أخرى لاحقًا.",
       );
     } catch (cause) {
       setVideoError(
@@ -566,7 +610,7 @@ export default function AskPage() {
             ) : null}
 
             <p className="text-xs font-bold leading-6 text-[#806f57]">
-              الفيديو يعتمد على محتوى الدرس المنشور داخل ضاديوم، ويُطلب من محرك الأفاتار الحفاظ على شخصيتين ثابتتين وحوار عربي طبيعي.
+              ضاد يختار تلقائيًا أول محرك متاح، وإذا انتهت حصته أو فشل التوليد ينتقل للمحرك التالي دون أن يحتاج الطالب إلى تغيير أي إعداد. المحركات الاحتياطية البسيطة قد تستخدم أفاتارًا واحدًا مع بقاء محتوى الدرس والحوار محفوظين.
             </p>
           </div>
         </section>
