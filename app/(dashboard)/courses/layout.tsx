@@ -13,11 +13,6 @@ const links = [
     href: "/courses/rooms/native-arabic",
     label: "العربية للعرب",
   },
-  {
-    href: "/courses/arabic-from-zero",
-    label: "العربية من الصفر",
-    primary: true,
-  },
 ];
 
 export default function CoursesLayout({
@@ -42,9 +37,7 @@ export default function CoursesLayout({
                 key={link.href}
                 href={link.href}
                 className={
-                  link.primary
-                    ? "rounded-full bg-[#123f39] px-4 py-2 text-xs font-black text-white"
-                    : "rounded-full border border-[#d3c099] bg-white px-4 py-2 text-xs font-black text-[#6f572d]"
+                  "rounded-full border border-[#d3c099] bg-white px-4 py-2 text-xs font-black text-[#6f572d]"
                 }
               >
                 {link.label}
