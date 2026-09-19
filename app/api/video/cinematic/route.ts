@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { consumeFeature } from "@/lib/billing/access";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 import {
   cinematicVideoConfigured,
@@ -39,7 +40,7 @@ export async function POST(request: Request) {
     const body =
       (await request.json()) as {
         lessonId?: string;
-        excludeProviders?: string[];
+        requestId?: string;
       };
 
     const lessonId =
@@ -82,23 +83,136 @@ export async function POST(request: Request) {
       );
     }
 
-    const access =
-      await consumeFeature(
-        "video_ai",
-      );
+    const admin =
+      createAdminClient();
 
-    if (!access.allowed) {
-      return NextResponse.json(
-        {
-          error:
-            `استخدمت فيديوهات AI المسموحة اليوم (${access.limit}).`,
-          remaining:
-            access.remaining,
-          plan:
-            access.plan,
-        },
-        { status: 429 },
-      );
+    let requestId =
+      String(
+        body.requestId ?? "",
+      ).trim();
+
+    let attemptedProviders: string[] =
+      [];
+
+    if (requestId) {
+      const {
+        data: existingRequest,
+        error: requestError,
+      } =
+        await admin
+          .from(
+            "video_generation_requests",
+          )
+          .select(
+            "id,user_id,lesson_id,attempted_providers,expires_at",
+          )
+          .eq(
+            "id",
+            requestId,
+          )
+          .eq(
+            "user_id",
+            user.id,
+          )
+          .eq(
+            "lesson_id",
+            lessonId,
+          )
+          .maybeSingle();
+
+      const expired =
+        existingRequest?.expires_at
+          ? new Date(
+              existingRequest.expires_at,
+            ).getTime() <=
+            Date.now()
+          : true;
+
+      if (
+        requestError ||
+        !existingRequest ||
+        expired
+      ) {
+        return NextResponse.json(
+          {
+            error:
+              "انتهت جلسة إنشاء الفيديو. ابدأ محاولة جديدة.",
+          },
+          { status: 409 },
+        );
+      }
+
+      attemptedProviders =
+        Array.isArray(
+          existingRequest.attempted_providers,
+        )
+          ? existingRequest.attempted_providers
+              .map((value) =>
+                String(value),
+              )
+              .filter(Boolean)
+          : [];
+    } else {
+      const access =
+        await consumeFeature(
+          "video_ai",
+        );
+
+      if (!access.allowed) {
+        return NextResponse.json(
+          {
+            error:
+              `استخدمت فيديوهات AI المسموحة اليوم (${access.limit}).`,
+            remaining:
+              access.remaining,
+            plan:
+              access.plan,
+          },
+          { status: 429 },
+        );
+      }
+
+      const {
+        data: newRequest,
+        error: createRequestError,
+      } =
+        await admin
+          .from(
+            "video_generation_requests",
+          )
+          .insert({
+            user_id:
+              user.id,
+            lesson_id:
+              lessonId,
+          })
+          .select(
+            "id",
+          )
+          .single();
+
+      if (
+        createRequestError ||
+        !newRequest?.id
+      ) {
+        console.error(
+          "VIDEO_REQUEST_CREATE_FAILED",
+          createRequestError?.message,
+        );
+
+        return NextResponse.json(
+          {
+            error:
+              "تعذر بدء جلسة الفيديو الآن. حاول مرة أخرى.",
+          },
+          { status: 500 },
+        );
+      }
+
+      requestId =
+        String(
+          newRequest.id,
+        );
     }
 
     const result =
@@ -120,19 +234,49 @@ export async function POST(request: Request) {
               )
             : null,
         excludeProviders:
-          Array.isArray(
-            body.excludeProviders,
-          )
-            ? body.excludeProviders
-                .map((value) =>
-                  String(value),
-                )
-                .slice(0, 10)
-            : [],
+          attemptedProviders,
       });
+
+    const nextAttemptedProviders =
+      Array.from(
+        new Set([
+          ...attemptedProviders,
+          result.provider,
+        ]),
+      );
+
+    const {
+      error: updateRequestError,
+    } =
+      await admin
+        .from(
+          "video_generation_requests",
+        )
+        .update({
+          attempted_providers:
+            nextAttemptedProviders,
+          updated_at:
+            new Date().toISOString(),
+        })
+        .eq(
+          "id",
+          requestId,
+        )
+        .eq(
+          "user_id",
+          user.id,
+        );
+
+    if (updateRequestError) {
+      console.error(
+        "VIDEO_REQUEST_UPDATE_FAILED",
+        updateRequestError.message,
+      );
+    }
 
     return NextResponse.json(
       {
+        requestId,
         provider:
           result.provider,
         sessionId:
