@@ -16,7 +16,7 @@ export const arabicFromZeroCourse = {
   subtitle: "القراءة والنطق والمحادثة للمبتدئين",
   audience: "المبتدئون والناطقون بغير العربية",
   level: "تمهيدي",
-  estimatedLessons: 7,
+  estimatedLessons: 12,
   description:
     "مسار فيديو منظم داخل ضاديوم يبدأ بالحروف ثم الحركات والمدود وينتهي بعبارات يومية أساسية. الفيديو مصدر خارجي، بينما الأهداف والتدريبات وتنظيم الرحلة من ضاديوم.",
   lessons: [
@@ -174,6 +174,118 @@ export const arabicFromZeroCourse = {
         "كوّن حوارًا قصيرًا من أربع جمل.",
         "تدرّب مع ضاد على محادثة تعارف بسيطة.",
       ],
+    },,
+    {
+      id: "intro-conversation",
+      title: "التعارف والمحادثة الأولى",
+      summary:
+        "تطبيق عملي على التحية والتعريف بالنفس والسؤال عن الاسم والبلد.",
+      youtubeId: "Li4wO8ppAHY",
+      sourceTitle:
+        "Lesson 1: Introductions | Applied Arabic Conversation Series",
+      sourceChannel: "أتقن العربية | Master Arabic",
+      sourceUrl:
+        "https://www.youtube.com/watch?v=Li4wO8ppAHY",
+      objectives: [
+        "استخدام تحية عربية مناسبة.",
+        "التعريف بالنفس بجمل قصيرة.",
+        "طرح سؤال بسيط والإجابة عنه.",
+      ],
+      practice: [
+        "عرّف بنفسك في ثلاث جمل.",
+        "كوّن حوار تعارف من أربعة أسطر.",
+        "تدرّب مع ضاد على السؤال: ما اسمك؟ ومن أين أنت؟",
+      ],
     },
+    {
+      id: "beginner-listening-1",
+      title: "استماع للمبتدئ — فهم الجمل القصيرة",
+      summary:
+        "تدريب الأذن على التقاط الكلمات الأساسية من حديث عربي واضح وبطيء.",
+      youtubeId: "EfCu7HT3qvk",
+      sourceTitle:
+        "Arabic Listening Practice for Absolute Beginners",
+      sourceChannel:
+        "Learn Arabic with ArabicPod101.com",
+      sourceUrl:
+        "https://www.youtube.com/watch?v=EfCu7HT3qvk",
+      objectives: [
+        "التقاط كلمات مألوفة أثناء الاستماع.",
+        "فهم المعنى العام لجملة قصيرة.",
+        "تقليد النطق والإيقاع.",
+      ],
+      practice: [
+        "استمع مرة كاملة دون إيقاف.",
+        "في المرة الثانية دوّن خمس كلمات فهمتها.",
+        "أعد نطق ثلاث جمل بصوت واضح.",
+      ],
+    },
+    {
+      id: "beginner-reading-1",
+      title: "قراءة عربية للمبتدئ",
+      summary:
+        "الانتقال من الحروف والحركات إلى قراءة كلمات وجمل قصيرة وفهمها.",
+      youtubeId: "8O4zOhPYH1I",
+      sourceTitle:
+        "ممارسة وتقييم القراءة واستيعاب المفردات العربية",
+      sourceChannel: "Arabic Khatawaat",
+      sourceUrl:
+        "https://www.youtube.com/watch?v=8O4zOhPYH1I",
+      objectives: [
+        "قراءة كلمات مألوفة دون تهجئة بطيئة.",
+        "فهم جملة قصيرة من السياق.",
+        "استخراج مفردات جديدة.",
+      ],
+      practice: [
+        "اقرأ خمس كلمات مرتين.",
+        "اختر جملة واشرح معناها بكلماتك.",
+        "أضف ثلاث كلمات جديدة إلى قاموسك.",
+      ],
+    },
+    {
+      id: "common-phrases-replies",
+      title: "عبارات شائعة والردود المناسبة",
+      summary:
+        "تعلّم عبارات متكررة في الحياة اليومية وكيف ترد عليها بصورة طبيعية.",
+      youtubeId: "VjqAu-TbVXg",
+      sourceTitle:
+        "10 Most Common Arabic Phrases & their Replies",
+      sourceChannel: "Arabic 101",
+      sourceUrl:
+        "https://www.youtube.com/watch?v=VjqAu-TbVXg",
+      objectives: [
+        "فهم عبارات يومية متكررة.",
+        "اختيار الرد المناسب.",
+        "استخدام العبارة والرد في موقف قصير.",
+      ],
+      practice: [
+        "احفظ خمس عبارات مع ردودها.",
+        "مثّل حوارين قصيرين.",
+        "اطلب من ضاد موقفًا للتدرب على الرد.",
+      ],
+    },
+    {
+      id: "real-world-listening-speaking",
+      title: "استماع ومحادثة من الحياة اليومية",
+      summary:
+        "تدريب أطول يجمع الاستماع والفهم والتكرار والمحادثة الواقعية.",
+      youtubeId: "xbKP5ezo9o8",
+      sourceTitle:
+        "120 Minutes of Real-World Arabic Listening & Speaking Training",
+      sourceChannel:
+        "Learn Arabic with ArabicPod101.com",
+      sourceUrl:
+        "https://www.youtube.com/watch?v=xbKP5ezo9o8",
+      objectives: [
+        "زيادة مدة التركيز أثناء الاستماع.",
+        "استخدام جمل وظيفية في مواقف يومية.",
+        "تحسين السرعة والثقة في النطق.",
+      ],
+      practice: [
+        "اختر مقطعًا قصيرًا وكرره ثلاث مرات.",
+        "دوّن خمس جمل مفيدة للحياة اليومية.",
+        "استخدم جملتين في محادثة مع ضاد.",
+      ],
+    }
   ] satisfies VideoCourseLesson[],
 } as const;
