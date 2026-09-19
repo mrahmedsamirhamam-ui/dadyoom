@@ -431,11 +431,11 @@ if (masterySkillsError) {
     <main dir="rtl" className="min-h-screen w-full min-w-0 overflow-x-hidden bg-slate-50 px-3 py-5 sm:px-5 lg:px-7">
       <div className="mx-auto w-full min-w-0 max-w-7xl">
         {/* Banner Section */}
-        <section className="overflow-hidden rounded-3xl bg-gradient-to-l from-teal-700 via-teal-600 to-emerald-500 p-6 text-white shadow-xl sm:p-8">
+        <section className="overflow-hidden rounded-[2rem] border border-[#cdb778] bg-[#123f39] p-6 text-white shadow-lg sm:p-8">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <p className="text-sm font-bold text-teal-100">لوحة الطالب</p>
-              <h1 className="mt-2 text-3xl font-black sm:text-4xl">
+              <h1 className="mt-2 font-arabic-display text-3xl font-black sm:text-4xl">
                 مرحبًا {dashboard.studentName} 👋
               </h1>
               <p className="mt-3 max-w-2xl leading-8 text-teal-50">
