@@ -1,7 +1,5 @@
-import fs from "node:fs";
-import path from "node:path";
-
 import VideoLibraryClient from "@/components/courses/VideoLibraryClient";
+import catalogData from "@/data/video-library/catalog.json";
 
 type Room =
   | "non-native"
@@ -35,30 +33,14 @@ type Catalog = {
   videos: VideoItem[];
 };
 
-function readCatalog():
-  Catalog {
-  const file =
-    path.resolve(
-      process.cwd(),
-      "data/video-library/catalog.json"
-    );
-
-  return JSON.parse(
-    fs.readFileSync(
-      file,
-      "utf8"
-    )
-  ) as Catalog;
-}
+const catalog =
+  catalogData as Catalog;
 
 export default function RoomVideoLibrary({
   room,
 }: {
   room: Room;
 }) {
-  const catalog =
-    readCatalog();
-
   const videos =
     catalog.videos.filter(
       (video) =>
