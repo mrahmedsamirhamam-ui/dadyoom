@@ -132,7 +132,7 @@ export default function EmailPasswordAuthForm({
 
     const { data } = await supabase
       .from("profiles")
-      .select("role")
+      .select("role,onboarding_completed,grade_number")
       .eq("id", userId)
       .maybeSingle();
 
@@ -140,6 +140,25 @@ export default function EmailPasswordAuthForm({
       data?.role ||
       metadataRole ||
       (mode === "signup" ? role : "");
+
+    const studentLike =
+      resolvedRole === "student" ||
+      resolvedRole === "child";
+
+    const gradeNumber =
+      Number(data?.grade_number);
+
+    if (
+      studentLike &&
+      (
+        data?.onboarding_completed !== true ||
+        !Number.isInteger(gradeNumber) ||
+        gradeNumber < 1 ||
+        gradeNumber > 12
+      )
+    ) {
+      return "/onboarding";
+    }
 
     return (
       roleDestinations[resolvedRole] ||
