@@ -4,7 +4,8 @@ import { consumeFeature } from "@/lib/billing/access";
 import { createClient } from "@/lib/supabase/server";
 import {
   cinematicVideoConfigured,
-  startTwoAvatarLessonVideo,
+  configuredCinematicProviderIds,
+  startCinematicLessonVideo,
 } from "@/lib/video/cinematic-avatar-agent";
 
 export const runtime = "nodejs";
@@ -38,6 +39,7 @@ export async function POST(request: Request) {
     const body =
       (await request.json()) as {
         lessonId?: string;
+        excludeProviders?: string[];
       };
 
     const lessonId =
@@ -100,7 +102,7 @@ export async function POST(request: Request) {
     }
 
     const result =
-      await startTwoAvatarLessonVideo({
+      await startCinematicLessonVideo({
         title:
           String(
             lesson.title ?? "",
@@ -117,10 +119,22 @@ export async function POST(request: Request) {
                 lesson.content,
               )
             : null,
+        excludeProviders:
+          Array.isArray(
+            body.excludeProviders,
+          )
+            ? body.excludeProviders
+                .map((value) =>
+                  String(value),
+                )
+                .slice(0, 10)
+            : [],
       });
 
     return NextResponse.json(
       {
+        provider:
+          result.provider,
         sessionId:
           result.sessionId,
         videoId:
@@ -129,6 +143,12 @@ export async function POST(request: Request) {
           result.status,
         format:
           "two-avatar-cinematic-dialogue",
+        degraded:
+          Boolean(
+            result.degraded,
+          ),
+        configuredProviders:
+          configuredCinematicProviderIds(),
       },
       { status: 202 },
     );
