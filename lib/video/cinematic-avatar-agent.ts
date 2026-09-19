@@ -1,3 +1,7 @@
+import "server-only";
+
+import { createAdminClient } from "@/lib/supabase/admin";
+
 export type CinematicProviderId =
   | "tavus"
   | "akool"
@@ -47,6 +51,126 @@ const PUBLIC_FAILURE =
 
 function env(name: string) {
   return process.env[name]?.trim() || "";
+}
+
+
+async function coolingProviderIds() {
+  try {
+    const admin = createAdminClient();
+    const now = new Date().toISOString();
+
+    const { data, error } = await admin
+      .from("video_provider_health")
+      .select("provider,disabled_until")
+      .gt("disabled_until", now);
+
+    if (error) {
+      console.error("VIDEO_PROVIDER_HEALTH_READ_FAILED", error.message);
+      return new Set<string>();
+    }
+
+    return new Set(
+      (data ?? [])
+        .map((row) => String(row.provider ?? "").trim())
+        .filter(Boolean),
+    );
+  } catch (error) {
+    console.error(
+      "VIDEO_PROVIDER_HEALTH_READ_FAILED",
+      error instanceof Error ? error.message : error,
+    );
+    return new Set<string>();
+  }
+}
+
+function providerCooldownMinutes(errorCode: string, failures: number) {
+  if (errorCode === "VIDEO_PROVIDER_CREDITS_EXHAUSTED") return 12 * 60;
+  if (errorCode === "VIDEO_PROVIDER_AUTH_FAILED") return 12 * 60;
+  if (errorCode === "VIDEO_PROVIDER_RATE_LIMIT") return 15;
+  if (errorCode === "VIDEO_PROVIDER_TIMEOUT") return 5;
+  if (errorCode === "VIDEO_PROVIDER_SERVICE_UNAVAILABLE") return 5;
+  return failures >= 3 ? 10 : 0;
+}
+
+async function recordProviderFailure(
+  provider: CinematicProviderId,
+  errorCode: string,
+) {
+  try {
+    const admin = createAdminClient();
+    const { data } = await admin
+      .from("video_provider_health")
+      .select("consecutive_failures")
+      .eq("provider", provider)
+      .maybeSingle();
+
+    const failures =
+      Math.max(0, Number(data?.consecutive_failures ?? 0)) + 1;
+    const cooldownMinutes =
+      providerCooldownMinutes(errorCode, failures);
+    const now = new Date();
+    const disabledUntil =
+      cooldownMinutes > 0
+        ? new Date(now.getTime() + cooldownMinutes * 60_000).toISOString()
+        : null;
+
+    const { error } = await admin
+      .from("video_provider_health")
+      .upsert(
+        {
+          provider,
+          consecutive_failures: failures,
+          disabled_until: disabledUntil,
+          last_error_code: errorCode.slice(0, 160),
+          last_error_at: now.toISOString(),
+          updated_at: now.toISOString(),
+        },
+        { onConflict: "provider" },
+      );
+
+    if (error) {
+      console.error("VIDEO_PROVIDER_HEALTH_WRITE_FAILED", {
+        provider,
+        error: error.message,
+      });
+    }
+  } catch (error) {
+    console.error("VIDEO_PROVIDER_HEALTH_WRITE_FAILED", {
+      provider,
+      error: error instanceof Error ? error.message : error,
+    });
+  }
+}
+
+async function recordProviderSuccess(provider: CinematicProviderId) {
+  try {
+    const admin = createAdminClient();
+    const now = new Date().toISOString();
+    const { error } = await admin
+      .from("video_provider_health")
+      .upsert(
+        {
+          provider,
+          consecutive_failures: 0,
+          disabled_until: null,
+          last_error_code: null,
+          updated_at: now,
+        },
+        { onConflict: "provider" },
+      );
+
+    if (error) {
+      console.error("VIDEO_PROVIDER_HEALTH_RESET_FAILED", {
+        provider,
+        error: error.message,
+      });
+    }
+  } catch (error) {
+    console.error("VIDEO_PROVIDER_HEALTH_RESET_FAILED", {
+      provider,
+      error: error instanceof Error ? error.message : error,
+    });
+  }
 }
 
 function compactText(value: string | null | undefined, max: number) {
@@ -169,11 +293,23 @@ async function jsonFetch<T>(
         status: response.status,
         body: raw.slice(0, 600),
       });
-      throw new Error(
-        response.status === 402 || response.status === 429
-          ? "VIDEO_PROVIDER_QUOTA_OR_RATE_LIMIT"
-          : "VIDEO_PROVIDER_REQUEST_FAILED",
-      );
+      if (response.status === 402) {
+        throw new Error("VIDEO_PROVIDER_CREDITS_EXHAUSTED");
+      }
+
+      if (response.status === 429) {
+        throw new Error("VIDEO_PROVIDER_RATE_LIMIT");
+      }
+
+      if (response.status === 401 || response.status === 403) {
+        throw new Error("VIDEO_PROVIDER_AUTH_FAILED");
+      }
+
+      if (response.status >= 500) {
+        throw new Error("VIDEO_PROVIDER_SERVICE_UNAVAILABLE");
+      }
+
+      throw new Error("VIDEO_PROVIDER_REQUEST_FAILED");
     }
 
     return payload;
@@ -916,7 +1052,11 @@ export function configuredCinematicProviderIds() {
 export async function startCinematicLessonVideo(
   input: LessonVideoInput,
 ): Promise<CinematicVideoStart> {
-  const excluded = new Set(input.excludeProviders ?? []);
+  const cooling = await coolingProviderIds();
+  const excluded = new Set([
+    ...(input.excludeProviders ?? []),
+    ...cooling,
+  ]);
   const candidates = configuredProviders(excluded);
 
   if (!candidates.length) {
@@ -928,6 +1068,7 @@ export async function startCinematicLessonVideo(
   for (const provider of candidates) {
     try {
       const result = await provider.start(input);
+      await recordProviderSuccess(provider.id);
       console.info("VIDEO_PROVIDER_SELECTED", {
         provider: provider.id,
         excluded: [...excluded],
@@ -937,6 +1078,7 @@ export async function startCinematicLessonVideo(
       const message =
         error instanceof Error ? error.message : String(error);
       failures.push(`${provider.id}:${message}`);
+      await recordProviderFailure(provider.id, message);
       console.error("VIDEO_PROVIDER_START_FAILED", {
         provider: provider.id,
         error: message,
@@ -964,14 +1106,30 @@ export async function getCinematicVideoStatus(input: {
   }
 
   try {
-    return await provider.status({
+    const result = await provider.status({
       sessionId: input.sessionId,
       videoId: input.videoId,
     });
+
+    if (result.status === "completed") {
+      await recordProviderSuccess(input.provider);
+    } else if (result.status === "failed") {
+      await recordProviderFailure(
+        input.provider,
+        "VIDEO_PROVIDER_RENDER_FAILED",
+      );
+    }
+
+    return result;
   } catch (error) {
+    const message =
+      error instanceof Error ? error.message : String(error);
+
+    await recordProviderFailure(input.provider, message);
+
     console.error("VIDEO_PROVIDER_STATUS_FAILED", {
       provider: input.provider,
-      error: error instanceof Error ? error.message : error,
+      error: message,
     });
 
     return {
