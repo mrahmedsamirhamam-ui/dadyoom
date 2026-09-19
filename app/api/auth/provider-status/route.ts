@@ -1,11 +1,12 @@
+import {
+  SUPABASE_PUBLIC_KEY,
+  SUPABASE_PUBLIC_URL,
+} from "@/lib/supabase/public-config";
+
 
 export async function GET() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.trim();
-
-  if (!url || !key) {
-    return Response.json({ google: false, configured: false }, { status: 200 });
-  }
+  const url = SUPABASE_PUBLIC_URL;
+  const key = SUPABASE_PUBLIC_KEY;
 
   try {
     const response = await fetch(`${url.replace(/\/$/, "")}/auth/v1/settings`, {
