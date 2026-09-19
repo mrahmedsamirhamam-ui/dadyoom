@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ضاديوم — دروس البحرين Notebook Style</title>
+<style>
+:root{
+  --ink:#eef6ff; --navy:#0b1d49; --navy2:#102d6c; --blue:#1d4f91;
+  --cyan:#9ee7ff; --gold:#d8b565; --cream:#f5ead0; --muted:#b9c8e8;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#ece6d7;color:#102044;font-family:Tahoma,Arial,sans-serif}
+.shell{width:min(1580px,97vw);margin:0 auto;padding:14px 0 26px}
+.topbar{display:flex;gap:16px;align-items:center;justify-content:space-between;background:#fffaf0;border:1px solid #dec998;border-radius:22px;padding:13px 18px;margin-bottom:12px;box-shadow:0 10px 28px rgba(14,31,66,.08)}
+.brand small{display:block;color:#a17624;font-weight:900;font-size:12px}.brand h1{margin:3px 0 0;font-size:25px;color:#143a69}
+.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+select,.pill{border:1px solid #cdbb94;border-radius:999px;background:white;padding:9px 13px;font-weight:800;color:#173a62}
+.deck{border-radius:28px;overflow:hidden;box-shadow:0 20px 55px rgba(17,40,76,.18);border:1px solid #d4c29d;background:#0f2858}
+.progressTrack{height:6px;background:#071837}.progress{height:100%;width:0;background:linear-gradient(90deg,#d8b565,#f7df91);transition:.25s}
+.stage{position:relative;background:#ece3d2;padding:18px 80px;display:flex;justify-content:center;align-items:center;min-height:72vh}
+.slide{
+  position:relative;width:min(1120px,100%);aspect-ratio:16/9;overflow:hidden;border-radius:20px;
+  background:
+    radial-gradient(circle at 50% 36%,rgba(76,165,255,.24),transparent 26%),
+    linear-gradient(135deg,#0b1940 0%,#15386f 52%,#0a1943 100%);
+  box-shadow:0 14px 40px rgba(0,0,0,.25);color:var(--ink);border:1px solid rgba(255,255,255,.22);
+}
+.slide::before{
+  content:"";position:absolute;inset:0;opacity:.26;
+  background-image:
+    linear-gradient(rgba(154,216,255,.25) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(154,216,255,.25) 1px,transparent 1px);
+  background-size:18px 18px;pointer-events:none
+}
+.slide::after{content:"";position:absolute;inset:auto 0 0;height:21%;background:linear-gradient(180deg,transparent,rgba(3,13,37,.88))}
+.content{position:absolute;inset:0;z-index:2;padding:48px 56px 54px;display:flex;flex-direction:column}
+.kicker{font-size:18px;font-weight:900;color:#f1d58b;margin-bottom:8px}
+.title{font-size:54px;line-height:1.18;font-weight:1000;text-shadow:0 3px 0 #061433,0 0 16px rgba(174,224,255,.34);max-width:82%}
+.subtitle{font-size:25px;color:#d8e7ff;font-weight:800;margin-top:12px;max-width:78%;line-height:1.55}
+.goldline{height:5px;border-radius:99px;background:linear-gradient(90deg,transparent,#d8b565,#f4df9b);width:44%;margin-top:18px}
+.emblem{position:absolute;left:55px;top:56px;width:160px;height:160px;border-radius:50%;display:grid;place-items:center;font-size:62px;font-weight:1000;color:#eaf7ff;
+  background:radial-gradient(circle,#257ab5 0 11%,#102c68 12% 45%,#09183e 46% 100%);
+  border:8px double #a9dff6;box-shadow:0 0 0 6px rgba(216,181,101,.28),0 0 32px rgba(91,193,255,.34) inset}
+.seal{position:absolute;left:58px;top:238px;width:132px;height:132px;border-radius:50%;display:grid;place-items:center;text-align:center;padding:14px;font-size:21px;font-weight:1000;color:#f4df9b;
+  background:radial-gradient(circle,#193d73 0 56%,#0a1c47 57%);border:9px double #c9a65b;box-shadow:0 8px 20px rgba(0,0,0,.3)}
+.body{margin-top:34px;font-size:28px;line-height:1.8;font-weight:800;max-width:86%;white-space:pre-line}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px;max-width:88%}
+.block{border-top:2px solid rgba(217,184,102,.75);padding-top:14px;font-size:26px;line-height:1.65;font-weight:800;color:#e9f3ff}
+.words{display:flex;gap:20px;flex-wrap:wrap;margin-top:34px;max-width:85%}
+.word{padding:12px 18px;border:1px solid rgba(194,227,255,.5);border-radius:18px;background:rgba(7,24,61,.48);font-size:30px;font-weight:1000}
+.quiz{margin-top:34px;max-width:84%}.question{font-size:31px;line-height:1.55;font-weight:1000;margin-bottom:20px}
+.option{display:block;width:100%;text-align:right;margin:10px 0;padding:13px 18px;border-radius:16px;background:rgba(240,247,255,.12);border:1px solid rgba(189,219,255,.35);font-size:24px;font-weight:850;color:#f5f8ff}
+.footerLabel{position:absolute;right:56px;bottom:24px;z-index:3;color:#e8d7a4;font-weight:900;font-size:17px}
+.slideNo{position:absolute;left:56px;bottom:24px;z-index:3;color:#fff;font-weight:900;font-size:16px}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:56px;height:56px;border:0;border-radius:50%;background:#124d48;color:#fff;font-size:38px;font-weight:900;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.22)}
+.prev{right:14px}.next{left:14px}.nav:disabled{opacity:.23;cursor:default}
+.dots{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;background:#124d48;padding:15px}
+.dot{width:11px;height:11px;border:0;border-radius:20px;background:rgba(255,255,255,.38);padding:0}.dot.active{width:42px;background:#edc65f}
+.bottomNote{text-align:center;font-size:12px;font-weight:800;color:#6e6659;margin-top:9px}
+@media(max-width:900px){
+  .stage{padding:10px 46px;min-height:63vh}.content{padding:30px 34px 44px}.title{font-size:38px;max-width:75%}.subtitle{font-size:20px}.body{font-size:22px}.emblem{width:110px;height:110px;font-size:44px;left:30px;top:34px}.seal{display:none}.grid2{gap:14px}.block{font-size:20px}.word{font-size:22px}.question{font-size:24px}.option{font-size:20px}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar">
+    <div class="brand"><small>ضاديوم — Notebook Style</small><h1 id="lessonTitle">دروس البحرين</h1></div>
+    <div class="controls">
+      <select id="lessonSelect"></select>
+      <span class="pill" id="counter">1 / 11</span>
+    </div>
+  </div>
+
+  <section class="deck">
+    <div class="progressTrack"><div class="progress" id="progress"></div></div>
+    <div class="stage">
+      <div id="slide" class="slide"></div>
+      <button id="prev" class="nav prev" aria-label="السابق">›</button>
+      <button id="next" class="nav next" aria-label="التالي">‹</button>
+    </div>
+    <div id="dots" class="dots"></div>
+  </section>
+  <div class="bottomNote">البحرين — الصف الأول — الفصل الأول • 18 درسًا • نسخة اختبار محلية</div>
+</div>
+
+<script>
+let pack=null, lessonIndex=0, slideIndex=0;
+const totalSlides=11;
+const el=id=>document.getElementById(id);
+const safe=v=>(v??"").toString();
+const trim=(s,n=160)=>safe(s).replace(/\s+/g," ").trim().slice(0,n);
+function cleanTitle(t){return safe(t).replace(/^الدرس\s+[^:]+:\s*/,"")}
+function iconFor(lesson){
+  const m=cleanTitle(lesson.title).match(/حرف \((.)\)/);
+  if(m) return m[1];
+  if(lesson.type==="listening") return "♪";
+  if(/مكتسباتي/.test(lesson.title)) return "★";
+  return "ض";
+}
+function vocabText(v){return (v||[]).map(x=>x.word).filter(Boolean).slice(0,5)}
+function firstSentence(content){
+  return safe(content).split(/\n+/).map(x=>x.trim()).filter(x=>x && !/^حرف اليوم/.test(x) && !/^كلمات/.test(x))[0] || "";
+}
+function questionSlide(q,idx){
+  return {
+    kicker:"اختبر فهمك",
+    title:"سؤال " + idx,
+    subtitle:q.question,
+    kind:"quiz",
+    q
+  };
+}
+function makeSlides(l){
+  const qs=(l.questions||[]).slice(0,3);
+  const objectives=(l.objectives||[]).slice(0,3);
+  const vocab=l.vocabulary||[];
+  const bodyLines=safe(l.content).split(/\n+/).map(x=>x.trim()).filter(Boolean);
+  const practice=bodyLines.filter(x=>/اقرأ|تحد|تحدث|اكتب|راجع|ردد|صنّف|اختر/.test(x)).slice(-2).join("\n");
+  const example=(vocab.find(v=>v.example)?.example)||firstSentence(l.content);
+  const slides=[
+    {kicker:l.unit,title:cleanTitle(l.title),subtitle:l.summary,kind:"cover"},
+    {kicker:"هدفنا اليوم",title:"ماذا سنتعلم؟",kind:"objectives",items:objectives},
+    {kicker:"الفكرة الأساسية",title:cleanTitle(l.title),subtitle:l.summary,kind:"body",body:trim(l.content,250)},
+    {kicker:"كلمات الدرس",title:"نتعرّف الكلمات",kind:"vocab",items:vocab.slice(0,5)},
+    {kicker:"نتعلم معًا",title:"ركز معي",kind:"body",body:bodyLines.slice(0,5).join("\n")},
+    {kicker:"مثال واضح",title:"اقرأ ولاحظ",kind:"body",body:example || l.summary},
+    {kicker:"تفاعل سريع",title:"جرّب بنفسك",kind:"body",body:practice || "اقرأ الكلمات، ثم قل مثالًا من عندك."},
+    questionSlide(qs[0]||{question:"ما الفكرة الأساسية في الدرس؟",options:[{text:l.summary},{text:"فكرة أخرى"},{text:"لا شيء"}]},1),
+    questionSlide(qs[1]||qs[0]||{question:"اختر الإجابة الصحيحة.",options:[{text:"الإجابة الأولى"},{text:"الإجابة الثانية"}]},2),
+    questionSlide(qs[2]||qs[0]||{question:"راجع ما تعلمت.",options:[{text:"تم"},{text:"أحتاج مراجعة"}]},3),
+    {kicker:"أحسنت",title:"أنت الآن جاهز",subtitle:l.summary,kind:"final"}
+  ];
+  return slides;
+}
+function contentFor(s,l){
+  const emblem=iconFor(l);
+  let inner="";
+  if(s.kind==="objectives"){
+    inner='<div class="grid2">'+s.items.map((x,i)=>'<div class="block">'+(i+1)+". "+x+'</div>').join("")+'</div>';
+  } else if(s.kind==="vocab"){
+    inner='<div class="words">'+s.items.map(v=>'<div class="word">'+safe(v.word)+'</div>').join("")+'</div>' +
+      '<div class="body">'+s.items.slice(0,3).map(v=>safe(v.word)+" — "+safe(v.meaning)).join("\n")+'</div>';
+  } else if(s.kind==="quiz"){
+    const opts=(s.q.options||[]).slice(0,3);
+    inner='<div class="quiz"><div class="question">'+safe(s.subtitle)+'</div>'+opts.map((o,i)=>'<button class="option">'+String.fromCharCode(65+i)+". "+safe(o.text)+'</button>').join("")+'</div>';
+  } else {
+    inner='<div class="body">'+safe(s.body||"")+'</div>';
+  }
+  return '<div class="content">'+
+    '<div class="kicker">'+safe(s.kicker)+'</div>'+
+    '<div class="title">'+safe(s.title)+'</div>'+
+    (s.subtitle?'<div class="subtitle">'+safe(s.subtitle)+'</div>':"")+
+    '<div class="goldline"></div>'+inner+
+    '<div class="emblem">'+emblem+'</div>'+
+    '<div class="seal">حصة<br>نموذجية</div>'+
+    '<div class="footerLabel">ضاديوم • بيت العربية الرقمي</div>'+
+    '<div class="slideNo">'+(slideIndex+1)+' / '+totalSlides+'</div>'+
+  '</div>';
+}
+function render(){
+  const l=pack.lessons[lessonIndex], slides=makeSlides(l), s=slides[slideIndex];
+  el("lessonTitle").textContent=cleanTitle(l.title);
+  el("counter").textContent=(slideIndex+1)+" / "+totalSlides;
+  el("progress").style.width=((slideIndex+1)/totalSlides*100)+"%";
+  el("slide").innerHTML=contentFor(s,l);
+  el("prev").disabled=slideIndex===0; el("next").disabled=slideIndex===totalSlides-1;
+  [...el("dots").children].forEach((d,i)=>d.classList.toggle("active",i===slideIndex));
+}
+function setupDots(){
+  el("dots").innerHTML="";
+  for(let i=0;i<totalSlides;i++){const b=document.createElement("button");b.className="dot";b.onclick=()=>{slideIndex=i;render()};el("dots").appendChild(b)}
+}
+async function boot(){
+  pack=await fetch("lessons.json").then(r=>r.json());
+  const sel=el("lessonSelect");
+  pack.lessons.forEach((l,i)=>{const o=document.createElement("option");o.value=i;o.textContent=(i+1)+". "+cleanTitle(l.title);sel.appendChild(o)});
+  sel.onchange=()=>{lessonIndex=Number(sel.value);slideIndex=0;render()};
+  setupDots(); render();
+}
+el("prev").onclick=()=>{if(slideIndex>0){slideIndex--;render()}};
+el("next").onclick=()=>{if(slideIndex<totalSlides-1){slideIndex++;render()}};
+document.addEventListener("keydown",e=>{if(e.key==="ArrowRight"&&slideIndex>0){slideIndex--;render()} if(e.key==="ArrowLeft"&&slideIndex<totalSlides-1){slideIndex++;render()}});
+let sx=0;document.addEventListener("touchstart",e=>sx=e.changedTouches[0].clientX,{passive:true});
+document.addEventListener("touchend",e=>{const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>50){if(d>0&&slideIndex<totalSlides-1)slideIndex++;if(d<0&&slideIndex>0)slideIndex--;render()}},{passive:true});
+boot();
+</script>
+</body>
+</html>
