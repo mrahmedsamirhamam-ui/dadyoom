@@ -54,13 +54,19 @@ export async function GET() {
         profile?.grade_number,
       );
 
-    const countryCode =
+    const rawCountry =
       String(
         profile?.country ??
           "BH",
       )
         .trim()
         .toUpperCase();
+
+    const countryCode =
+      rawCountry === "BAHRAIN" ||
+      rawCountry === "البحرين"
+        ? "BH"
+        : rawCountry;
 
     let query =
       supabase
