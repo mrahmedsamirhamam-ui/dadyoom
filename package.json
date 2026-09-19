@@ -23,7 +23,8 @@
     "release:audit": "node scripts/release-audit.mjs",
     "curriculum:coverage": "node scripts/curriculum-coverage.mjs",
     "release:final-audit": "node scripts/final-mvp-audit.mjs",
-    "prebuild": "node scripts/write-app-version.mjs"
+    "prebuild": "node scripts/write-app-version.mjs",
+    "curriculum:audit:bahrain": "node scripts/audit-bahrain-official.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
