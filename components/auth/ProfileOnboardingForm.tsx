@@ -186,6 +186,36 @@ export default function ProfileOnboardingForm({
       return;
     }
 
+    if (
+      studentLike &&
+      interests.length === 0
+    ) {
+      setError(
+        "اختر شيئًا واحدًا على الأقل من اهتماماتك.",
+      );
+      return;
+    }
+
+    if (
+      studentLike &&
+      !learningGoal
+    ) {
+      setError(
+        "اختر هدفك الأساسي من التعلّم.",
+      );
+      return;
+    }
+
+    if (
+      studentLike &&
+      !preferredLearningStyle
+    ) {
+      setError(
+        "اختر الطريقة التي تفضّل أن تتعلّم بها.",
+      );
+      return;
+    }
+
     setLoading(true);
     setError("");
 
