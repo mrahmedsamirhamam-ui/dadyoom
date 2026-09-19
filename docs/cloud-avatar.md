@@ -65,17 +65,19 @@ Lightning AI:
 - Good for testing.
 - Initial credits are not an unlimited renewable production resource.
 
-## Five free / free-start avatar engines
+## Avatar engine priority
 
-Dadyoom's automatic free-first order is:
+Dadyoom's default production order is now:
 
-1. **HF ZeroGPU + SadTalker** — open-source talking-head renderer on a Dadyoom-owned Gradio ZeroGPU Space.
-2. **HF ZeroGPU + MuseTalk** — open-source lip-sync renderer on a second Dadyoom-owned ZeroGPU Space.
-3. **Tavus Developer Basic** — provider API with free developer capacity.
-4. **AKOOL** — use complimentary/signup API credits when available.
-5. **D-ID** — use trial/API credits when available.
+1. **HeyGen** — primary cinematic avatar engine.
+2. **HF ZeroGPU + SadTalker** — first automatic fallback when its Dadyoom gateway is configured.
+3. **HF ZeroGPU + MuseTalk** — second automatic fallback when its Dadyoom gateway is configured.
+4. **Tavus** — API fallback when credentials/capacity are available.
+5. **AKOOL** — API fallback when credentials/credits are available.
+6. **D-ID** — API fallback when credentials/trial credits are available.
+7. **Creatify** — additional API fallback when fully configured.
 
-After those five, Dadyoom can fall through to **Creatify** and **HeyGen** only when their credentials/credits are configured.
+Every unconfigured engine is skipped automatically. If a configured engine returns exhausted credits, rate limiting, authentication failure, timeout, or server failure, Dadyoom records a cooldown and moves to the next configured engine without exposing provider details to the learner.
 
 "Free" is deliberately treated as quota/availability, not as unlimited production capacity. If a provider returns exhausted credits, rate limiting, authentication failure, timeout, or server failure, Dadyoom records a cooldown and moves to the next configured provider.
 
@@ -83,10 +85,10 @@ After those five, Dadyoom can fall through to **Creatify** and **HeyGen** only w
 
 Recommended:
 1. Cached lesson MP4.
-2. Hugging Face ZeroGPU avatar renderer.
-3. Kaggle-pre-rendered artifact when available.
-4. Optional paid/credit GPU provider only if configured.
-5. Existing Dadyoom slide-video fallback.
+2. HeyGen when configured and healthy.
+3. Remaining configured avatar engines in the order above.
+4. Kaggle-pre-rendered artifact when available.
+5. Existing Dadyoom source-grounded video fallback.
 
 ## Agents vs GPU
 
