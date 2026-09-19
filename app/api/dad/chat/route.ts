@@ -53,10 +53,133 @@ function leaked(value: string) {
   ].some((marker) => text.includes(marker));
 }
 
+
+const ARABIC_TOPIC_MARKERS = [
+  "العربية",
+  "عربي",
+  "فصحى",
+  "لغة",
+  "نحو",
+  "صرف",
+  "إملاء",
+  "املاء",
+  "بلاغة",
+  "أدب",
+  "الادب",
+  "قراءة",
+  "كتابة",
+  "تعبير",
+  "قواعد",
+  "مفردات",
+  "كلمة",
+  "جملة",
+  "فقرة",
+  "نص",
+  "قصيدة",
+  "شعر",
+  "شاعر",
+  "قصة",
+  "إعراب",
+  "اعراب",
+  "مرادف",
+  "مضاد",
+  "معنى",
+  "صحح",
+  "تصحيح",
+  "لخص",
+  "تلخيص",
+  "مبتدأ",
+  "خبر",
+  "فاعل",
+  "مفعول",
+  "ضمير",
+  "جمع",
+  "مفرد",
+  "مثنى",
+  "همزة",
+  "تنوين",
+  "حركة",
+  "الحركات",
+  "مد",
+  "نطق",
+  "حرف",
+  "الحروف",
+  "درس",
+  "منهج",
+  "arabic",
+  "grammar",
+  "spelling",
+  "vocabulary",
+];
+
+function isArabicLearningIntent(
+  message: string,
+  hasLessonContext: boolean,
+) {
+  if (hasLessonContext) return true;
+
+  const text = message
+    .trim()
+    .toLowerCase();
+
+  return ARABIC_TOPIC_MARKERS.some(
+    (marker) =>
+      text.includes(
+        marker.toLowerCase(),
+      ),
+  );
+}
+
+const OUT_OF_SCOPE_REPLY =
+  "أنا ضاد، مخصص لمساعدتك في اللغة العربية وتعلّمها فقط. لا أستطيع مساعدتك في هذا الموضوع، لكن يمكنني مساعدتك في النحو، والإملاء، والقراءة، والكتابة، والمفردات، والأدب والبلاغة.";
+
+const SAFE_UNAVAILABLE_REPLY =
+  "ضاد مشغول الآن قليلًا ولم أتمكن من إكمال الإجابة. حاول مرة أخرى بعد لحظات.";
+
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as Body;
     const message = String(body.message ?? "").trim().slice(0, 4000);
+
+    if (!message) {
+      return NextResponse.json(
+        { error: "اكتب سؤالك أولًا." },
+        { status: 400 },
+      );
+    }
+
+    const hasLessonContext = Boolean(
+      String(body.lessonTitle ?? "").trim() ||
+      String(body.lessonContent ?? "").trim(),
+    );
+
+    if (
+      !isArabicLearningIntent(
+        message,
+        hasLessonContext,
+      )
+    ) {
+      return NextResponse.json(
+        {
+          reply:
+            OUT_OF_SCOPE_REPLY,
+        },
+        { status: 200 },
+      );
+    }
+
+    if (
+      /(?:فيديو|video)/iu.test(message)
+    ) {
+      return NextResponse.json(
+        {
+          reply: hasLessonContext
+            ? "أستطيع تجهيز فيديو تعليمي لهذا الدرس. استخدم زر «إنشاء فيديو الدرس بالـ AI» داخل نافذة ضاد، وسيتم بناء السيناريو من محتوى الدرس ثم إنشاء الفيديو."
+            : "أستطيع إنشاء فيديو AI مرتبط بالدرس. افتح الدرس المطلوب أولًا، ثم افتح ضاد واضغط «إنشاء فيديو الدرس بالـ AI».",
+        },
+        { status: 200 },
+      );
+    }
 
     // DAD_CHAT_DAILY_GATE
     const dadAccess = await consumeFeature("dad_chat");
@@ -68,13 +191,6 @@ export async function POST(request: Request) {
           plan: dadAccess.plan,
         },
         { status: 429 },
-      );
-    }
-
-    if (!message) {
-      return NextResponse.json(
-        { error: "اكتب سؤالك أولًا." },
-        { status: 400 },
       );
     }
 
@@ -119,6 +235,7 @@ export async function POST(request: Request) {
 إذا كان هناك سياق درس فالتزم به ولا تخترع معلومات خارجه.
 إذا طلب شرحًا: اشرح ببساطة ثم أعط مثالًا قصيرًا.
 إذا طلب اختبار فهمه: اسأله سؤالًا واحدًا وانتظر.
+أنت مخصص لتعليم اللغة العربية فقط. إذا كان السؤال خارج اللغة العربية أو تعلمها، فلا تجب عن الموضوع وقل: «أنا ضاد، مخصص لمساعدتك في اللغة العربية وتعلّمها فقط. لا أستطيع مساعدتك في هذا الموضوع.»
 لا تنسخ فقرات طويلة من الكتب.
 `.trim(),
         },
@@ -179,12 +296,17 @@ export async function POST(request: Request) {
       },
     );
   } catch (error) {
+    console.error(
+      "DAD_CHAT_INTERNAL_ERROR",
+      error instanceof Error
+        ? error.message
+        : error,
+    );
+
     return NextResponse.json(
       {
         error:
-          error instanceof Error
-            ? error.message
-            : "تعذر الحصول على رد من ضاد.",
+          SAFE_UNAVAILABLE_REPLY,
       },
       { status: 503 },
     );
