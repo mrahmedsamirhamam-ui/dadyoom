@@ -327,7 +327,7 @@ export default function CurriculumCatalogClient({
               </h1>
 
               <p className="mt-2 leading-8 text-[#e9f3ef]">
-                من الأول الابتدائي حتى الثالث الثانوي، مع كل المسارات المنشورة وكل الدروس بلا حدّ 6 دروس.
+                اعرض الصف والمسار، ثم تصفّح كل الدروس المنشورة التي تم التحقق منها لهذا المنهج.
               </p>
             </div>
 
@@ -336,7 +336,7 @@ export default function CurriculumCatalogClient({
                 value={String(
                   shown.length,
                 )}
-                label="وحدات"
+                label="مجموعات"
               />
 
               <Metric
@@ -438,12 +438,12 @@ export default function CurriculumCatalogClient({
             />
 
             <SelectBox
-              label="الوحدة"
+              label="المجموعة"
               value={unit}
               options={[
                 [
                   "",
-                  "كل الوحدات",
+                  "كل المجموعات",
                 ],
                 ...gradeUnits.map(
                   (item) => [
