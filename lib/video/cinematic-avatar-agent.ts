@@ -1021,11 +1021,13 @@ function configuredProviders(excluded: Set<string>) {
     );
 
   const defaultOrder: CinematicProviderId[] = [
+    // Renewable/open-source capacity first, then free/trial credits,
+    // then paid/credit fallbacks. Unconfigured providers are skipped.
+    "hf-sadtalker",
+    "hf-musetalk",
     "tavus",
     "akool",
     "did",
-    "hf-sadtalker",
-    "hf-musetalk",
     "creatify",
     "heygen",
   ];
