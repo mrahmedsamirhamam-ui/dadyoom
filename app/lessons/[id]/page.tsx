@@ -449,8 +449,12 @@ export default async function LessonPage({
         ) : null}
 
         <LessonLearningSlides
+          title={lesson.title}
+          summary={lesson.summary}
+          content={lesson.content}
+          objectives={objectives}
+          vocabulary={vocabulary}
           instructions={lesson.instructions}
-          questions={lessonQuestions}
         />
         <section className="rounded-3xl border border-amber-200 bg-white p-6 shadow-sm sm:p-8">
           <p className="text-sm font-black text-amber-700">
