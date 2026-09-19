@@ -7,6 +7,10 @@ import { buildAdaptiveLearningPlan } from "@/features/learning-plan/services/bui
 import { getAdaptiveLearningSteps } from "@/features/learning-plan/services/getAdaptiveLearningSteps";
 import { createClient } from "@/lib/supabase/server";
 import { getStudentDashboardCached } from "@/services/dashboard/get-student-dashboard-cached";
+import {
+  advanceGradeForAcademicYear,
+  currentAcademicYear,
+} from "@/lib/student/academic-year";
 
 // استيراد خدمات الملف الشخصي للتعلم (Learning Profile Services)
 import { getLearningProfileCached } from "@/features/learning-profile/services/profile-cached";
@@ -131,7 +135,7 @@ export default async function StudentPage({
     error: studentProfileError,
   } = await supabase
     .from("profiles")
-    .select("role,grade_number,onboarding_completed,country")
+    .select("role,grade_number,onboarding_completed,country,interests,learning_goal,preferred_learning_style,grade_academic_year")
     .eq("id", user.id)
     .maybeSingle();
 
@@ -150,13 +154,50 @@ export default async function StudentPage({
       .toLowerCase() ??
     "";
 
+  const advancedGrade =
+    studentRole === "student"
+      ? advanceGradeForAcademicYear(
+          studentProfile.grade_number,
+          studentProfile.grade_academic_year,
+        )
+      : null;
+
+  if (
+    studentRole === "student" &&
+    advancedGrade &&
+    advancedGrade !== Number(studentProfile.grade_number)
+  ) {
+    await supabase
+      .from("profiles")
+      .update({
+        grade_number: advancedGrade,
+        grade_academic_year: currentAcademicYear(),
+        onboarding_updated_at: new Date().toISOString(),
+      })
+      .eq("id", user.id);
+
+    studentProfile.grade_number = advancedGrade;
+    studentProfile.grade_academic_year = currentAcademicYear();
+  }
+
+  const interests =
+    Array.isArray(studentProfile.interests)
+      ? studentProfile.interests.filter(
+          (item): item is string =>
+            typeof item === "string" && Boolean(item.trim()),
+        )
+      : [];
+
   if (
     studentRole === "student" &&
     (
       studentProfile.onboarding_completed !== true ||
       !Number.isInteger(Number(studentProfile.grade_number)) ||
       Number(studentProfile.grade_number) < 1 ||
-      Number(studentProfile.grade_number) > 12
+      Number(studentProfile.grade_number) > 12 ||
+      interests.length === 0 ||
+      !studentProfile.learning_goal?.trim() ||
+      !studentProfile.preferred_learning_style?.trim()
     )
   ) {
     redirect("/onboarding");
