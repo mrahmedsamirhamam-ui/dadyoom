@@ -223,6 +223,7 @@ export default function LessonStudyStudio({
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [videoUrl, setVideoUrl] = useState("");
+  const [videoPrompt, setVideoPrompt] = useState("");
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
@@ -376,8 +377,8 @@ export default function LessonStudyStudio({
 
   async function makeVideo() {
     if (!videoDeck.length) {
-      await generate("video_storyboard");
-      setStatus("تم إنشاء سيناريو الدرس؛ اضغط صنع الفيديو مرة أخرى.");
+      await generate("video_storyboard", videoPrompt);
+      setStatus("تم إنشاء السيناريو من البرومبت؛ اضغط صنع الفيديو مرة أخرى.");
       return;
     }
 
@@ -524,11 +525,12 @@ export default function LessonStudyStudio({
           </Link>
         </section>
 
-        <nav className="grid gap-2 rounded-[2rem] border bg-white p-3 sm:grid-cols-3">
+        <nav className="grid gap-2 rounded-[2rem] border bg-white p-3 sm:grid-cols-4">
           {[
             ["summary", "الملخص"],
             ["slides", "الشرائح"],
             ["notebook", "دفتري"],
+            ["video", "اصنع فيديو"],
           ].map(([value, label]) => (
             <button
               key={value}
@@ -778,12 +780,35 @@ export default function LessonStudyStudio({
 
         {tab === "video" ? (
           <section className="rounded-[2rem] border bg-white p-5">
+            <div className="mb-5 rounded-2xl border border-[#d7bd83] bg-[#fff8e8] p-4">
+              <label
+                htmlFor="dadyoom-video-prompt"
+                className="block text-lg font-black text-[#123f39]"
+              >
+                اكتب برومبت الفيديو بنفسك
+              </label>
+              <p className="mt-1 text-sm leading-7 text-[#756b5f]">
+                لا تحتاج إلى اختيار درس من قائمة. اكتب وصف الفيديو الذي تريده، وسيستخدم ضاديوم البرومبت كما كتبته.
+              </p>
+              <textarea
+                id="dadyoom-video-prompt"
+                value={videoPrompt}
+                onChange={(event) => {
+                  setVideoPrompt(event.target.value);
+                  setVideoDeck([]);
+                }}
+                rows={5}
+                placeholder="مثال: أنشئ فيديو تعليمي مبسط يشرح الفكرة بأسلوب واضح، مع أمثلة قصيرة وتعليق صوتي عربي."
+                className="mt-3 w-full rounded-2xl border border-[#d8c7a6] bg-white p-4 leading-8 outline-none focus:border-[#123f39]"
+              />
+            </div>
+
             <div className="flex flex-wrap gap-2">
               <Action
                 busy={busy === "video_storyboard"}
-                onClick={() => generate("video_storyboard")}
+                onClick={() => generate("video_storyboard", videoPrompt)}
               >
-                تجهيز سيناريو الدرس
+                تجهيز السيناريو من البرومبت
               </Action>
               <button
                 type="button"
