@@ -350,6 +350,28 @@ export default async function LessonPage({
             </Link>
           </div>
         </section>
+        {/* DADYOOM_LESSON_VIDEO_BUTTON_V1 */}
+        <section className="lesson-arabic-card rounded-3xl border border-[#d7bd83] bg-[#fff7e3] p-5 shadow-sm">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <div className="text-xs font-black text-[#9f7426]">
+                شاهد وتعلّم
+              </div>
+              <h2 className="mt-1 font-arabic-display text-xl font-black text-[#173f38]">
+                فيديو شرح الدرس
+              </h2>
+              <p className="mt-1 text-sm leading-6 text-slate-600">
+                مصدر رسمي من الدولة أولًا، ثم شرح من نفس الدولة أو المنهج، ثم فيديو كرتوني تعليمي مناسب.
+              </p>
+            </div>
+            <Link
+              href={`/lessons/${lesson.id}/video`}
+              className="rounded-2xl bg-[#b5842b] px-5 py-3 text-center font-black text-white"
+            >
+              شاهد الفيديو
+            </Link>
+          </div>
+        </section>
 
         <div>
           <Link

@@ -26,6 +26,13 @@ const releaseIgnores = [
   "app/(dashboard)/types/**",
   "importer/output/**",
   "data/**/*.js",
+  "scripts/curriculum-v14/revalidate-downloaded-books-v10.mjs",
+  "scripts/curriculum-v14/classify-extract-content-v4.mjs",
+  "check_tn.js",
+  "analyze_archive.js",
+  "_curriculum-forensic-baseline-*/**",
+  "PROJECT/**",
+  ".dadyoom-deploy/**",
 ];
 
 const eslintConfig = defineConfig([
