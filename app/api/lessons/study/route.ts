@@ -487,6 +487,11 @@ ${
     }
   ]
 }
+
+تعليمات المستخدم للفيديو:
+${question || "أنشئ فيديو تعليمي واضح ومختصر اعتمادًا على سياق الدرس الحالي."}
+
+اتبع برومبت المستخدم في الأسلوب والترتيب والأمثلة ما دام مناسبًا.
 لا تنسخ نصوصًا طويلة من الكتاب.
 `.trim();
   }
@@ -693,7 +698,9 @@ export async function POST(
       adminClient();
 
     const kind =
-      cacheKind(task);
+      task === "video_storyboard" && question
+        ? null
+        : cacheKind(task);
 
     if (
       db &&
