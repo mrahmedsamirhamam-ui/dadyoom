@@ -2,24 +2,10 @@
 
 import {
   FormEvent,
-  useEffect,
   useState,
 } from "react";
 
 import { askDadyoomHybrid } from "@/lib/mobile/hybrid-ai";
-
-type LessonOption = {
-  id: string;
-  title: string;
-  lessonNumber?: number | null;
-};
-
-type LessonsPayload = {
-  lessons?: LessonOption[];
-  gradeNumber?: number | null;
-  countryCode?: string;
-  error?: string;
-};
 
 type CreateVideoPayload = {
   requestId?: string;
@@ -61,115 +47,8 @@ export default function AskPage() {
   const [isSending, setIsSending] =
     useState(false);
 
-  const [lessons, setLessons] =
-    useState<LessonOption[]>([]);
-  const [
-    selectedLessonId,
-    setSelectedLessonId,
-  ] =
+  const [videoPrompt, setVideoPrompt] =
     useState("");
-  const [
-    loadingLessons,
-    setLoadingLessons,
-  ] =
-    useState(true);
-  const [
-    videoBusy,
-    setVideoBusy,
-  ] =
-    useState(false);
-  const [
-    videoStatus,
-    setVideoStatus,
-  ] =
-    useState("");
-  const [
-    videoError,
-    setVideoError,
-  ] =
-    useState("");
-  const [
-    videoUrl,
-    setVideoUrl,
-  ] =
-    useState("");
-
-  useEffect(() => {
-    let active = true;
-
-    async function loadLessons() {
-      try {
-        const response =
-          await fetch(
-            "/api/ask/lessons",
-            {
-              cache:
-                "no-store",
-            },
-          );
-
-        const payload =
-          (await response.json()) as LessonsPayload;
-
-        if (
-          !active
-        ) {
-          return;
-        }
-
-        if (
-          !response.ok
-        ) {
-          setVideoError(
-            payload.error ??
-              "تعذر تحميل قائمة الدروس.",
-          );
-          return;
-        }
-
-        const rows =
-          Array.isArray(
-            payload.lessons,
-          )
-            ? payload.lessons
-            : [];
-
-        setLessons(
-          rows,
-        );
-
-        if (
-          rows[0]?.id
-        ) {
-          setSelectedLessonId(
-            rows[0].id,
-          );
-        }
-      } catch {
-        if (
-          active
-        ) {
-          setVideoError(
-            "تعذر تحميل قائمة الدروس.",
-          );
-        }
-      } finally {
-        if (
-          active
-        ) {
-          setLoadingLessons(
-            false,
-          );
-        }
-      }
-    }
-
-    void loadLessons();
-
-    return () => {
-      active = false;
-    };
-  }, []);
 
   async function ask(
     event: FormEvent<HTMLFormElement>,
@@ -217,11 +96,14 @@ export default function AskPage() {
       return;
     }
 
+    const cleanPrompt =
+      videoPrompt.trim();
+
     if (
-      !selectedLessonId
+      !cleanPrompt
     ) {
       setVideoError(
-        "اختر درسًا أولًا.",
+        "اكتب برومبت الفيديو أولًا.",
       );
       return;
     }
@@ -254,8 +136,8 @@ export default function AskPage() {
               },
               body:
                 JSON.stringify({
-                  lessonId:
-                    selectedLessonId,
+                  prompt:
+                    cleanPrompt,
                   ...(requestId
                     ? {
                         requestId,
@@ -305,8 +187,8 @@ export default function AskPage() {
 
         setVideoStatus(
           created.degraded
-            ? "تم اختيار محرك احتياطي. يتم إنشاء فيديو أفاتار من محتوى الدرس..."
-            : "يتم الآن تمثيل الدرس بحوار عربي سينمائي...",
+            ? "تم اختيار محرك احتياطي. يتم إنشاء الفيديو من البرومبت الذي كتبته..."
+            : "يتم الآن إنشاء الفيديو وفق البرومبت الذي كتبته...",
         );
 
         let providerFailed =
@@ -371,7 +253,7 @@ export default function AskPage() {
               status.videoUrl,
             );
             setVideoStatus(
-              "تم إنشاء فيديو الدرس بنجاح ✅",
+              "تم إنشاء الفيديو بنجاح ✅",
             );
             return;
           }
@@ -445,135 +327,25 @@ export default function AskPage() {
             className="p-5 sm:p-8"
           >
             <label
-              htmlFor="dad-question"
-              className="font-black text-[#123f39]"
+              htmlFor="video-prompt"
+              className="block font-black text-[#123f39]"
             >
-              سؤالك
+              اكتب برومبت الفيديو
             </label>
 
             <textarea
-              id="dad-question"
-              value={question}
+              id="video-prompt"
+              value={videoPrompt}
               onChange={(event) =>
-                setQuestion(
+                setVideoPrompt(
                   event.target.value,
                 )
               }
-              placeholder="اكتب سؤالك في اللغة العربية هنا..."
-              className="mt-3 min-h-36 w-full rounded-2xl border border-[#d8c7a6] p-4 text-base outline-none focus:border-[#123f39]"
+              disabled={videoBusy}
+              rows={7}
+              placeholder="اكتب وصف الفيديو الذي تريده: الموضوع، الأسلوب، الشخصيات، المشاهد، التعليق الصوتي، المدة أو أي تفاصيل مهمة..."
+              className="w-full rounded-2xl border border-[#d8c7a6] bg-white px-4 py-4 font-bold leading-8 text-[#3f3931] outline-none focus:border-[#123f39]"
             />
-
-            <button
-              type="submit"
-              disabled={
-                isSending ||
-                !question.trim()
-              }
-              className="touch-manipulation mt-4 w-full rounded-2xl bg-[#123f39] px-6 py-4 font-black text-white transition active:scale-[0.98] disabled:opacity-50"
-            >
-              {isSending
-                ? "ضاد يفكر…"
-                : "اسأل ضاد"}
-            </button>
-
-            {error ? (
-              <div className="mt-4 rounded-2xl bg-rose-50 p-4 font-bold leading-7 text-rose-800">
-                {error}
-              </div>
-            ) : null}
-
-            {answer ? (
-              <article className="mt-5 whitespace-pre-wrap rounded-2xl bg-[#eef8f4] p-5 leading-8 text-[#263f3a]">
-                {answer}
-              </article>
-            ) : null}
-          </form>
-        </section>
-
-        <section className="overflow-hidden rounded-[2rem] border border-[#d8c493] bg-[#fffaf0] shadow-xl shadow-[#123f39]/5">
-          <div className="bg-[#0f4942] p-7 text-white sm:p-8">
-            <p className="text-sm font-black text-[#f5cf7a]">
-              🎬 Video Agent
-            </p>
-            <h2 className="mt-2 text-2xl font-black sm:text-3xl">
-              فيديو أفاتار للدرس
-            </h2>
-            <p className="mt-3 text-sm font-bold leading-7 text-[#e5f2ee]">
-              معلم وطالب يتحدثان بالعربية في مشهد تمثيلي سينمائي، بدل شرائح الشرح المتحركة.
-            </p>
-          </div>
-
-          <div className="space-y-4 p-5 sm:p-8">
-            <div className="grid grid-cols-2 gap-3">
-              <div className="rounded-2xl border border-[#e2d3b4] bg-white p-4 text-center">
-                <div className="text-3xl">
-                  👨‍🏫
-                </div>
-                <div className="mt-2 text-sm font-black text-[#123f39]">
-                  أفاتار المعلم
-                </div>
-              </div>
-              <div className="rounded-2xl border border-[#e2d3b4] bg-white p-4 text-center">
-                <div className="text-3xl">
-                  🧑‍🎓
-                </div>
-                <div className="mt-2 text-sm font-black text-[#123f39]">
-                  أفاتار الطالب
-                </div>
-              </div>
-            </div>
-
-            <label
-              htmlFor="video-lesson"
-              className="block font-black text-[#123f39]"
-            >
-              اختر الدرس
-            </label>
-
-            <select
-              id="video-lesson"
-              value={
-                selectedLessonId
-              }
-              onChange={(event) =>
-                setSelectedLessonId(
-                  event.target.value,
-                )
-              }
-              disabled={
-                loadingLessons ||
-                videoBusy
-              }
-              className="w-full rounded-2xl border border-[#d8c7a6] bg-white px-4 py-4 font-bold text-[#3f3931] outline-none focus:border-[#123f39]"
-            >
-              {loadingLessons ? (
-                <option value="">
-                  جارٍ تحميل دروس صفك...
-                </option>
-              ) : lessons.length ? (
-                lessons.map(
-                  (lesson) => (
-                    <option
-                      key={
-                        lesson.id
-                      }
-                      value={
-                        lesson.id
-                      }
-                    >
-                      {lesson.lessonNumber
-                        ? `${lesson.lessonNumber}. `
-                        : ""}
-                      {lesson.title}
-                    </option>
-                  ),
-                )
-              ) : (
-                <option value="">
-                  لا توجد دروس منشورة لصفك حاليًا
-                </option>
-              )}
-            </select>
 
             <button
               type="button"
@@ -582,13 +354,13 @@ export default function AskPage() {
               }
               disabled={
                 videoBusy ||
-                !selectedLessonId
+                !videoPrompt.trim()
               }
               className="w-full rounded-2xl bg-[#b7862d] px-6 py-4 font-black text-white shadow-md transition hover:bg-[#9d7021] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {videoBusy
                 ? "يتم إنشاء الفيديو…"
-                : "🎬 أنشئ فيديو أفاتار للدرس"}
+                : "🎬 أنشئ الفيديو من البرومبت"}
             </button>
 
             {videoStatus ? (
