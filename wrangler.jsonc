@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "dadyoom",
+  "account_id": "42f5cdcf1f04685bf9df347fc5b4a2cd",
+  "compatibility_date": "2026-09-20",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "vinext/server/fetch-handler",
+  "preview_urls": true,
+  "keep_vars": true,
+  "assets": {
+    "directory": "dist/client",
+    "not_found_handling": "none",
+    "binding": "ASSETS"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "VINEXT_KV_CACHE",
+      "id": "d7ffc1e47b504eb4b30547ac9a088910"
+    }
+  ]
+}
