@@ -40,6 +40,7 @@ export async function POST(request: Request) {
     const body =
       (await request.json()) as {
         lessonId?: string;
+        prompt?: string;
         requestId?: string;
       };
 
@@ -47,40 +48,59 @@ export async function POST(request: Request) {
       String(body.lessonId ?? "")
         .trim();
 
-    if (!lessonId) {
+    const prompt =
+      String(body.prompt ?? "")
+        .trim()
+        .slice(0, 6000);
+
+    if (!lessonId && !prompt) {
       return NextResponse.json(
         {
           error:
-            "اختر الدرس الذي تريد تحويله إلى فيديو.",
+            "اكتب برومبت الفيديو أولًا.",
         },
         { status: 400 },
       );
     }
 
-    const {
-      data: lesson,
-      error: lessonError,
-    } =
-      await supabase
-        .from("lessons")
-        .select(
-          "id,title,summary,content,status",
-        )
-        .eq("id", lessonId)
-        .eq("status", "published")
-        .maybeSingle();
+    let lesson:
+      | {
+          id: string;
+          title: string;
+          summary: string | null;
+          content: string | null;
+          status: string;
+        }
+      | null = null;
 
-    if (
-      lessonError ||
-      !lesson
-    ) {
-      return NextResponse.json(
-        {
-          error:
-            "الدرس غير موجود أو غير منشور.",
-        },
-        { status: 404 },
-      );
+    if (lessonId) {
+      const {
+        data,
+        error: lessonError,
+      } =
+        await supabase
+          .from("lessons")
+          .select(
+            "id,title,summary,content,status",
+          )
+          .eq("id", lessonId)
+          .eq("status", "published")
+          .maybeSingle();
+
+      if (
+        lessonError ||
+        !data
+      ) {
+        return NextResponse.json(
+          {
+            error:
+              "الدرس غير موجود أو غير منشور.",
+          },
+          { status: 404 },
+        );
+      }
+
+      lesson = data;
     }
 
     const admin =
@@ -104,7 +124,7 @@ export async function POST(request: Request) {
             "video_generation_requests",
           )
           .select(
-            "id,user_id,lesson_id,attempted_providers,expires_at",
+            "id,user_id,lesson_id,prompt_text,attempted_providers,expires_at",
           )
           .eq(
             "id",
@@ -113,10 +133,6 @@ export async function POST(request: Request) {
           .eq(
             "user_id",
             user.id,
-          )
-          .eq(
-            "lesson_id",
-            lessonId,
           )
           .maybeSingle();
 
@@ -184,7 +200,9 @@ export async function POST(request: Request) {
             user_id:
               user.id,
             lesson_id:
-              lessonId,
+              lessonId || null,
+            prompt_text:
+              prompt || null,
           })
           .select(
             "id",
@@ -218,21 +236,25 @@ export async function POST(request: Request) {
     const result =
       await startCinematicLessonVideo({
         title:
-          String(
-            lesson.title ?? "",
-          ),
+          lesson
+            ? String(
+                lesson.title ?? "",
+              )
+            : "فيديو ضاديوم",
         summary:
-          lesson.summary
+          lesson?.summary
             ? String(
                 lesson.summary,
               )
-            : null,
+            : prompt || null,
         content:
-          lesson.content
+          lesson?.content
             ? String(
                 lesson.content,
               )
-            : null,
+            : prompt || null,
+        userPrompt:
+          prompt || null,
         excludeProviders:
           attemptedProviders,
       });
@@ -286,7 +308,9 @@ export async function POST(request: Request) {
         status:
           result.status,
         format:
-          "two-avatar-cinematic-dialogue",
+          prompt
+            ? "prompt-directed-video"
+            : "lesson-cinematic-video",
         degraded:
           Boolean(
             result.degraded,
