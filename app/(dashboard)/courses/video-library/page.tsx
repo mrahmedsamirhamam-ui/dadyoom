@@ -32,7 +32,7 @@ export const metadata = {
 };
 
 export const dynamic =
-  "force-static";
+  "force-dynamic";
 
 function readCatalog():
   Catalog {
