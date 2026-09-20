@@ -49,6 +49,14 @@ export default function AskPage() {
 
   const [videoPrompt, setVideoPrompt] =
     useState("");
+  const [videoBusy, setVideoBusy] =
+    useState(false);
+  const [videoStatus, setVideoStatus] =
+    useState("");
+  const [videoError, setVideoError] =
+    useState("");
+  const [videoUrl, setVideoUrl] =
+    useState("");
 
   async function ask(
     event: FormEvent<HTMLFormElement>,
@@ -89,19 +97,15 @@ export default function AskPage() {
     }
   }
 
-  async function createAvatarVideo() {
-    if (
-      videoBusy
-    ) {
+  async function createVideo() {
+    if (videoBusy) {
       return;
     }
 
     const cleanPrompt =
       videoPrompt.trim();
 
-    if (
-      !cleanPrompt
-    ) {
+    if (!cleanPrompt) {
       setVideoError(
         "اكتب برومبت الفيديو أولًا.",
       );
@@ -115,7 +119,6 @@ export default function AskPage() {
       "ضاد يبحث عن أفضل محرك فيديو متاح...",
     );
 
-    const attemptedProviders: string[] = [];
     let requestId = "";
 
     try {
@@ -128,8 +131,7 @@ export default function AskPage() {
           await fetch(
             "/api/video/cinematic",
             {
-              method:
-                "POST",
+              method: "POST",
               headers: {
                 "Content-Type":
                   "application/json",
@@ -139,9 +141,7 @@ export default function AskPage() {
                   prompt:
                     cleanPrompt,
                   ...(requestId
-                    ? {
-                        requestId,
-                      }
+                    ? { requestId }
                     : {}),
                 }),
             },
@@ -161,9 +161,7 @@ export default function AskPage() {
           );
         }
 
-        if (
-          created.requestId
-        ) {
+        if (created.requestId) {
           requestId =
             created.requestId;
         }
@@ -171,19 +169,8 @@ export default function AskPage() {
         const provider =
           created.provider;
 
-        if (
-          !attemptedProviders.includes(
-            provider,
-          )
-        ) {
-          attemptedProviders.push(
-            provider,
-          );
-        }
-
         let videoId =
-          created.videoId ??
-          "";
+          created.videoId ?? "";
 
         setVideoStatus(
           created.degraded
@@ -211,15 +198,14 @@ export default function AskPage() {
               sessionId:
                 created.sessionId,
               ...(videoId
-                ? {
-                    videoId,
-                  }
+                ? { videoId }
                 : {}),
             });
 
           const statusResponse =
             await fetch(
-              `/api/video/cinematic/status?${query.toString()}`,
+              "/api/video/cinematic/status?" +
+                query.toString(),
               {
                 cache:
                   "no-store",
@@ -229,17 +215,13 @@ export default function AskPage() {
           const status =
             (await statusResponse.json()) as VideoStatusPayload;
 
-          if (
-            !statusResponse.ok
-          ) {
+          if (!statusResponse.ok) {
             providerFailed =
               true;
             break;
           }
 
-          if (
-            status.videoId
-          ) {
+          if (status.videoId) {
             videoId =
               status.videoId;
           }
@@ -271,13 +253,11 @@ export default function AskPage() {
             status.status ===
               "queued"
               ? "الفيديو في قائمة المعالجة..."
-              : "يتم تصوير وتجهيز المشاهد الآن...",
+              : "يتم تجهيز الفيديو الآن...",
           );
         }
 
-        if (
-          !providerFailed
-        ) {
+        if (!providerFailed) {
           throw new Error(
             "استغرق إنشاء الفيديو وقتًا أطول من المتوقع.",
           );
@@ -295,7 +275,7 @@ export default function AskPage() {
       setVideoError(
         cause instanceof Error
           ? cause.message
-          : "تعذر إنشاء فيديو الأفاتار.",
+          : "تعذر إنشاء الفيديو.",
       );
       setVideoStatus("");
     } finally {
@@ -327,6 +307,66 @@ export default function AskPage() {
             className="p-5 sm:p-8"
           >
             <label
+              htmlFor="dad-question"
+              className="font-black text-[#123f39]"
+            >
+              سؤالك
+            </label>
+
+            <textarea
+              id="dad-question"
+              value={question}
+              onChange={(event) =>
+                setQuestion(
+                  event.target.value,
+                )
+              }
+              placeholder="اكتب سؤالك في اللغة العربية هنا..."
+              className="mt-3 min-h-36 w-full rounded-2xl border border-[#d8c7a6] p-4 text-base outline-none focus:border-[#123f39]"
+            />
+
+            <button
+              type="submit"
+              disabled={
+                isSending ||
+                !question.trim()
+              }
+              className="touch-manipulation mt-4 w-full rounded-2xl bg-[#123f39] px-6 py-4 font-black text-white transition active:scale-[0.98] disabled:opacity-50"
+            >
+              {isSending
+                ? "ضاد يفكر…"
+                : "اسأل ضاد"}
+            </button>
+
+            {error ? (
+              <div className="mt-4 rounded-2xl bg-rose-50 p-4 font-bold leading-7 text-rose-800">
+                {error}
+              </div>
+            ) : null}
+
+            {answer ? (
+              <article className="mt-5 whitespace-pre-wrap rounded-2xl bg-[#eef8f4] p-5 leading-8 text-[#263f3a]">
+                {answer}
+              </article>
+            ) : null}
+          </form>
+        </section>
+
+        <section className="overflow-hidden rounded-[2rem] border border-[#d8c493] bg-[#fffaf0] shadow-xl shadow-[#123f39]/5">
+          <div className="bg-[#0f4942] p-7 text-white sm:p-8">
+            <p className="text-sm font-black text-[#f5cf7a]">
+              🎬 Video Agent
+            </p>
+            <h2 className="mt-2 text-2xl font-black sm:text-3xl">
+              اصنع فيديو بالذكاء الاصطناعي
+            </h2>
+            <p className="mt-3 text-sm font-bold leading-7 text-[#e5f2ee]">
+              اكتب فكرتك بطريقتك، وسيحاول ضاديوم إنشاء الفيديو وفق البرومبت الذي تحدده.
+            </p>
+          </div>
+
+          <div className="space-y-4 p-5 sm:p-8">
+            <label
               htmlFor="video-prompt"
               className="block font-black text-[#123f39]"
             >
@@ -342,15 +382,15 @@ export default function AskPage() {
                 )
               }
               disabled={videoBusy}
-              rows={7}
-              placeholder="اكتب وصف الفيديو الذي تريده: الموضوع، الأسلوب، الشخصيات، المشاهد، التعليق الصوتي، المدة أو أي تفاصيل مهمة..."
+              rows={9}
+              placeholder="مثال: أنشئ فيديو تعليمي جذاب عن المبتدأ والخبر، بلغة عربية فصحى واضحة، مع أمثلة بصرية قصيرة وانتقالات هادئة."
               className="w-full rounded-2xl border border-[#d8c7a6] bg-white px-4 py-4 font-bold leading-8 text-[#3f3931] outline-none focus:border-[#123f39]"
             />
 
             <button
               type="button"
               onClick={() =>
-                void createAvatarVideo()
+                void createVideo()
               }
               disabled={
                 videoBusy ||
@@ -394,7 +434,7 @@ export default function AskPage() {
             ) : null}
 
             <p className="text-xs font-bold leading-6 text-[#806f57]">
-              ضاد يختار تلقائيًا أول محرك متاح، وإذا انتهت حصته أو فشل التوليد ينتقل للمحرك التالي دون أن يحتاج الطالب إلى تغيير أي إعداد. المحركات الاحتياطية البسيطة قد تستخدم أفاتارًا واحدًا مع بقاء محتوى الدرس والحوار محفوظين.
+              ضاد يختار تلقائيًا أول محرك متاح، وإذا انتهت حصته أو فشل التوليد ينتقل للمحرك التالي دون أن تحتاج إلى تغيير أي إعداد.
             </p>
           </div>
         </section>
