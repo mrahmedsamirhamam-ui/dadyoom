@@ -1,0 +1,43 @@
+{
+  "BH": {
+    "countryAr": "البحرين",
+    "countryEn": "Bahrain",
+    "officialSourcePages": [
+      "https://www.edunet.bh/Econtent/Eduecontent_P",
+      "https://moe.gov.bh/"
+    ],
+    "officialChannels": [
+      "https://www.youtube.com/moebahrain",
+      "https://www.youtube.com/@moebahrain"
+    ],
+    "officialChannelHints": [
+      "وزارة التربية والتعليم",
+      "Ministry of Education",
+      "eduNET",
+      "البوابة التعليمية"
+    ],
+    "countryTerms": [
+      "البحرين",
+      "Bahrain",
+      "بحريني",
+      "منهج البحرين",
+      "وزارة التربية والتعليم البحرين"
+    ],
+    "courseMarkers": [
+      "براعم العربية",
+      "عرب 101",
+      "عرب 201",
+      "عرب 213",
+      "عرب 221",
+      "عرب 301"
+    ],
+    "cartoonTerms": [
+      "كرتون",
+      "رسوم متحركة",
+      "للأطفال",
+      "تعليمي",
+      "animation",
+      "animated"
+    ]
+  }
+}
