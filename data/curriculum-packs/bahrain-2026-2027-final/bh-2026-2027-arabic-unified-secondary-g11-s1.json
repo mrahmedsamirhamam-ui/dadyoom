@@ -1,0 +1,429 @@
+{
+  "schemaVersion": 1,
+  "packKey": "BH:2026:arabic:unified-secondary:11:s1",
+  "country": {
+    "code": "BH",
+    "nameAr": "مملكة البحرين",
+    "nameEn": "Kingdom of Bahrain"
+  },
+  "academicYear": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "stage": {
+    "code": "secondary",
+    "nameAr": "المرحلة الثانوية"
+  },
+  "grade": {
+    "number": 11,
+    "nameAr": "الصف الثاني الثانوي",
+    "nameEn": "Grade 11"
+  },
+  "semester": 1,
+  "curriculum": {
+    "nameAr": "اللغة العربية — توحيد المسارات",
+    "nameEn": "Arabic Language — Unified Tracks",
+    "description": "منهج اللغة العربية — مملكة البحرين — ضاديوم"
+  },
+  "rights": {
+    "contentOwner": "dadyoom",
+    "sourceLabel": "الترتيب المنهجي موثّق من خطة وزارة التربية والتعليم بمملكة البحرين؛ الشرح والأنشطة والأسئلة داخل ضاديوم محتوى أصلي لضاديوم",
+    "sourceUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+    "verified": true
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "عرب 201 — في النص الحجاجي",
+      "description": "اللغة العربية — عرب 201 — توحيد المسارات — الفصل الأول 2026-2027",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "وعيد أبي قابوس.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "وعيد أبي قابوس.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 3,
+            "pageEnd": 3
+          }
+        },
+        {
+          "number": 2,
+          "title": "الخبر: مفهومه، أضربه، أدوات التوكيد.",
+          "type": "grammar",
+          "estimatedMinutes": 20,
+          "summary": "الخبر: مفهومه، أضربه، أدوات التوكيد.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 3,
+            "pageEnd": 3
+          }
+        },
+        {
+          "number": 3,
+          "title": "الأغراض البلاغية للخبر.",
+          "type": "grammar",
+          "estimatedMinutes": 20,
+          "summary": "الأغراض البلاغية للخبر.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 3,
+            "pageEnd": 3
+          }
+        },
+        {
+          "number": 4,
+          "title": "الإنتاج الكتابي: إنتاج نص ذي بنية حجاجية.",
+          "type": "writing",
+          "estimatedMinutes": 20,
+          "summary": "الإنتاج الكتابي: إنتاج نص ذي بنية حجاجية.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 3,
+            "pageEnd": 3
+          }
+        },
+        {
+          "number": 5,
+          "title": "الحمامة المطوقة والجرذ.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "الحمامة المطوقة والجرذ.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 3,
+            "pageEnd": 3
+          }
+        },
+        {
+          "number": 6,
+          "title": "الإنشاء وأنواعه: الأمر - النهي - الاستفهام.",
+          "type": "grammar",
+          "estimatedMinutes": 20,
+          "summary": "الإنشاء وأنواعه: الأمر - النهي - الاستفهام.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 3,
+            "pageEnd": 3
+          }
+        },
+        {
+          "number": 7,
+          "title": "الثعلب والديك لأحمد شوقي.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "الثعلب والديك لأحمد شوقي.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 3,
+            "pageEnd": 3
+          }
+        },
+        {
+          "number": 8,
+          "title": "الإنتاج الكتابي: إنتاج نص حجاجي مغتنٍ بالوصف.",
+          "type": "writing",
+          "estimatedMinutes": 20,
+          "summary": "الإنتاج الكتابي: إنتاج نص حجاجي مغتنٍ بالوصف.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 3,
+            "pageEnd": 3
+          }
+        },
+        {
+          "number": 9,
+          "title": "خطبة الراعي والرعية.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "خطبة الراعي والرعية.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 3,
+            "pageEnd": 3
+          }
+        },
+        {
+          "number": 10,
+          "title": "الإنشاء وأنواعه: التمني - النداء.",
+          "type": "grammar",
+          "estimatedMinutes": 20,
+          "summary": "الإنشاء وأنواعه: التمني - النداء.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 3,
+            "pageEnd": 3
+          }
+        },
+        {
+          "number": 11,
+          "title": "فضيلة الكلام للجاحظ.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "فضيلة الكلام للجاحظ.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 3,
+            "pageEnd": 3
+          }
+        },
+        {
+          "number": 12,
+          "title": "الإنشاء غير الطلبي: التعجب - القسم - المدح والذم.",
+          "type": "grammar",
+          "estimatedMinutes": 20,
+          "summary": "الإنشاء غير الطلبي: التعجب - القسم - المدح والذم.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 3,
+            "pageEnd": 3
+          }
+        },
+        {
+          "number": 13,
+          "title": "الإنتاج الكتابي: إنتاج نص حجاجي مغتنٍ بالسرد.",
+          "type": "writing",
+          "estimatedMinutes": 20,
+          "summary": "الإنتاج الكتابي: إنتاج نص حجاجي مغتنٍ بالسرد.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 3,
+            "pageEnd": 3
+          }
+        },
+        {
+          "number": 14,
+          "title": "حرية الصحافة.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "حرية الصحافة.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 3,
+            "pageEnd": 3
+          }
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "عرب 213 — الشعر العربي القديم",
+      "description": "اللغة العربية — عرب 213 — اختياري أساسي — توحيد المسارات — الفصل الأول 2026-2027",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "الشعر الجاهلي: «سئمت تكاليف الحياة» لزهير بن أبي سلمى.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "الشعر الجاهلي: «سئمت تكاليف الحياة» لزهير بن أبي سلمى.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 4,
+            "pageEnd": 4
+          }
+        },
+        {
+          "number": 2,
+          "title": "الإنتاج الكتابي: التدريب على النمط التفسيري - الإنتاج الكامل.",
+          "type": "writing",
+          "estimatedMinutes": 20,
+          "summary": "الإنتاج الكتابي: التدريب على النمط التفسيري - الإنتاج الكامل.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 4,
+            "pageEnd": 4
+          }
+        },
+        {
+          "number": 3,
+          "title": "الشعر الجاهلي: «قذى بعينك» للخنساء.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "الشعر الجاهلي: «قذى بعينك» للخنساء.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 4,
+            "pageEnd": 4
+          }
+        },
+        {
+          "number": 4,
+          "title": "الإنتاج الكتابي: إنتاج نص حجاجي: بنية النمط الحجاجي - الإنتاج الكامل.",
+          "type": "writing",
+          "estimatedMinutes": 20,
+          "summary": "الإنتاج الكتابي: إنتاج نص حجاجي: بنية النمط الحجاجي - الإنتاج الكامل.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 4,
+            "pageEnd": 4
+          }
+        },
+        {
+          "number": 5,
+          "title": "الشعر العربي في القرنين الهجريين الثاني والثالث: «هوى أحر من النار» للعباس بن الأحنف.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "الشعر العربي في القرنين الهجريين الثاني والثالث: «هوى أحر من النار» للعباس بن الأحنف.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 4,
+            "pageEnd": 4
+          }
+        },
+        {
+          "number": 6,
+          "title": "الإنتاج الكتابي: التدريب على تدوين رؤوس الأقلام.",
+          "type": "writing",
+          "estimatedMinutes": 20,
+          "summary": "الإنتاج الكتابي: التدريب على تدوين رؤوس الأقلام.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 4,
+            "pageEnd": 4
+          }
+        },
+        {
+          "number": 7,
+          "title": "الشعر العربي في القرنين الهجريين الثاني والثالث: «فتح عمورية» لأبي تمام.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "الشعر العربي في القرنين الهجريين الثاني والثالث: «فتح عمورية» لأبي تمام.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 4,
+            "pageEnd": 4
+          }
+        },
+        {
+          "number": 8,
+          "title": "الإنتاج الكتابي: التلخيص: تعريفه - مراحله - الإنتاج الكامل.",
+          "type": "writing",
+          "estimatedMinutes": 20,
+          "summary": "الإنتاج الكتابي: التلخيص: تعريفه - مراحله - الإنتاج الكامل.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 4,
+            "pageEnd": 4
+          }
+        }
+      ]
+    }
+  ],
+  "structureOnly": true,
+  "importReady": false,
+  "contentStatus": "official-plan-structure-only",
+  "validationNote": "Canonical lesson structure verified against Bahrain Edunet Plan2 and the existing verified Supabase lesson records. Full authored content/objectives/question banks are intentionally not fabricated here."
+}

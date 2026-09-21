@@ -1,0 +1,378 @@
+{
+  "schemaVersion": 1,
+  "packKey": "BH:2026:arabic:unified-secondary:12:s1",
+  "country": {
+    "code": "BH",
+    "nameAr": "مملكة البحرين",
+    "nameEn": "Kingdom of Bahrain"
+  },
+  "academicYear": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "stage": {
+    "code": "secondary",
+    "nameAr": "المرحلة الثانوية"
+  },
+  "grade": {
+    "number": 12,
+    "nameAr": "الصف الثالث الثانوي",
+    "nameEn": "Grade 12"
+  },
+  "semester": 1,
+  "curriculum": {
+    "nameAr": "اللغة العربية — توحيد المسارات",
+    "nameEn": "Arabic Language — Unified Tracks",
+    "description": "منهج اللغة العربية — مملكة البحرين — ضاديوم"
+  },
+  "rights": {
+    "contentOwner": "dadyoom",
+    "sourceLabel": "الترتيب المنهجي موثّق من خطة وزارة التربية والتعليم بمملكة البحرين؛ الشرح والأنشطة والأسئلة داخل ضاديوم محتوى أصلي لضاديوم",
+    "sourceUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+    "verified": true
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "عرب 301 — الأدب البحريني",
+      "description": "اللغة العربية — عرب 301 — توحيد المسارات والديني — الفصل الأول 2026-2027",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "«الحقيقة المرة» - عبد الله الزايد.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "«الحقيقة المرة» - عبد الله الزايد.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 5,
+            "pageEnd": 5
+          }
+        },
+        {
+          "number": 2,
+          "title": "القضايا النحوية: الاستفهام - مفهومه وأدواته ومعانيه.",
+          "type": "grammar",
+          "estimatedMinutes": 20,
+          "summary": "القضايا النحوية: الاستفهام - مفهومه وأدواته ومعانيه.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 5,
+            "pageEnd": 5
+          }
+        },
+        {
+          "number": 3,
+          "title": "الإنتاج الكتابي: كتابة المقالة.",
+          "type": "writing",
+          "estimatedMinutes": 20,
+          "summary": "الإنتاج الكتابي: كتابة المقالة.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 2,
+            "pageEnd": 2
+          }
+        },
+        {
+          "number": 4,
+          "title": "«أغنيات عشق للبحرين» - الشيخ أحمد بن محمد آل خليفة.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "«أغنيات عشق للبحرين» - الشيخ أحمد بن محمد آل خليفة.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 5,
+            "pageEnd": 5
+          }
+        },
+        {
+          "number": 5,
+          "title": "القضايا النحوية: أسلوب الأمر والنهي.",
+          "type": "grammar",
+          "estimatedMinutes": 20,
+          "summary": "القضايا النحوية: أسلوب الأمر والنهي.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 5,
+            "pageEnd": 5
+          }
+        },
+        {
+          "number": 6,
+          "title": "«ذاكرة المكان» - علي عبد الله خليفة.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "«ذاكرة المكان» - علي عبد الله خليفة.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 5,
+            "pageEnd": 5
+          }
+        },
+        {
+          "number": 7,
+          "title": "القضايا النحوية: أسلوب الشرط.",
+          "type": "grammar",
+          "estimatedMinutes": 20,
+          "summary": "القضايا النحوية: أسلوب الشرط.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 5,
+            "pageEnd": 5
+          }
+        },
+        {
+          "number": 8,
+          "title": "الإنتاج الكتابي: كتابة تقرير وفق بيانات معطاة (تدريب الطلبة للامتحانات الوطنية).",
+          "type": "writing",
+          "estimatedMinutes": 20,
+          "summary": "الإنتاج الكتابي: كتابة تقرير وفق بيانات معطاة (تدريب الطلبة للامتحانات الوطنية).",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 5,
+            "pageEnd": 5
+          }
+        },
+        {
+          "number": 9,
+          "title": "«الدكان» - أحمد المؤذن.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "«الدكان» - أحمد المؤذن.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 5,
+            "pageEnd": 5
+          }
+        },
+        {
+          "number": 10,
+          "title": "القضايا النحوية: الإثبات والنفي في الجملة الخبرية (الاسمية والفعلية).",
+          "type": "grammar",
+          "estimatedMinutes": 20,
+          "summary": "القضايا النحوية: الإثبات والنفي في الجملة الخبرية (الاسمية والفعلية).",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 5,
+            "pageEnd": 5
+          }
+        },
+        {
+          "number": 11,
+          "title": "الإنتاج الكتابي: كتابة القصة القصيرة.",
+          "type": "writing",
+          "estimatedMinutes": 20,
+          "summary": "الإنتاج الكتابي: كتابة القصة القصيرة.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 5,
+            "pageEnd": 5
+          }
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "عرب 221 — الأدب العربي الحديث (التيار الإحيائي والتيار الرومنسي)",
+      "description": "اللغة العربية — عرب 221 — اختياري أساسي — توحيد المسارات — الفصل الأول 2026-2027",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "التيار الإحيائي: «بين العربية واليونانية» لسليمان البستاني.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "التيار الإحيائي: «بين العربية واليونانية» لسليمان البستاني.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 6,
+            "pageEnd": 6
+          }
+        },
+        {
+          "number": 2,
+          "title": "التيار الإحيائي: «نهج البردة» لأحمد شوقي.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "التيار الإحيائي: «نهج البردة» لأحمد شوقي.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 6,
+            "pageEnd": 6
+          }
+        },
+        {
+          "number": 3,
+          "title": "الإنتاج الكتابي: إنتاج المقالة الأدبية في التيار الإحيائي.",
+          "type": "writing",
+          "estimatedMinutes": 20,
+          "summary": "الإنتاج الكتابي: إنتاج المقالة الأدبية في التيار الإحيائي.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 6,
+            "pageEnd": 6
+          }
+        },
+        {
+          "number": 4,
+          "title": "التيار الإحيائي: «المساء» لخليل مطران.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "التيار الإحيائي: «المساء» لخليل مطران.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 6,
+            "pageEnd": 6
+          }
+        },
+        {
+          "number": 5,
+          "title": "التيار الرومنسي: «الأبناء» لجبران خليل جبران.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "التيار الرومنسي: «الأبناء» لجبران خليل جبران.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 6,
+            "pageEnd": 6
+          }
+        },
+        {
+          "number": 6,
+          "title": "التيار الرومنسي: «النّظّامون» لمصطفى لطفي المنفلوطي.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "التيار الرومنسي: «النّظّامون» لمصطفى لطفي المنفلوطي.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 6,
+            "pageEnd": 6
+          }
+        },
+        {
+          "number": 7,
+          "title": "الإنتاج الكتابي: إنتاج المقالة الأدبية في التيار الرومانسي.",
+          "type": "writing",
+          "estimatedMinutes": 20,
+          "summary": "الإنتاج الكتابي: إنتاج المقالة الأدبية في التيار الرومانسي.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 6,
+            "pageEnd": 6
+          }
+        },
+        {
+          "number": 8,
+          "title": "التيار الرومنسي: «المعراج» لعلي محمود طه.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "التيار الرومنسي: «المعراج» لعلي محمود طه.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 6,
+            "pageEnd": 6
+          }
+        }
+      ]
+    }
+  ],
+  "structureOnly": true,
+  "importReady": false,
+  "contentStatus": "official-plan-structure-only",
+  "validationNote": "Canonical lesson structure verified against Bahrain Edunet Plan2 and the existing verified Supabase lesson records. Full authored content/objectives/question banks are intentionally not fabricated here."
+}

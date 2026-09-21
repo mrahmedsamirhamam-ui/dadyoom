@@ -1,6 +1,18 @@
-@import "tailwindcss";
+@import "tailwindcss" source(none);
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+
+/* DADYOOM_TAILWIND_EXPLICIT_SOURCES_V1 */
+@source "./**/*.{js,jsx,ts,tsx,mdx}";
+@source "../components/**/*.{js,jsx,ts,tsx,mdx}";
+@source "../features/**/*.{js,jsx,ts,tsx,mdx}";
+@source "../hooks/**/*.{js,jsx,ts,tsx,mdx}";
+@source "../importer/**/*.{js,jsx,ts,tsx,mdx}";
+@source "../lib/**/*.{js,jsx,ts,tsx,mdx}";
+@source "../models/**/*.{js,jsx,ts,tsx,mdx}";
+@source "../services/**/*.{js,jsx,ts,tsx,mdx}";
+@source "../styles/**/*.{js,jsx,ts,tsx,mdx}";
+@source "../*.{js,jsx,ts,tsx,mdx}";
 
 @custom-variant dark (&:is(.dark *));
 

@@ -28,6 +28,15 @@ const releaseIgnores = [
   "app/(dashboard)/types/**",
   "importer/output/**",
   "data/**/*.js",
+  ".agents/**",
+  ".opencode/**",
+  ".dadyoom-work/**",
+  ".dadyoom-deploy/**",
+  "PROJECT/**",
+  "_curriculum-forensic-baseline-*/**",
+  "scripts/curriculum-v14/**",
+  "analyze_archive.js",
+  "check_tn.js",
 ];
 
 const eslintConfig = defineConfig([

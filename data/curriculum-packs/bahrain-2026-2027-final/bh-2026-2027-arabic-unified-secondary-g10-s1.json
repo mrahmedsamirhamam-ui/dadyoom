@@ -1,0 +1,286 @@
+{
+  "schemaVersion": 1,
+  "packKey": "BH:2026:arabic:unified-secondary:10:s1",
+  "country": {
+    "code": "BH",
+    "nameAr": "مملكة البحرين",
+    "nameEn": "Kingdom of Bahrain"
+  },
+  "academicYear": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "stage": {
+    "code": "secondary",
+    "nameAr": "المرحلة الثانوية"
+  },
+  "grade": {
+    "number": 10,
+    "nameAr": "الصف الأول الثانوي",
+    "nameEn": "Grade 10"
+  },
+  "semester": 1,
+  "curriculum": {
+    "nameAr": "اللغة العربية — توحيد المسارات",
+    "nameEn": "Arabic Language — Unified Tracks",
+    "description": "منهج اللغة العربية — مملكة البحرين — ضاديوم"
+  },
+  "rights": {
+    "contentOwner": "dadyoom",
+    "sourceLabel": "الترتيب المنهجي موثّق من خطة وزارة التربية والتعليم بمملكة البحرين؛ الشرح والأنشطة والأسئلة داخل ضاديوم محتوى أصلي لضاديوم",
+    "sourceUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+    "verified": true
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "عرب 101 — ملامح من صورة الذات",
+      "description": "اللغة العربية — عرب 101 — توحيد المسارات والديني — الفصل الأول 2026-2027",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "السيرة الذاتية: «حياتي» لأحمد أمين.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "السيرة الذاتية: «حياتي» لأحمد أمين.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 2,
+            "pageEnd": 2
+          }
+        },
+        {
+          "number": 2,
+          "title": "من النص إلى الجملة + الروابط اللفظية والروابط المعنوية.",
+          "type": "grammar",
+          "estimatedMinutes": 20,
+          "summary": "من النص إلى الجملة + الروابط اللفظية والروابط المعنوية.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 2,
+            "pageEnd": 2
+          }
+        },
+        {
+          "number": 3,
+          "title": "الإنتاج الكتابي: السرد.",
+          "type": "writing",
+          "estimatedMinutes": 20,
+          "summary": "الإنتاج الكتابي: السرد.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 2,
+            "pageEnd": 2
+          }
+        },
+        {
+          "number": 4,
+          "title": "السيرة الذاتية: «يرون ما لا أرى» لطه حسين.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "السيرة الذاتية: «يرون ما لا أرى» لطه حسين.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 2,
+            "pageEnd": 2
+          }
+        },
+        {
+          "number": 5,
+          "title": "الجملة البسيطة والجملة المركبة + الجملة المركبة اسمية وفعلية.",
+          "type": "grammar",
+          "estimatedMinutes": 20,
+          "summary": "الجملة البسيطة والجملة المركبة + الجملة المركبة اسمية وفعلية.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 2,
+            "pageEnd": 2
+          }
+        },
+        {
+          "number": 6,
+          "title": "صورة الذات في الشعر الجاهلي: «فخر واعتزاز» لطرفة بن العبد.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "صورة الذات في الشعر الجاهلي: «فخر واعتزاز» لطرفة بن العبد.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 2,
+            "pageEnd": 2
+          }
+        },
+        {
+          "number": 7,
+          "title": "الفعل اللازم والفعل المتعدي.",
+          "type": "grammar",
+          "estimatedMinutes": 20,
+          "summary": "الفعل اللازم والفعل المتعدي.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 2,
+            "pageEnd": 2
+          }
+        },
+        {
+          "number": 8,
+          "title": "الإنتاج الكتابي: الوصف.",
+          "type": "writing",
+          "estimatedMinutes": 20,
+          "summary": "الإنتاج الكتابي: الوصف.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 2,
+            "pageEnd": 2
+          }
+        },
+        {
+          "number": 9,
+          "title": "صورة الذات في الشعر الجاهلي: «أشجان شاعر» لامرئ القيس.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "صورة الذات في الشعر الجاهلي: «أشجان شاعر» لامرئ القيس.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 2,
+            "pageEnd": 2
+          }
+        },
+        {
+          "number": 10,
+          "title": "الأفعال المتعدية إلى مفعولين أو ثلاثة مفاعيل.",
+          "type": "grammar",
+          "estimatedMinutes": 20,
+          "summary": "الأفعال المتعدية إلى مفعولين أو ثلاثة مفاعيل.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 2,
+            "pageEnd": 2
+          }
+        },
+        {
+          "number": 11,
+          "title": "علاقة الذات بالمكان في الشعر العربي: «في وداع السيدة الخضراء» لعلي عبد الله خليفة.",
+          "type": "reading",
+          "estimatedMinutes": 20,
+          "summary": "علاقة الذات بالمكان في الشعر العربي: «في وداع السيدة الخضراء» لعلي عبد الله خليفة.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 2,
+            "pageEnd": 2
+          }
+        },
+        {
+          "number": 12,
+          "title": "الفعل المبني للمعلوم والفعل المبني للمجهول.",
+          "type": "grammar",
+          "estimatedMinutes": 20,
+          "summary": "الفعل المبني للمعلوم والفعل المبني للمجهول.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 2,
+            "pageEnd": 2
+          }
+        },
+        {
+          "number": 13,
+          "title": "التقديم والتأخير في الجملة الاسمية.",
+          "type": "grammar",
+          "estimatedMinutes": 20,
+          "summary": "التقديم والتأخير في الجملة الاسمية.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 2,
+            "pageEnd": 2
+          }
+        },
+        {
+          "number": 14,
+          "title": "التقديم والتأخير في الجملة الفعلية.",
+          "type": "grammar",
+          "estimatedMinutes": 20,
+          "summary": "التقديم والتأخير في الجملة الفعلية.",
+          "content": "",
+          "objectives": [],
+          "vocabulary": [],
+          "questions": [],
+          "source": {
+            "label": "خطة المحتوى الدراسي الرسمية — اللغة العربية لتوحيد المسارات — البحرين 2026-2027",
+            "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+            "pageStart": 2,
+            "pageEnd": 2
+          }
+        }
+      ]
+    }
+  ],
+  "structureOnly": true,
+  "importReady": false,
+  "contentStatus": "official-plan-structure-only",
+  "validationNote": "Canonical lesson structure verified against Bahrain Edunet Plan2 and the existing verified Supabase lesson records. Full authored content/objectives/question banks are intentionally not fabricated here."
+}

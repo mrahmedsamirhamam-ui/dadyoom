@@ -2,6 +2,31 @@ import fs from "node:fs/promises";
 import process from "node:process";
 import { createClient } from "@supabase/supabase-js";
 
+import fsSync from "node:fs";
+import path from "node:path";
+
+function loadEnv(file) {
+  if (!fsSync.existsSync(file)) return;
+  for (const raw of fsSync.readFileSync(file, "utf8").split(/\r?\n/)) {
+    const line = raw.trim();
+    if (!line || line.startsWith("#")) continue;
+    const i = line.indexOf("=");
+    if (i < 1) continue;
+    const key = line.slice(0, i).trim();
+    let value = line.slice(i + 1).trim();
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      value = value.slice(1, -1);
+    }
+    if (!process.env[key]) process.env[key] = value;
+  }
+}
+
+loadEnv(path.resolve(process.cwd(), ".env.local"));
+loadEnv(path.resolve(process.cwd(), ".env"));
+
 const manifestPath =
   new URL("../public/data/bahrain/official-bahrain-2026-2027.json", import.meta.url);
 
@@ -84,7 +109,7 @@ officialByGrade.set(1, grade1Official);
 
 for (const lesson of manifest.lessons ?? []) {
   const grade = Number(lesson.grade);
-  if (!Number.isInteger(grade) || grade < 2 || grade > 9) continue;
+  if (!Number.isInteger(grade) || grade < 2 || grade > 12) continue;
   if (!publishablePlanRow(lesson.title)) continue;
 
   const list = officialByGrade.get(grade) ?? [];
@@ -115,7 +140,7 @@ for (const row of data ?? []) {
 let failed = false;
 console.log("=== BAHRAIN OFFICIAL CURRICULUM AUDIT 2026-2027 ===");
 
-for (let grade = 1; grade <= 9; grade += 1) {
+for (let grade = 1; grade <= 12; grade += 1) {
   const official = officialByGrade.get(grade) ?? [];
   const published = publishedByGrade.get(grade) ?? [];
   const publishedKeys = new Set(published.map((item) => item.key));
@@ -136,12 +161,9 @@ for (let grade = 1; grade <= 9; grade += 1) {
   }
 }
 
-console.log(
-  "Secondary G10-G12: official 2026-2027 unified-tracks plan is listed by Bahrain Edunet, but is not yet stored in this repository manifest; do not fabricate it.",
-);
 
 if (failed) {
   process.exitCode = 2;
 } else {
-  console.log("BASIC_CURRICULUM_AUDIT=PASS");
+  console.log("BAHRAIN_CURRICULUM_AUDIT=PASS");
 }

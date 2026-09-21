@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 const slides = Array.from(
@@ -29,7 +30,16 @@ export default function NotebookStyleDemoPage() {
           </div>
 
           <div className="relative flex min-h-[55vh] items-center justify-center bg-[#efe8d9] p-2 sm:p-4 lg:min-h-[72vh]">
-            <img src={slides[current]} alt={`شريحة ${current + 1}`} className="block h-auto max-h-[78vh] w-full rounded-xl object-contain shadow-lg" draggable={false} />
+            <Image
+              src={slides[current]}
+              alt={`شريحة ${current + 1}`}
+              width={1600}
+              height={900}
+              sizes="(max-width: 768px) 100vw, 1200px"
+              className="block h-auto max-h-[78vh] w-full rounded-xl object-contain shadow-lg"
+              draggable={false}
+              priority={current === 0}
+            />
             <button type="button" onClick={() => setCurrent((v) => Math.max(0, v - 1))} disabled={current === 0} className="absolute right-3 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-[#123f39]/95 text-3xl font-black text-white shadow-lg disabled:opacity-20 sm:right-6">›</button>
             <button type="button" onClick={() => setCurrent((v) => Math.min(slides.length - 1, v + 1))} disabled={current === slides.length - 1} className="absolute left-3 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-[#123f39]/95 text-3xl font-black text-white shadow-lg disabled:opacity-20 sm:left-6">‹</button>
           </div>
