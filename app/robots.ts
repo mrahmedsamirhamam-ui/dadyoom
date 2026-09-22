@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
 
+import { getSiteUrl } from "@/lib/site";
+
 export default function robots(): MetadataRoute.Robots {
-  const base =
-    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/u, "") ||
-    "http://localhost:3000";
+  const base = getSiteUrl();
 
   return {
     rules: {
@@ -16,17 +16,25 @@ export default function robots(): MetadataRoute.Robots {
         "/pricing",
         "/marketplace",
         "/lessons/",
+        "/reading-challenge",
+        "/ask",
       ],
       disallow: [
         "/api/",
         "/student/",
         "/teacher/",
+        "/parent/",
         "/school/",
         "/admin/",
         "/profile/",
         "/payments/",
+        "/onboarding/",
+        "/rewards",
+        "/login",
+        "/signup",
       ],
     },
     sitemap: `${base}/sitemap.xml`,
+    host: base,
   };
 }
