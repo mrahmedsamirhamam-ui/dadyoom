@@ -1,164 +1,70 @@
-﻿import type {
-  SupabaseClient,
-} from "@supabase/supabase-js";
+import type { SupabaseClient } from "@supabase/supabase-js";
 
-import {
-  createClient,
-} from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/server";
 
 export type UnifiedGamificationXP = {
   lessonXP: number;
   skillXP: number;
   dailyChallengeXP: number;
+  rewardXP: number;
+  gameXP: number;
   totalXP: number;
 };
 
-function safeNumber(
-  value: unknown
-): number {
-  const number =
-    Number(value);
+function safeNumber(value: unknown) {
+  const n = Number(value);
+  return Number.isFinite(n) ? Math.max(0, n) : 0;
+}
 
-  return Number.isFinite(
-    number
-  )
-    ? Math.max(
-        0,
-        number
-      )
-    : 0;
+function sum(rows: Array<Record<string, unknown>>, key: string) {
+  return rows.reduce((total, row) => total + safeNumber(row[key]), 0);
 }
 
 export async function getUnifiedGamificationXP(
   studentId: string,
-  supabaseClient?: SupabaseClient
+  supabaseClient?: SupabaseClient,
 ): Promise<UnifiedGamificationXP> {
-
-  const supabase =
-    supabaseClient ??
-    (await createClient());
+  const supabase = supabaseClient ?? (await createClient());
 
   const [
     lessonResult,
     skillResult,
     challengeResult,
-  ] =
-    await Promise.all([
-      supabase
-        .from(
-          "student_lesson_progress"
-        )
-        .select("xp")
-        .eq(
-          "student_id",
-          studentId
-        ),
+    rewardResult,
+    gameResult,
+    canonicalResult,
+  ] = await Promise.all([
+    supabase.from("student_lesson_progress").select("xp").eq("student_id", studentId),
+    supabase.from("student_skill_progress").select("xp").eq("user_id", studentId),
+    supabase
+      .from("student_daily_challenges")
+      .select("bonus_xp")
+      .eq("user_id", studentId)
+      .eq("bonus_awarded", true),
+    supabase.from("edu_rewards").select("points").eq("student_id", studentId),
+    supabase.from("edu_game_attempts").select("xp_earned").eq("student_id", studentId),
+    supabase.rpc("edu_total_xp", { p_student: studentId }),
+  ]);
 
-      supabase
-        .from(
-          "student_skill_progress"
-        )
-        .select("xp")
-        .eq(
-          "user_id",
-          studentId
-        ),
+  if (lessonResult.error) throw lessonResult.error;
+  if (skillResult.error && skillResult.error.code !== "42P01") throw skillResult.error;
+  if (challengeResult.error && challengeResult.error.code !== "42P01") throw challengeResult.error;
 
-      supabase
-        .from(
-          "student_daily_challenges"
-        )
-        .select(
-          "bonus_xp,bonus_awarded"
-        )
-        .eq(
-          "user_id",
-          studentId
-        )
-        .eq(
-          "bonus_awarded",
-          true
-        ),
-    ]);
+  const lessonXP = sum((lessonResult.data ?? []) as Array<Record<string, unknown>>, "xp");
+  const skillXP = sum((skillResult.data ?? []) as Array<Record<string, unknown>>, "xp");
+  const dailyChallengeXP = sum((challengeResult.data ?? []) as Array<Record<string, unknown>>, "bonus_xp");
+  const rewardXP = rewardResult.error ? 0 : sum((rewardResult.data ?? []) as Array<Record<string, unknown>>, "points");
+  const gameXP = gameResult.error ? 0 : sum((gameResult.data ?? []) as Array<Record<string, unknown>>, "xp_earned");
 
-  if (
-    lessonResult.error
-  ) {
-    throw lessonResult.error;
-  }
-
-  if (
-    skillResult.error &&
-    skillResult.error.code !==
-      "42P01"
-  ) {
-    throw skillResult.error;
-  }
-
-  if (
-    challengeResult.error &&
-    challengeResult.error.code !==
-      "42P01"
-  ) {
-    throw challengeResult.error;
-  }
-
-  const lessonXP =
-    (
-      lessonResult.data ??
-      []
-    ).reduce(
-      (
-        total,
-        row
-      ) =>
-        total +
-        safeNumber(
-          row.xp
-        ),
-      0
-    );
-
-  const skillXP =
-    (
-      skillResult.data ??
-      []
-    ).reduce(
-      (
-        total,
-        row
-      ) =>
-        total +
-        safeNumber(
-          row.xp
-        ),
-      0
-    );
-
-  const dailyChallengeXP =
-    (
-      challengeResult.data ??
-      []
-    ).reduce(
-      (
-        total,
-        row
-      ) =>
-        total +
-        safeNumber(
-          row.bonus_xp
-        ),
-      0
-    );
+  const fallbackTotal = lessonXP + skillXP + dailyChallengeXP + rewardXP + gameXP;
+  const totalXP = canonicalResult.error ? fallbackTotal : safeNumber(canonicalResult.data);
 
   return {
     lessonXP,
     skillXP,
     dailyChallengeXP,
-
-    totalXP:
-      lessonXP +
-      skillXP +
-      dailyChallengeXP,
+    rewardXP,
+    gameXP,
+    totalXP,
   };
 }

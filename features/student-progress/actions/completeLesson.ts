@@ -8,6 +8,9 @@ import { invalidateStudentCaches } from "@/features/student-progress/services/in
 import { syncLearningProfile } from "@/features/learning-profile/services/sync-profile";
 import { syncLessonMasteryAction } from "@/features/lesson-mastery/actions/syncLessonMastery";
 import { completeAdaptiveStep } from "@/features/learning-plan/services/adaptive-path-lifecycle";
+import { getUnifiedGamificationXP } from "@/features/student-progress/services/unified-gamification";
+import { syncGamificationMilestones } from "@/features/gamification/sync-milestones";
+import { updateStreak } from "@/services/gamification/streak";
 
 import { completeLesson } from "../services/progress";
 import { calculateLevel } from "../services/level";
@@ -32,15 +35,20 @@ type ProgressGamificationRow = {
 const REQUIRED_MASTERY_SCORE = 90;
 
 function createGamificationSnapshot(
-  rows: ProgressGamificationRow[]
+  rows: ProgressGamificationRow[],
+  unifiedTotalXP?: number
 ) {
-  const totalXP =
+  const lessonXP =
     rows.reduce(
       (sum, row) =>
         sum +
         Number(row.xp ?? 0),
       0
     );
+
+  const totalXP =
+    unifiedTotalXP ??
+    lessonXP;
 
   const completed =
     rows.filter(
@@ -159,12 +167,19 @@ export async function completeLessonAction(
     throw beforeProgressError;
   }
 
+  const beforeUnifiedXP =
+    await getUnifiedGamificationXP(
+      user.id,
+      supabase
+    );
+
   const beforeSnapshot =
     createGamificationSnapshot(
       (
         beforeProgressData ??
         []
-      ) as ProgressGamificationRow[]
+      ) as ProgressGamificationRow[],
+      beforeUnifiedXP.totalXP
     );
 
 
@@ -568,6 +583,14 @@ export async function completeLessonAction(
       )
     );
 
+  if (user.email?.trim()) {
+    await updateStreak({
+      supabase,
+      studentEmail: user.email.trim(),
+      activityDate: new Date(),
+    });
+  }
+
   /*
    * بعد نجاح إكمال الدرس الحقيقي،
    * نغلق خطوة lesson في المسار التكيفي
@@ -614,12 +637,19 @@ export async function completeLessonAction(
     throw afterProgressError;
   }
 
+  const afterUnifiedXP =
+    await getUnifiedGamificationXP(
+      user.id,
+      supabase
+    );
+
   const afterSnapshot =
     createGamificationSnapshot(
       (
         afterProgressData ??
         []
-      ) as ProgressGamificationRow[]
+      ) as ProgressGamificationRow[],
+      afterUnifiedXP.totalXP
     );
 
   const xpGained =
@@ -686,6 +716,12 @@ export async function completeLessonAction(
         }
       : null;
 
+  await syncGamificationMilestones({
+    supabase,
+    userId: user.id,
+    userEmail: user.email,
+  });
+
   await syncLearningProfile(
     user.id
   );
@@ -697,6 +733,7 @@ export async function completeLessonAction(
   });
 
   revalidatePath("/student");
+  revalidatePath("/rewards");
   revalidatePath("/lessons");
 
   revalidatePath(

@@ -44,6 +44,7 @@ export default function SchoolRewardsClient({
           <label>
             <span className="mb-1 block text-xs font-black">الفصل</span>
             <select
+              name="classId"
               value={classId}
               onChange={(event) => setClassId(event.target.value)}
               className="w-full rounded-2xl border p-3"

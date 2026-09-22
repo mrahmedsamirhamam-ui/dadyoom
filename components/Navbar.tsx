@@ -9,6 +9,7 @@ const links = [
   { href: "/journey", label: "رحلتي" },
   { href: "/skills", label: "المهارات الأربع" },
   { href: "/reading-challenge", label: "تحدي القراءة" },
+  { href: "/rewards", label: "الجوائز والشهادات" },
   { href: "/dictionary", label: "قاموس السياق" },
   { href: "/ask", label: "اسأل ضاد" },
 ];

@@ -8,6 +8,7 @@ const links = [
   { href: "/student/live", label: "الحصص", icon: "🎥" },
   { href: "/shorts", label: "شورتس", icon: "▶" },
   { href: "/journey", label: "رحلتي", icon: "🧭" },
+  { href: "/rewards", label: "جوائزي وشهاداتي", icon: "🏆" },
   { href: "/pricing", label: "Plus", icon: "✦" },
 ];
 

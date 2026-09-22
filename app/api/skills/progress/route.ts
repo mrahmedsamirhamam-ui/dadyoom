@@ -1,4 +1,7 @@
 import { completeDailyChallengeFromSkillResult } from "@/features/gamification/daily-challenge-server";
+import { syncGamificationMilestones } from "@/features/gamification/sync-milestones";
+import { invalidateStudentCaches } from "@/features/student-progress/services/invalidate-student-caches";
+import { updateStreak } from "@/services/gamification/streak";
 import {
   NextResponse,
 } from "next/server";
@@ -380,6 +383,26 @@ export async function POST(
           typedSkill,
         score,
       });
+
+    if (user.email?.trim()) {
+      await updateStreak({
+        supabase,
+        studentEmail: user.email.trim(),
+        activityDate: new Date(),
+      });
+    }
+
+    await syncGamificationMilestones({
+      supabase,
+      userId: user.id,
+      userEmail: user.email,
+    });
+
+    await invalidateStudentCaches({
+      studentId: user.id,
+      studentEmail: user.email,
+      supabase,
+    });
 
     return NextResponse.json({
       dailyChallenge,

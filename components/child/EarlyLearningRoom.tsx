@@ -127,6 +127,12 @@ export default function EarlyLearningRoom({
             >
               شورتس العربية
             </Link>
+            <Link
+              href="/rewards"
+              className="rounded-xl bg-white px-4 py-2 font-black text-[#123f39]"
+            >
+              🏆 جوائزي وشهاداتي
+            </Link>
           </div>
         </header>
 

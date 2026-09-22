@@ -1,21 +1,14 @@
-export function calculateLevel(
-  xp: number
-) {
-  const level =
-    Math.floor(xp / 100) + 1;
+import { getLevelProgress } from "@/services/gamification/levels";
 
-  const currentXP =
-    xp % 100;
-
-  const nextLevelXP = 100;
+export function calculateLevel(xp: number) {
+  const progress = getLevelProgress(xp);
 
   return {
-    level,
-    currentXP,
-    nextLevelXP,
-    percent:
-      Math.round(
-        (currentXP / nextLevelXP) * 100
-      ),
+    level: progress.current.level,
+    name: progress.current.name,
+    currentXP: progress.xpIntoLevel,
+    nextLevelXP: progress.xpForNextLevel,
+    percent: progress.progress,
+    maxed: progress.next === null,
   };
 }

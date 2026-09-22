@@ -9,7 +9,8 @@ export type CinematicProviderId =
   | "creatify"
   | "hf-sadtalker"
   | "hf-musetalk"
-  | "heygen";
+  | "heygen"
+  | "higgsfield";
 
 export type CinematicVideoStart = {
   provider: CinematicProviderId;
@@ -53,6 +54,55 @@ const PUBLIC_FAILURE =
 function env(name: string) {
   return process.env[name]?.trim() || "";
 }
+
+function higgsfieldCredentials() {
+  const combined = env("HIGGSFIELD_CREDENTIALS");
+
+  if (combined && combined.includes(":")) {
+    return combined;
+  }
+
+  const keyId =
+    env("HIGGSFIELD_API_KEY_ID") ||
+    env("HIGGSFIELD_API_KEY");
+
+  const keySecret =
+    env("HIGGSFIELD_API_KEY_SECRET") ||
+    env("HIGGSFIELD_API_SECRET");
+
+  return keyId && keySecret
+    ? `${keyId}:${keySecret}`
+    : "";
+}
+
+function higgsfieldVideoModel() {
+  return (
+    env("HIGGSFIELD_VIDEO_MODEL") ||
+    "bytedance/seedance-2.5/text-to-video"
+  );
+}
+
+function higgsfieldVideoDuration() {
+  const value =
+    Number(env("HIGGSFIELD_VIDEO_DURATION") || "8");
+
+  if (!Number.isFinite(value)) {
+    return 8;
+  }
+
+  return Math.max(
+    4,
+    Math.min(15, Math.round(value)),
+  );
+}
+
+function higgsfieldGenerateAudio() {
+  const value =
+    env("HIGGSFIELD_VIDEO_GENERATE_AUDIO").toLowerCase();
+
+  return !["0", "false", "no", "off"].includes(value);
+}
+
 
 
 async function coolingProviderIds() {
@@ -892,6 +942,194 @@ type HeyGenEnvelope = {
   };
 };
 
+type HiggsfieldEnvelope = {
+  status?: string;
+  request_id?: string;
+  status_url?: string;
+  cancel_url?: string;
+  video?: {
+    url?: string;
+  } | null;
+  error?: {
+    message?: string;
+    code?: string | number;
+  } | null;
+};
+
+const higgsfield: Provider = {
+  id: "higgsfield",
+  configured: () =>
+    Boolean(higgsfieldCredentials()),
+
+  async start(input) {
+    const credentials =
+      higgsfieldCredentials();
+
+    if (!credentials) {
+      throw new Error("HIGGSFIELD_NOT_CONFIGURED");
+    }
+
+    const model =
+      higgsfieldVideoModel();
+
+    const payload =
+      await jsonFetch<HiggsfieldEnvelope>(
+        `https://api.higgsfield.ai/${model}`,
+        {
+          method: "POST",
+          headers: {
+            Authorization:
+              `Key ${credentials}`,
+            "Content-Type":
+              "application/json",
+            Accept:
+              "application/json",
+          },
+          body: JSON.stringify({
+            prompt:
+              cinematicPrompt(input),
+            duration:
+              higgsfieldVideoDuration(),
+            resolution:
+              env("HIGGSFIELD_VIDEO_RESOLUTION") ||
+              "720p",
+            aspect_ratio:
+              "16:9",
+            generate_audio:
+              higgsfieldGenerateAudio(),
+          }),
+        },
+        "higgsfield",
+        45000,
+      );
+
+    const requestId =
+      String(
+        payload.request_id ?? "",
+      ).trim();
+
+    if (!requestId) {
+      throw new Error(
+        "HIGGSFIELD_MISSING_REQUEST_ID",
+      );
+    }
+
+    const state =
+      String(
+        payload.status ?? "",
+      ).toLowerCase();
+
+    return {
+      provider:
+        "higgsfield",
+      sessionId:
+        requestId,
+      videoId:
+        requestId,
+      status:
+        state === "in_progress"
+          ? "generating"
+          : "queued",
+      degraded:
+        true,
+    };
+  },
+
+  async status(input) {
+    const credentials =
+      higgsfieldCredentials();
+
+    if (!credentials) {
+      return {
+        provider:
+          "higgsfield",
+        status:
+          "failed",
+        message:
+          PUBLIC_FAILURE,
+      };
+    }
+
+    const requestId =
+      input.videoId ||
+      input.sessionId;
+
+    const payload =
+      await jsonFetch<HiggsfieldEnvelope>(
+        `https://api.higgsfield.ai/requests/${encodeURIComponent(
+          requestId,
+        )}/status`,
+        {
+          method: "GET",
+          headers: {
+            Authorization:
+              `Key ${credentials}`,
+            Accept:
+              "application/json",
+          },
+        },
+        "higgsfield",
+        30000,
+      );
+
+    const state =
+      String(
+        payload.status ?? "",
+      ).toLowerCase();
+
+    const videoUrl =
+      String(
+        payload.video?.url ?? "",
+      ).trim();
+
+    if (
+      state === "completed" &&
+      videoUrl
+    ) {
+      return {
+        provider:
+          "higgsfield",
+        status:
+          "completed",
+        videoId:
+          requestId,
+        videoUrl,
+      };
+    }
+
+    if (
+      [
+        "failed",
+        "nsfw",
+        "cancelled",
+        "canceled",
+      ].includes(state)
+    ) {
+      return {
+        provider:
+          "higgsfield",
+        status:
+          "failed",
+        videoId:
+          requestId,
+        message:
+          PUBLIC_FAILURE,
+      };
+    }
+
+    return {
+      provider:
+        "higgsfield",
+      status:
+        ["queued", "waiting"].includes(state)
+          ? "queued"
+          : "generating",
+      videoId:
+        requestId,
+    };
+  },
+};
+
 const heygen: Provider = {
   id: "heygen",
   configured: () => Boolean(env("HEYGEN_API_KEY")),
@@ -900,8 +1138,7 @@ const heygen: Provider = {
       prompt: cinematicPrompt(input),
       mode: "generate",
       orientation: "landscape",
-      auto_proceed: true,
-      incognito_mode: false,
+incognito_mode: false,
     };
 
     if (env("HEYGEN_VIDEO_STYLE_ID")) {
@@ -1032,6 +1269,7 @@ const providers: Provider[] = [
   creatify,
   hfGatewayProvider("hf-sadtalker", "HF_SADTALKER_GATEWAY_URL"),
   hfGatewayProvider("hf-musetalk", "HF_MUSETALK_GATEWAY_URL"),
+  higgsfield,
   heygen,
 ];
 
@@ -1054,6 +1292,7 @@ function configuredProviders(excluded: Set<string>) {
     );
 
   const fallbackOrder: CinematicProviderId[] = [
+    "higgsfield",
     "hf-sadtalker",
     "hf-musetalk",
     "tavus",

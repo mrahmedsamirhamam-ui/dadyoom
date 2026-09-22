@@ -4,6 +4,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { revalidatePath } from "next/cache";
 
 import { createClient } from "@/lib/supabase/server";
+import { invalidateStudentCaches } from "@/features/student-progress/services/invalidate-student-caches";
 
 type Result = { ok: boolean; message: string };
 
@@ -112,7 +113,15 @@ export async function awardStudentAction(
   formData: FormData,
 ): Promise<Result> {
   try {
-    const { db, user, role } = await session();
+    const { supabase, db, user, role } = await session();
+    const cleanRole = role.trim().toLowerCase();
+
+    if (!["teacher", "school", "admin"].includes(cleanRole)) {
+      return {
+        ok: false,
+        message: "منح الجوائز متاح للمعلم أو المدرسة فقط.",
+      };
+    }
 
     const studentId = value(formData, "studentId");
     const classId = value(formData, "classId");
@@ -121,7 +130,7 @@ export async function awardStudentAction(
     const description = value(formData, "description");
     const icon = value(formData, "icon") || "🏆";
     const points = Math.max(
-      0,
+      1,
       Math.min(10000, Math.round(Number(value(formData, "points") || 0))),
     );
 
@@ -129,15 +138,114 @@ export async function awardStudentAction(
       return { ok: false, message: "اختر الطالب واكتب اسم الجائزة." };
     }
 
+    let safeClassId: string | null = null;
+    let safeSchoolId: string | null = null;
+
+    if (cleanRole === "teacher") {
+      if (!classId) {
+        return { ok: false, message: "اختر فصلًا تابعًا للمعلم." };
+      }
+
+      const ownedClass = await db
+        .from("teacher_classes")
+        .select("id")
+        .eq("id", classId)
+        .eq("teacher_id", user.id)
+        .eq("is_active", true)
+        .maybeSingle();
+
+      const member = await db
+        .from("teacher_class_students")
+        .select("id")
+        .eq("class_id", classId)
+        .eq("student_id", studentId)
+        .eq("is_active", true)
+        .maybeSingle();
+
+      if (ownedClass.error || !ownedClass.data || member.error || !member.data) {
+        return { ok: false, message: "الطالب أو الفصل غير تابع لهذا المعلم." };
+      }
+
+      safeClassId = classId;
+    }
+
+    if (cleanRole === "school") {
+      if (!schoolId || !classId) {
+        return { ok: false, message: "بيانات المدرسة أو الفصل غير مكتملة." };
+      }
+
+      const school = await db
+        .from("schools")
+        .select("id")
+        .eq("id", schoolId)
+        .eq("owner_id", user.id)
+        .eq("is_active", true)
+        .maybeSingle();
+
+      const classRow = await db
+        .from("teacher_classes")
+        .select("id,teacher_id")
+        .eq("id", classId)
+        .eq("is_active", true)
+        .maybeSingle();
+
+      if (school.error || !school.data || classRow.error || !classRow.data) {
+        return { ok: false, message: "المدرسة أو الفصل غير صالح." };
+      }
+
+      const teacherLink = await db
+        .from("school_teachers")
+        .select("id")
+        .eq("school_id", schoolId)
+        .eq("teacher_id", classRow.data.teacher_id)
+        .eq("is_active", true)
+        .maybeSingle();
+
+      const member = await db
+        .from("teacher_class_students")
+        .select("id")
+        .eq("class_id", classId)
+        .eq("student_id", studentId)
+        .eq("is_active", true)
+        .maybeSingle();
+
+      if (teacherLink.error || !teacherLink.data || member.error || !member.data) {
+        return { ok: false, message: "الطالب أو الفصل غير تابع لهذه المدرسة." };
+      }
+
+      safeClassId = classId;
+      safeSchoolId = schoolId;
+    }
+
+    if (cleanRole === "admin") {
+      const target = await db
+        .from("profiles")
+        .select("role")
+        .eq("id", studentId)
+        .maybeSingle();
+
+      const targetRole = target.data?.role?.trim().toLowerCase();
+      if (target.error || !["student", "child"].includes(targetRole ?? "")) {
+        return { ok: false, message: "الحساب المحدد ليس طالبًا أو طفلًا." };
+      }
+
+      safeClassId = classId || null;
+      safeSchoolId = schoolId || null;
+    }
+
     const issuerRole =
-      role === "school" ? "school" : role === "admin" ? "admin" : "teacher";
+      cleanRole === "school"
+        ? "school"
+        : cleanRole === "admin"
+          ? "admin"
+          : "teacher";
 
     const { error } = await db.from("edu_rewards").insert({
       student_id: studentId,
       issuer_id: user.id,
       issuer_role: issuerRole,
-      class_id: classId || null,
-      school_id: schoolId || null,
+      class_id: safeClassId,
+      school_id: safeSchoolId,
       points,
       title,
       description: description || null,
@@ -146,9 +254,23 @@ export async function awardStudentAction(
 
     if (error) throw error;
 
+    const target = await db
+      .from("profiles")
+      .select("email")
+      .eq("id", studentId)
+      .maybeSingle();
+
+    await invalidateStudentCaches({
+      studentId,
+      studentEmail: target.data?.email ?? null,
+      supabase,
+    });
+
     revalidatePath("/teacher/classroom");
+    revalidatePath("/student");
     revalidatePath("/student/classroom");
     revalidatePath("/school/rewards");
+    revalidatePath("/rewards");
 
     return {
       ok: true,

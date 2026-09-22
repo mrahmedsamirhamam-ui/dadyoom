@@ -5,6 +5,7 @@ const links = [
   { href: "/courses", label: "المناهج", icon: "📚" },
   { href: "/reading-challenge", label: "القراءة", icon: "📖" },
   { href: "/skills", label: "المهارات", icon: "🧠" },
+  { href: "/rewards", label: "الجوائز والشهادات", icon: "🏆" },
   { href: "/ask", label: "اسأل ضاد", icon: "🤖" },
 ];
 

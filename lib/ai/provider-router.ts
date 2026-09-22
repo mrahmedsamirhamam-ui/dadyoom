@@ -27,7 +27,6 @@ export type AiResult = {
 type ProviderError = Error & { status?: number };
 
 const DEFAULT_ECONOMY = [
-  "ollama",
   "gemini",
   "deepseek",
   "openrouter",
@@ -35,6 +34,7 @@ const DEFAULT_ECONOMY = [
   "groq",
   "mistral",
   "openai",
+  "ollama",
 ];
 
 const DEFAULT_QUALITY = [
@@ -42,10 +42,10 @@ const DEFAULT_QUALITY = [
   "gemini",
   "deepseek",
   "openrouter",
-  "ollama",
   "groq",
   "mistral",
   "openai",
+  "ollama",
 ];
 
 function list(value: string | undefined): string[] {
@@ -217,10 +217,25 @@ async function callGemini(input: AiRequest): Promise<AiResult> {
     throw makeError("GEMINI_NOT_CONFIGURED");
   }
 
-  const model =
-    process.env.GEMINI_MODEL?.trim() ||
-    process.env.GEMINI_MODEL_BACKUP?.trim() ||
-    "gemini-2.5-flash";
+  const configuredPriority = list(
+    process.env.GEMINI_MODELS_PRIORITY,
+  );
+
+  const models = [
+    ...new Set(
+      (
+        configuredPriority.length
+          ? configuredPriority
+          : [
+              process.env.GEMINI_MODEL?.trim(),
+              "gemini-3.8-flash",
+              process.env.GEMINI_MODEL_BACKUP?.trim(),
+              "gemini-3.7-flash",
+              "gemini-3.6-flash",
+            ]
+      ).filter((value): value is string => Boolean(value)),
+    ),
+  ];
 
   const prompt = input.messages
     .map((item) => `${item.role.toUpperCase()}:\n${item.content}`)
@@ -228,72 +243,95 @@ async function callGemini(input: AiRequest): Promise<AiResult> {
 
   let lastError: unknown = null;
 
-  for (const apiKey of apiKeys) {
-    const started = Date.now();
+  for (const model of models) {
+    let modelError: unknown = null;
 
-    try {
-      const response = await fetchTimed(
-        `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(
-          model,
-        )}:generateContent?key=${encodeURIComponent(apiKey)}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
-            generationConfig: {
-              temperature: input.temperature ?? 0.3,
-              maxOutputTokens: input.maxTokens ?? 1200,
-            },
-          }),
-        },
-      );
+    for (const apiKey of apiKeys) {
+      const started = Date.now();
 
-      if (!response.ok) {
-        const detail = await response.text();
-        const error = makeError(
-          `GEMINI_${response.status}:${detail.slice(0, 250)}`,
-          response.status,
+      try {
+        const response = await fetchTimed(
+          `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(
+            model,
+          )}:generateContent?key=${encodeURIComponent(apiKey)}`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              contents: [{ parts: [{ text: prompt }] }],
+              generationConfig: {
+                temperature: input.temperature ?? 0.3,
+                maxOutputTokens: input.maxTokens ?? 1200,
+              },
+            }),
+          },
         );
 
-        if (response.status === 401 || response.status === 403) {
+        if (!response.ok) {
+          const detail = await response.text();
+          const error = makeError(
+            `GEMINI_${response.status}:${detail.slice(0, 250)}`,
+            response.status,
+          );
+
           lastError = error;
+          modelError = error;
+
+          if (response.status === 401 || response.status === 403) {
+            continue;
+          }
+
+          break;
+        }
+
+        const payload = (await response.json()) as {
+          candidates?: Array<{
+            content?: {
+              parts?: Array<{ text?: string }>;
+            };
+          }>;
+        };
+
+        const text =
+          payload.candidates?.[0]?.content?.parts
+            ?.map((item) => item.text ?? "")
+            .join("\n")
+            .trim() ?? "";
+
+        if (!text) {
+          const error = makeError("GEMINI_EMPTY");
+          lastError = error;
+          modelError = error;
+          break;
+        }
+
+        return {
+          text,
+          provider: "gemini",
+          model,
+          latencyMs: Date.now() - started,
+        };
+      } catch (error) {
+        lastError = error;
+        modelError = error;
+
+        const status = (error as ProviderError).status;
+
+        if (status === 401 || status === 403) {
           continue;
         }
 
-        throw error;
+        break;
       }
+    }
 
-      const payload = (await response.json()) as {
-        candidates?: Array<{
-          content?: {
-            parts?: Array<{ text?: string }>;
-          };
-        }>;
-      };
+    const status = (modelError as ProviderError | null)?.status;
 
-      const text =
-        payload.candidates?.[0]?.content?.parts
-          ?.map((item) => item.text ?? "")
-          .join("\n")
-          .trim() ?? "";
-
-      if (!text) throw makeError("GEMINI_EMPTY");
-
-      return {
-        text,
-        provider: "gemini",
-        model,
-        latencyMs: Date.now() - started,
-      };
-    } catch (error) {
-      lastError = error;
-      const status = (error as ProviderError).status;
-
-      // Multiple keys are authorized auth/key failover.
-      // On 429/5xx we move to a different provider instead of
-      // cycling keys to bypass a provider quota.
-      if (status && status !== 401 && status !== 403) break;
+    if (
+      status &&
+      ![404, 408, 425, 429, 500, 502, 503, 504].includes(status)
+    ) {
+      break;
     }
   }
 
