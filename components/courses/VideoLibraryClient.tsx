@@ -2,6 +2,7 @@
 
 import {
   useMemo,
+  useRef,
   useState,
 } from "react";
 
@@ -23,6 +24,17 @@ type VideoItem = {
 };
 
 const PAGE_SIZE = 24;
+
+function playerUrl(embedUrl: string) {
+  try {
+    const url = new URL(embedUrl);
+    url.searchParams.set("rel", "0");
+    url.searchParams.set("modestbranding", "1");
+    return url.toString();
+  } catch {
+    return embedUrl;
+  }
+}
 
 export default function VideoLibraryClient({
   videos,
@@ -47,6 +59,9 @@ export default function VideoLibraryClient({
     useState<VideoItem | null>(
       videos[0] ?? null
     );
+
+  const playerRef =
+    useRef<HTMLElement | null>(null);
 
   const categories =
     useMemo(
@@ -153,18 +168,36 @@ export default function VideoLibraryClient({
     setPage(1);
   }
 
+  function openVideo(
+    video: VideoItem
+  ) {
+    setSelected(video);
+
+    window.setTimeout(() => {
+      playerRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 0);
+  }
+
   return (
     <div className="space-y-6">
       {selected ? (
-        <section className="overflow-hidden rounded-[2rem] border border-[#d9c8a7] bg-[#fffdf8] shadow-lg">
+        <section
+          ref={playerRef}
+          className="scroll-mt-28 overflow-hidden rounded-[2rem] border border-[#d9c8a7] bg-[#fffdf8] shadow-lg"
+        >
           <div className="grid lg:grid-cols-[1.35fr_.65fr]">
             <div className="aspect-video bg-black">
               <iframe
                 key={selected.id}
                 className="h-full w-full"
-                src={selected.embedUrl}
+                src={playerUrl(
+                  selected.embedUrl
+                )}
                 title={selected.title}
-                loading="lazy"
+                loading="eager"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
@@ -200,6 +233,11 @@ export default function VideoLibraryClient({
                   فتح الفيديو على YouTube
                 </a>
               </div>
+
+              <p className="mt-4 text-sm font-bold leading-7 text-[#766a5c]">
+                إذا منع صاحب الفيديو تشغيله داخل المواقع الخارجية،
+                استخدم رابط YouTube أعلاه مباشرة.
+              </p>
 
               <div className="mt-4 flex flex-wrap gap-2">
                 <Chip>
@@ -301,10 +339,9 @@ export default function VideoLibraryClient({
               key={video.id}
               type="button"
               onClick={() =>
-                setSelected(
-                  video
-                )
+                openVideo(video)
               }
+              aria-label={`تشغيل ${video.title}`}
               className="overflow-hidden rounded-[1.5rem] border border-[#dfcfad] bg-[#fffdf8] text-right shadow-sm transition hover:-translate-y-1 hover:border-[#b58534] hover:shadow-md"
             >
               <div
