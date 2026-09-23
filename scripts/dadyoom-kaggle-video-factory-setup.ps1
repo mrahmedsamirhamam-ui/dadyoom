@@ -1,6 +1,6 @@
 param(
   [string]$Repo = "",
-  [string]$KaggleUsername = "",
+  [string]$KaggleUsername = "mrahmedsamirhamam",
   [string]$ToolsRoot = "G:\DadyoomTools\KaggleFactory"
 )
 
@@ -138,7 +138,10 @@ $Metadata = @{
 
 [IO.File]::WriteAllText((Join-Path $WorkDir "kernel-metadata.json"),$Metadata,[Text.UTF8Encoding]::new($false))
 
-& $KaggleExe kernels push -p $WorkDir --no-run --accelerator NvidiaTeslaT4
+# Kaggle CLI 2.2.4 does not expose --no-run even though newer docs mention it.
+# Push normally. The worker checks Kaggle Secrets before installing models,
+# so the first run exits immediately and cheaply if secrets are not attached yet.
+& $KaggleExe kernels push -p $WorkDir --accelerator NvidiaTeslaT4
 if ($LASTEXITCODE -ne 0) { Fail "KAGGLE_KERNEL_CREATE_FAILED" }
 
 $NotebookUrl = "https://www.kaggle.com/code/$KaggleUsername/dadyoom-video-factory"
