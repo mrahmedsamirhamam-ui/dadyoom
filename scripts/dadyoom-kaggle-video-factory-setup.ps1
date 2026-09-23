@@ -75,13 +75,32 @@ if (-not (Test-Path -LiteralPath $PythonExe)) { Fail "PORTABLE_PYTHON_NOT_FOUND_
 if ($LASTEXITCODE -ne 0) { Fail "PORTABLE_PYTHON_FAILED" }
 Pass ("PYTHON_ON_G={0}" -f $PythonExe)
 
-& $PythonExe -m pip --version *> $null
-if ($LASTEXITCODE -ne 0) {
+$PipReady = $false
+try {
+  $OldErrorAction = $ErrorActionPreference
+  $ErrorActionPreference = "Continue"
+  & $PythonExe -c "import pip,sys; print(pip.__version__)" 2>$null | Out-Null
+  $PipReady = ($LASTEXITCODE -eq 0)
+}
+catch {
+  $PipReady = $false
+}
+finally {
+  $ErrorActionPreference = $OldErrorAction
+}
+
+if (-not $PipReady) {
   $GetPip = Join-Path $DownloadRoot "get-pip.py"
-  if (-not (Test-Path -LiteralPath $GetPip)) { Invoke-WebRequest -Uri "https://bootstrap.pypa.io/get-pip.py" -OutFile $GetPip }
+  if (-not (Test-Path -LiteralPath $GetPip)) {
+    Invoke-WebRequest -Uri "https://bootstrap.pypa.io/get-pip.py" -OutFile $GetPip
+  }
+
   & $PythonExe $GetPip --no-warn-script-location
   if ($LASTEXITCODE -ne 0) { Fail "PIP_BOOTSTRAP_ON_G_FAILED" }
 }
+
+& $PythonExe -m pip --version
+if ($LASTEXITCODE -ne 0) { Fail "PIP_VERIFY_ON_G_FAILED" }
 Pass "PIP_ON_G=PASS"
 
 & $PythonExe -m pip install --upgrade --no-warn-script-location --cache-dir $PipCache kaggle
