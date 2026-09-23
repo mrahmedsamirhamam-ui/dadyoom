@@ -2038,6 +2038,32 @@ export function configuredCinematicProviderIds() {
   return configuredProviders(new Set()).map((provider) => provider.id);
 }
 
+export async function cinematicVideoRuntimeHealth() {
+  const configured =
+    configuredProviders(
+      new Set(),
+    );
+
+  const cooling =
+    await coolingProviderIds();
+
+  return {
+    ready:
+      configured.length > 0,
+    configuredCount:
+      configured.length,
+    coolingCount:
+      cooling.size,
+    freeFirst:
+      true,
+    paidEnabled:
+      env(
+        "ALLOW_PAID_VIDEO_PROVIDERS",
+      ).toLowerCase() ===
+      "true",
+  };
+}
+
 export async function startCinematicLessonVideo(
   input: LessonVideoInput,
 ): Promise<CinematicVideoStart> {
