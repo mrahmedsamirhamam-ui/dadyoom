@@ -510,13 +510,31 @@ Write-Host ("ANDROID_TEST_APK={0}" -f $DebugOut)
 
 if ($Install) {
   $Adb = Get-Command adb -ErrorAction SilentlyContinue
-  if (!$Adb) { Fail "ADB_NOT_FOUND" }
 
-  Run $Adb.Source @("install","-r",$DebugOut) (Join-Path $Work "adb-install.txt") | Out-Null
-  Pass "ANDROID_TEST_APK_INSTALLED=PASS"
+  if (!$Adb) {
+    Warn "ADB_NOT_FOUND_INSTALL_SKIPPED"
+    Warn ("MANUAL_APK={0}" -f $DebugOut)
+  }
+  else {
+    $DeviceLines = @(
+      & $Adb.Source devices |
+        Select-Object -Skip 1 |
+        Where-Object { $_ -match "\tdevice$" }
+    )
 
-  & adb shell monkey -p $AppId -c android.intent.category.LAUNCHER 1 | Out-Null
-  Pass "ANDROID_APP_LAUNCH_REQUEST=PASS"
+    if ($DeviceLines.Count -eq 0) {
+      Warn "ADB_DEVICE_NOT_CONNECTED_INSTALL_SKIPPED"
+      Warn "Connect the Android phone, enable USB debugging, accept the RSA prompt, then rerun with -Install."
+      Write-Host ("MANUAL_APK={0}" -f $DebugOut)
+    }
+    else {
+      Run $Adb.Source @("install","-r",$DebugOut) (Join-Path $Work "adb-install.txt") | Out-Null
+      Pass "ANDROID_TEST_APK_INSTALLED=PASS"
+
+      & $Adb.Source shell monkey -p $AppId -c android.intent.category.LAUNCHER 1 | Out-Null
+      Pass "ANDROID_APP_LAUNCH_REQUEST=PASS"
+    }
+  }
 }
 
 if (!$SkipPlayBundle) {
