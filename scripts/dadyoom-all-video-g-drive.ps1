@@ -1,7 +1,7 @@
 param(
   [string]$Repo = "G:\ضاضيوم\dadyoom",
   [string]$ToolsRoot = "G:\DadyoomTools\KaggleFactory",
-  [string]$KaggleUsername = "",
+  [string]$KaggleUsername = "mrahmedsamirhamam",
   [switch]$ReportOnly
 )
 
