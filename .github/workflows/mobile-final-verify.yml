@@ -1,0 +1,42 @@
+name: Mobile Final Verify
+
+on:
+  push:
+    branches:
+      - fix/mobile-cloud-video-final-20260923
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install
+        run: npm install --legacy-peer-deps --no-package-lock
+
+      - name: Targeted lint
+        run: >
+          npx eslint
+          "lib/video/cinematic-client.ts"
+          "lib/video/cinematic-avatar-agent.ts"
+          "app/api/video/cinematic/route.ts"
+          "app/api/video/cinematic/status/route.ts"
+          "app/api/video/cinematic/health/route.ts"
+          "app/(dashboard)/ask/page.tsx"
+          "components/dad-ai/DadLessonVideoButton.tsx"
+          "lib/mobile/offline-ai.ts"
+          "lib/mobile/hybrid-ai.ts"
+
+      - name: Tests
+        run: npm run test:run
+
+      - name: Vinext build
+        run: npm run build:vinext
