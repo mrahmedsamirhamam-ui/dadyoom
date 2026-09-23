@@ -10,6 +10,7 @@ export type CinematicProviderId =
   | "hf-sadtalker"
   | "hf-musetalk"
   | "hf-minimax-h3"
+  | "hf-ltx"
   | "heygen"
   | "higgsfield";
 
@@ -1339,6 +1340,277 @@ const hfMinimaxH3: Provider = {
   },
 };
 
+function hfLtxBaseUrl() {
+  return (
+    env("HF_LTX_BASE_URL") ||
+    "https://lightricks-ltx-video-distilled.hf.space"
+  ).replace(/\/+$/u, "");
+}
+
+const hfLtx: Provider = {
+  id: "hf-ltx",
+
+  configured: () =>
+    Boolean(env("HF_TOKEN")),
+
+  async start(input) {
+    const baseUrl =
+      hfLtxBaseUrl();
+
+    const payload =
+      await jsonFetch<{
+        event_id?: string;
+      }>(
+        `${baseUrl}/gradio_api/call/v2/text_to_video`,
+        {
+          method: "POST",
+          headers: {
+            ...hfAuthHeaders(),
+            "Content-Type":
+              "application/json",
+            Accept:
+              "application/json",
+          },
+          body: JSON.stringify({
+            prompt:
+              cinematicPrompt(
+                input,
+              ),
+            negative_prompt:
+              "worst quality, blurry, jittery, distorted, unreadable text",
+            input_image_filepath:
+              null,
+            input_video_filepath:
+              null,
+            height_ui:
+              Number(
+                env(
+                  "HF_LTX_HEIGHT",
+                ) ||
+                  "512",
+              ),
+            width_ui:
+              Number(
+                env(
+                  "HF_LTX_WIDTH",
+                ) ||
+                  "704",
+              ),
+            mode:
+              "text-to-video",
+            duration_ui:
+              Number(
+                env(
+                  "HF_LTX_DURATION",
+                ) ||
+                  "2",
+              ),
+            ui_frames_to_use:
+              9,
+            seed_ui:
+              42,
+            randomize_seed:
+              true,
+            ui_guidance_scale:
+              3,
+            improve_texture_flag:
+              false,
+          }),
+        },
+        "hf-ltx",
+        30000,
+      );
+
+    const eventId =
+      String(
+        payload.event_id ?? "",
+      ).trim();
+
+    if (!eventId) {
+      throw new Error(
+        "HF_LTX_MISSING_EVENT_ID",
+      );
+    }
+
+    return {
+      provider:
+        "hf-ltx",
+      sessionId:
+        eventId,
+      videoId:
+        eventId,
+      status:
+        "queued",
+      degraded:
+        true,
+    };
+  },
+
+  async status(input) {
+    const baseUrl =
+      hfLtxBaseUrl();
+
+    const eventId =
+      input.videoId ||
+      input.sessionId;
+
+    const controller =
+      new AbortController();
+
+    const timer =
+      setTimeout(
+        () =>
+          controller.abort(),
+        8000,
+      );
+
+    try {
+      const response =
+        await fetch(
+          `${baseUrl}/gradio_api/call/text_to_video/${encodeURIComponent(
+            eventId,
+          )}`,
+          {
+            method: "GET",
+            headers: {
+              ...hfAuthHeaders(),
+              Accept:
+                "text/event-stream",
+            },
+            signal:
+              controller.signal,
+            cache:
+              "no-store",
+          },
+        );
+
+      const raw =
+        await response.text();
+
+      if (!response.ok) {
+        if (
+          response.status ===
+          429
+        ) {
+          throw new Error(
+            "VIDEO_PROVIDER_RATE_LIMIT",
+          );
+        }
+
+        if (
+          response.status ===
+            401 ||
+          response.status ===
+            403
+        ) {
+          throw new Error(
+            "VIDEO_PROVIDER_AUTH_FAILED",
+          );
+        }
+
+        if (
+          response.status >=
+          500
+        ) {
+          throw new Error(
+            "VIDEO_PROVIDER_SERVICE_UNAVAILABLE",
+          );
+        }
+
+        throw new Error(
+          "HF_LTX_STATUS_FAILED",
+        );
+      }
+
+      if (
+        /event:\s*error/iu.test(
+          raw,
+        )
+      ) {
+        return {
+          provider:
+            "hf-ltx",
+          status:
+            "failed",
+          videoId:
+            eventId,
+          message:
+            PUBLIC_FAILURE,
+        };
+      }
+
+      const complete =
+        gradioCompletePayload(
+          raw,
+        );
+
+      if (complete) {
+        const videoUrl =
+          findGradioVideoUrl(
+            complete,
+            baseUrl,
+          );
+
+        if (videoUrl) {
+          return {
+            provider:
+              "hf-ltx",
+            status:
+              "completed",
+            videoId:
+              eventId,
+            videoUrl,
+          };
+        }
+
+        return {
+          provider:
+            "hf-ltx",
+          status:
+            "failed",
+          videoId:
+            eventId,
+          message:
+            PUBLIC_FAILURE,
+        };
+      }
+
+      return {
+        provider:
+          "hf-ltx",
+        status:
+          /event:\s*generating|event:\s*progress/iu.test(
+            raw,
+          )
+            ? "generating"
+            : "queued",
+        videoId:
+          eventId,
+      };
+    } catch (error) {
+      if (
+        controller.signal
+          .aborted
+      ) {
+        return {
+          provider:
+            "hf-ltx",
+          status:
+            "generating",
+          videoId:
+            eventId,
+        };
+      }
+
+      throw error;
+    } finally {
+      clearTimeout(
+        timer,
+      );
+    }
+  },
+};
+
 type HeyGenEnvelope = {
   error?: {
     code?: string | number;
@@ -1679,6 +1951,7 @@ const providers: Provider[] = [
   hfGatewayProvider("hf-sadtalker", "HF_SADTALKER_GATEWAY_URL"),
   hfGatewayProvider("hf-musetalk", "HF_MUSETALK_GATEWAY_URL"),
   hfMinimaxH3,
+  hfLtx,
   higgsfield,
   heygen,
 ];
@@ -1703,6 +1976,7 @@ function configuredProviders(excluded: Set<string>) {
 
   const fallbackOrder: CinematicProviderId[] = [
     "hf-minimax-h3",
+    "hf-ltx",
     "hf-sadtalker",
     "hf-musetalk",
     "higgsfield",
@@ -1726,8 +2000,30 @@ function configuredProviders(excluded: Set<string>) {
 
   const rank = new Map(order.map((id, index) => [id, index]));
 
+  const allowPaid =
+    env("ALLOW_PAID_VIDEO_PROVIDERS")
+      .toLowerCase() === "true";
+
+  const freeProviderIds =
+    new Set<CinematicProviderId>([
+      "hf-minimax-h3",
+      "hf-ltx",
+      "hf-sadtalker",
+      "hf-musetalk",
+    ]);
+
   return providers
-    .filter((provider) => provider.configured() && !excluded.has(provider.id))
+    .filter(
+      (provider) =>
+        provider.configured() &&
+        !excluded.has(provider.id) &&
+        (
+          allowPaid ||
+          freeProviderIds.has(
+            provider.id,
+          )
+        ),
+    )
     .sort(
       (a, b) =>
         (rank.get(a.id) ?? 999) - (rank.get(b.id) ?? 999),
