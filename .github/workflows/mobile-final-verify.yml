@@ -38,5 +38,30 @@ jobs:
       - name: Tests
         run: npm run test:run
 
+      - name: Shell syntax
+        run: bash -n scripts/dadyoom-finalize-ios.sh
+
+      - name: PowerShell syntax
+        shell: pwsh
+        run: |
+          $files = @(
+            "scripts/dadyoom-finalize-android.ps1",
+            "scripts/dadyoom-prepare-ios-final.ps1",
+            "scripts/dadyoom-final-mobile-video-fix.ps1"
+          )
+          foreach ($file in $files) {
+            $tokens = $null
+            $errors = $null
+            [void][System.Management.Automation.Language.Parser]::ParseFile(
+              $file,
+              [ref]$tokens,
+              [ref]$errors
+            )
+            if ($errors.Count -gt 0) {
+              $errors | ForEach-Object { Write-Error $_.Message }
+              exit 1
+            }
+          }
+
       - name: Vinext build
         run: npm run build:vinext
