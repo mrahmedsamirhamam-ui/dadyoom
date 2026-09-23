@@ -2677,7 +2677,12 @@ function configuredProviders(excluded: Set<string>) {
   const order: CinematicProviderId[] =
     Array.from(
       new Set([
-        ...requestedOrder,
+        "hf-minimax-h3-hq",
+        ...requestedOrder.filter(
+          (id) =>
+            id !==
+            "hf-minimax-h3-hq",
+        ),
         ...fallbackOrder,
       ]),
     );
