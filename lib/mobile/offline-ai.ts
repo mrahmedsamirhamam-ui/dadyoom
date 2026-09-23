@@ -9,6 +9,9 @@ const MODEL_FILENAME =
 const ANDROID_BUNDLED_MODEL_PATH =
   `/android_asset/${MODEL_FILENAME}`;
 
+const IOS_BUNDLED_MODEL_PATH =
+  MODEL_FILENAME;
+
 let activeModelPath: string | null = null;
 let initializePromise:
   | Promise<{
@@ -35,7 +38,9 @@ export function hasOfflineAIModel() {
     return false;
   }
 
-  return Capacitor.getPlatform() === "android";
+  return ["android", "ios"].includes(
+    Capacitor.getPlatform(),
+  );
 }
 
 async function waitForReady(
@@ -102,6 +107,29 @@ async function configureBundledAndroidModel() {
   };
 }
 
+async function configureBundledIosModel() {
+  await CapgoLLM.setModel({
+    path: IOS_BUNDLED_MODEL_PATH,
+    modelType: "task",
+    maxTokens: 768,
+    topk: 32,
+    temperature: 0.2,
+    backend: "cpu",
+  });
+
+  const readiness =
+    await waitForReady();
+
+  activeModelPath =
+    IOS_BUNDLED_MODEL_PATH;
+
+  return {
+    ready: true,
+    readiness,
+    path: IOS_BUNDLED_MODEL_PATH,
+  };
+}
+
 async function initializeInternal(
   onProgress?: (progress: number) => void,
 ) {
@@ -113,12 +141,15 @@ async function initializeInternal(
     };
   }
 
+  const platform =
+    Capacitor.getPlatform();
+
   if (
-    Capacitor.getPlatform() !==
-    "android"
+    platform !== "android" &&
+    platform !== "ios"
   ) {
     throw new Error(
-      "OFFLINE_AI_IOS_BUNDLE_PENDING_XCODE",
+      "OFFLINE_AI_NATIVE_PLATFORM_REQUIRED",
     );
   }
 
@@ -143,7 +174,9 @@ async function initializeInternal(
     }
   }
 
-  return configureBundledAndroidModel();
+  return platform === "ios"
+    ? configureBundledIosModel()
+    : configureBundledAndroidModel();
 }
 
 export async function initializeOfflineAI(
