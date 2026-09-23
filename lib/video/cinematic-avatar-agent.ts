@@ -951,6 +951,137 @@ function hfAuthHeaders() {
     : {};
 }
 
+function gradioSleep(
+  milliseconds: number,
+) {
+  return new Promise<void>(
+    (resolve) =>
+      setTimeout(
+        resolve,
+        milliseconds,
+      ),
+  );
+}
+
+async function startGradioJob(options: {
+  baseUrl: string;
+  endpoint: string;
+  provider: CinematicProviderId;
+  namedBody: Record<string, unknown>;
+  positionalData: unknown[];
+  preferV2?: boolean;
+}) {
+  const variants =
+    options.preferV2 === false
+      ? [
+          {
+            url:
+              `${options.baseUrl}/gradio_api/call/${options.endpoint}`,
+            body: {
+              data:
+                options.positionalData,
+            },
+          },
+          {
+            url:
+              `${options.baseUrl}/gradio_api/call/v2/${options.endpoint}`,
+            body:
+              options.namedBody,
+          },
+        ]
+      : [
+          {
+            url:
+              `${options.baseUrl}/gradio_api/call/v2/${options.endpoint}`,
+            body:
+              options.namedBody,
+          },
+          {
+            url:
+              `${options.baseUrl}/gradio_api/call/${options.endpoint}`,
+            body: {
+              data:
+                options.positionalData,
+            },
+          },
+        ];
+
+  let lastError:
+    | Error
+    | undefined;
+
+  for (const variant of variants) {
+    for (
+      let attempt = 0;
+      attempt < 3;
+      attempt += 1
+    ) {
+      try {
+        return await jsonFetch<{
+          event_id?: string;
+        }>(
+          variant.url,
+          {
+            method: "POST",
+            headers: {
+              ...hfAuthHeaders(),
+              "Content-Type":
+                "application/json",
+              Accept:
+                "application/json",
+            },
+            body:
+              JSON.stringify(
+                variant.body,
+              ),
+          },
+          options.provider,
+          45000,
+        );
+      } catch (error) {
+        lastError =
+          error instanceof Error
+            ? error
+            : new Error(
+                String(error),
+              );
+
+        if (
+          lastError.message ===
+            "VIDEO_PROVIDER_AUTH_FAILED" ||
+          lastError.message ===
+            "VIDEO_PROVIDER_RATE_LIMIT" ||
+          lastError.message ===
+            "VIDEO_PROVIDER_CREDITS_EXHAUSTED"
+        ) {
+          throw lastError;
+        }
+
+        if (
+          lastError.message ===
+            "VIDEO_PROVIDER_SERVICE_UNAVAILABLE" &&
+          attempt < 2
+        ) {
+          await gradioSleep(
+            3500 *
+              (attempt + 1),
+          );
+          continue;
+        }
+
+        break;
+      }
+    }
+  }
+
+  throw (
+    lastError ??
+    new Error(
+      "VIDEO_PROVIDER_REQUEST_FAILED",
+    )
+  );
+}
+
 function findGradioVideoUrl(
   value: unknown,
   baseUrl: string,
@@ -1100,55 +1231,62 @@ const hfMinimaxH3: Provider = {
     const baseUrl =
       hfMinimaxH3BaseUrl();
 
-    const payload =
-      await jsonFetch<{
-        event_id?: string;
-      }>(
-        `${baseUrl}/gradio_api/call/v2/generate`,
-        {
-          method: "POST",
-          headers: {
-            ...hfAuthHeaders(),
-            "Content-Type":
-              "application/json",
-            Accept:
-              "application/json",
-          },
-          body: JSON.stringify({
-            prompt:
-              cinematicPrompt(
-                input,
-              ),
-            image_path: null,
-            last_image_path:
-              null,
-            canvas:
-              env(
-                "HF_MINIMAX_H3_CANVAS",
-              ) ||
-              "1344x768 · 16:9 full",
-            duration:
-              Number(
-                env(
-                  "HF_MINIMAX_H3_DURATION",
-                ) ||
-                  "5",
-              ),
-            steps:
-              Number(
-                env(
-                  "HF_MINIMAX_H3_STEPS",
-                ) ||
-                  "4",
-              ),
-            seed: 42,
-            upsample: false,
-            use_lora: true,
-          }),
-        },
-        "hf-minimax-h3",
-        30000,
+    const prompt =
+      cinematicPrompt(
+        input,
       );
+    const canvas =
+      env(
+        "HF_MINIMAX_H3_CANVAS",
+      ) ||
+      "1344x768 · 16:9 full";
+    const duration =
+      Number(
+        env(
+          "HF_MINIMAX_H3_DURATION",
+        ) ||
+          "5",
+      );
+    const steps =
+      Number(
+        env(
+          "HF_MINIMAX_H3_STEPS",
+        ) ||
+          "4",
+      );
+
+    const payload =
+      await startGradioJob({
+        baseUrl,
+        endpoint:
+          "generate",
+        provider:
+          "hf-minimax-h3",
+        preferV2: true,
+        namedBody: {
+          prompt,
+          image_path: null,
+          last_image_path:
+            null,
+          canvas,
+          duration,
+          steps,
+          seed: 42,
+          upsample: false,
+          use_lora: true,
+        },
+        positionalData: [
+          prompt,
+          null,
+          null,
+          canvas,
+          duration,
+          steps,
+          42,
+          false,
+          true,
+        ],
+      });
 
     const eventId =
       String(
@@ -1357,69 +1495,87 @@ const hfLtx: Provider = {
     const baseUrl =
       hfLtxBaseUrl();
 
-    const payload =
-      await jsonFetch<{
-        event_id?: string;
-      }>(
-        `${baseUrl}/gradio_api/call/v2/text_to_video`,
-        {
-          method: "POST",
-          headers: {
-            ...hfAuthHeaders(),
-            "Content-Type":
-              "application/json",
-            Accept:
-              "application/json",
-          },
-          body: JSON.stringify({
-            prompt:
-              cinematicPrompt(
-                input,
-              ),
-            negative_prompt:
-              "worst quality, blurry, jittery, distorted, unreadable text",
-            input_image_filepath:
-              null,
-            input_video_filepath:
-              null,
-            height_ui:
-              Number(
-                env(
-                  "HF_LTX_HEIGHT",
-                ) ||
-                  "512",
-              ),
-            width_ui:
-              Number(
-                env(
-                  "HF_LTX_WIDTH",
-                ) ||
-                  "704",
-              ),
-            mode:
-              "text-to-video",
-            duration_ui:
-              Number(
-                env(
-                  "HF_LTX_DURATION",
-                ) ||
-                  "2",
-              ),
-            ui_frames_to_use:
-              9,
-            seed_ui:
-              42,
-            randomize_seed:
-              true,
-            ui_guidance_scale:
-              3,
-            improve_texture_flag:
-              false,
-          }),
-        },
-        "hf-ltx",
-        30000,
+    const prompt =
+      cinematicPrompt(
+        input,
       );
+    const negativePrompt =
+      "worst quality, blurry, jittery, distorted, unreadable text";
+    const height =
+      Number(
+        env(
+          "HF_LTX_HEIGHT",
+        ) ||
+          "512",
+      );
+    const width =
+      Number(
+        env(
+          "HF_LTX_WIDTH",
+        ) ||
+          "704",
+      );
+    const duration =
+      Number(
+        env(
+          "HF_LTX_DURATION",
+        ) ||
+          "2",
+      );
+
+    const payload =
+      await startGradioJob({
+        baseUrl,
+        endpoint:
+          "text_to_video",
+        provider:
+          "hf-ltx",
+        // This Space is still on Gradio 5.x. Prefer the classic
+        // data[] queue endpoint, then fall back to the v2 named API.
+        preferV2: false,
+        namedBody: {
+          prompt,
+          negative_prompt:
+            negativePrompt,
+          input_image_filepath:
+            null,
+          input_video_filepath:
+            null,
+          height_ui:
+            height,
+          width_ui:
+            width,
+          mode:
+            "text-to-video",
+          duration_ui:
+            duration,
+          ui_frames_to_use:
+            9,
+          seed_ui:
+            42,
+          randomize_seed:
+            true,
+          ui_guidance_scale:
+            3,
+          improve_texture_flag:
+            false,
+        },
+        positionalData: [
+          prompt,
+          negativePrompt,
+          null,
+          null,
+          height,
+          width,
+          "text-to-video",
+          duration,
+          9,
+          42,
+          true,
+          3,
+          false,
+        ],
+      });
 
     const eventId =
       String(
