@@ -1,8 +1,19 @@
 param(
-  [string]$Repo = "G:\ضاضيوم\dadyoom",
+  [string]$Repo = "",
   [switch]$SkipDeploy,
   [switch]$SkipTests
 )
+
+# DADYOOM_REPO_AUTO_RESOLVE
+if ([string]::IsNullOrWhiteSpace($Repo)) {
+  $CurrentCandidate = (Get-Location).Path
+  if (Test-Path -LiteralPath (Join-Path $CurrentCandidate "package.json")) {
+    $Repo = $CurrentCandidate
+  }
+  else {
+    $Repo = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
+  }
+}
 
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
