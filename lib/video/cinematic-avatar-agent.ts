@@ -1149,7 +1149,13 @@ const hfMinimaxH3Hq: Provider = {
             videoId:
               eventId,
             videoUrl,
-            duration,
+            duration:
+              Number(
+                env(
+                  "HF_MINIMAX_H3_HQ_DURATION",
+                ) ||
+                  "5",
+              ),
           };
         }
 
