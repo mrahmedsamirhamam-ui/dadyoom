@@ -14,7 +14,6 @@ type Props = {
   nextPath?: string;
 };
 
-const NATIVE_CALLBACK = "dadyoom://auth/callback";
 const NATIVE_INTENT_KEY = "dadyoom_native_oauth_intent";
 
 function timeout(ms: number) {
@@ -129,7 +128,7 @@ export default function GoogleAuthButton({
           provider: "google",
           options: {
             redirectTo: isNative
-              ? NATIVE_CALLBACK
+              ? `${window.location.origin}/auth/callback?native=1`
               : `${window.location.origin}/auth/callback${nextPath ? `?next=${encodeURIComponent(nextPath)}` : ""}`,
             skipBrowserRedirect: isNative,
             queryParams: {
@@ -165,7 +164,7 @@ export default function GoogleAuthButton({
         ]);
 
         setPhase(
-          "تم إرسال الطلب إلى Google. إذا لم تظهر نافذة الحسابات استخدم زر «فتح Google الآن» أدناه.",
+          "أكمل تسجيل الدخول في Google. سيعود ضاديوم إلى التطبيق تلقائيًا بعد النجاح.",
         );
       } catch (browserError) {
         console.error(

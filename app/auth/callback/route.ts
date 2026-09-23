@@ -218,6 +218,45 @@ export async function GET(
   const url =
     new URL(request.url);
 
+  if (
+    url.searchParams.get(
+      "native",
+    ) === "1"
+  ) {
+    const params =
+      new URLSearchParams();
+
+    for (const key of [
+      "code",
+      "error",
+      "error_code",
+      "error_description",
+    ]) {
+      const value =
+        url.searchParams.get(key);
+
+      if (value) {
+        params.set(key, value);
+      }
+    }
+
+    const query =
+      params.toString();
+
+    return new Response(
+      null,
+      {
+        status: 302,
+        headers: {
+          Location:
+            `dadyoom://auth/callback${query ? `?${query}` : ""}`,
+          "Cache-Control":
+            "no-store, max-age=0",
+        },
+      },
+    );
+  }
+
   const code =
     url.searchParams.get("code");
 
