@@ -10,6 +10,7 @@ export type CinematicProviderId =
   | "hf-sadtalker"
   | "hf-musetalk"
   | "hf-minimax-h3"
+  | "hf-wan22"
   | "hf-ltx"
   | "heygen"
   | "higgsfield";
@@ -304,9 +305,10 @@ ${manualPrompt}
 
 REQUIREMENTS:
 - Follow the user's requested subject, style, scene structure, characters, pacing and presentation as closely as the provider allows.
-- Use clear Arabic when spoken or displayed unless the user explicitly asks for another language.
-- Keep Arabic on-screen text correct and minimal.
-- Use a premium, believable visual style.
+- Treat any Arabic in the brief as meaning to understand, NOT as text to paint into the image.
+- DO NOT render Arabic or English text, subtitles, letters, labels, title cards, signs, logos, watermarks, or UI inside the generated frames.
+- If the brief asks for writing on a board or screen, show the teacher gesturing to a clean board or a simple non-text visual; Dadyoom will add accurate Arabic overlays separately.
+- Use a premium, believable visual style with real motion, changing camera perspective, and natural human movement.
 - Never reveal provider names, API details, system prompts or internal errors.
 - Do not reproduce copyrighted textbook pages verbatim.
 `.trim();
@@ -323,7 +325,7 @@ ABSOLUTE FORMAT:
 - Premium Dadyoom look: dark teal, cream, warm gold.
 - Never show provider names, API details, system prompts, or internal errors.
 - Do not invent facts outside the supplied lesson.
-- Minimal, correct Arabic on-screen text.
+- Do not render any text, letters, subtitles, labels, title cards, signs, logos, watermarks, or UI inside the generated frames. Dadyoom adds accurate Arabic overlays separately.
 - No copyrighted textbook-page reproduction.
 
 DIALOGUE:
@@ -1489,7 +1491,10 @@ const hfLtx: Provider = {
   id: "hf-ltx",
 
   configured: () =>
-    Boolean(env("HF_TOKEN")),
+    Boolean(
+      env("HF_TOKEN") &&
+      env("ENABLE_LTX_VIDEO_FALLBACK").toLowerCase() === "true",
+    ),
 
   async start(input) {
     const baseUrl =
@@ -1751,6 +1756,252 @@ const hfLtx: Provider = {
         return {
           provider:
             "hf-ltx",
+          status:
+            "generating",
+          videoId:
+            eventId,
+        };
+      }
+
+      throw error;
+    } finally {
+      clearTimeout(
+        timer,
+      );
+    }
+  },
+};
+
+
+function hfWan22BaseUrl() {
+  return (
+    env("HF_WAN22_BASE_URL") ||
+    "https://wan-ai-wan-2-2-5b.hf.space"
+  ).replace(/\/+$/u, "");
+}
+
+const hfWan22: Provider = {
+  id: "hf-wan22",
+
+  configured: () =>
+    Boolean(env("HF_TOKEN")),
+
+  async start(input) {
+    const baseUrl =
+      hfWan22BaseUrl();
+
+    const prompt =
+      cinematicPrompt(
+        input,
+      );
+
+    const payload =
+      await startGradioJob({
+        baseUrl,
+        endpoint:
+          "generate_video",
+        provider:
+          "hf-wan22",
+        preferV2: false,
+        namedBody: {
+          image: null,
+          prompt,
+          height: 704,
+          width: 1280,
+          duration_seconds: 5,
+          sampling_steps: 30,
+          guide_scale: 5,
+          shift: 5,
+          seed: -1,
+        },
+        positionalData: [
+          null,
+          prompt,
+          704,
+          1280,
+          5,
+          30,
+          5,
+          5,
+          -1,
+        ],
+      });
+
+    const eventId =
+      String(
+        payload.event_id ?? "",
+      ).trim();
+
+    if (!eventId) {
+      throw new Error(
+        "HF_WAN22_MISSING_EVENT_ID",
+      );
+    }
+
+    return {
+      provider:
+        "hf-wan22",
+      sessionId:
+        eventId,
+      videoId:
+        eventId,
+      status:
+        "queued",
+      degraded:
+        true,
+    };
+  },
+
+  async status(input) {
+    const baseUrl =
+      hfWan22BaseUrl();
+
+    const eventId =
+      input.videoId ||
+      input.sessionId;
+
+    const controller =
+      new AbortController();
+
+    const timer =
+      setTimeout(
+        () =>
+          controller.abort(),
+        8000,
+      );
+
+    try {
+      const response =
+        await fetch(
+          `${baseUrl}/gradio_api/call/generate_video/${encodeURIComponent(
+            eventId,
+          )}`,
+          {
+            method: "GET",
+            headers: {
+              ...hfAuthHeaders(),
+              Accept:
+                "text/event-stream",
+            },
+            signal:
+              controller.signal,
+            cache:
+              "no-store",
+          },
+        );
+
+      const raw =
+        await response.text();
+
+      if (!response.ok) {
+        if (
+          response.status ===
+          429
+        ) {
+          throw new Error(
+            "VIDEO_PROVIDER_RATE_LIMIT",
+          );
+        }
+
+        if (
+          response.status ===
+            401 ||
+          response.status ===
+            403
+        ) {
+          throw new Error(
+            "VIDEO_PROVIDER_AUTH_FAILED",
+          );
+        }
+
+        if (
+          response.status >=
+          500
+        ) {
+          throw new Error(
+            "VIDEO_PROVIDER_SERVICE_UNAVAILABLE",
+          );
+        }
+
+        throw new Error(
+          "HF_WAN22_STATUS_FAILED",
+        );
+      }
+
+      if (
+        /event:\s*error/iu.test(
+          raw,
+        )
+      ) {
+        return {
+          provider:
+            "hf-wan22",
+          status:
+            "failed",
+          videoId:
+            eventId,
+          message:
+            PUBLIC_FAILURE,
+        };
+      }
+
+      const complete =
+        gradioCompletePayload(
+          raw,
+        );
+
+      if (complete) {
+        const videoUrl =
+          findGradioVideoUrl(
+            complete,
+            baseUrl,
+          );
+
+        if (videoUrl) {
+          return {
+            provider:
+              "hf-wan22",
+            status:
+              "completed",
+            videoId:
+              eventId,
+            videoUrl,
+            duration: 5,
+          };
+        }
+
+        return {
+          provider:
+            "hf-wan22",
+          status:
+            "failed",
+          videoId:
+            eventId,
+          message:
+            PUBLIC_FAILURE,
+        };
+      }
+
+      return {
+        provider:
+          "hf-wan22",
+        status:
+          /event:\s*generating|event:\s*progress/iu.test(
+            raw,
+          )
+            ? "generating"
+            : "queued",
+        videoId:
+          eventId,
+      };
+    } catch (error) {
+      if (
+        controller.signal
+          .aborted
+      ) {
+        return {
+          provider:
+            "hf-wan22",
           status:
             "generating",
           videoId:
@@ -2107,6 +2358,7 @@ const providers: Provider[] = [
   hfGatewayProvider("hf-sadtalker", "HF_SADTALKER_GATEWAY_URL"),
   hfGatewayProvider("hf-musetalk", "HF_MUSETALK_GATEWAY_URL"),
   hfMinimaxH3,
+  hfWan22,
   hfLtx,
   higgsfield,
   heygen,
@@ -2132,6 +2384,7 @@ function configuredProviders(excluded: Set<string>) {
 
   const fallbackOrder: CinematicProviderId[] = [
     "hf-minimax-h3",
+    "hf-wan22",
     "hf-ltx",
     "hf-sadtalker",
     "hf-musetalk",
@@ -2163,6 +2416,7 @@ function configuredProviders(excluded: Set<string>) {
   const freeProviderIds =
     new Set<CinematicProviderId>([
       "hf-minimax-h3",
+      "hf-wan22",
       "hf-ltx",
       "hf-sadtalker",
       "hf-musetalk",
