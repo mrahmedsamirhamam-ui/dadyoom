@@ -56,11 +56,11 @@ function WriteText([string]$Path,[string]$Text) {
   [IO.File]::WriteAllText($Path,$Text,[Text.UTF8Encoding]::new($false))
 }
 
-function Run([string]$Command,[string[]]$Args,[string]$Log,[switch]$AllowFailure) {
+function Run([string]$Command,[string[]]$ArgumentList,[string]$Log,[switch]$AllowFailure) {
   $Old = $ErrorActionPreference
   try {
     $ErrorActionPreference = "Continue"
-    $Output = @(& $Command @Args 2>&1)
+    $Output = @(& $Command @ArgumentList 2>&1)
     $Code = $LASTEXITCODE
   }
   finally {
