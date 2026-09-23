@@ -30,6 +30,30 @@ import uuid
 from pathlib import Path
 from typing import Any
 
+try:
+    from kaggle_secrets import UserSecretsClient as _KaggleSecretsClient
+except Exception:
+    _KaggleSecretsClient = None
+
+def _early_secret(label: str) -> str:
+    env_value = os.getenv(label, "").strip()
+    if env_value:
+        return env_value
+
+    if _KaggleSecretsClient is not None:
+        try:
+            value = _KaggleSecretsClient().get_secret(label)
+            if value:
+                return str(value).strip()
+        except Exception:
+            pass
+
+    raise RuntimeError(f"Missing Kaggle secret: {label}")
+
+# Fail before package/model downloads when Kaggle secrets are not attached.
+SUPABASE_URL = _early_secret("DADYOOM_SUPABASE_URL").rstrip("/")
+SERVICE_KEY = _early_secret("DADYOOM_SUPABASE_SERVICE_ROLE_KEY")
+
 def ensure_packages() -> None:
     required = {
         "diffusers": "diffusers>=0.35.0",
@@ -63,11 +87,6 @@ import requests
 import torch
 from diffusers import CogVideoXPipeline
 from diffusers.utils import export_to_video
-
-try:
-    from kaggle_secrets import UserSecretsClient
-except Exception:
-    UserSecretsClient = None  # type: ignore[assignment]
 
 BUCKET = "generated-curriculum-videos"
 WORKER_ID = os.getenv(
@@ -116,26 +135,6 @@ SCENE_TEMPLATES = [
     "Close and medium alternating shots. The same teacher gives a practical demonstration; students react naturally and participate.",
     "Recap scene. The same teacher and learner review the idea together, ending with an encouraging question and a confident classroom reaction.",
 ]
-
-def secret(label: str) -> str:
-    env_value = os.getenv(label, "").strip()
-    if env_value:
-        return env_value
-
-    if UserSecretsClient is not None:
-        try:
-            value = UserSecretsClient().get_secret(label)
-            if value:
-                return str(value).strip()
-        except Exception:
-            pass
-
-    raise RuntimeError(f"Missing Kaggle secret: {label}")
-
-SUPABASE_URL = secret("DADYOOM_SUPABASE_URL").rstrip("/")
-SERVICE_KEY = secret(
-    "DADYOOM_SUPABASE_SERVICE_ROLE_KEY"
-)
 
 HEADERS = {
     "apikey": SERVICE_KEY,
