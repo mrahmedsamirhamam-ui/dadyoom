@@ -1972,7 +1972,13 @@ const hfLtx23: Provider = {
             videoId:
               eventId,
             videoUrl,
-            duration,
+            duration:
+              Number(
+                env(
+                  "HF_LTX23_DURATION",
+                ) ||
+                  "5",
+              ),
           };
         }
 
@@ -2953,7 +2959,12 @@ function configuredProviders(excluded: Set<string>) {
   const order: CinematicProviderId[] =
     Array.from(
       new Set([
-        ...requestedOrder,
+        "hf-ltx23",
+        ...requestedOrder.filter(
+          (id) =>
+            id !==
+            "hf-ltx23",
+        ),
         ...fallbackOrder,
       ]),
     );
