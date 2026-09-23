@@ -9,6 +9,7 @@ export type CinematicProviderId =
   | "creatify"
   | "hf-sadtalker"
   | "hf-musetalk"
+  | "hf-minimax-h3-hq"
   | "hf-minimax-h3"
   | "hf-wan22"
   | "hf-ltx"
@@ -933,6 +934,272 @@ function hfGatewayProvider(
     },
   };
 }
+
+function hfMinimaxH3HqBaseUrl() {
+  return (
+    env("HF_MINIMAX_H3_HQ_BASE_URL") ||
+    "https://multimodalart-minimax-h3.hf.space"
+  ).replace(/\/+$/u, "");
+}
+
+const hfMinimaxH3Hq: Provider = {
+  id: "hf-minimax-h3-hq",
+
+  configured: () =>
+    Boolean(env("HF_TOKEN")),
+
+  async start(input) {
+    const baseUrl =
+      hfMinimaxH3HqBaseUrl();
+
+    const prompt =
+      cinematicPrompt(
+        input,
+      );
+
+    // Quality-first profile chosen to stay close to a free user's
+    // daily ZeroGPU allowance while keeping a strong 16:9 frame.
+    const canvas =
+      env(
+        "HF_MINIMAX_H3_HQ_CANVAS",
+      ) ||
+      "1280x704 · 16:9";
+    const duration =
+      Number(
+        env(
+          "HF_MINIMAX_H3_HQ_DURATION",
+        ) ||
+          "5",
+      );
+    const steps =
+      Number(
+        env(
+          "HF_MINIMAX_H3_HQ_STEPS",
+        ) ||
+          "28",
+      );
+
+    const payload =
+      await startGradioJob({
+        baseUrl,
+        endpoint:
+          "generate",
+        provider:
+          "hf-minimax-h3-hq",
+        preferV2: true,
+        namedBody: {
+          prompt,
+          image_path: null,
+          last_image_path:
+            null,
+          canvas,
+          duration,
+          steps,
+          seed: 42,
+          upsample: false,
+        },
+        positionalData: [
+          prompt,
+          null,
+          null,
+          canvas,
+          duration,
+          steps,
+          42,
+          false,
+        ],
+      });
+
+    const eventId =
+      String(
+        payload.event_id ?? "",
+      ).trim();
+
+    if (!eventId) {
+      throw new Error(
+        "HF_MINIMAX_HQ_MISSING_EVENT_ID",
+      );
+    }
+
+    return {
+      provider:
+        "hf-minimax-h3-hq",
+      sessionId:
+        eventId,
+      videoId:
+        eventId,
+      status:
+        "queued",
+      degraded:
+        false,
+    };
+  },
+
+  async status(input) {
+    const baseUrl =
+      hfMinimaxH3HqBaseUrl();
+
+    const eventId =
+      input.videoId ||
+      input.sessionId;
+
+    const controller =
+      new AbortController();
+
+    const timer =
+      setTimeout(
+        () =>
+          controller.abort(),
+        8000,
+      );
+
+    try {
+      const response =
+        await fetch(
+          `${baseUrl}/gradio_api/call/generate/${encodeURIComponent(
+            eventId,
+          )}`,
+          {
+            method: "GET",
+            headers: {
+              ...hfAuthHeaders(),
+              Accept:
+                "text/event-stream",
+            },
+            signal:
+              controller.signal,
+            cache:
+              "no-store",
+          },
+        );
+
+      const raw =
+        await response.text();
+
+      if (!response.ok) {
+        if (
+          response.status ===
+          429
+        ) {
+          throw new Error(
+            "VIDEO_PROVIDER_RATE_LIMIT",
+          );
+        }
+
+        if (
+          response.status ===
+            401 ||
+          response.status ===
+            403
+        ) {
+          throw new Error(
+            "VIDEO_PROVIDER_AUTH_FAILED",
+          );
+        }
+
+        if (
+          response.status >=
+          500
+        ) {
+          throw new Error(
+            "VIDEO_PROVIDER_SERVICE_UNAVAILABLE",
+          );
+        }
+
+        throw new Error(
+          "HF_MINIMAX_HQ_STATUS_FAILED",
+        );
+      }
+
+      if (
+        /event:\s*error/iu.test(
+          raw,
+        )
+      ) {
+        return {
+          provider:
+            "hf-minimax-h3-hq",
+          status:
+            "failed",
+          videoId:
+            eventId,
+          message:
+            PUBLIC_FAILURE,
+        };
+      }
+
+      const complete =
+        gradioCompletePayload(
+          raw,
+        );
+
+      if (complete) {
+        const videoUrl =
+          findGradioVideoUrl(
+            complete,
+            baseUrl,
+          );
+
+        if (videoUrl) {
+          return {
+            provider:
+              "hf-minimax-h3-hq",
+            status:
+              "completed",
+            videoId:
+              eventId,
+            videoUrl,
+            duration,
+          };
+        }
+
+        return {
+          provider:
+            "hf-minimax-h3-hq",
+          status:
+            "failed",
+          videoId:
+            eventId,
+          message:
+            PUBLIC_FAILURE,
+        };
+      }
+
+      return {
+        provider:
+          "hf-minimax-h3-hq",
+        status:
+          /event:\s*generating|event:\s*progress/iu.test(
+            raw,
+          )
+            ? "generating"
+            : "queued",
+        videoId:
+          eventId,
+      };
+    } catch (error) {
+      if (
+        controller.signal
+          .aborted
+      ) {
+        return {
+          provider:
+            "hf-minimax-h3-hq",
+          status:
+            "generating",
+          videoId:
+            eventId,
+        };
+      }
+
+      throw error;
+    } finally {
+      clearTimeout(
+        timer,
+      );
+    }
+  },
+};
 
 function hfMinimaxH3BaseUrl() {
   return (
@@ -2357,6 +2624,7 @@ const providers: Provider[] = [
   creatify,
   hfGatewayProvider("hf-sadtalker", "HF_SADTALKER_GATEWAY_URL"),
   hfGatewayProvider("hf-musetalk", "HF_MUSETALK_GATEWAY_URL"),
+  hfMinimaxH3Hq,
   hfMinimaxH3,
   hfWan22,
   hfLtx,
@@ -2383,6 +2651,7 @@ function configuredProviders(excluded: Set<string>) {
     );
 
   const fallbackOrder: CinematicProviderId[] = [
+    "hf-minimax-h3-hq",
     "hf-minimax-h3",
     "hf-wan22",
     "hf-ltx",
@@ -2415,6 +2684,7 @@ function configuredProviders(excluded: Set<string>) {
 
   const freeProviderIds =
     new Set<CinematicProviderId>([
+      "hf-minimax-h3-hq",
       "hf-minimax-h3",
       "hf-wan22",
       "hf-ltx",
