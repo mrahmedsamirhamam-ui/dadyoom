@@ -24,7 +24,7 @@ function friendlyError(
       "OFFLINE_AI_IOS_BUNDLE_PENDING_XCODE",
     )
   ) {
-    return "نسخة iPhone ستُضمَّن فيها ملفات ضاد المحلي أثناء بناء Xcode.";
+    return "نسخة iPhone ستُجهّز في مرحلة Xcode.";
   }
 
   if (
@@ -50,7 +50,7 @@ export default function OfflineAIPage() {
 
   const [status, setStatus] =
     useState(
-      "الموديل المحلي مدمج داخل نسخة Android؛ لا يحتاج تنزيلًا منفصلًا.",
+      "ضاد المحلي المتقدم مدمج داخل نسخة Android ولا يحتاج تنزيلًا منفصلًا.",
     );
 
   const [busy, setBusy] =
@@ -68,7 +68,7 @@ export default function OfflineAIPage() {
 
       setStatus(
         result.ready
-          ? "ضاد المحلي جاهز ويعمل من داخل الهاتف بدون تنزيل إضافي."
+          ? "ضاد المحلي جاهز داخل الهاتف."
           : "تعذر تشغيل ضاد المحلي.",
       );
     } catch (error) {
@@ -99,7 +99,7 @@ export default function OfflineAIPage() {
 
       setAnswer(result);
       setStatus(
-        "تمت الإجابة محليًا من الهاتف بدون API وبدون إنترنت.",
+        "تمت الإجابة محليًا من الهاتف بدون API.",
       );
     } catch (error) {
       setStatus(
@@ -125,15 +125,12 @@ export default function OfflineAIPage() {
         </h1>
 
         <p className="mt-3 leading-8 text-[#655e55]">
-          نسخة Android تحتوي بالفعل على موديل{" "}
+          هذه النسخة تستخدم{" "}
           <strong>
             {model.name}
           </strong>
-          {" "}بحجم يقارب{" "}
-          <strong>
-            {model.approximateSizeMb} MB
-          </strong>
-          . لا يحتاج المستخدم إلى تنزيل الموديل بعد تثبيت التطبيق.
+          {" "}المحسّن للمساعدة التعليمية باللغة العربية،
+          وهو مدمج داخل نسخة Android.
         </p>
 
         <button
@@ -154,7 +151,7 @@ export default function OfflineAIPage() {
               event.target.value,
             )
           }
-          placeholder="اكتب سؤالًا قصيرًا..."
+          placeholder="مثال: أعرب الجملة: ذهب محمد إلى السوق."
           className="mt-5 min-h-32 w-full rounded-2xl border border-[#d8c7a6] p-4"
         />
 
@@ -176,15 +173,15 @@ export default function OfflineAIPage() {
         ) : null}
 
         {answer ? (
-          <div className="mt-4 rounded-2xl bg-[#eef8f4] p-5 leading-8">
+          <div className="mt-4 whitespace-pre-wrap rounded-2xl bg-[#eef8f4] p-5 leading-8">
             {answer}
           </div>
         ) : null}
 
         <p className="mt-5 text-xs leading-6 text-[#7b7265]">
-          ضاد السحابي يظل الخيار الأقوى عند وجود الإنترنت،
-          بينما ضاد المحلي جاهز للشرح والتلخيص والمساعدة
-          الخفيفة عندما لا توجد شبكة.
+          ضاد السحابي يظل أقوى عند توفر الإنترنت، بينما
+          ضاد المحلي مخصص للشرح والنحو والصرف والإملاء
+          والتلخيص والمساعدة التعليمية عندما لا توجد شبكة.
         </p>
       </div>
     </main>

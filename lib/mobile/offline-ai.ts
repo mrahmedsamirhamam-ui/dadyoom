@@ -4,7 +4,7 @@ import { Capacitor } from "@capacitor/core";
 import { CapgoLLM } from "@capgo/capacitor-llm";
 
 const MODEL_FILENAME =
-  "dadyoom-qwen2.5-0.5b-instruct-q8.task";
+  "dadyoom-qwen2.5-1.5b-instruct-q8.task";
 
 const ANDROID_BUNDLED_MODEL_PATH =
   `/android_asset/${MODEL_FILENAME}`;
@@ -20,9 +20,9 @@ let initializePromise:
 
 export function getOfflineAIModelInfo() {
   return {
-    name: "Qwen2.5-0.5B-Instruct Q8",
+    name: "Qwen2.5-1.5B-Instruct Q8",
     filename: MODEL_FILENAME,
-    approximateSizeMb: 547,
+    approximateSizeMb: 1600,
     bundled: true,
   };
 }
@@ -39,7 +39,7 @@ export function hasOfflineAIModel() {
 }
 
 async function waitForReady(
-  timeoutMs = 45000,
+  timeoutMs = 90000,
 ) {
   const started = Date.now();
 
@@ -70,10 +70,7 @@ async function waitForReady(
     }
 
     await new Promise((resolve) =>
-      window.setTimeout(
-        resolve,
-        350,
-      ),
+      window.setTimeout(resolve, 400),
     );
   }
 
@@ -86,9 +83,9 @@ async function configureBundledAndroidModel() {
   await CapgoLLM.setModel({
     path: ANDROID_BUNDLED_MODEL_PATH,
     modelType: "task",
-    maxTokens: 512,
-    topk: 24,
-    temperature: 0.35,
+    maxTokens: 768,
+    topk: 32,
+    temperature: 0.2,
     backend: "cpu",
   });
 
@@ -147,23 +144,6 @@ async function initializeInternal(
   }
 
   return configureBundledAndroidModel();
-}
-
-export async function installOfflineAIModel(
-  onProgress?: (progress: number) => void,
-) {
-  const result =
-    await initializeOfflineAI(
-      onProgress,
-    );
-
-  return {
-    installed: result.ready,
-    native:
-      Capacitor.isNativePlatform(),
-    bundled: true,
-    path: result.path ?? "",
-  };
 }
 
 export async function initializeOfflineAI(
@@ -246,18 +226,23 @@ export async function askOfflineAI(
       },
     );
 
+  const systemPrompt = [
+    "أنت «ضاد المحلي»، مساعد تعليمي متخصص في اللغة العربية للطلاب.",
+    "تعمل داخل الهاتف دون إنترنت، لذلك لا تدّعِ امتلاك معلومات حديثة أو تصفح الشبكة.",
+    "نفّذ المطلوب مباشرة ولا تعتذر بلا سبب ولا تكرر سؤال المستخدم.",
+    "في النحو والصرف والإملاء والبلاغة: قدّم الإجابة التعليمية الدقيقة خطوة خطوة وبالعربية الفصحى.",
+    "إذا طلب المستخدم «أعرب» جملة، فأعرب كل كلمة أو تركيب على حدة، واذكر الوظيفة الإعرابية والعلامة وسببها عند الحاجة.",
+    "مثال: «ذهب محمد إلى السوق»: ذهبَ: فعل ماضٍ مبني على الفتح. محمدٌ: فاعل مرفوع وعلامة رفعه الضمة. إلى: حرف جر. السوقِ: اسم مجرور بإلى وعلامة جره الكسرة.",
+    "إذا طلب معنى كلمة أو قاعدة أو مثالًا، أجب مباشرة وباختصار مفيد.",
+    "إذا كان السؤال غامضًا، اسأل سؤال توضيح واحدًا فقط.",
+    "لا تقل إنك لا تستطيع تقديم معلومات تعليمية لمجرد أنك تعمل دون إنترنت.",
+    "لا تختلق نصوصًا من كتب أو مناهج بعينها إذا لم تُعطَ لك.",
+  ].join("\n");
+
   try {
     await CapgoLLM.sendMessage({
       chatId: id,
-      message: [
-        "أنت ضاد المحلي، مساعد عربي خفيف يعمل داخل الهاتف بدون اتصال بالشبكة.",
-        "أجب بالعربية الفصحى الواضحة وباختصار.",
-        "لا تخترع حقائق دراسية أو مراجع.",
-        "استخدم سياق الدرس الموجود في السؤال إذا توفر.",
-        "إذا كان السؤال يحتاج معلومات حديثة من الإنترنت فقل بوضوح إن الاتصال مطلوب.",
-        "",
-        message.trim(),
-      ].join("\n"),
+      message: `${systemPrompt}\n\nسؤال الطالب:\n${message.trim()}`,
     });
 
     await Promise.race([
@@ -271,7 +256,7 @@ export async function askOfflineAI(
                   "OFFLINE_AI_GENERATION_TIMEOUT",
                 ),
               ),
-            60000,
+            90000,
           );
         },
       ),
