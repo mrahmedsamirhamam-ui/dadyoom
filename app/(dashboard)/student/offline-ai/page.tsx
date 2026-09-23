@@ -5,9 +5,7 @@ import { useState } from "react";
 import {
   askOfflineAI,
   getOfflineAIModelInfo,
-  hasOfflineAIModel,
   initializeOfflineAI,
-  installOfflineAIModel,
 } from "@/lib/mobile/offline-ai";
 
 const model =
@@ -23,22 +21,24 @@ function friendlyError(
 
   if (
     message.includes(
-      "OFFLINE_AI_NATIVE_APP_REQUIRED",
+      "OFFLINE_AI_IOS_BUNDLE_PENDING_XCODE",
     )
   ) {
-    return "تثبيت ضاد المحلي متاح داخل تطبيق Android وiPhone فقط.";
+    return "نسخة iPhone ستُضمَّن فيها ملفات ضاد المحلي أثناء بناء Xcode.";
   }
 
   if (
     message.includes(
-      "OFFLINE_AI_MODEL_NOT_INSTALLED_CONNECT_ONCE",
+      "native-app-required",
     )
   ) {
-    return "الموديل المحلي لم يُنزّل بعد. اتصل بالإنترنت مرة واحدة واضغط «تثبيت ضاد المحلي»، وبعدها سيعمل بدون إنترنت.";
+    return "ضاد المحلي يعمل من داخل تطبيق الهاتف.";
   }
 
-  return message ||
-    "تعذر تشغيل ضاد المحلي.";
+  return (
+    message ||
+    "تعذر تشغيل ضاد المحلي."
+  );
 }
 
 export default function OfflineAIPage() {
@@ -49,87 +49,28 @@ export default function OfflineAIPage() {
     useState("");
 
   const [status, setStatus] =
-    useState("");
-
-  const [progress, setProgress] =
-    useState<number | null>(
-      hasOfflineAIModel()
-        ? 100
-        : null,
+    useState(
+      "الموديل المحلي مدمج داخل نسخة Android؛ لا يحتاج تنزيلًا منفصلًا.",
     );
 
   const [busy, setBusy] =
     useState(false);
 
-  async function install() {
-    setBusy(true);
-    setAnswer("");
-    setStatus(
-      "جارٍ تجهيز ضاد المحلي على الهاتف...",
-    );
-
-    try {
-      const result =
-        await installOfflineAIModel(
-          (value) => {
-            setProgress(value);
-            setStatus(
-              `جارٍ تنزيل الموديل المحلي: ${value}%`,
-            );
-          },
-        );
-
-      if (!result.native) {
-        setStatus(
-          "هذه الميزة تعمل داخل تطبيق Android وiPhone.",
-        );
-        return;
-      }
-
-      setStatus(
-        "تم تنزيل ضاد المحلي. جارٍ اختبار الموديل...",
-      );
-
-      const ready =
-        await initializeOfflineAI();
-
-      setProgress(100);
-      setStatus(
-        ready.ready
-          ? "ضاد المحلي جاهز. يمكنك الآن استخدامه بعد قطع الإنترنت."
-          : "تعذر تشغيل الموديل المحلي.",
-      );
-    } catch (error) {
-      setStatus(
-        friendlyError(error),
-      );
-    } finally {
-      setBusy(false);
-    }
-  }
-
   async function checkModel() {
     setBusy(true);
     setStatus(
-      "جارٍ فحص ضاد المحلي...",
+      "جارٍ تشغيل ضاد المحلي من ملفات التطبيق...",
     );
 
     try {
       const result =
-        await initializeOfflineAI(
-          (value) =>
-            setProgress(value),
-        );
+        await initializeOfflineAI();
 
       setStatus(
         result.ready
-          ? "ضاد المحلي جاهز ويعمل من داخل الهاتف."
-          : "هذه الميزة تعمل داخل تطبيق Android وiPhone.",
+          ? "ضاد المحلي جاهز ويعمل من داخل الهاتف بدون تنزيل إضافي."
+          : "تعذر تشغيل ضاد المحلي.",
       );
-
-      if (result.ready) {
-        setProgress(100);
-      }
     } catch (error) {
       setStatus(
         friendlyError(error),
@@ -158,7 +99,7 @@ export default function OfflineAIPage() {
 
       setAnswer(result);
       setStatus(
-        "تمت الإجابة محليًا من الهاتف بدون API.",
+        "تمت الإجابة محليًا من الهاتف بدون API وبدون إنترنت.",
       );
     } catch (error) {
       setStatus(
@@ -176,7 +117,7 @@ export default function OfflineAIPage() {
     >
       <div className="mx-auto w-full max-w-3xl rounded-[2rem] border border-[#dcc899] bg-white p-6 shadow-sm">
         <div className="text-xs font-black text-[#a16f18]">
-          ضاد المحلي — يعمل على الجهاز
+          ضاد المحلي — مدمج داخل التطبيق
         </div>
 
         <h1 className="mt-2 text-3xl font-black text-[#123f39]">
@@ -184,64 +125,27 @@ export default function OfflineAIPage() {
         </h1>
 
         <p className="mt-3 leading-8 text-[#655e55]">
-          يستخدم ضاديوم موديل{" "}
+          نسخة Android تحتوي بالفعل على موديل{" "}
           <strong>
             {model.name}
           </strong>
-          . يتم تنزيله مرة واحدة داخل التطبيق
-          بحجم يقارب{" "}
+          {" "}بحجم يقارب{" "}
           <strong>
             {model.approximateSizeMb} MB
           </strong>
-          ، وبعد اكتمال التنزيل يعمل محليًا
-          بدون API وبدون اتصال بالإنترنت.
+          . لا يحتاج المستخدم إلى تنزيل الموديل بعد تثبيت التطبيق.
         </p>
 
-        <div className="mt-5 flex flex-wrap gap-3">
-          <button
-            type="button"
-            onClick={() =>
-              void install()
-            }
-            disabled={busy}
-            className="dadyoom-sand-button rounded-2xl px-5 py-3 font-black disabled:opacity-60"
-          >
-            تثبيت ضاد المحلي
-          </button>
-
-          <button
-            type="button"
-            onClick={() =>
-              void checkModel()
-            }
-            disabled={busy}
-            className="rounded-2xl border border-[#c7aa6d] bg-white px-5 py-3 font-black text-[#123f39] disabled:opacity-60"
-          >
-            فحص الجاهزية
-          </button>
-        </div>
-
-        {progress !== null ? (
-          <div className="mt-5">
-            <div className="mb-2 flex items-center justify-between text-xs font-black text-[#665b4b]">
-              <span>
-                تنزيل الموديل
-              </span>
-              <span>
-                {progress}%
-              </span>
-            </div>
-            <div className="h-3 overflow-hidden rounded-full bg-[#eee3ca]">
-              <div
-                className="h-full rounded-full bg-[#123f39] transition-[width]"
-                style={{
-                  width:
-                    `${progress}%`,
-                }}
-              />
-            </div>
-          </div>
-        ) : null}
+        <button
+          type="button"
+          onClick={() =>
+            void checkModel()
+          }
+          disabled={busy}
+          className="dadyoom-sand-button mt-5 rounded-2xl px-5 py-3 font-black disabled:opacity-60"
+        >
+          فحص ضاد المحلي
+        </button>
 
         <textarea
           value={question}
@@ -250,7 +154,7 @@ export default function OfflineAIPage() {
               event.target.value,
             )
           }
-          placeholder="بعد تثبيت الموديل، اكتب طلبًا قصيرًا..."
+          placeholder="اكتب سؤالًا قصيرًا..."
           className="mt-5 min-h-32 w-full rounded-2xl border border-[#d8c7a6] p-4"
         />
 
@@ -262,7 +166,7 @@ export default function OfflineAIPage() {
           disabled={busy}
           className="dadyoom-arabic-button mt-3 rounded-2xl px-5 py-3 font-black text-white disabled:opacity-60"
         >
-          اسأل محليًا
+          اسأل ضاد المحلي
         </button>
 
         {status ? (
@@ -278,9 +182,9 @@ export default function OfflineAIPage() {
         ) : null}
 
         <p className="mt-5 text-xs leading-6 text-[#7b7265]">
-          يظل ضاد السحابي هو الخيار الأساسي عند توفر الإنترنت.
-          ضاد المحلي مخصص للتلخيص، والشرح القصير،
-          والمساعدة الخفيفة عندما لا تتوفر الشبكة.
+          ضاد السحابي يظل الخيار الأقوى عند وجود الإنترنت،
+          بينما ضاد المحلي جاهز للشرح والتلخيص والمساعدة
+          الخفيفة عندما لا توجد شبكة.
         </p>
       </div>
     </main>
