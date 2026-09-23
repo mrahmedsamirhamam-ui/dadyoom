@@ -144,3 +144,13 @@ PROJECT/
 .agents/
 .opencode/
 .dadyoom-work/
+# DADYOOM FINAL MOBILE RELEASE LOCAL/SECRET ARTIFACTS
+/android/local.properties
+/android/app/src/main/assets/*.task
+/android/offline_ai_model/src/main/assets/*.task
+/ios/App/App/*.task
+/.dadyoom-mobile/models/
+/.dadyoom-mobile/signing/
+/.dadyoom-mobile/final-release/
+/.dadyoom-mobile/ios-final-kit/
+
