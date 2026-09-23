@@ -9,6 +9,7 @@ export type CinematicProviderId =
   | "creatify"
   | "hf-sadtalker"
   | "hf-musetalk"
+  | "hf-minimax-h3"
   | "heygen"
   | "higgsfield";
 
@@ -930,6 +931,414 @@ function hfGatewayProvider(
   };
 }
 
+function hfMinimaxH3BaseUrl() {
+  return (
+    env("HF_MINIMAX_H3_BASE_URL") ||
+    "https://minimaxai-minimax-h3-turbo-lora.hf.space"
+  ).replace(/\/+$/u, "");
+}
+
+function hfAuthHeaders() {
+  const token =
+    env("HF_TOKEN");
+
+  return token
+    ? {
+        Authorization:
+          `Bearer ${token}`,
+      }
+    : {};
+}
+
+function findGradioVideoUrl(
+  value: unknown,
+  baseUrl: string,
+): string | undefined {
+  if (
+    typeof value === "string"
+  ) {
+    const clean =
+      value.trim();
+
+    if (
+      /^https:\/\//iu.test(clean) &&
+      /\.(?:mp4|webm)(?:\?|$)/iu.test(clean)
+    ) {
+      return clean;
+    }
+
+    return undefined;
+  }
+
+  if (
+    Array.isArray(value)
+  ) {
+    for (const item of value) {
+      const found =
+        findGradioVideoUrl(
+          item,
+          baseUrl,
+        );
+
+      if (found) {
+        return found;
+      }
+    }
+
+    return undefined;
+  }
+
+  if (
+    value &&
+    typeof value === "object"
+  ) {
+    const record =
+      value as Record<string, unknown>;
+
+    for (const key of [
+      "url",
+      "video_url",
+      "output",
+    ]) {
+      const candidate =
+        record[key];
+
+      if (
+        typeof candidate === "string" &&
+        /^https:\/\//iu.test(
+          candidate.trim(),
+        )
+      ) {
+        return candidate.trim();
+      }
+    }
+
+    const path =
+      typeof record.path === "string"
+        ? record.path.trim()
+        : "";
+
+    if (path) {
+      return (
+        `${baseUrl}/gradio_api/file=${encodeURI(
+          path,
+        )}`
+      );
+    }
+
+    for (
+      const candidate of Object.values(
+        record,
+      )
+    ) {
+      const found =
+        findGradioVideoUrl(
+          candidate,
+          baseUrl,
+        );
+
+      if (found) {
+        return found;
+      }
+    }
+  }
+
+  return undefined;
+}
+
+function gradioCompletePayload(
+  raw: string,
+) {
+  const blocks =
+    raw.split(/\r?\n\r?\n+/u);
+
+  for (const block of blocks) {
+    if (
+      !/^event:\s*complete/mu.test(
+        block,
+      )
+    ) {
+      continue;
+    }
+
+    const dataLine =
+      block
+        .split(/\r?\n/u)
+        .find((line) =>
+          line.startsWith("data:"),
+        );
+
+    if (!dataLine) {
+      continue;
+    }
+
+    const json =
+      dataLine
+        .slice(5)
+        .trim();
+
+    try {
+      return JSON.parse(
+        json,
+      ) as unknown;
+    } catch {
+      return undefined;
+    }
+  }
+
+  return undefined;
+}
+
+const hfMinimaxH3: Provider = {
+  id: "hf-minimax-h3",
+
+  configured: () =>
+    Boolean(env("HF_TOKEN")),
+
+  async start(input) {
+    const baseUrl =
+      hfMinimaxH3BaseUrl();
+
+    const payload =
+      await jsonFetch<{
+        event_id?: string;
+      }>(
+        `${baseUrl}/gradio_api/call/v2/generate`,
+        {
+          method: "POST",
+          headers: {
+            ...hfAuthHeaders(),
+            "Content-Type":
+              "application/json",
+            Accept:
+              "application/json",
+          },
+          body: JSON.stringify({
+            prompt:
+              cinematicPrompt(
+                input,
+              ),
+            image_path: null,
+            last_image_path:
+              null,
+            canvas:
+              env(
+                "HF_MINIMAX_H3_CANVAS",
+              ) ||
+              "1344x768 · 16:9 full",
+            duration:
+              Number(
+                env(
+                  "HF_MINIMAX_H3_DURATION",
+                ) ||
+                  "5",
+              ),
+            steps:
+              Number(
+                env(
+                  "HF_MINIMAX_H3_STEPS",
+                ) ||
+                  "4",
+              ),
+            seed: 42,
+            upsample: false,
+            use_lora: true,
+          }),
+        },
+        "hf-minimax-h3",
+        30000,
+      );
+
+    const eventId =
+      String(
+        payload.event_id ?? "",
+      ).trim();
+
+    if (!eventId) {
+      throw new Error(
+        "HF_MINIMAX_MISSING_EVENT_ID",
+      );
+    }
+
+    return {
+      provider:
+        "hf-minimax-h3",
+      sessionId:
+        eventId,
+      videoId:
+        eventId,
+      status:
+        "queued",
+      degraded:
+        true,
+    };
+  },
+
+  async status(input) {
+    const baseUrl =
+      hfMinimaxH3BaseUrl();
+
+    const eventId =
+      input.videoId ||
+      input.sessionId;
+
+    const controller =
+      new AbortController();
+
+    const timer =
+      setTimeout(
+        () =>
+          controller.abort(),
+        8000,
+      );
+
+    try {
+      const response =
+        await fetch(
+          `${baseUrl}/gradio_api/call/generate/${encodeURIComponent(
+            eventId,
+          )}`,
+          {
+            method: "GET",
+            headers: {
+              ...hfAuthHeaders(),
+              Accept:
+                "text/event-stream",
+            },
+            signal:
+              controller.signal,
+            cache:
+              "no-store",
+          },
+        );
+
+      const raw =
+        await response.text();
+
+      if (!response.ok) {
+        if (
+          response.status ===
+          429
+        ) {
+          throw new Error(
+            "VIDEO_PROVIDER_RATE_LIMIT",
+          );
+        }
+
+        if (
+          response.status ===
+            401 ||
+          response.status ===
+            403
+        ) {
+          throw new Error(
+            "VIDEO_PROVIDER_AUTH_FAILED",
+          );
+        }
+
+        if (
+          response.status >=
+          500
+        ) {
+          throw new Error(
+            "VIDEO_PROVIDER_SERVICE_UNAVAILABLE",
+          );
+        }
+
+        throw new Error(
+          "HF_MINIMAX_STATUS_FAILED",
+        );
+      }
+
+      if (
+        /event:\s*error/iu.test(
+          raw,
+        )
+      ) {
+        return {
+          provider:
+            "hf-minimax-h3",
+          status:
+            "failed",
+          videoId:
+            eventId,
+          message:
+            PUBLIC_FAILURE,
+        };
+      }
+
+      const complete =
+        gradioCompletePayload(
+          raw,
+        );
+
+      if (complete) {
+        const videoUrl =
+          findGradioVideoUrl(
+            complete,
+            baseUrl,
+          );
+
+        if (videoUrl) {
+          return {
+            provider:
+              "hf-minimax-h3",
+            status:
+              "completed",
+            videoId:
+              eventId,
+            videoUrl,
+          };
+        }
+
+        return {
+          provider:
+            "hf-minimax-h3",
+          status:
+            "failed",
+          videoId:
+            eventId,
+          message:
+            PUBLIC_FAILURE,
+        };
+      }
+
+      return {
+        provider:
+          "hf-minimax-h3",
+        status:
+          /event:\s*generating|event:\s*progress/iu.test(
+            raw,
+          )
+            ? "generating"
+            : "queued",
+        videoId:
+          eventId,
+      };
+    } catch (error) {
+      if (
+        controller.signal
+          .aborted
+      ) {
+        return {
+          provider:
+            "hf-minimax-h3",
+          status:
+            "generating",
+          videoId:
+            eventId,
+        };
+      }
+
+      throw error;
+    } finally {
+      clearTimeout(
+        timer,
+      );
+    }
+  },
+};
+
 type HeyGenEnvelope = {
   error?: {
     code?: string | number;
@@ -1269,6 +1678,7 @@ const providers: Provider[] = [
   creatify,
   hfGatewayProvider("hf-sadtalker", "HF_SADTALKER_GATEWAY_URL"),
   hfGatewayProvider("hf-musetalk", "HF_MUSETALK_GATEWAY_URL"),
+  hfMinimaxH3,
   higgsfield,
   heygen,
 ];
@@ -1292,28 +1702,27 @@ function configuredProviders(excluded: Set<string>) {
     );
 
   const fallbackOrder: CinematicProviderId[] = [
-    "higgsfield",
+    "hf-minimax-h3",
     "hf-sadtalker",
     "hf-musetalk",
+    "higgsfield",
+    "heygen",
     "tavus",
     "akool",
     "did",
     "creatify",
   ];
 
-  // Product rule: HeyGen is always the primary engine when configured.
-  // VIDEO_PROVIDER_ORDER may only refine the fallback order after HeyGen.
-  const requestedFallbacks = requestedOrder.filter(
-    (id) => id !== "heygen",
-  );
-
-  const order: CinematicProviderId[] = [
-    "heygen",
-    ...requestedFallbacks,
-    ...fallbackOrder.filter(
-      (id) => !requestedFallbacks.includes(id),
-    ),
-  ];
+  // Respect VIDEO_PROVIDER_ORDER exactly, then append any remaining
+  // configured providers as fallbacks. This lets renewable cloud
+  // providers run before paid-credit engines on Android, iPhone, and web.
+  const order: CinematicProviderId[] =
+    Array.from(
+      new Set([
+        ...requestedOrder,
+        ...fallbackOrder,
+      ]),
+    );
 
   const rank = new Map(order.map((id, index) => [id, index]));
 
