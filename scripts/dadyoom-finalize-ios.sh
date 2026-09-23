@@ -41,6 +41,7 @@ cd "$PROJECT"
 command -v xcodebuild >/dev/null || fail "XCODE_NOT_INSTALLED"
 command -v node >/dev/null || fail "NODE_NOT_INSTALLED"
 command -v npm >/dev/null || fail "NPM_NOT_INSTALLED"
+command -v pod >/dev/null || fail "COCOAPODS_NOT_INSTALLED_RUN_BREW_INSTALL_COCOAPODS"
 
 section "1/8 REPOSITORY"
 
@@ -115,15 +116,22 @@ echo "SERVER_URL=$PRODUCTION_URL"
 
 section "3/8 IOS PROJECT"
 
+if [[ -d ios/App && ! -f ios/App/Podfile ]]; then
+  BACKUP="ios-spm-backup-$(date +%Y%m%d-%H%M%S)"
+  mv ios "$BACKUP"
+  warn "Existing non-CocoaPods iOS project was backed up to $BACKUP"
+fi
+
 if [[ ! -d ios/App ]]; then
-  npx cap add ios
-  pass "IOS_PROJECT=CREATED"
+  npx cap add ios --packagemanager CocoaPods
+  pass "IOS_PROJECT=CREATED_COCOAPODS"
 else
-  pass "IOS_PROJECT=EXISTING_PRESERVED"
+  pass "IOS_PROJECT=EXISTING_COCOAPODS_PRESERVED"
 fi
 
 npx cap sync ios
 pass "CAP_SYNC_IOS=PASS"
+pass "IOS_LLM_BACKEND=COCOAPODS_MEDIAPIPE_TASK"
 
 PLIST="$PROJECT/ios/App/App/Info.plist"
 PBX="$PROJECT/ios/App/App.xcodeproj"
@@ -334,6 +342,7 @@ REPORT="$ARTIFACTS/DADYOOM-IOS-FINAL-REPORT.txt"
   echo "APP_ID=$APP_ID"
   echo "IOS_DEEP_LINK=dadyoom://auth/callback"
   echo "IOS_OFFLINE_QWEN=EMBEDDED"
+  echo "IOS_LLM_BACKEND=COCOAPODS_MEDIAPIPE_TASK"
   echo "IOS_SIMULATOR_BUILD=PASS"
   echo "VIDEO_IOS=SHARED_CLOUD_FIXED"
   echo "VIDEO_WEB=SHARED_CLOUD_FIXED"
