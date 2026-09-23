@@ -49,7 +49,8 @@ jobs:
             "scripts/dadyoom-prepare-ios-final.ps1",
             "scripts/dadyoom-final-mobile-video-fix.ps1",
             "scripts/dadyoom-kaggle-video-factory-setup.ps1",
-            "scripts/dadyoom-video-benchmark-report.ps1"
+            "scripts/dadyoom-video-benchmark-report.ps1",
+            "scripts/dadyoom-all-video-g-drive.ps1"
           )
           foreach ($file in $files) {
             $tokens = $null
