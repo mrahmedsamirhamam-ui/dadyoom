@@ -6,36 +6,10 @@ import {
 } from "react";
 
 import { askDadyoomHybrid } from "@/lib/mobile/hybrid-ai";
-
-type CreateVideoPayload = {
-  requestId?: string;
-  provider?: string;
-  sessionId?: string;
-  videoId?: string;
-  status?: string;
-  degraded?: boolean;
-  configuredProviders?: string[];
-  error?: string;
-};
-
-type VideoStatusPayload = {
-  provider?: string;
-  status?: "queued" | "generating" | "completed" | "failed";
-  videoId?: string;
-  videoUrl?: string;
-  thumbnailUrl?: string;
-  duration?: number;
-  message?: string;
-};
-
-function wait(milliseconds: number) {
-  return new Promise<void>((resolve) => {
-    window.setTimeout(
-      resolve,
-      milliseconds,
-    );
-  });
-}
+import {
+  generateCinematicVideo,
+  openGeneratedVideo,
+} from "@/lib/video/cinematic-client";
 
 export default function AskPage() {
   const [question, setQuestion] =
@@ -116,160 +90,20 @@ export default function AskPage() {
     setVideoError("");
     setVideoUrl("");
     setVideoStatus(
-      "ضاد يبحث عن أفضل محرك فيديو متاح...",
+      "ضاد يجهز الفيديو على السحابة...",
     );
 
-    let requestId = "";
-
     try {
-      for (
-        let providerAttempt = 0;
-        providerAttempt < 8;
-        providerAttempt += 1
-      ) {
-        const createResponse =
-          await fetch(
-            "/api/video/cinematic",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type":
-                  "application/json",
-              },
-              body:
-                JSON.stringify({
-                  prompt:
-                    cleanPrompt,
-                  ...(requestId
-                    ? { requestId }
-                    : {}),
-                }),
-            },
-          );
+      const result =
+        await generateCinematicVideo({
+          prompt:
+            cleanPrompt,
+          onStatus:
+            setVideoStatus,
+        });
 
-        const created =
-          (await createResponse.json()) as CreateVideoPayload;
-
-        if (
-          !createResponse.ok ||
-          !created.sessionId ||
-          !created.provider
-        ) {
-          throw new Error(
-            created.error ??
-              "لا يوجد محرك فيديو متاح الآن.",
-          );
-        }
-
-        if (created.requestId) {
-          requestId =
-            created.requestId;
-        }
-
-        const provider =
-          created.provider;
-
-        let videoId =
-          created.videoId ?? "";
-
-        setVideoStatus(
-          created.degraded
-            ? "تم اختيار محرك احتياطي. يتم إنشاء الفيديو من البرومبت الذي كتبته..."
-            : "يتم الآن إنشاء الفيديو وفق البرومبت الذي كتبته...",
-        );
-
-        let providerFailed =
-          false;
-
-        for (
-          let attempt = 0;
-          attempt < 90;
-          attempt += 1
-        ) {
-          await wait(
-            attempt < 12
-              ? 5000
-              : 10000,
-          );
-
-          const query =
-            new URLSearchParams({
-              provider,
-              sessionId:
-                created.sessionId,
-              ...(videoId
-                ? { videoId }
-                : {}),
-            });
-
-          const statusResponse =
-            await fetch(
-              "/api/video/cinematic/status?" +
-                query.toString(),
-              {
-                cache:
-                  "no-store",
-              },
-            );
-
-          const status =
-            (await statusResponse.json()) as VideoStatusPayload;
-
-          if (!statusResponse.ok) {
-            providerFailed =
-              true;
-            break;
-          }
-
-          if (status.videoId) {
-            videoId =
-              status.videoId;
-          }
-
-          if (
-            status.status ===
-              "completed" &&
-            status.videoUrl
-          ) {
-            setVideoUrl(
-              status.videoUrl,
-            );
-            setVideoStatus(
-              "تم إنشاء الفيديو بنجاح ✅",
-            );
-            return;
-          }
-
-          if (
-            status.status ===
-            "failed"
-          ) {
-            providerFailed =
-              true;
-            break;
-          }
-
-          setVideoStatus(
-            status.status ===
-              "queued"
-              ? "الفيديو في قائمة المعالجة..."
-              : "يتم تجهيز الفيديو الآن...",
-          );
-        }
-
-        if (!providerFailed) {
-          throw new Error(
-            "استغرق إنشاء الفيديو وقتًا أطول من المتوقع.",
-          );
-        }
-
-        setVideoStatus(
-          "المحرك الحالي لم يكمل الفيديو. ضاد ينتقل تلقائيًا للمحرك التالي...",
-        );
-      }
-
-      throw new Error(
-        "جُرّبت المحركات المتاحة ولم يكتمل الفيديو الآن. حاول مرة أخرى لاحقًا.",
+      setVideoUrl(
+        result.videoUrl,
       );
     } catch (cause) {
       setVideoError(
@@ -419,22 +253,27 @@ export default function AskPage() {
               <div className="space-y-3">
                 <video
                   controls
+                  playsInline
+                  preload="metadata"
                   src={videoUrl}
                   className="aspect-video w-full rounded-2xl bg-black shadow-lg"
                 />
-                <a
-                  href={videoUrl}
-                  target="_blank"
-                  rel="noreferrer"
+                <button
+                  type="button"
+                  onClick={() =>
+                    void openGeneratedVideo(
+                      videoUrl,
+                    )
+                  }
                   className="inline-flex w-full items-center justify-center rounded-2xl border border-[#b7862d] bg-white px-5 py-3 font-black text-[#123f39]"
                 >
-                  فتح الفيديو في نافذة جديدة
-                </a>
+                  فتح الفيديو بالحجم الكامل
+                </button>
               </div>
             ) : null}
 
             <p className="text-xs font-bold leading-6 text-[#806f57]">
-              ضاد يستخدم أول محرك فيديو مفعّل ومتاح، وإذا كان لديك أكثر من محرك مفعّل وفشل أحدها ينتقل تلقائيًا إلى المحرك التالي.
+              إنشاء الفيديو يتم على السحابة، وليس على معالج الهاتف. يعمل المسار نفسه على Android وiPhone والمتصفح، وينتقل ضاد تلقائيًا إلى محرك آخر عند فشل المحرك الحالي.
             </p>
           </div>
         </section>
