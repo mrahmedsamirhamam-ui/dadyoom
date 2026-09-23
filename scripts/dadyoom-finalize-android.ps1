@@ -1,5 +1,5 @@
 param(
-  [string]$Repo = "G:\ضاضيوم\dadyoom",
+  [string]$Repo = "",
   [string]$VersionName = "1.0.0",
   [int]$VersionCode = 1,
   [switch]$Install,
@@ -8,6 +8,17 @@ param(
   [switch]$SkipPlayBundle,
   [switch]$SkipSigning
 )
+
+# DADYOOM_REPO_AUTO_RESOLVE
+if ([string]::IsNullOrWhiteSpace($Repo)) {
+  $CurrentCandidate = (Get-Location).Path
+  if (Test-Path -LiteralPath (Join-Path $CurrentCandidate "package.json")) {
+    $Repo = $CurrentCandidate
+  }
+  else {
+    $Repo = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
+  }
+}
 
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
