@@ -47,7 +47,9 @@ jobs:
           $files = @(
             "scripts/dadyoom-finalize-android.ps1",
             "scripts/dadyoom-prepare-ios-final.ps1",
-            "scripts/dadyoom-final-mobile-video-fix.ps1"
+            "scripts/dadyoom-final-mobile-video-fix.ps1",
+            "scripts/dadyoom-kaggle-video-factory-setup.ps1",
+            "scripts/dadyoom-video-benchmark-report.ps1"
           )
           foreach ($file in $files) {
             $tokens = $null
@@ -62,6 +64,9 @@ jobs:
               exit 1
             }
           }
+
+      - name: Kaggle worker syntax
+        run: python -m py_compile kaggle/dadyoom-video-factory/dadyoom_video_factory.py
 
       - name: Vinext build
         run: npm run build:vinext
