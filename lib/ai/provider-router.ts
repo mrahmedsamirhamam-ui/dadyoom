@@ -314,7 +314,10 @@ async function callBytez(input: AiRequest): Promise<AiResult> {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: apiKey,
+              Authorization:
+                apiKey.trim().toLowerCase().startsWith("key ")
+                  ? apiKey.trim()
+                  : `Key ${apiKey.trim()}`,
             },
             body: JSON.stringify({
               ...bytezInput,
