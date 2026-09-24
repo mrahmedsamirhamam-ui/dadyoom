@@ -71,16 +71,16 @@ export default function CurriculumPacksPage() {
             note="مسجلة في المحرك"
           />
           <Metric
-            label="دول بها محتوى"
+            label="Core Live"
             value={center.readyCountries}
-            note="حزمة موثقة محليًا"
+            note="مسار ضاديوم متاح"
           />
           <Metric
-            label="تحتاج مصدرًا"
+            label="مطابقة وطنية موثقة"
             value={
-              center.sourceRequiredCountries
+              center.officialReadyCountries
             }
-            note="لا نختلق محتواها"
+            note="Curriculum Packs موثقة"
           />
           <Metric
             label="الحزم الجاهزة"
@@ -106,8 +106,9 @@ export default function CurriculumPacksPage() {
               </h2>
 
               <p className="mt-2 max-w-3xl font-arabic-reading text-lg leading-8 text-[#746a5e]">
-                «جاهز» تعني وجود حزمة محلية موثقة فعلًا، وليس مجرد
-                اسم دولة في القائمة.
+                «Core Live» تعني أن ضاديوم يوفّر مسارًا عربيًا أصليًا
+                كاملًا للصفوف 1–12. أما «مطابقة وطنية» فتعني وجود
+                Curriculum Pack موثق بترتيب مصدر منهجي وطني.
               </p>
             </div>
 
@@ -141,27 +142,41 @@ export default function CurriculumPacksPage() {
                       </h3>
                     </div>
 
-                    <span
-                      className={`rounded-full px-3 py-1.5 text-[10px] font-black ${
-                        country.ready
-                          ? "bg-[#e3f2e8] text-[#176345]"
-                          : "bg-[#f5eddc] text-[#806329]"
-                      }`}
-                    >
-                      {country.ready
-                        ? "جاهز"
-                        : "مصدر رسمي مطلوب"}
-                    </span>
+                    <div className="flex flex-col items-end gap-1">
+                      <span
+                        className={`rounded-full px-3 py-1.5 text-[10px] font-black ${
+                          country.coreReady
+                            ? "bg-[#e3f2e8] text-[#176345]"
+                            : "bg-[#f5eddc] text-[#806329]"
+                        }`}
+                      >
+                        {country.coreReady
+                          ? "Core Live"
+                          : "Core ناقص"}
+                      </span>
+
+                      <span
+                        className={`rounded-full px-3 py-1.5 text-[10px] font-black ${
+                          country.officialReady
+                            ? "bg-[#e8f3ff] text-[#24567a]"
+                            : "bg-[#fff4df] text-[#8b641f]"
+                        }`}
+                      >
+                        {country.officialReady
+                          ? "مطابقة وطنية موثقة"
+                          : "المطابقة الوطنية لاحقًا"}
+                      </span>
+                    </div>
                   </div>
 
                   <div className="mt-4 grid grid-cols-2 gap-2 text-center">
                     <MiniValue
-                      label="الحزم"
-                      value={country.packs}
+                      label="دروس Core"
+                      value={country.coreLessons}
                     />
                     <MiniValue
-                      label="الدروس"
-                      value={country.lessons}
+                      label="حزم وطنية"
+                      value={country.packs}
                     />
                   </div>
                 </article>
