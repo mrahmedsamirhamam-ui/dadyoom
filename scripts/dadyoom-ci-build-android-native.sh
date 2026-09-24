@@ -17,6 +17,37 @@ npm install --legacy-peer-deps --no-package-lock
 
 rm -rf android
 npx cap add android
+
+VARS="$ROOT/android/variables.gradle"
+[[ -f "$VARS" ]] || {
+  echo "FAILED=ANDROID_VARIABLES_GRADLE_MISSING"
+  exit 1
+}
+
+python3 - "$VARS" <<'PY'
+from pathlib import Path
+import re
+import sys
+
+p = Path(sys.argv[1])
+text = p.read_text()
+updated, count = re.subn(
+    r"minSdkVersion\s*=\s*\d+",
+    "minSdkVersion = 26",
+    text,
+    count=1,
+)
+if count != 1:
+    raise SystemExit("FAILED=ANDROID_MIN_SDK_PATCH_NOT_APPLIED")
+p.write_text(updated)
+PY
+
+grep -Eq 'minSdkVersion\s*=\s*26' "$VARS" || {
+  echo "FAILED=ANDROID_MIN_SDK_NOT_26"
+  exit 1
+}
+echo "ANDROID_MIN_SDK=26"
+
 npx cap sync android
 
 cd android

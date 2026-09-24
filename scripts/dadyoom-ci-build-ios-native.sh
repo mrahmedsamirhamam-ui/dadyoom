@@ -42,6 +42,41 @@ mkdir -p "$OUT" "$DERIVED"
 
 npm install --legacy-peer-deps --no-package-lock
 
+# @capgo/capacitor-llm depends on MediaPipe GenAI prebuilt static
+# XCFrameworks in its CocoaPods integration. Mark the plugin pod itself as a
+# static framework so CocoaPods does not validate it as a dynamic framework
+# with transitive static binaries.
+LLM_PODSPEC="$ROOT/node_modules/@capgo/capacitor-llm/CapgoCapacitorLlm.podspec"
+[[ -f "$LLM_PODSPEC" ]] || {
+  echo "FAILED=IOS_LLM_PODSPEC_MISSING"
+  exit 1
+}
+
+python3 - "$LLM_PODSPEC" <<'PY'
+from pathlib import Path
+import re
+import sys
+
+p = Path(sys.argv[1])
+text = p.read_text()
+
+if "s.static_framework = true" not in text:
+    marker = re.search(r"^\s*s\.swift_version\s*=.*$", text, flags=re.MULTILINE)
+    if marker:
+        insert_at = marker.end()
+        text = text[:insert_at] + "\n  s.static_framework = true" + text[insert_at:]
+    else:
+        text = re.sub(r"\nend\s*$", "\n  s.static_framework = true\nend\n", text, count=1)
+
+p.write_text(text)
+PY
+
+grep -q 's.static_framework = true' "$LLM_PODSPEC" || {
+  echo "FAILED=IOS_LLM_POD_STATIC_FRAMEWORK_NOT_SET"
+  exit 1
+}
+echo "IOS_LLM_POD_STATIC_FRAMEWORK=PASS"
+
 # CI starts from a clean checkout. Recreate the native iOS project so the
 # repository remains lightweight while the produced artifact is fully native.
 rm -rf ios
