@@ -38,6 +38,9 @@ jobs:
           "lib/mobile/native-tts.ts"
           "hooks/use-arabic-speech.ts"
           "services/dad-ai/dad-voice.ts"
+          "components/mobile/MobileOAuthBridge.tsx"
+          "components/mobile/NativeAppUpdater.tsx"
+          "app/api/mobile/android/latest/route.ts"
 
       - name: Tests
         run: npm run test:run
@@ -58,6 +61,18 @@ jobs:
             console.log("DADYOOM_PRODUCTION_SERVER_HEALTH=PASS");
             console.log("DADYOOM_PRODUCTION_BYTEZ_KEYS=" + Number(body?.keyCounts?.bytez ?? 0));
           ' "$BODY"
+
+          AUTH_URL="https://dadyoom.mrahmedsamirhamam.workers.dev/api/auth/provider-status"
+          AUTH_BODY="$(curl --fail --silent --show-error --retry 3 --retry-delay 2 "$AUTH_URL")"
+          echo "$AUTH_BODY"
+          node -e '
+            const body = JSON.parse(process.argv[1]);
+            if (body.google !== true || body.configured !== true) {
+              console.error("DADYOOM_GOOGLE_PROVIDER=FAIL");
+              process.exit(1);
+            }
+            console.log("DADYOOM_GOOGLE_PROVIDER=PASS");
+          ' "$AUTH_BODY"
 
       - name: Mobile PWA verify
         run: npm run mobile:pwa:verify
