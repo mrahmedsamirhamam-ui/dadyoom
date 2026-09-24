@@ -244,17 +244,67 @@ export function getCurriculumControlCenter():
       ? registry.countries
       : [];
 
-  const packFiles =
-    fs.readdirSync(dir)
-      .filter(
-        (name) =>
-          name.endsWith(".json") &&
-          name !== "arab-countries.json"
+  const registryFiles =
+    new Set([
+      "arab-countries.json",
+      "official-sources-2026.json",
+    ]);
+
+  const packFiles: string[] = [];
+
+  function collectPackFiles(
+    currentDir: string,
+    prefix = ""
+  ) {
+    for (
+      const entry of
+      fs.readdirSync(
+        currentDir,
+        {
+          withFileTypes: true,
+        }
       )
-      .sort(
-        (a, b) =>
-          a.localeCompare(b, "ar")
-      );
+    ) {
+      const relative =
+        prefix
+          ? `${prefix}/${entry.name}`
+          : entry.name;
+
+      if (entry.isDirectory()) {
+        collectPackFiles(
+          path.join(
+            currentDir,
+            entry.name
+          ),
+          relative
+        );
+        continue;
+      }
+
+      if (
+        entry.name.endsWith(
+          ".json"
+        ) &&
+        !registryFiles.has(
+          entry.name
+        )
+      ) {
+        packFiles.push(
+          relative
+        );
+      }
+    }
+  }
+
+  collectPackFiles(dir);
+
+  packFiles.sort(
+    (a, b) =>
+      a.localeCompare(
+        b,
+        "ar"
+      )
+  );
 
   const packs =
     packFiles.map(
@@ -263,7 +313,7 @@ export function getCurriculumControlCenter():
           return summarizePack(
             fileName,
             readJson(
-              path.join(
+              path.resolve(
                 dir,
                 fileName
               )
