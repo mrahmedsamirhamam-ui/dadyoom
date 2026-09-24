@@ -148,12 +148,15 @@ export default function VideoLibraryClient({
     );
 
   function changeRoom(
-    value:
-      | "all"
-      | "native"
-      | "non-native"
+    value: string
   ) {
-    setRoom(value);
+    const nextRoom =
+      value === "native" ||
+      value === "non-native"
+        ? value
+        : "all";
+
+    setRoom(nextRoom);
     setPage(1);
   }
 

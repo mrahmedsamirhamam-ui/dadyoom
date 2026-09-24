@@ -19,68 +19,6 @@ type LessonRow = {
   updated_at: string | null;
 };
 
-async function fetchPublishedMarketplace(
-  db: ReturnType<typeof createClient>,
-): Promise<MarketplaceRow[]> {
-  const rows: MarketplaceRow[] = [];
-  const pageSize = 1000;
-
-  for (let from = 0; ; from += pageSize) {
-    const { data, error } = await db
-      .from("edu_marketplace_courses")
-      .select("slug,updated_at")
-      .eq("status", "published")
-      .order("slug", { ascending: true })
-      .range(from, from + pageSize - 1);
-
-    if (error) {
-      console.error(
-        "SEO_SITEMAP_COURSES_FAILED",
-        error.message,
-      );
-      break;
-    }
-
-    const batch = (data ?? []) as MarketplaceRow[];
-    rows.push(...batch);
-
-    if (batch.length < pageSize) break;
-  }
-
-  return rows;
-}
-
-async function fetchPublishedLessons(
-  db: ReturnType<typeof createClient>,
-): Promise<LessonRow[]> {
-  const rows: LessonRow[] = [];
-  const pageSize = 1000;
-
-  for (let from = 0; ; from += pageSize) {
-    const { data, error } = await db
-      .from("lessons")
-      .select("id,updated_at")
-      .eq("status", "published")
-      .order("id", { ascending: true })
-      .range(from, from + pageSize - 1);
-
-    if (error) {
-      console.error(
-        "SEO_SITEMAP_LESSONS_FAILED",
-        error.message,
-      );
-      break;
-    }
-
-    const batch = (data ?? []) as LessonRow[];
-    rows.push(...batch);
-
-    if (batch.length < pageSize) break;
-  }
-
-  return rows;
-}
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = getSiteUrl();
 
@@ -102,10 +40,76 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   );
 
+  async function fetchPublishedMarketplace(): Promise<MarketplaceRow[]> {
+    const rows: MarketplaceRow[] = [];
+    const pageSize = 1000;
+
+    for (let from = 0; ; from += pageSize) {
+      const { data, error } = await db
+        .from("edu_marketplace_courses")
+        .select("slug,updated_at")
+        .eq("status", "published")
+        .order("slug", { ascending: true })
+        .range(from, from + pageSize - 1);
+
+      if (error) {
+        console.error(
+          "SEO_SITEMAP_COURSES_FAILED",
+          error.message,
+        );
+        break;
+      }
+
+      const batch =
+        (data ?? []) as MarketplaceRow[];
+
+      rows.push(...batch);
+
+      if (batch.length < pageSize) {
+        break;
+      }
+    }
+
+    return rows;
+  }
+
+  async function fetchPublishedLessons(): Promise<LessonRow[]> {
+    const rows: LessonRow[] = [];
+    const pageSize = 1000;
+
+    for (let from = 0; ; from += pageSize) {
+      const { data, error } = await db
+        .from("lessons")
+        .select("id,updated_at")
+        .eq("status", "published")
+        .order("id", { ascending: true })
+        .range(from, from + pageSize - 1);
+
+      if (error) {
+        console.error(
+          "SEO_SITEMAP_LESSONS_FAILED",
+          error.message,
+        );
+        break;
+      }
+
+      const batch =
+        (data ?? []) as LessonRow[];
+
+      rows.push(...batch);
+
+      if (batch.length < pageSize) {
+        break;
+      }
+    }
+
+    return rows;
+  }
+
   const [courses, lessons] =
     await Promise.all([
-      fetchPublishedMarketplace(db),
-      fetchPublishedLessons(db),
+      fetchPublishedMarketplace(),
+      fetchPublishedLessons(),
     ]);
 
   const marketplaceRoutes: MetadataRoute.Sitemap =
