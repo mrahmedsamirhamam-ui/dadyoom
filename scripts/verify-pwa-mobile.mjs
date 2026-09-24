@@ -69,6 +69,22 @@ const dadVoice = read(
   "services/dad-ai/dad-voice.ts"
 );
 
+const mobileOAuthBridge = read(
+  "components/mobile/MobileOAuthBridge.tsx"
+);
+
+const nativeUpdater = read(
+  "components/mobile/NativeAppUpdater.tsx"
+);
+
+const androidBuild = read(
+  "scripts/dadyoom-ci-build-android-native.sh"
+);
+
+const updateRoute = read(
+  "app/api/mobile/android/latest/route.ts"
+);
+
 check(
   "PWA_MANIFEST_STANDALONE",
   manifest.includes(
@@ -203,6 +219,47 @@ check(
     ) &&
     dadVoice.includes(
       "speakNativeArabic"
+    )
+);
+
+check(
+  "ANDROID_GOOGLE_OAUTH_DEEPLINK",
+  mobileOAuthBridge.includes(
+    'const NATIVE_CALLBACK =\n  "dadyoom://auth/callback"'
+  ) &&
+    mobileOAuthBridge.includes(
+      "App.getLaunchUrl()"
+    ) &&
+    androidBuild.includes(
+      'android:scheme="dadyoom"'
+    ) &&
+    androidBuild.includes(
+      'android:host="auth"'
+    ) &&
+    androidBuild.includes(
+      'android:pathPrefix="/callback"'
+    )
+);
+
+check(
+  "ANDROID_NATIVE_UPDATER_WIRED",
+  layout.includes(
+    "<NativeAppUpdater />"
+  ) &&
+    nativeUpdater.includes(
+      "↻ تحديث"
+    ) &&
+    nativeUpdater.includes(
+      "/api/mobile/android/latest"
+    ) &&
+    nativeUpdater.includes(
+      "App.getInfo()"
+    ) &&
+    updateRoute.includes(
+      "releases/latest"
+    ) &&
+    updateRoute.includes(
+      "Dadyoom-Android-release.apk"
     )
 );
 
