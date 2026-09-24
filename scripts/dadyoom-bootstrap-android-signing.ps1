@@ -48,16 +48,91 @@ $storePass = New-StrongSecret
 $keyPass = $storePass
 
 if (Test-Path $keystore) {
-  throw "Existing keystore found at $keystore. Preserve its original password; do not replace an existing Android signing identity."
+  $existingLength = (Get-Item -LiteralPath $keystore).Length
+  if ($existingLength -eq 0) {
+    Write-Host "Removing zero-byte keystore left by the failed attempt." -ForegroundColor Yellow
+    Remove-Item -LiteralPath $keystore -Force
+  }
+  else {
+    throw "Existing keystore found at $keystore. Preserve its original password; do not replace an existing Android signing identity."
+  }
 }
 
-& $keytool "-genkeypair" "-v" "-keystore" $keystore "-alias" $alias "-keyalg" "RSA" "-keysize" "4096" "-validity" "10000" "-storepass" $storePass "-keypass" $keyPass "-dname" "CN=Dadyoom, O=Dadyoom, C=BH"
-if ($LASTEXITCODE -ne 0) { throw "Failed to create Android signing key." }
+function New-AsciiSigningTempDir {
+  $candidates = @(
+    "C:\Users\Public\DadyoomSigningTemp",
+    "G:\DadyoomAndroidTools\SigningTemp"
+  )
 
-Write-Host "ANDROID_UPLOAD_KEY=CREATED" -ForegroundColor Green
+  if ($env:TEMP -and $env:TEMP -notmatch '[^\x00-\x7F]') {
+    $candidates += (Join-Path $env:TEMP "DadyoomSigningTemp")
+  }
 
-$bytes = [IO.File]::ReadAllBytes($keystore)
-$b64 = [Convert]::ToBase64String($bytes)
+  foreach ($base in $candidates) {
+    try {
+      New-Item -ItemType Directory -Force -Path $base | Out-Null
+      $probe = Join-Path $base (".write-test-" + [Guid]::NewGuid().ToString("N"))
+      [IO.File]::WriteAllText($probe, "ok")
+      Remove-Item -LiteralPath $probe -Force
+
+      $dir = Join-Path $base ([Guid]::NewGuid().ToString("N"))
+      New-Item -ItemType Directory -Force -Path $dir | Out-Null
+
+      if ($dir -match '[^\x00-\x7F]') {
+        Remove-Item -LiteralPath $dir -Recurse -Force -ErrorAction SilentlyContinue
+        continue
+      }
+
+      return $dir
+    }
+    catch {
+      continue
+    }
+  }
+
+  throw "No writable ASCII-only temporary path was found for Java keytool."
+}
+
+$tempSigningDir = New-AsciiSigningTempDir
+$tempKeystore = Join-Path $tempSigningDir "dadyoom-upload-key.jks"
+
+try {
+  Write-Host ("KEYTOOL_TEMP_PATH={0}" -f $tempKeystore)
+
+  & $keytool "-genkeypair" "-v" "-keystore" $tempKeystore "-alias" $alias "-keyalg" "RSA" "-keysize" "4096" "-validity" "10000" "-storepass" $storePass "-keypass" $keyPass "-dname" "CN=Dadyoom, O=Dadyoom, C=BH"
+  if ($LASTEXITCODE -ne 0) { throw "Failed to create Android signing key in ASCII temporary path." }
+
+  if (!(Test-Path -LiteralPath $tempKeystore)) {
+    throw "keytool reported success but the temporary keystore was not created."
+  }
+
+  $tempLength = (Get-Item -LiteralPath $tempKeystore).Length
+  if ($tempLength -lt 1000) {
+    throw "Generated keystore is unexpectedly small ($tempLength bytes)."
+  }
+
+  Copy-Item -LiteralPath $tempKeystore -Destination $keystore -Force
+
+  if (!(Test-Path -LiteralPath $keystore)) {
+    throw "Failed to copy Android signing key into the project signing directory."
+  }
+
+  $finalLength = (Get-Item -LiteralPath $keystore).Length
+  if ($finalLength -ne $tempLength) {
+    throw "Android signing key copy verification failed."
+  }
+
+  Write-Host "ANDROID_UPLOAD_KEY=CREATED" -ForegroundColor Green
+  Write-Host ("ANDROID_UPLOAD_KEY_BYTES={0}" -f $finalLength)
+
+  $bytes = [IO.File]::ReadAllBytes($tempKeystore)
+  $b64 = [Convert]::ToBase64String($bytes)
+}
+finally {
+  if (Test-Path -LiteralPath $tempSigningDir) {
+    Remove-Item -LiteralPath $tempSigningDir -Recurse -Force -ErrorAction SilentlyContinue
+  }
+}
 
 $b64 | & gh secret set DADYOOM_ANDROID_KEYSTORE_B64 --repo $Repo
 $storePass | & gh secret set DADYOOM_ANDROID_STORE_PASSWORD --repo $Repo
