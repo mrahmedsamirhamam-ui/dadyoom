@@ -42,7 +42,9 @@ jobs:
         run: npm run mobile:pwa:verify
 
       - name: Shell syntax
-        run: bash -n scripts/dadyoom-finalize-ios.sh
+        run: |
+          bash -n scripts/dadyoom-finalize-ios.sh
+          bash -n scripts/dadyoom-ci-build-ios-native.sh
 
       - name: PowerShell syntax
         shell: pwsh
@@ -53,7 +55,8 @@ jobs:
             "scripts/dadyoom-final-mobile-video-fix.ps1",
             "scripts/dadyoom-kaggle-video-factory-setup.ps1",
             "scripts/dadyoom-video-benchmark-report.ps1",
-            "scripts/dadyoom-all-video-g-drive.ps1"
+            "scripts/dadyoom-all-video-g-drive.ps1",
+            "scripts/dadyoom-bootstrap-ios-signing.ps1"
           )
           foreach ($file in $files) {
             $tokens = $null
