@@ -11,7 +11,12 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 type Platform = "android" | "ios" | "other";
-type HelpMode = "android" | "ios" | null;
+type HelpMode =
+  | "android-native"
+  | "ios-native"
+  | "android-pwa"
+  | "ios-pwa"
+  | null;
 
 function detectPlatform(): Platform {
   if (typeof navigator === "undefined") return "other";
@@ -78,6 +83,8 @@ export default function DadyoomInstallPrompt() {
   const [nativeApp, setNativeApp] = useState(false);
 
   const platform = useMemo(() => detectPlatform(), []);
+  const androidApkUrl =
+    process.env.NEXT_PUBLIC_DADYOOM_ANDROID_APK_URL?.trim() ?? "";
 
   useEffect(() => {
     const environmentTimer = window.setTimeout(() => {
@@ -100,7 +107,6 @@ export default function DadyoomInstallPrompt() {
 
     const onInstalled = () => {
       setInstalled(true);
-      setOpen(false);
       setDeferredPrompt(null);
     };
 
@@ -114,16 +120,25 @@ export default function DadyoomInstallPrompt() {
     };
   }, []);
 
-  async function installAndroid() {
+  function openAndroidNative() {
     setHelpMode(null);
 
+    if (androidApkUrl) {
+      window.location.assign(androidApkUrl);
+      return;
+    }
+
+    setHelpMode("android-native");
+  }
+
+  async function installPwa() {
     if (platform === "ios") {
-      setHelpMode("android");
+      setHelpMode("ios-pwa");
       return;
     }
 
     if (!deferredPrompt) {
-      setHelpMode("android");
+      setHelpMode("android-pwa");
       return;
     }
 
@@ -135,9 +150,8 @@ export default function DadyoomInstallPrompt() {
 
       if (choice.outcome === "accepted") {
         setInstalled(true);
-        setOpen(false);
       } else {
-        setHelpMode("android");
+        setHelpMode("android-pwa");
       }
     } finally {
       setDeferredPrompt(null);
@@ -145,7 +159,7 @@ export default function DadyoomInstallPrompt() {
     }
   }
 
-  if (installed || nativeApp) return null;
+  if (nativeApp) return null;
 
   return (
     <>
@@ -158,9 +172,9 @@ export default function DadyoomInstallPrompt() {
         className="fixed bottom-4 left-4 z-[80] rounded-2xl border border-[#d7bd78] bg-[#123f39] px-4 py-3 text-sm font-black text-white shadow-xl shadow-black/15 transition hover:-translate-y-0.5 hover:bg-[#174f47] active:translate-y-0"
         aria-haspopup="dialog"
         aria-expanded={open}
-        aria-label="تنزيل ضاديوم على الهاتف"
+        aria-label="تطبيق ضاديوم للهاتف"
       >
-        تنزيل ضاديوم على الهاتف
+        تطبيق ضاديوم للهاتف
       </button>
 
       {open ? (
@@ -183,16 +197,16 @@ export default function DadyoomInstallPrompt() {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-xs font-black text-[#a27a27]">
-                  تطبيق ضاديوم من المتصفح — مجانًا
+                  تطبيق ضاديوم الأصلي Native
                 </p>
                 <h2
                   id="dadyoom-install-title"
                   className="mt-1 text-2xl font-black text-[#123f39]"
                 >
-                  نزّل ضاديوم على هاتفك
+                  اختر تطبيق هاتفك
                 </h2>
                 <p className="mt-2 text-sm leading-7 text-[#625b50]">
-                  سيظهر ضاديوم بأيقونة على الشاشة الرئيسية ويفتح كتطبيق مستقل.
+                  Android وiOS هما المنتج الأساسي. وتظل نسخة الويب القابلة للتثبيت خيارًا احتياطيًا.
                 </p>
               </div>
 
@@ -209,44 +223,87 @@ export default function DadyoomInstallPrompt() {
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               <button
                 type="button"
-                onClick={() => void installAndroid()}
-                disabled={busy}
-                className="rounded-2xl border-2 border-[#123f39] bg-[#123f39] p-4 text-right text-white transition hover:bg-[#174f47] disabled:opacity-60"
+                onClick={openAndroidNative}
+                className="rounded-2xl border-2 border-[#123f39] bg-[#123f39] p-4 text-right text-white transition hover:bg-[#174f47]"
               >
                 <span className="block text-lg font-black">
-                  تنزيل للأندرويد
+                  Android الأصلي
                   {platform === "android" ? " — جهازك" : ""}
                 </span>
                 <span className="mt-1 block text-xs leading-5 text-white/80">
-                  Chrome والمتصفحات الداعمة
+                  {androidApkUrl
+                    ? "تنزيل APK مباشر من ضاديوم"
+                    : "تم بناء النسخة — جارٍ إغلاق التوقيع الدائم"}
                 </span>
               </button>
 
               <button
                 type="button"
-                onClick={() => setHelpMode("ios")}
+                onClick={() => setHelpMode("ios-native")}
                 className="rounded-2xl border-2 border-[#c49a43] bg-white p-4 text-right text-[#123f39] transition hover:bg-[#fff4d9]"
               >
                 <span className="block text-lg font-black">
-                  تنزيل للآيفون
+                  iPhone الأصلي
                   {platform === "ios" ? " — جهازك" : ""}
                 </span>
                 <span className="mt-1 block text-xs leading-5 text-[#75684f]">
-                  iPhone وiPad
+                  تم بناء iOS Native — التوقيع والتثبيت لاحقًا
                 </span>
               </button>
             </div>
 
-            {busy ? (
-              <div className="mt-4 rounded-2xl bg-[#edf5f1] p-4 text-sm font-bold text-[#123f39]">
-                جارٍ فتح نافذة تثبيت ضاديوم…
+            {helpMode === "android-native" ? (
+              <div className="mt-5 rounded-2xl border border-[#d8c7a6] bg-white p-4 text-sm leading-7 text-[#5f574d]">
+                نسخة Android الأصلية مع Offline AI جاهزة تقنيًا. سيظهر رابط APK هنا بعد تثبيت مفتاح التوقيع الدائم حتى تستقبل التحديثات المستقبلية بنفس الهوية.
               </div>
             ) : null}
 
-            {helpMode === "android" ? (
+            {helpMode === "ios-native" ? (
+              <div className="mt-5 rounded-2xl border border-[#d8c7a6] bg-white p-4 text-sm leading-7 text-[#5f574d]">
+                نسخة iOS الأصلية بُنيت بنجاح، بما فيها نسخة iPhone غير الموقعة. يلزم توقيع Apple وملف provisioning قبل تثبيتها على iPhone.
+              </div>
+            ) : null}
+
+            <div className="mt-6 rounded-2xl border border-dashed border-[#cdbb91] bg-white/70 p-4">
+              <p className="text-xs font-black text-[#8a6a2b]">
+                نسخة احتياطية — PWA
+              </p>
+              <p className="mt-1 text-sm leading-6 text-[#665d50]">
+                استخدمها فقط إذا أردت فتح ضاديوم كتطبيق ويب قبل اكتمال توزيع النسخة الأصلية.
+              </p>
+
+              <div className="mt-3 flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={() => void installPwa()}
+                  disabled={busy || installed}
+                  className="rounded-xl border border-[#c9b37a] bg-[#fff4d9] px-4 py-2 text-sm font-black text-[#123f39] disabled:opacity-60"
+                >
+                  {installed ? "PWA مثبتة بالفعل" : "تثبيت نسخة الويب الاحتياطية"}
+                </button>
+
+                {platform === "ios" ? (
+                  <button
+                    type="button"
+                    onClick={() => setHelpMode("ios-pwa")}
+                    className="rounded-xl border border-[#d8c7a6] bg-white px-4 py-2 text-sm font-black text-[#625b50]"
+                  >
+                    خطوات PWA على iPhone
+                  </button>
+                ) : null}
+              </div>
+            </div>
+
+            {busy ? (
+              <div className="mt-4 rounded-2xl bg-[#edf5f1] p-4 text-sm font-bold text-[#123f39]">
+                جارٍ فتح نافذة تثبيت نسخة الويب الاحتياطية…
+              </div>
+            ) : null}
+
+            {helpMode === "android-pwa" ? (
               <div className="mt-5 rounded-2xl border border-[#d8c7a6] bg-white p-4">
                 <h3 className="font-black text-[#123f39]">
-                  تثبيت ضاديوم على Android
+                  نسخة الويب الاحتياطية على Android
                 </h3>
                 <ol className="mt-3 list-decimal space-y-2 pr-5 text-sm leading-7 text-[#5f574d]">
                   <li>افتح ضاديوم في Chrome.</li>
@@ -254,31 +311,25 @@ export default function DadyoomInstallPrompt() {
                   <li>اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».</li>
                   <li>اضغط «تثبيت».</li>
                 </ol>
-                <p className="mt-3 text-xs leading-6 text-[#7a715f]">
-                  إذا أتاح المتصفح التثبيت المباشر، زر الأندرويد نفسه يفتح نافذة التثبيت.
-                </p>
               </div>
             ) : null}
 
-            {helpMode === "ios" ? (
+            {helpMode === "ios-pwa" ? (
               <div className="mt-5 rounded-2xl border border-[#d8c7a6] bg-white p-4">
                 <h3 className="font-black text-[#123f39]">
-                  تثبيت ضاديوم على iPhone
+                  نسخة الويب الاحتياطية على iPhone
                 </h3>
                 <ol className="mt-3 list-decimal space-y-2 pr-5 text-sm leading-7 text-[#5f574d]">
                   <li>افتح ضاديوم في Safari.</li>
-                  <li>اضغط «مشاركة» من قائمة Safari.</li>
+                  <li>اضغط «مشاركة».</li>
                   <li>اختر «إضافة إلى الشاشة الرئيسية».</li>
-                  <li>اترك «فتح كتطبيق ويب» مفعّلًا إن ظهر، ثم اضغط «إضافة».</li>
+                  <li>اضغط «إضافة».</li>
                 </ol>
-                <p className="mt-3 text-xs leading-6 text-[#7a715f]">
-                  خطوة «إضافة» الأخيرة تتم من قائمة iPhone نفسها لأن Apple لا تسمح للموقع بتنفيذها نيابةً عن المستخدم.
-                </p>
               </div>
             ) : null}
 
             <div className="mt-5 rounded-2xl bg-[#f5ead0] px-4 py-3 text-xs font-bold leading-6 text-[#695936]">
-              لا Google Play ولا App Store مطلوبان لهذا التثبيت، ولا يتم تنزيل ملف APK أو IPA.
+              لن نضع على الموقع APK تجريبيًا أو غير ثابت التوقيع. رابط Android الأصلي سيُفعّل فقط بعد إنشاء مفتاح التوقيع الدائم ونشر Release ثابت.
             </div>
           </section>
         </div>
