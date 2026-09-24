@@ -11,7 +11,21 @@ import {
 
 export const runtime = "nodejs";
 
+const publicVideoAiEnabled =
+  process.env.DADYOOM_VIDEO_AI_PUBLIC_ENABLED === "true";
+
 export async function POST(request: Request) {
+  if (!publicVideoAiEnabled) {
+    return NextResponse.json(
+      {
+        error:
+          "ميزة إنشاء فيديو الدرس بالذكاء الاصطناعي قيد التجهيز وستتوفر قريبًا.",
+        code: "VIDEO_AI_COMING_SOON",
+      },
+      { status: 503 },
+    );
+  }
+
   try {
     const supabase = await createClient();
     const {
