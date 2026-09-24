@@ -3,7 +3,11 @@
 import { App } from "@capacitor/app";
 import { Browser } from "@capacitor/browser";
 import { Capacitor } from "@capacitor/core";
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useState,
+  useSyncExternalStore,
+} from "react";
 
 type UpdateInfo = {
   ok?: boolean;
@@ -69,9 +73,29 @@ function readableSize(bytes: number): string {
   return `${mb.toFixed(0)} MB`;
 }
 
+function subscribe() {
+  return () => {};
+}
+
+function getNativeAndroidSnapshot() {
+  return (
+    Capacitor.isNativePlatform() &&
+    Capacitor.getPlatform() === "android"
+  );
+}
+
+function getServerSnapshot() {
+  return false;
+}
+
 export default function NativeAppUpdater() {
-  const [nativeAndroid, setNativeAndroid] =
-    useState(false);
+  const nativeAndroid =
+    useSyncExternalStore(
+      subscribe,
+      getNativeAndroidSnapshot,
+      getServerSnapshot,
+    );
+
   const [open, setOpen] = useState(false);
   const [state, setState] =
     useState<UpdateState>("idle");
@@ -82,13 +106,7 @@ export default function NativeAppUpdater() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    const isAndroid =
-      Capacitor.isNativePlatform() &&
-      Capacitor.getPlatform() === "android";
-
-    setNativeAndroid(isAndroid);
-
-    if (!isAndroid) {
+    if (!nativeAndroid) {
       return;
     }
 
@@ -101,7 +119,7 @@ export default function NativeAppUpdater() {
       .catch(() => {
         setCurrentVersion("");
       });
-  }, []);
+  }, [nativeAndroid]);
 
   if (!nativeAndroid) {
     return null;
