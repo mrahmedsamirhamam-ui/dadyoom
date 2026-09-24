@@ -95,8 +95,8 @@ export async function GET() {
       );
     }
 
-    const modelsResponse = await fetch(
-      `${baseUrl}/models/v2/list/models`,
+    const textModelsResponse = await fetch(
+      `${baseUrl}/models/v2/list/models?task=text-generation`,
       {
         method: "GET",
         headers: {
@@ -107,14 +107,71 @@ export async function GET() {
       },
     );
 
-    const modelsText = await modelsResponse.text();
+    const videoModelsResponse = await fetch(
+      `${baseUrl}/models/v2/list/models?task=text-to-video`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: authHeader(key, authMode),
+          Accept: "application/json",
+        },
+        cache: "no-store",
+      },
+    );
+
+    const textModelsText = await textModelsResponse.text();
+    const videoModelsText = await videoModelsResponse.text();
+
+    function parseModelIds(raw: string): string[] {
+      try {
+        const parsed = JSON.parse(raw) as {
+          output?: Array<{
+            modelId?: string;
+            meter?: string;
+          }>;
+        };
+
+        return (parsed.output ?? [])
+          .map((item) => String(item.modelId ?? "").trim())
+          .filter(Boolean);
+      } catch {
+        return [];
+      }
+    }
+
+    const textModelIds =
+      textModelsResponse.ok
+        ? parseModelIds(textModelsText)
+        : [];
+
+    const videoModelIds =
+      videoModelsResponse.ok
+        ? parseModelIds(videoModelsText)
+        : [];
+
+    const allModelIds = new Set([
+      ...textModelIds,
+      ...videoModelIds,
+    ]);
 
     const modelAvailability = Object.fromEntries(
       TARGET_MODELS.map((model) => [
         model,
-        modelsResponse.ok ? modelsText.includes(model) : false,
+        allModelIds.has(model),
       ]),
     );
+
+    const suggestedTextModels = textModelIds
+      .filter((model) =>
+        /(^|\\/)Qwen.*Qwen3/i.test(model),
+      )
+      .slice(0, 20);
+
+    const suggestedVideoModels = videoModelIds
+      .filter((model) =>
+        /(Wan|LTX|Hunyuan|CogVideo)/i.test(model),
+      )
+      .slice(0, 20);
 
     return NextResponse.json(
       {
@@ -123,8 +180,13 @@ export async function GET() {
         authOk: true,
         authMode,
         tasksStatus: tasksProbe.status,
-        modelsStatus: modelsResponse.status,
+        textModelsStatus: textModelsResponse.status,
+        videoModelsStatus: videoModelsResponse.status,
+        textModelCount: textModelIds.length,
+        videoModelCount: videoModelIds.length,
         modelAvailability,
+        suggestedTextModels,
+        suggestedVideoModels,
         note:
           "This endpoint never returns the Bytez API key or full model catalog.",
       },
