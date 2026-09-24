@@ -16,6 +16,11 @@ on:
         description: "Android version code"
         required: false
         default: "1"
+      build_ios:
+        description: "Also rebuild iOS during manual dispatch"
+        required: false
+        type: boolean
+        default: false
   push:
     branches:
       - fix/mobile-cloud-video-final-20260923
@@ -26,7 +31,6 @@ on:
       - "package-lock.json"
       - "scripts/dadyoom-ci-build-android-native.sh"
       - "scripts/dadyoom-ci-build-ios-native.sh"
-      - "scripts/dadyoom-bootstrap-android-signing.ps1"
       - ".github/workflows/native-mobile-build.yml"
 
 permissions:
@@ -105,6 +109,7 @@ jobs:
 
   ios-native:
     name: iOS native app
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.build_ios }}
     runs-on: macos-latest
     timeout-minutes: 90
     env:
