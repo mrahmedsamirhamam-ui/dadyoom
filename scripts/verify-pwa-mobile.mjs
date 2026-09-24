@@ -145,10 +145,16 @@ check(
 );
 
 check(
-  "NO_STORE_REQUIRED_COPY",
+  "PWA_BACKUP_POSITIONING",
   prompt.includes(
-    "لا Google Play ولا App Store مطلوبان"
-  )
+    "تطبيق ضاديوم الأصلي Native"
+  ) &&
+    prompt.includes(
+      "نسخة احتياطية — PWA"
+    ) &&
+    prompt.includes(
+      "Android وiOS هما المنتج الأساسي"
+    )
 );
 
 const failed =
