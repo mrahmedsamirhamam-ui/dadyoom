@@ -206,7 +206,7 @@ $Work = Join-Path $Repo (".dadyoom-work\android-final-{0}" -f $Stamp)
 $Artifacts = Join-Path $Repo ".dadyoom-mobile\final-release"
 New-Item -ItemType Directory -Force -Path $Work,$Artifacts | Out-Null
 
-Step "1/9 REPOSITORY + FINAL VIDEO SOURCE"
+Step "1/9 REPOSITORY + MOBILE SOURCE"
 
 $Branch = (git branch --show-current).Trim()
 if ($Branch -ne $ExpectedBranch) {
@@ -229,11 +229,8 @@ $Head = (git rev-parse HEAD).Trim()
 Write-Host ("HEAD={0}" -f $Head)
 
 $Required = @(
-  "lib\video\cinematic-client.ts",
-  "lib\video\cinematic-avatar-agent.ts",
-  "app\api\video\cinematic\route.ts",
-  "app\api\video\cinematic\status\route.ts",
-  "app\api\video\cinematic\health\route.ts",
+  "capacitor.config.ts",
+  "mobile-shell\index.html",
   "app\(dashboard)\ask\page.tsx",
   "components\dad-ai\DadLessonVideoButton.tsx",
   "lib\mobile\offline-ai.ts",
@@ -247,18 +244,13 @@ foreach ($Rel in $Required) {
 }
 
 $LessonButton = ReadText (Join-Path $Repo "components\dad-ai\DadLessonVideoButton.tsx")
-if ($LessonButton -match "MediaRecorder|captureStream|AudioContext") {
-  Fail "OLD_LOCAL_VIDEO_RENDERER_STILL_PRESENT"
+if ($LessonButton -notmatch "قريب") {
+  Fail "VIDEO_COMING_SOON_GUARD_MISSING"
 }
 
-$Engine = ReadText (Join-Path $Repo "lib\video\cinematic-avatar-agent.ts")
-if ($Engine -notmatch "hf-minimax-h3" -or $Engine -notmatch "hf-ltx") {
-  Fail "FREE_CLOUD_VIDEO_PROVIDERS_NOT_PRESENT"
-}
-
-Pass "VIDEO_SOURCE_WEB_ANDROID_IOS=SHARED_CLOUD_PATH"
-Pass "DEVICE_GPU_REQUIRED_FOR_VIDEO=NO"
-Pass "FREE_VIDEO_ROUTER=MINIMAX_H3_THEN_LTX"
+Pass "MOBILE_SHARED_WEB_SOURCE=PASS"
+Pass "VIDEO_AI_PUBLIC_STATE=COMING_SOON"
+Pass "MOBILE_AI_SOURCE=HYBRID_CLOUD_AND_LOCAL"
 
 Step "2/9 CAPACITOR CONFIG"
 
@@ -312,40 +304,21 @@ Pass "CAPACITOR_CONFIG=PASS"
 Write-Host ("APP_ID={0}" -f $AppId)
 Write-Host ("SERVER_URL={0}" -f $ProductionUrl)
 
-Step "3/9 FREE VIDEO TOKEN + WEB DEPLOY"
+Step "3/9 WEB + MOBILE QUALITY GATES"
 
 $EnvFile = Join-Path $Repo ".env.local"
-$HfToken = EnvValue $EnvFile "HF_TOKEN"
-
-if (!$HfToken) {
-  Warn "HF_TOKEN is required for the free Hugging Face ZeroGPU quota."
-  Warn "Paste a Hugging Face READ token. It will stay in .env.local and Cloudflare secret storage."
-  $Secure = Read-Host "HF_TOKEN" -AsSecureString
-  $HfToken = SecurePlain $Secure
-}
-
-if (!$HfToken -or !$HfToken.StartsWith("hf_")) {
-  Fail "HF_TOKEN_MISSING_OR_INVALID"
-}
-
-SetEnvValue $EnvFile "HF_TOKEN" $HfToken
-SetEnvValue $EnvFile "ALLOW_PAID_VIDEO_PROVIDERS" "false"
-SetEnvValue $EnvFile "VIDEO_PROVIDER_ORDER" "hf-minimax-h3,hf-ltx,hf-sadtalker,hf-musetalk,higgsfield,heygen,tavus,akool,did,creatify"
+SetEnvValue $EnvFile "DADYOOM_VIDEO_AI_PUBLIC_ENABLED" "false"
 
 Run "npm" @("install","--legacy-peer-deps","--no-package-lock") (Join-Path $Work "npm-install.txt") | Out-Null
 
 Run "npx" @("eslint",
-  "lib/video/cinematic-client.ts",
-  "lib/video/cinematic-avatar-agent.ts",
   "app/api/video/cinematic/route.ts",
-  "app/api/video/cinematic/status/route.ts",
-  "app/api/video/cinematic/health/route.ts",
   "app/(dashboard)/ask/page.tsx",
   "components/dad-ai/DadLessonVideoButton.tsx",
   "lib/mobile/offline-ai.ts",
-  "lib/mobile/hybrid-ai.ts") (Join-Path $Work "lint-video-mobile.txt") | Out-Null
+  "lib/mobile/hybrid-ai.ts") (Join-Path $Work "lint-mobile.txt") | Out-Null
 
-Pass "VIDEO_MOBILE_LINT=PASS"
+Pass "MOBILE_LINT=PASS"
 
 if (!$SkipTests) {
   Run "npm" @("run","test:run") (Join-Path $Work "tests.txt") | Out-Null
@@ -356,27 +329,20 @@ Run "npm" @("run","build:vinext") (Join-Path $Work "vinext-build.txt") | Out-Nul
 Pass "VINEXT_BUILD=PASS"
 
 if (!$SkipDeploy) {
-  $HfToken | npx wrangler secret put HF_TOKEN
-  if ($LASTEXITCODE -ne 0) { Fail "CLOUDFLARE_HF_SECRET_FAILED" }
-
-  "false" | npx wrangler secret put ALLOW_PAID_VIDEO_PROVIDERS
-  if ($LASTEXITCODE -ne 0) { Fail "CLOUDFLARE_VIDEO_PAID_FLAG_FAILED" }
-
   Run "npm" @("run","deploy:vinext") (Join-Path $Work "deploy.txt") | Out-Null
   Pass "CLOUDFLARE_DEPLOY=PASS"
 
   try {
-    $Health = Invoke-RestMethod -Uri "$ProductionUrl/api/video/cinematic/health" -Method Get -TimeoutSec 60
-    Write-Host ("VIDEO_HEALTH={0}" -f ($Health | ConvertTo-Json -Compress))
-    if (!$Health.ok) {
-      Fail "PRODUCTION_VIDEO_HEALTH_NOT_READY"
+    $Response = Invoke-WebRequest -Uri "$ProductionUrl" -UseBasicParsing -TimeoutSec 60
+    if ($Response.StatusCode -lt 200 -or $Response.StatusCode -ge 400) {
+      Fail ("PRODUCTION_HOME_HTTP_{0}" -f $Response.StatusCode)
     }
   }
   catch {
-    Fail ("PRODUCTION_VIDEO_HEALTH_FAILED {0}" -f $_.Exception.Message)
+    Fail ("PRODUCTION_SMOKE_FAILED {0}" -f $_.Exception.Message)
   }
 
-  Pass "PRODUCTION_VIDEO_HEALTH=PASS"
+  Pass "PRODUCTION_SMOKE=PASS"
 }
 else {
   Warn "DEPLOY=SKIPPED"
@@ -719,7 +685,7 @@ if ($LASTEXITCODE -ne 0) { Fail "STAGED_DIFF_CHECK_FAILED" }
 
 $Staged = @(git diff --cached --name-only)
 if ($Staged.Count -gt 0) {
-  git commit -m ("Finalize Android {0} and shared cloud video" -f $VersionName)
+  git commit -m ("Finalize Android {0} native shell" -f $VersionName)
   if ($LASTEXITCODE -ne 0) { Fail "FINAL_ANDROID_COMMIT_FAILED" }
 
   git push origin ("HEAD:{0}" -f $ExpectedBranch)
@@ -734,15 +700,13 @@ else {
 $Report = @(
   "DADYOOM_ANDROID_FINAL=PASS",
   ("VERSION={0} ({1})" -f $VersionName,$VersionCode),
-  "VIDEO_WEB=SHARED_CLOUD_FIXED",
-  "VIDEO_ANDROID=SHARED_CLOUD_FIXED",
-  "VIDEO_IOS_SOURCE=SHARED_CLOUD_FIXED",
-  "FREE_VIDEO=HF_MINIMAX_H3_THEN_HF_LTX",
-  "PAID_VIDEO_PROVIDERS=DISABLED_BY_DEFAULT",
+  "APP_ID=com.dadyoom.app",
+  "VIDEO_AI=COMING_SOON",
+  "HYBRID_AI=CLOUD_THEN_OFFLINE_QWEN",
   ("TEST_APK={0}" -f $DebugOut),
   $(if (!$SkipPlayBundle) { "PLAY_AAB=$AabOut" } else { "PLAY_AAB=SKIPPED" }),
   "ANDROID_NATIVE_SOURCE=TRACKED_FOR_FUTURE_UPDATES",
-  "NEXT_TEST=WEB_VIDEO_THEN_ANDROID_LOGIN_LESSONS_OFFLINE_AI_VIDEO_NOTIFICATIONS_REWARDS_PAYMENTS"
+  "NEXT_TEST=ANDROID_LOGIN_ONBOARDING_COURSES_LESSONS_ASSESSMENT_PROGRESS_OFFLINE_AI_NOTIFICATIONS_REWARDS_PAYMENTS"
 )
 
 $ReportPath = Join-Path $Artifacts "DADYOOM-ANDROID-FINAL-REPORT.txt"
