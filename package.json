@@ -29,7 +29,8 @@
     "build:vinext": "vinext build && node scripts/write-cloudflare-assetsignore.mjs",
     "start:vinext": "wrangler dev --config dist/server/wrangler.json",
     "deploy:vinext": "vinext-cloudflare deploy",
-    "preview:vinext": "vinext-cloudflare deploy --preview"
+    "preview:vinext": "vinext-cloudflare deploy --preview",
+    "curriculum:audit:22": "node scripts/audit-22-country-live.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
