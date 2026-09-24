@@ -255,16 +255,47 @@ NODE
 plutil -convert xml1 -o "$PLIST" "$PLIST_JSON"
 rm -f "$PLIST_JSON"
 
-# Optional offline model. CI can build without it; if a private/public URL is
-# provided later, the exact same workflow embeds it into the native app.
+# Use the official LiteRT / MediaPipe Qwen2.5 1.5B q8 model without
+# committing the 1.6 GB binary to Git. An optional secret URL can override the
+# public source if a controlled mirror is configured later.
 MODEL_NAME="dadyoom-qwen2.5-1.5b-instruct-q8.task"
-MODEL_URL="${DADYOOM_IOS_MODEL_URL:-}"
+DEFAULT_MODEL_URL="https://huggingface.co/litert-community/Qwen2.5-1.5B-Instruct/resolve/main/Qwen2.5-1.5B-Instruct_multi-prefill-seq_q8_ekv1280.task?download=true"
+MODEL_URL="${DADYOOM_IOS_MODEL_URL:-$DEFAULT_MODEL_URL}"
+MODEL_EXPECTED_BYTES=1625493432
 
-if [[ -n "$MODEL_URL" ]]; then
-  echo "Downloading optional offline AI model..."
-  curl --fail --location --retry 3 "$MODEL_URL" -o "ios/App/App/$MODEL_NAME"
+# Keep the simulator artifact small. The physical-device build receives the
+# offline model after the simulator build has completed.
+echo "Building iOS Simulator..."
+xcodebuild \
+  -workspace "$WORKSPACE" \
+  -scheme App \
+  -configuration Debug \
+  -sdk iphonesimulator \
+  -destination "generic/platform=iOS Simulator" \
+  -derivedDataPath "$DERIVED/simulator" \
+  CODE_SIGNING_ALLOWED=NO \
+  build
 
-  MODEL_NAME="$MODEL_NAME" ruby <<'RUBY'
+SIM_APP="$(find "$DERIVED/simulator/Build/Products" -maxdepth 3 -type d -name "App.app" | head -n 1)"
+[[ -d "$SIM_APP" ]] || {
+  echo "FAILED=IOS_SIMULATOR_APP_NOT_FOUND"
+  exit 1
+}
+
+ditto -c -k --sequesterRsrc --keepParent "$SIM_APP" "$OUT/Dadyoom-iOS-Simulator.zip"
+echo "IOS_SIMULATOR_BUILD=PASS"
+
+echo "Downloading official offline Qwen model for the iPhone device build..."
+curl --fail --location --retry 3 --retry-delay 5 "$MODEL_URL" -o "ios/App/App/$MODEL_NAME"
+
+MODEL_BYTES="$(stat -f%z "ios/App/App/$MODEL_NAME")"
+echo "IOS_MODEL_BYTES=$MODEL_BYTES"
+if [[ "$MODEL_BYTES" -lt 1500000000 ]]; then
+  echo "FAILED=IOS_OFFLINE_MODEL_DOWNLOAD_TOO_SMALL bytes=$MODEL_BYTES expected=$MODEL_EXPECTED_BYTES"
+  exit 1
+fi
+
+MODEL_NAME="$MODEL_NAME" ruby <<'RUBY'
 require "xcodeproj"
 
 project = Xcodeproj::Project.open("ios/App/App.xcodeproj")
@@ -285,30 +316,7 @@ end
 project.save
 RUBY
 
-  echo "IOS_OFFLINE_MODEL=EMBEDDED"
-else
-  echo "IOS_OFFLINE_MODEL=NOT_EMBEDDED_CLOUD_FIRST_BUILD"
-fi
-
-echo "Building iOS Simulator..."
-xcodebuild \
-  -workspace "$WORKSPACE" \
-  -scheme App \
-  -configuration Debug \
-  -sdk iphonesimulator \
-  -destination "generic/platform=iOS Simulator" \
-  -derivedDataPath "$DERIVED/simulator" \
-  CODE_SIGNING_ALLOWED=NO \
-  build
-
-SIM_APP="$(find "$DERIVED/simulator/Build/Products" -maxdepth 3 -type d -name "App.app" | head -n 1)"
-[[ -d "$SIM_APP" ]] || {
-  echo "FAILED=IOS_SIMULATOR_APP_NOT_FOUND"
-  exit 1
-}
-
-ditto -c -k --sequesterRsrc --keepParent "$SIM_APP" "$OUT/Dadyoom-iOS-Simulator.zip"
-echo "IOS_SIMULATOR_BUILD=PASS"
+echo "IOS_OFFLINE_MODEL=EMBEDDED_DEVICE_BUILD"
 
 echo "Building unsigned iPhone device binary..."
 xcodebuild \
@@ -346,6 +354,7 @@ Dadyoom-iOS-Simulator.zip
 
 Dadyoom-iOS-unsigned-requires-signing.ipa
 - Native arm64 iPhone build.
+- Includes the official offline Qwen2.5 1.5B q8 MediaPipe/LiteRT model.
 - It is intentionally unsigned.
 - It cannot be installed directly on an iPhone until Apple signing/provisioning
   is applied.
