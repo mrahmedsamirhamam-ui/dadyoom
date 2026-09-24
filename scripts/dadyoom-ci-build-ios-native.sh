@@ -46,6 +46,58 @@ npm install --legacy-peer-deps --no-package-lock
 # repository remains lightweight while the produced artifact is fully native.
 rm -rf ios
 npx cap add ios --packagemanager CocoaPods
+
+PODFILE="$ROOT/ios/App/Podfile"
+PBXPROJ="$ROOT/ios/App/App.xcodeproj/project.pbxproj"
+
+[[ -f "$PODFILE" ]] || {
+  echo "FAILED=IOS_PODFILE_MISSING_AFTER_CAP_ADD"
+  exit 1
+}
+
+# MediaPipeTasksGenAI ships static XCFrameworks. Capacitor's default dynamic
+# use_frameworks! causes CocoaPods to reject the transitive static binaries.
+python3 - "$PODFILE" <<'PY'
+from pathlib import Path
+import re
+import sys
+
+p = Path(sys.argv[1])
+text = p.read_text()
+
+text = re.sub(
+    r"platform :ios, ['\"]\d+(?:\.\d+)?['\"]",
+    "platform :ios, '16.0'",
+    text,
+    count=1,
+)
+
+text = re.sub(
+    r"^use_frameworks!\s*$",
+    "use_frameworks! :linkage => :static",
+    text,
+    count=1,
+    flags=re.MULTILINE,
+)
+
+p.write_text(text)
+PY
+
+if ! grep -q "use_frameworks! :linkage => :static" "$PODFILE"; then
+  echo "FAILED=IOS_STATIC_LINKAGE_NOT_SET"
+  exit 1
+fi
+
+# Match the Xcode target deployment version to MediaPipe's iOS requirement.
+if [[ -f "$PBXPROJ" ]]; then
+  sed -i '' -E \
+    's/IPHONEOS_DEPLOYMENT_TARGET = [0-9.]+;/IPHONEOS_DEPLOYMENT_TARGET = 16.0;/g' \
+    "$PBXPROJ"
+fi
+
+echo "IOS_PODFILE_STATIC_LINKAGE=PASS"
+echo "IOS_DEPLOYMENT_TARGET=16.0"
+
 npx cap sync ios
 
 PLIST="$ROOT/ios/App/App/Info.plist"
