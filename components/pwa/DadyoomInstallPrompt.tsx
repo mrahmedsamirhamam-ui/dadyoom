@@ -84,7 +84,8 @@ export default function DadyoomInstallPrompt() {
 
   const platform = useMemo(() => detectPlatform(), []);
   const androidApkUrl =
-    process.env.NEXT_PUBLIC_DADYOOM_ANDROID_APK_URL?.trim() ?? "";
+    process.env.NEXT_PUBLIC_DADYOOM_ANDROID_APK_URL?.trim() ||
+    "https://github.com/mrahmedsamirhamam-ui/dadyoom/releases/download/dadyoom-mobile-v1.0.0/Dadyoom-Android-release.apk";
 
   useEffect(() => {
     const environmentTimer = window.setTimeout(() => {
