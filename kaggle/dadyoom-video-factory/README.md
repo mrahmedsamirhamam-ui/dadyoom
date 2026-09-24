@@ -55,3 +55,25 @@ Open the created Kaggle notebook and attach these secrets through **Add-ons -> S
 Never commit or print the service-role key.
 
 Enable GPU and run the notebook. The worker claims queued jobs one at a time and stops after `DADYOOM_MAX_JOBS` jobs (default 10) or when the queue is empty.
+
+
+## Important: Kaggle Secrets and CLI pushes
+
+Kaggle versions created with `kaggle kernels push` do not reliably inherit
+Secrets that were attached interactively in the Notebook editor. A CLI-pushed
+version may therefore fail immediately with:
+
+```text
+RuntimeError: Missing Kaggle secret: DADYOOM_SUPABASE_URL
+```
+
+After syncing code with the CLI:
+
+1. Open the latest Kaggle version.
+2. Click **Edit**.
+3. Open **Add-ons -> Secrets** and confirm both Dadyoom secrets are enabled.
+4. Use **Save Version / Run All** from the Kaggle editor.
+
+Do not treat a CLI-pushed version's first automatic run as the benchmark run.
+The benchmark run starts only after the editor session can successfully read
+both Secrets.
