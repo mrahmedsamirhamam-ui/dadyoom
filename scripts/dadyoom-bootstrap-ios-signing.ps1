@@ -40,7 +40,7 @@ if ($LASTEXITCODE -ne 0) { throw "Failed to configure one or more GitHub iOS sig
 
 Write-Host "IOS_SIGNING_SECRETS=CONFIGURED" -ForegroundColor Green
 
-& gh workflow run native-mobile-build.yml --repo $Repo --ref $Branch -f publish_android_release=false -f build_ios=true -f ios_sign_ad_hoc=true
+& gh workflow run native-mobile-build.yml --repo $Repo --ref $Branch -f publish_android_release=false -f build_android=false -f build_ios=true -f ios_sign_ad_hoc=true
 if ($LASTEXITCODE -ne 0) { throw "Failed to trigger the signed iOS workflow." }
 
 Write-Host "IOS_SIGNED_BUILD_TRIGGERED=PASS" -ForegroundColor Green
