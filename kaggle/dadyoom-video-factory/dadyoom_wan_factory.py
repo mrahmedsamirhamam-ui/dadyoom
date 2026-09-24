@@ -301,7 +301,8 @@ def scene_prompt(job: dict[str, Any], scene_index: int) -> str:
 
 def load_pipeline(device: str) -> WanPipeline:
     print(
-        f"LOADING_WAN_PIPELINE device={device} model={MODEL_ID}",
+        f"LOADING_WAN_PIPELINE device={device} model={MODEL_ID} "
+        "memory_mode=model_cpu_offload",
         flush=True,
     )
 
@@ -317,14 +318,23 @@ def load_pipeline(device: str) -> WanPipeline:
         MODEL_ID,
         vae=vae,
         torch_dtype=torch.float16,
+        low_cpu_mem_usage=True,
     )
     pipe.scheduler = UniPCMultistepScheduler.from_config(
         pipe.scheduler.config,
         flow_shift=5.0,
     )
-    pipe.to(device)
-    return pipe
 
+    # Equivalent in spirit to Wan's official --t5_cpu + --offload_model:
+    # keep large components on CPU until their forward pass, instead of
+    # loading the whole text encoder + transformer + VAE into a 16GB T4.
+    gpu_id = int(device.split(":")[-1])
+    pipe.enable_model_cpu_offload(
+        gpu_id=gpu_id,
+        device="cuda",
+    )
+
+    return pipe
 
 def render_scene(
     pipe: WanPipeline,
@@ -644,6 +654,7 @@ def main() -> int:
                 else [],
                 "hf_auth": bool(HF_TOKEN),
                 "max_jobs": MAX_JOBS,
+                "memory_mode": "model_cpu_offload_t5_cpu_style",
             },
             ensure_ascii=False,
         ),
@@ -656,27 +667,15 @@ def main() -> int:
     if shutil.which("ffmpeg") is None or shutil.which("ffprobe") is None:
         raise RuntimeError("FFMPEG_REQUIRED")
 
-    pipelines: list[tuple[WanPipeline, str]] = []
-    pipelines.append((load_pipeline("cuda:0"), "cuda:0"))
-
-    if torch.cuda.device_count() >= 2:
-        try:
-            pipelines.append((load_pipeline("cuda:1"), "cuda:1"))
-        except torch.cuda.OutOfMemoryError as exc:
-            print(
-                f"SECOND_GPU_PIPELINE_OOM fallback=single_gpu error={exc}",
-                flush=True,
-            )
-            with torch.cuda.device(1):
-                torch.cuda.empty_cache()
-        except Exception as exc:
-            print(
-                f"SECOND_GPU_PIPELINE_FAILED fallback=single_gpu error={exc}",
-                flush=True,
-            )
+    # Smoke test uses one T4 first. If this passes the first-scene
+    # throughput gate, a later revision can safely parallelize across both T4s.
+    pipelines: list[tuple[WanPipeline, str]] = [
+        (load_pipeline("cuda:0"), "cuda:0")
+    ]
 
     print(
-        f"WAN_PIPELINES_READY count={len(pipelines)}",
+        "WAN_PIPELINES_READY count=1 "
+        "strategy=single_gpu_model_cpu_offload",
         flush=True,
     )
 
