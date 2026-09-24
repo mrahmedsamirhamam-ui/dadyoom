@@ -207,7 +207,7 @@ export default function DadyoomInstallPrompt() {
                   اختر تطبيق هاتفك
                 </h2>
                 <p className="mt-2 text-sm leading-7 text-[#625b50]">
-                  Android وiOS هما المنتج الأساسي. وتظل نسخة الويب القابلة للتثبيت خيارًا احتياطيًا.
+                  Android جاهز للتنزيل المباشر. ونسخة iPhone الأصلية قيد التجهيز وستظهر هنا لاحقًا. وتظل نسخة الويب خيارًا احتياطيًا.
                 </p>
               </div>
 
@@ -244,24 +244,23 @@ export default function DadyoomInstallPrompt() {
                 className="rounded-2xl border-2 border-[#c49a43] bg-white p-4 text-right text-[#123f39] transition hover:bg-[#fff4d9]"
               >
                 <span className="block text-lg font-black">
-                  iPhone الأصلي
-                  {platform === "ios" ? " — جهازك" : ""}
+                  iPhone الأصلي — قريبًا
                 </span>
                 <span className="mt-1 block text-xs leading-5 text-[#75684f]">
-                  تم بناء iOS Native — التوقيع والتثبيت لاحقًا
+                  تطبيق iOS Native مبني ومحفوظ — التنزيل العام قريبًا
                 </span>
               </button>
             </div>
 
             {helpMode === "android-native" ? (
               <div className="mt-5 rounded-2xl border border-[#d8c7a6] bg-white p-4 text-sm leading-7 text-[#5f574d]">
-                نسخة Android الأصلية مع Offline AI جاهزة تقنيًا. سيظهر رابط APK هنا بعد تثبيت مفتاح التوقيع الدائم حتى تستقبل التحديثات المستقبلية بنفس الهوية.
+                نسخة Android الأصلية مع Offline AI جاهزة وموقعة. اضغط «Android الأصلي» لتنزيل APK مباشرة من الإصدار الرسمي الأحدث.
               </div>
             ) : null}
 
             {helpMode === "ios-native" ? (
               <div className="mt-5 rounded-2xl border border-[#d8c7a6] bg-white p-4 text-sm leading-7 text-[#5f574d]">
-                نسخة iOS الأصلية بُنيت بنجاح، بما فيها نسخة iPhone غير الموقعة. يلزم توقيع Apple وملف provisioning قبل تثبيتها على iPhone.
+                تطبيق iOS Native بُني بنجاح ومحفوظ لدينا. لا يوجد الآن مسار مجاني ومستقر للتنزيل العام على iPhone، لذلك سيظل التنزيل «قريبًا» إلى أن يتوفر مسار مناسب دون تكلفة.
               </div>
             ) : null}
 
@@ -330,7 +329,7 @@ export default function DadyoomInstallPrompt() {
             ) : null}
 
             <div className="mt-5 rounded-2xl bg-[#f5ead0] px-4 py-3 text-xs font-bold leading-6 text-[#695936]">
-              لن نضع على الموقع APK تجريبيًا أو غير ثابت التوقيع. رابط Android الأصلي سيُفعّل فقط بعد إنشاء مفتاح التوقيع الدائم ونشر Release ثابت.
+              Android متاح الآن كإصدار Native موقّع للتنزيل المباشر. أما iPhone فسيظل «قريبًا» حاليًا بدون أي تكلفة أو اشتراك مدفوع.
             </div>
           </section>
         </div>
