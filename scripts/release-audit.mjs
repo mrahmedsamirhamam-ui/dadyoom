@@ -170,24 +170,40 @@ if (
     envExample
   )
 ) {
+  const secretNamePattern =
+    /(?:^|_)(?:API_KEY|TOKEN|SECRET|PASSWORD|CREDENTIALS|SERVICE_ROLE_KEY|PRIVATE_KEY)(?:_|$)/;
+
   const unsafe =
     fs.readFileSync(
       envExample,
       "utf8"
     )
     .split(/\r?\n/)
-    .filter(
-      (line) =>
-        /^\s*[A-Z][A-Z0-9_]*\s*=\s*.+$/.test(
-          line
-        )
-    );
+    .map((line) =>
+      line.match(
+        /^\s*([A-Z][A-Z0-9_]*)\s*=\s*(.*)\s*$/
+      )
+    )
+    .filter(Boolean)
+    .filter((match) => {
+      const name =
+        match[1] ?? "";
+      const value =
+        (match[2] ?? "").trim();
+
+      return (
+        value.length > 0 &&
+        secretNamePattern.test(name)
+      );
+    });
 
   if (
     unsafe.length
   ) {
     throw new Error(
-      ".env.example contains non-empty values"
+      `.env.example contains non-empty secret placeholders: ${unsafe
+        .map((match) => match[1])
+        .join(",")}`
     );
   }
 }

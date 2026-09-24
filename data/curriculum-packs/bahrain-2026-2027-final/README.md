@@ -1,15 +1,20 @@
 # Bahrain Arabic Unified Secondary — 2026–2027
 
-These files are **structure-only reference packs** for the Bahrain Arabic unified secondary track.
+These files preserve the **verified official structure** for Bahrain Arabic unified secondary and now also contain **original Dadyoom instructional content**.
 
 - Grade 10 canonical lessons: 14
 - Grade 11 canonical lessons: 22
 - Grade 12 canonical lessons: 19
 - Canonical secondary total: 55
-- Official source: https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf
+- Official structure source: https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf
+- Lesson explanations, objectives, vocabulary and question banks: original Dadyoom content.
 
-The historical backup contained 24 / 35 / 36 flattened extraction rows (95 total). Those rows include headings, continuation fragments, split table-cell text, and instructions; they are not 95 standalone lessons.
+The literary works named by the official plan are **not republished** in these packs. Dadyoom teaches analysis and language skills and directs learners to the official textbook or another licensed copy for the assigned text.
 
-The 55 canonical lessons were verified against the official Plan2 source and the existing structured Supabase lesson records.
+The historical backup contained 24 / 35 / 36 flattened extraction rows (95 total). Those rows included headings, continuation fragments, split table-cell text and instructions; they were not 95 standalone lessons.
 
-**Do not import these files with the content-complete curriculum-pack importer yet.** They intentionally do not fabricate missing lesson bodies, objectives, or question banks. They become import-ready only after authored content and assessment data are completed and validated.
+The 55 canonical lessons were verified against Plan2 and the existing structured Supabase lesson records.
+
+## Import status
+
+Content validation is now complete, but `importReady` remains `false` intentionally. The current generic importer creates a curriculum name per pack/semester, while production Bahrain already uses a shared curriculum record across grades. Before a fresh-database import, reconcile that identity mapping so recovery does not create duplicate Bahrain curriculum rows.
