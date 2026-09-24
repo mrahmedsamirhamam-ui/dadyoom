@@ -15,6 +15,9 @@ type CreateVideoPayload = {
   provider?: string;
   sessionId?: string;
   videoId?: string;
+  videoUrl?: string;
+  thumbnailUrl?: string;
+  duration?: number;
   status?: string;
   degraded?: boolean;
   configuredProviders?: string[];
@@ -179,6 +182,30 @@ export async function generateCinematicVideo({
 
     let videoId =
       created.videoId ?? "";
+
+    if (
+      created.status ===
+        "completed" &&
+      created.videoUrl
+    ) {
+      onStatus?.(
+        "تم إنشاء الفيديو بنجاح ✅",
+      );
+
+      return {
+        requestId,
+        provider,
+        sessionId,
+        videoId:
+          videoId || undefined,
+        videoUrl:
+          created.videoUrl,
+        thumbnailUrl:
+          created.thumbnailUrl,
+        duration:
+          created.duration,
+      };
+    }
 
     onStatus?.(
       created.degraded
