@@ -60,6 +60,18 @@ import sys
 p = Path(sys.argv[1])
 text = p.read_text()
 
+# CocoaPods must compile only the legacy MediaPipe-compatible plugin sources.
+# ios/Sources/LiteRTLM belongs to the SwiftPM target and imports CLiteRTLM,
+# which is intentionally unavailable in the CocoaPods integration.
+text, source_count = re.subn(
+    r"s\.source_files\s*=\s*['\"]ios/Sources/\*\*/\*\.\{swift,h,m,c,cc,mm,cpp\}['\"]",
+    "s.source_files = 'ios/Sources/LLMPlugin/**/*.{swift,h,m,c,cc,mm,cpp}'",
+    text,
+    count=1,
+)
+if source_count != 1:
+    raise SystemExit("FAILED=IOS_LLM_POD_SOURCE_FILTER_NOT_APPLIED")
+
 if "s.static_framework = true" not in text:
     marker = re.search(r"^\s*s\.swift_version\s*=.*$", text, flags=re.MULTILINE)
     if marker:
@@ -70,6 +82,12 @@ if "s.static_framework = true" not in text:
 
 p.write_text(text)
 PY
+
+grep -q "s.source_files = 'ios/Sources/LLMPlugin/\*\*/\*.{swift,h,m,c,cc,mm,cpp}'" "$LLM_PODSPEC" || {
+  echo "FAILED=IOS_LLM_POD_SOURCE_FILTER_NOT_SET"
+  exit 1
+}
+echo "IOS_LLM_POD_SOURCE_FILTER=LLMPlugin_ONLY"
 
 grep -q 's.static_framework = true' "$LLM_PODSPEC" || {
   echo "FAILED=IOS_LLM_POD_STATIC_FRAMEWORK_NOT_SET"
