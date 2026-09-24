@@ -108,8 +108,8 @@ The script creates/syncs the Capacitor iOS project, embeds the offline Qwen
 model in the app bundle, configures dadyoom://auth/callback, validates the
 native Xcode build, and can run on a connected iPhone when signing is ready.
 
-Video generation does not render on the iPhone. It uses the same cloud video
-backend as the Dadyoom website and Android app.
+AI lesson video generation is intentionally marked "Coming soon" in this release.
+The iOS work should not depend on any video-generation token or GPU backend.
 "@
 
 Set-Content -LiteralPath (Join-Path $Kit "README-IOS-FINAL.txt") -Value $Readme -Encoding utf8
