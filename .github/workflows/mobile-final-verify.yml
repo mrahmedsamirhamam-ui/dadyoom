@@ -38,6 +38,9 @@ jobs:
       - name: Tests
         run: npm run test:run
 
+      - name: Mobile PWA verify
+        run: npm run mobile:pwa:verify
+
       - name: Shell syntax
         run: bash -n scripts/dadyoom-finalize-ios.sh
 
