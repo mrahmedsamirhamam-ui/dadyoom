@@ -32,6 +32,8 @@ type NativeIntent = {
 export default function MobileOAuthBridge() {
   const busyRef =
     useRef(false);
+  const lastHandledUrlRef =
+    useRef("");
 
   useEffect(() => {
     if (!Capacitor.isNativePlatform()) {
@@ -47,11 +49,14 @@ export default function MobileOAuthBridge() {
         !url.startsWith(
           NATIVE_CALLBACK,
         ) ||
+        url ===
+          lastHandledUrlRef.current ||
         busyRef.current
       ) {
         return;
       }
 
+      lastHandledUrlRef.current = url;
       busyRef.current = true;
 
       void finishOAuth(url).finally(
