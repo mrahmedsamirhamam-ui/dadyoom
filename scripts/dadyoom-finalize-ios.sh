@@ -245,14 +245,10 @@ grep -q "$MODEL_NAME" ios/App/App.xcodeproj/project.pbxproj || fail "IOS_MODEL_N
 pass "IOS_OFFLINE_MODEL=EMBEDDED"
 echo "MODEL_BYTES=$(stat -f%z "$IOS_MODEL")"
 
-section "6/8 SOURCE + VIDEO QUALITY GATES"
+section "6/8 SOURCE + MOBILE QUALITY GATES"
 
 npx eslint \
-  "lib/video/cinematic-client.ts" \
-  "lib/video/cinematic-avatar-agent.ts" \
   "app/api/video/cinematic/route.ts" \
-  "app/api/video/cinematic/status/route.ts" \
-  "app/api/video/cinematic/health/route.ts" \
   "app/(dashboard)/ask/page.tsx" \
   "components/dad-ai/DadLessonVideoButton.tsx" \
   "lib/mobile/offline-ai.ts" \
@@ -261,7 +257,7 @@ npx eslint \
 npm run test:run
 npm run build:vinext
 
-pass "IOS_SHARED_VIDEO_SOURCE=PASS"
+pass "IOS_VIDEO_AI_COMING_SOON=PASS"
 pass "IOS_WEB_BUILD=PASS"
 
 section "7/8 XCODE BUILD"
@@ -328,7 +324,7 @@ git add -- \
 git diff --cached --check
 
 if [[ -n "$(git diff --cached --name-only)" ]]; then
-  git commit -m "Finalize iOS $VERSION_NAME and shared cloud video"
+  git commit -m "Finalize iOS $VERSION_NAME native shell"
   git push origin "HEAD:$EXPECTED_BRANCH"
   pass "IOS_SOURCE_PUSH=PASS"
 else
@@ -344,10 +340,8 @@ REPORT="$ARTIFACTS/DADYOOM-IOS-FINAL-REPORT.txt"
   echo "IOS_OFFLINE_QWEN=EMBEDDED"
   echo "IOS_LLM_BACKEND=COCOAPODS_MEDIAPIPE_TASK"
   echo "IOS_SIMULATOR_BUILD=PASS"
-  echo "VIDEO_IOS=SHARED_CLOUD_FIXED"
-  echo "VIDEO_WEB=SHARED_CLOUD_FIXED"
-  echo "VIDEO_ANDROID=SHARED_CLOUD_FIXED"
-  if [[ -n "$TEAM_ID" ]]; then
+  echo "VIDEO_AI=COMING_SOON"
+    if [[ -n "$TEAM_ID" ]]; then
     echo "IOS_SIGNED_ARCHIVE=READY"
   else
     echo "IOS_SIGNED_ARCHIVE=NEEDS_APPLE_TEAM_ID"
@@ -362,4 +356,4 @@ REPORT="$ARTIFACTS/DADYOOM-IOS-FINAL-REPORT.txt"
 echo
 pass "DADYOOM IOS FINALIZATION COMPLETE"
 echo "REPORT=$REPORT"
-echo "NEXT=Test login, lessons, cloud AI, offline AI, video generation, notifications, rewards, and payments on the iPhone."
+echo "NEXT=Test login, onboarding, courses, lessons, assessment, progress, cloud AI, offline AI, notifications, rewards, and payments on the iPhone."
