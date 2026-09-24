@@ -49,6 +49,26 @@ const autoUpdate = read(
   "components/pwa/DadyoomAutoUpdate.tsx"
 );
 
+const capacitorConfig = read(
+  "capacitor.config.ts"
+);
+
+const packageJson = read(
+  "package.json"
+);
+
+const nativeTts = read(
+  "lib/mobile/native-tts.ts"
+);
+
+const arabicSpeech = read(
+  "hooks/use-arabic-speech.ts"
+);
+
+const dadVoice = read(
+  "services/dad-ai/dad-voice.ts"
+);
+
 check(
   "PWA_MANIFEST_STANDALONE",
   manifest.includes(
@@ -153,7 +173,36 @@ check(
       "نسخة احتياطية — PWA"
     ) &&
     prompt.includes(
-      "Android وiOS هما المنتج الأساسي"
+      "Android جاهز للتنزيل المباشر"
+    ) &&
+    prompt.includes(
+      "iPhone الأصلي — قريبًا"
+    )
+);
+
+check(
+  "NATIVE_SERVER_CONNECTED",
+  capacitorConfig.includes(
+    'url: "https://dadyoom.mrahmedsamirhamam.workers.dev"'
+  ) &&
+    capacitorConfig.includes(
+      '"dadyoom.mrahmedsamirhamam.workers.dev"'
+    )
+);
+
+check(
+  "ANDROID_NATIVE_TTS_WIRED",
+  packageJson.includes(
+    '"@capacitor-community/text-to-speech": "8.0.2"'
+  ) &&
+    nativeTts.includes(
+      "TextToSpeech.speak"
+    ) &&
+    arabicSpeech.includes(
+      "playNativeSpeech"
+    ) &&
+    dadVoice.includes(
+      "speakNativeArabic"
     )
 );
 
