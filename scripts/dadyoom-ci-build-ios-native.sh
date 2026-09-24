@@ -95,6 +95,38 @@ grep -q 's.static_framework = true' "$LLM_PODSPEC" || {
 }
 echo "IOS_LLM_POD_STATIC_FRAMEWORK=PASS"
 
+# Xcode 26 / Swift 6 imports URLSessionDownloadDelegate as Sendable.
+# The plugin delegate keeps a weak CAPPlugin reference, so declare the delegate
+# final and explicitly use unchecked Sendable for this bridging object.
+LLM_SWIFT="$ROOT/node_modules/@capgo/capacitor-llm/ios/Sources/LLMPlugin/LLMPlugin.swift"
+[[ -f "$LLM_SWIFT" ]] || {
+  echo "FAILED=IOS_LLM_SWIFT_SOURCE_MISSING"
+  exit 1
+}
+
+python3 - "$LLM_SWIFT" <<'PY'
+from pathlib import Path
+import sys
+
+p = Path(sys.argv[1])
+text = p.read_text()
+old = "class DownloadDelegate: NSObject, URLSessionDownloadDelegate {"
+new = "final class DownloadDelegate: NSObject, URLSessionDownloadDelegate, @unchecked Sendable {"
+
+if new not in text:
+    if old not in text:
+        raise SystemExit("FAILED=IOS_DOWNLOAD_DELEGATE_PATCH_TARGET_MISSING")
+    text = text.replace(old, new, 1)
+
+p.write_text(text)
+PY
+
+grep -q 'final class DownloadDelegate: NSObject, URLSessionDownloadDelegate, @unchecked Sendable' "$LLM_SWIFT" || {
+  echo "FAILED=IOS_DOWNLOAD_DELEGATE_SENDABLE_PATCH_NOT_SET"
+  exit 1
+}
+echo "IOS_DOWNLOAD_DELEGATE_SENDABLE_PATCH=PASS"
+
 # CI starts from a clean checkout. Recreate the native iOS project so the
 # repository remains lightweight while the produced artifact is fully native.
 rm -rf ios
