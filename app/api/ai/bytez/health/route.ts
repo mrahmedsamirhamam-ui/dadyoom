@@ -163,7 +163,7 @@ export async function GET() {
 
     const suggestedTextModels = textModelIds
       .filter((model) =>
-        /(^|\\/)Qwen.*Qwen3/i.test(model),
+        /(^|\/)Qwen.*Qwen3/i.test(model),
       )
       .slice(0, 20);
 
