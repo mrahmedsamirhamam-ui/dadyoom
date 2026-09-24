@@ -11,6 +11,7 @@ import {
 import "./globals.css";
 
 import NativeMobileShell from "@/components/mobile/NativeMobileShell";
+import NativeAppUpdater from "@/components/mobile/NativeAppUpdater";
 import DadCompanion from "@/components/dad-ai/DadCompanion";
 import DadyoomInstallPrompt from "@/components/pwa/DadyoomInstallPrompt";
 import DadyoomAutoUpdate from "@/components/pwa/DadyoomAutoUpdate";
@@ -171,6 +172,7 @@ export default function RootLayout({
         <DadyoomAds />
         <MobileOAuthBridge />
         <NativeMobileShell />
+        <NativeAppUpdater />
         <DadyoomInstallPrompt />
         <DadyoomAutoUpdate />
         <DadCompanion />
