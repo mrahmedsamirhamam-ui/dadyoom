@@ -282,50 +282,22 @@ async function callBytez(input: AiRequest): Promise<AiResult> {
       const started = Date.now();
 
       try {
-        const modelPath = model
-          .split("/")
-          .map((part) => encodeURIComponent(part))
-          .join("/");
-
-        const inputMode =
-          process.env.BYTEZ_INPUT_MODE?.trim().toLowerCase() ||
-          (model === "Qwen/Qwen3-4B-Instruct-2507"
-            ? "text"
-            : "messages");
-
-        const bytezInput =
-          inputMode === "text"
-            ? {
-                text: input.messages
-                  .map(
-                    (item) =>
-                      `${item.role.toUpperCase()}:\n${item.content}`,
-                  )
-                  .join("\n\n"),
-              }
-            : {
-                messages:
-                  input.messages,
-              };
-
         const response = await fetchTimed(
-          `${baseUrl.replace(/\/+$/u, "")}/models/v2/${modelPath}`,
+          `${baseUrl.replace(/\/+$/u, "")}/models/v2/openai/v1/chat/completions`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization:
-                apiKey.trim().toLowerCase().startsWith("key ")
-                  ? apiKey.trim()
-                  : `Key ${apiKey.trim()}`,
+              Authorization: apiKey.trim(),
             },
             body: JSON.stringify({
-              ...bytezInput,
+              model,
+              messages: input.messages,
+              max_completion_tokens:
+                input.maxTokens ?? 1200,
+              temperature:
+                input.temperature ?? 0.3,
               stream: false,
-              params: {
-                temperature: input.temperature ?? 0.3,
-                max_new_tokens: input.maxTokens ?? 1200,
-              },
             }),
           },
         );
@@ -340,7 +312,10 @@ async function callBytez(input: AiRequest): Promise<AiResult> {
           lastError = error;
           modelError = error;
 
-          if (response.status === 401 || response.status === 403) {
+          if (
+            response.status === 401 ||
+            response.status === 403
+          ) {
             continue;
           }
 
@@ -348,14 +323,22 @@ async function callBytez(input: AiRequest): Promise<AiResult> {
         }
 
         let payload: {
+          choices?: Array<{
+            message?: {
+              content?: string;
+            };
+          }>;
           error?: unknown;
-          output?: unknown;
         };
 
         try {
           payload = JSON.parse(raw) as {
+            choices?: Array<{
+              message?: {
+                content?: string;
+              };
+            }>;
             error?: unknown;
-            output?: unknown;
           };
         } catch {
           throw makeError("BYTEZ_INVALID_JSON");
@@ -367,7 +350,8 @@ async function callBytez(input: AiRequest): Promise<AiResult> {
           );
         }
 
-        const text = bytezOutputText(payload.output);
+        const text =
+          payload.choices?.[0]?.message?.content?.trim() ?? "";
 
         if (!text) {
           throw makeError("BYTEZ_EMPTY");
