@@ -72,7 +72,8 @@
     "vinext": "1.0.0-beta.10",
     "@vinext/cloudflare": "1.0.0-beta.8",
     "react-server-dom-webpack": "19.2.6",
-    "@mediapipe/tasks-genai": "^0.10.24"
+    "@mediapipe/tasks-genai": "^0.10.24",
+    "@capacitor-community/text-to-speech": "8.0.2"
   },
   "devDependencies": {
     "@capacitor/cli": "8.5.0",
