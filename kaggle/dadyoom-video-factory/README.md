@@ -77,3 +77,14 @@ After syncing code with the CLI:
 Do not treat a CLI-pushed version's first automatic run as the benchmark run.
 The benchmark run starts only after the editor session can successfully read
 both Secrets.
+
+
+## Hugging Face authentication
+
+Add a third Kaggle Secret named `HF_TOKEN` using the existing Hugging Face
+token from the local Dadyoom environment. The worker reads it securely and sets
+the Hugging Face authentication environment variables before model download.
+The token value is never printed.
+
+This is optional for public models, but recommended for higher Hub rate limits
+and more reliable downloads.
