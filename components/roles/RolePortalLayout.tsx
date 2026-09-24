@@ -18,6 +18,7 @@ export type PortalLink = {
 
 const destinations: Record<string, string> = {
   student: "/student",
+  child: "/student",
   teacher: "/teacher",
   parent: "/parent",
   school: "/school",
@@ -80,9 +81,14 @@ export default async function RolePortalLayout({
       ?.trim()
       .toLowerCase() ?? "";
 
+  const studentChildAccess =
+    role === "student" &&
+    actualRole === "child";
+
   if (
     actualRole !== role &&
-    actualRole !== "admin"
+    actualRole !== "admin" &&
+    !studentChildAccess
   ) {
     redirect(
       destinations[actualRole] ??
