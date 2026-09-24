@@ -319,6 +319,12 @@ export async function POST(request: Request) {
           result.sessionId,
         videoId:
           result.videoId,
+        videoUrl:
+          result.videoUrl,
+        thumbnailUrl:
+          result.thumbnailUrl,
+        duration:
+          result.duration,
         status:
           result.status,
         format:
