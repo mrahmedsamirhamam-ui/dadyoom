@@ -94,7 +94,15 @@ if (!country) {
 }
 
 const semesterLabel = pack.semester ? ` — الفصل ${pack.semester === 1 ? "الأول" : pack.semester === 2 ? "الثاني" : "الثالث"}` : "";
-const curriculumName = `${pack.curriculum.nameAr}${semesterLabel}`;
+const storageCurriculumName =
+  typeof pack.curriculum.storageNameAr === "string"
+    ? pack.curriculum.storageNameAr.trim()
+    : "";
+const curriculumName =
+  storageCurriculumName ||
+  `${pack.curriculum.nameAr}${semesterLabel}`;
+
+console.log(`PACK_STORAGE_CURRICULUM=${curriculumName}`);
 let curriculum = await one("curricula", (q) => q.eq("country_id", country.id).eq("name_ar", curriculumName).eq("academic_year", pack.academicYear));
 if (!curriculum) {
   const { data, error } = await supabase.from("curricula").insert({
@@ -156,7 +164,7 @@ for (const unitPack of pack.units) {
     const payload = {
       unit_id: unit.id,
       title: lessonPack.title,
-      slug: `${pack.packKey.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${String(lessonPack.number).padStart(2, "0")}`,
+      slug: `${pack.packKey.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-u${String(unitPack.number).padStart(2, "0")}-l${String(lessonPack.number).padStart(2, "0")}`,
       lesson_number: lessonPack.number,
       sort_order: lessonPack.number,
       lesson_type: lessonPack.type,

@@ -17,4 +17,14 @@ The 55 canonical lessons were verified against Plan2 and the existing structured
 
 ## Import status
 
-Content validation is now complete, but `importReady` remains `false` intentionally. The current generic importer creates a curriculum name per pack/semester, while production Bahrain already uses a shared curriculum record across grades. Before a fresh-database import, reconcile that identity mapping so recovery does not create duplicate Bahrain curriculum rows.
+The three packs are now `importReady: true`.
+
+The generic importer supports `curriculum.storageNameAr`, so Grades 10–12 target the existing shared Bahrain curriculum `اللغة العربية` for academic year 2026–2027 instead of creating duplicate semester-specific curriculum rows. Lesson slugs also include the unit number, so packs with multiple units cannot collide on lesson-number-based slugs.
+
+Dry run:
+
+`node scripts/import-curriculum-pack.mjs --pack <pack-file>`
+
+Apply only with verified Supabase service credentials:
+
+`node scripts/import-curriculum-pack.mjs --pack <pack-file> --apply`

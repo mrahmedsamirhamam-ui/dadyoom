@@ -24,7 +24,8 @@
   "curriculum": {
     "nameAr": "اللغة العربية — توحيد المسارات",
     "nameEn": "Arabic Language — Unified Tracks",
-    "description": "منهج اللغة العربية — مملكة البحرين — ضاديوم"
+    "description": "منهج اللغة العربية — مملكة البحرين — ضاديوم",
+    "storageNameAr": "اللغة العربية"
   },
   "rights": {
     "contentOwner": "dadyoom",
@@ -1911,7 +1912,7 @@
     }
   ],
   "structureOnly": false,
-  "importReady": false,
+  "importReady": true,
   "contentStatus": "authored-dadyoom-content-complete",
-  "validationNote": "Canonical lesson structure remains sourced from Bahrain Edunet Plan2. Dadyoom-authored explanations, objectives, vocabulary and question banks are complete. Import remains disabled until the generic importer is reconciled with the existing shared Bahrain curriculum record to avoid duplicate curriculum rows."
+  "validationNote": "Canonical structure is verified against Bahrain Edunet Plan2. Dadyoom-authored content/objectives/vocabulary/questions are complete. The generic importer now targets the shared production curriculum via curriculum.storageNameAr and includes unit numbers in lesson slugs."
 }

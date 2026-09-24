@@ -17,7 +17,7 @@ export type CurriculumPackVocabulary = {
 export type CurriculumPackLesson = {
   number: number;
   title: string;
-  type: "reading" | "writing" | "listening" | "speaking" | "grammar" | "vocabulary";
+  type: "reading" | "writing" | "listening" | "speaking" | "grammar" | "spelling" | "vocabulary" | "assessment";
   estimatedMinutes?: number;
   summary: string;
   content: string;
@@ -43,7 +43,7 @@ export type CurriculumPack = {
   stage: { code: string; nameAr: string };
   grade: { number: number; nameAr: string; nameEn?: string | null };
   semester: 1 | 2 | 3 | null;
-  curriculum: { nameAr: string; nameEn?: string | null; description?: string | null };
+  curriculum: { nameAr: string; nameEn?: string | null; description?: string | null; storageNameAr?: string | null };
   rights: {
     contentOwner: "dadyoom" | "licensed" | "public-domain";
     sourceLabel: string;
