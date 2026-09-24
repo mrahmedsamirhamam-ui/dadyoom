@@ -11,11 +11,11 @@ on:
       version_name:
         description: "Android version name"
         required: false
-        default: "1.0.0"
+        default: "1.0.2"
       version_code:
         description: "Android version code"
         required: false
-        default: "1"
+        default: "3"
       build_android:
         description: "Build Android during manual dispatch"
         required: false
@@ -53,8 +53,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 90
     env:
-      DADYOOM_ANDROID_VERSION_NAME: ${{ inputs.version_name || '1.0.0' }}
-      DADYOOM_ANDROID_VERSION_CODE: ${{ inputs.version_code || '1' }}
+      DADYOOM_ANDROID_VERSION_NAME: ${{ inputs.version_name || '1.0.2' }}
+      DADYOOM_ANDROID_VERSION_CODE: ${{ inputs.version_code || '3' }}
       DADYOOM_ANDROID_MODEL_URL: ${{ secrets.DADYOOM_ANDROID_MODEL_URL }}
       DADYOOM_ANDROID_KEYSTORE_B64: ${{ secrets.DADYOOM_ANDROID_KEYSTORE_B64 }}
       DADYOOM_ANDROID_STORE_PASSWORD: ${{ secrets.DADYOOM_ANDROID_STORE_PASSWORD }}
@@ -203,6 +203,14 @@ jobs:
 
       - name: Build native iOS with offline Qwen device resource
         run: bash scripts/dadyoom-ci-build-ios-native.sh
+
+      - name: Verify current-head iOS artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f .dadyoom-mobile/ci/ios/Dadyoom-iOS-Simulator.zip
+          test -f .dadyoom-mobile/ci/ios/Dadyoom-iOS-unsigned-requires-signing.ipa
+          echo "IOS_CURRENT_HEAD_ARTIFACTS=PASS"
 
       - name: Upload iOS native artifacts
         uses: actions/upload-artifact@v7

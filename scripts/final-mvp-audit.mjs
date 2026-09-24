@@ -10,7 +10,7 @@ const requiredFiles = [
   "app/signup/page.tsx",
   "app/auth/callback/route.ts",
   "app/onboarding/page.tsx",
-  "app/(dashboard)/courses/CurriculumCatalogClient.tsx",
+  "app/courses/CurriculumCatalogClient.tsx",
   "app/(dashboard)/student/layout.tsx",
   "app/(dashboard)/teacher/layout.tsx",
   "app/(dashboard)/parent/layout.tsx",
@@ -37,11 +37,13 @@ const requiredFiles = [
   "scripts/verify-curriculum-packs.mjs",
   "scripts/curriculum-coverage.mjs",
   "data/curriculum-packs/arab-countries.json",
+  "data/curriculum-packs/official-sources-2026.json",
   "data/curriculum-packs/bh-2026-arabic-primary-g1-s1.json",
   "docs/PRODUCT-CONTRACT.md",
   "docs/CURRICULUM-OPERATIONS.md",
   "docs/RELEASE-GATE.md",
   "supabase/migrations/20260826_release_security_hardening_v1.sql",
+  "supabase/migrations/20260925_fix_welcome_trial_to_one_day.sql",
 ];
 
 for (const rel of requiredFiles) {
@@ -65,6 +67,60 @@ if (
   registry.countries.length !== 22
 ) {
   throw new Error("FINAL_ARAB_COUNTRY_REGISTRY_NOT_22");
+}
+
+const coreReadyCountries =
+  registry.countries.filter(
+    (country) =>
+      country.coreStatus === "published" &&
+      country.coreAcademicYear === "2026-2027" &&
+      Number(country.coreGrades) >= 12 &&
+      Number(country.coreLessons) >= 216
+  );
+
+if (coreReadyCountries.length !== 22) {
+  throw new Error(
+    `FINAL_DADYOOM_CORE_EXPECTED_22_GOT_${coreReadyCountries.length}`
+  );
+}
+
+const officialSources = JSON.parse(
+  fs.readFileSync(
+    path.resolve(
+      root,
+      "data/curriculum-packs/official-sources-2026.json"
+    ),
+    "utf8"
+  )
+);
+
+const officialSourceCountries =
+  Array.isArray(officialSources.countries)
+    ? officialSources.countries
+    : [];
+
+const officialCodes =
+  new Set(
+    officialSourceCountries.map(
+      (country) => country.code
+    )
+  );
+
+if (
+  officialSourceCountries.length !== 22 ||
+  officialCodes.size !== 22 ||
+  registry.countries.some(
+    (country) => !officialCodes.has(country.code)
+  ) ||
+  officialSourceCountries.some(
+    (country) =>
+      !Array.isArray(country.sources) ||
+      country.sources.length === 0
+  )
+) {
+  throw new Error(
+    "FINAL_OFFICIAL_SOURCE_CATALOG_NOT_22"
+  );
 }
 
 const bahrain = JSON.parse(
@@ -169,6 +225,8 @@ if (existingTrackedBackups.length) {
 
 console.log("FINAL_REQUIRED_FILES=PASS");
 console.log("FINAL_ARAB_COUNTRY_REGISTRY=22");
+console.log("FINAL_DADYOOM_CORE_COUNTRIES=22");
+console.log("FINAL_OFFICIAL_SOURCE_CATALOG=22");
 console.log("FINAL_BAHRAIN_PACK=18");
 console.log("FINAL_DAD_GUARDS=PASS");
 console.log("FINAL_ROLE_GUARDS=PASS");

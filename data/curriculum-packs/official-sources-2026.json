@@ -1,0 +1,324 @@
+{
+  "schemaVersion": 1,
+  "generatedFor": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "policy": "هذه قائمة مصادر اقتناء/تحقق مرشحة فقط. لا تعني أن المطابقة الوطنية مكتملة. لا تتحول الدولة إلى National Official Match إلا بعد إثبات الصف والفصل والوحدة والدرس وحقوق الاستخدام.",
+  "countries": [
+    {
+      "code": "BH",
+      "nameAr": "مملكة البحرين",
+      "matchingStatus": "partial",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://moe.gov.bh/ar/moe-educational-resources",
+          "kind": "official-catalog"
+        }
+      ]
+    },
+    {
+      "code": "EG",
+      "nameAr": "مصر",
+      "matchingStatus": "partial",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://moe.gov.eg/what-s-on/news",
+          "kind": "official-portal"
+        },
+        {
+          "url": "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026/Primary/Primary6/Term2/StudentBook/Arabic_prim6_TR2.pdf",
+          "kind": "official-storage-example"
+        }
+      ]
+    },
+    {
+      "code": "JO",
+      "nameAr": "الأردن",
+      "matchingStatus": "partial",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://www.nccd.gov.jo/Ar/Pages/Publications/?MaterialStudy=92",
+          "kind": "official-catalog"
+        },
+        {
+          "url": "https://nccd.gov.jo/Ar/Pages/textbooks",
+          "kind": "official-catalog"
+        }
+      ]
+    },
+    {
+      "code": "LY",
+      "nameAr": "ليبيا",
+      "matchingStatus": "partial",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://cerc.moe.gov.ly/educational-curricul/",
+          "kind": "official-catalog"
+        }
+      ]
+    },
+    {
+      "code": "PS",
+      "nameAr": "فلسطين",
+      "matchingStatus": "partial",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://moe.edu.ps/class1/books",
+          "kind": "official-catalog-pattern",
+          "note": "يُتحقق صفًا صفًا حتى class12 قبل الاعتماد."
+        }
+      ]
+    },
+    {
+      "code": "TN",
+      "nameAr": "تونس",
+      "matchingStatus": "not-closed",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://www.cnp.com.tn/man-eleves/",
+          "kind": "official-catalog"
+        }
+      ]
+    },
+    {
+      "code": "LB",
+      "nameAr": "لبنان",
+      "matchingStatus": "not-closed",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://www.crdp.org/books-pdf",
+          "kind": "official-catalog"
+        },
+        {
+          "url": "https://www.crdp.org/curriculum",
+          "kind": "official-curriculum"
+        }
+      ]
+    },
+    {
+      "code": "MR",
+      "nameAr": "موريتانيا",
+      "matchingStatus": "not-closed",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://www.koutoubi.mr/fr/",
+          "kind": "official-catalog-candidate"
+        }
+      ]
+    },
+    {
+      "code": "OM",
+      "nameAr": "عُمان",
+      "matchingStatus": "not-closed",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://ict.moe.gov.om/eBooks/index.php",
+          "kind": "official-catalog"
+        },
+        {
+          "url": "https://ict.moe.gov.om/book",
+          "kind": "official-catalog"
+        }
+      ]
+    },
+    {
+      "code": "AE",
+      "nameAr": "الإمارات العربية المتحدة",
+      "matchingStatus": "not-closed",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://www.moe.gov.ae/",
+          "kind": "official-portal"
+        },
+        {
+          "url": "https://u.ae/en/information-and-services/education/school-education-k-12/e-learning-reading-and-educational-resources/diwan-e-book-reader",
+          "kind": "government-resource"
+        }
+      ]
+    },
+    {
+      "code": "MA",
+      "nameAr": "المغرب",
+      "matchingStatus": "not-closed",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://telmidtice.men.gov.ma/",
+          "kind": "official-learning-portal"
+        },
+        {
+          "url": "https://www.men.gov.ma/",
+          "kind": "official-portal"
+        }
+      ]
+    },
+    {
+      "code": "SD",
+      "nameAr": "السودان",
+      "matchingStatus": "not-closed",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://gmoe.gov.sd/",
+          "kind": "official-portal-candidate"
+        }
+      ]
+    },
+    {
+      "code": "QA",
+      "nameAr": "قطر",
+      "matchingStatus": "not-closed",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://www.edu.gov.qa/",
+          "kind": "official-portal"
+        }
+      ]
+    },
+    {
+      "code": "SY",
+      "nameAr": "سوريا",
+      "matchingStatus": "not-closed",
+      "verificationStatus": "needs-verification",
+      "sources": [
+        {
+          "url": "https://moed.gov.sy/",
+          "kind": "official-domain-candidate"
+        }
+      ]
+    },
+    {
+      "code": "IQ",
+      "nameAr": "العراق",
+      "matchingStatus": "not-closed",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://manahj.edu.iq/?pid=149",
+          "kind": "official-catalog-candidate"
+        },
+        {
+          "url": "https://manahj.edu.iq/?pid=148",
+          "kind": "official-catalog-candidate"
+        },
+        {
+          "url": "https://manahj.edu.iq/?pid=151",
+          "kind": "official-catalog-candidate"
+        },
+        {
+          "url": "https://manahj.edu.iq/?pid=152",
+          "kind": "official-catalog-candidate"
+        }
+      ]
+    },
+    {
+      "code": "KW",
+      "nameAr": "الكويت",
+      "matchingStatus": "not-closed",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://elibrary.moe.edu.kw/StudentsLibrary",
+          "kind": "official-library"
+        }
+      ]
+    },
+    {
+      "code": "DZ",
+      "nameAr": "الجزائر",
+      "matchingStatus": "not-closed",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://www.onps.dz/",
+          "kind": "official-publisher"
+        }
+      ]
+    },
+    {
+      "code": "SA",
+      "nameAr": "السعودية",
+      "matchingStatus": "not-closed",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://ien.edu.sa/",
+          "kind": "official-learning-portal"
+        },
+        {
+          "url": "https://schools.madrasati.sa/",
+          "kind": "official-school-portal"
+        },
+        {
+          "url": "https://www.moe.gov.sa/",
+          "kind": "official-portal"
+        }
+      ]
+    },
+    {
+      "code": "YE",
+      "nameAr": "اليمن",
+      "matchingStatus": "not-closed",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://e-learning-moe.edu.ye/lcms/",
+          "kind": "official-learning-portal-candidate"
+        }
+      ]
+    },
+    {
+      "code": "DJ",
+      "nameAr": "جيبوتي",
+      "matchingStatus": "not-closed",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://cripen.dj/",
+          "kind": "official-education-resource-candidate"
+        },
+        {
+          "url": "https://education.dj/?lang=ar",
+          "kind": "official-portal-candidate"
+        }
+      ]
+    },
+    {
+      "code": "SO",
+      "nameAr": "الصومال",
+      "matchingStatus": "not-closed",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://moe.gov.so/",
+          "kind": "official-portal"
+        }
+      ]
+    },
+    {
+      "code": "KM",
+      "nameAr": "جزر القمر",
+      "matchingStatus": "not-closed",
+      "verificationStatus": "candidate",
+      "sources": [
+        {
+          "url": "https://mineducomores.gouv.km/",
+          "kind": "official-portal-candidate"
+        }
+      ]
+    }
+  ]
+}

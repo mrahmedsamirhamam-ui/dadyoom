@@ -16,7 +16,7 @@ const required = [
   "app/robots.ts",
   "app/sitemap.ts",
   "app/manifest.ts",
-  "app/(dashboard)/courses/CurriculumCatalogClient.tsx",
+  "app/courses/CurriculumCatalogClient.tsx",
   "app/(dashboard)/journey/page.tsx",
   "app/(dashboard)/reading-challenge/page.tsx",
   "app/(dashboard)/skills/page.tsx",
@@ -36,6 +36,7 @@ const required = [
   "scripts/import-curriculum-pack.mjs",
   "scripts/verify-curriculum-packs.mjs",
   "data/curriculum-packs/arab-countries.json",
+  "data/curriculum-packs/official-sources-2026.json",
   "data/curriculum-packs/bh-2026-arabic-primary-g1-s1.json",
   "supabase/migrations/20260826_reading_passport_mvp.sql",
   "supabase/migrations/20260826_release_security_hardening_v1.sql",
@@ -240,6 +241,54 @@ if (
   );
 }
 
+const coreReady =
+  registry.countries.filter(
+    (country) =>
+      country.coreStatus ===
+        "published" &&
+      country.coreAcademicYear ===
+        "2026-2027" &&
+      Number(country.coreGrades) >=
+        12 &&
+      Number(country.coreLessons) >=
+        216
+  );
+
+if (coreReady.length !== 22) {
+  throw new Error(
+    `DADYOOM_CORE_EXPECTED_22_GOT_${coreReady.length}`
+  );
+}
+
+const officialSources =
+  JSON.parse(
+    fs.readFileSync(
+      path.resolve(
+        root,
+        "data/curriculum-packs/official-sources-2026.json"
+      ),
+      "utf8"
+    )
+  );
+
+const sourceCodes =
+  new Set(
+    (officialSources.countries ?? [])
+      .map((country) => country.code)
+  );
+
+if (
+  sourceCodes.size !== 22 ||
+  registry.countries.some(
+    (country) =>
+      !sourceCodes.has(country.code)
+  )
+) {
+  throw new Error(
+    "OFFICIAL_SOURCE_CATALOG_EXPECTED_22"
+  );
+}
+
 const bahrain =
   JSON.parse(
     fs.readFileSync(
@@ -347,6 +396,12 @@ console.log(
 );
 console.log(
   "ARAB_COUNTRY_REGISTRY=22"
+);
+console.log(
+  "DADYOOM_CORE_COUNTRIES=22"
+);
+console.log(
+  "OFFICIAL_SOURCE_CATALOG=22"
 );
 console.log(
   "BAHRAIN_PACK_LESSONS=18"

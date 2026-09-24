@@ -23,6 +23,22 @@ jobs:
       - name: Install
         run: npm install --legacy-peer-deps --no-package-lock
 
+      - name: TypeScript
+        run: npx tsc --noEmit
+
+      - name: Full lint
+        run: npm run lint
+
+      - name: Product source gates
+        run: |
+          npm run release:audit
+          npm run release:final-audit
+          node scripts/check-learning-experience.mjs
+          node scripts/check-finish-role-experience.mjs
+          node scripts/check-finish-admin.mjs
+          node scripts/check-finish-curriculum-ops.mjs
+          npm run curriculum:verify
+
       - name: Targeted lint
         run: >
           npx eslint
