@@ -97,6 +97,36 @@ export const metadata: Metadata = {
         : undefined,
   },
   manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    title: "ضاديوم",
+    statusBarStyle: "default",
+  },
+  icons: {
+    icon: [
+      {
+        url: "/pwa/icon-192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        url: "/pwa/icon-512.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
+      {
+        url: "/icon.svg",
+        type: "image/svg+xml",
+      },
+    ],
+    apple: [
+      {
+        url: "/pwa/icon-192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+    ],
+  },
 };
 
 export const viewport: Viewport = {
@@ -104,6 +134,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   themeColor: "#174f47",
   colorScheme: "light",
+  viewportFit: "cover",
 };
 
 function jsonLd(value: unknown) {
