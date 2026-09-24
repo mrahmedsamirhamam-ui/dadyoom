@@ -9,18 +9,86 @@ import {
 
 export const revalidate = 3600;
 
+type MarketplaceRow = {
+  slug: string;
+  updated_at: string | null;
+};
+
+type LessonRow = {
+  id: string;
+  updated_at: string | null;
+};
+
+async function fetchPublishedMarketplace(
+  db: ReturnType<typeof createClient>,
+): Promise<MarketplaceRow[]> {
+  const rows: MarketplaceRow[] = [];
+  const pageSize = 1000;
+
+  for (let from = 0; ; from += pageSize) {
+    const { data, error } = await db
+      .from("edu_marketplace_courses")
+      .select("slug,updated_at")
+      .eq("status", "published")
+      .order("slug", { ascending: true })
+      .range(from, from + pageSize - 1);
+
+    if (error) {
+      console.error(
+        "SEO_SITEMAP_COURSES_FAILED",
+        error.message,
+      );
+      break;
+    }
+
+    const batch = (data ?? []) as MarketplaceRow[];
+    rows.push(...batch);
+
+    if (batch.length < pageSize) break;
+  }
+
+  return rows;
+}
+
+async function fetchPublishedLessons(
+  db: ReturnType<typeof createClient>,
+): Promise<LessonRow[]> {
+  const rows: LessonRow[] = [];
+  const pageSize = 1000;
+
+  for (let from = 0; ; from += pageSize) {
+    const { data, error } = await db
+      .from("lessons")
+      .select("id,updated_at")
+      .eq("status", "published")
+      .order("id", { ascending: true })
+      .range(from, from + pageSize - 1);
+
+    if (error) {
+      console.error(
+        "SEO_SITEMAP_LESSONS_FAILED",
+        error.message,
+      );
+      break;
+    }
+
+    const batch = (data ?? []) as LessonRow[];
+    rows.push(...batch);
+
+    if (batch.length < pageSize) break;
+  }
+
+  return rows;
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = getSiteUrl();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: base, changeFrequency: "weekly", priority: 1 },
     { url: `${base}/courses`, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${base}/skills`, changeFrequency: "monthly", priority: 0.75 },
-    { url: `${base}/dictionary`, changeFrequency: "monthly", priority: 0.75 },
     { url: `${base}/pricing`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/marketplace`, changeFrequency: "daily", priority: 0.9 },
-    { url: `${base}/reading-challenge`, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${base}/ask`, changeFrequency: "monthly", priority: 0.65 },
   ];
 
   const db = createClient(
@@ -34,53 +102,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   );
 
-  const [
-    { data: courses, error: coursesError },
-    { data: lessons, error: lessonsError },
-  ] = await Promise.all([
-    db
-      .from("edu_marketplace_courses")
-      .select("slug,updated_at")
-      .eq("status", "published")
-      .limit(5000),
-    db
-      .from("lessons")
-      .select("id,updated_at")
-      .eq("status", "published")
-      .limit(5000),
-  ]);
-
-  if (coursesError) {
-    console.error("SEO_SITEMAP_COURSES_FAILED", coursesError.message);
-  }
-
-  if (lessonsError) {
-    console.error("SEO_SITEMAP_LESSONS_FAILED", lessonsError.message);
-  }
+  const [courses, lessons] =
+    await Promise.all([
+      fetchPublishedMarketplace(db),
+      fetchPublishedLessons(db),
+    ]);
 
   const marketplaceRoutes: MetadataRoute.Sitemap =
-    !coursesError
-      ? (courses ?? []).map((course) => ({
-          url: `${base}/marketplace/${course.slug}`,
-          lastModified: course.updated_at
-            ? new Date(course.updated_at)
-            : undefined,
-          changeFrequency: "weekly",
-          priority: 0.8,
-        }))
-      : [];
+    courses.map((course) => ({
+      url: `${base}/marketplace/${course.slug}`,
+      lastModified: course.updated_at
+        ? new Date(course.updated_at)
+        : undefined,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    }));
 
   const lessonRoutes: MetadataRoute.Sitemap =
-    !lessonsError
-      ? (lessons ?? []).map((lesson) => ({
-          url: `${base}/lessons/${lesson.id}`,
-          lastModified: lesson.updated_at
-            ? new Date(lesson.updated_at)
-            : undefined,
-          changeFrequency: "monthly",
-          priority: 0.7,
-        }))
-      : [];
+    lessons.map((lesson) => ({
+      url: `${base}/lessons/${lesson.id}`,
+      lastModified: lesson.updated_at
+        ? new Date(lesson.updated_at)
+        : undefined,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    }));
 
   console.info("SEO_SITEMAP_READY", {
     staticRoutes: staticRoutes.length,

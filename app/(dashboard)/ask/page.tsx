@@ -189,13 +189,13 @@ export default function AskPage() {
         <section className="overflow-hidden rounded-[2rem] border border-[#d8c493] bg-[#fffaf0] shadow-xl shadow-[#123f39]/5">
           <div className="bg-[#0f4942] p-7 text-white sm:p-8">
             <p className="text-sm font-black text-[#f5cf7a]">
-              🎬 Video Agent
+              🎬 Video Agent · تجريبي
             </p>
             <h2 className="mt-2 text-2xl font-black sm:text-3xl">
               اصنع فيديو بالذكاء الاصطناعي
             </h2>
             <p className="mt-3 text-sm font-bold leading-7 text-[#e5f2ee]">
-              اكتب فكرتك بطريقتك، وسيحاول ضاديوم إنشاء الفيديو وفق البرومبت الذي تحدده.
+              ميزة تجريبية: اكتب فكرتك وسيحاول ضاديوم إنشاء الفيديو عند توفر مزود سحابي صالح؛ قد تتعذر المحاولة مؤقتًا دون أن يتأثر ضاد أو الدرس.
             </p>
           </div>
 
@@ -273,7 +273,7 @@ export default function AskPage() {
             ) : null}
 
             <p className="text-xs font-bold leading-6 text-[#806f57]">
-              إنشاء الفيديو يتم على السحابة، وليس على معالج الهاتف. يعمل المسار نفسه على Android وiPhone والمتصفح، وينتقل ضاد تلقائيًا إلى محرك آخر عند فشل المحرك الحالي.
+              إنشاء الفيديو يتم على السحابة وليس على معالج الهاتف. يحاول ضاديوم استخدام مزود بديل عند الفشل، لكن الميزة تظل تجريبية وقد تتوقف مؤقتًا إذا نفدت الحصة أو تعطل المزود.
             </p>
           </div>
         </section>

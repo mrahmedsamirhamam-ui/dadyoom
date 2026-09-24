@@ -170,7 +170,7 @@ function findBytezVideoMedia(
 
     const dataMatch =
       clean.match(
-        /^data:video\/[a-z0-9.+-]+;base64,(.+)$/isu,
+        /^data:video\/[a-z0-9.+-]+;base64,([\s\S]+)$/iu,
       );
 
     if (dataMatch?.[1]) {
@@ -1451,7 +1451,7 @@ function hfMinimaxH3BaseUrl() {
   ).replace(/\/+$/u, "");
 }
 
-function hfAuthHeaders() {
+function hfAuthHeaders(): Record<string, string> {
   const token =
     env("HF_TOKEN");
 

@@ -59,7 +59,7 @@ export default async function MarketplacePage() {
             تعلّم مع معلمين من مجتمع ضاديوم
           </h1>
           <p className="mt-3 max-w-3xl leading-8">
-            دورات مسجلة ومباشرة، شراء آمن عبر PayPal أو تحويل بنكي.
+            دورات مسجلة ومباشرة، والدفع بالبطاقة عبر بوابة آمنة عند تفعيل شراء الدورة.
           </p>
         </section>
 
