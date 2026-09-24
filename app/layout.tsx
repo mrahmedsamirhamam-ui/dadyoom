@@ -5,6 +5,7 @@ import {
   getSiteUrl,
   SITE_DESCRIPTION,
   SITE_NAME,
+  SITE_NAME_LATIN,
   SITE_TAGLINE,
 } from "@/lib/site";
 import "./globals.css";
@@ -28,8 +29,8 @@ const structuredData = [
     "@type": "WebSite",
     name: SITE_NAME,
     alternateName: [
-      "Dadyoom",
-      "ضاديوم",
+      SITE_NAME_LATIN,
+      SITE_NAME,
     ],
     url: siteUrl,
     description: SITE_DESCRIPTION,
@@ -39,7 +40,7 @@ const structuredData = [
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
     name: SITE_NAME,
-    alternateName: "Dadyoom",
+    alternateName: SITE_NAME_LATIN,
     url: siteUrl,
     description: SITE_DESCRIPTION,
   },
@@ -49,8 +50,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: SITE_NAME,
   title: {
-    default: `${SITE_NAME} | ${SITE_TAGLINE}`,
-    template: `%s | ${SITE_NAME}`,
+    default: `${SITE_NAME} ${SITE_NAME_LATIN} | ${SITE_TAGLINE}`,
+    template: `%s | ${SITE_NAME} ${SITE_NAME_LATIN}`,
   },
   description: SITE_DESCRIPTION,
   category: "education",
@@ -64,13 +65,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ar_AR",
     url: "/",
-    siteName: SITE_NAME,
-    title: `${SITE_NAME} | ${SITE_TAGLINE}`,
+    siteName: `${SITE_NAME} ${SITE_NAME_LATIN}`,
+    title: `${SITE_NAME} ${SITE_NAME_LATIN} | ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary",
-    title: `${SITE_NAME} | ${SITE_TAGLINE}`,
+    title: `${SITE_NAME} ${SITE_NAME_LATIN} | ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
   },
   robots: {
