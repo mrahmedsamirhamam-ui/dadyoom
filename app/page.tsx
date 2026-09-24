@@ -48,11 +48,11 @@ export default function HomePage() {
               <span>✦</span><span>العربية تجمعنا، ولا تُذيب أحدًا</span>
             </div>
             <h1 className="mt-7 max-w-3xl font-arabic-display text-4xl font-black leading-[1.45] text-[#213b36] sm:text-5xl lg:text-[3.65rem]">
-              بيت عربي رقمي يجعل
+              ضاديوم — بيت عربي رقمي يجعل
               <span className="block text-[#a8782f]">التعلّم رحلة مفهومة ومحبوبة</span>
             </h1>
             <p className="mt-6 max-w-2xl font-arabic-reading text-xl leading-10 text-[#655d53]">
-              منهج منظم، مهارات أربع، تقييم وتقدم، و«ضاد» رفيق ذكي يساعد الطالب في اللحظة التي يحتاج فيها إلى شرح أو تدريب.
+              ضاديوم (Dadyoom) يجمع منهجًا منظمًا، والمهارات الأربع، والتقييم والتقدم، و«ضاد» رفيقًا ذكيًا يساعد الطالب في اللحظة التي يحتاج فيها إلى شرح أو تدريب.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/signup" className="rounded-2xl bg-[#174f47] px-7 py-4 font-black text-white shadow-lg shadow-[#174f47]/15 transition hover:-translate-y-0.5 hover:bg-[#103f39]">أنشئ حسابك</Link>
