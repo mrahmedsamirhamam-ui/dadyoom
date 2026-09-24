@@ -38,6 +38,8 @@ const requiredFiles = [
   "scripts/curriculum-coverage.mjs",
   "data/curriculum-packs/arab-countries.json",
   "data/curriculum-packs/official-sources-2026.json",
+  "data/core-curriculum/dadyoom-core-templates-2026-2027.json",
+  "scripts/seed-dadyoom-core-22.mjs",
   "data/curriculum-packs/bh-2026-arabic-primary-g1-s1.json",
   "docs/PRODUCT-CONTRACT.md",
   "docs/CURRICULUM-OPERATIONS.md",
@@ -120,6 +122,27 @@ if (
 ) {
   throw new Error(
     "FINAL_OFFICIAL_SOURCE_CATALOG_NOT_22"
+  );
+}
+
+const coreTemplates = JSON.parse(
+  fs.readFileSync(
+    path.resolve(
+      root,
+      "data/core-curriculum/dadyoom-core-templates-2026-2027.json"
+    ),
+    "utf8"
+  )
+);
+
+if (
+  coreTemplates.schemaVersion !== 1 ||
+  coreTemplates.academicYear !== "2026-2027" ||
+  !Array.isArray(coreTemplates.templates) ||
+  coreTemplates.templates.length !== 72
+) {
+  throw new Error(
+    "FINAL_DADYOOM_CORE_TEMPLATE_BANK_INVALID"
   );
 }
 
@@ -226,6 +249,7 @@ if (existingTrackedBackups.length) {
 console.log("FINAL_REQUIRED_FILES=PASS");
 console.log("FINAL_ARAB_COUNTRY_REGISTRY=22");
 console.log("FINAL_DADYOOM_CORE_COUNTRIES=22");
+console.log("FINAL_DADYOOM_CORE_TEMPLATES=72");
 console.log("FINAL_OFFICIAL_SOURCE_CATALOG=22");
 console.log("FINAL_BAHRAIN_PACK=18");
 console.log("FINAL_DAD_GUARDS=PASS");
