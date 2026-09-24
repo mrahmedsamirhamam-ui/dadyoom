@@ -38,30 +38,56 @@ export default function MobileOAuthBridge() {
       return;
     }
 
+    let active = true;
+
+    const handleUrl = (url?: string | null) => {
+      if (
+        !active ||
+        !url ||
+        !url.startsWith(
+          NATIVE_CALLBACK,
+        ) ||
+        busyRef.current
+      ) {
+        return;
+      }
+
+      busyRef.current = true;
+
+      void finishOAuth(url).finally(
+        () => {
+          busyRef.current = false;
+        },
+      );
+    };
+
     const listenerPromise =
       App.addListener(
         "appUrlOpen",
         ({ url }) => {
-          if (
-            !url.startsWith(
-              NATIVE_CALLBACK,
-            ) ||
-            busyRef.current
-          ) {
-            return;
-          }
-
-          busyRef.current = true;
-
-          void finishOAuth(url).finally(
-            () => {
-              busyRef.current = false;
-            },
-          );
+          handleUrl(url);
         },
       );
 
+    /*
+     * appUrlOpen covers the normal background/resume path.
+     * getLaunchUrl is required when Android launches Dadyoom from the
+     * OAuth deep link while the app process was not already running.
+     */
+    void App.getLaunchUrl()
+      .then((launch) => {
+        handleUrl(launch?.url);
+      })
+      .catch((error) => {
+        console.warn(
+          "DADYOOM_OAUTH_LAUNCH_URL_WARNING",
+          error,
+        );
+      });
+
     return () => {
+      active = false;
+
       void listenerPromise.then(
         (listener) =>
           listener.remove(),
