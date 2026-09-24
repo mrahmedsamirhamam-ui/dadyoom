@@ -8,6 +8,12 @@ import {
   useState,
 } from "react";
 
+import {
+  isNativeTextToSpeechPlatform,
+  speakNativeArabic,
+  stopNativeArabicSpeech,
+} from "@/lib/mobile/native-tts";
+
 type SpeechStatus =
   | "idle"
   | "speaking"
@@ -153,6 +159,7 @@ export function useArabicSpeech() {
   const stop =
     useCallback(() => {
       releaseServerAudio();
+      void stopNativeArabicSpeech();
 
       if (
         typeof window !==
@@ -267,6 +274,35 @@ export function useArabicSpeech() {
         arabicVoice,
         browserSpeechSupported,
       ],
+    );
+
+  const playNativeSpeech =
+    useCallback(
+      async (
+        cleanText: string,
+        options: SpeakOptions,
+      ) => {
+        if (!isNativeTextToSpeechPlatform()) {
+          throw new Error(
+            "NATIVE_TTS_PLATFORM_UNAVAILABLE",
+          );
+        }
+
+        setError("");
+        setStatus("speaking");
+
+        await speakNativeArabic(
+          cleanText,
+          {
+            rate: options.rate ?? 0.92,
+            pitch: options.pitch ?? 1,
+            volume: options.volume ?? 1,
+          },
+        );
+
+        setStatus("idle");
+      },
+      [],
     );
 
   const playServerSpeech =
@@ -393,6 +429,25 @@ export function useArabicSpeech() {
         setError("");
         setStatus("speaking");
 
+        if (
+          isNativeTextToSpeechPlatform()
+        ) {
+          try {
+            await playNativeSpeech(
+              cleanText,
+              options,
+            );
+            return;
+          } catch (
+            nativeCause
+          ) {
+            console.warn(
+              "DADYOOM_NATIVE_TTS_FALLBACK:",
+              nativeCause,
+            );
+          }
+        }
+
         try {
           await playServerSpeech(
             cleanText,
@@ -428,6 +483,7 @@ export function useArabicSpeech() {
       },
       [
         playBrowserSpeech,
+        playNativeSpeech,
         playServerSpeech,
         stop,
       ],
@@ -516,7 +572,9 @@ export function useArabicSpeech() {
     isPaused:
       status === "paused",
     voiceName:
-      arabicVoice?.name ??
-      "Dadyoom Voice",
+      isNativeTextToSpeechPlatform()
+        ? "Android Native Arabic TTS"
+        : arabicVoice?.name ??
+          "Dadyoom Voice",
   };
 }
