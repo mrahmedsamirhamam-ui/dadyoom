@@ -16,6 +16,11 @@ on:
         description: "Android version code"
         required: false
         default: "1"
+      build_android:
+        description: "Build Android during manual dispatch"
+        required: false
+        type: boolean
+        default: true
       build_ios:
         description: "Also rebuild iOS during manual dispatch"
         required: false
@@ -44,6 +49,7 @@ permissions:
 jobs:
   android-native:
     name: Android native APK
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.build_android }}
     runs-on: ubuntu-latest
     timeout-minutes: 90
     env:
