@@ -234,7 +234,7 @@ function bytezModelAllowed(model: string) {
   }
 
   const allowed = new Set([
-    "Qwen/Qwen3-4B-Instruct-2507",
+    "Qwen/Qwen3-4B",
     ...list(process.env.BYTEZ_FREE_MODEL_ALLOWLIST),
   ]);
 
@@ -259,7 +259,7 @@ async function callBytez(input: AiRequest): Promise<AiResult> {
           ? configuredModels
           : [
               process.env.BYTEZ_MODEL?.trim(),
-              "Qwen/Qwen3-4B-Instruct-2507",
+              "Qwen/Qwen3-4B",
             ]
       ).filter((value): value is string => Boolean(value)),
     ),
