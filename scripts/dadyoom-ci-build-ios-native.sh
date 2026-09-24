@@ -72,6 +72,19 @@ text, source_count = re.subn(
 if source_count != 1:
     raise SystemExit("FAILED=IOS_LLM_POD_SOURCE_FILTER_NOT_APPLIED")
 
+# The 8.1.4 CocoaPods source still contains Task closures that Xcode 26.6
+# diagnoses as Swift 6 sending/data-race errors. Compile this legacy
+# MediaPipe CocoaPods path in Swift 5 language mode; the compiler/toolchain
+# remains Xcode 26.6 and the native APIs are unchanged.
+text, swift_count = re.subn(
+    r"s\.swift_version\s*=\s*['\"]6\.0['\"]",
+    "s.swift_version = '5.0'",
+    text,
+    count=1,
+)
+if swift_count != 1:
+    raise SystemExit("FAILED=IOS_LLM_SWIFT_LANGUAGE_MODE_PATCH_NOT_APPLIED")
+
 if "s.static_framework = true" not in text:
     marker = re.search(r"^\s*s\.swift_version\s*=.*$", text, flags=re.MULTILINE)
     if marker:
@@ -88,6 +101,12 @@ grep -q "s.source_files = 'ios/Sources/LLMPlugin/\*\*/\*.{swift,h,m,c,cc,mm,cpp}
   exit 1
 }
 echo "IOS_LLM_POD_SOURCE_FILTER=LLMPlugin_ONLY"
+
+grep -q "s.swift_version = '5.0'" "$LLM_PODSPEC" || {
+  echo "FAILED=IOS_LLM_SWIFT_LANGUAGE_MODE_NOT_SET"
+  exit 1
+}
+echo "IOS_LLM_SWIFT_LANGUAGE_MODE=5"
 
 grep -q 's.static_framework = true' "$LLM_PODSPEC" || {
   echo "FAILED=IOS_LLM_POD_STATIC_FRAMEWORK_NOT_SET"
