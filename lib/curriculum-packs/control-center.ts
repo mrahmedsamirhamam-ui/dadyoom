@@ -6,6 +6,10 @@ type CountryRegistryItem = {
   nameAr: string;
   nameEn?: string | null;
   contentStatus?: string | null;
+  coreStatus?: string | null;
+  coreAcademicYear?: string | null;
+  coreGrades?: number | null;
+  coreLessons?: number | null;
 };
 
 type RegistryFile = {
@@ -41,8 +45,14 @@ export type CurriculumCountryCoverage = {
   nameAr: string;
   nameEn: string | null;
   registryStatus: string;
+  coreStatus: string;
+  coreAcademicYear: string | null;
+  coreGrades: number;
+  coreLessons: number;
   packs: number;
   lessons: number;
+  coreReady: boolean;
+  officialReady: boolean;
   ready: boolean;
 };
 
@@ -51,6 +61,7 @@ export type CurriculumControlCenter = {
   packs: CurriculumPackSummary[];
   totalCountries: number;
   readyCountries: number;
+  officialReadyCountries: number;
   sourceRequiredCountries: number;
   totalPacks: number;
   totalLessons: number;
@@ -371,6 +382,17 @@ export function getCurriculumControlCenter():
             0
           );
 
+        const coreReady =
+          country.coreStatus ===
+            "published" &&
+          Number(country.coreGrades) >=
+            12 &&
+          Number(country.coreLessons) >=
+            216;
+
+        const officialReady =
+          countryPacks.length > 0;
+
         return {
           code: country.code,
           nameAr: country.nameAr,
@@ -379,11 +401,30 @@ export function getCurriculumControlCenter():
           registryStatus:
             country.contentStatus ??
             "official-source-required",
+          coreStatus:
+            country.coreStatus ??
+            "missing",
+          coreAcademicYear:
+            country.coreAcademicYear ??
+            null,
+          coreGrades:
+            Number(
+              country.coreGrades ??
+                0
+            ),
+          coreLessons:
+            Number(
+              country.coreLessons ??
+                0
+            ),
           packs:
             countryPacks.length,
           lessons,
+          coreReady,
+          officialReady,
           ready:
-            countryPacks.length > 0,
+            coreReady ||
+            officialReady,
         };
       }
     );
@@ -392,6 +433,18 @@ export function getCurriculumControlCenter():
     countries.filter(
       (country) =>
         country.ready
+    ).length;
+
+  const officialReadyCountries =
+    countries.filter(
+      (country) =>
+        country.officialReady
+    ).length;
+
+  const sourceRequiredCountries =
+    countries.filter(
+      (country) =>
+        !country.officialReady
     ).length;
 
   const totalLessons =
@@ -407,9 +460,8 @@ export function getCurriculumControlCenter():
     totalCountries:
       countries.length,
     readyCountries,
-    sourceRequiredCountries:
-      countries.length -
-      readyCountries,
+    officialReadyCountries,
+    sourceRequiredCountries,
     totalPacks:
       validReadyPacks.length,
     totalLessons,
