@@ -3213,7 +3213,9 @@ const bytez: Provider = {
           method: "POST",
           headers: {
             Authorization:
-              apiKey,
+              apiKey.trim().toLowerCase().startsWith("key ")
+                ? apiKey.trim()
+                : `Key ${apiKey.trim()}`,
             "Content-Type":
               "application/json",
             Accept:
