@@ -55,6 +55,27 @@ def _early_secret(label: str) -> str:
 SUPABASE_URL = _early_secret("DADYOOM_SUPABASE_URL").rstrip("/")
 SERVICE_KEY = _early_secret("DADYOOM_SUPABASE_SERVICE_ROLE_KEY")
 
+def _optional_secret(label: str) -> str:
+    env_value = os.getenv(label, "").strip()
+    if env_value:
+        return env_value
+
+    if _KaggleSecretsClient is not None:
+        try:
+            value = _KaggleSecretsClient().get_secret(label)
+            if value:
+                return str(value).strip()
+        except Exception:
+            pass
+
+    return ""
+
+# Optional but strongly recommended: authenticated Hugging Face downloads.
+HF_TOKEN = _optional_secret("HF_TOKEN")
+if HF_TOKEN:
+    os.environ["HF_TOKEN"] = HF_TOKEN
+    os.environ["HUGGING_FACE_HUB_TOKEN"] = HF_TOKEN
+
 def ensure_packages() -> None:
     required = {
         "diffusers": "diffusers>=0.35.0",
@@ -701,7 +722,8 @@ def fail_job(job: dict[str, Any], exc: BaseException) -> None:
 def main() -> int:
     print(
         f"DADYOOM_VIDEO_FACTORY worker={WORKER_ID} "
-        f"max_jobs={MAX_JOBS} model={MODEL_ID}",
+        f"max_jobs={MAX_JOBS} model={MODEL_ID} "
+        f"hf_auth={'yes' if bool(HF_TOKEN) else 'no'}",
         flush=True,
     )
 
