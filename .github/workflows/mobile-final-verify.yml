@@ -1,4 +1,5 @@
 name: Mobile Final Verify
+# signing-pipeline syntax gate
 
 on:
   push:
