@@ -20,6 +20,7 @@ from __future__ import annotations
 import asyncio
 import json
 import math
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import os
 import shutil
 import subprocess
@@ -93,14 +94,14 @@ WORKER_ID = os.getenv(
     "DADYOOM_WORKER_ID",
     f"kaggle-{uuid.uuid4().hex[:10]}",
 )
-MAX_JOBS = max(1, int(os.getenv("DADYOOM_MAX_JOBS", "10")))
+MAX_JOBS = max(1, int(os.getenv("DADYOOM_MAX_JOBS", "1")))
 MODEL_ID = os.getenv(
     "DADYOOM_VIDEO_MODEL",
     "zai-org/CogVideoX-2b",
 ).strip()
 INFERENCE_STEPS = max(
     12,
-    int(os.getenv("DADYOOM_VIDEO_STEPS", "24")),
+    int(os.getenv("DADYOOM_VIDEO_STEPS", "12")),
 )
 GUIDANCE_SCALE = float(
     os.getenv("DADYOOM_VIDEO_GUIDANCE", "6.0")
@@ -303,17 +304,25 @@ def scene_prompt(
         f"Avoid: {NEGATIVE}."
     )
 
-def load_pipeline() -> CogVideoXPipeline:
+def load_pipelines() -> list[tuple[CogVideoXPipeline, str]]:
     print(
         json.dumps(
             {
                 "worker": WORKER_ID,
                 "model": MODEL_ID,
                 "cuda": torch.cuda.is_available(),
-                "gpu": (
-                    torch.cuda.get_device_name(0)
+                "gpu_count": (
+                    torch.cuda.device_count()
                     if torch.cuda.is_available()
-                    else None
+                    else 0
+                ),
+                "gpus": (
+                    [
+                        torch.cuda.get_device_name(i)
+                        for i in range(torch.cuda.device_count())
+                    ]
+                    if torch.cuda.is_available()
+                    else []
                 ),
             },
             ensure_ascii=False,
@@ -324,17 +333,31 @@ def load_pipeline() -> CogVideoXPipeline:
     if not torch.cuda.is_available():
         raise RuntimeError("KAGGLE_GPU_REQUIRED")
 
-    pipe = CogVideoXPipeline.from_pretrained(
-        MODEL_ID,
-        torch_dtype=torch.float16,
-    )
-    pipe.enable_model_cpu_offload()
-    pipe.vae.enable_tiling()
-    pipe.vae.enable_slicing()
-    return pipe
+    gpu_count = max(1, min(torch.cuda.device_count(), 2))
+    pipelines: list[tuple[CogVideoXPipeline, str]] = []
+
+    for gpu_index in range(gpu_count):
+        device = f"cuda:{gpu_index}"
+        print(
+            f"LOADING_PIPELINE device={device}",
+            flush=True,
+        )
+        pipe = CogVideoXPipeline.from_pretrained(
+            MODEL_ID,
+            torch_dtype=torch.float16,
+        )
+        # CogVideoX-2B fits a 16GB T4 in FP16. Keeping it fully on the
+        # assigned GPU avoids the severe PCIe/CPU-offload bottleneck.
+        pipe.to(device)
+        pipe.vae.enable_tiling()
+        pipe.vae.enable_slicing()
+        pipelines.append((pipe, device))
+
+    return pipelines
 
 def render_scene(
     pipe: CogVideoXPipeline,
+    device: str,
     prompt: str,
     output_path: Path,
     seed: int,
@@ -361,7 +384,8 @@ def render_scene(
 
     del result, frames
     if torch.cuda.is_available():
-        torch.cuda.empty_cache()
+        with torch.cuda.device(device):
+            torch.cuda.empty_cache()
 
     return time.perf_counter() - started
 
@@ -440,7 +464,7 @@ def mux_audio(
     )
 
 def render_job(
-    pipe: CogVideoXPipeline,
+    pipelines: list[tuple[CogVideoXPipeline, str]],
     job: dict[str, Any],
 ) -> None:
     job_id = str(job["id"])
@@ -494,21 +518,73 @@ def render_job(
             )
         )
 
+        scene_results: dict[int, tuple[Path, float]] = {}
+        gpu_workers = max(1, min(len(pipelines), scene_count))
+
+        print(
+            f"[{job_id}] parallel_gpu_workers={gpu_workers} "
+            f"steps={INFERENCE_STEPS}",
+            flush=True,
+        )
+
+        def render_worker(
+            worker_index: int,
+        ) -> list[tuple[int, Path, float]]:
+            pipe, device = pipelines[worker_index]
+            worker_results: list[tuple[int, Path, float]] = []
+
+            for index in range(
+                worker_index,
+                scene_count,
+                gpu_workers,
+            ):
+                scene_path = root / f"scene-{index + 1:02d}.mp4"
+                prompt = scene_prompt(job, index)
+                print(
+                    f"[{job_id}] scene {index + 1}/{scene_count} "
+                    f"START device={device}",
+                    flush=True,
+                )
+                elapsed = render_scene(
+                    pipe,
+                    device,
+                    prompt,
+                    scene_path,
+                    base_seed + index,
+                )
+                print(
+                    f"[{job_id}] scene {index + 1}/{scene_count} "
+                    f"DONE seconds={elapsed:.1f} device={device}",
+                    flush=True,
+                )
+                worker_results.append(
+                    (index, scene_path, elapsed)
+                )
+
+            return worker_results
+
+        with ThreadPoolExecutor(
+            max_workers=gpu_workers,
+        ) as executor:
+            futures = [
+                executor.submit(
+                    render_worker,
+                    worker_index,
+                )
+                for worker_index in range(gpu_workers)
+            ]
+
+            for future in as_completed(futures):
+                for index, scene_path, elapsed in future.result():
+                    scene_results[index] = (
+                        scene_path,
+                        elapsed,
+                    )
+
         for index in range(scene_count):
-            scene_path = root / f"scene-{index + 1:02d}.mp4"
-            prompt = scene_prompt(job, index)
-            print(
-                f"[{job_id}] scene {index + 1}/{scene_count}",
-                flush=True,
-            )
-            elapsed = render_scene(
-                pipe,
-                prompt,
-                scene_path,
-                base_seed + index,
-            )
-            gpu_seconds += elapsed
+            scene_path, elapsed = scene_results[index]
             scenes.append(scene_path)
+            gpu_seconds += elapsed
 
         silent = root / "silent.mp4"
         concat_scenes(
@@ -632,7 +708,7 @@ def main() -> int:
     if shutil.which("ffmpeg") is None or shutil.which("ffprobe") is None:
         raise RuntimeError("FFMPEG_REQUIRED")
 
-    pipe = load_pipeline()
+    pipelines = load_pipelines()
     processed = 0
 
     while processed < MAX_JOBS:
@@ -649,7 +725,7 @@ def main() -> int:
         )
 
         try:
-            render_job(pipe, job)
+            render_job(pipelines, job)
         except Exception as exc:
             print(
                 f"JOB_FAILED id={job.get('id')} error={exc}",
