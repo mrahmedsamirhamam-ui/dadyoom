@@ -7,6 +7,11 @@ cd "$ROOT"
 APP_ID="com.dadyoom.app"
 OUT="$ROOT/.dadyoom-mobile/ci/ios"
 DERIVED="$ROOT/.dadyoom-work/ios-ci-derived"
+SIGN_AD_HOC="${DADYOOM_IOS_SIGN_AD_HOC:-0}"
+TEAM_ID="${DADYOOM_IOS_TEAM_ID:-}"
+PROFILE_UUID="${DADYOOM_IOS_PROFILE_UUID:-}"
+PROFILE_NAME="${DADYOOM_IOS_PROFILE_NAME:-}"
+SIGNING_IDENTITY="${DADYOOM_IOS_SIGNING_IDENTITY:-Apple Distribution}"
 
 echo "============================================================"
 echo " DADYOOM IOS NATIVE CI BUILD"
@@ -345,6 +350,65 @@ cp -R "$DEVICE_APP" "$PAYLOAD_DIR/Payload/Dadyoom.app"
 )
 rm -rf "$PAYLOAD_DIR"
 
+if [[ "$SIGN_AD_HOC" == "1" ]]; then
+  [[ -n "$TEAM_ID" ]] || { echo "FAILED=IOS_TEAM_ID_MISSING"; exit 1; }
+  [[ -n "$PROFILE_UUID" ]] || { echo "FAILED=IOS_PROFILE_UUID_MISSING"; exit 1; }
+  [[ -n "$PROFILE_NAME" ]] || { echo "FAILED=IOS_PROFILE_NAME_MISSING"; exit 1; }
+
+  echo "Building signed Ad Hoc archive for registered iPhone devices..."
+
+  ARCHIVE_PATH="$DERIVED/signed/Dadyoom.xcarchive"
+  EXPORT_DIR="$DERIVED/signed-export"
+  EXPORT_PLIST="$DERIVED/ExportOptions.plist"
+  mkdir -p "$(dirname "$ARCHIVE_PATH")" "$EXPORT_DIR"
+
+  xcodebuild     -workspace "$WORKSPACE"     -scheme App     -configuration Release     -sdk iphoneos     -destination "generic/platform=iOS"     -archivePath "$ARCHIVE_PATH"     DEVELOPMENT_TEAM="$TEAM_ID"     CODE_SIGN_STYLE=Manual     CODE_SIGN_IDENTITY="$SIGNING_IDENTITY"     PROVISIONING_PROFILE_SPECIFIER="$PROFILE_NAME"     archive
+
+  SIGNED_APP="$ARCHIVE_PATH/Products/Applications/App.app"
+  [[ -d "$SIGNED_APP" ]] || {
+    echo "FAILED=IOS_SIGNED_ARCHIVE_APP_NOT_FOUND"
+    exit 1
+  }
+
+  codesign --verify --deep --strict --verbose=2 "$SIGNED_APP"
+  echo "IOS_AD_HOC_SIGNATURE_VERIFY=PASS"
+
+  cat > "$EXPORT_PLIST" <<PLIST
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>method</key>
+  <string>ad-hoc</string>
+  <key>teamID</key>
+  <string>$TEAM_ID</string>
+  <key>signingStyle</key>
+  <string>manual</string>
+  <key>signingCertificate</key>
+  <string>$SIGNING_IDENTITY</string>
+  <key>provisioningProfiles</key>
+  <dict>
+    <key>$APP_ID</key>
+    <string>$PROFILE_NAME</string>
+  </dict>
+  <key>stripSwiftSymbols</key>
+  <true/>
+</dict>
+</plist>
+PLIST
+
+  xcodebuild     -exportArchive     -archivePath "$ARCHIVE_PATH"     -exportOptionsPlist "$EXPORT_PLIST"     -exportPath "$EXPORT_DIR"
+
+  SIGNED_IPA="$(find "$EXPORT_DIR" -maxdepth 1 -type f -name "*.ipa" | head -n 1)"
+  [[ -f "$SIGNED_IPA" ]] || {
+    echo "FAILED=IOS_AD_HOC_IPA_NOT_FOUND"
+    exit 1
+  }
+
+  cp "$SIGNED_IPA" "$OUT/Dadyoom-iOS-signed-ad-hoc.ipa"
+  echo "IOS_AD_HOC_SIGNED_IPA=READY"
+fi
+
 cat > "$OUT/README.txt" <<'EOF'
 DADYOOM IOS NATIVE ARTIFACTS
 
@@ -359,10 +423,21 @@ Dadyoom-iOS-unsigned-requires-signing.ipa
 - It cannot be installed directly on an iPhone until Apple signing/provisioning
   is applied.
 
+Dadyoom-iOS-signed-ad-hoc.ipa
+- Produced only when Apple Ad Hoc signing secrets are configured.
+- Signed for com.dadyoom.app with the supplied Apple team/profile.
+- Installs only on iPhone/iPad devices whose UDIDs are included in that
+  provisioning profile.
+
 The build is a real Capacitor iOS application using com.dadyoom.app.
 EOF
 
 echo "IOS_DEVICE_UNSIGNED_IPA=READY"
+if [[ "$SIGN_AD_HOC" == "1" ]]; then
+  echo "IOS_DEVICE_SIGNED_AD_HOC=READY"
+else
+  echo "IOS_DEVICE_SIGNED_AD_HOC=NOT_REQUESTED"
+fi
 echo "IOS_APP_ID=$APP_ID"
 echo "IOS_NATIVE_BUILD=PASS"
 echo "OUTPUT=$OUT"
