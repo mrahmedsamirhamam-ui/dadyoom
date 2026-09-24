@@ -287,6 +287,27 @@ async function callBytez(input: AiRequest): Promise<AiResult> {
           .map((part) => encodeURIComponent(part))
           .join("/");
 
+        const inputMode =
+          process.env.BYTEZ_INPUT_MODE?.trim().toLowerCase() ||
+          (model === "Qwen/Qwen3-4B-Instruct-2507"
+            ? "text"
+            : "messages");
+
+        const bytezInput =
+          inputMode === "text"
+            ? {
+                text: input.messages
+                  .map(
+                    (item) =>
+                      `${item.role.toUpperCase()}:\n${item.content}`,
+                  )
+                  .join("\n\n"),
+              }
+            : {
+                messages:
+                  input.messages,
+              };
+
         const response = await fetchTimed(
           `${baseUrl.replace(/\/+$/u, "")}/models/v2/${modelPath}`,
           {
@@ -296,7 +317,7 @@ async function callBytez(input: AiRequest): Promise<AiResult> {
               Authorization: apiKey,
             },
             body: JSON.stringify({
-              messages: input.messages,
+              ...bytezInput,
               stream: false,
               params: {
                 temperature: input.temperature ?? 0.3,
@@ -834,12 +855,27 @@ export async function routeAi(input: AiRequest): Promise<AiResult> {
         profile,
       });
     } catch (error) {
+      const providerError =
+        error as ProviderError;
+      const message =
+        error instanceof Error
+          ? error.message
+          : "unknown";
+
       failures.push(
-        `${provider}:${
-          error instanceof Error
-            ? error.message
-            : "unknown"
-        }`,
+        `${provider}:${message}`,
+      );
+
+      console.warn(
+        "AI_PROVIDER_FAILED",
+        {
+          provider,
+          status:
+            providerError.status ??
+            null,
+          reason:
+            message.split(":")[0],
+        },
       );
     }
   }
