@@ -159,7 +159,9 @@ Write-Host "3) Attach these TWO secrets:" -ForegroundColor White
 Write-Host "   DADYOOM_SUPABASE_URL" -ForegroundColor Yellow
 Write-Host "   DADYOOM_SUPABASE_SERVICE_ROLE_KEY" -ForegroundColor Yellow
 Write-Host "4) Never paste either secret into chat or source code." -ForegroundColor Red
-Write-Host "5) Confirm GPU is enabled, then Save Version / Run All." -ForegroundColor White
+Write-Host "5) IMPORTANT: CLI-pushed versions do not inherit interactive Kaggle Secrets." -ForegroundColor Yellow
+Write-Host "6) Open the latest version -> Edit -> confirm both Secrets are enabled." -ForegroundColor White
+Write-Host "7) Confirm GPU is enabled, then Save Version / Run All FROM THE EDITOR." -ForegroundColor White
 Write-Host ""
 Write-Host "The queue already contains the 10-video Bahrain benchmark." -ForegroundColor Cyan
 Write-Host "Each accepted output must be at least 30 seconds." -ForegroundColor Cyan
