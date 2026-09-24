@@ -50,6 +50,50 @@ echo "ANDROID_MIN_SDK=26"
 
 npx cap sync android
 
+ANDROID_MANIFEST="$ROOT/android/app/src/main/AndroidManifest.xml"
+python3 - "$ANDROID_MANIFEST" <<'PY'
+from pathlib import Path
+import sys
+
+p = Path(sys.argv[1])
+text = p.read_text()
+
+marker = 'android:name=".MainActivity"'
+start = text.find(marker)
+if start < 0:
+    raise SystemExit("FAILED=ANDROID_MAIN_ACTIVITY_NOT_FOUND")
+
+end = text.find("</activity>", start)
+if end < 0:
+    raise SystemExit("FAILED=ANDROID_MAIN_ACTIVITY_CLOSE_NOT_FOUND")
+
+deep_link = """
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="dadyoom"
+                    android:host="auth"
+                    android:pathPrefix="/callback" />
+            </intent-filter>
+"""
+
+if 'android:scheme="dadyoom"' not in text:
+    text = text[:end] + deep_link + text[end:]
+    p.write_text(text)
+PY
+
+grep -q 'android:scheme="dadyoom"' "$ANDROID_MANIFEST" || {
+  echo "FAILED=ANDROID_OAUTH_DEEP_LINK_MISSING"
+  exit 1
+}
+grep -q 'android:host="auth"' "$ANDROID_MANIFEST" || {
+  echo "FAILED=ANDROID_OAUTH_HOST_MISSING"
+  exit 1
+}
+echo "ANDROID_OAUTH_DEEP_LINK=PASS"
+
 APP_GRADLE="$ROOT/android/app/build.gradle"
 python3 - "$APP_GRADLE" "$VERSION_NAME" "$VERSION_CODE" <<'PY'
 from pathlib import Path
@@ -141,6 +185,7 @@ Dadyoom-Android-native-offline-test.apk
 Dadyoom-Android-release.apk
 - Created only when permanent signing secrets are configured.
 - This is the file intended for direct public download and stable updates.
+- Includes dadyoom://auth/callback deep-link handling for Google OAuth.
 
 Version: $VERSION_NAME ($VERSION_CODE)
 Offline model bytes: $MODEL_BYTES
