@@ -1,7 +1,8 @@
 export const SITE_NAME = "ضاديوم";
+export const SITE_NAME_LATIN = "Dadyoom";
 export const SITE_TAGLINE = "بيت العربية الرقمي";
 export const SITE_DESCRIPTION =
-  "منصة ذكية متكاملة لتعلّم اللغة العربية عبر المناهج والدروس والمهارات الأربع وقاموس السياق والرفيق التعليمي ضاد.";
+  "ضاديوم (Dadyoom) منصة عربية ذكية متكاملة لتعلّم اللغة العربية عبر المناهج والدروس والمهارات الأربع وقاموس السياق والرفيق التعليمي ضاد.";
 
 export const PRODUCTION_FALLBACK_SITE_URL =
   "https://dadyoom.mrahmedsamirhamam.workers.dev";
