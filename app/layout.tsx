@@ -17,6 +17,17 @@ import DadyoomAutoUpdate from "@/components/pwa/DadyoomAutoUpdate";
 
 const siteUrl = getSiteUrl();
 
+const websiteStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  url: siteUrl,
+  name: SITE_NAME,
+  alternateName: "Dadyoom",
+  description: SITE_DESCRIPTION,
+  inLanguage: "ar",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: SITE_NAME,
@@ -71,16 +82,21 @@ export default function RootLayout({
       dir="rtl"
       className={`h-full antialiased`}
       suppressHydrationWarning
-     data-scroll-behavior="smooth">
+      data-scroll-behavior="smooth">
       <body className="flex min-h-full flex-col bg-[#fffaf0] text-[#27231f]">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteStructuredData).replace(/</g, "\\u003c"),
+          }}
+        />
         <DadyoomAds />
-          <MobileOAuthBridge />
+        <MobileOAuthBridge />
         <NativeMobileShell />
         <DadyoomInstallPrompt />
         <DadyoomAutoUpdate />
         <DadCompanion />
         {children}
-        
       </body>
     </html>
   );
