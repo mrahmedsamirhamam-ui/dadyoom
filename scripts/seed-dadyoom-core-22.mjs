@@ -216,6 +216,30 @@ for (const countryInfo of countries) {
             question_type:"multiple_choice",
             options:t.vocabulary.map((x,i)=>({id:["a","b","c"][i],text:x.meaning})),
             correct_answer:"a",explanation:`المعنى الصحيح هو: ${t.vocabulary[0].meaning}.`,points:1
+          },
+          {
+            lesson_id:lesson.id,question_order:4,question:`ما الخطوة الأفضل بعد فهم مثال درس «${lesson.title}»؟`,
+            question_type:"multiple_choice",
+            options:[
+              {id:"a",text:"أطبّق المهارة في مثال جديد من إنشائي"},
+              {id:"b",text:"أحفظ المثال فقط دون تطبيق"},
+              {id:"c",text:"أتجاوز المراجعة والتدريب"}
+            ],
+            correct_answer:"a",
+            explanation:"إنتاج مثال جديد يثبت أن المتعلم يستطيع نقل المهارة من المثال إلى تطبيق مستقل.",
+            points:1
+          },
+          {
+            lesson_id:lesson.id,question_order:5,question:"كيف تتحقق من إتقان المهارة الأساسية في هذا الدرس؟",
+            question_type:"multiple_choice",
+            options:[
+              {id:"a",text:"أطبّق المهارة ثم أراجع النتيجة وأصحح الخطأ"},
+              {id:"b",text:"أقرأ عنوان الدرس فقط"},
+              {id:"c",text:"أنسخ إجابة جاهزة دون فهم"}
+            ],
+            correct_answer:"a",
+            explanation:"الإتقان يظهر في التطبيق المستقل ثم المراجعة والتصحيح، وليس في الحفظ أو النسخ.",
+            points:1
           }
         );
         t.vocabulary.forEach((x,i)=>vocab.push({
