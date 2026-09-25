@@ -2298,6 +2298,72 @@ async function cleanup() {
     users.get("parent");
 
   if (student) {
+    /*
+     * Delete E2E-owned rows in dependency order.
+     * Several legacy learning tables are keyed by email rather than auth UUID,
+     * so auth.admin.deleteUser() alone is not sufficient cleanup.
+     */
+    await admin
+      .from("assessment_session_answers")
+      .delete()
+      .eq("student_id", student.id);
+
+    await admin
+      .from("assessment_sessions")
+      .delete()
+      .eq("student_id", student.id);
+
+    await admin
+      .from("ai_assessments")
+      .delete()
+      .eq("student_email", student.email);
+
+    await admin
+      .from("lesson_mastery")
+      .delete()
+      .eq("student_id", student.id);
+
+    await admin
+      .from("lesson_activity_attempts")
+      .delete()
+      .eq("user_id", student.id);
+
+    await admin
+      .from("student_memory")
+      .delete()
+      .eq("student_id", student.id);
+
+    await admin
+      .from("adaptive_learning_steps")
+      .delete()
+      .eq("student_id", student.id);
+
+    await admin
+      .from("student_learning_profile")
+      .delete()
+      .eq("student_id", student.id);
+
+    await admin
+      .from("student_recommendation_cache")
+      .delete()
+      .eq("student_id", student.id);
+
+    for (const table of [
+      "student_stats",
+      "student_skills",
+      "student_mistakes",
+      "student_assessments",
+      "student_achievements",
+      "student_streaks",
+      "learning_plans",
+      "ai_recommendations",
+    ]) {
+      await admin
+        .from(table)
+        .delete()
+        .eq("student_email", student.email);
+    }
+
     const subscriptions =
       await admin
         .from(
@@ -2420,6 +2486,18 @@ async function cleanup() {
       .eq(
         "student_id",
         student.id,
+      );
+  }
+
+  if (
+    fixture.activityIds.length > 0
+  ) {
+    await admin
+      .from("lesson_activities")
+      .delete()
+      .in(
+        "id",
+        fixture.activityIds,
       );
   }
 
