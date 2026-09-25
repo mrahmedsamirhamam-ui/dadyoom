@@ -1,0 +1,877 @@
+{
+  "schemaVersion": 1,
+  "packKey": "DJ:2026-2027:arabic:g12:current-scope",
+  "country": {
+    "code": "DJ",
+    "nameAr": "جيبوتي",
+    "nameEn": "Djibouti"
+  },
+  "academicYear": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "stage": {
+    "code": "secondary",
+    "nameAr": "التعليم الثانوي العام"
+  },
+  "grade": {
+    "number": 12,
+    "nameAr": "Terminale",
+    "nameEn": "Grade 12"
+  },
+  "semester": null,
+  "curriculum": {
+    "nameAr": "اللغة العربية — المطابقة الرسمية الجيبوتية",
+    "nameEn": "Arabic — Djibouti Official Curriculum Match",
+    "description": "طبقة وطنية مستقلة.",
+    "storageNameAr": "اللغة العربية — المطابقة الرسمية الجيبوتية"
+  },
+  "rights": {
+    "contentOwner": "dadyoom",
+    "sourceLabel": "CRIPEN",
+    "sourceUrl": "https://cripen.dj/wp-content/uploads/2025/05/Programme-compile-Terminale.pdf",
+    "verified": true
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "اللغة العربية — حزم المطابقة الوطنية",
+      "description": "تغطية السلاسل الثانوية الرسمية.",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "اللغة العربية — Terminale — سلسلة L",
+          "type": "reading",
+          "estimatedMinutes": 40,
+          "summary": "حزمة وطنية أصلية من ضاديوم للعربية في اللغة العربية — Terminale — سلسلة L.",
+          "content": "تمثل هذه العقدة «اللغة العربية — Terminale — سلسلة L» وحدة مطابقة وطنية وفق برامج CRIPEN الرسمية للسنة النهائية، مع مراعاة سلسلة L. توثق المصادر الرسمية استمرار العربية في السلاسل L وES وS وSG ووجود امتحانات بكالوريا رسمية في العربية، بينما يقدم ضاديوم محتوى أصليًا ولا يعيد نشر النصوص المحمية. يعمل المتعلم على الفهم والتحليل والتعبير والتراكيب بما يناسب السلسلة، ثم يراجع أداءه وفق معيار واضح.",
+          "objectives": [
+            "أن يفسر متطلبات تعلم العربية في اللغة العربية — Terminale — سلسلة L.",
+            "أن يطبق مهارة لغوية أو أدبية في موقف جديد.",
+            "أن يراجع إنتاجه ويصححه وفق معيار."
+          ],
+          "vocabulary": [
+            {
+              "word": "كفاءة",
+              "meaning": "قدرة على توظيف المعارف والمهارات."
+            },
+            {
+              "word": "تواصل",
+              "meaning": "نقل المعنى وفهمه عبر مهارات اللغة."
+            },
+            {
+              "word": "نص",
+              "meaning": "بناء لغوي مترابط يحمل معنى."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما وظيفة هذه الحزمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "مواءمة السلسلة الرسمية بمحتوى أصلي."
+                },
+                {
+                  "id": "b",
+                  "text": "نسخ الكتاب كاملًا."
+                },
+                {
+                  "id": "c",
+                  "text": "اختراع سلسلة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "مواءمة بلا نسخ.",
+              "points": 1
+            },
+            {
+              "question": "ما دليل الإتقان؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ الاسم."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ إجابة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الأداء المستقل.",
+              "points": 1
+            },
+            {
+              "question": "كيف تراجع؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن بمعيار النجاح."
+                },
+                {
+                  "id": "b",
+                  "text": "لا أراجع."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المعيار يحسن الأداء.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "فهم",
+              "activityType": "multiple_choice",
+              "instructions": "حدد المهارة.",
+              "content": {
+                "origin": "DADYOOM_DJ_OFFICIAL_2026_2027_V1",
+                "track": "L"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق",
+              "activityType": "reading",
+              "instructions": "طبّق المهارة.",
+              "content": {
+                "origin": "DADYOOM_DJ_OFFICIAL_2026_2027_V1",
+                "track": "L"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة",
+              "activityType": "writing",
+              "instructions": "راجع وحسن.",
+              "content": {
+                "origin": "DADYOOM_DJ_OFFICIAL_2026_2027_V1",
+                "track": "L"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "CRIPEN — البرامج المجمعة للتعليم الثانوي",
+            "url": "https://cripen.dj/wp-content/uploads/2025/05/Programme-compile-Terminale.pdf",
+            "currentExamUrl": "https://cripen.dj/index.php/2026/06/08/visite-officielle-du-ministre-dans-les-centres-dexamens/"
+          },
+          "alignment": {
+            "mode": "official-secondary-series-bundle",
+            "track": "L",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "dj-dadyoom-core-g12-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l12",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l18",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        },
+        {
+          "number": 2,
+          "title": "اللغة العربية — Terminale — سلسلة ES",
+          "type": "reading",
+          "estimatedMinutes": 40,
+          "summary": "حزمة وطنية أصلية من ضاديوم للعربية في اللغة العربية — Terminale — سلسلة ES.",
+          "content": "تمثل هذه العقدة «اللغة العربية — Terminale — سلسلة ES» وحدة مطابقة وطنية وفق برامج CRIPEN الرسمية للسنة النهائية، مع مراعاة سلسلة ES. توثق المصادر الرسمية استمرار العربية في السلاسل L وES وS وSG ووجود امتحانات بكالوريا رسمية في العربية، بينما يقدم ضاديوم محتوى أصليًا ولا يعيد نشر النصوص المحمية. يعمل المتعلم على الفهم والتحليل والتعبير والتراكيب بما يناسب السلسلة، ثم يراجع أداءه وفق معيار واضح.",
+          "objectives": [
+            "أن يفسر متطلبات تعلم العربية في اللغة العربية — Terminale — سلسلة ES.",
+            "أن يطبق مهارة لغوية أو أدبية في موقف جديد.",
+            "أن يراجع إنتاجه ويصححه وفق معيار."
+          ],
+          "vocabulary": [
+            {
+              "word": "كفاءة",
+              "meaning": "قدرة على توظيف المعارف والمهارات."
+            },
+            {
+              "word": "تواصل",
+              "meaning": "نقل المعنى وفهمه عبر مهارات اللغة."
+            },
+            {
+              "word": "نص",
+              "meaning": "بناء لغوي مترابط يحمل معنى."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما وظيفة هذه الحزمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "مواءمة السلسلة الرسمية بمحتوى أصلي."
+                },
+                {
+                  "id": "b",
+                  "text": "نسخ الكتاب كاملًا."
+                },
+                {
+                  "id": "c",
+                  "text": "اختراع سلسلة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "مواءمة بلا نسخ.",
+              "points": 1
+            },
+            {
+              "question": "ما دليل الإتقان؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ الاسم."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ إجابة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الأداء المستقل.",
+              "points": 1
+            },
+            {
+              "question": "كيف تراجع؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن بمعيار النجاح."
+                },
+                {
+                  "id": "b",
+                  "text": "لا أراجع."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المعيار يحسن الأداء.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "فهم",
+              "activityType": "multiple_choice",
+              "instructions": "حدد المهارة.",
+              "content": {
+                "origin": "DADYOOM_DJ_OFFICIAL_2026_2027_V1",
+                "track": "ES"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق",
+              "activityType": "reading",
+              "instructions": "طبّق المهارة.",
+              "content": {
+                "origin": "DADYOOM_DJ_OFFICIAL_2026_2027_V1",
+                "track": "ES"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة",
+              "activityType": "writing",
+              "instructions": "راجع وحسن.",
+              "content": {
+                "origin": "DADYOOM_DJ_OFFICIAL_2026_2027_V1",
+                "track": "ES"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "CRIPEN — البرامج المجمعة للتعليم الثانوي",
+            "url": "https://cripen.dj/wp-content/uploads/2025/05/Programme-compile-Terminale.pdf",
+            "currentExamUrl": "https://cripen.dj/index.php/2026/06/08/visite-officielle-du-ministre-dans-les-centres-dexamens/"
+          },
+          "alignment": {
+            "mode": "official-secondary-series-bundle",
+            "track": "ES",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "dj-dadyoom-core-g12-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l12",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l18",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        },
+        {
+          "number": 3,
+          "title": "اللغة العربية — Terminale — سلسلة S",
+          "type": "reading",
+          "estimatedMinutes": 40,
+          "summary": "حزمة وطنية أصلية من ضاديوم للعربية في اللغة العربية — Terminale — سلسلة S.",
+          "content": "تمثل هذه العقدة «اللغة العربية — Terminale — سلسلة S» وحدة مطابقة وطنية وفق برامج CRIPEN الرسمية للسنة النهائية، مع مراعاة سلسلة S. توثق المصادر الرسمية استمرار العربية في السلاسل L وES وS وSG ووجود امتحانات بكالوريا رسمية في العربية، بينما يقدم ضاديوم محتوى أصليًا ولا يعيد نشر النصوص المحمية. يعمل المتعلم على الفهم والتحليل والتعبير والتراكيب بما يناسب السلسلة، ثم يراجع أداءه وفق معيار واضح.",
+          "objectives": [
+            "أن يفسر متطلبات تعلم العربية في اللغة العربية — Terminale — سلسلة S.",
+            "أن يطبق مهارة لغوية أو أدبية في موقف جديد.",
+            "أن يراجع إنتاجه ويصححه وفق معيار."
+          ],
+          "vocabulary": [
+            {
+              "word": "كفاءة",
+              "meaning": "قدرة على توظيف المعارف والمهارات."
+            },
+            {
+              "word": "تواصل",
+              "meaning": "نقل المعنى وفهمه عبر مهارات اللغة."
+            },
+            {
+              "word": "نص",
+              "meaning": "بناء لغوي مترابط يحمل معنى."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما وظيفة هذه الحزمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "مواءمة السلسلة الرسمية بمحتوى أصلي."
+                },
+                {
+                  "id": "b",
+                  "text": "نسخ الكتاب كاملًا."
+                },
+                {
+                  "id": "c",
+                  "text": "اختراع سلسلة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "مواءمة بلا نسخ.",
+              "points": 1
+            },
+            {
+              "question": "ما دليل الإتقان؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ الاسم."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ إجابة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الأداء المستقل.",
+              "points": 1
+            },
+            {
+              "question": "كيف تراجع؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن بمعيار النجاح."
+                },
+                {
+                  "id": "b",
+                  "text": "لا أراجع."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المعيار يحسن الأداء.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "فهم",
+              "activityType": "multiple_choice",
+              "instructions": "حدد المهارة.",
+              "content": {
+                "origin": "DADYOOM_DJ_OFFICIAL_2026_2027_V1",
+                "track": "S"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق",
+              "activityType": "reading",
+              "instructions": "طبّق المهارة.",
+              "content": {
+                "origin": "DADYOOM_DJ_OFFICIAL_2026_2027_V1",
+                "track": "S"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة",
+              "activityType": "writing",
+              "instructions": "راجع وحسن.",
+              "content": {
+                "origin": "DADYOOM_DJ_OFFICIAL_2026_2027_V1",
+                "track": "S"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "CRIPEN — البرامج المجمعة للتعليم الثانوي",
+            "url": "https://cripen.dj/wp-content/uploads/2025/05/Programme-compile-Terminale.pdf",
+            "currentExamUrl": "https://cripen.dj/index.php/2026/06/08/visite-officielle-du-ministre-dans-les-centres-dexamens/"
+          },
+          "alignment": {
+            "mode": "official-secondary-series-bundle",
+            "track": "S",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "dj-dadyoom-core-g12-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l12",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l18",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        },
+        {
+          "number": 4,
+          "title": "اللغة العربية — Terminale — سلسلة SG",
+          "type": "reading",
+          "estimatedMinutes": 40,
+          "summary": "حزمة وطنية أصلية من ضاديوم للعربية في اللغة العربية — Terminale — سلسلة SG.",
+          "content": "تمثل هذه العقدة «اللغة العربية — Terminale — سلسلة SG» وحدة مطابقة وطنية وفق برامج CRIPEN الرسمية للسنة النهائية، مع مراعاة سلسلة SG. توثق المصادر الرسمية استمرار العربية في السلاسل L وES وS وSG ووجود امتحانات بكالوريا رسمية في العربية، بينما يقدم ضاديوم محتوى أصليًا ولا يعيد نشر النصوص المحمية. يعمل المتعلم على الفهم والتحليل والتعبير والتراكيب بما يناسب السلسلة، ثم يراجع أداءه وفق معيار واضح.",
+          "objectives": [
+            "أن يفسر متطلبات تعلم العربية في اللغة العربية — Terminale — سلسلة SG.",
+            "أن يطبق مهارة لغوية أو أدبية في موقف جديد.",
+            "أن يراجع إنتاجه ويصححه وفق معيار."
+          ],
+          "vocabulary": [
+            {
+              "word": "كفاءة",
+              "meaning": "قدرة على توظيف المعارف والمهارات."
+            },
+            {
+              "word": "تواصل",
+              "meaning": "نقل المعنى وفهمه عبر مهارات اللغة."
+            },
+            {
+              "word": "نص",
+              "meaning": "بناء لغوي مترابط يحمل معنى."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما وظيفة هذه الحزمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "مواءمة السلسلة الرسمية بمحتوى أصلي."
+                },
+                {
+                  "id": "b",
+                  "text": "نسخ الكتاب كاملًا."
+                },
+                {
+                  "id": "c",
+                  "text": "اختراع سلسلة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "مواءمة بلا نسخ.",
+              "points": 1
+            },
+            {
+              "question": "ما دليل الإتقان؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ الاسم."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ إجابة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الأداء المستقل.",
+              "points": 1
+            },
+            {
+              "question": "كيف تراجع؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن بمعيار النجاح."
+                },
+                {
+                  "id": "b",
+                  "text": "لا أراجع."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المعيار يحسن الأداء.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "فهم",
+              "activityType": "multiple_choice",
+              "instructions": "حدد المهارة.",
+              "content": {
+                "origin": "DADYOOM_DJ_OFFICIAL_2026_2027_V1",
+                "track": "SG"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق",
+              "activityType": "reading",
+              "instructions": "طبّق المهارة.",
+              "content": {
+                "origin": "DADYOOM_DJ_OFFICIAL_2026_2027_V1",
+                "track": "SG"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة",
+              "activityType": "writing",
+              "instructions": "راجع وحسن.",
+              "content": {
+                "origin": "DADYOOM_DJ_OFFICIAL_2026_2027_V1",
+                "track": "SG"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "CRIPEN — البرامج المجمعة للتعليم الثانوي",
+            "url": "https://cripen.dj/wp-content/uploads/2025/05/Programme-compile-Terminale.pdf",
+            "currentExamUrl": "https://cripen.dj/index.php/2026/06/08/visite-officielle-du-ministre-dans-les-centres-dexamens/"
+          },
+          "alignment": {
+            "mode": "official-secondary-series-bundle",
+            "track": "SG",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "dj-dadyoom-core-g12-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l12",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g12-l18",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
