@@ -1,0 +1,1016 @@
+{
+  "schemaVersion": 1,
+  "packKey": "AE:2026-2027:arabic:g8:current-scope",
+  "country": {
+    "code": "AE",
+    "nameAr": "الإمارات العربية المتحدة",
+    "nameEn": "United Arab Emirates"
+  },
+  "academicYear": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "stage": {
+    "code": "cycle-2",
+    "nameAr": "الحلقة الثانية",
+    "officialGrades": "5-8"
+  },
+  "grade": {
+    "number": 8,
+    "nameAr": "الصف الثامن",
+    "nameEn": "Grade 8"
+  },
+  "semester": null,
+  "curriculum": {
+    "nameAr": "اللغة العربية — المطابقة الرسمية الإماراتية",
+    "nameEn": "Arabic — UAE Official Curriculum Match",
+    "description": "طبقة مواءمة وطنية مستقلة لمنهج اللغة العربية الإماراتي، مبنية على المجالات الوطنية ومصادر وزارة التربية الرسمية، مع محتوى ضاديوم أصلي.",
+    "storageNameAr": "اللغة العربية — المطابقة الرسمية الإماراتية"
+  },
+  "rights": {
+    "contentOwner": "dadyoom",
+    "sourceLabel": "البنية والمعايير من مصادر وزارة التربية والتعليم وحكومة الإمارات؛ الشرح والأسئلة والأنشطة أصلية من ضاديوم ولا تعيد نشر نصوص الكتب.",
+    "sourceUrl": "https://www.moe.gov.ae/ar/guides/Pages/Student-Assessment-Policy-Guide-2026-2027.aspx",
+    "verified": true
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "مجالات منهج اللغة العربية الوطنية — تغطية الفصول الثلاثة",
+      "description": "الصف 8: ستة مجالات وطنية تغطي العام الدراسي 2026-2027 عبر الفصول الثلاثة.",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "أساسيات القراءة والكتابة",
+          "type": "reading",
+          "estimatedMinutes": 35,
+          "summary": "تغطية وطنية أصلية من ضاديوم لمجال «أساسيات القراءة والكتابة» للصف 8 ضمن منهج اللغة العربية الإماراتي، مع امتداد عبر الفصول الدراسية الثلاثة.",
+          "content": "هذا المحتوى أصلي من ضاديوم ومصمم لمواءمة مجال «أساسيات القراءة والكتابة» للصف 8 مع الإطار الوطني لمناهج اللغة العربية في دولة الإمارات، دون إعادة نشر نصوص الكتب الوزارية. يركز التعلم على أداء قابل للملاحظة والتطبيق عبر مواقف جديدة، ويربط الفهم بالممارسة ثم المراجعة الذاتية. المهارات التأسيسية لفك الرموز والطلاقة والتهجئة والكتابة الأساسية وفق المستوى الصفي. يعمل المتعلم على نموذج مناسب لمستواه، يفسر اختياراته، ثم يراجع أداءه وفق معيار واضح، مع استخدام كتابه المدرسي أو مصدره المرخص عند الحاجة إلى النص الأصلي. تغطي هذه العقدة الفصول الدراسية الأول والثاني والثالث للعام 2026-2027.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات مجال «أساسيات القراءة والكتابة» للصف 8 بلغته الخاصة.",
+            "أن يطبق المتعلم مهارات مجال «أساسيات القراءة والكتابة» في موقف جديد مناسب للصف 8.",
+            "أن يراجع المتعلم أداءه في مجال «أساسيات القراءة والكتابة» ويصححه بالاستناد إلى معيار أو دليل."
+          ],
+          "vocabulary": [
+            {
+              "word": "طلاقة",
+              "meaning": "قراءة سليمة متدرجة السرعة والدقة."
+            },
+            {
+              "word": "تهجئة",
+              "meaning": "تمثيل أصوات الكلمة كتابةً بصورة صحيحة."
+            },
+            {
+              "word": "بنية",
+              "meaning": "طريقة تركيب الكلمة أو الجملة."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما الخطوة الأنسب لبدء مهمة في مجال «أساسيات القراءة والكتابة»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أفهم الهدف والمعيار ثم أطبق."
+                },
+                {
+                  "id": "b",
+                  "text": "أنسخ نموذجًا دون فهم."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاوز المراجعة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "فهم الهدف والمعيار يسبق التطبيق المتقن.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على إتقان «أساسيات القراءة والكتابة»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أداء مستقل مع تفسير أو شاهد."
+                },
+                {
+                  "id": "b",
+                  "text": "ترديد عنوان المجال فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "حفظ إجابة واحدة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في الأداء المستقل القابل للتفسير.",
+              "points": 1
+            },
+            {
+              "question": "كيف تتم المراجعة الجيدة بعد التطبيق؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن عملي بالمعيار وأصحح موضع الضعف."
+                },
+                {
+                  "id": "b",
+                  "text": "أترك العمل كما هو."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر الإجابة عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة القائمة على معيار تحسن التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تطبيق موجّه — أساسيات القراءة والكتابة",
+              "activityType": "guided-practice",
+              "instructions": "نفّذ مثالًا قصيرًا مع تحديد معيار النجاح قبل البدء.",
+              "content": {
+                "mode": "original-dadyoom",
+                "grade": 8,
+                "domain": "foundations"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل — أساسيات القراءة والكتابة",
+              "activityType": "independent-practice",
+              "instructions": "أنجز مهمة جديدة بصورة مستقلة واشرح قرارًا واحدًا اتخذته.",
+              "content": {
+                "mode": "original-dadyoom",
+                "grade": 8,
+                "domain": "foundations"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية — أساسيات القراءة والكتابة",
+              "activityType": "reflection",
+              "instructions": "قارن الناتج بمعيار النجاح وحدد تحسينًا واحدًا تنفذه الآن.",
+              "content": {
+                "mode": "original-dadyoom",
+                "grade": 8,
+                "domain": "foundations"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية والتعليم الإماراتية — إطار التقييم 2026-2027، التقويم الأكاديمي، ومصادر المنهج الرقمي",
+            "url": "https://www.moe.gov.ae/ar/guides/Pages/Student-Assessment-Policy-Guide-2026-2027.aspx",
+            "additionalUrls": [
+              "https://www.moe.gov.ae/ar/guides/Pages/Academic-calendar-2026-2027.aspx",
+              "https://u.ae/en/information-and-services/education/school-education-k-12/e-learning-reading-and-educational-resources/diwan-e-book-reader",
+              "https://careers.moe.gov.ae/ar/uae/jobs/arabic-language-teacher-dubai-northern-emirates-1100012658/",
+              "https://emsat.moe.gov.ae/emsat/doc/Advantage%20Arabic%20Public%20Test%20Specifications%20-%20English%202021%20Sep%20F.pdf"
+            ]
+          },
+          "alignment": {
+            "mode": "official-national-domain",
+            "academicYear": "2026-2027",
+            "termCoverage": [
+              1,
+              2,
+              3
+            ],
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "ae-dadyoom-core-g8-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ae-dadyoom-core-g8-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ae-dadyoom-core-g8-l12",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        },
+        {
+          "number": 2,
+          "title": "القراءة الأدبية",
+          "type": "reading",
+          "estimatedMinutes": 35,
+          "summary": "تغطية وطنية أصلية من ضاديوم لمجال «القراءة الأدبية» للصف 8 ضمن منهج اللغة العربية الإماراتي، مع امتداد عبر الفصول الدراسية الثلاثة.",
+          "content": "هذا المحتوى أصلي من ضاديوم ومصمم لمواءمة مجال «القراءة الأدبية» للصف 8 مع الإطار الوطني لمناهج اللغة العربية في دولة الإمارات، دون إعادة نشر نصوص الكتب الوزارية. يركز التعلم على أداء قابل للملاحظة والتطبيق عبر مواقف جديدة، ويربط الفهم بالممارسة ثم المراجعة الذاتية. فهم النص الأدبي وتحليله وتذوق عناصره وبناء استجابة مدعومة بالشواهد المناسبة للعمر. يعمل المتعلم على نموذج مناسب لمستواه، يفسر اختياراته، ثم يراجع أداءه وفق معيار واضح، مع استخدام كتابه المدرسي أو مصدره المرخص عند الحاجة إلى النص الأصلي. تغطي هذه العقدة الفصول الدراسية الأول والثاني والثالث للعام 2026-2027.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات مجال «القراءة الأدبية» للصف 8 بلغته الخاصة.",
+            "أن يطبق المتعلم مهارات مجال «القراءة الأدبية» في موقف جديد مناسب للصف 8.",
+            "أن يراجع المتعلم أداءه في مجال «القراءة الأدبية» ويصححه بالاستناد إلى معيار أو دليل."
+          ],
+          "vocabulary": [
+            {
+              "word": "نص أدبي",
+              "meaning": "نص يوظف اللغة للتعبير والتصوير وبناء المعنى."
+            },
+            {
+              "word": "شاهد",
+              "meaning": "جزء دال من النص يدعم الفهم أو الرأي."
+            },
+            {
+              "word": "صورة",
+              "meaning": "تعبير يصوغ المعنى بطريقة تصويرية."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما الخطوة الأنسب لبدء مهمة في مجال «القراءة الأدبية»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أفهم الهدف والمعيار ثم أطبق."
+                },
+                {
+                  "id": "b",
+                  "text": "أنسخ نموذجًا دون فهم."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاوز المراجعة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "فهم الهدف والمعيار يسبق التطبيق المتقن.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على إتقان «القراءة الأدبية»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أداء مستقل مع تفسير أو شاهد."
+                },
+                {
+                  "id": "b",
+                  "text": "ترديد عنوان المجال فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "حفظ إجابة واحدة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في الأداء المستقل القابل للتفسير.",
+              "points": 1
+            },
+            {
+              "question": "كيف تتم المراجعة الجيدة بعد التطبيق؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن عملي بالمعيار وأصحح موضع الضعف."
+                },
+                {
+                  "id": "b",
+                  "text": "أترك العمل كما هو."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر الإجابة عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة القائمة على معيار تحسن التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تطبيق موجّه — القراءة الأدبية",
+              "activityType": "guided-practice",
+              "instructions": "نفّذ مثالًا قصيرًا مع تحديد معيار النجاح قبل البدء.",
+              "content": {
+                "mode": "original-dadyoom",
+                "grade": 8,
+                "domain": "literary-reading"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل — القراءة الأدبية",
+              "activityType": "independent-practice",
+              "instructions": "أنجز مهمة جديدة بصورة مستقلة واشرح قرارًا واحدًا اتخذته.",
+              "content": {
+                "mode": "original-dadyoom",
+                "grade": 8,
+                "domain": "literary-reading"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية — القراءة الأدبية",
+              "activityType": "reflection",
+              "instructions": "قارن الناتج بمعيار النجاح وحدد تحسينًا واحدًا تنفذه الآن.",
+              "content": {
+                "mode": "original-dadyoom",
+                "grade": 8,
+                "domain": "literary-reading"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية والتعليم الإماراتية — إطار التقييم 2026-2027، التقويم الأكاديمي، ومصادر المنهج الرقمي",
+            "url": "https://www.moe.gov.ae/ar/guides/Pages/Student-Assessment-Policy-Guide-2026-2027.aspx",
+            "additionalUrls": [
+              "https://www.moe.gov.ae/ar/guides/Pages/Academic-calendar-2026-2027.aspx",
+              "https://u.ae/en/information-and-services/education/school-education-k-12/e-learning-reading-and-educational-resources/diwan-e-book-reader",
+              "https://careers.moe.gov.ae/ar/uae/jobs/arabic-language-teacher-dubai-northern-emirates-1100012658/",
+              "https://emsat.moe.gov.ae/emsat/doc/Advantage%20Arabic%20Public%20Test%20Specifications%20-%20English%202021%20Sep%20F.pdf"
+            ]
+          },
+          "alignment": {
+            "mode": "official-national-domain",
+            "academicYear": "2026-2027",
+            "termCoverage": [
+              1,
+              2,
+              3
+            ],
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "ae-dadyoom-core-g8-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ae-dadyoom-core-g8-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ae-dadyoom-core-g8-l14",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        },
+        {
+          "number": 3,
+          "title": "القراءة المعلوماتية",
+          "type": "reading",
+          "estimatedMinutes": 35,
+          "summary": "تغطية وطنية أصلية من ضاديوم لمجال «القراءة المعلوماتية» للصف 8 ضمن منهج اللغة العربية الإماراتي، مع امتداد عبر الفصول الدراسية الثلاثة.",
+          "content": "هذا المحتوى أصلي من ضاديوم ومصمم لمواءمة مجال «القراءة المعلوماتية» للصف 8 مع الإطار الوطني لمناهج اللغة العربية في دولة الإمارات، دون إعادة نشر نصوص الكتب الوزارية. يركز التعلم على أداء قابل للملاحظة والتطبيق عبر مواقف جديدة، ويربط الفهم بالممارسة ثم المراجعة الذاتية. فهم النصوص المعلوماتية وتحديد الأفكار والأدلة والعلاقات وتنظيم المعلومات وتقويمها. يعمل المتعلم على نموذج مناسب لمستواه، يفسر اختياراته، ثم يراجع أداءه وفق معيار واضح، مع استخدام كتابه المدرسي أو مصدره المرخص عند الحاجة إلى النص الأصلي. تغطي هذه العقدة الفصول الدراسية الأول والثاني والثالث للعام 2026-2027.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات مجال «القراءة المعلوماتية» للصف 8 بلغته الخاصة.",
+            "أن يطبق المتعلم مهارات مجال «القراءة المعلوماتية» في موقف جديد مناسب للصف 8.",
+            "أن يراجع المتعلم أداءه في مجال «القراءة المعلوماتية» ويصححه بالاستناد إلى معيار أو دليل."
+          ],
+          "vocabulary": [
+            {
+              "word": "معلومة",
+              "meaning": "حقيقة أو فكرة يقدمها النص."
+            },
+            {
+              "word": "دليل",
+              "meaning": "بيان أو تفصيل يدعم استنتاجًا."
+            },
+            {
+              "word": "استنتاج",
+              "meaning": "معنى يصل إليه القارئ اعتمادًا على قرائن."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما الخطوة الأنسب لبدء مهمة في مجال «القراءة المعلوماتية»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أفهم الهدف والمعيار ثم أطبق."
+                },
+                {
+                  "id": "b",
+                  "text": "أنسخ نموذجًا دون فهم."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاوز المراجعة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "فهم الهدف والمعيار يسبق التطبيق المتقن.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على إتقان «القراءة المعلوماتية»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أداء مستقل مع تفسير أو شاهد."
+                },
+                {
+                  "id": "b",
+                  "text": "ترديد عنوان المجال فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "حفظ إجابة واحدة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في الأداء المستقل القابل للتفسير.",
+              "points": 1
+            },
+            {
+              "question": "كيف تتم المراجعة الجيدة بعد التطبيق؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن عملي بالمعيار وأصحح موضع الضعف."
+                },
+                {
+                  "id": "b",
+                  "text": "أترك العمل كما هو."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر الإجابة عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة القائمة على معيار تحسن التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تطبيق موجّه — القراءة المعلوماتية",
+              "activityType": "guided-practice",
+              "instructions": "نفّذ مثالًا قصيرًا مع تحديد معيار النجاح قبل البدء.",
+              "content": {
+                "mode": "original-dadyoom",
+                "grade": 8,
+                "domain": "informational-reading"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل — القراءة المعلوماتية",
+              "activityType": "independent-practice",
+              "instructions": "أنجز مهمة جديدة بصورة مستقلة واشرح قرارًا واحدًا اتخذته.",
+              "content": {
+                "mode": "original-dadyoom",
+                "grade": 8,
+                "domain": "informational-reading"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية — القراءة المعلوماتية",
+              "activityType": "reflection",
+              "instructions": "قارن الناتج بمعيار النجاح وحدد تحسينًا واحدًا تنفذه الآن.",
+              "content": {
+                "mode": "original-dadyoom",
+                "grade": 8,
+                "domain": "informational-reading"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية والتعليم الإماراتية — إطار التقييم 2026-2027، التقويم الأكاديمي، ومصادر المنهج الرقمي",
+            "url": "https://www.moe.gov.ae/ar/guides/Pages/Student-Assessment-Policy-Guide-2026-2027.aspx",
+            "additionalUrls": [
+              "https://www.moe.gov.ae/ar/guides/Pages/Academic-calendar-2026-2027.aspx",
+              "https://u.ae/en/information-and-services/education/school-education-k-12/e-learning-reading-and-educational-resources/diwan-e-book-reader",
+              "https://careers.moe.gov.ae/ar/uae/jobs/arabic-language-teacher-dubai-northern-emirates-1100012658/",
+              "https://emsat.moe.gov.ae/emsat/doc/Advantage%20Arabic%20Public%20Test%20Specifications%20-%20English%202021%20Sep%20F.pdf"
+            ]
+          },
+          "alignment": {
+            "mode": "official-national-domain",
+            "academicYear": "2026-2027",
+            "termCoverage": [
+              1,
+              2,
+              3
+            ],
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "ae-dadyoom-core-g8-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ae-dadyoom-core-g8-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ae-dadyoom-core-g8-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ae-dadyoom-core-g8-l06",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        },
+        {
+          "number": 4,
+          "title": "الاستماع والتحدث",
+          "type": "listening",
+          "estimatedMinutes": 35,
+          "summary": "تغطية وطنية أصلية من ضاديوم لمجال «الاستماع والتحدث» للصف 8 ضمن منهج اللغة العربية الإماراتي، مع امتداد عبر الفصول الدراسية الثلاثة.",
+          "content": "هذا المحتوى أصلي من ضاديوم ومصمم لمواءمة مجال «الاستماع والتحدث» للصف 8 مع الإطار الوطني لمناهج اللغة العربية في دولة الإمارات، دون إعادة نشر نصوص الكتب الوزارية. يركز التعلم على أداء قابل للملاحظة والتطبيق عبر مواقف جديدة، ويربط الفهم بالممارسة ثم المراجعة الذاتية. فهم المسموع والتفاعل معه والتعبير الشفهي المنظم بما يناسب الغرض والجمهور والسياق. يعمل المتعلم على نموذج مناسب لمستواه، يفسر اختياراته، ثم يراجع أداءه وفق معيار واضح، مع استخدام كتابه المدرسي أو مصدره المرخص عند الحاجة إلى النص الأصلي. تغطي هذه العقدة الفصول الدراسية الأول والثاني والثالث للعام 2026-2027.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات مجال «الاستماع والتحدث» للصف 8 بلغته الخاصة.",
+            "أن يطبق المتعلم مهارات مجال «الاستماع والتحدث» في موقف جديد مناسب للصف 8.",
+            "أن يراجع المتعلم أداءه في مجال «الاستماع والتحدث» ويصححه بالاستناد إلى معيار أو دليل."
+          ],
+          "vocabulary": [
+            {
+              "word": "إنصات",
+              "meaning": "استماع مقصود لفهم الرسالة."
+            },
+            {
+              "word": "تواصل",
+              "meaning": "تبادل المعنى بوضوح بين أطراف."
+            },
+            {
+              "word": "عرض شفهي",
+              "meaning": "تقديم منظم للأفكار بصوت ولغة مناسبين."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما الخطوة الأنسب لبدء مهمة في مجال «الاستماع والتحدث»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أفهم الهدف والمعيار ثم أطبق."
+                },
+                {
+                  "id": "b",
+                  "text": "أنسخ نموذجًا دون فهم."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاوز المراجعة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "فهم الهدف والمعيار يسبق التطبيق المتقن.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على إتقان «الاستماع والتحدث»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أداء مستقل مع تفسير أو شاهد."
+                },
+                {
+                  "id": "b",
+                  "text": "ترديد عنوان المجال فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "حفظ إجابة واحدة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في الأداء المستقل القابل للتفسير.",
+              "points": 1
+            },
+            {
+              "question": "كيف تتم المراجعة الجيدة بعد التطبيق؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن عملي بالمعيار وأصحح موضع الضعف."
+                },
+                {
+                  "id": "b",
+                  "text": "أترك العمل كما هو."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر الإجابة عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة القائمة على معيار تحسن التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تطبيق موجّه — الاستماع والتحدث",
+              "activityType": "guided-practice",
+              "instructions": "نفّذ مثالًا قصيرًا مع تحديد معيار النجاح قبل البدء.",
+              "content": {
+                "mode": "original-dadyoom",
+                "grade": 8,
+                "domain": "listening-speaking"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل — الاستماع والتحدث",
+              "activityType": "independent-practice",
+              "instructions": "أنجز مهمة جديدة بصورة مستقلة واشرح قرارًا واحدًا اتخذته.",
+              "content": {
+                "mode": "original-dadyoom",
+                "grade": 8,
+                "domain": "listening-speaking"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية — الاستماع والتحدث",
+              "activityType": "reflection",
+              "instructions": "قارن الناتج بمعيار النجاح وحدد تحسينًا واحدًا تنفذه الآن.",
+              "content": {
+                "mode": "original-dadyoom",
+                "grade": 8,
+                "domain": "listening-speaking"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية والتعليم الإماراتية — إطار التقييم 2026-2027، التقويم الأكاديمي، ومصادر المنهج الرقمي",
+            "url": "https://www.moe.gov.ae/ar/guides/Pages/Student-Assessment-Policy-Guide-2026-2027.aspx",
+            "additionalUrls": [
+              "https://www.moe.gov.ae/ar/guides/Pages/Academic-calendar-2026-2027.aspx",
+              "https://u.ae/en/information-and-services/education/school-education-k-12/e-learning-reading-and-educational-resources/diwan-e-book-reader",
+              "https://careers.moe.gov.ae/ar/uae/jobs/arabic-language-teacher-dubai-northern-emirates-1100012658/",
+              "https://emsat.moe.gov.ae/emsat/doc/Advantage%20Arabic%20Public%20Test%20Specifications%20-%20English%202021%20Sep%20F.pdf"
+            ]
+          },
+          "alignment": {
+            "mode": "official-national-domain",
+            "academicYear": "2026-2027",
+            "termCoverage": [
+              1,
+              2,
+              3
+            ],
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "ae-dadyoom-core-g8-l17",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        },
+        {
+          "number": 5,
+          "title": "الكتابة",
+          "type": "writing",
+          "estimatedMinutes": 35,
+          "summary": "تغطية وطنية أصلية من ضاديوم لمجال «الكتابة» للصف 8 ضمن منهج اللغة العربية الإماراتي، مع امتداد عبر الفصول الدراسية الثلاثة.",
+          "content": "هذا المحتوى أصلي من ضاديوم ومصمم لمواءمة مجال «الكتابة» للصف 8 مع الإطار الوطني لمناهج اللغة العربية في دولة الإمارات، دون إعادة نشر نصوص الكتب الوزارية. يركز التعلم على أداء قابل للملاحظة والتطبيق عبر مواقف جديدة، ويربط الفهم بالممارسة ثم المراجعة الذاتية. تخطيط النص وكتابته ومراجعته وتحريره مع تنظيم الأفكار واستخدام اللغة والإملاء والترقيم بفاعلية. يعمل المتعلم على نموذج مناسب لمستواه، يفسر اختياراته، ثم يراجع أداءه وفق معيار واضح، مع استخدام كتابه المدرسي أو مصدره المرخص عند الحاجة إلى النص الأصلي. تغطي هذه العقدة الفصول الدراسية الأول والثاني والثالث للعام 2026-2027.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات مجال «الكتابة» للصف 8 بلغته الخاصة.",
+            "أن يطبق المتعلم مهارات مجال «الكتابة» في موقف جديد مناسب للصف 8.",
+            "أن يراجع المتعلم أداءه في مجال «الكتابة» ويصححه بالاستناد إلى معيار أو دليل."
+          ],
+          "vocabulary": [
+            {
+              "word": "مسودة",
+              "meaning": "نسخة أولى قابلة للمراجعة."
+            },
+            {
+              "word": "تحرير",
+              "meaning": "تحسين النص بعد مراجعته."
+            },
+            {
+              "word": "ترابط",
+              "meaning": "اتصال الأفكار والجمل في تسلسل منطقي."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما الخطوة الأنسب لبدء مهمة في مجال «الكتابة»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أفهم الهدف والمعيار ثم أطبق."
+                },
+                {
+                  "id": "b",
+                  "text": "أنسخ نموذجًا دون فهم."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاوز المراجعة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "فهم الهدف والمعيار يسبق التطبيق المتقن.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على إتقان «الكتابة»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أداء مستقل مع تفسير أو شاهد."
+                },
+                {
+                  "id": "b",
+                  "text": "ترديد عنوان المجال فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "حفظ إجابة واحدة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في الأداء المستقل القابل للتفسير.",
+              "points": 1
+            },
+            {
+              "question": "كيف تتم المراجعة الجيدة بعد التطبيق؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن عملي بالمعيار وأصحح موضع الضعف."
+                },
+                {
+                  "id": "b",
+                  "text": "أترك العمل كما هو."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر الإجابة عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة القائمة على معيار تحسن التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تطبيق موجّه — الكتابة",
+              "activityType": "guided-practice",
+              "instructions": "نفّذ مثالًا قصيرًا مع تحديد معيار النجاح قبل البدء.",
+              "content": {
+                "mode": "original-dadyoom",
+                "grade": 8,
+                "domain": "writing"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل — الكتابة",
+              "activityType": "independent-practice",
+              "instructions": "أنجز مهمة جديدة بصورة مستقلة واشرح قرارًا واحدًا اتخذته.",
+              "content": {
+                "mode": "original-dadyoom",
+                "grade": 8,
+                "domain": "writing"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية — الكتابة",
+              "activityType": "reflection",
+              "instructions": "قارن الناتج بمعيار النجاح وحدد تحسينًا واحدًا تنفذه الآن.",
+              "content": {
+                "mode": "original-dadyoom",
+                "grade": 8,
+                "domain": "writing"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية والتعليم الإماراتية — إطار التقييم 2026-2027، التقويم الأكاديمي، ومصادر المنهج الرقمي",
+            "url": "https://www.moe.gov.ae/ar/guides/Pages/Student-Assessment-Policy-Guide-2026-2027.aspx",
+            "additionalUrls": [
+              "https://www.moe.gov.ae/ar/guides/Pages/Academic-calendar-2026-2027.aspx",
+              "https://u.ae/en/information-and-services/education/school-education-k-12/e-learning-reading-and-educational-resources/diwan-e-book-reader",
+              "https://careers.moe.gov.ae/ar/uae/jobs/arabic-language-teacher-dubai-northern-emirates-1100012658/",
+              "https://emsat.moe.gov.ae/emsat/doc/Advantage%20Arabic%20Public%20Test%20Specifications%20-%20English%202021%20Sep%20F.pdf"
+            ]
+          },
+          "alignment": {
+            "mode": "official-national-domain",
+            "academicYear": "2026-2027",
+            "termCoverage": [
+              1,
+              2,
+              3
+            ],
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "ae-dadyoom-core-g8-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ae-dadyoom-core-g8-l16",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        },
+        {
+          "number": 6,
+          "title": "اللغة",
+          "type": "grammar",
+          "estimatedMinutes": 35,
+          "summary": "تغطية وطنية أصلية من ضاديوم لمجال «اللغة» للصف 8 ضمن منهج اللغة العربية الإماراتي، مع امتداد عبر الفصول الدراسية الثلاثة.",
+          "content": "هذا المحتوى أصلي من ضاديوم ومصمم لمواءمة مجال «اللغة» للصف 8 مع الإطار الوطني لمناهج اللغة العربية في دولة الإمارات، دون إعادة نشر نصوص الكتب الوزارية. يركز التعلم على أداء قابل للملاحظة والتطبيق عبر مواقف جديدة، ويربط الفهم بالممارسة ثم المراجعة الذاتية. توظيف المفردات والتراكيب والنحو والصرف والإملاء وعلامات الترقيم في استعمال لغوي صحيح. يعمل المتعلم على نموذج مناسب لمستواه، يفسر اختياراته، ثم يراجع أداءه وفق معيار واضح، مع استخدام كتابه المدرسي أو مصدره المرخص عند الحاجة إلى النص الأصلي. تغطي هذه العقدة الفصول الدراسية الأول والثاني والثالث للعام 2026-2027.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات مجال «اللغة» للصف 8 بلغته الخاصة.",
+            "أن يطبق المتعلم مهارات مجال «اللغة» في موقف جديد مناسب للصف 8.",
+            "أن يراجع المتعلم أداءه في مجال «اللغة» ويصححه بالاستناد إلى معيار أو دليل."
+          ],
+          "vocabulary": [
+            {
+              "word": "تركيب",
+              "meaning": "طريقة انتظام الكلمات في الجملة."
+            },
+            {
+              "word": "صرف",
+              "meaning": "بناء الكلمات وتحول صيغها."
+            },
+            {
+              "word": "قاعدة",
+              "meaning": "وصف منظم لاستعمال لغوي صحيح."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما الخطوة الأنسب لبدء مهمة في مجال «اللغة»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أفهم الهدف والمعيار ثم أطبق."
+                },
+                {
+                  "id": "b",
+                  "text": "أنسخ نموذجًا دون فهم."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاوز المراجعة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "فهم الهدف والمعيار يسبق التطبيق المتقن.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على إتقان «اللغة»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أداء مستقل مع تفسير أو شاهد."
+                },
+                {
+                  "id": "b",
+                  "text": "ترديد عنوان المجال فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "حفظ إجابة واحدة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في الأداء المستقل القابل للتفسير.",
+              "points": 1
+            },
+            {
+              "question": "كيف تتم المراجعة الجيدة بعد التطبيق؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن عملي بالمعيار وأصحح موضع الضعف."
+                },
+                {
+                  "id": "b",
+                  "text": "أترك العمل كما هو."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر الإجابة عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة القائمة على معيار تحسن التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تطبيق موجّه — اللغة",
+              "activityType": "guided-practice",
+              "instructions": "نفّذ مثالًا قصيرًا مع تحديد معيار النجاح قبل البدء.",
+              "content": {
+                "mode": "original-dadyoom",
+                "grade": 8,
+                "domain": "language"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل — اللغة",
+              "activityType": "independent-practice",
+              "instructions": "أنجز مهمة جديدة بصورة مستقلة واشرح قرارًا واحدًا اتخذته.",
+              "content": {
+                "mode": "original-dadyoom",
+                "grade": 8,
+                "domain": "language"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية — اللغة",
+              "activityType": "reflection",
+              "instructions": "قارن الناتج بمعيار النجاح وحدد تحسينًا واحدًا تنفذه الآن.",
+              "content": {
+                "mode": "original-dadyoom",
+                "grade": 8,
+                "domain": "language"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية والتعليم الإماراتية — إطار التقييم 2026-2027، التقويم الأكاديمي، ومصادر المنهج الرقمي",
+            "url": "https://www.moe.gov.ae/ar/guides/Pages/Student-Assessment-Policy-Guide-2026-2027.aspx",
+            "additionalUrls": [
+              "https://www.moe.gov.ae/ar/guides/Pages/Academic-calendar-2026-2027.aspx",
+              "https://u.ae/en/information-and-services/education/school-education-k-12/e-learning-reading-and-educational-resources/diwan-e-book-reader",
+              "https://careers.moe.gov.ae/ar/uae/jobs/arabic-language-teacher-dubai-northern-emirates-1100012658/",
+              "https://emsat.moe.gov.ae/emsat/doc/Advantage%20Arabic%20Public%20Test%20Specifications%20-%20English%202021%20Sep%20F.pdf"
+            ]
+          },
+          "alignment": {
+            "mode": "official-national-domain",
+            "academicYear": "2026-2027",
+            "termCoverage": [
+              1,
+              2,
+              3
+            ],
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "ae-dadyoom-core-g8-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ae-dadyoom-core-g8-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ae-dadyoom-core-g8-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ae-dadyoom-core-g8-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ae-dadyoom-core-g8-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ae-dadyoom-core-g8-l12",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
