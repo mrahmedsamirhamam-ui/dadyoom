@@ -44,6 +44,8 @@ const requiredFiles = [
   "docs/PRODUCT-CONTRACT.md",
   "docs/CURRICULUM-OPERATIONS.md",
   "docs/RELEASE-GATE.md",
+  "scripts/dadyoom-bootstrap-authenticated-e2e.ps1",
+  "scripts/dadyoom-final-closure.ps1",
   "supabase/migrations/20260826_release_security_hardening_v1.sql",
   "supabase/migrations/20260925_fix_welcome_trial_to_one_day.sql",
   "supabase/migrations/20260925062000_secure_student_xp_and_plan_rpcs.sql",
