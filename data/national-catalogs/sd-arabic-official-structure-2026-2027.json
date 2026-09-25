@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "SD",
+    "nameAr": "السودان",
+    "nameEn": "Sudan"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "verificationStatus": "verified-source-structure",
+  "officialCoverageUnit": "grade-curriculum-bundle",
+  "educationStructure": {
+    "primary": {
+      "grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    "middle": {
+      "grades": [
+        7,
+        8,
+        9
+      ],
+      "officialLevels": [
+        "الأول المتوسط",
+        "الثاني المتوسط",
+        "الثالث المتوسط"
+      ]
+    },
+    "secondary": {
+      "grades": [
+        10,
+        11,
+        12
+      ],
+      "officialLevels": [
+        "الأول الثانوي",
+        "الثاني الثانوي",
+        "الثالث الثانوي"
+      ]
+    }
+  },
+  "officialCoverageNodes": 12,
+  "sources": [
+    {
+      "kind": "official-arabic-subject-page",
+      "url": "https://gmoe.gov.sd/?page_id=1343"
+    },
+    {
+      "kind": "official-state-ministry-portal",
+      "url": "https://gmoe.gov.sd/"
+    },
+    {
+      "kind": "official-2025-2027-transition-plan-context",
+      "url": "https://gmoe.gov.sd/?p=2127"
+    },
+    {
+      "kind": "official-2026-primary-context",
+      "url": "https://gmoe.gov.sd/?p=2849"
+    },
+    {
+      "kind": "official-2026-middle-context",
+      "url": "https://gmoe.gov.sd/?p=3041"
+    },
+    {
+      "kind": "official-2026-secondary-context",
+      "url": "https://gmoe.gov.sd/?p=2927"
+    },
+    {
+      "kind": "national-digital-library",
+      "url": "https://mdl.edu.sd/"
+    },
+    {
+      "kind": "ministry-curriculum-book-grade1",
+      "url": "https://mdl.edu.sd/img/bookpdf/%D8%A7%D9%84%D9%84%D8%BA%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9%20%D8%A7%D9%84%D8%A7%D9%88%D9%84%20%D8%A7%D8%A8%D8%AA%D8%AF%D8%A7%D8%A6%D9%8A%20_1756621106.pdf"
+    },
+    {
+      "kind": "ministry-curriculum-book-grade3",
+      "url": "https://www.mdl.edu.sd/img/bookpdf/%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9%20%D8%A7%D9%84%D8%B5%D9%81%20%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB%20%D8%A7%D8%A8%D8%AA%D8%AF%D8%A7%D8%A6%D9%8A_1664177152.pdf"
+    },
+    {
+      "kind": "ministry-curriculum-book-grade5",
+      "url": "https://www.mdl.edu.sd/img/bookpdf/arabic5_1664621007.pdf"
+    },
+    {
+      "kind": "ministry-curriculum-book-middle1",
+      "url": "https://mdl.edu.sd/img/bookpdf/_1664633080.pdf"
+    },
+    {
+      "kind": "ministry-curriculum-secondary3-grammar",
+      "url": "https://mdl.edu.sd/img/bookpdf/nahw3_1678863142.pdf"
+    }
+  ],
+  "copyrightPolicy": "لا تعيد ضاديوم نشر نصوص الكتب السودانية؛ تستخدم المراحل والمادة وأغلفة/كتب المركز القومي للمناهج ومصادر الوزارة لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية.",
+  "generatedAt": "2026-09-25"
+}
