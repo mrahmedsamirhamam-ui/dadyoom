@@ -1,0 +1,258 @@
+{
+  "schemaVersion": 1,
+  "packKey": "SD:2026-2027:arabic:g7:current-scope",
+  "country": {
+    "code": "SD",
+    "nameAr": "السودان",
+    "nameEn": "Sudan"
+  },
+  "academicYear": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "stage": {
+    "code": "middle",
+    "nameAr": "المرحلة المتوسطة"
+  },
+  "grade": {
+    "number": 7,
+    "nameAr": "الصف 1 المتوسط",
+    "nameEn": "Grade 7"
+  },
+  "semester": null,
+  "curriculum": {
+    "nameAr": "اللغة العربية — المطابقة الرسمية السودانية",
+    "nameEn": "Arabic — Sudan Official Curriculum Match",
+    "description": "طبقة وطنية مستقلة مرتبطة بمقرر العربية وكتب المركز القومي للمناهج وبنية المراحل السودانية.",
+    "storageNameAr": "اللغة العربية — المطابقة الرسمية السودانية"
+  },
+  "rights": {
+    "contentOwner": "dadyoom",
+    "sourceLabel": "وزارة التربية/المركز القومي للمناهج وبخت الرضا؛ المحتوى التعليمي أصلي لضاديوم.",
+    "sourceUrl": "https://gmoe.gov.sd/?page_id=1343",
+    "verified": true
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "اللغة العربية — حزمة المقرر الوطني",
+      "description": "الصف 1 المتوسط: تغطية مقرر العربية ضمن المرحلة الرسمية.",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "اللغة العربية — الصف 1 المتوسط — حزمة المقرر الوطني",
+          "type": "reading",
+          "estimatedMinutes": 40,
+          "summary": "حزمة وطنية أصلية من ضاديوم لتغطية مقرر اللغة العربية في الصف 1 المتوسط ضمن المنهج السوداني.",
+          "content": "تمثل هذه العقدة «اللغة العربية — الصف 1 المتوسط — حزمة المقرر الوطني» حزمة مطابقة وطنية لمقرر اللغة العربية ضمن بنية التعليم السوداني الحالية: الابتدائي ثم المتوسط ثم الثانوي. تظهر كتب اللغة العربية الرسمية الصادرة عن وزارة التربية والتعليم والمركز القومي للمناهج والبحث التربوي ـ بخت الرضا ـ للمراحل المختلفة، كما تعرض وزارة التربية بولاية الجزيرة مادة اللغة العربية وامتحاناتها ضمن بوابتها الرسمية، وتؤكد في 2026 فصل المرحلة المتوسطة عن الابتدائية واستمرار المقررات في المراحل الثلاث. يقدم ضاديوم شرحًا وأمثلة وأسئلة وأنشطة أصلية في القراءة والفهم والمفردات والقواعد والتعبير، ولا يعيد نشر نصوص الكتب المحمية.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات تعلم العربية في الصف 1 المتوسط.",
+            "أن يطبق المتعلم مهارة قراءة أو قواعد أو تعبير في موقف جديد.",
+            "أن يراجع المتعلم أداءه ويصححه وفق معيار واضح."
+          ],
+          "vocabulary": [
+            {
+              "word": "قراءة",
+              "meaning": "فهم النص وتحليل معناه."
+            },
+            {
+              "word": "تعبير",
+              "meaning": "إنتاج لغوي شفهي أو كتابي يحقق غرضًا واضحًا."
+            },
+            {
+              "word": "قواعد",
+              "meaning": "أنظمة تضبط بناء الكلمات والجمل واستعمالها."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما وظيفة هذه الحزمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "مواءمة مقرر العربية السوداني بمحتوى ضاديوم أصلي."
+                },
+                {
+                  "id": "b",
+                  "text": "نسخ الكتب الرسمية كاملة."
+                },
+                {
+                  "id": "c",
+                  "text": "اختراع مقرر جديد."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الحزمة تربط المقرر الوطني بتعلم أصلي.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على الإتقان؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل في الفهم واللغة والتعبير."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ اسم الكتاب."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ إجابة جاهزة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في الأداء المستقل.",
+              "points": 1
+            },
+            {
+              "question": "كيف تراجع عملك؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن الناتج بالمعيار وأصحح."
+                },
+                {
+                  "id": "b",
+                  "text": "أتجاوز المراجعة."
+                },
+                {
+                  "id": "c",
+                  "text": "أغير الإجابة عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة وفق معيار تحسن التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "فهم موجّه",
+              "activityType": "multiple_choice",
+              "instructions": "حدد المهارة المناسبة للمهمة.",
+              "content": {
+                "origin": "DADYOOM_SD_OFFICIAL_2026_2027_V1",
+                "grade": 7
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل",
+              "activityType": "reading",
+              "instructions": "طبّق مهارة الفهم على نص أصلي مناسب للمستوى.",
+              "content": {
+                "origin": "DADYOOM_SD_OFFICIAL_2026_2027_V1",
+                "grade": 7
+              },
+              "published": true
+            },
+            {
+              "title": "إنتاج ومراجعة",
+              "activityType": "writing",
+              "instructions": "اكتب استجابة ثم راجعها وفق معيار النجاح.",
+              "content": {
+                "origin": "DADYOOM_SD_OFFICIAL_2026_2027_V1",
+                "grade": 7
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية والتعليم السودانية/المركز القومي للمناهج + بوابة وزارة التربية بولاية الجزيرة",
+            "url": "https://gmoe.gov.sd/?page_id=1343",
+            "additionalUrls": [
+              "https://gmoe.gov.sd/",
+              "https://mdl.edu.sd/",
+              "https://gmoe.gov.sd/?p=2127",
+              "https://mdl.edu.sd/img/bookpdf/_1664633080.pdf",
+              "https://gmoe.gov.sd/?p=3041"
+            ]
+          },
+          "alignment": {
+            "mode": "official-grade-curriculum-bundle",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "sd-dadyoom-core-g7-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sd-dadyoom-core-g7-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sd-dadyoom-core-g7-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sd-dadyoom-core-g7-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sd-dadyoom-core-g7-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sd-dadyoom-core-g7-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sd-dadyoom-core-g7-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sd-dadyoom-core-g7-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sd-dadyoom-core-g7-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sd-dadyoom-core-g7-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sd-dadyoom-core-g7-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sd-dadyoom-core-g7-l12",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sd-dadyoom-core-g7-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sd-dadyoom-core-g7-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sd-dadyoom-core-g7-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sd-dadyoom-core-g7-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sd-dadyoom-core-g7-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sd-dadyoom-core-g7-l18",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
