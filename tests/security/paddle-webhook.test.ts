@@ -12,7 +12,13 @@ const event = {
   event_type: "transaction.completed",
   data: {
     id: "txn_local_1", subscription_id: "sub_local_1", currency_code: "USD",
-    custom_data: { dadyoom_user_id: "buyer-local", dadyoom_plan_id: "plus" },
+    custom_data: {
+      dadyoom_user_id: "buyer-local",
+      dadyoom_plan_id: "plus",
+      dadyoom_checkout_sig: createHmac("sha256", secret)
+        .update("dadyoom-paddle-checkout-v1:buyer-local:plus:pri_local_plus")
+        .digest("hex"),
+    },
     items: [{ price: { id: "pri_local_plus" } }],
     billing_period: { starts_at: "2026-09-14T10:00:00Z", ends_at: "2026-10-14T10:00:00Z" },
   },
@@ -142,6 +148,22 @@ describe("Paddle webhook security", () => {
     const db = database();
     vi.stubEnv("NEXT_PUBLIC_PADDLE_PLUS_PRICE_ID", "different-price");
     const raw = JSON.stringify(event);
+    expect((await POST(request(raw, signature(raw)))).status).toBe(409);
+    expect(db.mutations).toEqual([]);
+  });
+
+  it("rejects a tampered checkout user binding", async () => {
+    const db = database();
+    const raw = JSON.stringify({
+      ...event,
+      data: {
+        ...event.data,
+        custom_data: {
+          ...event.data.custom_data,
+          dadyoom_user_id: "another-user",
+        },
+      },
+    });
     expect((await POST(request(raw, signature(raw)))).status).toBe(409);
     expect(db.mutations).toEqual([]);
   });
