@@ -218,8 +218,8 @@
     {
       "code": "LY",
       "nameAr": "ليبيا",
-      "matchingStatus": "partial",
-      "verificationStatus": "source-verified",
+      "matchingStatus": "current-scope-complete",
+      "verificationStatus": "verified",
       "sources": [
         {
           "url": "https://cerc.moe.gov.ly/educational-curricul/",
@@ -228,10 +228,63 @@
         {
           "url": "https://cerc.moe.gov.ly/",
           "kind": "official-curriculum-center",
-          "note": "مركز المناهج التعليمية والبحوث التربوية؛ مكتبة التعليم الأساسي والثانوي."
+          "note": "مركز المناهج التعليمية والبحوث التربوية؛ الجهة المختصة بتأليف وتطوير الكتب والمناهج."
+        },
+        {
+          "url": "https://cerc.moe.gov.ly/study-exam-dates/school-year-system/",
+          "kind": "official-2026-2027-calendar-basic-1-5"
+        },
+        {
+          "url": "https://cerc.moe.gov.ly/study-exam-dates/general-term-system/",
+          "kind": "official-2026-2027-calendar-transport"
+        },
+        {
+          "url": "https://cerc.moe.gov.ly/study-exam-dates/primary-and-secondary/",
+          "kind": "official-2026-2027-calendar-certificates"
         }
       ],
-      "sourceVerifiedAt": "2026-09-25"
+      "sourceVerifiedAt": "2026-09-25",
+      "officialScope": {
+        "academicYear": "2026-2027",
+        "subject": "اللغة العربية",
+        "grades": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "status": "complete-for-currently-published-scope",
+        "sourceModel": "مركز المناهج التعليمية والبحوث التربوية + الخطة الدراسية الرسمية 2026-2027 + مكتبة المناهج الأساسية والثانوية",
+        "scopeByGrade": {
+          "9": "شهادة التعليم الأساسي؛ 6 مجالات عربية سنوية",
+          "10": "السنة الأولى ثانوي؛ 6 مجالات في كل فصل",
+          "11": "السنة الثانية ثانوي؛ العلمي والأدبي × فصلين × 6 مجالات",
+          "12": "الشهادة الثانوية؛ العلمي والأدبي + تغطية صريحة لكتب الأدب والنصوص والمطالعة والإنشاء والنقد الأدبي للأدبي",
+          "1-5": "نظام العام الدراسي؛ 6 مجالات عربية سنوية لكل صف",
+          "6-8": "نظام الفصلين؛ 6 مجالات عربية في كل فصل"
+        },
+        "note": "كتالوج المركز الرقمي الحالي يعرض بعض الكتب بوسم 2025-2026، بينما الوزارة أعلنت توريد الكتب للعام 2026-2027 والخطة الرسمية بدأت في 13 سبتمبر 2026. أي نسخة رقمية أحدث ينشرها المركز تُضاف كتحديث للطبقة."
+      },
+      "mappingSummary": {
+        "mappingGrades": 12,
+        "verifiedMappingGrades": 12,
+        "officialCoverageNodes": 123,
+        "mappedCoverageNodes": 123,
+        "verifiedCoverageNodes": 123,
+        "databaseLessons": 123,
+        "questions": 369,
+        "vocabulary": 369,
+        "activities": 369,
+        "verifiedAt": "2026-09-25"
+      }
     },
     {
       "code": "PS",
