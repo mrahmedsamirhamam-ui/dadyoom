@@ -1,0 +1,747 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "BH",
+    "nameAr": "مملكة البحرين"
+  },
+  "academicYear": "2026-2027",
+  "grade": 10,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "candidate",
+  "officialLessons": 14,
+  "mappedLessons": 14,
+  "verifiedLessons": 0,
+  "policy": "ملف مرشحات قابل للتدقيق. بُني من الطبقة الوطنية الموجودة في قاعدة ضاديوم وربط بمهارات Dadyoom Core. لا يصبح أي درس verified دون مراجعة المصدر والأهداف، ولا يعاد نشر نص الكتاب الوزاري.",
+  "generatedBy": "Dadyoom official-to-core matcher",
+  "mappings": [
+    {
+      "officialLessonId": "be139de5-036e-48bd-8253-cac25309c01d",
+      "officialSlug": "bh-g10-arab101-01",
+      "officialTitle": "السيرة الذاتية: «حياتي» لأحمد أمين.",
+      "officialLessonType": "reading",
+      "unitNumber": 1,
+      "unitTitle": "عرب 101 — ملامح من صورة الذات",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4881,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g10-l06",
+          "relation": "text-specific",
+          "title": "القراءة النقدية",
+          "score": 0.4881
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "7077a353-9743-45d1-bc50-8f49cfb375ab",
+          "coreSlug": "bh-dadyoom-core-g10-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.4881
+        },
+        {
+          "coreLessonId": "79408be9-8950-4d60-974c-ac61250a7d80",
+          "coreSlug": "bh-dadyoom-core-g10-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4838
+        },
+        {
+          "coreLessonId": "99fae34c-e9c2-4cb4-b880-b4c6c0d2a65d",
+          "coreSlug": "bh-dadyoom-core-g10-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.4808
+        }
+      ]
+    },
+    {
+      "officialLessonId": "b39c5079-aad3-4081-9304-388b5ddc4558",
+      "officialSlug": "bh-g10-arab101-02",
+      "officialTitle": "من النص إلى الجملة + الروابط اللفظية والروابط المعنوية.",
+      "officialLessonType": "grammar",
+      "unitNumber": 1,
+      "unitTitle": "عرب 101 — ملامح من صورة الذات",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.3273,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g10-l06",
+          "relation": "unmapped",
+          "title": "القراءة النقدية",
+          "score": 0.3273
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "7077a353-9743-45d1-bc50-8f49cfb375ab",
+          "coreSlug": "bh-dadyoom-core-g10-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.3273
+        },
+        {
+          "coreLessonId": "ed8ee12c-6dde-40e6-bab6-c794a8fb3a84",
+          "coreSlug": "bh-dadyoom-core-g10-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.3253
+        },
+        {
+          "coreLessonId": "79408be9-8950-4d60-974c-ac61250a7d80",
+          "coreSlug": "bh-dadyoom-core-g10-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.3073
+        }
+      ]
+    },
+    {
+      "officialLessonId": "908de96e-4381-435c-b05a-1eaacc8e9507",
+      "officialSlug": "bh-g10-arab101-03",
+      "officialTitle": "الإنتاج الكتابي: السرد.",
+      "officialLessonType": "writing",
+      "unitNumber": 1,
+      "unitTitle": "عرب 101 — ملامح من صورة الذات",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.6364,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g10-l18",
+          "relation": "supporting-skill",
+          "title": "مراجعة الثانوية الشاملة",
+          "score": 0.6364
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "ed8ee12c-6dde-40e6-bab6-c794a8fb3a84",
+          "coreSlug": "bh-dadyoom-core-g10-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.6364
+        },
+        {
+          "coreLessonId": "e1e7c353-5f87-498e-9d11-10f77eb8092f",
+          "coreSlug": "bh-dadyoom-core-g10-l17",
+          "coreTitle": "الكتابة الوظيفية",
+          "coreLessonType": "writing",
+          "score": 0.5539
+        },
+        {
+          "coreLessonId": "71b92ff4-2f9f-4c55-bfee-6c20d35d5dbb",
+          "coreSlug": "bh-dadyoom-core-g10-l15",
+          "coreTitle": "التلخيص الأكاديمي",
+          "coreLessonType": "writing",
+          "score": 0.5188
+        }
+      ]
+    },
+    {
+      "officialLessonId": "c6cca2fb-fb37-4cbd-82c6-19e91bd1fb22",
+      "officialSlug": "bh-g10-arab101-04",
+      "officialTitle": "السيرة الذاتية: «يرون ما لا أرى» لطه حسين.",
+      "officialLessonType": "reading",
+      "unitNumber": 1,
+      "unitTitle": "عرب 101 — ملامح من صورة الذات",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4844,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g10-l06",
+          "relation": "text-specific",
+          "title": "القراءة النقدية",
+          "score": 0.4844
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "7077a353-9743-45d1-bc50-8f49cfb375ab",
+          "coreSlug": "bh-dadyoom-core-g10-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.4844
+        },
+        {
+          "coreLessonId": "79408be9-8950-4d60-974c-ac61250a7d80",
+          "coreSlug": "bh-dadyoom-core-g10-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4821
+        },
+        {
+          "coreLessonId": "99fae34c-e9c2-4cb4-b880-b4c6c0d2a65d",
+          "coreSlug": "bh-dadyoom-core-g10-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.4792
+        }
+      ]
+    },
+    {
+      "officialLessonId": "03a70fc9-ad83-42c7-a472-7cd00625f188",
+      "officialSlug": "bh-g10-arab101-05",
+      "officialTitle": "الجملة البسيطة والجملة المركبة + الجملة المركبة اسمية وفعلية.",
+      "officialLessonType": "grammar",
+      "unitNumber": 1,
+      "unitTitle": "عرب 101 — ملامح من صورة الذات",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.2976,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g10-l09",
+          "relation": "unmapped",
+          "title": "الحال والتمييز المتقدم",
+          "score": 0.2976
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "442a2013-2ea5-411b-af40-317ba0f9dae5",
+          "coreSlug": "bh-dadyoom-core-g10-l09",
+          "coreTitle": "الحال والتمييز المتقدم",
+          "coreLessonType": "grammar",
+          "score": 0.2976
+        },
+        {
+          "coreLessonId": "043eb2d5-6ccc-41d1-876c-18cb477159f6",
+          "coreSlug": "bh-dadyoom-core-g10-l11",
+          "coreTitle": "الشرط والاستثناء",
+          "coreLessonType": "grammar",
+          "score": 0.2966
+        },
+        {
+          "coreLessonId": "ac69c5c1-556f-47f2-8a7b-d3c75eabaaa8",
+          "coreSlug": "bh-dadyoom-core-g10-l08",
+          "coreTitle": "المفاعيل ودلالاتها",
+          "coreLessonType": "grammar",
+          "score": 0.2904
+        }
+      ]
+    },
+    {
+      "officialLessonId": "7c59254f-5f6e-4bbd-a510-229afa528fe9",
+      "officialSlug": "bh-g10-arab101-06",
+      "officialTitle": "صورة الذات في الشعر الجاهلي: «فخر واعتزاز» لطرفة بن العبد.",
+      "officialLessonType": "reading",
+      "unitNumber": 1,
+      "unitTitle": "عرب 101 — ملامح من صورة الذات",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.5382,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g10-l01",
+          "relation": "text-specific",
+          "title": "تحليل الشعر",
+          "score": 0.5382
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "99fae34c-e9c2-4cb4-b880-b4c6c0d2a65d",
+          "coreSlug": "bh-dadyoom-core-g10-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.5382
+        },
+        {
+          "coreLessonId": "79408be9-8950-4d60-974c-ac61250a7d80",
+          "coreSlug": "bh-dadyoom-core-g10-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4779
+        },
+        {
+          "coreLessonId": "7077a353-9743-45d1-bc50-8f49cfb375ab",
+          "coreSlug": "bh-dadyoom-core-g10-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.4702
+        }
+      ]
+    },
+    {
+      "officialLessonId": "83faeb19-983e-4303-b4bd-abc8f872a05e",
+      "officialSlug": "bh-g10-arab101-07",
+      "officialTitle": "الفعل اللازم والفعل المتعدي.",
+      "officialLessonType": "grammar",
+      "unitNumber": 1,
+      "unitTitle": "عرب 101 — ملامح من صورة الذات",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.3099,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g10-l09",
+          "relation": "unmapped",
+          "title": "الحال والتمييز المتقدم",
+          "score": 0.3099
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "442a2013-2ea5-411b-af40-317ba0f9dae5",
+          "coreSlug": "bh-dadyoom-core-g10-l09",
+          "coreTitle": "الحال والتمييز المتقدم",
+          "coreLessonType": "grammar",
+          "score": 0.3099
+        },
+        {
+          "coreLessonId": "043eb2d5-6ccc-41d1-876c-18cb477159f6",
+          "coreSlug": "bh-dadyoom-core-g10-l11",
+          "coreTitle": "الشرط والاستثناء",
+          "coreLessonType": "grammar",
+          "score": 0.3024
+        },
+        {
+          "coreLessonId": "ac69c5c1-556f-47f2-8a7b-d3c75eabaaa8",
+          "coreSlug": "bh-dadyoom-core-g10-l08",
+          "coreTitle": "المفاعيل ودلالاتها",
+          "coreLessonType": "grammar",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "officialLessonId": "dca58d13-40de-4ecc-b8f3-80b8efc42aa9",
+      "officialSlug": "bh-g10-arab101-08",
+      "officialTitle": "الإنتاج الكتابي: الوصف.",
+      "officialLessonType": "writing",
+      "unitNumber": 1,
+      "unitTitle": "عرب 101 — ملامح من صورة الذات",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.6376,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g10-l18",
+          "relation": "supporting-skill",
+          "title": "مراجعة الثانوية الشاملة",
+          "score": 0.6376
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "ed8ee12c-6dde-40e6-bab6-c794a8fb3a84",
+          "coreSlug": "bh-dadyoom-core-g10-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.6376
+        },
+        {
+          "coreLessonId": "e1e7c353-5f87-498e-9d11-10f77eb8092f",
+          "coreSlug": "bh-dadyoom-core-g10-l17",
+          "coreTitle": "الكتابة الوظيفية",
+          "coreLessonType": "writing",
+          "score": 0.5627
+        },
+        {
+          "coreLessonId": "71b92ff4-2f9f-4c55-bfee-6c20d35d5dbb",
+          "coreSlug": "bh-dadyoom-core-g10-l15",
+          "coreTitle": "التلخيص الأكاديمي",
+          "coreLessonType": "writing",
+          "score": 0.5201
+        }
+      ]
+    },
+    {
+      "officialLessonId": "2f35bef3-8895-473f-b6cb-5bd9a6b69262",
+      "officialSlug": "bh-g10-arab101-09",
+      "officialTitle": "صورة الذات في الشعر الجاهلي: «أشجان شاعر» لامرئ القيس.",
+      "officialLessonType": "reading",
+      "unitNumber": 1,
+      "unitTitle": "عرب 101 — ملامح من صورة الذات",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4892,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g10-l01",
+          "relation": "text-specific",
+          "title": "تحليل الشعر",
+          "score": 0.4892
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "99fae34c-e9c2-4cb4-b880-b4c6c0d2a65d",
+          "coreSlug": "bh-dadyoom-core-g10-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.4892
+        },
+        {
+          "coreLessonId": "79408be9-8950-4d60-974c-ac61250a7d80",
+          "coreSlug": "bh-dadyoom-core-g10-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4249
+        },
+        {
+          "coreLessonId": "7077a353-9743-45d1-bc50-8f49cfb375ab",
+          "coreSlug": "bh-dadyoom-core-g10-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.4216
+        }
+      ]
+    },
+    {
+      "officialLessonId": "a8da2b45-9b00-42f3-a869-4836e41d06a3",
+      "officialSlug": "bh-g10-arab101-10",
+      "officialTitle": "الأفعال المتعدية إلى مفعولين أو ثلاثة مفاعيل.",
+      "officialLessonType": "grammar",
+      "unitNumber": 1,
+      "unitTitle": "عرب 101 — ملامح من صورة الذات",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.3242,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g10-l08",
+          "relation": "unmapped",
+          "title": "المفاعيل ودلالاتها",
+          "score": 0.3242
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "ac69c5c1-556f-47f2-8a7b-d3c75eabaaa8",
+          "coreSlug": "bh-dadyoom-core-g10-l08",
+          "coreTitle": "المفاعيل ودلالاتها",
+          "coreLessonType": "grammar",
+          "score": 0.3242
+        },
+        {
+          "coreLessonId": "442a2013-2ea5-411b-af40-317ba0f9dae5",
+          "coreSlug": "bh-dadyoom-core-g10-l09",
+          "coreTitle": "الحال والتمييز المتقدم",
+          "coreLessonType": "grammar",
+          "score": 0.3008
+        },
+        {
+          "coreLessonId": "043eb2d5-6ccc-41d1-876c-18cb477159f6",
+          "coreSlug": "bh-dadyoom-core-g10-l11",
+          "coreTitle": "الشرط والاستثناء",
+          "coreLessonType": "grammar",
+          "score": 0.2965
+        }
+      ]
+    },
+    {
+      "officialLessonId": "7f68fbcf-5b40-4e89-a2cd-b18f3be372fd",
+      "officialSlug": "bh-g10-arab101-11",
+      "officialTitle": "علاقة الذات بالمكان في الشعر العربي: «في وداع السيدة الخضراء» لعلي عبد الله خليفة.",
+      "officialLessonType": "reading",
+      "unitNumber": 1,
+      "unitTitle": "عرب 101 — ملامح من صورة الذات",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.5239,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g10-l01",
+          "relation": "text-specific",
+          "title": "تحليل الشعر",
+          "score": 0.5239
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "99fae34c-e9c2-4cb4-b880-b4c6c0d2a65d",
+          "coreSlug": "bh-dadyoom-core-g10-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.5239
+        },
+        {
+          "coreLessonId": "79408be9-8950-4d60-974c-ac61250a7d80",
+          "coreSlug": "bh-dadyoom-core-g10-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.476
+        },
+        {
+          "coreLessonId": "7077a353-9743-45d1-bc50-8f49cfb375ab",
+          "coreSlug": "bh-dadyoom-core-g10-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.4739
+        }
+      ]
+    },
+    {
+      "officialLessonId": "99dc6ccb-4753-4a1f-ad57-257ef94084bf",
+      "officialSlug": "bh-g10-arab101-12",
+      "officialTitle": "الفعل المبني للمعلوم والفعل المبني للمجهول.",
+      "officialLessonType": "grammar",
+      "unitNumber": 1,
+      "unitTitle": "عرب 101 — ملامح من صورة الذات",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.2996,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g10-l09",
+          "relation": "unmapped",
+          "title": "الحال والتمييز المتقدم",
+          "score": 0.2996
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "442a2013-2ea5-411b-af40-317ba0f9dae5",
+          "coreSlug": "bh-dadyoom-core-g10-l09",
+          "coreTitle": "الحال والتمييز المتقدم",
+          "coreLessonType": "grammar",
+          "score": 0.2996
+        },
+        {
+          "coreLessonId": "043eb2d5-6ccc-41d1-876c-18cb477159f6",
+          "coreSlug": "bh-dadyoom-core-g10-l11",
+          "coreTitle": "الشرط والاستثناء",
+          "coreLessonType": "grammar",
+          "score": 0.2978
+        },
+        {
+          "coreLessonId": "ac69c5c1-556f-47f2-8a7b-d3c75eabaaa8",
+          "coreSlug": "bh-dadyoom-core-g10-l08",
+          "coreTitle": "المفاعيل ودلالاتها",
+          "coreLessonType": "grammar",
+          "score": 0.2916
+        }
+      ]
+    },
+    {
+      "officialLessonId": "36364626-5ba5-4e63-a164-19dd0465b383",
+      "officialSlug": "bh-g10-arab101-13",
+      "officialTitle": "التقديم والتأخير في الجملة الاسمية.",
+      "officialLessonType": "grammar",
+      "unitNumber": 1,
+      "unitTitle": "عرب 101 — ملامح من صورة الذات",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.3572,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g10-l07",
+          "relation": "unmapped",
+          "title": "النواسخ في السياق",
+          "score": 0.3572
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "d950b440-9041-49fd-aeb6-751877f46069",
+          "coreSlug": "bh-dadyoom-core-g10-l07",
+          "coreTitle": "النواسخ في السياق",
+          "coreLessonType": "grammar",
+          "score": 0.3572
+        },
+        {
+          "coreLessonId": "043eb2d5-6ccc-41d1-876c-18cb477159f6",
+          "coreSlug": "bh-dadyoom-core-g10-l11",
+          "coreTitle": "الشرط والاستثناء",
+          "coreLessonType": "grammar",
+          "score": 0.3084
+        },
+        {
+          "coreLessonId": "442a2013-2ea5-411b-af40-317ba0f9dae5",
+          "coreSlug": "bh-dadyoom-core-g10-l09",
+          "coreTitle": "الحال والتمييز المتقدم",
+          "coreLessonType": "grammar",
+          "score": 0.3045
+        }
+      ]
+    },
+    {
+      "officialLessonId": "0e50f1c0-18f0-4e15-8c80-4ed7cfcfaee6",
+      "officialSlug": "bh-g10-arab101-14",
+      "officialTitle": "التقديم والتأخير في الجملة الفعلية.",
+      "officialLessonType": "grammar",
+      "unitNumber": 1,
+      "unitTitle": "عرب 101 — ملامح من صورة الذات",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.3572,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g10-l07",
+          "relation": "unmapped",
+          "title": "النواسخ في السياق",
+          "score": 0.3572
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "d950b440-9041-49fd-aeb6-751877f46069",
+          "coreSlug": "bh-dadyoom-core-g10-l07",
+          "coreTitle": "النواسخ في السياق",
+          "coreLessonType": "grammar",
+          "score": 0.3572
+        },
+        {
+          "coreLessonId": "442a2013-2ea5-411b-af40-317ba0f9dae5",
+          "coreSlug": "bh-dadyoom-core-g10-l09",
+          "coreTitle": "الحال والتمييز المتقدم",
+          "coreLessonType": "grammar",
+          "score": 0.3052
+        },
+        {
+          "coreLessonId": "043eb2d5-6ccc-41d1-876c-18cb477159f6",
+          "coreSlug": "bh-dadyoom-core-g10-l11",
+          "coreTitle": "الشرط والاستثناء",
+          "coreLessonType": "grammar",
+          "score": 0.2975
+        }
+      ]
+    }
+  ]
+}
