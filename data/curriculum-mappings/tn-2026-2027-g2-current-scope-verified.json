@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "TN",
+    "nameAr": "تونس"
+  },
+  "academicYear": "2026-2027",
+  "grade": 2,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 1,
+  "mappedLessons": 1,
+  "verifiedLessons": 1,
+  "scope": "current-officially-published-and-publicly-verifiable-scope",
+  "policy": "المطابقة على مستوى الكتاب الرسمي لكل سنة. البنية الرسمية 6 ابتدائي + 3 إعدادي + 4 ثانوي = 13 مستوى.",
+  "mappings": [
+    {
+      "officialSlug": "tn-2026-2027-g2-arabic-book",
+      "officialTitle": "اللغة العربية — السنة 2 أساسي — ابتدائي — حزمة الكتاب الرسمي",
+      "source": {
+        "label": "المركز الوطني البيداغوجي + وزارة التربية التونسية",
+        "url": "https://www.cnp.com.tn/",
+        "officialListUrl": "https://cnp.com.tn/arabic/annee-actuelle/listeOfficielle.htm",
+        "ministryUrl": "https://education.gov.tn/"
+      },
+      "relationType": "official-grade-textbook+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المركز الوطني البيداغوجي يعلن الكتب المدرسية الرسمية 2026-2027، ووزارة التربية تنشر قوائم الكتب للمراحل والسنوات. حزمة ضاديوم تمثل العربية على مستوى السنة دون إعادة نشر النصوص.",
+      "coreCoverage": [
+        {
+          "slug": "tn-dadyoom-core-g2-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "tn-dadyoom-core-g2-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "tn-dadyoom-core-g2-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "tn-dadyoom-core-g2-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "tn-dadyoom-core-g2-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "tn-dadyoom-core-g2-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "tn-dadyoom-core-g2-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "tn-dadyoom-core-g2-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "tn-dadyoom-core-g2-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "tn-dadyoom-core-g2-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "tn-dadyoom-core-g2-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "tn-dadyoom-core-g2-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "tn-dadyoom-core-g2-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "tn-dadyoom-core-g2-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "tn-dadyoom-core-g2-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "tn-dadyoom-core-g2-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "tn-dadyoom-core-g2-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "tn-dadyoom-core-g2-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cnp-2026-2027-books+official-ministry-2026-2027-lists+national-pack"
+    }
+  ]
+}
