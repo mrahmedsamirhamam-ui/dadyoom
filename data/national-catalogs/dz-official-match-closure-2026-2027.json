@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "DZ",
+    "nameAr": "الجزائر",
+    "nameEn": "Algeria"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "status": "current-scope-complete",
+  "matchingStatus": "current-scope-complete",
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-09-25",
+  "authority": {
+    "nameAr": "وزارة التربية الوطنية الجزائرية + الديوان الوطني للمطبوعات المدرسية",
+    "currentArrangements20262027": "https://www.education.gov.dz/2026/07/30/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9-%D9%8A%D9%86%D8%B4%D9%91%D8%B7-%D9%86%D8%AF%D9%88%D8%A9-%D8%B5%D8%AD%D9%81%D9%8A%D8%A9/",
+    "textbookTitles": "https://www.education.gov.dz/2016/04/20/2521/",
+    "onps": "https://www.onps.dz/",
+    "middleArabicCurriculum": "https://education.gov.dz/wp-content/uploads/2015/04/1-AM-lang-arabe.pdf",
+    "firstSecondaryArabicCurriculum": "https://education.gov.dz/wp-content/uploads/2015/04/%D8%A7%D9%84%D9%84%D8%BA%D9%80%D9%80%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7-%D8%A7%D9%84%D8%B3%D9%86%D8%A9-%D8%A7%D9%84%D8%A7%D9%88%D9%84%D9%89.pdf",
+    "secondSecondaryLiteratureLanguages": "https://education.gov.dz/wp-content/uploads/2015/04/Arabe-2AS-Letres-et-Philo-Langues-1-Copie.pdf",
+    "secondSecondaryScienceTechnology": "https://education.gov.dz/wp-content/uploads/2015/04/Arabe-2AS-Sces-Maths-TM-gestion.pdf"
+  },
+  "structure": {
+    "grades": "12/12",
+    "primary": "1-5",
+    "middle": "6-9 = الأولى متوسط إلى الرابعة متوسط",
+    "secondary": "10-12 = الأولى ثانوي إلى الثالثة ثانوي",
+    "matchingUnit": {
+      "10": "الجذع المشترك آداب + الجذع المشترك علوم وتكنولوجيا",
+      "1-9": "كتاب/منهاج اللغة العربية لكل سنة",
+      "11-12": "آداب/فلسفة/لغات + علوم/رياضيات/تقني/تسيير"
+    },
+    "current20262027Policy": "تستمر منظومة الجذع المشترك في 2026-2027، ويختلف تعميق اللغة العربية في التعليم الثانوي بحسب طبيعة الشعبة."
+  },
+  "coverage": {
+    "packGrades": "12/12",
+    "verifiedMappingGrades": "12/12",
+    "officialCoverageNodes": 15,
+    "mappedCoverageNodes": 15,
+    "verifiedCoverageNodes": 15,
+    "nationalExtensions": 15,
+    "database": {
+      "curriculumId": "46774db0-57a1-4414-8ec8-43b4d426bb9e",
+      "grades": 12,
+      "units": 12,
+      "lessons": 15,
+      "questions": 45,
+      "vocabulary": 45,
+      "publishedActivities": 45,
+      "minimumContentCharacters": 722
+    },
+    "gradeLessonCounts": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 1,
+      "7": 1,
+      "8": 1,
+      "9": 1,
+      "10": 2,
+      "11": 2,
+      "12": 2
+    }
+  },
+  "qualityGates": {
+    "officialSourcesVerified": true,
+    "allGradesPresent": true,
+    "allPacksRightsVerified": true,
+    "allMappingsVerified": true,
+    "officialEqualsMappedEqualsVerified": true,
+    "allLessonsPublished": true,
+    "allLessonsHaveOfficialSource": true,
+    "minimumObjectivesPerLesson": 3,
+    "minimumQuestionsPerLesson": 3,
+    "minimumVocabularyPerLesson": 3,
+    "minimumPublishedActivitiesPerLesson": 3,
+    "failingDatabaseLessons": 0,
+    "legacyConflict": "inactive-before-import"
+  },
+  "copyrightPolicy": "لا يعيد ضاديوم نشر نصوص الكتب المدرسية الجزائرية المحمية؛ يستخدم أسماء الكتب والمناهج والمسارات وروابط الجهات الرسمية لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية لضاديوم.",
+  "claimPolicy": "مطابق للمنهج الرسمي الجزائري = مواءم مع الكتب والمناهج والمسارات الرسمية المنشورة والقابلة للتحقق ضمن نطاق 2026-2027 الحالي؛ لا تعني العبارة اعتمادًا أو شراكة أو تأييدًا من وزارة التربية الوطنية."
+}
