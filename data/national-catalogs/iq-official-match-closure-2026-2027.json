@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "IQ",
+    "nameAr": "العراق",
+    "nameEn": "Iraq"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "status": "current-scope-complete",
+  "matchingStatus": "current-scope-complete",
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-09-25",
+  "authority": {
+    "nameAr": "وزارة التربية العراقية — المديرية العامة للمناهج",
+    "primaryCatalog": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=149",
+    "middleCatalog": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=148",
+    "secondaryCatalog": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=151",
+    "distinguishedCatalog": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=152",
+    "electronicSchool": "https://eschool.iq/",
+    "officialBookLinks": "https://t.me/s/educationiq?after=20611",
+    "currentSchoolYear": "https://t.me/s/Educationiq?before=32884",
+    "currentTextbookPrinting": "https://t.me/s/educationiq?before=33842"
+  },
+  "structure": {
+    "grades": "12/12",
+    "primary": "1-6",
+    "middle": "7-9 = الأول المتوسط إلى الثالث المتوسط",
+    "preparatory": "10-12 = الرابع الإعدادي إلى السادس الإعدادي",
+    "secondaryBranches": [
+      "العلمي",
+      "الأدبي"
+    ],
+    "matchingUnit": "book-or-book-part",
+    "gradeBooks": {
+      "1-3": "كتاب القراءة — حزمة واحدة لكل صف",
+      "4-6": "كتاب القراءة + كتاب قواعد اللغة العربية",
+      "7-12": "اللغة العربية — الجزء الأول + الجزء الثاني"
+    },
+    "policy": "تُستخدم الكتب/أجزاء الكتب كوحدات مطابقة لأن الكتالوج الرسمي ينشر المنهج في صورة كتب، ولا تُختلق عناوين دروس غير منشورة في الفهرس العام."
+  },
+  "coverage": {
+    "packGrades": "12/12",
+    "verifiedMappingGrades": "12/12",
+    "officialCoverageNodes": 21,
+    "mappedCoverageNodes": 21,
+    "verifiedCoverageNodes": 21,
+    "nationalExtensions": 21,
+    "database": {
+      "curriculumId": "04f1779d-3253-439c-8b54-9987607f6c9c",
+      "grades": 12,
+      "units": 12,
+      "lessons": 21,
+      "questions": 63,
+      "vocabulary": 63,
+      "publishedActivities": 63,
+      "minimumContentCharacters": 624
+    },
+    "gradeLessonCounts": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 2,
+      "5": 2,
+      "6": 2,
+      "7": 2,
+      "8": 2,
+      "9": 2,
+      "10": 2,
+      "11": 2,
+      "12": 2
+    }
+  },
+  "qualityGates": {
+    "officialSourcesVerified": true,
+    "allGradesPresent": true,
+    "allPacksRightsVerified": true,
+    "allMappingsVerified": true,
+    "officialEqualsMappedEqualsVerified": true,
+    "allLessonsPublished": true,
+    "allLessonsHaveOfficialSource": true,
+    "minimumObjectivesPerLesson": 3,
+    "minimumQuestionsPerLesson": 3,
+    "minimumVocabularyPerLesson": 3,
+    "minimumPublishedActivitiesPerLesson": 3,
+    "failingDatabaseLessons": 0,
+    "legacyConflict": "inactive-before-import"
+  },
+  "copyrightPolicy": "لا يعيد ضاديوم نشر نصوص الكتب العراقية المحمية؛ يستخدم أسماء الكتب/الأجزاء والمراحل وروابط الوزارة لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية لضاديوم.",
+  "claimPolicy": "مطابق للمنهج الرسمي العراقي = مواءم مع كتب ومراحل وزارة التربية العراقية والمديرية العامة للمناهج ضمن النطاق المنشور والقابل للتحقق حاليًا؛ لا تعني العبارة اعتمادًا أو شراكة أو تأييدًا من الوزارة."
+}
