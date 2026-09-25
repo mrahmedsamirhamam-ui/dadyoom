@@ -1,0 +1,258 @@
+{
+  "schemaVersion": 1,
+  "packKey": "SY:2026-2027:arabic:g10:current-scope",
+  "country": {
+    "code": "SY",
+    "nameAr": "سوريا",
+    "nameEn": "Syria"
+  },
+  "academicYear": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "stage": {
+    "code": "secondary",
+    "nameAr": "التعليم الثانوي"
+  },
+  "grade": {
+    "number": 10,
+    "nameAr": "الصف 1 الثانوي",
+    "nameEn": "Grade 10"
+  },
+  "semester": null,
+  "curriculum": {
+    "nameAr": "اللغة العربية — المطابقة الرسمية السورية",
+    "nameEn": "Arabic — Syria Official Curriculum Match",
+    "description": "طبقة وطنية مستقلة مرتبطة بالكتب والمنهاج السوريين المعتمدين وبالمركز الوطني لتطوير المناهج التربوية.",
+    "storageNameAr": "اللغة العربية — المطابقة الرسمية السورية"
+  },
+  "rights": {
+    "contentOwner": "dadyoom",
+    "sourceLabel": "وزارة التربية والتعليم السورية / المركز الوطني لتطوير المناهج؛ المحتوى التعليمي أصلي لضاديوم.",
+    "sourceUrl": "https://moed.gov.sy/",
+    "verified": true
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "اللغة العربية — حزمة الكتاب/المنهاج",
+      "description": "الصف 1 الثانوي: تغطية الكتاب والمنهاج المعتمد على مستوى الصف دون إعادة نشر النصوص المحمية.",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "اللغة العربية — الصف 1 الثانوي — حزمة الكتاب/المنهاج",
+          "type": "reading",
+          "estimatedMinutes": 40,
+          "summary": "حزمة وطنية أصلية من ضاديوم لمواءمة العربية في الصف 1 الثانوي مع المنهاج والكتب السورية المعتمدة.",
+          "content": "تمثل هذه العقدة «اللغة العربية — الصف 1 الثانوي — حزمة الكتاب/المنهاج» حزمة مطابقة وطنية على مستوى الصف ضمن المنهاج السوري. تؤكد وزارة التربية والتعليم والمركز الوطني لتطوير المناهج التربوية أن الكتب الرقمية والتفاعلية تغطي جميع الصفوف والمراحل من رياض الأطفال حتى المرحلة الثانوية، وأن الكتب المتاحة رقمياً تماثل الكتاب الورقي المعتمد. وفي 2026 يستمر تطوير وتصميم الكتب المدرسية والمناهج الرقمية الرسمية. لذلك يبني ضاديوم لكل صف حزمة عربية أصلية تغطي القراءة والفهم والمفردات والقواعد والتعبير والتذوق الأدبي بما يناسب المستوى، مع الرجوع إلى الكتاب المعتمد عند الحاجة إلى النص الأصلي. لا يعيد ضاديوم نشر النصوص المحمية ولا يخترع عناوين وحدات لم يتم التحقق منها.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات تعلم العربية في الصف 1 الثانوي.",
+            "أن يطبق المتعلم مهارة قراءة أو لغة أو تعبير في موقف جديد.",
+            "أن يراجع المتعلم أداءه ويصححه وفق معيار واضح."
+          ],
+          "vocabulary": [
+            {
+              "word": "قراءة",
+              "meaning": "فهم النص وتحليل أفكاره وبنيته."
+            },
+            {
+              "word": "لغة",
+              "meaning": "المفردات والتراكيب والقواعد التي تنظّم الاستعمال."
+            },
+            {
+              "word": "تعبير",
+              "meaning": "إنتاج شفهي أو كتابي يحقق غرضًا تواصليًا."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما وظيفة هذه الحزمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "مواءمة الكتاب/المنهاج السوري بمحتوى ضاديوم أصلي."
+                },
+                {
+                  "id": "b",
+                  "text": "نسخ الكتاب المدرسي كاملًا."
+                },
+                {
+                  "id": "c",
+                  "text": "اختراع مقرر جديد."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الحزمة تربط المنهج المعتمد بتعلم أصلي.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على الإتقان؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير أو شاهد."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ اسم الكتاب فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ إجابة جاهزة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في الأداء المستقل.",
+              "points": 1
+            },
+            {
+              "question": "كيف تتم المراجعة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن الناتج بالهدف والمعيار وأصحح."
+                },
+                {
+                  "id": "b",
+                  "text": "أتجاوز المراجعة."
+                },
+                {
+                  "id": "c",
+                  "text": "أغير الإجابة عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة وفق معيار تحسن التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "فهم وتطبيق",
+              "activityType": "multiple_choice",
+              "instructions": "حدد المهارة اللغوية الأنسب للمهمة.",
+              "content": {
+                "origin": "DADYOOM_SY_OFFICIAL_2026_2027_V1",
+                "grade": 10
+              },
+              "published": true
+            },
+            {
+              "title": "قراءة مستقلة",
+              "activityType": "reading",
+              "instructions": "طبّق مهارة الفهم على نص أصلي مناسب للمستوى.",
+              "content": {
+                "origin": "DADYOOM_SY_OFFICIAL_2026_2027_V1",
+                "grade": 10
+              },
+              "published": true
+            },
+            {
+              "title": "إنتاج ومراجعة",
+              "activityType": "writing",
+              "instructions": "اكتب استجابة قصيرة ثم راجعها وفق معيار النجاح.",
+              "content": {
+                "origin": "DADYOOM_SY_OFFICIAL_2026_2027_V1",
+                "grade": 10
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية والتعليم السورية + المركز الوطني لتطوير المناهج التربوية",
+            "url": "https://moed.gov.sy/",
+            "additionalUrls": [
+              "https://sana.sy/education/2303177/",
+              "https://sana.sy/education/2449235/",
+              "https://sana.sy/education/2519264/",
+              "https://sana.sy/education/2403508/",
+              "https://sana.sy/education/2462169/"
+            ]
+          },
+          "alignment": {
+            "mode": "official-grade-book-curriculum-bundle",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "sy-dadyoom-core-g10-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sy-dadyoom-core-g10-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sy-dadyoom-core-g10-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sy-dadyoom-core-g10-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sy-dadyoom-core-g10-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sy-dadyoom-core-g10-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sy-dadyoom-core-g10-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sy-dadyoom-core-g10-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sy-dadyoom-core-g10-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sy-dadyoom-core-g10-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sy-dadyoom-core-g10-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sy-dadyoom-core-g10-l12",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sy-dadyoom-core-g10-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sy-dadyoom-core-g10-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sy-dadyoom-core-g10-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sy-dadyoom-core-g10-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sy-dadyoom-core-g10-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "sy-dadyoom-core-g10-l18",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
