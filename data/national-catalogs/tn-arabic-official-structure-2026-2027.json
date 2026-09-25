@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "TN",
+    "nameAr": "تونس",
+    "nameEn": "Tunisia"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "verificationStatus": "verified-source-structure",
+  "officialCoverageUnit": "official-grade-textbook-bundle",
+  "educationStructure": {
+    "primary": {
+      "years": 6
+    },
+    "lowerSecondary": {
+      "years": 3
+    },
+    "secondary": {
+      "years": 4
+    }
+  },
+  "officialCoverageNodes": 13,
+  "sources": [
+    {
+      "kind": "official-cnp-current-books-2026-2027",
+      "url": "https://www.cnp.com.tn/"
+    },
+    {
+      "kind": "official-cnp-arabic",
+      "url": "https://cnp.com.tn/arabic/index.htm"
+    },
+    {
+      "kind": "official-book-list",
+      "url": "https://cnp.com.tn/arabic/annee-actuelle/listeOfficielle.htm"
+    },
+    {
+      "kind": "official-ministry",
+      "url": "https://education.gov.tn/"
+    },
+    {
+      "kind": "official-grade7-arabic-book",
+      "url": "https://cnp.com.tn/arabic/PDF/101708P00.pdf"
+    }
+  ],
+  "copyrightPolicy": "يستخدم ضاديوم بنية المستويات والقوائم الرسمية لإثبات المواءمة، والمحتوى التعليمي أصلي.",
+  "generatedAt": "2026-09-25"
+}
