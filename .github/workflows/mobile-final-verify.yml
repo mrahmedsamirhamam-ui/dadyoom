@@ -2,6 +2,7 @@ name: Mobile Final Verify
 # signing-pipeline syntax gate
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - fix/mobile-cloud-video-final-20260923
