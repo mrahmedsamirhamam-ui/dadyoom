@@ -89,6 +89,10 @@ const updateRoute = read(
   "app/api/mobile/android/latest/route.ts"
 );
 
+const nativeOfflineShell = read(
+  "mobile-shell/offline-native.html"
+);
+
 check(
   "PWA_MANIFEST_STANDALONE",
   manifest.includes(
@@ -213,6 +217,22 @@ check(
   ) &&
     capacitorConfig.includes(
       '"dadyoom.mrahmedsamirhamam.workers.dev"'
+    )
+);
+
+check(
+  "ANDROID_NATIVE_OFFLINE_SHELL",
+  capacitorConfig.includes(
+    'errorPath: "offline-native.html"'
+  ) &&
+    nativeOfflineShell.includes(
+      "CapgoLLM"
+    ) &&
+    nativeOfflineShell.includes(
+      "/android_asset/dadyoom-qwen2.5-1.5b-instruct-q8.task"
+    ) &&
+    nativeOfflineShell.includes(
+      "تمت الإجابة محليًا بدون إنترنت"
     )
 );
 
