@@ -1,0 +1,823 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "JO",
+    "nameAr": "الأردن"
+  },
+  "academicYear": "2026-2027",
+  "grade": 12,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 23,
+  "mappedLessons": 23,
+  "verifiedLessons": 23,
+  "scope": "explicit-2026-2027-semester-1",
+  "policy": "مطابقة موضوعات NCCD المنشورة رسميًا مع Core Bundles وNational Extensions أصلية؛ لا نسخ لنصوص الكتب.",
+  "mappings": [
+    {
+      "officialSlug": "jo-2026-2027-g12-u1-l1",
+      "officialTitle": "علاقة الشعر الجاهلي بالحياة",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://www.nccd.gov.jo/EBV4.0/Root_Storage/AR/2026-2027%20book/arabic/G12/1/12-1%20.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «علاقة الشعر الجاهلي بالحياة» بحزمة Core المناسبة مع الرجوع للنص الرسمي من مصدره المرخص عند الحاجة.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u1-l2",
+      "officialTitle": "أغراض الشعر الجاهلي",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://www.nccd.gov.jo/EBV4.0/Root_Storage/AR/2026-2027%20book/arabic/G12/1/12-1%20.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «أغراض الشعر الجاهلي» بحزمة Core المناسبة مع الرجوع للنص الرسمي من مصدره المرخص عند الحاجة.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u1-l3",
+      "officialTitle": "خصائص الشعر الجاهلي",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://www.nccd.gov.jo/EBV4.0/Root_Storage/AR/2026-2027%20book/arabic/G12/1/12-1%20.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «خصائص الشعر الجاهلي» بحزمة Core المناسبة مع الرجوع للنص الرسمي من مصدره المرخص عند الحاجة.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u1-l4",
+      "officialTitle": "المعلقات في العصر الجاهلي",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://www.nccd.gov.jo/EBV4.0/Root_Storage/AR/2026-2027%20book/arabic/G12/1/12-1%20.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «المعلقات في العصر الجاهلي» بحزمة Core المناسبة مع الرجوع للنص الرسمي من مصدره المرخص عند الحاجة.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u2-l1",
+      "officialTitle": "أثر الإسلام في الشعر والنثر",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://www.nccd.gov.jo/EBV4.0/Root_Storage/AR/2026-2027%20book/arabic/G12/1/12-1%20.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «أثر الإسلام في الشعر والنثر» بحزمة Core المناسبة مع الرجوع للنص الرسمي من مصدره المرخص عند الحاجة.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u2-l2",
+      "officialTitle": "تحليل نماذج شعرية في مدح الرسول ﷺ",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://www.nccd.gov.jo/EBV4.0/Root_Storage/AR/2026-2027%20book/arabic/G12/1/12-1%20.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «تحليل نماذج شعرية في مدح الرسول ﷺ» بحزمة Core المناسبة مع الرجوع للنص الرسمي من مصدره المرخص عند الحاجة.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u2-l3",
+      "officialTitle": "ظاهرة الغزل في الشعر الأموي",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://www.nccd.gov.jo/EBV4.0/Root_Storage/AR/2026-2027%20book/arabic/G12/1/12-1%20.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «ظاهرة الغزل في الشعر الأموي» بحزمة Core المناسبة مع الرجوع للنص الرسمي من مصدره المرخص عند الحاجة.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u2-l4",
+      "officialTitle": "شعر النقائض",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://www.nccd.gov.jo/EBV4.0/Root_Storage/AR/2026-2027%20book/arabic/G12/1/12-1%20.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «شعر النقائض» بحزمة Core المناسبة مع الرجوع للنص الرسمي من مصدره المرخص عند الحاجة.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u2-l5",
+      "officialTitle": "النثر في عصر صدر الإسلام والعصر الأموي",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://www.nccd.gov.jo/EBV4.0/Root_Storage/AR/2026-2027%20book/arabic/G12/1/12-1%20.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «النثر في عصر صدر الإسلام والعصر الأموي» بحزمة Core المناسبة مع الرجوع للنص الرسمي من مصدره المرخص عند الحاجة.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u3-l1",
+      "officialTitle": "أثر الثقافات الأجنبية في الأدب العربي في العصر العباسي",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://www.nccd.gov.jo/EBV4.0/Root_Storage/AR/2026-2027%20book/arabic/G12/1/12-1%20.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «أثر الثقافات الأجنبية في الأدب العربي في العصر العباسي» بحزمة Core المناسبة مع الرجوع للنص الرسمي من مصدره المرخص عند الحاجة.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u3-l2",
+      "officialTitle": "التجديد في الشعر العباسي",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://www.nccd.gov.jo/EBV4.0/Root_Storage/AR/2026-2027%20book/arabic/G12/1/12-1%20.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «التجديد في الشعر العباسي» بحزمة Core المناسبة مع الرجوع للنص الرسمي من مصدره المرخص عند الحاجة.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u3-l3",
+      "officialTitle": "الموضوعات الشعرية",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://www.nccd.gov.jo/EBV4.0/Root_Storage/AR/2026-2027%20book/arabic/G12/1/12-1%20.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الموضوعات الشعرية» بحزمة Core المناسبة مع الرجوع للنص الرسمي من مصدره المرخص عند الحاجة.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u4-l1",
+      "officialTitle": "اللزوميات",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://www.nccd.gov.jo/EBV4.0/Root_Storage/AR/2026-2027%20book/arabic/G12/1/12-1%20.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «اللزوميات» بحزمة Core المناسبة مع الرجوع للنص الرسمي من مصدره المرخص عند الحاجة.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u4-l2",
+      "officialTitle": "الروميات",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://www.nccd.gov.jo/EBV4.0/Root_Storage/AR/2026-2027%20book/arabic/G12/1/12-1%20.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الروميات» بحزمة Core المناسبة مع الرجوع للنص الرسمي من مصدره المرخص عند الحاجة.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u4-l3",
+      "officialTitle": "الحكمة في شعر المتنبي",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://www.nccd.gov.jo/EBV4.0/Root_Storage/AR/2026-2027%20book/arabic/G12/1/12-1%20.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الحكمة في شعر المتنبي» بحزمة Core المناسبة مع الرجوع للنص الرسمي من مصدره المرخص عند الحاجة.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u4-l4",
+      "officialTitle": "الكتابة النثرية الأدبية",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://www.nccd.gov.jo/EBV4.0/Root_Storage/AR/2026-2027%20book/arabic/G12/1/12-1%20.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الكتابة النثرية الأدبية» بحزمة Core المناسبة مع الرجوع للنص الرسمي من مصدره المرخص عند الحاجة.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u5-l1",
+      "officialTitle": "المفعول المطلق",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Arabic/2025/%D8%B9%D8%B1%D8%A8%D9%8A%206.7.2025/12/arabic%20alnahw%20walsarf%20C12P1%20236.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "direct-skill",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «المفعول المطلق» بحزمة Core المناسبة مع الرجوع للنص الرسمي من مصدره المرخص عند الحاجة.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l08",
+          "relation": "direct-skill",
+          "title": "المفاعيل ودلالاتها"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u5-l2",
+      "officialTitle": "الممنوع من الصرف",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Arabic/2025/%D8%B9%D8%B1%D8%A8%D9%8A%206.7.2025/12/arabic%20alnahw%20walsarf%20C12P1%20236.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core جزءًا داعمًا، ويغلق Pack الأردن المهارة الخاصة «الممنوع من الصرف» عبر National Extension أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l07",
+          "relation": "supporting-skill",
+          "title": "النواسخ في السياق"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l08",
+          "relation": "supporting-skill",
+          "title": "المفاعيل ودلالاتها"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l09",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز المتقدم"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l10",
+          "relation": "supporting-skill",
+          "title": "التوابع والاتساق"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l11",
+          "relation": "supporting-skill",
+          "title": "الشرط والاستثناء"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u5-l3",
+      "officialTitle": "الاستثناء",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Arabic/2025/%D8%B9%D8%B1%D8%A8%D9%8A%206.7.2025/12/arabic%20alnahw%20walsarf%20C12P1%20236.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "direct-skill",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الاستثناء» بحزمة Core المناسبة مع الرجوع للنص الرسمي من مصدره المرخص عند الحاجة.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l11",
+          "relation": "direct-skill",
+          "title": "الشرط والاستثناء"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u5-l4",
+      "officialTitle": "الجمل التي لها محل من الإعراب",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Arabic/2025/%D8%B9%D8%B1%D8%A8%D9%8A%206.7.2025/12/arabic%20alnahw%20walsarf%20C12P1%20236.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core جزءًا داعمًا، ويغلق Pack الأردن المهارة الخاصة «الجمل التي لها محل من الإعراب» عبر National Extension أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l07",
+          "relation": "supporting-skill",
+          "title": "النواسخ في السياق"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l10",
+          "relation": "supporting-skill",
+          "title": "التوابع والاتساق"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l11",
+          "relation": "supporting-skill",
+          "title": "الشرط والاستثناء"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u5-l5",
+      "officialTitle": "التعجب",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Arabic/2025/%D8%B9%D8%B1%D8%A8%D9%8A%206.7.2025/12/arabic%20alnahw%20walsarf%20C12P1%20236.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core جزءًا داعمًا، ويغلق Pack الأردن المهارة الخاصة «التعجب» عبر National Extension أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l07",
+          "relation": "supporting-skill",
+          "title": "النواسخ في السياق"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l11",
+          "relation": "supporting-skill",
+          "title": "الشرط والاستثناء"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u5-l6",
+      "officialTitle": "الإضافة",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Arabic/2025/%D8%B9%D8%B1%D8%A8%D9%8A%206.7.2025/12/arabic%20alnahw%20walsarf%20C12P1%20236.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core جزءًا داعمًا، ويغلق Pack الأردن المهارة الخاصة «الإضافة» عبر National Extension أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l07",
+          "relation": "supporting-skill",
+          "title": "النواسخ في السياق"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l10",
+          "relation": "supporting-skill",
+          "title": "التوابع والاتساق"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g12-u5-l7",
+      "officialTitle": "موسيقا الشعر",
+      "source": {
+        "label": "NCCD — الصف الثاني عشر 2026-2027",
+        "url": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Arabic/2025/%D8%B9%D8%B1%D8%A8%D9%8A%206.7.2025/12/arabic%20alnahw%20walsarf%20C12P1%20236.pdf",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core جزءًا داعمًا، ويغلق Pack الأردن المهارة الخاصة «موسيقا الشعر» عبر National Extension أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "jo-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-book+official-arabic-framework+core-skill-bundle+national-extension-v1"
+    }
+  ]
+}
