@@ -1,0 +1,298 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "KW",
+    "nameAr": "الكويت"
+  },
+  "academicYear": "2026-2027",
+  "grade": 5,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 9,
+  "mappedLessons": 9,
+  "verifiedLessons": 9,
+  "scope": "current-officially-published-and-publicly-verifiable-scope",
+  "policy": "مطابقة على مستوى مجال المهارة أو حزمة المقرر/الفصل بحسب ما تنشره الوزارة، مع National Extensions أصلية وعدم اختلاق عناوين دروس.",
+  "mappings": [
+    {
+      "officialSlug": "kw-2026-2027-g5-listening-viewing",
+      "officialTitle": "الاستماع والمشاهدة",
+      "source": {
+        "label": "وزارة التربية الكويتية — مصفوفة مهارات اللغة العربية للمرحلة الابتدائية",
+        "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+        "libraryUrl": "https://elibrary.moe.edu.kw/StudentsLibrary",
+        "currentCurriculumUrl": "https://moe.edu.kw/news/869"
+      },
+      "relationType": "national-extension+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المجال «الاستماع والمشاهدة» مأخوذ من بنية مصفوفة مهارات اللغة العربية الرسمية بحسب المرحلة، وممثل في Pack الكويت بمحتوى أصلي مع Core كمساند فقط.",
+      "coreCoverage": [
+        {
+          "slug": "kw-dadyoom-core-g5-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g5-l17",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-kuwait-skill-matrix+official-elibrary+current-curriculum-implementation+national-pack"
+    },
+    {
+      "officialSlug": "kw-2026-2027-g5-speaking",
+      "officialTitle": "التحدث",
+      "source": {
+        "label": "وزارة التربية الكويتية — مصفوفة مهارات اللغة العربية للمرحلة الابتدائية",
+        "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+        "libraryUrl": "https://elibrary.moe.edu.kw/StudentsLibrary",
+        "currentCurriculumUrl": "https://moe.edu.kw/news/869"
+      },
+      "relationType": "national-extension+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المجال «التحدث» مأخوذ من بنية مصفوفة مهارات اللغة العربية الرسمية بحسب المرحلة، وممثل في Pack الكويت بمحتوى أصلي مع Core كمساند فقط.",
+      "coreCoverage": [
+        {
+          "slug": "kw-dadyoom-core-g5-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g5-l17",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-kuwait-skill-matrix+official-elibrary+current-curriculum-implementation+national-pack"
+    },
+    {
+      "officialSlug": "kw-2026-2027-g5-reading-viewing",
+      "officialTitle": "القراءة والمشاهدة",
+      "source": {
+        "label": "وزارة التربية الكويتية — مصفوفة مهارات اللغة العربية للمرحلة الابتدائية",
+        "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+        "libraryUrl": "https://elibrary.moe.edu.kw/StudentsLibrary",
+        "currentCurriculumUrl": "https://moe.edu.kw/news/869"
+      },
+      "relationType": "national-extension+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المجال «القراءة والمشاهدة» مأخوذ من بنية مصفوفة مهارات اللغة العربية الرسمية بحسب المرحلة، وممثل في Pack الكويت بمحتوى أصلي مع Core كمساند فقط.",
+      "coreCoverage": [
+        {
+          "slug": "kw-dadyoom-core-g5-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g5-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g5-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g5-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g5-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g5-l06",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-kuwait-skill-matrix+official-elibrary+current-curriculum-implementation+national-pack"
+    },
+    {
+      "officialSlug": "kw-2026-2027-g5-vocabulary",
+      "officialTitle": "الحصيلة اللغوية",
+      "source": {
+        "label": "وزارة التربية الكويتية — مصفوفة مهارات اللغة العربية للمرحلة الابتدائية",
+        "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+        "libraryUrl": "https://elibrary.moe.edu.kw/StudentsLibrary",
+        "currentCurriculumUrl": "https://moe.edu.kw/news/869"
+      },
+      "relationType": "national-extension+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المجال «الحصيلة اللغوية» مأخوذ من بنية مصفوفة مهارات اللغة العربية الرسمية بحسب المرحلة، وممثل في Pack الكويت بمحتوى أصلي مع Core كمساند فقط.",
+      "coreCoverage": [
+        {
+          "slug": "kw-dadyoom-core-g5-l03",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-kuwait-skill-matrix+official-elibrary+current-curriculum-implementation+national-pack"
+    },
+    {
+      "officialSlug": "kw-2026-2027-g5-language-accuracy",
+      "officialTitle": "السلامة اللغوية",
+      "source": {
+        "label": "وزارة التربية الكويتية — مصفوفة مهارات اللغة العربية للمرحلة الابتدائية",
+        "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+        "libraryUrl": "https://elibrary.moe.edu.kw/StudentsLibrary",
+        "currentCurriculumUrl": "https://moe.edu.kw/news/869"
+      },
+      "relationType": "national-extension+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المجال «السلامة اللغوية» مأخوذ من بنية مصفوفة مهارات اللغة العربية الرسمية بحسب المرحلة، وممثل في Pack الكويت بمحتوى أصلي مع Core كمساند فقط.",
+      "coreCoverage": [
+        {
+          "slug": "kw-dadyoom-core-g5-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g5-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g5-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g5-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g5-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g5-l12",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-kuwait-skill-matrix+official-elibrary+current-curriculum-implementation+national-pack"
+    },
+    {
+      "officialSlug": "kw-2026-2027-g5-rhetoric",
+      "officialTitle": "البلاغة",
+      "source": {
+        "label": "وزارة التربية الكويتية — مصفوفة مهارات اللغة العربية للمرحلة الابتدائية",
+        "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+        "libraryUrl": "https://elibrary.moe.edu.kw/StudentsLibrary",
+        "currentCurriculumUrl": "https://moe.edu.kw/news/869"
+      },
+      "relationType": "national-extension+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المجال «البلاغة» مأخوذ من بنية مصفوفة مهارات اللغة العربية الرسمية بحسب المرحلة، وممثل في Pack الكويت بمحتوى أصلي مع Core كمساند فقط.",
+      "coreCoverage": [
+        {
+          "slug": "kw-dadyoom-core-g5-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g5-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g5-l06",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-kuwait-skill-matrix+official-elibrary+current-curriculum-implementation+national-pack"
+    },
+    {
+      "officialSlug": "kw-2026-2027-g5-spelling",
+      "officialTitle": "الرسم الهجائي",
+      "source": {
+        "label": "وزارة التربية الكويتية — مصفوفة مهارات اللغة العربية للمرحلة الابتدائية",
+        "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+        "libraryUrl": "https://elibrary.moe.edu.kw/StudentsLibrary",
+        "currentCurriculumUrl": "https://moe.edu.kw/news/869"
+      },
+      "relationType": "national-extension+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المجال «الرسم الهجائي» مأخوذ من بنية مصفوفة مهارات اللغة العربية الرسمية بحسب المرحلة، وممثل في Pack الكويت بمحتوى أصلي مع Core كمساند فقط.",
+      "coreCoverage": [
+        {
+          "slug": "kw-dadyoom-core-g5-l12",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-kuwait-skill-matrix+official-elibrary+current-curriculum-implementation+national-pack"
+    },
+    {
+      "officialSlug": "kw-2026-2027-g5-calligraphy",
+      "officialTitle": "الخط العربي",
+      "source": {
+        "label": "وزارة التربية الكويتية — مصفوفة مهارات اللغة العربية للمرحلة الابتدائية",
+        "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+        "libraryUrl": "https://elibrary.moe.edu.kw/StudentsLibrary",
+        "currentCurriculumUrl": "https://moe.edu.kw/news/869"
+      },
+      "relationType": "national-extension+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المجال «الخط العربي» مأخوذ من بنية مصفوفة مهارات اللغة العربية الرسمية بحسب المرحلة، وممثل في Pack الكويت بمحتوى أصلي مع Core كمساند فقط.",
+      "coreCoverage": [
+        {
+          "slug": "kw-dadyoom-core-g5-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g5-l15",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-kuwait-skill-matrix+official-elibrary+current-curriculum-implementation+national-pack"
+    },
+    {
+      "officialSlug": "kw-2026-2027-g5-expression",
+      "officialTitle": "التعبير",
+      "source": {
+        "label": "وزارة التربية الكويتية — مصفوفة مهارات اللغة العربية للمرحلة الابتدائية",
+        "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+        "libraryUrl": "https://elibrary.moe.edu.kw/StudentsLibrary",
+        "currentCurriculumUrl": "https://moe.edu.kw/news/869"
+      },
+      "relationType": "national-extension+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المجال «التعبير» مأخوذ من بنية مصفوفة مهارات اللغة العربية الرسمية بحسب المرحلة، وممثل في Pack الكويت بمحتوى أصلي مع Core كمساند فقط.",
+      "coreCoverage": [
+        {
+          "slug": "kw-dadyoom-core-g5-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g5-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g5-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g5-l15",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-kuwait-skill-matrix+official-elibrary+current-curriculum-implementation+national-pack"
+    }
+  ]
+}
