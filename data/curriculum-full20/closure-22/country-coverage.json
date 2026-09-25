@@ -1735,8 +1735,20 @@
         "verificationStatus": "verified",
         "evidenceSources": [
           {
+            "url": "https://e-learning-moe.edu.ye/",
+            "kind": "official-learning-portal"
+          },
+          {
             "url": "https://e-learning-moe.edu.ye/lcms/",
-            "kind": "official-learning-portal-candidate"
+            "kind": "official-curricula-catalog"
+          },
+          {
+            "url": "https://www.e-learning-moe.edu.ye/teachergiude.php",
+            "kind": "official-arabic-teacher-guides"
+          },
+          {
+            "url": "https://moe-ye.net/37553",
+            "kind": "official-2026-2027-school-year"
           }
         ],
         "verifiedPackFiles": [
@@ -1786,7 +1798,7 @@
           "vocabulary": 36,
           "activities": 36
         },
-        "note": "Verified current official scope."
+        "note": "مغلق للنطاق الرسمي المنشور والقابل للتحقق حاليًا عبر بوابة المناهج اليمنية وأدلة معلمي العربية والسنة الدراسية 2026-2027."
       },
       "publicationReadiness": "NATIONAL_CURRENT_SCOPE_COMPLETE"
     }
