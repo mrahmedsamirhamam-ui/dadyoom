@@ -52,26 +52,72 @@ Step "Wait for complete authenticated E2E verification"
 if ($LASTEXITCODE -ne 0) { throw "Mobile Final Verify / authenticated E2E failed. Deployment was NOT started." }
 Pass "Authenticated release verification passed"
 
-Step "Deploy verified current branch to Cloudflare"
+$expectedHead = (& git rev-parse HEAD).Trim()
+if (-not $expectedHead) { throw "Unable to resolve current Git HEAD." }
+Write-Host "EXPECTED_DEPLOY_COMMIT=$expectedHead"
+
+Step "Build verified current HEAD locally for Cloudflare"
+$distPath = Join-Path $ProjectRoot "dist"
+if (Test-Path -LiteralPath $distPath) {
+  Remove-Item -LiteralPath $distPath -Recurse -Force
+  Write-Host "STALE_DIST_REMOVED=PASS"
+}
+& npm run build:vinext
+if ($LASTEXITCODE -ne 0) { throw "Local Vinext build failed. Deployment was NOT started." }
+
+$localVersionPath = Join-Path $ProjectRoot "public\app-version.json"
+if (-not (Test-Path -LiteralPath $localVersionPath)) {
+  throw "Local app-version.json missing after build."
+}
+$localVersion = Get-Content -LiteralPath $localVersionPath -Raw | ConvertFrom-Json
+$localCommit = [string]$localVersion.commit
+Write-Host "LOCAL_BUILD_COMMIT=$localCommit"
+if ($localCommit -ne $expectedHead) {
+  throw "Local build commit mismatch. Expected $expectedHead but app-version.json contains $localCommit. Deployment was NOT started."
+}
+Pass "Local Vinext build matches current HEAD"
+
+Step "Deploy verified current HEAD to Cloudflare"
 & npm run deploy:vinext
 if ($LASTEXITCODE -ne 0) { throw "Cloudflare production deployment failed." }
 Pass "Cloudflare deployment command completed"
 
-Step "Verify production endpoints"
+Step "Verify production endpoints and deployed commit"
 $health = Invoke-WebRequest -Uri ($ProductionUrl.TrimEnd("/") + "/api/ai/health") -UseBasicParsing -TimeoutSec 45
 if ($health.StatusCode -ne 200) { throw "Production AI health returned HTTP $($health.StatusCode)." }
 $provider = Invoke-WebRequest -Uri ($ProductionUrl.TrimEnd("/") + "/api/auth/provider-status") -UseBasicParsing -TimeoutSec 45
 if ($provider.StatusCode -ne 200) { throw "Production auth provider status returned HTTP $($provider.StatusCode)." }
 $providerJson = $provider.Content | ConvertFrom-Json
 if ($providerJson.google -ne $true) { throw "Production Google provider is not enabled." }
-try {
-  $version = Invoke-WebRequest -Uri ($ProductionUrl.TrimEnd("/") + "/app-version.json") -UseBasicParsing -TimeoutSec 45
-  if ($version.StatusCode -eq 200) { Write-Host "PRODUCTION_APP_VERSION=$($version.Content)" }
-} catch {
-  Write-Host "PRODUCTION_APP_VERSION=UNAVAILABLE_NON_BLOCKING"
+
+$productionCommit = ""
+$versionDeadline = (Get-Date).AddMinutes(3)
+while ((Get-Date) -lt $versionDeadline -and $productionCommit -ne $expectedHead) {
+  try {
+    $cacheBust = [DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()
+    $version = Invoke-WebRequest -Uri ($ProductionUrl.TrimEnd("/") + "/app-version.json?v=$cacheBust") -UseBasicParsing -TimeoutSec 45 -Headers @{ "Cache-Control" = "no-cache" }
+    if ($version.StatusCode -eq 200) {
+      $versionJson = $version.Content | ConvertFrom-Json
+      $productionCommit = [string]$versionJson.commit
+      Write-Host "PRODUCTION_APP_COMMIT=$productionCommit"
+      Write-Host "PRODUCTION_APP_VERSION=$([string]$versionJson.version)"
+    }
+  } catch {
+    Write-Host "PRODUCTION_APP_VERSION_RETRY=$($_.Exception.Message)"
+  }
+
+  if ($productionCommit -ne $expectedHead) {
+    Start-Sleep -Seconds 5
+  }
 }
+
+if ($productionCommit -ne $expectedHead) {
+  throw "Production commit mismatch after deployment. Expected $expectedHead but production reports '$productionCommit'."
+}
+
 Pass "Production AI health"
 Pass "Production Google provider"
+Pass "Production commit matches verified HEAD"
 Pass "Production deploy verification"
 Write-Host ""
 Write-Host "DADYOOM_FINAL_CLOSURE=PASS" -ForegroundColor Green
