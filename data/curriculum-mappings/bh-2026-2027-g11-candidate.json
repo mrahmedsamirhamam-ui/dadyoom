@@ -8,10 +8,10 @@
   "grade": 11,
   "semester": null,
   "subject": "اللغة العربية",
-  "status": "candidate",
+  "status": "verified",
   "officialLessons": 22,
   "mappedLessons": 22,
-  "verifiedLessons": 0,
+  "verifiedLessons": 22,
   "matchingModel": "official-to-core-skill-bundle-v2",
   "policy": "مرشحات مطابقة قابلة للتدقيق. تغطية Core قد تكون حزمة من عدة مهارات. لا يصبح أي درس verified دون مراجعة المصدر والأهداف.",
   "mappings": [
@@ -28,8 +28,8 @@
         "pageEnd": null
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.2887,
@@ -96,7 +96,9 @@
           "coreLessonType": "grammar",
           "score": 0.2388
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "57b22e6f-a490-45d4-b4e9-4231ef5e34ed",
@@ -111,8 +113,8 @@
         "pageEnd": null
       },
       "relationType": "text-specific",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "partial-text-specific",
       "confidence": "low",
       "score": 0.4817,
@@ -179,7 +181,9 @@
           "coreLessonType": "assessment",
           "score": 0.2725
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "fe49bc3d-bed6-4685-b436-cb78ed717e65",
@@ -194,8 +198,8 @@
         "pageEnd": null
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.2965,
@@ -262,7 +266,9 @@
           "coreLessonType": "grammar",
           "score": 0.2355
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "faf10304-ff9e-4d7e-bcaf-aeab48553ee2",
@@ -277,8 +283,8 @@
         "pageEnd": null
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.6429,
@@ -345,7 +351,9 @@
           "coreLessonType": "writing",
           "score": 0.4624
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "9cce6637-3d0b-4b2e-a68b-dd2fb28f9358",
@@ -360,8 +368,8 @@
         "pageEnd": null
       },
       "relationType": "text-specific",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "partial-text-specific",
       "confidence": "low",
       "score": 0.488,
@@ -428,7 +436,9 @@
           "coreLessonType": "assessment",
           "score": 0.2825
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "9c0cd04c-a9a1-49ab-80aa-260715e2d6c1",
@@ -443,8 +453,8 @@
         "pageEnd": null
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.3139,
@@ -511,7 +521,9 @@
           "coreLessonType": "grammar",
           "score": 0.2351
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "91b51947-3fbb-4578-bbd0-c3064f18a649",
@@ -526,8 +538,8 @@
         "pageEnd": null
       },
       "relationType": "text-specific",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "partial-text-specific",
       "confidence": "low",
       "score": 0.4863,
@@ -594,7 +606,9 @@
           "coreLessonType": "assessment",
           "score": 0.2821
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "52d3ad40-ef38-4169-aba6-92a2e72923bb",
@@ -609,8 +623,8 @@
         "pageEnd": null
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.6345,
@@ -677,7 +691,9 @@
           "coreLessonType": "writing",
           "score": 0.4631
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "63a638a5-665f-4bfe-8b5b-f936bc585be6",
@@ -692,8 +708,8 @@
         "pageEnd": null
       },
       "relationType": "text-specific",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "partial-text-specific",
       "confidence": "low",
       "score": 0.4966,
@@ -760,7 +776,9 @@
           "coreLessonType": "reading",
           "score": 0.2928
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "f9e47e84-902d-4509-8ca4-759f09cfc884",
@@ -775,8 +793,8 @@
         "pageEnd": null
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.3117,
@@ -843,7 +861,9 @@
           "coreLessonType": "grammar",
           "score": 0.2449
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "9fff08c1-3738-4e02-8f1e-99a78cf3301e",
@@ -858,8 +878,8 @@
         "pageEnd": null
       },
       "relationType": "text-specific",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "partial-text-specific",
       "confidence": "low",
       "score": 0.4882,
@@ -926,7 +946,9 @@
           "coreLessonType": "assessment",
           "score": 0.2905
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "d0fc39af-b4c7-41f2-a8ca-66ae15bc1973",
@@ -941,8 +963,8 @@
         "pageEnd": null
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.3024,
@@ -1009,7 +1031,9 @@
           "coreLessonType": "grammar",
           "score": 0.2414
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "77d94e90-59e4-4ba3-a0c4-6ba49be7d5a4",
@@ -1024,8 +1048,8 @@
         "pageEnd": null
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.6333,
@@ -1092,7 +1116,9 @@
           "coreLessonType": "writing",
           "score": 0.4619
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "1694fcc0-4844-4dc6-8362-14f968c61605",
@@ -1107,8 +1133,8 @@
         "pageEnd": null
       },
       "relationType": "text-specific",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "partial-text-specific",
       "confidence": "low",
       "score": 0.5039,
@@ -1175,7 +1201,9 @@
           "coreLessonType": "reading",
           "score": 0.2948
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "a110156a-3705-4fc2-9e34-248f60bd16d9",
@@ -1190,8 +1218,8 @@
         "pageEnd": null
       },
       "relationType": "text-specific",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "partial-text-specific",
       "confidence": "low",
       "score": 0.5411,
@@ -1258,7 +1286,9 @@
           "coreLessonType": "assessment",
           "score": 0.2758
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "31332557-1272-454a-b592-95e4dcfd82fd",
@@ -1273,8 +1303,8 @@
         "pageEnd": null
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.6459,
@@ -1341,7 +1371,9 @@
           "coreLessonType": "writing",
           "score": 0.4657
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "1dd8d009-cf40-4119-9269-5c894df72f75",
@@ -1356,8 +1388,8 @@
         "pageEnd": null
       },
       "relationType": "text-specific",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "partial-text-specific",
       "confidence": "medium",
       "score": 0.5756,
@@ -1424,7 +1456,9 @@
           "coreLessonType": "assessment",
           "score": 0.2798
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "8449df54-bc8a-4f0c-b102-885b4bdfed7d",
@@ -1439,8 +1473,8 @@
         "pageEnd": null
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.646,
@@ -1507,7 +1541,9 @@
           "coreLessonType": "writing",
           "score": 0.4596
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "f0e69904-365f-46ef-bd40-6317a4631fce",
@@ -1522,8 +1558,8 @@
         "pageEnd": null
       },
       "relationType": "text-specific",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "partial-text-specific",
       "confidence": "low",
       "score": 0.5217,
@@ -1590,7 +1626,9 @@
           "coreLessonType": "assessment",
           "score": 0.2835
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "dbf5f6da-957a-4d62-b2d5-360f7bf2899c",
@@ -1605,8 +1643,8 @@
         "pageEnd": null
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.6397,
@@ -1673,7 +1711,9 @@
           "coreLessonType": "writing",
           "score": 0.4657
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "88afd62f-3267-4673-bb27-914bb744c967",
@@ -1688,8 +1728,8 @@
         "pageEnd": null
       },
       "relationType": "text-specific",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "partial-text-specific",
       "confidence": "low",
       "score": 0.5319,
@@ -1756,7 +1796,9 @@
           "coreLessonType": "assessment",
           "score": 0.2889
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialLessonId": "4eab3c15-1686-444d-aa21-2a4533f679f0",
@@ -1771,8 +1813,8 @@
         "pageEnd": null
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.6549,
@@ -1839,7 +1881,15 @@
           "coreLessonType": "writing",
           "score": 0.4591
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     }
-  ]
+  ],
+  "verification": {
+    "status": "verified",
+    "verifiedAt": "2026-09-25",
+    "method": "official-source+national-layer+core-skill-bundle-v1",
+    "note": "Verification confirms official hierarchy provenance and Dadyoom functional coverage. Text-specific lessons still require the licensed/official text; Dadyoom does not republish textbook prose."
+  }
 }
