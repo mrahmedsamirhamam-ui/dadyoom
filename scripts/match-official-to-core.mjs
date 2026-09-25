@@ -348,6 +348,168 @@ function relationHint(lesson, score) {
   return "unmapped";
 }
 
+function coreSkillBundle(officialLesson, gradeCore) {
+  const officialText = lessonText(officialLesson);
+  const officialTags = tags(officialText);
+  const officialType = String(officialLesson.lessonType ?? "").trim();
+
+  const scored = gradeCore
+    .map((coreLesson) => {
+      const semanticScore = scorePair(officialLesson, coreLesson);
+      const sameType = typeSimilarity(officialType, coreLesson.lessonType);
+      const tagScore = tagSimilarity(officialText, lessonText(coreLesson));
+
+      let bundleScore =
+        (0.62 * semanticScore) +
+        (0.23 * sameType) +
+        (0.15 * tagScore);
+
+      if (
+        officialType === "assessment" &&
+        coreLesson.lessonType === "assessment"
+      ) {
+        bundleScore += 0.35;
+      }
+
+      if (
+        officialType === "reading" &&
+        coreLesson.lessonType === "reading"
+      ) {
+        bundleScore += 0.12;
+      }
+
+      if (
+        officialType === "writing" &&
+        coreLesson.lessonType === "writing"
+      ) {
+        bundleScore += 0.18;
+      }
+
+      if (
+        officialType === "grammar" &&
+        coreLesson.lessonType === "grammar"
+      ) {
+        bundleScore += 0.18;
+      }
+
+      if (
+        officialType === "spelling" &&
+        ["spelling", "writing"].includes(coreLesson.lessonType)
+      ) {
+        bundleScore += 0.16;
+      }
+
+      if (
+        officialType === "listening" &&
+        ["listening", "speaking"].includes(coreLesson.lessonType)
+      ) {
+        bundleScore += 0.16;
+      }
+
+      if (
+        officialType === "speaking" &&
+        ["speaking", "listening"].includes(coreLesson.lessonType)
+      ) {
+        bundleScore += 0.16;
+      }
+
+      return {
+        coreLessonId: coreLesson.id,
+        coreSlug: coreLesson.slug,
+        coreTitle: coreLesson.title,
+        coreLessonType: coreLesson.lessonType,
+        score: Number(Math.min(0.99, bundleScore).toFixed(4)),
+      };
+    })
+    .sort((a, b) => b.score - a.score);
+
+  const sameFamily = scored.filter((item) => {
+    if (officialType === "assessment") {
+      return item.coreLessonType === "assessment";
+    }
+
+    if (officialType === "spelling") {
+      return ["spelling", "writing"].includes(item.coreLessonType);
+    }
+
+    if (officialType === "listening") {
+      return ["listening", "speaking"].includes(item.coreLessonType);
+    }
+
+    if (officialType === "speaking") {
+      return ["speaking", "listening"].includes(item.coreLessonType);
+    }
+
+    return (
+      item.coreLessonType === officialType ||
+      typeSimilarity(officialType, item.coreLessonType) > 0
+    );
+  });
+
+  const chosen = [];
+  const seen = new Set();
+
+  for (const item of [...sameFamily, ...scored]) {
+    if (seen.has(item.coreLessonId)) continue;
+
+    const acceptable =
+      item.score >= 0.34 ||
+      (
+        chosen.length === 0 &&
+        sameFamily.some(
+          (candidate) =>
+            candidate.coreLessonId === item.coreLessonId,
+        )
+      );
+
+    if (!acceptable) continue;
+
+    seen.add(item.coreLessonId);
+    chosen.push(item);
+
+    if (chosen.length >= 4) break;
+  }
+
+  const textSpecific = isTextSpecific(officialLesson);
+
+  if (textSpecific && chosen.length > 0) {
+    return {
+      status: "partial-text-specific",
+      relation: "text-specific",
+      covered: true,
+      items: chosen,
+    };
+  }
+
+  if (chosen.length >= 2) {
+    return {
+      status: "bundle-covered-candidate",
+      relation: "coverage-bundle",
+      covered: true,
+      items: chosen,
+    };
+  }
+
+  if (
+    chosen.length === 1 &&
+    chosen[0].score >= 0.55
+  ) {
+    return {
+      status: "partial",
+      relation: "supporting-skill",
+      covered: true,
+      items: chosen,
+    };
+  }
+
+  return {
+    status: "gap",
+    relation: "unmapped",
+    covered: false,
+    items: chosen,
+  };
+}
+
 const { data: curricula, error: curriculaError } =
   await supabase
     .from("curricula")
@@ -458,6 +620,29 @@ const mappings = official.map((lesson) => {
       .slice(0, 5);
 
   const best = candidates[0] ?? null;
+  const bundle =
+    coreSkillBundle(
+      lesson,
+      coreByGrade.get(
+        lesson.gradeNumber,
+      ) ?? [],
+    );
+
+  const effectiveCoverage =
+    bundle.covered
+      ? bundle.status
+      : coverageStatus(
+          lesson,
+          best?.score ?? 0,
+        );
+
+  const effectiveRelation =
+    bundle.covered
+      ? bundle.relation
+      : relationHint(
+          lesson,
+          best?.score ?? 0,
+        );
 
   return {
     officialLessonId: lesson.id,
@@ -476,20 +661,14 @@ const mappings = official.map((lesson) => {
     score: best?.score ?? 0,
     confidence: confidence(best?.score ?? 0),
     coverageStatus:
-      coverageStatus(
-        lesson,
-        best?.score ?? 0,
-      ),
+      effectiveCoverage,
     relationHint:
-      relationHint(
-        lesson,
-        best?.score ?? 0,
-      ),
+      effectiveRelation,
+    skillBundle:
+      bundle.items,
     needsNationalExtension:
-      coverageStatus(
-        lesson,
-        best?.score ?? 0,
-      ).startsWith("gap"),
+      !bundle.covered &&
+      effectiveCoverage.startsWith("gap"),
     reviewStatus: "pending",
     candidates,
   };
@@ -647,16 +826,27 @@ if (writeMappings) {
           needsNationalExtension: row.needsNationalExtension,
           rationale:
             "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-          coreCoverage: row.suggestedCoreSlug
-            ? [
-                {
-                  slug: row.suggestedCoreSlug,
-                  relation: row.relationHint,
-                  title: row.suggestedCoreTitle,
-                  score: row.score,
-                },
-              ]
-            : [],
+          coreCoverage:
+            Array.isArray(row.skillBundle) &&
+            row.skillBundle.length > 0
+              ? row.skillBundle.map(
+                  (item) => ({
+                    slug: item.coreSlug,
+                    relation: row.relationHint,
+                    title: item.coreTitle,
+                    score: item.score,
+                  }),
+                )
+              : row.suggestedCoreSlug
+                ? [
+                    {
+                      slug: row.suggestedCoreSlug,
+                      relation: row.relationHint,
+                      title: row.suggestedCoreTitle,
+                      score: row.score,
+                    },
+                  ]
+                : [],
           candidates: row.candidates,
         }));
 
