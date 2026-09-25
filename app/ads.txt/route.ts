@@ -1,8 +1,10 @@
 export async function GET() {
   const client =
-    process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.trim() ?? "";
+    process.env.ADSENSE_CLIENT?.trim() ||
+    process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.trim() ||
+    "";
 
-  const publisher = client.startsWith("ca-pub-")
+  const publisher = /^ca-pub-\d{16}$/u.test(client)
     ? client.slice("ca-".length)
     : "";
 
