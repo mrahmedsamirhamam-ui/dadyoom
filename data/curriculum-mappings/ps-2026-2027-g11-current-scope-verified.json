@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "PS",
+    "nameAr": "فلسطين"
+  },
+  "academicYear": "2026-2027",
+  "grade": 11,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 24,
+  "mappedLessons": 24,
+  "verifiedLessons": 24,
+  "scope": "current-official-published-scope",
+  "policy": "مواءمة الكتب والرزم والمسارات والوحدات الرسمية المنشورة مع Core Bundles وNational Extensions أصلية؛ لا إعادة نشر للنصوص.",
+  "mappings": [
+    {
+      "officialSlug": "ps-2026-2027-g11-u1-l1",
+      "officialTitle": "المطالعة والقراءة — العلمي",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «المطالعة والقراءة — العلمي» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u1-l2",
+      "officialTitle": "النصوص والأدب — العلمي",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة، ويغلق Pack فلسطين الخصائص الوطنية الخاصة في «النصوص والأدب — العلمي» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u1-l3",
+      "officialTitle": "البلاغة — العلمي",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «البلاغة — العلمي» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l12",
+          "relation": "supporting-skill",
+          "title": "الإيجاز والإطناب"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u1-l4",
+      "officialTitle": "النحو والصرف — العلمي",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «النحو والصرف — العلمي» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l07",
+          "relation": "supporting-skill",
+          "title": "النواسخ في السياق"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l08",
+          "relation": "supporting-skill",
+          "title": "المفاعيل ودلالاتها"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l09",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز المتقدم"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l10",
+          "relation": "supporting-skill",
+          "title": "التوابع والاتساق"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l11",
+          "relation": "supporting-skill",
+          "title": "الشرط والاستثناء"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u1-l5",
+      "officialTitle": "العروض وموسيقا الشعر — العلمي",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة، ويغلق Pack فلسطين الخصائص الوطنية الخاصة في «العروض وموسيقا الشعر — العلمي» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u1-l6",
+      "officialTitle": "التعبير والكتابة — العلمي",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «التعبير والكتابة — العلمي» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l13",
+          "relation": "supporting-skill",
+          "title": "المقال الحجاجي"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l15",
+          "relation": "supporting-skill",
+          "title": "التلخيص الأكاديمي"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u2-l1",
+      "officialTitle": "المطالعة والقراءة — العلوم الإنسانية",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/storage/app/gaza/subjects/11l/%D8%B9%D8%B1%D8%A8%D9%8A%20%D9%A1%D9%A1%20%D9%85%D8%B7%D8%A7%D9%84%D8%B9%D8%A9%20%D9%85%D8%AA%D9%85%D8%A7%D8%B2%D8%AC%D8%A9%20%D8%BA%D8%B2%D8%A9.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «المطالعة والقراءة — العلوم الإنسانية» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u2-l2",
+      "officialTitle": "النصوص والأدب — العلوم الإنسانية",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/storage/app/gaza/subjects/11l/%D8%B9%D8%B1%D8%A8%D9%8A%20%D9%A1%D9%A1%20%D9%85%D8%B7%D8%A7%D9%84%D8%B9%D8%A9%20%D9%85%D8%AA%D9%85%D8%A7%D8%B2%D8%AC%D8%A9%20%D8%BA%D8%B2%D8%A9.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة، ويغلق Pack فلسطين الخصائص الوطنية الخاصة في «النصوص والأدب — العلوم الإنسانية» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u2-l3",
+      "officialTitle": "البلاغة — العلوم الإنسانية",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/storage/app/gaza/subjects/11l/%D8%B9%D8%B1%D8%A8%D9%8A%20%D9%A1%D9%A1%20%D9%85%D8%B7%D8%A7%D9%84%D8%B9%D8%A9%20%D9%85%D8%AA%D9%85%D8%A7%D8%B2%D8%AC%D8%A9%20%D8%BA%D8%B2%D8%A9.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «البلاغة — العلوم الإنسانية» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l12",
+          "relation": "supporting-skill",
+          "title": "الإيجاز والإطناب"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u2-l4",
+      "officialTitle": "النحو والصرف — العلوم الإنسانية",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/storage/app/gaza/subjects/11l/%D8%B9%D8%B1%D8%A8%D9%8A%20%D9%A1%D9%A1%20%D9%85%D8%B7%D8%A7%D9%84%D8%B9%D8%A9%20%D9%85%D8%AA%D9%85%D8%A7%D8%B2%D8%AC%D8%A9%20%D8%BA%D8%B2%D8%A9.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «النحو والصرف — العلوم الإنسانية» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l07",
+          "relation": "supporting-skill",
+          "title": "النواسخ في السياق"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l08",
+          "relation": "supporting-skill",
+          "title": "المفاعيل ودلالاتها"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l09",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز المتقدم"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l10",
+          "relation": "supporting-skill",
+          "title": "التوابع والاتساق"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l11",
+          "relation": "supporting-skill",
+          "title": "الشرط والاستثناء"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u2-l5",
+      "officialTitle": "العروض وموسيقا الشعر — العلوم الإنسانية",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/storage/app/gaza/subjects/11l/%D8%B9%D8%B1%D8%A8%D9%8A%20%D9%A1%D9%A1%20%D9%85%D8%B7%D8%A7%D9%84%D8%B9%D8%A9%20%D9%85%D8%AA%D9%85%D8%A7%D8%B2%D8%AC%D8%A9%20%D8%BA%D8%B2%D8%A9.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة، ويغلق Pack فلسطين الخصائص الوطنية الخاصة في «العروض وموسيقا الشعر — العلوم الإنسانية» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u2-l6",
+      "officialTitle": "التعبير والكتابة — العلوم الإنسانية",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/storage/app/gaza/subjects/11l/%D8%B9%D8%B1%D8%A8%D9%8A%20%D9%A1%D9%A1%20%D9%85%D8%B7%D8%A7%D9%84%D8%B9%D8%A9%20%D9%85%D8%AA%D9%85%D8%A7%D8%B2%D8%AC%D8%A9%20%D8%BA%D8%B2%D8%A9.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «التعبير والكتابة — العلوم الإنسانية» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l13",
+          "relation": "supporting-skill",
+          "title": "المقال الحجاجي"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l15",
+          "relation": "supporting-skill",
+          "title": "التلخيص الأكاديمي"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u3-l1",
+      "officialTitle": "المطالعة والقراءة — الريادة والأعمال",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «المطالعة والقراءة — الريادة والأعمال» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u3-l2",
+      "officialTitle": "النصوص والأدب — الريادة والأعمال",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة، ويغلق Pack فلسطين الخصائص الوطنية الخاصة في «النصوص والأدب — الريادة والأعمال» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u3-l3",
+      "officialTitle": "البلاغة — الريادة والأعمال",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «البلاغة — الريادة والأعمال» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l12",
+          "relation": "supporting-skill",
+          "title": "الإيجاز والإطناب"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u3-l4",
+      "officialTitle": "النحو والصرف — الريادة والأعمال",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «النحو والصرف — الريادة والأعمال» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l07",
+          "relation": "supporting-skill",
+          "title": "النواسخ في السياق"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l08",
+          "relation": "supporting-skill",
+          "title": "المفاعيل ودلالاتها"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l09",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز المتقدم"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l10",
+          "relation": "supporting-skill",
+          "title": "التوابع والاتساق"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l11",
+          "relation": "supporting-skill",
+          "title": "الشرط والاستثناء"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u3-l5",
+      "officialTitle": "العروض وموسيقا الشعر — الريادة والأعمال",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة، ويغلق Pack فلسطين الخصائص الوطنية الخاصة في «العروض وموسيقا الشعر — الريادة والأعمال» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u3-l6",
+      "officialTitle": "التعبير والكتابة — الريادة والأعمال",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «التعبير والكتابة — الريادة والأعمال» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l13",
+          "relation": "supporting-skill",
+          "title": "المقال الحجاجي"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l15",
+          "relation": "supporting-skill",
+          "title": "التلخيص الأكاديمي"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u4-l1",
+      "officialTitle": "المطالعة والقراءة — الصناعي",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «المطالعة والقراءة — الصناعي» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u4-l2",
+      "officialTitle": "النصوص والأدب — الصناعي",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة، ويغلق Pack فلسطين الخصائص الوطنية الخاصة في «النصوص والأدب — الصناعي» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u4-l3",
+      "officialTitle": "البلاغة — الصناعي",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «البلاغة — الصناعي» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l12",
+          "relation": "supporting-skill",
+          "title": "الإيجاز والإطناب"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u4-l4",
+      "officialTitle": "النحو والصرف — الصناعي",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «النحو والصرف — الصناعي» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l07",
+          "relation": "supporting-skill",
+          "title": "النواسخ في السياق"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l08",
+          "relation": "supporting-skill",
+          "title": "المفاعيل ودلالاتها"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l09",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز المتقدم"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l10",
+          "relation": "supporting-skill",
+          "title": "التوابع والاتساق"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l11",
+          "relation": "supporting-skill",
+          "title": "الشرط والاستثناء"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u4-l5",
+      "officialTitle": "العروض وموسيقا الشعر — الصناعي",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة، ويغلق Pack فلسطين الخصائص الوطنية الخاصة في «العروض وموسيقا الشعر — الصناعي» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g11-u4-l6",
+      "officialTitle": "التعبير والكتابة — الصناعي",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «التعبير والكتابة — الصناعي» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g11-l13",
+          "relation": "supporting-skill",
+          "title": "المقال الحجاجي"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l15",
+          "relation": "supporting-skill",
+          "title": "التلخيص الأكاديمي"
+        },
+        {
+          "slug": "ps-dadyoom-core-g11-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    }
+  ]
+}
