@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "OM",
+    "nameAr": "عُمان",
+    "nameEn": "Oman"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "verificationStatus": "verified-source-structure",
+  "officialCoverageUnit": "national-skill-bundle",
+  "semesters": 2,
+  "educationStructure": {
+    "basic": {
+      "grades": "1-10",
+      "cycles": [
+        {
+          "nameAr": "الحلقة الأولى",
+          "grades": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "nameAr": "الحلقة الثانية",
+          "grades": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        }
+      ]
+    },
+    "postBasic": {
+      "grades": "11-12",
+      "note": "مواد أساسية مع اختيارات ومسارات أكاديمية/مهنية؛ اللغة العربية ضمن المواد الأساسية في الخطط المنشورة."
+    }
+  },
+  "gradeDomains": {
+    "1-4": [
+      "الاستماع",
+      "التحدث",
+      "القراءة",
+      "الكتابة",
+      "أساسيات اللغة وبناؤها"
+    ],
+    "5-12": [
+      "الاستماع",
+      "التحدث",
+      "القراءة",
+      "الكتابة",
+      "النظام اللغوي وفروعه",
+      "الفنون الأدبية والبلاغية"
+    ]
+  },
+  "grades": [
+    {
+      "grade": 1,
+      "stage": "التعليم الأساسي — الحلقة الأولى",
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 5
+    },
+    {
+      "grade": 2,
+      "stage": "التعليم الأساسي — الحلقة الأولى",
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 5
+    },
+    {
+      "grade": 3,
+      "stage": "التعليم الأساسي — الحلقة الأولى",
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 5
+    },
+    {
+      "grade": 4,
+      "stage": "التعليم الأساسي — الحلقة الأولى",
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 5
+    },
+    {
+      "grade": 5,
+      "stage": "التعليم الأساسي — الحلقة الثانية",
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 6
+    },
+    {
+      "grade": 6,
+      "stage": "التعليم الأساسي — الحلقة الثانية",
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 6
+    },
+    {
+      "grade": 7,
+      "stage": "التعليم الأساسي — الحلقة الثانية",
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 6
+    },
+    {
+      "grade": 8,
+      "stage": "التعليم الأساسي — الحلقة الثانية",
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 6
+    },
+    {
+      "grade": 9,
+      "stage": "التعليم الأساسي — الحلقة الثانية",
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 6
+    },
+    {
+      "grade": 10,
+      "stage": "التعليم الأساسي — الحلقة الثانية",
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 6
+    },
+    {
+      "grade": 11,
+      "stage": "التعليم ما بعد الأساسي",
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 6
+    },
+    {
+      "grade": 12,
+      "stage": "التعليم ما بعد الأساسي",
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 6
+    }
+  ],
+  "officialCoverageNodes": 68,
+  "sources": [
+    {
+      "kind": "official-current-arabic-assessment-library",
+      "url": "https://home.moe.gov.om/library/171",
+      "note": "وثائق تقويم المجال الأول 1-4 واللغة العربية 5-12 منشورة في 2026."
+    },
+    {
+      "kind": "official-general-assessment-1-12",
+      "url": "https://home.moe.gov.om/library/187/show/1636"
+    },
+    {
+      "kind": "official-curriculum-library-two-semesters",
+      "url": "https://home.moe.gov.om/library/96"
+    },
+    {
+      "kind": "official-digital-textbooks",
+      "url": "https://ict.moe.gov.om/eBooks/index.php"
+    },
+    {
+      "kind": "official-education-system",
+      "url": "https://portal.moe.gov.om/Portal/sitebuilder/Sites/EPS/Arabic/IPS/Right_Menu/Edu_System/edusystem/basic.aspx"
+    },
+    {
+      "kind": "official-arabic-curriculum-skills",
+      "url": "https://home.moe.gov.om/topics/1/show/11856",
+      "note": "تكامل الاستماع والتحدث والقراءة والكتابة وفنون العربية."
+    },
+    {
+      "kind": "official-2026-2027-pathways",
+      "url": "https://home.moe.gov.om/topics/1/show/13053",
+      "note": "اختيارات ومسارات 11-12 للعام 2026/2027."
+    },
+    {
+      "kind": "official-2026-2027-readiness",
+      "url": "https://home.moe.gov.om/region/dahira/topics/1/show/12879"
+    }
+  ],
+  "copyrightPolicy": "لا تعيد ضاديوم نشر نصوص الكتب؛ تستخدم البنية والمهارات وروابط الوزارة لإثبات المواءمة، والمحتوى التعليمي أصلّي.",
+  "generatedAt": "2026-09-25"
+}
