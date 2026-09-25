@@ -670,7 +670,7 @@ if (writeMappings) {
       grade: gradeNumber,
       semester: null,
       subject: "اللغة العربية",
-      status: "reviewed-candidate",
+      status: "candidate",
       officialLessons: normalizedMappings.length,
       mappedLessons: normalizedMappings.length,
       verifiedLessons: 0,
@@ -682,7 +682,7 @@ if (writeMappings) {
 
     const mappingTarget = path.join(
       mappingOutputDir,
-      `${countryCode.toLowerCase()}-${academicYear}-g${gradeNumber}-reviewed-candidate.json`,
+      `${countryCode.toLowerCase()}-${academicYear}-g${gradeNumber}-candidate.json`,
     );
 
     fs.writeFileSync(
