@@ -27,10 +27,13 @@ Plus plan:
   - PADDLE_CLIENT_TOKEN
   - PADDLE_PLUS_PRICE_ID
   - PADDLE_WEBHOOK_SECRET
+  - PADDLE_API_KEY (server-side; subscription.read + customer portal session permissions)
 - Webhook endpoint:
   - /api/payments/paddle/webhook
 - Success page:
   - /payments/paddle/success
+- Signed-in subscription management:
+  - /api/payments/paddle/manage
 
 Fail-closed rule:
 - If Paddle credentials are absent, checkout does not fabricate a payment session and returns PADDLE_NOT_CONFIGURED.
