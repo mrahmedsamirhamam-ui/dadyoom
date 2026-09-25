@@ -1190,20 +1190,74 @@
     {
       "code": "KM",
       "nameAr": "جزر القمر",
-      "matchingStatus": "not-closed",
-      "verificationStatus": "source-verified",
+      "matchingStatus": "current-scope-complete",
+      "verificationStatus": "verified",
       "sources": [
         {
-          "url": "https://mineducomores.gouv.km/",
-          "kind": "official-portal-candidate"
+          "url": "https://mineducomores.gouv.km/ministere/",
+          "kind": "official-ministry-system"
         },
         {
-          "url": "https://mineducomores.gouv.km/en/completion-of-the-arabic-language-training-in-comoros-a-further-step-towards-enhancing-educational-capacities/",
-          "kind": "official-ministry-evidence",
-          "note": "يثبت العربية لغة رسمية وحضورها في المنهج؛ لا يكفي لخرائط الكتب صفًا صفًا."
+          "url": "https://mineducomores.gouv.km/cloture-de-la-formation-en-langue-arabe-aux-comores-un-pas-de-plus-vers-le-renforcement-des-capacites-educatives/",
+          "kind": "official-arabic-curriculum-role",
+          "note": "الوزارة تؤكد أن العربية لغة رسمية وجزء من المنهج المدرسي."
+        },
+        {
+          "url": "https://justice.gouv.km/wp-content/uploads/2025/03/decret-n-21-005pr-portant-promulgation-de-la-loi-n-20-034au-du-29-decembre-2020-portant-revision-de-la-loi-n-94-035af-relative-a-lorientation-et-a-leducation.pdf",
+          "kind": "official-education-law",
+          "note": "يحدد 5 سنوات ابتدائي + 4 سنوات ثانوي أول + 3 سنوات ثانوي ثانٍ."
+        },
+        {
+          "url": "https://mineducomores.gouv.km/atelier-sur-les-strategies-de-production-et-diffusion-des-ressources-educatives-aux-comores/",
+          "kind": "official-resource-strategy"
+        },
+        {
+          "url": "https://mineducomores.gouv.km/participation-de-luniversite-midocean-a-la-reunion-consultative-nationale-sur-la-reforme-de-leducation-aux-comores/",
+          "kind": "official-education-reform"
         }
       ],
-      "sourceVerifiedAt": "2026-09-25"
+      "sourceVerifiedAt": "2026-09-25",
+      "officialScope": {
+        "academicYear": "2026-2027",
+        "subject": "اللغة العربية",
+        "grades": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "status": "complete-for-currently-published-scope",
+        "sourceModel": "وزارة التربية الوطنية + قانون توجيه التعليم + استراتيجية الموارد",
+        "stages": {
+          "1-5": "التعليم الابتدائي",
+          "6-9": "الثانوي — الدورة الأولى",
+          "10-12": "الثانوي — الدورة الثانية"
+        },
+        "matchingUnit": "حزمة كفاءات عربية وطنية داخل كل سنة من الهيكل الرسمي",
+        "publicGradeByGradeArabicCatalog": false,
+        "note": "لا تُختلق عناوين كتب/دروس غير منشورة؛ الحزم الوطنية الأصلية تغطي العربية وفق التدرج الرسمي."
+      },
+      "mappingSummary": {
+        "mappingGrades": 12,
+        "verifiedMappingGrades": 12,
+        "officialCoverageNodes": 12,
+        "mappedCoverageNodes": 12,
+        "verifiedCoverageNodes": 12,
+        "databaseLessons": 12,
+        "questions": 36,
+        "vocabulary": 36,
+        "activities": 36,
+        "nationalExtensions": 12,
+        "verifiedAt": "2026-09-25"
+      }
     }
   ],
   "statusDefinitions": {
