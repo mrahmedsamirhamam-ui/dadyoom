@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "YE",
+    "nameAr": "اليمن"
+  },
+  "academicYear": "2026-2027",
+  "grade": 1,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 1,
+  "mappedLessons": 1,
+  "verifiedLessons": 1,
+  "scope": "current-officially-published-and-publicly-verifiable-scope",
+  "policy": "المطابقة على مستوى حزمة كتب العربية للصف.",
+  "mappings": [
+    {
+      "officialSlug": "ye-2026-2027-g1-arabic-books",
+      "officialTitle": "اللغة العربية — الصف الأول الأساسي — حزمة الكتب الرسمية",
+      "source": {
+        "label": "Yemen Ministry e-learning",
+        "url": "https://e-learning-moe.edu.ye/"
+      },
+      "relationType": "official-grade-textbook+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "بوابة الوزارة تعرض كتب المناهج من الصف الأول الأساسي حتى الثالث الثانوي.",
+      "coreCoverage": [
+        {
+          "slug": "ye-dadyoom-core-g1-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g1-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g1-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g1-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g1-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g1-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g1-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g1-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g1-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g1-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g1-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g1-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g1-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g1-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g1-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g1-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g1-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g1-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-ministry-elearning-catalog+national-pack"
+    }
+  ]
+}
