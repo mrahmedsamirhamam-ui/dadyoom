@@ -194,7 +194,7 @@
       "code": "AE",
       "nameAr": "الإمارات العربية المتحدة",
       "matchingStatus": "not-closed",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://www.moe.gov.ae/",
@@ -203,8 +203,19 @@
         {
           "url": "https://u.ae/en/information-and-services/education/school-education-k-12/e-learning-reading-and-educational-resources/diwan-e-book-reader",
           "kind": "government-resource"
+        },
+        {
+          "url": "https://www.moe.gov.ae/Ar/MediaCenter/News/Pages/UAE-announces-updated-age-cut-off-date-for-KG-Grade-1-admissions-starting-AY-2026-2027.aspx",
+          "kind": "official-current-academic-year",
+          "note": "وزارة التربية والتعليم — سياق العام الدراسي 2026-2027."
+        },
+        {
+          "url": "https://www.moe.gov.ae/En/ImportantLinks/Documents/Files2025/Assessment-Policy2025-2026-AR.pdf",
+          "kind": "official-arabic-assessment-policy",
+          "note": "وثيقة وزارة رسمية تؤكد اللغة العربية ضمن التقييم الوطني ومخرجات تعلم العربية؛ ليست فهرس كتب تفصيليًا."
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "MA",
