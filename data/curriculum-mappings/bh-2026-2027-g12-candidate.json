@@ -1,0 +1,1007 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "BH",
+    "nameAr": "مملكة البحرين"
+  },
+  "academicYear": "2026-2027",
+  "grade": 12,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "candidate",
+  "officialLessons": 19,
+  "mappedLessons": 19,
+  "verifiedLessons": 0,
+  "policy": "ملف مرشحات قابل للتدقيق. بُني من الطبقة الوطنية الموجودة في قاعدة ضاديوم وربط بمهارات Dadyoom Core. لا يصبح أي درس verified دون مراجعة المصدر والأهداف، ولا يعاد نشر نص الكتاب الوزاري.",
+  "generatedBy": "Dadyoom official-to-core matcher",
+  "mappings": [
+    {
+      "officialLessonId": "766ef2ce-5b3d-4631-92fb-cc77aded4048",
+      "officialSlug": "bh-g12-arab301-01",
+      "officialTitle": "«الحقيقة المرة» - عبد الله الزايد.",
+      "officialLessonType": "reading",
+      "unitNumber": 1,
+      "unitTitle": "عرب 301 — الأدب البحريني",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4057,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g12-l01",
+          "relation": "text-specific",
+          "title": "تحليل الشعر",
+          "score": 0.4057
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "00e59f91-0b42-495b-aab8-8fc33736485c",
+          "coreSlug": "bh-dadyoom-core-g12-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.4057
+        },
+        {
+          "coreLessonId": "60343fbf-dc46-4b0a-ad24-0253e24b0bf5",
+          "coreSlug": "bh-dadyoom-core-g12-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4057
+        },
+        {
+          "coreLessonId": "a6f560f3-0d84-4cd2-87b5-c66c57538c45",
+          "coreSlug": "bh-dadyoom-core-g12-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.3953
+        }
+      ]
+    },
+    {
+      "officialLessonId": "77464425-fecb-4610-85ca-d90815dc9a91",
+      "officialSlug": "bh-g12-arab301-02",
+      "officialTitle": "القضايا النحوية: الاستفهام - مفهومه وأدواته ومعانيه.",
+      "officialLessonType": "grammar",
+      "unitNumber": 1,
+      "unitTitle": "عرب 301 — الأدب البحريني",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4056,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g12-l11",
+          "relation": "unmapped",
+          "title": "الشرط والاستثناء",
+          "score": 0.4056
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "7a283c14-b591-448a-9a5b-8372861ea65b",
+          "coreSlug": "bh-dadyoom-core-g12-l11",
+          "coreTitle": "الشرط والاستثناء",
+          "coreLessonType": "grammar",
+          "score": 0.4056
+        },
+        {
+          "coreLessonId": "79e516cf-c151-4c9e-9bb7-8f577e6feae4",
+          "coreSlug": "bh-dadyoom-core-g12-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.2515
+        },
+        {
+          "coreLessonId": "7bd61393-f3c2-43cd-8c33-1c8d6c2932aa",
+          "coreSlug": "bh-dadyoom-core-g12-l07",
+          "coreTitle": "النواسخ في السياق",
+          "coreLessonType": "grammar",
+          "score": 0.2038
+        }
+      ]
+    },
+    {
+      "officialLessonId": "ee6fd337-4bff-4483-a1ec-6a29f590f765",
+      "officialSlug": "bh-g12-arab301-03",
+      "officialTitle": "الإنتاج الكتابي: كتابة المقالة.",
+      "officialLessonType": "writing",
+      "unitNumber": 1,
+      "unitTitle": "عرب 301 — الأدب البحريني",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.496,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g12-l18",
+          "relation": "unmapped",
+          "title": "مراجعة الثانوية الشاملة",
+          "score": 0.496
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "79e516cf-c151-4c9e-9bb7-8f577e6feae4",
+          "coreSlug": "bh-dadyoom-core-g12-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.496
+        },
+        {
+          "coreLessonId": "80e25311-c91d-4cd7-9cd7-143c892d96f5",
+          "coreSlug": "bh-dadyoom-core-g12-l17",
+          "coreTitle": "الكتابة الوظيفية",
+          "coreLessonType": "writing",
+          "score": 0.4847
+        },
+        {
+          "coreLessonId": "239a49df-0a90-4361-9ea1-46fb80affc7c",
+          "coreSlug": "bh-dadyoom-core-g12-l15",
+          "coreTitle": "التلخيص الأكاديمي",
+          "coreLessonType": "writing",
+          "score": 0.4753
+        }
+      ]
+    },
+    {
+      "officialLessonId": "220d610a-7069-4785-bb45-57de9ebc2cd7",
+      "officialSlug": "bh-g12-arab301-04",
+      "officialTitle": "«أغنيات عشق للبحرين» - الشيخ أحمد بن محمد آل خليفة.",
+      "officialLessonType": "reading",
+      "unitNumber": 1,
+      "unitTitle": "عرب 301 — الأدب البحريني",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4018,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g12-l01",
+          "relation": "text-specific",
+          "title": "تحليل الشعر",
+          "score": 0.4018
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "00e59f91-0b42-495b-aab8-8fc33736485c",
+          "coreSlug": "bh-dadyoom-core-g12-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.4018
+        },
+        {
+          "coreLessonId": "60343fbf-dc46-4b0a-ad24-0253e24b0bf5",
+          "coreSlug": "bh-dadyoom-core-g12-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4018
+        },
+        {
+          "coreLessonId": "a6f560f3-0d84-4cd2-87b5-c66c57538c45",
+          "coreSlug": "bh-dadyoom-core-g12-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.392
+        }
+      ]
+    },
+    {
+      "officialLessonId": "e84bdc73-91ae-417b-8cb4-c07baab3562b",
+      "officialSlug": "bh-g12-arab301-05",
+      "officialTitle": "القضايا النحوية: أسلوب الأمر والنهي.",
+      "officialLessonType": "grammar",
+      "unitNumber": 1,
+      "unitTitle": "عرب 301 — الأدب البحريني",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4065,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g12-l11",
+          "relation": "unmapped",
+          "title": "الشرط والاستثناء",
+          "score": 0.4065
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "7a283c14-b591-448a-9a5b-8372861ea65b",
+          "coreSlug": "bh-dadyoom-core-g12-l11",
+          "coreTitle": "الشرط والاستثناء",
+          "coreLessonType": "grammar",
+          "score": 0.4065
+        },
+        {
+          "coreLessonId": "79e516cf-c151-4c9e-9bb7-8f577e6feae4",
+          "coreSlug": "bh-dadyoom-core-g12-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.2522
+        },
+        {
+          "coreLessonId": "7bd61393-f3c2-43cd-8c33-1c8d6c2932aa",
+          "coreSlug": "bh-dadyoom-core-g12-l07",
+          "coreTitle": "النواسخ في السياق",
+          "coreLessonType": "grammar",
+          "score": 0.2047
+        }
+      ]
+    },
+    {
+      "officialLessonId": "abdfc199-a9af-444b-b143-cfe30f460355",
+      "officialSlug": "bh-g12-arab301-06",
+      "officialTitle": "«ذاكرة المكان» - علي عبد الله خليفة.",
+      "officialLessonType": "reading",
+      "unitNumber": 1,
+      "unitTitle": "عرب 301 — الأدب البحريني",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4057,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g12-l01",
+          "relation": "text-specific",
+          "title": "تحليل الشعر",
+          "score": 0.4057
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "00e59f91-0b42-495b-aab8-8fc33736485c",
+          "coreSlug": "bh-dadyoom-core-g12-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.4057
+        },
+        {
+          "coreLessonId": "60343fbf-dc46-4b0a-ad24-0253e24b0bf5",
+          "coreSlug": "bh-dadyoom-core-g12-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4057
+        },
+        {
+          "coreLessonId": "a6f560f3-0d84-4cd2-87b5-c66c57538c45",
+          "coreSlug": "bh-dadyoom-core-g12-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.3953
+        }
+      ]
+    },
+    {
+      "officialLessonId": "980f777a-25af-411e-8d42-686457abdab9",
+      "officialSlug": "bh-g12-arab301-07",
+      "officialTitle": "القضايا النحوية: أسلوب الشرط.",
+      "officialLessonType": "grammar",
+      "unitNumber": 1,
+      "unitTitle": "عرب 301 — الأدب البحريني",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.5855,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g12-l11",
+          "relation": "supporting-skill",
+          "title": "الشرط والاستثناء",
+          "score": 0.5855
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "7a283c14-b591-448a-9a5b-8372861ea65b",
+          "coreSlug": "bh-dadyoom-core-g12-l11",
+          "coreTitle": "الشرط والاستثناء",
+          "coreLessonType": "grammar",
+          "score": 0.5855
+        },
+        {
+          "coreLessonId": "79e516cf-c151-4c9e-9bb7-8f577e6feae4",
+          "coreSlug": "bh-dadyoom-core-g12-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.253
+        },
+        {
+          "coreLessonId": "7bd61393-f3c2-43cd-8c33-1c8d6c2932aa",
+          "coreSlug": "bh-dadyoom-core-g12-l07",
+          "coreTitle": "النواسخ في السياق",
+          "coreLessonType": "grammar",
+          "score": 0.2056
+        }
+      ]
+    },
+    {
+      "officialLessonId": "2f79f117-afbe-4485-88e2-f75aedd5debd",
+      "officialSlug": "bh-g12-arab301-08",
+      "officialTitle": "الإنتاج الكتابي: كتابة تقرير وفق بيانات معطاة (تدريب الطلبة للامتحانات الوطنية).",
+      "officialLessonType": "writing",
+      "unitNumber": 1,
+      "unitTitle": "عرب 301 — الأدب البحريني",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4919,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g12-l18",
+          "relation": "unmapped",
+          "title": "مراجعة الثانوية الشاملة",
+          "score": 0.4919
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "79e516cf-c151-4c9e-9bb7-8f577e6feae4",
+          "coreSlug": "bh-dadyoom-core-g12-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.4919
+        },
+        {
+          "coreLessonId": "80e25311-c91d-4cd7-9cd7-143c892d96f5",
+          "coreSlug": "bh-dadyoom-core-g12-l17",
+          "coreTitle": "الكتابة الوظيفية",
+          "coreLessonType": "writing",
+          "score": 0.4878
+        },
+        {
+          "coreLessonId": "239a49df-0a90-4361-9ea1-46fb80affc7c",
+          "coreSlug": "bh-dadyoom-core-g12-l15",
+          "coreTitle": "التلخيص الأكاديمي",
+          "coreLessonType": "writing",
+          "score": 0.4705
+        }
+      ]
+    },
+    {
+      "officialLessonId": "7329c58b-7a71-4144-aa83-97c096dc7006",
+      "officialSlug": "bh-g12-arab301-09",
+      "officialTitle": "«الدكان» - أحمد المؤذن.",
+      "officialLessonType": "reading",
+      "unitNumber": 1,
+      "unitTitle": "عرب 301 — الأدب البحريني",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4078,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g12-l01",
+          "relation": "text-specific",
+          "title": "تحليل الشعر",
+          "score": 0.4078
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "00e59f91-0b42-495b-aab8-8fc33736485c",
+          "coreSlug": "bh-dadyoom-core-g12-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.4078
+        },
+        {
+          "coreLessonId": "60343fbf-dc46-4b0a-ad24-0253e24b0bf5",
+          "coreSlug": "bh-dadyoom-core-g12-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4078
+        },
+        {
+          "coreLessonId": "a6f560f3-0d84-4cd2-87b5-c66c57538c45",
+          "coreSlug": "bh-dadyoom-core-g12-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.3971
+        }
+      ]
+    },
+    {
+      "officialLessonId": "875b1958-4804-4757-8a2e-a63b2a1bfd5c",
+      "officialSlug": "bh-g12-arab301-10",
+      "officialTitle": "القضايا النحوية: الإثبات والنفي في الجملة الخبرية (الاسمية والفعلية).",
+      "officialLessonType": "grammar",
+      "unitNumber": 1,
+      "unitTitle": "عرب 301 — الأدب البحريني",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4047,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g12-l11",
+          "relation": "unmapped",
+          "title": "الشرط والاستثناء",
+          "score": 0.4047
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "7a283c14-b591-448a-9a5b-8372861ea65b",
+          "coreSlug": "bh-dadyoom-core-g12-l11",
+          "coreTitle": "الشرط والاستثناء",
+          "coreLessonType": "grammar",
+          "score": 0.4047
+        },
+        {
+          "coreLessonId": "7bd61393-f3c2-43cd-8c33-1c8d6c2932aa",
+          "coreSlug": "bh-dadyoom-core-g12-l07",
+          "coreTitle": "النواسخ في السياق",
+          "coreLessonType": "grammar",
+          "score": 0.2864
+        },
+        {
+          "coreLessonId": "79e516cf-c151-4c9e-9bb7-8f577e6feae4",
+          "coreSlug": "bh-dadyoom-core-g12-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.2507
+        }
+      ]
+    },
+    {
+      "officialLessonId": "23b1536d-df0b-453c-b90a-97b85868c281",
+      "officialSlug": "bh-g12-arab301-11",
+      "officialTitle": "الإنتاج الكتابي: كتابة القصة القصيرة.",
+      "officialLessonType": "writing",
+      "unitNumber": 1,
+      "unitTitle": "عرب 301 — الأدب البحريني",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4953,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g12-l18",
+          "relation": "unmapped",
+          "title": "مراجعة الثانوية الشاملة",
+          "score": 0.4953
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "79e516cf-c151-4c9e-9bb7-8f577e6feae4",
+          "coreSlug": "bh-dadyoom-core-g12-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.4953
+        },
+        {
+          "coreLessonId": "80e25311-c91d-4cd7-9cd7-143c892d96f5",
+          "coreSlug": "bh-dadyoom-core-g12-l17",
+          "coreTitle": "الكتابة الوظيفية",
+          "coreLessonType": "writing",
+          "score": 0.4837
+        },
+        {
+          "coreLessonId": "239a49df-0a90-4361-9ea1-46fb80affc7c",
+          "coreSlug": "bh-dadyoom-core-g12-l15",
+          "coreTitle": "التلخيص الأكاديمي",
+          "coreLessonType": "writing",
+          "score": 0.4745
+        }
+      ]
+    },
+    {
+      "officialLessonId": "91841c81-2e7e-47fc-b551-e2fbf8b65e95",
+      "officialSlug": "bh-g12-arab221-01",
+      "officialTitle": "التيار الإحيائي: «بين العربية واليونانية» لسليمان البستاني.",
+      "officialLessonType": "reading",
+      "unitNumber": 2,
+      "unitTitle": "عرب 221 — الأدب العربي الحديث (التيار الإحيائي والتيار الرومنسي)",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4037,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g12-l01",
+          "relation": "text-specific",
+          "title": "تحليل الشعر",
+          "score": 0.4037
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "00e59f91-0b42-495b-aab8-8fc33736485c",
+          "coreSlug": "bh-dadyoom-core-g12-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.4037
+        },
+        {
+          "coreLessonId": "60343fbf-dc46-4b0a-ad24-0253e24b0bf5",
+          "coreSlug": "bh-dadyoom-core-g12-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4037
+        },
+        {
+          "coreLessonId": "a6f560f3-0d84-4cd2-87b5-c66c57538c45",
+          "coreSlug": "bh-dadyoom-core-g12-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.3936
+        }
+      ]
+    },
+    {
+      "officialLessonId": "b7502425-7e19-473b-9be1-a4e561e5f1ac",
+      "officialSlug": "bh-g12-arab221-02",
+      "officialTitle": "التيار الإحيائي: «نهج البردة» لأحمد شوقي.",
+      "officialLessonType": "reading",
+      "unitNumber": 2,
+      "unitTitle": "عرب 221 — الأدب العربي الحديث (التيار الإحيائي والتيار الرومنسي)",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4047,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g12-l01",
+          "relation": "text-specific",
+          "title": "تحليل الشعر",
+          "score": 0.4047
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "00e59f91-0b42-495b-aab8-8fc33736485c",
+          "coreSlug": "bh-dadyoom-core-g12-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.4047
+        },
+        {
+          "coreLessonId": "60343fbf-dc46-4b0a-ad24-0253e24b0bf5",
+          "coreSlug": "bh-dadyoom-core-g12-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4047
+        },
+        {
+          "coreLessonId": "a6f560f3-0d84-4cd2-87b5-c66c57538c45",
+          "coreSlug": "bh-dadyoom-core-g12-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.3945
+        }
+      ]
+    },
+    {
+      "officialLessonId": "6c1ebffb-1b93-4195-a3e0-417b9ce17f8d",
+      "officialSlug": "bh-g12-arab221-03",
+      "officialTitle": "الإنتاج الكتابي: إنتاج المقالة الأدبية في التيار الإحيائي.",
+      "officialLessonType": "writing",
+      "unitNumber": 2,
+      "unitTitle": "عرب 221 — الأدب العربي الحديث (التيار الإحيائي والتيار الرومنسي)",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4945,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g12-l18",
+          "relation": "unmapped",
+          "title": "مراجعة الثانوية الشاملة",
+          "score": 0.4945
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "79e516cf-c151-4c9e-9bb7-8f577e6feae4",
+          "coreSlug": "bh-dadyoom-core-g12-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.4945
+        },
+        {
+          "coreLessonId": "80e25311-c91d-4cd7-9cd7-143c892d96f5",
+          "coreSlug": "bh-dadyoom-core-g12-l17",
+          "coreTitle": "الكتابة الوظيفية",
+          "coreLessonType": "writing",
+          "score": 0.4827
+        },
+        {
+          "coreLessonId": "239a49df-0a90-4361-9ea1-46fb80affc7c",
+          "coreSlug": "bh-dadyoom-core-g12-l15",
+          "coreTitle": "التلخيص الأكاديمي",
+          "coreLessonType": "writing",
+          "score": 0.4736
+        }
+      ]
+    },
+    {
+      "officialLessonId": "b5244f10-5724-4138-98fa-c64e595d9426",
+      "officialSlug": "bh-g12-arab221-04",
+      "officialTitle": "التيار الإحيائي: «المساء» لخليل مطران.",
+      "officialLessonType": "reading",
+      "unitNumber": 2,
+      "unitTitle": "عرب 221 — الأدب العربي الحديث (التيار الإحيائي والتيار الرومنسي)",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4057,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g12-l01",
+          "relation": "text-specific",
+          "title": "تحليل الشعر",
+          "score": 0.4057
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "00e59f91-0b42-495b-aab8-8fc33736485c",
+          "coreSlug": "bh-dadyoom-core-g12-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.4057
+        },
+        {
+          "coreLessonId": "60343fbf-dc46-4b0a-ad24-0253e24b0bf5",
+          "coreSlug": "bh-dadyoom-core-g12-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4057
+        },
+        {
+          "coreLessonId": "a6f560f3-0d84-4cd2-87b5-c66c57538c45",
+          "coreSlug": "bh-dadyoom-core-g12-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.3953
+        }
+      ]
+    },
+    {
+      "officialLessonId": "e94d5141-fdd2-45a8-9dbc-1b3766db78fc",
+      "officialSlug": "bh-g12-arab221-05",
+      "officialTitle": "التيار الرومنسي: «الأبناء» لجبران خليل جبران.",
+      "officialLessonType": "reading",
+      "unitNumber": 2,
+      "unitTitle": "عرب 221 — الأدب العربي الحديث (التيار الإحيائي والتيار الرومنسي)",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4047,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g12-l01",
+          "relation": "text-specific",
+          "title": "تحليل الشعر",
+          "score": 0.4047
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "00e59f91-0b42-495b-aab8-8fc33736485c",
+          "coreSlug": "bh-dadyoom-core-g12-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.4047
+        },
+        {
+          "coreLessonId": "60343fbf-dc46-4b0a-ad24-0253e24b0bf5",
+          "coreSlug": "bh-dadyoom-core-g12-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4047
+        },
+        {
+          "coreLessonId": "a6f560f3-0d84-4cd2-87b5-c66c57538c45",
+          "coreSlug": "bh-dadyoom-core-g12-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.3945
+        }
+      ]
+    },
+    {
+      "officialLessonId": "503b255b-3c7a-4b97-93ae-9360282f0828",
+      "officialSlug": "bh-g12-arab221-06",
+      "officialTitle": "التيار الرومنسي: «النّظّامون» لمصطفى لطفي المنفلوطي.",
+      "officialLessonType": "reading",
+      "unitNumber": 2,
+      "unitTitle": "عرب 221 — الأدب العربي الحديث (التيار الإحيائي والتيار الرومنسي)",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4047,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g12-l01",
+          "relation": "text-specific",
+          "title": "تحليل الشعر",
+          "score": 0.4047
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "00e59f91-0b42-495b-aab8-8fc33736485c",
+          "coreSlug": "bh-dadyoom-core-g12-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.4047
+        },
+        {
+          "coreLessonId": "60343fbf-dc46-4b0a-ad24-0253e24b0bf5",
+          "coreSlug": "bh-dadyoom-core-g12-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4047
+        },
+        {
+          "coreLessonId": "a6f560f3-0d84-4cd2-87b5-c66c57538c45",
+          "coreSlug": "bh-dadyoom-core-g12-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.3945
+        }
+      ]
+    },
+    {
+      "officialLessonId": "56613351-044f-4c60-a762-cf4a789dca2c",
+      "officialSlug": "bh-g12-arab221-07",
+      "officialTitle": "الإنتاج الكتابي: إنتاج المقالة الأدبية في التيار الرومانسي.",
+      "officialLessonType": "writing",
+      "unitNumber": 2,
+      "unitTitle": "عرب 221 — الأدب العربي الحديث (التيار الإحيائي والتيار الرومنسي)",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4945,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g12-l18",
+          "relation": "unmapped",
+          "title": "مراجعة الثانوية الشاملة",
+          "score": 0.4945
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "79e516cf-c151-4c9e-9bb7-8f577e6feae4",
+          "coreSlug": "bh-dadyoom-core-g12-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.4945
+        },
+        {
+          "coreLessonId": "80e25311-c91d-4cd7-9cd7-143c892d96f5",
+          "coreSlug": "bh-dadyoom-core-g12-l17",
+          "coreTitle": "الكتابة الوظيفية",
+          "coreLessonType": "writing",
+          "score": 0.4827
+        },
+        {
+          "coreLessonId": "239a49df-0a90-4361-9ea1-46fb80affc7c",
+          "coreSlug": "bh-dadyoom-core-g12-l15",
+          "coreTitle": "التلخيص الأكاديمي",
+          "coreLessonType": "writing",
+          "score": 0.4736
+        }
+      ]
+    },
+    {
+      "officialLessonId": "224a5625-4c62-43f6-8b43-01c560b8a839",
+      "officialSlug": "bh-g12-arab221-08",
+      "officialTitle": "التيار الرومنسي: «المعراج» لعلي محمود طه.",
+      "officialLessonType": "reading",
+      "unitNumber": 2,
+      "unitTitle": "عرب 221 — الأدب العربي الحديث (التيار الإحيائي والتيار الرومنسي)",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4047,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g12-l01",
+          "relation": "text-specific",
+          "title": "تحليل الشعر",
+          "score": 0.4047
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "00e59f91-0b42-495b-aab8-8fc33736485c",
+          "coreSlug": "bh-dadyoom-core-g12-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.4047
+        },
+        {
+          "coreLessonId": "60343fbf-dc46-4b0a-ad24-0253e24b0bf5",
+          "coreSlug": "bh-dadyoom-core-g12-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4047
+        },
+        {
+          "coreLessonId": "a6f560f3-0d84-4cd2-87b5-c66c57538c45",
+          "coreSlug": "bh-dadyoom-core-g12-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.3945
+        }
+      ]
+    }
+  ]
+}
