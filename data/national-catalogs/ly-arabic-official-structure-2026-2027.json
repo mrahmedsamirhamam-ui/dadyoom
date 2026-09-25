@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "LY",
+    "nameAr": "ليبيا"
+  },
+  "academicYearTarget": "2026-2027",
+  "authority": {
+    "nameAr": "مركز المناهج التعليمية والبحوث التربوية — وزارة التربية والتعليم الليبية",
+    "ministryUrl": "https://moe.gov.ly/",
+    "centerUrl": "https://cerc.moe.gov.ly/",
+    "curriculumCatalog": "https://cerc.moe.gov.ly/educational-curricul/",
+    "basicCalendar": "https://cerc.moe.gov.ly/study-exam-dates/school-year-system/",
+    "transportCalendar": "https://cerc.moe.gov.ly/study-exam-dates/general-term-system/",
+    "certificateCalendar": "https://cerc.moe.gov.ly/study-exam-dates/primary-and-secondary/"
+  },
+  "verifiedAt": "2026-09-25",
+  "academicStructure": {
+    "grades1to5": {
+      "system": "school-year",
+      "start": "2026-09-13"
+    },
+    "grades6to11": {
+      "system": "two-semesters",
+      "semester1End": "2026-12-29",
+      "semester2End": "2027-05-13"
+    },
+    "certificateGrades": {
+      "grades": [
+        9,
+        12
+      ],
+      "system": "certificate-year"
+    }
+  },
+  "languageDomains": {
+    "basic": [
+      "الاستماع والتحدث",
+      "القراءة والمطالعة",
+      "النصوص والتذوق الأدبي",
+      "النحو والصرف",
+      "الإملاء والخط",
+      "التعبير والإنشاء"
+    ],
+    "secondary": [
+      "المطالعة والإنشاء",
+      "الأدب والنصوص",
+      "النحو والصرف والإملاء",
+      "البلاغة",
+      "النقد الأدبي",
+      "التعبير والكتابة"
+    ]
+  },
+  "secondaryEvidence": {
+    "grade12LiteraryBooks": [
+      "الأدب والنصوص",
+      "المطالعة والإنشاء",
+      "النقد الأدبي"
+    ],
+    "grammarBook": "النحو والصرف والإملاء"
+  },
+  "publicationEvidence": {
+    "currentDigitalCatalogLabel": "2026-2025",
+    "newYearBookDistribution": "وزارة التربية أعلنت في يوليو 2026 وصول وتوريد الكتب استعدادا للعام الدراسي الجديد.",
+    "interpretation": "الكتالوج الرقمي الحالي هو خط الأساس المنشور، والخطة الدراسية الرسمية 2026-2027 تثبت استمرار هذه المقررات حتى نشر نسخ رقمية أحدث."
+  },
+  "policy": "تستخدم بنية الكتب والمجالات والعناوين الرسمية وروابط المركز لإثبات المطابقة. لا تنسخ نصوص الكتب أو الأسئلة المحمية؛ الشرح والأسئلة والأنشطة أصلية لضاديوم.",
+  "claimPolicy": "مطابق للمنهج الرسمي الليبي يعني مواءم مع الكتب والمجالات والعناوين المنشورة رسميا ضمن النطاق الحالي، ولا يعني اعتمادا أو شراكة من الوزارة.",
+  "generatedAt": "2026-09-25"
+}
