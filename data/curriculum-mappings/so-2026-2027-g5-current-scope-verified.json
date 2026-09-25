@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "SO",
+    "nameAr": "الصومال"
+  },
+  "academicYear": "2026-2027",
+  "grade": 5,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 1,
+  "mappedLessons": 1,
+  "verifiedLessons": 1,
+  "scope": "current-officially-published-and-publicly-verifiable-scope",
+  "policy": "وحدة المطابقة هي حزمة كفاءات عربية داخل الصف الرسمي؛ لا تُختلق عناوين كتب/دروس غير منشورة.",
+  "mappings": [
+    {
+      "officialSlug": "so-2026-2027-g5-arabic-competency-bundle",
+      "officialTitle": "اللغة العربية — الصف 5 من التعليم الأساسي — حزمة الكفاءات الوطنية",
+      "source": {
+        "label": "وزارة التربية والثقافة والتعليم العالي الصومالية — السياسة الوطنية وأطر المنهج والتقييم",
+        "url": "https://moe.gov.so/wp-content/uploads/2022/04/National-Education-Policy-Eng-Version-Final-DG-copy.pdf",
+        "additionalUrls": [
+          "https://moe.gov.so/",
+          "https://moe.gov.so/wp-content/uploads/2022/05/Accelerated-Basic-Education-ABE-Policy-Framework-Back-translation-RF.pdf",
+          "https://moe.gov.so/wp-content/uploads/2022/07/Somalia-Education-Sector-Analysis-Jan-2022-1.pdf",
+          "https://moe.gov.so/wp-content/uploads/2026/02/National-Assessment-Framework-for-Somalia-Final-1.pdf",
+          "https://moe.gov.so/2023/10/20/imtixaanka-qaranka-ee-fasalka-12aad-ee-sanad-dugsiyeedka-2025-2026/"
+        ]
+      },
+      "relationType": "official-education-structure+national-arabic-competency-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المصادر الوطنية تثبت هيكل الصفوف وموقع العربية في محو الأمية/اللغات والإطار الوطني للتقييم. لعدم توفر فهرس عام قابل للتدقيق لكتب العربية صفًا صفًا، تُستخدم حزمة كفاءات وطنية دون اختلاق عناوين كتب.",
+      "coreCoverage": [
+        {
+          "slug": "so-dadyoom-core-g5-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "so-dadyoom-core-g5-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "so-dadyoom-core-g5-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "so-dadyoom-core-g5-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "so-dadyoom-core-g5-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "so-dadyoom-core-g5-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "so-dadyoom-core-g5-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "so-dadyoom-core-g5-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "so-dadyoom-core-g5-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "so-dadyoom-core-g5-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "so-dadyoom-core-g5-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "so-dadyoom-core-g5-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "so-dadyoom-core-g5-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "so-dadyoom-core-g5-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "so-dadyoom-core-g5-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "so-dadyoom-core-g5-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "so-dadyoom-core-g5-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "so-dadyoom-core-g5-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-national-policy+official-curriculum-framework+official-assessment-framework+national-pack"
+    }
+  ]
+}
