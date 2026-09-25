@@ -166,28 +166,100 @@
       },
       "national": {
         "complete": false,
-        "matchingStatus": "not-closed",
-        "verificationStatus": "candidate",
+        "matchingStatus": "current-scope-complete",
+        "verificationStatus": "verified",
         "evidenceSources": [
           {
             "url": "https://cripen.dj/",
-            "kind": "official-education-resource-candidate"
+            "kind": "official-cripen"
           },
           {
-            "url": "https://education.dj/?lang=ar",
-            "kind": "official-portal-candidate"
+            "url": "https://cripen.dj/index.php/guides-de-lenseignement-de-base/",
+            "kind": "official-base-guides"
+          },
+          {
+            "url": "https://education.dj/portail/guideBi1er.php",
+            "kind": "official-grade1-arabic"
+          },
+          {
+            "url": "https://education.dj/portail/guideBi2e.php",
+            "kind": "official-grade2-arabic"
+          },
+          {
+            "url": "https://education.dj/portail/guideBi3e.php",
+            "kind": "official-grade3-arabic"
+          },
+          {
+            "url": "https://education.dj/portail/guide5e.php",
+            "kind": "official-grade5-arabic"
+          },
+          {
+            "url": "https://education.dj/portail/metier/guides/9eme/arabe.html",
+            "kind": "official-grade9-arabic"
+          },
+          {
+            "url": "https://cripen.dj/wp-content/uploads/2025/05/Programmes-compile-seconde.pdf",
+            "kind": "official-secondary-programs"
+          },
+          {
+            "url": "https://cripen.dj/wp-content/uploads/2025/05/Programme-compile-Terminale.pdf",
+            "kind": "official-terminale-programs"
+          },
+          {
+            "url": "https://cripen.dj/index.php/2026/06/08/visite-officielle-du-ministre-dans-les-centres-dexamens/",
+            "kind": "official-2026-arabic-exam-evidence"
           }
         ],
-        "verifiedPackFiles": [],
-        "missingEvidence": [
-          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
-          "اكتمال تغطية الفصول/الفترات الدراسية",
-          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
-          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
-          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
-        ]
+        "verifiedPackFiles": [
+          "data/curriculum-packs/djibouti-2026-2027-final/dj-2026-2027-arabic-g1-current-scope.json",
+          "data/curriculum-packs/djibouti-2026-2027-final/dj-2026-2027-arabic-g2-current-scope.json",
+          "data/curriculum-packs/djibouti-2026-2027-final/dj-2026-2027-arabic-g3-current-scope.json",
+          "data/curriculum-packs/djibouti-2026-2027-final/dj-2026-2027-arabic-g4-current-scope.json",
+          "data/curriculum-packs/djibouti-2026-2027-final/dj-2026-2027-arabic-g5-current-scope.json",
+          "data/curriculum-packs/djibouti-2026-2027-final/dj-2026-2027-arabic-g6-current-scope.json",
+          "data/curriculum-packs/djibouti-2026-2027-final/dj-2026-2027-arabic-g7-current-scope.json",
+          "data/curriculum-packs/djibouti-2026-2027-final/dj-2026-2027-arabic-g8-current-scope.json",
+          "data/curriculum-packs/djibouti-2026-2027-final/dj-2026-2027-arabic-g9-current-scope.json",
+          "data/curriculum-packs/djibouti-2026-2027-final/dj-2026-2027-arabic-g10-current-scope.json",
+          "data/curriculum-packs/djibouti-2026-2027-final/dj-2026-2027-arabic-g11-current-scope.json",
+          "data/curriculum-packs/djibouti-2026-2027-final/dj-2026-2027-arabic-g12-current-scope.json"
+        ],
+        "verifiedMappingFiles": [
+          "data/curriculum-mappings/dj-2026-2027-g1-current-scope-verified.json",
+          "data/curriculum-mappings/dj-2026-2027-g2-current-scope-verified.json",
+          "data/curriculum-mappings/dj-2026-2027-g3-current-scope-verified.json",
+          "data/curriculum-mappings/dj-2026-2027-g4-current-scope-verified.json",
+          "data/curriculum-mappings/dj-2026-2027-g5-current-scope-verified.json",
+          "data/curriculum-mappings/dj-2026-2027-g6-current-scope-verified.json",
+          "data/curriculum-mappings/dj-2026-2027-g7-current-scope-verified.json",
+          "data/curriculum-mappings/dj-2026-2027-g8-current-scope-verified.json",
+          "data/curriculum-mappings/dj-2026-2027-g9-current-scope-verified.json",
+          "data/curriculum-mappings/dj-2026-2027-g10-current-scope-verified.json",
+          "data/curriculum-mappings/dj-2026-2027-g11-current-scope-verified.json",
+          "data/curriculum-mappings/dj-2026-2027-g12-current-scope-verified.json"
+        ],
+        "missingEvidence": [],
+        "currentScopeComplete": true,
+        "fullYearComplete": false,
+        "mappingSummary": {
+          "mappingGrades": 12,
+          "verifiedMappingGrades": 12,
+          "officialCoverageNodes": 18,
+          "mappedCoverageNodes": 18,
+          "verifiedCoverageNodes": 18,
+          "nationalExtensions": 18
+        },
+        "databaseSummary": {
+          "curriculumId": "4f4d72be-3082-480b-a062-e8e8342b9f66",
+          "grades": 12,
+          "lessons": 18,
+          "questions": 54,
+          "vocabulary": 54,
+          "activities": 54
+        },
+        "note": "مغلق للنطاق الرسمي المنشور والقابل للتحقق حاليًا عبر أدلة العربية في التعليم الأساسي وبرامج وسلاسل الثانوي الرسمية."
       },
-      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+      "publicationReadiness": "NATIONAL_CURRENT_SCOPE_COMPLETE"
     },
     {
       "code": "DZ",
