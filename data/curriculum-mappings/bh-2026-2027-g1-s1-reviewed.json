@@ -1,0 +1,576 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "BH",
+    "nameAr": "مملكة البحرين"
+  },
+  "academicYear": "2026-2027",
+  "grade": 1,
+  "semester": 1,
+  "subject": "اللغة العربية",
+  "status": "reviewed-partial",
+  "officialLessons": 18,
+  "mappedLessons": 18,
+  "verifiedLessons": 0,
+  "policy": "هذه خريطة تغطية مهارية بين الدروس الوطنية ومسار Dadyoom Core، وليست ادعاء بأن نصوص Core هي نصوص الكتاب الرسمي. التحويل إلى verified يتطلب تأكيد أهداف/بنية المرجع الوطني نفسه.",
+  "mappings": [
+    {
+      "officialSlug": "bh-2026-g1-s1-u1-l1",
+      "officialTitle": "الدرس الأول: حرف (ب) (1)",
+      "source": {
+        "label": "وزارة التربية والتعليم بمملكة البحرين — الموارد التعليمية والكتاب/المورد الإلكتروني المرجعي",
+        "url": "https://moe.gov.bh/ar/moe-educational-resources",
+        "pageStart": 8,
+        "pageEnd": 21
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "reviewed",
+      "verificationStatus": "needs-source-objective-confirmation",
+      "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g1-l01",
+          "relation": "direct-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l07",
+          "relation": "supporting-skill",
+          "title": "بناء الكلمة من المقاطع"
+        }
+      ]
+    },
+    {
+      "officialSlug": "bh-2026-g1-s1-u1-l2",
+      "officialTitle": "الدرس الثاني: حرف (ب) (2)",
+      "source": {
+        "label": "وزارة التربية والتعليم بمملكة البحرين — الموارد التعليمية والكتاب/المورد الإلكتروني المرجعي",
+        "url": "https://moe.gov.bh/ar/moe-educational-resources",
+        "pageStart": 22,
+        "pageEnd": 34
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "reviewed",
+      "verificationStatus": "needs-source-objective-confirmation",
+      "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g1-l01",
+          "relation": "direct-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l07",
+          "relation": "supporting-skill",
+          "title": "بناء الكلمة من المقاطع"
+        }
+      ]
+    },
+    {
+      "officialSlug": "bh-2026-g1-s1-u1-l3",
+      "officialTitle": "الدرس الثالث: حرف (م)",
+      "source": {
+        "label": "وزارة التربية والتعليم بمملكة البحرين — الموارد التعليمية والكتاب/المورد الإلكتروني المرجعي",
+        "url": "https://moe.gov.bh/ar/moe-educational-resources",
+        "pageStart": 35,
+        "pageEnd": 48
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "reviewed",
+      "verificationStatus": "needs-source-objective-confirmation",
+      "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g1-l01",
+          "relation": "direct-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l07",
+          "relation": "supporting-skill",
+          "title": "بناء الكلمة من المقاطع"
+        }
+      ]
+    },
+    {
+      "officialSlug": "bh-2026-g1-s1-u1-l4",
+      "officialTitle": "الدرس الرابع: حرف (د)",
+      "source": {
+        "label": "وزارة التربية والتعليم بمملكة البحرين — الموارد التعليمية والكتاب/المورد الإلكتروني المرجعي",
+        "url": "https://moe.gov.bh/ar/moe-educational-resources",
+        "pageStart": 49,
+        "pageEnd": 61
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "reviewed",
+      "verificationStatus": "needs-source-objective-confirmation",
+      "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g1-l01",
+          "relation": "direct-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l07",
+          "relation": "supporting-skill",
+          "title": "بناء الكلمة من المقاطع"
+        }
+      ]
+    },
+    {
+      "officialSlug": "bh-2026-g1-s1-u1-l5",
+      "officialTitle": "الدرس الخامس: أعزز مكتسباتي",
+      "source": {
+        "label": "وزارة التربية والتعليم بمملكة البحرين — الموارد التعليمية والكتاب/المورد الإلكتروني المرجعي",
+        "url": "https://moe.gov.bh/ar/moe-educational-resources",
+        "pageStart": 62,
+        "pageEnd": 65
+      },
+      "relationType": "review-bundle",
+      "reviewStatus": "reviewed",
+      "verificationStatus": "needs-source-objective-confirmation",
+      "rationale": "درس مراجعة للحروف والقراءة والتمييز، فيُربط بحزمة مراجعة Core بدل ادعاء درس مكافئ واحد.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g1-l01",
+          "relation": "supporting-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l07",
+          "relation": "supporting-skill",
+          "title": "بناء الكلمة من المقاطع"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l18",
+          "relation": "primary-review",
+          "title": "مراجعة مهاراتي الأساسية"
+        }
+      ]
+    },
+    {
+      "officialSlug": "bh-2026-g1-s1-u1-l6",
+      "officialTitle": "أنشودة الوحدة: أسرتي",
+      "source": {
+        "label": "وزارة التربية والتعليم بمملكة البحرين — الموارد التعليمية والكتاب/المورد الإلكتروني المرجعي",
+        "url": "https://moe.gov.bh/ar/moe-educational-resources",
+        "pageStart": 66,
+        "pageEnd": 67
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "reviewed",
+      "verificationStatus": "needs-source-objective-confirmation",
+      "rationale": "الأنشودة نص خاص بالوحدة؛ ضاديوم لا يدعي استبدال النص، بل يغطي مهارات الاستماع والقراءة المرتبطة به.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g1-l16",
+          "relation": "direct-skill",
+          "title": "الاستماع واتباع التعليمات"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l13",
+          "relation": "supporting-skill",
+          "title": "قراءة نص قصير"
+        }
+      ]
+    },
+    {
+      "officialSlug": "bh-2026-g1-s1-u2-l1",
+      "officialTitle": "الدرس السادس: حرف (ح)",
+      "source": {
+        "label": "وزارة التربية والتعليم بمملكة البحرين — الموارد التعليمية والكتاب/المورد الإلكتروني المرجعي",
+        "url": "https://moe.gov.bh/ar/moe-educational-resources",
+        "pageStart": 68,
+        "pageEnd": 81
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "reviewed",
+      "verificationStatus": "needs-source-objective-confirmation",
+      "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g1-l01",
+          "relation": "direct-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l07",
+          "relation": "supporting-skill",
+          "title": "بناء الكلمة من المقاطع"
+        }
+      ]
+    },
+    {
+      "officialSlug": "bh-2026-g1-s1-u2-l2",
+      "officialTitle": "الدرس السابع: حرف (ر)",
+      "source": {
+        "label": "وزارة التربية والتعليم بمملكة البحرين — الموارد التعليمية والكتاب/المورد الإلكتروني المرجعي",
+        "url": "https://moe.gov.bh/ar/moe-educational-resources",
+        "pageStart": 82,
+        "pageEnd": 96
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "reviewed",
+      "verificationStatus": "needs-source-objective-confirmation",
+      "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g1-l01",
+          "relation": "direct-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l07",
+          "relation": "supporting-skill",
+          "title": "بناء الكلمة من المقاطع"
+        }
+      ]
+    },
+    {
+      "officialSlug": "bh-2026-g1-s1-u2-l3",
+      "officialTitle": "الدرس الثامن: حرف (س)",
+      "source": {
+        "label": "وزارة التربية والتعليم بمملكة البحرين — الموارد التعليمية والكتاب/المورد الإلكتروني المرجعي",
+        "url": "https://moe.gov.bh/ar/moe-educational-resources",
+        "pageStart": 97,
+        "pageEnd": 109
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "reviewed",
+      "verificationStatus": "needs-source-objective-confirmation",
+      "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g1-l01",
+          "relation": "direct-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l07",
+          "relation": "supporting-skill",
+          "title": "بناء الكلمة من المقاطع"
+        }
+      ]
+    },
+    {
+      "officialSlug": "bh-2026-g1-s1-u2-l4",
+      "officialTitle": "الدرس التاسع: حرف (ل)",
+      "source": {
+        "label": "وزارة التربية والتعليم بمملكة البحرين — الموارد التعليمية والكتاب/المورد الإلكتروني المرجعي",
+        "url": "https://moe.gov.bh/ar/moe-educational-resources",
+        "pageStart": 110,
+        "pageEnd": 123
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "reviewed",
+      "verificationStatus": "needs-source-objective-confirmation",
+      "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g1-l01",
+          "relation": "direct-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l07",
+          "relation": "supporting-skill",
+          "title": "بناء الكلمة من المقاطع"
+        }
+      ]
+    },
+    {
+      "officialSlug": "bh-2026-g1-s1-u2-l5",
+      "officialTitle": "الدرس العاشر: أعزز مكتسباتي",
+      "source": {
+        "label": "وزارة التربية والتعليم بمملكة البحرين — الموارد التعليمية والكتاب/المورد الإلكتروني المرجعي",
+        "url": "https://moe.gov.bh/ar/moe-educational-resources",
+        "pageStart": 124,
+        "pageEnd": 129
+      },
+      "relationType": "review-bundle",
+      "reviewStatus": "reviewed",
+      "verificationStatus": "needs-source-objective-confirmation",
+      "rationale": "درس مراجعة للحروف والقراءة والتمييز، فيُربط بحزمة مراجعة Core بدل ادعاء درس مكافئ واحد.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g1-l01",
+          "relation": "supporting-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l07",
+          "relation": "supporting-skill",
+          "title": "بناء الكلمة من المقاطع"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l18",
+          "relation": "primary-review",
+          "title": "مراجعة مهاراتي الأساسية"
+        }
+      ]
+    },
+    {
+      "officialSlug": "bh-2026-g1-s1-u2-l6",
+      "officialTitle": "أنشودة الوحدة: مدرستي",
+      "source": {
+        "label": "وزارة التربية والتعليم بمملكة البحرين — الموارد التعليمية والكتاب/المورد الإلكتروني المرجعي",
+        "url": "https://moe.gov.bh/ar/moe-educational-resources",
+        "pageStart": 130,
+        "pageEnd": 131
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "reviewed",
+      "verificationStatus": "needs-source-objective-confirmation",
+      "rationale": "الأنشودة نص خاص بالوحدة؛ ضاديوم لا يدعي استبدال النص، بل يغطي مهارات الاستماع والقراءة المرتبطة به.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g1-l16",
+          "relation": "direct-skill",
+          "title": "الاستماع واتباع التعليمات"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l13",
+          "relation": "supporting-skill",
+          "title": "قراءة نص قصير"
+        }
+      ]
+    },
+    {
+      "officialSlug": "bh-2026-g1-s1-u3-l1",
+      "officialTitle": "الدرس الحادي عشر: حرف (ج)",
+      "source": {
+        "label": "وزارة التربية والتعليم بمملكة البحرين — الموارد التعليمية والكتاب/المورد الإلكتروني المرجعي",
+        "url": "https://moe.gov.bh/ar/moe-educational-resources",
+        "pageStart": 132,
+        "pageEnd": 144
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "reviewed",
+      "verificationStatus": "needs-source-objective-confirmation",
+      "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g1-l01",
+          "relation": "direct-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l07",
+          "relation": "supporting-skill",
+          "title": "بناء الكلمة من المقاطع"
+        }
+      ]
+    },
+    {
+      "officialSlug": "bh-2026-g1-s1-u3-l2",
+      "officialTitle": "الدرس الثاني عشر: حرف (ن)",
+      "source": {
+        "label": "وزارة التربية والتعليم بمملكة البحرين — الموارد التعليمية والكتاب/المورد الإلكتروني المرجعي",
+        "url": "https://moe.gov.bh/ar/moe-educational-resources",
+        "pageStart": 145,
+        "pageEnd": 156
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "reviewed",
+      "verificationStatus": "needs-source-objective-confirmation",
+      "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g1-l01",
+          "relation": "direct-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l07",
+          "relation": "supporting-skill",
+          "title": "بناء الكلمة من المقاطع"
+        }
+      ]
+    },
+    {
+      "officialSlug": "bh-2026-g1-s1-u3-l3",
+      "officialTitle": "الدرس الثالث عشر: حرف (ع)",
+      "source": {
+        "label": "وزارة التربية والتعليم بمملكة البحرين — الموارد التعليمية والكتاب/المورد الإلكتروني المرجعي",
+        "url": "https://moe.gov.bh/ar/moe-educational-resources",
+        "pageStart": 157,
+        "pageEnd": 168
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "reviewed",
+      "verificationStatus": "needs-source-objective-confirmation",
+      "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g1-l01",
+          "relation": "direct-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l07",
+          "relation": "supporting-skill",
+          "title": "بناء الكلمة من المقاطع"
+        }
+      ]
+    },
+    {
+      "officialSlug": "bh-2026-g1-s1-u3-l4",
+      "officialTitle": "الدرس الرابع عشر: حرف (ت)",
+      "source": {
+        "label": "وزارة التربية والتعليم بمملكة البحرين — الموارد التعليمية والكتاب/المورد الإلكتروني المرجعي",
+        "url": "https://moe.gov.bh/ar/moe-educational-resources",
+        "pageStart": 169,
+        "pageEnd": 181
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "reviewed",
+      "verificationStatus": "needs-source-objective-confirmation",
+      "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g1-l01",
+          "relation": "direct-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l07",
+          "relation": "supporting-skill",
+          "title": "بناء الكلمة من المقاطع"
+        }
+      ]
+    },
+    {
+      "officialSlug": "bh-2026-g1-s1-u3-l5",
+      "officialTitle": "الدرس الخامس عشر: أعزز مكتسباتي",
+      "source": {
+        "label": "وزارة التربية والتعليم بمملكة البحرين — الموارد التعليمية والكتاب/المورد الإلكتروني المرجعي",
+        "url": "https://moe.gov.bh/ar/moe-educational-resources",
+        "pageStart": 182,
+        "pageEnd": 186
+      },
+      "relationType": "review-bundle",
+      "reviewStatus": "reviewed",
+      "verificationStatus": "needs-source-objective-confirmation",
+      "rationale": "درس مراجعة للحروف والقراءة والتمييز، فيُربط بحزمة مراجعة Core بدل ادعاء درس مكافئ واحد.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g1-l01",
+          "relation": "supporting-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l07",
+          "relation": "supporting-skill",
+          "title": "بناء الكلمة من المقاطع"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l18",
+          "relation": "primary-review",
+          "title": "مراجعة مهاراتي الأساسية"
+        }
+      ]
+    },
+    {
+      "officialSlug": "bh-2026-g1-s1-u3-l6",
+      "officialTitle": "أنشودة الوحدة: جاري",
+      "source": {
+        "label": "وزارة التربية والتعليم بمملكة البحرين — الموارد التعليمية والكتاب/المورد الإلكتروني المرجعي",
+        "url": "https://moe.gov.bh/ar/moe-educational-resources",
+        "pageStart": 187,
+        "pageEnd": 190
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "reviewed",
+      "verificationStatus": "needs-source-objective-confirmation",
+      "rationale": "الأنشودة نص خاص بالوحدة؛ ضاديوم لا يدعي استبدال النص، بل يغطي مهارات الاستماع والقراءة المرتبطة به.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g1-l16",
+          "relation": "direct-skill",
+          "title": "الاستماع واتباع التعليمات"
+        },
+        {
+          "slug": "bh-dadyoom-core-g1-l13",
+          "relation": "supporting-skill",
+          "title": "قراءة نص قصير"
+        }
+      ]
+    }
+  ]
+}
