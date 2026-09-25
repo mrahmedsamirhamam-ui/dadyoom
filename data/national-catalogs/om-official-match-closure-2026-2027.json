@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "OM",
+    "nameAr": "عُمان",
+    "nameEn": "Oman"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "status": "current-scope-complete",
+  "matchingStatus": "current-scope-complete",
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-09-25",
+  "authority": {
+    "nameAr": "وزارة التعليم بسلطنة عُمان",
+    "arabicAssessment": "https://home.moe.gov.om/library/171",
+    "generalAssessment": "https://home.moe.gov.om/library/187/show/1636",
+    "curriculumLibrary": "https://home.moe.gov.om/library/96",
+    "digitalTextbooks": "https://ict.moe.gov.om/eBooks/index.php",
+    "educationSystem": "https://portal.moe.gov.om/Portal/sitebuilder/Sites/EPS/Arabic/IPS/Right_Menu/Edu_System/edusystem/basic.aspx",
+    "arabicSkillsDevelopment": "https://home.moe.gov.om/topics/1/show/11856",
+    "pathways20262027": "https://home.moe.gov.om/topics/1/show/13053",
+    "readiness20262027": "https://home.moe.gov.om/region/dahira/topics/1/show/12879"
+  },
+  "structure": {
+    "grades": "12/12",
+    "semesters": 2,
+    "basicEducation": {
+      "grades": "1-10",
+      "cycle1": "1-4",
+      "cycle2": "5-10"
+    },
+    "postBasic": {
+      "grades": "11-12",
+      "note": "اللغة العربية مادة أساسية مع وجود اختيارات ومسارات أخرى في التعليم ما بعد الأساسي."
+    },
+    "coverageModel": {
+      "1-4": [
+        "الاستماع",
+        "التحدث",
+        "القراءة",
+        "الكتابة",
+        "أساسيات اللغة وبناؤها"
+      ],
+      "5-12": [
+        "الاستماع",
+        "التحدث",
+        "القراءة",
+        "الكتابة",
+        "النظام اللغوي وفروعه",
+        "الفنون الأدبية والبلاغية"
+      ]
+    },
+    "policy": "الحزم هي وحدات مطابقة ضاديوم المبنية على المهارات والفنون الرسمية، وليست ادعاءً بأنها عناوين دروس وزارية."
+  },
+  "coverage": {
+    "packGrades": "12/12",
+    "verifiedMappingGrades": "12/12",
+    "officialCoverageNodes": 68,
+    "mappedCoverageNodes": 68,
+    "verifiedCoverageNodes": 68,
+    "nationalExtensions": 68,
+    "database": {
+      "curriculumId": "e096c7e6-de97-4988-9ba1-b80f590b5e1d",
+      "grades": 12,
+      "units": 12,
+      "lessons": 68,
+      "questions": 204,
+      "vocabulary": 204,
+      "publishedActivities": 204,
+      "minimumContentCharacters": 628
+    },
+    "gradeLessonCounts": {
+      "1": 5,
+      "2": 5,
+      "3": 5,
+      "4": 5,
+      "5": 6,
+      "6": 6,
+      "7": 6,
+      "8": 6,
+      "9": 6,
+      "10": 6,
+      "11": 6,
+      "12": 6
+    }
+  },
+  "qualityGates": {
+    "officialSourcesVerified": true,
+    "allGradesPresent": true,
+    "allPacksRightsVerified": true,
+    "allMappingsVerified": true,
+    "officialEqualsMappedEqualsVerified": true,
+    "allLessonsPublished": true,
+    "allLessonsHaveOfficialSource": true,
+    "minimumObjectivesPerLesson": 3,
+    "minimumQuestionsPerLesson": 3,
+    "minimumVocabularyPerLesson": 3,
+    "minimumPublishedActivitiesPerLesson": 3,
+    "failingDatabaseLessons": 0,
+    "legacyConflict": "inactive-before-import"
+  },
+  "copyrightPolicy": "لا تعيد ضاديوم نشر نصوص الكتب الرسمية؛ تستخدم بنية النظام والمهارات ووثائق التقويم وروابط الوزارة لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية لضاديوم.",
+  "claimPolicy": "مطابق للمنهج الرسمي العُماني = مواءم مع بنية التعليم ووثائق التقويم ومصادر المناهج ومهارات العربية الرسمية المنشورة للنطاق الحالي؛ لا تعني العبارة اعتمادًا أو شراكة أو تأييدًا من الوزارة."
+}
