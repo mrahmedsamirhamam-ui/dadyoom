@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "SD",
+    "nameAr": "السودان",
+    "nameEn": "Sudan"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "status": "current-scope-complete",
+  "matchingStatus": "current-scope-complete",
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-09-25",
+  "authority": {
+    "officialStateMinistryPortal": "https://gmoe.gov.sd/",
+    "arabicSubjectPage": "https://gmoe.gov.sd/?page_id=1343",
+    "transitionPlanContext": "https://gmoe.gov.sd/?p=2127",
+    "currentPrimaryContext": "https://gmoe.gov.sd/?p=2849",
+    "currentMiddleContext": "https://gmoe.gov.sd/?p=3041",
+    "currentSecondaryContext": "https://gmoe.gov.sd/?p=2927",
+    "nationalDigitalLibrary": "https://mdl.edu.sd/",
+    "grade1ArabicBook": "https://mdl.edu.sd/img/bookpdf/%D8%A7%D9%84%D9%84%D8%BA%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9%20%D8%A7%D9%88%D9%84%20%D8%A7%D8%A8%D8%AA%D8%AF%D8%A7%D8%A6%D9%8A%20_1756621106.pdf",
+    "grade3ArabicBook": "https://www.mdl.edu.sd/img/bookpdf/%20%D8%A7%D9%84%D9%84%D8%BA%D8%A9%20%D8%A7%D9%84%D8%B5%D9%81%20%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB%20%D8%A7%D8%A8%D8%AA%D8%AF%D8%A7%D8%A6%D9%8A_1664177152.pdf",
+    "grade5ArabicBook": "https://www.mdl.edu.sd/img/bookpdf/arabic5_1664621007.pdf",
+    "middle1ArabicBook": "https://mdl.edu.sd/img/bookpdf/_1664633080.pdf",
+    "secondary3GrammarBook": "https://mdl.edu.sd/img/bookpdf/nahw3_1678863142.pdf"
+  },
+  "structure": {
+    "grades": "12/12",
+    "primary": {
+      "years": 6,
+      "grades": "1-6"
+    },
+    "middle": {
+      "years": 3,
+      "grades": "7-9"
+    },
+    "secondary": {
+      "years": 3,
+      "grades": "10-12"
+    },
+    "note": "مصادر 2026 الرسمية على مستوى الولايات تؤكد استمرار المراحل الثلاث وفصل المرحلة المتوسطة عن الابتدائية، مع توجيهات الخطة الانتقالية 2025-2027 وتوحيد التقويم تدريجيًا."
+  },
+  "coverage": {
+    "packGrades": "12/12",
+    "verifiedMappingGrades": "12/12",
+    "officialCoverageNodes": 12,
+    "mappedCoverageNodes": 12,
+    "verifiedCoverageNodes": 12,
+    "nationalExtensions": 12,
+    "database": {
+      "curriculumId": "49c20b78-6022-419d-bcaa-ffaa31cb886a",
+      "grades": 12,
+      "units": 12,
+      "lessons": 12,
+      "questions": 36,
+      "vocabulary": 36,
+      "publishedActivities": 36,
+      "minimumContentCharacters": 611
+    },
+    "gradeLessonCounts": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 1,
+      "7": 1,
+      "8": 1,
+      "9": 1,
+      "10": 1,
+      "11": 1,
+      "12": 1
+    }
+  },
+  "qualityGates": {
+    "officialSourcesVerified": true,
+    "allGradesPresent": true,
+    "allPacksRightsVerified": true,
+    "allMappingsVerified": true,
+    "officialEqualsMappedEqualsVerified": true,
+    "allLessonsPublished": true,
+    "allLessonsHaveOfficialSource": true,
+    "minimumObjectivesPerLesson": 3,
+    "minimumQuestionsPerLesson": 3,
+    "minimumVocabularyPerLesson": 3,
+    "minimumPublishedActivitiesPerLesson": 3,
+    "failingDatabaseLessons": 0,
+    "legacyConflict": "inactive-before-import"
+  },
+  "copyrightPolicy": "لا يعيد ضاديوم نشر نصوص الكتب السودانية؛ يستخدم المراحل والمادة وأغلفة/كتب المركز القومي للمناهج ومصادر وزارة التربية لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية.",
+  "claimPolicy": "مطابق للمنهج الرسمي السوداني = مواءم مع مقرر العربية وبنية المراحل والكتب الصادرة عن وزارة التربية والمركز القومي للمناهج والبحث التربوي ـ بخت الرضا ضمن النطاق المنشور والقابل للتحقق؛ لا تعني العبارة اعتمادًا أو شراكة أو تأييدًا."
+}
