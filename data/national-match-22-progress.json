@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "goal": "إغلاق National Official Match لجميع الدول العربية الـ22 قبل تفعيل الدفع أو Google Ads.",
+  "launchPolicy": {
+    "paymentsBlockedUntilOfficial22": true,
+    "adsBlockedUntilOfficial22": true,
+    "requiredCountryCount": 22,
+    "requiredGradesPerCountry": 12,
+    "requiredVerificationStatus": "verified",
+    "allowedMatchingStatuses": [
+      "complete",
+      "current-scope-complete"
+    ],
+    "rule": "لا تُعد الدولة جاهزة إلا إذا كانت مصادرها الرسمية موثقة، وPacks الصفوف 1-12 معتمدة، وOfficial→Core mappings لكل الصفوف مكتملة ومتحققة."
+  },
+  "current": {
+    "verifiedCountries": [
+      "BH"
+    ],
+    "pendingCountries": [
+      "AE",
+      "DJ",
+      "DZ",
+      "EG",
+      "IQ",
+      "JO",
+      "KM",
+      "KW",
+      "LB",
+      "LY",
+      "MA",
+      "MR",
+      "OM",
+      "PS",
+      "QA",
+      "SA",
+      "SD",
+      "SO",
+      "SY",
+      "TN",
+      "YE"
+    ],
+    "readyCount": 1,
+    "pendingCount": 21,
+    "note": "هذا الملف يتتبع طبقة National Official Match فقط؛ Dadyoom Core مكتمل 22/22 ولا يُستخدم كبديل لإثبات المطابقة الرسمية."
+  },
+  "executionOrder": [
+    [
+      "JO",
+      "EG",
+      "PS",
+      "LY"
+    ],
+    [
+      "SA",
+      "AE",
+      "QA",
+      "KW",
+      "OM"
+    ],
+    [
+      "IQ",
+      "LB",
+      "TN",
+      "MA",
+      "DZ"
+    ],
+    [
+      "SD",
+      "YE",
+      "SY",
+      "MR"
+    ],
+    [
+      "DJ",
+      "SO",
+      "KM"
+    ]
+  ],
+  "countryExitCriteria": [
+    "مصدر وطني رسمي صالح ومؤرخ/محدد النطاق",
+    "جرد الصفوف والفصول والوحدات والدروس أو المهارات الرسمية",
+    "عدم نسخ نصوص الكتب المحمية",
+    "Pack أصلي لضاديوم لكل نطاق مطلوب",
+    "Official→Core bundle mapping لكل درس/مهارة",
+    "National Extensions أصلية لأي فجوة حقيقية",
+    "3 أهداف و3 مفردات و3 أسئلة و3 أنشطة على الأقل لكل Extension",
+    "12/12 صفًا verified",
+    "validators/audits PASS",
+    "verificationStatus=verified وmatchingStatus=complete أو current-scope-complete"
+  ],
+  "updatedAt": "2026-09-25"
+}
