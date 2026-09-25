@@ -271,6 +271,39 @@ for (const marker of [
   }
 }
 
+const semanticSearchRoute = fs.readFileSync(
+  path.resolve(
+    root,
+    "app/api/semantic-search/route.ts",
+  ),
+  "utf8",
+);
+
+const semanticSearchStreamRoute = fs.readFileSync(
+  path.resolve(
+    root,
+    "app/api/semantic-search/stream/route.ts",
+  ),
+  "utf8",
+);
+
+for (const [label, source] of [
+  ["standard", semanticSearchRoute],
+  ["stream", semanticSearchStreamRoute],
+]) {
+  for (const marker of [
+    "resolveFollowUpQuery",
+    "loadLessonChat",
+    "saveLessonChat",
+  ]) {
+    if (!source.includes(marker)) {
+      throw new Error(
+        `FINAL_LESSON_FOLLOWUP_CONTEXT_MISSING:${label}:${marker}`,
+      );
+    }
+  }
+}
+
 const legacySkillProgress = fs.readFileSync(
   path.resolve(
     root,
@@ -379,4 +412,5 @@ console.log("FINAL_LOCAL_ARTIFACTS_TRACKED=0");
 console.log("FINAL_TRACKED_BACKUPS_EXISTING=0");
 console.log("FINAL_INTERNAL_LINK_CODE_GENERATORS=SERVICE_ROLE_ONLY");
 console.log("FINAL_ASSESSMENT_SKILL_UPSERT=PASS");
+console.log("FINAL_LESSON_FOLLOWUP_CONTEXT=PASS");
 console.log("FINAL_MVP_SOURCE_AUDIT=PASS");
