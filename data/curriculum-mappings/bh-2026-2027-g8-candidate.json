@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "country": {
     "code": "BH",
     "nameAr": "مملكة البحرين"
@@ -12,269 +12,9 @@
   "officialLessons": 28,
   "mappedLessons": 28,
   "verifiedLessons": 0,
-  "policy": "ملف مرشحات قابل للتدقيق. بُني من الطبقة الوطنية الموجودة في قاعدة ضاديوم وربط بمهارات Dadyoom Core. لا يصبح أي درس verified دون مراجعة المصدر والأهداف، ولا يعاد نشر نص الكتاب الوزاري.",
-  "generatedBy": "Dadyoom official-to-core matcher",
+  "matchingModel": "official-to-core-skill-bundle-v2",
+  "policy": "مرشحات مطابقة قابلة للتدقيق. تغطية Core قد تكون حزمة من عدة مهارات. لا يصبح أي درس verified دون مراجعة المصدر والأهداف.",
   "mappings": [
-    {
-      "officialLessonId": "e5be5cef-2ee7-4ff5-88fe-1223b595a5e1",
-      "officialSlug": "bh-2026-g8-t1-411",
-      "officialTitle": "القراءة: البحرين في عيون زائريها.",
-      "officialLessonType": "reading",
-      "unitNumber": 11,
-      "unitTitle": "القراءة والنصوص",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "unmapped",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
-      "confidence": "low",
-      "score": 0.4909,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g8-l02",
-          "relation": "unmapped",
-          "title": "قراءة نص معلوماتي",
-          "score": 0.4909
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
-          "coreSlug": "bh-dadyoom-core-g8-l02",
-          "coreTitle": "قراءة نص معلوماتي",
-          "coreLessonType": "reading",
-          "score": 0.4909
-        },
-        {
-          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
-          "coreSlug": "bh-dadyoom-core-g8-l04",
-          "coreTitle": "الاستنتاج وبناء الحجة",
-          "coreLessonType": "reading",
-          "score": 0.4791
-        },
-        {
-          "coreLessonId": "e95f050e-e22b-47cb-94f6-1c441d60f96b",
-          "coreSlug": "bh-dadyoom-core-g8-l06",
-          "coreTitle": "المقارنة بين نصين",
-          "coreLessonType": "reading",
-          "score": 0.3075
-        }
-      ]
-    },
-    {
-      "officialLessonId": "bb69c0db-e749-44bf-b6c5-504aa80e09b9",
-      "officialSlug": "bh-2026-g8-t1-412",
-      "officialTitle": "القراءة: البنفسجة الطّموح..",
-      "officialLessonType": "reading",
-      "unitNumber": 11,
-      "unitTitle": "القراءة والنصوص",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "unmapped",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
-      "confidence": "low",
-      "score": 0.4948,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g8-l02",
-          "relation": "unmapped",
-          "title": "قراءة نص معلوماتي",
-          "score": 0.4948
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
-          "coreSlug": "bh-dadyoom-core-g8-l02",
-          "coreTitle": "قراءة نص معلوماتي",
-          "coreLessonType": "reading",
-          "score": 0.4948
-        },
-        {
-          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
-          "coreSlug": "bh-dadyoom-core-g8-l04",
-          "coreTitle": "الاستنتاج وبناء الحجة",
-          "coreLessonType": "reading",
-          "score": 0.4878
-        },
-        {
-          "coreLessonId": "e95f050e-e22b-47cb-94f6-1c441d60f96b",
-          "coreSlug": "bh-dadyoom-core-g8-l06",
-          "coreTitle": "المقارنة بين نصين",
-          "coreLessonType": "reading",
-          "score": 0.3038
-        }
-      ]
-    },
-    {
-      "officialLessonId": "861222eb-282b-4ffe-b75c-7d036f792743",
-      "officialSlug": "bh-2026-g8-t1-413",
-      "officialTitle": "القراءة: حدّثني عمّن تصاحب أخبرك من أنت",
-      "officialLessonType": "reading",
-      "unitNumber": 11,
-      "unitTitle": "القراءة والنصوص",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "unmapped",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
-      "confidence": "low",
-      "score": 0.484,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g8-l02",
-          "relation": "unmapped",
-          "title": "قراءة نص معلوماتي",
-          "score": 0.484
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
-          "coreSlug": "bh-dadyoom-core-g8-l02",
-          "coreTitle": "قراءة نص معلوماتي",
-          "coreLessonType": "reading",
-          "score": 0.484
-        },
-        {
-          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
-          "coreSlug": "bh-dadyoom-core-g8-l04",
-          "coreTitle": "الاستنتاج وبناء الحجة",
-          "coreLessonType": "reading",
-          "score": 0.4741
-        },
-        {
-          "coreLessonId": "e95f050e-e22b-47cb-94f6-1c441d60f96b",
-          "coreSlug": "bh-dadyoom-core-g8-l06",
-          "coreTitle": "المقارنة بين نصين",
-          "coreLessonType": "reading",
-          "score": 0.2961
-        }
-      ]
-    },
-    {
-      "officialLessonId": "faee8eac-8ebd-4299-8c86-cb7cb483cd0b",
-      "officialSlug": "bh-2026-g8-t1-414",
-      "officialTitle": "القراءة: قائد دون العشرين",
-      "officialLessonType": "reading",
-      "unitNumber": 11,
-      "unitTitle": "القراءة والنصوص",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "unmapped",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
-      "confidence": "low",
-      "score": 0.4943,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g8-l02",
-          "relation": "unmapped",
-          "title": "قراءة نص معلوماتي",
-          "score": 0.4943
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
-          "coreSlug": "bh-dadyoom-core-g8-l02",
-          "coreTitle": "قراءة نص معلوماتي",
-          "coreLessonType": "reading",
-          "score": 0.4943
-        },
-        {
-          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
-          "coreSlug": "bh-dadyoom-core-g8-l04",
-          "coreTitle": "الاستنتاج وبناء الحجة",
-          "coreLessonType": "reading",
-          "score": 0.4807
-        },
-        {
-          "coreLessonId": "e95f050e-e22b-47cb-94f6-1c441d60f96b",
-          "coreSlug": "bh-dadyoom-core-g8-l06",
-          "coreTitle": "المقارنة بين نصين",
-          "coreLessonType": "reading",
-          "score": 0.3164
-        }
-      ]
-    },
-    {
-      "officialLessonId": "e6706191-3406-4bd5-adec-cea4ddc171f0",
-      "officialSlug": "bh-2026-g8-t1-415",
-      "officialTitle": "القراءة: من الهدي القرآني من سورة فصّلت.",
-      "officialLessonType": "reading",
-      "unitNumber": 11,
-      "unitTitle": "القراءة والنصوص",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "unmapped",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
-      "confidence": "low",
-      "score": 0.4882,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g8-l02",
-          "relation": "unmapped",
-          "title": "قراءة نص معلوماتي",
-          "score": 0.4882
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
-          "coreSlug": "bh-dadyoom-core-g8-l02",
-          "coreTitle": "قراءة نص معلوماتي",
-          "coreLessonType": "reading",
-          "score": 0.4882
-        },
-        {
-          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
-          "coreSlug": "bh-dadyoom-core-g8-l04",
-          "coreTitle": "الاستنتاج وبناء الحجة",
-          "coreLessonType": "reading",
-          "score": 0.4774
-        },
-        {
-          "coreLessonId": "e95f050e-e22b-47cb-94f6-1c441d60f96b",
-          "coreSlug": "bh-dadyoom-core-g8-l06",
-          "coreTitle": "المقارنة بين نصين",
-          "coreLessonType": "reading",
-          "score": 0.2997
-        }
-      ]
-    },
     {
       "officialLessonId": "0d1942b0-60d1-43c6-ba97-325717caba1c",
       "officialSlug": "bh-2026-g8-t1-426",
@@ -287,20 +27,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "low",
       "score": 0.4904,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g8-l02",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "قراءة نص معلوماتي",
-          "score": 0.4904
+          "score": 0.804
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l04",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج وبناء الحجة",
+          "score": 0.795
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l01",
+          "relation": "coverage-bundle",
+          "title": "تحليل نص أدبي",
+          "score": 0.689
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l06",
+          "relation": "coverage-bundle",
+          "title": "المقارنة بين نصين",
+          "score": 0.6875
         }
       ],
       "candidates": [
@@ -324,6 +81,20 @@
           "coreTitle": "تحليل نص أدبي",
           "coreLessonType": "reading",
           "score": 0.3048
+        },
+        {
+          "coreLessonId": "e95f050e-e22b-47cb-94f6-1c441d60f96b",
+          "coreSlug": "bh-dadyoom-core-g8-l06",
+          "coreTitle": "المقارنة بين نصين",
+          "coreLessonType": "reading",
+          "score": 0.3023
+        },
+        {
+          "coreLessonId": "e3e4ec53-d9b3-4724-990a-3274aaf0bf4c",
+          "coreSlug": "bh-dadyoom-core-g8-l05",
+          "coreTitle": "بنية النص وترابطه",
+          "coreLessonType": "reading",
+          "score": 0.2943
         }
       ]
     },
@@ -346,13 +117,30 @@
       "confidence": "low",
       "score": 0.485,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g8-l02",
           "relation": "text-specific",
           "title": "قراءة نص معلوماتي",
-          "score": 0.485
+          "score": 0.8007
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l04",
+          "relation": "text-specific",
+          "title": "الاستنتاج وبناء الحجة",
+          "score": 0.7949
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l06",
+          "relation": "text-specific",
+          "title": "المقارنة بين نصين",
+          "score": 0.6874
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l01",
+          "relation": "text-specific",
+          "title": "تحليل نص أدبي",
+          "score": 0.6861
         }
       ],
       "candidates": [
@@ -376,6 +164,20 @@
           "coreTitle": "المقارنة بين نصين",
           "coreLessonType": "reading",
           "score": 0.3023
+        },
+        {
+          "coreLessonId": "942e121b-d3d2-4162-b8a9-8d3a33f296d4",
+          "coreSlug": "bh-dadyoom-core-g8-l01",
+          "coreTitle": "تحليل نص أدبي",
+          "coreLessonType": "reading",
+          "score": 0.3001
+        },
+        {
+          "coreLessonId": "e3e4ec53-d9b3-4724-990a-3274aaf0bf4c",
+          "coreSlug": "bh-dadyoom-core-g8-l05",
+          "coreTitle": "بنية النص وترابطه",
+          "coreLessonType": "reading",
+          "score": 0.2887
         }
       ]
     },
@@ -398,13 +200,30 @@
       "confidence": "low",
       "score": 0.4843,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g8-l02",
           "relation": "text-specific",
           "title": "قراءة نص معلوماتي",
-          "score": 0.4843
+          "score": 0.8003
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l04",
+          "relation": "text-specific",
+          "title": "الاستنتاج وبناء الحجة",
+          "score": 0.7943
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l06",
+          "relation": "text-specific",
+          "title": "المقارنة بين نصين",
+          "score": 0.6869
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l01",
+          "relation": "text-specific",
+          "title": "تحليل نص أدبي",
+          "score": 0.6821
         }
       ],
       "candidates": [
@@ -428,6 +247,435 @@
           "coreTitle": "المقارنة بين نصين",
           "coreLessonType": "reading",
           "score": 0.3015
+        },
+        {
+          "coreLessonId": "942e121b-d3d2-4162-b8a9-8d3a33f296d4",
+          "coreSlug": "bh-dadyoom-core-g8-l01",
+          "coreTitle": "تحليل نص أدبي",
+          "coreLessonType": "reading",
+          "score": 0.2936
+        },
+        {
+          "coreLessonId": "e3e4ec53-d9b3-4724-990a-3274aaf0bf4c",
+          "coreSlug": "bh-dadyoom-core-g8-l05",
+          "coreTitle": "بنية النص وترابطه",
+          "coreLessonType": "reading",
+          "score": 0.2877
+        }
+      ]
+    },
+    {
+      "officialLessonId": "e5be5cef-2ee7-4ff5-88fe-1223b595a5e1",
+      "officialSlug": "bh-2026-g8-t1-411",
+      "officialTitle": "القراءة: البحرين في عيون زائريها.",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "low",
+      "score": 0.4909,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g8-l02",
+          "relation": "coverage-bundle",
+          "title": "قراءة نص معلوماتي",
+          "score": 0.8044
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l04",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج وبناء الحجة",
+          "score": 0.7971
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l06",
+          "relation": "coverage-bundle",
+          "title": "المقارنة بين نصين",
+          "score": 0.6906
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l01",
+          "relation": "coverage-bundle",
+          "title": "تحليل نص أدبي",
+          "score": 0.6836
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
+          "coreSlug": "bh-dadyoom-core-g8-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.4909
+        },
+        {
+          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
+          "coreSlug": "bh-dadyoom-core-g8-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.4791
+        },
+        {
+          "coreLessonId": "e95f050e-e22b-47cb-94f6-1c441d60f96b",
+          "coreSlug": "bh-dadyoom-core-g8-l06",
+          "coreTitle": "المقارنة بين نصين",
+          "coreLessonType": "reading",
+          "score": 0.3075
+        },
+        {
+          "coreLessonId": "942e121b-d3d2-4162-b8a9-8d3a33f296d4",
+          "coreSlug": "bh-dadyoom-core-g8-l01",
+          "coreTitle": "تحليل نص أدبي",
+          "coreLessonType": "reading",
+          "score": 0.2962
+        },
+        {
+          "coreLessonId": "e3e4ec53-d9b3-4724-990a-3274aaf0bf4c",
+          "coreSlug": "bh-dadyoom-core-g8-l05",
+          "coreTitle": "بنية النص وترابطه",
+          "coreLessonType": "reading",
+          "score": 0.2922
+        }
+      ]
+    },
+    {
+      "officialLessonId": "bb69c0db-e749-44bf-b6c5-504aa80e09b9",
+      "officialSlug": "bh-2026-g8-t1-412",
+      "officialTitle": "القراءة: البنفسجة الطّموح..",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "low",
+      "score": 0.4948,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g8-l02",
+          "relation": "coverage-bundle",
+          "title": "قراءة نص معلوماتي",
+          "score": 0.8068
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l04",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج وبناء الحجة",
+          "score": 0.8024
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l06",
+          "relation": "coverage-bundle",
+          "title": "المقارنة بين نصين",
+          "score": 0.6884
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l01",
+          "relation": "coverage-bundle",
+          "title": "تحليل نص أدبي",
+          "score": 0.6835
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
+          "coreSlug": "bh-dadyoom-core-g8-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.4948
+        },
+        {
+          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
+          "coreSlug": "bh-dadyoom-core-g8-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.4878
+        },
+        {
+          "coreLessonId": "e95f050e-e22b-47cb-94f6-1c441d60f96b",
+          "coreSlug": "bh-dadyoom-core-g8-l06",
+          "coreTitle": "المقارنة بين نصين",
+          "coreLessonType": "reading",
+          "score": 0.3038
+        },
+        {
+          "coreLessonId": "942e121b-d3d2-4162-b8a9-8d3a33f296d4",
+          "coreSlug": "bh-dadyoom-core-g8-l01",
+          "coreTitle": "تحليل نص أدبي",
+          "coreLessonType": "reading",
+          "score": 0.2959
+        },
+        {
+          "coreLessonId": "e3e4ec53-d9b3-4724-990a-3274aaf0bf4c",
+          "coreSlug": "bh-dadyoom-core-g8-l05",
+          "coreTitle": "بنية النص وترابطه",
+          "coreLessonType": "reading",
+          "score": 0.2944
+        }
+      ]
+    },
+    {
+      "officialLessonId": "861222eb-282b-4ffe-b75c-7d036f792743",
+      "officialSlug": "bh-2026-g8-t1-413",
+      "officialTitle": "القراءة: حدّثني عمّن تصاحب أخبرك من أنت",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "low",
+      "score": 0.484,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g8-l02",
+          "relation": "coverage-bundle",
+          "title": "قراءة نص معلوماتي",
+          "score": 0.8001
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l04",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج وبناء الحجة",
+          "score": 0.794
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l06",
+          "relation": "coverage-bundle",
+          "title": "المقارنة بين نصين",
+          "score": 0.6836
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l01",
+          "relation": "coverage-bundle",
+          "title": "تحليل نص أدبي",
+          "score": 0.6807
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
+          "coreSlug": "bh-dadyoom-core-g8-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.484
+        },
+        {
+          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
+          "coreSlug": "bh-dadyoom-core-g8-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.4741
+        },
+        {
+          "coreLessonId": "e95f050e-e22b-47cb-94f6-1c441d60f96b",
+          "coreSlug": "bh-dadyoom-core-g8-l06",
+          "coreTitle": "المقارنة بين نصين",
+          "coreLessonType": "reading",
+          "score": 0.2961
+        },
+        {
+          "coreLessonId": "942e121b-d3d2-4162-b8a9-8d3a33f296d4",
+          "coreSlug": "bh-dadyoom-core-g8-l01",
+          "coreTitle": "تحليل نص أدبي",
+          "coreLessonType": "reading",
+          "score": 0.2914
+        },
+        {
+          "coreLessonId": "e3e4ec53-d9b3-4724-990a-3274aaf0bf4c",
+          "coreSlug": "bh-dadyoom-core-g8-l05",
+          "coreTitle": "بنية النص وترابطه",
+          "coreLessonType": "reading",
+          "score": 0.2827
+        }
+      ]
+    },
+    {
+      "officialLessonId": "faee8eac-8ebd-4299-8c86-cb7cb483cd0b",
+      "officialSlug": "bh-2026-g8-t1-414",
+      "officialTitle": "القراءة: قائد دون العشرين",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "low",
+      "score": 0.4943,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g8-l02",
+          "relation": "coverage-bundle",
+          "title": "قراءة نص معلوماتي",
+          "score": 0.8065
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l04",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج وبناء الحجة",
+          "score": 0.7981
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l06",
+          "relation": "coverage-bundle",
+          "title": "المقارنة بين نصين",
+          "score": 0.6962
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l01",
+          "relation": "coverage-bundle",
+          "title": "تحليل نص أدبي",
+          "score": 0.6843
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
+          "coreSlug": "bh-dadyoom-core-g8-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.4943
+        },
+        {
+          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
+          "coreSlug": "bh-dadyoom-core-g8-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.4807
+        },
+        {
+          "coreLessonId": "e95f050e-e22b-47cb-94f6-1c441d60f96b",
+          "coreSlug": "bh-dadyoom-core-g8-l06",
+          "coreTitle": "المقارنة بين نصين",
+          "coreLessonType": "reading",
+          "score": 0.3164
+        },
+        {
+          "coreLessonId": "942e121b-d3d2-4162-b8a9-8d3a33f296d4",
+          "coreSlug": "bh-dadyoom-core-g8-l01",
+          "coreTitle": "تحليل نص أدبي",
+          "coreLessonType": "reading",
+          "score": 0.2972
+        },
+        {
+          "coreLessonId": "e3e4ec53-d9b3-4724-990a-3274aaf0bf4c",
+          "coreSlug": "bh-dadyoom-core-g8-l05",
+          "coreTitle": "بنية النص وترابطه",
+          "coreLessonType": "reading",
+          "score": 0.2882
+        }
+      ]
+    },
+    {
+      "officialLessonId": "e6706191-3406-4bd5-adec-cea4ddc171f0",
+      "officialSlug": "bh-2026-g8-t1-415",
+      "officialTitle": "القراءة: من الهدي القرآني من سورة فصّلت.",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "low",
+      "score": 0.4882,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g8-l02",
+          "relation": "coverage-bundle",
+          "title": "قراءة نص معلوماتي",
+          "score": 0.8027
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l04",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج وبناء الحجة",
+          "score": 0.796
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l06",
+          "relation": "coverage-bundle",
+          "title": "المقارنة بين نصين",
+          "score": 0.6858
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l01",
+          "relation": "coverage-bundle",
+          "title": "تحليل نص أدبي",
+          "score": 0.6824
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
+          "coreSlug": "bh-dadyoom-core-g8-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.4882
+        },
+        {
+          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
+          "coreSlug": "bh-dadyoom-core-g8-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.4774
+        },
+        {
+          "coreLessonId": "e95f050e-e22b-47cb-94f6-1c441d60f96b",
+          "coreSlug": "bh-dadyoom-core-g8-l06",
+          "coreTitle": "المقارنة بين نصين",
+          "coreLessonType": "reading",
+          "score": 0.2997
+        },
+        {
+          "coreLessonId": "942e121b-d3d2-4162-b8a9-8d3a33f296d4",
+          "coreSlug": "bh-dadyoom-core-g8-l01",
+          "coreTitle": "تحليل نص أدبي",
+          "coreLessonType": "reading",
+          "score": 0.2942
+        },
+        {
+          "coreLessonId": "e3e4ec53-d9b3-4724-990a-3274aaf0bf4c",
+          "coreSlug": "bh-dadyoom-core-g8-l05",
+          "coreTitle": "بنية النص وترابطه",
+          "coreLessonType": "reading",
+          "score": 0.2855
         }
       ]
     },
@@ -443,20 +691,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "low",
       "score": 0.4976,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g8-l02",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "قراءة نص معلوماتي",
-          "score": 0.4976
+          "score": 0.8085
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l04",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج وبناء الحجة",
+          "score": 0.7993
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l06",
+          "relation": "coverage-bundle",
+          "title": "المقارنة بين نصين",
+          "score": 0.6945
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l01",
+          "relation": "coverage-bundle",
+          "title": "تحليل نص أدبي",
+          "score": 0.684
         }
       ],
       "candidates": [
@@ -480,6 +745,20 @@
           "coreTitle": "المقارنة بين نصين",
           "coreLessonType": "reading",
           "score": 0.3137
+        },
+        {
+          "coreLessonId": "942e121b-d3d2-4162-b8a9-8d3a33f296d4",
+          "coreSlug": "bh-dadyoom-core-g8-l01",
+          "coreTitle": "تحليل نص أدبي",
+          "coreLessonType": "reading",
+          "score": 0.2968
+        },
+        {
+          "coreLessonId": "e3e4ec53-d9b3-4724-990a-3274aaf0bf4c",
+          "coreSlug": "bh-dadyoom-core-g8-l05",
+          "coreTitle": "بنية النص وترابطه",
+          "coreLessonType": "reading",
+          "score": 0.2894
         }
       ]
     },
@@ -495,20 +774,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "low",
       "score": 0.4977,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g8-l02",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "قراءة نص معلوماتي",
-          "score": 0.4977
+          "score": 0.8086
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l04",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج وبناء الحجة",
+          "score": 0.8083
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l06",
+          "relation": "coverage-bundle",
+          "title": "المقارنة بين نصين",
+          "score": 0.6891
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l01",
+          "relation": "coverage-bundle",
+          "title": "تحليل نص أدبي",
+          "score": 0.6836
         }
       ],
       "candidates": [
@@ -532,6 +828,20 @@
           "coreTitle": "المقارنة بين نصين",
           "coreLessonType": "reading",
           "score": 0.305
+        },
+        {
+          "coreLessonId": "942e121b-d3d2-4162-b8a9-8d3a33f296d4",
+          "coreSlug": "bh-dadyoom-core-g8-l01",
+          "coreTitle": "تحليل نص أدبي",
+          "coreLessonType": "reading",
+          "score": 0.2961
+        },
+        {
+          "coreLessonId": "e3e4ec53-d9b3-4724-990a-3274aaf0bf4c",
+          "coreSlug": "bh-dadyoom-core-g8-l05",
+          "coreTitle": "بنية النص وترابطه",
+          "coreLessonType": "reading",
+          "score": 0.2886
         }
       ]
     },
@@ -554,13 +864,30 @@
       "confidence": "low",
       "score": 0.4803,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g8-l02",
           "relation": "text-specific",
           "title": "قراءة نص معلوماتي",
-          "score": 0.4803
+          "score": 0.7978
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l04",
+          "relation": "text-specific",
+          "title": "الاستنتاج وبناء الحجة",
+          "score": 0.7931
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l06",
+          "relation": "text-specific",
+          "title": "المقارنة بين نصين",
+          "score": 0.6924
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l01",
+          "relation": "text-specific",
+          "title": "تحليل نص أدبي",
+          "score": 0.681
         }
       ],
       "candidates": [
@@ -584,6 +911,20 @@
           "coreTitle": "المقارنة بين نصين",
           "coreLessonType": "reading",
           "score": 0.3103
+        },
+        {
+          "coreLessonId": "942e121b-d3d2-4162-b8a9-8d3a33f296d4",
+          "coreSlug": "bh-dadyoom-core-g8-l01",
+          "coreTitle": "تحليل نص أدبي",
+          "coreLessonType": "reading",
+          "score": 0.2919
+        },
+        {
+          "coreLessonId": "e3e4ec53-d9b3-4724-990a-3274aaf0bf4c",
+          "coreSlug": "bh-dadyoom-core-g8-l05",
+          "coreTitle": "بنية النص وترابطه",
+          "coreLessonType": "reading",
+          "score": 0.2858
         }
       ]
     },
@@ -599,20 +940,25 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5592,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g8-l15",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "كتابة مقال قصير",
-          "score": 0.5592
+          "score": 0.8317
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l16",
+          "relation": "coverage-bundle",
+          "title": "كتابة تقرير",
+          "score": 0.8276
         }
       ],
       "candidates": [
@@ -636,6 +982,20 @@
           "coreTitle": "الاستنتاج وبناء الحجة",
           "coreLessonType": "reading",
           "score": 0.3144
+        },
+        {
+          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
+          "coreSlug": "bh-dadyoom-core-g8-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.3055
+        },
+        {
+          "coreLessonId": "0559ba1e-c1a5-42b3-8386-1ec7185662b4",
+          "coreSlug": "bh-dadyoom-core-g8-l12",
+          "coreTitle": "الإملاء وعلامات الترقيم",
+          "coreLessonType": "spelling",
+          "score": 0.1728
         }
       ]
     },
@@ -651,20 +1011,25 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5592,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g8-l15",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "كتابة مقال قصير",
-          "score": 0.5592
+          "score": 0.8317
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l16",
+          "relation": "coverage-bundle",
+          "title": "كتابة تقرير",
+          "score": 0.8276
         }
       ],
       "candidates": [
@@ -688,6 +1053,20 @@
           "coreTitle": "الاستنتاج وبناء الحجة",
           "coreLessonType": "reading",
           "score": 0.3144
+        },
+        {
+          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
+          "coreSlug": "bh-dadyoom-core-g8-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.3055
+        },
+        {
+          "coreLessonId": "0559ba1e-c1a5-42b3-8386-1ec7185662b4",
+          "coreSlug": "bh-dadyoom-core-g8-l12",
+          "coreTitle": "الإملاء وعلامات الترقيم",
+          "coreLessonType": "spelling",
+          "score": 0.1728
         }
       ]
     },
@@ -703,20 +1082,25 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5592,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g8-l15",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "كتابة مقال قصير",
-          "score": 0.5592
+          "score": 0.8317
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l16",
+          "relation": "coverage-bundle",
+          "title": "كتابة تقرير",
+          "score": 0.8276
         }
       ],
       "candidates": [
@@ -740,6 +1124,20 @@
           "coreTitle": "الاستنتاج وبناء الحجة",
           "coreLessonType": "reading",
           "score": 0.3144
+        },
+        {
+          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
+          "coreSlug": "bh-dadyoom-core-g8-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.3055
+        },
+        {
+          "coreLessonId": "0559ba1e-c1a5-42b3-8386-1ec7185662b4",
+          "coreSlug": "bh-dadyoom-core-g8-l12",
+          "coreTitle": "الإملاء وعلامات الترقيم",
+          "coreLessonType": "spelling",
+          "score": 0.1728
         }
       ]
     },
@@ -755,20 +1153,25 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.1763,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g8-l16",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "كتابة تقرير",
-          "score": 0.1763
+          "score": 0.5193
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l15",
+          "relation": "coverage-bundle",
+          "title": "كتابة مقال قصير",
+          "score": 0.5189
         }
       ],
       "candidates": [
@@ -792,6 +1195,20 @@
           "coreTitle": "الإملاء وعلامات الترقيم",
           "coreLessonType": "spelling",
           "score": 0.1219
+        },
+        {
+          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
+          "coreSlug": "bh-dadyoom-core-g8-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.1005
+        },
+        {
+          "coreLessonId": "68a68bfa-19d1-40cf-a7a5-464d06bb941e",
+          "coreSlug": "bh-dadyoom-core-g8-l14",
+          "coreTitle": "الاستعارة والصورة",
+          "coreLessonType": "reading",
+          "score": 0.0994
         }
       ]
     },
@@ -807,20 +1224,25 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "low",
       "score": 0.5477,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g8-l15",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "كتابة مقال قصير",
-          "score": 0.5477
+          "score": 0.8246
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l16",
+          "relation": "coverage-bundle",
+          "title": "كتابة تقرير",
+          "score": 0.8228
         }
       ],
       "candidates": [
@@ -844,6 +1266,20 @@
           "coreTitle": "الاستنتاج وبناء الحجة",
           "coreLessonType": "reading",
           "score": 0.3278
+        },
+        {
+          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
+          "coreSlug": "bh-dadyoom-core-g8-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.3056
+        },
+        {
+          "coreLessonId": "0559ba1e-c1a5-42b3-8386-1ec7185662b4",
+          "coreSlug": "bh-dadyoom-core-g8-l12",
+          "coreTitle": "الإملاء وعلامات الترقيم",
+          "coreLessonType": "spelling",
+          "score": 0.1741
         }
       ]
     },
@@ -859,20 +1295,25 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "low",
       "score": 0.5477,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g8-l15",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "كتابة مقال قصير",
-          "score": 0.5477
+          "score": 0.8246
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l16",
+          "relation": "coverage-bundle",
+          "title": "كتابة تقرير",
+          "score": 0.8228
         }
       ],
       "candidates": [
@@ -896,6 +1337,20 @@
           "coreTitle": "الاستنتاج وبناء الحجة",
           "coreLessonType": "reading",
           "score": 0.3278
+        },
+        {
+          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
+          "coreSlug": "bh-dadyoom-core-g8-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.3056
+        },
+        {
+          "coreLessonId": "0559ba1e-c1a5-42b3-8386-1ec7185662b4",
+          "coreSlug": "bh-dadyoom-core-g8-l12",
+          "coreTitle": "الإملاء وعلامات الترقيم",
+          "coreLessonType": "spelling",
+          "score": 0.1741
         }
       ]
     },
@@ -911,20 +1366,25 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "low",
       "score": 0.5477,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g8-l15",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "كتابة مقال قصير",
-          "score": 0.5477
+          "score": 0.8246
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l16",
+          "relation": "coverage-bundle",
+          "title": "كتابة تقرير",
+          "score": 0.8228
         }
       ],
       "candidates": [
@@ -948,6 +1408,20 @@
           "coreTitle": "الاستنتاج وبناء الحجة",
           "coreLessonType": "reading",
           "score": 0.3278
+        },
+        {
+          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
+          "coreSlug": "bh-dadyoom-core-g8-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.3056
+        },
+        {
+          "coreLessonId": "0559ba1e-c1a5-42b3-8386-1ec7185662b4",
+          "coreSlug": "bh-dadyoom-core-g8-l12",
+          "coreTitle": "الإملاء وعلامات الترقيم",
+          "coreLessonType": "spelling",
+          "score": 0.1741
         }
       ]
     },
@@ -963,20 +1437,25 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5682,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g8-l15",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "كتابة مقال قصير",
-          "score": 0.5682
+          "score": 0.8373
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l16",
+          "relation": "coverage-bundle",
+          "title": "كتابة تقرير",
+          "score": 0.8367
         }
       ],
       "candidates": [
@@ -1000,6 +1479,20 @@
           "coreTitle": "الاستنتاج وبناء الحجة",
           "coreLessonType": "reading",
           "score": 0.3132
+        },
+        {
+          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
+          "coreSlug": "bh-dadyoom-core-g8-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.3126
+        },
+        {
+          "coreLessonId": "0559ba1e-c1a5-42b3-8386-1ec7185662b4",
+          "coreSlug": "bh-dadyoom-core-g8-l12",
+          "coreTitle": "الإملاء وعلامات الترقيم",
+          "coreLessonType": "spelling",
+          "score": 0.1716
         }
       ]
     },
@@ -1015,20 +1508,25 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5682,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g8-l15",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "كتابة مقال قصير",
-          "score": 0.5682
+          "score": 0.8373
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l16",
+          "relation": "coverage-bundle",
+          "title": "كتابة تقرير",
+          "score": 0.8367
         }
       ],
       "candidates": [
@@ -1052,6 +1550,20 @@
           "coreTitle": "الاستنتاج وبناء الحجة",
           "coreLessonType": "reading",
           "score": 0.3132
+        },
+        {
+          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
+          "coreSlug": "bh-dadyoom-core-g8-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.3126
+        },
+        {
+          "coreLessonId": "0559ba1e-c1a5-42b3-8386-1ec7185662b4",
+          "coreSlug": "bh-dadyoom-core-g8-l12",
+          "coreTitle": "الإملاء وعلامات الترقيم",
+          "coreLessonType": "spelling",
+          "score": 0.1716
         }
       ]
     },
@@ -1067,20 +1579,25 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5682,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g8-l15",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "كتابة مقال قصير",
-          "score": 0.5682
+          "score": 0.8373
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l16",
+          "relation": "coverage-bundle",
+          "title": "كتابة تقرير",
+          "score": 0.8367
         }
       ],
       "candidates": [
@@ -1104,266 +1621,20 @@
           "coreTitle": "الاستنتاج وبناء الحجة",
           "coreLessonType": "reading",
           "score": 0.3132
-        }
-      ]
-    },
-    {
-      "officialLessonId": "cc481daf-ed9d-4ef2-98b9-27fd83e18a39",
-      "officialSlug": "bh-2026-g8-t1-419",
-      "officialTitle": "ال( .كتابيّ: تلخيص قصّة قصيرة1 )",
-      "officialLessonType": "writing",
-      "unitNumber": 14,
-      "unitTitle": "التعبير والكتابة",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "unmapped",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
-      "confidence": "very-low",
-      "score": 0.3279,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g8-l04",
-          "relation": "unmapped",
-          "title": "الاستنتاج وبناء الحجة",
-          "score": 0.3279
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
-          "coreSlug": "bh-dadyoom-core-g8-l04",
-          "coreTitle": "الاستنتاج وبناء الحجة",
-          "coreLessonType": "reading",
-          "score": 0.3279
         },
         {
           "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
           "coreSlug": "bh-dadyoom-core-g8-l02",
           "coreTitle": "قراءة نص معلوماتي",
           "coreLessonType": "reading",
-          "score": 0.3098
+          "score": 0.3126
         },
         {
-          "coreLessonId": "fee642ee-5f4d-44bc-bc21-bca0124bdd99",
-          "coreSlug": "bh-dadyoom-core-g8-l15",
-          "coreTitle": "كتابة مقال قصير",
-          "coreLessonType": "writing",
-          "score": 0.2756
-        }
-      ]
-    },
-    {
-      "officialLessonId": "80158468-47f7-456f-8e49-d8ef9bc6623f",
-      "officialSlug": "bh-2026-g8-t1-420",
-      "officialTitle": "ال(.كتابيّ: تلخيص قصّة قصيرة2)",
-      "officialLessonType": "writing",
-      "unitNumber": 14,
-      "unitTitle": "التعبير والكتابة",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "unmapped",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
-      "confidence": "very-low",
-      "score": 0.3279,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g8-l04",
-          "relation": "unmapped",
-          "title": "الاستنتاج وبناء الحجة",
-          "score": 0.3279
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
-          "coreSlug": "bh-dadyoom-core-g8-l04",
-          "coreTitle": "الاستنتاج وبناء الحجة",
-          "coreLessonType": "reading",
-          "score": 0.3279
-        },
-        {
-          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
-          "coreSlug": "bh-dadyoom-core-g8-l02",
-          "coreTitle": "قراءة نص معلوماتي",
-          "coreLessonType": "reading",
-          "score": 0.3098
-        },
-        {
-          "coreLessonId": "fee642ee-5f4d-44bc-bc21-bca0124bdd99",
-          "coreSlug": "bh-dadyoom-core-g8-l15",
-          "coreTitle": "كتابة مقال قصير",
-          "coreLessonType": "writing",
-          "score": 0.2756
-        }
-      ]
-    },
-    {
-      "officialLessonId": "9ea589d5-3de8-442d-b324-c21b339c0306",
-      "officialSlug": "bh-2026-g8-t1-421",
-      "officialTitle": "الإ نتاج الكتابيّ: -كتابة قصّة تتضمّن مقطعاا وصفيًّا (وصف مكان مفتوح أو مغلق). 1",
-      "officialLessonType": "writing",
-      "unitNumber": 14,
-      "unitTitle": "التعبير والكتابة",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "unmapped",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
-      "confidence": "low",
-      "score": 0.5494,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g8-l15",
-          "relation": "unmapped",
-          "title": "كتابة مقال قصير",
-          "score": 0.5494
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "fee642ee-5f4d-44bc-bc21-bca0124bdd99",
-          "coreSlug": "bh-dadyoom-core-g8-l15",
-          "coreTitle": "كتابة مقال قصير",
-          "coreLessonType": "writing",
-          "score": 0.5494
-        },
-        {
-          "coreLessonId": "59890362-c73b-40c8-bafc-fc6342c23f19",
-          "coreSlug": "bh-dadyoom-core-g8-l16",
-          "coreTitle": "كتابة تقرير",
-          "coreLessonType": "writing",
-          "score": 0.5474
-        },
-        {
-          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
-          "coreSlug": "bh-dadyoom-core-g8-l04",
-          "coreTitle": "الاستنتاج وبناء الحجة",
-          "coreLessonType": "reading",
-          "score": 0.3326
-        }
-      ]
-    },
-    {
-      "officialLessonId": "c163917e-b60f-4a1e-82ec-15c71d5f1fe9",
-      "officialSlug": "bh-2026-g8-t1-422",
-      "officialTitle": "الإ نتاج الكتابيّ: -كتابة قصّة تتضمّن مقطعاا وصفيًّا (وصف مكان مفتوح أو مغلق). 2",
-      "officialLessonType": "writing",
-      "unitNumber": 14,
-      "unitTitle": "التعبير والكتابة",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "unmapped",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
-      "confidence": "low",
-      "score": 0.5494,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g8-l15",
-          "relation": "unmapped",
-          "title": "كتابة مقال قصير",
-          "score": 0.5494
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "fee642ee-5f4d-44bc-bc21-bca0124bdd99",
-          "coreSlug": "bh-dadyoom-core-g8-l15",
-          "coreTitle": "كتابة مقال قصير",
-          "coreLessonType": "writing",
-          "score": 0.5494
-        },
-        {
-          "coreLessonId": "59890362-c73b-40c8-bafc-fc6342c23f19",
-          "coreSlug": "bh-dadyoom-core-g8-l16",
-          "coreTitle": "كتابة تقرير",
-          "coreLessonType": "writing",
-          "score": 0.5474
-        },
-        {
-          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
-          "coreSlug": "bh-dadyoom-core-g8-l04",
-          "coreTitle": "الاستنتاج وبناء الحجة",
-          "coreLessonType": "reading",
-          "score": 0.3326
-        }
-      ]
-    },
-    {
-      "officialLessonId": "1d80bfdf-e64f-459f-ab74-ccdfc64ee4db",
-      "officialSlug": "bh-2026-g8-t1-423",
-      "officialTitle": "الإ نتاج الكتابيّ: -كتابة قصّة تتضمّن مقطعاا وصفيًّا (وصف مكان مفتوح أو مغلق). 3",
-      "officialLessonType": "writing",
-      "unitNumber": 14,
-      "unitTitle": "التعبير والكتابة",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "unmapped",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
-      "confidence": "low",
-      "score": 0.5494,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g8-l15",
-          "relation": "unmapped",
-          "title": "كتابة مقال قصير",
-          "score": 0.5494
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "fee642ee-5f4d-44bc-bc21-bca0124bdd99",
-          "coreSlug": "bh-dadyoom-core-g8-l15",
-          "coreTitle": "كتابة مقال قصير",
-          "coreLessonType": "writing",
-          "score": 0.5494
-        },
-        {
-          "coreLessonId": "59890362-c73b-40c8-bafc-fc6342c23f19",
-          "coreSlug": "bh-dadyoom-core-g8-l16",
-          "coreTitle": "كتابة تقرير",
-          "coreLessonType": "writing",
-          "score": 0.5474
-        },
-        {
-          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
-          "coreSlug": "bh-dadyoom-core-g8-l04",
-          "coreTitle": "الاستنتاج وبناء الحجة",
-          "coreLessonType": "reading",
-          "score": 0.3326
+          "coreLessonId": "0559ba1e-c1a5-42b3-8386-1ec7185662b4",
+          "coreSlug": "bh-dadyoom-core-g8-l12",
+          "coreTitle": "الإملاء وعلامات الترقيم",
+          "coreLessonType": "spelling",
+          "score": 0.1716
         }
       ]
     },
@@ -1379,20 +1650,25 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.3459,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
-          "slug": "bh-dadyoom-core-g8-l04",
-          "relation": "unmapped",
-          "title": "الاستنتاج وبناء الحجة",
-          "score": 0.3459
+          "slug": "bh-dadyoom-core-g8-l15",
+          "relation": "coverage-bundle",
+          "title": "كتابة مقال قصير",
+          "score": 0.6434
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l16",
+          "relation": "coverage-bundle",
+          "title": "كتابة تقرير",
+          "score": 0.6324
         }
       ],
       "candidates": [
@@ -1416,6 +1692,20 @@
           "coreTitle": "كتابة مقال قصير",
           "coreLessonType": "writing",
           "score": 0.2556
+        },
+        {
+          "coreLessonId": "59890362-c73b-40c8-bafc-fc6342c23f19",
+          "coreSlug": "bh-dadyoom-core-g8-l16",
+          "coreTitle": "كتابة تقرير",
+          "coreLessonType": "writing",
+          "score": 0.2377
+        },
+        {
+          "coreLessonId": "0559ba1e-c1a5-42b3-8386-1ec7185662b4",
+          "coreSlug": "bh-dadyoom-core-g8-l12",
+          "coreTitle": "الإملاء وعلامات الترقيم",
+          "coreLessonType": "spelling",
+          "score": 0.1827
         }
       ]
     },
@@ -1431,20 +1721,25 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.3459,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
-          "slug": "bh-dadyoom-core-g8-l04",
-          "relation": "unmapped",
-          "title": "الاستنتاج وبناء الحجة",
-          "score": 0.3459
+          "slug": "bh-dadyoom-core-g8-l15",
+          "relation": "coverage-bundle",
+          "title": "كتابة مقال قصير",
+          "score": 0.6434
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l16",
+          "relation": "coverage-bundle",
+          "title": "كتابة تقرير",
+          "score": 0.6324
         }
       ],
       "candidates": [
@@ -1468,6 +1763,375 @@
           "coreTitle": "كتابة مقال قصير",
           "coreLessonType": "writing",
           "score": 0.2556
+        },
+        {
+          "coreLessonId": "59890362-c73b-40c8-bafc-fc6342c23f19",
+          "coreSlug": "bh-dadyoom-core-g8-l16",
+          "coreTitle": "كتابة تقرير",
+          "coreLessonType": "writing",
+          "score": 0.2377
+        },
+        {
+          "coreLessonId": "0559ba1e-c1a5-42b3-8386-1ec7185662b4",
+          "coreSlug": "bh-dadyoom-core-g8-l12",
+          "coreTitle": "الإملاء وعلامات الترقيم",
+          "coreLessonType": "spelling",
+          "score": 0.1827
+        }
+      ]
+    },
+    {
+      "officialLessonId": "cc481daf-ed9d-4ef2-98b9-27fd83e18a39",
+      "officialSlug": "bh-2026-g8-t1-419",
+      "officialTitle": "ال( .كتابيّ: تلخيص قصّة قصيرة1 )",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "very-low",
+      "score": 0.3279,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g8-l15",
+          "relation": "coverage-bundle",
+          "title": "كتابة مقال قصير",
+          "score": 0.6558
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l16",
+          "relation": "coverage-bundle",
+          "title": "كتابة تقرير",
+          "score": 0.6399
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
+          "coreSlug": "bh-dadyoom-core-g8-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.3279
+        },
+        {
+          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
+          "coreSlug": "bh-dadyoom-core-g8-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.3098
+        },
+        {
+          "coreLessonId": "fee642ee-5f4d-44bc-bc21-bca0124bdd99",
+          "coreSlug": "bh-dadyoom-core-g8-l15",
+          "coreTitle": "كتابة مقال قصير",
+          "coreLessonType": "writing",
+          "score": 0.2756
+        },
+        {
+          "coreLessonId": "59890362-c73b-40c8-bafc-fc6342c23f19",
+          "coreSlug": "bh-dadyoom-core-g8-l16",
+          "coreTitle": "كتابة تقرير",
+          "coreLessonType": "writing",
+          "score": 0.2498
+        },
+        {
+          "coreLessonId": "0559ba1e-c1a5-42b3-8386-1ec7185662b4",
+          "coreSlug": "bh-dadyoom-core-g8-l12",
+          "coreTitle": "الإملاء وعلامات الترقيم",
+          "coreLessonType": "spelling",
+          "score": 0.1807
+        }
+      ]
+    },
+    {
+      "officialLessonId": "80158468-47f7-456f-8e49-d8ef9bc6623f",
+      "officialSlug": "bh-2026-g8-t1-420",
+      "officialTitle": "ال(.كتابيّ: تلخيص قصّة قصيرة2)",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "very-low",
+      "score": 0.3279,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g8-l15",
+          "relation": "coverage-bundle",
+          "title": "كتابة مقال قصير",
+          "score": 0.6558
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l16",
+          "relation": "coverage-bundle",
+          "title": "كتابة تقرير",
+          "score": 0.6399
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
+          "coreSlug": "bh-dadyoom-core-g8-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.3279
+        },
+        {
+          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
+          "coreSlug": "bh-dadyoom-core-g8-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.3098
+        },
+        {
+          "coreLessonId": "fee642ee-5f4d-44bc-bc21-bca0124bdd99",
+          "coreSlug": "bh-dadyoom-core-g8-l15",
+          "coreTitle": "كتابة مقال قصير",
+          "coreLessonType": "writing",
+          "score": 0.2756
+        },
+        {
+          "coreLessonId": "59890362-c73b-40c8-bafc-fc6342c23f19",
+          "coreSlug": "bh-dadyoom-core-g8-l16",
+          "coreTitle": "كتابة تقرير",
+          "coreLessonType": "writing",
+          "score": 0.2498
+        },
+        {
+          "coreLessonId": "0559ba1e-c1a5-42b3-8386-1ec7185662b4",
+          "coreSlug": "bh-dadyoom-core-g8-l12",
+          "coreTitle": "الإملاء وعلامات الترقيم",
+          "coreLessonType": "spelling",
+          "score": 0.1807
+        }
+      ]
+    },
+    {
+      "officialLessonId": "9ea589d5-3de8-442d-b324-c21b339c0306",
+      "officialSlug": "bh-2026-g8-t1-421",
+      "officialTitle": "الإ نتاج الكتابيّ: -كتابة قصّة تتضمّن مقطعاا وصفيًّا (وصف مكان مفتوح أو مغلق). 1",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "low",
+      "score": 0.5494,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g8-l15",
+          "relation": "coverage-bundle",
+          "title": "كتابة مقال قصير",
+          "score": 0.8257
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l16",
+          "relation": "coverage-bundle",
+          "title": "كتابة تقرير",
+          "score": 0.8244
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "fee642ee-5f4d-44bc-bc21-bca0124bdd99",
+          "coreSlug": "bh-dadyoom-core-g8-l15",
+          "coreTitle": "كتابة مقال قصير",
+          "coreLessonType": "writing",
+          "score": 0.5494
+        },
+        {
+          "coreLessonId": "59890362-c73b-40c8-bafc-fc6342c23f19",
+          "coreSlug": "bh-dadyoom-core-g8-l16",
+          "coreTitle": "كتابة تقرير",
+          "coreLessonType": "writing",
+          "score": 0.5474
+        },
+        {
+          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
+          "coreSlug": "bh-dadyoom-core-g8-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.3326
+        },
+        {
+          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
+          "coreSlug": "bh-dadyoom-core-g8-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.3122
+        },
+        {
+          "coreLessonId": "0559ba1e-c1a5-42b3-8386-1ec7185662b4",
+          "coreSlug": "bh-dadyoom-core-g8-l12",
+          "coreTitle": "الإملاء وعلامات الترقيم",
+          "coreLessonType": "spelling",
+          "score": 0.1799
+        }
+      ]
+    },
+    {
+      "officialLessonId": "c163917e-b60f-4a1e-82ec-15c71d5f1fe9",
+      "officialSlug": "bh-2026-g8-t1-422",
+      "officialTitle": "الإ نتاج الكتابيّ: -كتابة قصّة تتضمّن مقطعاا وصفيًّا (وصف مكان مفتوح أو مغلق). 2",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "low",
+      "score": 0.5494,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g8-l15",
+          "relation": "coverage-bundle",
+          "title": "كتابة مقال قصير",
+          "score": 0.8257
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l16",
+          "relation": "coverage-bundle",
+          "title": "كتابة تقرير",
+          "score": 0.8244
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "fee642ee-5f4d-44bc-bc21-bca0124bdd99",
+          "coreSlug": "bh-dadyoom-core-g8-l15",
+          "coreTitle": "كتابة مقال قصير",
+          "coreLessonType": "writing",
+          "score": 0.5494
+        },
+        {
+          "coreLessonId": "59890362-c73b-40c8-bafc-fc6342c23f19",
+          "coreSlug": "bh-dadyoom-core-g8-l16",
+          "coreTitle": "كتابة تقرير",
+          "coreLessonType": "writing",
+          "score": 0.5474
+        },
+        {
+          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
+          "coreSlug": "bh-dadyoom-core-g8-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.3326
+        },
+        {
+          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
+          "coreSlug": "bh-dadyoom-core-g8-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.3122
+        },
+        {
+          "coreLessonId": "0559ba1e-c1a5-42b3-8386-1ec7185662b4",
+          "coreSlug": "bh-dadyoom-core-g8-l12",
+          "coreTitle": "الإملاء وعلامات الترقيم",
+          "coreLessonType": "spelling",
+          "score": 0.1799
+        }
+      ]
+    },
+    {
+      "officialLessonId": "1d80bfdf-e64f-459f-ab74-ccdfc64ee4db",
+      "officialSlug": "bh-2026-g8-t1-423",
+      "officialTitle": "الإ نتاج الكتابيّ: -كتابة قصّة تتضمّن مقطعاا وصفيًّا (وصف مكان مفتوح أو مغلق). 3",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "low",
+      "score": 0.5494,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g8-l15",
+          "relation": "coverage-bundle",
+          "title": "كتابة مقال قصير",
+          "score": 0.8257
+        },
+        {
+          "slug": "bh-dadyoom-core-g8-l16",
+          "relation": "coverage-bundle",
+          "title": "كتابة تقرير",
+          "score": 0.8244
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "fee642ee-5f4d-44bc-bc21-bca0124bdd99",
+          "coreSlug": "bh-dadyoom-core-g8-l15",
+          "coreTitle": "كتابة مقال قصير",
+          "coreLessonType": "writing",
+          "score": 0.5494
+        },
+        {
+          "coreLessonId": "59890362-c73b-40c8-bafc-fc6342c23f19",
+          "coreSlug": "bh-dadyoom-core-g8-l16",
+          "coreTitle": "كتابة تقرير",
+          "coreLessonType": "writing",
+          "score": 0.5474
+        },
+        {
+          "coreLessonId": "2d9e19c1-79e5-4303-8786-92319f9399ff",
+          "coreSlug": "bh-dadyoom-core-g8-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.3326
+        },
+        {
+          "coreLessonId": "679a9b88-b9df-4853-b603-8e9d5ae8f43e",
+          "coreSlug": "bh-dadyoom-core-g8-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.3122
+        },
+        {
+          "coreLessonId": "0559ba1e-c1a5-42b3-8386-1ec7185662b4",
+          "coreSlug": "bh-dadyoom-core-g8-l12",
+          "coreTitle": "الإملاء وعلامات الترقيم",
+          "coreLessonType": "spelling",
+          "score": 0.1799
         }
       ]
     }
