@@ -432,25 +432,70 @@
     {
       "code": "MR",
       "nameAr": "موريتانيا",
-      "matchingStatus": "not-closed",
-      "verificationStatus": "source-verified",
+      "matchingStatus": "current-scope-complete",
+      "verificationStatus": "verified",
       "sources": [
         {
-          "url": "https://www.koutoubi.mr/fr/",
-          "kind": "official-catalog-candidate"
+          "url": "https://koutoubi.mr/",
+          "kind": "official-ipn-textbook-platform",
+          "note": "مبادرة أطلقها المعهد التربوي الوطني وتضم الموارد التعليمية الرسمية المعتمدة."
         },
         {
-          "url": "https://www.education.gov.mr/fr/node/982",
-          "kind": "official-textbook-distribution",
-          "note": "وزارة التربية تؤكد توزيع كتب العربية ضمن الكتب المدرسية."
+          "url": "https://koutoubi.mr/guides-enseignant/guide-enseignant/",
+          "kind": "official-teacher-guides"
         },
         {
-          "url": "https://koutoubi.mr/fondamentals/1ere/Arabe/",
-          "kind": "national-textbook-catalog",
-          "note": "كتالوج كتب عربية حديث؛ يحتاج ربط مؤسسي نهائي قبل اعتباره المصدر الحاسم وحده."
+          "url": "https://www.education.gov.mr/",
+          "kind": "official-ministry"
+        },
+        {
+          "url": "https://www.education.gov.mr/ar/node/1090",
+          "kind": "official-arabic-policy-2026"
+        },
+        {
+          "url": "https://www.education.gov.mr/index.php/ar/node/1132",
+          "kind": "official-2026-2027-preparation"
+        },
+        {
+          "url": "https://education.gov.mr/fr/node/982",
+          "kind": "official-textbook-distribution"
+        },
+        {
+          "url": "https://www.education.gov.mr/ar/node/555",
+          "kind": "official-curriculum-reform"
         }
       ],
-      "sourceVerifiedAt": "2026-09-25"
+      "sourceVerifiedAt": "2026-09-25",
+      "officialScope": {
+        "academicYear": "2026-2027",
+        "subject": "اللغة العربية",
+        "officialLevels": 13,
+        "status": "complete-for-currently-published-scope",
+        "sourceModel": "وزارة التربية + المعهد التربوي الوطني/كُتبي",
+        "stages": {
+          "1-6": "الابتدائي",
+          "7-10": "الإعدادي/الدورة الأولى",
+          "11-13": "الثانوي/الدورة الثانية"
+        },
+        "matchingUnit": {
+          "1-10": "كتاب العربية الرسمي لكل سنة",
+          "11-13": "كتاب العربية لكل شعبة أدبية/علمية"
+        },
+        "note": "احتُفظ بالبنية الرسمية 13 مستوى بدل اختزالها إلى 12."
+      },
+      "mappingSummary": {
+        "mappingLevels": 13,
+        "verifiedMappingLevels": 13,
+        "officialCoverageNodes": 16,
+        "mappedCoverageNodes": 16,
+        "verifiedCoverageNodes": 16,
+        "databaseLessons": 16,
+        "questions": 48,
+        "vocabulary": 48,
+        "activities": 48,
+        "nationalExtensions": 16,
+        "verifiedAt": "2026-09-25"
+      }
     },
     {
       "code": "OM",
