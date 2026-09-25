@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "packKey": "YE:2026-2027:arabic:g1:current-scope",
+  "country": {
+    "code": "YE",
+    "nameAr": "اليمن",
+    "nameEn": "Yemen"
+  },
+  "academicYear": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "stage": {
+    "code": "basic",
+    "nameAr": "التعليم الأساسي"
+  },
+  "grade": {
+    "number": 1,
+    "nameAr": "الصف الأول الأساسي",
+    "nameEn": "Grade 1"
+  },
+  "semester": null,
+  "curriculum": {
+    "nameAr": "اللغة العربية — المطابقة الرسمية اليمنية",
+    "nameEn": "Arabic — Yemen Official Curriculum Match",
+    "description": "مطابقة وطنية للمناهج الرقمية الرسمية.",
+    "storageNameAr": "اللغة العربية — المطابقة الرسمية اليمنية"
+  },
+  "rights": {
+    "contentOwner": "dadyoom",
+    "sourceLabel": "وزارة التربية والتعليم والبحث العلمي - التعليم الإلكتروني",
+    "sourceUrl": "https://e-learning-moe.edu.ye/",
+    "verified": true
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "اللغة العربية — حزمة الكتب الرسمية",
+      "description": "الصف الأول الأساسي",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "اللغة العربية — الصف الأول الأساسي — حزمة الكتب الرسمية",
+          "type": "reading",
+          "estimatedMinutes": 40,
+          "summary": "حزمة أصلية لمواءمة العربية في الصف الأول الأساسي.",
+          "content": "تعتمد هذه الحزمة على بوابة المناهج اليمنية الرسمية التي تعرض الكتب الدراسية من الصف الأول الأساسي إلى الصف الثالث الثانوي، وعلى أدلة معلمي اللغة العربية. يقدم ضاديوم شرحًا وأسئلة وأنشطة أصلية في القراءة والقواعد والتعبير ولا يعيد نشر نصوص الكتب المحمية.",
+          "objectives": [
+            "فهم متطلبات العربية في المستوى.",
+            "تطبيق مهارة لغوية في موقف جديد.",
+            "مراجعة الأداء وتصحيحه."
+          ],
+          "vocabulary": [
+            {
+              "word": "قراءة",
+              "meaning": "فهم النص."
+            },
+            {
+              "word": "قواعد",
+              "meaning": "ضوابط اللغة."
+            },
+            {
+              "word": "تعبير",
+              "meaning": "إنتاج لغوي."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما وظيفة الحزمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "مواءمة رسمية بمحتوى أصلي."
+                },
+                {
+                  "id": "b",
+                  "text": "نسخ الكتاب."
+                },
+                {
+                  "id": "c",
+                  "text": "اختراع مقرر."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المواءمة لا تتطلب النسخ.",
+              "points": 1
+            },
+            {
+              "question": "ما دليل الإتقان؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ الاسم."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ الإجابة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الأداء المستقل دليل إتقان.",
+              "points": 1
+            },
+            {
+              "question": "كيف تراجع؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن بالمعيار وأصحح."
+                },
+                {
+                  "id": "b",
+                  "text": "لا أراجع."
+                },
+                {
+                  "id": "c",
+                  "text": "أغير عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة تحسن الأداء.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "فهم",
+              "activityType": "multiple_choice",
+              "instructions": "حدد الإجابة المناسبة.",
+              "content": {
+                "grade": 1
+              },
+              "published": true
+            },
+            {
+              "title": "قراءة",
+              "activityType": "reading",
+              "instructions": "اقرأ وطبّق.",
+              "content": {
+                "grade": 1
+              },
+              "published": true
+            },
+            {
+              "title": "كتابة",
+              "activityType": "writing",
+              "instructions": "اكتب وراجع.",
+              "content": {
+                "grade": 1
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "Yemen Ministry e-learning",
+            "url": "https://e-learning-moe.edu.ye/"
+          },
+          "alignment": {
+            "mode": "official-grade-textbook-bundle",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "ye-dadyoom-core-g1-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g1-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g1-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g1-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g1-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g1-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g1-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g1-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g1-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g1-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g1-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g1-l12",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g1-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g1-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g1-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g1-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g1-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g1-l18",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
