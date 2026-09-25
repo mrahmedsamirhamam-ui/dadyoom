@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "MA",
+    "nameAr": "المغرب",
+    "nameEn": "Morocco"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "verificationStatus": "verified-source-structure",
+  "officialCoverageUnit": "grade-or-upper-secondary-track-bundle",
+  "educationStructure": {
+    "primary": {
+      "grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    "lowerSecondary": {
+      "grades": [
+        7,
+        8,
+        9
+      ],
+      "officialLevels": [
+        "الأولى إعدادي",
+        "الثانية إعدادي",
+        "الثالثة إعدادي"
+      ]
+    },
+    "upperSecondary": {
+      "grades": [
+        10,
+        11,
+        12
+      ],
+      "officialLevels": [
+        "الجذع المشترك",
+        "الأولى بكالوريا",
+        "الثانية بكالوريا"
+      ],
+      "trackGrouping": [
+        "آداب وعلوم إنسانية",
+        "علوم وتكنولوجيات/مسالك علمية"
+      ]
+    }
+  },
+  "officialCoverageNodes": 15,
+  "sources": [
+    {
+      "kind": "official-ministry",
+      "url": "https://www.men.gov.ma/"
+    },
+    {
+      "kind": "official-2026-2027-school-year",
+      "url": "https://www.men.gov.ma/%D8%A7%D9%84%D8%AA%D8%B0%D9%83%D9%8A%D8%B1-%D8%A8%D9%85%D9%88%D8%A7%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D8%AF%D8%AE%D9%88%D9%84-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A-2027/2026/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AC%D8%AF%D8%A7%D8%AA"
+    },
+    {
+      "kind": "official-2026-2027-launch",
+      "url": "https://www.men.gov.ma/index.php/%D8%A8%D9%84%D8%A7%D8%BA%D8%A7%D8%AA-%D8%B5%D8%AD%D9%81%D9%8A%D8%A9/Annonces01-070926"
+    },
+    {
+      "kind": "official-learning-portal",
+      "url": "https://telmidtice.men.gov.ma/"
+    },
+    {
+      "kind": "official-grade1-arabic-guide-kitabi",
+      "url": "https://www.men.gov.ma/Ar/Documents/dc/G-kitabi-L-arabeN1-1AP2019.pdf"
+    },
+    {
+      "kind": "official-grade1-arabic-guide-moufid",
+      "url": "https://www.men.gov.ma/Ar/Documents/dc/G-Moufid-LarabeN1-1AP2019.pdf"
+    }
+  ],
+  "copyrightPolicy": "لا تعيد ضاديوم نشر الكتب المغربية؛ تستخدم المستوى والمسار والموارد الرسمية لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية.",
+  "generatedAt": "2026-09-25"
+}
