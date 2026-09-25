@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - deploy/cloudflare-vinext-v1
+      - fix/mobile-cloud-video-final-20260923
   pull_request:
     branches:
       - main
@@ -34,6 +35,9 @@ jobs:
 
       - name: Curriculum packs
         run: npm run curriculum:verify
+
+      - name: Official 22-country launch gate
+        run: npm run curriculum:gate:official-22
 
       - name: Vinext build
         run: npm run build:vinext
