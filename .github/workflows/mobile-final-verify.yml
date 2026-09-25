@@ -39,6 +39,7 @@ jobs:
         run: |
           npm run release:audit
           npm run release:final-audit
+          npm run auth:audit:oauth
           node scripts/check-learning-experience.mjs
           node scripts/check-finish-role-experience.mjs
           node scripts/check-finish-admin.mjs
