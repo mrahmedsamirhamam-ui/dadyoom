@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "KW",
+    "nameAr": "الكويت",
+    "nameEn": "Kuwait"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "verificationStatus": "verified-source-structure",
+  "officialCoverageUnit": "skill-domain-for-g1-g9;course-semester-bundle-for-g10-g12",
+  "semesters": 2,
+  "stages": [
+    {
+      "nameAr": "المرحلة الابتدائية",
+      "grades": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "nameAr": "المرحلة المتوسطة",
+      "grades": [
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "nameAr": "المرحلة الثانوية",
+      "grades": [
+        10,
+        11,
+        12
+      ]
+    }
+  ],
+  "gradeScope": {
+    "10": {
+      "source": "المنهج الجديد للصف العاشر 2026-2027 + نظام الثانوية القائم + تجربة المسارات",
+      "publicMatchingUnit": "course-semester-bundle"
+    },
+    "1-5": {
+      "source": "مصفوفة مهارات اللغة العربية — ابتدائي",
+      "domains": [
+        "الاستماع والمشاهدة",
+        "التحدث",
+        "القراءة والمشاهدة",
+        "الحصيلة اللغوية",
+        "السلامة اللغوية",
+        "البلاغة",
+        "الرسم الهجائي",
+        "الخط العربي",
+        "التعبير"
+      ]
+    },
+    "6-9": {
+      "source": "مصفوفة مهارات اللغة العربية — متوسط — الفصلان الأول والثاني",
+      "domains": [
+        "الاستماع والمشاهدة",
+        "التحدث",
+        "القراءة والمشاهدة",
+        "الحصيلة اللغوية",
+        "السلامة اللغوية",
+        "البلاغة",
+        "الرسم الهجائي",
+        "الخط العربي",
+        "التعبير"
+      ]
+    },
+    "11-12": {
+      "source": "مكتبة الطالب + النظام الثانوي القائم (العلمي/الأدبي) + التقويم والامتحانات الرسمية",
+      "publicMatchingUnit": "course-semester-bundle"
+    }
+  },
+  "secondaryContext": {
+    "existing": [
+      "القسم العلمي",
+      "القسم الأدبي"
+    ],
+    "pilotMasarat": {
+      "starts": "2026-2027",
+      "grade10Foundation": "مشترك",
+      "arabic": "مقرر عام مشترك",
+      "futureTracks": [
+        "اللغات",
+        "القانون",
+        "العلوم الاجتماعية",
+        "التجاري",
+        "الرياضيات",
+        "العلوم",
+        "الصناعي",
+        "التكنولوجيا والذكاء الاصطناعي"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "kind": "official-library",
+      "url": "https://elibrary.moe.edu.kw/StudentsLibrary"
+    },
+    {
+      "kind": "official-national-standards-index",
+      "url": "https://elibrary.moe.edu.kw/NationalStandards"
+    },
+    {
+      "kind": "official-arabic-standards-primary",
+      "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85"
+    },
+    {
+      "kind": "official-arabic-standards-middle-s1",
+      "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/95"
+    },
+    {
+      "kind": "official-arabic-standards-middle-s2",
+      "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/94"
+    },
+    {
+      "kind": "official-curriculum-development",
+      "url": "https://moe.edu.kw/news/869"
+    },
+    {
+      "kind": "official-2026-2027-calendar",
+      "url": "https://www.moe.edu.kw/pages/calendar"
+    },
+    {
+      "kind": "official-2026-2027-secondary-masar",
+      "url": "https://www.moe.edu.kw/news/1343"
+    },
+    {
+      "kind": "official-secondary-arabic-evidence",
+      "url": "https://moe.edu.kw/news/1036"
+    }
+  ],
+  "counts": {
+    "g1_g9": 81,
+    "g10_g12": 6,
+    "totalOfficialCoverageNodes": 87
+  },
+  "copyrightPolicy": "لا تعيد ضاديوم نشر نصوص الكتب؛ تستخدم أسماء المجالات/المقرر وروابط الوزارة لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية.",
+  "generatedAt": "2026-09-25"
+}
