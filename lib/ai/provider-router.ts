@@ -282,8 +282,13 @@ async function callBytez(input: AiRequest): Promise<AiResult> {
       const started = Date.now();
 
       try {
+        const modelPath = model
+          .split("/")
+          .map((part) => encodeURIComponent(part))
+          .join("/");
+
         const response = await fetchTimed(
-          `${baseUrl.replace(/\/+$/u, "")}/models/v2/openai/v1/chat/completions`,
+          `${baseUrl.replace(/\/+$/u, "")}/models/v2/${modelPath}`,
           {
             method: "POST",
             headers: {
@@ -291,13 +296,14 @@ async function callBytez(input: AiRequest): Promise<AiResult> {
               Authorization: apiKey.trim(),
             },
             body: JSON.stringify({
-              model,
               messages: input.messages,
-              max_completion_tokens:
-                input.maxTokens ?? 1200,
-              temperature:
-                input.temperature ?? 0.3,
               stream: false,
+              params: {
+                max_length:
+                  input.maxTokens ?? 1200,
+                temperature:
+                  input.temperature ?? 0.3,
+              },
             }),
           },
         );
@@ -323,22 +329,14 @@ async function callBytez(input: AiRequest): Promise<AiResult> {
         }
 
         let payload: {
-          choices?: Array<{
-            message?: {
-              content?: string;
-            };
-          }>;
           error?: unknown;
+          output?: unknown;
         };
 
         try {
           payload = JSON.parse(raw) as {
-            choices?: Array<{
-              message?: {
-                content?: string;
-              };
-            }>;
             error?: unknown;
+            output?: unknown;
           };
         } catch {
           throw makeError("BYTEZ_INVALID_JSON");
@@ -351,7 +349,7 @@ async function callBytez(input: AiRequest): Promise<AiResult> {
         }
 
         const text =
-          payload.choices?.[0]?.message?.content?.trim() ?? "";
+          bytezOutputText(payload.output);
 
         if (!text) {
           throw makeError("BYTEZ_EMPTY");
