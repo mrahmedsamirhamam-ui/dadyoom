@@ -191,7 +191,7 @@ export default function CurriculumPacksPage() {
                     </div>
                   </div>
 
-                  <div className="mt-4 grid grid-cols-2 gap-2 text-center">
+                  <div className="mt-4 grid grid-cols-3 gap-2 text-center">
                     <MiniValue
                       label="دروس Core"
                       value={country.coreLessons}
@@ -199,6 +199,10 @@ export default function CurriculumPacksPage() {
                     <MiniValue
                       label="حزم وطنية"
                       value={country.packs}
+                    />
+                    <MiniValue
+                      label="صفوف Mapping موثقة"
+                      value={country.verifiedMappingGrades}
                     />
                   </div>
                 </article>
