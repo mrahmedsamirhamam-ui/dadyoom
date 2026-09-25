@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "IQ",
+    "nameAr": "العراق"
+  },
+  "academicYear": "2026-2027",
+  "grade": 2,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 1,
+  "mappedLessons": 1,
+  "verifiedLessons": 1,
+  "scope": "current-official-book-scope",
+  "policy": "الكتاب أو جزء الكتاب هو وحدة المطابقة الوطنية؛ لا تعاد نصوص الكتب ولا تُختلق عناوين دروس غير موثقة.",
+  "mappings": [
+    {
+      "officialSlug": "iq-2026-2027-g2-reading",
+      "officialTitle": "كتاب القراءة — حزمة تغطية الكتاب",
+      "source": {
+        "label": "وزارة التربية العراقية — المديرية العامة للمناهج — كتالوج الكتب",
+        "url": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=149",
+        "electronicSchoolUrl": "https://eschool.iq/",
+        "officialChannelUrl": "https://t.me/s/educationiq?after=20611",
+        "currentYearUrl": "https://t.me/s/Educationiq?before=32884"
+      },
+      "relationType": "official-book-scope+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "وحدة المطابقة هي الكتاب/جزء الكتاب كما يسمح نموذج ضاديوم عندما تنشر الوزارة المنهج في صورة كتب. المحتوى التعليمي داخل Pack عراقي أصلي، وCore مساند فقط؛ لا تُختلق عناوين دروس غير منشورة.",
+      "coreCoverage": [
+        {
+          "slug": "iq-dadyoom-core-g2-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g2-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g2-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g2-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g2-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g2-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g2-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g2-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g2-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g2-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g2-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g2-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g2-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g2-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g2-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g2-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g2-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g2-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-directorate-catalog+official-ministry-channel+official-electronic-school+current-school-year+national-book-scope-pack"
+    }
+  ]
+}
