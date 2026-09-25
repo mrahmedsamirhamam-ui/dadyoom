@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "SD",
+    "nameAr": "السودان"
+  },
+  "academicYear": "2026-2027",
+  "grade": 10,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 1,
+  "mappedLessons": 1,
+  "verifiedLessons": 1,
+  "scope": "current-officially-published-and-publicly-verifiable-scope",
+  "policy": "المطابقة على مستوى مقرر العربية لكل صف في بنية 6 ابتدائي + 3 متوسط + 3 ثانوي، دون إعادة نشر الكتب أو اختلاق عناوين دروس.",
+  "mappings": [
+    {
+      "officialSlug": "sd-2026-2027-g10-arabic",
+      "officialTitle": "اللغة العربية — الصف 1 الثانوي — حزمة المقرر الوطني",
+      "source": {
+        "label": "وزارة التربية والتعليم السودانية/المركز القومي للمناهج + بوابة وزارة التربية بولاية الجزيرة",
+        "url": "https://gmoe.gov.sd/?page_id=1343",
+        "additionalUrls": [
+          "https://gmoe.gov.sd/",
+          "https://mdl.edu.sd/",
+          "https://gmoe.gov.sd/?p=2127",
+          "https://mdl.edu.sd/img/bookpdf/nahw3_1678863142.pdf",
+          "https://gmoe.gov.sd/?p=2927"
+        ]
+      },
+      "relationType": "official-grade-curriculum+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المادة والبنية المرحلية مثبتتان عبر مصادر وزارة التربية، وكتب العربية تحمل اسم وزارة التربية والمركز القومي للمناهج والبحث التربوي ـ بخت الرضا؛ حزمة ضاديوم تغطي المقرر بمحتوى أصلي دون نسخ.",
+      "coreCoverage": [
+        {
+          "slug": "sd-dadyoom-core-g10-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sd-dadyoom-core-g10-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sd-dadyoom-core-g10-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sd-dadyoom-core-g10-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sd-dadyoom-core-g10-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sd-dadyoom-core-g10-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sd-dadyoom-core-g10-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sd-dadyoom-core-g10-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sd-dadyoom-core-g10-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sd-dadyoom-core-g10-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sd-dadyoom-core-g10-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sd-dadyoom-core-g10-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sd-dadyoom-core-g10-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sd-dadyoom-core-g10-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sd-dadyoom-core-g10-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sd-dadyoom-core-g10-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sd-dadyoom-core-g10-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sd-dadyoom-core-g10-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-state-ministry-arabic+national-curriculum-center-books+2026-stage-evidence+national-pack"
+    }
+  ]
+}
