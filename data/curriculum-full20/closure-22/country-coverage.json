@@ -972,24 +972,91 @@
       },
       "national": {
         "complete": false,
-        "matchingStatus": "not-closed",
-        "verificationStatus": "candidate",
+        "matchingStatus": "current-scope-complete",
+        "verificationStatus": "verified",
         "evidenceSources": [
           {
-            "url": "https://www.koutoubi.mr/fr/",
-            "kind": "official-catalog-candidate"
+            "url": "https://koutoubi.mr/",
+            "kind": "official-ipn-textbook-platform",
+            "note": "مبادرة أطلقها المعهد التربوي الوطني وتضم الموارد التعليمية الرسمية المعتمدة."
+          },
+          {
+            "url": "https://koutoubi.mr/guides-enseignant/guide-enseignant/",
+            "kind": "official-teacher-guides"
+          },
+          {
+            "url": "https://www.education.gov.mr/",
+            "kind": "official-ministry"
+          },
+          {
+            "url": "https://www.education.gov.mr/ar/node/1090",
+            "kind": "official-arabic-policy-2026"
+          },
+          {
+            "url": "https://www.education.gov.mr/index.php/ar/node/1132",
+            "kind": "official-2026-2027-preparation"
+          },
+          {
+            "url": "https://education.gov.mr/fr/node/982",
+            "kind": "official-textbook-distribution"
+          },
+          {
+            "url": "https://www.education.gov.mr/ar/node/555",
+            "kind": "official-curriculum-reform"
           }
         ],
-        "verifiedPackFiles": [],
-        "missingEvidence": [
-          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
-          "اكتمال تغطية الفصول/الفترات الدراسية",
-          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
-          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
-          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
-        ]
+        "verifiedPackFiles": [
+          "data/curriculum-packs/mauritania-2026-2027-final/mr-2026-2027-arabic-g1-current-scope.json",
+          "data/curriculum-packs/mauritania-2026-2027-final/mr-2026-2027-arabic-g2-current-scope.json",
+          "data/curriculum-packs/mauritania-2026-2027-final/mr-2026-2027-arabic-g3-current-scope.json",
+          "data/curriculum-packs/mauritania-2026-2027-final/mr-2026-2027-arabic-g4-current-scope.json",
+          "data/curriculum-packs/mauritania-2026-2027-final/mr-2026-2027-arabic-g5-current-scope.json",
+          "data/curriculum-packs/mauritania-2026-2027-final/mr-2026-2027-arabic-g6-current-scope.json",
+          "data/curriculum-packs/mauritania-2026-2027-final/mr-2026-2027-arabic-g7-current-scope.json",
+          "data/curriculum-packs/mauritania-2026-2027-final/mr-2026-2027-arabic-g8-current-scope.json",
+          "data/curriculum-packs/mauritania-2026-2027-final/mr-2026-2027-arabic-g9-current-scope.json",
+          "data/curriculum-packs/mauritania-2026-2027-final/mr-2026-2027-arabic-g10-current-scope.json",
+          "data/curriculum-packs/mauritania-2026-2027-final/mr-2026-2027-arabic-g11-current-scope.json",
+          "data/curriculum-packs/mauritania-2026-2027-final/mr-2026-2027-arabic-g12-current-scope.json",
+          "data/curriculum-packs/mauritania-2026-2027-final/mr-2026-2027-arabic-g13-current-scope.json"
+        ],
+        "verifiedMappingFiles": [
+          "data/curriculum-mappings/mr-2026-2027-g1-current-scope-verified.json",
+          "data/curriculum-mappings/mr-2026-2027-g2-current-scope-verified.json",
+          "data/curriculum-mappings/mr-2026-2027-g3-current-scope-verified.json",
+          "data/curriculum-mappings/mr-2026-2027-g4-current-scope-verified.json",
+          "data/curriculum-mappings/mr-2026-2027-g5-current-scope-verified.json",
+          "data/curriculum-mappings/mr-2026-2027-g6-current-scope-verified.json",
+          "data/curriculum-mappings/mr-2026-2027-g7-current-scope-verified.json",
+          "data/curriculum-mappings/mr-2026-2027-g8-current-scope-verified.json",
+          "data/curriculum-mappings/mr-2026-2027-g9-current-scope-verified.json",
+          "data/curriculum-mappings/mr-2026-2027-g10-current-scope-verified.json",
+          "data/curriculum-mappings/mr-2026-2027-g11-current-scope-verified.json",
+          "data/curriculum-mappings/mr-2026-2027-g12-current-scope-verified.json",
+          "data/curriculum-mappings/mr-2026-2027-g13-current-scope-verified.json"
+        ],
+        "missingEvidence": [],
+        "currentScopeComplete": true,
+        "fullYearComplete": false,
+        "mappingSummary": {
+          "mappingLevels": 13,
+          "verifiedMappingLevels": 13,
+          "officialCoverageNodes": 16,
+          "mappedCoverageNodes": 16,
+          "verifiedCoverageNodes": 16,
+          "nationalExtensions": 16
+        },
+        "databaseSummary": {
+          "curriculumId": "34666fdf-c109-45b1-bf4a-89047f63382d",
+          "grades": 13,
+          "lessons": 16,
+          "questions": 48,
+          "vocabulary": 48,
+          "activities": 48
+        },
+        "note": "مغلق للنطاق الرسمي المنشور والقابل للتحقق حاليًا. البنية الحالية 13 مستوى: 6 ابتدائي + 4 إعدادي + 3 ثانوي؛ السنوات 5-7 ثانوي مفصولة أدبي/علمي."
       },
-      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+      "publicationReadiness": "NATIONAL_CURRENT_SCOPE_COMPLETE"
     },
     {
       "code": "OM",
