@@ -197,16 +197,19 @@ export async function POST(
         history,
       });
 
+    const answerText =
+      answer?.trim() ?? "";
+
     if (
       body.lessonId &&
-      answer.trim()
+      answerText
     ) {
       await saveLessonChat({
         supabase,
         studentId: user.id,
         lessonId: body.lessonId,
         userMessage: query,
-        assistantMessage: answer.trim(),
+        assistantMessage: answerText,
       });
     }
 
