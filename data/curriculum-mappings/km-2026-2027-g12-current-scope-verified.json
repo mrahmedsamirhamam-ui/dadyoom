@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "KM",
+    "nameAr": "جزر القمر"
+  },
+  "academicYear": "2026-2027",
+  "grade": 12,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 1,
+  "mappedLessons": 1,
+  "verifiedLessons": 1,
+  "scope": "current-officially-published-and-publicly-verifiable-scope",
+  "policy": "وحدة المطابقة هي حزمة كفاءات عربية داخل الهيكل التعليمي الرسمي؛ لا تُختلق عناوين كتب/دروس غير منشورة.",
+  "mappings": [
+    {
+      "officialSlug": "km-2026-2027-g12-arabic-competency-bundle",
+      "officialTitle": "اللغة العربية — Terminale — حزمة الكفاءات الوطنية",
+      "source": {
+        "label": "وزارة التربية الوطنية بجزر القمر + قانون توجيه التعليم",
+        "url": "https://mineducomores.gouv.km/cloture-de-la-formation-en-langue-arabe-aux-comores-un-pas-de-plus-vers-le-renforcement-des-capacites-educatives/",
+        "educationLawUrl": "https://justice.gouv.km/wp-content/uploads/2025/03/decret-n-21-005pr-portant-promulgation-de-la-loi-n-20-034au-du-29-decembre-2020-portant-revision-de-la-loi-n-94-035af-relative-a-lorientation-et-a-leducation.pdf",
+        "ministryUrl": "https://mineducomores.gouv.km/ministere/",
+        "resourceStrategyUrl": "https://mineducomores.gouv.km/atelier-sur-les-strategies-de-production-et-diffusion-des-ressources-educatives-aux-comores/",
+        "reformUrl": "https://mineducomores.gouv.km/participation-de-luniversite-midocean-a-la-reunion-consultative-nationale-sur-la-reforme-de-leducation-aux-comores/"
+      },
+      "relationType": "official-education-structure+national-arabic-competency-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "القانون يثبت السنة النهائية في الدورة الثانية، والوزارة تثبت أن العربية لغة رسمية وجزء من المنهج المدرسي؛ الحزمة تغطي الكفاءات دون اختلاق كتاب أو درس رسمي.",
+      "coreCoverage": [
+        {
+          "slug": "km-dadyoom-core-g12-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "km-dadyoom-core-g12-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "km-dadyoom-core-g12-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "km-dadyoom-core-g12-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "km-dadyoom-core-g12-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "km-dadyoom-core-g12-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "km-dadyoom-core-g12-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "km-dadyoom-core-g12-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "km-dadyoom-core-g12-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "km-dadyoom-core-g12-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "km-dadyoom-core-g12-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "km-dadyoom-core-g12-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "km-dadyoom-core-g12-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "km-dadyoom-core-g12-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "km-dadyoom-core-g12-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "km-dadyoom-core-g12-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "km-dadyoom-core-g12-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "km-dadyoom-core-g12-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-education-law+official-ministry-arabic-curriculum-role+national-pack"
+    }
+  ]
+}
