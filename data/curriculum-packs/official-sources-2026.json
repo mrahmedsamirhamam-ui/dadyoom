@@ -10,8 +10,8 @@
     {
       "code": "BH",
       "nameAr": "مملكة البحرين",
-      "matchingStatus": "partial",
-      "verificationStatus": "source-verified",
+      "matchingStatus": "current-scope-complete",
+      "verificationStatus": "verified",
       "sources": [
         {
           "url": "https://moe.gov.bh/ar/moe-educational-resources",
@@ -23,7 +23,36 @@
           "note": "إطار وطني رسمي؛ تحديث 2026."
         }
       ],
-      "sourceVerifiedAt": "2026-09-25"
+      "sourceVerifiedAt": "2026-09-25",
+      "officialScope": {
+        "academicYear": "2026-2027",
+        "semesters": [
+          1
+        ],
+        "grades": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "subject": "اللغة العربية",
+        "status": "complete-for-currently-published-scope",
+        "note": "يغطي ضاديوم الفصل الأول المنشور رسميًا للعام 2026-2027 للصفوف 1-12. لا يُعد الفصل الثاني 2026-2027 مكتملًا قبل نشر مصادره الرسمية."
+      },
+      "mappingSummary": {
+        "mappingGrades": 12,
+        "verifiedMappingGrades": 12,
+        "nationalLessons": 406,
+        "verifiedAt": "2026-09-25"
+      }
     },
     {
       "code": "EG",
