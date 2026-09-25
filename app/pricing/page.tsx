@@ -46,12 +46,13 @@ export default async function PricingPage() {
               "Notebook وأسئلة الدراسة بحد يومي مناسب",
               "3 أنماط ألعاب أساسية",
               "إعلانات خفيفة خارج الدرس ومساحات التعلم الحساسة",
+              "بعد إنشاء الحساب: تجربة ترحيبية Plus لمدة 24 ساعة",
             ]}
           />
 
           <PlanCard
             title="ضاديوم Plus"
-            subtitle="10.00 USD / شهريًا — الدفع قريبًا"
+            subtitle={`${status.price.toFixed(2)} ${status.currency} / شهريًا`}
             current={status.plan === "plus"}
             accent
             features={[
