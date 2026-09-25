@@ -1,0 +1,907 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "LY",
+    "nameAr": "ليبيا"
+  },
+  "academicYear": "2026-2027",
+  "grade": 11,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 24,
+  "mappedLessons": 24,
+  "verifiedLessons": 24,
+  "scope": "current-official-published-scope",
+  "policy": "مواءمة الكتب والمجالات والمسارات الرسمية المنشورة مع Core Bundles وNational Extensions أصلية؛ لا إعادة نشر للنصوص.",
+  "mappings": [
+    {
+      "officialSlug": "ly-2026-2027-g11-u1-l1",
+      "officialTitle": "المطالعة والإنشاء — العلمي — الفصل الأول",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-secondary"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «المطالعة والإنشاء — العلمي — الفصل الأول» بحزمة Core المناسبة مع تطبيق ليبي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l13",
+          "relation": "supporting-skill",
+          "title": "المقال الحجاجي"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u1-l2",
+      "officialTitle": "الأدب والنصوص — العلمي — الفصل الأول",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-secondary"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack ليبيا الخصائص الوطنية في «الأدب والنصوص — العلمي — الفصل الأول» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u1-l3",
+      "officialTitle": "النحو والصرف والإملاء — العلمي — الفصل الأول",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/%D8%A7%D9%84%D9%86%D8%AD%D9%88-%D9%88%D8%A7%D9%84%D8%B5%D8%B1%D9%81-%D9%88%D8%A7%D9%84%D8%A5%D9%85%D9%84%D8%A7%D8%A1/"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «النحو والصرف والإملاء — العلمي — الفصل الأول» بحزمة Core المناسبة مع تطبيق ليبي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l07",
+          "relation": "supporting-skill",
+          "title": "النواسخ في السياق"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l08",
+          "relation": "supporting-skill",
+          "title": "المفاعيل ودلالاتها"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l09",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز المتقدم"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l10",
+          "relation": "supporting-skill",
+          "title": "التوابع والاتساق"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l11",
+          "relation": "supporting-skill",
+          "title": "الشرط والاستثناء"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u1-l4",
+      "officialTitle": "البلاغة — العلمي — الفصل الأول",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-secondary"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «البلاغة — العلمي — الفصل الأول» بحزمة Core المناسبة مع تطبيق ليبي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l12",
+          "relation": "supporting-skill",
+          "title": "الإيجاز والإطناب"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u1-l5",
+      "officialTitle": "النقد الأدبي — العلمي — الفصل الأول",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-secondary"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack ليبيا الخصائص الوطنية في «النقد الأدبي — العلمي — الفصل الأول» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u1-l6",
+      "officialTitle": "التعبير والكتابة — العلمي — الفصل الأول",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-secondary"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «التعبير والكتابة — العلمي — الفصل الأول» بحزمة Core المناسبة مع تطبيق ليبي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l13",
+          "relation": "supporting-skill",
+          "title": "المقال الحجاجي"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l14",
+          "relation": "supporting-skill",
+          "title": "البحث والتوثيق"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l15",
+          "relation": "supporting-skill",
+          "title": "التلخيص الأكاديمي"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u2-l1",
+      "officialTitle": "المطالعة والإنشاء — العلمي — الفصل الثاني",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-secondary"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «المطالعة والإنشاء — العلمي — الفصل الثاني» بحزمة Core المناسبة مع تطبيق ليبي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l13",
+          "relation": "supporting-skill",
+          "title": "المقال الحجاجي"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u2-l2",
+      "officialTitle": "الأدب والنصوص — العلمي — الفصل الثاني",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-secondary"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack ليبيا الخصائص الوطنية في «الأدب والنصوص — العلمي — الفصل الثاني» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u2-l3",
+      "officialTitle": "النحو والصرف والإملاء — العلمي — الفصل الثاني",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/%D8%A7%D9%84%D9%86%D8%AD%D9%88-%D9%88%D8%A7%D9%84%D8%B5%D8%B1%D9%81-%D9%88%D8%A7%D9%84%D8%A5%D9%85%D9%84%D8%A7%D8%A1/"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «النحو والصرف والإملاء — العلمي — الفصل الثاني» بحزمة Core المناسبة مع تطبيق ليبي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l07",
+          "relation": "supporting-skill",
+          "title": "النواسخ في السياق"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l08",
+          "relation": "supporting-skill",
+          "title": "المفاعيل ودلالاتها"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l09",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز المتقدم"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l10",
+          "relation": "supporting-skill",
+          "title": "التوابع والاتساق"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l11",
+          "relation": "supporting-skill",
+          "title": "الشرط والاستثناء"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u2-l4",
+      "officialTitle": "البلاغة — العلمي — الفصل الثاني",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-secondary"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «البلاغة — العلمي — الفصل الثاني» بحزمة Core المناسبة مع تطبيق ليبي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l12",
+          "relation": "supporting-skill",
+          "title": "الإيجاز والإطناب"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u2-l5",
+      "officialTitle": "النقد الأدبي — العلمي — الفصل الثاني",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-secondary"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack ليبيا الخصائص الوطنية في «النقد الأدبي — العلمي — الفصل الثاني» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u2-l6",
+      "officialTitle": "التعبير والكتابة — العلمي — الفصل الثاني",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-secondary"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «التعبير والكتابة — العلمي — الفصل الثاني» بحزمة Core المناسبة مع تطبيق ليبي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l13",
+          "relation": "supporting-skill",
+          "title": "المقال الحجاجي"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l14",
+          "relation": "supporting-skill",
+          "title": "البحث والتوثيق"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l15",
+          "relation": "supporting-skill",
+          "title": "التلخيص الأكاديمي"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u3-l1",
+      "officialTitle": "المطالعة والإنشاء — الأدبي — الفصل الأول",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-secondary"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «المطالعة والإنشاء — الأدبي — الفصل الأول» بحزمة Core المناسبة مع تطبيق ليبي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l13",
+          "relation": "supporting-skill",
+          "title": "المقال الحجاجي"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u3-l2",
+      "officialTitle": "الأدب والنصوص — الأدبي — الفصل الأول",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-secondary"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack ليبيا الخصائص الوطنية في «الأدب والنصوص — الأدبي — الفصل الأول» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u3-l3",
+      "officialTitle": "النحو والصرف والإملاء — الأدبي — الفصل الأول",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/%D8%A7%D9%84%D9%86%D8%AD%D9%88-%D9%88%D8%A7%D9%84%D8%B5%D8%B1%D9%81-%D9%88%D8%A7%D9%84%D8%A5%D9%85%D9%84%D8%A7%D8%A1/"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «النحو والصرف والإملاء — الأدبي — الفصل الأول» بحزمة Core المناسبة مع تطبيق ليبي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l07",
+          "relation": "supporting-skill",
+          "title": "النواسخ في السياق"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l08",
+          "relation": "supporting-skill",
+          "title": "المفاعيل ودلالاتها"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l09",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز المتقدم"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l10",
+          "relation": "supporting-skill",
+          "title": "التوابع والاتساق"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l11",
+          "relation": "supporting-skill",
+          "title": "الشرط والاستثناء"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u3-l4",
+      "officialTitle": "البلاغة — الأدبي — الفصل الأول",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-secondary"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «البلاغة — الأدبي — الفصل الأول» بحزمة Core المناسبة مع تطبيق ليبي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l12",
+          "relation": "supporting-skill",
+          "title": "الإيجاز والإطناب"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u3-l5",
+      "officialTitle": "النقد الأدبي — الأدبي — الفصل الأول",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-secondary"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack ليبيا الخصائص الوطنية في «النقد الأدبي — الأدبي — الفصل الأول» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u3-l6",
+      "officialTitle": "التعبير والكتابة — الأدبي — الفصل الأول",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-secondary"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «التعبير والكتابة — الأدبي — الفصل الأول» بحزمة Core المناسبة مع تطبيق ليبي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l13",
+          "relation": "supporting-skill",
+          "title": "المقال الحجاجي"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l14",
+          "relation": "supporting-skill",
+          "title": "البحث والتوثيق"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l15",
+          "relation": "supporting-skill",
+          "title": "التلخيص الأكاديمي"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u4-l1",
+      "officialTitle": "المطالعة والإنشاء — الأدبي — الفصل الثاني",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-secondary"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «المطالعة والإنشاء — الأدبي — الفصل الثاني» بحزمة Core المناسبة مع تطبيق ليبي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l13",
+          "relation": "supporting-skill",
+          "title": "المقال الحجاجي"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u4-l2",
+      "officialTitle": "الأدب والنصوص — الأدبي — الفصل الثاني",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-secondary"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack ليبيا الخصائص الوطنية في «الأدب والنصوص — الأدبي — الفصل الثاني» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u4-l3",
+      "officialTitle": "النحو والصرف والإملاء — الأدبي — الفصل الثاني",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/%D8%A7%D9%84%D9%86%D8%AD%D9%88-%D9%88%D8%A7%D9%84%D8%B5%D8%B1%D9%81-%D9%88%D8%A7%D9%84%D8%A5%D9%85%D9%84%D8%A7%D8%A1/"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «النحو والصرف والإملاء — الأدبي — الفصل الثاني» بحزمة Core المناسبة مع تطبيق ليبي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l07",
+          "relation": "supporting-skill",
+          "title": "النواسخ في السياق"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l08",
+          "relation": "supporting-skill",
+          "title": "المفاعيل ودلالاتها"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l09",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز المتقدم"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l10",
+          "relation": "supporting-skill",
+          "title": "التوابع والاتساق"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l11",
+          "relation": "supporting-skill",
+          "title": "الشرط والاستثناء"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u4-l4",
+      "officialTitle": "البلاغة — الأدبي — الفصل الثاني",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-secondary"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «البلاغة — الأدبي — الفصل الثاني» بحزمة Core المناسبة مع تطبيق ليبي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l12",
+          "relation": "supporting-skill",
+          "title": "الإيجاز والإطناب"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u4-l5",
+      "officialTitle": "النقد الأدبي — الأدبي — الفصل الثاني",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-secondary"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack ليبيا الخصائص الوطنية في «النقد الأدبي — الأدبي — الفصل الثاني» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g11-u4-l6",
+      "officialTitle": "التعبير والكتابة — الأدبي — الفصل الثاني",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-secondary"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «التعبير والكتابة — الأدبي — الفصل الثاني» بحزمة Core المناسبة مع تطبيق ليبي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g11-l13",
+          "relation": "supporting-skill",
+          "title": "المقال الحجاجي"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l14",
+          "relation": "supporting-skill",
+          "title": "البحث والتوثيق"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l15",
+          "relation": "supporting-skill",
+          "title": "التلخيص الأكاديمي"
+        },
+        {
+          "slug": "ly-dadyoom-core-g11-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    }
+  ]
+}
