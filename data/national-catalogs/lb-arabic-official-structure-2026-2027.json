@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "LB",
+    "nameAr": "لبنان",
+    "nameEn": "Lebanon"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية وآدابها",
+  "verificationStatus": "verified-source-structure",
+  "officialCoverageUnit": "official-domain-by-grade-and-secondary-track",
+  "educationStructure": {
+    "basicPrimary": {
+      "grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    "basicMiddle": {
+      "grades": [
+        7,
+        8,
+        9
+      ]
+    },
+    "secondary": {
+      "grades": [
+        10,
+        11,
+        12
+      ],
+      "tracks": {
+        "10": [
+          "الأولى الثانوية"
+        ],
+        "11": [
+          "إنسانيات",
+          "علوم"
+        ],
+        "12": [
+          "آداب وإنسانيات",
+          "اجتماع واقتصاد",
+          "علوم عامة",
+          "علوم الحياة"
+        ]
+      }
+    }
+  },
+  "nationalDomains": [
+    "المحادثة والقراءة والأدب والمحفوظات",
+    "القواعد والإملاء والبلاغة والعروض",
+    "التعبير الشفهي والكتابي"
+  ],
+  "officialCoverageNodes": 48,
+  "sources": [
+    {
+      "kind": "official-arabic-curriculum",
+      "url": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A"
+    },
+    {
+      "kind": "official-books-catalog",
+      "url": "https://www.crdp.org/books-pdf"
+    },
+    {
+      "kind": "latest-published-reduced-curriculum",
+      "url": "https://www.crdp.org/curriculum/%D8%A7%D9%84%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85%D9%8A-%D9%84%D9%84%D8%B9%D8%A7%D9%85-%D9%A2%D9%A0%D9%A2%D9%A5-%D9%A2%D9%A0%D9%A2%D9%A6%D8%8C-%D9%88%D8%B2%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%8A-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D9%84%D9%84%D8%A8%D8%AD%D9%88%D8%AB",
+      "note": "آخر تخفيف منشور علنًا هو 2025-2026؛ المطابقة 2026-2027 تعتمد بنية المنهج الرسمي المستمر ما لم يصدر تخفيف أحدث."
+    },
+    {
+      "kind": "official-2026-2027-school-year-evidence",
+      "url": "https://nsl.mehe.gov.lb/Downloads.aspx?d=ODM1OTQ%3D&g=ZDUwNWY3NGQtZGYwMy00MGRjLWI0NmQtZmJhNDJkNzJkZGM1&s=c2FpbnRlZmFtaWxsZWJlY2hhcnJpQGhvdG1haWwuY29t"
+    }
+  ],
+  "copyrightPolicy": "لا تعيد ضاديوم نشر نصوص الكتب اللبنانية؛ تستخدم تدرج المجالات والمسارات وروابط CRDP لإثبات المواءمة، بينما المحتوى التعليمي أصلي.",
+  "generatedAt": "2026-09-25"
+}
