@@ -65,6 +65,7 @@ export type CurriculumCountryCoverage = {
   coreReady: boolean;
   officialStatus: string;
   officialVerificationStatus: string;
+  mappingGrades: number;
   verifiedMappingGrades: number;
   officialReady: boolean;
   ready: boolean;
@@ -296,6 +297,9 @@ export function getCurriculumControlCenter():
       "data/curriculum-mappings"
     );
 
+  const mappingGradesByCountry =
+    new Map<string, Set<number>>();
+
   const verifiedMappingGradesByCountry =
     new Map<string, Set<number>>();
 
@@ -335,11 +339,27 @@ export function getCurriculumControlCenter():
         const verifiedLessons =
           Number(raw.verifiedLessons ?? 0);
 
-        const verifiedGrade =
-          text(raw.status) === "verified" &&
+        const mappedGrade =
           gradeNumber !== null &&
           officialLessons > 0 &&
-          mappedLessons >= officialLessons &&
+          mappedLessons >= officialLessons;
+
+        if (mappedGrade && code) {
+          if (!mappingGradesByCountry.has(code)) {
+            mappingGradesByCountry.set(
+              code,
+              new Set<number>()
+            );
+          }
+
+          mappingGradesByCountry
+            .get(code)
+            ?.add(gradeNumber);
+        }
+
+        const verifiedGrade =
+          text(raw.status) === "verified" &&
+          mappedGrade &&
           verifiedLessons >= officialLessons;
 
         if (verifiedGrade && code) {
@@ -520,6 +540,11 @@ export function getCurriculumControlCenter():
          * manifest is explicitly closed after grade/term/unit/lesson
          * provenance has been audited.
          */
+        const mappingGrades =
+          mappingGradesByCountry.get(
+            country.code
+          )?.size ?? 0;
+
         const verifiedMappingGrades =
           verifiedMappingGradesByCountry.get(
             country.code
@@ -557,6 +582,7 @@ export function getCurriculumControlCenter():
             ),
           officialStatus,
           officialVerificationStatus,
+          mappingGrades,
           verifiedMappingGrades,
           packs:
             countryPacks.length,
