@@ -1,0 +1,257 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "JO",
+    "nameAr": "الأردن"
+  },
+  "grade": 12,
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "academicYearTarget": "2026-2027",
+  "authority": {
+    "nameAr": "المركز الوطني لتطوير المناهج",
+    "baseUrl": "https://nccd.gov.jo/",
+    "currentYearCatalogUrl": "https://nccd.gov.jo/ar/pages/TextBooksGrade/143",
+    "academicGradeCatalogUrl": "https://nccd.gov.jo/ar/pages/TextBooksGrade/83",
+    "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+  },
+  "policy": {
+    "noTextbookCopy": true,
+    "description": "يخزن هذا الملف البنية الرسمية والعناوين ومصادر التحقق فقط. لا تُنسخ نصوص الكتب أو الأسئلة المحمية. محتوى ضاديوم التعليمي يُنشأ أصليًا."
+  },
+  "scopeStatus": {
+    "semester1": "explicit-2026-2027-current-year-catalog",
+    "semester2": "official-current-nccd-grade12-catalog-baseline-pending-explicit-2026-2027-relisting",
+    "fullYearVerified": false,
+    "note": "صفحة الصف الثاني عشر 2026-2027 تعرض الفصل الأول صراحة. صفحة الصف الثاني عشر الأكاديمي الحالية لدى NCCD تعرض كذلك كتابي العربية للفصل الثاني؛ لذلك يُحفظ الفصل الثاني كخط أساس رسمي منشور، ولا يُسمى 2026-2027 verified حتى إعادة إدراجه صراحة في كتالوج السنة."
+  },
+  "books": [
+    {
+      "semester": 1,
+      "track": "literature",
+      "titleAr": "اللغة العربية / الأدب",
+      "verificationStatus": "explicit-2026-2027",
+      "sourceUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Arabic/2025/%D8%B9%D8%B1%D8%A8%D9%8A%206.7.2025/12/arabic%2012%20alzawahir%20aladabia%20226.pdf",
+      "officialTopicCount": 16,
+      "units": [
+        {
+          "unitNo": 1,
+          "title": "الأدب في العصر الجاهلي",
+          "lessons": [
+            "علاقة الشعر الجاهلي بالحياة",
+            "أغراض الشعر الجاهلي",
+            "خصائص الشعر الجاهلي",
+            "المعلقات في العصر الجاهلي"
+          ]
+        },
+        {
+          "unitNo": 2,
+          "title": "الأدب في عصر صدر الإسلام والعصر الأموي",
+          "lessons": [
+            "أثر الإسلام في الشعر والنثر",
+            "تحليل نماذج شعرية في مدح الرسول ﷺ",
+            "ظاهرة الغزل في الشعر الأموي",
+            "شعر النقائض",
+            "النثر في عصر صدر الإسلام والعصر الأموي"
+          ]
+        },
+        {
+          "unitNo": 3,
+          "title": "الأدب في العصر العباسي",
+          "lessons": [
+            "أثر الثقافات الأجنبية في الأدب العربي في العصر العباسي",
+            "التجديد في الشعر العباسي",
+            "الموضوعات الشعرية"
+          ]
+        },
+        {
+          "unitNo": 4,
+          "title": "موضوعات خاصة في الأدب العباسي",
+          "lessons": [
+            "اللزوميات",
+            "الروميات",
+            "الحكمة في شعر المتنبي",
+            "الكتابة النثرية الأدبية"
+          ]
+        }
+      ]
+    },
+    {
+      "semester": 1,
+      "track": "grammar-morphology-prosody",
+      "titleAr": "اللغة العربية / النحو والصرف وموسيقا الشعر",
+      "verificationStatus": "explicit-2026-2027",
+      "sourceUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Arabic/2025/%D8%B9%D8%B1%D8%A8%D9%8A%206.7.2025/12/arabic%20alnahw%20walsarf%20C12P1%20236.pdf",
+      "officialTopicCount": 7,
+      "lessons": [
+        {
+          "lessonNo": 1,
+          "title": "المفعول المطلق",
+          "domain": "grammar"
+        },
+        {
+          "lessonNo": 2,
+          "title": "الممنوع من الصرف",
+          "domain": "grammar"
+        },
+        {
+          "lessonNo": 3,
+          "title": "الاستثناء",
+          "domain": "grammar"
+        },
+        {
+          "lessonNo": 4,
+          "title": "الجمل التي لها محل من الإعراب",
+          "domain": "grammar"
+        },
+        {
+          "lessonNo": 5,
+          "title": "التعجب",
+          "domain": "grammar"
+        },
+        {
+          "lessonNo": 6,
+          "title": "الإضافة",
+          "domain": "grammar"
+        },
+        {
+          "lessonNo": 7,
+          "title": "موسيقا الشعر",
+          "domain": "prosody",
+          "skills": [
+            "بحر الكامل",
+            "بحر الطويل",
+            "الكتابة العروضية",
+            "التقطيع والتفعيلات"
+          ]
+        }
+      ]
+    },
+    {
+      "semester": 2,
+      "track": "literature-rhetoric-criticism",
+      "titleAr": "اللغة العربية / الأدب",
+      "verificationStatus": "official-current-grade12-baseline",
+      "sourceUrl": "https://www.nccd.gov.jo/EBV4.0/Root_Storage/AR/Arabic/2025/%D8%B9%D8%B1%D8%A8%D9%8A%206.7.2025/12/PART2/AR12D2.pdf",
+      "officialTopicCount": 18,
+      "units": [
+        {
+          "unitNo": 1,
+          "title": "في الحقيقة والمجاز والاستعارة",
+          "lessons": [
+            "البلاغة وغايتها",
+            "الحقيقة والمجاز",
+            "الاستعارة",
+            "المجاز المرسل"
+          ]
+        },
+        {
+          "unitNo": 2,
+          "title": "من أساليب البلاغة العربية (النهي، والنداء، والإطناب)",
+          "lessons": [
+            "أسلوب النهي ومعانيه البلاغية",
+            "أسلوب النداء ومعانيه البلاغية",
+            "أسلوب الإطناب"
+          ]
+        },
+        {
+          "unitNo": 3,
+          "title": "النقد الأدبي: مفهومه، وغايته، وعناصر العمل الأدبي، وأبرز قضايا النقد الأدبي القديم",
+          "lessons": [
+            "مفهوم النقد الأدبي وأهميته",
+            "العناصر العامة للعمل الأدبي",
+            "أبرز قضايا النقد الأدبي القديم",
+            "تحليل نصين شعريين من عصرين مختلفين"
+          ]
+        },
+        {
+          "unitNo": 4,
+          "title": "المناهج النقدية والمذاهب الأدبية",
+          "lessons": [
+            "المناهج النقدية الخارجية",
+            "المناهج النقدية الداخلية",
+            "المناهج الأدبية: سماتها ومبادئها في الأدب العربي"
+          ]
+        },
+        {
+          "unitNo": 5,
+          "title": "موضوعات نقدية، وقراءات تحليلية في النقد الأدبي الحديث",
+          "lessons": [
+            "من مفاهيم النقد الأدبي: المعارضات، والتناص، والمفارقة",
+            "شعر التفعيلة",
+            "التحليل النقدي الموضوعي في قراءة النصوص الأدبية",
+            "ملامح الحركة النقدية في الأردن، والنقد النسوي"
+          ]
+        }
+      ]
+    },
+    {
+      "semester": 2,
+      "track": "morphology-prosody",
+      "titleAr": "اللغة العربية / النحو والصرف وموسيقا الشعر",
+      "verificationStatus": "official-current-grade12-baseline",
+      "sourceCatalogUrl": "https://nccd.gov.jo/ar/pages/TextBooksGrade/83",
+      "answerKeyUrl": "https://www.nccd.gov.jo/EBV4.0/Root_Storage/AR/Arabic/2025/%D8%B9%D8%B1%D8%A8%D9%8A%206.7.2025/12/PART2/AQNG12.pdf",
+      "officialTopicCount": 6,
+      "lessons": [
+        {
+          "lessonNo": 1,
+          "title": "من معاني زيادات الأفعال",
+          "domain": "morphology"
+        },
+        {
+          "lessonNo": 2,
+          "title": "التصغير",
+          "domain": "morphology",
+          "sequenceEvidence": "current-published-book-order; topic independently confirmed by NCCD framework/answer material"
+        },
+        {
+          "lessonNo": 3,
+          "title": "النسب",
+          "domain": "morphology",
+          "sequenceEvidence": "current-published-book-order; topic independently confirmed by NCCD framework/answer material"
+        },
+        {
+          "lessonNo": 4,
+          "title": "الإبدال",
+          "domain": "morphology"
+        },
+        {
+          "lessonNo": 5,
+          "title": "الإعلال",
+          "domain": "morphology"
+        },
+        {
+          "lessonNo": 6,
+          "title": "موسيقا الشعر",
+          "domain": "prosody",
+          "skills": [
+            "بحر الرجز",
+            "بحر البسيط"
+          ]
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "semester1": 23,
+    "semester2PublishedBaseline": 24,
+    "publishedOfficialTopics": 47,
+    "explicit20262027CurrentScopeTopics": 23
+  },
+  "reconciliation": {
+    "currentNationalLayerReportedLessons": 25,
+    "status": "must-reconcile-before-import",
+    "reason": "الطبقة الوطنية الحالية لا تطابق البنية الرسمية الحالية بالكامل؛ توجد وحدات/موضوعات مثل الأدب الأندلسي والأيوبي والمملوكي والأدب الحديث في البيانات الحالية بينما فهرس NCCD الحالي للفصل الأول يختلف عنها.",
+    "doNotAppendBlindly": true
+  },
+  "generatedAt": "2026-09-25",
+  "verificationNotes": [
+    "تم التحقق من عناوين الفصل الأول من فهارس كتب NCCD الرسمية.",
+    "تم التحقق من بنية الأدب للفصل الثاني من فهرس كتاب NCCD الرسمي.",
+    "تم التحقق من موضوعات الصرف للصف الثاني عشر من إطار NCCD الرسمي ومن مواد الإجابات الرسمية.",
+    "الفصل الثاني يظل خط أساس رسمي منشور في كتالوج الصف الثاني عشر الأكاديمي، لكنه لا يرفع حالة 2026-2027 إلى full-year verified قبل ظهوره صراحة في صفحة السنة 2026-2027."
+  ]
+}
