@@ -15,7 +15,8 @@
   },
   "current": {
     "verifiedCountries": [
-      "BH"
+      "BH",
+      "JO"
     ],
     "pendingCountries": [
       "AE",
@@ -23,7 +24,6 @@
       "DZ",
       "EG",
       "IQ",
-      "JO",
       "KM",
       "KW",
       "LB",
@@ -40,13 +40,12 @@
       "TN",
       "YE"
     ],
-    "readyCount": 1,
-    "pendingCount": 21,
-    "note": "هذا الملف يتتبع طبقة National Official Match فقط؛ Dadyoom Core مكتمل 22/22 ولا يُستخدم كبديل لإثبات المطابقة الرسمية."
+    "readyCount": 2,
+    "pendingCount": 20,
+    "note": "Dadyoom Core مكتمل 22/22. National Official Match مغلق للنطاق المنشور حاليًا في البحرين والأردن، ويستمر العمل على بقية الدول."
   },
   "executionOrder": [
     [
-      "JO",
       "EG",
       "PS",
       "LY"
