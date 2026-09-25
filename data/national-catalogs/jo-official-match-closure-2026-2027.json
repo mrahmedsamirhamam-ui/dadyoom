@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "JO",
+    "nameAr": "الأردن"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "status": "current-scope-complete",
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-09-25",
+  "authority": {
+    "nameAr": "المركز الوطني لتطوير المناهج",
+    "baseUrl": "https://nccd.gov.jo/",
+    "arabicCatalog": "https://nccd.gov.jo/Ar/Pages/Publications/?MaterialStudy=92",
+    "framework": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+  },
+  "coverage": {
+    "grades": "12/12",
+    "verifiedMappingGrades": "12/12",
+    "officialCoverageNodes": 128,
+    "mappedCoverageNodes": 128,
+    "verifiedCoverageNodes": 128,
+    "database": {
+      "lessons": 128,
+      "questions": 384,
+      "vocabulary": 384,
+      "activities": 384
+    },
+    "semesterPolicy": "G1-G10: الفصلان المنشوران في الكتالوج الحالي؛ G11-G12: الفصل الأول المنشور صراحة 2026-2027."
+  },
+  "gradeCounts": {
+    "1": 10,
+    "2": 10,
+    "3": 10,
+    "4": 10,
+    "5": 10,
+    "6": 10,
+    "7": 10,
+    "8": 10,
+    "9": 10,
+    "10": 10,
+    "11": 5,
+    "12": 23
+  },
+  "g12": {
+    "explicit20262027Topics": 23,
+    "literatureTopics": 16,
+    "grammarMorphologyProsodyTopics": 7,
+    "nationalExtensions": [
+      "الممنوع من الصرف",
+      "الجمل التي لها محل من الإعراب",
+      "التعجب",
+      "الإضافة",
+      "موسيقا الشعر"
+    ],
+    "directCoreExamples": {
+      "المفعول المطلق": "المفاعيل ودلالاتها",
+      "الاستثناء": "الشرط والاستثناء"
+    }
+  },
+  "databaseCleanup": {
+    "legacyG12Curriculum": "deactivated-not-deleted",
+    "activeOfficialCurriculum": "اللغة العربية — المطابقة الرسمية الأردنية"
+  },
+  "qualityGates": {
+    "allLessonsPublished": true,
+    "allLessonsHaveOfficialSource": true,
+    "minimumQuestionsPerLesson": 3,
+    "minimumVocabularyPerLesson": 3,
+    "minimumActivitiesPerLesson": 3,
+    "packGradesValid": "12/12",
+    "mappingGradesVerified": "12/12"
+  },
+  "claimPolicy": "عبارة «مطابق للمنهج الرسمي الأردني» تعني أن ضاديوم مواءم مع البنية والكفايات/الموضوعات المنشورة من NCCD للنطاق الحالي. لا تعني اعتمادًا أو شراكة أو تأييدًا من NCCD أو وزارة التربية.",
+  "copyrightPolicy": "لا تعيد ضاديوم نشر نصوص الكتب المحمية. العناوين والبنية والكفايات ومراجع المصدر توثق المطابقة، بينما الشرح والأسئلة والأنشطة أصلية لضاديوم."
+}
