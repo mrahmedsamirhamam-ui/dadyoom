@@ -1,0 +1,257 @@
+{
+  "schemaVersion": 1,
+  "packKey": "YE:2026-2027:arabic:g5:current-scope",
+  "country": {
+    "code": "YE",
+    "nameAr": "اليمن",
+    "nameEn": "Yemen"
+  },
+  "academicYear": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "stage": {
+    "code": "basic",
+    "nameAr": "التعليم الأساسي"
+  },
+  "grade": {
+    "number": 5,
+    "nameAr": "الصف 5 الأساسي",
+    "nameEn": "Grade 5"
+  },
+  "semester": null,
+  "curriculum": {
+    "nameAr": "اللغة العربية — المطابقة الرسمية اليمنية",
+    "nameEn": "Arabic — Yemen Official Curriculum Match",
+    "description": "طبقة وطنية مستقلة مرتبطة بالمناهج اليمنية الرقمية وكتب وأدلة اللغة العربية الرسمية.",
+    "storageNameAr": "اللغة العربية — المطابقة الرسمية اليمنية"
+  },
+  "rights": {
+    "contentOwner": "dadyoom",
+    "sourceLabel": "الإدارة العامة للتعليم الإلكتروني / وزارة التربية والتعليم والبحث العلمي؛ المحتوى أصلي لضاديوم.",
+    "sourceUrl": "https://e-learning-moe.edu.ye/",
+    "verified": true
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "اللغة العربية — حزمة الكتب الرسمية",
+      "description": "الصف 5 الأساسي: تغطية كتب العربية الرسمية على مستوى الصف.",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "اللغة العربية — الصف 5 الأساسي — حزمة الكتب الرسمية",
+          "type": "reading",
+          "estimatedMinutes": 40,
+          "summary": "حزمة وطنية أصلية من ضاديوم لمواءمة كتب العربية الرسمية في الصف 5 الأساسي باليمن.",
+          "content": "تمثل هذه العقدة «اللغة العربية — الصف 5 الأساسي — حزمة الكتب الرسمية» وحدة مطابقة وطنية على مستوى الصف. تعرض الإدارة العامة للتعليم الإلكتروني التابعة لوزارة التربية والتعليم والبحث العلمي المناهج اليمنية من الصف الأول الأساسي حتى الصف الثالث الثانوي بصيغة رقمية، كما تنشر أدلة المعلمين لمادة اللغة العربية. وتعرض صفحات الصفوف كتب «لغتي العربية» في التعليم الأساسي، وفي الثانوي كتب القراءة والنحو والصرف والأدب والنصوص والبلاغة. يقدم ضاديوم محتوى أصليًا يغطي القراءة والفهم والقواعد والتعبير والتذوق بما يناسب الصف، مع الرجوع إلى الكتب الرسمية للنصوص المقررة، ومن دون إعادة نشر المواد المحمية.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات تعلم العربية في الصف 5 الأساسي.",
+            "أن يطبق مهارة قراءة أو قواعد أو تعبير في موقف جديد.",
+            "أن يراجع المتعلم أداءه ويصححه وفق معيار واضح."
+          ],
+          "vocabulary": [
+            {
+              "word": "قراءة",
+              "meaning": "فهم النص وتحليل معناه."
+            },
+            {
+              "word": "قواعد",
+              "meaning": "ضوابط النحو والصرف والاستعمال اللغوي."
+            },
+            {
+              "word": "تعبير",
+              "meaning": "إنتاج شفهي أو كتابي يحقق غرضًا واضحًا."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما وظيفة هذه الحزمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "مواءمة كتب العربية الرسمية بمحتوى ضاديوم أصلي."
+                },
+                {
+                  "id": "b",
+                  "text": "نسخ الكتب كاملة."
+                },
+                {
+                  "id": "c",
+                  "text": "اختراع مقرر."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المواءمة تربط المصدر الرسمي بتعلم أصلي.",
+              "points": 1
+            },
+            {
+              "question": "ما دليل الإتقان؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ اسم الكتاب."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ إجابة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الأداء المستقل يعكس الإتقان.",
+              "points": 1
+            },
+            {
+              "question": "كيف تراجع؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن بالمعيار وأصحح."
+                },
+                {
+                  "id": "b",
+                  "text": "لا أراجع."
+                },
+                {
+                  "id": "c",
+                  "text": "أغير عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة تحسن التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "فهم",
+              "activityType": "multiple_choice",
+              "instructions": "حدد المهارة المناسبة.",
+              "content": {
+                "origin": "DADYOOM_YE_OFFICIAL_2026_2027_V1",
+                "grade": 5
+              },
+              "published": true
+            },
+            {
+              "title": "قراءة",
+              "activityType": "reading",
+              "instructions": "طبّق مهارة الفهم على نص أصلي.",
+              "content": {
+                "origin": "DADYOOM_YE_OFFICIAL_2026_2027_V1",
+                "grade": 5
+              },
+              "published": true
+            },
+            {
+              "title": "كتابة ومراجعة",
+              "activityType": "writing",
+              "instructions": "اكتب ثم راجع.",
+              "content": {
+                "origin": "DADYOOM_YE_OFFICIAL_2026_2027_V1",
+                "grade": 5
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "الإدارة العامة للتعليم الإلكتروني — وزارة التربية والتعليم والبحث العلمي اليمنية",
+            "url": "https://e-learning-moe.edu.ye/",
+            "additionalUrls": [
+              "https://e-learning-moe.edu.ye/lcms/",
+              "https://www.e-learning-moe.edu.ye/teachergiude.php",
+              "https://moe-ye.net/",
+              "https://moe-ye.net/37553"
+            ]
+          },
+          "alignment": {
+            "mode": "official-grade-textbook-bundle",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "ye-dadyoom-core-g5-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g5-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g5-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g5-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g5-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g5-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g5-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g5-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g5-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g5-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g5-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g5-l12",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g5-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g5-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g5-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g5-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g5-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "ye-dadyoom-core-g5-l18",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
