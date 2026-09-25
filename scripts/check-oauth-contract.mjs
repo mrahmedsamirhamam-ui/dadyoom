@@ -30,11 +30,17 @@ requireGate(
   "OAUTH_PROXY_PROTECTED_ROUTES"
 );
 
+const matcherBlock =
+  proxy.match(
+    /export const config\s*=\s*\{[\s\S]*?matcher\s*:\s*\[([\s\S]*?)\][\s\S]*?\};/u,
+  )?.[1] ?? "";
+
 requireGate(
-  !proxy.includes('"/auth/:path*"') &&
-    !proxy.includes('"/auth/callback') &&
-    !proxy.includes('"/login/:path*"') &&
-    !proxy.includes('"/login"'),
+  Boolean(matcherBlock) &&
+    !matcherBlock.includes('"/auth/:path*"') &&
+    !matcherBlock.includes('"/auth/callback') &&
+    !matcherBlock.includes('"/login/:path*"') &&
+    !matcherBlock.includes('"/login"'),
   "OAUTH_CALLBACK_LOGIN_OUTSIDE_PROXY"
 );
 
