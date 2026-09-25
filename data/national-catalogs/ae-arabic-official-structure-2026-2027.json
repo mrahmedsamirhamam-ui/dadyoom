@@ -1,0 +1,343 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "AE",
+    "nameAr": "الإمارات العربية المتحدة",
+    "nameEn": "United Arab Emirates"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "verificationStatus": "verified-source-structure",
+  "officialCoverageUnit": "national-domain",
+  "semesters": 3,
+  "officialStages": [
+    {
+      "code": "cycle-1",
+      "nameAr": "الحلقة الأولى",
+      "grades": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "code": "cycle-2",
+      "nameAr": "الحلقة الثانية",
+      "grades": [
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "code": "cycle-3",
+      "nameAr": "الحلقة الثالثة",
+      "grades": [
+        9,
+        10,
+        11,
+        12
+      ]
+    }
+  ],
+  "secondaryTracks": [
+    {
+      "code": "general",
+      "nameAr": "المسار العام"
+    },
+    {
+      "code": "vocational",
+      "nameAr": "المسار المهني (التخصصي)"
+    },
+    {
+      "code": "advanced",
+      "nameAr": "المسار المتقدم"
+    },
+    {
+      "code": "elite",
+      "nameAr": "مسار النخبة"
+    }
+  ],
+  "arabicTrackPolicy": "طبقة اللغة العربية الوطنية مشتركة في المطابقة؛ الفروق المنشورة للمسارات تتركز في طبيعة/كثافة المواد العلمية والمهنية، لذلك لا تنشئ ضاديوم نسخًا وهمية مختلفة للعربية دون دليل رسمي.",
+  "nationalDomains": [
+    {
+      "key": "foundations",
+      "title": "أساسيات القراءة والكتابة"
+    },
+    {
+      "key": "literary-reading",
+      "title": "القراءة الأدبية"
+    },
+    {
+      "key": "informational-reading",
+      "title": "القراءة المعلوماتية"
+    },
+    {
+      "key": "listening-speaking",
+      "title": "الاستماع والتحدث"
+    },
+    {
+      "key": "writing",
+      "title": "الكتابة"
+    },
+    {
+      "key": "language",
+      "title": "اللغة"
+    }
+  ],
+  "grades": [
+    {
+      "grade": 1,
+      "stage": "الحلقة الأولى",
+      "semesters": [
+        1,
+        2,
+        3
+      ],
+      "domains": [
+        "أساسيات القراءة والكتابة",
+        "القراءة الأدبية",
+        "القراءة المعلوماتية",
+        "الاستماع والتحدث",
+        "الكتابة",
+        "اللغة"
+      ],
+      "officialCoverageNodes": 6
+    },
+    {
+      "grade": 2,
+      "stage": "الحلقة الأولى",
+      "semesters": [
+        1,
+        2,
+        3
+      ],
+      "domains": [
+        "أساسيات القراءة والكتابة",
+        "القراءة الأدبية",
+        "القراءة المعلوماتية",
+        "الاستماع والتحدث",
+        "الكتابة",
+        "اللغة"
+      ],
+      "officialCoverageNodes": 6
+    },
+    {
+      "grade": 3,
+      "stage": "الحلقة الأولى",
+      "semesters": [
+        1,
+        2,
+        3
+      ],
+      "domains": [
+        "أساسيات القراءة والكتابة",
+        "القراءة الأدبية",
+        "القراءة المعلوماتية",
+        "الاستماع والتحدث",
+        "الكتابة",
+        "اللغة"
+      ],
+      "officialCoverageNodes": 6
+    },
+    {
+      "grade": 4,
+      "stage": "الحلقة الأولى",
+      "semesters": [
+        1,
+        2,
+        3
+      ],
+      "domains": [
+        "أساسيات القراءة والكتابة",
+        "القراءة الأدبية",
+        "القراءة المعلوماتية",
+        "الاستماع والتحدث",
+        "الكتابة",
+        "اللغة"
+      ],
+      "officialCoverageNodes": 6
+    },
+    {
+      "grade": 5,
+      "stage": "الحلقة الثانية",
+      "semesters": [
+        1,
+        2,
+        3
+      ],
+      "domains": [
+        "أساسيات القراءة والكتابة",
+        "القراءة الأدبية",
+        "القراءة المعلوماتية",
+        "الاستماع والتحدث",
+        "الكتابة",
+        "اللغة"
+      ],
+      "officialCoverageNodes": 6
+    },
+    {
+      "grade": 6,
+      "stage": "الحلقة الثانية",
+      "semesters": [
+        1,
+        2,
+        3
+      ],
+      "domains": [
+        "أساسيات القراءة والكتابة",
+        "القراءة الأدبية",
+        "القراءة المعلوماتية",
+        "الاستماع والتحدث",
+        "الكتابة",
+        "اللغة"
+      ],
+      "officialCoverageNodes": 6
+    },
+    {
+      "grade": 7,
+      "stage": "الحلقة الثانية",
+      "semesters": [
+        1,
+        2,
+        3
+      ],
+      "domains": [
+        "أساسيات القراءة والكتابة",
+        "القراءة الأدبية",
+        "القراءة المعلوماتية",
+        "الاستماع والتحدث",
+        "الكتابة",
+        "اللغة"
+      ],
+      "officialCoverageNodes": 6
+    },
+    {
+      "grade": 8,
+      "stage": "الحلقة الثانية",
+      "semesters": [
+        1,
+        2,
+        3
+      ],
+      "domains": [
+        "أساسيات القراءة والكتابة",
+        "القراءة الأدبية",
+        "القراءة المعلوماتية",
+        "الاستماع والتحدث",
+        "الكتابة",
+        "اللغة"
+      ],
+      "officialCoverageNodes": 6
+    },
+    {
+      "grade": 9,
+      "stage": "الحلقة الثالثة",
+      "semesters": [
+        1,
+        2,
+        3
+      ],
+      "domains": [
+        "أساسيات القراءة والكتابة",
+        "القراءة الأدبية",
+        "القراءة المعلوماتية",
+        "الاستماع والتحدث",
+        "الكتابة",
+        "اللغة"
+      ],
+      "officialCoverageNodes": 6
+    },
+    {
+      "grade": 10,
+      "stage": "الحلقة الثالثة",
+      "semesters": [
+        1,
+        2,
+        3
+      ],
+      "domains": [
+        "أساسيات القراءة والكتابة",
+        "القراءة الأدبية",
+        "القراءة المعلوماتية",
+        "الاستماع والتحدث",
+        "الكتابة",
+        "اللغة"
+      ],
+      "officialCoverageNodes": 6
+    },
+    {
+      "grade": 11,
+      "stage": "الحلقة الثالثة",
+      "semesters": [
+        1,
+        2,
+        3
+      ],
+      "domains": [
+        "أساسيات القراءة والكتابة",
+        "القراءة الأدبية",
+        "القراءة المعلوماتية",
+        "الاستماع والتحدث",
+        "الكتابة",
+        "اللغة"
+      ],
+      "officialCoverageNodes": 6
+    },
+    {
+      "grade": 12,
+      "stage": "الحلقة الثالثة",
+      "semesters": [
+        1,
+        2,
+        3
+      ],
+      "domains": [
+        "أساسيات القراءة والكتابة",
+        "القراءة الأدبية",
+        "القراءة المعلوماتية",
+        "الاستماع والتحدث",
+        "الكتابة",
+        "اللغة"
+      ],
+      "officialCoverageNodes": 6
+    }
+  ],
+  "officialCoverageNodes": 72,
+  "sources": [
+    {
+      "kind": "official-current-assessment-policy",
+      "url": "https://www.moe.gov.ae/ar/guides/Pages/Student-Assessment-Policy-Guide-2026-2027.aspx",
+      "note": "سياسة تقييم الطلبة 2026-2027 لجميع المراحل."
+    },
+    {
+      "kind": "official-current-calendar",
+      "url": "https://www.moe.gov.ae/en/guides/Documents/Academic-Calender-2026-2027/Academic-Calender-2026-2027-Ar.pdf",
+      "note": "التقويم الأكاديمي 2026-2027؛ ثلاثة فصول وتقييم ABA للغة العربية."
+    },
+    {
+      "kind": "official-government-diwan",
+      "url": "https://u.ae/en/information-and-services/education/school-education-k-12/e-learning-reading-and-educational-resources/diwan-e-book-reader",
+      "note": "قارئ الكتب الإلكترونية الحكومي للمناهج."
+    },
+    {
+      "kind": "official-stages-and-streams",
+      "url": "https://u.ae/ar/information-and-services/education/school-education-k-12/stages-and-streams-of-school-education",
+      "note": "المراحل 1-4 / 5-8 / 9-12 والمسارات الثانوية."
+    },
+    {
+      "kind": "official-current-arabic-teacher-curriculum-standard",
+      "url": "https://careers.moe.gov.ae/ar/uae/jobs/arabic-language-teacher-dubai-northern-emirates-1100012658/",
+      "note": "تطبيق منهج العربية والتخطيط السنوي والفصلي وفق معايير المحتوى والأداء."
+    },
+    {
+      "kind": "official-national-arabic-standards",
+      "url": "https://emsat.moe.gov.ae/emsat/doc/Advantage%20Arabic%20Public%20Test%20Specifications%20-%20English%202021%20Sep%20F.pdf",
+      "note": "معايير وطنية لتعليم العربية وتقييمها؛ القراءة والكتابة والبنية اللغوية والمفردات."
+    }
+  ],
+  "copyrightPolicy": "لا تُنسخ نصوص الكتب؛ تُخزّن البنية والمجالات وروابط المصادر فقط، والمحتوى التعليمي من إنشاء ضاديوم.",
+  "generatedAt": "2026-09-25"
+}
