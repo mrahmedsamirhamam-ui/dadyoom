@@ -30,7 +30,7 @@ export const metadata = {
 };
 
 export const dynamic =
-  "force-static";
+  "force-dynamic";
 
 const catalog =
   catalogData as Catalog;
