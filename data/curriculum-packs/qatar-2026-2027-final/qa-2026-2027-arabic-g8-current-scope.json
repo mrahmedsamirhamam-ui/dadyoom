@@ -1,0 +1,479 @@
+{
+  "schemaVersion": 1,
+  "packKey": "QA:2026-2027:arabic:g8:current-scope",
+  "country": {
+    "code": "QA",
+    "nameAr": "قطر",
+    "nameEn": "Qatar"
+  },
+  "academicYear": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "stage": {
+    "code": "preparatory",
+    "nameAr": "المرحلة الإعدادية"
+  },
+  "grade": {
+    "number": 8,
+    "nameAr": "الصف الثامن",
+    "nameEn": "Grade 8"
+  },
+  "semester": null,
+  "curriculum": {
+    "nameAr": "اللغة العربية — المطابقة الرسمية القطرية",
+    "nameEn": "Arabic — Qatar Official Curriculum Match",
+    "description": "طبقة مطابقة وطنية مستقلة لمعايير منهج اللغة العربية القطري ومصادر التعلم الوزارية، بمحتوى ضاديوم أصلي.",
+    "storageNameAr": "اللغة العربية — المطابقة الرسمية القطرية"
+  },
+  "rights": {
+    "contentOwner": "dadyoom",
+    "sourceLabel": "المعايير والبنية من وزارة التربية والتعليم والتعليم العالي؛ الحزم والشرح والأسئلة والأنشطة أصلية لضاديوم ولا تعيد نشر نصوص الكتب.",
+    "sourceUrl": "https://www.edu.gov.qa/ar/Content/CurriculumSection",
+    "verified": true
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "معايير اللغة العربية — تغطية العام الأكاديمي",
+      "description": "حزمتا تغطية للمعايير الرسمية بحسب المجال والسنة الدراسية خلال الفصلين؛ ليستا أسماء وحدات أو دروس وزارية.",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "حزمة تغطية ضاديوم لمعايير اللغة العربية — الفصل الدراسي الأول",
+          "type": "assessment",
+          "estimatedMinutes": 40,
+          "summary": "حزمة أصلية من ضاديوم لتغطية معايير منهج اللغة العربية القطري للصف الثامن خلال الفصل الدراسي الأول على مستوى نواتج التعلم والمعايير، وليست عنوان درس وزاري.",
+          "content": "هذه حزمة تعليمية أصلية من ضاديوم لمواءمة معايير اللغة العربية في دولة قطر للصف الثامن خلال الفصل الدراسي الأول من العام 2026-2027. تستند المواءمة إلى الإطار العام للمنهج الوطني ووثائق المعايير ومصادر التعلم التي تصدرها الوزارة، ولا تدّعي أن اسم هذه الحزمة عنوان درس أو وحدة في كتاب وزاري. يعمل المتعلم على فهم المقروء والمسموع والتعبير الشفهي والكتابي واستعمال اللغة بما يناسب مستواه، ثم يطبق المهارة في سياق جديد ويراجع أداءه بمعيار واضح. عند الحاجة إلى نص الكتاب الأصلي يستخدم الطالب نسخته الوزارية أو المصدر المرخص ولا يعاد نشر النص داخل ضاديوم.",
+          "objectives": [
+            "أن يفسر المتعلم ناتج تعلم لغوي مناسبًا للصف الثامن في الفصل الدراسي الأول بلغته الخاصة.",
+            "أن يطبق المتعلم مهارة لغوية من معايير الصف الثامن في موقف جديد.",
+            "أن يراجع المتعلم أداءه اللغوي ويحدد دليلًا على الإتقان أو موضعًا يحتاج إلى تحسين."
+          ],
+          "vocabulary": [
+            {
+              "word": "معيار",
+              "meaning": "وصف واضح لما يتوقع من المتعلم أن يعرفه أو يستطيع أداءه."
+            },
+            {
+              "word": "ناتج تعلم",
+              "meaning": "أداء أو معرفة متوقعة بعد خبرة تعليمية."
+            },
+            {
+              "word": "كفاية",
+              "meaning": "توظيف المعرفة والمهارة والاتجاه في موقف ذي معنى."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما أفضل طريقة للعمل مع معايير اللغة العربية في الفصل الدراسي الأول؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أفهم المطلوب ثم أطبقه في مثال جديد."
+                },
+                {
+                  "id": "b",
+                  "text": "أحفظ عنوانًا فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاوز التطبيق."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المعيار يقاس بأداء قابل للملاحظة والتطبيق.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على تحقق ناتج التعلم؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أداء مستقل مع تفسير أو شاهد."
+                },
+                {
+                  "id": "b",
+                  "text": "نسخ إجابة جاهزة."
+                },
+                {
+                  "id": "c",
+                  "text": "تكرار السؤال."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الأداء المستقل يبين تحقق ناتج التعلم.",
+              "points": 1
+            },
+            {
+              "question": "كيف يستخدم الطالب مصدر الوزارة مع ضاديوم؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "يقرأ النص من المصدر المرخص ويستخدم ضاديوم للفهم والتطبيق والتقييم."
+                },
+                {
+                  "id": "b",
+                  "text": "يستبدل الكتاب بنسخة منسوخة كاملة."
+                },
+                {
+                  "id": "c",
+                  "text": "يهمل المصدر الرسمي."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "ضاديوم يكمّل المصدر الرسمي بمحتوى أصلي ولا يعيد نشره.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تحديد ناتج التعلم",
+              "activityType": "reading",
+              "instructions": "اختر ناتجًا لغويًا من خطتك أو مصدرك الوزاري، وصغه بكلماتك وحدد معيار النجاح.",
+              "content": {
+                "mode": "original-dadyoom",
+                "semester": 1,
+                "grade": 8
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل",
+              "activityType": "writing",
+              "instructions": "نفذ مهمة لغوية جديدة مناسبة للصف ثم اشرح كيف حققت المعيار.",
+              "content": {
+                "mode": "original-dadyoom",
+                "semester": 1,
+                "grade": 8
+              },
+              "published": true
+            },
+            {
+              "title": "تقويم ذاتي",
+              "activityType": "multiple_choice",
+              "instructions": "راجع الناتج وفق معيار النجاح وحدد التحسين التالي.",
+              "content": {
+                "mode": "original-dadyoom",
+                "semester": 1,
+                "grade": 8
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية والتعليم والتعليم العالي — قسم المناهج + الإطار العام للمنهج الوطني + السياسة الأكاديمية للغة العربية",
+            "url": "https://www.edu.gov.qa/ar/Content/CurriculumSection",
+            "additionalUrls": [
+              "https://privateschoolssearch.edu.gov.qa/Documents/Publications/CurriculumStandards/GeneralFrameworkNationalEducation.pdf?csf=1&e=PfpExd",
+              "https://www.edu.gov.qa/ar/News/Details/1621800",
+              "https://moewebprod.edu.gov.qa/ar/News/Details/14514600",
+              "https://edu.gov.qa/ar/Content/TestsTimetable"
+            ]
+          },
+          "alignment": {
+            "mode": "official-standards-coverage-bundle",
+            "semester": 1,
+            "officialLessonTitleClaim": false,
+            "coreCoverage": [
+              {
+                "slug": "qa-dadyoom-core-g8-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l12",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l18",
+                "relation": "supporting-skill"
+              }
+            ],
+            "nationalExtension": true
+          }
+        },
+        {
+          "number": 2,
+          "title": "حزمة تغطية ضاديوم لمعايير اللغة العربية — الفصل الدراسي الثاني",
+          "type": "assessment",
+          "estimatedMinutes": 40,
+          "summary": "حزمة أصلية من ضاديوم لتغطية معايير منهج اللغة العربية القطري للصف الثامن خلال الفصل الدراسي الثاني على مستوى نواتج التعلم والمعايير، وليست عنوان درس وزاري.",
+          "content": "هذه حزمة تعليمية أصلية من ضاديوم لمواءمة معايير اللغة العربية في دولة قطر للصف الثامن خلال الفصل الدراسي الثاني من العام 2026-2027. تستند المواءمة إلى الإطار العام للمنهج الوطني ووثائق المعايير ومصادر التعلم التي تصدرها الوزارة، ولا تدّعي أن اسم هذه الحزمة عنوان درس أو وحدة في كتاب وزاري. يعمل المتعلم على فهم المقروء والمسموع والتعبير الشفهي والكتابي واستعمال اللغة بما يناسب مستواه، ثم يطبق المهارة في سياق جديد ويراجع أداءه بمعيار واضح. عند الحاجة إلى نص الكتاب الأصلي يستخدم الطالب نسخته الوزارية أو المصدر المرخص ولا يعاد نشر النص داخل ضاديوم.",
+          "objectives": [
+            "أن يفسر المتعلم ناتج تعلم لغوي مناسبًا للصف الثامن في الفصل الدراسي الثاني بلغته الخاصة.",
+            "أن يطبق المتعلم مهارة لغوية من معايير الصف الثامن في موقف جديد.",
+            "أن يراجع المتعلم أداءه اللغوي ويحدد دليلًا على الإتقان أو موضعًا يحتاج إلى تحسين."
+          ],
+          "vocabulary": [
+            {
+              "word": "معيار",
+              "meaning": "وصف واضح لما يتوقع من المتعلم أن يعرفه أو يستطيع أداءه."
+            },
+            {
+              "word": "ناتج تعلم",
+              "meaning": "أداء أو معرفة متوقعة بعد خبرة تعليمية."
+            },
+            {
+              "word": "كفاية",
+              "meaning": "توظيف المعرفة والمهارة والاتجاه في موقف ذي معنى."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما أفضل طريقة للعمل مع معايير اللغة العربية في الفصل الدراسي الثاني؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أفهم المطلوب ثم أطبقه في مثال جديد."
+                },
+                {
+                  "id": "b",
+                  "text": "أحفظ عنوانًا فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاوز التطبيق."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المعيار يقاس بأداء قابل للملاحظة والتطبيق.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على تحقق ناتج التعلم؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أداء مستقل مع تفسير أو شاهد."
+                },
+                {
+                  "id": "b",
+                  "text": "نسخ إجابة جاهزة."
+                },
+                {
+                  "id": "c",
+                  "text": "تكرار السؤال."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الأداء المستقل يبين تحقق ناتج التعلم.",
+              "points": 1
+            },
+            {
+              "question": "كيف يستخدم الطالب مصدر الوزارة مع ضاديوم؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "يقرأ النص من المصدر المرخص ويستخدم ضاديوم للفهم والتطبيق والتقييم."
+                },
+                {
+                  "id": "b",
+                  "text": "يستبدل الكتاب بنسخة منسوخة كاملة."
+                },
+                {
+                  "id": "c",
+                  "text": "يهمل المصدر الرسمي."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "ضاديوم يكمّل المصدر الرسمي بمحتوى أصلي ولا يعيد نشره.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تحديد ناتج التعلم",
+              "activityType": "reading",
+              "instructions": "اختر ناتجًا لغويًا من خطتك أو مصدرك الوزاري، وصغه بكلماتك وحدد معيار النجاح.",
+              "content": {
+                "mode": "original-dadyoom",
+                "semester": 2,
+                "grade": 8
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل",
+              "activityType": "writing",
+              "instructions": "نفذ مهمة لغوية جديدة مناسبة للصف ثم اشرح كيف حققت المعيار.",
+              "content": {
+                "mode": "original-dadyoom",
+                "semester": 2,
+                "grade": 8
+              },
+              "published": true
+            },
+            {
+              "title": "تقويم ذاتي",
+              "activityType": "multiple_choice",
+              "instructions": "راجع الناتج وفق معيار النجاح وحدد التحسين التالي.",
+              "content": {
+                "mode": "original-dadyoom",
+                "semester": 2,
+                "grade": 8
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية والتعليم والتعليم العالي — قسم المناهج + الإطار العام للمنهج الوطني + السياسة الأكاديمية للغة العربية",
+            "url": "https://www.edu.gov.qa/ar/Content/CurriculumSection",
+            "additionalUrls": [
+              "https://privateschoolssearch.edu.gov.qa/Documents/Publications/CurriculumStandards/GeneralFrameworkNationalEducation.pdf?csf=1&e=PfpExd",
+              "https://www.edu.gov.qa/ar/News/Details/1621800",
+              "https://moewebprod.edu.gov.qa/ar/News/Details/14514600",
+              "https://edu.gov.qa/ar/Content/TestsTimetable"
+            ]
+          },
+          "alignment": {
+            "mode": "official-standards-coverage-bundle",
+            "semester": 2,
+            "officialLessonTitleClaim": false,
+            "coreCoverage": [
+              {
+                "slug": "qa-dadyoom-core-g8-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l12",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "qa-dadyoom-core-g8-l18",
+                "relation": "supporting-skill"
+              }
+            ],
+            "nationalExtension": true
+          }
+        }
+      ]
+    }
+  ]
+}
