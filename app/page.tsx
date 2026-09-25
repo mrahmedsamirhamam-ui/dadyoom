@@ -60,10 +60,10 @@ export default function HomePage() {
               <Link href="/courses" className="rounded-2xl border border-[#d9cdb7] bg-white px-7 py-4 font-black text-[#4d4438] transition hover:border-[#84a89f] hover:text-[#174f47]">تصفّح المنهج</Link>
             </div>
             <div className="mt-9 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
-              <MiniStat value="22" label="دولة عربية في البنية" />
-              <MiniStat value="1" label="حزمة منهج منشورة" />
-              <MiniStat value="4" label="مهارات" />
-              <MiniStat value="24/7" label="ضاد" />
+              <MiniStat value="22/22" label="دولة Core Live" />
+              <MiniStat value="12" label="صفًا لكل دولة" />
+              <MiniStat value="4,752" label="درسًا أساسيًا" />
+              <MiniStat value="4" label="مهارات مترابطة" />
             </div>
           </div>
 
@@ -96,7 +96,7 @@ export default function HomePage() {
 
       <section id="mvp" className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow="بوابة مناهج عربية" title="المنهج الأساسي جاهز، والمعلم يثريه بدل أن يبدأ من الصفر" text="البحرين هي أول حزمة منشورة، وليست حدود ضاديوم. بنية المنصة مصممة لتستقبل حزم الدول والصفوف والفصول الدراسية مع الحفاظ على مصدر وإصدار كل منهج." />
+          <SectionHeading eyebrow="بوابة مناهج عربية" title="مسار ضاديوم الأساسي متاح للدول العربية الـ22" text="لكل دولة مسار عربي أصلي من ضاديوم للصفوف 1–12، مع بقاء المطابقة الوطنية للمناهج والكتب الرسمية طبقة مستقلة لا تُعتمد إلا بمصدر موثق." />
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {pillars.map((item) => (
               <article key={item.title} className="arabic-panel rounded-3xl border border-[#e2d4b8] p-6 shadow-sm transition hover:-translate-y-1 hover:border-[#c8ab68] hover:shadow-lg">
@@ -130,7 +130,7 @@ export default function HomePage() {
             <div>
               <div className="text-sm font-black text-[#f5cf7a]">أول إنجاز يبدأ في دقائق</div>
               <h2 className="mt-3 font-arabic-display text-3xl font-black sm:text-4xl">اختر دولتك ودورك، وابدأ من مكان واضح</h2>
-              <p className="mt-3 max-w-2xl font-arabic-reading text-lg leading-8 text-[#e7f0ec]">يمكنك التسجيل بالبريد أو Google. وعندما لا يتوفر منهج دولتك بعد، تبقى المهارات الأربع وقاموس السياق وضاد متاحة لك.</p>
+              <p className="mt-3 max-w-2xl font-arabic-reading text-lg leading-8 text-[#e7f0ec]">يمكنك التسجيل بالبريد أو Google، ثم اختيار دولتك وصفك والدخول إلى مسار ضاديوم الأساسي، مع المهارات الأربع وقاموس السياق وضاد في رحلة واحدة.</p>
             </div>
             <Link href="/signup" className="inline-flex shrink-0 justify-center rounded-2xl bg-[#f5cf7a] px-7 py-4 font-black text-[#493814] transition hover:-translate-y-0.5 hover:bg-[#ffe39e]">ابدأ رحلتك</Link>
           </div>
