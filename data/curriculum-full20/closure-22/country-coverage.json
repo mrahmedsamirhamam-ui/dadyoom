@@ -1731,24 +1731,64 @@
       },
       "national": {
         "complete": false,
-        "matchingStatus": "not-closed",
-        "verificationStatus": "candidate",
+        "matchingStatus": "current-scope-complete",
+        "verificationStatus": "verified",
         "evidenceSources": [
           {
             "url": "https://e-learning-moe.edu.ye/lcms/",
             "kind": "official-learning-portal-candidate"
           }
         ],
-        "verifiedPackFiles": [],
-        "missingEvidence": [
-          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
-          "اكتمال تغطية الفصول/الفترات الدراسية",
-          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
-          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
-          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
-        ]
+        "verifiedPackFiles": [
+          "data/curriculum-packs/yemen-2026-2027-final/ye-2026-2027-arabic-g1-current-scope.json",
+          "data/curriculum-packs/yemen-2026-2027-final/ye-2026-2027-arabic-g2-current-scope.json",
+          "data/curriculum-packs/yemen-2026-2027-final/ye-2026-2027-arabic-g3-current-scope.json",
+          "data/curriculum-packs/yemen-2026-2027-final/ye-2026-2027-arabic-g4-current-scope.json",
+          "data/curriculum-packs/yemen-2026-2027-final/ye-2026-2027-arabic-g5-current-scope.json",
+          "data/curriculum-packs/yemen-2026-2027-final/ye-2026-2027-arabic-g6-current-scope.json",
+          "data/curriculum-packs/yemen-2026-2027-final/ye-2026-2027-arabic-g7-current-scope.json",
+          "data/curriculum-packs/yemen-2026-2027-final/ye-2026-2027-arabic-g8-current-scope.json",
+          "data/curriculum-packs/yemen-2026-2027-final/ye-2026-2027-arabic-g9-current-scope.json",
+          "data/curriculum-packs/yemen-2026-2027-final/ye-2026-2027-arabic-g10-current-scope.json",
+          "data/curriculum-packs/yemen-2026-2027-final/ye-2026-2027-arabic-g11-current-scope.json",
+          "data/curriculum-packs/yemen-2026-2027-final/ye-2026-2027-arabic-g12-current-scope.json"
+        ],
+        "verifiedMappingFiles": [
+          "data/curriculum-mappings/ye-2026-2027-g1-current-scope-verified.json",
+          "data/curriculum-mappings/ye-2026-2027-g2-current-scope-verified.json",
+          "data/curriculum-mappings/ye-2026-2027-g3-current-scope-verified.json",
+          "data/curriculum-mappings/ye-2026-2027-g4-current-scope-verified.json",
+          "data/curriculum-mappings/ye-2026-2027-g5-current-scope-verified.json",
+          "data/curriculum-mappings/ye-2026-2027-g6-current-scope-verified.json",
+          "data/curriculum-mappings/ye-2026-2027-g7-current-scope-verified.json",
+          "data/curriculum-mappings/ye-2026-2027-g8-current-scope-verified.json",
+          "data/curriculum-mappings/ye-2026-2027-g9-current-scope-verified.json",
+          "data/curriculum-mappings/ye-2026-2027-g10-current-scope-verified.json",
+          "data/curriculum-mappings/ye-2026-2027-g11-current-scope-verified.json",
+          "data/curriculum-mappings/ye-2026-2027-g12-current-scope-verified.json"
+        ],
+        "missingEvidence": [],
+        "currentScopeComplete": true,
+        "fullYearComplete": false,
+        "mappingSummary": {
+          "mappingGrades": 12,
+          "verifiedMappingGrades": 12,
+          "officialCoverageNodes": 12,
+          "mappedCoverageNodes": 12,
+          "verifiedCoverageNodes": 12,
+          "nationalExtensions": 12
+        },
+        "databaseSummary": {
+          "curriculumId": "961db818-2cbb-449f-a671-3a5e5fe37172",
+          "grades": 12,
+          "lessons": 12,
+          "questions": 36,
+          "vocabulary": 36,
+          "activities": 36
+        },
+        "note": "Verified current official scope."
       },
-      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+      "publicationReadiness": "NATIONAL_CURRENT_SCOPE_COMPLETE"
     }
   ]
 }
