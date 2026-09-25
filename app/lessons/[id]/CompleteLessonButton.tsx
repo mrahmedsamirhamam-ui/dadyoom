@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { useRouter } from "next/navigation";
 
 type CompleteLessonButtonProps = {
   lessonId: string;
@@ -11,61 +11,111 @@ type CompleteLessonButtonProps = {
 
 export default function CompleteLessonButton({
   lessonId,
-  userId,
   initialCompleted,
 }: CompleteLessonButtonProps) {
-  const [completed, setCompleted] = useState(initialCompleted);
-  const [loading, setLoading] = useState(false);
-  const supabase = createClient();
+  const router = useRouter();
 
-  async function toggleLessonCompletion() {
-    setLoading(true);
+  const [
+    completed,
+    setCompleted,
+  ] = useState(
+    initialCompleted,
+  );
 
-    const nextCompleted = !completed;
+  const [
+    loading,
+    setLoading,
+  ] = useState(false);
 
-    const { error } = await supabase
-      .from("lesson_progress")
-      .upsert(
-        {
-          user_id: userId,
-          lesson_id: lessonId,
-          completed: nextCompleted,
-          completed_at: nextCompleted
-            ? new Date().toISOString()
-            : null,
-        },
-        {
-          onConflict: "user_id,lesson_id",
-        }
-      );
+  const [
+    error,
+    setError,
+  ] = useState("");
 
-    if (error) {
-      console.error(error);
-      alert("تعذر حفظ تقدم الدرس.");
-      setLoading(false);
+  async function completeLesson() {
+    if (
+      loading ||
+      completed
+    ) {
       return;
     }
 
-    setCompleted(nextCompleted);
-    setLoading(false);
+    setLoading(true);
+    setError("");
+
+    try {
+      const response =
+        await fetch(
+          "/api/lessons/complete",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type":
+                "application/json",
+            },
+            body:
+              JSON.stringify({
+                lessonId,
+              }),
+          },
+        );
+
+      const result =
+        (await response.json()) as {
+          success?: boolean;
+          error?: string;
+        };
+
+      if (
+        !response.ok ||
+        result.success !== true
+      ) {
+        throw new Error(
+          result.error ??
+            "تعذر إكمال الدرس.",
+        );
+      }
+
+      setCompleted(true);
+      router.refresh();
+    }
+    catch (cause) {
+      setError(
+        cause instanceof Error
+          ? cause.message
+          : "تعذر إكمال الدرس.",
+      );
+    }
+    finally {
+      setLoading(false);
+    }
   }
 
   return (
-    <button
-      type="button"
-      onClick={toggleLessonCompletion}
-      disabled={loading}
-      className={`w-full rounded-2xl px-6 py-4 text-lg font-bold text-white transition ${
-        completed
-          ? "bg-slate-600 hover:bg-slate-700"
-          : "bg-emerald-600 hover:bg-emerald-700"
-      } disabled:cursor-not-allowed disabled:opacity-60`}
-    >
-      {loading
-        ? "جارٍ الحفظ..."
-        : completed
-          ? "إلغاء إكمال الدرس"
-          : "أنهيت هذا الدرس"}
-    </button>
+    <div className="space-y-2">
+      <button
+        type="button"
+        onClick={
+          completeLesson
+        }
+        disabled={
+          loading ||
+          completed
+        }
+        className="w-full rounded-2xl bg-emerald-600 px-6 py-4 text-lg font-bold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:bg-slate-600 disabled:opacity-70"
+      >
+        {loading
+          ? "جارٍ التحقق والحفظ..."
+          : completed
+            ? "تم إكمال الدرس ✓"
+            : "إنهاء الدرس"}
+      </button>
+
+      {error ? (
+        <p className="rounded-xl bg-amber-50 p-3 text-sm font-bold text-amber-900">
+          {error}
+        </p>
+      ) : null}
+    </div>
   );
 }
