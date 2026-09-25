@@ -45,6 +45,7 @@ jobs:
           node scripts/check-finish-admin.mjs
           node scripts/check-finish-curriculum-ops.mjs
           npm run curriculum:verify
+          npm run curriculum:audit:catalogs
           npm run curriculum:audit:official
           npm run mvp:verify:closure
           node scripts/seed-dadyoom-core-22.mjs
