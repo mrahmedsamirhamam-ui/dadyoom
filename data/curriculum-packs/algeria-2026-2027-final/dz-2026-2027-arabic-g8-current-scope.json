@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 1,
+  "packKey": "DZ:2026-2027:arabic:g8:current-scope",
+  "country": {
+    "code": "DZ",
+    "nameAr": "الجزائر",
+    "nameEn": "Algeria"
+  },
+  "academicYear": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "stage": {
+    "code": "middle",
+    "nameAr": "التعليم المتوسط"
+  },
+  "grade": {
+    "number": 8,
+    "nameAr": "الثالثة متوسط",
+    "nameEn": "Grade 8"
+  },
+  "semester": null,
+  "curriculum": {
+    "nameAr": "اللغة العربية — المطابقة الرسمية الجزائرية",
+    "nameEn": "Arabic — Algeria Official Curriculum Match",
+    "description": "طبقة وطنية مستقلة لمواءمة ضاديوم مع كتب ومناهج اللغة العربية الرسمية الجزائرية ومراعاة شعب الثانوي.",
+    "storageNameAr": "اللغة العربية — المطابقة الرسمية الجزائرية"
+  },
+  "rights": {
+    "contentOwner": "dadyoom",
+    "sourceLabel": "المراحل والكتب والمناهج من وزارة التربية الوطنية والديوان الوطني للمطبوعات المدرسية؛ المحتوى والأسئلة والأنشطة أصلية لضاديوم.",
+    "sourceUrl": "https://education.gov.dz/wp-content/uploads/2015/04/1-AM-lang-arabe.pdf",
+    "verified": true
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "اللغة العربية — حزم المطابقة الوطنية",
+      "description": "مطابقة الثالثة متوسط وفق الكتاب/المنهاج والمسار الرسمي المنشور، دون اختلاق عناوين دروس غير متاحة.",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "كتاب اللغة العربية — الثالثة متوسط — حزمة تغطية رسمية",
+          "type": "reading",
+          "estimatedMinutes": 40,
+          "summary": "حزمة وطنية أصلية من ضاديوم لمواءمة «كتاب اللغة العربية — الثالثة متوسط — حزمة تغطية رسمية» مع المنهج الجزائري الرسمي ضمن النطاق المنشور والقابل للتحقق.",
+          "content": "تمثل هذه العقدة «كتاب اللغة العربية — الثالثة متوسط — حزمة تغطية رسمية» كوحدة مطابقة وطنية على مستوى الكتاب/المنهاج/المسار الرسمي، وليست إعادة نشر لمحتوى الكتاب المدرسي. يعتمد ضاديوم على مصادر وزارة التربية الوطنية والديوان الوطني للمطبوعات المدرسية لإثبات المرحلة والمقرر والمسار، ثم يقدم شرحًا وأمثلة وأسئلة وأنشطة أصلية. يبدأ المتعلم بفهم الهدف، ثم يطبق مهارة القراءة أو الفهم أو اللغة أو الأدب أو التعبير في مثال جديد، ويبرر استجابته ويصححها وفق معيار واضح. في التعليم الثانوي تراعي الحزمة اختلاف العمق والتكوين بين شعب اللغة والأدب من جهة والشعب العلمية والتقنية من جهة، كما أكدت ترتيبات الدخول المدرسي 2026-2027. لا تُنسخ النصوص أو التمارين المحمية؛ عند الحاجة إلى نص مقرر يستخدم المتعلم كتابه الرسمي أو مصدره المرخص.",
+          "objectives": [
+            "أن يحدد المتعلم المهارة أو الكفاءة المستهدفة ضمن «كتاب اللغة العربية — الثالثة متوسط — حزمة تغطية رسمية».",
+            "أن يطبق المتعلم مهارة لغوية أو قرائية أو أدبية من نطاق الحزمة في موقف جديد.",
+            "أن يراجع المتعلم أداءه ويصححه اعتمادًا على قاعدة أو دليل."
+          ],
+          "vocabulary": [
+            {
+              "word": "نص",
+              "meaning": "بناء لغوي مترابط يحمل معنى."
+            },
+            {
+              "word": "كفاءة",
+              "meaning": "قدرة على توظيف المعارف والمهارات في موقف دال."
+            },
+            {
+              "word": "تعبير",
+              "meaning": "إنتاج شفهي أو كتابي ينقل فكرة بوضوح."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما وظيفة حزمة «كتاب اللغة العربية — الثالثة متوسط — حزمة تغطية رسمية» داخل ضاديوم؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "مواءمة المقرر الرسمي بمحتوى ضاديوم أصلي."
+                },
+                {
+                  "id": "b",
+                  "text": "نسخ الكتاب المدرسي كاملًا."
+                },
+                {
+                  "id": "c",
+                  "text": "اختراع مقرر جديد."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الحزمة تثبت نطاق المقرر وتقدم تعلمًا أصليًا دون إعادة نشر النص المحمي.",
+              "points": 1
+            },
+            {
+              "question": "ما أقوى دليل على الإتقان؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير أو شاهد."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ اسم الكتاب فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ إجابة جاهزة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في التطبيق المستقل.",
+              "points": 1
+            },
+            {
+              "question": "كيف تُستخدم الكتب الرسمية داخل ضاديوم؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "مرجع للنطاق والنص المرخص مع شرح وتطبيق أصليين."
+                },
+                {
+                  "id": "b",
+                  "text": "نسخ النصوص كاملة داخل المنصة."
+                },
+                {
+                  "id": "c",
+                  "text": "تجاهل المصدر الرسمي."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المصدر الرسمي يثبت المواءمة بينما المحتوى التعليمي في ضاديوم أصلي.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "فهم الكفاءة",
+              "activityType": "multiple_choice",
+              "instructions": "حدد الكفاءة المستهدفة واربطها بمهمة تعلم.",
+              "content": {
+                "origin": "DADYOOM_DZ_OFFICIAL_2026_2027_V1",
+                "track": "all"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل",
+              "activityType": "reading",
+              "instructions": "طبّق المهارة على نص أو مثال جديد من إنشاء ضاديوم.",
+              "content": {
+                "origin": "DADYOOM_DZ_OFFICIAL_2026_2027_V1",
+                "track": "all"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية",
+              "activityType": "writing",
+              "instructions": "راجع إجابتك وفق معيار نجاح وحدد تحسينًا واحدًا.",
+              "content": {
+                "origin": "DADYOOM_DZ_OFFICIAL_2026_2027_V1",
+                "track": "all"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية الوطنية الجزائرية + الديوان الوطني للمطبوعات المدرسية — التعليم المتوسط",
+            "url": "https://education.gov.dz/wp-content/uploads/2015/04/1-AM-lang-arabe.pdf",
+            "additionalUrls": [
+              "https://www.education.gov.dz/2016/04/20/2521/",
+              "https://www.onps.dz/",
+              "https://www.onps.dz/295",
+              "https://www.onps.dz/en/450",
+              "https://www.education.gov.dz/2026/07/30/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9-%D9%8A%D9%86%D8%B4%D9%91%D8%B7-%D9%86%D8%AF%D9%88%D8%A9-%D8%B5%D8%AD%D9%81%D9%8A%D8%A9/"
+            ]
+          },
+          "alignment": {
+            "mode": "official-book-scope-bundle",
+            "track": "all",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "dz-dadyoom-core-g8-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dz-dadyoom-core-g8-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dz-dadyoom-core-g8-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dz-dadyoom-core-g8-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dz-dadyoom-core-g8-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dz-dadyoom-core-g8-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dz-dadyoom-core-g8-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dz-dadyoom-core-g8-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dz-dadyoom-core-g8-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dz-dadyoom-core-g8-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dz-dadyoom-core-g8-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dz-dadyoom-core-g8-l12",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dz-dadyoom-core-g8-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dz-dadyoom-core-g8-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dz-dadyoom-core-g8-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dz-dadyoom-core-g8-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dz-dadyoom-core-g8-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dz-dadyoom-core-g8-l18",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
