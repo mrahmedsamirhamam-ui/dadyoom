@@ -21,6 +21,17 @@ type RegistryFile = {
   countries: CountryRegistryItem[];
 };
 
+type OfficialSourceCountry = {
+  code: string;
+  matchingStatus?: string | null;
+  verificationStatus?: string | null;
+};
+
+type OfficialSourcesFile = {
+  schemaVersion: number;
+  countries: OfficialSourceCountry[];
+};
+
 export type CurriculumPackSummary = {
   fileName: string;
   packKey: string;
@@ -52,6 +63,8 @@ export type CurriculumCountryCoverage = {
   packs: number;
   lessons: number;
   coreReady: boolean;
+  officialStatus: string;
+  officialVerificationStatus: string;
   officialReady: boolean;
   ready: boolean;
 };
@@ -250,6 +263,30 @@ export function getCurriculumControlCenter():
       registryPath
     ) as RegistryFile;
 
+  const officialSourcesPath =
+    path.join(
+      dir,
+      "official-sources-2026.json"
+    );
+
+  const officialSources =
+    readJson(
+      officialSourcesPath
+    ) as OfficialSourcesFile;
+
+  const officialByCountry =
+    new Map(
+      (Array.isArray(officialSources.countries)
+        ? officialSources.countries
+        : []
+      ).map(
+        (country) => [
+          country.code,
+          country,
+        ] as const
+      )
+    );
+
   const registryCountries =
     Array.isArray(registry.countries)
       ? registry.countries
@@ -390,7 +427,28 @@ export function getCurriculumControlCenter():
           Number(country.coreLessons) >=
             216;
 
+        const officialSource =
+          officialByCountry.get(
+            country.code
+          );
+
+        const officialStatus =
+          officialSource?.matchingStatus ??
+          "not-closed";
+
+        const officialVerificationStatus =
+          officialSource?.verificationStatus ??
+          "candidate";
+
+        /*
+         * A verified pack is necessary but not sufficient.
+         * "officialReady" must remain false until the national mapping
+         * manifest is explicitly closed after grade/term/unit/lesson
+         * provenance has been audited.
+         */
         const officialReady =
+          officialStatus === "complete" &&
+          officialVerificationStatus === "verified" &&
           countryPacks.length > 0;
 
         return {
@@ -417,6 +475,8 @@ export function getCurriculumControlCenter():
               country.coreLessons ??
                 0
             ),
+          officialStatus,
+          officialVerificationStatus,
           packs:
             countryPacks.length,
           lessons,
