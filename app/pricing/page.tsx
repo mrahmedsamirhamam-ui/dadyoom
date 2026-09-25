@@ -50,7 +50,7 @@ export default async function PricingPage() {
 
           <PlanCard
             title="ضاديوم Plus"
-            subtitle="10.00 USD / شهريًا"
+            subtitle="10.00 USD / شهريًا — الدفع قريبًا"
             current={status.plan === "plus"}
             accent
             features={[
