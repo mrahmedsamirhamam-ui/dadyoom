@@ -46,6 +46,10 @@ const requiredFiles = [
   "docs/RELEASE-GATE.md",
   "scripts/dadyoom-bootstrap-authenticated-e2e.ps1",
   "scripts/dadyoom-final-closure.ps1",
+  "data/curriculum-full20/closure-22/country-coverage.json",
+  "data/curriculum-full20/closure-22/country-coverage.csv",
+  "scripts/mvp-closure/verify-curriculum.mjs",
+  "scripts/mvp-closure/verify-content.mjs",
   "supabase/migrations/20260826_release_security_hardening_v1.sql",
   "supabase/migrations/20260925_fix_welcome_trial_to_one_day.sql",
   "supabase/migrations/20260925062000_secure_student_xp_and_plan_rpcs.sql",
@@ -340,6 +344,7 @@ console.log("FINAL_REQUIRED_FILES=PASS");
 console.log("FINAL_ARAB_COUNTRY_REGISTRY=22");
 console.log("FINAL_DADYOOM_CORE_COUNTRIES=22");
 console.log("FINAL_DADYOOM_CORE_TEMPLATES=72");
+console.log("FINAL_CURRICULUM_CLOSURE_ARTIFACTS=PASS");
 console.log("FINAL_OFFICIAL_SOURCE_CATALOG=22");
 console.log("FINAL_BAHRAIN_PACK=18");
 console.log("FINAL_DAD_GUARDS=PASS");
