@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "SY",
+    "nameAr": "سوريا"
+  },
+  "academicYear": "2026-2027",
+  "grade": 9,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 1,
+  "mappedLessons": 1,
+  "verifiedLessons": 1,
+  "scope": "current-officially-published-and-publicly-verifiable-scope",
+  "policy": "المطابقة على مستوى كتاب/منهاج العربية للصف؛ لا تُعاد النصوص ولا تُختلق عناوين وحدات غير منشورة.",
+  "mappings": [
+    {
+      "officialSlug": "sy-2026-2027-g9-arabic-book-curriculum",
+      "officialTitle": "اللغة العربية — الصف 9 الأساسي — حزمة الكتاب/المنهاج",
+      "source": {
+        "label": "وزارة التربية والتعليم السورية + المركز الوطني لتطوير المناهج التربوية",
+        "url": "https://moed.gov.sy/",
+        "additionalUrls": [
+          "https://sana.sy/education/2303177/",
+          "https://sana.sy/education/2449235/",
+          "https://sana.sy/education/2519264/",
+          "https://sana.sy/education/2403508/",
+          "https://sana.sy/education/2462169/"
+        ]
+      },
+      "relationType": "official-grade-book-curriculum+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المركز الوطني لتطوير المناهج يتيح الكتب الرقمية والتفاعلية لجميع الصفوف والمراحل، والكتب الرقمية تماثل الكتاب الورقي المعتمد. تُستخدم حزمة صفية أصلية دون إعادة نشر النصوص أو اختلاق عناوين وحدات غير متحققة.",
+      "coreCoverage": [
+        {
+          "slug": "sy-dadyoom-core-g9-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sy-dadyoom-core-g9-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sy-dadyoom-core-g9-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sy-dadyoom-core-g9-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sy-dadyoom-core-g9-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sy-dadyoom-core-g9-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sy-dadyoom-core-g9-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sy-dadyoom-core-g9-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sy-dadyoom-core-g9-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sy-dadyoom-core-g9-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sy-dadyoom-core-g9-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sy-dadyoom-core-g9-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sy-dadyoom-core-g9-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sy-dadyoom-core-g9-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sy-dadyoom-core-g9-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sy-dadyoom-core-g9-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sy-dadyoom-core-g9-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "sy-dadyoom-core-g9-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-ministry-portal+government-curriculum-center-reports+2026-textbook-development+national-pack"
+    }
+  ]
+}
