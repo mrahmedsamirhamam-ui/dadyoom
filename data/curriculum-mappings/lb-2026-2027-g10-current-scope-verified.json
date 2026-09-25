@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "LB",
+    "nameAr": "لبنان"
+  },
+  "academicYear": "2026-2027",
+  "grade": 10,
+  "semester": null,
+  "subject": "اللغة العربية وآدابها",
+  "status": "verified",
+  "officialLessons": 3,
+  "mappedLessons": 3,
+  "verifiedLessons": 3,
+  "scope": "current-official-curriculum-structure",
+  "policy": "المطابقة على مستوى المجالات الرسمية والمسارات الثانوية؛ لا تعاد نصوص الكتب ولا تُختلق عناوين دروس.",
+  "mappings": [
+    {
+      "officialSlug": "lb-2026-2027-g10-secondary-1-reading-literature",
+      "officialTitle": "المحادثة والقراءة والأدب والمحفوظات — الأولى الثانوية",
+      "source": {
+        "label": "المركز التربوي للبحوث والإنماء — منهج اللغة العربية وآدابها",
+        "url": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
+        "booksUrl": "https://www.crdp.org/books-pdf"
+      },
+      "relationType": "official-domain+secondary-track+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي، وتمثلهما حزمة ضاديوم أصلية مع Core كدعم مهاري فقط.",
+      "coreCoverage": [
+        {
+          "slug": "lb-dadyoom-core-g10-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "lb-dadyoom-core-g10-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "lb-dadyoom-core-g10-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "lb-dadyoom-core-g10-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "lb-dadyoom-core-g10-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "lb-dadyoom-core-g10-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "lb-dadyoom-core-g10-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "lb-dadyoom-core-g10-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "lb-dadyoom-core-g10-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "lb-dadyoom-core-g10-l16",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-crdp-arabic-curriculum+official-books-catalog+national-pack"
+    },
+    {
+      "officialSlug": "lb-2026-2027-g10-secondary-1-language-system",
+      "officialTitle": "القواعد والإملاء والبلاغة والعروض — الأولى الثانوية",
+      "source": {
+        "label": "المركز التربوي للبحوث والإنماء — منهج اللغة العربية وآدابها",
+        "url": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
+        "booksUrl": "https://www.crdp.org/books-pdf"
+      },
+      "relationType": "official-domain+secondary-track+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي، وتمثلهما حزمة ضاديوم أصلية مع Core كدعم مهاري فقط.",
+      "coreCoverage": [
+        {
+          "slug": "lb-dadyoom-core-g10-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "lb-dadyoom-core-g10-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "lb-dadyoom-core-g10-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "lb-dadyoom-core-g10-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "lb-dadyoom-core-g10-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "lb-dadyoom-core-g10-l12",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-crdp-arabic-curriculum+official-books-catalog+national-pack"
+    },
+    {
+      "officialSlug": "lb-2026-2027-g10-secondary-1-expression",
+      "officialTitle": "التعبير الشفهي والكتابي — الأولى الثانوية",
+      "source": {
+        "label": "المركز التربوي للبحوث والإنماء — منهج اللغة العربية وآدابها",
+        "url": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
+        "booksUrl": "https://www.crdp.org/books-pdf"
+      },
+      "relationType": "official-domain+secondary-track+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي، وتمثلهما حزمة ضاديوم أصلية مع Core كدعم مهاري فقط.",
+      "coreCoverage": [
+        {
+          "slug": "lb-dadyoom-core-g10-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "lb-dadyoom-core-g10-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "lb-dadyoom-core-g10-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "lb-dadyoom-core-g10-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "lb-dadyoom-core-g10-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "lb-dadyoom-core-g10-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-crdp-arabic-curriculum+official-books-catalog+national-pack"
+    }
+  ]
+}
