@@ -1,8 +1,5 @@
 "use client";
 
-import { TextToSpeech } from "@capacitor-community/text-to-speech";
-import { Capacitor } from "@capacitor/core";
-
 const ARABIC_LANGUAGE_CANDIDATES = [
   "ar-SA",
   "ar-EG",
@@ -10,13 +7,66 @@ const ARABIC_LANGUAGE_CANDIDATES = [
   "ar",
 ] as const;
 
+type CapacitorBridge = {
+  isNativePlatform?: () => boolean;
+  getPlatform?: () => string;
+};
+
 let cachedLanguage: string | null = null;
 
-export function isNativeTextToSpeechPlatform(): boolean {
+function runtimeCapacitor(): CapacitorBridge | null {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
   return (
-    typeof window !== "undefined" &&
-    Capacitor.isNativePlatform() &&
-    ["android", "ios"].includes(Capacitor.getPlatform())
+    (window as typeof window & {
+      Capacitor?: CapacitorBridge;
+    }).Capacitor ?? null
+  );
+}
+
+async function textToSpeechPlugin() {
+  const module =
+    await import(
+      "@capacitor-community/text-to-speech"
+    );
+
+  return module.TextToSpeech;
+}
+
+async function nativePlatform(): Promise<string> {
+  const bridge = runtimeCapacitor();
+  const runtimePlatform =
+    bridge?.getPlatform?.();
+
+  if (runtimePlatform) {
+    return runtimePlatform;
+  }
+
+  try {
+    const { Capacitor } =
+      await import("@capacitor/core");
+
+    return Capacitor.getPlatform();
+  } catch {
+    return "web";
+  }
+}
+
+export function isNativeTextToSpeechPlatform(): boolean {
+  const capacitor = runtimeCapacitor();
+
+  if (!capacitor) {
+    return false;
+  }
+
+  const platform =
+    capacitor.getPlatform?.() ?? "";
+
+  return (
+    capacitor.isNativePlatform?.() === true &&
+    ["android", "ios"].includes(platform)
   );
 }
 
@@ -26,6 +76,9 @@ async function resolveArabicLanguage(): Promise<string> {
   }
 
   try {
+    const TextToSpeech =
+      await textToSpeechPlugin();
+
     const { languages } =
       await TextToSpeech.getSupportedLanguages();
 
@@ -37,23 +90,31 @@ async function resolveArabicLanguage(): Promise<string> {
     );
 
     for (const candidate of ARABIC_LANGUAGE_CANDIDATES) {
-      const exact = normalized.get(candidate.toLowerCase());
+      const exact =
+        normalized.get(candidate.toLowerCase());
+
       if (exact) {
         cachedLanguage = exact;
         return exact;
       }
     }
 
-    const firstArabic = languages.find((language) =>
-      language.toLowerCase().startsWith("ar"),
-    );
+    const firstArabic =
+      languages.find((language) =>
+        language
+          .toLowerCase()
+          .startsWith("ar"),
+      );
 
     if (firstArabic) {
       cachedLanguage = firstArabic;
       return firstArabic;
     }
   } catch (error) {
-    console.warn("DADYOOM_NATIVE_TTS_LANGUAGES_FAILED", error);
+    console.warn(
+      "DADYOOM_NATIVE_TTS_LANGUAGES_FAILED",
+      error,
+    );
   }
 
   cachedLanguage = "ar-SA";
@@ -69,7 +130,9 @@ export async function speakNativeArabic(
   } = {},
 ): Promise<void> {
   if (!isNativeTextToSpeechPlatform()) {
-    throw new Error("NATIVE_TTS_PLATFORM_UNAVAILABLE");
+    throw new Error(
+      "NATIVE_TTS_PLATFORM_UNAVAILABLE",
+    );
   }
 
   const cleanText = text.trim();
@@ -78,9 +141,14 @@ export async function speakNativeArabic(
     return;
   }
 
-  const lang = await resolveArabicLanguage();
+  const TextToSpeech =
+    await textToSpeechPlugin();
+  const lang =
+    await resolveArabicLanguage();
 
-  await TextToSpeech.stop().catch(() => undefined);
+  await TextToSpeech.stop().catch(
+    () => undefined,
+  );
 
   await TextToSpeech.speak({
     text: cleanText,
@@ -98,7 +166,16 @@ export async function stopNativeArabicSpeech(): Promise<void> {
     return;
   }
 
-  await TextToSpeech.stop().catch(() => undefined);
+  try {
+    const TextToSpeech =
+      await textToSpeechPlugin();
+
+    await TextToSpeech.stop().catch(
+      () => undefined,
+    );
+  } catch {
+    // Native TTS is optional on web/server paths.
+  }
 }
 
 export async function nativeArabicTtsStatus() {
@@ -110,9 +187,15 @@ export async function nativeArabicTtsStatus() {
     };
   }
 
-  const language = await resolveArabicLanguage();
+  const language =
+    await resolveArabicLanguage();
+  const platform =
+    await nativePlatform();
 
   try {
+    const TextToSpeech =
+      await textToSpeechPlugin();
+
     const { supported } =
       await TextToSpeech.isLanguageSupported({
         lang: language,
@@ -120,13 +203,13 @@ export async function nativeArabicTtsStatus() {
 
     return {
       available: supported,
-      platform: Capacitor.getPlatform(),
+      platform,
       language,
     };
   } catch {
     return {
       available: true,
-      platform: Capacitor.getPlatform(),
+      platform,
       language,
     };
   }
