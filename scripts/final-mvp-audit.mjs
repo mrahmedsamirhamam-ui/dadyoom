@@ -47,6 +47,7 @@ const requiredFiles = [
   "supabase/migrations/20260826_release_security_hardening_v1.sql",
   "supabase/migrations/20260925_fix_welcome_trial_to_one_day.sql",
   "supabase/migrations/20260925062000_secure_student_xp_and_plan_rpcs.sql",
+  "supabase/migrations/20260925063500_harden_authorization_helper_rpcs.sql",
 ];
 
 for (const rel of requiredFiles) {
