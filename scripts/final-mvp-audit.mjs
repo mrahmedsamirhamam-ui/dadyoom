@@ -271,6 +271,28 @@ for (const marker of [
   }
 }
 
+const legacySkillProgress = fs.readFileSync(
+  path.resolve(
+    root,
+    "services/progress/skills.service.ts",
+  ),
+  "utf8",
+);
+
+for (const marker of [
+  '.from("student_skills")',
+  ".upsert(",
+  '"student_email,skill"',
+  "correct_attempts",
+  "attempts + 1",
+]) {
+  if (!legacySkillProgress.includes(marker)) {
+    throw new Error(
+      `FINAL_ASSESSMENT_SKILL_UPSERT_MISSING:${marker}`,
+    );
+  }
+}
+
 const checkoutUI = fs.readFileSync(
   path.resolve(
     root,
@@ -356,4 +378,5 @@ console.log("FINAL_ZERO_COST_PAYMENTS=PAUSED");
 console.log("FINAL_LOCAL_ARTIFACTS_TRACKED=0");
 console.log("FINAL_TRACKED_BACKUPS_EXISTING=0");
 console.log("FINAL_INTERNAL_LINK_CODE_GENERATORS=SERVICE_ROLE_ONLY");
+console.log("FINAL_ASSESSMENT_SKILL_UPSERT=PASS");
 console.log("FINAL_MVP_SOURCE_AUDIT=PASS");
