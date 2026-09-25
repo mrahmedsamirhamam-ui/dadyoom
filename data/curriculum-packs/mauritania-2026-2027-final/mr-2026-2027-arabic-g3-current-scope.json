@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "packKey": "MR:2026-2027:arabic:g3:current-scope",
+  "country": {
+    "code": "MR",
+    "nameAr": "موريتانيا",
+    "nameEn": "Mauritania"
+  },
+  "academicYear": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "stage": {
+    "code": "primary",
+    "nameAr": "التعليم الابتدائي"
+  },
+  "grade": {
+    "number": 3,
+    "nameAr": "السنة 3 ابتدائي",
+    "nameEn": "Level 3"
+  },
+  "semester": null,
+  "curriculum": {
+    "nameAr": "اللغة العربية — المطابقة الرسمية الموريتانية",
+    "nameEn": "Arabic — Mauritania Official Curriculum Match",
+    "description": "طبقة وطنية مستقلة مرتبطة بكتب العربية الرسمية للمعهد التربوي الوطني وبنية التعليم الحالية.",
+    "storageNameAr": "اللغة العربية — المطابقة الرسمية الموريتانية"
+  },
+  "rights": {
+    "contentOwner": "dadyoom",
+    "sourceLabel": "المعهد التربوي الوطني/كُتبي + وزارة التربية؛ المحتوى التعليمي أصلي لضاديوم.",
+    "sourceUrl": "https://koutoubi.mr/fondamentals/3eme/Arabe/",
+    "verified": true
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "اللغة العربية — حزم الكتب الرسمية",
+      "description": "السنة 3 ابتدائي: تغطية الكتاب الرسمي والمسار عند وجوده.",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "اللغة العربية — السنة 3 ابتدائي — حزمة الكتاب الرسمي",
+          "type": "reading",
+          "estimatedMinutes": 40,
+          "summary": "حزمة وطنية أصلية من ضاديوم لمواءمة كتاب اللغة العربية الرسمي في السنة 3 ابتدائي بموريتانيا.",
+          "content": "تمثل هذه العقدة «اللغة العربية — السنة 3 ابتدائي» وحدة مطابقة وطنية على مستوى الكتاب الرسمي المنشور عبر مبادرة كُتبي التي أطلقها المعهد التربوي الوطني، وتؤكد أنها تضم الموارد التعليمية الرسمية المعتمدة. يعتمد ضاديوم أيضًا على وزارة التربية وإصلاح النظام التعليمي في تثبيت الإصلاح الجاري، ومكانة العربية، والتحضير للعام الدراسي 2026-2027. في التعليم الابتدائي والإعدادي تغطي الحزمة القراءة والكتابة والفهم والتعبير والقواعد بما يناسب المستوى. وفي السنوات الخامسة والسادسة والسابعة من الثانوي تُفصل الحزمة بين الشعبة الأدبية والشعبة العلمية كما يظهر في الكتب الرسمية الحالية. المحتوى والشروح والأسئلة والأنشطة هنا أصلية لضاديوم ولا تعيد نشر نصوص الكتب المحمية.",
+          "objectives": [
+            "أن يحدد المتعلم الكفاءات اللغوية المستهدفة في السنة 3 ابتدائي.",
+            "أن يطبق المتعلم مهارة قراءة أو قواعد أو تعبير في موقف جديد.",
+            "أن يراجع المتعلم أداءه ويصححه اعتمادًا على معيار واضح."
+          ],
+          "vocabulary": [
+            {
+              "word": "قراءة",
+              "meaning": "فهم النص وتحليل معناه."
+            },
+            {
+              "word": "تعبير",
+              "meaning": "إنتاج لغوي شفهي أو كتابي يحقق غرضًا واضحًا."
+            },
+            {
+              "word": "قواعد",
+              "meaning": "أنظمة تضبط بناء الكلمات والجمل واستعمالها."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما وظيفة الحزمة داخل ضاديوم؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "مواءمة الكتاب الرسمي بمحتوى ضاديوم أصلي."
+                },
+                {
+                  "id": "b",
+                  "text": "نسخ الكتاب كاملًا."
+                },
+                {
+                  "id": "c",
+                  "text": "اختراع مقرر جديد."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الحزمة تربط الكتاب الرسمي بتعلم أصلي.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على الإتقان؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير أو شاهد."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ اسم الكتاب."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ إجابة جاهزة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في الأداء المستقل.",
+              "points": 1
+            },
+            {
+              "question": "كيف تراجع عملك؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن الناتج بالمعيار وأصحح."
+                },
+                {
+                  "id": "b",
+                  "text": "لا أراجع."
+                },
+                {
+                  "id": "c",
+                  "text": "أغير الإجابة عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة وفق معيار تحسن الأداء.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "فهم موجّه",
+              "activityType": "multiple_choice",
+              "instructions": "حدد المهارة المناسبة للمهمة.",
+              "content": {
+                "origin": "DADYOOM_MR_OFFICIAL_2026_2027_V1",
+                "track": "all"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل",
+              "activityType": "reading",
+              "instructions": "طبّق المهارة على نص أصلي مناسب للمستوى.",
+              "content": {
+                "origin": "DADYOOM_MR_OFFICIAL_2026_2027_V1",
+                "track": "all"
+              },
+              "published": true
+            },
+            {
+              "title": "إنتاج ومراجعة",
+              "activityType": "writing",
+              "instructions": "اكتب استجابة قصيرة ثم راجعها.",
+              "content": {
+                "origin": "DADYOOM_MR_OFFICIAL_2026_2027_V1",
+                "track": "all"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "المعهد التربوي الوطني — كُتبي + وزارة التربية وإصلاح النظام التعليمي",
+            "url": "https://koutoubi.mr/fondamentals/3eme/Arabe/",
+            "additionalUrls": [
+              "https://koutoubi.mr/",
+              "https://www.education.gov.mr/",
+              "https://www.education.gov.mr/ar/node/1090",
+              "https://www.education.gov.mr/index.php/ar/node/1132",
+              "https://education.gov.mr/fr/node/982",
+              "https://www.education.gov.mr/ar/node/555"
+            ]
+          },
+          "alignment": {
+            "mode": "official-book-by-grade",
+            "track": "all",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "mr-dadyoom-core-g3-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "mr-dadyoom-core-g3-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "mr-dadyoom-core-g3-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "mr-dadyoom-core-g3-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "mr-dadyoom-core-g3-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "mr-dadyoom-core-g3-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "mr-dadyoom-core-g3-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "mr-dadyoom-core-g3-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "mr-dadyoom-core-g3-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "mr-dadyoom-core-g3-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "mr-dadyoom-core-g3-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "mr-dadyoom-core-g3-l12",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "mr-dadyoom-core-g3-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "mr-dadyoom-core-g3-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "mr-dadyoom-core-g3-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "mr-dadyoom-core-g3-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "mr-dadyoom-core-g3-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "mr-dadyoom-core-g3-l18",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
