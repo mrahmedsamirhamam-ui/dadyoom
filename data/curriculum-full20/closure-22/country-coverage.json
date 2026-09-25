@@ -670,24 +670,76 @@
       },
       "national": {
         "complete": false,
-        "matchingStatus": "not-closed",
-        "verificationStatus": "candidate",
+        "matchingStatus": "current-scope-complete",
+        "verificationStatus": "verified",
         "evidenceSources": [
           {
-            "url": "https://www.edu.gov.qa/",
-            "kind": "official-portal"
+            "url": "https://www.edu.gov.qa/ar/Content/CurriculumSection",
+            "kind": "official-current-curriculum-department"
+          },
+          {
+            "url": "https://privateschoolssearch.edu.gov.qa/Documents/Publications/CurriculumStandards/GeneralFrameworkNationalEducation.pdf?csf=1&e=PfpExd",
+            "kind": "official-national-curriculum-framework"
+          },
+          {
+            "url": "https://www.edu.gov.qa/ar/News/Details/1621800",
+            "kind": "official-arabic-policy-grades-1-12"
+          },
+          {
+            "url": "https://moewebprod.edu.gov.qa/ar/News/Details/14514600",
+            "kind": "official-2026-2027-calendar"
           }
         ],
-        "verifiedPackFiles": [],
-        "missingEvidence": [
-          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
-          "اكتمال تغطية الفصول/الفترات الدراسية",
-          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
-          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
-          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
-        ]
+        "verifiedPackFiles": [
+          "data/curriculum-packs/qatar-2026-2027-final/qa-2026-2027-arabic-g1-current-scope.json",
+          "data/curriculum-packs/qatar-2026-2027-final/qa-2026-2027-arabic-g2-current-scope.json",
+          "data/curriculum-packs/qatar-2026-2027-final/qa-2026-2027-arabic-g3-current-scope.json",
+          "data/curriculum-packs/qatar-2026-2027-final/qa-2026-2027-arabic-g4-current-scope.json",
+          "data/curriculum-packs/qatar-2026-2027-final/qa-2026-2027-arabic-g5-current-scope.json",
+          "data/curriculum-packs/qatar-2026-2027-final/qa-2026-2027-arabic-g6-current-scope.json",
+          "data/curriculum-packs/qatar-2026-2027-final/qa-2026-2027-arabic-g7-current-scope.json",
+          "data/curriculum-packs/qatar-2026-2027-final/qa-2026-2027-arabic-g8-current-scope.json",
+          "data/curriculum-packs/qatar-2026-2027-final/qa-2026-2027-arabic-g9-current-scope.json",
+          "data/curriculum-packs/qatar-2026-2027-final/qa-2026-2027-arabic-g10-current-scope.json",
+          "data/curriculum-packs/qatar-2026-2027-final/qa-2026-2027-arabic-g11-current-scope.json",
+          "data/curriculum-packs/qatar-2026-2027-final/qa-2026-2027-arabic-g12-current-scope.json"
+        ],
+        "verifiedMappingFiles": [
+          "data/curriculum-mappings/qa-2026-2027-g1-current-scope-verified.json",
+          "data/curriculum-mappings/qa-2026-2027-g2-current-scope-verified.json",
+          "data/curriculum-mappings/qa-2026-2027-g3-current-scope-verified.json",
+          "data/curriculum-mappings/qa-2026-2027-g4-current-scope-verified.json",
+          "data/curriculum-mappings/qa-2026-2027-g5-current-scope-verified.json",
+          "data/curriculum-mappings/qa-2026-2027-g6-current-scope-verified.json",
+          "data/curriculum-mappings/qa-2026-2027-g7-current-scope-verified.json",
+          "data/curriculum-mappings/qa-2026-2027-g8-current-scope-verified.json",
+          "data/curriculum-mappings/qa-2026-2027-g9-current-scope-verified.json",
+          "data/curriculum-mappings/qa-2026-2027-g10-current-scope-verified.json",
+          "data/curriculum-mappings/qa-2026-2027-g11-current-scope-verified.json",
+          "data/curriculum-mappings/qa-2026-2027-g12-current-scope-verified.json"
+        ],
+        "missingEvidence": [],
+        "currentScopeComplete": true,
+        "fullYearComplete": false,
+        "mappingSummary": {
+          "mappingGrades": 12,
+          "verifiedMappingGrades": 12,
+          "officialCoverageNodes": 24,
+          "mappedCoverageNodes": 24,
+          "verifiedCoverageNodes": 24,
+          "nationalExtensions": 24
+        },
+        "databaseSummary": {
+          "curriculumId": "f1d4b56b-2b22-4902-979f-48b1c8fdaa67",
+          "grades": 12,
+          "lessons": 24,
+          "questions": 72,
+          "vocabulary": 72,
+          "activities": 72
+        },
+        "note": "مغلق للنطاق الرسمي القابل للتحقق حاليًا: الصفوف 1-12، الفصلان الدراسيان، والمعايير/نواتج التعلم بحسب المجال والسنة الدراسية. لا تُختلق أسماء وحدات أو دروس غير مفهرسة علنًا."
       },
-      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+      "publicationReadiness": "NATIONAL_CURRENT_SCOPE_COMPLETE"
     },
     {
       "code": "SA",
