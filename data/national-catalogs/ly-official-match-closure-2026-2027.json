@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "LY",
+    "nameAr": "ليبيا"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "status": "current-scope-complete",
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-09-25",
+  "authority": {
+    "nameAr": "مركز المناهج التعليمية والبحوث التربوية — وزارة التربية والتعليم الليبية",
+    "centerUrl": "https://cerc.moe.gov.ly/",
+    "curriculumCatalog": "https://cerc.moe.gov.ly/educational-curricul/",
+    "calendar20262027": {
+      "basic1to5": "https://cerc.moe.gov.ly/study-exam-dates/school-year-system/",
+      "transport": "https://cerc.moe.gov.ly/study-exam-dates/general-term-system/",
+      "certificates": "https://cerc.moe.gov.ly/study-exam-dates/primary-and-secondary/"
+    }
+  },
+  "coverage": {
+    "grades": "12/12",
+    "verifiedMappingGrades": "12/12",
+    "officialCoverageNodes": 123,
+    "mappedCoverageNodes": 123,
+    "verifiedCoverageNodes": 123,
+    "database": {
+      "lessons": 123,
+      "questions": 369,
+      "vocabulary": 369,
+      "activities": 369
+    },
+    "basic": {
+      "G1-G5": "6 annual Arabic domains per grade",
+      "G6-G8": "6 Arabic domains × 2 semesters per grade",
+      "G9": "6 annual certificate Arabic domains"
+    },
+    "secondary": {
+      "G10": "6 Arabic domains × 2 semesters",
+      "G11": "scientific + literary × 2 semesters × 6 Arabic domains",
+      "G12": "scientific + literary annual domains + explicit literary book coverage"
+    },
+    "grade12LiteraryBooks": [
+      "الأدب والنصوص",
+      "المطالعة والإنشاء",
+      "النقد الأدبي"
+    ]
+  },
+  "databaseCleanup": {
+    "legacyGrade5Curriculum": "deactivated-not-deleted",
+    "activeOfficialCurriculum": "اللغة العربية — المطابقة الرسمية الليبية"
+  },
+  "qualityGates": {
+    "allLessonsPublished": true,
+    "allLessonsHaveOfficialSource": true,
+    "minimumQuestionsPerLesson": 3,
+    "minimumVocabularyPerLesson": 3,
+    "minimumActivitiesPerLesson": 3,
+    "packGradesValid": "12/12",
+    "mappingGradesVerified": "12/12"
+  },
+  "claimPolicy": "عبارة «مطابق للمنهج الرسمي الليبي» تعني أن ضاديوم مواءم مع الكتب والمجالات والمسارات المنشورة من مركز المناهج والوزارة ضمن النطاق الحالي. لا تعني اعتمادًا أو شراكة أو تأييدًا رسميًا.",
+  "copyrightPolicy": "لا يعيد ضاديوم نشر نصوص الكتب المحمية؛ تستخدم البنية والعناوين والمجالات وروابط المركز لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية لضاديوم."
+}
