@@ -1,0 +1,533 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "PS",
+    "nameAr": "فلسطين"
+  },
+  "academicYear": "2026-2027",
+  "grade": 1,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 12,
+  "mappedLessons": 12,
+  "verifiedLessons": 12,
+  "scope": "current-books+2026-oer+both-semesters",
+  "policy": "مواءمة المجالات والمهارات الرسمية المنشورة مع Core Bundles وNational Extensions أصلية؛ لا إعادة نشر للنصوص.",
+  "mappings": [
+    {
+      "officialSlug": "ps-2026-2027-g1-s1-listening-speaking",
+      "officialTitle": "الاستماع والتحدث — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية — بوابة الكتب والرزم",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «الاستماع والتحدث» في المنهج الفلسطيني مغطى بحزمة Core المناسبة مع تطبيق وطني فلسطيني أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g1-l16",
+          "relation": "supporting-skill",
+          "title": "الاستماع واتباع التعليمات"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l17",
+          "relation": "supporting-skill",
+          "title": "كتابة جملة واضحة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-textbooks+official-current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g1-s1-reading",
+      "officialTitle": "القراءة والفهم — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية — بوابة الكتب والرزم",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «القراءة والفهم» في المنهج الفلسطيني مغطى بحزمة Core المناسبة مع تطبيق وطني فلسطيني أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g1-l01",
+          "relation": "supporting-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l03",
+          "relation": "supporting-skill",
+          "title": "الحركات القصيرة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l04",
+          "relation": "supporting-skill",
+          "title": "السكون والمقطع"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l05",
+          "relation": "supporting-skill",
+          "title": "حروف المد"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l06",
+          "relation": "supporting-skill",
+          "title": "الشدة والتنوين"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l13",
+          "relation": "supporting-skill",
+          "title": "قراءة نص قصير"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l14",
+          "relation": "supporting-skill",
+          "title": "الفكرة الرئيسة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l15",
+          "relation": "supporting-skill",
+          "title": "ترتيب الأحداث"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-textbooks+official-current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g1-s1-literature",
+      "officialTitle": "النصوص والتذوق — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية — بوابة الكتب والرزم",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «النصوص والتذوق» في المنهج الفلسطيني مغطى بحزمة Core المناسبة مع تطبيق وطني فلسطيني أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g1-l13",
+          "relation": "supporting-skill",
+          "title": "قراءة نص قصير"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l14",
+          "relation": "supporting-skill",
+          "title": "الفكرة الرئيسة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l15",
+          "relation": "supporting-skill",
+          "title": "ترتيب الأحداث"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-textbooks+official-current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g1-s1-grammar",
+      "officialTitle": "النحو والبناء اللغوي — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية — بوابة الكتب والرزم",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «النحو والبناء اللغوي» في المنهج الفلسطيني مغطى بحزمة Core المناسبة مع تطبيق وطني فلسطيني أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g1-l07",
+          "relation": "supporting-skill",
+          "title": "بناء الكلمة من المقاطع"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l08",
+          "relation": "supporting-skill",
+          "title": "اللام الشمسية والقمرية"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l09",
+          "relation": "supporting-skill",
+          "title": "المفرد والجمع"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l10",
+          "relation": "supporting-skill",
+          "title": "الجملة الاسمية البسيطة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l11",
+          "relation": "supporting-skill",
+          "title": "الجملة الفعلية البسيطة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l12",
+          "relation": "supporting-skill",
+          "title": "أدوات الاستفهام"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-textbooks+official-current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g1-s1-spelling",
+      "officialTitle": "الإملاء والخط — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية — بوابة الكتب والرزم",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «الإملاء والخط» في المنهج الفلسطيني مغطى بحزمة Core المناسبة مع تطبيق وطني فلسطيني أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g1-l01",
+          "relation": "supporting-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l03",
+          "relation": "supporting-skill",
+          "title": "الحركات القصيرة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l04",
+          "relation": "supporting-skill",
+          "title": "السكون والمقطع"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l05",
+          "relation": "supporting-skill",
+          "title": "حروف المد"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l06",
+          "relation": "supporting-skill",
+          "title": "الشدة والتنوين"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l08",
+          "relation": "supporting-skill",
+          "title": "اللام الشمسية والقمرية"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l17",
+          "relation": "supporting-skill",
+          "title": "كتابة جملة واضحة"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-textbooks+official-current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g1-s1-writing",
+      "officialTitle": "الكتابة والتعبير — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية — بوابة الكتب والرزم",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «الكتابة والتعبير» في المنهج الفلسطيني مغطى بحزمة Core المناسبة مع تطبيق وطني فلسطيني أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g1-l12",
+          "relation": "supporting-skill",
+          "title": "أدوات الاستفهام"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l15",
+          "relation": "supporting-skill",
+          "title": "ترتيب الأحداث"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l17",
+          "relation": "supporting-skill",
+          "title": "كتابة جملة واضحة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-textbooks+official-current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g1-s2-listening-speaking",
+      "officialTitle": "الاستماع والتحدث — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية — بوابة الكتب والرزم",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «الاستماع والتحدث» في المنهج الفلسطيني مغطى بحزمة Core المناسبة مع تطبيق وطني فلسطيني أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g1-l16",
+          "relation": "supporting-skill",
+          "title": "الاستماع واتباع التعليمات"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l17",
+          "relation": "supporting-skill",
+          "title": "كتابة جملة واضحة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-textbooks+official-current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g1-s2-reading",
+      "officialTitle": "القراءة والفهم — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية — بوابة الكتب والرزم",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «القراءة والفهم» في المنهج الفلسطيني مغطى بحزمة Core المناسبة مع تطبيق وطني فلسطيني أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g1-l01",
+          "relation": "supporting-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l03",
+          "relation": "supporting-skill",
+          "title": "الحركات القصيرة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l04",
+          "relation": "supporting-skill",
+          "title": "السكون والمقطع"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l05",
+          "relation": "supporting-skill",
+          "title": "حروف المد"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l06",
+          "relation": "supporting-skill",
+          "title": "الشدة والتنوين"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l13",
+          "relation": "supporting-skill",
+          "title": "قراءة نص قصير"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l14",
+          "relation": "supporting-skill",
+          "title": "الفكرة الرئيسة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l15",
+          "relation": "supporting-skill",
+          "title": "ترتيب الأحداث"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-textbooks+official-current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g1-s2-literature",
+      "officialTitle": "النصوص والتذوق — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية — بوابة الكتب والرزم",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «النصوص والتذوق» في المنهج الفلسطيني مغطى بحزمة Core المناسبة مع تطبيق وطني فلسطيني أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g1-l13",
+          "relation": "supporting-skill",
+          "title": "قراءة نص قصير"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l14",
+          "relation": "supporting-skill",
+          "title": "الفكرة الرئيسة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l15",
+          "relation": "supporting-skill",
+          "title": "ترتيب الأحداث"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-textbooks+official-current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g1-s2-grammar",
+      "officialTitle": "النحو والبناء اللغوي — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية — بوابة الكتب والرزم",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «النحو والبناء اللغوي» في المنهج الفلسطيني مغطى بحزمة Core المناسبة مع تطبيق وطني فلسطيني أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g1-l07",
+          "relation": "supporting-skill",
+          "title": "بناء الكلمة من المقاطع"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l08",
+          "relation": "supporting-skill",
+          "title": "اللام الشمسية والقمرية"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l09",
+          "relation": "supporting-skill",
+          "title": "المفرد والجمع"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l10",
+          "relation": "supporting-skill",
+          "title": "الجملة الاسمية البسيطة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l11",
+          "relation": "supporting-skill",
+          "title": "الجملة الفعلية البسيطة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l12",
+          "relation": "supporting-skill",
+          "title": "أدوات الاستفهام"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-textbooks+official-current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g1-s2-spelling",
+      "officialTitle": "الإملاء والخط — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية — بوابة الكتب والرزم",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «الإملاء والخط» في المنهج الفلسطيني مغطى بحزمة Core المناسبة مع تطبيق وطني فلسطيني أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g1-l01",
+          "relation": "supporting-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l03",
+          "relation": "supporting-skill",
+          "title": "الحركات القصيرة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l04",
+          "relation": "supporting-skill",
+          "title": "السكون والمقطع"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l05",
+          "relation": "supporting-skill",
+          "title": "حروف المد"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l06",
+          "relation": "supporting-skill",
+          "title": "الشدة والتنوين"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l08",
+          "relation": "supporting-skill",
+          "title": "اللام الشمسية والقمرية"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l17",
+          "relation": "supporting-skill",
+          "title": "كتابة جملة واضحة"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-textbooks+official-current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g1-s2-writing",
+      "officialTitle": "الكتابة والتعبير — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية — بوابة الكتب والرزم",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «الكتابة والتعبير» في المنهج الفلسطيني مغطى بحزمة Core المناسبة مع تطبيق وطني فلسطيني أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g1-l12",
+          "relation": "supporting-skill",
+          "title": "أدوات الاستفهام"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l15",
+          "relation": "supporting-skill",
+          "title": "ترتيب الأحداث"
+        },
+        {
+          "slug": "ps-dadyoom-core-g1-l17",
+          "relation": "supporting-skill",
+          "title": "كتابة جملة واضحة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-textbooks+official-current-packages+core-skill-bundle+national-pack-v1"
+    }
+  ]
+}
