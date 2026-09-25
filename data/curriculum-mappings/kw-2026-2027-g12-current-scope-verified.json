@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "KW",
+    "nameAr": "الكويت"
+  },
+  "academicYear": "2026-2027",
+  "grade": 12,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 2,
+  "mappedLessons": 2,
+  "verifiedLessons": 2,
+  "scope": "current-officially-published-and-publicly-verifiable-scope",
+  "policy": "مطابقة على مستوى مجال المهارة أو حزمة المقرر/الفصل بحسب ما تنشره الوزارة، مع National Extensions أصلية وعدم اختلاق عناوين دروس.",
+  "mappings": [
+    {
+      "officialSlug": "kw-2026-2027-g12-semester-1-arabic-course-bundle",
+      "officialTitle": "مقرر اللغة العربية — الفصل الدراسي الأول — حزمة نواتج التعلم",
+      "source": {
+        "label": "وزارة التربية الكويتية — مقرر اللغة العربية في الثانوية ضمن النطاق العام المنشور",
+        "url": "https://elibrary.moe.edu.kw/StudentsLibrary",
+        "calendarUrl": "https://www.moe.edu.kw/pages/calendar",
+        "secondaryTracksUrl": "https://www.moe.edu.kw/news/1343",
+        "secondaryArabicEvidenceUrl": "https://moe.edu.kw/news/1036"
+      },
+      "relationType": "course-semester-coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "واجهة الوزارة العامة تثبت المقرر والنظام والفصل الدراسي ولا تعرض تسلسل عناوين وحدات الثانوية بصورة قابلة للتدقيق؛ لذلك تمثل المطابقة حزمة مقرر/فصل دون اختلاق عناوين رسمية.",
+      "coreCoverage": [
+        {
+          "slug": "kw-dadyoom-core-g12-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-elibrary+official-calendar+official-secondary-system+current-2026-2027-curriculum-evidence+national-pack"
+    },
+    {
+      "officialSlug": "kw-2026-2027-g12-semester-2-arabic-course-bundle",
+      "officialTitle": "مقرر اللغة العربية — الفصل الدراسي الثاني — حزمة نواتج التعلم",
+      "source": {
+        "label": "وزارة التربية الكويتية — مقرر اللغة العربية في الثانوية ضمن النطاق العام المنشور",
+        "url": "https://elibrary.moe.edu.kw/StudentsLibrary",
+        "calendarUrl": "https://www.moe.edu.kw/pages/calendar",
+        "secondaryTracksUrl": "https://www.moe.edu.kw/news/1343",
+        "secondaryArabicEvidenceUrl": "https://moe.edu.kw/news/1036"
+      },
+      "relationType": "course-semester-coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "واجهة الوزارة العامة تثبت المقرر والنظام والفصل الدراسي ولا تعرض تسلسل عناوين وحدات الثانوية بصورة قابلة للتدقيق؛ لذلك تمثل المطابقة حزمة مقرر/فصل دون اختلاق عناوين رسمية.",
+      "coreCoverage": [
+        {
+          "slug": "kw-dadyoom-core-g12-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "kw-dadyoom-core-g12-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-elibrary+official-calendar+official-secondary-system+current-2026-2027-curriculum-evidence+national-pack"
+    }
+  ]
+}
