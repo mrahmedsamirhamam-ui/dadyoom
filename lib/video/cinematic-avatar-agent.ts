@@ -116,10 +116,18 @@ function higgsfieldGenerateAudio() {
 
 
 function bytezVideoModel() {
-  return (
-    env("BYTEZ_VIDEO_MODEL") ||
-    "Wan-AI/Wan2.1-T2V-1.3B"
-  );
+  const configured =
+    env("BYTEZ_VIDEO_MODEL");
+
+  if (
+    !configured ||
+    configured ===
+      "Wan-AI/Wan2.1-T2V-1.3B"
+  ) {
+    return "ali-vilab/text-to-video-ms-1.7b";
+  }
+
+  return configured;
 }
 
 function bytezVideoModelAllowed(model: string) {
@@ -131,7 +139,7 @@ function bytezVideoModelAllowed(model: string) {
   }
 
   const allowed = new Set([
-    "Wan-AI/Wan2.1-T2V-1.3B",
+    "ali-vilab/text-to-video-ms-1.7b",
     ...env("BYTEZ_FREE_VIDEO_MODEL_ALLOWLIST")
       .split(/[;,\n]+/u)
       .map((value) => value.trim())
