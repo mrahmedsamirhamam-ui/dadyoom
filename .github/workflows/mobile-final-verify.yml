@@ -193,6 +193,7 @@ jobs:
         run: npm run build:vinext
 
       - name: Authenticated product E2E
+        if: github.event_name == 'workflow_dispatch'
         env:
           NEXT_PUBLIC_SUPABASE_URL: "https://hvqsvtomhlxavmfqoxfz.supabase.co"
           NEXT_PUBLIC_SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh2cXN2dG9taGx4YXZtZnFveGZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ5NjU1MzcsImV4cCI6MjEwMDU0MTUzN30.gkH-gKrAtl6SjcMKzYREZgZOsqE11LLiL2DrC--k7-s"
@@ -200,10 +201,15 @@ jobs:
         run: |
           set -euo pipefail
           if [[ -z "${SUPABASE_SERVICE_ROLE_KEY:-}" ]]; then
-            echo "AUTHENTICATED_E2E_SECRET=BLOCKED_NON_FATAL_FOR_COMMIT_VERIFY"
-            echo "Authenticated E2E was not executed because the GitHub Actions service-role secret is not configured."
-            echo "Final closure remains fail-closed: it bootstraps the secret, dispatches this workflow, and requires E2E PASS before production deployment."
-            exit 0
+            echo "AUTHENTICATED_E2E_SECRET=FAIL_MISSING"
+            echo "Final workflow_dispatch closure requires a valid Supabase elevated server key."
+            exit 42
           fi
           npx playwright install --with-deps chromium
           node scripts/final-e2e-release-gate.mjs
+
+      - name: Authenticated E2E deferred on push
+        if: github.event_name != 'workflow_dispatch'
+        run: |
+          echo "AUTHENTICATED_E2E=DEFERRED_TO_FINAL_CLOSURE"
+          echo "Push verification remains code/build focused; workflow_dispatch is the fail-closed authenticated release gate."
