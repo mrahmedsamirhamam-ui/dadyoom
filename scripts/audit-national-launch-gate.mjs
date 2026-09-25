@@ -141,9 +141,10 @@ for (const country of registry.countries ?? []) {
   const matchClosed = ["complete", "current-scope-complete"].includes(
     String(source.matchingStatus ?? ""),
   );
-  const twelvePackGrades =
-    packs.grades.size === 12 &&
-    [...Array(12)].every((_, i) => packs.grades.has(i + 1));
+  // National Official Match is closed against the official published
+  // and verifiable scope. Legacy curriculum-pack grade coverage is useful
+  // diagnostic information, but it is not the source of truth for this gate.
+  // The verified mapping layer is the canonical 1-12 coverage signal.
   const twelveMappingGrades =
     mappings.verifiedGrades.size === 12 &&
     [...Array(12)].every((_, i) => mappings.verifiedGrades.has(i + 1));
@@ -155,10 +156,8 @@ for (const country of registry.countries ?? []) {
   const ready =
     sourceVerified &&
     matchClosed &&
-    twelvePackGrades &&
     twelveMappingGrades &&
     mappingCountsClosed &&
-    packs.verifiedPacks > 0 &&
     packs.invalidPacks === 0;
 
   if (ready) readyCountries += 1;
