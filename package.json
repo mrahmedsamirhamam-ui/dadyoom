@@ -22,7 +22,7 @@
     "curriculum:import": "node scripts/import-curriculum-pack.mjs",
     "release:audit": "node scripts/release-audit.mjs",
     "curriculum:coverage": "node scripts/curriculum-coverage.mjs",
-    "release:final-audit": "node scripts/final-mvp-audit.mjs",
+    "release:final-audit": "node scripts/final-mvp-audit.mjs && npm run curriculum:gate:official-22",
     "prebuild": "node scripts/write-app-version.mjs",
     "curriculum:audit:bahrain": "node scripts/audit-bahrain-official.mjs",
     "dev:vinext": "vinext dev --port 3001",
