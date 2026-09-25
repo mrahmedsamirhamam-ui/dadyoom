@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "KM",
+    "nameAr": "جزر القمر",
+    "nameEn": "Comoros"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "verificationStatus": "verified-source-structure",
+  "officialCoverageUnit": "education-stage+national-arabic-competency-bundle",
+  "educationStructure": {
+    "preElementary": "3 سنوات خارج نطاق Grades 1-12",
+    "elementary": {
+      "years": 5,
+      "grades": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "secondaryFirstCycle": {
+      "years": 4,
+      "grades": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "officialClasses": [
+        "6e",
+        "5e",
+        "4e",
+        "3e"
+      ]
+    },
+    "secondarySecondCycle": {
+      "years": 3,
+      "grades": [
+        10,
+        11,
+        12
+      ],
+      "officialClasses": [
+        "Seconde",
+        "Première",
+        "Terminale"
+      ]
+    }
+  },
+  "arabicPolicy": {
+    "officialLanguage": true,
+    "integralToSchoolCurriculum": true,
+    "publicGradeByGradeArabicCatalog": false,
+    "matchingMethod": "حزمة كفاءات وطنية لكل سنة ضمن الهيكل الرسمي، دون اختلاق عناوين كتب/دروس."
+  },
+  "officialCoverageNodes": 12,
+  "sources": [
+    {
+      "kind": "official-ministry-system",
+      "url": "https://mineducomores.gouv.km/ministere/"
+    },
+    {
+      "kind": "official-arabic-curriculum-role",
+      "url": "https://mineducomores.gouv.km/cloture-de-la-formation-en-langue-arabe-aux-comores-un-pas-de-plus-vers-le-renforcement-des-capacites-educatives/"
+    },
+    {
+      "kind": "official-education-law",
+      "url": "https://justice.gouv.km/wp-content/uploads/2025/03/decret-n-21-005pr-portant-promulgation-de-la-loi-n-20-034au-du-29-decembre-2020-portant-revision-de-la-loi-n-94-035af-relative-a-lorientation-et-a-leducation.pdf"
+    },
+    {
+      "kind": "official-resource-strategy",
+      "url": "https://mineducomores.gouv.km/atelier-sur-les-strategies-de-production-et-diffusion-des-ressources-educatives-aux-comores/"
+    },
+    {
+      "kind": "official-education-reform",
+      "url": "https://mineducomores.gouv.km/participation-de-luniversite-midocean-a-la-reunion-consultative-nationale-sur-la-reforme-de-leducation-aux-comores/"
+    }
+  ],
+  "copyrightPolicy": "لا تعيد ضاديوم نشر مواد مدرسية غير متاحة علنًا؛ تستخدم الهيكل القانوني ودور العربية الرسمي لإثبات المواءمة وتنتج المحتوى التعليمي بنفسها.",
+  "generatedAt": "2026-09-25"
+}
