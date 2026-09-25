@@ -3,9 +3,6 @@
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
-const client =
-  process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.trim() ?? "";
-
 const blockedPrefixes = [
   "/lessons/",
   "/student/",
@@ -13,6 +10,10 @@ const blockedPrefixes = [
   "/school/",
   "/admin/",
   "/payments/",
+  "/pricing",
+  "/login",
+  "/signup",
+  "/onboarding",
 ];
 
 function isNativeMobileApp() {
@@ -31,15 +32,19 @@ function isNativeMobileApp() {
   );
 }
 
+function isValidClient(value: unknown): value is string {
+  return (
+    typeof value === "string" &&
+    /^ca-pub-\d{16}$/u.test(value)
+  );
+}
+
 export default function DadyoomAds() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (!client || isNativeMobileApp()) {
-      return;
-    }
-
     if (
+      isNativeMobileApp() ||
       blockedPrefixes.some((prefix) =>
         pathname.startsWith(prefix),
       )
@@ -49,33 +54,48 @@ export default function DadyoomAds() {
 
     let cancelled = false;
 
-    void fetch("/api/billing/status", {
-      cache: "no-store",
-    })
-      .then((response) => response.json())
-      .then((payload: { showAds?: boolean }) => {
-        if (
-          cancelled ||
-          !payload.showAds ||
-          isNativeMobileApp() ||
-          document.querySelector(
-            'script[data-dadyoom-adsense="1"]',
-          )
-        ) {
-          return;
-        }
+    void Promise.all([
+      fetch("/api/billing/status", {
+        cache: "no-store",
+      }).then((response) => response.json()),
+      fetch("/api/ads/config", {
+        cache: "no-store",
+      }).then((response) => response.json()),
+    ])
+      .then(
+        ([
+          billing,
+          ads,
+        ]: [
+          { showAds?: boolean },
+          { client?: string },
+        ]) => {
+          const client = ads.client;
 
-        const script = document.createElement("script");
+          if (
+            cancelled ||
+            !billing.showAds ||
+            !isValidClient(client) ||
+            isNativeMobileApp() ||
+            document.querySelector(
+              'script[data-dadyoom-adsense="1"]',
+            )
+          ) {
+            return;
+          }
 
-        script.async = true;
-        script.crossOrigin = "anonymous";
-        script.dataset.dadyoomAdsense = "1";
-        script.src =
-          "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" +
-          encodeURIComponent(client);
+          const script = document.createElement("script");
 
-        document.head.appendChild(script);
-      })
+          script.async = true;
+          script.crossOrigin = "anonymous";
+          script.dataset.dadyoomAdsense = "1";
+          script.src =
+            "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" +
+            encodeURIComponent(client);
+
+          document.head.appendChild(script);
+        },
+      )
       .catch(() => undefined);
 
     return () => {
