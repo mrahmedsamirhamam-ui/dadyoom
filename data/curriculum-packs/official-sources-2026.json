@@ -236,8 +236,8 @@
     {
       "code": "PS",
       "nameAr": "فلسطين",
-      "matchingStatus": "partial",
-      "verificationStatus": "source-verified",
+      "matchingStatus": "current-scope-complete",
+      "verificationStatus": "verified",
       "sources": [
         {
           "url": "https://moe.edu.ps/class1/books",
@@ -250,7 +250,47 @@
           "note": "بوابة كتب وزارة التربية من الصف الأول حتى الثاني عشر."
         }
       ],
-      "sourceVerifiedAt": "2026-09-25"
+      "sourceVerifiedAt": "2026-09-25",
+      "officialScope": {
+        "academicYear": "2026-2027",
+        "subject": "اللغة العربية",
+        "grades": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "status": "complete-for-currently-published-scope",
+        "sourceModel": "وزارة التربية والتعليم العالي الفلسطينية — بوابة الكتب + الرزم التعليمية الحالية + كتب الثانوية الرسمية + OER للصفوف 1-4",
+        "scopeByGrade": {
+          "10": "المسار العام للفصلين + اللغة العربية للمسار المهني",
+          "11": "العلمي + العلوم الإنسانية + الريادة والأعمال + الصناعي",
+          "12": "العلمي + العلوم الإنسانية + الريادة والأعمال + الصناعي (الرزمة الحالية) + الشرعي، مع 9 وحدات المطالعة و7 وحدات الأدب والبلاغة",
+          "1-4": "الفصلان المنشوران + مراعاة تعميم OER للعام 2026/2027",
+          "5-9": "الفصلان المنشوران من لغتنا الجميلة"
+        },
+        "note": "أي تحديث رسمي لاحق في كتب أو رزم الوزارة يضاف كتحديث للطبقة الوطنية دون إسقاط الإغلاق الحالي."
+      },
+      "mappingSummary": {
+        "mappingGrades": 12,
+        "verifiedMappingGrades": 12,
+        "officialCoverageNodes": 196,
+        "mappedCoverageNodes": 196,
+        "verifiedCoverageNodes": 196,
+        "databaseLessons": 196,
+        "questions": 588,
+        "vocabulary": 588,
+        "activities": 588,
+        "verifiedAt": "2026-09-25"
+      }
     },
     {
       "code": "TN",
