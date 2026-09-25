@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "ضاديوم Plus | اشتراك التعلم العربي الذكي",
   description:
     "ضاديوم العادي يمنح الدرس والملخص والشرائح والطباعة والتنزيل، وPlus يزيل الإعلانات ويفتح إنشاءات AI الموسعة.",
+  alternates: { canonical: "/pricing" },
 };
 
 export default async function PricingPage() {
