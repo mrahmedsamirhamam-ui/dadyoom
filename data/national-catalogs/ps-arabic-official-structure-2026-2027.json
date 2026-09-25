@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "PS",
+    "nameAr": "فلسطين"
+  },
+  "academicYearTarget": "2026-2027",
+  "authority": {
+    "nameAr": "وزارة التربية والتعليم العالي الفلسطينية",
+    "baseUrl": "https://moe.edu.ps/",
+    "textbookCatalog": "https://moe.edu.ps/pal-books",
+    "currentLearningPackages": "https://moe.edu.ps/gaza/subjects",
+    "curriculumDirectorate": "https://moe.edu.ps/category/content/4230",
+    "oer2026": "https://moe.edu.ps/c/30763"
+  },
+  "policy": "تُستخدم الكتب والرزم التعليمية والوثائق الرسمية لتحديد نطاق اللغة العربية والمهارات/المسارات. لا تُنسخ نصوص الكتب؛ الشرح والأسئلة والأنشطة أصلية لضاديوم.",
+  "currentEvidence": {
+    "verifiedAt": "2026-09-25",
+    "booksCoverage": "وزارة التربية تؤكد تصميم ونشر كتب مدرسية لكافة الصفوف والمراحل، وتعرض بوابة الكتب الصفوف 1-10 وفرعي 11-12.",
+    "oerUpdate": "تطبيق شامل لمصادر التعليم المفتوحة للصفوف 1-4 ابتداءً من العام الدراسي الذي يبدأ في أيلول 2026.",
+    "gazaPackages": "الوزارة تنشر رزمًا تعليمية حالية للصفوف 1-12 تتضمن العربية/لغتنا الجميلة ومسارات الثانوية."
+  },
+  "grades": [
+    {
+      "grade": 1,
+      "label": "الصف 1",
+      "status": "current-official-scope-verified",
+      "stage": "basic",
+      "booksPortal": "https://moe.edu.ps/pal-books",
+      "currentPackage": "https://moe.edu.ps/gaza/subjects",
+      "semesters": [
+        1,
+        2
+      ],
+      "arabicBook": "لغتنا الجميلة",
+      "oer": true
+    },
+    {
+      "grade": 2,
+      "label": "الصف 2",
+      "status": "current-official-scope-verified",
+      "stage": "basic",
+      "booksPortal": "https://moe.edu.ps/pal-books",
+      "currentPackage": "https://moe.edu.ps/gaza/subjects",
+      "semesters": [
+        1,
+        2
+      ],
+      "arabicBook": "لغتنا الجميلة",
+      "oer": true
+    },
+    {
+      "grade": 3,
+      "label": "الصف 3",
+      "status": "current-official-scope-verified",
+      "stage": "basic",
+      "booksPortal": "https://moe.edu.ps/pal-books",
+      "currentPackage": "https://moe.edu.ps/gaza/subjects",
+      "semesters": [
+        1,
+        2
+      ],
+      "arabicBook": "لغتنا الجميلة",
+      "oer": true
+    },
+    {
+      "grade": 4,
+      "label": "الصف 4",
+      "status": "current-official-scope-verified",
+      "stage": "basic",
+      "booksPortal": "https://moe.edu.ps/pal-books",
+      "currentPackage": "https://moe.edu.ps/gaza/subjects",
+      "semesters": [
+        1,
+        2
+      ],
+      "arabicBook": "لغتنا الجميلة",
+      "oer": true
+    },
+    {
+      "grade": 5,
+      "label": "الصف 5",
+      "status": "current-official-scope-verified",
+      "stage": "basic",
+      "booksPortal": "https://moe.edu.ps/pal-books",
+      "currentPackage": "https://moe.edu.ps/gaza/subjects",
+      "semesters": [
+        1,
+        2
+      ],
+      "arabicBook": "لغتنا الجميلة",
+      "oer": false
+    },
+    {
+      "grade": 6,
+      "label": "الصف 6",
+      "status": "current-official-scope-verified",
+      "stage": "basic",
+      "booksPortal": "https://moe.edu.ps/pal-books",
+      "currentPackage": "https://moe.edu.ps/gaza/subjects",
+      "semesters": [
+        1,
+        2
+      ],
+      "arabicBook": "لغتنا الجميلة",
+      "oer": false
+    },
+    {
+      "grade": 7,
+      "label": "الصف 7",
+      "status": "current-official-scope-verified",
+      "stage": "basic",
+      "booksPortal": "https://moe.edu.ps/pal-books",
+      "currentPackage": "https://moe.edu.ps/gaza/subjects",
+      "semesters": [
+        1,
+        2
+      ],
+      "arabicBook": "لغتنا الجميلة",
+      "oer": false
+    },
+    {
+      "grade": 8,
+      "label": "الصف 8",
+      "status": "current-official-scope-verified",
+      "stage": "basic",
+      "booksPortal": "https://moe.edu.ps/pal-books",
+      "currentPackage": "https://moe.edu.ps/gaza/subjects",
+      "semesters": [
+        1,
+        2
+      ],
+      "arabicBook": "لغتنا الجميلة",
+      "oer": false
+    },
+    {
+      "grade": 9,
+      "label": "الصف 9",
+      "status": "current-official-scope-verified",
+      "stage": "basic",
+      "booksPortal": "https://moe.edu.ps/pal-books",
+      "currentPackage": "https://moe.edu.ps/gaza/subjects",
+      "semesters": [
+        1,
+        2
+      ],
+      "arabicBook": "لغتنا الجميلة",
+      "oer": false
+    },
+    {
+      "grade": 10,
+      "label": "الصف 10",
+      "status": "current-official-scope-verified",
+      "stage": "basic",
+      "booksPortal": "https://moe.edu.ps/pal-books",
+      "currentPackage": "https://moe.edu.ps/gaza/subjects",
+      "semesters": [
+        1,
+        2
+      ],
+      "arabicBook": "اللغة العربية",
+      "oer": false
+    },
+    {
+      "grade": 11,
+      "label": "الصف 11",
+      "status": "current-official-scope-verified",
+      "stage": "secondary",
+      "booksPortal": "https://moe.edu.ps/pal-books",
+      "currentPackage": "https://moe.edu.ps/gaza/subjects",
+      "tracks": [
+        "علمي",
+        "علوم إنسانية",
+        "ريادة وأعمال",
+        "صناعي"
+      ],
+      "arabicOfferings": [
+        "اللغة العربية",
+        "الأدب والبلاغة",
+        "المطالعة والقواعد والعروض والتعبير"
+      ]
+    },
+    {
+      "grade": 12,
+      "label": "الصف 12",
+      "status": "current-official-scope-verified",
+      "stage": "secondary",
+      "booksPortal": "https://moe.edu.ps/class12/books",
+      "currentPackage": "https://moe.edu.ps/gaza/subjects",
+      "tracks": [
+        "علمي",
+        "علوم إنسانية",
+        "ريادة وأعمال",
+        "صناعي",
+        "شرعي"
+      ],
+      "arabicOfferings": [
+        "اللغة العربية",
+        "الأدب والبلاغة",
+        "المطالعة والقواعد والعروض والتعبير"
+      ],
+      "academicReadingUnits": 9
+    }
+  ],
+  "domainModel": {
+    "basic": [
+      "الاستماع والتحدث",
+      "القراءة والفهم",
+      "النصوص والتذوق",
+      "النحو والبناء اللغوي",
+      "الإملاء والخط",
+      "الكتابة والتعبير"
+    ],
+    "secondary": [
+      "المطالعة والقراءة",
+      "النصوص والأدب",
+      "البلاغة",
+      "النحو والصرف",
+      "العروض",
+      "التعبير والكتابة"
+    ],
+    "grade12AcademicReadingBook": {
+      "title": "المطالعة والقواعد والعروض والتعبير",
+      "officialUnits": 9,
+      "includes": [
+        "9 نصوص مطالعة",
+        "5 قصائد من الشعر الحديث",
+        "النحو والصرف",
+        "4 بحور شعرية",
+        "كتابة القصة والمقالة"
+      ],
+      "grammarTopics": [
+        "الممنوع من الصرف",
+        "الإعلال",
+        "الإبدال",
+        "اسم الفعل",
+        "معاني بعض الأدوات النحوية ووظائفها",
+        "الجمل التي لها محل من الإعراب"
+      ],
+      "prosody": [
+        "الوافر",
+        "الطويل",
+        "البسيط",
+        "الخفيف"
+      ]
+    }
+  },
+  "claimPolicy": "مطابق للمنهج الرسمي الفلسطيني = مواءم مع الكتب والرزم/المهارات والمسارات التي تنشرها وزارة التربية والتعليم العالي ضمن النطاق الحالي، ولا تعني العبارة اعتمادًا أو شراكة رسمية من الوزارة.",
+  "generatedAt": "2026-09-25"
+}
