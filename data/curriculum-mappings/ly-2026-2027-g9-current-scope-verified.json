@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "LY",
+    "nameAr": "ليبيا"
+  },
+  "academicYear": "2026-2027",
+  "grade": 9,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 6,
+  "mappedLessons": 6,
+  "verifiedLessons": 6,
+  "scope": "current-official-published-scope",
+  "policy": "مواءمة الكتب والمجالات والمسارات الرسمية المنشورة مع Core Bundles وNational Extensions أصلية؛ لا إعادة نشر للنصوص.",
+  "mappings": [
+    {
+      "officialSlug": "ly-2026-2027-g9-u1-l1",
+      "officialTitle": "الاستماع والتحدث",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الاستماع والتحدث» بحزمة Core المناسبة مع تطبيق ليبي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g9-l04",
+          "relation": "supporting-skill",
+          "title": "الاستنتاج وبناء الحجة"
+        },
+        {
+          "slug": "ly-dadyoom-core-g9-l06",
+          "relation": "supporting-skill",
+          "title": "المقارنة بين نصين"
+        },
+        {
+          "slug": "ly-dadyoom-core-g9-l17",
+          "relation": "supporting-skill",
+          "title": "الحجاج والمناظرة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g9-u1-l2",
+      "officialTitle": "القراءة والمطالعة",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «القراءة والمطالعة» بحزمة Core المناسبة مع تطبيق ليبي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g9-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل نص أدبي"
+        },
+        {
+          "slug": "ly-dadyoom-core-g9-l02",
+          "relation": "supporting-skill",
+          "title": "قراءة نص معلوماتي"
+        },
+        {
+          "slug": "ly-dadyoom-core-g9-l03",
+          "relation": "supporting-skill",
+          "title": "الدلالة والسياق"
+        },
+        {
+          "slug": "ly-dadyoom-core-g9-l04",
+          "relation": "supporting-skill",
+          "title": "الاستنتاج وبناء الحجة"
+        },
+        {
+          "slug": "ly-dadyoom-core-g9-l05",
+          "relation": "supporting-skill",
+          "title": "بنية النص وترابطه"
+        },
+        {
+          "slug": "ly-dadyoom-core-g9-l06",
+          "relation": "supporting-skill",
+          "title": "المقارنة بين نصين"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g9-u1-l3",
+      "officialTitle": "النصوص والتذوق الأدبي",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack ليبيا الخصائص الوطنية في «النصوص والتذوق الأدبي» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g9-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل نص أدبي"
+        },
+        {
+          "slug": "ly-dadyoom-core-g9-l03",
+          "relation": "supporting-skill",
+          "title": "الدلالة والسياق"
+        },
+        {
+          "slug": "ly-dadyoom-core-g9-l06",
+          "relation": "supporting-skill",
+          "title": "المقارنة بين نصين"
+        },
+        {
+          "slug": "ly-dadyoom-core-g9-l13",
+          "relation": "supporting-skill",
+          "title": "التشبيه وأثره"
+        },
+        {
+          "slug": "ly-dadyoom-core-g9-l14",
+          "relation": "supporting-skill",
+          "title": "الاستعارة والصورة"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g9-u1-l4",
+      "officialTitle": "النحو والصرف",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «النحو والصرف» بحزمة Core المناسبة مع تطبيق ليبي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g9-l07",
+          "relation": "supporting-skill",
+          "title": "كان وأخواتها"
+        },
+        {
+          "slug": "ly-dadyoom-core-g9-l08",
+          "relation": "supporting-skill",
+          "title": "إن وأخواتها"
+        },
+        {
+          "slug": "ly-dadyoom-core-g9-l09",
+          "relation": "supporting-skill",
+          "title": "المبني للمعلوم والمجهول"
+        },
+        {
+          "slug": "ly-dadyoom-core-g9-l10",
+          "relation": "supporting-skill",
+          "title": "النعت والعطف"
+        },
+        {
+          "slug": "ly-dadyoom-core-g9-l11",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g9-u1-l5",
+      "officialTitle": "الإملاء وعلامات الترقيم",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack ليبيا الخصائص الوطنية في «الإملاء وعلامات الترقيم» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g9-l12",
+          "relation": "direct-skill",
+          "title": "الإملاء وعلامات الترقيم"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g9-u1-l6",
+      "officialTitle": "التعبير والإنشاء",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «التعبير والإنشاء» بحزمة Core المناسبة مع تطبيق ليبي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g9-l15",
+          "relation": "supporting-skill",
+          "title": "كتابة مقال قصير"
+        },
+        {
+          "slug": "ly-dadyoom-core-g9-l16",
+          "relation": "supporting-skill",
+          "title": "كتابة تقرير"
+        },
+        {
+          "slug": "ly-dadyoom-core-g9-l17",
+          "relation": "supporting-skill",
+          "title": "الحجاج والمناظرة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
+    }
+  ]
+}
