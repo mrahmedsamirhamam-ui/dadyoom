@@ -411,19 +411,91 @@
     {
       "code": "OM",
       "nameAr": "عُمان",
-      "matchingStatus": "not-closed",
-      "verificationStatus": "source-verified",
+      "matchingStatus": "current-scope-complete",
+      "verificationStatus": "verified",
       "sources": [
         {
-          "url": "https://ict.moe.gov.om/eBooks/index.php",
-          "kind": "official-catalog"
+          "url": "https://home.moe.gov.om/library/171",
+          "kind": "official-current-arabic-assessment",
+          "note": "وثائق تقويم المجال الأول 1-4 واللغة العربية 5-12 المنشورة في 2026."
         },
         {
-          "url": "https://ict.moe.gov.om/book",
-          "kind": "official-catalog"
+          "url": "https://home.moe.gov.om/library/187/show/1636",
+          "kind": "official-general-assessment-1-12"
+        },
+        {
+          "url": "https://home.moe.gov.om/library/96",
+          "kind": "official-curriculum-library",
+          "note": "مكتبة المناهج بفصلين دراسيين."
+        },
+        {
+          "url": "https://ict.moe.gov.om/eBooks/index.php",
+          "kind": "official-digital-textbooks"
+        },
+        {
+          "url": "https://portal.moe.gov.om/Portal/sitebuilder/Sites/EPS/Arabic/IPS/Right_Menu/Edu_System/edusystem/basic.aspx",
+          "kind": "official-education-system"
+        },
+        {
+          "url": "https://home.moe.gov.om/topics/1/show/11856",
+          "kind": "official-arabic-skills-development",
+          "note": "تكامل مهارات الاستماع والتحدث والقراءة والكتابة وفنون العربية."
+        },
+        {
+          "url": "https://home.moe.gov.om/topics/1/show/13053",
+          "kind": "official-2026-2027-pathways",
+          "note": "اختيارات ومسارات الصفين 11-12 للعام 2026/2027."
+        },
+        {
+          "url": "https://home.moe.gov.om/region/dahira/topics/1/show/12879",
+          "kind": "official-2026-2027-readiness"
         }
       ],
-      "sourceVerifiedAt": "2026-09-25"
+      "sourceVerifiedAt": "2026-09-25",
+      "officialScope": {
+        "academicYear": "2026-2027",
+        "subject": "اللغة العربية",
+        "grades": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "semesters": 2,
+        "status": "complete-for-currently-published-scope",
+        "sourceModel": "وزارة التعليم العُمانية — وثائق التقويم + مكتبة المناهج + الكتب الرقمية + نظام التعليم + مواد 2026/2027",
+        "stages": {
+          "1-4": "التعليم الأساسي — الحلقة الأولى",
+          "5-10": "التعليم الأساسي — الحلقة الثانية",
+          "11-12": "التعليم ما بعد الأساسي"
+        },
+        "matchingUnit": {
+          "1-4": "5 حزم مهارية لكل صف",
+          "5-12": "6 حزم مهارية/فنية لكل صف"
+        },
+        "note": "الحزم وحدات مواءمة وطنية لضاديوم مبنية على المهارات والفنون الرسمية وليست عناوين دروس وزارية مخترعة."
+      },
+      "mappingSummary": {
+        "mappingGrades": 12,
+        "verifiedMappingGrades": 12,
+        "officialCoverageNodes": 68,
+        "mappedCoverageNodes": 68,
+        "verifiedCoverageNodes": 68,
+        "databaseLessons": 68,
+        "questions": 204,
+        "vocabulary": 204,
+        "activities": 204,
+        "nationalExtensions": 68,
+        "verifiedAt": "2026-09-25"
+      }
     },
     {
       "code": "AE",
