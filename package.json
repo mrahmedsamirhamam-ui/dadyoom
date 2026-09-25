@@ -31,7 +31,11 @@
     "deploy:vinext": "vinext-cloudflare deploy",
     "preview:vinext": "vinext-cloudflare deploy --preview",
     "curriculum:audit:22": "node scripts/audit-22-country-live.mjs",
-    "mobile:pwa:verify": "node scripts/verify-pwa-mobile.mjs"
+    "mobile:pwa:verify": "node scripts/verify-pwa-mobile.mjs",
+    "mvp:verify:curriculum": "node scripts/mvp-closure/verify-curriculum.mjs",
+    "mvp:verify:content": "node scripts/mvp-closure/verify-content.mjs",
+    "mvp:verify:closure": "npm run mvp:verify:curriculum && npm run mvp:verify:content",
+    "test:security": "vitest run --config tests/security/vitest.config.mts"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
