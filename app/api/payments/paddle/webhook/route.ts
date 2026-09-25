@@ -237,7 +237,9 @@ export async function POST(request: Request) {
       }
 
       const expectedPrice =
-        process.env.NEXT_PUBLIC_PADDLE_PLUS_PRICE_ID?.trim() ?? "";
+        process.env.PADDLE_PLUS_PRICE_ID?.trim() ||
+        process.env.NEXT_PUBLIC_PADDLE_PLUS_PRICE_ID?.trim() ||
+        "";
 
       const receivedPrice = transactionPriceId(data);
 
