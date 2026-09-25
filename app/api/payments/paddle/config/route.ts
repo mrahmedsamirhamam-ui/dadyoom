@@ -1,3 +1,5 @@
+import crypto from "node:crypto";
+
 import { NextResponse } from "next/server";
 
 import { getSiteUrl } from "@/lib/site";
@@ -25,6 +27,20 @@ function envValue(...names: string[]) {
   }
 
   return "";
+}
+
+function signCheckoutBinding(args: {
+  secret: string;
+  userId: string;
+  planId: string;
+  priceId: string;
+}) {
+  return crypto
+    .createHmac("sha256", args.secret)
+    .update(
+      `dadyoom-paddle-checkout-v1:${args.userId}:${args.planId}:${args.priceId}`,
+    )
+    .digest("hex");
 }
 
 function environment() {
@@ -113,8 +129,9 @@ export async function POST() {
     "NEXT_PUBLIC_PADDLE_PLUS_PRICE_ID",
   );
   const apiKey = envValue("PADDLE_API_KEY");
+  const webhookSecret = envValue("PADDLE_WEBHOOK_SECRET");
 
-  if (!clientToken || !priceId || !apiKey) {
+  if (!clientToken || !priceId || !apiKey || !webhookSecret) {
     return NextResponse.json(
       {
         error: "PADDLE_NOT_CONFIGURED",
@@ -193,6 +210,12 @@ export async function POST() {
       email: user.email ?? "",
       amount,
       currency,
+      checkoutBinding: signCheckoutBinding({
+        secret: webhookSecret,
+        userId: user.id,
+        planId: "plus",
+        priceId,
+      }),
       successUrl: new URL(
         "/payments/paddle/success",
         getSiteUrl(),
