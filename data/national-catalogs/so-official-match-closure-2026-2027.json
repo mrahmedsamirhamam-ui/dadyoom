@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "SO",
+    "nameAr": "الصومال",
+    "nameEn": "Somalia"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "status": "current-scope-complete",
+  "matchingStatus": "current-scope-complete",
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-09-25",
+  "authority": {
+    "ministry": "https://moe.gov.so/",
+    "nationalEducationPolicy": "https://moe.gov.so/wp-content/uploads/2022/04/National-Education-Policy-Eng-Version-Final-DG-copy.pdf",
+    "abeCurriculumFramework": "https://moe.gov.so/wp-content/uploads/2022/05/Accelerated-Basic-Education-ABE-Policy-Framework-Back-translation-RF.pdf",
+    "educationSectorAnalysis": "https://moe.gov.so/wp-content/uploads/2022/07/Somalia-Education-Sector-Analysis-Jan-2022-1.pdf",
+    "nationalAssessmentFramework2026": "https://moe.gov.so/wp-content/uploads/2026/02/National-Assessment-Framework-for-Somalia-Final-1.pdf",
+    "grade12NationalExam": "https://moe.gov.so/2023/10/20/imtixaanka-qaranka-ee-fasalka-12aad-ee-sanad-dugsiyeedka-2025-2026/"
+  },
+  "structure": {
+    "grades": "12/12",
+    "basic": {
+      "grades": "1-8",
+      "lowerPrimary": "1-4",
+      "upperPrimary": "5-8"
+    },
+    "secondary": {
+      "grades": "9-12",
+      "nationalExamGrade": 12
+    },
+    "arabicPolicy": "أطر الوزارة تثبت العربية ضمن لغات محو الأمية/التعلم الأساسي، كما يذكر إطار التقييم الوطني اللغة العربية مجالًا دراسيًا.",
+    "matchingUnit": "national-arabic-competency-bundle-per-grade"
+  },
+  "coverage": {
+    "packGrades": "12/12",
+    "verifiedMappingGrades": "12/12",
+    "officialCoverageNodes": 12,
+    "mappedCoverageNodes": 12,
+    "verifiedCoverageNodes": 12,
+    "nationalExtensions": 12,
+    "database": {
+      "curriculumId": "5271730a-93bc-4d68-8150-8b3e33403fb6",
+      "grades": 12,
+      "units": 12,
+      "lessons": 12,
+      "questions": 36,
+      "vocabulary": 36,
+      "publishedActivities": 36,
+      "minimumContentCharacters": 753
+    }
+  },
+  "qualityGates": {
+    "officialSourcesVerified": true,
+    "allGradesPresent": true,
+    "allMappingsVerified": true,
+    "officialEqualsMappedEqualsVerified": true,
+    "allLessonsPublished": true,
+    "allLessonsHaveOfficialSource": true,
+    "minimumObjectivesPerLesson": 3,
+    "minimumQuestionsPerLesson": 3,
+    "minimumVocabularyPerLesson": 3,
+    "minimumPublishedActivitiesPerLesson": 3,
+    "failingDatabaseLessons": 0,
+    "legacyConflict": "inactive-before-import"
+  },
+  "copyrightPolicy": "لا يعيد ضاديوم نشر كتب غير متاحة علنًا؛ يستخدم هيكل التعليم والأطر الوطنية وموقع العربية لإثبات المواءمة ويقدم محتوى أصليًا.",
+  "claimPolicy": "مطابق للمنهج الرسمي الصومالي = مواءم مع الهيكل والسياسات والأطر الوطنية المنشورة والقابلة للتحقق وموقع العربية فيها؛ لا تعني العبارة وجود فهرس عام لكتب العربية لكل صف أو اعتمادًا من الوزارة."
+}
