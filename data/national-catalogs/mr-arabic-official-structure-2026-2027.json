@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "MR",
+    "nameAr": "موريتانيا",
+    "nameEn": "Mauritania"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "verificationStatus": "verified-source-structure",
+  "officialCoverageUnit": "official-textbook-by-grade-and-upper-secondary-track",
+  "educationStructure": {
+    "primary": {
+      "years": 6,
+      "levels": [
+        "1AP",
+        "2AP",
+        "3AP",
+        "4AP",
+        "5AP",
+        "6AP"
+      ]
+    },
+    "lowerSecondary": {
+      "years": 4,
+      "levels": [
+        "1AS",
+        "2AS",
+        "3AS",
+        "4AS"
+      ]
+    },
+    "upperSecondary": {
+      "years": 3,
+      "levels": [
+        "5AS",
+        "6AS",
+        "7AS"
+      ],
+      "trackGrouping": [
+        "الشعبة الأدبية",
+        "الشعبة العلمية"
+      ]
+    }
+  },
+  "officialCoverageNodes": 16,
+  "sources": [
+    {
+      "kind": "official-ipn-textbook-platform",
+      "url": "https://koutoubi.mr/",
+      "note": "مبادرة أطلقها المعهد التربوي الوطني وتضم الموارد التعليمية الرسمية المعتمدة."
+    },
+    {
+      "kind": "official-ministry",
+      "url": "https://www.education.gov.mr/"
+    },
+    {
+      "kind": "official-arabic-policy-2026",
+      "url": "https://www.education.gov.mr/ar/node/1090"
+    },
+    {
+      "kind": "official-2026-2027-preparation",
+      "url": "https://www.education.gov.mr/index.php/ar/node/1132"
+    },
+    {
+      "kind": "official-textbook-distribution",
+      "url": "https://education.gov.mr/fr/node/982"
+    },
+    {
+      "kind": "official-curriculum-reform",
+      "url": "https://www.education.gov.mr/ar/node/555"
+    },
+    {
+      "kind": "official-teacher-guides",
+      "url": "https://koutoubi.mr/guides-enseignant/guide-enseignant/"
+    }
+  ],
+  "copyrightPolicy": "لا تعيد ضاديوم نشر نصوص الكتب الموريتانية؛ تستخدم عناوين الكتب والمستويات والمسارات وروابط المعهد والوزارة لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية.",
+  "generatedAt": "2026-09-25"
+}
