@@ -23,6 +23,15 @@ const outputDir = path.resolve(
   String(args.output ?? "diagnostics/official-match"),
 );
 
+const writeMappings =
+  args["write-mappings"] === true ||
+  String(args["write-mappings"] ?? "").toLowerCase() === "true";
+
+const mappingOutputDir = path.resolve(
+  process.cwd(),
+  String(args["mapping-output"] ?? "data/curriculum-mappings"),
+);
+
 const supabaseUrl =
   process.env.NEXT_PUBLIC_SUPABASE_URL ||
   process.env.SUPABASE_URL;
@@ -560,6 +569,104 @@ const report = {
   gapLessons,
   mappings,
 };
+
+if (writeMappings) {
+  fs.mkdirSync(mappingOutputDir, { recursive: true });
+
+  const countryName =
+    countryCode === "BH"
+      ? "مملكة البحرين"
+      : countryCode;
+
+  const byGrade = new Map();
+
+  for (const row of mappings) {
+    if (!byGrade.has(row.gradeNumber)) {
+      byGrade.set(row.gradeNumber, []);
+    }
+    byGrade.get(row.gradeNumber).push(row);
+  }
+
+  for (const [gradeNumber, gradeMappings] of [...byGrade.entries()].sort(
+    (a, b) => a[0] - b[0],
+  )) {
+    const normalizedMappings =
+      gradeMappings
+        .sort((a, b) => {
+          const unitDelta =
+            Number(a.unitNumber ?? 0) - Number(b.unitNumber ?? 0);
+          if (unitDelta !== 0) return unitDelta;
+          return String(a.officialTitle ?? "").localeCompare(
+            String(b.officialTitle ?? ""),
+            "ar",
+          );
+        })
+        .map((row) => ({
+          officialLessonId: row.officialLessonId,
+          officialSlug: row.officialSlug,
+          officialTitle: row.officialTitle,
+          officialLessonType: row.officialLessonType,
+          unitNumber: row.unitNumber,
+          unitTitle: row.unitTitle,
+          source: row.source,
+          relationType: row.relationHint,
+          reviewStatus: "candidate",
+          verificationStatus: "needs-source-review",
+          coverageStatus: row.coverageStatus,
+          confidence: row.confidence,
+          score: row.score,
+          needsNationalExtension: row.needsNationalExtension,
+          rationale:
+            "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+          coreCoverage: row.suggestedCoreSlug
+            ? [
+                {
+                  slug: row.suggestedCoreSlug,
+                  relation: row.relationHint,
+                  title: row.suggestedCoreTitle,
+                  score: row.score,
+                },
+              ]
+            : [],
+          candidates: row.candidates,
+        }));
+
+    const mappingFile = {
+      schemaVersion: 1,
+      country: {
+        code: countryCode,
+        nameAr: countryName,
+      },
+      academicYear,
+      grade: gradeNumber,
+      semester: null,
+      subject: "اللغة العربية",
+      status: "reviewed-candidate",
+      officialLessons: normalizedMappings.length,
+      mappedLessons: normalizedMappings.length,
+      verifiedLessons: 0,
+      policy:
+        "ملف عمل قابل للتدقيق. تم توليد المرشحات من الطبقة الوطنية الموجودة في قاعدة ضاديوم وربطها بمهارات Dadyoom Core. لا يصبح أي درس verified دون مراجعة المصدر والأهداف يدويًا/تربويًا، ولا يُعاد نشر نص الكتاب الوزاري.",
+      generatedBy: "scripts/match-official-to-core.mjs",
+      mappings: normalizedMappings,
+    };
+
+    const mappingTarget = path.join(
+      mappingOutputDir,
+      `${countryCode.toLowerCase()}-${academicYear}-g${gradeNumber}-reviewed-candidate.json`,
+    );
+
+    fs.writeFileSync(
+      mappingTarget,
+      JSON.stringify(mappingFile, null, 2) + "\n",
+      "utf8",
+    );
+
+    console.log(
+      `OFFICIAL_MAPPING_SKELETON=${path.relative(process.cwd(), mappingTarget)} LESSONS=${normalizedMappings.length}`,
+    );
+  }
+}
 
 fs.mkdirSync(outputDir, { recursive: true });
 
