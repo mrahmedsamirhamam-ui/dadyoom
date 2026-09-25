@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "DZ",
+    "nameAr": "الجزائر"
+  },
+  "academicYear": "2026-2027",
+  "grade": 2,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 1,
+  "mappedLessons": 1,
+  "verifiedLessons": 1,
+  "scope": "current-officially-published-and-publicly-verifiable-scope",
+  "policy": "الكتاب/المنهاج أو مسار الثانوي هو وحدة المطابقة؛ لا تُنسخ النصوص ولا تُختلق عناوين غير موثقة.",
+  "mappings": [
+    {
+      "officialSlug": "dz-2026-2027-g2-arabic-book",
+      "officialTitle": "كتاب/منهاج اللغة العربية — السنة 2 ابتدائي",
+      "source": {
+        "label": "وزارة التربية الوطنية الجزائرية + الديوان الوطني للمطبوعات المدرسية",
+        "url": "https://www.education.gov.dz/2016/04/20/2521/",
+        "onpsUrl": "https://www.onps.dz/",
+        "current20262027Url": "https://www.education.gov.dz/2026/07/30/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9-%D9%8A%D9%86%D8%B4%D9%91%D8%B7-%D9%86%D8%AF%D9%88%D8%A9-%D8%B5%D8%AD%D9%81%D9%8A%D8%A9/"
+      },
+      "relationType": "official-book-scope+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المطابقة على مستوى كتاب/منهاج العربية المنشور رسميًا للمرحلة، مع محتوى ضاديوم أصلي وCore مساند فقط.",
+      "coreCoverage": [
+        {
+          "slug": "dz-dadyoom-core-g2-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g2-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g2-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g2-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g2-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g2-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g2-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g2-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g2-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g2-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g2-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g2-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g2-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g2-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g2-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g2-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g2-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g2-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-ministry-current-2026-2027+official-curriculum+official-onps+national-pack"
+    }
+  ]
+}
