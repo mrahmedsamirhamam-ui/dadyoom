@@ -208,6 +208,41 @@ function ruleBoost(officialTitle, coreTitle) {
   return Math.min(boost, 0.5);
 }
 
+function lessonText(lesson) {
+  return [
+    lesson?.title,
+    lesson?.summary,
+    ...(Array.isArray(lesson?.learningObjectives)
+      ? lesson.learningObjectives
+      : []),
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
+function typeSimilarity(a, b) {
+  const aa = String(a ?? "").trim();
+  const bb = String(b ?? "").trim();
+
+  if (!aa || !bb) return 0;
+  if (aa === bb) return 1;
+
+  const families = {
+    reading: new Set(["reading", "vocabulary"]),
+    writing: new Set(["writing", "spelling"]),
+    language: new Set(["grammar", "spelling", "vocabulary"]),
+    oral: new Set(["listening", "speaking"]),
+  };
+
+  for (const family of Object.values(families)) {
+    if (family.has(aa) && family.has(bb)) {
+      return 0.45;
+    }
+  }
+
+  return 0;
+}
+
 function scorePair(official, core) {
   const nOfficial = normalizeArabic(official.title);
   const nCore = normalizeArabic(core.title);
@@ -216,11 +251,17 @@ function scorePair(official, core) {
     return 1;
   }
 
+  const officialText = lessonText(official);
+  const coreText = lessonText(core);
+
   const score =
-    (0.42 * dice(official.title, core.title)) +
-    (0.28 * trigramSimilarity(official.title, core.title)) +
-    (0.20 * tagSimilarity(official.title, core.title)) +
-    ruleBoost(official.title, core.title);
+    (0.22 * dice(official.title, core.title)) +
+    (0.13 * trigramSimilarity(official.title, core.title)) +
+    (0.22 * dice(officialText, coreText)) +
+    (0.12 * trigramSimilarity(officialText, coreText)) +
+    (0.11 * tagSimilarity(officialText, coreText)) +
+    (0.10 * typeSimilarity(official.lessonType, core.lessonType)) +
+    ruleBoost(officialText, coreText);
 
   return Math.max(0, Math.min(0.99, score));
 }
@@ -269,7 +310,7 @@ const { data: rows, error: rowsError } =
   await supabase
     .from("lessons")
     .select(
-      "id,title,slug,lesson_number,source_pdf_url,source_page_start,source_page_end,units!inner(id,title,unit_number,grades!inner(id,grade_number,curriculum_id))",
+      "id,title,slug,lesson_number,lesson_type,summary,learning_objectives,source_pdf_url,source_page_start,source_page_end,units!inner(id,title,unit_number,grades!inner(id,grade_number,curriculum_id))",
     )
     .eq("status", "published")
     .in(
@@ -296,6 +337,11 @@ for (const lesson of rows ?? []) {
     title: lesson.title,
     slug: lesson.slug,
     lessonNumber: lesson.lesson_number,
+    lessonType: lesson.lesson_type ?? null,
+    summary: lesson.summary ?? null,
+    learningObjectives: Array.isArray(lesson.learning_objectives)
+      ? lesson.learning_objectives
+      : [],
     unitId: unit?.id ?? null,
     unitNumber: unit?.unit_number ?? null,
     unitTitle: unit?.title ?? null,
@@ -330,6 +376,7 @@ const mappings = official.map((lesson) => {
         coreLessonId: coreLesson.id,
         coreSlug: coreLesson.slug,
         coreTitle: coreLesson.title,
+        coreLessonType: coreLesson.lessonType,
         score: Number(scorePair(lesson, coreLesson).toFixed(4)),
       }))
       .sort((a, b) => b.score - a.score)
@@ -341,6 +388,9 @@ const mappings = official.map((lesson) => {
     officialLessonId: lesson.id,
     officialSlug: lesson.slug,
     officialTitle: lesson.title,
+    officialLessonType: lesson.lessonType,
+    officialSummary: lesson.summary,
+    officialLearningObjectives: lesson.learningObjectives,
     gradeNumber: lesson.gradeNumber,
     unitNumber: lesson.unitNumber,
     unitTitle: lesson.unitTitle,
