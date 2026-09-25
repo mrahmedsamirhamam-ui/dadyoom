@@ -1,0 +1,670 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "PS",
+    "nameAr": "فلسطين"
+  },
+  "academicYear": "2026-2027",
+  "grade": 10,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 18,
+  "mappedLessons": 18,
+  "verifiedLessons": 18,
+  "scope": "current-official-published-scope",
+  "policy": "مواءمة الكتب والرزم والمسارات والوحدات الرسمية المنشورة مع Core Bundles وNational Extensions أصلية؛ لا إعادة نشر للنصوص.",
+  "mappings": [
+    {
+      "officialSlug": "ps-2026-2027-g10-u1-l1",
+      "officialTitle": "الاستماع والتحدث — المسار العام — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الاستماع والتحدث — المسار العام — الفصل الأول» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g10-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g10-u1-l2",
+      "officialTitle": "القراءة والفهم — المسار العام — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «القراءة والفهم — المسار العام — الفصل الأول» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g10-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g10-u1-l3",
+      "officialTitle": "النصوص والتذوق — المسار العام — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة، ويغلق Pack فلسطين الخصائص الوطنية الخاصة في «النصوص والتذوق — المسار العام — الفصل الأول» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g10-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l13",
+          "relation": "supporting-skill",
+          "title": "المقال الحجاجي"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l14",
+          "relation": "supporting-skill",
+          "title": "البحث والتوثيق"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g10-u1-l4",
+      "officialTitle": "النحو والبناء اللغوي — المسار العام — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «النحو والبناء اللغوي — المسار العام — الفصل الأول» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g10-l07",
+          "relation": "supporting-skill",
+          "title": "النواسخ في السياق"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l08",
+          "relation": "supporting-skill",
+          "title": "المفاعيل ودلالاتها"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l09",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز المتقدم"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l10",
+          "relation": "supporting-skill",
+          "title": "التوابع والاتساق"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l11",
+          "relation": "supporting-skill",
+          "title": "الشرط والاستثناء"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g10-u1-l5",
+      "officialTitle": "الإملاء وعلامات الترقيم — المسار العام — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة، ويغلق Pack فلسطين الخصائص الوطنية الخاصة في «الإملاء وعلامات الترقيم — المسار العام — الفصل الأول» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g10-l12",
+          "relation": "direct-skill",
+          "title": "الإيجاز والإطناب"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g10-u1-l6",
+      "officialTitle": "الكتابة والتعبير — المسار العام — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الكتابة والتعبير — المسار العام — الفصل الأول» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g10-l15",
+          "relation": "supporting-skill",
+          "title": "التلخيص الأكاديمي"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l16",
+          "relation": "supporting-skill",
+          "title": "العرض والمناقشة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g10-u2-l1",
+      "officialTitle": "الاستماع والتحدث — المسار العام — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الاستماع والتحدث — المسار العام — الفصل الثاني» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g10-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g10-u2-l2",
+      "officialTitle": "القراءة والفهم — المسار العام — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «القراءة والفهم — المسار العام — الفصل الثاني» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g10-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g10-u2-l3",
+      "officialTitle": "النصوص والتذوق — المسار العام — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة، ويغلق Pack فلسطين الخصائص الوطنية الخاصة في «النصوص والتذوق — المسار العام — الفصل الثاني» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g10-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l13",
+          "relation": "supporting-skill",
+          "title": "المقال الحجاجي"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l14",
+          "relation": "supporting-skill",
+          "title": "البحث والتوثيق"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g10-u2-l4",
+      "officialTitle": "النحو والبناء اللغوي — المسار العام — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «النحو والبناء اللغوي — المسار العام — الفصل الثاني» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g10-l07",
+          "relation": "supporting-skill",
+          "title": "النواسخ في السياق"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l08",
+          "relation": "supporting-skill",
+          "title": "المفاعيل ودلالاتها"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l09",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز المتقدم"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l10",
+          "relation": "supporting-skill",
+          "title": "التوابع والاتساق"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l11",
+          "relation": "supporting-skill",
+          "title": "الشرط والاستثناء"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g10-u2-l5",
+      "officialTitle": "الإملاء وعلامات الترقيم — المسار العام — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة، ويغلق Pack فلسطين الخصائص الوطنية الخاصة في «الإملاء وعلامات الترقيم — المسار العام — الفصل الثاني» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g10-l12",
+          "relation": "direct-skill",
+          "title": "الإيجاز والإطناب"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g10-u2-l6",
+      "officialTitle": "الكتابة والتعبير — المسار العام — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الكتابة والتعبير — المسار العام — الفصل الثاني» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g10-l15",
+          "relation": "supporting-skill",
+          "title": "التلخيص الأكاديمي"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l16",
+          "relation": "supporting-skill",
+          "title": "العرض والمناقشة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g10-u3-l1",
+      "officialTitle": "الاستماع والتحدث — المسار المهني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الاستماع والتحدث — المسار المهني» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g10-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g10-u3-l2",
+      "officialTitle": "القراءة والفهم — المسار المهني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «القراءة والفهم — المسار المهني» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g10-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g10-u3-l3",
+      "officialTitle": "النصوص والتذوق — المسار المهني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة، ويغلق Pack فلسطين الخصائص الوطنية الخاصة في «النصوص والتذوق — المسار المهني» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g10-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l13",
+          "relation": "supporting-skill",
+          "title": "المقال الحجاجي"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l14",
+          "relation": "supporting-skill",
+          "title": "البحث والتوثيق"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g10-u3-l4",
+      "officialTitle": "النحو والبناء اللغوي — المسار المهني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «النحو والبناء اللغوي — المسار المهني» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g10-l07",
+          "relation": "supporting-skill",
+          "title": "النواسخ في السياق"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l08",
+          "relation": "supporting-skill",
+          "title": "المفاعيل ودلالاتها"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l09",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز المتقدم"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l10",
+          "relation": "supporting-skill",
+          "title": "التوابع والاتساق"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l11",
+          "relation": "supporting-skill",
+          "title": "الشرط والاستثناء"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g10-u3-l5",
+      "officialTitle": "الإملاء وعلامات الترقيم — المسار المهني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة، ويغلق Pack فلسطين الخصائص الوطنية الخاصة في «الإملاء وعلامات الترقيم — المسار المهني» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g10-l12",
+          "relation": "direct-skill",
+          "title": "الإيجاز والإطناب"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g10-u3-l6",
+      "officialTitle": "الكتابة والتعبير — المسار المهني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/gaza/subjects"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الكتابة والتعبير — المسار المهني» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g10-l15",
+          "relation": "supporting-skill",
+          "title": "التلخيص الأكاديمي"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l16",
+          "relation": "supporting-skill",
+          "title": "العرض والمناقشة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g10-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    }
+  ]
+}
