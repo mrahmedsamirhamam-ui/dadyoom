@@ -65,6 +65,7 @@ export type CurriculumCountryCoverage = {
   coreReady: boolean;
   officialStatus: string;
   officialVerificationStatus: string;
+  verifiedMappingGrades: number;
   officialReady: boolean;
   ready: boolean;
 };
@@ -289,6 +290,77 @@ export function getCurriculumControlCenter():
       )
     );
 
+  const mappingDir =
+    path.resolve(
+      process.cwd(),
+      "data/curriculum-mappings"
+    );
+
+  const verifiedMappingGradesByCountry =
+    new Map<string, Set<number>>();
+
+  if (fs.existsSync(mappingDir)) {
+    for (const entry of fs.readdirSync(mappingDir, { withFileTypes: true })) {
+      if (!entry.isFile() || !entry.name.endsWith(".json")) {
+        continue;
+      }
+
+      try {
+        const raw =
+          readJson(
+            path.join(
+              mappingDir,
+              entry.name
+            )
+          ) as Record<string, unknown>;
+
+        const mappingCountry =
+          raw.country &&
+          typeof raw.country === "object"
+            ? raw.country as Record<string, unknown>
+            : {};
+
+        const code =
+          text(mappingCountry.code);
+
+        const gradeNumber =
+          numberOrNull(raw.grade);
+
+        const officialLessons =
+          Number(raw.officialLessons ?? 0);
+
+        const mappedLessons =
+          Number(raw.mappedLessons ?? 0);
+
+        const verifiedLessons =
+          Number(raw.verifiedLessons ?? 0);
+
+        const verifiedGrade =
+          text(raw.status) === "verified" &&
+          gradeNumber !== null &&
+          officialLessons > 0 &&
+          mappedLessons >= officialLessons &&
+          verifiedLessons >= officialLessons;
+
+        if (verifiedGrade && code) {
+          if (!verifiedMappingGradesByCountry.has(code)) {
+            verifiedMappingGradesByCountry.set(
+              code,
+              new Set<number>()
+            );
+          }
+
+          verifiedMappingGradesByCountry
+            .get(code)
+            ?.add(gradeNumber);
+        }
+      }
+      catch {
+        // Invalid mapping files are caught by the release audit.
+      }
+    }
+  }
+
   const registryCountries =
     Array.isArray(registry.countries)
       ? registry.countries
@@ -448,10 +520,16 @@ export function getCurriculumControlCenter():
          * manifest is explicitly closed after grade/term/unit/lesson
          * provenance has been audited.
          */
+        const verifiedMappingGrades =
+          verifiedMappingGradesByCountry.get(
+            country.code
+          )?.size ?? 0;
+
         const officialReady =
           officialStatus === "complete" &&
           officialVerificationStatus === "verified" &&
-          countryPacks.length > 0;
+          countryPacks.length > 0 &&
+          verifiedMappingGrades === 12;
 
         return {
           code: country.code,
@@ -479,6 +557,7 @@ export function getCurriculumControlCenter():
             ),
           officialStatus,
           officialVerificationStatus,
+          verifiedMappingGrades,
           packs:
             countryPacks.length,
           lessons,
