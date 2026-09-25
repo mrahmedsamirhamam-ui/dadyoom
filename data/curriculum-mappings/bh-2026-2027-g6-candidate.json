@@ -1,0 +1,2827 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "BH",
+    "nameAr": "مملكة البحرين"
+  },
+  "academicYear": "2026-2027",
+  "grade": 6,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "candidate",
+  "officialLessons": 54,
+  "mappedLessons": 54,
+  "verifiedLessons": 0,
+  "policy": "ملف مرشحات قابل للتدقيق. بُني من الطبقة الوطنية الموجودة في قاعدة ضاديوم وربط بمهارات Dadyoom Core. لا يصبح أي درس verified دون مراجعة المصدر والأهداف، ولا يعاد نشر نص الكتاب الوزاري.",
+  "generatedBy": "Dadyoom official-to-core matcher",
+  "mappings": [
+    {
+      "officialLessonId": "57fe4526-3eba-4c75-a39f-b8b6806a9e6b",
+      "officialSlug": "bh-2026-g6-t1-324",
+      "officialTitle": "( طريق الخير1 ) القراءة",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.5915,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l01",
+          "relation": "supporting-skill",
+          "title": "القراءة الجهرية المعبرة",
+          "score": 0.5915
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.5915
+        },
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.4766
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.4235
+        }
+      ]
+    },
+    {
+      "officialLessonId": "0b6ba054-89a4-4c2a-bea7-6fab535c1dad",
+      "officialSlug": "bh-2026-g6-t1-325",
+      "officialTitle": "( ّبنية النصّ السّردي1)",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.5248,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l06",
+          "relation": "unmapped",
+          "title": "الاستنتاج من النص",
+          "score": 0.5248
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.5248
+        },
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.421
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3366
+        }
+      ]
+    },
+    {
+      "officialLessonId": "1bb85fe3-ddbf-42c8-b250-cfaa8e878925",
+      "officialSlug": "bh-2026-g6-t1-326",
+      "officialTitle": "( ّبنية النصّ السّردي2)",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.5248,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l06",
+          "relation": "unmapped",
+          "title": "الاستنتاج من النص",
+          "score": 0.5248
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.5248
+        },
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.421
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3366
+        }
+      ]
+    },
+    {
+      "officialLessonId": "9f66b36b-20f2-4631-acec-389a4b529da1",
+      "officialSlug": "bh-2026-g6-t1-327",
+      "officialTitle": "( ّبنية النصّ السّردي3)",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.5248,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l06",
+          "relation": "unmapped",
+          "title": "الاستنتاج من النص",
+          "score": 0.5248
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.5248
+        },
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.421
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3366
+        }
+      ]
+    },
+    {
+      "officialLessonId": "91475bf8-79e0-4399-9c98-faa7761fad50",
+      "officialSlug": "bh-2026-g6-t1-329",
+      "officialTitle": "أبي: دراسة القصيدة كاملة / حفظ الأبيات (من1 إلى6) القراءة 12-13",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.5487,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l01",
+          "relation": "text-specific",
+          "title": "القراءة الجهرية المعبرة",
+          "score": 0.5487
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.5487
+        },
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.5378
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3765
+        }
+      ]
+    },
+    {
+      "officialLessonId": "251e489e-e726-47bb-bb50-e6b66e487dd1",
+      "officialSlug": "bh-2026-g6-t1-342",
+      "officialTitle": "طريق الخير ( 1 ) القراءة 14-18",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.5915,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l01",
+          "relation": "supporting-skill",
+          "title": "القراءة الجهرية المعبرة",
+          "score": 0.5915
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.5915
+        },
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.4766
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.4235
+        }
+      ]
+    },
+    {
+      "officialLessonId": "69115ad5-dfdd-4d97-b2fc-f9b54bdce448",
+      "officialSlug": "bh-2026-g6-t1-343",
+      "officialTitle": "طريق الخير 2 ) القراءة 19-21",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.5915,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l01",
+          "relation": "supporting-skill",
+          "title": "القراءة الجهرية المعبرة",
+          "score": 0.5915
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.5915
+        },
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.4766
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.4235
+        }
+      ]
+    },
+    {
+      "officialLessonId": "9c1b1c63-553a-4b52-98fc-062d3f677f1a",
+      "officialSlug": "bh-2026-g6-t1-344",
+      "officialTitle": "من هدي القرآن الكريم القراءة 9-11",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.5681,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l01",
+          "relation": "supporting-skill",
+          "title": "القراءة الجهرية المعبرة",
+          "score": 0.5681
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.5681
+        },
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.5485
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.4066
+        }
+      ]
+    },
+    {
+      "officialLessonId": "e7934742-8821-4867-8df8-5a6c2ef96356",
+      "officialSlug": "bh-2026-g6-t1-345",
+      "officialTitle": "يقسّم الدّرس إلى3",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.2181,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l02",
+          "relation": "unmapped",
+          "title": "الفكرة الرئيسة والتفاصيل",
+          "score": 0.2181
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "48e40ccb-20ad-4e5a-9745-6f23150583af",
+          "coreSlug": "bh-dadyoom-core-g6-l02",
+          "coreTitle": "الفكرة الرئيسة والتفاصيل",
+          "coreLessonType": "reading",
+          "score": 0.2181
+        },
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.1888
+        },
+        {
+          "coreLessonId": "28ed29af-e145-4ff1-b433-69f41bdf1e15",
+          "coreSlug": "bh-dadyoom-core-g6-l04",
+          "coreTitle": "السبب والنتيجة",
+          "coreLessonType": "reading",
+          "score": 0.1858
+        }
+      ]
+    },
+    {
+      "officialLessonId": "95c9b8c0-a215-4bab-bad1-7635eaa0cf4a",
+      "officialSlug": "bh-2026-g6-t1-346",
+      "officialTitle": "( مكوّنات النصّ السّردي3 )",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.5253,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l06",
+          "relation": "unmapped",
+          "title": "الاستنتاج من النص",
+          "score": 0.5253
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.5253
+        },
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.4102
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3398
+        }
+      ]
+    },
+    {
+      "officialLessonId": "a1515991-5c85-4759-b4de-ab7a09497bf7",
+      "officialSlug": "bh-2026-g6-t1-348",
+      "officialTitle": "إلى ولدي القراءة 26-29",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.6036,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l01",
+          "relation": "supporting-skill",
+          "title": "القراءة الجهرية المعبرة",
+          "score": 0.6036
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.6036
+        },
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.4857
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.4273
+        }
+      ]
+    },
+    {
+      "officialLessonId": "2d9cb139-c585-4e63-a357-fc55eef3ecf5",
+      "officialSlug": "bh-2026-g6-t1-353",
+      "officialTitle": "التنمية الصناعية في البحرين القراءة 30-33",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.576,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l01",
+          "relation": "supporting-skill",
+          "title": "القراءة الجهرية المعبرة",
+          "score": 0.576
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.576
+        },
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.4848
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3974
+        }
+      ]
+    },
+    {
+      "officialLessonId": "a9a071ad-57e4-47b3-a4bd-24596227225b",
+      "officialSlug": "bh-2026-g6-t1-354",
+      "officialTitle": "الثروة المائية في البحرين القراءة 41-45 10",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.5826,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l01",
+          "relation": "supporting-skill",
+          "title": "القراءة الجهرية المعبرة",
+          "score": 0.5826
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.5826
+        },
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.486
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.399
+        }
+      ]
+    },
+    {
+      "officialLessonId": "9e78560c-e30f-4346-aebf-b6f3120b11a9",
+      "officialSlug": "bh-2026-g6-t1-369",
+      "officialTitle": "بلد الشراع : دراسة القصيدة كاملة القراءة 34-36",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "medium",
+      "score": 0.5692,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l01",
+          "relation": "text-specific",
+          "title": "القراءة الجهرية المعبرة",
+          "score": 0.5692
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.5692
+        },
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.472
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.4006
+        }
+      ]
+    },
+    {
+      "officialLessonId": "5527412f-3c8f-466f-8c46-d68c3a6bc7e8",
+      "officialSlug": "bh-2026-g6-t1-370",
+      "officialTitle": "بنت الخليج: دراسة القصيدة كاملة / (حفظ من 1 إلى4) القراءة 22 -23",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.5432,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l01",
+          "relation": "text-specific",
+          "title": "القراءة الجهرية المعبرة",
+          "score": 0.5432
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.5432
+        },
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.5265
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3755
+        }
+      ]
+    },
+    {
+      "officialLessonId": "2229f4ee-7752-434d-b0b7-f075635f0503",
+      "officialSlug": "bh-2026-g6-t1-371",
+      "officialTitle": "وسام على صدر الوطن القراءة 24-25",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.573,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l01",
+          "relation": "supporting-skill",
+          "title": "القراءة الجهرية المعبرة",
+          "score": 0.573
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.573
+        },
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.487
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.4039
+        }
+      ]
+    },
+    {
+      "officialLessonId": "80e54e80-0c15-4032-913c-79ecb3f50ec8",
+      "officialSlug": "bh-2026-g6-t1-373",
+      "officialTitle": "أوال مهد العلا: دراسة القصيدة كاملة / حفظ الأبيات (من1 إلى5 ) القراءة 46-47",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.5351,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l01",
+          "relation": "text-specific",
+          "title": "القراءة الجهرية المعبرة",
+          "score": 0.5351
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.5351
+        },
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.5251
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3673
+        }
+      ]
+    },
+    {
+      "officialLessonId": "e96fe084-1082-4561-a268-da3b2c62933f",
+      "officialSlug": "bh-2026-g6-t1-374",
+      "officialTitle": "الأمن العام القراءة 59-64",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.6006,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l01",
+          "relation": "supporting-skill",
+          "title": "القراءة الجهرية المعبرة",
+          "score": 0.6006
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.6006
+        },
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.5067
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.4247
+        }
+      ]
+    },
+    {
+      "officialLessonId": "b2fd006d-62fd-47c4-9379-1598541000bd",
+      "officialSlug": "bh-2026-g6-t1-380",
+      "officialTitle": "على عرفات : دراسة القصيدة كاملة / حفظ القصيدة كاملة القراءة 52-54",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "medium",
+      "score": 0.5667,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l01",
+          "relation": "text-specific",
+          "title": "القراءة الجهرية المعبرة",
+          "score": 0.5667
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.5667
+        },
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.4812
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3994
+        }
+      ]
+    },
+    {
+      "officialLessonId": "fb872b6c-1372-49be-8eb1-f2e08c3803b5",
+      "officialSlug": "bh-2026-g6-t1-381",
+      "officialTitle": "ليتني كنت معهم القراءة 48-51",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.5764,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l01",
+          "relation": "supporting-skill",
+          "title": "القراءة الجهرية المعبرة",
+          "score": 0.5764
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.5764
+        },
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.475
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.407
+        }
+      ]
+    },
+    {
+      "officialLessonId": "457b808a-325e-452d-b7d1-01f12c833894",
+      "officialSlug": "bh-2026-g6-t1-321",
+      "officialTitle": "( القواعد النّحويّة: بناء الفعل املاض ي على الضّمّ والسّكون1)",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.3789,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l09",
+          "relation": "unmapped",
+          "title": "الفعل والفاعل",
+          "score": 0.3789
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.3789
+        },
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3075
+        },
+        {
+          "coreLessonId": "5defbe8c-b653-489a-af88-e9d35902c26b",
+          "coreSlug": "bh-dadyoom-core-g6-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.3028
+        }
+      ]
+    },
+    {
+      "officialLessonId": "b9336531-0722-4d37-88f3-591e68bd2e30",
+      "officialSlug": "bh-2026-g6-t1-322",
+      "officialTitle": "( القواعد النّحويّة: بناء الفعل املاض ي على الضّمّ والسّكون2)",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.3789,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l09",
+          "relation": "unmapped",
+          "title": "الفعل والفاعل",
+          "score": 0.3789
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.3789
+        },
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3075
+        },
+        {
+          "coreLessonId": "5defbe8c-b653-489a-af88-e9d35902c26b",
+          "coreSlug": "bh-dadyoom-core-g6-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.3028
+        }
+      ]
+    },
+    {
+      "officialLessonId": "a7ce31f7-2fe8-4b90-b554-3655ab6a628a",
+      "officialSlug": "bh-2026-g6-t1-323",
+      "officialTitle": "( القواعد النّحويّة: مراجعات نحويّة2)",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.3073,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l10",
+          "relation": "unmapped",
+          "title": "المفعول به",
+          "score": 0.3073
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3073
+        },
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.3004
+        },
+        {
+          "coreLessonId": "852a9af5-1401-4968-9092-41222072a950",
+          "coreSlug": "bh-dadyoom-core-g6-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.2973
+        }
+      ]
+    },
+    {
+      "officialLessonId": "b84af42f-e6b6-4b11-8383-ba97f0552f62",
+      "officialSlug": "bh-2026-g6-t1-337",
+      "officialTitle": "القواعد النّحويّة: بناء الفعل الماض ي على الضّمّ والسّكون 1) التّدريبات 16-19",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.3758,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l09",
+          "relation": "unmapped",
+          "title": "الفعل والفاعل",
+          "score": 0.3758
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.3758
+        },
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3116
+        },
+        {
+          "coreLessonId": "5defbe8c-b653-489a-af88-e9d35902c26b",
+          "coreSlug": "bh-dadyoom-core-g6-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.3053
+        }
+      ]
+    },
+    {
+      "officialLessonId": "6ba27a3a-63cf-44ed-9ffb-6d292f377e7c",
+      "officialSlug": "bh-2026-g6-t1-338",
+      "officialTitle": "القواعد النّحويّة: بناء الفعل الماض ي على الضّمّ والسّكون 2) التّدريبات 23-24",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.3758,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l09",
+          "relation": "unmapped",
+          "title": "الفعل والفاعل",
+          "score": 0.3758
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.3758
+        },
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3116
+        },
+        {
+          "coreLessonId": "5defbe8c-b653-489a-af88-e9d35902c26b",
+          "coreSlug": "bh-dadyoom-core-g6-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.3053
+        }
+      ]
+    },
+    {
+      "officialLessonId": "b155bb85-618c-4c99-bf14-2c8c3d140403",
+      "officialSlug": "bh-2026-g6-t1-339",
+      "officialTitle": "القواعد النّحويّة: مراجعات",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.302,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l09",
+          "relation": "unmapped",
+          "title": "الفعل والفاعل",
+          "score": 0.302
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.302
+        },
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3019
+        },
+        {
+          "coreLessonId": "852a9af5-1401-4968-9092-41222072a950",
+          "coreSlug": "bh-dadyoom-core-g6-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.2988
+        }
+      ]
+    },
+    {
+      "officialLessonId": "6512bb74-1908-449b-9715-3f3da3f14ca4",
+      "officialSlug": "bh-2026-g6-t1-340",
+      "officialTitle": "القواعد النّحويّة: مراجعات نحويّة ( 1) التّدريبات 7-8",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.2985,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l10",
+          "relation": "unmapped",
+          "title": "المفعول به",
+          "score": 0.2985
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.2985
+        },
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.2979
+        },
+        {
+          "coreLessonId": "852a9af5-1401-4968-9092-41222072a950",
+          "coreSlug": "bh-dadyoom-core-g6-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.2948
+        }
+      ]
+    },
+    {
+      "officialLessonId": "8b7b7af3-fd9b-4de4-a5c5-bbbc7020407d",
+      "officialSlug": "bh-2026-g6-t1-341",
+      "officialTitle": "القواعد النّحويّة: مراجعات نحويّة 2) التّدريبات 12-13",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.2985,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l10",
+          "relation": "unmapped",
+          "title": "المفعول به",
+          "score": 0.2985
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.2985
+        },
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.2979
+        },
+        {
+          "coreLessonId": "852a9af5-1401-4968-9092-41222072a950",
+          "coreSlug": "bh-dadyoom-core-g6-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.2948
+        }
+      ]
+    },
+    {
+      "officialLessonId": "a3fabe1c-ade0-4614-a59e-f7a649591f00",
+      "officialSlug": "bh-2026-g6-t1-357",
+      "officialTitle": "القواعد النّحويّة: إفراد الفعل مع الفاعل",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4087,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l09",
+          "relation": "unmapped",
+          "title": "الفعل والفاعل",
+          "score": 0.4087
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.4087
+        },
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3054
+        },
+        {
+          "coreLessonId": "852a9af5-1401-4968-9092-41222072a950",
+          "coreSlug": "bh-dadyoom-core-g6-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.2939
+        }
+      ]
+    },
+    {
+      "officialLessonId": "d38dbe6a-eabf-4e8d-8854-36b98ba9cfe1",
+      "officialSlug": "bh-2026-g6-t1-358",
+      "officialTitle": "القواعد النّحويّة: إفراد الفعل مع الفاعل التّدريبات 60-63",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.3935,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l09",
+          "relation": "unmapped",
+          "title": "الفعل والفاعل",
+          "score": 0.3935
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.3935
+        },
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3031
+        },
+        {
+          "coreLessonId": "852a9af5-1401-4968-9092-41222072a950",
+          "coreSlug": "bh-dadyoom-core-g6-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.2919
+        }
+      ]
+    },
+    {
+      "officialLessonId": "58626060-55f5-417e-9a9c-e0859fd5ab36",
+      "officialSlug": "bh-2026-g6-t1-359",
+      "officialTitle": "القواعد النّحويّة: األفعال الخمسة",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.312,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l09",
+          "relation": "unmapped",
+          "title": "الفعل والفاعل",
+          "score": 0.312
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.312
+        },
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.306
+        },
+        {
+          "coreLessonId": "5defbe8c-b653-489a-af88-e9d35902c26b",
+          "coreSlug": "bh-dadyoom-core-g6-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.2992
+        }
+      ]
+    },
+    {
+      "officialLessonId": "f73512b6-d303-42fc-91ae-5914f9adfc95",
+      "officialSlug": "bh-2026-g6-t1-360",
+      "officialTitle": "القواعد النّحويّة: الأفعال الخمسة التّدريبات 50-56",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.2984,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l10",
+          "relation": "unmapped",
+          "title": "المفعول به",
+          "score": 0.2984
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.2984
+        },
+        {
+          "coreLessonId": "5defbe8c-b653-489a-af88-e9d35902c26b",
+          "coreSlug": "bh-dadyoom-core-g6-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.2975
+        },
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.297
+        }
+      ]
+    },
+    {
+      "officialLessonId": "a9020a55-3069-49e3-8020-6ca021160db2",
+      "officialSlug": "bh-2026-g6-t1-361",
+      "officialTitle": "القواعد النّحويّة: بناء فعل األمر املعتلّ اآلخر",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.3038,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l09",
+          "relation": "unmapped",
+          "title": "الفعل والفاعل",
+          "score": 0.3038
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.3038
+        },
+        {
+          "coreLessonId": "5defbe8c-b653-489a-af88-e9d35902c26b",
+          "coreSlug": "bh-dadyoom-core-g6-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.3014
+        },
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.2991
+        }
+      ]
+    },
+    {
+      "officialLessonId": "f0e7766a-ad1a-40fd-8ff7-25b4f942365c",
+      "officialSlug": "bh-2026-g6-t1-362",
+      "officialTitle": "القواعد النّحويّة: بناء فعل الأمر المعتلّ الآخر التّدريبات 45 -48",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.301,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l09",
+          "relation": "unmapped",
+          "title": "الفعل والفاعل",
+          "score": 0.301
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.301
+        },
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.2983
+        },
+        {
+          "coreLessonId": "852a9af5-1401-4968-9092-41222072a950",
+          "coreSlug": "bh-dadyoom-core-g6-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.2954
+        }
+      ]
+    },
+    {
+      "officialLessonId": "b5f8fa59-0a47-473c-bddd-ab1eaf3cd912",
+      "officialSlug": "bh-2026-g6-t1-363",
+      "officialTitle": "القواعد النّحويّة: جزم الفعل المضارع المعتلّ الآخر التّدريبات 38-43",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.3669,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l09",
+          "relation": "unmapped",
+          "title": "الفعل والفاعل",
+          "score": 0.3669
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.3669
+        },
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3065
+        },
+        {
+          "coreLessonId": "852a9af5-1401-4968-9092-41222072a950",
+          "coreSlug": "bh-dadyoom-core-g6-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.2955
+        }
+      ]
+    },
+    {
+      "officialLessonId": "fb8a6013-9926-4ee2-81eb-58732029ffdb",
+      "officialSlug": "bh-2026-g6-t1-364",
+      "officialTitle": "القواعد النّحويّة: جزم الفعل املضارع املعتلّ اآلخر",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.37,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l09",
+          "relation": "unmapped",
+          "title": "الفعل والفاعل",
+          "score": 0.37
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.37
+        },
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3019
+        },
+        {
+          "coreLessonId": "852a9af5-1401-4968-9092-41222072a950",
+          "coreSlug": "bh-dadyoom-core-g6-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.2963
+        }
+      ]
+    },
+    {
+      "officialLessonId": "579961bc-6704-4ef7-ac31-cfb617a03daa",
+      "officialSlug": "bh-2026-g6-t1-365",
+      "officialTitle": "القواعد النّحويّة: رفع الفعل المضارع المعتلّ الآخر التّدريبات 27-30",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.3666,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l09",
+          "relation": "unmapped",
+          "title": "الفعل والفاعل",
+          "score": 0.3666
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.3666
+        },
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3061
+        },
+        {
+          "coreLessonId": "5defbe8c-b653-489a-af88-e9d35902c26b",
+          "coreSlug": "bh-dadyoom-core-g6-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.2915
+        }
+      ]
+    },
+    {
+      "officialLessonId": "efd11317-5bcb-4a90-9f4f-097f436938b7",
+      "officialSlug": "bh-2026-g6-t1-366",
+      "officialTitle": "القواعد النّحويّة: رفع الفعل املضارع املعتلّ اآلخر",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.3698,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l09",
+          "relation": "unmapped",
+          "title": "الفعل والفاعل",
+          "score": 0.3698
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.3698
+        },
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3014
+        },
+        {
+          "coreLessonId": "5defbe8c-b653-489a-af88-e9d35902c26b",
+          "coreSlug": "bh-dadyoom-core-g6-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.2958
+        }
+      ]
+    },
+    {
+      "officialLessonId": "dfdefc03-c113-4ee6-8648-daf745b4986c",
+      "officialSlug": "bh-2026-g6-t1-367",
+      "officialTitle": "القواعد النّحويّة: نصب الفعل المضارع المعتلّ الآخر التّدريبات 32-35",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.3582,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l03",
+          "relation": "unmapped",
+          "title": "معنى الكلمة من السياق",
+          "score": 0.3582
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "b953f804-bace-489c-8fe7-49665fa72bc9",
+          "coreSlug": "bh-dadyoom-core-g6-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.3582
+        },
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.3268
+        },
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.325
+        }
+      ]
+    },
+    {
+      "officialLessonId": "0c4fb42a-132c-4d41-9616-0d0b3d67019c",
+      "officialSlug": "bh-2026-g6-t1-368",
+      "officialTitle": "القواعد النّحويّة: نصب الفعل املضارع املعتلّ اآلخر",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.3585,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l03",
+          "relation": "unmapped",
+          "title": "معنى الكلمة من السياق",
+          "score": 0.3585
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "b953f804-bace-489c-8fe7-49665fa72bc9",
+          "coreSlug": "bh-dadyoom-core-g6-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.3585
+        },
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.3228
+        },
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.317
+        }
+      ]
+    },
+    {
+      "officialLessonId": "f91f5f25-def2-456c-9840-212a568bc3f8",
+      "officialSlug": "bh-2026-g6-t1-372",
+      "officialTitle": ":القواعد النّحويّة: إعراب الجمع بأنواعه- جمع املذكّر السّالم",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.2966,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l10",
+          "relation": "unmapped",
+          "title": "المفعول به",
+          "score": 0.2966
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.2966
+        },
+        {
+          "coreLessonId": "852a9af5-1401-4968-9092-41222072a950",
+          "coreSlug": "bh-dadyoom-core-g6-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.2952
+        },
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.2939
+        }
+      ]
+    },
+    {
+      "officialLessonId": "bb695444-eb02-4079-91ed-2658886db1f5",
+      "officialSlug": "bh-2026-g6-t1-375",
+      "officialTitle": "القواعد النّحويّة: إعراب الجمع بأنواعه - جمع المذكّر السّالم",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.2972,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l10",
+          "relation": "unmapped",
+          "title": "المفعول به",
+          "score": 0.2972
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.2972
+        },
+        {
+          "coreLessonId": "852a9af5-1401-4968-9092-41222072a950",
+          "coreSlug": "bh-dadyoom-core-g6-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.2959
+        },
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.2944
+        }
+      ]
+    },
+    {
+      "officialLessonId": "f396fce6-0fa7-40d5-bdfd-36ccbc35416a",
+      "officialSlug": "bh-2026-g6-t1-376",
+      "officialTitle": "القواعد النّحويّة: إعراب المثنى التّدريبات 75-79",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.3029,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l10",
+          "relation": "unmapped",
+          "title": "المفعول به",
+          "score": 0.3029
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3029
+        },
+        {
+          "coreLessonId": "5defbe8c-b653-489a-af88-e9d35902c26b",
+          "coreSlug": "bh-dadyoom-core-g6-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.2975
+        },
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.297
+        }
+      ]
+    },
+    {
+      "officialLessonId": "23c4a849-aa51-4156-a61e-baafe45a4bc4",
+      "officialSlug": "bh-2026-g6-t1-377",
+      "officialTitle": "القواعد النّحويّة: إعراب املثنى",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.2982,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l09",
+          "relation": "unmapped",
+          "title": "الفعل والفاعل",
+          "score": 0.2982
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.2982
+        },
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.2982
+        },
+        {
+          "coreLessonId": "852a9af5-1401-4968-9092-41222072a950",
+          "coreSlug": "bh-dadyoom-core-g6-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.2952
+        }
+      ]
+    },
+    {
+      "officialLessonId": "44f126a7-7063-45ad-8b7d-e8013815d4ab",
+      "officialSlug": "bh-2026-g6-t1-378",
+      "officialTitle": "القواعد النّحويّة: نائب الفاعل",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.3416,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l09",
+          "relation": "unmapped",
+          "title": "الفعل والفاعل",
+          "score": 0.3416
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.3416
+        },
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.2999
+        },
+        {
+          "coreLessonId": "852a9af5-1401-4968-9092-41222072a950",
+          "coreSlug": "bh-dadyoom-core-g6-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.296
+        }
+      ]
+    },
+    {
+      "officialLessonId": "738afcd0-6b2d-4702-9860-62305ceeec8e",
+      "officialSlug": "bh-2026-g6-t1-379",
+      "officialTitle": "القواعد النّحويّة: نائب الفاعل التّدريبات 68-73",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.3255,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l09",
+          "relation": "unmapped",
+          "title": "الفعل والفاعل",
+          "score": 0.3255
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "5c23e063-0fe1-4621-9516-da6c4b09cd37",
+          "coreSlug": "bh-dadyoom-core-g6-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.3255
+        },
+        {
+          "coreLessonId": "ab71c0b6-595b-4838-8f25-dee5fdc7dd0f",
+          "coreSlug": "bh-dadyoom-core-g6-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.2971
+        },
+        {
+          "coreLessonId": "852a9af5-1401-4968-9092-41222072a950",
+          "coreSlug": "bh-dadyoom-core-g6-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.2935
+        }
+      ]
+    },
+    {
+      "officialLessonId": "21f15add-1804-4c9c-906f-e79f4ec80e00",
+      "officialSlug": "bh-2026-g6-t1-331",
+      "officialTitle": "الإنتاج الكتابيّ: بنية النصّ السّرديّ ( 1) كرّاسة الإنتاج الكتابيّ8 -10 يقسّم الدّرس إلى 3 أجزاء",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.3889,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l06",
+          "relation": "unmapped",
+          "title": "الاستنتاج من النص",
+          "score": 0.3889
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.3889
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3298
+        },
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.3123
+        }
+      ]
+    },
+    {
+      "officialLessonId": "b4765cda-cffa-4a19-adcf-f3279cabff62",
+      "officialSlug": "bh-2026-g6-t1-332",
+      "officialTitle": "الإنتاج الكتابيّ: بنية النصّ السّرديّ ( 2) كرّاسة الإنتاج الكتابيّ11 - 12",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4135,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l06",
+          "relation": "unmapped",
+          "title": "الاستنتاج من النص",
+          "score": 0.4135
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.4135
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3326
+        },
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.3169
+        }
+      ]
+    },
+    {
+      "officialLessonId": "da24f4c2-7d74-47cd-bb7d-dab97d72ff73",
+      "officialSlug": "bh-2026-g6-t1-333",
+      "officialTitle": "الإنتاج الكتابيّ: بنية النصّ السّرديّ ( 3) كرّاسة الإنتاج الكتابيّ13-15",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4135,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l06",
+          "relation": "unmapped",
+          "title": "الاستنتاج من النص",
+          "score": 0.4135
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.4135
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3326
+        },
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.3169
+        }
+      ]
+    },
+    {
+      "officialLessonId": "38b24061-0642-43b7-a875-11b679ad4275",
+      "officialSlug": "bh-2026-g6-t1-347",
+      "officialTitle": ":ّاإلنتاج الكتابي( مكوّنات النصّ السّردي2 )",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4195,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l06",
+          "relation": "unmapped",
+          "title": "الاستنتاج من النص",
+          "score": 0.4195
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.4195
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3317
+        },
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.3108
+        }
+      ]
+    },
+    {
+      "officialLessonId": "f56cc6dd-4e24-4514-a140-30c3b1d0f9e6",
+      "officialSlug": "bh-2026-g6-t1-349",
+      "officialTitle": "اإلنتاج :ّالكتابي( مكوّنات النصّ السّردي1 )",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4195,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l06",
+          "relation": "unmapped",
+          "title": "الاستنتاج من النص",
+          "score": 0.4195
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.4195
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3317
+        },
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.3108
+        }
+      ]
+    },
+    {
+      "officialLessonId": "da50149a-6d11-43e8-a6e1-67b3bdcea342",
+      "officialSlug": "bh-2026-g6-t1-350",
+      "officialTitle": "الإنتاج الكتابيّ: مكوّنات النصّ السّردي ( 3 ) كرّاسة الإنتاج الكتابيّ25 -27",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4124,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l06",
+          "relation": "unmapped",
+          "title": "الاستنتاج من النص",
+          "score": 0.4124
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.4124
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3341
+        },
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.313
+        }
+      ]
+    },
+    {
+      "officialLessonId": "c3239da8-f2b7-4aa4-9deb-53837bf642b8",
+      "officialSlug": "bh-2026-g6-t1-351",
+      "officialTitle": "الإنتاج الكتابيّمكوّنات النصّ السّردي ( 2 ) كرّاسة الإنتاج الكتابيّ22 -24",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4116,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l06",
+          "relation": "unmapped",
+          "title": "الاستنتاج من النص",
+          "score": 0.4116
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.4116
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3334
+        },
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.3122
+        }
+      ]
+    },
+    {
+      "officialLessonId": "4d7aa9a0-8437-467a-ad98-4c8d30d4b405",
+      "officialSlug": "bh-2026-g6-t1-352",
+      "officialTitle": "الإنتاجالكتابيّ: مكوّنات النصّ السّردي ( 1 ) كرّاسة الإنتاج الكتابيّ16-21 يقسّم الدّرس إلى 3 أجزاء",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.3842,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g6-l06",
+          "relation": "unmapped",
+          "title": "الاستنتاج من النص",
+          "score": 0.3842
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "35f88ebe-f506-4af7-a9cb-5e6e3db01d35",
+          "coreSlug": "bh-dadyoom-core-g6-l06",
+          "coreTitle": "الاستنتاج من النص",
+          "coreLessonType": "reading",
+          "score": 0.3842
+        },
+        {
+          "coreLessonId": "153619df-7857-44e2-98d8-66ecb717ef96",
+          "coreSlug": "bh-dadyoom-core-g6-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3306
+        },
+        {
+          "coreLessonId": "671c885b-b7f5-4dd0-a1cd-805faa9e6c30",
+          "coreSlug": "bh-dadyoom-core-g6-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.3088
+        }
+      ]
+    }
+  ]
+}
