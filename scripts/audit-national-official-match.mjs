@@ -195,6 +195,7 @@ for (const rel of packFiles) {
 }
 
 let completeCountries = 0;
+let currentScopeCompleteCountries = 0;
 let sourceVerifiedCountries = 0;
 
 console.log("=== NATIONAL OFFICIAL MATCH AUDIT ===");
@@ -223,6 +224,8 @@ for (const country of registry.countries ?? []) {
     };
 
   const explicitComplete = matchingStatus === "complete";
+  const explicitCurrentScopeComplete =
+    matchingStatus === "current-scope-complete";
   const explicitVerified = verificationStatus === "verified";
 
   /*
@@ -236,13 +239,20 @@ for (const country of registry.countries ?? []) {
   const mappingCoverageComplete =
     mappingState.verifiedGrades.size === 12;
 
-  const ready =
-    explicitComplete &&
+  const structuralReady =
     explicitVerified &&
     coverageComplete &&
     mappingCoverageComplete &&
     state.verifiedPacks > 0 &&
     state.invalid.length === 0;
+
+  const ready =
+    explicitComplete &&
+    structuralReady;
+
+  const currentScopeReady =
+    explicitCurrentScopeComplete &&
+    structuralReady;
 
   if (explicitComplete && !ready) {
     console.error(
@@ -252,6 +262,7 @@ for (const country of registry.countries ?? []) {
   }
 
   if (ready) completeCountries += 1;
+  if (currentScopeReady) currentScopeCompleteCountries += 1;
 
   console.log(
     [
@@ -266,12 +277,14 @@ for (const country of registry.countries ?? []) {
       `MAPPING_GRADES=${mappingState.grades.size}/12`,
       `VERIFIED_MAPPING_GRADES=${mappingState.verifiedGrades.size}/12`,
       `MAPPED_LESSONS=${mappingState.mappedLessons}/${mappingState.officialLessons}`,
+      `CURRENT_SCOPE_READY=${currentScopeReady ? "YES" : "NO"}`,
       `READY=${ready ? "YES" : "NO"}`,
     ].join(" "),
   );
 }
 
 console.log(`NATIONAL_OFFICIAL_SOURCE_VERIFIED=${sourceVerifiedCountries}/22`);
+console.log(`NATIONAL_OFFICIAL_CURRENT_SCOPE_COMPLETE=${currentScopeCompleteCountries}/22`);
 console.log(`NATIONAL_OFFICIAL_COMPLETE=${completeCountries}/22`);
 
 if (sourceVerifiedCountries !== 22) {
