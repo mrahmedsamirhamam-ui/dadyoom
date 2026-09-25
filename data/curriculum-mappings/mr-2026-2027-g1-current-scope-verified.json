@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "MR",
+    "nameAr": "موريتانيا"
+  },
+  "academicYear": "2026-2027",
+  "grade": 1,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 1,
+  "mappedLessons": 1,
+  "verifiedLessons": 1,
+  "scope": "current-officially-published-and-publicly-verifiable-scope",
+  "policy": "المطابقة على مستوى الكتاب الرسمي لكل سنة، مع فصل الأدبي/العلمي في السنوات 5-7 من الثانوي. البنية الرسمية الحالية 6 ابتدائي + 4 إعدادي + 3 ثانوي، أي 13 مستوى دراسيًا.",
+  "mappings": [
+    {
+      "officialSlug": "mr-2026-2027-g1-all-arabic",
+      "officialTitle": "اللغة العربية — السنة 1 ابتدائي — حزمة الكتاب الرسمي",
+      "source": {
+        "label": "المعهد التربوي الوطني — كُتبي + وزارة التربية",
+        "url": "https://koutoubi.mr/fondamentals/1ere/Arabe/",
+        "koutoubiUrl": "https://koutoubi.mr/",
+        "ministryUrl": "https://www.education.gov.mr/",
+        "arabicPolicyUrl": "https://www.education.gov.mr/ar/node/1090",
+        "currentYearPrepUrl": "https://www.education.gov.mr/index.php/ar/node/1132",
+        "textbookDistributionUrl": "https://education.gov.mr/fr/node/982",
+        "reformUrl": "https://www.education.gov.mr/ar/node/555"
+      },
+      "relationType": "official-textbook-by-grade+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "كُتبي مبادرة أطلقها المعهد التربوي الوطني وتعرض الموارد التعليمية الرسمية المعتمدة بحسب المستوى؛ حزمة ضاديوم تغطي الكتاب بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "mr-dadyoom-core-g1-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g1-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g1-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g1-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g1-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g1-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g1-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g1-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g1-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g1-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g1-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g1-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g1-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g1-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g1-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g1-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g1-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g1-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-ipn-koutoubi+official-ministry-reform+official-current-year-preparation+national-pack"
+    }
+  ]
+}
