@@ -47,9 +47,13 @@ if (!apply) {
 }
 
 loadEnv(path.resolve(process.cwd(), ".env.local"));
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
-const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
-if (!url || !key) throw new Error("Supabase service credentials are missing.");
+const url =
+  process.env.NEXT_PUBLIC_SUPABASE_URL?.trim() ||
+  process.env.SUPABASE_URL?.trim();
+const key =
+  process.env.SUPABASE_SECRET_KEY?.trim() ||
+  process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
+if (!url || !key) throw new Error("Supabase elevated server credentials are missing.");
 const supabase = createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false } });
 
 async function one(table, configure) {
