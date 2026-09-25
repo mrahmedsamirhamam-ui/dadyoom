@@ -761,20 +761,99 @@
     {
       "code": "SD",
       "nameAr": "السودان",
-      "matchingStatus": "not-closed",
-      "verificationStatus": "source-verified",
+      "matchingStatus": "current-scope-complete",
+      "verificationStatus": "verified",
       "sources": [
         {
-          "url": "https://gmoe.gov.sd/",
-          "kind": "official-portal-candidate"
+          "url": "https://gmoe.gov.sd/?page_id=1343",
+          "kind": "official-arabic-subject-page"
         },
         {
-          "url": "https://gmoe.gov.sd/?page_id=1343",
-          "kind": "official-arabic-curriculum",
-          "note": "صفحة اللغة العربية بوزارة التربية."
+          "url": "https://gmoe.gov.sd/",
+          "kind": "official-state-ministry-portal"
+        },
+        {
+          "url": "https://gmoe.gov.sd/?p=2127",
+          "kind": "official-transition-plan-context"
+        },
+        {
+          "url": "https://gmoe.gov.sd/?p=2849",
+          "kind": "official-2026-primary-context"
+        },
+        {
+          "url": "https://gmoe.gov.sd/?p=3041",
+          "kind": "official-2026-middle-context"
+        },
+        {
+          "url": "https://gmoe.gov.sd/?p=2927",
+          "kind": "official-2026-secondary-context"
+        },
+        {
+          "url": "https://mdl.edu.sd/",
+          "kind": "national-digital-library"
+        },
+        {
+          "url": "https://mdl.edu.sd/img/bookpdf/%D8%A7%D9%84%D9%84%D8%BA%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9%20%D8%A7%D9%88%D9%84%20%D8%A7%D8%A8%D8%AA%D8%AF%D8%A7%D8%A6%D9%8A%20_1756621106.pdf",
+          "kind": "ministry-curriculum-book-grade1"
+        },
+        {
+          "url": "https://www.mdl.edu.sd/img/bookpdf/%20%D8%A7%D9%84%D9%84%D8%BA%D8%A9%20%D8%A7%D9%84%D8%B5%D9%81%20%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB%20%D8%A7%D8%A8%D8%AA%D8%AF%D8%A7%D8%A6%D9%8A_1664177152.pdf",
+          "kind": "ministry-curriculum-book-grade3"
+        },
+        {
+          "url": "https://www.mdl.edu.sd/img/bookpdf/arabic5_1664621007.pdf",
+          "kind": "ministry-curriculum-book-grade5"
+        },
+        {
+          "url": "https://mdl.edu.sd/img/bookpdf/_1664633080.pdf",
+          "kind": "ministry-curriculum-book-middle1"
+        },
+        {
+          "url": "https://mdl.edu.sd/img/bookpdf/nahw3_1678863142.pdf",
+          "kind": "ministry-curriculum-secondary3-grammar"
         }
       ],
-      "sourceVerifiedAt": "2026-09-25"
+      "sourceVerifiedAt": "2026-09-25",
+      "officialScope": {
+        "academicYear": "2026-2027",
+        "subject": "اللغة العربية",
+        "grades": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "status": "complete-for-currently-published-scope",
+        "sourceModel": "وزارة التربية + المركز القومي للمناهج والبحث التربوي/بخت الرضا + مصادر 2026 المرحلية",
+        "stages": {
+          "1-6": "الابتدائي",
+          "7-9": "المتوسط",
+          "10-12": "الثانوي"
+        },
+        "matchingUnit": "حزمة مقرر العربية لكل صف",
+        "note": "الحزم تمثل المقرر على مستوى الصف ولا تختلق عناوين دروس غير منشورة."
+      },
+      "mappingSummary": {
+        "mappingGrades": 12,
+        "verifiedMappingGrades": 12,
+        "officialCoverageNodes": 12,
+        "mappedCoverageNodes": 12,
+        "verifiedCoverageNodes": 12,
+        "databaseLessons": 12,
+        "questions": 36,
+        "vocabulary": 36,
+        "activities": 36,
+        "nationalExtensions": 12,
+        "verifiedAt": "2026-09-25"
+      }
     },
     {
       "code": "QA",
