@@ -79,8 +79,8 @@
     {
       "code": "JO",
       "nameAr": "الأردن",
-      "matchingStatus": "partial",
-      "verificationStatus": "source-verified",
+      "matchingStatus": "current-scope-complete",
+      "verificationStatus": "verified",
       "sources": [
         {
           "url": "https://www.nccd.gov.jo/Ar/Pages/Publications/?MaterialStudy=92",
@@ -100,7 +100,87 @@
           "kind": "official-arabic-framework"
         }
       ],
-      "sourceVerifiedAt": "2026-09-25"
+      "sourceVerifiedAt": "2026-09-25",
+      "officialScope": {
+        "academicYear": "2026-2027",
+        "subject": "اللغة العربية",
+        "grades": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "gradeSemesters": {
+          "1": [
+            1,
+            2
+          ],
+          "2": [
+            1,
+            2
+          ],
+          "3": [
+            1,
+            2
+          ],
+          "4": [
+            1,
+            2
+          ],
+          "5": [
+            1,
+            2
+          ],
+          "6": [
+            1,
+            2
+          ],
+          "7": [
+            1,
+            2
+          ],
+          "8": [
+            1,
+            2
+          ],
+          "9": [
+            1,
+            2
+          ],
+          "10": [
+            1,
+            2
+          ],
+          "11": [
+            1
+          ],
+          "12": [
+            1
+          ]
+        },
+        "status": "complete-for-currently-published-scope",
+        "note": "G1-G10: يغطي الفصلين الظاهرين في كتالوج NCCD الحالي. G11-G12: يغطي الفصل الأول المنشور صراحة للعام 2026-2027. أي فصل جديد ينشره NCCD لاحقًا يضاف كتحديث ولا يبطل إغلاق النطاق المنشور الحالي."
+      },
+      "mappingSummary": {
+        "mappingGrades": 12,
+        "verifiedMappingGrades": 12,
+        "officialCoverageNodes": 128,
+        "mappedCoverageNodes": 128,
+        "verifiedCoverageNodes": 128,
+        "databaseLessons": 128,
+        "questions": 384,
+        "vocabulary": 384,
+        "activities": 384,
+        "verifiedAt": "2026-09-25"
+      }
     },
     {
       "code": "LY",
