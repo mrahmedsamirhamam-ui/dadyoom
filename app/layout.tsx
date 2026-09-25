@@ -18,6 +18,16 @@ const googleVerification =
 const bingVerification =
   process.env.BING_SITE_VERIFICATION?.trim();
 
+const adsenseCandidate =
+  process.env.ADSENSE_CLIENT?.trim() ||
+  process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.trim() ||
+  "";
+
+const adsenseClient =
+  /^ca-pub-\d{16}$/u.test(adsenseCandidate)
+    ? adsenseCandidate
+    : undefined;
+
 const structuredData = [
   {
     "@context": "https://schema.org",
@@ -91,6 +101,11 @@ export const metadata: Metadata = {
           }
         : undefined,
   },
+  other: adsenseClient
+    ? {
+        "google-adsense-account": adsenseClient,
+      }
+    : undefined,
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
