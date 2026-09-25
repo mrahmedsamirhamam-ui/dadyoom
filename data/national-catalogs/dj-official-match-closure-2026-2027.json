@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "DJ",
+    "nameAr": "جيبوتي",
+    "nameEn": "Djibouti"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "status": "current-scope-complete",
+  "matchingStatus": "current-scope-complete",
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-09-25",
+  "authority": {
+    "menfop": "https://education.dj/?lang=ar",
+    "cripen": "https://cripen.dj/",
+    "baseGuides": "https://cripen.dj/index.php/guides-de-lenseignement-de-base/",
+    "grade1Arabic": "https://education.dj/portail/guideBi1er.php",
+    "grade2Arabic": "https://education.dj/portail/guideBi2e.php",
+    "grade3Arabic": "https://education.dj/portail/guideBi3e.php",
+    "grade5Arabic": "https://education.dj/portail/guide5e.php",
+    "grade9Arabic": "https://education.dj/portail/metier/guides/9eme/arabe.html",
+    "secondaryPrograms": "https://cripen.dj/wp-content/uploads/2025/05/Programmes-compile-seconde.pdf",
+    "terminalePrograms": "https://cripen.dj/wp-content/uploads/2025/05/Programme-compile-Terminale.pdf",
+    "arabicExam2026": "https://cripen.dj/index.php/2026/06/08/visite-officielle-du-ministre-dans-les-centres-dexamens/"
+  },
+  "structure": {
+    "grades": "12/12",
+    "fundamental": {
+      "grades": "1-9",
+      "primary": "1-5",
+      "middle": "6-9"
+    },
+    "secondary": {
+      "grades": "10-12",
+      "series": [
+        "L",
+        "ES",
+        "S",
+        "SG"
+      ]
+    },
+    "matchingUnit": {
+      "10": "Seconde مشتركة",
+      "1-9": "مقرر/دليل العربية بحسب السنة",
+      "11-12": "حزمة عربية لكل سلسلة L/ES/S/SG"
+    }
+  },
+  "coverage": {
+    "packGrades": "12/12",
+    "verifiedMappingGrades": "12/12",
+    "officialCoverageNodes": 18,
+    "mappedCoverageNodes": 18,
+    "verifiedCoverageNodes": 18,
+    "nationalExtensions": 18,
+    "database": {
+      "curriculumId": "4f4d72be-3082-480b-a062-e8e8342b9f66",
+      "grades": 12,
+      "units": 12,
+      "lessons": 18,
+      "questions": 54,
+      "vocabulary": 54,
+      "publishedActivities": 54,
+      "minimumContentCharacters": 395
+    },
+    "gradeLessonCounts": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 1,
+      "7": 1,
+      "8": 1,
+      "9": 1,
+      "10": 1,
+      "11": 4,
+      "12": 4
+    }
+  },
+  "qualityGates": {
+    "officialSourcesVerified": true,
+    "allGradesPresent": true,
+    "allPacksRightsVerified": true,
+    "allMappingsVerified": true,
+    "officialEqualsMappedEqualsVerified": true,
+    "allLessonsPublished": true,
+    "allLessonsHaveOfficialSource": true,
+    "minimumObjectivesPerLesson": 3,
+    "minimumQuestionsPerLesson": 3,
+    "minimumVocabularyPerLesson": 3,
+    "minimumPublishedActivitiesPerLesson": 3,
+    "failingDatabaseLessons": 0,
+    "legacyConflict": "inactive-before-import"
+  },
+  "copyrightPolicy": "لا يعيد ضاديوم نشر نصوص الأدلة والكتب الجيبوتية؛ يستخدم بنية المقرر والمستوى والسلسلة وروابط MENFOP/CRIPEN لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية.",
+  "claimPolicy": "مطابق للمنهج الرسمي الجيبوتي = مواءم مع أدلة ومناهج MENFOP/CRIPEN والسلاسل الثانوية الرسمية ضمن النطاق المنشور والقابل للتحقق؛ لا تعني العبارة اعتمادًا أو شراكة أو تأييدًا من الوزارة."
+}
