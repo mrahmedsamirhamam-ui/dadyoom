@@ -31,6 +31,7 @@ export default function HomePage() {
             <a href="#mvp" className="transition hover:text-[#174f47]">المنهج</a>
             <a href="#skills" className="transition hover:text-[#174f47]">المهارات</a>
             <Link href="/courses" className="transition hover:text-[#174f47]">استكشف الدروس</Link>
+            <Link href="/pricing" className="transition hover:text-[#174f47]">ضاديوم Plus</Link>
             <Link href="/ask" className="transition hover:text-[#174f47]">اسأل ضاد</Link>
           </nav>
           <div className="flex items-center gap-2">
