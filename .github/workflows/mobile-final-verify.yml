@@ -104,6 +104,39 @@ jobs:
             console.log("DADYOOM_GOOGLE_PROVIDER=PASS");
           ' "$AUTH_BODY"
 
+      - name: Production public SEO smoke
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="https://dadyoom.mrahmedsamirhamam.workers.dev"
+
+          check_200() {
+            local path="$1"
+            local label="$2"
+            local out
+            out="$(mktemp)"
+            local code
+            code="$(curl --silent --show-error --location --retry 3 --retry-delay 2 --output "$out" --write-out "%{http_code}" "$BASE$path")"
+            echo "$label HTTP=$code"
+            if [[ "$code" != "200" ]]; then
+              echo "$label=FAIL"
+              cat "$out" || true
+              exit 1
+            fi
+            echo "$label=PASS"
+          }
+
+          check_200 "/" "PRODUCTION_HOME"
+          check_200 "/robots.txt" "PRODUCTION_ROBOTS"
+          check_200 "/sitemap.xml" "PRODUCTION_SITEMAP"
+
+          ROBOTS="$(curl --fail --silent --show-error --retry 3 --retry-delay 2 "$BASE/robots.txt")"
+          if ! grep -qi "sitemap" <<<"$ROBOTS"; then
+            echo "PRODUCTION_ROBOTS_SITEMAP_REFERENCE=FAIL"
+            exit 1
+          fi
+          echo "PRODUCTION_ROBOTS_SITEMAP_REFERENCE=PASS"
+
       - name: Mobile PWA verify
         run: npm run mobile:pwa:verify
 
