@@ -44,6 +44,7 @@ jobs:
           node scripts/check-finish-admin.mjs
           node scripts/check-finish-curriculum-ops.mjs
           npm run curriculum:verify
+          npm run curriculum:audit:official
           npm run mvp:verify:closure
           node scripts/seed-dadyoom-core-22.mjs
           node scripts/import-curriculum-pack.mjs --pack data/curriculum-packs/bahrain-2026-2027-final/bh-2026-2027-arabic-unified-secondary-g10-s1.json
