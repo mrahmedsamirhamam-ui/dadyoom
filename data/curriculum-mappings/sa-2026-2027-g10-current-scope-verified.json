@@ -1,0 +1,369 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "SA",
+    "nameAr": "السعودية"
+  },
+  "academicYear": "2026-2027",
+  "grade": 10,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 10,
+  "mappedLessons": 10,
+  "verifiedLessons": 10,
+  "scope": "current-official-two-semester-published-scope",
+  "policy": "مواءمة الكتب والمواد والمسارات الرسمية مع Core Bundles وNational Extensions أصلية؛ لا إعادة نشر للنصوص.",
+  "mappings": [
+    {
+      "officialSlug": "sa-2026-2027-g10-u1-l1",
+      "officialTitle": "الكفاية النحوية — الكفايات اللغوية 1",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/E7027E8EDF24725B41C6D294DA2AADD7?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الكفاية النحوية — الكفايات اللغوية 1» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g10-l07",
+          "relation": "supporting-skill",
+          "title": "النواسخ في السياق"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l08",
+          "relation": "supporting-skill",
+          "title": "المفاعيل ودلالاتها"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l09",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز المتقدم"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l10",
+          "relation": "supporting-skill",
+          "title": "التوابع والاتساق"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l11",
+          "relation": "supporting-skill",
+          "title": "الشرط والاستثناء"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g10-u1-l2",
+      "officialTitle": "الكفاية الإملائية — الكفايات اللغوية 1",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/E7027E8EDF24725B41C6D294DA2AADD7?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack السعودية الخصائص الوطنية الخاصة في «الكفاية الإملائية — الكفايات اللغوية 1» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g10-l12",
+          "relation": "direct-skill",
+          "title": "الإيجاز والإطناب"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g10-u1-l3",
+      "officialTitle": "الكفاية القرائية — الكفايات اللغوية 1",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/E7027E8EDF24725B41C6D294DA2AADD7?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الكفاية القرائية — الكفايات اللغوية 1» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g10-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g10-u1-l4",
+      "officialTitle": "كفاية الاتصال الكتابي — الكفايات اللغوية 1",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/E7027E8EDF24725B41C6D294DA2AADD7?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «كفاية الاتصال الكتابي — الكفايات اللغوية 1» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g10-l15",
+          "relation": "supporting-skill",
+          "title": "التلخيص الأكاديمي"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l16",
+          "relation": "supporting-skill",
+          "title": "العرض والمناقشة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g10-u1-l5",
+      "officialTitle": "كفاية التواصل الشفهي — الكفايات اللغوية 1",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/E7027E8EDF24725B41C6D294DA2AADD7?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «كفاية التواصل الشفهي — الكفايات اللغوية 1» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g10-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l16",
+          "relation": "supporting-skill",
+          "title": "العرض والمناقشة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g10-u2-l1",
+      "officialTitle": "الكفاية النحوية — الكفايات اللغوية 1",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/E7027E8EDF24725B41C6D294DA2AADD7?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الكفاية النحوية — الكفايات اللغوية 1» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g10-l07",
+          "relation": "supporting-skill",
+          "title": "النواسخ في السياق"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l08",
+          "relation": "supporting-skill",
+          "title": "المفاعيل ودلالاتها"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l09",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز المتقدم"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l10",
+          "relation": "supporting-skill",
+          "title": "التوابع والاتساق"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l11",
+          "relation": "supporting-skill",
+          "title": "الشرط والاستثناء"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g10-u2-l2",
+      "officialTitle": "الكفاية الإملائية — الكفايات اللغوية 1",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/E7027E8EDF24725B41C6D294DA2AADD7?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack السعودية الخصائص الوطنية الخاصة في «الكفاية الإملائية — الكفايات اللغوية 1» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g10-l12",
+          "relation": "direct-skill",
+          "title": "الإيجاز والإطناب"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g10-u2-l3",
+      "officialTitle": "الكفاية القرائية — الكفايات اللغوية 1",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/E7027E8EDF24725B41C6D294DA2AADD7?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الكفاية القرائية — الكفايات اللغوية 1» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g10-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g10-u2-l4",
+      "officialTitle": "كفاية الاتصال الكتابي — الكفايات اللغوية 1",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/E7027E8EDF24725B41C6D294DA2AADD7?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «كفاية الاتصال الكتابي — الكفايات اللغوية 1» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g10-l15",
+          "relation": "supporting-skill",
+          "title": "التلخيص الأكاديمي"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l16",
+          "relation": "supporting-skill",
+          "title": "العرض والمناقشة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g10-u2-l5",
+      "officialTitle": "كفاية التواصل الشفهي — الكفايات اللغوية 1",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/E7027E8EDF24725B41C6D294DA2AADD7?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «كفاية التواصل الشفهي — الكفايات اللغوية 1» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g10-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        },
+        {
+          "slug": "sa-dadyoom-core-g10-l16",
+          "relation": "supporting-skill",
+          "title": "العرض والمناقشة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    }
+  ]
+}
