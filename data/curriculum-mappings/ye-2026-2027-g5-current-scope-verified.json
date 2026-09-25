@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "YE",
+    "nameAr": "اليمن"
+  },
+  "academicYear": "2026-2027",
+  "grade": 5,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 1,
+  "mappedLessons": 1,
+  "verifiedLessons": 1,
+  "scope": "current-officially-published-and-publicly-verifiable-scope",
+  "policy": "المطابقة على مستوى حزمة كتب العربية لكل صف من الأول الأساسي إلى الثالث الثانوي.",
+  "mappings": [
+    {
+      "officialSlug": "ye-2026-2027-g5-arabic-books",
+      "officialTitle": "اللغة العربية — الصف 5 الأساسي — حزمة الكتب الرسمية",
+      "source": {
+        "label": "الإدارة العامة للتعليم الإلكتروني — وزارة التربية والتعليم والبحث العلمي",
+        "url": "https://e-learning-moe.edu.ye/",
+        "guidesUrl": "https://www.e-learning-moe.edu.ye/teachergiude.php",
+        "currentYearUrl": "https://moe-ye.net/37553"
+      },
+      "relationType": "official-grade-textbook+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "بوابة الوزارة تعرض المناهج اليمنية من الصف الأول الأساسي إلى الثالث الثانوي، وتعرض أدلة المعلم لمادة اللغة العربية؛ الحزمة تمثل كتب العربية على مستوى الصف.",
+      "coreCoverage": [
+        {
+          "slug": "ye-dadyoom-core-g5-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g5-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g5-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g5-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g5-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g5-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g5-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g5-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g5-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g5-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g5-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g5-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g5-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g5-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g5-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g5-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g5-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ye-dadyoom-core-g5-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-ministry-elearning-catalog+official-arabic-teacher-guides+2026-2027-year-evidence+national-pack"
+    }
+  ]
+}
