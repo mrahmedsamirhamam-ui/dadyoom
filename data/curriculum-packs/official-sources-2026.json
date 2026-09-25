@@ -594,28 +594,74 @@
     {
       "code": "SA",
       "nameAr": "السعودية",
-      "matchingStatus": "not-closed",
-      "verificationStatus": "source-verified",
+      "matchingStatus": "current-scope-complete",
+      "verificationStatus": "verified",
       "sources": [
+        {
+          "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Pages/Study-plans.aspx",
+          "kind": "official-study-plans"
+        },
+        {
+          "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf",
+          "kind": "official-fifth-edition-study-plan"
+        },
+        {
+          "url": "https://madrasatibeta.moe.gov.sa/books",
+          "kind": "official-current-books",
+          "note": "منصة مدرستي تعرض الكتب التعليمية المعتمدة والمحدثة."
+        },
         {
           "url": "https://ien.edu.sa/",
           "kind": "official-learning-portal"
         },
         {
-          "url": "https://schools.madrasati.sa/",
-          "kind": "official-school-portal"
-        },
-        {
-          "url": "https://www.moe.gov.sa/",
-          "kind": "official-portal"
-        },
-        {
-          "url": "https://tawasul.moe.gov.sa/FAQ",
-          "kind": "official-ministry-guidance",
-          "note": "وزارة التعليم تحيل رسميًا للحصول على الكتب/أدلة المعلم إلى منصة عين ien.edu.sa."
+          "url": "https://www.moe.gov.sa/ar/knowledgecenter/eservices/pages/courses.aspx",
+          "kind": "official-digital-courses-service"
         }
       ],
-      "sourceVerifiedAt": "2026-09-25"
+      "sourceVerifiedAt": "2026-09-25",
+      "officialScope": {
+        "academicYear": "2026-2027",
+        "subject": "اللغة العربية",
+        "grades": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "status": "complete-for-currently-published-scope",
+        "semesters": 2,
+        "sourceModel": "وزارة التعليم + المركز الوطني للمناهج + مدرستي + عين",
+        "scopeByGrade": {
+          "10": "السنة الأولى المشتركة — الكفايات اللغوية 1",
+          "11": "السنة الثانية — المسارات الخمسة — الكفايات اللغوية 2؛ الدراسات اللغوية في إدارة الأعمال والشرعي",
+          "12": "السنة الثالثة — المسارات الخمسة — الدراسات الأدبية؛ الدراسات البالغية والنقدية في إدارة الأعمال والشرعي؛ الكتابة الوظيفية والإبداعية ضمن المجال الاختياري",
+          "1-3": "لغتي — الفصلان — 8 مكونات مهارية في كل فصل",
+          "4-6": "لغتي الجميلة — الفصلان — 8 مكونات مهارية في كل فصل",
+          "7-9": "لغتي الخالدة — الفصلان — 8 مكونات مهارية في كل فصل"
+        },
+        "note": "أي تحديث لاحق في مدرستي/عين أو دليل الخطط يضاف كتحديث للطبقة الوطنية."
+      },
+      "mappingSummary": {
+        "mappingGrades": 12,
+        "verifiedMappingGrades": 12,
+        "officialCoverageNodes": 206,
+        "mappedCoverageNodes": 206,
+        "verifiedCoverageNodes": 206,
+        "databaseLessons": 206,
+        "questions": 618,
+        "vocabulary": 618,
+        "activities": 618,
+        "verifiedAt": "2026-09-25"
+      }
     },
     {
       "code": "YE",
