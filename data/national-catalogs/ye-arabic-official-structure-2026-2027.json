@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "YE",
+    "nameAr": "اليمن",
+    "nameEn": "Yemen"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "verificationStatus": "verified-source-structure",
+  "officialCoverageUnit": "official-grade-textbook-bundle",
+  "educationStructure": {
+    "basic": {
+      "grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    "secondary": {
+      "grades": [
+        10,
+        11,
+        12
+      ],
+      "officialLevels": [
+        "الأول الثانوي",
+        "الثاني الثانوي",
+        "الثالث الثانوي"
+      ]
+    }
+  },
+  "officialCoverageNodes": 12,
+  "sources": [
+    {
+      "kind": "official-learning-portal",
+      "url": "https://e-learning-moe.edu.ye/"
+    },
+    {
+      "kind": "official-curricula-catalog",
+      "url": "https://e-learning-moe.edu.ye/lcms/"
+    },
+    {
+      "kind": "official-arabic-teacher-guides",
+      "url": "https://www.e-learning-moe.edu.ye/teachergiude.php"
+    },
+    {
+      "kind": "official-grade9-arabic-books",
+      "url": "https://e-learning-moe.edu.ye/ClassNine.php"
+    },
+    {
+      "kind": "official-grade11-arabic-books",
+      "url": "https://e-learning-moe.edu.ye/ClassEleven.php"
+    },
+    {
+      "kind": "official-grade12-arabic-books",
+      "url": "https://e-learning-moe.edu.ye/ClassTwelve.php"
+    },
+    {
+      "kind": "official-ministry-2026-2027",
+      "url": "https://moe-ye.net/37553"
+    }
+  ],
+  "copyrightPolicy": "لا تعيد ضاديوم نشر الكتب اليمنية؛ تستخدم فهرس المناهج والكتب وأدلة المعلم لإثبات المواءمة، بينما المحتوى التعليمي أصلي.",
+  "generatedAt": "2026-09-25"
+}
