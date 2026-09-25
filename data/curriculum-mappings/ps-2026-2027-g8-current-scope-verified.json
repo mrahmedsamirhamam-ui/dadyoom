@@ -1,0 +1,453 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "PS",
+    "nameAr": "فلسطين"
+  },
+  "academicYear": "2026-2027",
+  "grade": 8,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 12,
+  "mappedLessons": 12,
+  "verifiedLessons": 12,
+  "scope": "current-official-published-scope",
+  "policy": "مواءمة الكتب والرزم والمسارات والوحدات الرسمية المنشورة مع Core Bundles وNational Extensions أصلية؛ لا إعادة نشر للنصوص.",
+  "mappings": [
+    {
+      "officialSlug": "ps-2026-2027-g8-u1-l1",
+      "officialTitle": "الاستماع والتحدث — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الاستماع والتحدث — الفصل الأول» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g8-l04",
+          "relation": "supporting-skill",
+          "title": "الاستنتاج وبناء الحجة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l06",
+          "relation": "supporting-skill",
+          "title": "المقارنة بين نصين"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l17",
+          "relation": "supporting-skill",
+          "title": "الحجاج والمناظرة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g8-u1-l2",
+      "officialTitle": "القراءة والفهم — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «القراءة والفهم — الفصل الأول» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g8-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل نص أدبي"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l02",
+          "relation": "supporting-skill",
+          "title": "قراءة نص معلوماتي"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l03",
+          "relation": "supporting-skill",
+          "title": "الدلالة والسياق"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l04",
+          "relation": "supporting-skill",
+          "title": "الاستنتاج وبناء الحجة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l05",
+          "relation": "supporting-skill",
+          "title": "بنية النص وترابطه"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l06",
+          "relation": "supporting-skill",
+          "title": "المقارنة بين نصين"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g8-u1-l3",
+      "officialTitle": "النصوص والتذوق — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة، ويغلق Pack فلسطين الخصائص الوطنية الخاصة في «النصوص والتذوق — الفصل الأول» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g8-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل نص أدبي"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l03",
+          "relation": "supporting-skill",
+          "title": "الدلالة والسياق"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l06",
+          "relation": "supporting-skill",
+          "title": "المقارنة بين نصين"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l13",
+          "relation": "supporting-skill",
+          "title": "التشبيه وأثره"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l14",
+          "relation": "supporting-skill",
+          "title": "الاستعارة والصورة"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g8-u1-l4",
+      "officialTitle": "النحو والبناء اللغوي — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «النحو والبناء اللغوي — الفصل الأول» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g8-l07",
+          "relation": "supporting-skill",
+          "title": "كان وأخواتها"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l08",
+          "relation": "supporting-skill",
+          "title": "إن وأخواتها"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l09",
+          "relation": "supporting-skill",
+          "title": "المبني للمعلوم والمجهول"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l10",
+          "relation": "supporting-skill",
+          "title": "النعت والعطف"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l11",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g8-u1-l5",
+      "officialTitle": "الإملاء وعلامات الترقيم — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة، ويغلق Pack فلسطين الخصائص الوطنية الخاصة في «الإملاء وعلامات الترقيم — الفصل الأول» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g8-l12",
+          "relation": "direct-skill",
+          "title": "الإملاء وعلامات الترقيم"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g8-u1-l6",
+      "officialTitle": "الكتابة والتعبير — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الكتابة والتعبير — الفصل الأول» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g8-l15",
+          "relation": "supporting-skill",
+          "title": "كتابة مقال قصير"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l16",
+          "relation": "supporting-skill",
+          "title": "كتابة تقرير"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l17",
+          "relation": "supporting-skill",
+          "title": "الحجاج والمناظرة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g8-u2-l1",
+      "officialTitle": "الاستماع والتحدث — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الاستماع والتحدث — الفصل الثاني» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g8-l04",
+          "relation": "supporting-skill",
+          "title": "الاستنتاج وبناء الحجة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l06",
+          "relation": "supporting-skill",
+          "title": "المقارنة بين نصين"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l17",
+          "relation": "supporting-skill",
+          "title": "الحجاج والمناظرة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g8-u2-l2",
+      "officialTitle": "القراءة والفهم — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «القراءة والفهم — الفصل الثاني» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g8-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل نص أدبي"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l02",
+          "relation": "supporting-skill",
+          "title": "قراءة نص معلوماتي"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l03",
+          "relation": "supporting-skill",
+          "title": "الدلالة والسياق"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l04",
+          "relation": "supporting-skill",
+          "title": "الاستنتاج وبناء الحجة"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l05",
+          "relation": "supporting-skill",
+          "title": "بنية النص وترابطه"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l06",
+          "relation": "supporting-skill",
+          "title": "المقارنة بين نصين"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g8-u2-l3",
+      "officialTitle": "النصوص والتذوق — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة، ويغلق Pack فلسطين الخصائص الوطنية الخاصة في «النصوص والتذوق — الفصل الثاني» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g8-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل نص أدبي"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l03",
+          "relation": "supporting-skill",
+          "title": "الدلالة والسياق"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l06",
+          "relation": "supporting-skill",
+          "title": "المقارنة بين نصين"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l13",
+          "relation": "supporting-skill",
+          "title": "التشبيه وأثره"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l14",
+          "relation": "supporting-skill",
+          "title": "الاستعارة والصورة"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g8-u2-l4",
+      "officialTitle": "النحو والبناء اللغوي — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «النحو والبناء اللغوي — الفصل الثاني» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g8-l07",
+          "relation": "supporting-skill",
+          "title": "كان وأخواتها"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l08",
+          "relation": "supporting-skill",
+          "title": "إن وأخواتها"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l09",
+          "relation": "supporting-skill",
+          "title": "المبني للمعلوم والمجهول"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l10",
+          "relation": "supporting-skill",
+          "title": "النعت والعطف"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l11",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g8-u2-l5",
+      "officialTitle": "الإملاء وعلامات الترقيم — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة، ويغلق Pack فلسطين الخصائص الوطنية الخاصة في «الإملاء وعلامات الترقيم — الفصل الثاني» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g8-l12",
+          "relation": "direct-skill",
+          "title": "الإملاء وعلامات الترقيم"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ps-2026-2027-g8-u2-l6",
+      "officialTitle": "الكتابة والتعبير — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم العالي الفلسطينية",
+        "url": "https://moe.edu.ps/pal-books"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الكتابة والتعبير — الفصل الثاني» بحزمة Core المناسبة مع تطبيق فلسطيني أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "ps-dadyoom-core-g8-l15",
+          "relation": "supporting-skill",
+          "title": "كتابة مقال قصير"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l16",
+          "relation": "supporting-skill",
+          "title": "كتابة تقرير"
+        },
+        {
+          "slug": "ps-dadyoom-core-g8-l17",
+          "relation": "supporting-skill",
+          "title": "الحجاج والمناظرة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-palestine-moe-books+current-packages+core-skill-bundle+national-pack-v1"
+    }
+  ]
+}
