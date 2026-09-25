@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "QA",
+    "nameAr": "قطر"
+  },
+  "academicYear": "2026-2027",
+  "grade": 12,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 2,
+  "mappedLessons": 2,
+  "verifiedLessons": 2,
+  "scope": "current-publicly-verifiable-official-standards-scope-two-semesters",
+  "policy": "مواءمة على مستوى معايير المنهج/نواتج التعلم بحسب المجال والسنة الدراسية، لا أسماء دروس غير مفهرسة علنًا؛ المحتوى الوطني أصلي لضاديوم.",
+  "mappings": [
+    {
+      "officialSlug": "qa-2026-2027-g12-semester-1-standards-bundle",
+      "officialTitle": "معايير اللغة العربية بحسب المجال والسنة الدراسية — الفصل الدراسي الأول",
+      "officialTitleIsPublishedLessonTitle": false,
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم العالي — قسم المناهج والإطار العام",
+        "url": "https://www.edu.gov.qa/ar/Content/CurriculumSection",
+        "frameworkUrl": "https://privateschoolssearch.edu.gov.qa/Documents/Publications/CurriculumStandards/GeneralFrameworkNationalEducation.pdf?csf=1&e=PfpExd",
+        "policyUrl": "https://www.edu.gov.qa/ar/News/Details/1621800",
+        "calendarUrl": "https://moewebprod.edu.gov.qa/ar/News/Details/14514600"
+      },
+      "relationType": "official-standards-coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "يمثل العنصر حزمة تغطية ضاديوم لمعايير العربية المنشورة بحسب المجال والسنة الدراسية؛ لا يُقدَّم كعنوان درس أو وحدة وزارية، ويستخدم Core للدعم مع National Extension أصلية لضمان عدم إسقاط المعيار.",
+      "coreCoverage": [
+        {
+          "slug": "qa-dadyoom-core-g12-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "semester": 1,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-curriculum-department+official-national-framework+official-arabic-policy+current-2026-2027-calendar"
+    },
+    {
+      "officialSlug": "qa-2026-2027-g12-semester-2-standards-bundle",
+      "officialTitle": "معايير اللغة العربية بحسب المجال والسنة الدراسية — الفصل الدراسي الثاني",
+      "officialTitleIsPublishedLessonTitle": false,
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم العالي — قسم المناهج والإطار العام",
+        "url": "https://www.edu.gov.qa/ar/Content/CurriculumSection",
+        "frameworkUrl": "https://privateschoolssearch.edu.gov.qa/Documents/Publications/CurriculumStandards/GeneralFrameworkNationalEducation.pdf?csf=1&e=PfpExd",
+        "policyUrl": "https://www.edu.gov.qa/ar/News/Details/1621800",
+        "calendarUrl": "https://moewebprod.edu.gov.qa/ar/News/Details/14514600"
+      },
+      "relationType": "official-standards-coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "يمثل العنصر حزمة تغطية ضاديوم لمعايير العربية المنشورة بحسب المجال والسنة الدراسية؛ لا يُقدَّم كعنوان درس أو وحدة وزارية، ويستخدم Core للدعم مع National Extension أصلية لضمان عدم إسقاط المعيار.",
+      "coreCoverage": [
+        {
+          "slug": "qa-dadyoom-core-g12-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "qa-dadyoom-core-g12-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "semester": 2,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-curriculum-department+official-national-framework+official-arabic-policy+current-2026-2027-calendar"
+    }
+  ]
+}
