@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "KM",
+    "nameAr": "جزر القمر",
+    "nameEn": "Comoros"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "status": "current-scope-complete",
+  "matchingStatus": "current-scope-complete",
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-09-25",
+  "authority": {
+    "ministry": "https://mineducomores.gouv.km/ministere/",
+    "arabicCurriculumRole": "https://mineducomores.gouv.km/cloture-de-la-formation-en-langue-arabe-aux-comores-un-pas-de-plus-vers-le-renforcement-des-capacites-educatives/",
+    "educationLaw": "https://justice.gouv.km/wp-content/uploads/2025/03/decret-n-21-005pr-portant-promulgation-de-la-loi-n-20-034au-du-29-decembre-2020-portant-revision-de-la-loi-n-94-035af-relative-a-lorientation-et-a-leducation.pdf",
+    "resourceStrategy": "https://mineducomores.gouv.km/atelier-sur-les-strategies-de-production-et-diffusion-des-ressources-educatives-aux-comores/",
+    "reform": "https://mineducomores.gouv.km/participation-de-luniversite-midocean-a-la-reunion-consultative-nationale-sur-la-reforme-de-leducation-aux-comores/"
+  },
+  "structure": {
+    "grades": "12/12",
+    "elementary": {
+      "years": 5,
+      "grades": "1-5",
+      "officialClasses": [
+        "CP",
+        "CE1",
+        "CE2",
+        "CM1",
+        "CM2"
+      ]
+    },
+    "secondaryFirstCycle": {
+      "years": 4,
+      "grades": "6-9",
+      "officialClasses": [
+        "6e",
+        "5e",
+        "4e",
+        "3e"
+      ]
+    },
+    "secondarySecondCycle": {
+      "years": 3,
+      "grades": "10-12",
+      "officialClasses": [
+        "Seconde",
+        "Première",
+        "Terminale"
+      ]
+    },
+    "arabicPolicy": "وزارة التربية تؤكد أن العربية لغة رسمية وجزء من المنهج المدرسي، بينما لا ينشر الموقع العام فهرسًا كاملاً لعناوين كتب ودروس العربية صفًا صفًا.",
+    "matchingUnit": "national-arabic-competency-bundle-with-official-grade-structure"
+  },
+  "coverage": {
+    "packGrades": "12/12",
+    "verifiedMappingGrades": "12/12",
+    "officialCoverageNodes": 12,
+    "mappedCoverageNodes": 12,
+    "verifiedCoverageNodes": 12,
+    "nationalExtensions": 12,
+    "database": {
+      "curriculumId": "8e74c8d0-81b0-4dd4-a278-3f8511c6957f",
+      "grades": 12,
+      "units": 12,
+      "lessons": 12,
+      "questions": 36,
+      "vocabulary": 36,
+      "publishedActivities": 36,
+      "minimumContentCharacters": 514
+    }
+  },
+  "qualityGates": {
+    "officialSourcesVerified": true,
+    "allGradesPresent": true,
+    "allPacksRightsVerified": true,
+    "allMappingsVerified": true,
+    "officialEqualsMappedEqualsVerified": true,
+    "allLessonsPublished": true,
+    "allLessonsHaveOfficialSource": true,
+    "minimumObjectivesPerLesson": 3,
+    "minimumQuestionsPerLesson": 3,
+    "minimumVocabularyPerLesson": 3,
+    "minimumPublishedActivitiesPerLesson": 3,
+    "failingDatabaseLessons": 0,
+    "legacyConflict": "inactive-before-import"
+  },
+  "copyrightPolicy": "لا يعيد ضاديوم نشر كتب أو نصوص غير متاحة علنًا؛ يستخدم القانون والهيكل الرسمي ودور العربية في المنهج لإثبات المواءمة، بينما المحتوى التعليمي أصلي.",
+  "claimPolicy": "مطابق للمنهج الرسمي القمري = مواءم مع الهيكل التعليمي الرسمي وموقع العربية في المنهج ضمن النطاق المنشور والقابل للتحقق؛ لا تعني العبارة أن الوزارة نشرت فهرس دروس صفّيًا كاملًا ولا تعني اعتمادًا أو شراكة."
+}
