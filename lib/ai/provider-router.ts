@@ -860,6 +860,10 @@ export async function routeAi(input: AiRequest): Promise<AiResult> {
             null,
           reason:
             message.split(":")[0],
+          detail:
+            provider === "bytez"
+              ? message.slice(0, 320)
+              : undefined,
         },
       );
     }
