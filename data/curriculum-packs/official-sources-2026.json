@@ -274,37 +274,46 @@
       "code": "SY",
       "nameAr": "سوريا",
       "matchingStatus": "not-closed",
-      "verificationStatus": "needs-verification",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://moed.gov.sy/",
-          "kind": "official-domain-candidate"
+          "kind": "official-ministry-portal",
+          "note": "بوابة وزارة التربية والتعليم السورية الفعالة في 2026؛ تم التحقق من سلطة النطاق. لا تكفي وحدها لإغلاق خرائط الصفوف والكتب."
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "IQ",
       "nameAr": "العراق",
       "matchingStatus": "not-closed",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://manahj.edu.iq/?pid=149",
-          "kind": "official-catalog-candidate"
+          "kind": "official-primary-catalog",
+          "note": "المديرية العامة للمناهج التابعة لوزارة التربية؛ رابط المرحلة الابتدائية منشور رسميًا من الوزارة."
         },
         {
           "url": "https://manahj.edu.iq/?pid=148",
-          "kind": "official-catalog-candidate"
+          "kind": "official-middle-catalog"
         },
         {
           "url": "https://manahj.edu.iq/?pid=151",
-          "kind": "official-catalog-candidate"
+          "kind": "official-secondary-catalog"
         },
         {
           "url": "https://manahj.edu.iq/?pid=152",
-          "kind": "official-catalog-candidate"
+          "kind": "official-distinguished-catalog"
+        },
+        {
+          "url": "https://ina.iq/ar/local/195285--.html",
+          "kind": "government-source-authority-proof",
+          "note": "وكالة الأنباء العراقية الرسمية توثق أن المديرية العامة للمناهج بوزارة التربية تنشر الكتب على manahj.edu.iq."
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "KW",
