@@ -9,6 +9,8 @@ type PaddleConfig = {
   priceId: string;
   userId: string;
   email: string;
+  amount: number;
+  currency: string;
   successUrl: string;
 };
 
@@ -48,10 +50,25 @@ declare global {
   }
 }
 
+function friendlyError(code: string, fallback?: string) {
+  if (code === "AUTH_REQUIRED") {
+    return "سجّل الدخول أولًا، ثم عد إلى صفحة Plus لإتمام الاشتراك.";
+  }
+
+  if (code === "PADDLE_NOT_CONFIGURED") {
+    return (
+      fallback ??
+      "بوابة الدفع جاهزة وتنتظر ربط بيانات Paddle بالحساب."
+    );
+  }
+
+  return fallback ?? "تعذر تجهيز الدفع الآن.";
+}
+
 export default function PaddleCheckout() {
   const [scriptReady, setScriptReady] = useState(false);
   const [config, setConfig] = useState<PaddleConfig | null>(null);
-const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
   const initializedRef = useRef(false);
 
@@ -63,18 +80,31 @@ const [message, setMessage] = useState("");
       cache: "no-store",
     })
       .then(async (response) => {
-        const payload = (await response.json()) as PaddleConfig & {
+        const payload = (await response.json()) as Partial<PaddleConfig> & {
           error?: string;
+          message?: string;
         };
 
         if (!response.ok) {
           throw new Error(
-            payload.error ?? "تعذر تجهيز الدفع.",
+            friendlyError(
+              payload.error ?? "",
+              payload.message,
+            ),
           );
         }
 
+        if (
+          !payload.clientToken ||
+          !payload.priceId ||
+          !payload.userId ||
+          !payload.successUrl
+        ) {
+          throw new Error("إعداد Paddle غير مكتمل.");
+        }
+
         if (!cancelled) {
-          setConfig(payload);
+          setConfig(payload as PaddleConfig);
         }
       })
       .catch((error: unknown) => {
@@ -165,6 +195,10 @@ const [message, setMessage] = useState("");
     }
   }
 
+  const priceLabel = config
+    ? `${config.amount.toFixed(2)} ${config.currency}`
+    : "10.00 USD";
+
   return (
     <div className="space-y-3">
       <Script
@@ -184,12 +218,13 @@ const [message, setMessage] = useState("");
       >
         {busy
           ? "جارٍ فتح الدفع..."
-          : "اشترك شهريًا بالبطاقة — 10 USD"}
+          : `اشترك شهريًا بالبطاقة — ${priceLabel}`}
       </button>
 
       <p className="text-xs leading-6 text-slate-500">
-        الدفع بالبطاقة فقط عبر Paddle. ضاديوم لا يستقبل
-        أو يخزن بيانات البطاقة.
+        الدفع عبر Paddle. ضاديوم لا يستقبل أو يخزن بيانات
+        البطاقة. تفعيل Plus يتم من إشعار Paddle الموقّع على
+        الخادم.
       </p>
 
       {message ? (
