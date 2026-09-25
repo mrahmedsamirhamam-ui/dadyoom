@@ -138,3 +138,18 @@ jobs:
 
       - name: Vinext build
         run: npm run build:vinext
+
+      - name: Authenticated product E2E
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: "https://hvqsvtomhlxavmfqoxfz.supabase.co"
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh2cXN2dG9taGx4YXZtZnFveGZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ5NjU1MzcsImV4cCI6MjEwMDU0MTUzN30.gkH-gKrAtl6SjcMKzYREZgZOsqE11LLiL2DrC--k7-s"
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || secrets.DADYOOM_SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${SUPABASE_SERVICE_ROLE_KEY:-}" ]]; then
+            echo "AUTHENTICATED_E2E_SECRET=BLOCKED"
+            echo "Missing GitHub Actions secret SUPABASE_SERVICE_ROLE_KEY (or DADYOOM_SUPABASE_SERVICE_ROLE_KEY)."
+            exit 1
+          fi
+          npx playwright install --with-deps chromium
+          node scripts/final-e2e-release-gate.mjs
