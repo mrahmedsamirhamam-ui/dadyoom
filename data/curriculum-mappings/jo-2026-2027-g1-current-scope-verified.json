@@ -1,0 +1,389 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "JO",
+    "nameAr": "الأردن"
+  },
+  "academicYear": "2026-2027",
+  "grade": 1,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 10,
+  "mappedLessons": 10,
+  "verifiedLessons": 10,
+  "scope": "current-catalog-both-semesters",
+  "policy": "مطابقة على مستوى الكفايات/الموضوعات الرسمية مع Core Skill Bundles وNational Extensions أصلية؛ لا تعني نسخ كتاب NCCD أو اعتمادًا مؤسسيًا من NCCD.",
+  "mappings": [
+    {
+      "officialSlug": "jo-2026-2027-g1-u1-alistening",
+      "officialTitle": "محور الاستماع — الفصل الأول",
+      "source": {
+        "label": "NCCD — كتالوج الكتب + الإطار الخاص للغة العربية",
+        "url": "https://nccd.gov.jo/Ar/Pages/Publications/?Grade=68&MaterialStudy=92",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المحور الرسمي «محور الاستماع» مغطى بحزمة مهارات Core المناسبة للصف، ويقدم Pack الأردن تطبيقًا وطنيًا أصليًا مرتبطًا بالمرجع الرسمي دون نسخ النص المحمي.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g1-l16",
+          "relation": "direct-skill",
+          "title": "الاستماع واتباع التعليمات"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-catalog+official-arabic-framework+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g1-u1-aspeaking",
+      "officialTitle": "محور التحدث — الفصل الأول",
+      "source": {
+        "label": "NCCD — كتالوج الكتب + الإطار الخاص للغة العربية",
+        "url": "https://nccd.gov.jo/Ar/Pages/Publications/?Grade=68&MaterialStudy=92",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المحور الرسمي «محور التحدث» مغطى بحزمة مهارات Core المناسبة للصف، ويقدم Pack الأردن تطبيقًا وطنيًا أصليًا مرتبطًا بالمرجع الرسمي دون نسخ النص المحمي.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g1-l16",
+          "relation": "supporting-skill",
+          "title": "الاستماع واتباع التعليمات"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l17",
+          "relation": "supporting-skill",
+          "title": "كتابة جملة واضحة"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-catalog+official-arabic-framework+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g1-u1-areading",
+      "officialTitle": "محور القراءة — الفصل الأول",
+      "source": {
+        "label": "NCCD — كتالوج الكتب + الإطار الخاص للغة العربية",
+        "url": "https://nccd.gov.jo/Ar/Pages/Publications/?Grade=68&MaterialStudy=92",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المحور الرسمي «محور القراءة» مغطى بحزمة مهارات Core المناسبة للصف، ويقدم Pack الأردن تطبيقًا وطنيًا أصليًا مرتبطًا بالمرجع الرسمي دون نسخ النص المحمي.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g1-l01",
+          "relation": "supporting-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l03",
+          "relation": "supporting-skill",
+          "title": "الحركات القصيرة"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l04",
+          "relation": "supporting-skill",
+          "title": "السكون والمقطع"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l05",
+          "relation": "supporting-skill",
+          "title": "حروف المد"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l06",
+          "relation": "supporting-skill",
+          "title": "الشدة والتنوين"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l13",
+          "relation": "supporting-skill",
+          "title": "قراءة نص قصير"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l14",
+          "relation": "supporting-skill",
+          "title": "الفكرة الرئيسة"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l15",
+          "relation": "supporting-skill",
+          "title": "ترتيب الأحداث"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-catalog+official-arabic-framework+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g1-u1-awriting",
+      "officialTitle": "محور الكتابة — الفصل الأول",
+      "source": {
+        "label": "NCCD — كتالوج الكتب + الإطار الخاص للغة العربية",
+        "url": "https://nccd.gov.jo/Ar/Pages/Publications/?Grade=68&MaterialStudy=92",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المحور الرسمي «محور الكتابة» مغطى بحزمة مهارات Core المناسبة للصف، ويقدم Pack الأردن تطبيقًا وطنيًا أصليًا مرتبطًا بالمرجع الرسمي دون نسخ النص المحمي.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g1-l17",
+          "relation": "direct-skill",
+          "title": "كتابة جملة واضحة"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-catalog+official-arabic-framework+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g1-u1-alanguage",
+      "officialTitle": "محور البناء اللغوي — الفصل الأول",
+      "source": {
+        "label": "NCCD — كتالوج الكتب + الإطار الخاص للغة العربية",
+        "url": "https://nccd.gov.jo/Ar/Pages/Publications/?Grade=68&MaterialStudy=92",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المحور الرسمي «محور البناء اللغوي» مغطى بحزمة مهارات Core المناسبة للصف، ويقدم Pack الأردن تطبيقًا وطنيًا أصليًا مرتبطًا بالمرجع الرسمي دون نسخ النص المحمي.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g1-l07",
+          "relation": "supporting-skill",
+          "title": "بناء الكلمة من المقاطع"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l08",
+          "relation": "supporting-skill",
+          "title": "اللام الشمسية والقمرية"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l09",
+          "relation": "supporting-skill",
+          "title": "المفرد والجمع"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l10",
+          "relation": "supporting-skill",
+          "title": "الجملة الاسمية البسيطة"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l11",
+          "relation": "supporting-skill",
+          "title": "الجملة الفعلية البسيطة"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l12",
+          "relation": "supporting-skill",
+          "title": "أدوات الاستفهام"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-catalog+official-arabic-framework+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g1-u2-alistening",
+      "officialTitle": "محور الاستماع — الفصل الثاني",
+      "source": {
+        "label": "NCCD — كتالوج الكتب + الإطار الخاص للغة العربية",
+        "url": "https://nccd.gov.jo/Ar/Pages/Publications/?Grade=68&MaterialStudy=92",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المحور الرسمي «محور الاستماع» مغطى بحزمة مهارات Core المناسبة للصف، ويقدم Pack الأردن تطبيقًا وطنيًا أصليًا مرتبطًا بالمرجع الرسمي دون نسخ النص المحمي.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g1-l16",
+          "relation": "direct-skill",
+          "title": "الاستماع واتباع التعليمات"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-catalog+official-arabic-framework+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g1-u2-aspeaking",
+      "officialTitle": "محور التحدث — الفصل الثاني",
+      "source": {
+        "label": "NCCD — كتالوج الكتب + الإطار الخاص للغة العربية",
+        "url": "https://nccd.gov.jo/Ar/Pages/Publications/?Grade=68&MaterialStudy=92",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المحور الرسمي «محور التحدث» مغطى بحزمة مهارات Core المناسبة للصف، ويقدم Pack الأردن تطبيقًا وطنيًا أصليًا مرتبطًا بالمرجع الرسمي دون نسخ النص المحمي.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g1-l16",
+          "relation": "supporting-skill",
+          "title": "الاستماع واتباع التعليمات"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l17",
+          "relation": "supporting-skill",
+          "title": "كتابة جملة واضحة"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-catalog+official-arabic-framework+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g1-u2-areading",
+      "officialTitle": "محور القراءة — الفصل الثاني",
+      "source": {
+        "label": "NCCD — كتالوج الكتب + الإطار الخاص للغة العربية",
+        "url": "https://nccd.gov.jo/Ar/Pages/Publications/?Grade=68&MaterialStudy=92",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المحور الرسمي «محور القراءة» مغطى بحزمة مهارات Core المناسبة للصف، ويقدم Pack الأردن تطبيقًا وطنيًا أصليًا مرتبطًا بالمرجع الرسمي دون نسخ النص المحمي.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g1-l01",
+          "relation": "supporting-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l03",
+          "relation": "supporting-skill",
+          "title": "الحركات القصيرة"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l04",
+          "relation": "supporting-skill",
+          "title": "السكون والمقطع"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l05",
+          "relation": "supporting-skill",
+          "title": "حروف المد"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l06",
+          "relation": "supporting-skill",
+          "title": "الشدة والتنوين"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l13",
+          "relation": "supporting-skill",
+          "title": "قراءة نص قصير"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l14",
+          "relation": "supporting-skill",
+          "title": "الفكرة الرئيسة"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l15",
+          "relation": "supporting-skill",
+          "title": "ترتيب الأحداث"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-catalog+official-arabic-framework+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g1-u2-awriting",
+      "officialTitle": "محور الكتابة — الفصل الثاني",
+      "source": {
+        "label": "NCCD — كتالوج الكتب + الإطار الخاص للغة العربية",
+        "url": "https://nccd.gov.jo/Ar/Pages/Publications/?Grade=68&MaterialStudy=92",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المحور الرسمي «محور الكتابة» مغطى بحزمة مهارات Core المناسبة للصف، ويقدم Pack الأردن تطبيقًا وطنيًا أصليًا مرتبطًا بالمرجع الرسمي دون نسخ النص المحمي.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g1-l17",
+          "relation": "direct-skill",
+          "title": "كتابة جملة واضحة"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-catalog+official-arabic-framework+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "jo-2026-2027-g1-u2-alanguage",
+      "officialTitle": "محور البناء اللغوي — الفصل الثاني",
+      "source": {
+        "label": "NCCD — كتالوج الكتب + الإطار الخاص للغة العربية",
+        "url": "https://nccd.gov.jo/Ar/Pages/Publications/?Grade=68&MaterialStudy=92",
+        "frameworkUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المحور الرسمي «محور البناء اللغوي» مغطى بحزمة مهارات Core المناسبة للصف، ويقدم Pack الأردن تطبيقًا وطنيًا أصليًا مرتبطًا بالمرجع الرسمي دون نسخ النص المحمي.",
+      "coreCoverage": [
+        {
+          "slug": "jo-dadyoom-core-g1-l07",
+          "relation": "supporting-skill",
+          "title": "بناء الكلمة من المقاطع"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l08",
+          "relation": "supporting-skill",
+          "title": "اللام الشمسية والقمرية"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l09",
+          "relation": "supporting-skill",
+          "title": "المفرد والجمع"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l10",
+          "relation": "supporting-skill",
+          "title": "الجملة الاسمية البسيطة"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l11",
+          "relation": "supporting-skill",
+          "title": "الجملة الفعلية البسيطة"
+        },
+        {
+          "slug": "jo-dadyoom-core-g1-l12",
+          "relation": "supporting-skill",
+          "title": "أدوات الاستفهام"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-nccd-catalog+official-arabic-framework+core-skill-bundle+national-pack-v1"
+    }
+  ]
+}
