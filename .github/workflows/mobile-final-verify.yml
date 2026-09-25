@@ -118,7 +118,8 @@ jobs:
             "scripts/dadyoom-kaggle-video-factory-setup.ps1",
             "scripts/dadyoom-video-benchmark-report.ps1",
             "scripts/dadyoom-all-video-g-drive.ps1",
-            "scripts/dadyoom-bootstrap-ios-signing.ps1"
+            "scripts/dadyoom-bootstrap-ios-signing.ps1",
+            "scripts/dadyoom-bootstrap-authenticated-e2e.ps1"
           )
           foreach ($file in $files) {
             $tokens = $null
