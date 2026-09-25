@@ -8,7 +8,7 @@ type AuthMode = "raw" | "key-prefix" | "none";
 const TARGET_MODELS = [
   "Qwen/Qwen3-4B",
   "Qwen/Qwen3-4B-Instruct-2507",
-  "Wan-AI/Wan2.1-T2V-1.3B",
+  "ali-vilab/text-to-video-ms-1.7b",
 ] as const;
 
 function authHeader(key: string, mode: Exclude<AuthMode, "none">) {
@@ -154,10 +154,16 @@ export async function GET() {
       ...videoModelIds,
     ]);
 
+    const catalogHealthy =
+      textModelsResponse.ok ||
+      videoModelsResponse.ok;
+
     const modelAvailability = Object.fromEntries(
       TARGET_MODELS.map((model) => [
         model,
-        allModelIds.has(model),
+        catalogHealthy
+          ? allModelIds.has(model)
+          : null,
       ]),
     );
 
@@ -188,7 +194,9 @@ export async function GET() {
         suggestedTextModels,
         suggestedVideoModels,
         note:
-          "This endpoint never returns the Bytez API key or full model catalog.",
+          catalogHealthy
+            ? "This endpoint never returns the Bytez API key or full model catalog."
+            : "Bytez authentication works, but its model catalog endpoint is currently unavailable; model availability is unknown.",
       },
       {
         status: 200,
