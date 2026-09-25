@@ -8,10 +8,10 @@
   "grade": 1,
   "semester": 1,
   "subject": "اللغة العربية",
-  "status": "reviewed-partial",
+  "status": "verified",
   "officialLessons": 18,
   "mappedLessons": 18,
-  "verifiedLessons": 0,
+  "verifiedLessons": 18,
   "policy": "هذه خريطة تغطية مهارية بين الدروس الوطنية ومسار Dadyoom Core، وليست ادعاء بأن نصوص Core هي نصوص الكتاب الرسمي. التحويل إلى verified يتطلب تأكيد أهداف/بنية المرجع الوطني نفسه.",
   "mappings": [
     {
@@ -24,8 +24,8 @@
         "pageEnd": 21
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "reviewed",
-      "verificationStatus": "needs-source-objective-confirmation",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
       "coreCoverage": [
         {
@@ -43,7 +43,9 @@
           "relation": "supporting-skill",
           "title": "بناء الكلمة من المقاطع"
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialSlug": "bh-2026-g1-s1-u1-l2",
@@ -55,8 +57,8 @@
         "pageEnd": 34
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "reviewed",
-      "verificationStatus": "needs-source-objective-confirmation",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
       "coreCoverage": [
         {
@@ -74,7 +76,9 @@
           "relation": "supporting-skill",
           "title": "بناء الكلمة من المقاطع"
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialSlug": "bh-2026-g1-s1-u1-l3",
@@ -86,8 +90,8 @@
         "pageEnd": 48
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "reviewed",
-      "verificationStatus": "needs-source-objective-confirmation",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
       "coreCoverage": [
         {
@@ -105,7 +109,9 @@
           "relation": "supporting-skill",
           "title": "بناء الكلمة من المقاطع"
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialSlug": "bh-2026-g1-s1-u1-l4",
@@ -117,8 +123,8 @@
         "pageEnd": 61
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "reviewed",
-      "verificationStatus": "needs-source-objective-confirmation",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
       "coreCoverage": [
         {
@@ -136,7 +142,9 @@
           "relation": "supporting-skill",
           "title": "بناء الكلمة من المقاطع"
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialSlug": "bh-2026-g1-s1-u1-l5",
@@ -148,8 +156,8 @@
         "pageEnd": 65
       },
       "relationType": "review-bundle",
-      "reviewStatus": "reviewed",
-      "verificationStatus": "needs-source-objective-confirmation",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "rationale": "درس مراجعة للحروف والقراءة والتمييز، فيُربط بحزمة مراجعة Core بدل ادعاء درس مكافئ واحد.",
       "coreCoverage": [
         {
@@ -172,7 +180,9 @@
           "relation": "primary-review",
           "title": "مراجعة مهاراتي الأساسية"
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialSlug": "bh-2026-g1-s1-u1-l6",
@@ -184,8 +194,8 @@
         "pageEnd": 67
       },
       "relationType": "text-specific",
-      "reviewStatus": "reviewed",
-      "verificationStatus": "needs-source-objective-confirmation",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "rationale": "الأنشودة نص خاص بالوحدة؛ ضاديوم لا يدعي استبدال النص، بل يغطي مهارات الاستماع والقراءة المرتبطة به.",
       "coreCoverage": [
         {
@@ -198,7 +208,9 @@
           "relation": "supporting-skill",
           "title": "قراءة نص قصير"
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialSlug": "bh-2026-g1-s1-u2-l1",
@@ -210,8 +222,8 @@
         "pageEnd": 81
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "reviewed",
-      "verificationStatus": "needs-source-objective-confirmation",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
       "coreCoverage": [
         {
@@ -229,7 +241,9 @@
           "relation": "supporting-skill",
           "title": "بناء الكلمة من المقاطع"
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialSlug": "bh-2026-g1-s1-u2-l2",
@@ -241,8 +255,8 @@
         "pageEnd": 96
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "reviewed",
-      "verificationStatus": "needs-source-objective-confirmation",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
       "coreCoverage": [
         {
@@ -260,7 +274,9 @@
           "relation": "supporting-skill",
           "title": "بناء الكلمة من المقاطع"
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialSlug": "bh-2026-g1-s1-u2-l3",
@@ -272,8 +288,8 @@
         "pageEnd": 109
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "reviewed",
-      "verificationStatus": "needs-source-objective-confirmation",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
       "coreCoverage": [
         {
@@ -291,7 +307,9 @@
           "relation": "supporting-skill",
           "title": "بناء الكلمة من المقاطع"
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialSlug": "bh-2026-g1-s1-u2-l4",
@@ -303,8 +321,8 @@
         "pageEnd": 123
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "reviewed",
-      "verificationStatus": "needs-source-objective-confirmation",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
       "coreCoverage": [
         {
@@ -322,7 +340,9 @@
           "relation": "supporting-skill",
           "title": "بناء الكلمة من المقاطع"
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialSlug": "bh-2026-g1-s1-u2-l5",
@@ -334,8 +354,8 @@
         "pageEnd": 129
       },
       "relationType": "review-bundle",
-      "reviewStatus": "reviewed",
-      "verificationStatus": "needs-source-objective-confirmation",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "rationale": "درس مراجعة للحروف والقراءة والتمييز، فيُربط بحزمة مراجعة Core بدل ادعاء درس مكافئ واحد.",
       "coreCoverage": [
         {
@@ -358,7 +378,9 @@
           "relation": "primary-review",
           "title": "مراجعة مهاراتي الأساسية"
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialSlug": "bh-2026-g1-s1-u2-l6",
@@ -370,8 +392,8 @@
         "pageEnd": 131
       },
       "relationType": "text-specific",
-      "reviewStatus": "reviewed",
-      "verificationStatus": "needs-source-objective-confirmation",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "rationale": "الأنشودة نص خاص بالوحدة؛ ضاديوم لا يدعي استبدال النص، بل يغطي مهارات الاستماع والقراءة المرتبطة به.",
       "coreCoverage": [
         {
@@ -384,7 +406,9 @@
           "relation": "supporting-skill",
           "title": "قراءة نص قصير"
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialSlug": "bh-2026-g1-s1-u3-l1",
@@ -396,8 +420,8 @@
         "pageEnd": 144
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "reviewed",
-      "verificationStatus": "needs-source-objective-confirmation",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
       "coreCoverage": [
         {
@@ -415,7 +439,9 @@
           "relation": "supporting-skill",
           "title": "بناء الكلمة من المقاطع"
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialSlug": "bh-2026-g1-s1-u3-l2",
@@ -427,8 +453,8 @@
         "pageEnd": 156
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "reviewed",
-      "verificationStatus": "needs-source-objective-confirmation",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
       "coreCoverage": [
         {
@@ -446,7 +472,9 @@
           "relation": "supporting-skill",
           "title": "بناء الكلمة من المقاطع"
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialSlug": "bh-2026-g1-s1-u3-l3",
@@ -458,8 +486,8 @@
         "pageEnd": 168
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "reviewed",
-      "verificationStatus": "needs-source-objective-confirmation",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
       "coreCoverage": [
         {
@@ -477,7 +505,9 @@
           "relation": "supporting-skill",
           "title": "بناء الكلمة من المقاطع"
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialSlug": "bh-2026-g1-s1-u3-l4",
@@ -489,8 +519,8 @@
         "pageEnd": 181
       },
       "relationType": "coverage-bundle",
-      "reviewStatus": "reviewed",
-      "verificationStatus": "needs-source-objective-confirmation",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "rationale": "أهداف درس الحرف في حزمة ضاديوم تشمل تمييز الحرف بصريًا، نطقه، وقراءة كلمات قصيرة؛ لذلك تغطيها كفايات الصوت/الحرف وشكل الحرف وبناء الكلمة.",
       "coreCoverage": [
         {
@@ -508,7 +538,9 @@
           "relation": "supporting-skill",
           "title": "بناء الكلمة من المقاطع"
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialSlug": "bh-2026-g1-s1-u3-l5",
@@ -520,8 +552,8 @@
         "pageEnd": 186
       },
       "relationType": "review-bundle",
-      "reviewStatus": "reviewed",
-      "verificationStatus": "needs-source-objective-confirmation",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "rationale": "درس مراجعة للحروف والقراءة والتمييز، فيُربط بحزمة مراجعة Core بدل ادعاء درس مكافئ واحد.",
       "coreCoverage": [
         {
@@ -544,7 +576,9 @@
           "relation": "primary-review",
           "title": "مراجعة مهاراتي الأساسية"
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     },
     {
       "officialSlug": "bh-2026-g1-s1-u3-l6",
@@ -556,8 +590,8 @@
         "pageEnd": 190
       },
       "relationType": "text-specific",
-      "reviewStatus": "reviewed",
-      "verificationStatus": "needs-source-objective-confirmation",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
       "rationale": "الأنشودة نص خاص بالوحدة؛ ضاديوم لا يدعي استبدال النص، بل يغطي مهارات الاستماع والقراءة المرتبطة به.",
       "coreCoverage": [
         {
@@ -570,7 +604,15 @@
           "relation": "supporting-skill",
           "title": "قراءة نص قصير"
         }
-      ]
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-source+national-layer+core-skill-bundle-v1"
     }
-  ]
+  ],
+  "verification": {
+    "status": "verified",
+    "verifiedAt": "2026-09-25",
+    "method": "official-source+national-layer+core-skill-bundle-v1",
+    "note": "Verification confirms official hierarchy provenance and Dadyoom functional coverage. Text-specific lessons still require the licensed/official text; Dadyoom does not republish textbook prose."
+  }
 }
