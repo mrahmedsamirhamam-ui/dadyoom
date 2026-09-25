@@ -554,8 +554,8 @@
       },
       "national": {
         "complete": false,
-        "matchingStatus": "partial",
-        "verificationStatus": "candidate",
+        "matchingStatus": "current-scope-complete",
+        "verificationStatus": "verified",
         "evidenceSources": [
           {
             "url": "https://moe.edu.ps/class1/books",
@@ -563,16 +563,32 @@
             "note": "يُتحقق صفًا صفًا حتى class12 قبل الاعتماد."
           }
         ],
-        "verifiedPackFiles": [],
-        "missingEvidence": [
-          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
-          "اكتمال تغطية الفصول/الفترات الدراسية",
-          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
-          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
-          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
-        ]
+        "verifiedPackFiles": [
+          "data/curriculum-packs/palestine-2026-2027-final/ps-2026-2027-arabic-g1-current-scope.json",
+          "data/curriculum-packs/palestine-2026-2027-final/ps-2026-2027-arabic-g2-current-scope.json",
+          "data/curriculum-packs/palestine-2026-2027-final/ps-2026-2027-arabic-g3-current-scope.json",
+          "data/curriculum-packs/palestine-2026-2027-final/ps-2026-2027-arabic-g4-current-scope.json",
+          "data/curriculum-packs/palestine-2026-2027-final/ps-2026-2027-arabic-g5-current-scope.json",
+          "data/curriculum-packs/palestine-2026-2027-final/ps-2026-2027-arabic-g6-current-scope.json",
+          "data/curriculum-packs/palestine-2026-2027-final/ps-2026-2027-arabic-g7-current-scope.json",
+          "data/curriculum-packs/palestine-2026-2027-final/ps-2026-2027-arabic-g8-current-scope.json",
+          "data/curriculum-packs/palestine-2026-2027-final/ps-2026-2027-arabic-g9-current-scope.json",
+          "data/curriculum-packs/palestine-2026-2027-final/ps-2026-2027-arabic-g10-current-scope.json",
+          "data/curriculum-packs/palestine-2026-2027-final/ps-2026-2027-arabic-g11-current-scope.json",
+          "data/curriculum-packs/palestine-2026-2027-final/ps-2026-2027-arabic-g12-current-scope.json"
+        ],
+        "missingEvidence": [],
+        "currentScopeComplete": true,
+        "fullYearComplete": false,
+        "mappingSummary": {
+          "mappingGrades": 12,
+          "verifiedMappingGrades": 12,
+          "officialCoverageNodes": 196,
+          "verifiedCoverageNodes": 196
+        },
+        "note": "مغلق للنطاق الرسمي المنشور حاليًا عبر بوابة الكتب والرزم والكتب الثانوية الرسمية الفلسطينية."
       },
-      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+      "publicationReadiness": "NATIONAL_CURRENT_SCOPE_COMPLETE"
     },
     {
       "code": "QA",
