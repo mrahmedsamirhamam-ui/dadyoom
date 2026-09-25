@@ -3,11 +3,13 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import Link from "next/link";
 
 import { createClient } from "@/lib/supabase/server";
+import { getSiteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "سوق ضاديوم | دورات ودروس اللغة العربية",
   description:
     "اكتشف دورات اللغة العربية التي يقدمها معلمون على منصة ضاديوم.",
+  alternates: { canonical: "/marketplace" },
 };
 
 export default async function MarketplacePage() {
@@ -34,7 +36,7 @@ export default async function MarketplacePage() {
       position: index + 1,
       name: course.title,
       url:
-        `${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"}/marketplace/${course.slug}`,
+        `${getSiteUrl()}/marketplace/${course.slug}`,
     })),
   };
 
