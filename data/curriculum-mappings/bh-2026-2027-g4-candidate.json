@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "country": {
     "code": "BH",
     "nameAr": "مملكة البحرين"
@@ -12,8 +12,8 @@
   "officialLessons": 75,
   "mappedLessons": 75,
   "verifiedLessons": 0,
-  "policy": "ملف مرشحات قابل للتدقيق. بُني من الطبقة الوطنية الموجودة في قاعدة ضاديوم وربط بمهارات Dadyoom Core. لا يصبح أي درس verified دون مراجعة المصدر والأهداف، ولا يعاد نشر نص الكتاب الوزاري.",
-  "generatedBy": "Dadyoom official-to-core matcher",
+  "matchingModel": "official-to-core-skill-bundle-v2",
+  "policy": "مرشحات مطابقة قابلة للتدقيق. تغطية Core قد تكون حزمة من عدة مهارات. لا يصبح أي درس verified دون مراجعة المصدر والأهداف.",
   "mappings": [
     {
       "officialLessonId": "6b66a77c-997c-490f-8529-ed5130a20976",
@@ -27,20 +27,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5811,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l01",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "القراءة الجهرية المعبرة",
-          "score": 0.5811
+          "score": 0.8603
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l06",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج من النص",
+          "score": 0.8026
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l04",
+          "relation": "coverage-bundle",
+          "title": "السبب والنتيجة",
+          "score": 0.6904
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l02",
+          "relation": "coverage-bundle",
+          "title": "الفكرة الرئيسة والتفاصيل",
+          "score": 0.4857
         }
       ],
       "candidates": [
@@ -64,6 +81,20 @@
           "coreTitle": "مراجعة القراءة واللغة",
           "coreLessonType": "assessment",
           "score": 0.4068
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.3169
+        },
+        {
+          "coreLessonId": "84c177d3-becc-4556-ac91-0a818fb5c6af",
+          "coreSlug": "bh-dadyoom-core-g4-l04",
+          "coreTitle": "السبب والنتيجة",
+          "coreLessonType": "reading",
+          "score": 0.3071
         }
       ]
     },
@@ -79,20 +110,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5743,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l01",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "القراءة الجهرية المعبرة",
-          "score": 0.5743
+          "score": 0.8561
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l06",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج من النص",
+          "score": 0.8006
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l04",
+          "relation": "coverage-bundle",
+          "title": "السبب والنتيجة",
+          "score": 0.6878
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l02",
+          "relation": "coverage-bundle",
+          "title": "الفكرة الرئيسة والتفاصيل",
+          "score": 0.4874
         }
       ],
       "candidates": [
@@ -116,6 +164,20 @@
           "coreTitle": "مراجعة القراءة واللغة",
           "coreLessonType": "assessment",
           "score": 0.3959
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.3204
+        },
+        {
+          "coreLessonId": "84c177d3-becc-4556-ac91-0a818fb5c6af",
+          "coreSlug": "bh-dadyoom-core-g4-l04",
+          "coreTitle": "السبب والنتيجة",
+          "coreLessonType": "reading",
+          "score": 0.3029
         }
       ]
     },
@@ -131,20 +193,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5881,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l01",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "القراءة الجهرية المعبرة",
-          "score": 0.5881
+          "score": 0.8646
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l06",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج من النص",
+          "score": 0.7943
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l04",
+          "relation": "coverage-bundle",
+          "title": "السبب والنتيجة",
+          "score": 0.6847
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l02",
+          "relation": "coverage-bundle",
+          "title": "الفكرة الرئيسة والتفاصيل",
+          "score": 0.4819
         }
       ],
       "candidates": [
@@ -168,6 +247,20 @@
           "coreTitle": "مراجعة القراءة واللغة",
           "coreLessonType": "assessment",
           "score": 0.4268
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.3102
+        },
+        {
+          "coreLessonId": "84c177d3-becc-4556-ac91-0a818fb5c6af",
+          "coreSlug": "bh-dadyoom-core-g4-l04",
+          "coreTitle": "السبب والنتيجة",
+          "coreLessonType": "reading",
+          "score": 0.298
         }
       ]
     },
@@ -183,20 +276,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5892,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l01",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "القراءة الجهرية المعبرة",
-          "score": 0.5892
+          "score": 0.8653
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l06",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج من النص",
+          "score": 0.7994
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l04",
+          "relation": "coverage-bundle",
+          "title": "السبب والنتيجة",
+          "score": 0.685
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l02",
+          "relation": "coverage-bundle",
+          "title": "الفكرة الرئيسة والتفاصيل",
+          "score": 0.4819
         }
       ],
       "candidates": [
@@ -220,6 +330,20 @@
           "coreTitle": "مراجعة القراءة واللغة",
           "coreLessonType": "assessment",
           "score": 0.4279
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.3103
+        },
+        {
+          "coreLessonId": "84c177d3-becc-4556-ac91-0a818fb5c6af",
+          "coreSlug": "bh-dadyoom-core-g4-l04",
+          "coreTitle": "السبب والنتيجة",
+          "coreLessonType": "reading",
+          "score": 0.2983
         }
       ]
     },
@@ -242,13 +366,30 @@
       "confidence": "low",
       "score": 0.5436,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l01",
           "relation": "text-specific",
           "title": "القراءة الجهرية المعبرة",
-          "score": 0.5436
+          "score": 0.837
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l06",
+          "relation": "text-specific",
+          "title": "الاستنتاج من النص",
+          "score": 0.8294
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l04",
+          "relation": "text-specific",
+          "title": "السبب والنتيجة",
+          "score": 0.6802
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l02",
+          "relation": "text-specific",
+          "title": "الفكرة الرئيسة والتفاصيل",
+          "score": 0.4827
         }
       ],
       "candidates": [
@@ -272,6 +413,20 @@
           "coreTitle": "مراجعة القراءة واللغة",
           "coreLessonType": "assessment",
           "score": 0.3743
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.3674
+        },
+        {
+          "coreLessonId": "84c177d3-becc-4556-ac91-0a818fb5c6af",
+          "coreSlug": "bh-dadyoom-core-g4-l04",
+          "coreTitle": "السبب والنتيجة",
+          "coreLessonType": "reading",
+          "score": 0.2907
         }
       ]
     },
@@ -287,20 +442,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.2152,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l02",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "الفكرة الرئيسة والتفاصيل",
-          "score": 0.2152
+          "score": 0.4834
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l06",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج من النص",
+          "score": 0.4654
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l04",
+          "relation": "coverage-bundle",
+          "title": "السبب والنتيجة",
+          "score": 0.4635
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l01",
+          "relation": "coverage-bundle",
+          "title": "القراءة الجهرية المعبرة",
+          "score": 0.4576
         }
       ],
       "candidates": [
@@ -324,6 +496,20 @@
           "coreTitle": "السبب والنتيجة",
           "coreLessonType": "reading",
           "score": 0.183
+        },
+        {
+          "coreLessonId": "a1dfd906-b511-4853-be5f-7bc03ef706ce",
+          "coreSlug": "bh-dadyoom-core-g4-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.1735
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.1318
         }
       ]
     },
@@ -346,13 +532,30 @@
       "confidence": "medium",
       "score": 0.5515,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l01",
           "relation": "text-specific",
           "title": "القراءة الجهرية المعبرة",
-          "score": 0.5515
+          "score": 0.8419
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l06",
+          "relation": "text-specific",
+          "title": "الاستنتاج من النص",
+          "score": 0.7907
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l04",
+          "relation": "text-specific",
+          "title": "السبب والنتيجة",
+          "score": 0.6795
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l02",
+          "relation": "text-specific",
+          "title": "الفكرة الرئيسة والتفاصيل",
+          "score": 0.482
         }
       ],
       "candidates": [
@@ -376,6 +579,20 @@
           "coreTitle": "مراجعة القراءة واللغة",
           "coreLessonType": "assessment",
           "score": 0.3783
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.3108
+        },
+        {
+          "coreLessonId": "84c177d3-becc-4556-ac91-0a818fb5c6af",
+          "coreSlug": "bh-dadyoom-core-g4-l04",
+          "coreTitle": "السبب والنتيجة",
+          "coreLessonType": "reading",
+          "score": 0.2895
         }
       ]
     },
@@ -391,20 +608,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5876,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l01",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "القراءة الجهرية المعبرة",
-          "score": 0.5876
+          "score": 0.8643
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l06",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج من النص",
+          "score": 0.7989
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l04",
+          "relation": "coverage-bundle",
+          "title": "السبب والنتيجة",
+          "score": 0.6855
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l02",
+          "relation": "coverage-bundle",
+          "title": "الفكرة الرئيسة والتفاصيل",
+          "score": 0.4825
         }
       ],
       "candidates": [
@@ -428,6 +662,20 @@
           "coreTitle": "مراجعة القراءة واللغة",
           "coreLessonType": "assessment",
           "score": 0.4197
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.3112
+        },
+        {
+          "coreLessonId": "84c177d3-becc-4556-ac91-0a818fb5c6af",
+          "coreSlug": "bh-dadyoom-core-g4-l04",
+          "coreTitle": "السبب والنتيجة",
+          "coreLessonType": "reading",
+          "score": 0.2992
         }
       ]
     },
@@ -443,20 +691,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5761,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l01",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "القراءة الجهرية المعبرة",
-          "score": 0.5761
+          "score": 0.8572
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l06",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج من النص",
+          "score": 0.7948
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l04",
+          "relation": "coverage-bundle",
+          "title": "السبب والنتيجة",
+          "score": 0.6858
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l02",
+          "relation": "coverage-bundle",
+          "title": "الفكرة الرئيسة والتفاصيل",
+          "score": 0.4832
         }
       ],
       "candidates": [
@@ -480,6 +745,20 @@
           "coreTitle": "مراجعة القراءة واللغة",
           "coreLessonType": "assessment",
           "score": 0.4082
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.3119
+        },
+        {
+          "coreLessonId": "84c177d3-becc-4556-ac91-0a818fb5c6af",
+          "coreSlug": "bh-dadyoom-core-g4-l04",
+          "coreTitle": "السبب والنتيجة",
+          "coreLessonType": "reading",
+          "score": 0.2997
         }
       ]
     },
@@ -495,20 +774,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.2181,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l02",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "الفكرة الرئيسة والتفاصيل",
-          "score": 0.2181
+          "score": 0.4852
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l06",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج من النص",
+          "score": 0.4644
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l04",
+          "relation": "coverage-bundle",
+          "title": "السبب والنتيجة",
+          "score": 0.4624
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l01",
+          "relation": "coverage-bundle",
+          "title": "القراءة الجهرية المعبرة",
+          "score": 0.4601
         }
       ],
       "candidates": [
@@ -532,6 +828,20 @@
           "coreTitle": "السبب والنتيجة",
           "coreLessonType": "reading",
           "score": 0.1812
+        },
+        {
+          "coreLessonId": "a1dfd906-b511-4853-be5f-7bc03ef706ce",
+          "coreSlug": "bh-dadyoom-core-g4-l01",
+          "coreTitle": "القراءة الجهرية المعبرة",
+          "coreLessonType": "reading",
+          "score": 0.1775
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.1302
         }
       ]
     },
@@ -547,20 +857,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.6566,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l01",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "القراءة الجهرية المعبرة",
-          "score": 0.6566
+          "score": 0.9071
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l06",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج من النص",
+          "score": 0.8049
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l04",
+          "relation": "coverage-bundle",
+          "title": "السبب والنتيجة",
+          "score": 0.6991
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l02",
+          "relation": "coverage-bundle",
+          "title": "الفكرة الرئيسة والتفاصيل",
+          "score": 0.4921
         }
       ],
       "candidates": [
@@ -584,6 +911,20 @@
           "coreTitle": "مراجعة القراءة واللغة",
           "coreLessonType": "assessment",
           "score": 0.4789
+        },
+        {
+          "coreLessonId": "84c177d3-becc-4556-ac91-0a818fb5c6af",
+          "coreSlug": "bh-dadyoom-core-g4-l04",
+          "coreTitle": "السبب والنتيجة",
+          "coreLessonType": "reading",
+          "score": 0.3212
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.3172
         }
       ]
     },
@@ -599,20 +940,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5968,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l01",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "القراءة الجهرية المعبرة",
-          "score": 0.5968
+          "score": 0.87
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l06",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج من النص",
+          "score": 0.8087
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l04",
+          "relation": "coverage-bundle",
+          "title": "السبب والنتيجة",
+          "score": 0.7007
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l02",
+          "relation": "coverage-bundle",
+          "title": "الفكرة الرئيسة والتفاصيل",
+          "score": 0.495
         }
       ],
       "candidates": [
@@ -636,6 +994,20 @@
           "coreTitle": "مراجعة القراءة واللغة",
           "coreLessonType": "assessment",
           "score": 0.4356
+        },
+        {
+          "coreLessonId": "84c177d3-becc-4556-ac91-0a818fb5c6af",
+          "coreSlug": "bh-dadyoom-core-g4-l04",
+          "coreTitle": "السبب والنتيجة",
+          "coreLessonType": "reading",
+          "score": 0.3237
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.3118
         }
       ]
     },
@@ -651,20 +1023,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5962,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l01",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "القراءة الجهرية المعبرة",
-          "score": 0.5962
+          "score": 0.8696
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l06",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج من النص",
+          "score": 0.8036
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l04",
+          "relation": "coverage-bundle",
+          "title": "السبب والنتيجة",
+          "score": 0.6916
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l02",
+          "relation": "coverage-bundle",
+          "title": "الفكرة الرئيسة والتفاصيل",
+          "score": 0.4871
         }
       ],
       "candidates": [
@@ -688,6 +1077,20 @@
           "coreTitle": "مراجعة القراءة واللغة",
           "coreLessonType": "assessment",
           "score": 0.4215
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.3241
+        },
+        {
+          "coreLessonId": "84c177d3-becc-4556-ac91-0a818fb5c6af",
+          "coreSlug": "bh-dadyoom-core-g4-l04",
+          "coreTitle": "السبب والنتيجة",
+          "coreLessonType": "reading",
+          "score": 0.309
         }
       ]
     },
@@ -703,20 +1106,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.6044,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l01",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "القراءة الجهرية المعبرة",
-          "score": 0.6044
+          "score": 0.8747
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l06",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج من النص",
+          "score": 0.8019
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l04",
+          "relation": "coverage-bundle",
+          "title": "السبب والنتيجة",
+          "score": 0.6931
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l02",
+          "relation": "coverage-bundle",
+          "title": "الفكرة الرئيسة والتفاصيل",
+          "score": 0.4886
         }
       ],
       "candidates": [
@@ -740,6 +1160,20 @@
           "coreTitle": "مراجعة القراءة واللغة",
           "coreLessonType": "assessment",
           "score": 0.4237
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.3143
+        },
+        {
+          "coreLessonId": "84c177d3-becc-4556-ac91-0a818fb5c6af",
+          "coreSlug": "bh-dadyoom-core-g4-l04",
+          "coreTitle": "السبب والنتيجة",
+          "coreLessonType": "reading",
+          "score": 0.3114
         }
       ]
     },
@@ -762,13 +1196,30 @@
       "confidence": "medium",
       "score": 0.5745,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l01",
           "relation": "text-specific",
           "title": "القراءة الجهرية المعبرة",
-          "score": 0.5745
+          "score": 0.8562
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l06",
+          "relation": "text-specific",
+          "title": "الاستنتاج من النص",
+          "score": 0.8005
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l04",
+          "relation": "text-specific",
+          "title": "السبب والنتيجة",
+          "score": 0.6901
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l02",
+          "relation": "text-specific",
+          "title": "الفكرة الرئيسة والتفاصيل",
+          "score": 0.492
         }
       ],
       "candidates": [
@@ -792,6 +1243,20 @@
           "coreTitle": "مراجعة القراءة واللغة",
           "coreLessonType": "assessment",
           "score": 0.4017
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.3118
+        },
+        {
+          "coreLessonId": "84c177d3-becc-4556-ac91-0a818fb5c6af",
+          "coreSlug": "bh-dadyoom-core-g4-l04",
+          "coreTitle": "السبب والنتيجة",
+          "coreLessonType": "reading",
+          "score": 0.3066
         }
       ]
     },
@@ -807,20 +1272,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5884,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l01",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "القراءة الجهرية المعبرة",
-          "score": 0.5884
+          "score": 0.8648
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l06",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج من النص",
+          "score": 0.7935
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l04",
+          "relation": "coverage-bundle",
+          "title": "السبب والنتيجة",
+          "score": 0.6846
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l02",
+          "relation": "coverage-bundle",
+          "title": "الفكرة الرئيسة والتفاصيل",
+          "score": 0.4882
         }
       ],
       "candidates": [
@@ -844,6 +1326,20 @@
           "coreTitle": "مراجعة القراءة واللغة",
           "coreLessonType": "assessment",
           "score": 0.4135
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.3097
+        },
+        {
+          "coreLessonId": "84c177d3-becc-4556-ac91-0a818fb5c6af",
+          "coreSlug": "bh-dadyoom-core-g4-l04",
+          "coreTitle": "السبب والنتيجة",
+          "coreLessonType": "reading",
+          "score": 0.2978
         }
       ]
     },
@@ -866,13 +1362,30 @@
       "confidence": "low",
       "score": 0.5467,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l01",
           "relation": "text-specific",
           "title": "القراءة الجهرية المعبرة",
-          "score": 0.5467
+          "score": 0.8389
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l06",
+          "relation": "text-specific",
+          "title": "الاستنتاج من النص",
+          "score": 0.8293
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l04",
+          "relation": "text-specific",
+          "title": "السبب والنتيجة",
+          "score": 0.6836
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l02",
+          "relation": "text-specific",
+          "title": "الفكرة الرئيسة والتفاصيل",
+          "score": 0.4859
         }
       ],
       "candidates": [
@@ -896,6 +1409,20 @@
           "coreTitle": "مراجعة القراءة واللغة",
           "coreLessonType": "assessment",
           "score": 0.3744
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.3637
+        },
+        {
+          "coreLessonId": "84c177d3-becc-4556-ac91-0a818fb5c6af",
+          "coreSlug": "bh-dadyoom-core-g4-l04",
+          "coreTitle": "السبب والنتيجة",
+          "coreLessonType": "reading",
+          "score": 0.2961
         }
       ]
     },
@@ -911,20 +1438,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.6027,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l01",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "القراءة الجهرية المعبرة",
-          "score": 0.6027
+          "score": 0.8737
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l06",
+          "relation": "coverage-bundle",
+          "title": "الاستنتاج من النص",
+          "score": 0.8045
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l04",
+          "relation": "coverage-bundle",
+          "title": "السبب والنتيجة",
+          "score": 0.6914
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l02",
+          "relation": "coverage-bundle",
+          "title": "الفكرة الرئيسة والتفاصيل",
+          "score": 0.4874
         }
       ],
       "candidates": [
@@ -948,162 +1492,20 @@
           "coreTitle": "مراجعة القراءة واللغة",
           "coreLessonType": "assessment",
           "score": 0.4219
-        }
-      ]
-    },
-    {
-      "officialLessonId": "36c04f9e-f973-4e9c-b307-e91b9c5f2c4c",
-      "officialSlug": "bh-2026-g4-t1-164",
-      "officialTitle": "القواعد النّحويّة: أقسام الكالم: االسم، والفعل، والحرف",
-      "officialLessonType": "grammar",
-      "unitNumber": 12,
-      "unitTitle": "القواعد والتراكيب",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "unmapped",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
-      "confidence": "low",
-      "score": 0.4071,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g4-l07",
-          "relation": "unmapped",
-          "title": "أقسام الكلام",
-          "score": 0.4071
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
-          "coreSlug": "bh-dadyoom-core-g4-l07",
-          "coreTitle": "أقسام الكلام",
-          "coreLessonType": "grammar",
-          "score": 0.4071
         },
         {
-          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
-          "coreSlug": "bh-dadyoom-core-g4-l09",
-          "coreTitle": "الفعل والفاعل",
-          "coreLessonType": "grammar",
-          "score": 0.3287
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.3125
         },
         {
-          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
-          "coreSlug": "bh-dadyoom-core-g4-l08",
-          "coreTitle": "المبتدأ والخبر",
-          "coreLessonType": "grammar",
-          "score": 0.3021
-        }
-      ]
-    },
-    {
-      "officialLessonId": "d25d6e74-674d-485d-913f-f32c59f7c98c",
-      "officialSlug": "bh-2026-g4-t1-165",
-      "officialTitle": "القواعد النّحويّة: أقسام الكلام: الاسم، والفعل، والحرف التّدريبات 22-27",
-      "officialLessonType": "grammar",
-      "unitNumber": 12,
-      "unitTitle": "القواعد والتراكيب",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "unmapped",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
-      "confidence": "low",
-      "score": 0.4811,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g4-l07",
-          "relation": "unmapped",
-          "title": "أقسام الكلام",
-          "score": 0.4811
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
-          "coreSlug": "bh-dadyoom-core-g4-l07",
-          "coreTitle": "أقسام الكلام",
-          "coreLessonType": "grammar",
-          "score": 0.4811
-        },
-        {
-          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
-          "coreSlug": "bh-dadyoom-core-g4-l09",
-          "coreTitle": "الفعل والفاعل",
-          "coreLessonType": "grammar",
-          "score": 0.3227
-        },
-        {
-          "coreLessonId": "dbbc3139-0d0a-4c7f-8e6e-5cc11505d240",
-          "coreSlug": "bh-dadyoom-core-g4-l10",
-          "coreTitle": "المفعول به",
-          "coreLessonType": "grammar",
-          "score": 0.3035
-        }
-      ]
-    },
-    {
-      "officialLessonId": "094e8612-ad88-4587-a2f5-6b0730271a3d",
-      "officialSlug": "bh-2026-g4-t1-166",
-      "officialTitle": "القواعد النّحويّة: الكَلامُ المُفيدُ التّدريبات 12-16",
-      "officialLessonType": "grammar",
-      "unitNumber": 12,
-      "unitTitle": "القواعد والتراكيب",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "unmapped",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
-      "confidence": "low",
-      "score": 0.4121,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g4-l07",
-          "relation": "unmapped",
-          "title": "أقسام الكلام",
-          "score": 0.4121
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
-          "coreSlug": "bh-dadyoom-core-g4-l07",
-          "coreTitle": "أقسام الكلام",
-          "coreLessonType": "grammar",
-          "score": 0.4121
-        },
-        {
-          "coreLessonId": "dbbc3139-0d0a-4c7f-8e6e-5cc11505d240",
-          "coreSlug": "bh-dadyoom-core-g4-l10",
-          "coreTitle": "المفعول به",
-          "coreLessonType": "grammar",
-          "score": 0.3101
-        },
-        {
-          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
-          "coreSlug": "bh-dadyoom-core-g4-l09",
-          "coreTitle": "الفعل والفاعل",
-          "coreLessonType": "grammar",
-          "score": 0.2979
+          "coreLessonId": "84c177d3-becc-4556-ac91-0a818fb5c6af",
+          "coreSlug": "bh-dadyoom-core-g4-l04",
+          "coreTitle": "السبب والنتيجة",
+          "coreLessonType": "reading",
+          "score": 0.3087
         }
       ]
     },
@@ -1119,20 +1521,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.3022,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l10",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "المفعول به",
-          "score": 0.3022
+          "score": 0.7473
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.7434
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l09",
+          "relation": "coverage-bundle",
+          "title": "الفعل والفاعل",
+          "score": 0.7417
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l08",
+          "relation": "coverage-bundle",
+          "title": "المبتدأ والخبر",
+          "score": 0.7388
         }
       ],
       "candidates": [
@@ -1156,6 +1575,103 @@
           "coreTitle": "الفعل والفاعل",
           "coreLessonType": "grammar",
           "score": 0.2931
+        },
+        {
+          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
+          "coreSlug": "bh-dadyoom-core-g4-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.2883
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.2399
+        }
+      ]
+    },
+    {
+      "officialLessonId": "36c04f9e-f973-4e9c-b307-e91b9c5f2c4c",
+      "officialSlug": "bh-2026-g4-t1-164",
+      "officialTitle": "القواعد النّحويّة: أقسام الكالم: االسم، والفعل، والحرف",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "low",
+      "score": 0.4071,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.8124
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l09",
+          "relation": "coverage-bundle",
+          "title": "الفعل والفاعل",
+          "score": 0.7638
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l08",
+          "relation": "coverage-bundle",
+          "title": "المبتدأ والخبر",
+          "score": 0.7473
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l10",
+          "relation": "coverage-bundle",
+          "title": "المفعول به",
+          "score": 0.7461
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
+          "coreSlug": "bh-dadyoom-core-g4-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.4071
+        },
+        {
+          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
+          "coreSlug": "bh-dadyoom-core-g4-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.3287
+        },
+        {
+          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
+          "coreSlug": "bh-dadyoom-core-g4-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.3021
+        },
+        {
+          "coreLessonId": "dbbc3139-0d0a-4c7f-8e6e-5cc11505d240",
+          "coreSlug": "bh-dadyoom-core-g4-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3002
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.244
         }
       ]
     },
@@ -1171,20 +1687,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.3112,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l10",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "المفعول به",
-          "score": 0.3112
+          "score": 0.753
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.7484
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l09",
+          "relation": "coverage-bundle",
+          "title": "الفعل والفاعل",
+          "score": 0.7409
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l08",
+          "relation": "coverage-bundle",
+          "title": "المبتدأ والخبر",
+          "score": 0.7395
         }
       ],
       "candidates": [
@@ -1208,214 +1741,20 @@
           "coreTitle": "الفعل والفاعل",
           "coreLessonType": "grammar",
           "score": 0.2918
-        }
-      ]
-    },
-    {
-      "officialLessonId": "265db6a5-148f-4608-9901-d0ec97e68c26",
-      "officialSlug": "bh-2026-g4-t1-173",
-      "officialTitle": "ُالقواعد النّحويّة: الكَالمُ املُفيد",
-      "officialLessonType": "grammar",
-      "unitNumber": 12,
-      "unitTitle": "القواعد والتراكيب",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "unmapped",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
-      "confidence": "very-low",
-      "score": 0.3107,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g4-l07",
-          "relation": "unmapped",
-          "title": "أقسام الكلام",
-          "score": 0.3107
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
-          "coreSlug": "bh-dadyoom-core-g4-l07",
-          "coreTitle": "أقسام الكلام",
-          "coreLessonType": "grammar",
-          "score": 0.3107
-        },
-        {
-          "coreLessonId": "dbbc3139-0d0a-4c7f-8e6e-5cc11505d240",
-          "coreSlug": "bh-dadyoom-core-g4-l10",
-          "coreTitle": "المفعول به",
-          "coreLessonType": "grammar",
-          "score": 0.3069
         },
         {
           "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
           "coreSlug": "bh-dadyoom-core-g4-l08",
           "coreTitle": "المبتدأ والخبر",
           "coreLessonType": "grammar",
-          "score": 0.3009
-        }
-      ]
-    },
-    {
-      "officialLessonId": "66c48602-b541-4a55-84ec-78a2a03ab59c",
-      "officialSlug": "bh-2026-g4-t1-189",
-      "officialTitle": "القواعد النّحويّة: االسم املثنّى",
-      "officialLessonType": "grammar",
-      "unitNumber": 12,
-      "unitTitle": "القواعد والتراكيب",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "unmapped",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
-      "confidence": "very-low",
-      "score": 0.3021,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g4-l07",
-          "relation": "unmapped",
-          "title": "أقسام الكلام",
-          "score": 0.3021
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
-          "coreSlug": "bh-dadyoom-core-g4-l07",
-          "coreTitle": "أقسام الكلام",
-          "coreLessonType": "grammar",
-          "score": 0.3021
+          "score": 0.2895
         },
         {
-          "coreLessonId": "dbbc3139-0d0a-4c7f-8e6e-5cc11505d240",
-          "coreSlug": "bh-dadyoom-core-g4-l10",
-          "coreTitle": "المفعول به",
-          "coreLessonType": "grammar",
-          "score": 0.2989
-        },
-        {
-          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
-          "coreSlug": "bh-dadyoom-core-g4-l09",
-          "coreTitle": "الفعل والفاعل",
-          "coreLessonType": "grammar",
-          "score": 0.2981
-        }
-      ]
-    },
-    {
-      "officialLessonId": "e3381921-a95b-42a1-b334-25e7983ca556",
-      "officialSlug": "bh-2026-g4-t1-190",
-      "officialTitle": "القواعد النّحويّة: الاسم المثنّى التّدريبات 59-62",
-      "officialLessonType": "grammar",
-      "unitNumber": 12,
-      "unitTitle": "القواعد والتراكيب",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "unmapped",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
-      "confidence": "very-low",
-      "score": 0.3143,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g4-l10",
-          "relation": "unmapped",
-          "title": "المفعول به",
-          "score": 0.3143
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "dbbc3139-0d0a-4c7f-8e6e-5cc11505d240",
-          "coreSlug": "bh-dadyoom-core-g4-l10",
-          "coreTitle": "المفعول به",
-          "coreLessonType": "grammar",
-          "score": 0.3143
-        },
-        {
-          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
-          "coreSlug": "bh-dadyoom-core-g4-l07",
-          "coreTitle": "أقسام الكلام",
-          "coreLessonType": "grammar",
-          "score": 0.3108
-        },
-        {
-          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
-          "coreSlug": "bh-dadyoom-core-g4-l08",
-          "coreTitle": "المبتدأ والخبر",
-          "coreLessonType": "grammar",
-          "score": 0.3002
-        }
-      ]
-    },
-    {
-      "officialLessonId": "95647849-aa29-42a2-b816-8e5b417a23be",
-      "officialSlug": "bh-2026-g4-t1-191",
-      "officialTitle": "القواعد النّحويّة: الجملة االسميّة والجملة الفعليّة",
-      "officialLessonType": "grammar",
-      "unitNumber": 12,
-      "unitTitle": "القواعد والتراكيب",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "unmapped",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
-      "confidence": "very-low",
-      "score": 0.3463,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g4-l09",
-          "relation": "unmapped",
-          "title": "الفعل والفاعل",
-          "score": 0.3463
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
-          "coreSlug": "bh-dadyoom-core-g4-l09",
-          "coreTitle": "الفعل والفاعل",
-          "coreLessonType": "grammar",
-          "score": 0.3463
-        },
-        {
-          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
-          "coreSlug": "bh-dadyoom-core-g4-l08",
-          "coreTitle": "المبتدأ والخبر",
-          "coreLessonType": "grammar",
-          "score": 0.315
-        },
-        {
-          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
-          "coreSlug": "bh-dadyoom-core-g4-l07",
-          "coreTitle": "أقسام الكلام",
-          "coreLessonType": "grammar",
-          "score": 0.3072
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.2345
         }
       ]
     },
@@ -1431,20 +1770,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.3412,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l09",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "الفعل والفاعل",
-          "score": 0.3412
+          "score": 0.7715
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l08",
+          "relation": "coverage-bundle",
+          "title": "المبتدأ والخبر",
+          "score": 0.7598
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.7509
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l10",
+          "relation": "coverage-bundle",
+          "title": "المفعول به",
+          "score": 0.7454
         }
       ],
       "candidates": [
@@ -1468,6 +1824,186 @@
           "coreTitle": "أقسام الكلام",
           "coreLessonType": "grammar",
           "score": 0.3079
+        },
+        {
+          "coreLessonId": "dbbc3139-0d0a-4c7f-8e6e-5cc11505d240",
+          "coreSlug": "bh-dadyoom-core-g4-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.299
+        },
+        {
+          "coreLessonId": "370273ea-2499-4cdb-b44c-7e8479394dc7",
+          "coreSlug": "bh-dadyoom-core-g4-l02",
+          "coreTitle": "الفكرة الرئيسة والتفاصيل",
+          "coreLessonType": "reading",
+          "score": 0.2473
+        }
+      ]
+    },
+    {
+      "officialLessonId": "094e8612-ad88-4587-a2f5-6b0730271a3d",
+      "officialSlug": "bh-2026-g4-t1-166",
+      "officialTitle": "القواعد النّحويّة: الكَلامُ المُفيدُ التّدريبات 12-16",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "low",
+      "score": 0.4121,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.8155
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l10",
+          "relation": "coverage-bundle",
+          "title": "المفعول به",
+          "score": 0.7523
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l09",
+          "relation": "coverage-bundle",
+          "title": "الفعل والفاعل",
+          "score": 0.7447
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l08",
+          "relation": "coverage-bundle",
+          "title": "المبتدأ والخبر",
+          "score": 0.7446
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
+          "coreSlug": "bh-dadyoom-core-g4-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.4121
+        },
+        {
+          "coreLessonId": "dbbc3139-0d0a-4c7f-8e6e-5cc11505d240",
+          "coreSlug": "bh-dadyoom-core-g4-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3101
+        },
+        {
+          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
+          "coreSlug": "bh-dadyoom-core-g4-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.2979
+        },
+        {
+          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
+          "coreSlug": "bh-dadyoom-core-g4-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.2977
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.2496
+        }
+      ]
+    },
+    {
+      "officialLessonId": "d25d6e74-674d-485d-913f-f32c59f7c98c",
+      "officialSlug": "bh-2026-g4-t1-165",
+      "officialTitle": "القواعد النّحويّة: أقسام الكلام: الاسم، والفعل، والحرف التّدريبات 22-27",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "low",
+      "score": 0.4811,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.8583
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l09",
+          "relation": "coverage-bundle",
+          "title": "الفعل والفاعل",
+          "score": 0.7601
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l10",
+          "relation": "coverage-bundle",
+          "title": "المفعول به",
+          "score": 0.7482
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l08",
+          "relation": "coverage-bundle",
+          "title": "المبتدأ والخبر",
+          "score": 0.7441
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
+          "coreSlug": "bh-dadyoom-core-g4-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.4811
+        },
+        {
+          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
+          "coreSlug": "bh-dadyoom-core-g4-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.3227
+        },
+        {
+          "coreLessonId": "dbbc3139-0d0a-4c7f-8e6e-5cc11505d240",
+          "coreSlug": "bh-dadyoom-core-g4-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3035
+        },
+        {
+          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
+          "coreSlug": "bh-dadyoom-core-g4-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.2969
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.2414
         }
       ]
     },
@@ -1483,20 +2019,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.3026,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l10",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "المفعول به",
-          "score": 0.3026
+          "score": 0.7476
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.7437
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l09",
+          "relation": "coverage-bundle",
+          "title": "الفعل والفاعل",
+          "score": 0.742
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l08",
+          "relation": "coverage-bundle",
+          "title": "المبتدأ والخبر",
+          "score": 0.739
         }
       ],
       "candidates": [
@@ -1520,6 +2073,103 @@
           "coreTitle": "الفعل والفاعل",
           "coreLessonType": "grammar",
           "score": 0.2935
+        },
+        {
+          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
+          "coreSlug": "bh-dadyoom-core-g4-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.2887
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.2402
+        }
+      ]
+    },
+    {
+      "officialLessonId": "265db6a5-148f-4608-9901-d0ec97e68c26",
+      "officialSlug": "bh-2026-g4-t1-173",
+      "officialTitle": "ُالقواعد النّحويّة: الكَالمُ املُفيد",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "very-low",
+      "score": 0.3107,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.7526
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l10",
+          "relation": "coverage-bundle",
+          "title": "المفعول به",
+          "score": 0.7503
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l08",
+          "relation": "coverage-bundle",
+          "title": "المبتدأ والخبر",
+          "score": 0.7466
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l09",
+          "relation": "coverage-bundle",
+          "title": "الفعل والفاعل",
+          "score": 0.7464
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
+          "coreSlug": "bh-dadyoom-core-g4-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.3107
+        },
+        {
+          "coreLessonId": "dbbc3139-0d0a-4c7f-8e6e-5cc11505d240",
+          "coreSlug": "bh-dadyoom-core-g4-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3069
+        },
+        {
+          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
+          "coreSlug": "bh-dadyoom-core-g4-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.3009
+        },
+        {
+          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
+          "coreSlug": "bh-dadyoom-core-g4-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.3007
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.2465
         }
       ]
     },
@@ -1535,20 +2185,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.3117,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l10",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "المفعول به",
-          "score": 0.3117
+          "score": 0.7532
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.7487
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l09",
+          "relation": "coverage-bundle",
+          "title": "الفعل والفاعل",
+          "score": 0.7411
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l08",
+          "relation": "coverage-bundle",
+          "title": "المبتدأ والخبر",
+          "score": 0.7397
         }
       ],
       "candidates": [
@@ -1572,65 +2239,27 @@
           "coreTitle": "الفعل والفاعل",
           "coreLessonType": "grammar",
           "score": 0.2921
-        }
-      ]
-    },
-    {
-      "officialLessonId": "c8d5d357-44a2-4538-8a29-c90d139a2e24",
-      "officialSlug": "bh-2026-g4-t1-218",
-      "officialTitle": "القواعد النّحويّة: الفعل والفاعل",
-      "officialLessonType": "grammar",
-      "unitNumber": 12,
-      "unitTitle": "القواعد والتراكيب",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "unmapped",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
-      "confidence": "low",
-      "score": 0.542,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g4-l09",
-          "relation": "unmapped",
-          "title": "الفعل والفاعل",
-          "score": 0.542
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
-          "coreSlug": "bh-dadyoom-core-g4-l09",
-          "coreTitle": "الفعل والفاعل",
-          "coreLessonType": "grammar",
-          "score": 0.542
-        },
-        {
-          "coreLessonId": "dbbc3139-0d0a-4c7f-8e6e-5cc11505d240",
-          "coreSlug": "bh-dadyoom-core-g4-l10",
-          "coreTitle": "المفعول به",
-          "coreLessonType": "grammar",
-          "score": 0.3095
         },
         {
           "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
           "coreSlug": "bh-dadyoom-core-g4-l08",
           "coreTitle": "المبتدأ والخبر",
           "coreLessonType": "grammar",
-          "score": 0.3065
+          "score": 0.2898
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.2347
         }
       ]
     },
     {
-      "officialLessonId": "519968be-4f07-4e14-a9eb-7f06ca965b63",
-      "officialSlug": "bh-2026-g4-t1-219",
-      "officialTitle": "القواعد النّحويّة: الفعل والفاعل التّدريبات 91-95",
+      "officialLessonId": "66c48602-b541-4a55-84ec-78a2a03ab59c",
+      "officialSlug": "bh-2026-g4-t1-189",
+      "officialTitle": "القواعد النّحويّة: االسم املثنّى",
       "officialLessonType": "grammar",
       "unitNumber": 12,
       "unitTitle": "القواعد والتراكيب",
@@ -1639,95 +2268,240 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
-      "confidence": "low",
-      "score": 0.5199,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "very-low",
+      "score": 0.3021,
+      "needsNationalExtension": false,
       "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.7473
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l10",
+          "relation": "coverage-bundle",
+          "title": "المفعول به",
+          "score": 0.7453
+        },
         {
           "slug": "bh-dadyoom-core-g4-l09",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "الفعل والفاعل",
-          "score": 0.5199
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
-          "coreSlug": "bh-dadyoom-core-g4-l09",
-          "coreTitle": "الفعل والفاعل",
-          "coreLessonType": "grammar",
-          "score": 0.5199
+          "score": 0.7448
         },
-        {
-          "coreLessonId": "dbbc3139-0d0a-4c7f-8e6e-5cc11505d240",
-          "coreSlug": "bh-dadyoom-core-g4-l10",
-          "coreTitle": "المفعول به",
-          "coreLessonType": "grammar",
-          "score": 0.3066
-        },
-        {
-          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
-          "coreSlug": "bh-dadyoom-core-g4-l08",
-          "coreTitle": "المبتدأ والخبر",
-          "coreLessonType": "grammar",
-          "score": 0.3021
-        }
-      ]
-    },
-    {
-      "officialLessonId": "6fd7e331-e882-4090-aeaf-7e729ee16053",
-      "officialSlug": "bh-2026-g4-t1-220",
-      "officialTitle": "القواعد النّحويّة: المبتدأ والخبر التّدريبات 80-83",
-      "officialLessonType": "grammar",
-      "unitNumber": 12,
-      "unitTitle": "القواعد والتراكيب",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "unmapped",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
-      "confidence": "low",
-      "score": 0.5238,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l08",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "المبتدأ والخبر",
-          "score": 0.5238
+          "score": 0.742
         }
       ],
       "candidates": [
         {
-          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
-          "coreSlug": "bh-dadyoom-core-g4-l08",
-          "coreTitle": "المبتدأ والخبر",
+          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
+          "coreSlug": "bh-dadyoom-core-g4-l07",
+          "coreTitle": "أقسام الكلام",
           "coreLessonType": "grammar",
-          "score": 0.5238
-        },
-        {
-          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
-          "coreSlug": "bh-dadyoom-core-g4-l09",
-          "coreTitle": "الفعل والفاعل",
-          "coreLessonType": "grammar",
-          "score": 0.3086
+          "score": 0.3021
         },
         {
           "coreLessonId": "dbbc3139-0d0a-4c7f-8e6e-5cc11505d240",
           "coreSlug": "bh-dadyoom-core-g4-l10",
           "coreTitle": "المفعول به",
           "coreLessonType": "grammar",
-          "score": 0.3026
+          "score": 0.2989
+        },
+        {
+          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
+          "coreSlug": "bh-dadyoom-core-g4-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.2981
+        },
+        {
+          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
+          "coreSlug": "bh-dadyoom-core-g4-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.2935
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.25
+        }
+      ]
+    },
+    {
+      "officialLessonId": "e3381921-a95b-42a1-b334-25e7983ca556",
+      "officialSlug": "bh-2026-g4-t1-190",
+      "officialTitle": "القواعد النّحويّة: الاسم المثنّى التّدريبات 59-62",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "very-low",
+      "score": 0.3143,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g4-l10",
+          "relation": "coverage-bundle",
+          "title": "المفعول به",
+          "score": 0.7549
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.7527
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l08",
+          "relation": "coverage-bundle",
+          "title": "المبتدأ والخبر",
+          "score": 0.7461
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l09",
+          "relation": "coverage-bundle",
+          "title": "الفعل والفاعل",
+          "score": 0.7443
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "dbbc3139-0d0a-4c7f-8e6e-5cc11505d240",
+          "coreSlug": "bh-dadyoom-core-g4-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3143
+        },
+        {
+          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
+          "coreSlug": "bh-dadyoom-core-g4-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.3108
+        },
+        {
+          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
+          "coreSlug": "bh-dadyoom-core-g4-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.3002
+        },
+        {
+          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
+          "coreSlug": "bh-dadyoom-core-g4-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.2972
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.2481
+        }
+      ]
+    },
+    {
+      "officialLessonId": "95647849-aa29-42a2-b816-8e5b417a23be",
+      "officialSlug": "bh-2026-g4-t1-191",
+      "officialTitle": "القواعد النّحويّة: الجملة االسميّة والجملة الفعليّة",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "very-low",
+      "score": 0.3463,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g4-l09",
+          "relation": "coverage-bundle",
+          "title": "الفعل والفاعل",
+          "score": 0.7747
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l08",
+          "relation": "coverage-bundle",
+          "title": "المبتدأ والخبر",
+          "score": 0.7553
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.7505
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l10",
+          "relation": "coverage-bundle",
+          "title": "المفعول به",
+          "score": 0.7478
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
+          "coreSlug": "bh-dadyoom-core-g4-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.3463
+        },
+        {
+          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
+          "coreSlug": "bh-dadyoom-core-g4-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.315
+        },
+        {
+          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
+          "coreSlug": "bh-dadyoom-core-g4-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.3072
+        },
+        {
+          "coreLessonId": "dbbc3139-0d0a-4c7f-8e6e-5cc11505d240",
+          "coreSlug": "bh-dadyoom-core-g4-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3029
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.2538
         }
       ]
     },
@@ -1743,20 +2517,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "low",
       "score": 0.4414,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l08",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "المبتدأ والخبر",
-          "score": 0.4414
+          "score": 0.8336
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l09",
+          "relation": "coverage-bundle",
+          "title": "الفعل والفاعل",
+          "score": 0.7532
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l10",
+          "relation": "coverage-bundle",
+          "title": "المفعول به",
+          "score": 0.7447
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.7439
         }
       ],
       "candidates": [
@@ -1780,6 +2571,20 @@
           "coreTitle": "المفعول به",
           "coreLessonType": "grammar",
           "score": 0.2979
+        },
+        {
+          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
+          "coreSlug": "bh-dadyoom-core-g4-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.2966
+        },
+        {
+          "coreLessonId": "370273ea-2499-4cdb-b44c-7e8479394dc7",
+          "coreSlug": "bh-dadyoom-core-g4-l02",
+          "coreTitle": "الفكرة الرئيسة والتفاصيل",
+          "coreLessonType": "reading",
+          "score": 0.2423
         }
       ]
     },
@@ -1795,20 +2600,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "low",
       "score": 0.3722,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l09",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "الفعل والفاعل",
-          "score": 0.3722
+          "score": 0.7908
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l10",
+          "relation": "coverage-bundle",
+          "title": "المفعول به",
+          "score": 0.7533
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.7447
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l08",
+          "relation": "coverage-bundle",
+          "title": "المبتدأ والخبر",
+          "score": 0.739
         }
       ],
       "candidates": [
@@ -1832,6 +2654,20 @@
           "coreTitle": "أقسام الكلام",
           "coreLessonType": "grammar",
           "score": 0.2979
+        },
+        {
+          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
+          "coreSlug": "bh-dadyoom-core-g4-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.2887
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.2354
         }
       ]
     },
@@ -1847,20 +2683,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "low",
       "score": 0.3678,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l09",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "الفعل والفاعل",
-          "score": 0.3678
+          "score": 0.788
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l10",
+          "relation": "coverage-bundle",
+          "title": "المفعول به",
+          "score": 0.7526
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.7433
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l08",
+          "relation": "coverage-bundle",
+          "title": "المبتدأ والخبر",
+          "score": 0.7382
         }
       ],
       "candidates": [
@@ -1884,6 +2737,269 @@
           "coreTitle": "أقسام الكلام",
           "coreLessonType": "grammar",
           "score": 0.2956
+        },
+        {
+          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
+          "coreSlug": "bh-dadyoom-core-g4-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.2873
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.2347
+        }
+      ]
+    },
+    {
+      "officialLessonId": "c8d5d357-44a2-4538-8a29-c90d139a2e24",
+      "officialSlug": "bh-2026-g4-t1-218",
+      "officialTitle": "القواعد النّحويّة: الفعل والفاعل",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "low",
+      "score": 0.542,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g4-l09",
+          "relation": "coverage-bundle",
+          "title": "الفعل والفاعل",
+          "score": 0.896
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l10",
+          "relation": "coverage-bundle",
+          "title": "المفعول به",
+          "score": 0.7519
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l08",
+          "relation": "coverage-bundle",
+          "title": "المبتدأ والخبر",
+          "score": 0.75
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.7461
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
+          "coreSlug": "bh-dadyoom-core-g4-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.542
+        },
+        {
+          "coreLessonId": "dbbc3139-0d0a-4c7f-8e6e-5cc11505d240",
+          "coreSlug": "bh-dadyoom-core-g4-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3095
+        },
+        {
+          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
+          "coreSlug": "bh-dadyoom-core-g4-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.3065
+        },
+        {
+          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
+          "coreSlug": "bh-dadyoom-core-g4-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.3002
+        },
+        {
+          "coreLessonId": "370273ea-2499-4cdb-b44c-7e8479394dc7",
+          "coreSlug": "bh-dadyoom-core-g4-l02",
+          "coreTitle": "الفكرة الرئيسة والتفاصيل",
+          "coreLessonType": "reading",
+          "score": 0.2533
+        }
+      ]
+    },
+    {
+      "officialLessonId": "519968be-4f07-4e14-a9eb-7f06ca965b63",
+      "officialSlug": "bh-2026-g4-t1-219",
+      "officialTitle": "القواعد النّحويّة: الفعل والفاعل التّدريبات 91-95",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "low",
+      "score": 0.5199,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g4-l09",
+          "relation": "coverage-bundle",
+          "title": "الفعل والفاعل",
+          "score": 0.8823
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l10",
+          "relation": "coverage-bundle",
+          "title": "المفعول به",
+          "score": 0.7501
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l08",
+          "relation": "coverage-bundle",
+          "title": "المبتدأ والخبر",
+          "score": 0.7473
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.7444
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
+          "coreSlug": "bh-dadyoom-core-g4-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.5199
+        },
+        {
+          "coreLessonId": "dbbc3139-0d0a-4c7f-8e6e-5cc11505d240",
+          "coreSlug": "bh-dadyoom-core-g4-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3066
+        },
+        {
+          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
+          "coreSlug": "bh-dadyoom-core-g4-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.3021
+        },
+        {
+          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
+          "coreSlug": "bh-dadyoom-core-g4-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.2975
+        },
+        {
+          "coreLessonId": "370273ea-2499-4cdb-b44c-7e8479394dc7",
+          "coreSlug": "bh-dadyoom-core-g4-l02",
+          "coreTitle": "الفكرة الرئيسة والتفاصيل",
+          "coreLessonType": "reading",
+          "score": 0.2484
+        }
+      ]
+    },
+    {
+      "officialLessonId": "6fd7e331-e882-4090-aeaf-7e729ee16053",
+      "officialSlug": "bh-2026-g4-t1-220",
+      "officialTitle": "القواعد النّحويّة: المبتدأ والخبر التّدريبات 80-83",
+      "officialLessonType": "grammar",
+      "unitNumber": 12,
+      "unitTitle": "القواعد والتراكيب",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "low",
+      "score": 0.5238,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g4-l08",
+          "relation": "coverage-bundle",
+          "title": "المبتدأ والخبر",
+          "score": 0.8848
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l09",
+          "relation": "coverage-bundle",
+          "title": "الفعل والفاعل",
+          "score": 0.7513
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l10",
+          "relation": "coverage-bundle",
+          "title": "المفعول به",
+          "score": 0.7476
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.7432
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
+          "coreSlug": "bh-dadyoom-core-g4-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.5238
+        },
+        {
+          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
+          "coreSlug": "bh-dadyoom-core-g4-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.3086
+        },
+        {
+          "coreLessonId": "dbbc3139-0d0a-4c7f-8e6e-5cc11505d240",
+          "coreSlug": "bh-dadyoom-core-g4-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.3026
+        },
+        {
+          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
+          "coreSlug": "bh-dadyoom-core-g4-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.2955
+        },
+        {
+          "coreLessonId": "370273ea-2499-4cdb-b44c-7e8479394dc7",
+          "coreSlug": "bh-dadyoom-core-g4-l02",
+          "coreTitle": "الفكرة الرئيسة والتفاصيل",
+          "coreLessonType": "reading",
+          "score": 0.2447
         }
       ]
     },
@@ -1899,20 +3015,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.3145,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l09",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "الفعل والفاعل",
-          "score": 0.3145
+          "score": 0.755
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l10",
+          "relation": "coverage-bundle",
+          "title": "المفعول به",
+          "score": 0.7509
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l08",
+          "relation": "coverage-bundle",
+          "title": "المبتدأ والخبر",
+          "score": 0.7499
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.7448
         }
       ],
       "candidates": [
@@ -1936,6 +3069,20 @@
           "coreTitle": "المبتدأ والخبر",
           "coreLessonType": "grammar",
           "score": 0.3062
+        },
+        {
+          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
+          "coreSlug": "bh-dadyoom-core-g4-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.298
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.2388
         }
       ]
     },
@@ -1951,20 +3098,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.309,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l09",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "الفعل والفاعل",
-          "score": 0.309
+          "score": 0.7516
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.7472
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l10",
+          "relation": "coverage-bundle",
+          "title": "المفعول به",
+          "score": 0.7456
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l08",
+          "relation": "coverage-bundle",
+          "title": "المبتدأ والخبر",
+          "score": 0.7409
         }
       ],
       "candidates": [
@@ -1988,6 +3152,20 @@
           "coreTitle": "المفعول به",
           "coreLessonType": "grammar",
           "score": 0.2994
+        },
+        {
+          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
+          "coreSlug": "bh-dadyoom-core-g4-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.2918
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.2372
         }
       ]
     },
@@ -2003,20 +3181,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.3141,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l09",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "الفعل والفاعل",
-          "score": 0.3141
+          "score": 0.4483
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l10",
+          "relation": "coverage-bundle",
+          "title": "المفعول به",
+          "score": 0.4168
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.4155
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.412
         }
       ],
       "candidates": [
@@ -2040,6 +3235,20 @@
           "coreTitle": "المفعول به",
           "coreLessonType": "grammar",
           "score": 0.2634
+        },
+        {
+          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
+          "coreSlug": "bh-dadyoom-core-g4-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.2556
+        },
+        {
+          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
+          "coreSlug": "bh-dadyoom-core-g4-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.2444
         }
       ]
     },
@@ -2062,13 +3271,12 @@
       "confidence": "very-low",
       "score": 0.2821,
       "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l12",
           "relation": "unmapped",
           "title": "الهمزة والتاء في الكتابة",
-          "score": 0.2821
+          "score": 0.4049
         }
       ],
       "candidates": [
@@ -2092,6 +3300,20 @@
           "coreTitle": "أقسام الكلام",
           "coreLessonType": "grammar",
           "score": 0.1419
+        },
+        {
+          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
+          "coreSlug": "bh-dadyoom-core-g4-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.1365
+        },
+        {
+          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
+          "coreSlug": "bh-dadyoom-core-g4-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.1363
         }
       ]
     },
@@ -2107,20 +3329,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.2522,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l10",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "المفعول به",
-          "score": 0.2522
+          "score": 0.4099
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l07",
+          "relation": "coverage-bundle",
+          "title": "أقسام الكلام",
+          "score": 0.4083
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l03",
+          "relation": "coverage-bundle",
+          "title": "معنى الكلمة من السياق",
+          "score": 0.4013
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l08",
+          "relation": "coverage-bundle",
+          "title": "المبتدأ والخبر",
+          "score": 0.3992
         }
       ],
       "candidates": [
@@ -2144,6 +3383,20 @@
           "coreTitle": "معنى الكلمة من السياق",
           "coreLessonType": "vocabulary",
           "score": 0.2384
+        },
+        {
+          "coreLessonId": "0d0095e4-4730-4df7-885a-fd04cf02a239",
+          "coreSlug": "bh-dadyoom-core-g4-l12",
+          "coreTitle": "الهمزة والتاء في الكتابة",
+          "coreLessonType": "spelling",
+          "score": 0.2364
+        },
+        {
+          "coreLessonId": "922ffe00-824a-4ed4-a8ba-e593e9562aec",
+          "coreSlug": "bh-dadyoom-core-g4-l08",
+          "coreTitle": "المبتدأ والخبر",
+          "coreLessonType": "grammar",
+          "score": 0.2349
         }
       ]
     },
@@ -2166,13 +3419,12 @@
       "confidence": "very-low",
       "score": 0.2441,
       "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l12",
           "relation": "unmapped",
           "title": "الهمزة والتاء في الكتابة",
-          "score": 0.2441
+          "score": 0.3813
         }
       ],
       "candidates": [
@@ -2196,6 +3448,20 @@
           "coreTitle": "أقسام الكلام",
           "coreLessonType": "grammar",
           "score": 0.1337
+        },
+        {
+          "coreLessonId": "a28f6f19-1d85-4e37-8b8d-91cb1a6a5646",
+          "coreSlug": "bh-dadyoom-core-g4-l03",
+          "coreTitle": "معنى الكلمة من السياق",
+          "coreLessonType": "vocabulary",
+          "score": 0.1323
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.132
         }
       ]
     },
@@ -2211,20 +3477,25 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.234,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l11",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "حروف الجر",
-          "score": 0.234
+          "score": 0.3986
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.3486
         }
       ],
       "candidates": [
@@ -2248,6 +3519,20 @@
           "coreTitle": "بناء الفقرة",
           "coreLessonType": "writing",
           "score": 0.1446
+        },
+        {
+          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
+          "coreSlug": "bh-dadyoom-core-g4-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.1376
+        },
+        {
+          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
+          "coreSlug": "bh-dadyoom-core-g4-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.137
         }
       ]
     },
@@ -2263,20 +3548,25 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.2254,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
+          "slug": "bh-dadyoom-core-g4-l11",
+          "relation": "coverage-bundle",
+          "title": "حروف الجر",
+          "score": 0.3932
+        },
+        {
           "slug": "bh-dadyoom-core-g4-l12",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "الهمزة والتاء في الكتابة",
-          "score": 0.2254
+          "score": 0.3698
         }
       ],
       "candidates": [
@@ -2300,6 +3590,20 @@
           "coreTitle": "معنى الكلمة من السياق",
           "coreLessonType": "vocabulary",
           "score": 0.1342
+        },
+        {
+          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
+          "coreSlug": "bh-dadyoom-core-g4-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.1272
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.1252
         }
       ]
     },
@@ -2315,20 +3619,25 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.2282,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
+          "slug": "bh-dadyoom-core-g4-l11",
+          "relation": "coverage-bundle",
+          "title": "حروف الجر",
+          "score": 0.3918
+        },
+        {
           "slug": "bh-dadyoom-core-g4-l12",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "الهمزة والتاء في الكتابة",
-          "score": 0.2282
+          "score": 0.3715
         }
       ],
       "candidates": [
@@ -2352,6 +3661,20 @@
           "coreTitle": "معنى الكلمة من السياق",
           "coreLessonType": "vocabulary",
           "score": 0.1379
+        },
+        {
+          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
+          "coreSlug": "bh-dadyoom-core-g4-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.1281
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.126
         }
       ]
     },
@@ -2374,13 +3697,12 @@
       "confidence": "very-low",
       "score": 0.2291,
       "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l12",
           "relation": "unmapped",
           "title": "الهمزة والتاء في الكتابة",
-          "score": 0.2291
+          "score": 0.372
         }
       ],
       "candidates": [
@@ -2404,6 +3726,20 @@
           "coreTitle": "معنى الكلمة من السياق",
           "coreLessonType": "vocabulary",
           "score": 0.1847
+        },
+        {
+          "coreLessonId": "59b5dbe4-e08f-47be-bd73-51a85d568385",
+          "coreSlug": "bh-dadyoom-core-g4-l07",
+          "coreTitle": "أقسام الكلام",
+          "coreLessonType": "grammar",
+          "score": 0.1831
+        },
+        {
+          "coreLessonId": "4157e89b-5018-489e-811b-189c31427904",
+          "coreSlug": "bh-dadyoom-core-g4-l09",
+          "coreTitle": "الفعل والفاعل",
+          "coreLessonType": "grammar",
+          "score": 0.182
         }
       ]
     },
@@ -2419,20 +3755,25 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.261,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
+          "slug": "bh-dadyoom-core-g4-l11",
+          "relation": "coverage-bundle",
+          "title": "حروف الجر",
+          "score": 0.3994
+        },
+        {
           "slug": "bh-dadyoom-core-g4-l12",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "الهمزة والتاء في الكتابة",
-          "score": 0.261
+          "score": 0.3918
         }
       ],
       "candidates": [
@@ -2456,6 +3797,186 @@
           "coreTitle": "الرسالة القصيرة",
           "coreLessonType": "writing",
           "score": 0.1322
+        },
+        {
+          "coreLessonId": "dbbc3139-0d0a-4c7f-8e6e-5cc11505d240",
+          "coreSlug": "bh-dadyoom-core-g4-l10",
+          "coreTitle": "المفعول به",
+          "coreLessonType": "grammar",
+          "score": 0.1321
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.1318
+        }
+      ]
+    },
+    {
+      "officialLessonId": "11264baf-667d-4997-bfb1-6ad273d3bf6a",
+      "officialSlug": "bh-2026-g4-t1-180",
+      "officialTitle": "الإنتاج الكتابيّ : أقسام النّصّ السّردي ( 2 ) دروب الكتابة 24-29",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "medium",
+      "score": 0.5936,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g4-l15",
+          "relation": "coverage-bundle",
+          "title": "الرسالة القصيرة",
+          "score": 0.7952
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.7942
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.7889
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l14",
+          "relation": "coverage-bundle",
+          "title": "الوصف الدقيق",
+          "score": 0.5222
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "660f5a65-cd19-4c26-a017-55ffd5ab6ea9",
+          "coreSlug": "bh-dadyoom-core-g4-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.5936
+        },
+        {
+          "coreLessonId": "0d0095e4-4730-4df7-885a-fd04cf02a239",
+          "coreSlug": "bh-dadyoom-core-g4-l12",
+          "coreTitle": "الهمزة والتاء في الكتابة",
+          "coreLessonType": "spelling",
+          "score": 0.5182
+        },
+        {
+          "coreLessonId": "f5d604ca-b6f4-4986-ae1b-3fa878ac993b",
+          "coreSlug": "bh-dadyoom-core-g4-l15",
+          "coreTitle": "الرسالة القصيرة",
+          "coreLessonType": "writing",
+          "score": 0.5003
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.4987
+        },
+        {
+          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
+          "coreSlug": "bh-dadyoom-core-g4-l05",
+          "coreTitle": "تلخيص فقرة",
+          "coreLessonType": "writing",
+          "score": 0.4901
+        }
+      ]
+    },
+    {
+      "officialLessonId": "828a1142-72a9-43b5-abca-0a765f24d74f",
+      "officialSlug": "bh-2026-g4-t1-201",
+      "officialTitle": "ّالكتابي( : أقسام النّصّ السّردي3 ) دروب الكتابة",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "medium",
+      "score": 0.5961,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g4-l15",
+          "relation": "coverage-bundle",
+          "title": "الرسالة القصيرة",
+          "score": 0.7973
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.7961
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.7897
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l14",
+          "relation": "coverage-bundle",
+          "title": "الوصف الدقيق",
+          "score": 0.5241
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "660f5a65-cd19-4c26-a017-55ffd5ab6ea9",
+          "coreSlug": "bh-dadyoom-core-g4-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.5961
+        },
+        {
+          "coreLessonId": "0d0095e4-4730-4df7-885a-fd04cf02a239",
+          "coreSlug": "bh-dadyoom-core-g4-l12",
+          "coreTitle": "الهمزة والتاء في الكتابة",
+          "coreLessonType": "spelling",
+          "score": 0.5285
+        },
+        {
+          "coreLessonId": "f5d604ca-b6f4-4986-ae1b-3fa878ac993b",
+          "coreSlug": "bh-dadyoom-core-g4-l15",
+          "coreTitle": "الرسالة القصيرة",
+          "coreLessonType": "writing",
+          "score": 0.5037
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.5017
+        },
+        {
+          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
+          "coreSlug": "bh-dadyoom-core-g4-l05",
+          "coreTitle": "تلخيص فقرة",
+          "coreLessonType": "writing",
+          "score": 0.4915
         }
       ]
     },
@@ -2471,20 +3992,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5568,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
+          "slug": "bh-dadyoom-core-g4-l15",
+          "relation": "coverage-bundle",
+          "title": "الرسالة القصيرة",
+          "score": 0.9001
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.8995
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.895
+        },
+        {
           "slug": "bh-dadyoom-core-g4-l12",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "الهمزة والتاء في الكتابة",
-          "score": 0.5568
+          "score": 0.5987
         }
       ],
       "candidates": [
@@ -2508,6 +4046,20 @@
           "coreTitle": "بناء الفقرة",
           "coreLessonType": "writing",
           "score": 0.5476
+        },
+        {
+          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
+          "coreSlug": "bh-dadyoom-core-g4-l05",
+          "coreTitle": "تلخيص فقرة",
+          "coreLessonType": "writing",
+          "score": 0.5403
+        },
+        {
+          "coreLessonId": "660f5a65-cd19-4c26-a017-55ffd5ab6ea9",
+          "coreSlug": "bh-dadyoom-core-g4-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3742
         }
       ]
     },
@@ -2523,20 +4075,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5572,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l15",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "الرسالة القصيرة",
-          "score": 0.5572
+          "score": 0.9055
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.9033
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.8975
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5692
         }
       ],
       "candidates": [
@@ -2560,6 +4129,20 @@
           "coreTitle": "تلخيص فقرة",
           "coreLessonType": "writing",
           "score": 0.5444
+        },
+        {
+          "coreLessonId": "0d0095e4-4730-4df7-885a-fd04cf02a239",
+          "coreSlug": "bh-dadyoom-core-g4-l12",
+          "coreTitle": "الهمزة والتاء في الكتابة",
+          "coreLessonType": "spelling",
+          "score": 0.5091
+        },
+        {
+          "coreLessonId": "660f5a65-cd19-4c26-a017-55ffd5ab6ea9",
+          "coreSlug": "bh-dadyoom-core-g4-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3769
         }
       ]
     },
@@ -2575,20 +4158,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5572,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l15",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "الرسالة القصيرة",
-          "score": 0.5572
+          "score": 0.9055
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.9033
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.8975
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5692
         }
       ],
       "candidates": [
@@ -2612,58 +4212,20 @@
           "coreTitle": "تلخيص فقرة",
           "coreLessonType": "writing",
           "score": 0.5444
-        }
-      ]
-    },
-    {
-      "officialLessonId": "863e1999-d787-40b8-bf11-453255feab49",
-      "officialSlug": "bh-2026-g4-t1-174",
-      "officialTitle": "ّالتّعبير الشّفوي",
-      "officialLessonType": "writing",
-      "unitNumber": 14,
-      "unitTitle": "التعبير والكتابة",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "supporting-skill",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
-      "confidence": "medium",
-      "score": 0.5607,
-      "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g4-l15",
-          "relation": "supporting-skill",
-          "title": "الرسالة القصيرة",
-          "score": 0.5607
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "f5d604ca-b6f4-4986-ae1b-3fa878ac993b",
-          "coreSlug": "bh-dadyoom-core-g4-l15",
-          "coreTitle": "الرسالة القصيرة",
-          "coreLessonType": "writing",
-          "score": 0.5607
         },
         {
-          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
-          "coreSlug": "bh-dadyoom-core-g4-l13",
-          "coreTitle": "بناء الفقرة",
-          "coreLessonType": "writing",
-          "score": 0.556
+          "coreLessonId": "0d0095e4-4730-4df7-885a-fd04cf02a239",
+          "coreSlug": "bh-dadyoom-core-g4-l12",
+          "coreTitle": "الهمزة والتاء في الكتابة",
+          "coreLessonType": "spelling",
+          "score": 0.5091
         },
         {
-          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
-          "coreSlug": "bh-dadyoom-core-g4-l05",
-          "coreTitle": "تلخيص فقرة",
-          "coreLessonType": "writing",
-          "score": 0.5445
+          "coreLessonId": "660f5a65-cd19-4c26-a017-55ffd5ab6ea9",
+          "coreSlug": "bh-dadyoom-core-g4-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3769
         }
       ]
     },
@@ -2679,20 +4241,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.557,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
+          "slug": "bh-dadyoom-core-g4-l15",
+          "relation": "coverage-bundle",
+          "title": "الرسالة القصيرة",
+          "score": 0.9029
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.9
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.8953
+        },
+        {
           "slug": "bh-dadyoom-core-g4-l12",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "الهمزة والتاء في الكتابة",
-          "score": 0.557
+          "score": 0.5988
         }
       ],
       "candidates": [
@@ -2716,13 +4295,27 @@
           "coreTitle": "بناء الفقرة",
           "coreLessonType": "writing",
           "score": 0.5483
+        },
+        {
+          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
+          "coreSlug": "bh-dadyoom-core-g4-l05",
+          "coreTitle": "تلخيص فقرة",
+          "coreLessonType": "writing",
+          "score": 0.5408
+        },
+        {
+          "coreLessonId": "660f5a65-cd19-4c26-a017-55ffd5ab6ea9",
+          "coreSlug": "bh-dadyoom-core-g4-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3742
         }
       ]
     },
     {
-      "officialLessonId": "11264baf-667d-4997-bfb1-6ad273d3bf6a",
-      "officialSlug": "bh-2026-g4-t1-180",
-      "officialTitle": "الإنتاج الكتابيّ : أقسام النّصّ السّردي ( 2 ) دروب الكتابة 24-29",
+      "officialLessonId": "863e1999-d787-40b8-bf11-453255feab49",
+      "officialSlug": "bh-2026-g4-t1-174",
+      "officialTitle": "ّالتّعبير الشّفوي",
       "officialLessonType": "writing",
       "unitNumber": 14,
       "unitTitle": "التعبير والكتابة",
@@ -2731,43 +4324,74 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
-      "score": 0.5936,
+      "score": 0.5607,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
-          "slug": "bh-dadyoom-core-g4-l18",
-          "relation": "supporting-skill",
-          "title": "مراجعة القراءة واللغة",
-          "score": 0.5936
+          "slug": "bh-dadyoom-core-g4-l15",
+          "relation": "coverage-bundle",
+          "title": "الرسالة القصيرة",
+          "score": 0.9077
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.9047
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.8976
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5674
         }
       ],
       "candidates": [
         {
-          "coreLessonId": "660f5a65-cd19-4c26-a017-55ffd5ab6ea9",
-          "coreSlug": "bh-dadyoom-core-g4-l18",
-          "coreTitle": "مراجعة القراءة واللغة",
-          "coreLessonType": "assessment",
-          "score": 0.5936
+          "coreLessonId": "f5d604ca-b6f4-4986-ae1b-3fa878ac993b",
+          "coreSlug": "bh-dadyoom-core-g4-l15",
+          "coreTitle": "الرسالة القصيرة",
+          "coreLessonType": "writing",
+          "score": 0.5607
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.556
+        },
+        {
+          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
+          "coreSlug": "bh-dadyoom-core-g4-l05",
+          "coreTitle": "تلخيص فقرة",
+          "coreLessonType": "writing",
+          "score": 0.5445
         },
         {
           "coreLessonId": "0d0095e4-4730-4df7-885a-fd04cf02a239",
           "coreSlug": "bh-dadyoom-core-g4-l12",
           "coreTitle": "الهمزة والتاء في الكتابة",
           "coreLessonType": "spelling",
-          "score": 0.5182
+          "score": 0.5062
         },
         {
-          "coreLessonId": "f5d604ca-b6f4-4986-ae1b-3fa878ac993b",
-          "coreSlug": "bh-dadyoom-core-g4-l15",
-          "coreTitle": "الرسالة القصيرة",
-          "coreLessonType": "writing",
-          "score": 0.5003
+          "coreLessonId": "660f5a65-cd19-4c26-a017-55ffd5ab6ea9",
+          "coreSlug": "bh-dadyoom-core-g4-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3765
         }
       ]
     },
@@ -2783,20 +4407,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5936,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
-          "slug": "bh-dadyoom-core-g4-l18",
-          "relation": "supporting-skill",
-          "title": "مراجعة القراءة واللغة",
-          "score": 0.5936
+          "slug": "bh-dadyoom-core-g4-l15",
+          "relation": "coverage-bundle",
+          "title": "الرسالة القصيرة",
+          "score": 0.7952
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.7942
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.7889
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l14",
+          "relation": "coverage-bundle",
+          "title": "الوصف الدقيق",
+          "score": 0.5222
         }
       ],
       "candidates": [
@@ -2820,6 +4461,20 @@
           "coreTitle": "الرسالة القصيرة",
           "coreLessonType": "writing",
           "score": 0.5003
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.4987
+        },
+        {
+          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
+          "coreSlug": "bh-dadyoom-core-g4-l05",
+          "coreTitle": "تلخيص فقرة",
+          "coreLessonType": "writing",
+          "score": 0.4901
         }
       ]
     },
@@ -2835,20 +4490,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5572,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l15",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "الرسالة القصيرة",
-          "score": 0.5572
+          "score": 0.9055
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.9033
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.8975
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5692
         }
       ],
       "candidates": [
@@ -2872,6 +4544,20 @@
           "coreTitle": "تلخيص فقرة",
           "coreLessonType": "writing",
           "score": 0.5444
+        },
+        {
+          "coreLessonId": "0d0095e4-4730-4df7-885a-fd04cf02a239",
+          "coreSlug": "bh-dadyoom-core-g4-l12",
+          "coreTitle": "الهمزة والتاء في الكتابة",
+          "coreLessonType": "spelling",
+          "score": 0.5091
+        },
+        {
+          "coreLessonId": "660f5a65-cd19-4c26-a017-55ffd5ab6ea9",
+          "coreSlug": "bh-dadyoom-core-g4-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3769
         }
       ]
     },
@@ -2887,20 +4573,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5572,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l15",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "الرسالة القصيرة",
-          "score": 0.5572
+          "score": 0.9055
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.9033
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.8975
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5692
         }
       ],
       "candidates": [
@@ -2924,266 +4627,20 @@
           "coreTitle": "تلخيص فقرة",
           "coreLessonType": "writing",
           "score": 0.5444
-        }
-      ]
-    },
-    {
-      "officialLessonId": "8a056789-1fac-4304-bca2-8cba910d0f90",
-      "officialSlug": "bh-2026-g4-t1-184",
-      "officialTitle": "التّعبير الشّفويّ التّدريبات 65-67",
-      "officialLessonType": "writing",
-      "unitNumber": 14,
-      "unitTitle": "التعبير والكتابة",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "supporting-skill",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
-      "confidence": "medium",
-      "score": 0.5572,
-      "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g4-l15",
-          "relation": "supporting-skill",
-          "title": "الرسالة القصيرة",
-          "score": 0.5572
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "f5d604ca-b6f4-4986-ae1b-3fa878ac993b",
-          "coreSlug": "bh-dadyoom-core-g4-l15",
-          "coreTitle": "الرسالة القصيرة",
-          "coreLessonType": "writing",
-          "score": 0.5572
-        },
-        {
-          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
-          "coreSlug": "bh-dadyoom-core-g4-l13",
-          "coreTitle": "بناء الفقرة",
-          "coreLessonType": "writing",
-          "score": 0.5538
-        },
-        {
-          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
-          "coreSlug": "bh-dadyoom-core-g4-l05",
-          "coreTitle": "تلخيص فقرة",
-          "coreLessonType": "writing",
-          "score": 0.5444
-        }
-      ]
-    },
-    {
-      "officialLessonId": "d4bcf1a8-42ad-478a-8af4-1d8e1688d0be",
-      "officialSlug": "bh-2026-g4-t1-185",
-      "officialTitle": "التّعبير الشّفويّ التّدريبات 77-78",
-      "officialLessonType": "writing",
-      "unitNumber": 14,
-      "unitTitle": "التعبير والكتابة",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "supporting-skill",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
-      "confidence": "medium",
-      "score": 0.5572,
-      "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g4-l15",
-          "relation": "supporting-skill",
-          "title": "الرسالة القصيرة",
-          "score": 0.5572
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "f5d604ca-b6f4-4986-ae1b-3fa878ac993b",
-          "coreSlug": "bh-dadyoom-core-g4-l15",
-          "coreTitle": "الرسالة القصيرة",
-          "coreLessonType": "writing",
-          "score": 0.5572
-        },
-        {
-          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
-          "coreSlug": "bh-dadyoom-core-g4-l13",
-          "coreTitle": "بناء الفقرة",
-          "coreLessonType": "writing",
-          "score": 0.5538
-        },
-        {
-          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
-          "coreSlug": "bh-dadyoom-core-g4-l05",
-          "coreTitle": "تلخيص فقرة",
-          "coreLessonType": "writing",
-          "score": 0.5444
-        }
-      ]
-    },
-    {
-      "officialLessonId": "aedae70a-8662-42da-b0eb-210debe3ecab",
-      "officialSlug": "bh-2026-g4-t1-199",
-      "officialTitle": "ّالكتابي( : أقسام النّصّ السّردي1 ) دروب الكتابة",
-      "officialLessonType": "writing",
-      "unitNumber": 14,
-      "unitTitle": "التعبير والكتابة",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "supporting-skill",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
-      "confidence": "medium",
-      "score": 0.5961,
-      "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g4-l18",
-          "relation": "supporting-skill",
-          "title": "مراجعة القراءة واللغة",
-          "score": 0.5961
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "660f5a65-cd19-4c26-a017-55ffd5ab6ea9",
-          "coreSlug": "bh-dadyoom-core-g4-l18",
-          "coreTitle": "مراجعة القراءة واللغة",
-          "coreLessonType": "assessment",
-          "score": 0.5961
         },
         {
           "coreLessonId": "0d0095e4-4730-4df7-885a-fd04cf02a239",
           "coreSlug": "bh-dadyoom-core-g4-l12",
           "coreTitle": "الهمزة والتاء في الكتابة",
           "coreLessonType": "spelling",
-          "score": 0.5285
+          "score": 0.5091
         },
-        {
-          "coreLessonId": "f5d604ca-b6f4-4986-ae1b-3fa878ac993b",
-          "coreSlug": "bh-dadyoom-core-g4-l15",
-          "coreTitle": "الرسالة القصيرة",
-          "coreLessonType": "writing",
-          "score": 0.5037
-        }
-      ]
-    },
-    {
-      "officialLessonId": "1e4514d6-b55f-4b1e-899a-e151d394a4f8",
-      "officialSlug": "bh-2026-g4-t1-200",
-      "officialTitle": "ّالكتابي( : أقسام النّصّ السّردي2 ) دروب الكتابة",
-      "officialLessonType": "writing",
-      "unitNumber": 14,
-      "unitTitle": "التعبير والكتابة",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "supporting-skill",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
-      "confidence": "medium",
-      "score": 0.5961,
-      "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g4-l18",
-          "relation": "supporting-skill",
-          "title": "مراجعة القراءة واللغة",
-          "score": 0.5961
-        }
-      ],
-      "candidates": [
         {
           "coreLessonId": "660f5a65-cd19-4c26-a017-55ffd5ab6ea9",
           "coreSlug": "bh-dadyoom-core-g4-l18",
           "coreTitle": "مراجعة القراءة واللغة",
           "coreLessonType": "assessment",
-          "score": 0.5961
-        },
-        {
-          "coreLessonId": "0d0095e4-4730-4df7-885a-fd04cf02a239",
-          "coreSlug": "bh-dadyoom-core-g4-l12",
-          "coreTitle": "الهمزة والتاء في الكتابة",
-          "coreLessonType": "spelling",
-          "score": 0.5285
-        },
-        {
-          "coreLessonId": "f5d604ca-b6f4-4986-ae1b-3fa878ac993b",
-          "coreSlug": "bh-dadyoom-core-g4-l15",
-          "coreTitle": "الرسالة القصيرة",
-          "coreLessonType": "writing",
-          "score": 0.5037
-        }
-      ]
-    },
-    {
-      "officialLessonId": "828a1142-72a9-43b5-abca-0a765f24d74f",
-      "officialSlug": "bh-2026-g4-t1-201",
-      "officialTitle": "ّالكتابي( : أقسام النّصّ السّردي3 ) دروب الكتابة",
-      "officialLessonType": "writing",
-      "unitNumber": 14,
-      "unitTitle": "التعبير والكتابة",
-      "source": {
-        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
-        "pageStart": null,
-        "pageEnd": null
-      },
-      "relationType": "supporting-skill",
-      "reviewStatus": "candidate",
-      "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
-      "confidence": "medium",
-      "score": 0.5961,
-      "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
-      "coreCoverage": [
-        {
-          "slug": "bh-dadyoom-core-g4-l18",
-          "relation": "supporting-skill",
-          "title": "مراجعة القراءة واللغة",
-          "score": 0.5961
-        }
-      ],
-      "candidates": [
-        {
-          "coreLessonId": "660f5a65-cd19-4c26-a017-55ffd5ab6ea9",
-          "coreSlug": "bh-dadyoom-core-g4-l18",
-          "coreTitle": "مراجعة القراءة واللغة",
-          "coreLessonType": "assessment",
-          "score": 0.5961
-        },
-        {
-          "coreLessonId": "0d0095e4-4730-4df7-885a-fd04cf02a239",
-          "coreSlug": "bh-dadyoom-core-g4-l12",
-          "coreTitle": "الهمزة والتاء في الكتابة",
-          "coreLessonType": "spelling",
-          "score": 0.5285
-        },
-        {
-          "coreLessonId": "f5d604ca-b6f4-4986-ae1b-3fa878ac993b",
-          "coreSlug": "bh-dadyoom-core-g4-l15",
-          "coreTitle": "الرسالة القصيرة",
-          "coreLessonType": "writing",
-          "score": 0.5037
+          "score": 0.3769
         }
       ]
     },
@@ -3199,20 +4656,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.6001,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
-          "slug": "bh-dadyoom-core-g4-l18",
-          "relation": "supporting-skill",
-          "title": "مراجعة القراءة واللغة",
-          "score": 0.6001
+          "slug": "bh-dadyoom-core-g4-l15",
+          "relation": "coverage-bundle",
+          "title": "الرسالة القصيرة",
+          "score": 0.7937
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.7925
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.7876
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5227
         }
       ],
       "candidates": [
@@ -3236,6 +4710,352 @@
           "coreTitle": "الرسالة القصيرة",
           "coreLessonType": "writing",
           "score": 0.4978
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.496
+        },
+        {
+          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
+          "coreSlug": "bh-dadyoom-core-g4-l05",
+          "coreTitle": "تلخيص فقرة",
+          "coreLessonType": "writing",
+          "score": 0.4881
+        }
+      ]
+    },
+    {
+      "officialLessonId": "8a056789-1fac-4304-bca2-8cba910d0f90",
+      "officialSlug": "bh-2026-g4-t1-184",
+      "officialTitle": "التّعبير الشّفويّ التّدريبات 65-67",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "medium",
+      "score": 0.5572,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g4-l15",
+          "relation": "coverage-bundle",
+          "title": "الرسالة القصيرة",
+          "score": 0.9055
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.9033
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.8975
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5692
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f5d604ca-b6f4-4986-ae1b-3fa878ac993b",
+          "coreSlug": "bh-dadyoom-core-g4-l15",
+          "coreTitle": "الرسالة القصيرة",
+          "coreLessonType": "writing",
+          "score": 0.5572
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.5538
+        },
+        {
+          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
+          "coreSlug": "bh-dadyoom-core-g4-l05",
+          "coreTitle": "تلخيص فقرة",
+          "coreLessonType": "writing",
+          "score": 0.5444
+        },
+        {
+          "coreLessonId": "0d0095e4-4730-4df7-885a-fd04cf02a239",
+          "coreSlug": "bh-dadyoom-core-g4-l12",
+          "coreTitle": "الهمزة والتاء في الكتابة",
+          "coreLessonType": "spelling",
+          "score": 0.5091
+        },
+        {
+          "coreLessonId": "660f5a65-cd19-4c26-a017-55ffd5ab6ea9",
+          "coreSlug": "bh-dadyoom-core-g4-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3769
+        }
+      ]
+    },
+    {
+      "officialLessonId": "d4bcf1a8-42ad-478a-8af4-1d8e1688d0be",
+      "officialSlug": "bh-2026-g4-t1-185",
+      "officialTitle": "التّعبير الشّفويّ التّدريبات 77-78",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "medium",
+      "score": 0.5572,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g4-l15",
+          "relation": "coverage-bundle",
+          "title": "الرسالة القصيرة",
+          "score": 0.9055
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.9033
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.8975
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5692
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f5d604ca-b6f4-4986-ae1b-3fa878ac993b",
+          "coreSlug": "bh-dadyoom-core-g4-l15",
+          "coreTitle": "الرسالة القصيرة",
+          "coreLessonType": "writing",
+          "score": 0.5572
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.5538
+        },
+        {
+          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
+          "coreSlug": "bh-dadyoom-core-g4-l05",
+          "coreTitle": "تلخيص فقرة",
+          "coreLessonType": "writing",
+          "score": 0.5444
+        },
+        {
+          "coreLessonId": "0d0095e4-4730-4df7-885a-fd04cf02a239",
+          "coreSlug": "bh-dadyoom-core-g4-l12",
+          "coreTitle": "الهمزة والتاء في الكتابة",
+          "coreLessonType": "spelling",
+          "score": 0.5091
+        },
+        {
+          "coreLessonId": "660f5a65-cd19-4c26-a017-55ffd5ab6ea9",
+          "coreSlug": "bh-dadyoom-core-g4-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3769
+        }
+      ]
+    },
+    {
+      "officialLessonId": "aedae70a-8662-42da-b0eb-210debe3ecab",
+      "officialSlug": "bh-2026-g4-t1-199",
+      "officialTitle": "ّالكتابي( : أقسام النّصّ السّردي1 ) دروب الكتابة",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "medium",
+      "score": 0.5961,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g4-l15",
+          "relation": "coverage-bundle",
+          "title": "الرسالة القصيرة",
+          "score": 0.7973
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.7961
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.7897
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l14",
+          "relation": "coverage-bundle",
+          "title": "الوصف الدقيق",
+          "score": 0.5241
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "660f5a65-cd19-4c26-a017-55ffd5ab6ea9",
+          "coreSlug": "bh-dadyoom-core-g4-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.5961
+        },
+        {
+          "coreLessonId": "0d0095e4-4730-4df7-885a-fd04cf02a239",
+          "coreSlug": "bh-dadyoom-core-g4-l12",
+          "coreTitle": "الهمزة والتاء في الكتابة",
+          "coreLessonType": "spelling",
+          "score": 0.5285
+        },
+        {
+          "coreLessonId": "f5d604ca-b6f4-4986-ae1b-3fa878ac993b",
+          "coreSlug": "bh-dadyoom-core-g4-l15",
+          "coreTitle": "الرسالة القصيرة",
+          "coreLessonType": "writing",
+          "score": 0.5037
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.5017
+        },
+        {
+          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
+          "coreSlug": "bh-dadyoom-core-g4-l05",
+          "coreTitle": "تلخيص فقرة",
+          "coreLessonType": "writing",
+          "score": 0.4915
+        }
+      ]
+    },
+    {
+      "officialLessonId": "1e4514d6-b55f-4b1e-899a-e151d394a4f8",
+      "officialSlug": "bh-2026-g4-t1-200",
+      "officialTitle": "ّالكتابي( : أقسام النّصّ السّردي2 ) دروب الكتابة",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "bundle-covered-candidate",
+      "confidence": "medium",
+      "score": 0.5961,
+      "needsNationalExtension": false,
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g4-l15",
+          "relation": "coverage-bundle",
+          "title": "الرسالة القصيرة",
+          "score": 0.7973
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.7961
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.7897
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l14",
+          "relation": "coverage-bundle",
+          "title": "الوصف الدقيق",
+          "score": 0.5241
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "660f5a65-cd19-4c26-a017-55ffd5ab6ea9",
+          "coreSlug": "bh-dadyoom-core-g4-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.5961
+        },
+        {
+          "coreLessonId": "0d0095e4-4730-4df7-885a-fd04cf02a239",
+          "coreSlug": "bh-dadyoom-core-g4-l12",
+          "coreTitle": "الهمزة والتاء في الكتابة",
+          "coreLessonType": "spelling",
+          "score": 0.5285
+        },
+        {
+          "coreLessonId": "f5d604ca-b6f4-4986-ae1b-3fa878ac993b",
+          "coreSlug": "bh-dadyoom-core-g4-l15",
+          "coreTitle": "الرسالة القصيرة",
+          "coreLessonType": "writing",
+          "score": 0.5037
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.5017
+        },
+        {
+          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
+          "coreSlug": "bh-dadyoom-core-g4-l05",
+          "coreTitle": "تلخيص فقرة",
+          "coreLessonType": "writing",
+          "score": 0.4915
         }
       ]
     },
@@ -3251,20 +5071,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.6001,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
-          "slug": "bh-dadyoom-core-g4-l18",
-          "relation": "supporting-skill",
-          "title": "مراجعة القراءة واللغة",
-          "score": 0.6001
+          "slug": "bh-dadyoom-core-g4-l15",
+          "relation": "coverage-bundle",
+          "title": "الرسالة القصيرة",
+          "score": 0.7937
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.7925
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.7876
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5227
         }
       ],
       "candidates": [
@@ -3288,6 +5125,20 @@
           "coreTitle": "الرسالة القصيرة",
           "coreLessonType": "writing",
           "score": 0.4978
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.496
+        },
+        {
+          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
+          "coreSlug": "bh-dadyoom-core-g4-l05",
+          "coreTitle": "تلخيص فقرة",
+          "coreLessonType": "writing",
+          "score": 0.4881
         }
       ]
     },
@@ -3303,20 +5154,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5572,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l15",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "الرسالة القصيرة",
-          "score": 0.5572
+          "score": 0.9055
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.9033
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.8975
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5692
         }
       ],
       "candidates": [
@@ -3340,6 +5208,20 @@
           "coreTitle": "تلخيص فقرة",
           "coreLessonType": "writing",
           "score": 0.5444
+        },
+        {
+          "coreLessonId": "0d0095e4-4730-4df7-885a-fd04cf02a239",
+          "coreSlug": "bh-dadyoom-core-g4-l12",
+          "coreTitle": "الهمزة والتاء في الكتابة",
+          "coreLessonType": "spelling",
+          "score": 0.5091
+        },
+        {
+          "coreLessonId": "660f5a65-cd19-4c26-a017-55ffd5ab6ea9",
+          "coreSlug": "bh-dadyoom-core-g4-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3769
         }
       ]
     },
@@ -3355,20 +5237,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5572,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l15",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "الرسالة القصيرة",
-          "score": 0.5572
+          "score": 0.9055
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.9033
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.8975
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5692
         }
       ],
       "candidates": [
@@ -3392,6 +5291,20 @@
           "coreTitle": "تلخيص فقرة",
           "coreLessonType": "writing",
           "score": 0.5444
+        },
+        {
+          "coreLessonId": "0d0095e4-4730-4df7-885a-fd04cf02a239",
+          "coreSlug": "bh-dadyoom-core-g4-l12",
+          "coreTitle": "الهمزة والتاء في الكتابة",
+          "coreLessonType": "spelling",
+          "score": 0.5091
+        },
+        {
+          "coreLessonId": "660f5a65-cd19-4c26-a017-55ffd5ab6ea9",
+          "coreSlug": "bh-dadyoom-core-g4-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3769
         }
       ]
     },
@@ -3407,20 +5320,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.6031,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
-          "slug": "bh-dadyoom-core-g4-l18",
-          "relation": "supporting-skill",
-          "title": "مراجعة القراءة واللغة",
-          "score": 0.6031
+          "slug": "bh-dadyoom-core-g4-l15",
+          "relation": "coverage-bundle",
+          "title": "الرسالة القصيرة",
+          "score": 0.7954
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.7941
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.7883
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5303
         }
       ],
       "candidates": [
@@ -3444,6 +5374,20 @@
           "coreTitle": "الرسالة القصيرة",
           "coreLessonType": "writing",
           "score": 0.5007
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.4985
+        },
+        {
+          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
+          "coreSlug": "bh-dadyoom-core-g4-l05",
+          "coreTitle": "تلخيص فقرة",
+          "coreLessonType": "writing",
+          "score": 0.4892
         }
       ]
     },
@@ -3459,20 +5403,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.6031,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
-          "slug": "bh-dadyoom-core-g4-l18",
-          "relation": "supporting-skill",
-          "title": "مراجعة القراءة واللغة",
-          "score": 0.6031
+          "slug": "bh-dadyoom-core-g4-l15",
+          "relation": "coverage-bundle",
+          "title": "الرسالة القصيرة",
+          "score": 0.7954
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.7941
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.7883
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5303
         }
       ],
       "candidates": [
@@ -3496,6 +5457,20 @@
           "coreTitle": "الرسالة القصيرة",
           "coreLessonType": "writing",
           "score": 0.5007
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.4985
+        },
+        {
+          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
+          "coreSlug": "bh-dadyoom-core-g4-l05",
+          "coreTitle": "تلخيص فقرة",
+          "coreLessonType": "writing",
+          "score": 0.4892
         }
       ]
     },
@@ -3511,20 +5486,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5948,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
-          "slug": "bh-dadyoom-core-g4-l18",
-          "relation": "supporting-skill",
-          "title": "مراجعة القراءة واللغة",
-          "score": 0.5948
+          "slug": "bh-dadyoom-core-g4-l15",
+          "relation": "coverage-bundle",
+          "title": "الرسالة القصيرة",
+          "score": 0.7962
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.7951
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.789
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5319
         }
       ],
       "candidates": [
@@ -3548,6 +5540,20 @@
           "coreTitle": "الرسالة القصيرة",
           "coreLessonType": "writing",
           "score": 0.502
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.5002
+        },
+        {
+          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
+          "coreSlug": "bh-dadyoom-core-g4-l05",
+          "coreTitle": "تلخيص فقرة",
+          "coreLessonType": "writing",
+          "score": 0.4903
         }
       ]
     },
@@ -3563,20 +5569,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.6031,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
-          "slug": "bh-dadyoom-core-g4-l18",
-          "relation": "supporting-skill",
-          "title": "مراجعة القراءة واللغة",
-          "score": 0.6031
+          "slug": "bh-dadyoom-core-g4-l15",
+          "relation": "coverage-bundle",
+          "title": "الرسالة القصيرة",
+          "score": 0.7954
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.7941
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.7883
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5303
         }
       ],
       "candidates": [
@@ -3600,6 +5623,20 @@
           "coreTitle": "الرسالة القصيرة",
           "coreLessonType": "writing",
           "score": 0.5007
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.4985
+        },
+        {
+          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
+          "coreSlug": "bh-dadyoom-core-g4-l05",
+          "coreTitle": "تلخيص فقرة",
+          "coreLessonType": "writing",
+          "score": 0.4892
         }
       ]
     },
@@ -3615,20 +5652,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5924,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
-          "slug": "bh-dadyoom-core-g4-l18",
-          "relation": "supporting-skill",
-          "title": "مراجعة القراءة واللغة",
-          "score": 0.5924
+          "slug": "bh-dadyoom-core-g4-l15",
+          "relation": "coverage-bundle",
+          "title": "الرسالة القصيرة",
+          "score": 0.7943
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.7934
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.7882
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5236
         }
       ],
       "candidates": [
@@ -3652,6 +5706,20 @@
           "coreTitle": "الرسالة القصيرة",
           "coreLessonType": "writing",
           "score": 0.4988
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.4974
+        },
+        {
+          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
+          "coreSlug": "bh-dadyoom-core-g4-l05",
+          "coreTitle": "تلخيص فقرة",
+          "coreLessonType": "writing",
+          "score": 0.489
         }
       ]
     },
@@ -3667,20 +5735,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5924,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
-          "slug": "bh-dadyoom-core-g4-l18",
-          "relation": "supporting-skill",
-          "title": "مراجعة القراءة واللغة",
-          "score": 0.5924
+          "slug": "bh-dadyoom-core-g4-l15",
+          "relation": "coverage-bundle",
+          "title": "الرسالة القصيرة",
+          "score": 0.7943
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.7934
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.7882
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5236
         }
       ],
       "candidates": [
@@ -3704,6 +5789,20 @@
           "coreTitle": "الرسالة القصيرة",
           "coreLessonType": "writing",
           "score": 0.4988
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.4974
+        },
+        {
+          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
+          "coreSlug": "bh-dadyoom-core-g4-l05",
+          "coreTitle": "تلخيص فقرة",
+          "coreLessonType": "writing",
+          "score": 0.489
         }
       ]
     },
@@ -3719,20 +5818,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5572,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l15",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "الرسالة القصيرة",
-          "score": 0.5572
+          "score": 0.9055
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.9033
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.8975
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5692
         }
       ],
       "candidates": [
@@ -3756,6 +5872,20 @@
           "coreTitle": "تلخيص فقرة",
           "coreLessonType": "writing",
           "score": 0.5444
+        },
+        {
+          "coreLessonId": "0d0095e4-4730-4df7-885a-fd04cf02a239",
+          "coreSlug": "bh-dadyoom-core-g4-l12",
+          "coreTitle": "الهمزة والتاء في الكتابة",
+          "coreLessonType": "spelling",
+          "score": 0.5091
+        },
+        {
+          "coreLessonId": "660f5a65-cd19-4c26-a017-55ffd5ab6ea9",
+          "coreSlug": "bh-dadyoom-core-g4-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3769
         }
       ]
     },
@@ -3771,20 +5901,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5572,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g4-l15",
-          "relation": "supporting-skill",
+          "relation": "coverage-bundle",
           "title": "الرسالة القصيرة",
-          "score": 0.5572
+          "score": 0.9055
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.9033
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.8975
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5692
         }
       ],
       "candidates": [
@@ -3808,6 +5955,20 @@
           "coreTitle": "تلخيص فقرة",
           "coreLessonType": "writing",
           "score": 0.5444
+        },
+        {
+          "coreLessonId": "0d0095e4-4730-4df7-885a-fd04cf02a239",
+          "coreSlug": "bh-dadyoom-core-g4-l12",
+          "coreTitle": "الهمزة والتاء في الكتابة",
+          "coreLessonType": "spelling",
+          "score": 0.5091
+        },
+        {
+          "coreLessonId": "660f5a65-cd19-4c26-a017-55ffd5ab6ea9",
+          "coreSlug": "bh-dadyoom-core-g4-l18",
+          "coreTitle": "مراجعة القراءة واللغة",
+          "coreLessonType": "assessment",
+          "score": 0.3769
         }
       ]
     },
@@ -3823,20 +5984,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5948,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
-          "slug": "bh-dadyoom-core-g4-l18",
-          "relation": "supporting-skill",
-          "title": "مراجعة القراءة واللغة",
-          "score": 0.5948
+          "slug": "bh-dadyoom-core-g4-l15",
+          "relation": "coverage-bundle",
+          "title": "الرسالة القصيرة",
+          "score": 0.7962
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.7951
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.789
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5319
         }
       ],
       "candidates": [
@@ -3860,6 +6038,20 @@
           "coreTitle": "الرسالة القصيرة",
           "coreLessonType": "writing",
           "score": 0.502
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.5002
+        },
+        {
+          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
+          "coreSlug": "bh-dadyoom-core-g4-l05",
+          "coreTitle": "تلخيص فقرة",
+          "coreLessonType": "writing",
+          "score": 0.4903
         }
       ]
     },
@@ -3875,20 +6067,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.5948,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
-          "slug": "bh-dadyoom-core-g4-l18",
-          "relation": "supporting-skill",
-          "title": "مراجعة القراءة واللغة",
-          "score": 0.5948
+          "slug": "bh-dadyoom-core-g4-l15",
+          "relation": "coverage-bundle",
+          "title": "الرسالة القصيرة",
+          "score": 0.7962
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l13",
+          "relation": "coverage-bundle",
+          "title": "بناء الفقرة",
+          "score": 0.7951
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l05",
+          "relation": "coverage-bundle",
+          "title": "تلخيص فقرة",
+          "score": 0.789
+        },
+        {
+          "slug": "bh-dadyoom-core-g4-l12",
+          "relation": "coverage-bundle",
+          "title": "الهمزة والتاء في الكتابة",
+          "score": 0.5319
         }
       ],
       "candidates": [
@@ -3912,6 +6121,20 @@
           "coreTitle": "الرسالة القصيرة",
           "coreLessonType": "writing",
           "score": 0.502
+        },
+        {
+          "coreLessonId": "8200ebe9-46f4-4e28-ae50-ff66ce11d029",
+          "coreSlug": "bh-dadyoom-core-g4-l13",
+          "coreTitle": "بناء الفقرة",
+          "coreLessonType": "writing",
+          "score": 0.5002
+        },
+        {
+          "coreLessonId": "6e1d0b4a-6de9-4bf6-817f-6b0e96b777aa",
+          "coreSlug": "bh-dadyoom-core-g4-l05",
+          "coreTitle": "تلخيص فقرة",
+          "coreLessonType": "writing",
+          "score": 0.4903
         }
       ]
     }
