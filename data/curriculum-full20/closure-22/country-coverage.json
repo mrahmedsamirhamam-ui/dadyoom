@@ -283,36 +283,84 @@
       },
       "national": {
         "complete": false,
-        "matchingStatus": "not-closed",
-        "verificationStatus": "candidate",
+        "matchingStatus": "current-scope-complete",
+        "verificationStatus": "verified",
         "evidenceSources": [
           {
-            "url": "https://manahj.edu.iq/?pid=149",
-            "kind": "official-catalog-candidate"
+            "url": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=149",
+            "kind": "official-primary-catalog"
           },
           {
-            "url": "https://manahj.edu.iq/?pid=148",
-            "kind": "official-catalog-candidate"
+            "url": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=148",
+            "kind": "official-middle-catalog"
           },
           {
-            "url": "https://manahj.edu.iq/?pid=151",
-            "kind": "official-catalog-candidate"
+            "url": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=151",
+            "kind": "official-secondary-catalog"
           },
           {
-            "url": "https://manahj.edu.iq/?pid=152",
-            "kind": "official-catalog-candidate"
+            "url": "https://eschool.iq/",
+            "kind": "official-electronic-school"
+          },
+          {
+            "url": "https://t.me/s/educationiq?after=20611",
+            "kind": "official-ministry-book-links"
+          },
+          {
+            "url": "https://t.me/s/educationiq?before=33842",
+            "kind": "official-2026-2027-textbook-printing"
           }
         ],
-        "verifiedPackFiles": [],
-        "missingEvidence": [
-          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
-          "اكتمال تغطية الفصول/الفترات الدراسية",
-          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
-          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
-          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
-        ]
+        "verifiedPackFiles": [
+          "data/curriculum-packs/iraq-2026-2027-final/iq-2026-2027-arabic-g1-current-scope.json",
+          "data/curriculum-packs/iraq-2026-2027-final/iq-2026-2027-arabic-g2-current-scope.json",
+          "data/curriculum-packs/iraq-2026-2027-final/iq-2026-2027-arabic-g3-current-scope.json",
+          "data/curriculum-packs/iraq-2026-2027-final/iq-2026-2027-arabic-g4-current-scope.json",
+          "data/curriculum-packs/iraq-2026-2027-final/iq-2026-2027-arabic-g5-current-scope.json",
+          "data/curriculum-packs/iraq-2026-2027-final/iq-2026-2027-arabic-g6-current-scope.json",
+          "data/curriculum-packs/iraq-2026-2027-final/iq-2026-2027-arabic-g7-current-scope.json",
+          "data/curriculum-packs/iraq-2026-2027-final/iq-2026-2027-arabic-g8-current-scope.json",
+          "data/curriculum-packs/iraq-2026-2027-final/iq-2026-2027-arabic-g9-current-scope.json",
+          "data/curriculum-packs/iraq-2026-2027-final/iq-2026-2027-arabic-g10-current-scope.json",
+          "data/curriculum-packs/iraq-2026-2027-final/iq-2026-2027-arabic-g11-current-scope.json",
+          "data/curriculum-packs/iraq-2026-2027-final/iq-2026-2027-arabic-g12-current-scope.json"
+        ],
+        "verifiedMappingFiles": [
+          "data/curriculum-mappings/iq-2026-2027-g1-current-scope-verified.json",
+          "data/curriculum-mappings/iq-2026-2027-g2-current-scope-verified.json",
+          "data/curriculum-mappings/iq-2026-2027-g3-current-scope-verified.json",
+          "data/curriculum-mappings/iq-2026-2027-g4-current-scope-verified.json",
+          "data/curriculum-mappings/iq-2026-2027-g5-current-scope-verified.json",
+          "data/curriculum-mappings/iq-2026-2027-g6-current-scope-verified.json",
+          "data/curriculum-mappings/iq-2026-2027-g7-current-scope-verified.json",
+          "data/curriculum-mappings/iq-2026-2027-g8-current-scope-verified.json",
+          "data/curriculum-mappings/iq-2026-2027-g9-current-scope-verified.json",
+          "data/curriculum-mappings/iq-2026-2027-g10-current-scope-verified.json",
+          "data/curriculum-mappings/iq-2026-2027-g11-current-scope-verified.json",
+          "data/curriculum-mappings/iq-2026-2027-g12-current-scope-verified.json"
+        ],
+        "missingEvidence": [],
+        "currentScopeComplete": true,
+        "fullYearComplete": false,
+        "mappingSummary": {
+          "mappingGrades": 12,
+          "verifiedMappingGrades": 12,
+          "officialCoverageNodes": 21,
+          "mappedCoverageNodes": 21,
+          "verifiedCoverageNodes": 21,
+          "nationalExtensions": 21
+        },
+        "databaseSummary": {
+          "curriculumId": "04f1779d-3253-439c-8b54-9987607f6c9c",
+          "grades": 12,
+          "lessons": 21,
+          "questions": 63,
+          "vocabulary": 63,
+          "activities": 63
+        },
+        "note": "مغلق للنطاق الرسمي المنشور والقابل للتحقق حاليًا للعام 2026-2027 على مستوى الكتب/أجزاء الكتب الرسمية للابتدائي والمتوسط والإعدادي، مع محتوى ضاديوم أصلي."
       },
-      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+      "publicationReadiness": "NATIONAL_CURRENT_SCOPE_COMPLETE"
     },
     {
       "code": "JO",
