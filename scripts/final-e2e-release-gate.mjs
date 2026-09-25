@@ -80,6 +80,11 @@ const users = new Map();
 const fixture = {
   schoolId: null,
   classId: null,
+  learningLessonId: null,
+  nextLessonId: null,
+  activityIds: [],
+  assessmentIds: [],
+  assessmentSessionId: null,
 };
 
 let server = null;
@@ -804,6 +809,668 @@ async function login(
   );
 }
 
+async function canonicalLearningFlow(
+  page,
+  baseUrl,
+) {
+  const student =
+    users.get("student");
+
+  gate(
+    student,
+    "E2E_CANONICAL_STUDENT_MISSING",
+  );
+
+  let lesson = null;
+  let nextLesson = null;
+
+  for (
+    let lessonNumber = 1;
+    lessonNumber <= 17;
+    lessonNumber += 1
+  ) {
+    const slug =
+      `bh-dadyoom-core-g1-l${String(
+        lessonNumber,
+      ).padStart(2, "0")}`;
+
+    const candidate =
+      await admin
+        .from("lessons")
+        .select(
+          "id,title,slug,unit_id,lesson_number",
+        )
+        .eq("slug", slug)
+        .eq("status", "published")
+        .maybeSingle();
+
+    if (
+      candidate.error ||
+      !candidate.data
+    ) {
+      continue;
+    }
+
+    const activities =
+      await admin
+        .from("lesson_activities")
+        .select("id")
+        .eq(
+          "lesson_id",
+          candidate.data.id,
+        )
+        .eq(
+          "is_published",
+          true,
+        );
+
+    if (activities.error) {
+      throw activities.error;
+    }
+
+    if (
+      (activities.data ?? [])
+        .length > 0
+    ) {
+      continue;
+    }
+
+    const next =
+      await admin
+        .from("lessons")
+        .select(
+          "id,title,lesson_number",
+        )
+        .eq(
+          "unit_id",
+          candidate.data.unit_id,
+        )
+        .eq(
+          "lesson_number",
+          Number(
+            candidate.data
+              .lesson_number,
+          ) + 1,
+        )
+        .eq(
+          "status",
+          "published",
+        )
+        .maybeSingle();
+
+    if (
+      next.error ||
+      !next.data
+    ) {
+      continue;
+    }
+
+    lesson =
+      candidate.data;
+    nextLesson =
+      next.data;
+    break;
+  }
+
+  gate(
+    lesson && nextLesson,
+    "E2E_CANONICAL_CORE_LESSON_FIXTURE_MISSING",
+  );
+
+  fixture.learningLessonId =
+    lesson.id;
+  fixture.nextLessonId =
+    nextLesson.id;
+
+  /*
+   * SeedStudent may have touched this lesson while preparing dashboard data.
+   * Reset only the temporary E2E student's row so the real completion route
+   * must create and advance progress through the activity APIs.
+   */
+  const resetProgress =
+    await admin
+      .from(
+        "student_lesson_progress",
+      )
+      .delete()
+      .eq(
+        "student_id",
+        student.id,
+      )
+      .eq(
+        "lesson_id",
+        lesson.id,
+      );
+
+  if (resetProgress.error) {
+    throw resetProgress.error;
+  }
+
+  const activityInsert =
+    await admin
+      .from(
+        "lesson_activities",
+      )
+      .insert([
+        {
+          lesson_id:
+            lesson.id,
+          title:
+            "E2E اختيار صحيح",
+          activity_type:
+            "multiple_choice",
+          instructions:
+            "اختر الإجابة الصحيحة.",
+          content: {
+            options: [
+              "صح",
+              "خطأ",
+            ],
+          },
+          activity_order:
+            1,
+          points:
+            10,
+          is_published:
+            true,
+          section:
+            "e2e-release-gate",
+          prompt:
+            "اختر كلمة صح.",
+          answer: {
+            correct:
+              "صح",
+          },
+          is_required:
+            true,
+        },
+        {
+          lesson_id:
+            lesson.id,
+          title:
+            "E2E إكمال النشاط",
+          activity_type:
+            "writing",
+          instructions:
+            "أكمل النشاط.",
+          content: {
+            e2e:
+              true,
+          },
+          activity_order:
+            2,
+          points:
+            0,
+          is_published:
+            true,
+          section:
+            "e2e-release-gate",
+          prompt:
+            "نشاط إكمال مؤقت.",
+          answer: {},
+          is_required:
+            true,
+        },
+      ])
+      .select(
+        "id,activity_order",
+      );
+
+  if (
+    activityInsert.error ||
+    (
+      activityInsert.data ??
+      []
+    ).length !== 2
+  ) {
+    throw (
+      activityInsert.error ??
+      new Error(
+        "E2E_ACTIVITY_FIXTURE_CREATE_FAILED",
+      )
+    );
+  }
+
+  const orderedActivities =
+    [...activityInsert.data]
+      .sort(
+        (a, b) =>
+          Number(a.activity_order) -
+          Number(b.activity_order),
+      );
+
+  fixture.activityIds =
+    orderedActivities.map(
+      row => row.id,
+    );
+
+  const graded =
+    await browserFetch(
+      page,
+      "/api/lesson-activities/check",
+      {
+        method:
+          "POST",
+        headers: {
+          "Content-Type":
+            "application/json",
+        },
+        body:
+          JSON.stringify({
+            activityId:
+              orderedActivities[0].id,
+            answer: [
+              "صح",
+            ],
+          }),
+      },
+    );
+
+  gate(
+    graded.status === 200 &&
+      graded.data?.success ===
+        true &&
+      graded.data?.correct ===
+        true &&
+      graded.data?.gradable ===
+        true,
+    `E2E_ACTIVITY_GRADED_FAILED:${graded.status}`,
+  );
+
+  const completionActivity =
+    await browserFetch(
+      page,
+      "/api/lesson-activities/check",
+      {
+        method:
+          "POST",
+        headers: {
+          "Content-Type":
+            "application/json",
+        },
+        body:
+          JSON.stringify({
+            activityId:
+              orderedActivities[1].id,
+            answer: [
+              "__completed__",
+            ],
+          }),
+      },
+    );
+
+  gate(
+    completionActivity.status ===
+      200 &&
+      completionActivity.data
+        ?.success === true &&
+      completionActivity.data
+        ?.correct === true &&
+      completionActivity.data
+        ?.progressPercent ===
+        100,
+    `E2E_ACTIVITY_COMPLETION_FAILED:${completionActivity.status}`,
+  );
+
+  console.log(
+    "E2E_LESSON_ACTIVITIES=PASS",
+  );
+
+  const complete =
+    await browserFetch(
+      page,
+      "/api/lessons/complete",
+      {
+        method:
+          "POST",
+        headers: {
+          "Content-Type":
+            "application/json",
+        },
+        body:
+          JSON.stringify({
+            lessonId:
+              lesson.id,
+          }),
+      },
+    );
+
+  gate(
+    complete.status === 200 &&
+      complete.data?.success ===
+        true &&
+      complete.data
+        ?.canonicalGate ===
+        true,
+    `E2E_CANONICAL_COMPLETION_FAILED:${complete.status}:${String(
+      complete.data?.error ??
+        "",
+    ).slice(0, 160)}`,
+  );
+
+  const mastery =
+    await browserFetch(
+      page,
+      `/api/lesson-mastery?lessonId=${encodeURIComponent(
+        lesson.id,
+      )}`,
+    );
+
+  gate(
+    mastery.status === 200 &&
+      Number(
+        mastery.data
+          ?.mastery
+          ?.mastery_score ??
+          0,
+      ) >= 90,
+    "E2E_CANONICAL_MASTERY_FAILED",
+  );
+
+  const progress =
+    await admin
+      .from(
+        "student_lesson_progress",
+      )
+      .select(
+        "status,progress_percent,best_score,xp",
+      )
+      .eq(
+        "student_id",
+        student.id,
+      )
+      .eq(
+        "lesson_id",
+        lesson.id,
+      )
+      .maybeSingle();
+
+  if (progress.error) {
+    throw progress.error;
+  }
+
+  gate(
+    progress.data &&
+      [
+        "completed",
+        "mastered",
+      ].includes(
+        String(
+          progress.data.status,
+        ),
+      ) &&
+      Number(
+        progress.data
+          .progress_percent ??
+          0,
+      ) === 100 &&
+      Number(
+        progress.data
+          .best_score ??
+          0,
+      ) >= 90,
+    "E2E_CANONICAL_PROGRESS_FAILED",
+  );
+
+  console.log(
+    "E2E_LESSON_COMPLETION_MASTERY=PASS",
+  );
+
+  /*
+   * Prove the assessment lifecycle without depending on an external model:
+   * the session is created through the real API, while five deterministic
+   * temporary assessment rows are seeded by the service-role fixture.
+   * Every answer is then submitted through the authenticated product APIs.
+   */
+  const sessionStart =
+    await browserFetch(
+      page,
+      "/api/ai/assessment/session",
+      {
+        method:
+          "POST",
+        headers: {
+          "Content-Type":
+            "application/json",
+        },
+        body:
+          JSON.stringify({
+            lessonId:
+              lesson.id,
+          }),
+      },
+    );
+
+  gate(
+    sessionStart.status === 200 &&
+      sessionStart.data
+        ?.success === true &&
+      sessionStart.data
+        ?.session?.id,
+    `E2E_ASSESSMENT_SESSION_START_FAILED:${sessionStart.status}`,
+  );
+
+  const sessionId =
+    sessionStart.data.session.id;
+
+  fixture.assessmentSessionId =
+    sessionId;
+
+  const assessments =
+    Array.from(
+      {
+        length:
+          5,
+      },
+      (
+        _,
+        index,
+      ) => ({
+        student_email:
+          student.email,
+        title:
+          lesson.title,
+        passage:
+          "هذا سؤال مؤقت للتحقق من دورة التقييم في ضاديوم.",
+        question:
+          `سؤال E2E رقم ${index + 1}: اختر الإجابة الصحيحة.`,
+        question_hash:
+          `e2e-${stamp}-${index + 1}`,
+        choices: [
+          "الإجابة الصحيحة",
+          "إجابة أخرى",
+          "إجابة ثالثة",
+          "إجابة رابعة",
+        ],
+        correct_answer:
+          0,
+        explanation:
+          "إجابة اختبارية صحيحة.",
+        skill:
+          "الاستيعاب",
+        difficulty:
+          "سهل",
+        completed:
+          false,
+        lesson_id:
+          lesson.id,
+      }),
+    );
+
+  const insertedAssessments =
+    await admin
+      .from(
+        "ai_assessments",
+      )
+      .insert(
+        assessments,
+      )
+      .select("id");
+
+  if (
+    insertedAssessments.error ||
+    (
+      insertedAssessments.data ??
+      []
+    ).length !== 5
+  ) {
+    throw (
+      insertedAssessments.error ??
+      new Error(
+        "E2E_ASSESSMENT_FIXTURE_CREATE_FAILED",
+      )
+    );
+  }
+
+  fixture.assessmentIds =
+    insertedAssessments.data.map(
+      row => row.id,
+    );
+
+  let finalSession = null;
+
+  for (
+    const assessment
+    of insertedAssessments.data
+  ) {
+    const submitted =
+      await browserFetch(
+        page,
+        "/api/ai/assessment/submit",
+        {
+          method:
+            "POST",
+          headers: {
+            "Content-Type":
+              "application/json",
+          },
+          body:
+            JSON.stringify({
+              assessmentId:
+                assessment.id,
+              sessionId,
+              answer:
+                0,
+            }),
+        },
+      );
+
+    gate(
+      submitted.status === 200 &&
+        submitted.data
+          ?.success === true &&
+        submitted.data
+          ?.correct === true,
+      `E2E_ASSESSMENT_SUBMIT_FAILED:${submitted.status}`,
+    );
+
+    const advanced =
+      await browserFetch(
+        page,
+        "/api/ai/assessment/next",
+        {
+          method:
+            "POST",
+          headers: {
+            "Content-Type":
+              "application/json",
+          },
+          body:
+            JSON.stringify({
+              sessionId,
+              correct:
+                true,
+            }),
+        },
+      );
+
+    gate(
+      advanced.status === 200 &&
+        advanced.data
+          ?.success === true,
+      `E2E_ASSESSMENT_ADVANCE_FAILED:${advanced.status}`,
+    );
+
+    finalSession =
+      advanced.data.session;
+  }
+
+  gate(
+    finalSession?.finished ===
+      true &&
+      Number(
+        finalSession
+          ?.correctAnswers ??
+          0,
+      ) === 5 &&
+      Number(
+        finalSession?.score ??
+          0,
+      ) === 100,
+    "E2E_ASSESSMENT_FINAL_STATE_FAILED",
+  );
+
+  const answerRows =
+    await admin
+      .from(
+        "assessment_session_answers",
+      )
+      .select("id")
+      .eq(
+        "session_id",
+        sessionId,
+      )
+      .eq(
+        "student_id",
+        student.id,
+      );
+
+  if (answerRows.error) {
+    throw answerRows.error;
+  }
+
+  gate(
+    (
+      answerRows.data ??
+      []
+    ).length === 5,
+    "E2E_ASSESSMENT_PERSISTENCE_FAILED",
+  );
+
+  console.log(
+    "E2E_ASSESSMENT_SESSION=PASS",
+  );
+
+  await page.goto(
+    `${baseUrl}/lessons/${nextLesson.id}`,
+    {
+      waitUntil:
+        "networkidle",
+      timeout:
+        60_000,
+    },
+  );
+
+  const nextLessonBody =
+    await page
+      .locator("body")
+      .innerText();
+
+  gate(
+    nextLessonBody.includes(
+      nextLesson.title,
+    ),
+    "E2E_NEXT_LESSON_ACCESS_FAILED",
+  );
+
+  console.log(
+    "E2E_NEXT_LESSON=PASS",
+  );
+  console.log(
+    "E2E_CANONICAL_LEARNING_FLOW=PASS",
+  );
+}
+
 async function browserFetch(
   page,
   requestUrl,
@@ -1044,6 +1711,11 @@ async function studentFlow(
 
   console.log(
     "E2E_STUDENT_DASHBOARD=PASS",
+  );
+
+  await canonicalLearningFlow(
+    page,
+    baseUrl,
   );
 
   let aiLivePassed = false;
