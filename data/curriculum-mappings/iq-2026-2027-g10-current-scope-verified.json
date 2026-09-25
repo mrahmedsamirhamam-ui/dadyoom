@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "IQ",
+    "nameAr": "العراق"
+  },
+  "academicYear": "2026-2027",
+  "grade": 10,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 2,
+  "mappedLessons": 2,
+  "verifiedLessons": 2,
+  "scope": "current-official-book-scope",
+  "policy": "الكتاب أو جزء الكتاب هو وحدة المطابقة الوطنية؛ لا تعاد نصوص الكتب ولا تُختلق عناوين دروس غير موثقة.",
+  "mappings": [
+    {
+      "officialSlug": "iq-2026-2027-g10-part-1",
+      "officialTitle": "اللغة العربية — الجزء الأول — حزمة تغطية الكتاب",
+      "source": {
+        "label": "وزارة التربية العراقية — المديرية العامة للمناهج — كتالوج الكتب",
+        "url": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=151",
+        "electronicSchoolUrl": "https://eschool.iq/",
+        "officialChannelUrl": "https://t.me/s/educationiq?after=20611",
+        "currentYearUrl": "https://t.me/s/Educationiq?before=32884"
+      },
+      "relationType": "official-book-scope+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "وحدة المطابقة هي الكتاب/جزء الكتاب كما يسمح نموذج ضاديوم عندما تنشر الوزارة المنهج في صورة كتب. المحتوى التعليمي داخل Pack عراقي أصلي، وCore مساند فقط؛ لا تُختلق عناوين دروس غير منشورة.",
+      "coreCoverage": [
+        {
+          "slug": "iq-dadyoom-core-g10-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-directorate-catalog+official-ministry-channel+official-electronic-school+current-school-year+national-book-scope-pack"
+    },
+    {
+      "officialSlug": "iq-2026-2027-g10-part-2",
+      "officialTitle": "اللغة العربية — الجزء الثاني — حزمة تغطية الكتاب",
+      "source": {
+        "label": "وزارة التربية العراقية — المديرية العامة للمناهج — كتالوج الكتب",
+        "url": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=151",
+        "electronicSchoolUrl": "https://eschool.iq/",
+        "officialChannelUrl": "https://t.me/s/educationiq?after=20611",
+        "currentYearUrl": "https://t.me/s/Educationiq?before=32884"
+      },
+      "relationType": "official-book-scope+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "وحدة المطابقة هي الكتاب/جزء الكتاب كما يسمح نموذج ضاديوم عندما تنشر الوزارة المنهج في صورة كتب. المحتوى التعليمي داخل Pack عراقي أصلي، وCore مساند فقط؛ لا تُختلق عناوين دروس غير منشورة.",
+      "coreCoverage": [
+        {
+          "slug": "iq-dadyoom-core-g10-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "iq-dadyoom-core-g10-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-directorate-catalog+official-ministry-channel+official-electronic-school+current-school-year+national-book-scope-pack"
+    }
+  ]
+}
