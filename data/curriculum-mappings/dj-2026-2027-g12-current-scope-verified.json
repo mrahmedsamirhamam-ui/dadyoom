@@ -1,0 +1,379 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "DJ",
+    "nameAr": "جيبوتي"
+  },
+  "academicYear": "2026-2027",
+  "grade": 12,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 4,
+  "mappedLessons": 4,
+  "verifiedLessons": 4,
+  "scope": "current-officially-published-and-publicly-verifiable-scope",
+  "policy": "المطابقة على مستوى السلسلة الثانوية؛ لا تعاد النصوص المحمية ولا تختلق عناوين غير منشورة.",
+  "mappings": [
+    {
+      "officialSlug": "dj-2026-2027-g12-l",
+      "officialTitle": "اللغة العربية — Terminale — سلسلة L",
+      "source": {
+        "label": "CRIPEN — برامج Terminale وامتحانات العربية",
+        "url": "https://cripen.dj/wp-content/uploads/2025/05/Programme-compile-Terminale.pdf",
+        "currentExamUrl": "https://cripen.dj/index.php/2026/06/08/visite-officielle-du-ministre-dans-les-centres-dexamens/"
+      },
+      "relationType": "official-secondary-series+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "الحزمة تمثل العربية في السلسلة الثانوية الموثقة رسميًا، دون اختلاق عناوين دروس.",
+      "coreCoverage": [
+        {
+          "slug": "dj-dadyoom-core-g12-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cripen-terminale-program+official-arabic-bac-evidence+national-pack"
+    },
+    {
+      "officialSlug": "dj-2026-2027-g12-es",
+      "officialTitle": "اللغة العربية — Terminale — سلسلة ES",
+      "source": {
+        "label": "CRIPEN — برامج Terminale وامتحانات العربية",
+        "url": "https://cripen.dj/wp-content/uploads/2025/05/Programme-compile-Terminale.pdf",
+        "currentExamUrl": "https://cripen.dj/index.php/2026/06/08/visite-officielle-du-ministre-dans-les-centres-dexamens/"
+      },
+      "relationType": "official-secondary-series+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "الحزمة تمثل العربية في السلسلة الثانوية الموثقة رسميًا، دون اختلاق عناوين دروس.",
+      "coreCoverage": [
+        {
+          "slug": "dj-dadyoom-core-g12-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cripen-terminale-program+official-arabic-bac-evidence+national-pack"
+    },
+    {
+      "officialSlug": "dj-2026-2027-g12-s",
+      "officialTitle": "اللغة العربية — Terminale — سلسلة S",
+      "source": {
+        "label": "CRIPEN — برامج Terminale وامتحانات العربية",
+        "url": "https://cripen.dj/wp-content/uploads/2025/05/Programme-compile-Terminale.pdf",
+        "currentExamUrl": "https://cripen.dj/index.php/2026/06/08/visite-officielle-du-ministre-dans-les-centres-dexamens/"
+      },
+      "relationType": "official-secondary-series+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "الحزمة تمثل العربية في السلسلة الثانوية الموثقة رسميًا، دون اختلاق عناوين دروس.",
+      "coreCoverage": [
+        {
+          "slug": "dj-dadyoom-core-g12-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cripen-terminale-program+official-arabic-bac-evidence+national-pack"
+    },
+    {
+      "officialSlug": "dj-2026-2027-g12-sg",
+      "officialTitle": "اللغة العربية — Terminale — سلسلة SG",
+      "source": {
+        "label": "CRIPEN — برامج Terminale وامتحانات العربية",
+        "url": "https://cripen.dj/wp-content/uploads/2025/05/Programme-compile-Terminale.pdf",
+        "currentExamUrl": "https://cripen.dj/index.php/2026/06/08/visite-officielle-du-ministre-dans-les-centres-dexamens/"
+      },
+      "relationType": "official-secondary-series+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "الحزمة تمثل العربية في السلسلة الثانوية الموثقة رسميًا، دون اختلاق عناوين دروس.",
+      "coreCoverage": [
+        {
+          "slug": "dj-dadyoom-core-g12-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g12-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cripen-terminale-program+official-arabic-bac-evidence+national-pack"
+    }
+  ]
+}
