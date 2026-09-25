@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "packKey": "SO:2026-2027:arabic:g3:current-scope",
+  "country": {
+    "code": "SO",
+    "nameAr": "الصومال",
+    "nameEn": "Somalia"
+  },
+  "academicYear": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "stage": {
+    "code": "basic",
+    "nameAr": "التعليم الأساسي"
+  },
+  "grade": {
+    "number": 3,
+    "nameAr": "الصف 3 من التعليم الأساسي",
+    "nameEn": "Grade 3"
+  },
+  "semester": null,
+  "curriculum": {
+    "nameAr": "اللغة العربية — المطابقة الرسمية الصومالية",
+    "nameEn": "Arabic — Somalia Official Curriculum Match",
+    "description": "طبقة وطنية مستقلة تربط ضاديوم بالهيكل التعليمي الوطني وموقع العربية في أطر المنهج والتقييم.",
+    "storageNameAr": "اللغة العربية — المطابقة الرسمية الصومالية"
+  },
+  "rights": {
+    "contentOwner": "dadyoom",
+    "sourceLabel": "وزارة التربية والثقافة والتعليم العالي الصومالية؛ المحتوى التعليمي أصلي لضاديوم.",
+    "sourceUrl": "https://moe.gov.so/wp-content/uploads/2022/04/National-Education-Policy-Eng-Version-Final-DG-copy.pdf",
+    "verified": true
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "اللغة العربية — حزمة الكفاءات الوطنية",
+      "description": "الصف 3 من التعليم الأساسي: تغطية كفاءات العربية داخل الهيكل الوطني دون اختلاق عناوين كتب/دروس غير منشورة.",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "اللغة العربية — الصف 3 من التعليم الأساسي — حزمة الكفاءات الوطنية",
+          "type": "reading",
+          "estimatedMinutes": 40,
+          "summary": "حزمة وطنية أصلية من ضاديوم لتغطية تعلم العربية في الصف 3 من التعليم الأساسي وفق الإطار الوطني الصومالي.",
+          "content": "تمثل هذه العقدة «اللغة العربية — الصف 3 من التعليم الأساسي — حزمة الكفاءات الوطنية» حزمة مواءمة وطنية ضمن المنهج الصومالي الموحد. توضح السياسة الوطنية أن التعليم الأساسي يمتد حتى الصف الثامن، وأن تطوير المناهج والمواد التعليمية يتم مركزيًا، كما تؤكد أطر التعليم الأساسي أن مهارات القراءة والكتابة تشمل الصومالية والعربية والإنجليزية في المستويات المبكرة. ويؤكد الإطار الوطني للتقييم أن اللغة العربية مجال دراسي ضمن النظام الوطني ويمكن إدراجها في برامج القياس. في الصفوف 9-12 ترتبط الحزمة ببنية التعليم الثانوي الوطني وصولًا إلى الامتحان الوطني للصف الثاني عشر. لا تنشر بوابة الوزارة فهرسًا عامًا قابلًا للتحقق لعناوين كتب العربية صفًا صفًا؛ لذلك لا يخترع ضاديوم أسماء كتب أو دروس، بل يبني حزمة كفاءات أصلية في القراءة والفهم والمفردات والتراكيب والتعبير.",
+          "objectives": [
+            "أن يستخدم المتعلم العربية بما يناسب الصف 3 من التعليم الأساسي.",
+            "أن يطبق المتعلم مهارة قراءة أو فهم أو تعبير في موقف جديد.",
+            "أن يراجع المتعلم إنتاجه اللغوي ويصححه وفق معيار واضح."
+          ],
+          "vocabulary": [
+            {
+              "word": "قراءة",
+              "meaning": "فهم النص واستخلاص معناه."
+            },
+            {
+              "word": "تواصل",
+              "meaning": "استخدام اللغة لنقل الأفكار وفهمها."
+            },
+            {
+              "word": "مفردات",
+              "meaning": "الكلمات والتراكيب المستخدمة في السياق."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما وظيفة هذه الحزمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تغطية كفاءات العربية داخل الهيكل الوطني بمحتوى أصلي."
+                },
+                {
+                  "id": "b",
+                  "text": "اختلاق كتاب رسمي غير منشور."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ مواد غير مرخصة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الحزمة تحقق المواءمة دون اختلاق أو نسخ.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على الإتقان؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "استخدام مستقل للعربية مع فهم وتفسير."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ اسم المادة."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ إجابة جاهزة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الأداء المستقل يعكس الإتقان.",
+              "points": 1
+            },
+            {
+              "question": "كيف تتم المراجعة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن الناتج بالهدف والمعيار وأصحح."
+                },
+                {
+                  "id": "b",
+                  "text": "أتجاوز المراجعة."
+                },
+                {
+                  "id": "c",
+                  "text": "أغير الإجابة عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة القائمة على معيار تحسن التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "فهم وتواصل",
+              "activityType": "multiple_choice",
+              "instructions": "حدد الاستجابة اللغوية الأنسب للموقف.",
+              "content": {
+                "origin": "DADYOOM_SO_OFFICIAL_2026_2027_V1",
+                "grade": 3
+              },
+              "published": true
+            },
+            {
+              "title": "قراءة مستقلة",
+              "activityType": "reading",
+              "instructions": "طبّق مهارة الفهم على نص أصلي مناسب للمستوى.",
+              "content": {
+                "origin": "DADYOOM_SO_OFFICIAL_2026_2027_V1",
+                "grade": 3
+              },
+              "published": true
+            },
+            {
+              "title": "إنتاج ومراجعة",
+              "activityType": "writing",
+              "instructions": "اكتب استجابة قصيرة ثم راجعها وفق معيار النجاح.",
+              "content": {
+                "origin": "DADYOOM_SO_OFFICIAL_2026_2027_V1",
+                "grade": 3
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "Ministry of Education Somalia — national policy/curriculum frameworks",
+            "url": "https://moe.gov.so/wp-content/uploads/2022/04/National-Education-Policy-Eng-Version-Final-DG-copy.pdf",
+            "additionalUrls": [
+              "https://moe.gov.so/",
+              "https://moe.gov.so/wp-content/uploads/2022/05/Accelerated-Basic-Education-ABE-Policy-Framework-Back-translation-RF.pdf",
+              "https://moe.gov.so/wp-content/uploads/2022/07/Somalia-Education-Sector-Analysis-Jan-2022-1.pdf",
+              "https://moe.gov.so/wp-content/uploads/2022/07/ESSP-2022-2026.pdf",
+              "https://moe.gov.so/wp-content/uploads/2026/02/National-Assessment-Framework-for-Somalia-Final-1.pdf",
+              "https://moe.gov.so/2023/10/20/imtixaanka-qaranka-ee-fasalka-12aad-ee-sanad-dugsiyeedka-2025-2026/"
+            ]
+          },
+          "alignment": {
+            "mode": "official-education-structure+national-arabic-competency-bundle",
+            "officialGradeByGradeArabicBookIndexPublished": false,
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "so-dadyoom-core-g3-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "so-dadyoom-core-g3-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "so-dadyoom-core-g3-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "so-dadyoom-core-g3-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "so-dadyoom-core-g3-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "so-dadyoom-core-g3-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "so-dadyoom-core-g3-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "so-dadyoom-core-g3-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "so-dadyoom-core-g3-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "so-dadyoom-core-g3-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "so-dadyoom-core-g3-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "so-dadyoom-core-g3-l12",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "so-dadyoom-core-g3-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "so-dadyoom-core-g3-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "so-dadyoom-core-g3-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "so-dadyoom-core-g3-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "so-dadyoom-core-g3-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "so-dadyoom-core-g3-l18",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
