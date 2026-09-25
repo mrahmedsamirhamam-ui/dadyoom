@@ -258,8 +258,8 @@
       },
       "national": {
         "complete": false,
-        "matchingStatus": "partial",
-        "verificationStatus": "candidate",
+        "matchingStatus": "current-scope-complete",
+        "verificationStatus": "verified",
         "evidenceSources": [
           {
             "url": "https://www.nccd.gov.jo/Ar/Pages/Publications/?MaterialStudy=92",
@@ -270,16 +270,32 @@
             "kind": "official-catalog"
           }
         ],
-        "verifiedPackFiles": [],
-        "missingEvidence": [
-          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
-          "اكتمال تغطية الفصول/الفترات الدراسية",
-          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
-          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
-          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
-        ]
+        "verifiedPackFiles": [
+          "data/curriculum-packs/jordan-2026-2027-final/jo-2026-2027-arabic-g1-current-scope.json",
+          "data/curriculum-packs/jordan-2026-2027-final/jo-2026-2027-arabic-g2-current-scope.json",
+          "data/curriculum-packs/jordan-2026-2027-final/jo-2026-2027-arabic-g3-current-scope.json",
+          "data/curriculum-packs/jordan-2026-2027-final/jo-2026-2027-arabic-g4-current-scope.json",
+          "data/curriculum-packs/jordan-2026-2027-final/jo-2026-2027-arabic-g5-current-scope.json",
+          "data/curriculum-packs/jordan-2026-2027-final/jo-2026-2027-arabic-g6-current-scope.json",
+          "data/curriculum-packs/jordan-2026-2027-final/jo-2026-2027-arabic-g7-current-scope.json",
+          "data/curriculum-packs/jordan-2026-2027-final/jo-2026-2027-arabic-g8-current-scope.json",
+          "data/curriculum-packs/jordan-2026-2027-final/jo-2026-2027-arabic-g9-current-scope.json",
+          "data/curriculum-packs/jordan-2026-2027-final/jo-2026-2027-arabic-g10-current-scope.json",
+          "data/curriculum-packs/jordan-2026-2027-final/jo-2026-2027-arabic-g11-current-scope.json",
+          "data/curriculum-packs/jordan-2026-2027-final/jo-2026-2027-arabic-g12-current-scope.json"
+        ],
+        "missingEvidence": [],
+        "currentScopeComplete": true,
+        "fullYearComplete": false,
+        "mappingSummary": {
+          "mappingGrades": 12,
+          "verifiedMappingGrades": 12,
+          "officialCoverageNodes": 128,
+          "verifiedCoverageNodes": 128
+        },
+        "note": "مغلق لكل النطاق المنشور حاليًا من NCCD للعام 2026-2027؛ G1-G10 يغطي الفصلين الظاهرين في الكتالوج الحالي، وG11-G12 يغطي الفصل الأول المنشور صراحة."
       },
-      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+      "publicationReadiness": "NATIONAL_CURRENT_SCOPE_COMPLETE"
     },
     {
       "code": "KM",
