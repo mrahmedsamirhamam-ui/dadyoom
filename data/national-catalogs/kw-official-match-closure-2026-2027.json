@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "KW",
+    "nameAr": "الكويت",
+    "nameEn": "Kuwait"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "status": "current-scope-complete",
+  "matchingStatus": "current-scope-complete",
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-09-25",
+  "authority": {
+    "nameAr": "وزارة التربية في دولة الكويت",
+    "ministry": "https://www.moe.edu.kw/",
+    "studentLibrary": "https://elibrary.moe.edu.kw/StudentsLibrary",
+    "nationalStandards": "https://elibrary.moe.edu.kw/NationalStandards",
+    "arabicPrimaryMatrix": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+    "arabicMiddleSemester1Matrix": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/95",
+    "arabicMiddleSemester2Matrix": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/94",
+    "currentCurriculumDevelopment": "https://moe.edu.kw/news/869",
+    "academicCalendar": "https://www.moe.edu.kw/pages/calendar",
+    "secondaryMasarat": "https://www.moe.edu.kw/news/1343",
+    "secondaryArabicEvidence": "https://moe.edu.kw/news/1036"
+  },
+  "structure": {
+    "grades": "12/12",
+    "semesters": 2,
+    "stages": [
+      {
+        "nameAr": "المرحلة الابتدائية",
+        "grades": "1-5"
+      },
+      {
+        "nameAr": "المرحلة المتوسطة",
+        "grades": "6-9"
+      },
+      {
+        "nameAr": "المرحلة الثانوية",
+        "grades": "10-12"
+      }
+    ],
+    "officialMatchingUnit": {
+      "grades1to9": "مجالات مصفوفة مهارات اللغة العربية الرسمية",
+      "grades10to12": "حزمة مقرر/فصل دراسي ضمن النطاق العام المنشور؛ لا تُختلق عناوين دروس غير منشورة"
+    },
+    "nationalDomains": [
+      "الاستماع والمشاهدة",
+      "التحدث",
+      "القراءة والمشاهدة",
+      "الحصيلة اللغوية",
+      "السلامة اللغوية",
+      "البلاغة",
+      "الرسم الهجائي",
+      "الخط العربي",
+      "التعبير"
+    ],
+    "secondaryContext": {
+      "existing": [
+        "القسم العلمي",
+        "القسم الأدبي"
+      ],
+      "masaratPilot20262027": "الصف العاشر سنة تأسيسية مشتركة في المدارس التجريبية؛ اللغة العربية مادة عامة مشتركة."
+    }
+  },
+  "coverage": {
+    "packGrades": "12/12",
+    "verifiedMappingGrades": "12/12",
+    "officialCoverageNodes": 87,
+    "mappedCoverageNodes": 87,
+    "verifiedCoverageNodes": 87,
+    "nationalExtensions": 87,
+    "database": {
+      "curriculumId": "8f0deb73-8f83-41a2-96ff-5fea34d902ec",
+      "grades": 12,
+      "units": 12,
+      "lessons": 87,
+      "questions": 261,
+      "vocabulary": 261,
+      "publishedActivities": 261,
+      "minimumContentCharacters": 531
+    },
+    "gradeLessonCounts": {
+      "1": 9,
+      "2": 9,
+      "3": 9,
+      "4": 9,
+      "5": 9,
+      "6": 9,
+      "7": 9,
+      "8": 9,
+      "9": 9,
+      "10": 2,
+      "11": 2,
+      "12": 2
+    }
+  },
+  "qualityGates": {
+    "officialSourcesVerified": true,
+    "allGradesPresent": true,
+    "allPacksRightsVerified": true,
+    "allMappingsVerified": true,
+    "officialEqualsMappedEqualsVerified": true,
+    "allLessonsPublished": true,
+    "allLessonsHaveOfficialSource": true,
+    "minimumObjectivesPerLesson": 3,
+    "minimumQuestionsPerLesson": 3,
+    "minimumVocabularyPerLesson": 3,
+    "minimumPublishedActivitiesPerLesson": 3,
+    "failingDatabaseLessons": 0,
+    "legacyConflict": "inactive-before-import"
+  },
+  "copyrightPolicy": "لا يعيد ضاديوم نشر نصوص الكتب الوزارية المحمية؛ يستخدم أسماء المجالات والمقرر وبنية المرحلة وروابط المصادر الرسمية لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية لضاديوم.",
+  "claimPolicy": "مطابق للمنهج الرسمي الكويتي = مواءم مع مصفوفات المهارات والمقرر والبنية والمصادر الرسمية القابلة للتحقق للنطاق الحالي؛ لا تعني العبارة اعتمادًا أو شراكة أو تأييدًا من وزارة التربية."
+}
