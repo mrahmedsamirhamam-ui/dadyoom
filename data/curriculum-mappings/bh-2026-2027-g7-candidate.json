@@ -1,0 +1,1007 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "BH",
+    "nameAr": "مملكة البحرين"
+  },
+  "academicYear": "2026-2027",
+  "grade": 7,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "candidate",
+  "officialLessons": 19,
+  "mappedLessons": 19,
+  "verifiedLessons": 0,
+  "policy": "ملف مرشحات قابل للتدقيق. بُني من الطبقة الوطنية الموجودة في قاعدة ضاديوم وربط بمهارات Dadyoom Core. لا يصبح أي درس verified دون مراجعة المصدر والأهداف، ولا يعاد نشر نص الكتاب الوزاري.",
+  "generatedBy": "Dadyoom official-to-core matcher",
+  "mappings": [
+    {
+      "officialLessonId": "8d8f4504-3e9f-4287-87c3-98c664939354",
+      "officialSlug": "bh-2026-g7-t1-385",
+      "officialTitle": "القراءة: أمير البحرين في عهد الرسول صلّى الله عليه وسلّم.",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4838,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g7-l02",
+          "relation": "unmapped",
+          "title": "قراءة نص معلوماتي",
+          "score": 0.4838
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "2b3d49d0-83d2-402e-bd63-d65e0ea41981",
+          "coreSlug": "bh-dadyoom-core-g7-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.4838
+        },
+        {
+          "coreLessonId": "621d6c75-82f4-4607-9dbe-17df4ed9c553",
+          "coreSlug": "bh-dadyoom-core-g7-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.4784
+        },
+        {
+          "coreLessonId": "d1081729-c7dc-40ef-a8e6-002fb67e7fb2",
+          "coreSlug": "bh-dadyoom-core-g7-l06",
+          "coreTitle": "المقارنة بين نصين",
+          "coreLessonType": "reading",
+          "score": 0.3026
+        }
+      ]
+    },
+    {
+      "officialLessonId": "c3982558-e736-4d20-9590-00965117516e",
+      "officialSlug": "bh-2026-g7-t1-386",
+      "officialTitle": "القراءة: التربية المكتبيّة",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4962,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g7-l02",
+          "relation": "unmapped",
+          "title": "قراءة نص معلوماتي",
+          "score": 0.4962
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "2b3d49d0-83d2-402e-bd63-d65e0ea41981",
+          "coreSlug": "bh-dadyoom-core-g7-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.4962
+        },
+        {
+          "coreLessonId": "621d6c75-82f4-4607-9dbe-17df4ed9c553",
+          "coreSlug": "bh-dadyoom-core-g7-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.4882
+        },
+        {
+          "coreLessonId": "d1081729-c7dc-40ef-a8e6-002fb67e7fb2",
+          "coreSlug": "bh-dadyoom-core-g7-l06",
+          "coreTitle": "المقارنة بين نصين",
+          "coreLessonType": "reading",
+          "score": 0.3126
+        }
+      ]
+    },
+    {
+      "officialLessonId": "c65d454a-70fd-45b4-a018-7dfd9783bc4a",
+      "officialSlug": "bh-2026-g7-t1-387",
+      "officialTitle": "القراءة: لماذا نقرأ؟",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4983,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g7-l02",
+          "relation": "unmapped",
+          "title": "قراءة نص معلوماتي",
+          "score": 0.4983
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "2b3d49d0-83d2-402e-bd63-d65e0ea41981",
+          "coreSlug": "bh-dadyoom-core-g7-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.4983
+        },
+        {
+          "coreLessonId": "621d6c75-82f4-4607-9dbe-17df4ed9c553",
+          "coreSlug": "bh-dadyoom-core-g7-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.4834
+        },
+        {
+          "coreLessonId": "d1081729-c7dc-40ef-a8e6-002fb67e7fb2",
+          "coreSlug": "bh-dadyoom-core-g7-l06",
+          "coreTitle": "المقارنة بين نصين",
+          "coreLessonType": "reading",
+          "score": 0.3065
+        }
+      ]
+    },
+    {
+      "officialLessonId": "c8165606-c237-44b0-bbb9-1167883f95b0",
+      "officialSlug": "bh-2026-g7-t1-388",
+      "officialTitle": "القراءة: من الهدي القرآني",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.5022,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g7-l02",
+          "relation": "unmapped",
+          "title": "قراءة نص معلوماتي",
+          "score": 0.5022
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "2b3d49d0-83d2-402e-bd63-d65e0ea41981",
+          "coreSlug": "bh-dadyoom-core-g7-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.5022
+        },
+        {
+          "coreLessonId": "621d6c75-82f4-4607-9dbe-17df4ed9c553",
+          "coreSlug": "bh-dadyoom-core-g7-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.4817
+        },
+        {
+          "coreLessonId": "d1081729-c7dc-40ef-a8e6-002fb67e7fb2",
+          "coreSlug": "bh-dadyoom-core-g7-l06",
+          "coreTitle": "المقارنة بين نصين",
+          "coreLessonType": "reading",
+          "score": 0.3046
+        }
+      ]
+    },
+    {
+      "officialLessonId": "7afa96b6-a0c8-4603-8b9d-83cbf0e1fe7e",
+      "officialSlug": "bh-2026-g7-t1-389",
+      "officialTitle": "(.تتوفّر فيه عناصر القصّة1 )",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4771,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g7-l04",
+          "relation": "text-specific",
+          "title": "الاستنتاج وبناء الحجة",
+          "score": 0.4771
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "621d6c75-82f4-4607-9dbe-17df4ed9c553",
+          "coreSlug": "bh-dadyoom-core-g7-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.4771
+        },
+        {
+          "coreLessonId": "2b3d49d0-83d2-402e-bd63-d65e0ea41981",
+          "coreSlug": "bh-dadyoom-core-g7-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.4648
+        },
+        {
+          "coreLessonId": "69668672-b827-49ef-b7c2-3a481a5cbad1",
+          "coreSlug": "bh-dadyoom-core-g7-l01",
+          "coreTitle": "تحليل نص أدبي",
+          "coreLessonType": "reading",
+          "score": 0.3022
+        }
+      ]
+    },
+    {
+      "officialLessonId": "765ef7c8-0511-4a75-a2e1-a0e3a9f6cc1a",
+      "officialSlug": "bh-2026-g7-t1-390",
+      "officialTitle": "(.تتوفّر فيه عناصر القصّة2 )",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4771,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g7-l04",
+          "relation": "text-specific",
+          "title": "الاستنتاج وبناء الحجة",
+          "score": 0.4771
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "621d6c75-82f4-4607-9dbe-17df4ed9c553",
+          "coreSlug": "bh-dadyoom-core-g7-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.4771
+        },
+        {
+          "coreLessonId": "2b3d49d0-83d2-402e-bd63-d65e0ea41981",
+          "coreSlug": "bh-dadyoom-core-g7-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.4648
+        },
+        {
+          "coreLessonId": "69668672-b827-49ef-b7c2-3a481a5cbad1",
+          "coreSlug": "bh-dadyoom-core-g7-l01",
+          "coreTitle": "تحليل نص أدبي",
+          "coreLessonType": "reading",
+          "score": 0.3022
+        }
+      ]
+    },
+    {
+      "officialLessonId": "228db7d0-3371-427c-8ab1-9636d3f00f0b",
+      "officialSlug": "bh-2026-g7-t1-393",
+      "officialTitle": "القراءة: ابن ماجد بحّار الخليج الأكبر.",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4886,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g7-l02",
+          "relation": "unmapped",
+          "title": "قراءة نص معلوماتي",
+          "score": 0.4886
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "2b3d49d0-83d2-402e-bd63-d65e0ea41981",
+          "coreSlug": "bh-dadyoom-core-g7-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.4886
+        },
+        {
+          "coreLessonId": "621d6c75-82f4-4607-9dbe-17df4ed9c553",
+          "coreSlug": "bh-dadyoom-core-g7-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.4814
+        },
+        {
+          "coreLessonId": "d1081729-c7dc-40ef-a8e6-002fb67e7fb2",
+          "coreSlug": "bh-dadyoom-core-g7-l06",
+          "coreTitle": "المقارنة بين نصين",
+          "coreLessonType": "reading",
+          "score": 0.2981
+        }
+      ]
+    },
+    {
+      "officialLessonId": "ec6beee4-556f-40f3-b729-85c9e3ddf555",
+      "officialSlug": "bh-2026-g7-t1-394",
+      "officialTitle": "القراءة: الحريّة",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.5025,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g7-l02",
+          "relation": "unmapped",
+          "title": "قراءة نص معلوماتي",
+          "score": 0.5025
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "2b3d49d0-83d2-402e-bd63-d65e0ea41981",
+          "coreSlug": "bh-dadyoom-core-g7-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.5025
+        },
+        {
+          "coreLessonId": "621d6c75-82f4-4607-9dbe-17df4ed9c553",
+          "coreSlug": "bh-dadyoom-core-g7-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.4998
+        },
+        {
+          "coreLessonId": "696cc6ec-abbe-4f18-8dbd-7027b426051f",
+          "coreSlug": "bh-dadyoom-core-g7-l05",
+          "coreTitle": "بنية النص وترابطه",
+          "coreLessonType": "reading",
+          "score": 0.3147
+        }
+      ]
+    },
+    {
+      "officialLessonId": "75459346-802d-414b-bfc3-8dc34e0e0f2c",
+      "officialSlug": "bh-2026-g7-t1-395",
+      "officialTitle": "القراءة: القدس عربيّة",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4978,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g7-l02",
+          "relation": "unmapped",
+          "title": "قراءة نص معلوماتي",
+          "score": 0.4978
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "2b3d49d0-83d2-402e-bd63-d65e0ea41981",
+          "coreSlug": "bh-dadyoom-core-g7-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.4978
+        },
+        {
+          "coreLessonId": "621d6c75-82f4-4607-9dbe-17df4ed9c553",
+          "coreSlug": "bh-dadyoom-core-g7-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.4893
+        },
+        {
+          "coreLessonId": "696cc6ec-abbe-4f18-8dbd-7027b426051f",
+          "coreSlug": "bh-dadyoom-core-g7-l05",
+          "coreTitle": "بنية النص وترابطه",
+          "coreLessonType": "reading",
+          "score": 0.311
+        }
+      ]
+    },
+    {
+      "officialLessonId": "7010c1ec-c06a-493c-bee9-a230dc162d8d",
+      "officialSlug": "bh-2026-g7-t1-396",
+      "officialTitle": "القراءة: المخترع (دراسة القصيدة كاملة) / (حفظ القصيدة كاملة)",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4869,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g7-l02",
+          "relation": "text-specific",
+          "title": "قراءة نص معلوماتي",
+          "score": 0.4869
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "2b3d49d0-83d2-402e-bd63-d65e0ea41981",
+          "coreSlug": "bh-dadyoom-core-g7-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.4869
+        },
+        {
+          "coreLessonId": "621d6c75-82f4-4607-9dbe-17df4ed9c553",
+          "coreSlug": "bh-dadyoom-core-g7-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.4815
+        },
+        {
+          "coreLessonId": "d1081729-c7dc-40ef-a8e6-002fb67e7fb2",
+          "coreSlug": "bh-dadyoom-core-g7-l06",
+          "coreTitle": "المقارنة بين نصين",
+          "coreLessonType": "reading",
+          "score": 0.3046
+        }
+      ]
+    },
+    {
+      "officialLessonId": "69281da4-1a54-46fa-8aa4-496b2a908466",
+      "officialSlug": "bh-2026-g7-t1-397",
+      "officialTitle": "القراءة: بلادي : (دراسة القصيدة كاملة) / (حفظ من 10-16)",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4862,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g7-l02",
+          "relation": "text-specific",
+          "title": "قراءة نص معلوماتي",
+          "score": 0.4862
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "2b3d49d0-83d2-402e-bd63-d65e0ea41981",
+          "coreSlug": "bh-dadyoom-core-g7-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.4862
+        },
+        {
+          "coreLessonId": "621d6c75-82f4-4607-9dbe-17df4ed9c553",
+          "coreSlug": "bh-dadyoom-core-g7-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.4768
+        },
+        {
+          "coreLessonId": "d1081729-c7dc-40ef-a8e6-002fb67e7fb2",
+          "coreSlug": "bh-dadyoom-core-g7-l06",
+          "coreTitle": "المقارنة بين نصين",
+          "coreLessonType": "reading",
+          "score": 0.3093
+        }
+      ]
+    },
+    {
+      "officialLessonId": "a8d4096e-f140-4d35-873f-393d29a70fb3",
+      "officialSlug": "bh-2026-g7-t1-398",
+      "officialTitle": "تتوفّر فيه عناصر القصّة.( 1 )",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4771,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g7-l04",
+          "relation": "text-specific",
+          "title": "الاستنتاج وبناء الحجة",
+          "score": 0.4771
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "621d6c75-82f4-4607-9dbe-17df4ed9c553",
+          "coreSlug": "bh-dadyoom-core-g7-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.4771
+        },
+        {
+          "coreLessonId": "2b3d49d0-83d2-402e-bd63-d65e0ea41981",
+          "coreSlug": "bh-dadyoom-core-g7-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.4648
+        },
+        {
+          "coreLessonId": "69668672-b827-49ef-b7c2-3a481a5cbad1",
+          "coreSlug": "bh-dadyoom-core-g7-l01",
+          "coreTitle": "تحليل نص أدبي",
+          "coreLessonType": "reading",
+          "score": 0.3022
+        }
+      ]
+    },
+    {
+      "officialLessonId": "eacc49b9-6904-439f-a66e-75f6ebb96bfb",
+      "officialSlug": "bh-2026-g7-t1-399",
+      "officialTitle": "تتوفّر فيه عناصر القصّة.( 2 )",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4771,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g7-l04",
+          "relation": "text-specific",
+          "title": "الاستنتاج وبناء الحجة",
+          "score": 0.4771
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "621d6c75-82f4-4607-9dbe-17df4ed9c553",
+          "coreSlug": "bh-dadyoom-core-g7-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.4771
+        },
+        {
+          "coreLessonId": "2b3d49d0-83d2-402e-bd63-d65e0ea41981",
+          "coreSlug": "bh-dadyoom-core-g7-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.4648
+        },
+        {
+          "coreLessonId": "69668672-b827-49ef-b7c2-3a481a5cbad1",
+          "coreSlug": "bh-dadyoom-core-g7-l01",
+          "coreTitle": "تحليل نص أدبي",
+          "coreLessonType": "reading",
+          "score": 0.3022
+        }
+      ]
+    },
+    {
+      "officialLessonId": "7fac83e4-bbb9-4f91-b9f1-2a76f90fa735",
+      "officialSlug": "bh-2026-g7-t1-400",
+      "officialTitle": "القراءة: الأزهار",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.5029,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g7-l02",
+          "relation": "unmapped",
+          "title": "قراءة نص معلوماتي",
+          "score": 0.5029
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "2b3d49d0-83d2-402e-bd63-d65e0ea41981",
+          "coreSlug": "bh-dadyoom-core-g7-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.5029
+        },
+        {
+          "coreLessonId": "621d6c75-82f4-4607-9dbe-17df4ed9c553",
+          "coreSlug": "bh-dadyoom-core-g7-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.4926
+        },
+        {
+          "coreLessonId": "d1081729-c7dc-40ef-a8e6-002fb67e7fb2",
+          "coreSlug": "bh-dadyoom-core-g7-l06",
+          "coreTitle": "المقارنة بين نصين",
+          "coreLessonType": "reading",
+          "score": 0.3083
+        }
+      ]
+    },
+    {
+      "officialLessonId": "26eb9f0b-faf0-4df9-b1ae-32a08a343bd6",
+      "officialSlug": "bh-2026-g7-t1-401",
+      "officialTitle": "القراءة: البحر",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.5027,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g7-l02",
+          "relation": "unmapped",
+          "title": "قراءة نص معلوماتي",
+          "score": 0.5027
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "2b3d49d0-83d2-402e-bd63-d65e0ea41981",
+          "coreSlug": "bh-dadyoom-core-g7-l02",
+          "coreTitle": "قراءة نص معلوماتي",
+          "coreLessonType": "reading",
+          "score": 0.5027
+        },
+        {
+          "coreLessonId": "621d6c75-82f4-4607-9dbe-17df4ed9c553",
+          "coreSlug": "bh-dadyoom-core-g7-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.4854
+        },
+        {
+          "coreLessonId": "d1081729-c7dc-40ef-a8e6-002fb67e7fb2",
+          "coreSlug": "bh-dadyoom-core-g7-l06",
+          "coreTitle": "المقارنة بين نصين",
+          "coreLessonType": "reading",
+          "score": 0.3091
+        }
+      ]
+    },
+    {
+      "officialLessonId": "846ffad5-58cb-4951-a6f6-7c42a337f06b",
+      "officialSlug": "bh-2026-g7-t1-383",
+      "officialTitle": "الإ نتاج الكتابيّ : تفكيك الموضوع الإنشائيّ السّردي إلى عناصره الأساسيّة ( 1 .)",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.2862,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g7-l16",
+          "relation": "unmapped",
+          "title": "كتابة تقرير",
+          "score": 0.2862
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "13366496-05f8-4b9d-bcda-c07c9b59275b",
+          "coreSlug": "bh-dadyoom-core-g7-l16",
+          "coreTitle": "كتابة تقرير",
+          "coreLessonType": "writing",
+          "score": 0.2862
+        },
+        {
+          "coreLessonId": "3bc72b2a-1262-4e0f-b904-26ecfe3d8c70",
+          "coreSlug": "bh-dadyoom-core-g7-l15",
+          "coreTitle": "كتابة مقال قصير",
+          "coreLessonType": "writing",
+          "score": 0.2856
+        },
+        {
+          "coreLessonId": "8591970e-81ef-4a0b-a7cf-c0b06d69bb0e",
+          "coreSlug": "bh-dadyoom-core-g7-l18",
+          "coreTitle": "مراجعة تحليلية شاملة",
+          "coreLessonType": "assessment",
+          "score": 0.1279
+        }
+      ]
+    },
+    {
+      "officialLessonId": "0f274760-e758-4484-a312-7585386c738a",
+      "officialSlug": "bh-2026-g7-t1-384",
+      "officialTitle": "الإ نتاج الكتابيّ : تفكيك الموضوع الإنشائيّ السّردي إلى عناصره الأساسيّة( 2 .)",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.2862,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g7-l16",
+          "relation": "unmapped",
+          "title": "كتابة تقرير",
+          "score": 0.2862
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "13366496-05f8-4b9d-bcda-c07c9b59275b",
+          "coreSlug": "bh-dadyoom-core-g7-l16",
+          "coreTitle": "كتابة تقرير",
+          "coreLessonType": "writing",
+          "score": 0.2862
+        },
+        {
+          "coreLessonId": "3bc72b2a-1262-4e0f-b904-26ecfe3d8c70",
+          "coreSlug": "bh-dadyoom-core-g7-l15",
+          "coreTitle": "كتابة مقال قصير",
+          "coreLessonType": "writing",
+          "score": 0.2856
+        },
+        {
+          "coreLessonId": "8591970e-81ef-4a0b-a7cf-c0b06d69bb0e",
+          "coreSlug": "bh-dadyoom-core-g7-l18",
+          "coreTitle": "مراجعة تحليلية شاملة",
+          "coreLessonType": "assessment",
+          "score": 0.1279
+        }
+      ]
+    },
+    {
+      "officialLessonId": "82215681-de24-4e95-9c8f-42612194c29f",
+      "officialSlug": "bh-2026-g7-t1-391",
+      "officialTitle": "ال ّكتابي .: كتابة قصّة تُسرد فيها األحداث سرداا خطّيًّا",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.5605,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g7-l15",
+          "relation": "supporting-skill",
+          "title": "كتابة مقال قصير",
+          "score": 0.5605
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "3bc72b2a-1262-4e0f-b904-26ecfe3d8c70",
+          "coreSlug": "bh-dadyoom-core-g7-l15",
+          "coreTitle": "كتابة مقال قصير",
+          "coreLessonType": "writing",
+          "score": 0.5605
+        },
+        {
+          "coreLessonId": "13366496-05f8-4b9d-bcda-c07c9b59275b",
+          "coreSlug": "bh-dadyoom-core-g7-l16",
+          "coreTitle": "كتابة تقرير",
+          "coreLessonType": "writing",
+          "score": 0.5604
+        },
+        {
+          "coreLessonId": "621d6c75-82f4-4607-9dbe-17df4ed9c553",
+          "coreSlug": "bh-dadyoom-core-g7-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.3195
+        }
+      ]
+    },
+    {
+      "officialLessonId": "b4ea1d0e-9a5f-4cb7-abc7-e9ccae55bb7f",
+      "officialSlug": "bh-2026-g7-t1-392",
+      "officialTitle": "الإ نتاج الكتابيّ : كتابة قصّة تُسرد فيها الأحداث سرداا خطّيًّا.",
+      "officialLessonType": "writing",
+      "unitNumber": 14,
+      "unitTitle": "التعبير والكتابة",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.5523,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g7-l16",
+          "relation": "supporting-skill",
+          "title": "كتابة تقرير",
+          "score": 0.5523
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "13366496-05f8-4b9d-bcda-c07c9b59275b",
+          "coreSlug": "bh-dadyoom-core-g7-l16",
+          "coreTitle": "كتابة تقرير",
+          "coreLessonType": "writing",
+          "score": 0.5523
+        },
+        {
+          "coreLessonId": "3bc72b2a-1262-4e0f-b904-26ecfe3d8c70",
+          "coreSlug": "bh-dadyoom-core-g7-l15",
+          "coreTitle": "كتابة مقال قصير",
+          "coreLessonType": "writing",
+          "score": 0.5491
+        },
+        {
+          "coreLessonId": "621d6c75-82f4-4607-9dbe-17df4ed9c553",
+          "coreSlug": "bh-dadyoom-core-g7-l04",
+          "coreTitle": "الاستنتاج وبناء الحجة",
+          "coreLessonType": "reading",
+          "score": 0.3295
+        }
+      ]
+    }
+  ]
+}
