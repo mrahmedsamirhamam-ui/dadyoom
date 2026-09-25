@@ -276,7 +276,7 @@ export default function VideoLibraryClient({
                 event.target.value
               )
             }
-            placeholder="ابحث في 500 فيديو..."
+            placeholder={`ابحث في ${videos.length} فيديو...`}
             className="rounded-2xl border border-[#d9c8a7] bg-white px-4 py-3 text-sm font-bold text-[#123f39] outline-none"
           />
 
