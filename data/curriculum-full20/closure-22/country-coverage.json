@@ -43,28 +43,80 @@
       },
       "national": {
         "complete": false,
-        "matchingStatus": "not-closed",
-        "verificationStatus": "candidate",
+        "matchingStatus": "current-scope-complete",
+        "verificationStatus": "verified",
         "evidenceSources": [
           {
-            "url": "https://www.moe.gov.ae/",
-            "kind": "official-portal"
+            "url": "https://www.moe.gov.ae/ar/guides/Pages/Student-Assessment-Policy-Guide-2026-2027.aspx",
+            "kind": "official-current-assessment-policy"
+          },
+          {
+            "url": "https://www.moe.gov.ae/en/guides/Documents/Academic-Calender-2026-2027/Academic-Calender-2026-2027-Ar.pdf",
+            "kind": "official-current-academic-calendar"
           },
           {
             "url": "https://u.ae/en/information-and-services/education/school-education-k-12/e-learning-reading-and-educational-resources/diwan-e-book-reader",
-            "kind": "government-resource"
+            "kind": "government-digital-textbook-platform"
+          },
+          {
+            "url": "https://u.ae/ar/information-and-services/education/school-education-k-12/stages-and-streams-of-school-education",
+            "kind": "government-stages-and-streams"
+          },
+          {
+            "url": "https://emsat.moe.gov.ae/emsat/doc/Advantage%20Arabic%20Public%20Test%20Specifications%20-%20English%202021%20Sep%20F.pdf",
+            "kind": "official-national-arabic-standards"
           }
         ],
-        "verifiedPackFiles": [],
-        "missingEvidence": [
-          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
-          "اكتمال تغطية الفصول/الفترات الدراسية",
-          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
-          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
-          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
-        ]
+        "verifiedPackFiles": [
+          "data/curriculum-packs/uae-2026-2027-final/ae-2026-2027-arabic-g1-current-scope.json",
+          "data/curriculum-packs/uae-2026-2027-final/ae-2026-2027-arabic-g2-current-scope.json",
+          "data/curriculum-packs/uae-2026-2027-final/ae-2026-2027-arabic-g3-current-scope.json",
+          "data/curriculum-packs/uae-2026-2027-final/ae-2026-2027-arabic-g4-current-scope.json",
+          "data/curriculum-packs/uae-2026-2027-final/ae-2026-2027-arabic-g5-current-scope.json",
+          "data/curriculum-packs/uae-2026-2027-final/ae-2026-2027-arabic-g6-current-scope.json",
+          "data/curriculum-packs/uae-2026-2027-final/ae-2026-2027-arabic-g7-current-scope.json",
+          "data/curriculum-packs/uae-2026-2027-final/ae-2026-2027-arabic-g8-current-scope.json",
+          "data/curriculum-packs/uae-2026-2027-final/ae-2026-2027-arabic-g9-current-scope.json",
+          "data/curriculum-packs/uae-2026-2027-final/ae-2026-2027-arabic-g10-current-scope.json",
+          "data/curriculum-packs/uae-2026-2027-final/ae-2026-2027-arabic-g11-current-scope.json",
+          "data/curriculum-packs/uae-2026-2027-final/ae-2026-2027-arabic-g12-current-scope.json"
+        ],
+        "verifiedMappingFiles": [
+          "data/curriculum-mappings/ae-2026-2027-g1-current-scope-verified.json",
+          "data/curriculum-mappings/ae-2026-2027-g2-current-scope-verified.json",
+          "data/curriculum-mappings/ae-2026-2027-g3-current-scope-verified.json",
+          "data/curriculum-mappings/ae-2026-2027-g4-current-scope-verified.json",
+          "data/curriculum-mappings/ae-2026-2027-g5-current-scope-verified.json",
+          "data/curriculum-mappings/ae-2026-2027-g6-current-scope-verified.json",
+          "data/curriculum-mappings/ae-2026-2027-g7-current-scope-verified.json",
+          "data/curriculum-mappings/ae-2026-2027-g8-current-scope-verified.json",
+          "data/curriculum-mappings/ae-2026-2027-g9-current-scope-verified.json",
+          "data/curriculum-mappings/ae-2026-2027-g10-current-scope-verified.json",
+          "data/curriculum-mappings/ae-2026-2027-g11-current-scope-verified.json",
+          "data/curriculum-mappings/ae-2026-2027-g12-current-scope-verified.json"
+        ],
+        "missingEvidence": [],
+        "currentScopeComplete": true,
+        "fullYearComplete": false,
+        "mappingSummary": {
+          "mappingGrades": 12,
+          "verifiedMappingGrades": 12,
+          "officialCoverageNodes": 72,
+          "mappedCoverageNodes": 72,
+          "verifiedCoverageNodes": 72,
+          "nationalExtensions": 72
+        },
+        "databaseSummary": {
+          "curriculumId": "80a584ed-0dd8-4130-80f4-933a2de16f2e",
+          "grades": 12,
+          "lessons": 72,
+          "questions": 216,
+          "vocabulary": 216,
+          "activities": 216
+        },
+        "note": "مغلق للنطاق الرسمي المنشور والقابل للتحقق حاليًا للعام 2026-2027: الصفوف 1-12، الحلقات الثلاث، الفصول الدراسية الثلاثة، ومجالات اللغة العربية الوطنية، مع محتوى ضاديوم أصلي."
       },
-      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+      "publicationReadiness": "NATIONAL_CURRENT_SCOPE_COMPLETE"
     },
     {
       "code": "BH",
