@@ -1,5 +1,3 @@
-import MobileOAuthBridge from "@/components/mobile/MobileOAuthBridge";
-import DadyoomAds from "@/components/ads/DadyoomAds";
 import type { Metadata, Viewport } from "next";
 import {
   getSiteUrl,
@@ -9,12 +7,8 @@ import {
   SITE_TAGLINE,
 } from "@/lib/site";
 import "./globals.css";
+import DadyoomClientRuntime from "@/components/runtime/DadyoomClientRuntime";
 
-import NativeMobileShell from "@/components/mobile/NativeMobileShell";
-import NativeAppUpdater from "@/components/mobile/NativeAppUpdater";
-import DadCompanion from "@/components/dad-ai/DadCompanion";
-import DadyoomInstallPrompt from "@/components/pwa/DadyoomInstallPrompt";
-import DadyoomAutoUpdate from "@/components/pwa/DadyoomAutoUpdate";
 
 const siteUrl = getSiteUrl();
 
@@ -168,13 +162,7 @@ export default function RootLayout({
               ),
           }}
         />
-        <DadyoomAds />
-        <MobileOAuthBridge />
-        <NativeMobileShell />
-        <NativeAppUpdater />
-        <DadyoomInstallPrompt />
-        <DadyoomAutoUpdate />
-        <DadCompanion />
+        <DadyoomClientRuntime />
         {children}
       </body>
     </html>
