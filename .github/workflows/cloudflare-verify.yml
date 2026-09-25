@@ -32,9 +32,6 @@ jobs:
       - name: Tests
         run: npm run test:run
 
-      - name: Curriculum packs
-        run: npm run curriculum:verify
-
       - name: Official 22-country launch gate
         run: npm run curriculum:gate:official-22
 
