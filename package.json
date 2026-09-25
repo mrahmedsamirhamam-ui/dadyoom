@@ -36,7 +36,8 @@
     "mvp:verify:content": "node scripts/mvp-closure/verify-content.mjs",
     "mvp:verify:closure": "npm run mvp:verify:curriculum && npm run mvp:verify:content",
     "test:security": "vitest run --config tests/security/vitest.config.mts",
-    "curriculum:audit:official": "node scripts/audit-national-official-match.mjs"
+    "curriculum:audit:official": "node scripts/audit-national-official-match.mjs",
+    "curriculum:match:official": "node scripts/match-official-to-core.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
