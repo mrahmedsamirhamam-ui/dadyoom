@@ -1,0 +1,379 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "DJ",
+    "nameAr": "جيبوتي"
+  },
+  "academicYear": "2026-2027",
+  "grade": 11,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 4,
+  "mappedLessons": 4,
+  "verifiedLessons": 4,
+  "scope": "current-officially-published-and-publicly-verifiable-scope",
+  "policy": "المطابقة على مستوى السنة/المقرر أو السلسلة الثانوية؛ لا تعاد النصوص المحمية ولا تختلق عناوين غير منشورة.",
+  "mappings": [
+    {
+      "officialSlug": "dj-2026-2027-g11-l",
+      "officialTitle": "اللغة العربية — Première — سلسلة L",
+      "source": {
+        "label": "CRIPEN — البرامج المجمعة للتعليم الثانوي",
+        "url": "https://cripen.dj/wp-content/uploads/2025/05/Programmes-compile-seconde.pdf",
+        "currentExamUrl": "https://cripen.dj/index.php/2026/06/08/visite-officielle-du-ministre-dans-les-centres-dexamens/"
+      },
+      "relationType": "official-secondary-series+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "الحزمة تمثل العربية في السلسلة الثانوية الموثقة رسميًا، دون اختلاق عناوين دروس.",
+      "coreCoverage": [
+        {
+          "slug": "dj-dadyoom-core-g11-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-menfop-cripen-curriculum+official-guides+secondary-programs+national-pack"
+    },
+    {
+      "officialSlug": "dj-2026-2027-g11-es",
+      "officialTitle": "اللغة العربية — Première — سلسلة ES",
+      "source": {
+        "label": "CRIPEN — البرامج المجمعة للتعليم الثانوي",
+        "url": "https://cripen.dj/wp-content/uploads/2025/05/Programmes-compile-seconde.pdf",
+        "currentExamUrl": "https://cripen.dj/index.php/2026/06/08/visite-officielle-du-ministre-dans-les-centres-dexamens/"
+      },
+      "relationType": "official-secondary-series+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "الحزمة تمثل العربية في السلسلة الثانوية الموثقة رسميًا، دون اختلاق عناوين دروس.",
+      "coreCoverage": [
+        {
+          "slug": "dj-dadyoom-core-g11-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-menfop-cripen-curriculum+official-guides+secondary-programs+national-pack"
+    },
+    {
+      "officialSlug": "dj-2026-2027-g11-s",
+      "officialTitle": "اللغة العربية — Première — سلسلة S",
+      "source": {
+        "label": "CRIPEN — البرامج المجمعة للتعليم الثانوي",
+        "url": "https://cripen.dj/wp-content/uploads/2025/05/Programmes-compile-seconde.pdf",
+        "currentExamUrl": "https://cripen.dj/index.php/2026/06/08/visite-officielle-du-ministre-dans-les-centres-dexamens/"
+      },
+      "relationType": "official-secondary-series+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "الحزمة تمثل العربية في السلسلة الثانوية الموثقة رسميًا، دون اختلاق عناوين دروس.",
+      "coreCoverage": [
+        {
+          "slug": "dj-dadyoom-core-g11-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-menfop-cripen-curriculum+official-guides+secondary-programs+national-pack"
+    },
+    {
+      "officialSlug": "dj-2026-2027-g11-sg",
+      "officialTitle": "اللغة العربية — Première — سلسلة SG",
+      "source": {
+        "label": "CRIPEN — البرامج المجمعة للتعليم الثانوي",
+        "url": "https://cripen.dj/wp-content/uploads/2025/05/Programmes-compile-seconde.pdf",
+        "currentExamUrl": "https://cripen.dj/index.php/2026/06/08/visite-officielle-du-ministre-dans-les-centres-dexamens/"
+      },
+      "relationType": "official-secondary-series+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "الحزمة تمثل العربية في السلسلة الثانوية الموثقة رسميًا، دون اختلاق عناوين دروس.",
+      "coreCoverage": [
+        {
+          "slug": "dj-dadyoom-core-g11-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g11-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-menfop-cripen-curriculum+official-guides+secondary-programs+national-pack"
+    }
+  ]
+}
