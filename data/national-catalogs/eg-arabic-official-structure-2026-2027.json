@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "EG",
+    "nameAr": "مصر"
+  },
+  "academicYearTarget": "2026-2027",
+  "authority": {
+    "nameAr": "وزارة التربية والتعليم والتعليم الفني",
+    "baseUrl": "https://moe.gov.eg/",
+    "eLearningUrl": "https://moe.gov.eg/ar/elearningenterypage/e-learning/",
+    "digitalCurriculaEvidence": "https://moe.gov.eg/ar/what-s-on/news/16-9-25/"
+  },
+  "policy": "تُستخدم كتب الطالب والبوابة الرقمية الرسمية ومواصفات التقييم لإثبات نطاق المادة ومجالاتها. لا تُنسخ نصوص الكتب؛ ينشئ ضاديوم الشرح والأسئلة والأنشطة الأصلية.",
+  "currentEvidence": {
+    "verifiedAt": "2026-09-25",
+    "ministryStatement": "أعلنت الوزارة إتاحة المناهج الجديدة رقميا عبر موقعها الرسمي، كما أكدت أن تطوير اللغة العربية شمل المراحل حتى الصف الثاني الثانوي. البوابة الرسمية الحالية تعرض كتب اللغة العربية للصفوف الدراسية.",
+    "intellectualProperty": "حقوق المناهج والكتب الرسمية للدولة المصرية ممثلة في وزارة التربية والتعليم والتعليم الفني."
+  },
+  "grades": [
+    {
+      "grade": 1,
+      "label": "الصف الأول الابتدائي",
+      "stage": "primary",
+      "portalUrl": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1585",
+      "status": "current-ministry-portal-verified"
+    },
+    {
+      "grade": 2,
+      "label": "الصف الثاني الابتدائي",
+      "stage": "primary",
+      "portalUrl": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1932",
+      "status": "current-ministry-portal-verified"
+    },
+    {
+      "grade": 3,
+      "label": "الصف الثالث الابتدائي",
+      "stage": "primary",
+      "portalUrl": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1933",
+      "status": "current-ministry-portal-verified"
+    },
+    {
+      "grade": 4,
+      "label": "الصف الرابع الابتدائي",
+      "stage": "primary",
+      "portalUrl": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1934",
+      "status": "current-ministry-portal-verified"
+    },
+    {
+      "grade": 5,
+      "label": "الصف الخامس الابتدائي",
+      "stage": "primary",
+      "portalUrl": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582",
+      "status": "current-ministry-portal-verified"
+    },
+    {
+      "grade": 6,
+      "label": "الصف السادس الابتدائي",
+      "stage": "primary",
+      "portalUrl": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1935",
+      "status": "current-ministry-portal-verified"
+    },
+    {
+      "grade": 7,
+      "label": "الصف الأول الإعدادي",
+      "stage": "preparatory",
+      "portalUrl": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1930&schoolYearId=4201",
+      "status": "current-ministry-portal-verified"
+    },
+    {
+      "grade": 8,
+      "label": "الصف الثاني الإعدادي",
+      "stage": "preparatory",
+      "portalUrl": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1930&schoolYearId=4451",
+      "status": "current-ministry-portal-verified"
+    },
+    {
+      "grade": 9,
+      "label": "الصف الثالث الإعدادي",
+      "stage": "preparatory",
+      "portalUrl": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1930&schoolYearId=4789",
+      "status": "current-ministry-portal-verified"
+    },
+    {
+      "grade": 10,
+      "label": "الصف الأول الثانوي",
+      "stage": "secondary",
+      "portalUrl": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?schoolStageId=1931&schoolYearId=1936",
+      "status": "current-ministry-portal-verified"
+    },
+    {
+      "grade": 11,
+      "label": "الصف الثاني الثانوي",
+      "stage": "secondary",
+      "portalUrl": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?schoolStageId=1931&schoolYearId=1937",
+      "status": "current-ministry-portal-verified"
+    },
+    {
+      "grade": 12,
+      "label": "الصف الثالث الثانوي",
+      "stage": "secondary",
+      "portalUrl": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=29034&schoolStageId=1931&schoolYearId=1938",
+      "status": "current-ministry-portal-verified",
+      "officialUnits": 7
+    }
+  ],
+  "domainModel": {
+    "primaryAndPreparatory": [
+      "الاستماع والتحدث",
+      "القراءة والفهم",
+      "النصوص والتذوق الأدبي",
+      "النحو والبناء اللغوي",
+      "الإملاء والخط",
+      "الكتابة والتعبير"
+    ],
+    "secondary": [
+      "القراءة",
+      "النصوص الأدبية",
+      "الأدب",
+      "البلاغة",
+      "النحو والصرف",
+      "الكتابة والتعبير"
+    ],
+    "evidenceNotes": [
+      "كتاب الصف السادس الرسمي يصرح بأقسام القراءة والقواعد والنصوص الشعرية والقواعد الإملائية والخط، وبمهارات الاستماع والتحدث والقراءة والكتابة.",
+      "مواصفات الوزارة للمرحلة الإعدادية تقيس الكتابة والقراءة والنصوص والتذوق الأدبي والقواعد.",
+      "بوابة الصف الأول الثانوي تفصل القراءة والنصوص والأدب والبلاغة والنحو، ويضاف التعبير الكتابي ضمن نواتج العربية العامة.",
+      "بوابة الصف الثالث الثانوي تعرض سبع وحدات عربية رسمية."
+    ]
+  },
+  "claimPolicy": "مطابق للمنهج الرسمي المصري = مواءم مع نطاق كتب ومجالات/وحدات اللغة العربية المنشورة على بوابة وزارة التربية والتعليم للنطاق الحالي، ولا تعني العبارة اعتمادًا أو شراكة من الوزارة.",
+  "generatedAt": "2026-09-25"
+}
