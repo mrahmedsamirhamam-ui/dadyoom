@@ -210,6 +210,58 @@ for (const marker of [
   }
 }
 
+const legacyCompletionFiles = [
+  "app/api/progress/route.ts",
+  "app/api/progress/complete/route.ts",
+  "app/lessons/[id]/CompleteLessonButton.tsx",
+];
+
+for (const rel of legacyCompletionFiles) {
+  const source = fs.readFileSync(
+    path.resolve(root, rel),
+    "utf8",
+  );
+
+  if (
+    source.includes('.from("student_progress")') ||
+    source.includes('.from("lesson_progress")')
+  ) {
+    throw new Error(
+      `FINAL_LEGACY_COMPLETION_BYPASS_REMAINS:${rel}`,
+    );
+  }
+
+  if (
+    !source.includes("/api/lessons/complete")
+  ) {
+    throw new Error(
+      `FINAL_CANONICAL_COMPLETION_BRIDGE_MISSING:${rel}`,
+    );
+  }
+}
+
+const canonicalCompletion = fs.readFileSync(
+  path.resolve(
+    root,
+    "features/student-progress/actions/completeLesson.ts",
+  ),
+  "utf8",
+);
+
+for (const marker of [
+  "REQUIRED_MASTERY_SCORE = 90",
+  "syncLessonMasteryAction",
+  "updateStreak",
+  "getUnifiedGamificationXP",
+  "completeAdaptiveStep",
+]) {
+  if (!canonicalCompletion.includes(marker)) {
+    throw new Error(
+      `FINAL_CANONICAL_COMPLETION_MARKER_MISSING:${marker}`,
+    );
+  }
+}
+
 const tracked = execFileSync(
   "git",
   ["ls-files"],
@@ -254,6 +306,8 @@ console.log("FINAL_OFFICIAL_SOURCE_CATALOG=22");
 console.log("FINAL_BAHRAIN_PACK=18");
 console.log("FINAL_DAD_GUARDS=PASS");
 console.log("FINAL_ROLE_GUARDS=PASS");
+console.log("FINAL_CANONICAL_COMPLETION_GATE=PASS");
+console.log("FINAL_LEGACY_COMPLETION_BYPASSES=0");
 console.log("FINAL_LOCAL_ARTIFACTS_TRACKED=0");
 console.log("FINAL_TRACKED_BACKUPS_EXISTING=0");
 console.log("FINAL_MVP_SOURCE_AUDIT=PASS");
