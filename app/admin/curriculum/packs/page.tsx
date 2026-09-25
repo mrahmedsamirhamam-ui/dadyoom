@@ -64,7 +64,7 @@ export default function CurriculumPacksPage() {
           </div>
         </section>
 
-        <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+        <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-6">
           <Metric
             label="الدول العربية"
             value={center.totalCountries}
@@ -76,11 +76,25 @@ export default function CurriculumPacksPage() {
             note="مسار ضاديوم متاح"
           />
           <Metric
-            label="مطابقة وطنية موثقة"
+            label="مصادر وطنية متحققة"
+            value={
+              center.sourceVerifiedCountries
+            }
+            note="سلطة المصدر تم التحقق منها"
+          />
+          <Metric
+            label="مطابقة جزئية"
+            value={
+              center.partialMatchCountries
+            }
+            note="بدأت خرائط المنهج"
+          />
+          <Metric
+            label="مطابقة وطنية مكتملة"
             value={
               center.officialReadyCountries
             }
-            note="Curriculum Packs موثقة"
+            note="إغلاق موثق لكل النطاق المطلوب"
           />
           <Metric
             label="الحزم الجاهزة"
@@ -159,12 +173,20 @@ export default function CurriculumPacksPage() {
                         className={`rounded-full px-3 py-1.5 text-[10px] font-black ${
                           country.officialReady
                             ? "bg-[#e8f3ff] text-[#24567a]"
-                            : "bg-[#fff4df] text-[#8b641f]"
+                            : country.officialVerificationStatus === "source-verified"
+                              ? "bg-[#eef4ff] text-[#405a86]"
+                              : "bg-[#fff4df] text-[#8b641f]"
                         }`}
                       >
                         {country.officialReady
-                          ? "مطابقة وطنية موثقة"
-                          : "المطابقة الوطنية لاحقًا"}
+                          ? "مطابقة وطنية مكتملة"
+                          : country.officialVerificationStatus === "source-verified"
+                            ? country.officialStatus === "partial"
+                              ? "المصدر موثق • مطابقة جزئية"
+                              : "المصدر موثق • الخريطة قيد البناء"
+                            : country.officialVerificationStatus === "needs-verification"
+                              ? "المصدر يحتاج تحقق"
+                              : "مصدر رسمي مطلوب"}
                       </span>
                     </div>
                   </div>
