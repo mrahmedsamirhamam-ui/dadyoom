@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "MR",
+    "nameAr": "موريتانيا",
+    "nameEn": "Mauritania"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "status": "current-scope-complete",
+  "matchingStatus": "current-scope-complete",
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-09-25",
+  "authority": {
+    "ministry": "https://www.education.gov.mr/",
+    "officialIPNTextbookPlatform": "https://koutoubi.mr/",
+    "officialTeacherGuides": "https://koutoubi.mr/guides-enseignant/guide-enseignant/",
+    "arabicPolicy2026": "https://www.education.gov.mr/ar/node/1090",
+    "preparation20262027": "https://www.education.gov.mr/index.php/ar/node/1132",
+    "textbookDistribution": "https://education.gov.mr/fr/node/982",
+    "curriculumReform": "https://www.education.gov.mr/ar/node/555"
+  },
+  "structure": {
+    "officialLevels": 13,
+    "primary": {
+      "years": 6,
+      "levels": [
+        "1AP",
+        "2AP",
+        "3AP",
+        "4AP",
+        "5AP",
+        "6AP"
+      ]
+    },
+    "lowerSecondary": {
+      "years": 4,
+      "levels": [
+        "1AS",
+        "2AS",
+        "3AS",
+        "4AS"
+      ]
+    },
+    "upperSecondary": {
+      "years": 3,
+      "levels": [
+        "5AS",
+        "6AS",
+        "7AS"
+      ],
+      "trackGrouping": [
+        "الشعبة الأدبية",
+        "الشعبة العلمية"
+      ]
+    },
+    "note": "البنية الرسمية الحالية في الموارد المنشورة هي 6 سنوات ابتدائي + 4 سنوات إعدادي + 3 سنوات ثانوي؛ لذلك احتُفظ بالمستوى الثالث عشر بدل ضغطه داخل نموذج 12 صفًا."
+  },
+  "coverage": {
+    "packLevels": "13/13",
+    "verifiedMappingLevels": "13/13",
+    "officialCoverageNodes": 16,
+    "mappedCoverageNodes": 16,
+    "verifiedCoverageNodes": 16,
+    "nationalExtensions": 16,
+    "database": {
+      "curriculumId": "34666fdf-c109-45b1-bf4a-89047f63382d",
+      "grades": 13,
+      "units": 13,
+      "lessons": 16,
+      "questions": 48,
+      "vocabulary": 48,
+      "publishedActivities": 48,
+      "minimumContentCharacters": 620
+    },
+    "gradeLessonCounts": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 1,
+      "7": 1,
+      "8": 1,
+      "9": 1,
+      "10": 1,
+      "11": 2,
+      "12": 2,
+      "13": 2
+    }
+  },
+  "qualityGates": {
+    "officialSourcesVerified": true,
+    "allOfficialLevelsPresent": true,
+    "allPacksRightsVerified": true,
+    "allMappingsVerified": true,
+    "officialEqualsMappedEqualsVerified": true,
+    "allLessonsPublished": true,
+    "allLessonsHaveOfficialSource": true,
+    "minimumObjectivesPerLesson": 3,
+    "minimumQuestionsPerLesson": 3,
+    "minimumVocabularyPerLesson": 3,
+    "minimumPublishedActivitiesPerLesson": 3,
+    "failingDatabaseLessons": 0,
+    "legacyConflict": "inactive-before-import"
+  },
+  "copyrightPolicy": "لا يعيد ضاديوم نشر نصوص الكتب الموريتانية؛ يستخدم عناوين الكتب والمستويات والمسارات وروابط المعهد التربوي الوطني ووزارة التربية لإثبات المواءمة، بينما المحتوى التعليمي أصلي.",
+  "claimPolicy": "مطابق للمنهج الرسمي الموريتاني = مواءم مع الكتب الرسمية المعتمدة المنشورة عبر منصة كُتبي التابعة لمبادرة المعهد التربوي الوطني وبنية التعليم الحالية ومصادر وزارة التربية ضمن النطاق القابل للتحقق؛ لا تعني العبارة اعتمادًا أو شراكة أو تأييدًا."
+}
