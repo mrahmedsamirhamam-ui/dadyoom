@@ -273,6 +273,72 @@ function confidence(score) {
   return "very-low";
 }
 
+function isTextSpecific(lesson) {
+  const value = normalizeArabic(
+    [
+      lesson?.title,
+      lesson?.summary,
+    ]
+      .filter(Boolean)
+      .join(" "),
+  );
+
+  return (
+    lesson?.lessonType === "reading" &&
+    (
+      /[«»]/u.test(String(lesson?.title ?? "")) ||
+      /(?:قصيده|شعر|سيره|روايه|قصه|النص المقرر|كتاب الطالب)/u.test(value)
+    )
+  );
+}
+
+function coverageStatus(lesson, score) {
+  if (!Number.isFinite(score) || score <= 0) {
+    return "gap";
+  }
+
+  if (isTextSpecific(lesson)) {
+    return score >= 0.35
+      ? "partial-text-specific"
+      : "gap-text-specific";
+  }
+
+  if (score >= 0.80) {
+    return "covered";
+  }
+
+  if (score >= 0.55) {
+    return "partial";
+  }
+
+  return "gap";
+}
+
+function relationHint(lesson, score) {
+  const status =
+    coverageStatus(
+      lesson,
+      score,
+    );
+
+  if (status === "covered") {
+    return "direct-skill";
+  }
+
+  if (status === "partial") {
+    return "supporting-skill";
+  }
+
+  if (
+    status === "partial-text-specific" ||
+    status === "gap-text-specific"
+  ) {
+    return "text-specific";
+  }
+
+  return "unmapped";
+}
+
 const { data: curricula, error: curriculaError } =
   await supabase
     .from("curricula")
@@ -400,6 +466,21 @@ const mappings = official.map((lesson) => {
     suggestedCoreTitle: best?.coreTitle ?? null,
     score: best?.score ?? 0,
     confidence: confidence(best?.score ?? 0),
+    coverageStatus:
+      coverageStatus(
+        lesson,
+        best?.score ?? 0,
+      ),
+    relationHint:
+      relationHint(
+        lesson,
+        best?.score ?? 0,
+      ),
+    needsNationalExtension:
+      coverageStatus(
+        lesson,
+        best?.score ?? 0,
+      ).startsWith("gap"),
     reviewStatus: "pending",
     candidates,
   };
@@ -414,6 +495,55 @@ const counts = mappings.reduce(
   {},
 );
 
+const coverageCounts =
+  mappings.reduce(
+    (acc, row) => {
+      acc[row.coverageStatus] =
+        (acc[row.coverageStatus] ?? 0) + 1;
+      return acc;
+    },
+    {},
+  );
+
+const gapLessons =
+  mappings
+    .filter(
+      (row) =>
+        row.needsNationalExtension,
+    )
+    .map((row) => ({
+      officialLessonId:
+        row.officialLessonId,
+      officialSlug:
+        row.officialSlug,
+      officialTitle:
+        row.officialTitle,
+      officialLessonType:
+        row.officialLessonType,
+      gradeNumber:
+        row.gradeNumber,
+      unitNumber:
+        row.unitNumber,
+      unitTitle:
+        row.unitTitle,
+      source:
+        row.source,
+      bestCandidate: {
+        coreLessonId:
+          row.suggestedCoreLessonId,
+        coreSlug:
+          row.suggestedCoreSlug,
+        coreTitle:
+          row.suggestedCoreTitle,
+        score:
+          row.score,
+      },
+      action:
+        "create-or-review-national-extension",
+      reviewStatus:
+        "pending",
+    }));
+
 const report = {
   schemaVersion: 1,
   generatedAt: new Date().toISOString(),
@@ -424,6 +554,10 @@ const report = {
   coreLessons: core.length,
   officialLessons: official.length,
   confidenceCounts: counts,
+  coverageCounts,
+  nationalExtensionCandidates:
+    gapLessons.length,
+  gapLessons,
   mappings,
 };
 
@@ -445,4 +579,6 @@ console.log(`OFFICIAL_MATCH_CORE_LESSONS=${core.length}`);
 console.log(`OFFICIAL_MATCH_OFFICIAL_LESSONS=${official.length}`);
 console.log(`OFFICIAL_MATCH_REPORT=${path.relative(process.cwd(), target)}`);
 console.log(`OFFICIAL_MATCH_CONFIDENCE=${JSON.stringify(counts)}`);
+console.log(`OFFICIAL_MATCH_COVERAGE=${JSON.stringify(coverageCounts)}`);
+console.log(`OFFICIAL_MATCH_NATIONAL_EXTENSION_CANDIDATES=${gapLessons.length}`);
 console.log("OFFICIAL_MATCH_CANDIDATES=PASS");
