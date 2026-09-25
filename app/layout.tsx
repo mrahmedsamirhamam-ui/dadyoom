@@ -57,7 +57,6 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   category: "education",
   alternates: {
-    canonical: "/",
     languages: {
       ar: "/",
     },
