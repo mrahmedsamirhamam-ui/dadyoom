@@ -195,9 +195,6 @@ export async function POST(request: Request) {
       {
         answer,
         routed: true,
-        provider: result.provider,
-        model: result.model,
-        latencyMs: result.latencyMs,
       },
       { status: 200 },
     );
