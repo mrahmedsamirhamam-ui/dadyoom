@@ -54,6 +54,7 @@ const requiredFiles = [
   "supabase/migrations/20260925_fix_welcome_trial_to_one_day.sql",
   "supabase/migrations/20260925062000_secure_student_xp_and_plan_rpcs.sql",
   "supabase/migrations/20260925063500_harden_authorization_helper_rpcs.sql",
+  "supabase/migrations/20260925074000_revoke_internal_link_code_generators.sql",
 ];
 
 for (const rel of requiredFiles) {
@@ -354,4 +355,5 @@ console.log("FINAL_LEGACY_COMPLETION_BYPASSES=0");
 console.log("FINAL_ZERO_COST_PAYMENTS=PAUSED");
 console.log("FINAL_LOCAL_ARTIFACTS_TRACKED=0");
 console.log("FINAL_TRACKED_BACKUPS_EXISTING=0");
+console.log("FINAL_INTERNAL_LINK_CODE_GENERATORS=SERVICE_ROLE_ONLY");
 console.log("FINAL_MVP_SOURCE_AUDIT=PASS");
