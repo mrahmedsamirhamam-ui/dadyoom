@@ -11,19 +11,25 @@
       "code": "BH",
       "nameAr": "مملكة البحرين",
       "matchingStatus": "partial",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://moe.gov.bh/ar/moe-educational-resources",
           "kind": "official-catalog"
+        },
+        {
+          "url": "https://moe.gov.bh/ar/the-national-curriculum-framework",
+          "kind": "official-national-framework",
+          "note": "إطار وطني رسمي؛ تحديث 2026."
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "EG",
       "nameAr": "مصر",
       "matchingStatus": "partial",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://moe.gov.eg/what-s-on/news",
@@ -32,14 +38,20 @@
         {
           "url": "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026/Primary/Primary6/Term2/StudentBook/Arabic_prim6_TR2.pdf",
           "kind": "official-storage-example"
+        },
+        {
+          "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/",
+          "kind": "official-learning-library",
+          "note": "بوابة وزارة التربية والتعليم للتعلم الإلكتروني والكتب."
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "JO",
       "nameAr": "الأردن",
       "matchingStatus": "partial",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://www.nccd.gov.jo/Ar/Pages/Publications/?MaterialStudy=92",
@@ -48,51 +60,79 @@
         {
           "url": "https://nccd.gov.jo/Ar/Pages/textbooks",
           "kind": "official-catalog"
+        },
+        {
+          "url": "https://nccd.gov.jo/Ar/Pages/Publications/?MaterialStudy=92",
+          "kind": "official-arabic-catalog",
+          "note": "كتالوج المركز الوطني لتطوير المناهج للغة العربية، الصفوف 1-12."
+        },
+        {
+          "url": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.pdf",
+          "kind": "official-arabic-framework"
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "LY",
       "nameAr": "ليبيا",
       "matchingStatus": "partial",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://cerc.moe.gov.ly/educational-curricul/",
           "kind": "official-catalog"
+        },
+        {
+          "url": "https://cerc.moe.gov.ly/",
+          "kind": "official-curriculum-center",
+          "note": "مركز المناهج التعليمية والبحوث التربوية؛ مكتبة التعليم الأساسي والثانوي."
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "PS",
       "nameAr": "فلسطين",
       "matchingStatus": "partial",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://moe.edu.ps/class1/books",
           "kind": "official-catalog-pattern",
           "note": "يُتحقق صفًا صفًا حتى class12 قبل الاعتماد."
+        },
+        {
+          "url": "https://moe.edu.ps/pal-books",
+          "kind": "official-textbook-catalog",
+          "note": "بوابة كتب وزارة التربية من الصف الأول حتى الثاني عشر."
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "TN",
       "nameAr": "تونس",
       "matchingStatus": "not-closed",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://www.cnp.com.tn/man-eleves/",
           "kind": "official-catalog"
+        },
+        {
+          "url": "https://cnp.com.tn/arabic/index.htm",
+          "kind": "official-publisher",
+          "note": "المركز الوطني البيداغوجي؛ قائمة الكتب والعودة المدرسية 2026-2027."
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "LB",
       "nameAr": "لبنان",
       "matchingStatus": "not-closed",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://www.crdp.org/books-pdf",
@@ -101,26 +141,43 @@
         {
           "url": "https://www.crdp.org/curriculum",
           "kind": "official-curriculum"
+        },
+        {
+          "url": "https://www.crdp.org/curriculum/%D8%A7%D9%84%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85%D9%8A-%D9%84%D9%84%D8%B9%D8%A7%D9%85-%D9%A2%D9%A0%D9%A2%D9%A5-%D9%A2%D9%A0%D9%A2%D9%A6%D8%8C-%D9%88%D8%B2%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%8A-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D9%84%D9%84%D8%A8%D8%AD%D9%88%D8%AB",
+          "kind": "official-current-curriculum",
+          "note": "المحتوى والأهداف التعليمية 2025-2026، ويشمل العربية وآدابها."
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "MR",
       "nameAr": "موريتانيا",
       "matchingStatus": "not-closed",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://www.koutoubi.mr/fr/",
           "kind": "official-catalog-candidate"
+        },
+        {
+          "url": "https://www.education.gov.mr/fr/node/982",
+          "kind": "official-textbook-distribution",
+          "note": "وزارة التربية تؤكد توزيع كتب العربية ضمن الكتب المدرسية."
+        },
+        {
+          "url": "https://koutoubi.mr/fondamentals/1ere/Arabe/",
+          "kind": "national-textbook-catalog",
+          "note": "كتالوج كتب عربية حديث؛ يحتاج ربط مؤسسي نهائي قبل اعتباره المصدر الحاسم وحده."
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "OM",
       "nameAr": "عُمان",
       "matchingStatus": "not-closed",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://ict.moe.gov.om/eBooks/index.php",
@@ -130,7 +187,8 @@
           "url": "https://ict.moe.gov.om/book",
           "kind": "official-catalog"
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "AE",
@@ -152,7 +210,7 @@
       "code": "MA",
       "nameAr": "المغرب",
       "matchingStatus": "not-closed",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://telmidtice.men.gov.ma/",
@@ -162,31 +220,44 @@
           "url": "https://www.men.gov.ma/",
           "kind": "official-portal"
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "SD",
       "nameAr": "السودان",
       "matchingStatus": "not-closed",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://gmoe.gov.sd/",
           "kind": "official-portal-candidate"
+        },
+        {
+          "url": "https://gmoe.gov.sd/?page_id=1343",
+          "kind": "official-arabic-curriculum",
+          "note": "صفحة اللغة العربية بوزارة التربية."
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "QA",
       "nameAr": "قطر",
       "matchingStatus": "not-closed",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://www.edu.gov.qa/",
           "kind": "official-portal"
+        },
+        {
+          "url": "https://www.edu.gov.qa/ar/Content/CurriculumSection",
+          "kind": "official-curriculum-department",
+          "note": "قسم المناهج بوزارة التربية والتعليم والتعليم العالي."
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "SY",
@@ -228,31 +299,48 @@
       "code": "KW",
       "nameAr": "الكويت",
       "matchingStatus": "not-closed",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://elibrary.moe.edu.kw/StudentsLibrary",
           "kind": "official-library"
+        },
+        {
+          "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+          "kind": "official-arabic-standards-primary",
+          "note": "مصفوفة معايير اللغة العربية للمرحلة الابتدائية."
+        },
+        {
+          "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/95",
+          "kind": "official-arabic-standards-middle",
+          "note": "مصفوفة معايير اللغة العربية للمرحلة المتوسطة."
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "DZ",
       "nameAr": "الجزائر",
       "matchingStatus": "not-closed",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://www.onps.dz/",
           "kind": "official-publisher"
+        },
+        {
+          "url": "https://www.onps.dz/en/",
+          "kind": "official-school-publisher",
+          "note": "الديوان الوطني للمطبوعات المدرسية؛ كتالوج الكتب المدرسية."
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "SA",
       "nameAr": "السعودية",
       "matchingStatus": "not-closed",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://ien.edu.sa/",
@@ -265,26 +353,38 @@
         {
           "url": "https://www.moe.gov.sa/",
           "kind": "official-portal"
+        },
+        {
+          "url": "https://tawasul.moe.gov.sa/FAQ",
+          "kind": "official-ministry-guidance",
+          "note": "وزارة التعليم تحيل رسميًا للحصول على الكتب/أدلة المعلم إلى منصة عين ien.edu.sa."
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "YE",
       "nameAr": "اليمن",
       "matchingStatus": "not-closed",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://e-learning-moe.edu.ye/lcms/",
           "kind": "official-learning-portal-candidate"
+        },
+        {
+          "url": "https://www.e-learning-moe.edu.ye/teachergiude.php",
+          "kind": "official-teacher-guides",
+          "note": "الإدارة العامة للتعليم الإلكتروني؛ أدلة اللغة العربية."
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "DJ",
       "nameAr": "جيبوتي",
       "matchingStatus": "not-closed",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://cripen.dj/",
@@ -293,32 +393,57 @@
         {
           "url": "https://education.dj/?lang=ar",
           "kind": "official-portal-candidate"
+        },
+        {
+          "url": "https://education.dj/portail/metier/guides/5eme/arabe.pdf",
+          "kind": "official-arabic-guide",
+          "note": "دليل رسمي لتعليم العربية في جيبوتي."
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "SO",
       "nameAr": "الصومال",
       "matchingStatus": "not-closed",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://moe.gov.so/",
           "kind": "official-portal"
+        },
+        {
+          "url": "https://moe.gov.so/wp-content/uploads/2022/04/National-Education-Policy-Eng-Version-Final-DG-copy.pdf",
+          "kind": "official-policy",
+          "note": "يثبت وضع العربية في السياسة الوطنية؛ لا يكفي وحده لإغلاق خرائط الكتب."
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     },
     {
       "code": "KM",
       "nameAr": "جزر القمر",
       "matchingStatus": "not-closed",
-      "verificationStatus": "candidate",
+      "verificationStatus": "source-verified",
       "sources": [
         {
           "url": "https://mineducomores.gouv.km/",
           "kind": "official-portal-candidate"
+        },
+        {
+          "url": "https://mineducomores.gouv.km/en/completion-of-the-arabic-language-training-in-comoros-a-further-step-towards-enhancing-educational-capacities/",
+          "kind": "official-ministry-evidence",
+          "note": "يثبت العربية لغة رسمية وحضورها في المنهج؛ لا يكفي لخرائط الكتب صفًا صفًا."
         }
-      ]
+      ],
+      "sourceVerifiedAt": "2026-09-25"
     }
-  ]
+  ],
+  "statusDefinitions": {
+    "candidate": "مسار مرشح ولم يتم التحقق من سلطة المصدر ونطاقه بالكامل.",
+    "source-verified": "تم التحقق من أن المصدر تابع لوزارة/جهة وطنية رسمية أو جهة المناهج الرسمية، لكن تغطية الصفوف والوحدات والدروس لم تُغلق بعد.",
+    "needs-verification": "المصدر أو سلطة النطاق تحتاج تحققًا إضافيًا.",
+    "verified": "تستخدم فقط بعد اكتمال تدقيق التغطية الوطنية المطلوبة وإغلاق المطابقة."
+  },
+  "lastSourceVerification": "2026-09-25"
 }
