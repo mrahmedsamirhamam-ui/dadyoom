@@ -46,6 +46,7 @@ const requiredFiles = [
   "docs/RELEASE-GATE.md",
   "supabase/migrations/20260826_release_security_hardening_v1.sql",
   "supabase/migrations/20260925_fix_welcome_trial_to_one_day.sql",
+  "supabase/migrations/20260925062000_secure_student_xp_and_plan_rpcs.sql",
 ];
 
 for (const rel of requiredFiles) {
@@ -262,6 +263,40 @@ for (const marker of [
   }
 }
 
+const checkoutUI = fs.readFileSync(
+  path.resolve(
+    root,
+    "components/billing/CheckoutButtons.tsx",
+  ),
+  "utf8",
+);
+
+const tapCreate = fs.readFileSync(
+  path.resolve(
+    root,
+    "app/api/payments/tap/create/route.ts",
+  ),
+  "utf8",
+);
+
+const paddleConfig = fs.readFileSync(
+  path.resolve(
+    root,
+    "app/api/payments/paddle/config/route.ts",
+  ),
+  "utf8",
+);
+
+if (
+  !checkoutUI.includes("الدفع غير مفعّل حاليًا") ||
+  !tapCreate.includes("PAYMENTS_PAUSED") ||
+  !paddleConfig.includes("PAYMENTS_PAUSED")
+) {
+  throw new Error(
+    "FINAL_ZERO_COST_PAYMENT_PAUSE_MISSING",
+  );
+}
+
 const tracked = execFileSync(
   "git",
   ["ls-files"],
@@ -308,6 +343,7 @@ console.log("FINAL_DAD_GUARDS=PASS");
 console.log("FINAL_ROLE_GUARDS=PASS");
 console.log("FINAL_CANONICAL_COMPLETION_GATE=PASS");
 console.log("FINAL_LEGACY_COMPLETION_BYPASSES=0");
+console.log("FINAL_ZERO_COST_PAYMENTS=PAUSED");
 console.log("FINAL_LOCAL_ARTIFACTS_TRACKED=0");
 console.log("FINAL_TRACKED_BACKUPS_EXISTING=0");
 console.log("FINAL_MVP_SOURCE_AUDIT=PASS");
