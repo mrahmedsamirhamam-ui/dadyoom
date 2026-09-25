@@ -27,7 +27,6 @@ export type AiResult = {
 type ProviderError = Error & { status?: number };
 
 const DEFAULT_ECONOMY = [
-  "bytez",
   "gemini",
   "deepseek",
   "openrouter",
@@ -41,7 +40,6 @@ const DEFAULT_ECONOMY = [
 const DEFAULT_QUALITY = [
   "anthropic",
   "gemini",
-  "bytez",
   "deepseek",
   "openrouter",
   "groq",
@@ -168,223 +166,6 @@ async function openAiCompatible(params: {
   }
 
   throw makeError("EMPTY_OPENAI_COMPAT_RESPONSE");
-}
-
-
-function bytezOutputText(output: unknown): string {
-  if (typeof output === "string") {
-    return output.trim();
-  }
-
-  if (Array.isArray(output)) {
-    return output
-      .map((item) => bytezOutputText(item))
-      .filter(Boolean)
-      .join("\n")
-      .trim();
-  }
-
-  if (!output || typeof output !== "object") {
-    return "";
-  }
-
-  const record = output as Record<string, unknown>;
-
-  for (const key of [
-    "text",
-    "generated_text",
-    "content",
-    "response",
-    "answer",
-  ]) {
-    const value = record[key];
-    if (typeof value === "string" && value.trim()) {
-      return value.trim();
-    }
-  }
-
-  const message = record.message;
-  if (message && typeof message === "object") {
-    const content = (message as Record<string, unknown>).content;
-    if (typeof content === "string" && content.trim()) {
-      return content.trim();
-    }
-  }
-
-  const choices = record.choices;
-  if (Array.isArray(choices)) {
-    const text = choices
-      .map((choice) => bytezOutputText(choice))
-      .filter(Boolean)
-      .join("\n")
-      .trim();
-
-    if (text) return text;
-  }
-
-  return "";
-}
-
-function bytezModelAllowed(model: string) {
-  if (
-    process.env.BYTEZ_ALLOW_PAID_MODELS?.trim().toLowerCase() ===
-    "true"
-  ) {
-    return true;
-  }
-
-  const allowed = new Set([
-    "Qwen/Qwen3-4B",
-    ...list(process.env.BYTEZ_FREE_MODEL_ALLOWLIST),
-  ]);
-
-  return allowed.has(model);
-}
-
-async function callBytez(input: AiRequest): Promise<AiResult> {
-  const apiKeys = collectKeys("BYTEZ");
-
-  if (!apiKeys.length) {
-    throw makeError("BYTEZ_NOT_CONFIGURED");
-  }
-
-  const configuredModels = list(
-    process.env.BYTEZ_MODELS_PRIORITY,
-  );
-
-  const models = [
-    ...new Set(
-      (
-        configuredModels.length
-          ? configuredModels
-          : [
-              process.env.BYTEZ_MODEL?.trim(),
-              "Qwen/Qwen3-4B",
-            ]
-      ).filter((value): value is string => Boolean(value)),
-    ),
-  ].filter(bytezModelAllowed);
-
-  if (!models.length) {
-    throw makeError("BYTEZ_NO_ALLOWED_MODEL");
-  }
-
-  const baseUrl =
-    process.env.BYTEZ_BASE_URL?.trim() ||
-    "https://api.bytez.com";
-
-  let lastError: unknown = null;
-
-  for (const model of models) {
-    let modelError: unknown = null;
-
-    for (const apiKey of apiKeys) {
-      const started = Date.now();
-
-      try {
-        const modelPath = model
-          .split("/")
-          .map((part) => encodeURIComponent(part))
-          .join("/");
-
-        const response = await fetchTimed(
-          `${baseUrl.replace(/\/+$/u, "")}/models/v2/${modelPath}`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: apiKey.trim(),
-            },
-            body: JSON.stringify({
-              messages: input.messages,
-              stream: false,
-              params: {
-                max_length:
-                  input.maxTokens ?? 1200,
-                temperature:
-                  input.temperature ?? 0.3,
-              },
-            }),
-          },
-        );
-
-        const raw = await response.text();
-
-        if (!response.ok) {
-          const error = makeError(
-            `BYTEZ_${response.status}:${raw.slice(0, 250)}`,
-            response.status,
-          );
-          lastError = error;
-          modelError = error;
-
-          if (
-            response.status === 401 ||
-            response.status === 403
-          ) {
-            continue;
-          }
-
-          break;
-        }
-
-        let payload: {
-          error?: unknown;
-          output?: unknown;
-        };
-
-        try {
-          payload = JSON.parse(raw) as {
-            error?: unknown;
-            output?: unknown;
-          };
-        } catch {
-          throw makeError("BYTEZ_INVALID_JSON");
-        }
-
-        if (payload.error) {
-          throw makeError(
-            `BYTEZ_ERROR:${String(payload.error).slice(0, 250)}`,
-          );
-        }
-
-        const text =
-          bytezOutputText(payload.output);
-
-        if (!text) {
-          throw makeError("BYTEZ_EMPTY");
-        }
-
-        return {
-          text,
-          provider: "bytez",
-          model,
-          latencyMs: Date.now() - started,
-        };
-      } catch (error) {
-        lastError = error;
-        modelError = error;
-        const status = (error as ProviderError).status;
-
-        if (status === 401 || status === 403) {
-          continue;
-        }
-
-        break;
-      }
-    }
-
-    const status = (modelError as ProviderError | null)?.status;
-
-    if (
-      status &&
-      ![404, 408, 425, 429, 500, 502, 503, 504].includes(status)
-    ) {
-      break;
-    }
-  }
-
-  throw lastError ?? makeError("BYTEZ_FAILED");
 }
 
 async function callOllama(input: AiRequest): Promise<AiResult> {
@@ -765,7 +546,6 @@ async function callProvider(
   input: AiRequest,
 ): Promise<AiResult> {
   if (provider === "ollama") return callOllama(input);
-  if (provider === "bytez") return callBytez(input);
   if (provider === "gemini") return callGemini(input);
   if (provider === "anthropic") return callAnthropic(input);
 
@@ -840,31 +620,12 @@ export async function routeAi(input: AiRequest): Promise<AiResult> {
         profile,
       });
     } catch (error) {
-      const providerError =
-        error as ProviderError;
-      const message =
-        error instanceof Error
-          ? error.message
-          : "unknown";
-
       failures.push(
-        `${provider}:${message}`,
-      );
-
-      console.warn(
-        "AI_PROVIDER_FAILED",
-        {
-          provider,
-          status:
-            providerError.status ??
-            null,
-          reason:
-            message.split(":")[0],
-          detail:
-            provider === "bytez"
-              ? message.slice(0, 320)
-              : undefined,
-        },
+        `${provider}:${
+          error instanceof Error
+            ? error.message
+            : "unknown"
+        }`,
       );
     }
   }
@@ -945,7 +706,6 @@ export function aiConfigSummary() {
         ? list(process.env.OLLAMA_MODELS_PRIORITY)
         : ["qwen3:4b-instruct", "gpt-oss:20b"],
     keyCounts: {
-      bytez: collectKeys("BYTEZ").length,
       gemini: collectKeys("GEMINI").length,
       anthropic: collectKeys("ANTHROPIC").length,
       deepseek: collectKeys("DEEPSEEK").length,
