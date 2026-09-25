@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "SO",
+    "nameAr": "الصومال",
+    "nameEn": "Somalia"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "verificationStatus": "verified-source-structure",
+  "officialCoverageUnit": "education-grade+national-arabic-competency-bundle",
+  "educationStructure": {
+    "basic": {
+      "grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "lowerPrimary": "1-4",
+      "upperPrimary": "5-8"
+    },
+    "secondary": {
+      "grades": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "nationalExamGrade": 12
+    }
+  },
+  "arabicPolicy": {
+    "basicLiteracyLanguages": [
+      "Somali",
+      "Arabic",
+      "English"
+    ],
+    "nationalAssessmentDomainMentioned": true,
+    "publicGradeByGradeArabicBookCatalog": false,
+    "matchingMethod": "حزمة كفاءات عربية وطنية لكل صف داخل الهيكل الرسمي دون اختلاق عناوين كتب."
+  },
+  "officialCoverageNodes": 12,
+  "sources": [
+    {
+      "kind": "official-ministry",
+      "url": "https://moe.gov.so/"
+    },
+    {
+      "kind": "official-national-education-policy",
+      "url": "https://moe.gov.so/wp-content/uploads/2022/04/National-Education-Policy-Eng-Version-Final-DG-copy.pdf"
+    },
+    {
+      "kind": "official-abe-curriculum-framework",
+      "url": "https://moe.gov.so/wp-content/uploads/2022/05/Accelerated-Basic-Education-ABE-Policy-Framework-Back-translation-RF.pdf"
+    },
+    {
+      "kind": "official-education-sector-analysis",
+      "url": "https://moe.gov.so/wp-content/uploads/2022/07/Somalia-Education-Sector-Analysis-Jan-2022-1.pdf"
+    },
+    {
+      "kind": "official-sector-plan",
+      "url": "https://moe.gov.so/wp-content/uploads/2022/07/ESSP-2022-2026.pdf"
+    },
+    {
+      "kind": "official-national-assessment-framework-2026",
+      "url": "https://moe.gov.so/wp-content/uploads/2026/02/National-Assessment-Framework-for-Somalia-Final-1.pdf"
+    },
+    {
+      "kind": "official-grade12-exam-evidence",
+      "url": "https://moe.gov.so/2023/10/20/imtixaanka-qaranka-ee-fasalka-12aad-ee-sanad-dugsiyeedka-2025-2026/"
+    }
+  ],
+  "copyrightPolicy": "لا تعيد ضاديوم نشر مواد مدرسية غير منشورة علنًا؛ تستخدم الهيكل والسياسة والأطر الوطنية لإثبات المواءمة وتنتج المحتوى التعليمي بنفسها.",
+  "generatedAt": "2026-09-25"
+}
