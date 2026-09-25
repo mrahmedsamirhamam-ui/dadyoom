@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
 
@@ -69,6 +70,7 @@ export default function PaddleCheckout() {
   const [scriptReady, setScriptReady] = useState(false);
   const [config, setConfig] = useState<PaddleConfig | null>(null);
   const [message, setMessage] = useState("");
+  const [authRequired, setAuthRequired] = useState(false);
   const [busy, setBusy] = useState(false);
   const initializedRef = useRef(false);
 
@@ -86,6 +88,19 @@ export default function PaddleCheckout() {
         };
 
         if (!response.ok) {
+          if (payload.error === "AUTH_REQUIRED") {
+            if (!cancelled) {
+              setAuthRequired(true);
+              setMessage(
+                friendlyError(
+                  payload.error,
+                  payload.message,
+                ),
+              );
+            }
+            return;
+          }
+
           throw new Error(
             friendlyError(
               payload.error ?? "",
@@ -210,16 +225,25 @@ export default function PaddleCheckout() {
         }
       />
 
-      <button
-        type="button"
-        onClick={pay}
-        disabled={!scriptReady || !config || busy}
-        className="dadyoom-arabic-button w-full rounded-2xl px-5 py-3 font-black text-white disabled:opacity-50"
-      >
-        {busy
-          ? "جارٍ فتح الدفع..."
-          : `اشترك شهريًا بالبطاقة — ${priceLabel}`}
-      </button>
+      {authRequired ? (
+        <Link
+          href="/login?next=/pricing"
+          className="dadyoom-arabic-button flex w-full justify-center rounded-2xl px-5 py-3 font-black text-white"
+        >
+          سجّل الدخول ثم اشترك
+        </Link>
+      ) : (
+        <button
+          type="button"
+          onClick={pay}
+          disabled={!scriptReady || !config || busy}
+          className="dadyoom-arabic-button w-full rounded-2xl px-5 py-3 font-black text-white disabled:opacity-50"
+        >
+          {busy
+            ? "جارٍ فتح الدفع..."
+            : `اشترك شهريًا بالبطاقة — ${priceLabel}`}
+        </button>
+      )}
 
       <p className="text-xs leading-6 text-slate-500">
         الدفع عبر Paddle. ضاديوم لا يستقبل أو يخزن بيانات
