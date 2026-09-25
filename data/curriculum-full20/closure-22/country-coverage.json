@@ -649,8 +649,8 @@
       },
       "national": {
         "complete": false,
-        "matchingStatus": "not-closed",
-        "verificationStatus": "candidate",
+        "matchingStatus": "current-scope-complete",
+        "verificationStatus": "verified",
         "evidenceSources": [
           {
             "url": "https://ien.edu.sa/",
@@ -665,16 +665,32 @@
             "kind": "official-portal"
           }
         ],
-        "verifiedPackFiles": [],
-        "missingEvidence": [
-          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
-          "اكتمال تغطية الفصول/الفترات الدراسية",
-          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
-          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
-          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
-        ]
+        "verifiedPackFiles": [
+          "data/curriculum-packs/saudi-2026-2027-final/sa-2026-2027-arabic-g1-current-scope.json",
+          "data/curriculum-packs/saudi-2026-2027-final/sa-2026-2027-arabic-g2-current-scope.json",
+          "data/curriculum-packs/saudi-2026-2027-final/sa-2026-2027-arabic-g3-current-scope.json",
+          "data/curriculum-packs/saudi-2026-2027-final/sa-2026-2027-arabic-g4-current-scope.json",
+          "data/curriculum-packs/saudi-2026-2027-final/sa-2026-2027-arabic-g5-current-scope.json",
+          "data/curriculum-packs/saudi-2026-2027-final/sa-2026-2027-arabic-g6-current-scope.json",
+          "data/curriculum-packs/saudi-2026-2027-final/sa-2026-2027-arabic-g7-current-scope.json",
+          "data/curriculum-packs/saudi-2026-2027-final/sa-2026-2027-arabic-g8-current-scope.json",
+          "data/curriculum-packs/saudi-2026-2027-final/sa-2026-2027-arabic-g9-current-scope.json",
+          "data/curriculum-packs/saudi-2026-2027-final/sa-2026-2027-arabic-g10-current-scope.json",
+          "data/curriculum-packs/saudi-2026-2027-final/sa-2026-2027-arabic-g11-current-scope.json",
+          "data/curriculum-packs/saudi-2026-2027-final/sa-2026-2027-arabic-g12-current-scope.json"
+        ],
+        "missingEvidence": [],
+        "currentScopeComplete": true,
+        "fullYearComplete": false,
+        "mappingSummary": {
+          "mappingGrades": 12,
+          "verifiedMappingGrades": 12,
+          "officialCoverageNodes": 206,
+          "verifiedCoverageNodes": 206
+        },
+        "note": "مغلق للنطاق الرسمي المنشور حاليًا وفق مدرستي/عين ودليل الخطط الدراسية الأحدث ونظام الفصلين."
       },
-      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+      "publicationReadiness": "NATIONAL_CURRENT_SCOPE_COMPLETE"
     },
     {
       "code": "SD",
