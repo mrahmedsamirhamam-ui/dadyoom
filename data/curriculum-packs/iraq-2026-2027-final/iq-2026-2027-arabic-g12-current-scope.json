@@ -1,0 +1,472 @@
+{
+  "schemaVersion": 1,
+  "packKey": "IQ:2026-2027:arabic:g12:current-scope",
+  "country": {
+    "code": "IQ",
+    "nameAr": "العراق",
+    "nameEn": "Iraq"
+  },
+  "academicYear": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "stage": {
+    "code": "preparatory",
+    "nameAr": "المرحلة الإعدادية",
+    "officialGrade": 6
+  },
+  "grade": {
+    "number": 12,
+    "nameAr": "الصف السادس الإعدادي",
+    "nameEn": "Grade 12"
+  },
+  "semester": null,
+  "curriculum": {
+    "nameAr": "اللغة العربية — المطابقة الرسمية العراقية",
+    "nameEn": "Arabic — Iraq Official Curriculum Match",
+    "description": "طبقة وطنية مستقلة لمواءمة ضاديوم مع كتب اللغة العربية الرسمية الصادرة عن المديرية العامة للمناهج في العراق، بمحتوى أصلي.",
+    "storageNameAr": "اللغة العربية — المطابقة الرسمية العراقية"
+  },
+  "rights": {
+    "contentOwner": "dadyoom",
+    "sourceLabel": "هيكل الكتب والمراحل من وزارة التربية العراقية/المديرية العامة للمناهج؛ المحتوى والأسئلة والأنشطة أصلية لضاديوم.",
+    "sourceUrl": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=151",
+    "verified": true
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "كتب اللغة العربية الرسمية — حزم تغطية الكتاب",
+      "description": "مطابقة الصف 12 على مستوى الكتب/أجزاء الكتب المنشورة رسميًا، دون اختلاق عناوين دروس غير متاحة في الفهرس العام.",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "اللغة العربية — الجزء الأول — حزمة تغطية الكتاب",
+          "type": "reading",
+          "estimatedMinutes": 40,
+          "summary": "حزمة وطنية أصلية من ضاديوم تغطي «اللغة العربية — الجزء الأول — حزمة تغطية الكتاب» للصف 12 وفق كتالوج المديرية العامة للمناهج العراقية، دون إعادة نشر نص الكتاب.",
+          "content": "تمثل هذه العقدة «اللغة العربية — الجزء الأول — حزمة تغطية الكتاب» كوحدة مطابقة على مستوى الكتاب/جزء الكتاب، وهي وحدة مسموح بها عندما تنشر الجهة الرسمية المنهج في صورة كتب لا في صورة فهرس دروس قابل للاستخراج العام. المحتوى هنا أصلي من ضاديوم ومصمم لتغطية نطاق الجزء الأول من مقرر اللغة العربية بما يضمه من قراءة وأدب ولغة وتطبيقات للصف 12. يبدأ المتعلم بفهم الهدف، ثم يطبق المهارة على مثال جديد من إنشاء ضاديوم أو على نص من نسخته المدرسية المرخصة، ثم يراجع أداءه وفق معيار واضح. لا يعاد نشر نصوص الكتاب أو تمارينه المحمية. ترتبط الحزمة بكتالوج الكتب الرسمي للمرحلة وبالمدرسة الإلكترونية التابعة لوزارة التربية، مع إبقاء Core حزمة مهارات مساندة فقط وإضافة هذه العقدة كامتداد وطني مستقل.",
+          "objectives": [
+            "أن يحدد المتعلم نواتج التعلم الرئيسة ضمن «اللغة العربية — الجزء الأول — حزمة تغطية الكتاب» بما يناسب الصف 12.",
+            "أن يطبق المتعلم مهارة من نطاق «اللغة العربية — الجزء الأول — حزمة تغطية الكتاب» في مثال جديد أصلي.",
+            "أن يراجع المتعلم أداءه ويصححه وفق قاعدة أو دليل من المهمة."
+          ],
+          "vocabulary": [
+            {
+              "word": "قراءة",
+              "meaning": "فهم النص المكتوب والتفاعل مع معانيه."
+            },
+            {
+              "word": "فكرة",
+              "meaning": "المعنى الرئيس أو الجزئي في النص."
+            },
+            {
+              "word": "دليل",
+              "meaning": "تفصيل من النص يدعم الفهم أو الاستنتاج."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما وظيفة «اللغة العربية — الجزء الأول — حزمة تغطية الكتاب» داخل ضاديوم؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تغطية نطاق الكتاب الرسمي بمحتوى ضاديوم أصلي."
+                },
+                {
+                  "id": "b",
+                  "text": "نسخ الكتاب المدرسي كاملًا."
+                },
+                {
+                  "id": "c",
+                  "text": "اختراع كتاب غير موجود."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الحزمة توثق نطاق الكتاب وتقدم تعلمًا أصليًا دون إعادة نشره.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على إتقان مهارة داخل هذه الحزمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير أو دليل."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ اسم الكتاب فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ إجابة جاهزة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في التطبيق المستقل.",
+              "points": 1
+            },
+            {
+              "question": "كيف تستخدم النسخة المدرسية الرسمية مع ضاديوم؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقرأ النص من نسختي المرخصة ثم أنفذ شرحًا وتطبيقًا أصليًا في ضاديوم."
+                },
+                {
+                  "id": "b",
+                  "text": "أنسخ النص كاملًا داخل المنصة."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاهل المصدر الرسمي."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "هذا يحافظ على حقوق النشر ويحقق المواءمة.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "فهم نطاق الكتاب",
+              "activityType": "multiple_choice",
+              "instructions": "حدد المهارة المطلوبة ثم اربطها بهدف التعلم.",
+              "content": {
+                "origin": "DADYOOM_IQ_OFFICIAL_2026_2027_V1",
+                "bookBundle": "part-1"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل",
+              "activityType": "reading",
+              "instructions": "نفذ مثالًا جديدًا من إنشائك يطبق مهارة من نطاق الكتاب.",
+              "content": {
+                "origin": "DADYOOM_IQ_OFFICIAL_2026_2027_V1",
+                "bookBundle": "part-1"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية",
+              "activityType": "writing",
+              "instructions": "قارن عملك بمعيار النجاح وحدد تصحيحًا أو تحسينًا واحدًا.",
+              "content": {
+                "origin": "DADYOOM_IQ_OFFICIAL_2026_2027_V1",
+                "bookBundle": "part-1"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية العراقية — المديرية العامة للمناهج — كتب المرحلة الإعدادية",
+            "url": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=151",
+            "additionalUrls": [
+              "https://eschool.iq/",
+              "https://t.me/s/educationiq?after=20611",
+              "https://t.me/s/Educationiq?before=32884",
+              "https://t.me/s/educationiq?before=33842",
+              "https://www.iraqnla.gov.iq/opac/index.php?hl=eng&max=20&q=%22%D8%A7%D9%84%D8%B9%D8%B1%D8%A7%D9%82+%D9%88%D8%B2%D8%A7%D8%B1%D8%A9+%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9+%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9+%D9%84%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC%22&start=0&sto=y"
+            ]
+          },
+          "alignment": {
+            "mode": "official-book-scope-bundle",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "iq-dadyoom-core-g12-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l12",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l18",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        },
+        {
+          "number": 2,
+          "title": "اللغة العربية — الجزء الثاني — حزمة تغطية الكتاب",
+          "type": "grammar",
+          "estimatedMinutes": 40,
+          "summary": "حزمة وطنية أصلية من ضاديوم تغطي «اللغة العربية — الجزء الثاني — حزمة تغطية الكتاب» للصف 12 وفق كتالوج المديرية العامة للمناهج العراقية، دون إعادة نشر نص الكتاب.",
+          "content": "تمثل هذه العقدة «اللغة العربية — الجزء الثاني — حزمة تغطية الكتاب» كوحدة مطابقة على مستوى الكتاب/جزء الكتاب، وهي وحدة مسموح بها عندما تنشر الجهة الرسمية المنهج في صورة كتب لا في صورة فهرس دروس قابل للاستخراج العام. المحتوى هنا أصلي من ضاديوم ومصمم لتغطية نطاق الجزء الثاني من مقرر اللغة العربية بما يضمه من قراءة وأدب ولغة وتطبيقات للصف 12. يبدأ المتعلم بفهم الهدف، ثم يطبق المهارة على مثال جديد من إنشاء ضاديوم أو على نص من نسخته المدرسية المرخصة، ثم يراجع أداءه وفق معيار واضح. لا يعاد نشر نصوص الكتاب أو تمارينه المحمية. ترتبط الحزمة بكتالوج الكتب الرسمي للمرحلة وبالمدرسة الإلكترونية التابعة لوزارة التربية، مع إبقاء Core حزمة مهارات مساندة فقط وإضافة هذه العقدة كامتداد وطني مستقل.",
+          "objectives": [
+            "أن يحدد المتعلم نواتج التعلم الرئيسة ضمن «اللغة العربية — الجزء الثاني — حزمة تغطية الكتاب» بما يناسب الصف 12.",
+            "أن يطبق المتعلم مهارة من نطاق «اللغة العربية — الجزء الثاني — حزمة تغطية الكتاب» في مثال جديد أصلي.",
+            "أن يراجع المتعلم أداءه ويصححه وفق قاعدة أو دليل من المهمة."
+          ],
+          "vocabulary": [
+            {
+              "word": "قاعدة",
+              "meaning": "نظام يصف استعمالًا لغويًا صحيحًا."
+            },
+            {
+              "word": "تركيب",
+              "meaning": "طريقة انتظام الكلمات في الجملة."
+            },
+            {
+              "word": "تطبيق",
+              "meaning": "استخدام المعرفة في مثال جديد."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما وظيفة «اللغة العربية — الجزء الثاني — حزمة تغطية الكتاب» داخل ضاديوم؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تغطية نطاق الكتاب الرسمي بمحتوى ضاديوم أصلي."
+                },
+                {
+                  "id": "b",
+                  "text": "نسخ الكتاب المدرسي كاملًا."
+                },
+                {
+                  "id": "c",
+                  "text": "اختراع كتاب غير موجود."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الحزمة توثق نطاق الكتاب وتقدم تعلمًا أصليًا دون إعادة نشره.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على إتقان مهارة داخل هذه الحزمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير أو دليل."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ اسم الكتاب فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ إجابة جاهزة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في التطبيق المستقل.",
+              "points": 1
+            },
+            {
+              "question": "كيف تستخدم النسخة المدرسية الرسمية مع ضاديوم؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقرأ النص من نسختي المرخصة ثم أنفذ شرحًا وتطبيقًا أصليًا في ضاديوم."
+                },
+                {
+                  "id": "b",
+                  "text": "أنسخ النص كاملًا داخل المنصة."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاهل المصدر الرسمي."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "هذا يحافظ على حقوق النشر ويحقق المواءمة.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "فهم نطاق الكتاب",
+              "activityType": "multiple_choice",
+              "instructions": "حدد المهارة المطلوبة ثم اربطها بهدف التعلم.",
+              "content": {
+                "origin": "DADYOOM_IQ_OFFICIAL_2026_2027_V1",
+                "bookBundle": "part-2"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل",
+              "activityType": "writing",
+              "instructions": "نفذ مثالًا جديدًا من إنشائك يطبق مهارة من نطاق الكتاب.",
+              "content": {
+                "origin": "DADYOOM_IQ_OFFICIAL_2026_2027_V1",
+                "bookBundle": "part-2"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية",
+              "activityType": "writing",
+              "instructions": "قارن عملك بمعيار النجاح وحدد تصحيحًا أو تحسينًا واحدًا.",
+              "content": {
+                "origin": "DADYOOM_IQ_OFFICIAL_2026_2027_V1",
+                "bookBundle": "part-2"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية العراقية — المديرية العامة للمناهج — كتب المرحلة الإعدادية",
+            "url": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=151",
+            "additionalUrls": [
+              "https://eschool.iq/",
+              "https://t.me/s/educationiq?after=20611",
+              "https://t.me/s/Educationiq?before=32884",
+              "https://t.me/s/educationiq?before=33842",
+              "https://www.iraqnla.gov.iq/opac/index.php?hl=eng&max=20&q=%22%D8%A7%D9%84%D8%B9%D8%B1%D8%A7%D9%82+%D9%88%D8%B2%D8%A7%D8%B1%D8%A9+%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9+%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9+%D9%84%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC%22&start=0&sto=y"
+            ]
+          },
+          "alignment": {
+            "mode": "official-book-scope-bundle",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "iq-dadyoom-core-g12-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l12",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "iq-dadyoom-core-g12-l18",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
