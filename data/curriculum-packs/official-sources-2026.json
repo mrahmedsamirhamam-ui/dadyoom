@@ -57,8 +57,8 @@
     {
       "code": "EG",
       "nameAr": "مصر",
-      "matchingStatus": "partial",
-      "verificationStatus": "source-verified",
+      "matchingStatus": "current-scope-complete",
+      "verificationStatus": "verified",
       "sources": [
         {
           "url": "https://moe.gov.eg/what-s-on/news",
@@ -74,7 +74,40 @@
           "note": "بوابة وزارة التربية والتعليم للتعلم الإلكتروني والكتب."
         }
       ],
-      "sourceVerifiedAt": "2026-09-25"
+      "sourceVerifiedAt": "2026-09-25",
+      "officialScope": {
+        "academicYear": "2026-2027",
+        "subject": "اللغة العربية",
+        "grades": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "status": "complete-for-currently-published-scope",
+        "sourceModel": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني + كتب الطالب + المواد/الوحدات المنشورة",
+        "note": "تغطي ضاديوم النطاق الوزاري المنشور حاليًا لجميع الصفوف G1-G12 على مستوى مجالات المادة، ومع الصف الثالث الثانوي تغطي كذلك الوحدات الرسمية السبع الظاهرة على بوابة الوزارة. أي تحديث وزاري لاحق يضاف كتحديث للطبقة الوطنية."
+      },
+      "mappingSummary": {
+        "mappingGrades": 12,
+        "verifiedMappingGrades": 12,
+        "officialCoverageNodes": 145,
+        "mappedCoverageNodes": 145,
+        "verifiedCoverageNodes": 145,
+        "databaseLessons": 145,
+        "questions": 435,
+        "vocabulary": 435,
+        "activities": 435,
+        "verifiedAt": "2026-09-25"
+      }
     },
     {
       "code": "JO",
