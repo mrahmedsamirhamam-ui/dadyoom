@@ -1,0 +1,471 @@
+{
+  "schemaVersion": 1,
+  "packKey": "KW:2026-2027:arabic:g11:current-scope",
+  "country": {
+    "code": "KW",
+    "nameAr": "الكويت",
+    "nameEn": "Kuwait"
+  },
+  "academicYear": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "stage": {
+    "code": "secondary",
+    "nameAr": "المرحلة الثانوية"
+  },
+  "grade": {
+    "number": 11,
+    "nameAr": "الصف الحادي عشر",
+    "nameEn": "Grade 11"
+  },
+  "semester": null,
+  "curriculum": {
+    "nameAr": "اللغة العربية — المطابقة الرسمية الكويتية",
+    "nameEn": "Arabic — Kuwait Official Curriculum Match",
+    "description": "طبقة وطنية مستقلة تربط ضاديوم بمصفوفات اللغة العربية والمناهج والمكتبة الرسمية الكويتية دون نسخ النصوص المحمية.",
+    "storageNameAr": "اللغة العربية — المطابقة الرسمية الكويتية"
+  },
+  "rights": {
+    "contentOwner": "dadyoom",
+    "sourceLabel": "المصادر الرسمية لوزارة التربية الكويتية تثبت المصفوفات والمقرر والبنية؛ المحتوى والأسئلة والأنشطة أصلية لضاديوم.",
+    "sourceUrl": "https://elibrary.moe.edu.kw/StudentsLibrary",
+    "verified": true
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "مقرر اللغة العربية — تغطية الفصلين",
+      "description": "تغطية ضاديوم لمقرر اللغة العربية في الفصلين وفق النطاق الرسمي المتاح.",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "اللغة العربية — الفصل الدراسي الأول — حزمة نواتج التعلم",
+          "type": "assessment",
+          "estimatedMinutes": 40,
+          "summary": "حزمة مطابقة وطنية أصلية لمقرر اللغة العربية في الصف 11 للفصل الدراسي 1 ضمن النطاق الرسمي المنشور والقابل للتحقق.",
+          "content": "يمثل هذا العنصر حزمة نواتج تعلم للمقرر الوطني «اللغة العربية» للصف 11 في الفصل الدراسي 1، وهو ليس عنوان درس وزاري مخترعًا. اعتمدت ضاديوم هذه الوحدة عندما لا تتيح الواجهة العامة للوزارة تسلسل عناوين وحدات ودروس الثانوية بصورة قابلة للتدقيق، مع استمرار إثبات المقرر عبر مكتبة الطالب الرسمية، التقويم التربوي، وأخبار تطبيق المناهج والثانوية. تقدم ضاديوم شرحًا وتطبيقًا وتقويمًا أصليًا يغطي القراءة والتحليل واللغة والكتابة والتواصل، ويستخدم Core كحزمة مهارات مساندة فقط. في الصف العاشر يشمل ذلك النظام الثانوي القائم وتجربة المسارات حيث اللغة العربية مقرر عام مشترك في المرحلة التأسيسية.",
+          "objectives": [
+            "أن يطبق المتعلم نواتج تعلم اللغة العربية للصف 11 في الفصل 1 عبر قراءة ولغة وكتابة متكاملة.",
+            "أن يحلل المتعلم نصًا أو موقفًا لغويًا مناسبًا لمستواه ويبرر استجابته.",
+            "أن يراجع المتعلم إنتاجه اللغوي ويصححه وفق معايير الدقة والترابط."
+          ],
+          "vocabulary": [
+            {
+              "word": "ناتج تعلم",
+              "meaning": "أداء متوقع يمكن ملاحظته وقياسه بعد التعلم."
+            },
+            {
+              "word": "تحليل",
+              "meaning": "تفكيك النص أو التركيب لفهم عناصره وعلاقاته."
+            },
+            {
+              "word": "ترابط",
+              "meaning": "اتصال الأفكار والجمل في تسلسل منطقي."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما المقصود بهذه الحزمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تغطية نواتج تعلم المقرر دون اختلاق عنوان درس رسمي."
+                },
+                {
+                  "id": "b",
+                  "text": "نسخة من كتاب الوزارة."
+                },
+                {
+                  "id": "c",
+                  "text": "عنوان درس وزاري غير موثق."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الحزمة تمثل نواتج المقرر في النطاق العام المتاح رسميًا.",
+              "points": 1
+            },
+            {
+              "question": "ما أفضل دليل على إتقان المقرر؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أداء مستقل في القراءة واللغة والكتابة مع تفسير."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ عنوان المقرر."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ نموذج جاهز."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الأداء المتكامل المستقل يعكس الإتقان.",
+              "points": 1
+            },
+            {
+              "question": "كيف تستخدم المصادر الوزارية داخل ضاديوم؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "للتحقق من البنية والمقرر مع إنشاء المحتوى التعليمي أصليًا."
+                },
+                {
+                  "id": "b",
+                  "text": "لنسخ الكتاب كاملًا."
+                },
+                {
+                  "id": "c",
+                  "text": "لاختلاق وحدات جديدة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المصادر تثبت المواءمة دون إعادة نشر النصوص المحمية.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تحليل نص قصير",
+              "activityType": "reading",
+              "instructions": "حلل نصًا مرخصًا أو أصليًا وحدد الفكرة والدليل.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "semester": 1
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق لغوي",
+              "activityType": "grammar",
+              "instructions": "طبّق قاعدة أو تركيبًا مناسبًا للصف في جمل من إنشائك.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "semester": 1
+              },
+              "published": true
+            },
+            {
+              "title": "إنتاج كتابي",
+              "activityType": "writing",
+              "instructions": "اكتب فقرة قصيرة ثم راجعها من حيث الدقة والترابط.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "semester": 1
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية الكويتية — مكتبة الطالب + تطبيق مناهج 2026-2027 + نظام الثانوية الحالي/المسارات",
+            "url": "https://elibrary.moe.edu.kw/StudentsLibrary",
+            "additionalUrls": [
+              "https://www.moe.edu.kw/Home/Media",
+              "https://www.moe.edu.kw/news/1343",
+              "https://www.moe.edu.kw/pages/calendar",
+              "https://moe.edu.kw/news/1036"
+            ]
+          },
+          "alignment": {
+            "mode": "official-course-semester-bundle",
+            "semester": 1,
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "kw-dadyoom-core-g11-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l12",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l18",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        },
+        {
+          "number": 2,
+          "title": "اللغة العربية — الفصل الدراسي الثاني — حزمة نواتج التعلم",
+          "type": "assessment",
+          "estimatedMinutes": 40,
+          "summary": "حزمة مطابقة وطنية أصلية لمقرر اللغة العربية في الصف 11 للفصل الدراسي 2 ضمن النطاق الرسمي المنشور والقابل للتحقق.",
+          "content": "يمثل هذا العنصر حزمة نواتج تعلم للمقرر الوطني «اللغة العربية» للصف 11 في الفصل الدراسي 2، وهو ليس عنوان درس وزاري مخترعًا. اعتمدت ضاديوم هذه الوحدة عندما لا تتيح الواجهة العامة للوزارة تسلسل عناوين وحدات ودروس الثانوية بصورة قابلة للتدقيق، مع استمرار إثبات المقرر عبر مكتبة الطالب الرسمية، التقويم التربوي، وأخبار تطبيق المناهج والثانوية. تقدم ضاديوم شرحًا وتطبيقًا وتقويمًا أصليًا يغطي القراءة والتحليل واللغة والكتابة والتواصل، ويستخدم Core كحزمة مهارات مساندة فقط. في الصف العاشر يشمل ذلك النظام الثانوي القائم وتجربة المسارات حيث اللغة العربية مقرر عام مشترك في المرحلة التأسيسية.",
+          "objectives": [
+            "أن يطبق المتعلم نواتج تعلم اللغة العربية للصف 11 في الفصل 2 عبر قراءة ولغة وكتابة متكاملة.",
+            "أن يحلل المتعلم نصًا أو موقفًا لغويًا مناسبًا لمستواه ويبرر استجابته.",
+            "أن يراجع المتعلم إنتاجه اللغوي ويصححه وفق معايير الدقة والترابط."
+          ],
+          "vocabulary": [
+            {
+              "word": "ناتج تعلم",
+              "meaning": "أداء متوقع يمكن ملاحظته وقياسه بعد التعلم."
+            },
+            {
+              "word": "تحليل",
+              "meaning": "تفكيك النص أو التركيب لفهم عناصره وعلاقاته."
+            },
+            {
+              "word": "ترابط",
+              "meaning": "اتصال الأفكار والجمل في تسلسل منطقي."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما المقصود بهذه الحزمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تغطية نواتج تعلم المقرر دون اختلاق عنوان درس رسمي."
+                },
+                {
+                  "id": "b",
+                  "text": "نسخة من كتاب الوزارة."
+                },
+                {
+                  "id": "c",
+                  "text": "عنوان درس وزاري غير موثق."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الحزمة تمثل نواتج المقرر في النطاق العام المتاح رسميًا.",
+              "points": 1
+            },
+            {
+              "question": "ما أفضل دليل على إتقان المقرر؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أداء مستقل في القراءة واللغة والكتابة مع تفسير."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ عنوان المقرر."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ نموذج جاهز."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الأداء المتكامل المستقل يعكس الإتقان.",
+              "points": 1
+            },
+            {
+              "question": "كيف تستخدم المصادر الوزارية داخل ضاديوم؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "للتحقق من البنية والمقرر مع إنشاء المحتوى التعليمي أصليًا."
+                },
+                {
+                  "id": "b",
+                  "text": "لنسخ الكتاب كاملًا."
+                },
+                {
+                  "id": "c",
+                  "text": "لاختلاق وحدات جديدة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المصادر تثبت المواءمة دون إعادة نشر النصوص المحمية.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تحليل نص قصير",
+              "activityType": "reading",
+              "instructions": "حلل نصًا مرخصًا أو أصليًا وحدد الفكرة والدليل.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "semester": 2
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق لغوي",
+              "activityType": "grammar",
+              "instructions": "طبّق قاعدة أو تركيبًا مناسبًا للصف في جمل من إنشائك.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "semester": 2
+              },
+              "published": true
+            },
+            {
+              "title": "إنتاج كتابي",
+              "activityType": "writing",
+              "instructions": "اكتب فقرة قصيرة ثم راجعها من حيث الدقة والترابط.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "semester": 2
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية الكويتية — مكتبة الطالب + تطبيق مناهج 2026-2027 + نظام الثانوية الحالي/المسارات",
+            "url": "https://elibrary.moe.edu.kw/StudentsLibrary",
+            "additionalUrls": [
+              "https://www.moe.edu.kw/Home/Media",
+              "https://www.moe.edu.kw/news/1343",
+              "https://www.moe.edu.kw/pages/calendar",
+              "https://moe.edu.kw/news/1036"
+            ]
+          },
+          "alignment": {
+            "mode": "official-course-semester-bundle",
+            "semester": 2,
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "kw-dadyoom-core-g11-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l12",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g11-l18",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
