@@ -1,0 +1,276 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "LY",
+    "nameAr": "ليبيا"
+  },
+  "academicYear": "2026-2027",
+  "grade": 2,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 6,
+  "mappedLessons": 6,
+  "verifiedLessons": 6,
+  "scope": "official-school-year-current-scope",
+  "policy": "مواءمة المجالات الرسمية مع Core Bundles وNational Extensions أصلية؛ لا إعادة نشر للنصوص.",
+  "mappings": [
+    {
+      "officialSlug": "ly-2026-2027-g2-u1-listening-speaking",
+      "officialTitle": "الاستماع والتحدث",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «الاستماع والتحدث» مغطى بحزمة Core المناسبة مع تطبيق ليبي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g2-l16",
+          "relation": "supporting-skill",
+          "title": "الاستماع واتباع التعليمات"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l17",
+          "relation": "supporting-skill",
+          "title": "كتابة جملة واضحة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+academic-calendar+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g2-u1-reading",
+      "officialTitle": "القراءة والمطالعة",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «القراءة والمطالعة» مغطى بحزمة Core المناسبة مع تطبيق ليبي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g2-l01",
+          "relation": "supporting-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l03",
+          "relation": "supporting-skill",
+          "title": "الحركات القصيرة"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l04",
+          "relation": "supporting-skill",
+          "title": "السكون والمقطع"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l05",
+          "relation": "supporting-skill",
+          "title": "حروف المد"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l06",
+          "relation": "supporting-skill",
+          "title": "الشدة والتنوين"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l13",
+          "relation": "supporting-skill",
+          "title": "قراءة نص قصير"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l14",
+          "relation": "supporting-skill",
+          "title": "الفكرة الرئيسة"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l15",
+          "relation": "supporting-skill",
+          "title": "ترتيب الأحداث"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+academic-calendar+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g2-u1-literature",
+      "officialTitle": "النصوص والتذوق الأدبي",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «النصوص والتذوق الأدبي» مغطى بحزمة Core المناسبة مع تطبيق ليبي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g2-l13",
+          "relation": "supporting-skill",
+          "title": "قراءة نص قصير"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l14",
+          "relation": "supporting-skill",
+          "title": "الفكرة الرئيسة"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l15",
+          "relation": "supporting-skill",
+          "title": "ترتيب الأحداث"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+academic-calendar+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g2-u1-grammar",
+      "officialTitle": "النحو والصرف",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «النحو والصرف» مغطى بحزمة Core المناسبة مع تطبيق ليبي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g2-l07",
+          "relation": "supporting-skill",
+          "title": "بناء الكلمة من المقاطع"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l08",
+          "relation": "supporting-skill",
+          "title": "اللام الشمسية والقمرية"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l09",
+          "relation": "supporting-skill",
+          "title": "المفرد والجمع"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l10",
+          "relation": "supporting-skill",
+          "title": "الجملة الاسمية البسيطة"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l11",
+          "relation": "supporting-skill",
+          "title": "الجملة الفعلية البسيطة"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l12",
+          "relation": "supporting-skill",
+          "title": "أدوات الاستفهام"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+academic-calendar+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g2-u1-spelling",
+      "officialTitle": "الإملاء والخط",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «الإملاء والخط» مغطى بحزمة Core المناسبة مع تطبيق ليبي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g2-l01",
+          "relation": "supporting-skill",
+          "title": "الأصوات والحروف"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l02",
+          "relation": "supporting-skill",
+          "title": "أشكال الحرف في الكلمة"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l03",
+          "relation": "supporting-skill",
+          "title": "الحركات القصيرة"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l04",
+          "relation": "supporting-skill",
+          "title": "السكون والمقطع"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l05",
+          "relation": "supporting-skill",
+          "title": "حروف المد"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l06",
+          "relation": "supporting-skill",
+          "title": "الشدة والتنوين"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l08",
+          "relation": "supporting-skill",
+          "title": "اللام الشمسية والقمرية"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l17",
+          "relation": "supporting-skill",
+          "title": "كتابة جملة واضحة"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+academic-calendar+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "ly-2026-2027-g2-u1-writing",
+      "officialTitle": "التعبير والإنشاء",
+      "source": {
+        "label": "مركز المناهج التعليمية والبحوث التربوية — ليبيا",
+        "url": "https://cerc.moe.gov.ly/educational-curricul/"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «التعبير والإنشاء» مغطى بحزمة Core المناسبة مع تطبيق ليبي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "ly-dadyoom-core-g2-l12",
+          "relation": "supporting-skill",
+          "title": "أدوات الاستفهام"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l15",
+          "relation": "supporting-skill",
+          "title": "ترتيب الأحداث"
+        },
+        {
+          "slug": "ly-dadyoom-core-g2-l17",
+          "relation": "supporting-skill",
+          "title": "كتابة جملة واضحة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-cerc-catalog+academic-calendar+core-skill-bundle+national-pack-v1"
+    }
+  ]
+}
