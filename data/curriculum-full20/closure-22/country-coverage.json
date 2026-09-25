@@ -561,24 +561,82 @@
       },
       "national": {
         "complete": false,
-        "matchingStatus": "not-closed",
-        "verificationStatus": "candidate",
+        "matchingStatus": "current-scope-complete",
+        "verificationStatus": "verified",
         "evidenceSources": [
           {
-            "url": "https://mineducomores.gouv.km/",
-            "kind": "official-portal-candidate"
+            "url": "https://mineducomores.gouv.km/ministere/",
+            "kind": "official-ministry-system"
+          },
+          {
+            "url": "https://mineducomores.gouv.km/cloture-de-la-formation-en-langue-arabe-aux-comores-un-pas-de-plus-vers-le-renforcement-des-capacites-educatives/",
+            "kind": "official-arabic-curriculum-role",
+            "note": "الوزارة تؤكد أن العربية لغة رسمية وجزء من المنهج المدرسي."
+          },
+          {
+            "url": "https://justice.gouv.km/wp-content/uploads/2025/03/decret-n-21-005pr-portant-promulgation-de-la-loi-n-20-034au-du-29-decembre-2020-portant-revision-de-la-loi-n-94-035af-relative-a-lorientation-et-a-leducation.pdf",
+            "kind": "official-education-law",
+            "note": "يحدد 5 سنوات ابتدائي + 4 سنوات ثانوي أول + 3 سنوات ثانوي ثانٍ."
+          },
+          {
+            "url": "https://mineducomores.gouv.km/atelier-sur-les-strategies-de-production-et-diffusion-des-ressources-educatives-aux-comores/",
+            "kind": "official-resource-strategy"
+          },
+          {
+            "url": "https://mineducomores.gouv.km/participation-de-luniversite-midocean-a-la-reunion-consultative-nationale-sur-la-reforme-de-leducation-aux-comores/",
+            "kind": "official-education-reform"
           }
         ],
-        "verifiedPackFiles": [],
-        "missingEvidence": [
-          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
-          "اكتمال تغطية الفصول/الفترات الدراسية",
-          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
-          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
-          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
-        ]
+        "verifiedPackFiles": [
+          "data/curriculum-packs/comoros-2026-2027-final/km-2026-2027-arabic-g1-current-scope.json",
+          "data/curriculum-packs/comoros-2026-2027-final/km-2026-2027-arabic-g2-current-scope.json",
+          "data/curriculum-packs/comoros-2026-2027-final/km-2026-2027-arabic-g3-current-scope.json",
+          "data/curriculum-packs/comoros-2026-2027-final/km-2026-2027-arabic-g4-current-scope.json",
+          "data/curriculum-packs/comoros-2026-2027-final/km-2026-2027-arabic-g5-current-scope.json",
+          "data/curriculum-packs/comoros-2026-2027-final/km-2026-2027-arabic-g6-current-scope.json",
+          "data/curriculum-packs/comoros-2026-2027-final/km-2026-2027-arabic-g7-current-scope.json",
+          "data/curriculum-packs/comoros-2026-2027-final/km-2026-2027-arabic-g8-current-scope.json",
+          "data/curriculum-packs/comoros-2026-2027-final/km-2026-2027-arabic-g9-current-scope.json",
+          "data/curriculum-packs/comoros-2026-2027-final/km-2026-2027-arabic-g10-current-scope.json",
+          "data/curriculum-packs/comoros-2026-2027-final/km-2026-2027-arabic-g11-current-scope.json",
+          "data/curriculum-packs/comoros-2026-2027-final/km-2026-2027-arabic-g12-current-scope.json"
+        ],
+        "verifiedMappingFiles": [
+          "data/curriculum-mappings/km-2026-2027-g1-current-scope-verified.json",
+          "data/curriculum-mappings/km-2026-2027-g2-current-scope-verified.json",
+          "data/curriculum-mappings/km-2026-2027-g3-current-scope-verified.json",
+          "data/curriculum-mappings/km-2026-2027-g4-current-scope-verified.json",
+          "data/curriculum-mappings/km-2026-2027-g5-current-scope-verified.json",
+          "data/curriculum-mappings/km-2026-2027-g6-current-scope-verified.json",
+          "data/curriculum-mappings/km-2026-2027-g7-current-scope-verified.json",
+          "data/curriculum-mappings/km-2026-2027-g8-current-scope-verified.json",
+          "data/curriculum-mappings/km-2026-2027-g9-current-scope-verified.json",
+          "data/curriculum-mappings/km-2026-2027-g10-current-scope-verified.json",
+          "data/curriculum-mappings/km-2026-2027-g11-current-scope-verified.json",
+          "data/curriculum-mappings/km-2026-2027-g12-current-scope-verified.json"
+        ],
+        "missingEvidence": [],
+        "currentScopeComplete": true,
+        "fullYearComplete": false,
+        "mappingSummary": {
+          "mappingGrades": 12,
+          "verifiedMappingGrades": 12,
+          "officialCoverageNodes": 12,
+          "mappedCoverageNodes": 12,
+          "verifiedCoverageNodes": 12,
+          "nationalExtensions": 12
+        },
+        "databaseSummary": {
+          "curriculumId": "8e74c8d0-81b0-4dd4-a278-3f8511c6957f",
+          "grades": 12,
+          "lessons": 12,
+          "questions": 36,
+          "vocabulary": 36,
+          "activities": 36
+        },
+        "note": "مغلق للنطاق الرسمي المنشور والقابل للتحقق حاليًا: الهيكل القانوني 5+4+3، والعربية لغة رسمية وجزء من المنهج، مع حزمة كفاءات أصلية لكل سنة دون اختلاق فهرس كتب غير منشور."
       },
-      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+      "publicationReadiness": "NATIONAL_CURRENT_SCOPE_COMPLETE"
     },
     {
       "code": "KW",
