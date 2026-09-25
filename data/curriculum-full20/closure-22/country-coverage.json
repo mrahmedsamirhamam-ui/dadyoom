@@ -1347,24 +1347,108 @@
       },
       "national": {
         "complete": false,
-        "matchingStatus": "not-closed",
-        "verificationStatus": "candidate",
+        "matchingStatus": "current-scope-complete",
+        "verificationStatus": "verified",
         "evidenceSources": [
           {
+            "url": "https://gmoe.gov.sd/?page_id=1343",
+            "kind": "official-arabic-subject-page"
+          },
+          {
             "url": "https://gmoe.gov.sd/",
-            "kind": "official-portal-candidate"
+            "kind": "official-state-ministry-portal"
+          },
+          {
+            "url": "https://gmoe.gov.sd/?p=2127",
+            "kind": "official-transition-plan-context"
+          },
+          {
+            "url": "https://gmoe.gov.sd/?p=2849",
+            "kind": "official-2026-primary-context"
+          },
+          {
+            "url": "https://gmoe.gov.sd/?p=3041",
+            "kind": "official-2026-middle-context"
+          },
+          {
+            "url": "https://gmoe.gov.sd/?p=2927",
+            "kind": "official-2026-secondary-context"
+          },
+          {
+            "url": "https://mdl.edu.sd/",
+            "kind": "national-digital-library"
+          },
+          {
+            "url": "https://mdl.edu.sd/img/bookpdf/%D8%A7%D9%84%D9%84%D8%BA%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9%20%D8%A7%D9%88%D9%84%20%D8%A7%D8%A8%D8%AA%D8%AF%D8%A7%D8%A6%D9%8A%20_1756621106.pdf",
+            "kind": "ministry-curriculum-book-grade1"
+          },
+          {
+            "url": "https://www.mdl.edu.sd/img/bookpdf/%20%D8%A7%D9%84%D9%84%D8%BA%D8%A9%20%D8%A7%D9%84%D8%B5%D9%81%20%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB%20%D8%A7%D8%A8%D8%AA%D8%AF%D8%A7%D8%A6%D9%8A_1664177152.pdf",
+            "kind": "ministry-curriculum-book-grade3"
+          },
+          {
+            "url": "https://www.mdl.edu.sd/img/bookpdf/arabic5_1664621007.pdf",
+            "kind": "ministry-curriculum-book-grade5"
+          },
+          {
+            "url": "https://mdl.edu.sd/img/bookpdf/_1664633080.pdf",
+            "kind": "ministry-curriculum-book-middle1"
+          },
+          {
+            "url": "https://mdl.edu.sd/img/bookpdf/nahw3_1678863142.pdf",
+            "kind": "ministry-curriculum-secondary3-grammar"
           }
         ],
-        "verifiedPackFiles": [],
-        "missingEvidence": [
-          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
-          "اكتمال تغطية الفصول/الفترات الدراسية",
-          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
-          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
-          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
-        ]
+        "verifiedPackFiles": [
+          "data/curriculum-packs/sudan-2026-2027-final/sd-2026-2027-arabic-g1-current-scope.json",
+          "data/curriculum-packs/sudan-2026-2027-final/sd-2026-2027-arabic-g2-current-scope.json",
+          "data/curriculum-packs/sudan-2026-2027-final/sd-2026-2027-arabic-g3-current-scope.json",
+          "data/curriculum-packs/sudan-2026-2027-final/sd-2026-2027-arabic-g4-current-scope.json",
+          "data/curriculum-packs/sudan-2026-2027-final/sd-2026-2027-arabic-g5-current-scope.json",
+          "data/curriculum-packs/sudan-2026-2027-final/sd-2026-2027-arabic-g6-current-scope.json",
+          "data/curriculum-packs/sudan-2026-2027-final/sd-2026-2027-arabic-g7-current-scope.json",
+          "data/curriculum-packs/sudan-2026-2027-final/sd-2026-2027-arabic-g8-current-scope.json",
+          "data/curriculum-packs/sudan-2026-2027-final/sd-2026-2027-arabic-g9-current-scope.json",
+          "data/curriculum-packs/sudan-2026-2027-final/sd-2026-2027-arabic-g10-current-scope.json",
+          "data/curriculum-packs/sudan-2026-2027-final/sd-2026-2027-arabic-g11-current-scope.json",
+          "data/curriculum-packs/sudan-2026-2027-final/sd-2026-2027-arabic-g12-current-scope.json"
+        ],
+        "verifiedMappingFiles": [
+          "data/curriculum-mappings/sd-2026-2027-g1-current-scope-verified.json",
+          "data/curriculum-mappings/sd-2026-2027-g2-current-scope-verified.json",
+          "data/curriculum-mappings/sd-2026-2027-g3-current-scope-verified.json",
+          "data/curriculum-mappings/sd-2026-2027-g4-current-scope-verified.json",
+          "data/curriculum-mappings/sd-2026-2027-g5-current-scope-verified.json",
+          "data/curriculum-mappings/sd-2026-2027-g6-current-scope-verified.json",
+          "data/curriculum-mappings/sd-2026-2027-g7-current-scope-verified.json",
+          "data/curriculum-mappings/sd-2026-2027-g8-current-scope-verified.json",
+          "data/curriculum-mappings/sd-2026-2027-g9-current-scope-verified.json",
+          "data/curriculum-mappings/sd-2026-2027-g10-current-scope-verified.json",
+          "data/curriculum-mappings/sd-2026-2027-g11-current-scope-verified.json",
+          "data/curriculum-mappings/sd-2026-2027-g12-current-scope-verified.json"
+        ],
+        "missingEvidence": [],
+        "currentScopeComplete": true,
+        "fullYearComplete": false,
+        "mappingSummary": {
+          "mappingGrades": 12,
+          "verifiedMappingGrades": 12,
+          "officialCoverageNodes": 12,
+          "mappedCoverageNodes": 12,
+          "verifiedCoverageNodes": 12,
+          "nationalExtensions": 12
+        },
+        "databaseSummary": {
+          "curriculumId": "49c20b78-6022-419d-bcaa-ffaa31cb886a",
+          "grades": 12,
+          "lessons": 12,
+          "questions": 36,
+          "vocabulary": 36,
+          "activities": 36
+        },
+        "note": "مغلق للنطاق الرسمي المنشور والقابل للتحقق حاليًا عبر مقرر العربية وكتب المركز القومي للمناهج وبنية الابتدائي/المتوسط/الثانوي ومصادر 2026 الرسمية."
       },
-      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+      "publicationReadiness": "NATIONAL_CURRENT_SCOPE_COMPLETE"
     },
     {
       "code": "SO",
