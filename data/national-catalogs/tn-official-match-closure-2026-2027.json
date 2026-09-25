@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "TN",
+    "nameAr": "تونس",
+    "nameEn": "Tunisia"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "status": "current-scope-complete",
+  "matchingStatus": "current-scope-complete",
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-09-25",
+  "structure": {
+    "officialLevels": 13,
+    "primary": "1-6",
+    "lowerSecondary": "7-9",
+    "secondary": "10-13",
+    "note": "البنية الرسمية تشمل أربع سنوات ثانوية؛ احتُفظ بالمستوى الثالث عشر بدل ضغطه داخل 12."
+  },
+  "sources": [
+    {
+      "url": "https://www.cnp.com.tn/",
+      "kind": "official-cnp-current-books-2026-2027"
+    },
+    {
+      "url": "https://cnp.com.tn/arabic/index.htm",
+      "kind": "official-cnp-arabic"
+    },
+    {
+      "url": "https://cnp.com.tn/arabic/annee-actuelle/listeOfficielle.htm",
+      "kind": "official-book-list"
+    },
+    {
+      "url": "https://education.gov.tn/",
+      "kind": "official-ministry-2026-2027"
+    },
+    {
+      "url": "https://cnp.com.tn/arabic/PDF/101708P00.pdf",
+      "kind": "official-grade7-arabic-book"
+    }
+  ],
+  "coverage": {
+    "packLevels": "13/13",
+    "verifiedMappingLevels": "13/13",
+    "officialCoverageNodes": 13,
+    "mappedCoverageNodes": 13,
+    "verifiedCoverageNodes": 13,
+    "database": {
+      "curriculumId": "9c5afe21-2008-4846-a707-fed311cc1692",
+      "grades": 13,
+      "units": 13,
+      "lessons": 13,
+      "questions": 39,
+      "vocabulary": 39,
+      "publishedActivities": 39,
+      "checkedContentCharacters": 467
+    }
+  },
+  "qualityGates": {
+    "officialSourcesVerified": true,
+    "allOfficialLevelsPresent": true,
+    "allMappingsVerified": true,
+    "officialEqualsMappedEqualsVerified": true,
+    "allLessonsPublished": true,
+    "allLessonsHaveOfficialSource": true,
+    "minimumObjectivesPerLesson": 3,
+    "minimumQuestionsPerLesson": 3,
+    "minimumVocabularyPerLesson": 3,
+    "minimumPublishedActivitiesPerLesson": 3
+  },
+  "copyrightPolicy": "المحتوى التعليمي والأسئلة والأنشطة أصلية لضاديوم ولا تعيد نشر الكتب المدرسية.",
+  "claimPolicy": "المطابقة تعني المواءمة مع بنية المستويات والقوائم الرسمية المنشورة للموسم 2026-2027."
+}
