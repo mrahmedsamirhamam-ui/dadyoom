@@ -1,0 +1,591 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "SA",
+    "nameAr": "السعودية"
+  },
+  "academicYear": "2026-2027",
+  "grade": 8,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 16,
+  "mappedLessons": 16,
+  "verifiedLessons": 16,
+  "scope": "current-official-two-semester-published-scope",
+  "policy": "مواءمة الكتب والمواد والمسارات الرسمية مع Core Bundles وNational Extensions أصلية؛ لا إعادة نشر للنصوص.",
+  "mappings": [
+    {
+      "officialSlug": "sa-2026-2027-g8-u1-l1",
+      "officialTitle": "الاستماع والتحدث — الفصل الأول",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/B47494BFDA4FEA2A30BBC9FC72357528?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الاستماع والتحدث — الفصل الأول» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g8-l04",
+          "relation": "supporting-skill",
+          "title": "الاستنتاج وبناء الحجة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l06",
+          "relation": "supporting-skill",
+          "title": "المقارنة بين نصين"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l17",
+          "relation": "supporting-skill",
+          "title": "الحجاج والمناظرة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g8-u1-l2",
+      "officialTitle": "القراءة والفهم — الفصل الأول",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/B47494BFDA4FEA2A30BBC9FC72357528?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «القراءة والفهم — الفصل الأول» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g8-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل نص أدبي"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l02",
+          "relation": "supporting-skill",
+          "title": "قراءة نص معلوماتي"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l03",
+          "relation": "supporting-skill",
+          "title": "الدلالة والسياق"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l04",
+          "relation": "supporting-skill",
+          "title": "الاستنتاج وبناء الحجة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l05",
+          "relation": "supporting-skill",
+          "title": "بنية النص وترابطه"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l06",
+          "relation": "supporting-skill",
+          "title": "المقارنة بين نصين"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g8-u1-l3",
+      "officialTitle": "الصنف اللغوي — الفصل الأول",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/B47494BFDA4FEA2A30BBC9FC72357528?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الصنف اللغوي — الفصل الأول» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g8-l07",
+          "relation": "supporting-skill",
+          "title": "كان وأخواتها"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l08",
+          "relation": "supporting-skill",
+          "title": "إن وأخواتها"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l09",
+          "relation": "supporting-skill",
+          "title": "المبني للمعلوم والمجهول"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l10",
+          "relation": "supporting-skill",
+          "title": "النعت والعطف"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l11",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g8-u1-l4",
+      "officialTitle": "الوظيفة النحوية — الفصل الأول",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/B47494BFDA4FEA2A30BBC9FC72357528?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الوظيفة النحوية — الفصل الأول» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g8-l07",
+          "relation": "supporting-skill",
+          "title": "كان وأخواتها"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l08",
+          "relation": "supporting-skill",
+          "title": "إن وأخواتها"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l09",
+          "relation": "supporting-skill",
+          "title": "المبني للمعلوم والمجهول"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l10",
+          "relation": "supporting-skill",
+          "title": "النعت والعطف"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l11",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g8-u1-l5",
+      "officialTitle": "الأسلوب اللغوي — الفصل الأول",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/B47494BFDA4FEA2A30BBC9FC72357528?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack السعودية الخصائص الوطنية الخاصة في «الأسلوب اللغوي — الفصل الأول» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g8-l03",
+          "relation": "supporting-skill",
+          "title": "الدلالة والسياق"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l04",
+          "relation": "supporting-skill",
+          "title": "الاستنتاج وبناء الحجة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l06",
+          "relation": "supporting-skill",
+          "title": "المقارنة بين نصين"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l13",
+          "relation": "supporting-skill",
+          "title": "التشبيه وأثره"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l14",
+          "relation": "supporting-skill",
+          "title": "الاستعارة والصورة"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g8-u1-l6",
+      "officialTitle": "الظاهرة الإملائية — الفصل الأول",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/B47494BFDA4FEA2A30BBC9FC72357528?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack السعودية الخصائص الوطنية الخاصة في «الظاهرة الإملائية — الفصل الأول» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g8-l12",
+          "relation": "direct-skill",
+          "title": "الإملاء وعلامات الترقيم"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g8-u1-l7",
+      "officialTitle": "الرسم الكتابي — الفصل الأول",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/B47494BFDA4FEA2A30BBC9FC72357528?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack السعودية الخصائص الوطنية الخاصة في «الرسم الكتابي — الفصل الأول» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g8-l12",
+          "relation": "supporting-skill",
+          "title": "الإملاء وعلامات الترقيم"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l15",
+          "relation": "supporting-skill",
+          "title": "كتابة مقال قصير"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g8-u1-l8",
+      "officialTitle": "التواصل الكتابي — الفصل الأول",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/B47494BFDA4FEA2A30BBC9FC72357528?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «التواصل الكتابي — الفصل الأول» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g8-l15",
+          "relation": "supporting-skill",
+          "title": "كتابة مقال قصير"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l16",
+          "relation": "supporting-skill",
+          "title": "كتابة تقرير"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l17",
+          "relation": "supporting-skill",
+          "title": "الحجاج والمناظرة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g8-u2-l1",
+      "officialTitle": "الاستماع والتحدث — الفصل الثاني",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/B47494BFDA4FEA2A30BBC9FC72357528?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الاستماع والتحدث — الفصل الثاني» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g8-l04",
+          "relation": "supporting-skill",
+          "title": "الاستنتاج وبناء الحجة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l06",
+          "relation": "supporting-skill",
+          "title": "المقارنة بين نصين"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l17",
+          "relation": "supporting-skill",
+          "title": "الحجاج والمناظرة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g8-u2-l2",
+      "officialTitle": "القراءة والفهم — الفصل الثاني",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/B47494BFDA4FEA2A30BBC9FC72357528?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «القراءة والفهم — الفصل الثاني» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g8-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل نص أدبي"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l02",
+          "relation": "supporting-skill",
+          "title": "قراءة نص معلوماتي"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l03",
+          "relation": "supporting-skill",
+          "title": "الدلالة والسياق"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l04",
+          "relation": "supporting-skill",
+          "title": "الاستنتاج وبناء الحجة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l05",
+          "relation": "supporting-skill",
+          "title": "بنية النص وترابطه"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l06",
+          "relation": "supporting-skill",
+          "title": "المقارنة بين نصين"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g8-u2-l3",
+      "officialTitle": "الصنف اللغوي — الفصل الثاني",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/B47494BFDA4FEA2A30BBC9FC72357528?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الصنف اللغوي — الفصل الثاني» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g8-l07",
+          "relation": "supporting-skill",
+          "title": "كان وأخواتها"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l08",
+          "relation": "supporting-skill",
+          "title": "إن وأخواتها"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l09",
+          "relation": "supporting-skill",
+          "title": "المبني للمعلوم والمجهول"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l10",
+          "relation": "supporting-skill",
+          "title": "النعت والعطف"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l11",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g8-u2-l4",
+      "officialTitle": "الوظيفة النحوية — الفصل الثاني",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/B47494BFDA4FEA2A30BBC9FC72357528?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «الوظيفة النحوية — الفصل الثاني» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g8-l07",
+          "relation": "supporting-skill",
+          "title": "كان وأخواتها"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l08",
+          "relation": "supporting-skill",
+          "title": "إن وأخواتها"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l09",
+          "relation": "supporting-skill",
+          "title": "المبني للمعلوم والمجهول"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l10",
+          "relation": "supporting-skill",
+          "title": "النعت والعطف"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l11",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g8-u2-l5",
+      "officialTitle": "الأسلوب اللغوي — الفصل الثاني",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/B47494BFDA4FEA2A30BBC9FC72357528?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack السعودية الخصائص الوطنية الخاصة في «الأسلوب اللغوي — الفصل الثاني» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g8-l03",
+          "relation": "supporting-skill",
+          "title": "الدلالة والسياق"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l04",
+          "relation": "supporting-skill",
+          "title": "الاستنتاج وبناء الحجة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l06",
+          "relation": "supporting-skill",
+          "title": "المقارنة بين نصين"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l13",
+          "relation": "supporting-skill",
+          "title": "التشبيه وأثره"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l14",
+          "relation": "supporting-skill",
+          "title": "الاستعارة والصورة"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g8-u2-l6",
+      "officialTitle": "الظاهرة الإملائية — الفصل الثاني",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/B47494BFDA4FEA2A30BBC9FC72357528?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack السعودية الخصائص الوطنية الخاصة في «الظاهرة الإملائية — الفصل الثاني» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g8-l12",
+          "relation": "direct-skill",
+          "title": "الإملاء وعلامات الترقيم"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g8-u2-l7",
+      "officialTitle": "الرسم الكتابي — الفصل الثاني",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/B47494BFDA4FEA2A30BBC9FC72357528?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack السعودية الخصائص الوطنية الخاصة في «الرسم الكتابي — الفصل الثاني» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g8-l12",
+          "relation": "supporting-skill",
+          "title": "الإملاء وعلامات الترقيم"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l15",
+          "relation": "supporting-skill",
+          "title": "كتابة مقال قصير"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g8-u2-l8",
+      "officialTitle": "التواصل الكتابي — الفصل الثاني",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://madrasatibeta.moe.gov.sa/books/B47494BFDA4FEA2A30BBC9FC72357528?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «التواصل الكتابي — الفصل الثاني» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g8-l15",
+          "relation": "supporting-skill",
+          "title": "كتابة مقال قصير"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l16",
+          "relation": "supporting-skill",
+          "title": "كتابة تقرير"
+        },
+        {
+          "slug": "sa-dadyoom-core-g8-l17",
+          "relation": "supporting-skill",
+          "title": "الحجاج والمناظرة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    }
+  ]
+}
