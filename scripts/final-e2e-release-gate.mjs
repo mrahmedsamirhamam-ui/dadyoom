@@ -823,6 +823,7 @@ async function canonicalLearningFlow(
 
   let lesson = null;
   let nextLesson = null;
+  let lessonActivities = [];
 
   for (
     let lessonNumber = 1;
@@ -854,7 +855,7 @@ async function canonicalLearningFlow(
     const activities =
       await admin
         .from("lesson_activities")
-        .select("id")
+        .select("id,activity_order,activity_type,answer,points")
         .eq(
           "lesson_id",
           candidate.data.id,
@@ -870,7 +871,7 @@ async function canonicalLearningFlow(
 
     if (
       (activities.data ?? [])
-        .length > 0
+        .length === 0
     ) {
       continue;
     }
@@ -909,6 +910,13 @@ async function canonicalLearningFlow(
       candidate.data;
     nextLesson =
       next.data;
+    lessonActivities =
+      [...(activities.data ?? [])]
+        .sort(
+          (a, b) =>
+            Number(a.activity_order ?? 0) -
+            Number(b.activity_order ?? 0),
+        );
     break;
   }
 
@@ -946,174 +954,187 @@ async function canonicalLearningFlow(
     throw resetProgress.error;
   }
 
-  const activityInsert =
-    await admin
-      .from(
-        "lesson_activities",
-      )
-      .insert([
-        {
-          lesson_id:
-            lesson.id,
-          title:
-            "E2E اختيار صحيح",
-          activity_type:
-            "multiple_choice",
-          instructions:
-            "اختر الإجابة الصحيحة.",
-          content: {
-            options: [
-              "صح",
-              "خطأ",
-            ],
-          },
-          activity_order:
-            1,
-          points:
-            10,
-          is_published:
-            true,
-          section:
-            "e2e-release-gate",
-          prompt:
-            "اختر كلمة صح.",
-          answer: {
-            correct:
-              "صح",
-          },
-          is_required:
-            true,
-        },
-        {
-          lesson_id:
-            lesson.id,
-          title:
-            "E2E إكمال النشاط",
-          activity_type:
-            "writing",
-          instructions:
-            "أكمل النشاط.",
-          content: {
-            e2e:
-              true,
-          },
-          activity_order:
-            2,
-          points:
-            0,
-          is_published:
-            true,
-          section:
-            "e2e-release-gate",
-          prompt:
-            "نشاط إكمال مؤقت.",
-          answer: {},
-          is_required:
-            true,
-        },
-      ])
-      .select(
-        "id,activity_order",
-      );
-
-  if (
-    activityInsert.error ||
-    (
-      activityInsert.data ??
-      []
-    ).length !== 2
-  ) {
-    throw (
-      activityInsert.error ??
-      new Error(
-        "E2E_ACTIVITY_FIXTURE_CREATE_FAILED",
-      )
-    );
-  }
-
-  const orderedActivities =
-    [...activityInsert.data]
-      .sort(
-        (a, b) =>
-          Number(a.activity_order) -
-          Number(b.activity_order),
-      );
-
-  fixture.activityIds =
-    orderedActivities.map(
-      row => row.id,
-    );
-
-  const graded =
-    await browserFetch(
-      page,
-      "/api/lesson-activities/check",
-      {
-        method:
-          "POST",
-        headers: {
-          "Content-Type":
-            "application/json",
-        },
-        body:
-          JSON.stringify({
-            activityId:
-              orderedActivities[0].id,
-            answer: [
-              "صح",
-            ],
-          }),
-      },
-    );
-
+  /*
+   * The Dadyoom Core contract now publishes activities for every lesson.
+   * Exercise those real activities instead of creating an artificial
+   * empty-lesson fixture (which became impossible once Core reached 3/lesson).
+   */
   gate(
-    graded.status === 200 &&
-      graded.data?.success ===
-        true &&
-      graded.data?.correct ===
-        true &&
-      graded.data?.gradable ===
-        true,
-    `E2E_ACTIVITY_GRADED_FAILED:${graded.status}`,
+    lessonActivities.length > 0,
+    "E2E_CANONICAL_CORE_ACTIVITIES_MISSING",
   );
 
-  const completionActivity =
-    await browserFetch(
-      page,
-      "/api/lesson-activities/check",
-      {
-        method:
-          "POST",
-        headers: {
-          "Content-Type":
-            "application/json",
+  function answerForActivity(
+    activity,
+  ) {
+    const answer =
+      activity?.answer &&
+      typeof activity.answer === "object" &&
+      !Array.isArray(activity.answer)
+        ? activity.answer
+        : {};
+
+    if (
+      typeof answer.correct === "string" &&
+      answer.correct.trim()
+    ) {
+      return {
+        values: [answer.correct.trim()],
+        gradable: true,
+      };
+    }
+
+    if (
+      Array.isArray(answer.correct) &&
+      answer.correct.every(
+        value => typeof value === "string",
+      ) &&
+      answer.correct.length > 0
+    ) {
+      return {
+        values: answer.correct,
+        gradable: true,
+      };
+    }
+
+    for (
+      const key of [
+        "correct_values",
+        "answers",
+        "correct_words",
+      ]
+    ) {
+      if (
+        Array.isArray(answer[key]) &&
+        answer[key].every(
+          value => typeof value === "string",
+        ) &&
+        answer[key].length > 0
+      ) {
+        return {
+          values: answer[key],
+          gradable: true,
+        };
+      }
+    }
+
+    if (
+      typeof answer.correct_letter === "string" &&
+      answer.correct_letter.trim()
+    ) {
+      return {
+        values: [answer.correct_letter.trim()],
+        gradable: true,
+      };
+    }
+
+    if (
+      Array.isArray(answer.pairs) &&
+      answer.pairs.length > 0
+    ) {
+      const pairs =
+        answer.pairs
+          .map(pair => {
+            if (
+              Array.isArray(pair) &&
+              typeof pair[0] === "string" &&
+              typeof pair[1] === "string"
+            ) {
+              return `${pair[0].trim()}|||${pair[1].trim()}`;
+            }
+
+            if (
+              pair &&
+              typeof pair === "object" &&
+              typeof pair.left === "string" &&
+              typeof pair.right === "string"
+            ) {
+              return `${pair.left.trim()}|||${pair.right.trim()}`;
+            }
+
+            return "";
+          })
+          .filter(Boolean);
+
+      if (pairs.length > 0) {
+        return {
+          values: pairs,
+          gradable: true,
+        };
+      }
+    }
+
+    return {
+      values: ["__completed__"],
+      gradable: false,
+    };
+  }
+
+  let finalActivityResult = null;
+  let gradableActivityCount = 0;
+
+  for (
+    const activity
+    of lessonActivities
+  ) {
+    const expected =
+      answerForActivity(
+        activity,
+      );
+
+    if (expected.gradable) {
+      gradableActivityCount += 1;
+    }
+
+    const result =
+      await browserFetch(
+        page,
+        "/api/lesson-activities/check",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type":
+              "application/json",
+          },
+          body:
+            JSON.stringify({
+              activityId:
+                activity.id,
+              answer:
+                expected.values,
+            }),
         },
-        body:
-          JSON.stringify({
-            activityId:
-              orderedActivities[1].id,
-            answer: [
-              "__completed__",
-            ],
-          }),
-      },
+      );
+
+    gate(
+      result.status === 200 &&
+        result.data?.success === true &&
+        result.data?.correct === true &&
+        result.data?.gradable ===
+          expected.gradable,
+      `E2E_ACTIVITY_CHECK_FAILED:${activity.activity_order}:${result.status}`,
     );
 
+    finalActivityResult =
+      result;
+  }
+
   gate(
-    completionActivity.status ===
-      200 &&
-      completionActivity.data
-        ?.success === true &&
-      completionActivity.data
-        ?.correct === true &&
-      completionActivity.data
-        ?.progressPercent ===
-        100,
-    `E2E_ACTIVITY_COMPLETION_FAILED:${completionActivity.status}`,
+    gradableActivityCount > 0,
+    "E2E_CANONICAL_CORE_GRADABLE_ACTIVITY_MISSING",
+  );
+
+  gate(
+    finalActivityResult?.data?.progressPercent ===
+      100,
+    `E2E_ACTIVITY_COMPLETION_FAILED:${finalActivityResult?.status ?? 0}:${String(
+      finalActivityResult?.data?.progressPercent ??
+        "",
+    )}`,
   );
 
   console.log(
-    "E2E_LESSON_ACTIVITIES=PASS",
+    `E2E_LESSON_ACTIVITIES=PASS COUNT=${lessonActivities.length}`,
   );
 
   const complete =
