@@ -1,0 +1,463 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "EG",
+    "nameAr": "مصر"
+  },
+  "academicYear": "2026-2027",
+  "grade": 5,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 12,
+  "mappedLessons": 12,
+  "verifiedLessons": 12,
+  "scope": "current-ministry-portal-both-semesters",
+  "policy": "مواءمة على مستوى المجالات والمهارات الرسمية المنشورة، مع محتوى أصلي من ضاديوم وعدم إعادة نشر نصوص الكتاب.",
+  "mappings": [
+    {
+      "officialSlug": "eg-2026-2027-g5-s1-listening-speaking",
+      "officialTitle": "الاستماع والتحدث — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «الاستماع والتحدث» مثبت ضمن بنية كتاب اللغة العربية المصري، ويغطيه ضاديوم بحزمة Core المناسبة مع وحدة وطنية مصرية أصلية.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g5-l16",
+          "relation": "supporting-skill",
+          "title": "الحوار المنظم"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l17",
+          "relation": "supporting-skill",
+          "title": "العرض الشفهي"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-book-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g5-s1-reading",
+      "officialTitle": "القراءة والفهم — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «القراءة والفهم» مثبت ضمن بنية كتاب اللغة العربية المصري، ويغطيه ضاديوم بحزمة Core المناسبة مع وحدة وطنية مصرية أصلية.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g5-l01",
+          "relation": "supporting-skill",
+          "title": "القراءة الجهرية المعبرة"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l02",
+          "relation": "supporting-skill",
+          "title": "الفكرة الرئيسة والتفاصيل"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l03",
+          "relation": "supporting-skill",
+          "title": "معنى الكلمة من السياق"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l04",
+          "relation": "supporting-skill",
+          "title": "السبب والنتيجة"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l05",
+          "relation": "supporting-skill",
+          "title": "تلخيص فقرة"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l06",
+          "relation": "supporting-skill",
+          "title": "الاستنتاج من النص"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-book-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g5-s1-literature",
+      "officialTitle": "النصوص والتذوق الأدبي — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «النصوص والتذوق الأدبي» مثبت ضمن بنية كتاب اللغة العربية المصري، ويغطيه ضاديوم بحزمة Core المناسبة مع وحدة وطنية مصرية أصلية.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g5-l01",
+          "relation": "supporting-skill",
+          "title": "القراءة الجهرية المعبرة"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l02",
+          "relation": "supporting-skill",
+          "title": "الفكرة الرئيسة والتفاصيل"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l03",
+          "relation": "supporting-skill",
+          "title": "معنى الكلمة من السياق"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l04",
+          "relation": "supporting-skill",
+          "title": "السبب والنتيجة"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l06",
+          "relation": "supporting-skill",
+          "title": "الاستنتاج من النص"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-book-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g5-s1-grammar",
+      "officialTitle": "النحو والبناء اللغوي — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «النحو والبناء اللغوي» مثبت ضمن بنية كتاب اللغة العربية المصري، ويغطيه ضاديوم بحزمة Core المناسبة مع وحدة وطنية مصرية أصلية.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g5-l07",
+          "relation": "supporting-skill",
+          "title": "أقسام الكلام"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l08",
+          "relation": "supporting-skill",
+          "title": "المبتدأ والخبر"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l09",
+          "relation": "supporting-skill",
+          "title": "الفعل والفاعل"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l10",
+          "relation": "supporting-skill",
+          "title": "المفعول به"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l11",
+          "relation": "supporting-skill",
+          "title": "حروف الجر"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-book-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g5-s1-spelling",
+      "officialTitle": "الإملاء والخط — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «الإملاء والخط» مثبت ضمن بنية كتاب اللغة العربية المصري، ويغطيه ضاديوم بحزمة Core المناسبة مع وحدة وطنية مصرية أصلية.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g5-l12",
+          "relation": "supporting-skill",
+          "title": "الهمزة والتاء في الكتابة"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l13",
+          "relation": "supporting-skill",
+          "title": "بناء الفقرة"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-book-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g5-s1-writing",
+      "officialTitle": "الكتابة والتعبير — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «الكتابة والتعبير» مثبت ضمن بنية كتاب اللغة العربية المصري، ويغطيه ضاديوم بحزمة Core المناسبة مع وحدة وطنية مصرية أصلية.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g5-l05",
+          "relation": "supporting-skill",
+          "title": "تلخيص فقرة"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l13",
+          "relation": "supporting-skill",
+          "title": "بناء الفقرة"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l14",
+          "relation": "supporting-skill",
+          "title": "الوصف الدقيق"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l15",
+          "relation": "supporting-skill",
+          "title": "الرسالة القصيرة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-book-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g5-s2-listening-speaking",
+      "officialTitle": "الاستماع والتحدث — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «الاستماع والتحدث» مثبت ضمن بنية كتاب اللغة العربية المصري، ويغطيه ضاديوم بحزمة Core المناسبة مع وحدة وطنية مصرية أصلية.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g5-l16",
+          "relation": "supporting-skill",
+          "title": "الحوار المنظم"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l17",
+          "relation": "supporting-skill",
+          "title": "العرض الشفهي"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-book-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g5-s2-reading",
+      "officialTitle": "القراءة والفهم — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «القراءة والفهم» مثبت ضمن بنية كتاب اللغة العربية المصري، ويغطيه ضاديوم بحزمة Core المناسبة مع وحدة وطنية مصرية أصلية.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g5-l01",
+          "relation": "supporting-skill",
+          "title": "القراءة الجهرية المعبرة"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l02",
+          "relation": "supporting-skill",
+          "title": "الفكرة الرئيسة والتفاصيل"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l03",
+          "relation": "supporting-skill",
+          "title": "معنى الكلمة من السياق"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l04",
+          "relation": "supporting-skill",
+          "title": "السبب والنتيجة"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l05",
+          "relation": "supporting-skill",
+          "title": "تلخيص فقرة"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l06",
+          "relation": "supporting-skill",
+          "title": "الاستنتاج من النص"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-book-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g5-s2-literature",
+      "officialTitle": "النصوص والتذوق الأدبي — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «النصوص والتذوق الأدبي» مثبت ضمن بنية كتاب اللغة العربية المصري، ويغطيه ضاديوم بحزمة Core المناسبة مع وحدة وطنية مصرية أصلية.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g5-l01",
+          "relation": "supporting-skill",
+          "title": "القراءة الجهرية المعبرة"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l02",
+          "relation": "supporting-skill",
+          "title": "الفكرة الرئيسة والتفاصيل"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l03",
+          "relation": "supporting-skill",
+          "title": "معنى الكلمة من السياق"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l04",
+          "relation": "supporting-skill",
+          "title": "السبب والنتيجة"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l06",
+          "relation": "supporting-skill",
+          "title": "الاستنتاج من النص"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-book-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g5-s2-grammar",
+      "officialTitle": "النحو والبناء اللغوي — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «النحو والبناء اللغوي» مثبت ضمن بنية كتاب اللغة العربية المصري، ويغطيه ضاديوم بحزمة Core المناسبة مع وحدة وطنية مصرية أصلية.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g5-l07",
+          "relation": "supporting-skill",
+          "title": "أقسام الكلام"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l08",
+          "relation": "supporting-skill",
+          "title": "المبتدأ والخبر"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l09",
+          "relation": "supporting-skill",
+          "title": "الفعل والفاعل"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l10",
+          "relation": "supporting-skill",
+          "title": "المفعول به"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l11",
+          "relation": "supporting-skill",
+          "title": "حروف الجر"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-book-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g5-s2-spelling",
+      "officialTitle": "الإملاء والخط — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «الإملاء والخط» مثبت ضمن بنية كتاب اللغة العربية المصري، ويغطيه ضاديوم بحزمة Core المناسبة مع وحدة وطنية مصرية أصلية.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g5-l12",
+          "relation": "supporting-skill",
+          "title": "الهمزة والتاء في الكتابة"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l13",
+          "relation": "supporting-skill",
+          "title": "بناء الفقرة"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-book-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g5-s2-writing",
+      "officialTitle": "الكتابة والتعبير — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «الكتابة والتعبير» مثبت ضمن بنية كتاب اللغة العربية المصري، ويغطيه ضاديوم بحزمة Core المناسبة مع وحدة وطنية مصرية أصلية.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g5-l05",
+          "relation": "supporting-skill",
+          "title": "تلخيص فقرة"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l13",
+          "relation": "supporting-skill",
+          "title": "بناء الفقرة"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l14",
+          "relation": "supporting-skill",
+          "title": "الوصف الدقيق"
+        },
+        {
+          "slug": "eg-dadyoom-core-g5-l15",
+          "relation": "supporting-skill",
+          "title": "الرسالة القصيرة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-book-domain+core-skill-bundle+national-pack-v1"
+    }
+  ]
+}
