@@ -22,11 +22,47 @@ import {
   createGroundedLessonAnswer,
 } from "@/features/semantic-search/services/createGroundedLessonAnswer";
 
+import {
+  loadLessonChat,
+} from "@/features/semantic-search/services/loadLessonChat";
+
+import {
+  saveLessonChat,
+} from "@/features/semantic-search/services/saveLessonChat";
+
+import {
+  resolveFollowUpQuery,
+} from "@/features/semantic-search/services/resolveFollowUpQuery";
+
 type SearchRequestBody = {
   query?: string;
   lessonId?: string | null;
   history?: LessonChatHistoryItem[];
 };
+
+function mergeHistory(
+  stored: LessonChatHistoryItem[],
+  client: LessonChatHistoryItem[],
+): LessonChatHistoryItem[] {
+  const result: LessonChatHistoryItem[] = [];
+
+  for (const message of [
+    ...stored,
+    ...client,
+  ]) {
+    const duplicate = result.some(
+      (existing) =>
+        existing.role === message.role &&
+        existing.content === message.content,
+    );
+
+    if (!duplicate) {
+      result.push(message);
+    }
+  }
+
+  return result.slice(-20);
+}
 
 function sanitizeHistory(
   value: unknown
@@ -114,12 +150,33 @@ export async function POST(
       );
     }
 
-    const history =
+    const clientHistory =
       sanitizeHistory(body.history);
+
+    const storedHistory =
+      body.lessonId
+        ? await loadLessonChat({
+            supabase,
+            studentId: user.id,
+            lessonId: body.lessonId,
+          })
+        : [];
+
+    const history =
+      mergeHistory(
+        storedHistory,
+        clientHistory,
+      );
+
+    const resolvedQuery =
+      await resolveFollowUpQuery({
+        query,
+        history,
+      });
 
     const queryEmbedding =
       await createQueryEmbedding(
-        query
+        resolvedQuery
       );
 
     const results =
@@ -135,10 +192,23 @@ export async function POST(
 
     const answer =
       await createGroundedLessonAnswer({
-        query,
+        query: resolvedQuery,
         contexts: results,
         history,
       });
+
+    if (
+      body.lessonId &&
+      answer.trim()
+    ) {
+      await saveLessonChat({
+        supabase,
+        studentId: user.id,
+        lessonId: body.lessonId,
+        userMessage: query,
+        assistantMessage: answer.trim(),
+      });
+    }
 
     const suggestions =
       results.length > 0
@@ -151,6 +221,7 @@ export async function POST(
 
     return NextResponse.json({
       query,
+      resolvedQuery,
       answer,
       suggestions,
       bestContext:
