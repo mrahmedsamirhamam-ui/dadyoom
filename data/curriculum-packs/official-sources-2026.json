@@ -1385,20 +1385,77 @@
     {
       "code": "YE",
       "nameAr": "اليمن",
-      "matchingStatus": "not-closed",
-      "verificationStatus": "source-verified",
+      "matchingStatus": "current-scope-complete",
+      "verificationStatus": "verified",
       "sources": [
         {
+          "url": "https://e-learning-moe.edu.ye/",
+          "kind": "official-learning-portal"
+        },
+        {
           "url": "https://e-learning-moe.edu.ye/lcms/",
-          "kind": "official-learning-portal-candidate"
+          "kind": "official-curricula-catalog"
         },
         {
           "url": "https://www.e-learning-moe.edu.ye/teachergiude.php",
-          "kind": "official-teacher-guides",
-          "note": "الإدارة العامة للتعليم الإلكتروني؛ أدلة اللغة العربية."
+          "kind": "official-arabic-teacher-guides"
+        },
+        {
+          "url": "https://e-learning-moe.edu.ye/ClassNine.php",
+          "kind": "official-grade9-books"
+        },
+        {
+          "url": "https://e-learning-moe.edu.ye/ClassEleven.php",
+          "kind": "official-grade11-books"
+        },
+        {
+          "url": "https://e-learning-moe.edu.ye/ClassTwelve.php",
+          "kind": "official-grade12-books"
+        },
+        {
+          "url": "https://moe-ye.net/37553",
+          "kind": "official-2026-2027-school-year"
         }
       ],
-      "sourceVerifiedAt": "2026-09-25"
+      "sourceVerifiedAt": "2026-09-25",
+      "officialScope": {
+        "academicYear": "2026-2027",
+        "subject": "اللغة العربية",
+        "grades": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "status": "complete-for-currently-published-scope",
+        "sourceModel": "وزارة التربية والتعليم والبحث العلمي + الإدارة العامة للتعليم الإلكتروني",
+        "stages": {
+          "1-9": "التعليم الأساسي",
+          "10-12": "التعليم الثانوي"
+        },
+        "matchingUnit": "حزمة كتب العربية لكل صف"
+      },
+      "mappingSummary": {
+        "mappingGrades": 12,
+        "verifiedMappingGrades": 12,
+        "officialCoverageNodes": 12,
+        "mappedCoverageNodes": 12,
+        "verifiedCoverageNodes": 12,
+        "databaseLessons": 12,
+        "questions": 36,
+        "vocabulary": 36,
+        "activities": 36,
+        "nationalExtensions": 12,
+        "verifiedAt": "2026-09-25"
+      }
     },
     {
       "code": "DJ",
