@@ -428,29 +428,97 @@
     {
       "code": "AE",
       "nameAr": "الإمارات العربية المتحدة",
-      "matchingStatus": "not-closed",
-      "verificationStatus": "source-verified",
+      "matchingStatus": "current-scope-complete",
+      "verificationStatus": "verified",
       "sources": [
         {
           "url": "https://www.moe.gov.ae/",
           "kind": "official-portal"
         },
         {
+          "url": "https://www.moe.gov.ae/ar/guides/Pages/Student-Assessment-Policy-Guide-2026-2027.aspx",
+          "kind": "official-current-assessment-policy",
+          "note": "سياسة تقييم الطلبة 2026-2027 لجميع المراحل."
+        },
+        {
+          "url": "https://www.moe.gov.ae/en/guides/Documents/Academic-Calender-2026-2027/Academic-Calender-2026-2027-Ar.pdf",
+          "kind": "official-current-academic-calendar",
+          "note": "التقويم الأكاديمي 2026-2027؛ ثلاثة فصول دراسية."
+        },
+        {
           "url": "https://u.ae/en/information-and-services/education/school-education-k-12/e-learning-reading-and-educational-resources/diwan-e-book-reader",
-          "kind": "government-resource"
+          "kind": "government-digital-textbook-platform"
         },
         {
-          "url": "https://www.moe.gov.ae/Ar/MediaCenter/News/Pages/UAE-announces-updated-age-cut-off-date-for-KG-Grade-1-admissions-starting-AY-2026-2027.aspx",
-          "kind": "official-current-academic-year",
-          "note": "وزارة التربية والتعليم — سياق العام الدراسي 2026-2027."
+          "url": "https://u.ae/ar/information-and-services/education/school-education-k-12/stages-and-streams-of-school-education",
+          "kind": "government-stages-and-streams"
         },
         {
-          "url": "https://www.moe.gov.ae/En/ImportantLinks/Documents/Files2025/Assessment-Policy2025-2026-AR.pdf",
-          "kind": "official-arabic-assessment-policy",
-          "note": "وثيقة وزارة رسمية تؤكد اللغة العربية ضمن التقييم الوطني ومخرجات تعلم العربية؛ ليست فهرس كتب تفصيليًا."
+          "url": "https://careers.moe.gov.ae/ar/uae/jobs/arabic-language-teacher-dubai-northern-emirates-1100012658/",
+          "kind": "official-current-arabic-curriculum-implementation",
+          "note": "مرجع وزاري حالي يثبت تطبيق منهج العربية والتخطيط وفق معايير المحتوى والأداء."
+        },
+        {
+          "url": "https://emsat.moe.gov.ae/emsat/doc/Advantage%20Arabic%20Public%20Test%20Specifications%20-%20English%202021%20Sep%20F.pdf",
+          "kind": "official-national-arabic-standards",
+          "note": "معايير وطنية رسمية للغة العربية مستخدمة لإسناد مجالات المهارات، وليست بديلاً عن كتب الطالب."
         }
       ],
-      "sourceVerifiedAt": "2026-09-25"
+      "sourceVerifiedAt": "2026-09-25",
+      "officialScope": {
+        "academicYear": "2026-2027",
+        "subject": "اللغة العربية",
+        "grades": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "semesters": 3,
+        "status": "complete-for-currently-published-scope",
+        "sourceModel": "وزارة التربية والتعليم + حكومة الإمارات + ديوان + معايير اللغة العربية الرسمية",
+        "stages": {
+          "1-4": "الحلقة الأولى",
+          "5-8": "الحلقة الثانية",
+          "9-12": "الحلقة الثالثة"
+        },
+        "secondaryTracks": [
+          "المسار العام",
+          "المسار المهني (التخصصي)",
+          "المسار المتقدم",
+          "مسار النخبة"
+        ],
+        "nationalDomains": [
+          "أساسيات القراءة والكتابة",
+          "القراءة الأدبية",
+          "القراءة المعلوماتية",
+          "الاستماع والتحدث",
+          "الكتابة",
+          "اللغة"
+        ],
+        "note": "تُطابق ضاديوم المجالات الوطنية المنشورة القابلة للتحقق عبر الصفوف 1-12 والفصول الثلاثة، وتضيف أي تحديث رسمي لاحق إلى الطبقة دون إعادة نشر نصوص الكتب."
+      },
+      "mappingSummary": {
+        "mappingGrades": 12,
+        "verifiedMappingGrades": 12,
+        "officialCoverageNodes": 72,
+        "mappedCoverageNodes": 72,
+        "verifiedCoverageNodes": 72,
+        "databaseLessons": 72,
+        "questions": 216,
+        "vocabulary": 216,
+        "activities": 216,
+        "nationalExtensions": 72,
+        "verifiedAt": "2026-09-25"
+      }
     },
     {
       "code": "MA",
