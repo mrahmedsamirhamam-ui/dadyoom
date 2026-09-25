@@ -348,20 +348,58 @@
     {
       "code": "TN",
       "nameAr": "تونس",
-      "matchingStatus": "not-closed",
-      "verificationStatus": "source-verified",
+      "matchingStatus": "current-scope-complete",
+      "verificationStatus": "verified",
       "sources": [
         {
-          "url": "https://www.cnp.com.tn/man-eleves/",
-          "kind": "official-catalog"
+          "url": "https://www.cnp.com.tn/",
+          "kind": "official-cnp-current-books-2026-2027"
         },
         {
           "url": "https://cnp.com.tn/arabic/index.htm",
-          "kind": "official-publisher",
-          "note": "المركز الوطني البيداغوجي؛ قائمة الكتب والعودة المدرسية 2026-2027."
+          "kind": "official-cnp-arabic"
+        },
+        {
+          "url": "https://cnp.com.tn/arabic/annee-actuelle/listeOfficielle.htm",
+          "kind": "official-book-list"
+        },
+        {
+          "url": "https://education.gov.tn/",
+          "kind": "official-ministry-2026-2027"
+        },
+        {
+          "url": "https://cnp.com.tn/arabic/PDF/101708P00.pdf",
+          "kind": "official-grade7-arabic-book"
         }
       ],
-      "sourceVerifiedAt": "2026-09-25"
+      "sourceVerifiedAt": "2026-09-25",
+      "officialScope": {
+        "academicYear": "2026-2027",
+        "subject": "اللغة العربية",
+        "officialLevels": 13,
+        "status": "complete-for-currently-published-scope",
+        "sourceModel": "CNP + Ministry of Education Tunisia",
+        "stages": {
+          "1-6": "ابتدائي",
+          "7-9": "إعدادي",
+          "10-13": "ثانوي"
+        },
+        "matchingUnit": "حزمة كتاب رسمية لكل سنة",
+        "note": "النظام التونسي يتضمن أربع سنوات ثانوية، لذلك المطابقة الوطنية تضم 13 مستوى."
+      },
+      "mappingSummary": {
+        "mappingLevels": 13,
+        "verifiedMappingLevels": 13,
+        "officialCoverageNodes": 13,
+        "mappedCoverageNodes": 13,
+        "verifiedCoverageNodes": 13,
+        "databaseLessons": 13,
+        "questions": 39,
+        "vocabulary": 39,
+        "activities": 39,
+        "nationalExtensions": 13,
+        "verifiedAt": "2026-09-25"
+      }
     },
     {
       "code": "LB",
