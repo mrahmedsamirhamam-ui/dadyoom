@@ -1,0 +1,256 @@
+{
+  "schemaVersion": 1,
+  "packKey": "DJ:2026-2027:arabic:g6:current-scope",
+  "country": {
+    "code": "DJ",
+    "nameAr": "جيبوتي",
+    "nameEn": "Djibouti"
+  },
+  "academicYear": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "stage": {
+    "code": "fundamental-middle",
+    "nameAr": "التعليم الأساسي — السلك المتوسط"
+  },
+  "grade": {
+    "number": 6,
+    "nameAr": "السنة 6",
+    "nameEn": "Grade 6"
+  },
+  "semester": null,
+  "curriculum": {
+    "nameAr": "اللغة العربية — المطابقة الرسمية الجيبوتية",
+    "nameEn": "Arabic — Djibouti Official Curriculum Match",
+    "description": "طبقة وطنية مستقلة لمواءمة ضاديوم مع العربية الرسمية في جيبوتي.",
+    "storageNameAr": "اللغة العربية — المطابقة الرسمية الجيبوتية"
+  },
+  "rights": {
+    "contentOwner": "dadyoom",
+    "sourceLabel": "البنية والمناهج من MENFOP/CRIPEN؛ المحتوى أصلي لضاديوم.",
+    "sourceUrl": "https://cripen.dj/",
+    "verified": true
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "اللغة العربية — حزم المطابقة الوطنية",
+      "description": "السنة 6: مطابقة على مستوى المقرر/السلسلة الرسمية.",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "اللغة العربية — السنة 6 من التعليم الأساسي — حزمة المنهاج",
+          "type": "reading",
+          "estimatedMinutes": 40,
+          "summary": "حزمة وطنية أصلية من ضاديوم لمواءمة العربية في اللغة العربية — السنة 6 من التعليم الأساسي — حزمة المنهاج مع المصادر الرسمية الجيبوتية.",
+          "content": "تمثل هذه العقدة «اللغة العربية — السنة 6 من التعليم الأساسي — حزمة المنهاج» وحدة مطابقة وطنية مبنية على أدلة ومناهج MENFOP وCRIPEN. في التعليم الأساسي تُستخدم الحزمة على مستوى السنة والمقرر، وفي الثانوي تُراعى السلاسل L وES وS وSG كما توثق البرامج الرسمية. يقدم ضاديوم شرحًا وأمثلة وأسئلة وأنشطة أصلية ولا يعيد نشر النصوص المحمية. يعمل المتعلم على الفهم والتواصل والقراءة والكتابة والمفردات والتراكيب المناسبة لمستواه، ثم يراجع أداءه وفق معيار واضح. عند الحاجة إلى نص مقرر يستخدم المتعلم المصدر الرسمي أو نسخته المرخصة.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات تعلم العربية في «اللغة العربية — السنة 6 من التعليم الأساسي — حزمة المنهاج».",
+            "أن يطبق المتعلم مهارة لغوية في موقف جديد مناسب للمستوى.",
+            "أن يراجع المتعلم إنتاجه اللغوي ويصححه اعتمادًا على دليل أو معيار."
+          ],
+          "vocabulary": [
+            {
+              "word": "كفاءة",
+              "meaning": "قدرة على توظيف المعارف والمهارات في موقف دال."
+            },
+            {
+              "word": "تواصل",
+              "meaning": "نقل المعنى وفهمه عبر مهارات اللغة."
+            },
+            {
+              "word": "نص",
+              "meaning": "بناء لغوي مترابط يحمل معنى وغرضًا."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما الاستخدام الصحيح لهذه الحزمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "مواءمة المقرر الرسمي بمحتوى ضاديوم أصلي."
+                },
+                {
+                  "id": "b",
+                  "text": "نسخ الدليل الرسمي كاملًا."
+                },
+                {
+                  "id": "c",
+                  "text": "اختراع مقرر مستقل."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الحزمة تربط النطاق الرسمي بتعلم أصلي.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على الإتقان؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير أو شاهد."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ اسم المقرر."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ إجابة جاهزة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في الأداء المستقل.",
+              "points": 1
+            },
+            {
+              "question": "كيف تُراجع الإجابة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارنها بمعيار النجاح وأصحح موضع الضعف."
+                },
+                {
+                  "id": "b",
+                  "text": "أتركها دون مراجعة."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيرها عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة بمعيار تحسن التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تطبيق موجّه",
+              "activityType": "multiple_choice",
+              "instructions": "حدد المهارة المستهدفة.",
+              "content": {
+                "origin": "DADYOOM_DJ_OFFICIAL_2026_2027_V1",
+                "track": "all"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل",
+              "activityType": "reading",
+              "instructions": "طبّق المهارة في مثال جديد.",
+              "content": {
+                "origin": "DADYOOM_DJ_OFFICIAL_2026_2027_V1",
+                "track": "all"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية",
+              "activityType": "writing",
+              "instructions": "راجع الناتج وحدد تحسينًا.",
+              "content": {
+                "origin": "DADYOOM_DJ_OFFICIAL_2026_2027_V1",
+                "track": "all"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "CRIPEN — منهاج التعليم الأساسي وإنتاج كتاب لكل مستوى/مادة",
+            "url": "https://cripen.dj/",
+            "additionalUrls": [
+              "https://cripen.dj/index.php/guides-de-lenseignement-de-base/",
+              "https://education.dj/portail/guide9eme.php"
+            ]
+          },
+          "alignment": {
+            "mode": "official-grade-curriculum-bundle",
+            "track": "all",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "dj-dadyoom-core-g6-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g6-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g6-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g6-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g6-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g6-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g6-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g6-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g6-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g6-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g6-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g6-l12",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g6-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g6-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g6-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g6-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g6-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "dj-dadyoom-core-g6-l18",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
