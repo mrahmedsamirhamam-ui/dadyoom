@@ -1,4 +1,5 @@
 name: Final E2E Release Gate
+# trigger-marker: authenticated-release-gate
 
 on:
   workflow_dispatch:
