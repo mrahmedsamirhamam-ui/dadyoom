@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "QA",
+    "nameAr": "قطر",
+    "nameEn": "Qatar"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "status": "current-scope-complete",
+  "matchingStatus": "current-scope-complete",
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-09-25",
+  "authority": {
+    "ministry": "https://www.edu.gov.qa/",
+    "curriculumDepartment": "https://www.edu.gov.qa/ar/Content/CurriculumSection",
+    "nationalFramework": "https://privateschoolssearch.edu.gov.qa/Documents/Publications/CurriculumStandards/GeneralFrameworkNationalEducation.pdf?csf=1&e=PfpExd",
+    "arabicPolicy": "https://www.edu.gov.qa/ar/News/Details/1621800",
+    "academicCalendar20262027": "https://moewebprod.edu.gov.qa/ar/News/Details/14514600",
+    "tests20262027": "https://edu.gov.qa/ar/Content/TestsTimetable"
+  },
+  "structure": {
+    "grades": "12/12",
+    "semesters": 2,
+    "officialMatchingUnit": "curriculum-standards-by-domain-and-school-year",
+    "stages": [
+      {
+        "nameAr": "المرحلة التأسيسية",
+        "grades": "1-2"
+      },
+      {
+        "nameAr": "المرحلة الابتدائية",
+        "grades": "1-6"
+      },
+      {
+        "nameAr": "المرحلة الإعدادية",
+        "grades": "7-9"
+      },
+      {
+        "nameAr": "المرحلة الثانوية",
+        "grades": "10-12"
+      }
+    ],
+    "publicIndexPolicy": "لم ينشر الموقع العام تسلسل وحدات/دروس العربية لكل صف بشكل قابل للتدقيق؛ لذلك استُخدمت حزم معايير/نواتج تعلم وفق الإطار الرسمي بدل اختلاق عناوين دروس.",
+    "secondaryContext": [
+      "المسار العلمي",
+      "مسار الآداب والإنسانيات",
+      "المسار التكنولوجي",
+      "مدارس قطر للعلوم والتكنولوجيا",
+      "المعهد الديني"
+    ]
+  },
+  "coverage": {
+    "packGrades": "12/12",
+    "verifiedMappingGrades": "12/12",
+    "officialCoverageNodes": 24,
+    "mappedCoverageNodes": 24,
+    "verifiedCoverageNodes": 24,
+    "nationalExtensions": 24,
+    "database": {
+      "curriculumId": "f1d4b56b-2b22-4902-979f-48b1c8fdaa67",
+      "grades": 12,
+      "units": 12,
+      "lessons": 24,
+      "questions": 72,
+      "vocabulary": 72,
+      "publishedActivities": 72,
+      "minimumContentCharacters": 552
+    }
+  },
+  "qualityGates": {
+    "officialSourcesVerified": true,
+    "allGradesPresent": true,
+    "allPacksRightsVerified": true,
+    "allMappingsVerified": true,
+    "officialEqualsMappedEqualsVerified": true,
+    "allLessonsPublished": true,
+    "allLessonsHaveOfficialSource": true,
+    "minimumObjectivesPerLesson": 3,
+    "minimumQuestionsPerLesson": 3,
+    "minimumVocabularyPerLesson": 3,
+    "minimumPublishedActivitiesPerLesson": 3,
+    "failingDatabaseLessons": 0,
+    "legacyConflict": "inactive-before-import"
+  },
+  "copyrightPolicy": "لا يعيد ضاديوم نشر نصوص كتب الوزارة؛ المطابقة مبنية على الإطار والمعايير والسياسة وروابط الوزارة، بينما الحزم والشرح والأسئلة والأنشطة أصلية لضاديوم.",
+  "claimPolicy": "مطابق للمنهج الرسمي القطري = مواءم مع المعايير والبنية والمصادر الرسمية القابلة للتحقق للنطاق الحالي؛ لا تعني العبارة اعتمادًا أو شراكة أو تأييدًا من الوزارة."
+}
