@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "DZ",
+    "nameAr": "الجزائر",
+    "nameEn": "Algeria"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "verificationStatus": "verified-source-structure",
+  "officialCoverageUnit": "book-or-secondary-track-curriculum",
+  "semesters": null,
+  "educationStructure": {
+    "primary": {
+      "grades": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "nameAr": "التعليم الابتدائي"
+    },
+    "middle": {
+      "grades": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "officialEquivalent": [
+        "الأولى متوسط",
+        "الثانية متوسط",
+        "الثالثة متوسط",
+        "الرابعة متوسط"
+      ]
+    },
+    "secondary": {
+      "grades": [
+        10,
+        11,
+        12
+      ],
+      "officialEquivalent": [
+        "الأولى ثانوي",
+        "الثانية ثانوي",
+        "الثالثة ثانوي"
+      ],
+      "current20262027": "استمرار نظام الجذع المشترك في 2026-2027 مع تنظيم العربية بحسب خصوصية الشعب"
+    }
+  },
+  "gradeCoverage": {
+    "10": "جذع مشترك آداب + جذع مشترك علوم وتكنولوجيا",
+    "1-9": "حزمة كتاب/منهاج لغة عربية واحدة لكل سنة",
+    "11-12": "آداب/فلسفة/لغات + علوم/رياضيات/تقني/تسيير"
+  },
+  "officialCoverageNodes": 15,
+  "sources": [
+    {
+      "kind": "official-current-2026-2027-arrangements",
+      "url": "https://www.education.gov.dz/2026/07/30/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9-%D9%8A%D9%86%D8%B4%D9%91%D8%B7-%D9%86%D8%AF%D9%88%D8%A9-%D8%B5%D8%AD%D9%81%D9%8A%D8%A9/"
+    },
+    {
+      "kind": "official-textbook-titles-three-cycles",
+      "url": "https://www.education.gov.dz/2016/04/20/2521/"
+    },
+    {
+      "kind": "official-school-publisher",
+      "url": "https://www.onps.dz/"
+    },
+    {
+      "kind": "official-middle-arabic-curriculum",
+      "url": "https://education.gov.dz/wp-content/uploads/2015/04/1-AM-lang-arabe.pdf"
+    },
+    {
+      "kind": "official-first-secondary-arabic-curriculum",
+      "url": "https://education.gov.dz/wp-content/uploads/2015/04/%D8%A7%D9%84%D9%84%D8%BA%D9%80%D9%80%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7-%D8%A7%D9%84%D8%B3%D9%86%D8%A9-%D8%A7%D9%84%D8%A7%D9%88%D9%84%D9%89.pdf"
+    },
+    {
+      "kind": "official-second-secondary-arabic-literature-languages",
+      "url": "https://education.gov.dz/wp-content/uploads/2015/04/Arabe-2AS-Letres-et-Philo-Langues-1-Copie.pdf"
+    },
+    {
+      "kind": "official-second-secondary-arabic-science-technology",
+      "url": "https://education.gov.dz/wp-content/uploads/2015/04/Arabe-2AS-Sces-Maths-TM-gestion.pdf"
+    },
+    {
+      "kind": "official-onps-first-middle-arabic-book",
+      "url": "https://www.onps.dz/295"
+    },
+    {
+      "kind": "official-onps-fourth-middle-arabic-book",
+      "url": "https://www.onps.dz/en/450"
+    },
+    {
+      "kind": "official-onps-first-secondary-literature-book",
+      "url": "https://www.onps.dz/591"
+    }
+  ],
+  "copyrightPolicy": "لا تعيد ضاديوم نشر نصوص الكتب الرسمية؛ تستخدم أسماء الكتب والمناهج والمسارات وروابط الجهات الرسمية لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية.",
+  "generatedAt": "2026-09-25"
+}
