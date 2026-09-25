@@ -33,6 +33,12 @@ Create credentials in the matching Paddle environment:
   - customer portal session permission
 - notification destination/webhook secret
 
+Deployment helper:
+
+- PowerShell: `./scripts/configure-commerce-launch.ps1 -Environment sandbox`
+- For live launch: `./scripts/configure-commerce-launch.ps1 -Environment production`
+- The script sends values directly to Cloudflare Worker secrets and does not write real credentials to Git.
+
 Deployment variables:
 
 - PADDLE_ENVIRONMENT=sandbox or production
