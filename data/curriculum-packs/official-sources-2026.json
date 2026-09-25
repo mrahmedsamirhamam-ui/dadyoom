@@ -931,16 +931,80 @@
     {
       "code": "SY",
       "nameAr": "سوريا",
-      "matchingStatus": "not-closed",
-      "verificationStatus": "source-verified",
+      "matchingStatus": "current-scope-complete",
+      "verificationStatus": "verified",
       "sources": [
         {
           "url": "https://moed.gov.sy/",
-          "kind": "official-ministry-portal",
-          "note": "بوابة وزارة التربية والتعليم السورية الفعالة في 2026؛ تم التحقق من سلطة النطاق. لا تكفي وحدها لإغلاق خرائط الصفوف والكتب."
+          "kind": "official-ministry-portal"
+        },
+        {
+          "url": "https://sana.sy/education/2303177/",
+          "kind": "government-report-interactive-books",
+          "note": "المركز الوطني يتيح الكتب لجميع الصفوف والمراحل حتى الثانوية، والنسخة الرقمية تماثل الكتاب الورقي المعتمد."
+        },
+        {
+          "url": "https://sana.sy/education/2449235/",
+          "kind": "government-report-educational-platforms-2026"
+        },
+        {
+          "url": "https://sana.sy/education/2519264/",
+          "kind": "government-report-textbook-development-2026"
+        },
+        {
+          "url": "https://sana.sy/education/2403508/",
+          "kind": "government-report-enabling-curriculum-arabic"
+        },
+        {
+          "url": "https://sana.sy/education/2462169/",
+          "kind": "government-report-arabic-support"
+        },
+        {
+          "url": "https://svis-sy.com/wp-content/uploads/2025/09/9-arabic.pdf",
+          "kind": "public-mirror-official-grade9-book",
+          "note": "شاهد مساعد لكتاب رسمي يحمل وزارة التربية والتعليم؛ ليست هذه المرآة مصدر السلطة الأساسي."
         }
       ],
-      "sourceVerifiedAt": "2026-09-25"
+      "sourceVerifiedAt": "2026-09-25",
+      "officialScope": {
+        "academicYear": "2026-2027",
+        "subject": "اللغة العربية",
+        "grades": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "status": "complete-for-currently-published-scope",
+        "sourceModel": "وزارة التربية والتعليم + المركز الوطني لتطوير المناهج + تقارير حكومية حالية",
+        "stages": {
+          "1-9": "التعليم الأساسي",
+          "10-12": "التعليم الثانوي"
+        },
+        "matchingUnit": "حزمة كتاب/منهاج لكل صف",
+        "note": "لا تُختلق عناوين وحدات غير موثقة؛ تُستخدم حزمة صفية أصلية مرتبطة بالكتاب المعتمد."
+      },
+      "mappingSummary": {
+        "mappingGrades": 12,
+        "verifiedMappingGrades": 12,
+        "officialCoverageNodes": 12,
+        "mappedCoverageNodes": 12,
+        "verifiedCoverageNodes": 12,
+        "databaseLessons": 12,
+        "questions": 36,
+        "vocabulary": 36,
+        "activities": 36,
+        "nationalExtensions": 12,
+        "verifiedAt": "2026-09-25"
+      }
     },
     {
       "code": "IQ",
