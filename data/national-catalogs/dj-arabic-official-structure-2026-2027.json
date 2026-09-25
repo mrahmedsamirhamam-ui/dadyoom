@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "DJ",
+    "nameAr": "جيبوتي",
+    "nameEn": "Djibouti"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "verificationStatus": "verified-source-structure",
+  "officialCoverageUnit": "grade-curriculum-or-secondary-series",
+  "educationStructure": {
+    "fundamental": {
+      "grades": "1-9",
+      "primary": "1-5",
+      "middle": "6-9"
+    },
+    "secondary": {
+      "grades": "10-12",
+      "series": [
+        "L",
+        "ES",
+        "S",
+        "SG"
+      ]
+    }
+  },
+  "officialCoverageNodes": 18,
+  "sources": [
+    {
+      "kind": "official-cripen",
+      "url": "https://cripen.dj/"
+    },
+    {
+      "kind": "official-base-guides",
+      "url": "https://cripen.dj/index.php/guides-de-lenseignement-de-base/"
+    },
+    {
+      "kind": "official-grade1-arabic",
+      "url": "https://education.dj/portail/guideBi1er.php"
+    },
+    {
+      "kind": "official-grade2-arabic",
+      "url": "https://education.dj/portail/guideBi2e.php"
+    },
+    {
+      "kind": "official-grade3-arabic",
+      "url": "https://education.dj/portail/guideBi3e.php"
+    },
+    {
+      "kind": "official-grade5-arabic",
+      "url": "https://education.dj/portail/guide5e.php"
+    },
+    {
+      "kind": "official-grade9-arabic",
+      "url": "https://education.dj/portail/metier/guides/9eme/arabe.html"
+    },
+    {
+      "kind": "official-secondary-programs",
+      "url": "https://cripen.dj/wp-content/uploads/2025/05/Programmes-compile-seconde.pdf"
+    },
+    {
+      "kind": "official-terminale-programs",
+      "url": "https://cripen.dj/wp-content/uploads/2025/05/Programme-compile-Terminale.pdf"
+    },
+    {
+      "kind": "official-2026-arabic-bac-evidence",
+      "url": "https://cripen.dj/index.php/2026/06/08/visite-officielle-du-ministre-dans-les-centres-dexamens/"
+    }
+  ],
+  "copyrightPolicy": "لا تعيد ضاديوم نشر نصوص الأدلة والكتب؛ تستخدم البنية والمقرر والسلسلة وروابط المصادر لإثبات المواءمة، والمحتوى التعليمي أصلي.",
+  "generatedAt": "2026-09-25"
+}
