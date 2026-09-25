@@ -95,7 +95,10 @@ export async function processLessonCompleted(
 }
 
 type UpdateProgressInput = {
+  studentId: string;
   studentEmail: string;
+  lessonId: string;
+  assessmentId: string;
   skill: Skill;
   correct: boolean;
 };
@@ -105,16 +108,41 @@ export async function updateProgress(
   input: UpdateProgressInput
 ): Promise<void> {
   if (input.correct) {
-    await awardXp({
-      supabase,
-      studentEmail:
-        input.studentEmail,
-      skill:
-        input.skill,
-      xp: 20,
-      reason:
-        "Correct assessment answer",
-    });
+    const {
+      error: pointError,
+    } = await supabase
+      .from(
+        "edu_point_transactions"
+      )
+      .insert({
+        student_id:
+          input.studentId,
+        lesson_id:
+          null,
+        activity_id:
+          null,
+        points:
+          20,
+        reason:
+          "Correct assessment answer",
+        metadata: {
+          source:
+            "ai_assessment",
+          assessmentId:
+            input.assessmentId,
+          lessonId:
+            input.lessonId,
+          skill:
+            input.skill,
+        },
+      });
+
+    if (
+      pointError &&
+      pointError.code !== "23505"
+    ) {
+      throw pointError;
+    }
   }
 
   await increaseSkill(
