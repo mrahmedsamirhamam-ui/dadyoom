@@ -52,7 +52,7 @@ export default async function PricingPage() {
 
           <PlanCard
             title="ضاديوم Plus"
-            subtitle={`${status.price.toFixed(2)} ${status.currency} / شهريًا`}
+            subtitle={`${status.plusPrice.toFixed(2)} ${status.plusCurrency} / شهريًا`}
             current={status.plan === "plus"}
             accent
             features={[
