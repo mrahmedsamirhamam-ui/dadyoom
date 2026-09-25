@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "OM",
+    "nameAr": "عُمان"
+  },
+  "academicYear": "2026-2027",
+  "grade": 12,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 6,
+  "mappedLessons": 6,
+  "verifiedLessons": 6,
+  "scope": "current-officially-published-and-publicly-verifiable-scope",
+  "policy": "المطابقة على مستوى حزم المهارات/الفنون الوطنية وفق ما تنشره الوزارة؛ لا تُختلق عناوين دروس غير متاحة علنًا، وكل فجوة ممثلة بمحتوى وطني أصلي.",
+  "mappings": [
+    {
+      "officialSlug": "om-2026-2027-g12-listening",
+      "officialTitle": "حزمة الاستماع — الصف 12",
+      "source": {
+        "label": "وزارة التعليم العُمانية — وثائق تقويم ومناهج اللغة العربية",
+        "url": "https://home.moe.gov.om/library/171",
+        "digitalTextbooksUrl": "https://ict.moe.gov.om/eBooks/index.php",
+        "curriculumLibraryUrl": "https://home.moe.gov.om/library/96",
+        "skillsReferenceUrl": "https://home.moe.gov.om/topics/1/show/11856",
+        "pathways20262027Url": "https://home.moe.gov.om/topics/1/show/13053"
+      },
+      "relationType": "national-skill-bundle+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُستخدم حزمة «الاستماع» كوحدة مطابقة وطنية لأن المصادر الرسمية الحالية تثبت بنية المادة والمهارات/الفنون دون إتاحة تسلسل عام قابل للتدقيق لكل عناوين الدروس؛ الحزمة أصلية وتستند إلى Core كدعم فقط.",
+      "coreCoverage": [
+        {
+          "slug": "om-dadyoom-core-g12-l16",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-2026-arabic-assessment+official-curriculum-library+official-digital-textbooks+official-arabic-skills+national-pack"
+    },
+    {
+      "officialSlug": "om-2026-2027-g12-speaking",
+      "officialTitle": "حزمة التحدث — الصف 12",
+      "source": {
+        "label": "وزارة التعليم العُمانية — وثائق تقويم ومناهج اللغة العربية",
+        "url": "https://home.moe.gov.om/library/171",
+        "digitalTextbooksUrl": "https://ict.moe.gov.om/eBooks/index.php",
+        "curriculumLibraryUrl": "https://home.moe.gov.om/library/96",
+        "skillsReferenceUrl": "https://home.moe.gov.om/topics/1/show/11856",
+        "pathways20262027Url": "https://home.moe.gov.om/topics/1/show/13053"
+      },
+      "relationType": "national-skill-bundle+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُستخدم حزمة «التحدث» كوحدة مطابقة وطنية لأن المصادر الرسمية الحالية تثبت بنية المادة والمهارات/الفنون دون إتاحة تسلسل عام قابل للتدقيق لكل عناوين الدروس؛ الحزمة أصلية وتستند إلى Core كدعم فقط.",
+      "coreCoverage": [
+        {
+          "slug": "om-dadyoom-core-g12-l16",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-2026-arabic-assessment+official-curriculum-library+official-digital-textbooks+official-arabic-skills+national-pack"
+    },
+    {
+      "officialSlug": "om-2026-2027-g12-reading",
+      "officialTitle": "حزمة القراءة — الصف 12",
+      "source": {
+        "label": "وزارة التعليم العُمانية — وثائق تقويم ومناهج اللغة العربية",
+        "url": "https://home.moe.gov.om/library/171",
+        "digitalTextbooksUrl": "https://ict.moe.gov.om/eBooks/index.php",
+        "curriculumLibraryUrl": "https://home.moe.gov.om/library/96",
+        "skillsReferenceUrl": "https://home.moe.gov.om/topics/1/show/11856",
+        "pathways20262027Url": "https://home.moe.gov.om/topics/1/show/13053"
+      },
+      "relationType": "national-skill-bundle+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُستخدم حزمة «القراءة» كوحدة مطابقة وطنية لأن المصادر الرسمية الحالية تثبت بنية المادة والمهارات/الفنون دون إتاحة تسلسل عام قابل للتدقيق لكل عناوين الدروس؛ الحزمة أصلية وتستند إلى Core كدعم فقط.",
+      "coreCoverage": [
+        {
+          "slug": "om-dadyoom-core-g12-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "om-dadyoom-core-g12-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "om-dadyoom-core-g12-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "om-dadyoom-core-g12-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "om-dadyoom-core-g12-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "om-dadyoom-core-g12-l06",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-2026-arabic-assessment+official-curriculum-library+official-digital-textbooks+official-arabic-skills+national-pack"
+    },
+    {
+      "officialSlug": "om-2026-2027-g12-writing",
+      "officialTitle": "حزمة الكتابة — الصف 12",
+      "source": {
+        "label": "وزارة التعليم العُمانية — وثائق تقويم ومناهج اللغة العربية",
+        "url": "https://home.moe.gov.om/library/171",
+        "digitalTextbooksUrl": "https://ict.moe.gov.om/eBooks/index.php",
+        "curriculumLibraryUrl": "https://home.moe.gov.om/library/96",
+        "skillsReferenceUrl": "https://home.moe.gov.om/topics/1/show/11856",
+        "pathways20262027Url": "https://home.moe.gov.om/topics/1/show/13053"
+      },
+      "relationType": "national-skill-bundle+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُستخدم حزمة «الكتابة» كوحدة مطابقة وطنية لأن المصادر الرسمية الحالية تثبت بنية المادة والمهارات/الفنون دون إتاحة تسلسل عام قابل للتدقيق لكل عناوين الدروس؛ الحزمة أصلية وتستند إلى Core كدعم فقط.",
+      "coreCoverage": [
+        {
+          "slug": "om-dadyoom-core-g12-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "om-dadyoom-core-g12-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "om-dadyoom-core-g12-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "om-dadyoom-core-g12-l17",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-2026-arabic-assessment+official-curriculum-library+official-digital-textbooks+official-arabic-skills+national-pack"
+    },
+    {
+      "officialSlug": "om-2026-2027-g12-language-system",
+      "officialTitle": "حزمة النظام اللغوي وفروعه — الصف 12",
+      "source": {
+        "label": "وزارة التعليم العُمانية — وثائق تقويم ومناهج اللغة العربية",
+        "url": "https://home.moe.gov.om/library/171",
+        "digitalTextbooksUrl": "https://ict.moe.gov.om/eBooks/index.php",
+        "curriculumLibraryUrl": "https://home.moe.gov.om/library/96",
+        "skillsReferenceUrl": "https://home.moe.gov.om/topics/1/show/11856",
+        "pathways20262027Url": "https://home.moe.gov.om/topics/1/show/13053"
+      },
+      "relationType": "national-skill-bundle+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُستخدم حزمة «النظام اللغوي وفروعه» كوحدة مطابقة وطنية لأن المصادر الرسمية الحالية تثبت بنية المادة والمهارات/الفنون دون إتاحة تسلسل عام قابل للتدقيق لكل عناوين الدروس؛ الحزمة أصلية وتستند إلى Core كدعم فقط.",
+      "coreCoverage": [
+        {
+          "slug": "om-dadyoom-core-g12-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "om-dadyoom-core-g12-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "om-dadyoom-core-g12-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "om-dadyoom-core-g12-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "om-dadyoom-core-g12-l11",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-2026-arabic-assessment+official-curriculum-library+official-digital-textbooks+official-arabic-skills+national-pack"
+    },
+    {
+      "officialSlug": "om-2026-2027-g12-literary-arts",
+      "officialTitle": "حزمة الفنون الأدبية والبلاغية — الصف 12",
+      "source": {
+        "label": "وزارة التعليم العُمانية — وثائق تقويم ومناهج اللغة العربية",
+        "url": "https://home.moe.gov.om/library/171",
+        "digitalTextbooksUrl": "https://ict.moe.gov.om/eBooks/index.php",
+        "curriculumLibraryUrl": "https://home.moe.gov.om/library/96",
+        "skillsReferenceUrl": "https://home.moe.gov.om/topics/1/show/11856",
+        "pathways20262027Url": "https://home.moe.gov.om/topics/1/show/13053"
+      },
+      "relationType": "national-skill-bundle+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُستخدم حزمة «الفنون الأدبية والبلاغية» كوحدة مطابقة وطنية لأن المصادر الرسمية الحالية تثبت بنية المادة والمهارات/الفنون دون إتاحة تسلسل عام قابل للتدقيق لكل عناوين الدروس؛ الحزمة أصلية وتستند إلى Core كدعم فقط.",
+      "coreCoverage": [
+        {
+          "slug": "om-dadyoom-core-g12-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "om-dadyoom-core-g12-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "om-dadyoom-core-g12-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "om-dadyoom-core-g12-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "om-dadyoom-core-g12-l12",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-2026-arabic-assessment+official-curriculum-library+official-digital-textbooks+official-arabic-skills+national-pack"
+    }
+  ]
+}
