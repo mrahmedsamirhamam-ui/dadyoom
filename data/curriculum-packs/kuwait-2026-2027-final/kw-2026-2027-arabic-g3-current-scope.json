@@ -1,0 +1,1416 @@
+{
+  "schemaVersion": 1,
+  "packKey": "KW:2026-2027:arabic:g3:current-scope",
+  "country": {
+    "code": "KW",
+    "nameAr": "الكويت",
+    "nameEn": "Kuwait"
+  },
+  "academicYear": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "stage": {
+    "code": "primary",
+    "nameAr": "المرحلة الابتدائية"
+  },
+  "grade": {
+    "number": 3,
+    "nameAr": "الصف الثالث",
+    "nameEn": "Grade 3"
+  },
+  "semester": null,
+  "curriculum": {
+    "nameAr": "اللغة العربية — المطابقة الرسمية الكويتية",
+    "nameEn": "Arabic — Kuwait Official Curriculum Match",
+    "description": "طبقة وطنية مستقلة تربط ضاديوم بمصفوفات اللغة العربية والمناهج والمكتبة الرسمية الكويتية دون نسخ النصوص المحمية.",
+    "storageNameAr": "اللغة العربية — المطابقة الرسمية الكويتية"
+  },
+  "rights": {
+    "contentOwner": "dadyoom",
+    "sourceLabel": "المصادر الرسمية لوزارة التربية الكويتية تثبت المصفوفات والمقرر والبنية؛ المحتوى والأسئلة والأنشطة أصلية لضاديوم.",
+    "sourceUrl": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+    "verified": true
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "مصفوفة مهارات اللغة العربية — تغطية وطنية",
+      "description": "تغطية ضاديوم لمجالات مصفوفة اللغة العربية الرسمية بحسب المرحلة.",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "الاستماع والمشاهدة",
+          "type": "listening",
+          "estimatedMinutes": 35,
+          "summary": "حزمة وطنية أصلية من ضاديوم لمجال «الاستماع والمشاهدة» للصف 3، مرتبطة بمصفوفات المهارات والمصادر الرسمية لوزارة التربية في دولة الكويت.",
+          "content": "هذا المحتوى من إنشاء ضاديوم لتغطية مجال «الاستماع والمشاهدة» للصف 3 وفق البنية والمعايير المنشورة من وزارة التربية الكويتية، دون إعادة نشر نصوص الكتب المدرسية أو أسئلتها. يركز المتعلم على فهم ناتج التعلم ثم تطبيقه في مثال جديد ومراجعته وفق معيار واضح. ترتبط الحزمة بالممارسات اللغوية المناسبة للمرحلة، وتستخدم الكتاب الرسمي أو المصدر المرخص عند الحاجة إلى النص الأصلي، بينما تبقى الشروح والأمثلة والأسئلة والأنشطة هنا أصلية لضاديوم. تغطي الحزمة النطاق الحالي للعام 2026-2027 مع الاستناد إلى مصفوفات المدى والتتابع والمكتبة الإلكترونية الرسمية.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات مجال «الاستماع والمشاهدة» بما يناسب الصف 3.",
+            "أن يطبق المتعلم مهارة من مجال «الاستماع والمشاهدة» في موقف جديد.",
+            "أن يراجع المتعلم أداءه في «الاستماع والمشاهدة» ويصححه وفق معيار واضح."
+          ],
+          "vocabulary": [
+            {
+              "word": "إنصات",
+              "meaning": "استماع مركز لفهم المعنى والتفاصيل."
+            },
+            {
+              "word": "مشاهدة",
+              "meaning": "متابعة المادة المرئية لفهم رسالتها."
+            },
+            {
+              "word": "استجابة",
+              "meaning": "تفاعل مناسب مع ما يسمعه أو يشاهده المتعلم."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما أفضل بداية لإتقان مجال «الاستماع والمشاهدة»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أفهم ناتج التعلم ثم أطبقه."
+                },
+                {
+                  "id": "b",
+                  "text": "أحفظ إجابة دون فهم."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاوز التطبيق."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "فهم ناتج التعلم يسبق التطبيق المتقن.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على إتقان «الاستماع والمشاهدة»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير أو دليل."
+                },
+                {
+                  "id": "b",
+                  "text": "تكرار العنوان فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "اختيار عشوائي."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في أداء مستقل قابل للتفسير.",
+              "points": 1
+            },
+            {
+              "question": "ما المراجعة الصحيحة بعد أداء المهمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن الناتج بالمعيار وأصحح موضع الضعف."
+                },
+                {
+                  "id": "b",
+                  "text": "أترك العمل دون مراجعة."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر الإجابة بلا سبب."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة وفق معيار تحسن جودة التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تطبيق موجّه — الاستماع والمشاهدة",
+              "activityType": "multiple_choice",
+              "instructions": "اختر الإجراء الذي يحقق ناتج التعلم ثم علل اختيارك.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "listening-viewing"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل — الاستماع والمشاهدة",
+              "activityType": "listening",
+              "instructions": "نفذ مثالًا جديدًا من إنشائك يطبق المهارة.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "listening-viewing"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية — الاستماع والمشاهدة",
+              "activityType": "assessment",
+              "instructions": "راجع ناتجك وفق معيار النجاح وحدد تحسينًا واحدًا.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "listening-viewing"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية الكويتية — مصفوفة مهارات اللغة العربية للمرحلة الابتدائية + مكتبة الطالب",
+            "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+            "additionalUrls": [
+              "https://elibrary.moe.edu.kw/StudentsLibrary",
+              "https://moe.edu.kw/news/869",
+              "https://www.moe.edu.kw/pages/calendar"
+            ]
+          },
+          "alignment": {
+            "mode": "official-national-skill-domain",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "kw-dadyoom-core-g3-l16",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        },
+        {
+          "number": 2,
+          "title": "التحدث",
+          "type": "speaking",
+          "estimatedMinutes": 35,
+          "summary": "حزمة وطنية أصلية من ضاديوم لمجال «التحدث» للصف 3، مرتبطة بمصفوفات المهارات والمصادر الرسمية لوزارة التربية في دولة الكويت.",
+          "content": "هذا المحتوى من إنشاء ضاديوم لتغطية مجال «التحدث» للصف 3 وفق البنية والمعايير المنشورة من وزارة التربية الكويتية، دون إعادة نشر نصوص الكتب المدرسية أو أسئلتها. يركز المتعلم على فهم ناتج التعلم ثم تطبيقه في مثال جديد ومراجعته وفق معيار واضح. ترتبط الحزمة بالممارسات اللغوية المناسبة للمرحلة، وتستخدم الكتاب الرسمي أو المصدر المرخص عند الحاجة إلى النص الأصلي، بينما تبقى الشروح والأمثلة والأسئلة والأنشطة هنا أصلية لضاديوم. تغطي الحزمة النطاق الحالي للعام 2026-2027 مع الاستناد إلى مصفوفات المدى والتتابع والمكتبة الإلكترونية الرسمية.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات مجال «التحدث» بما يناسب الصف 3.",
+            "أن يطبق المتعلم مهارة من مجال «التحدث» في موقف جديد.",
+            "أن يراجع المتعلم أداءه في «التحدث» ويصححه وفق معيار واضح."
+          ],
+          "vocabulary": [
+            {
+              "word": "تحدث",
+              "meaning": "تعبير شفهي واضح ومنظم."
+            },
+            {
+              "word": "طلاقة",
+              "meaning": "انسياب الكلام بوضوح مناسب."
+            },
+            {
+              "word": "حوار",
+              "meaning": "تبادل منظم للأفكار والآراء."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما أفضل بداية لإتقان مجال «التحدث»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أفهم ناتج التعلم ثم أطبقه."
+                },
+                {
+                  "id": "b",
+                  "text": "أحفظ إجابة دون فهم."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاوز التطبيق."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "فهم ناتج التعلم يسبق التطبيق المتقن.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على إتقان «التحدث»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير أو دليل."
+                },
+                {
+                  "id": "b",
+                  "text": "تكرار العنوان فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "اختيار عشوائي."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في أداء مستقل قابل للتفسير.",
+              "points": 1
+            },
+            {
+              "question": "ما المراجعة الصحيحة بعد أداء المهمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن الناتج بالمعيار وأصحح موضع الضعف."
+                },
+                {
+                  "id": "b",
+                  "text": "أترك العمل دون مراجعة."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر الإجابة بلا سبب."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة وفق معيار تحسن جودة التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تطبيق موجّه — التحدث",
+              "activityType": "multiple_choice",
+              "instructions": "اختر الإجراء الذي يحقق ناتج التعلم ثم علل اختيارك.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "speaking"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل — التحدث",
+              "activityType": "speaking",
+              "instructions": "نفذ مثالًا جديدًا من إنشائك يطبق المهارة.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "speaking"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية — التحدث",
+              "activityType": "assessment",
+              "instructions": "راجع ناتجك وفق معيار النجاح وحدد تحسينًا واحدًا.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "speaking"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية الكويتية — مصفوفة مهارات اللغة العربية للمرحلة الابتدائية + مكتبة الطالب",
+            "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+            "additionalUrls": [
+              "https://elibrary.moe.edu.kw/StudentsLibrary",
+              "https://moe.edu.kw/news/869",
+              "https://www.moe.edu.kw/pages/calendar"
+            ]
+          },
+          "alignment": {
+            "mode": "official-national-skill-domain",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "kw-dadyoom-core-g3-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l17",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        },
+        {
+          "number": 3,
+          "title": "القراءة والمشاهدة",
+          "type": "reading",
+          "estimatedMinutes": 35,
+          "summary": "حزمة وطنية أصلية من ضاديوم لمجال «القراءة والمشاهدة» للصف 3، مرتبطة بمصفوفات المهارات والمصادر الرسمية لوزارة التربية في دولة الكويت.",
+          "content": "هذا المحتوى من إنشاء ضاديوم لتغطية مجال «القراءة والمشاهدة» للصف 3 وفق البنية والمعايير المنشورة من وزارة التربية الكويتية، دون إعادة نشر نصوص الكتب المدرسية أو أسئلتها. يركز المتعلم على فهم ناتج التعلم ثم تطبيقه في مثال جديد ومراجعته وفق معيار واضح. ترتبط الحزمة بالممارسات اللغوية المناسبة للمرحلة، وتستخدم الكتاب الرسمي أو المصدر المرخص عند الحاجة إلى النص الأصلي، بينما تبقى الشروح والأمثلة والأسئلة والأنشطة هنا أصلية لضاديوم. تغطي الحزمة النطاق الحالي للعام 2026-2027 مع الاستناد إلى مصفوفات المدى والتتابع والمكتبة الإلكترونية الرسمية.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات مجال «القراءة والمشاهدة» بما يناسب الصف 3.",
+            "أن يطبق المتعلم مهارة من مجال «القراءة والمشاهدة» في موقف جديد.",
+            "أن يراجع المتعلم أداءه في «القراءة والمشاهدة» ويصححه وفق معيار واضح."
+          ],
+          "vocabulary": [
+            {
+              "word": "قراءة",
+              "meaning": "فهم النص المكتوب وتحليل معانيه."
+            },
+            {
+              "word": "فكرة رئيسة",
+              "meaning": "المعنى المركزي الذي يدور حوله النص."
+            },
+            {
+              "word": "دليل",
+              "meaning": "تفصيل من النص يدعم الفهم أو الاستنتاج."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما أفضل بداية لإتقان مجال «القراءة والمشاهدة»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أفهم ناتج التعلم ثم أطبقه."
+                },
+                {
+                  "id": "b",
+                  "text": "أحفظ إجابة دون فهم."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاوز التطبيق."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "فهم ناتج التعلم يسبق التطبيق المتقن.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على إتقان «القراءة والمشاهدة»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير أو دليل."
+                },
+                {
+                  "id": "b",
+                  "text": "تكرار العنوان فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "اختيار عشوائي."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في أداء مستقل قابل للتفسير.",
+              "points": 1
+            },
+            {
+              "question": "ما المراجعة الصحيحة بعد أداء المهمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن الناتج بالمعيار وأصحح موضع الضعف."
+                },
+                {
+                  "id": "b",
+                  "text": "أترك العمل دون مراجعة."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر الإجابة بلا سبب."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة وفق معيار تحسن جودة التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تطبيق موجّه — القراءة والمشاهدة",
+              "activityType": "multiple_choice",
+              "instructions": "اختر الإجراء الذي يحقق ناتج التعلم ثم علل اختيارك.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "reading-viewing"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل — القراءة والمشاهدة",
+              "activityType": "reading",
+              "instructions": "نفذ مثالًا جديدًا من إنشائك يطبق المهارة.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "reading-viewing"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية — القراءة والمشاهدة",
+              "activityType": "assessment",
+              "instructions": "راجع ناتجك وفق معيار النجاح وحدد تحسينًا واحدًا.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "reading-viewing"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية الكويتية — مصفوفة مهارات اللغة العربية للمرحلة الابتدائية + مكتبة الطالب",
+            "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+            "additionalUrls": [
+              "https://elibrary.moe.edu.kw/StudentsLibrary",
+              "https://moe.edu.kw/news/869",
+              "https://www.moe.edu.kw/pages/calendar"
+            ]
+          },
+          "alignment": {
+            "mode": "official-national-skill-domain",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "kw-dadyoom-core-g3-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l15",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        },
+        {
+          "number": 4,
+          "title": "الحصيلة اللغوية",
+          "type": "vocabulary",
+          "estimatedMinutes": 35,
+          "summary": "حزمة وطنية أصلية من ضاديوم لمجال «الحصيلة اللغوية» للصف 3، مرتبطة بمصفوفات المهارات والمصادر الرسمية لوزارة التربية في دولة الكويت.",
+          "content": "هذا المحتوى من إنشاء ضاديوم لتغطية مجال «الحصيلة اللغوية» للصف 3 وفق البنية والمعايير المنشورة من وزارة التربية الكويتية، دون إعادة نشر نصوص الكتب المدرسية أو أسئلتها. يركز المتعلم على فهم ناتج التعلم ثم تطبيقه في مثال جديد ومراجعته وفق معيار واضح. ترتبط الحزمة بالممارسات اللغوية المناسبة للمرحلة، وتستخدم الكتاب الرسمي أو المصدر المرخص عند الحاجة إلى النص الأصلي، بينما تبقى الشروح والأمثلة والأسئلة والأنشطة هنا أصلية لضاديوم. تغطي الحزمة النطاق الحالي للعام 2026-2027 مع الاستناد إلى مصفوفات المدى والتتابع والمكتبة الإلكترونية الرسمية.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات مجال «الحصيلة اللغوية» بما يناسب الصف 3.",
+            "أن يطبق المتعلم مهارة من مجال «الحصيلة اللغوية» في موقف جديد.",
+            "أن يراجع المتعلم أداءه في «الحصيلة اللغوية» ويصححه وفق معيار واضح."
+          ],
+          "vocabulary": [
+            {
+              "word": "مفردة",
+              "meaning": "كلمة تحمل معنى محددًا في السياق."
+            },
+            {
+              "word": "سياق",
+              "meaning": "الكلمات والموقف المحيطان بالمفردة."
+            },
+            {
+              "word": "اشتقاق",
+              "meaning": "تكوين ألفاظ مترابطة من أصل لغوي."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما أفضل بداية لإتقان مجال «الحصيلة اللغوية»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أفهم ناتج التعلم ثم أطبقه."
+                },
+                {
+                  "id": "b",
+                  "text": "أحفظ إجابة دون فهم."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاوز التطبيق."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "فهم ناتج التعلم يسبق التطبيق المتقن.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على إتقان «الحصيلة اللغوية»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير أو دليل."
+                },
+                {
+                  "id": "b",
+                  "text": "تكرار العنوان فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "اختيار عشوائي."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في أداء مستقل قابل للتفسير.",
+              "points": 1
+            },
+            {
+              "question": "ما المراجعة الصحيحة بعد أداء المهمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن الناتج بالمعيار وأصحح موضع الضعف."
+                },
+                {
+                  "id": "b",
+                  "text": "أترك العمل دون مراجعة."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر الإجابة بلا سبب."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة وفق معيار تحسن جودة التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تطبيق موجّه — الحصيلة اللغوية",
+              "activityType": "multiple_choice",
+              "instructions": "اختر الإجراء الذي يحقق ناتج التعلم ثم علل اختيارك.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "vocabulary"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل — الحصيلة اللغوية",
+              "activityType": "vocabulary",
+              "instructions": "نفذ مثالًا جديدًا من إنشائك يطبق المهارة.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "vocabulary"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية — الحصيلة اللغوية",
+              "activityType": "assessment",
+              "instructions": "راجع ناتجك وفق معيار النجاح وحدد تحسينًا واحدًا.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "vocabulary"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية الكويتية — مصفوفة مهارات اللغة العربية للمرحلة الابتدائية + مكتبة الطالب",
+            "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+            "additionalUrls": [
+              "https://elibrary.moe.edu.kw/StudentsLibrary",
+              "https://moe.edu.kw/news/869",
+              "https://www.moe.edu.kw/pages/calendar"
+            ]
+          },
+          "alignment": {
+            "mode": "official-national-skill-domain",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "kw-dadyoom-core-g3-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l09",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        },
+        {
+          "number": 5,
+          "title": "السلامة اللغوية",
+          "type": "grammar",
+          "estimatedMinutes": 35,
+          "summary": "حزمة وطنية أصلية من ضاديوم لمجال «السلامة اللغوية» للصف 3، مرتبطة بمصفوفات المهارات والمصادر الرسمية لوزارة التربية في دولة الكويت.",
+          "content": "هذا المحتوى من إنشاء ضاديوم لتغطية مجال «السلامة اللغوية» للصف 3 وفق البنية والمعايير المنشورة من وزارة التربية الكويتية، دون إعادة نشر نصوص الكتب المدرسية أو أسئلتها. يركز المتعلم على فهم ناتج التعلم ثم تطبيقه في مثال جديد ومراجعته وفق معيار واضح. ترتبط الحزمة بالممارسات اللغوية المناسبة للمرحلة، وتستخدم الكتاب الرسمي أو المصدر المرخص عند الحاجة إلى النص الأصلي، بينما تبقى الشروح والأمثلة والأسئلة والأنشطة هنا أصلية لضاديوم. تغطي الحزمة النطاق الحالي للعام 2026-2027 مع الاستناد إلى مصفوفات المدى والتتابع والمكتبة الإلكترونية الرسمية.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات مجال «السلامة اللغوية» بما يناسب الصف 3.",
+            "أن يطبق المتعلم مهارة من مجال «السلامة اللغوية» في موقف جديد.",
+            "أن يراجع المتعلم أداءه في «السلامة اللغوية» ويصححه وفق معيار واضح."
+          ],
+          "vocabulary": [
+            {
+              "word": "تركيب",
+              "meaning": "طريقة انتظام الكلمات في الجملة."
+            },
+            {
+              "word": "نحو",
+              "meaning": "قواعد تضبط وظائف الكلمات وعلاقاتها."
+            },
+            {
+              "word": "صرف",
+              "meaning": "قواعد بناء الكلمات وتحول صيغها."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما أفضل بداية لإتقان مجال «السلامة اللغوية»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أفهم ناتج التعلم ثم أطبقه."
+                },
+                {
+                  "id": "b",
+                  "text": "أحفظ إجابة دون فهم."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاوز التطبيق."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "فهم ناتج التعلم يسبق التطبيق المتقن.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على إتقان «السلامة اللغوية»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير أو دليل."
+                },
+                {
+                  "id": "b",
+                  "text": "تكرار العنوان فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "اختيار عشوائي."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في أداء مستقل قابل للتفسير.",
+              "points": 1
+            },
+            {
+              "question": "ما المراجعة الصحيحة بعد أداء المهمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن الناتج بالمعيار وأصحح موضع الضعف."
+                },
+                {
+                  "id": "b",
+                  "text": "أترك العمل دون مراجعة."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر الإجابة بلا سبب."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة وفق معيار تحسن جودة التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تطبيق موجّه — السلامة اللغوية",
+              "activityType": "multiple_choice",
+              "instructions": "اختر الإجراء الذي يحقق ناتج التعلم ثم علل اختيارك.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "language-accuracy"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل — السلامة اللغوية",
+              "activityType": "grammar",
+              "instructions": "نفذ مثالًا جديدًا من إنشائك يطبق المهارة.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "language-accuracy"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية — السلامة اللغوية",
+              "activityType": "assessment",
+              "instructions": "راجع ناتجك وفق معيار النجاح وحدد تحسينًا واحدًا.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "language-accuracy"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية الكويتية — مصفوفة مهارات اللغة العربية للمرحلة الابتدائية + مكتبة الطالب",
+            "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+            "additionalUrls": [
+              "https://elibrary.moe.edu.kw/StudentsLibrary",
+              "https://moe.edu.kw/news/869",
+              "https://www.moe.edu.kw/pages/calendar"
+            ]
+          },
+          "alignment": {
+            "mode": "official-national-skill-domain",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "kw-dadyoom-core-g3-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l12",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        },
+        {
+          "number": 6,
+          "title": "البلاغة",
+          "type": "reading",
+          "estimatedMinutes": 35,
+          "summary": "حزمة وطنية أصلية من ضاديوم لمجال «البلاغة» للصف 3، مرتبطة بمصفوفات المهارات والمصادر الرسمية لوزارة التربية في دولة الكويت.",
+          "content": "هذا المحتوى من إنشاء ضاديوم لتغطية مجال «البلاغة» للصف 3 وفق البنية والمعايير المنشورة من وزارة التربية الكويتية، دون إعادة نشر نصوص الكتب المدرسية أو أسئلتها. يركز المتعلم على فهم ناتج التعلم ثم تطبيقه في مثال جديد ومراجعته وفق معيار واضح. ترتبط الحزمة بالممارسات اللغوية المناسبة للمرحلة، وتستخدم الكتاب الرسمي أو المصدر المرخص عند الحاجة إلى النص الأصلي، بينما تبقى الشروح والأمثلة والأسئلة والأنشطة هنا أصلية لضاديوم. تغطي الحزمة النطاق الحالي للعام 2026-2027 مع الاستناد إلى مصفوفات المدى والتتابع والمكتبة الإلكترونية الرسمية.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات مجال «البلاغة» بما يناسب الصف 3.",
+            "أن يطبق المتعلم مهارة من مجال «البلاغة» في موقف جديد.",
+            "أن يراجع المتعلم أداءه في «البلاغة» ويصححه وفق معيار واضح."
+          ],
+          "vocabulary": [
+            {
+              "word": "بلاغة",
+              "meaning": "اختيار التعبير الملائم المؤثر في المعنى."
+            },
+            {
+              "word": "صورة",
+              "meaning": "تعبير لغوي يصور المعنى ويقويه."
+            },
+            {
+              "word": "أسلوب",
+              "meaning": "طريقة صياغة المعنى بحسب الغرض."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما أفضل بداية لإتقان مجال «البلاغة»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أفهم ناتج التعلم ثم أطبقه."
+                },
+                {
+                  "id": "b",
+                  "text": "أحفظ إجابة دون فهم."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاوز التطبيق."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "فهم ناتج التعلم يسبق التطبيق المتقن.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على إتقان «البلاغة»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير أو دليل."
+                },
+                {
+                  "id": "b",
+                  "text": "تكرار العنوان فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "اختيار عشوائي."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في أداء مستقل قابل للتفسير.",
+              "points": 1
+            },
+            {
+              "question": "ما المراجعة الصحيحة بعد أداء المهمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن الناتج بالمعيار وأصحح موضع الضعف."
+                },
+                {
+                  "id": "b",
+                  "text": "أترك العمل دون مراجعة."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر الإجابة بلا سبب."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة وفق معيار تحسن جودة التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تطبيق موجّه — البلاغة",
+              "activityType": "multiple_choice",
+              "instructions": "اختر الإجراء الذي يحقق ناتج التعلم ثم علل اختيارك.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "rhetoric"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل — البلاغة",
+              "activityType": "reading",
+              "instructions": "نفذ مثالًا جديدًا من إنشائك يطبق المهارة.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "rhetoric"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية — البلاغة",
+              "activityType": "assessment",
+              "instructions": "راجع ناتجك وفق معيار النجاح وحدد تحسينًا واحدًا.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "rhetoric"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية الكويتية — مصفوفة مهارات اللغة العربية للمرحلة الابتدائية + مكتبة الطالب",
+            "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+            "additionalUrls": [
+              "https://elibrary.moe.edu.kw/StudentsLibrary",
+              "https://moe.edu.kw/news/869",
+              "https://www.moe.edu.kw/pages/calendar"
+            ]
+          },
+          "alignment": {
+            "mode": "official-national-skill-domain",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "kw-dadyoom-core-g3-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l15",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        },
+        {
+          "number": 7,
+          "title": "الرسم الهجائي",
+          "type": "spelling",
+          "estimatedMinutes": 35,
+          "summary": "حزمة وطنية أصلية من ضاديوم لمجال «الرسم الهجائي» للصف 3، مرتبطة بمصفوفات المهارات والمصادر الرسمية لوزارة التربية في دولة الكويت.",
+          "content": "هذا المحتوى من إنشاء ضاديوم لتغطية مجال «الرسم الهجائي» للصف 3 وفق البنية والمعايير المنشورة من وزارة التربية الكويتية، دون إعادة نشر نصوص الكتب المدرسية أو أسئلتها. يركز المتعلم على فهم ناتج التعلم ثم تطبيقه في مثال جديد ومراجعته وفق معيار واضح. ترتبط الحزمة بالممارسات اللغوية المناسبة للمرحلة، وتستخدم الكتاب الرسمي أو المصدر المرخص عند الحاجة إلى النص الأصلي، بينما تبقى الشروح والأمثلة والأسئلة والأنشطة هنا أصلية لضاديوم. تغطي الحزمة النطاق الحالي للعام 2026-2027 مع الاستناد إلى مصفوفات المدى والتتابع والمكتبة الإلكترونية الرسمية.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات مجال «الرسم الهجائي» بما يناسب الصف 3.",
+            "أن يطبق المتعلم مهارة من مجال «الرسم الهجائي» في موقف جديد.",
+            "أن يراجع المتعلم أداءه في «الرسم الهجائي» ويصححه وفق معيار واضح."
+          ],
+          "vocabulary": [
+            {
+              "word": "إملاء",
+              "meaning": "كتابة الكلمات وفق قواعد الرسم الصحيحة."
+            },
+            {
+              "word": "همزة",
+              "meaning": "صوت وحرف له مواضع وقواعد كتابية."
+            },
+            {
+              "word": "ترقيم",
+              "meaning": "علامات تنظم المعنى والقراءة."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما أفضل بداية لإتقان مجال «الرسم الهجائي»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أفهم ناتج التعلم ثم أطبقه."
+                },
+                {
+                  "id": "b",
+                  "text": "أحفظ إجابة دون فهم."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاوز التطبيق."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "فهم ناتج التعلم يسبق التطبيق المتقن.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على إتقان «الرسم الهجائي»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير أو دليل."
+                },
+                {
+                  "id": "b",
+                  "text": "تكرار العنوان فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "اختيار عشوائي."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في أداء مستقل قابل للتفسير.",
+              "points": 1
+            },
+            {
+              "question": "ما المراجعة الصحيحة بعد أداء المهمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن الناتج بالمعيار وأصحح موضع الضعف."
+                },
+                {
+                  "id": "b",
+                  "text": "أترك العمل دون مراجعة."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر الإجابة بلا سبب."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة وفق معيار تحسن جودة التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تطبيق موجّه — الرسم الهجائي",
+              "activityType": "multiple_choice",
+              "instructions": "اختر الإجراء الذي يحقق ناتج التعلم ثم علل اختيارك.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "spelling"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل — الرسم الهجائي",
+              "activityType": "spelling",
+              "instructions": "نفذ مثالًا جديدًا من إنشائك يطبق المهارة.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "spelling"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية — الرسم الهجائي",
+              "activityType": "assessment",
+              "instructions": "راجع ناتجك وفق معيار النجاح وحدد تحسينًا واحدًا.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "spelling"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية الكويتية — مصفوفة مهارات اللغة العربية للمرحلة الابتدائية + مكتبة الطالب",
+            "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+            "additionalUrls": [
+              "https://elibrary.moe.edu.kw/StudentsLibrary",
+              "https://moe.edu.kw/news/869",
+              "https://www.moe.edu.kw/pages/calendar"
+            ]
+          },
+          "alignment": {
+            "mode": "official-national-skill-domain",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "kw-dadyoom-core-g3-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l06",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        },
+        {
+          "number": 8,
+          "title": "الخط العربي",
+          "type": "writing",
+          "estimatedMinutes": 35,
+          "summary": "حزمة وطنية أصلية من ضاديوم لمجال «الخط العربي» للصف 3، مرتبطة بمصفوفات المهارات والمصادر الرسمية لوزارة التربية في دولة الكويت.",
+          "content": "هذا المحتوى من إنشاء ضاديوم لتغطية مجال «الخط العربي» للصف 3 وفق البنية والمعايير المنشورة من وزارة التربية الكويتية، دون إعادة نشر نصوص الكتب المدرسية أو أسئلتها. يركز المتعلم على فهم ناتج التعلم ثم تطبيقه في مثال جديد ومراجعته وفق معيار واضح. ترتبط الحزمة بالممارسات اللغوية المناسبة للمرحلة، وتستخدم الكتاب الرسمي أو المصدر المرخص عند الحاجة إلى النص الأصلي، بينما تبقى الشروح والأمثلة والأسئلة والأنشطة هنا أصلية لضاديوم. تغطي الحزمة النطاق الحالي للعام 2026-2027 مع الاستناد إلى مصفوفات المدى والتتابع والمكتبة الإلكترونية الرسمية.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات مجال «الخط العربي» بما يناسب الصف 3.",
+            "أن يطبق المتعلم مهارة من مجال «الخط العربي» في موقف جديد.",
+            "أن يراجع المتعلم أداءه في «الخط العربي» ويصححه وفق معيار واضح."
+          ],
+          "vocabulary": [
+            {
+              "word": "خط",
+              "meaning": "رسم الحروف والكلمات بصورة واضحة."
+            },
+            {
+              "word": "نسخ",
+              "meaning": "نوع من الخط العربي الواضح المستخدم في التعليم."
+            },
+            {
+              "word": "رقعة",
+              "meaning": "نوع من الخط العربي يتميز بالسرعة والبساطة."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما أفضل بداية لإتقان مجال «الخط العربي»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أفهم ناتج التعلم ثم أطبقه."
+                },
+                {
+                  "id": "b",
+                  "text": "أحفظ إجابة دون فهم."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاوز التطبيق."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "فهم ناتج التعلم يسبق التطبيق المتقن.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على إتقان «الخط العربي»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير أو دليل."
+                },
+                {
+                  "id": "b",
+                  "text": "تكرار العنوان فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "اختيار عشوائي."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في أداء مستقل قابل للتفسير.",
+              "points": 1
+            },
+            {
+              "question": "ما المراجعة الصحيحة بعد أداء المهمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن الناتج بالمعيار وأصحح موضع الضعف."
+                },
+                {
+                  "id": "b",
+                  "text": "أترك العمل دون مراجعة."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر الإجابة بلا سبب."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة وفق معيار تحسن جودة التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تطبيق موجّه — الخط العربي",
+              "activityType": "multiple_choice",
+              "instructions": "اختر الإجراء الذي يحقق ناتج التعلم ثم علل اختيارك.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "calligraphy"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل — الخط العربي",
+              "activityType": "writing",
+              "instructions": "نفذ مثالًا جديدًا من إنشائك يطبق المهارة.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "calligraphy"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية — الخط العربي",
+              "activityType": "assessment",
+              "instructions": "راجع ناتجك وفق معيار النجاح وحدد تحسينًا واحدًا.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "calligraphy"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية الكويتية — مصفوفة مهارات اللغة العربية للمرحلة الابتدائية + مكتبة الطالب",
+            "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+            "additionalUrls": [
+              "https://elibrary.moe.edu.kw/StudentsLibrary",
+              "https://moe.edu.kw/news/869",
+              "https://www.moe.edu.kw/pages/calendar"
+            ]
+          },
+          "alignment": {
+            "mode": "official-national-skill-domain",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "kw-dadyoom-core-g3-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "kw-dadyoom-core-g3-l17",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        },
+        {
+          "number": 9,
+          "title": "التعبير",
+          "type": "writing",
+          "estimatedMinutes": 35,
+          "summary": "حزمة وطنية أصلية من ضاديوم لمجال «التعبير» للصف 3، مرتبطة بمصفوفات المهارات والمصادر الرسمية لوزارة التربية في دولة الكويت.",
+          "content": "هذا المحتوى من إنشاء ضاديوم لتغطية مجال «التعبير» للصف 3 وفق البنية والمعايير المنشورة من وزارة التربية الكويتية، دون إعادة نشر نصوص الكتب المدرسية أو أسئلتها. يركز المتعلم على فهم ناتج التعلم ثم تطبيقه في مثال جديد ومراجعته وفق معيار واضح. ترتبط الحزمة بالممارسات اللغوية المناسبة للمرحلة، وتستخدم الكتاب الرسمي أو المصدر المرخص عند الحاجة إلى النص الأصلي، بينما تبقى الشروح والأمثلة والأسئلة والأنشطة هنا أصلية لضاديوم. تغطي الحزمة النطاق الحالي للعام 2026-2027 مع الاستناد إلى مصفوفات المدى والتتابع والمكتبة الإلكترونية الرسمية.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات مجال «التعبير» بما يناسب الصف 3.",
+            "أن يطبق المتعلم مهارة من مجال «التعبير» في موقف جديد.",
+            "أن يراجع المتعلم أداءه في «التعبير» ويصححه وفق معيار واضح."
+          ],
+          "vocabulary": [
+            {
+              "word": "تعبير",
+              "meaning": "إنتاج شفهي أو كتابي ينقل فكرة بوضوح."
+            },
+            {
+              "word": "ترابط",
+              "meaning": "اتصال الجمل والفقرات في تسلسل منطقي."
+            },
+            {
+              "word": "مراجعة",
+              "meaning": "فحص النص وتحسينه قبل اعتماده."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما أفضل بداية لإتقان مجال «التعبير»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أفهم ناتج التعلم ثم أطبقه."
+                },
+                {
+                  "id": "b",
+                  "text": "أحفظ إجابة دون فهم."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاوز التطبيق."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "فهم ناتج التعلم يسبق التطبيق المتقن.",
+              "points": 1
+            },
+            {
+              "question": "ما الدليل الأقوى على إتقان «التعبير»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير أو دليل."
+                },
+                {
+                  "id": "b",
+                  "text": "تكرار العنوان فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "اختيار عشوائي."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في أداء مستقل قابل للتفسير.",
+              "points": 1
+            },
+            {
+              "question": "ما المراجعة الصحيحة بعد أداء المهمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن الناتج بالمعيار وأصحح موضع الضعف."
+                },
+                {
+                  "id": "b",
+                  "text": "أترك العمل دون مراجعة."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر الإجابة بلا سبب."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة وفق معيار تحسن جودة التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تطبيق موجّه — التعبير",
+              "activityType": "multiple_choice",
+              "instructions": "اختر الإجراء الذي يحقق ناتج التعلم ثم علل اختيارك.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "expression"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل — التعبير",
+              "activityType": "writing",
+              "instructions": "نفذ مثالًا جديدًا من إنشائك يطبق المهارة.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "expression"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية — التعبير",
+              "activityType": "assessment",
+              "instructions": "راجع ناتجك وفق معيار النجاح وحدد تحسينًا واحدًا.",
+              "content": {
+                "origin": "DADYOOM_KW_OFFICIAL_2026_2027_V1",
+                "domain": "expression"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية الكويتية — مصفوفة مهارات اللغة العربية للمرحلة الابتدائية + مكتبة الطالب",
+            "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
+            "additionalUrls": [
+              "https://elibrary.moe.edu.kw/StudentsLibrary",
+              "https://moe.edu.kw/news/869",
+              "https://www.moe.edu.kw/pages/calendar"
+            ]
+          },
+          "alignment": {
+            "mode": "official-national-skill-domain",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "kw-dadyoom-core-g3-l17",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
