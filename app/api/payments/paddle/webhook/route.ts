@@ -126,6 +126,39 @@ function transactionPriceId(data: JsonObject) {
   return stringValue(price.id);
 }
 
+function verifyCheckoutBinding(args: {
+  data: JsonObject;
+  secret: string;
+  priceId: string;
+}) {
+  const { userId, planId } = customUser(args.data);
+  const custom = record(args.data.custom_data);
+  const candidate = stringValue(
+    custom.dadyoom_checkout_sig,
+  );
+
+  if (
+    !userId ||
+    planId !== "plus" ||
+    !args.priceId ||
+    !/^[a-f0-9]{64}$/iu.test(candidate)
+  ) {
+    return false;
+  }
+
+  const expected = crypto
+    .createHmac("sha256", args.secret)
+    .update(
+      `dadyoom-paddle-checkout-v1:${userId}:${planId}:${args.priceId}`,
+    )
+    .digest("hex");
+
+  return crypto.timingSafeEqual(
+    Buffer.from(candidate, "hex"),
+    Buffer.from(expected, "hex"),
+  );
+}
+
 async function alreadyHandled(
   db: ReturnType<typeof createAdminClient>,
   eventId: string,
@@ -253,6 +286,19 @@ export async function POST(request: Request) {
         );
       }
 
+      if (
+        !verifyCheckoutBinding({
+          data,
+          secret,
+          priceId: expectedPrice,
+        })
+      ) {
+        return NextResponse.json(
+          { error: "PADDLE_USER_BINDING_INVALID" },
+          { status: 409 },
+        );
+      }
+
       const period = periodFromTransaction(data);
       const providerSubscriptionId =
         stringValue(data.subscription_id) || null;
@@ -320,6 +366,24 @@ export async function POST(request: Request) {
           ok: true,
           ignored: true,
         });
+      }
+
+      const expectedPrice =
+        process.env.PADDLE_PLUS_PRICE_ID?.trim() ||
+        process.env.NEXT_PUBLIC_PADDLE_PLUS_PRICE_ID?.trim() ||
+        "";
+
+      if (
+        !verifyCheckoutBinding({
+          data,
+          secret,
+          priceId: expectedPrice,
+        })
+      ) {
+        return NextResponse.json(
+          { error: "PADDLE_USER_BINDING_INVALID" },
+          { status: 409 },
+        );
       }
 
       const status = stringValue(data.status);
@@ -393,6 +457,24 @@ export async function POST(request: Request) {
           ok: true,
           ignored: true,
         });
+      }
+
+      const expectedPrice =
+        process.env.PADDLE_PLUS_PRICE_ID?.trim() ||
+        process.env.NEXT_PUBLIC_PADDLE_PLUS_PRICE_ID?.trim() ||
+        "";
+
+      if (
+        !verifyCheckoutBinding({
+          data,
+          secret,
+          priceId: expectedPrice,
+        })
+      ) {
+        return NextResponse.json(
+          { error: "PADDLE_USER_BINDING_INVALID" },
+          { status: 409 },
+        );
       }
 
       const { data: subscription, error } = await db
