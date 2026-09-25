@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 
 import CheckoutButtons from "@/components/billing/CheckoutButtons";
+import PaddleManageSubscription from "@/components/billing/PaddleManageSubscription";
 import { billingStatus } from "@/lib/billing/access";
 
 export const metadata: Metadata = {
@@ -68,9 +69,7 @@ export default async function PricingPage() {
             {status.plan !== "plus" ? (
               <CheckoutButtons kind="plus" />
             ) : (
-              <div className="rounded-2xl bg-[#eaf6f0] p-4 font-black text-[#123f39]">
-                حسابك Plus الآن.
-              </div>
+              <PaddleManageSubscription />
             )}
           </PlanCard>
         </section>
