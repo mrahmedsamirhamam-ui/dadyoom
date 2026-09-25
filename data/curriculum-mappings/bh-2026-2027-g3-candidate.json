@@ -1,0 +1,1267 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "BH",
+    "nameAr": "مملكة البحرين"
+  },
+  "academicYear": "2026-2027",
+  "grade": 3,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "candidate",
+  "officialLessons": 24,
+  "mappedLessons": 24,
+  "verifiedLessons": 0,
+  "policy": "ملف مرشحات قابل للتدقيق. بُني من الطبقة الوطنية الموجودة في قاعدة ضاديوم وربط بمهارات Dadyoom Core. لا يصبح أي درس verified دون مراجعة المصدر والأهداف، ولا يعاد نشر نص الكتاب الوزاري.",
+  "generatedBy": "Dadyoom official-to-core matcher",
+  "mappings": [
+    {
+      "officialLessonId": "71fe9d64-cf0e-4d8e-86cc-5ca300311025",
+      "officialSlug": "bh-2026-g3-t1-114",
+      "officialTitle": ":القراءة",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.5124,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "unmapped",
+          "title": "قراءة نص قصير",
+          "score": 0.5124
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.5124
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.402
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.3784
+        }
+      ]
+    },
+    {
+      "officialLessonId": "6655c117-38ba-4aa8-ba52-3344fb82bfe4",
+      "officialSlug": "bh-2026-g3-t1-115",
+      "officialTitle": ":القراءة ..وتعاونوا براعم العربيّة",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4906,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "unmapped",
+          "title": "قراءة نص قصير",
+          "score": 0.4906
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.4906
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.3805
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.3669
+        }
+      ]
+    },
+    {
+      "officialLessonId": "9aaa5eae-039a-42c9-b0e4-5faa0048c8b2",
+      "officialSlug": "bh-2026-g3-t1-116",
+      "officialTitle": ":القراءة( األصدقاء األربعة1",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4925,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "unmapped",
+          "title": "قراءة نص قصير",
+          "score": 0.4925
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.4925
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.3832
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.3675
+        }
+      ]
+    },
+    {
+      "officialLessonId": "a15fc47b-6efe-4f1e-984a-5f9889aa7b06",
+      "officialSlug": "bh-2026-g3-t1-117",
+      "officialTitle": ":القراءة( األصدقاء األربعة2",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4925,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "unmapped",
+          "title": "قراءة نص قصير",
+          "score": 0.4925
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.4925
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.3832
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.3675
+        }
+      ]
+    },
+    {
+      "officialLessonId": "2f9bb320-3348-4f3f-8b85-2030ae914b5e",
+      "officialSlug": "bh-2026-g3-t1-120",
+      "officialTitle": "الدّرس األوّل",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.231,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l14",
+          "relation": "unmapped",
+          "title": "الفكرة الرئيسة",
+          "score": 0.231
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "9b074c02-5e39-41c9-a96d-a7ff6e2e8619",
+          "coreSlug": "bh-dadyoom-core-g3-l14",
+          "coreTitle": "الفكرة الرئيسة",
+          "coreLessonType": "reading",
+          "score": 0.231
+        },
+        {
+          "coreLessonId": "6abcbccd-f078-4d06-9e09-5df43274e4c0",
+          "coreSlug": "bh-dadyoom-core-g3-l06",
+          "coreTitle": "الشدة والتنوين",
+          "coreLessonType": "reading",
+          "score": 0.2007
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.1953
+        }
+      ]
+    },
+    {
+      "officialLessonId": "c76caccf-b10c-4e96-830e-eac297305ee1",
+      "officialSlug": "bh-2026-g3-t1-125",
+      "officialTitle": "القراءة: الأصدقاء الأربعة (1 ) براعم العربيّة 11-20",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4864,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "unmapped",
+          "title": "قراءة نص قصير",
+          "score": 0.4864
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.4864
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.3764
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.3639
+        }
+      ]
+    },
+    {
+      "officialLessonId": "4509390f-419a-4944-8c52-c0fa6e0d9478",
+      "officialSlug": "bh-2026-g3-t1-126",
+      "officialTitle": "القراءة: الأصدقاء الأربعة (2 ) براعم العربيّة 21-30",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4864,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "unmapped",
+          "title": "قراءة نص قصير",
+          "score": 0.4864
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.4864
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.3764
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.3639
+        }
+      ]
+    },
+    {
+      "officialLessonId": "4b1a9c90-6023-4d03-a739-b7e98139a936",
+      "officialSlug": "bh-2026-g3-t1-127",
+      "officialTitle": "القراءة: حكمة أب: دراسة القصيدة كاملة / (حفظ من 1 إلى5 ) براعم العربيّة 31-37",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4828,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "text-specific",
+          "title": "قراءة نص قصير",
+          "score": 0.4828
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.4828
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.3774
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.3598
+        }
+      ]
+    },
+    {
+      "officialLessonId": "3a754fd2-c6d1-4e81-ae69-95c9abf8c3de",
+      "officialSlug": "bh-2026-g3-t1-128",
+      "officialTitle": "القراءة: وتعاونوا.. براعم العربيّة 38-47",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4906,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "unmapped",
+          "title": "قراءة نص قصير",
+          "score": 0.4906
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.4906
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.3805
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.3669
+        }
+      ]
+    },
+    {
+      "officialLessonId": "4b1e8f5f-db1e-4e97-b4ff-16e5c424dcaa",
+      "officialSlug": "bh-2026-g3-t1-130",
+      "officialTitle": ":القراءة لعبة يحبّها املاليين براعم العربيّة",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4836,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "unmapped",
+          "title": "قراءة نص قصير",
+          "score": 0.4836
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.4836
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.3745
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.3622
+        }
+      ]
+    },
+    {
+      "officialLessonId": "3c3c5c85-6e74-45f3-9879-5b3dadd68342",
+      "officialSlug": "bh-2026-g3-t1-131",
+      "officialTitle": ":القراءة( األمانة1",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.5007,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "unmapped",
+          "title": "قراءة نص قصير",
+          "score": 0.5007
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.5007
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.391
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.3804
+        }
+      ]
+    },
+    {
+      "officialLessonId": "b04bc780-c60f-40f1-8026-4267cd3d4092",
+      "officialSlug": "bh-2026-g3-t1-132",
+      "officialTitle": ":القراءة( الولع بالرّسم1",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4966,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "unmapped",
+          "title": "قراءة نص قصير",
+          "score": 0.4966
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.4966
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.3801
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.3704
+        }
+      ]
+    },
+    {
+      "officialLessonId": "4004a382-1e7c-4de7-b2f9-5565e8bc44c2",
+      "officialSlug": "bh-2026-g3-t1-133",
+      "officialTitle": ":القراءة( الولع بالرّسم2",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4966,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "unmapped",
+          "title": "قراءة نص قصير",
+          "score": 0.4966
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.4966
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.3801
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.3704
+        }
+      ]
+    },
+    {
+      "officialLessonId": "acaaaeb9-3feb-4936-9117-6e58719d189d",
+      "officialSlug": "bh-2026-g3-t1-139",
+      "officialTitle": "القراءة: الأمانة ( 1 ) براعم العربيّة 101-112",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4913,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "unmapped",
+          "title": "قراءة نص قصير",
+          "score": 0.4913
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.4913
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.3812
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.367
+        }
+      ]
+    },
+    {
+      "officialLessonId": "71c3fd3a-73c3-4fb6-8ccb-376f7e8d1c48",
+      "officialSlug": "bh-2026-g3-t1-140",
+      "officialTitle": "القراءة: الولع بالرّسم (1 ) براعم العربيّة 51-62",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4876,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "unmapped",
+          "title": "قراءة نص قصير",
+          "score": 0.4876
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.4876
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.3776
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.3646
+        }
+      ]
+    },
+    {
+      "officialLessonId": "14d27121-7ec1-40d5-b705-d65271c89b0a",
+      "officialSlug": "bh-2026-g3-t1-141",
+      "officialTitle": "القراءة: الولع بالرّسم (2 ) براعم العربيّة 63-75",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4876,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "unmapped",
+          "title": "قراءة نص قصير",
+          "score": 0.4876
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.4876
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.3776
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.3646
+        }
+      ]
+    },
+    {
+      "officialLessonId": "28123a61-ef4f-457b-a848-c0b6f9a63517",
+      "officialSlug": "bh-2026-g3-t1-142",
+      "officialTitle": "القراءة: لعبة يحبّها الملايين براعم العربيّة 85-97",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4848,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "unmapped",
+          "title": "قراءة نص قصير",
+          "score": 0.4848
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.4848
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.3757
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.3679
+        }
+      ]
+    },
+    {
+      "officialLessonId": "9954bcf1-2b6b-4e3d-8bd8-ad60e966f1f1",
+      "officialSlug": "bh-2026-g3-t1-143",
+      "officialTitle": "القراءة: وقت الرّاحات: دراسة القصيدة كاملة / (حفظ من 1 إلى5 ) براعم العربيّة 76-84",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4818,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "text-specific",
+          "title": "قراءة نص قصير",
+          "score": 0.4818
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.4818
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.3845
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.3595
+        }
+      ]
+    },
+    {
+      "officialLessonId": "bcd56434-2259-446b-b304-3823b8a24599",
+      "officialSlug": "bh-2026-g3-t1-144",
+      "officialTitle": ":القراءة دروس من حياة توماس إديسون براعم العربيّة",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4812,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "unmapped",
+          "title": "قراءة نص قصير",
+          "score": 0.4812
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.4812
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.3706
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.3649
+        }
+      ]
+    },
+    {
+      "officialLessonId": "caafb159-0c8a-4d4d-9741-dacf7d68092f",
+      "officialSlug": "bh-2026-g3-t1-145",
+      "officialTitle": ":القراءة( األمانة2",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.5007,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "unmapped",
+          "title": "قراءة نص قصير",
+          "score": 0.5007
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.5007
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.391
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.3804
+        }
+      ]
+    },
+    {
+      "officialLessonId": "2b1d57ef-2e2b-4235-9bf6-fec7b72bdc0f",
+      "officialSlug": "bh-2026-g3-t1-146",
+      "officialTitle": "الدّرس الحادي",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.231,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l14",
+          "relation": "unmapped",
+          "title": "الفكرة الرئيسة",
+          "score": 0.231
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "9b074c02-5e39-41c9-a96d-a7ff6e2e8619",
+          "coreSlug": "bh-dadyoom-core-g3-l14",
+          "coreTitle": "الفكرة الرئيسة",
+          "coreLessonType": "reading",
+          "score": 0.231
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.2051
+        },
+        {
+          "coreLessonId": "d3ccc8d7-47a5-47f0-a06a-36b9d94b02c7",
+          "coreSlug": "bh-dadyoom-core-g3-l01",
+          "coreTitle": "الأصوات والحروف",
+          "coreLessonType": "reading",
+          "score": 0.2031
+        }
+      ]
+    },
+    {
+      "officialLessonId": "55cae677-e109-444d-a2f3-ad7e3bffc4c3",
+      "officialSlug": "bh-2026-g3-t1-148",
+      "officialTitle": "القراءة: الأمانة ( 2 ) براعم العربيّة 113-125",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4913,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "unmapped",
+          "title": "قراءة نص قصير",
+          "score": 0.4913
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.4913
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.3812
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.367
+        }
+      ]
+    },
+    {
+      "officialLessonId": "ef98f22d-b9ae-4a1f-9288-d9f5f81220a2",
+      "officialSlug": "bh-2026-g3-t1-149",
+      "officialTitle": "القراءة: جزاء المعتدي : دراسة القصيدة كاملة براعم العربيّة 126-136",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4863,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "text-specific",
+          "title": "قراءة نص قصير",
+          "score": 0.4863
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.4863
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.381
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.3663
+        }
+      ]
+    },
+    {
+      "officialLessonId": "4bc90e75-a293-4106-9b52-3b5d72c15311",
+      "officialSlug": "bh-2026-g3-t1-150",
+      "officialTitle": "القراءة: دروس من حياة توماس إديسون براعم العربيّة 137-150",
+      "officialLessonType": "reading",
+      "unitNumber": 11,
+      "unitTitle": "القراءة والنصوص",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "low",
+      "score": 0.4812,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g3-l13",
+          "relation": "unmapped",
+          "title": "قراءة نص قصير",
+          "score": 0.4812
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "f67504c8-99f4-45bc-bf98-a8dd1eb4a8dd",
+          "coreSlug": "bh-dadyoom-core-g3-l13",
+          "coreTitle": "قراءة نص قصير",
+          "coreLessonType": "reading",
+          "score": 0.4812
+        },
+        {
+          "coreLessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+          "coreSlug": "bh-dadyoom-core-g3-l03",
+          "coreTitle": "الحركات القصيرة",
+          "coreLessonType": "reading",
+          "score": 0.3706
+        },
+        {
+          "coreLessonId": "3bbdb44e-f256-4ec6-9cde-0f1eccda3857",
+          "coreSlug": "bh-dadyoom-core-g3-l04",
+          "coreTitle": "السكون والمقطع",
+          "coreLessonType": "reading",
+          "score": 0.3649
+        }
+      ]
+    }
+  ]
+}
