@@ -148,6 +148,7 @@ let insertedLessons = 0;
 let enrichedLessons = 0;
 let insertedQuestions = 0;
 let insertedVocabulary = 0;
+let insertedActivities = 0;
 
 for (const unitPack of pack.units) {
   let unit = await one("units", (q) => q.eq("grade_id", grade.id).eq("unit_number", unitPack.number));
@@ -239,6 +240,148 @@ for (const unitPack of pack.units) {
       if (error) throw error;
       insertedVocabulary += vocabularyRows.length;
     }
+
+    const { data: existingActivities, error: activityReadError } =
+      await supabase
+        .from("lesson_activities")
+        .select("id,activity_order")
+        .eq("lesson_id", lesson.id)
+        .eq("is_published", true)
+        .order("activity_order", { ascending: true });
+
+    if (activityReadError) throw activityReadError;
+
+    const activityCount =
+      Array.isArray(existingActivities)
+        ? existingActivities.length
+        : 0;
+
+    if (activityCount < 3) {
+      const objective =
+        Array.isArray(lessonPack.objectives) &&
+        typeof lessonPack.objectives[0] === "string" &&
+        lessonPack.objectives[0].trim()
+          ? lessonPack.objectives[0].trim()
+          : `فهم المهارة الرئيسة في درس «${lessonPack.title}»`;
+
+      const application =
+        lessonPack.type === "grammar"
+          ? "أطبق القاعدة في جملة جديدة من إنشائي وأراجع صحة التركيب."
+          : lessonPack.type === "writing"
+            ? "أكتب نموذجًا قصيرًا جديدًا يحقق غرض الدرس ثم أراجعه وأحسنه."
+            : lessonPack.type === "reading"
+              ? "أقرأ مثالًا جديدًا مناسبًا وأستخرج منه دليلًا يوضح المهارة المستهدفة."
+              : lessonPack.type === "spelling"
+                ? "أكتب كلمات وجملًا جديدة تطبق القاعدة الإملائية وأراجعها."
+                : lessonPack.type === "listening"
+                  ? "أستمع إلى مثال جديد ثم ألخص الفكرة التي فهمتها بأسلوبي."
+                  : lessonPack.type === "speaking"
+                    ? "أقدم مثالًا شفهيًا جديدًا يطبق المهارة بوضوح وترتيب."
+                    : "أطبق مهارة الدرس في مثال جديد من إنشائي وأشرح سبب صحة تطبيقي.";
+
+      const origin =
+        `DADYOOM_OFFICIAL_PACK_ACTIVITY_V1:${pack.packKey}`;
+
+      const templates = [
+        {
+          title: "تحقق من هدف الدرس",
+          activity_type: "multiple_choice",
+          instructions: "اختر العبارة التي تعبّر بدقة عن الهدف الذي نتدرّب عليه.",
+          content: {
+            origin,
+            options: [
+              objective,
+              "حفظ إجابة جاهزة دون فهم أو تطبيق",
+              "تجاوز النشاط من غير محاولة",
+              "اختيار إجابة عشوائية بلا دليل",
+            ],
+          },
+          points: 5,
+          section: "assessment",
+          prompt: `ما الهدف الأقرب لدرس «${lessonPack.title}»؟`,
+          answer: { correct: objective },
+          is_required: true,
+        },
+        {
+          title: "اختر التطبيق الأنسب",
+          activity_type: "multiple_choice",
+          instructions: "اختر التصرف الذي يطبق مهارة الدرس بصورة صحيحة.",
+          content: {
+            origin,
+            options: [
+              application,
+              "أنسخ المثال كما هو من غير أن أفهمه",
+              "أتجاهل القاعدة أو الفكرة التي تناولها الدرس",
+              "أجيب قبل قراءة المطلوب",
+            ],
+          },
+          points: 5,
+          section: "practice",
+          prompt: "أي اختيار يمثل تطبيقًا أفضل لما تعلمته؟",
+          answer: { correct: application },
+          is_required: true,
+        },
+        {
+          title: "طبّق بأسلوبك",
+          activity_type:
+            lessonPack.type === "speaking"
+              ? "speaking"
+              : lessonPack.type === "listening"
+                ? "listening"
+                : lessonPack.type === "reading"
+                  ? "reading"
+                  : "writing",
+          instructions: application,
+          content: {
+            origin,
+            text: "أنشئ تطبيقًا جديدًا من عندك مرتبطًا بهدف الدرس.",
+            concept: objective,
+          },
+          points: 5,
+          section: "practice",
+          prompt: "طبّق هدف الدرس في مثال جديد من إنشائك.",
+          answer: {
+            grading_mode: "completion_only_reference",
+            model_answer: application,
+          },
+          is_required: true,
+        },
+      ];
+
+      const needed =
+        Math.max(0, 3 - activityCount);
+
+      const maxOrder =
+        (existingActivities ?? []).reduce(
+          (max, row) =>
+            Math.max(
+              max,
+              Number(row.activity_order) || 0,
+            ),
+          0,
+        );
+
+      const activityRows =
+        templates
+          .slice(0, needed)
+          .map((item, index) => ({
+            lesson_id: lesson.id,
+            ...item,
+            activity_order:
+              maxOrder + index + 1,
+            is_published: true,
+          }));
+
+      if (activityRows.length) {
+        const { error } =
+          await supabase
+            .from("lesson_activities")
+            .insert(activityRows);
+
+        if (error) throw error;
+        insertedActivities += activityRows.length;
+      }
+    }
   }
 }
 
@@ -252,6 +395,29 @@ for (const lesson of finalLessons || []) {
   const { count, error } = await supabase.from("questions").select("id", { count: "exact", head: true }).eq("lesson_id", lesson.id);
   if (error) throw error;
   if ((count || 0) < 3) throw new Error(`PACK_GATE_FAILED: <3 questions ${lesson.title}`);
+
+  const { count: activityCount, error: activityCountError } =
+    await supabase
+      .from("lesson_activities")
+      .select("id", { count: "exact", head: true })
+      .eq("lesson_id", lesson.id)
+      .eq("is_published", true);
+
+  if (activityCountError) throw activityCountError;
+  if ((activityCount || 0) < 3) {
+    throw new Error(`PACK_GATE_FAILED: <3 activities ${lesson.title}`);
+  }
+
+  const { count: vocabularyCount, error: vocabularyCountError } =
+    await supabase
+      .from("lesson_vocabulary")
+      .select("id", { count: "exact", head: true })
+      .eq("lesson_id", lesson.id);
+
+  if (vocabularyCountError) throw vocabularyCountError;
+  if ((vocabularyCount || 0) < 3) {
+    throw new Error(`PACK_GATE_FAILED: <3 vocabulary ${lesson.title}`);
+  }
 }
 
 console.log("MODE=APPLY");
@@ -259,5 +425,6 @@ console.log(`LESSONS_INSERTED=${insertedLessons}`);
 console.log(`LESSONS_ENRICHED=${enrichedLessons}`);
 console.log(`QUESTIONS_INSERTED=${insertedQuestions}`);
 console.log(`VOCABULARY_INSERTED=${insertedVocabulary}`);
+console.log(`ACTIVITIES_INSERTED=${insertedActivities}`);
 console.log(`PUBLISHED_PACK_LESSONS=${expectedLessons}`);
 console.log("CURRICULUM_PACK_GATE=PASS");
