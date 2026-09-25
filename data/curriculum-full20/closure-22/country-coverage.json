@@ -1,0 +1,771 @@
+{
+  "schemaVersion": 1,
+  "generatedFor": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "policy": "Dadyoom Core is live original instructional content. National Official Match is fail-closed and remains incomplete until grade/term/unit/lesson evidence is complete. No country is marked nationally complete by lesson count alone.",
+  "expectedCountryCodes": [
+    "AE",
+    "BH",
+    "DJ",
+    "DZ",
+    "EG",
+    "IQ",
+    "JO",
+    "KM",
+    "KW",
+    "LB",
+    "LY",
+    "MA",
+    "MR",
+    "OM",
+    "PS",
+    "QA",
+    "SA",
+    "SD",
+    "SO",
+    "SY",
+    "TN",
+    "YE"
+  ],
+  "countries": [
+    {
+      "code": "AE",
+      "nameAr": "الإمارات العربية المتحدة",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "not-closed",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://www.moe.gov.ae/",
+            "kind": "official-portal"
+          },
+          {
+            "url": "https://u.ae/en/information-and-services/education/school-education-k-12/e-learning-reading-and-educational-resources/diwan-e-book-reader",
+            "kind": "government-resource"
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "BH",
+      "nameAr": "مملكة البحرين",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "partial",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://moe.gov.bh/ar/moe-educational-resources",
+            "kind": "official-catalog"
+          }
+        ],
+        "verifiedPackFiles": [
+          "data/curriculum-packs/bh-2026-arabic-primary-g1-s1.json",
+          "data/curriculum-packs/bahrain-2026-2027-final/bh-2026-2027-arabic-unified-secondary-g10-s1.json",
+          "data/curriculum-packs/bahrain-2026-2027-final/bh-2026-2027-arabic-unified-secondary-g11-s1.json",
+          "data/curriculum-packs/bahrain-2026-2027-final/bh-2026-2027-arabic-unified-secondary-g12-s1.json"
+        ],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "DJ",
+      "nameAr": "جيبوتي",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "not-closed",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://cripen.dj/",
+            "kind": "official-education-resource-candidate"
+          },
+          {
+            "url": "https://education.dj/?lang=ar",
+            "kind": "official-portal-candidate"
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "DZ",
+      "nameAr": "الجزائر",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "not-closed",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://www.onps.dz/",
+            "kind": "official-publisher"
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "EG",
+      "nameAr": "مصر",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "partial",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://moe.gov.eg/what-s-on/news",
+            "kind": "official-portal"
+          },
+          {
+            "url": "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026/Primary/Primary6/Term2/StudentBook/Arabic_prim6_TR2.pdf",
+            "kind": "official-storage-example"
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "IQ",
+      "nameAr": "العراق",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "not-closed",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://manahj.edu.iq/?pid=149",
+            "kind": "official-catalog-candidate"
+          },
+          {
+            "url": "https://manahj.edu.iq/?pid=148",
+            "kind": "official-catalog-candidate"
+          },
+          {
+            "url": "https://manahj.edu.iq/?pid=151",
+            "kind": "official-catalog-candidate"
+          },
+          {
+            "url": "https://manahj.edu.iq/?pid=152",
+            "kind": "official-catalog-candidate"
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "JO",
+      "nameAr": "الأردن",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "partial",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://www.nccd.gov.jo/Ar/Pages/Publications/?MaterialStudy=92",
+            "kind": "official-catalog"
+          },
+          {
+            "url": "https://nccd.gov.jo/Ar/Pages/textbooks",
+            "kind": "official-catalog"
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "KM",
+      "nameAr": "جزر القمر",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "not-closed",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://mineducomores.gouv.km/",
+            "kind": "official-portal-candidate"
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "KW",
+      "nameAr": "الكويت",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "not-closed",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://elibrary.moe.edu.kw/StudentsLibrary",
+            "kind": "official-library"
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "LB",
+      "nameAr": "لبنان",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "not-closed",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://www.crdp.org/books-pdf",
+            "kind": "official-catalog"
+          },
+          {
+            "url": "https://www.crdp.org/curriculum",
+            "kind": "official-curriculum"
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "LY",
+      "nameAr": "ليبيا",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "partial",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://cerc.moe.gov.ly/educational-curricul/",
+            "kind": "official-catalog"
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "MA",
+      "nameAr": "المغرب",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "not-closed",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://telmidtice.men.gov.ma/",
+            "kind": "official-learning-portal"
+          },
+          {
+            "url": "https://www.men.gov.ma/",
+            "kind": "official-portal"
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "MR",
+      "nameAr": "موريتانيا",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "not-closed",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://www.koutoubi.mr/fr/",
+            "kind": "official-catalog-candidate"
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "OM",
+      "nameAr": "عُمان",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "not-closed",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://ict.moe.gov.om/eBooks/index.php",
+            "kind": "official-catalog"
+          },
+          {
+            "url": "https://ict.moe.gov.om/book",
+            "kind": "official-catalog"
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "PS",
+      "nameAr": "فلسطين",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "partial",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://moe.edu.ps/class1/books",
+            "kind": "official-catalog-pattern",
+            "note": "يُتحقق صفًا صفًا حتى class12 قبل الاعتماد."
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "QA",
+      "nameAr": "قطر",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "not-closed",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://www.edu.gov.qa/",
+            "kind": "official-portal"
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "SA",
+      "nameAr": "السعودية",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "not-closed",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://ien.edu.sa/",
+            "kind": "official-learning-portal"
+          },
+          {
+            "url": "https://schools.madrasati.sa/",
+            "kind": "official-school-portal"
+          },
+          {
+            "url": "https://www.moe.gov.sa/",
+            "kind": "official-portal"
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "SD",
+      "nameAr": "السودان",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "not-closed",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://gmoe.gov.sd/",
+            "kind": "official-portal-candidate"
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "SO",
+      "nameAr": "الصومال",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "not-closed",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://moe.gov.so/",
+            "kind": "official-portal"
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "SY",
+      "nameAr": "سوريا",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "not-closed",
+        "verificationStatus": "needs-verification",
+        "evidenceSources": [
+          {
+            "url": "https://moed.gov.sy/",
+            "kind": "official-domain-candidate"
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "TN",
+      "nameAr": "تونس",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "not-closed",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://www.cnp.com.tn/man-eleves/",
+            "kind": "official-catalog"
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    },
+    {
+      "code": "YE",
+      "nameAr": "اليمن",
+      "core": {
+        "status": "LIVE",
+        "academicYear": "2026-2027",
+        "grades": 12,
+        "lessons": 216,
+        "originalDadyoomContent": true
+      },
+      "national": {
+        "complete": false,
+        "matchingStatus": "not-closed",
+        "verificationStatus": "candidate",
+        "evidenceSources": [
+          {
+            "url": "https://e-learning-moe.edu.ye/lcms/",
+            "kind": "official-learning-portal-candidate"
+          }
+        ],
+        "verifiedPackFiles": [],
+        "missingEvidence": [
+          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
+          "اكتمال تغطية الفصول/الفترات الدراسية",
+          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
+          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
+          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
+        ]
+      },
+      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+    }
+  ]
+}
