@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "MA",
+    "nameAr": "المغرب"
+  },
+  "academicYear": "2026-2027",
+  "grade": 12,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 2,
+  "mappedLessons": 2,
+  "verifiedLessons": 2,
+  "scope": "current-officially-published-and-publicly-verifiable-scope",
+  "policy": "المطابقة على مستوى المستوى أو مجموعة المسار؛ لا تعاد نصوص الكتب ولا تُختلق عناوين دروس غير منشورة.",
+  "mappings": [
+    {
+      "officialSlug": "ma-2026-2027-g12-letters-humanities-arabic",
+      "officialTitle": "اللغة العربية — السنة الثانية بكالوريا — آداب وعلوم إنسانية — حزمة المنهاج",
+      "source": {
+        "label": "وزارة التربية الوطنية والتعليم الأولي والرياضة — المنهاج والموارد الرقمية",
+        "url": "https://telmidtice.men.gov.ma/",
+        "ministryUrl": "https://www.men.gov.ma/",
+        "currentYearUrl": "https://www.men.gov.ma/%D8%A7%D9%84%D8%AA%D8%B0%D9%83%D9%8A%D8%B1-%D8%A8%D9%85%D9%88%D8%A7%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D8%AF%D8%AE%D9%88%D9%84-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A-2027/2026/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AC%D8%AF%D8%A7%D8%AA"
+      },
+      "relationType": "official-upper-secondary-track+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "الحزمة تمثل العربية ضمن مجموعة المسار في الثانوي التأهيلي وفق التوجيهات الوطنية، دون اختلاق عناوين دروس.",
+      "coreCoverage": [
+        {
+          "slug": "ma-dadyoom-core-g12-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-men-2026-2027-structure+official-telmidtice+national-pack"
+    },
+    {
+      "officialSlug": "ma-2026-2027-g12-science-tech-arabic",
+      "officialTitle": "اللغة العربية — السنة الثانية بكالوريا — علوم وتكنولوجيات ومسالك علمية — حزمة المنهاج",
+      "source": {
+        "label": "وزارة التربية الوطنية والتعليم الأولي والرياضة — المنهاج والموارد الرقمية",
+        "url": "https://telmidtice.men.gov.ma/",
+        "ministryUrl": "https://www.men.gov.ma/",
+        "currentYearUrl": "https://www.men.gov.ma/%D8%A7%D9%84%D8%AA%D8%B0%D9%83%D9%8A%D8%B1-%D8%A8%D9%85%D9%88%D8%A7%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D8%AF%D8%AE%D9%88%D9%84-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A-2027/2026/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AC%D8%AF%D8%A7%D8%AA"
+      },
+      "relationType": "official-upper-secondary-track+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "الحزمة تمثل العربية ضمن مجموعة المسار في الثانوي التأهيلي وفق التوجيهات الوطنية، دون اختلاق عناوين دروس.",
+      "coreCoverage": [
+        {
+          "slug": "ma-dadyoom-core-g12-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ma-dadyoom-core-g12-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-men-2026-2027-structure+official-telmidtice+national-pack"
+    }
+  ]
+}
