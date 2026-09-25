@@ -749,28 +749,77 @@
       },
       "national": {
         "complete": false,
-        "matchingStatus": "not-closed",
-        "verificationStatus": "candidate",
+        "matchingStatus": "current-scope-complete",
+        "verificationStatus": "verified",
         "evidenceSources": [
           {
-            "url": "https://www.crdp.org/books-pdf",
-            "kind": "official-catalog"
+            "url": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
+            "kind": "official-arabic-curriculum"
           },
           {
-            "url": "https://www.crdp.org/curriculum",
-            "kind": "official-curriculum"
+            "url": "https://www.crdp.org/books-pdf",
+            "kind": "official-books-catalog"
+          },
+          {
+            "url": "https://www.crdp.org/curriculum/%D8%A7%D9%84%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85%D9%8A-%D9%84%D9%84%D8%B9%D8%A7%D9%85-%D9%A2%D9%A0%D9%A2%D9%A5-%D9%A2%D9%A0%D9%A2%D9%A6%D8%8C-%D9%88%D8%B2%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%8A-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D9%84%D9%84%D8%A8%D8%AD%D9%88%D8%AB",
+            "kind": "latest-published-reduced-curriculum",
+            "note": "آخر تخفيف سنوي منشور تم العثور عليه: 2025-2026؛ لا يُعامل كتخفيف 2026-2027."
+          },
+          {
+            "url": "https://nsl.mehe.gov.lb/",
+            "kind": "official-2026-2027-school-year-evidence"
           }
         ],
-        "verifiedPackFiles": [],
-        "missingEvidence": [
-          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
-          "اكتمال تغطية الفصول/الفترات الدراسية",
-          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
-          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
-          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
-        ]
+        "verifiedPackFiles": [
+          "data/curriculum-packs/lebanon-2026-2027-final/lb-2026-2027-arabic-g1-current-scope.json",
+          "data/curriculum-packs/lebanon-2026-2027-final/lb-2026-2027-arabic-g2-current-scope.json",
+          "data/curriculum-packs/lebanon-2026-2027-final/lb-2026-2027-arabic-g3-current-scope.json",
+          "data/curriculum-packs/lebanon-2026-2027-final/lb-2026-2027-arabic-g4-current-scope.json",
+          "data/curriculum-packs/lebanon-2026-2027-final/lb-2026-2027-arabic-g5-current-scope.json",
+          "data/curriculum-packs/lebanon-2026-2027-final/lb-2026-2027-arabic-g6-current-scope.json",
+          "data/curriculum-packs/lebanon-2026-2027-final/lb-2026-2027-arabic-g7-current-scope.json",
+          "data/curriculum-packs/lebanon-2026-2027-final/lb-2026-2027-arabic-g8-current-scope.json",
+          "data/curriculum-packs/lebanon-2026-2027-final/lb-2026-2027-arabic-g9-current-scope.json",
+          "data/curriculum-packs/lebanon-2026-2027-final/lb-2026-2027-arabic-g10-current-scope.json",
+          "data/curriculum-packs/lebanon-2026-2027-final/lb-2026-2027-arabic-g11-current-scope.json",
+          "data/curriculum-packs/lebanon-2026-2027-final/lb-2026-2027-arabic-g12-current-scope.json"
+        ],
+        "verifiedMappingFiles": [
+          "data/curriculum-mappings/lb-2026-2027-g1-current-scope-verified.json",
+          "data/curriculum-mappings/lb-2026-2027-g2-current-scope-verified.json",
+          "data/curriculum-mappings/lb-2026-2027-g3-current-scope-verified.json",
+          "data/curriculum-mappings/lb-2026-2027-g4-current-scope-verified.json",
+          "data/curriculum-mappings/lb-2026-2027-g5-current-scope-verified.json",
+          "data/curriculum-mappings/lb-2026-2027-g6-current-scope-verified.json",
+          "data/curriculum-mappings/lb-2026-2027-g7-current-scope-verified.json",
+          "data/curriculum-mappings/lb-2026-2027-g8-current-scope-verified.json",
+          "data/curriculum-mappings/lb-2026-2027-g9-current-scope-verified.json",
+          "data/curriculum-mappings/lb-2026-2027-g10-current-scope-verified.json",
+          "data/curriculum-mappings/lb-2026-2027-g11-current-scope-verified.json",
+          "data/curriculum-mappings/lb-2026-2027-g12-current-scope-verified.json"
+        ],
+        "missingEvidence": [],
+        "currentScopeComplete": true,
+        "fullYearComplete": false,
+        "mappingSummary": {
+          "mappingGrades": 12,
+          "verifiedMappingGrades": 12,
+          "officialCoverageNodes": 48,
+          "mappedCoverageNodes": 48,
+          "verifiedCoverageNodes": 48,
+          "nationalExtensions": 48
+        },
+        "databaseSummary": {
+          "curriculumId": "8b27a794-e0d9-45be-ac2f-92adc13e9f02",
+          "grades": 12,
+          "lessons": 48,
+          "questions": 144,
+          "vocabulary": 144,
+          "activities": 144
+        },
+        "note": "مغلق للنطاق الرسمي المنشور والقابل للتحقق حاليًا عبر تدرج منهج العربية الرسمي والمسارات الثانوية. آخر تخفيف سنوي منشور تم العثور عليه هو 2025-2026 ولم يُعامل كتخفيف 2026-2027."
       },
-      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+      "publicationReadiness": "NATIONAL_CURRENT_SCOPE_COMPLETE"
     },
     {
       "code": "LY",
