@@ -1,0 +1,531 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "SA",
+    "nameAr": "السعودية"
+  },
+  "academicYear": "2026-2027",
+  "grade": 5,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 16,
+  "mappedLessons": 16,
+  "verifiedLessons": 16,
+  "scope": "current-two-semester-official-book-scope",
+  "policy": "مواءمة مكونات الكتاب الرسمي مع Core Bundles وNational Extensions أصلية؛ لا إعادة نشر للنصوص.",
+  "mappings": [
+    {
+      "officialSlug": "sa-2026-2027-g5-s1-listening-speaking",
+      "officialTitle": "الاستماع والتحدث — الفصل الأول",
+      "source": {
+        "label": "وزارة التعليم السعودية — لغتي الجميلة",
+        "url": "https://madrasatibeta.moe.gov.sa/books/A62107794250CE435022CD2951383052?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مكوّن «الاستماع والتحدث» في كتاب لغتي الجميلة مغطى بحزمة Core المناسبة مع تطبيق سعودي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g5-l16",
+          "relation": "supporting-skill",
+          "title": "الحوار المنظم"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l17",
+          "relation": "supporting-skill",
+          "title": "العرض الشفهي"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati-book+two-semester-policy+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g5-s1-reading",
+      "officialTitle": "القراءة والفهم — الفصل الأول",
+      "source": {
+        "label": "وزارة التعليم السعودية — لغتي الجميلة",
+        "url": "https://madrasatibeta.moe.gov.sa/books/A62107794250CE435022CD2951383052?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مكوّن «القراءة والفهم» في كتاب لغتي الجميلة مغطى بحزمة Core المناسبة مع تطبيق سعودي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g5-l01",
+          "relation": "supporting-skill",
+          "title": "القراءة الجهرية المعبرة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l02",
+          "relation": "supporting-skill",
+          "title": "الفكرة الرئيسة والتفاصيل"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l03",
+          "relation": "supporting-skill",
+          "title": "معنى الكلمة من السياق"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l04",
+          "relation": "supporting-skill",
+          "title": "السبب والنتيجة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l05",
+          "relation": "supporting-skill",
+          "title": "تلخيص فقرة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l06",
+          "relation": "supporting-skill",
+          "title": "الاستنتاج من النص"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati-book+two-semester-policy+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g5-s1-morphology",
+      "officialTitle": "الصنف اللغوي — الفصل الأول",
+      "source": {
+        "label": "وزارة التعليم السعودية — لغتي الجميلة",
+        "url": "https://madrasatibeta.moe.gov.sa/books/A62107794250CE435022CD2951383052?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مكوّن «الصنف اللغوي» في كتاب لغتي الجميلة مغطى بحزمة Core المناسبة مع تطبيق سعودي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g5-l07",
+          "relation": "direct-skill",
+          "title": "أقسام الكلام"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati-book+two-semester-policy+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g5-s1-syntax",
+      "officialTitle": "الوظيفة النحوية — الفصل الأول",
+      "source": {
+        "label": "وزارة التعليم السعودية — لغتي الجميلة",
+        "url": "https://madrasatibeta.moe.gov.sa/books/A62107794250CE435022CD2951383052?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مكوّن «الوظيفة النحوية» في كتاب لغتي الجميلة مغطى بحزمة Core المناسبة مع تطبيق سعودي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g5-l08",
+          "relation": "supporting-skill",
+          "title": "المبتدأ والخبر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l09",
+          "relation": "supporting-skill",
+          "title": "الفعل والفاعل"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l10",
+          "relation": "supporting-skill",
+          "title": "المفعول به"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l11",
+          "relation": "supporting-skill",
+          "title": "حروف الجر"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati-book+two-semester-policy+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g5-s1-style",
+      "officialTitle": "الأسلوب اللغوي — الفصل الأول",
+      "source": {
+        "label": "وزارة التعليم السعودية — لغتي الجميلة",
+        "url": "https://madrasatibeta.moe.gov.sa/books/A62107794250CE435022CD2951383052?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مكوّن «الأسلوب اللغوي» في كتاب لغتي الجميلة مغطى بحزمة Core المناسبة مع تطبيق سعودي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g5-l03",
+          "relation": "supporting-skill",
+          "title": "معنى الكلمة من السياق"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l04",
+          "relation": "supporting-skill",
+          "title": "السبب والنتيجة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l06",
+          "relation": "supporting-skill",
+          "title": "الاستنتاج من النص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l16",
+          "relation": "supporting-skill",
+          "title": "الحوار المنظم"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati-book+two-semester-policy+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g5-s1-spelling",
+      "officialTitle": "الظاهرة الإملائية — الفصل الأول",
+      "source": {
+        "label": "وزارة التعليم السعودية — لغتي الجميلة",
+        "url": "https://madrasatibeta.moe.gov.sa/books/A62107794250CE435022CD2951383052?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مكوّن «الظاهرة الإملائية» في كتاب لغتي الجميلة مغطى بحزمة Core المناسبة مع تطبيق سعودي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g5-l12",
+          "relation": "direct-skill",
+          "title": "الهمزة والتاء في الكتابة"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati-book+two-semester-policy+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g5-s1-handwriting",
+      "officialTitle": "الرسم الكتابي — الفصل الأول",
+      "source": {
+        "label": "وزارة التعليم السعودية — لغتي الجميلة",
+        "url": "https://madrasatibeta.moe.gov.sa/books/A62107794250CE435022CD2951383052?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مكوّن «الرسم الكتابي» في كتاب لغتي الجميلة مغطى بحزمة Core المناسبة مع تطبيق سعودي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g5-l12",
+          "relation": "supporting-skill",
+          "title": "الهمزة والتاء في الكتابة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l13",
+          "relation": "supporting-skill",
+          "title": "بناء الفقرة"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati-book+two-semester-policy+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g5-s1-writing",
+      "officialTitle": "التواصل الكتابي — الفصل الأول",
+      "source": {
+        "label": "وزارة التعليم السعودية — لغتي الجميلة",
+        "url": "https://madrasatibeta.moe.gov.sa/books/A62107794250CE435022CD2951383052?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مكوّن «التواصل الكتابي» في كتاب لغتي الجميلة مغطى بحزمة Core المناسبة مع تطبيق سعودي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g5-l05",
+          "relation": "supporting-skill",
+          "title": "تلخيص فقرة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l13",
+          "relation": "supporting-skill",
+          "title": "بناء الفقرة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l14",
+          "relation": "supporting-skill",
+          "title": "الوصف الدقيق"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l15",
+          "relation": "supporting-skill",
+          "title": "الرسالة القصيرة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati-book+two-semester-policy+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g5-s2-listening-speaking",
+      "officialTitle": "الاستماع والتحدث — الفصل الثاني",
+      "source": {
+        "label": "وزارة التعليم السعودية — لغتي الجميلة",
+        "url": "https://madrasatibeta.moe.gov.sa/books/A62107794250CE435022CD2951383052?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مكوّن «الاستماع والتحدث» في كتاب لغتي الجميلة مغطى بحزمة Core المناسبة مع تطبيق سعودي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g5-l16",
+          "relation": "supporting-skill",
+          "title": "الحوار المنظم"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l17",
+          "relation": "supporting-skill",
+          "title": "العرض الشفهي"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati-book+two-semester-policy+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g5-s2-reading",
+      "officialTitle": "القراءة والفهم — الفصل الثاني",
+      "source": {
+        "label": "وزارة التعليم السعودية — لغتي الجميلة",
+        "url": "https://madrasatibeta.moe.gov.sa/books/A62107794250CE435022CD2951383052?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مكوّن «القراءة والفهم» في كتاب لغتي الجميلة مغطى بحزمة Core المناسبة مع تطبيق سعودي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g5-l01",
+          "relation": "supporting-skill",
+          "title": "القراءة الجهرية المعبرة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l02",
+          "relation": "supporting-skill",
+          "title": "الفكرة الرئيسة والتفاصيل"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l03",
+          "relation": "supporting-skill",
+          "title": "معنى الكلمة من السياق"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l04",
+          "relation": "supporting-skill",
+          "title": "السبب والنتيجة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l05",
+          "relation": "supporting-skill",
+          "title": "تلخيص فقرة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l06",
+          "relation": "supporting-skill",
+          "title": "الاستنتاج من النص"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati-book+two-semester-policy+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g5-s2-morphology",
+      "officialTitle": "الصنف اللغوي — الفصل الثاني",
+      "source": {
+        "label": "وزارة التعليم السعودية — لغتي الجميلة",
+        "url": "https://madrasatibeta.moe.gov.sa/books/A62107794250CE435022CD2951383052?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مكوّن «الصنف اللغوي» في كتاب لغتي الجميلة مغطى بحزمة Core المناسبة مع تطبيق سعودي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g5-l07",
+          "relation": "direct-skill",
+          "title": "أقسام الكلام"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati-book+two-semester-policy+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g5-s2-syntax",
+      "officialTitle": "الوظيفة النحوية — الفصل الثاني",
+      "source": {
+        "label": "وزارة التعليم السعودية — لغتي الجميلة",
+        "url": "https://madrasatibeta.moe.gov.sa/books/A62107794250CE435022CD2951383052?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مكوّن «الوظيفة النحوية» في كتاب لغتي الجميلة مغطى بحزمة Core المناسبة مع تطبيق سعودي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g5-l08",
+          "relation": "supporting-skill",
+          "title": "المبتدأ والخبر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l09",
+          "relation": "supporting-skill",
+          "title": "الفعل والفاعل"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l10",
+          "relation": "supporting-skill",
+          "title": "المفعول به"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l11",
+          "relation": "supporting-skill",
+          "title": "حروف الجر"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati-book+two-semester-policy+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g5-s2-style",
+      "officialTitle": "الأسلوب اللغوي — الفصل الثاني",
+      "source": {
+        "label": "وزارة التعليم السعودية — لغتي الجميلة",
+        "url": "https://madrasatibeta.moe.gov.sa/books/A62107794250CE435022CD2951383052?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مكوّن «الأسلوب اللغوي» في كتاب لغتي الجميلة مغطى بحزمة Core المناسبة مع تطبيق سعودي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g5-l03",
+          "relation": "supporting-skill",
+          "title": "معنى الكلمة من السياق"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l04",
+          "relation": "supporting-skill",
+          "title": "السبب والنتيجة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l06",
+          "relation": "supporting-skill",
+          "title": "الاستنتاج من النص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l16",
+          "relation": "supporting-skill",
+          "title": "الحوار المنظم"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati-book+two-semester-policy+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g5-s2-spelling",
+      "officialTitle": "الظاهرة الإملائية — الفصل الثاني",
+      "source": {
+        "label": "وزارة التعليم السعودية — لغتي الجميلة",
+        "url": "https://madrasatibeta.moe.gov.sa/books/A62107794250CE435022CD2951383052?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مكوّن «الظاهرة الإملائية» في كتاب لغتي الجميلة مغطى بحزمة Core المناسبة مع تطبيق سعودي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g5-l12",
+          "relation": "direct-skill",
+          "title": "الهمزة والتاء في الكتابة"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati-book+two-semester-policy+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g5-s2-handwriting",
+      "officialTitle": "الرسم الكتابي — الفصل الثاني",
+      "source": {
+        "label": "وزارة التعليم السعودية — لغتي الجميلة",
+        "url": "https://madrasatibeta.moe.gov.sa/books/A62107794250CE435022CD2951383052?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مكوّن «الرسم الكتابي» في كتاب لغتي الجميلة مغطى بحزمة Core المناسبة مع تطبيق سعودي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g5-l12",
+          "relation": "supporting-skill",
+          "title": "الهمزة والتاء في الكتابة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l13",
+          "relation": "supporting-skill",
+          "title": "بناء الفقرة"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati-book+two-semester-policy+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g5-s2-writing",
+      "officialTitle": "التواصل الكتابي — الفصل الثاني",
+      "source": {
+        "label": "وزارة التعليم السعودية — لغتي الجميلة",
+        "url": "https://madrasatibeta.moe.gov.sa/books/A62107794250CE435022CD2951383052?Language=1"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مكوّن «التواصل الكتابي» في كتاب لغتي الجميلة مغطى بحزمة Core المناسبة مع تطبيق سعودي أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g5-l05",
+          "relation": "supporting-skill",
+          "title": "تلخيص فقرة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l13",
+          "relation": "supporting-skill",
+          "title": "بناء الفقرة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l14",
+          "relation": "supporting-skill",
+          "title": "الوصف الدقيق"
+        },
+        {
+          "slug": "sa-dadyoom-core-g5-l15",
+          "relation": "supporting-skill",
+          "title": "الرسالة القصيرة"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati-book+two-semester-policy+core-skill-bundle+national-pack-v1"
+    }
+  ]
+}
