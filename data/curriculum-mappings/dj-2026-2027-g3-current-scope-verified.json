@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "DJ",
+    "nameAr": "جيبوتي"
+  },
+  "academicYear": "2026-2027",
+  "grade": 3,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 1,
+  "mappedLessons": 1,
+  "verifiedLessons": 1,
+  "scope": "current-officially-published-and-publicly-verifiable-scope",
+  "policy": "المطابقة على مستوى السنة/المقرر أو السلسلة الثانوية؛ لا تعاد النصوص المحمية ولا تختلق عناوين غير منشورة.",
+  "mappings": [
+    {
+      "officialSlug": "dj-2026-2027-g3-arabic-grade",
+      "officialTitle": "اللغة العربية — السنة 3 من التعليم الأساسي — حزمة المنهاج",
+      "source": {
+        "label": "MENFOP/CRIPEN — دليل العربية للسنة الثالثة",
+        "url": "https://education.dj/portail/guideBi3e.php"
+      },
+      "relationType": "official-grade-curriculum+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "الحزمة تمثل مقرر العربية للسنة كما تنشره MENFOP/CRIPEN؛ المحتوى أصلي وCore مساند فقط.",
+      "coreCoverage": [
+        {
+          "slug": "dj-dadyoom-core-g3-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g3-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g3-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g3-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g3-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g3-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g3-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g3-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g3-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g3-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g3-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g3-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g3-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g3-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g3-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g3-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g3-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dj-dadyoom-core-g3-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-menfop-cripen-curriculum+official-guides+secondary-programs+national-pack"
+    }
+  ]
+}
