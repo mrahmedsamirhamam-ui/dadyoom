@@ -655,28 +655,84 @@
       },
       "national": {
         "complete": false,
-        "matchingStatus": "not-closed",
-        "verificationStatus": "candidate",
+        "matchingStatus": "current-scope-complete",
+        "verificationStatus": "verified",
         "evidenceSources": [
           {
-            "url": "https://ict.moe.gov.om/eBooks/index.php",
-            "kind": "official-catalog"
+            "url": "https://home.moe.gov.om/library/171",
+            "kind": "official-current-arabic-assessment"
           },
           {
-            "url": "https://ict.moe.gov.om/book",
-            "kind": "official-catalog"
+            "url": "https://home.moe.gov.om/library/96",
+            "kind": "official-curriculum-library"
+          },
+          {
+            "url": "https://ict.moe.gov.om/eBooks/index.php",
+            "kind": "official-digital-textbooks"
+          },
+          {
+            "url": "https://portal.moe.gov.om/Portal/sitebuilder/Sites/EPS/Arabic/IPS/Right_Menu/Edu_System/edusystem/basic.aspx",
+            "kind": "official-education-system"
+          },
+          {
+            "url": "https://home.moe.gov.om/topics/1/show/11856",
+            "kind": "official-arabic-skills-development"
+          },
+          {
+            "url": "https://home.moe.gov.om/topics/1/show/13053",
+            "kind": "official-2026-2027-pathways"
           }
         ],
-        "verifiedPackFiles": [],
-        "missingEvidence": [
-          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
-          "اكتمال تغطية الفصول/الفترات الدراسية",
-          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
-          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
-          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
-        ]
+        "verifiedPackFiles": [
+          "data/curriculum-packs/oman-2026-2027-final/om-2026-2027-arabic-g1-current-scope.json",
+          "data/curriculum-packs/oman-2026-2027-final/om-2026-2027-arabic-g2-current-scope.json",
+          "data/curriculum-packs/oman-2026-2027-final/om-2026-2027-arabic-g3-current-scope.json",
+          "data/curriculum-packs/oman-2026-2027-final/om-2026-2027-arabic-g4-current-scope.json",
+          "data/curriculum-packs/oman-2026-2027-final/om-2026-2027-arabic-g5-current-scope.json",
+          "data/curriculum-packs/oman-2026-2027-final/om-2026-2027-arabic-g6-current-scope.json",
+          "data/curriculum-packs/oman-2026-2027-final/om-2026-2027-arabic-g7-current-scope.json",
+          "data/curriculum-packs/oman-2026-2027-final/om-2026-2027-arabic-g8-current-scope.json",
+          "data/curriculum-packs/oman-2026-2027-final/om-2026-2027-arabic-g9-current-scope.json",
+          "data/curriculum-packs/oman-2026-2027-final/om-2026-2027-arabic-g10-current-scope.json",
+          "data/curriculum-packs/oman-2026-2027-final/om-2026-2027-arabic-g11-current-scope.json",
+          "data/curriculum-packs/oman-2026-2027-final/om-2026-2027-arabic-g12-current-scope.json"
+        ],
+        "verifiedMappingFiles": [
+          "data/curriculum-mappings/om-2026-2027-g1-current-scope-verified.json",
+          "data/curriculum-mappings/om-2026-2027-g2-current-scope-verified.json",
+          "data/curriculum-mappings/om-2026-2027-g3-current-scope-verified.json",
+          "data/curriculum-mappings/om-2026-2027-g4-current-scope-verified.json",
+          "data/curriculum-mappings/om-2026-2027-g5-current-scope-verified.json",
+          "data/curriculum-mappings/om-2026-2027-g6-current-scope-verified.json",
+          "data/curriculum-mappings/om-2026-2027-g7-current-scope-verified.json",
+          "data/curriculum-mappings/om-2026-2027-g8-current-scope-verified.json",
+          "data/curriculum-mappings/om-2026-2027-g9-current-scope-verified.json",
+          "data/curriculum-mappings/om-2026-2027-g10-current-scope-verified.json",
+          "data/curriculum-mappings/om-2026-2027-g11-current-scope-verified.json",
+          "data/curriculum-mappings/om-2026-2027-g12-current-scope-verified.json"
+        ],
+        "missingEvidence": [],
+        "currentScopeComplete": true,
+        "fullYearComplete": false,
+        "mappingSummary": {
+          "mappingGrades": 12,
+          "verifiedMappingGrades": 12,
+          "officialCoverageNodes": 68,
+          "mappedCoverageNodes": 68,
+          "verifiedCoverageNodes": 68,
+          "nationalExtensions": 68
+        },
+        "databaseSummary": {
+          "curriculumId": "e096c7e6-de97-4988-9ba1-b80f590b5e1d",
+          "grades": 12,
+          "lessons": 68,
+          "questions": 204,
+          "vocabulary": 204,
+          "activities": 204
+        },
+        "note": "مغلق للنطاق الرسمي المنشور والقابل للتحقق حاليًا للعام 2026-2027 عبر وثائق تقويم العربية والمجال الأول ومكتبة المناهج والكتب الرقمية وبنية التعليم العُمانية."
       },
-      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+      "publicationReadiness": "NATIONAL_CURRENT_SCOPE_COMPLETE"
     },
     {
       "code": "PS",
