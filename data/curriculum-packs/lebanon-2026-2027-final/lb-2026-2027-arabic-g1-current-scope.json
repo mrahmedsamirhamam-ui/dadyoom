@@ -1,0 +1,562 @@
+{
+  "schemaVersion": 1,
+  "packKey": "LB:2026-2027:arabic:g1:current-scope",
+  "country": {
+    "code": "LB",
+    "nameAr": "لبنان",
+    "nameEn": "Lebanon"
+  },
+  "academicYear": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية وآدابها"
+  },
+  "stage": {
+    "code": "basic-primary",
+    "nameAr": "التعليم الأساسي — المرحلة الابتدائية"
+  },
+  "grade": {
+    "number": 1,
+    "nameAr": "السنة 1",
+    "nameEn": "Grade 1"
+  },
+  "semester": null,
+  "curriculum": {
+    "nameAr": "اللغة العربية وآدابها — المطابقة الرسمية اللبنانية",
+    "nameEn": "Arabic Language and Literature — Lebanon Official Curriculum Match",
+    "description": "طبقة وطنية مستقلة مرتبطة بمنهج CRDP الرسمي وتفرعات المرحلة الثانوية.",
+    "storageNameAr": "اللغة العربية وآدابها — المطابقة الرسمية اللبنانية"
+  },
+  "rights": {
+    "contentOwner": "dadyoom",
+    "sourceLabel": "CRDP Lebanon / MEHE؛ البنية والمجالات والمسارات رسمية والمحتوى التعليمي أصلي لضاديوم.",
+    "sourceUrl": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
+    "verified": true
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "مجالات اللغة العربية وآدابها — التغطية الوطنية",
+      "description": "السنة 1: تغطية المجالات الرسمية والمسارات الثانوية عند وجودها.",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "المحادثة والقراءة والأدب والمحفوظات — المسار العام",
+          "type": "reading",
+          "estimatedMinutes": 40,
+          "summary": "حزمة وطنية أصلية من ضاديوم لمجال «المحادثة والقراءة والأدب والمحفوظات» في المسار العام ضمن منهج اللغة العربية وآدابها الرسمي في لبنان.",
+          "content": "تمثل هذه العقدة مجال «المحادثة والقراءة والأدب والمحفوظات» في المسار العام كما ينظمه منهج اللغة العربية وآدابها المنشور رسميًا من المركز التربوي للبحوث والإنماء. يحدد المنهج الرسمي المحادثة والقراءة والأدب والمحفوظات، والقواعد والإملاء والبلاغة والعروض، والتعبير الشفهي والكتابي كمسارات أساسية متدرجة عبر التعليم الأساسي والثانوي، مع اختلاف الساعات والعمق بحسب المسار في المرحلة الثانوية. يقدم ضاديوم شرحًا وأمثلة وأسئلة وأنشطة أصلية، ولا يعيد نشر نصوص الكتب أو التمارين المحمية. يُستخدم الكتاب الرسمي أو المصدر المرخص عند الحاجة إلى النص الأصلي، بينما تبقى أنشطة الفهم والتحليل والتطبيق والمراجعة هنا من إنشاء ضاديوم.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات مجال «المحادثة والقراءة والأدب والمحفوظات» في المسار العام.",
+            "أن يطبق المتعلم مهارة من المجال في موقف جديد مناسب لمستواه.",
+            "أن يراجع المتعلم أداءه ويصححه اعتمادًا على قاعدة أو شاهد."
+          ],
+          "vocabulary": [
+            {
+              "word": "قراءة",
+              "meaning": "فهم النص والتفاعل مع معناه."
+            },
+            {
+              "word": "أدب",
+              "meaning": "نص فني يوظف اللغة للتعبير والإبداع."
+            },
+            {
+              "word": "محفوظات",
+              "meaning": "نصوص مختارة للتذوق والحفظ والأداء."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما أفضل دليل على إتقان «المحادثة والقراءة والأدب والمحفوظات»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير أو شاهد."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ اسم المجال فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ إجابة جاهزة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في الأداء المستقل.",
+              "points": 1
+            },
+            {
+              "question": "كيف تستخدم المصدر الرسمي؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "مرجعًا للنطاق والنص المرخص مع تعلم أصلي في ضاديوم."
+                },
+                {
+                  "id": "b",
+                  "text": "أنسخ النصوص كاملة."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاهله."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المواءمة لا تتطلب إعادة نشر النصوص.",
+              "points": 1
+            },
+            {
+              "question": "ما المراجعة الصحيحة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن الناتج بالمعيار وأصحح."
+                },
+                {
+                  "id": "b",
+                  "text": "لا أراجع."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة بمعيار تحسن الأداء.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تطبيق موجّه — المحادثة والقراءة والأدب والمحفوظات",
+              "activityType": "multiple_choice",
+              "instructions": "حدد المهارة أو القاعدة المناسبة للمهمة.",
+              "content": {
+                "origin": "DADYOOM_LB_OFFICIAL_2026_2027_V1",
+                "track": "all",
+                "domain": "reading-literature"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل — المحادثة والقراءة والأدب والمحفوظات",
+              "activityType": "reading",
+              "instructions": "نفّذ مهمة جديدة من إنشاء ضاديوم.",
+              "content": {
+                "origin": "DADYOOM_LB_OFFICIAL_2026_2027_V1",
+                "track": "all",
+                "domain": "reading-literature"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية — المحادثة والقراءة والأدب والمحفوظات",
+              "activityType": "writing",
+              "instructions": "راجع الناتج وحدد تحسينًا واحدًا.",
+              "content": {
+                "origin": "DADYOOM_LB_OFFICIAL_2026_2027_V1",
+                "track": "all",
+                "domain": "reading-literature"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "المركز التربوي للبحوث والإنماء — منهج اللغة العربية وآدابها",
+            "url": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
+            "additionalUrls": [
+              "https://www.crdp.org/books-pdf",
+              "https://www.crdp.org/curriculum/%D8%A7%D9%84%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85%D9%8A-%D9%84%D9%84%D8%B9%D8%A7%D9%85-%D9%A2%D9%A0%D9%A2%D9%A5-%D9%A2%D9%A0%D9%A2%D9%A6%D8%8C-%D9%88%D8%B2%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%8A-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D9%84%D9%84%D8%A8%D8%AD%D9%88%D8%AB",
+              "https://nsl.mehe.gov.lb/Downloads.aspx?d=ODM1OTQ%3D&g=ZDUwNWY3NGQtZGYwMy00MGRjLWI0NmQtZmJhNDJkNzJkZGM1&s=c2FpbnRlZmFtaWxsZWJlY2hhcnJpQGhvdG1haWwuY29t"
+            ]
+          },
+          "alignment": {
+            "mode": "official-domain+secondary-track",
+            "track": "all",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "lb-dadyoom-core-g1-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "lb-dadyoom-core-g1-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "lb-dadyoom-core-g1-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "lb-dadyoom-core-g1-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "lb-dadyoom-core-g1-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "lb-dadyoom-core-g1-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "lb-dadyoom-core-g1-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "lb-dadyoom-core-g1-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "lb-dadyoom-core-g1-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "lb-dadyoom-core-g1-l16",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        },
+        {
+          "number": 2,
+          "title": "القواعد والإملاء والبلاغة والعروض — المسار العام",
+          "type": "grammar",
+          "estimatedMinutes": 40,
+          "summary": "حزمة وطنية أصلية من ضاديوم لمجال «القواعد والإملاء والبلاغة والعروض» في المسار العام ضمن منهج اللغة العربية وآدابها الرسمي في لبنان.",
+          "content": "تمثل هذه العقدة مجال «القواعد والإملاء والبلاغة والعروض» في المسار العام كما ينظمه منهج اللغة العربية وآدابها المنشور رسميًا من المركز التربوي للبحوث والإنماء. يحدد المنهج الرسمي المحادثة والقراءة والأدب والمحفوظات، والقواعد والإملاء والبلاغة والعروض، والتعبير الشفهي والكتابي كمسارات أساسية متدرجة عبر التعليم الأساسي والثانوي، مع اختلاف الساعات والعمق بحسب المسار في المرحلة الثانوية. يقدم ضاديوم شرحًا وأمثلة وأسئلة وأنشطة أصلية، ولا يعيد نشر نصوص الكتب أو التمارين المحمية. يُستخدم الكتاب الرسمي أو المصدر المرخص عند الحاجة إلى النص الأصلي، بينما تبقى أنشطة الفهم والتحليل والتطبيق والمراجعة هنا من إنشاء ضاديوم.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات مجال «القواعد والإملاء والبلاغة والعروض» في المسار العام.",
+            "أن يطبق المتعلم مهارة من المجال في موقف جديد مناسب لمستواه.",
+            "أن يراجع المتعلم أداءه ويصححه اعتمادًا على قاعدة أو شاهد."
+          ],
+          "vocabulary": [
+            {
+              "word": "قاعدة",
+              "meaning": "نظام يضبط استعمال اللغة."
+            },
+            {
+              "word": "إملاء",
+              "meaning": "كتابة الكلمات وفق القواعد الصحيحة."
+            },
+            {
+              "word": "بلاغة",
+              "meaning": "اختيار التعبير المؤثر الملائم للمعنى."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما أفضل دليل على إتقان «القواعد والإملاء والبلاغة والعروض»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير أو شاهد."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ اسم المجال فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ إجابة جاهزة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في الأداء المستقل.",
+              "points": 1
+            },
+            {
+              "question": "كيف تستخدم المصدر الرسمي؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "مرجعًا للنطاق والنص المرخص مع تعلم أصلي في ضاديوم."
+                },
+                {
+                  "id": "b",
+                  "text": "أنسخ النصوص كاملة."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاهله."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المواءمة لا تتطلب إعادة نشر النصوص.",
+              "points": 1
+            },
+            {
+              "question": "ما المراجعة الصحيحة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن الناتج بالمعيار وأصحح."
+                },
+                {
+                  "id": "b",
+                  "text": "لا أراجع."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة بمعيار تحسن الأداء.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تطبيق موجّه — القواعد والإملاء والبلاغة والعروض",
+              "activityType": "multiple_choice",
+              "instructions": "حدد المهارة أو القاعدة المناسبة للمهمة.",
+              "content": {
+                "origin": "DADYOOM_LB_OFFICIAL_2026_2027_V1",
+                "track": "all",
+                "domain": "language-system"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل — القواعد والإملاء والبلاغة والعروض",
+              "activityType": "writing",
+              "instructions": "نفّذ مهمة جديدة من إنشاء ضاديوم.",
+              "content": {
+                "origin": "DADYOOM_LB_OFFICIAL_2026_2027_V1",
+                "track": "all",
+                "domain": "language-system"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية — القواعد والإملاء والبلاغة والعروض",
+              "activityType": "writing",
+              "instructions": "راجع الناتج وحدد تحسينًا واحدًا.",
+              "content": {
+                "origin": "DADYOOM_LB_OFFICIAL_2026_2027_V1",
+                "track": "all",
+                "domain": "language-system"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "المركز التربوي للبحوث والإنماء — منهج اللغة العربية وآدابها",
+            "url": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
+            "additionalUrls": [
+              "https://www.crdp.org/books-pdf",
+              "https://www.crdp.org/curriculum/%D8%A7%D9%84%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85%D9%8A-%D9%84%D9%84%D8%B9%D8%A7%D9%85-%D9%A2%D9%A0%D9%A2%D9%A5-%D9%A2%D9%A0%D9%A2%D9%A6%D8%8C-%D9%88%D8%B2%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%8A-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D9%84%D9%84%D8%A8%D8%AD%D9%88%D8%AB",
+              "https://nsl.mehe.gov.lb/Downloads.aspx?d=ODM1OTQ%3D&g=ZDUwNWY3NGQtZGYwMy00MGRjLWI0NmQtZmJhNDJkNzJkZGM1&s=c2FpbnRlZmFtaWxsZWJlY2hhcnJpQGhvdG1haWwuY29t"
+            ]
+          },
+          "alignment": {
+            "mode": "official-domain+secondary-track",
+            "track": "all",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "lb-dadyoom-core-g1-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "lb-dadyoom-core-g1-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "lb-dadyoom-core-g1-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "lb-dadyoom-core-g1-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "lb-dadyoom-core-g1-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "lb-dadyoom-core-g1-l12",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        },
+        {
+          "number": 3,
+          "title": "التعبير الشفهي والكتابي — المسار العام",
+          "type": "writing",
+          "estimatedMinutes": 40,
+          "summary": "حزمة وطنية أصلية من ضاديوم لمجال «التعبير الشفهي والكتابي» في المسار العام ضمن منهج اللغة العربية وآدابها الرسمي في لبنان.",
+          "content": "تمثل هذه العقدة مجال «التعبير الشفهي والكتابي» في المسار العام كما ينظمه منهج اللغة العربية وآدابها المنشور رسميًا من المركز التربوي للبحوث والإنماء. يحدد المنهج الرسمي المحادثة والقراءة والأدب والمحفوظات، والقواعد والإملاء والبلاغة والعروض، والتعبير الشفهي والكتابي كمسارات أساسية متدرجة عبر التعليم الأساسي والثانوي، مع اختلاف الساعات والعمق بحسب المسار في المرحلة الثانوية. يقدم ضاديوم شرحًا وأمثلة وأسئلة وأنشطة أصلية، ولا يعيد نشر نصوص الكتب أو التمارين المحمية. يُستخدم الكتاب الرسمي أو المصدر المرخص عند الحاجة إلى النص الأصلي، بينما تبقى أنشطة الفهم والتحليل والتطبيق والمراجعة هنا من إنشاء ضاديوم.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات مجال «التعبير الشفهي والكتابي» في المسار العام.",
+            "أن يطبق المتعلم مهارة من المجال في موقف جديد مناسب لمستواه.",
+            "أن يراجع المتعلم أداءه ويصححه اعتمادًا على قاعدة أو شاهد."
+          ],
+          "vocabulary": [
+            {
+              "word": "تعبير",
+              "meaning": "إنتاج شفهي أو كتابي لنقل فكرة."
+            },
+            {
+              "word": "تلخيص",
+              "meaning": "إعادة عرض أهم الأفكار بإيجاز."
+            },
+            {
+              "word": "ترابط",
+              "meaning": "اتصال الأفكار في تسلسل منطقي."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما أفضل دليل على إتقان «التعبير الشفهي والكتابي»؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير أو شاهد."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ اسم المجال فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ إجابة جاهزة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الإتقان يظهر في الأداء المستقل.",
+              "points": 1
+            },
+            {
+              "question": "كيف تستخدم المصدر الرسمي؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "مرجعًا للنطاق والنص المرخص مع تعلم أصلي في ضاديوم."
+                },
+                {
+                  "id": "b",
+                  "text": "أنسخ النصوص كاملة."
+                },
+                {
+                  "id": "c",
+                  "text": "أتجاهله."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المواءمة لا تتطلب إعادة نشر النصوص.",
+              "points": 1
+            },
+            {
+              "question": "ما المراجعة الصحيحة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن الناتج بالمعيار وأصحح."
+                },
+                {
+                  "id": "b",
+                  "text": "لا أراجع."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة بمعيار تحسن الأداء.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "تطبيق موجّه — التعبير الشفهي والكتابي",
+              "activityType": "multiple_choice",
+              "instructions": "حدد المهارة أو القاعدة المناسبة للمهمة.",
+              "content": {
+                "origin": "DADYOOM_LB_OFFICIAL_2026_2027_V1",
+                "track": "all",
+                "domain": "expression"
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل — التعبير الشفهي والكتابي",
+              "activityType": "writing",
+              "instructions": "نفّذ مهمة جديدة من إنشاء ضاديوم.",
+              "content": {
+                "origin": "DADYOOM_LB_OFFICIAL_2026_2027_V1",
+                "track": "all",
+                "domain": "expression"
+              },
+              "published": true
+            },
+            {
+              "title": "مراجعة ذاتية — التعبير الشفهي والكتابي",
+              "activityType": "writing",
+              "instructions": "راجع الناتج وحدد تحسينًا واحدًا.",
+              "content": {
+                "origin": "DADYOOM_LB_OFFICIAL_2026_2027_V1",
+                "track": "all",
+                "domain": "expression"
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "المركز التربوي للبحوث والإنماء — منهج اللغة العربية وآدابها",
+            "url": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
+            "additionalUrls": [
+              "https://www.crdp.org/books-pdf",
+              "https://www.crdp.org/curriculum/%D8%A7%D9%84%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85%D9%8A-%D9%84%D9%84%D8%B9%D8%A7%D9%85-%D9%A2%D9%A0%D9%A2%D9%A5-%D9%A2%D9%A0%D9%A2%D9%A6%D8%8C-%D9%88%D8%B2%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%8A-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D9%84%D9%84%D8%A8%D8%AD%D9%88%D8%AB",
+              "https://nsl.mehe.gov.lb/Downloads.aspx?d=ODM1OTQ%3D&g=ZDUwNWY3NGQtZGYwMy00MGRjLWI0NmQtZmJhNDJkNzJkZGM1&s=c2FpbnRlZmFtaWxsZWJlY2hhcnJpQGhvdG1haWwuY29t"
+            ]
+          },
+          "alignment": {
+            "mode": "official-domain+secondary-track",
+            "track": "all",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "lb-dadyoom-core-g1-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "lb-dadyoom-core-g1-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "lb-dadyoom-core-g1-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "lb-dadyoom-core-g1-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "lb-dadyoom-core-g1-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "lb-dadyoom-core-g1-l18",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
