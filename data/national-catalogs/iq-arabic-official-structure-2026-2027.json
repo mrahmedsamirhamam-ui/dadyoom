@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "IQ",
+    "nameAr": "العراق",
+    "nameEn": "Iraq"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "verificationStatus": "verified-source-structure",
+  "officialCoverageUnit": "book-or-book-part",
+  "semesters": null,
+  "educationStructure": {
+    "primary": {
+      "grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "officialName": "المرحلة الابتدائية"
+    },
+    "middle": {
+      "grades": [
+        7,
+        8,
+        9
+      ],
+      "officialEquivalent": [
+        "الأول المتوسط",
+        "الثاني المتوسط",
+        "الثالث المتوسط"
+      ]
+    },
+    "preparatory": {
+      "grades": [
+        10,
+        11,
+        12
+      ],
+      "officialEquivalent": [
+        "الرابع الإعدادي",
+        "الخامس الإعدادي",
+        "السادس الإعدادي"
+      ],
+      "branches": [
+        "العلمي",
+        "الأدبي"
+      ],
+      "arabicPolicy": "العربية مشتركة في الكتب الحالية بين العلمي والأدبي؛ لا تُنشأ نسخة مختلفة دون مصدر رسمي."
+    }
+  },
+  "gradeBooks": {
+    "1-3": [
+      "كتاب القراءة — حزمة كتاب واحدة لكل صف"
+    ],
+    "4-6": [
+      "كتاب القراءة",
+      "كتاب قواعد اللغة العربية"
+    ],
+    "7-12": [
+      "اللغة العربية — الجزء الأول",
+      "اللغة العربية — الجزء الثاني"
+    ]
+  },
+  "grades": [
+    {
+      "grade": 1,
+      "stage": "المرحلة الابتدائية",
+      "officialGrade": 1,
+      "coverageBundles": 1
+    },
+    {
+      "grade": 2,
+      "stage": "المرحلة الابتدائية",
+      "officialGrade": 2,
+      "coverageBundles": 1
+    },
+    {
+      "grade": 3,
+      "stage": "المرحلة الابتدائية",
+      "officialGrade": 3,
+      "coverageBundles": 1
+    },
+    {
+      "grade": 4,
+      "stage": "المرحلة الابتدائية",
+      "officialGrade": 4,
+      "coverageBundles": 2
+    },
+    {
+      "grade": 5,
+      "stage": "المرحلة الابتدائية",
+      "officialGrade": 5,
+      "coverageBundles": 2
+    },
+    {
+      "grade": 6,
+      "stage": "المرحلة الابتدائية",
+      "officialGrade": 6,
+      "coverageBundles": 2
+    },
+    {
+      "grade": 7,
+      "stage": "المرحلة المتوسطة",
+      "officialGrade": 1,
+      "coverageBundles": 2
+    },
+    {
+      "grade": 8,
+      "stage": "المرحلة المتوسطة",
+      "officialGrade": 2,
+      "coverageBundles": 2
+    },
+    {
+      "grade": 9,
+      "stage": "المرحلة المتوسطة",
+      "officialGrade": 3,
+      "coverageBundles": 2
+    },
+    {
+      "grade": 10,
+      "stage": "المرحلة الإعدادية",
+      "officialGrade": 4,
+      "coverageBundles": 2
+    },
+    {
+      "grade": 11,
+      "stage": "المرحلة الإعدادية",
+      "officialGrade": 5,
+      "coverageBundles": 2
+    },
+    {
+      "grade": 12,
+      "stage": "المرحلة الإعدادية",
+      "officialGrade": 6,
+      "coverageBundles": 2
+    }
+  ],
+  "officialCoverageNodes": 21,
+  "sources": [
+    {
+      "kind": "official-primary-catalog",
+      "url": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=149"
+    },
+    {
+      "kind": "official-middle-catalog",
+      "url": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=148"
+    },
+    {
+      "kind": "official-preparatory-catalog",
+      "url": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=151"
+    },
+    {
+      "kind": "official-distinguished-catalog",
+      "url": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=152"
+    },
+    {
+      "kind": "official-ministry-channel-book-links",
+      "url": "https://t.me/s/educationiq?after=20611",
+      "note": "القناة الرسمية للوزارة نشرت روابط كتالوجات المديرية العامة للمناهج للمراحل كافة."
+    },
+    {
+      "kind": "official-current-school-year",
+      "url": "https://t.me/s/Educationiq?before=32884",
+      "note": "وزارة التربية حددت بدء العام الدراسي 2026-2027."
+    },
+    {
+      "kind": "official-current-textbook-printing",
+      "url": "https://t.me/s/educationiq?before=33842",
+      "note": "تجهيز الكتب للمراحل من الأول الابتدائي حتى السادس الإعدادي للعام 2026-2027."
+    },
+    {
+      "kind": "official-electronic-school",
+      "url": "https://eschool.iq/",
+      "note": "منصة تابعة لوزارة التربية تقدم المناهج الرسمية رقميًا وتعلن دورة 2026-2027."
+    },
+    {
+      "kind": "official-national-library-catalog",
+      "url": "https://www.iraqnla.gov.iq/opac/index.php?hl=eng&max=20&q=%22%D8%A7%D9%84%D8%B9%D8%B1%D8%A7%D9%82+%D9%88%D8%B2%D8%A7%D8%B1%D8%A9+%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9+%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9+%D9%84%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC%22&start=0&sto=y",
+      "note": "فهرس حكومي للكتب الصادرة عن وزارة التربية/المديرية العامة للمناهج."
+    },
+    {
+      "kind": "official-current-curriculum-review",
+      "url": "https://t.me/s/Educationiq?before=33501",
+      "note": "المديرية العامة للمناهج تراجع الإطار العام ووثائقه المرجعية في سبتمبر 2026."
+    }
+  ],
+  "copyrightPolicy": "لا تعيد ضاديوم نشر نصوص الكتب العراقية؛ تستخدم أسماء الكتب/الأجزاء والمراحل وروابط الوزارة لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية.",
+  "generatedAt": "2026-09-25"
+}
