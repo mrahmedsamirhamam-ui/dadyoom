@@ -50,6 +50,85 @@ function collect(current, prefix = "") {
 collect(dir);
 packFiles.sort();
 
+const mappingDir = path.resolve(root, "data/curriculum-mappings");
+const mappingByCountry = new Map();
+
+if (fs.existsSync(mappingDir)) {
+  for (const entry of fs.readdirSync(mappingDir, { withFileTypes: true })) {
+    if (!entry.isFile() || !entry.name.endsWith(".json")) continue;
+
+    const rel = `data/curriculum-mappings/${entry.name}`;
+    let mapping;
+
+    try {
+      mapping = JSON.parse(
+        fs.readFileSync(path.join(mappingDir, entry.name), "utf8"),
+      );
+    } catch {
+      console.error(`NATIONAL_MAPPING_JSON_INVALID=${rel}`);
+      process.exitCode = 1;
+      continue;
+    }
+
+    const code = String(mapping?.country?.code ?? "").trim();
+    const grade = Number(mapping?.grade);
+    const officialLessons = Number(mapping?.officialLessons ?? 0);
+    const mappedLessons = Number(mapping?.mappedLessons ?? 0);
+    const verifiedLessons = Number(mapping?.verifiedLessons ?? 0);
+    const status = String(mapping?.status ?? "candidate");
+
+    if (!expectedCodes.has(code)) {
+      console.error(`NATIONAL_MAPPING_COUNTRY_INVALID=${rel}`);
+      process.exitCode = 1;
+      continue;
+    }
+
+    if (!Number.isInteger(grade) || grade < 1 || grade > 12) {
+      console.error(`NATIONAL_MAPPING_GRADE_INVALID=${rel}`);
+      process.exitCode = 1;
+      continue;
+    }
+
+    if (
+      !Array.isArray(mapping?.mappings) ||
+      officialLessons < 1 ||
+      mappedLessons !== mapping.mappings.length ||
+      mappedLessons > officialLessons ||
+      verifiedLessons > mappedLessons
+    ) {
+      console.error(`NATIONAL_MAPPING_COUNTS_INVALID=${rel}`);
+      process.exitCode = 1;
+      continue;
+    }
+
+    if (!mappingByCountry.has(code)) {
+      mappingByCountry.set(code, {
+        files: 0,
+        grades: new Set(),
+        verifiedGrades: new Set(),
+        officialLessons: 0,
+        mappedLessons: 0,
+        verifiedLessons: 0,
+      });
+    }
+
+    const state = mappingByCountry.get(code);
+    state.files += 1;
+    state.grades.add(grade);
+    state.officialLessons += officialLessons;
+    state.mappedLessons += mappedLessons;
+    state.verifiedLessons += verifiedLessons;
+
+    if (
+      status === "verified" &&
+      mappedLessons === officialLessons &&
+      verifiedLessons === officialLessons
+    ) {
+      state.verifiedGrades.add(grade);
+    }
+  }
+}
+
 const byCountry = new Map();
 
 function countryState(code) {
@@ -133,6 +212,16 @@ for (const country of registry.countries ?? []) {
   }
 
   const gradeCount = state.grades.size;
+  const mappingState =
+    mappingByCountry.get(code) ?? {
+      files: 0,
+      grades: new Set(),
+      verifiedGrades: new Set(),
+      officialLessons: 0,
+      mappedLessons: 0,
+      verifiedLessons: 0,
+    };
+
   const explicitComplete = matchingStatus === "complete";
   const explicitVerified = verificationStatus === "verified";
 
@@ -144,16 +233,20 @@ for (const country of registry.countries ?? []) {
     gradeCount === 12 &&
     [...Array(12)].every((_, index) => state.grades.has(index + 1));
 
+  const mappingCoverageComplete =
+    mappingState.verifiedGrades.size === 12;
+
   const ready =
     explicitComplete &&
     explicitVerified &&
     coverageComplete &&
+    mappingCoverageComplete &&
     state.verifiedPacks > 0 &&
     state.invalid.length === 0;
 
   if (explicitComplete && !ready) {
     console.error(
-      `NATIONAL_OFFICIAL_FALSE_COMPLETE=${code} STATUS=${matchingStatus} VERIFY=${verificationStatus} GRADES=${gradeCount} VERIFIED_PACKS=${state.verifiedPacks} INVALID=${state.invalid.length}`,
+      `NATIONAL_OFFICIAL_FALSE_COMPLETE=${code} STATUS=${matchingStatus} VERIFY=${verificationStatus} GRADES=${gradeCount} VERIFIED_PACKS=${state.verifiedPacks} VERIFIED_MAPPING_GRADES=${mappingState.verifiedGrades.size} INVALID=${state.invalid.length}`,
     );
     process.exitCode = 1;
   }
@@ -169,6 +262,10 @@ for (const country of registry.countries ?? []) {
       `VERIFIED_PACKS=${state.verifiedPacks}`,
       `GRADES=${gradeCount}/12`,
       `LESSONS=${state.lessons}`,
+      `MAPPING_FILES=${mappingState.files}`,
+      `MAPPING_GRADES=${mappingState.grades.size}/12`,
+      `VERIFIED_MAPPING_GRADES=${mappingState.verifiedGrades.size}/12`,
+      `MAPPED_LESSONS=${mappingState.mappedLessons}/${mappingState.officialLessons}`,
       `READY=${ready ? "YES" : "NO"}`,
     ].join(" "),
   );
