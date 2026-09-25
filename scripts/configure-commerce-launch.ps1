@@ -55,26 +55,70 @@ $clientToken = Read-PlainSecret "Paddle client-side token"
 $priceId = Read-Host "Paddle Plus monthly Price ID (pri_...)"
 $webhookSecret = Read-PlainSecret "Paddle webhook endpoint secret"
 $apiKey = Read-PlainSecret "Paddle API key"
-$adsenseClient = Read-Host "AdSense client (ca-pub-16digits)"
+$adsenseClient = Read-Host "AdSense client (ca-pub-16digits) [optional - press Enter to skip]"
 
 if ($priceId -notmatch '^pri_[a-z0-9]+$') {
   throw "PADDLE_PLUS_PRICE_ID must start with pri_."
 }
 
 if ($Environment -eq "sandbox" -and $clientToken -notmatch '^test_') {
-  Write-Warning "Sandbox client tokens normally start with test_."
+  throw "PADDLE_CLIENT_TOKEN must start with test_ in sandbox. Copy the token value, not the ctkn_ entity ID."
 }
 
 if ($Environment -eq "production" -and $clientToken -notmatch '^live_') {
-  Write-Warning "Production client tokens normally start with live_."
+  throw "PADDLE_CLIENT_TOKEN must start with live_ in production."
 }
 
 if ($apiKey -notmatch '^pdl_(live|sdbx)_apikey_') {
   Write-Warning "Paddle API key does not look like a current Paddle Billing API key."
 }
 
-if ($adsenseClient -notmatch '^ca-pub-\d{16}$') {
-  throw "ADSENSE_CLIENT must use the ca-pub-0000000000000000 format."
+if (
+  -not [string]::IsNullOrWhiteSpace($adsenseClient) -and
+  $adsenseClient -notmatch '^ca-pub-\d{16}
+Set-WorkerSecret -Name "PADDLE_ENVIRONMENT" -Value $Environment
+Set-WorkerSecret -Name "PADDLE_CLIENT_TOKEN" -Value $clientToken
+Set-WorkerSecret -Name "PADDLE_PLUS_PRICE_ID" -Value $priceId
+Set-WorkerSecret -Name "PADDLE_WEBHOOK_SECRET" -Value $webhookSecret
+Set-WorkerSecret -Name "PADDLE_API_KEY" -Value $apiKey
+
+if (-not [string]::IsNullOrWhiteSpace($adsenseClient)) {
+  Set-WorkerSecret -Name "ADSENSE_CLIENT" -Value $adsenseClient
+}
+else {
+  Write-Host "AdSense skipped. ADSENSE_CLIENT was not configured." -ForegroundColor Yellow
+}
+
+# Also expose these values to the local build process without writing them to disk.
+$env:PADDLE_ENVIRONMENT = $Environment
+$env:PADDLE_CLIENT_TOKEN = $clientToken
+$env:PADDLE_PLUS_PRICE_ID = $priceId
+$env:PADDLE_WEBHOOK_SECRET = $webhookSecret
+$env:PADDLE_API_KEY = $apiKey
+
+if (-not [string]::IsNullOrWhiteSpace($adsenseClient)) {
+  $env:ADSENSE_CLIENT = $adsenseClient
+}
+else {
+  Remove-Item Env:ADSENSE_CLIENT -ErrorAction SilentlyContinue
+}
+
+Write-Host ""
+Write-Host "Cloudflare launch variables configured." -ForegroundColor Green
+Write-Host "Next verification commands:" -ForegroundColor Yellow
+Write-Host "  npm run lint"
+Write-Host "  npm run test:run"
+Write-Host "  npm run curriculum:gate:official-22"
+Write-Host "  npm run build:vinext"
+Write-Host "  npm run deploy:vinext"
+Write-Host ""
+Write-Host "Paddle webhook URL:"
+Write-Host "  https://<production-domain>/api/payments/paddle/webhook"
+Write-Host ""
+Write-Host "Do not paste these secrets into chat, Git, or screenshots."
+
+) {
+  throw "ADSENSE_CLIENT must use the ca-pub-0000000000000000 format, or be left blank to keep AdSense disabled."
 }
 
 Set-WorkerSecret -Name "PADDLE_ENVIRONMENT" -Value $Environment
