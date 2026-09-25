@@ -281,8 +281,14 @@ export async function POST(
     await updateProgress(
       supabase,
       {
+        studentId:
+          user.id,
         studentEmail:
           user.email,
+        lessonId:
+          assessment.lesson_id,
+        assessmentId:
+          assessment.id,
         skill:
           assessment.skill,
         correct,
