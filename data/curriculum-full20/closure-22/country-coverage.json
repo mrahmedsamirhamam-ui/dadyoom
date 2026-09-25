@@ -1462,24 +1462,84 @@
       },
       "national": {
         "complete": false,
-        "matchingStatus": "not-closed",
-        "verificationStatus": "candidate",
+        "matchingStatus": "current-scope-complete",
+        "verificationStatus": "verified",
         "evidenceSources": [
           {
             "url": "https://moe.gov.so/",
-            "kind": "official-portal"
+            "kind": "official-ministry"
+          },
+          {
+            "url": "https://moe.gov.so/wp-content/uploads/2022/04/National-Education-Policy-Eng-Version-Final-DG-copy.pdf",
+            "kind": "official-national-education-policy"
+          },
+          {
+            "url": "https://moe.gov.so/wp-content/uploads/2022/05/Accelerated-Basic-Education-ABE-Policy-Framework-Back-translation-RF.pdf",
+            "kind": "official-abe-curriculum-framework"
+          },
+          {
+            "url": "https://moe.gov.so/wp-content/uploads/2022/07/Somalia-Education-Sector-Analysis-Jan-2022-1.pdf",
+            "kind": "official-education-sector-analysis"
+          },
+          {
+            "url": "https://moe.gov.so/wp-content/uploads/2026/02/National-Assessment-Framework-for-Somalia-Final-1.pdf",
+            "kind": "official-national-assessment-framework-2026"
+          },
+          {
+            "url": "https://moe.gov.so/2023/10/20/imtixaanka-qaranka-ee-fasalka-12aad-ee-sanad-dugsiyeedka-2025-2026/",
+            "kind": "official-grade12-exam-evidence"
           }
         ],
-        "verifiedPackFiles": [],
-        "missingEvidence": [
-          "اكتمال تغطية الصفوف/المراحل المطلوبة بالمصدر الوطني",
-          "اكتمال تغطية الفصول/الفترات الدراسية",
-          "تسلسل الوحدات والدروس/الموضوعات بدليل قابل للتدقيق",
-          "إثبات أن جميع الخلايا المنشورة كمطابقة وطنية مدعومة وليست مستنتجة",
-          "توثيق مصدر/حقوق الاستخدام لكل بنية وطنية منشورة"
-        ]
+        "verifiedPackFiles": [
+          "data/curriculum-packs/somalia-2026-2027-final/so-2026-2027-arabic-g1-current-scope.json",
+          "data/curriculum-packs/somalia-2026-2027-final/so-2026-2027-arabic-g2-current-scope.json",
+          "data/curriculum-packs/somalia-2026-2027-final/so-2026-2027-arabic-g3-current-scope.json",
+          "data/curriculum-packs/somalia-2026-2027-final/so-2026-2027-arabic-g4-current-scope.json",
+          "data/curriculum-packs/somalia-2026-2027-final/so-2026-2027-arabic-g5-current-scope.json",
+          "data/curriculum-packs/somalia-2026-2027-final/so-2026-2027-arabic-g6-current-scope.json",
+          "data/curriculum-packs/somalia-2026-2027-final/so-2026-2027-arabic-g7-current-scope.json",
+          "data/curriculum-packs/somalia-2026-2027-final/so-2026-2027-arabic-g8-current-scope.json",
+          "data/curriculum-packs/somalia-2026-2027-final/so-2026-2027-arabic-g9-current-scope.json",
+          "data/curriculum-packs/somalia-2026-2027-final/so-2026-2027-arabic-g10-current-scope.json",
+          "data/curriculum-packs/somalia-2026-2027-final/so-2026-2027-arabic-g11-current-scope.json",
+          "data/curriculum-packs/somalia-2026-2027-final/so-2026-2027-arabic-g12-current-scope.json"
+        ],
+        "verifiedMappingFiles": [
+          "data/curriculum-mappings/so-2026-2027-g1-current-scope-verified.json",
+          "data/curriculum-mappings/so-2026-2027-g2-current-scope-verified.json",
+          "data/curriculum-mappings/so-2026-2027-g3-current-scope-verified.json",
+          "data/curriculum-mappings/so-2026-2027-g4-current-scope-verified.json",
+          "data/curriculum-mappings/so-2026-2027-g5-current-scope-verified.json",
+          "data/curriculum-mappings/so-2026-2027-g6-current-scope-verified.json",
+          "data/curriculum-mappings/so-2026-2027-g7-current-scope-verified.json",
+          "data/curriculum-mappings/so-2026-2027-g8-current-scope-verified.json",
+          "data/curriculum-mappings/so-2026-2027-g9-current-scope-verified.json",
+          "data/curriculum-mappings/so-2026-2027-g10-current-scope-verified.json",
+          "data/curriculum-mappings/so-2026-2027-g11-current-scope-verified.json",
+          "data/curriculum-mappings/so-2026-2027-g12-current-scope-verified.json"
+        ],
+        "missingEvidence": [],
+        "currentScopeComplete": true,
+        "fullYearComplete": false,
+        "mappingSummary": {
+          "mappingGrades": 12,
+          "verifiedMappingGrades": 12,
+          "officialCoverageNodes": 12,
+          "mappedCoverageNodes": 12,
+          "verifiedCoverageNodes": 12,
+          "nationalExtensions": 12
+        },
+        "databaseSummary": {
+          "curriculumId": "5271730a-93bc-4d68-8150-8b3e33403fb6",
+          "grades": 12,
+          "lessons": 12,
+          "questions": 36,
+          "vocabulary": 36,
+          "activities": 36
+        },
+        "note": "مغلق للنطاق الرسمي المنشور والقابل للتحقق حاليًا على مستوى هيكل الصفوف وموقع العربية في أطر المنهج والتقييم، دون اختلاق فهرس كتب صفّي غير منشور."
       },
-      "publicationReadiness": "CORE_LIVE_NATIONAL_MATCH_PENDING"
+      "publicationReadiness": "NATIONAL_CURRENT_SCOPE_COMPLETE"
     },
     {
       "code": "SY",
