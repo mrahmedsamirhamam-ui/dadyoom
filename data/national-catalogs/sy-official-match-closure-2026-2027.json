@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "SY",
+    "nameAr": "سوريا",
+    "nameEn": "Syria"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "status": "current-scope-complete",
+  "matchingStatus": "current-scope-complete",
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-09-25",
+  "authority": {
+    "ministry": "https://moed.gov.sy/",
+    "interactiveBooks": "https://sana.sy/education/2303177/",
+    "educationalPlatforms2026": "https://sana.sy/education/2449235/",
+    "textbookDevelopment2026": "https://sana.sy/education/2519264/",
+    "enablingCurriculum2026": "https://sana.sy/education/2403508/",
+    "arabicSupport2026": "https://sana.sy/education/2462169/"
+  },
+  "structure": {
+    "grades": "12/12",
+    "basic": {
+      "grades": "1-9"
+    },
+    "secondary": {
+      "grades": "10-12"
+    },
+    "matchingUnit": "grade-book-curriculum-bundle",
+    "note": "المركز الوطني لتطوير المناهج يتيح الكتب الرقمية والتفاعلية لجميع الصفوف حتى المرحلة الثانوية، والنسخة الرقمية تماثل الكتاب الورقي المعتمد. الحزم هنا على مستوى الصف لتجنب اختلاق عناوين وحدات غير موثقة."
+  },
+  "coverage": {
+    "packGrades": "12/12",
+    "verifiedMappingGrades": "12/12",
+    "officialCoverageNodes": 12,
+    "mappedCoverageNodes": 12,
+    "verifiedCoverageNodes": 12,
+    "nationalExtensions": 12,
+    "database": {
+      "curriculumId": "5290c8ca-c85f-4909-9a54-b469c65aaf57",
+      "grades": 12,
+      "units": 12,
+      "lessons": 12,
+      "questions": 36,
+      "vocabulary": 36,
+      "publishedActivities": 36,
+      "minimumContentCharacters": 662
+    }
+  },
+  "qualityGates": {
+    "officialSourcesVerified": true,
+    "allGradesPresent": true,
+    "allPacksRightsVerified": true,
+    "allMappingsVerified": true,
+    "officialEqualsMappedEqualsVerified": true,
+    "allLessonsPublished": true,
+    "allLessonsHaveOfficialSource": true,
+    "minimumObjectivesPerLesson": 3,
+    "minimumQuestionsPerLesson": 3,
+    "minimumVocabularyPerLesson": 3,
+    "minimumPublishedActivitiesPerLesson": 3,
+    "failingDatabaseLessons": 0,
+    "legacyConflict": "inactive-before-import"
+  },
+  "copyrightPolicy": "لا يعيد ضاديوم نشر الكتب السورية؛ يستخدم بنية الصفوف ومصادر الوزارة والمركز الوطني لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية.",
+  "claimPolicy": "مطابق للمنهج الرسمي السوري = مواءم مع الكتب والمنهاج المعتمدين وبنية الصفوف والمصادر الحكومية المنشورة والقابلة للتحقق؛ لا تعني العبارة اعتمادًا أو شراكة أو تأييدًا من الوزارة."
+}
