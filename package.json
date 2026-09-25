@@ -39,7 +39,8 @@
     "curriculum:audit:official": "node scripts/audit-national-official-match.mjs",
     "curriculum:match:official": "node scripts/match-official-to-core.mjs",
     "auth:audit:oauth": "node scripts/check-oauth-contract.mjs",
-    "curriculum:audit:catalogs": "node scripts/audit-national-catalogs.mjs"
+    "curriculum:audit:catalogs": "node scripts/audit-national-catalogs.mjs",
+    "curriculum:gate:official-22": "node scripts/audit-national-launch-gate.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
