@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "YE",
+    "nameAr": "اليمن",
+    "nameEn": "Yemen"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "status": "current-scope-complete",
+  "matchingStatus": "current-scope-complete",
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-09-25",
+  "structure": {
+    "grades": "12/12",
+    "basic": "1-9",
+    "secondary": "10-12",
+    "matchingUnit": "official-grade-textbook-bundle"
+  },
+  "coverage": {
+    "packGrades": "12/12",
+    "verifiedMappingGrades": "12/12",
+    "officialCoverageNodes": 12,
+    "mappedCoverageNodes": 12,
+    "verifiedCoverageNodes": 12,
+    "database": {
+      "curriculumId": "961db818-2cbb-449f-a671-3a5e5fe37172",
+      "grades": 12,
+      "units": 12,
+      "lessons": 12,
+      "questions": 36,
+      "vocabulary": 36,
+      "publishedActivities": 36,
+      "checkedContentCharacters": 458
+    }
+  },
+  "sources": [
+    {
+      "url": "https://e-learning-moe.edu.ye/",
+      "kind": "official-learning-portal"
+    },
+    {
+      "url": "https://e-learning-moe.edu.ye/lcms/",
+      "kind": "official-curricula-catalog"
+    },
+    {
+      "url": "https://www.e-learning-moe.edu.ye/teachergiude.php",
+      "kind": "official-arabic-teacher-guides"
+    },
+    {
+      "url": "https://e-learning-moe.edu.ye/ClassNine.php",
+      "kind": "official-grade9-books"
+    },
+    {
+      "url": "https://e-learning-moe.edu.ye/ClassEleven.php",
+      "kind": "official-grade11-books"
+    },
+    {
+      "url": "https://e-learning-moe.edu.ye/ClassTwelve.php",
+      "kind": "official-grade12-books"
+    },
+    {
+      "url": "https://moe-ye.net/37553",
+      "kind": "official-2026-2027-school-year"
+    }
+  ],
+  "qualityGates": {
+    "officialSourcesVerified": true,
+    "allGradesPresent": true,
+    "allMappingsVerified": true,
+    "officialEqualsMappedEqualsVerified": true,
+    "allLessonsPublished": true,
+    "allLessonsHaveOfficialSource": true,
+    "minimumObjectivesPerLesson": 3,
+    "minimumQuestionsPerLesson": 3,
+    "minimumVocabularyPerLesson": 3,
+    "minimumPublishedActivitiesPerLesson": 3
+  },
+  "copyrightPolicy": "المحتوى التعليمي والأسئلة والأنشطة أصلية لضاديوم ولا تعيد نشر الكتب المدرسية.",
+  "claimPolicy": "المطابقة تعني المواءمة مع فهرس المناهج والكتب وأدلة المعلم الرسمية ضمن النطاق المنشور والقابل للتحقق."
+}
