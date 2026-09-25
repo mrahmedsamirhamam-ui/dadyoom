@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "SA",
+    "nameAr": "السعودية"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "status": "current-scope-complete",
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-09-25",
+  "authority": {
+    "nameAr": "وزارة التعليم السعودية / المركز الوطني للمناهج",
+    "studyPlans": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Pages/Study-plans.aspx",
+    "fifthEdition": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf",
+    "madrasatiBooks": "https://madrasatibeta.moe.gov.sa/books",
+    "ien": "https://ien.edu.sa/"
+  },
+  "coverage": {
+    "grades": "12/12",
+    "verifiedMappingGrades": "12/12",
+    "officialCoverageNodes": 206,
+    "mappedCoverageNodes": 206,
+    "verifiedCoverageNodes": 206,
+    "database": {
+      "lessons": 206,
+      "questions": 618,
+      "vocabulary": 618,
+      "activities": 618
+    },
+    "primary": {
+      "grades": "G1-G6",
+      "nodes": 96,
+      "books": [
+        "لغتي",
+        "لغتي الجميلة"
+      ],
+      "model": "8 official book components × 2 semesters per grade"
+    },
+    "middle": {
+      "grades": "G7-G9",
+      "nodes": 48,
+      "book": "لغتي الخالدة",
+      "model": "8 official book components × 2 semesters per grade"
+    },
+    "secondary": {
+      "g10": {
+        "nodes": 10,
+        "course": "الكفايات اللغوية 1",
+        "model": "5 competencies × 2 semesters"
+      },
+      "g11": {
+        "nodes": 27,
+        "tracks": [
+          "العام",
+          "علوم الحاسب والهندسة",
+          "الصحة والحياة",
+          "إدارة الأعمال",
+          "الشرعي"
+        ],
+        "courses": [
+          "الكفايات اللغوية 2",
+          "الدراسات اللغوية في إدارة الأعمال والشرعي"
+        ]
+      },
+      "g12": {
+        "nodes": 25,
+        "tracks": [
+          "العام",
+          "علوم الحاسب والهندسة",
+          "الصحة والحياة",
+          "إدارة الأعمال",
+          "الشرعي"
+        ],
+        "courses": [
+          "الدراسات الأدبية",
+          "الدراسات البالغية والنقدية في إدارة الأعمال والشرعي",
+          "الكتابة الوظيفية والإبداعية — اختياري"
+        ]
+      }
+    }
+  },
+  "qualityGates": {
+    "allLessonsPublished": true,
+    "allLessonsHaveOfficialSource": true,
+    "minimumQuestionsPerLesson": 3,
+    "minimumVocabularyPerLesson": 3,
+    "minimumActivitiesPerLesson": 3,
+    "packGradesValid": "12/12",
+    "mappingGradesVerified": "12/12"
+  },
+  "claimPolicy": "عبارة «مطابق للمنهج الرسمي السعودي» تعني أن ضاديوم مواءم مع الكتب والمقررات والمسارات المنشورة من وزارة التعليم/مدرستي/عين للنطاق الحالي. لا تعني اعتمادًا أو شراكة أو تأييدًا رسميًا من وزارة التعليم.",
+  "copyrightPolicy": "لا يعيد ضاديوم نشر نصوص الكتب المحمية؛ تستخدم أسماء الكتب والمكونات والمواد والمسارات وروابط الجهات الرسمية لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية لضاديوم."
+}
