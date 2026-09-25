@@ -25,11 +25,11 @@
       "QA",
       "KW",
       "OM",
-      "IQ"
+      "IQ",
+      "DZ"
     ],
     "pendingCountries": [
       "DJ",
-      "DZ",
       "KM",
       "LB",
       "MA",
@@ -40,9 +40,9 @@
       "TN",
       "YE"
     ],
-    "readyCount": 11,
-    "pendingCount": 11,
-    "note": "Dadyoom Core مكتمل 22/22. National Official Match مغلق للنطاق المنشور حاليًا في البحرين والأردن ومصر وفلسطين وليبيا والسعودية والإمارات وقطر والكويت وعُمان والعراق."
+    "readyCount": 12,
+    "pendingCount": 10,
+    "note": "Dadyoom Core مكتمل 22/22. National Official Match مغلق للنطاق المنشور حاليًا في البحرين والأردن ومصر وفلسطين وليبيا والسعودية والإمارات وقطر والكويت وعُمان والعراق والجزائر."
   },
   "executionOrder": [
     [
