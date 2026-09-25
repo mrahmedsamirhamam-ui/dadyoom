@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "AE",
+    "nameAr": "الإمارات العربية المتحدة",
+    "nameEn": "United Arab Emirates"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "status": "current-scope-complete",
+  "matchingStatus": "current-scope-complete",
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-09-25",
+  "authority": {
+    "nameAr": "وزارة التربية والتعليم في دولة الإمارات العربية المتحدة",
+    "ministry": "https://www.moe.gov.ae/",
+    "assessmentPolicy20262027": "https://www.moe.gov.ae/ar/guides/Pages/Student-Assessment-Policy-Guide-2026-2027.aspx",
+    "academicCalendar20262027": "https://www.moe.gov.ae/en/guides/Documents/Academic-Calender-2026-2027/Academic-Calender-2026-2027-Ar.pdf",
+    "diwan": "https://u.ae/en/information-and-services/education/school-education-k-12/e-learning-reading-and-educational-resources/diwan-e-book-reader",
+    "stagesAndStreams": "https://u.ae/ar/information-and-services/education/school-education-k-12/stages-and-streams-of-school-education",
+    "arabicStandards": "https://emsat.moe.gov.ae/emsat/doc/Advantage%20Arabic%20Public%20Test%20Specifications%20-%20English%202021%20Sep%20F.pdf"
+  },
+  "structure": {
+    "grades": "12/12",
+    "semesters": 3,
+    "stages": [
+      {
+        "nameAr": "الحلقة الأولى",
+        "grades": "1-4"
+      },
+      {
+        "nameAr": "الحلقة الثانية",
+        "grades": "5-8"
+      },
+      {
+        "nameAr": "الحلقة الثالثة",
+        "grades": "9-12"
+      }
+    ],
+    "secondaryTracks": [
+      "المسار العام",
+      "المسار المهني (التخصصي)",
+      "المسار المتقدم",
+      "مسار النخبة"
+    ],
+    "officialMatchingUnit": "national-domain",
+    "nationalDomains": [
+      "أساسيات القراءة والكتابة",
+      "القراءة الأدبية",
+      "القراءة المعلوماتية",
+      "الاستماع والتحدث",
+      "الكتابة",
+      "اللغة"
+    ],
+    "arabicTrackPolicy": "تُستخدم طبقة عربية وطنية مشتركة للمسارات حيث لم يُثبت المصدر الرسمي الحالي اختلاف بنية مادة العربية نفسها بين المسارات؛ لا تُنشأ فروق وهمية."
+  },
+  "coverage": {
+    "packGrades": "12/12",
+    "verifiedMappingGrades": "12/12",
+    "officialCoverageNodes": 72,
+    "mappedCoverageNodes": 72,
+    "verifiedCoverageNodes": 72,
+    "nationalExtensions": 72,
+    "database": {
+      "curriculumId": "80a584ed-0dd8-4130-80f4-933a2de16f2e",
+      "grades": 12,
+      "units": 12,
+      "lessons": 72,
+      "questions": 216,
+      "vocabulary": 216,
+      "publishedActivities": 216,
+      "minimumContentCharacters": 566
+    }
+  },
+  "qualityGates": {
+    "officialSourcesVerified": true,
+    "allGradesPresent": true,
+    "allPacksRightsVerified": true,
+    "allMappingsVerified": true,
+    "officialEqualsMappedEqualsVerified": true,
+    "allLessonsPublished": true,
+    "allLessonsHaveOfficialSource": true,
+    "minimumObjectivesPerLesson": 3,
+    "minimumQuestionsPerLesson": 3,
+    "minimumVocabularyPerLesson": 3,
+    "minimumPublishedActivitiesPerLesson": 3,
+    "failingDatabaseLessons": 0,
+    "legacyConflict": "inactive-before-import"
+  },
+  "copyrightPolicy": "لا يعيد ضاديوم نشر نصوص الكتب الوزارية المحمية؛ يستخدم البنية والمجالات ومعايير الأداء وروابط الجهات الرسمية لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية لضاديوم.",
+  "claimPolicy": "مطابق للمنهج الرسمي الإماراتي = مواءم مع البنية والمجالات والمعايير والمصادر الرسمية المتاحة للنطاق الحالي؛ لا تعني العبارة اعتمادًا أو شراكة أو تأييدًا من وزارة التربية والتعليم."
+}
