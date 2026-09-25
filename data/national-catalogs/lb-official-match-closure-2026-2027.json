@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "LB",
+    "nameAr": "لبنان",
+    "nameEn": "Lebanon"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية وآدابها",
+  "status": "current-scope-complete",
+  "matchingStatus": "current-scope-complete",
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-09-25",
+  "authority": {
+    "crdpArabicCurriculum": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
+    "officialBooks": "https://www.crdp.org/books-pdf",
+    "latestPublishedReducedCurriculum": "https://www.crdp.org/curriculum/%D8%A7%D9%84%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85%D9%8A-%D9%84%D9%84%D8%B9%D8%A7%D9%85-%D9%A2%D9%A0%D9%A2%D9%A5-%D9%A2%D9%A0%D9%A2%D9%A6%D8%8C-%D9%88%D8%B2%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%8A-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D9%84%D9%84%D8%A8%D8%AD%D9%88%D8%AB",
+    "official20262027SchoolYear": "https://nsl.mehe.gov.lb/"
+  },
+  "structure": {
+    "grades": "12/12",
+    "basicPrimary": "1-6",
+    "basicMiddle": "7-9",
+    "secondary": {
+      "grade10": [
+        "الأولى الثانوية"
+      ],
+      "grade11": [
+        "الثانية الثانوية — إنسانيات",
+        "الثانية الثانوية — علوم"
+      ],
+      "grade12": [
+        "الثالثة الثانوية — آداب وإنسانيات",
+        "الثالثة الثانوية — اجتماع واقتصاد",
+        "الثالثة الثانوية — علوم عامة",
+        "الثالثة الثانوية — علوم الحياة"
+      ]
+    },
+    "officialDomains": [
+      "المحادثة والقراءة والأدب والمحفوظات",
+      "القواعد والإملاء والبلاغة والعروض",
+      "التعبير الشفهي والكتابي"
+    ],
+    "note": "تعتمد مطابقة 2026-2027 على بنية منهج CRDP الرسمي المستمر. آخر تخفيف سنوي منشور على صفحة CRDP التي تم العثور عليها هو 2025-2026، ولا يُنسب إلى 2026-2027 كتخفيف جديد."
+  },
+  "coverage": {
+    "packGrades": "12/12",
+    "verifiedMappingGrades": "12/12",
+    "officialCoverageNodes": 48,
+    "mappedCoverageNodes": 48,
+    "verifiedCoverageNodes": 48,
+    "nationalExtensions": 48,
+    "database": {
+      "curriculumId": "8b27a794-e0d9-45be-ac2f-92adc13e9f02",
+      "grades": 12,
+      "units": 12,
+      "lessons": 48,
+      "questions": 144,
+      "vocabulary": 144,
+      "publishedActivities": 144,
+      "minimumContentCharacters": 460
+    },
+    "gradeLessonCounts": {
+      "1": 3,
+      "2": 3,
+      "3": 3,
+      "4": 3,
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 3,
+      "9": 3,
+      "10": 3,
+      "11": 6,
+      "12": 12
+    }
+  },
+  "qualityGates": {
+    "officialSourcesVerified": true,
+    "allGradesPresent": true,
+    "allMappingsVerified": true,
+    "officialEqualsMappedEqualsVerified": true,
+    "allLessonsPublished": true,
+    "allLessonsHaveOfficialSource": true,
+    "minimumObjectivesPerLesson": 3,
+    "minimumQuestionsPerLesson": 3,
+    "minimumVocabularyPerLesson": 3,
+    "minimumPublishedActivitiesPerLesson": 3,
+    "failingDatabaseLessons": 0,
+    "legacyConflict": "inactive-before-import"
+  },
+  "copyrightPolicy": "لا يعيد ضاديوم نشر نصوص الكتب اللبنانية المحمية؛ يستخدم تدرج المجالات والمسارات وروابط CRDP لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية.",
+  "claimPolicy": "مطابق للمنهج الرسمي اللبناني = مواءم مع بنية منهج اللغة العربية وآدابها المنشور من CRDP ومسارات المرحلة الثانوية ضمن النطاق الرسمي المنشور؛ لا تعني العبارة اعتمادًا أو شراكة أو تأييدًا من الوزارة."
+}
