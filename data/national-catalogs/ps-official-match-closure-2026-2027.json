@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "PS",
+    "nameAr": "فلسطين"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "status": "current-scope-complete",
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-09-25",
+  "authority": {
+    "nameAr": "وزارة التربية والتعليم العالي الفلسطينية",
+    "textbookCatalog": "https://moe.edu.ps/pal-books",
+    "currentLearningPackages": "https://moe.edu.ps/gaza/subjects",
+    "class12Books": "https://moe.edu.ps/class12/books",
+    "oer2026": "https://moe.edu.ps/c/30763"
+  },
+  "coverage": {
+    "grades": "12/12",
+    "verifiedMappingGrades": "12/12",
+    "officialCoverageNodes": 196,
+    "mappedCoverageNodes": 196,
+    "verifiedCoverageNodes": 196,
+    "database": {
+      "lessons": 196,
+      "questions": 588,
+      "vocabulary": 588,
+      "activities": 588
+    },
+    "basic": {
+      "grades": "G1-G9",
+      "nodes": 108,
+      "model": "6 Arabic domains × 2 semesters per grade",
+      "oerGrades": "G1-G4"
+    },
+    "grade10": {
+      "nodes": 18,
+      "model": "المسار العام: 6 مجالات × فصلين + المسار المهني: 6 مجالات"
+    },
+    "grade11": {
+      "nodes": 24,
+      "tracks": [
+        "علمي",
+        "علوم إنسانية",
+        "ريادة وأعمال",
+        "صناعي"
+      ],
+      "model": "6 Arabic domains per officially published track"
+    },
+    "grade12": {
+      "nodes": 46,
+      "tracks": [
+        "علمي",
+        "علوم إنسانية",
+        "ريادة وأعمال",
+        "صناعي",
+        "شرعي"
+      ],
+      "model": "5 tracks × 6 Arabic domains + 9 official units of المطالعة والقواعد والعروض والتعبير + 7 official units of الأدب والبلاغة",
+      "readingBook": {
+        "units": 9,
+        "grammarTopics": [
+          "الممنوع من الصرف",
+          "الإعلال",
+          "الإبدال",
+          "اسم الفعل",
+          "معاني بعض الأدوات النحوية ووظائفها",
+          "الجمل التي لها محل من الإعراب"
+        ],
+        "prosody": [
+          "الوافر",
+          "الطويل",
+          "البسيط",
+          "الخفيف"
+        ],
+        "writing": [
+          "القصة",
+          "المقالة"
+        ]
+      },
+      "literatureRhetoricBook": {
+        "units": 7,
+        "semester1": 5,
+        "semester2": 2,
+        "topics": [
+          "المدارس الشعرية الحديثة",
+          "اتجاهات الشعر العربي المعاصر",
+          "الاغتراب",
+          "الشعر الفلسطيني الحديث",
+          "التشبيه",
+          "فنون النثر الأدبي الحديث",
+          "الاستعارة والمجاز المرسل"
+        ]
+      }
+    }
+  },
+  "databaseCleanup": {
+    "legacyGrade2Curriculum": "deactivated-not-deleted",
+    "activeOfficialCurriculum": "اللغة العربية — المطابقة الرسمية الفلسطينية"
+  },
+  "qualityGates": {
+    "allLessonsPublished": true,
+    "allLessonsHaveOfficialSource": true,
+    "minimumQuestionsPerLesson": 3,
+    "minimumVocabularyPerLesson": 3,
+    "minimumActivitiesPerLesson": 3,
+    "packGradesValid": "12/12",
+    "mappingGradesVerified": "12/12"
+  },
+  "claimPolicy": "عبارة «مطابق للمنهج الرسمي الفلسطيني» تعني أن ضاديوم مواءم مع الكتب والرزم والمسارات والوحدات المنشورة من وزارة التربية والتعليم العالي الفلسطينية للنطاق الحالي. لا تعني اعتمادًا أو شراكة أو تأييدًا رسميًا من الوزارة.",
+  "copyrightPolicy": "لا يعيد ضاديوم نشر نصوص الكتب المحمية. تستخدم البنية والمجالات والوحدات وروابط الوزارة لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية لضاديوم."
+}
