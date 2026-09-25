@@ -27,12 +27,12 @@ function runtimeCapacitor(): CapacitorBridge | null {
 }
 
 async function textToSpeechPlugin() {
-  const module =
+  const ttsModule =
     await import(
       "@capacitor-community/text-to-speech"
     );
 
-  return module.TextToSpeech;
+  return ttsModule.TextToSpeech;
 }
 
 async function nativePlatform(): Promise<string> {
