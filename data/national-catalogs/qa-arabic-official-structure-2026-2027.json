@@ -1,0 +1,213 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "QA",
+    "nameAr": "قطر",
+    "nameEn": "Qatar"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "verificationStatus": "verified-source-structure",
+  "officialCoverageUnit": "curriculum-standards-by-domain-and-school-year",
+  "semesters": 2,
+  "stages": [
+    {
+      "nameAr": "المرحلة التأسيسية",
+      "grades": [
+        1,
+        2
+      ]
+    },
+    {
+      "nameAr": "المرحلة الابتدائية",
+      "grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "nameAr": "المرحلة الإعدادية",
+      "grades": [
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "nameAr": "المرحلة الثانوية",
+      "grades": [
+        10,
+        11,
+        12
+      ]
+    }
+  ],
+  "grades": [
+    {
+      "grade": 1,
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 2,
+      "note": "الحزمة تمثل تغطية ضاديوم لمعايير المنهج بحسب المجال والسنة الدراسية وليست عنوان درس وزاري."
+    },
+    {
+      "grade": 2,
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 2,
+      "note": "الحزمة تمثل تغطية ضاديوم لمعايير المنهج بحسب المجال والسنة الدراسية وليست عنوان درس وزاري."
+    },
+    {
+      "grade": 3,
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 2,
+      "note": "الحزمة تمثل تغطية ضاديوم لمعايير المنهج بحسب المجال والسنة الدراسية وليست عنوان درس وزاري."
+    },
+    {
+      "grade": 4,
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 2,
+      "note": "الحزمة تمثل تغطية ضاديوم لمعايير المنهج بحسب المجال والسنة الدراسية وليست عنوان درس وزاري."
+    },
+    {
+      "grade": 5,
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 2,
+      "note": "الحزمة تمثل تغطية ضاديوم لمعايير المنهج بحسب المجال والسنة الدراسية وليست عنوان درس وزاري."
+    },
+    {
+      "grade": 6,
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 2,
+      "note": "الحزمة تمثل تغطية ضاديوم لمعايير المنهج بحسب المجال والسنة الدراسية وليست عنوان درس وزاري."
+    },
+    {
+      "grade": 7,
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 2,
+      "note": "الحزمة تمثل تغطية ضاديوم لمعايير المنهج بحسب المجال والسنة الدراسية وليست عنوان درس وزاري."
+    },
+    {
+      "grade": 8,
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 2,
+      "note": "الحزمة تمثل تغطية ضاديوم لمعايير المنهج بحسب المجال والسنة الدراسية وليست عنوان درس وزاري."
+    },
+    {
+      "grade": 9,
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 2,
+      "note": "الحزمة تمثل تغطية ضاديوم لمعايير المنهج بحسب المجال والسنة الدراسية وليست عنوان درس وزاري."
+    },
+    {
+      "grade": 10,
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 2,
+      "note": "الحزمة تمثل تغطية ضاديوم لمعايير المنهج بحسب المجال والسنة الدراسية وليست عنوان درس وزاري."
+    },
+    {
+      "grade": 11,
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 2,
+      "note": "الحزمة تمثل تغطية ضاديوم لمعايير المنهج بحسب المجال والسنة الدراسية وليست عنوان درس وزاري."
+    },
+    {
+      "grade": 12,
+      "semesters": [
+        1,
+        2
+      ],
+      "coverageBundles": 2,
+      "note": "الحزمة تمثل تغطية ضاديوم لمعايير المنهج بحسب المجال والسنة الدراسية وليست عنوان درس وزاري."
+    }
+  ],
+  "secondaryContext": {
+    "generalPaths": [
+      "المسار العلمي",
+      "مسار الآداب والإنسانيات",
+      "المسار التكنولوجي"
+    ],
+    "specialized": [
+      "مدارس قطر للعلوم والتكنولوجيا",
+      "المعهد الديني"
+    ],
+    "arabicPolicy": "العربية تظل وفق منهج/معايير الوزارة في البرامج التي توثقها الوزارة؛ لا تنشأ نسخة عربية مختلفة بلا مصدر رسمي."
+  },
+  "officialCoverageNodes": 24,
+  "sources": [
+    {
+      "kind": "official-current-curriculum-department",
+      "url": "https://www.edu.gov.qa/ar/Content/CurriculumSection"
+    },
+    {
+      "kind": "official-national-curriculum-framework",
+      "url": "https://privateschoolssearch.edu.gov.qa/Documents/Publications/CurriculumStandards/GeneralFrameworkNationalEducation.pdf?csf=1&e=PfpExd"
+    },
+    {
+      "kind": "official-early-learning-arabic",
+      "url": "https://edu.gov.qa/ar/Content/EarlyLearning"
+    },
+    {
+      "kind": "official-compulsory-arabic-policy-grades-1-12",
+      "url": "https://www.edu.gov.qa/ar/News/Details/1621800"
+    },
+    {
+      "kind": "official-2026-2027-calendar-two-semesters",
+      "url": "https://moewebprod.edu.gov.qa/ar/News/Details/14514600"
+    },
+    {
+      "kind": "official-2026-2027-curriculum-update",
+      "url": "https://www.edu.gov.qa/ar/News/Details/18921000"
+    },
+    {
+      "kind": "official-2026-2027-test-timetable",
+      "url": "https://edu.gov.qa/ar/Content/TestsTimetable"
+    },
+    {
+      "kind": "official-2026-2027-registration-stage-transitions",
+      "url": "https://www.edu.gov.qa/ar/News/Details/17513400"
+    },
+    {
+      "kind": "official-specialized-schools-arabic-ministry-curriculum",
+      "url": "https://www.edu.gov.qa/ar/News/Details/16881000"
+    }
+  ],
+  "sourceInterpretation": "عندما لا ينشر الموقع العام تسلسل وحدات كتب العربية، تستخدم المطابقة وحدة معايير/ناتج تعلم كما يسمح الإطار الرسمي، ولا تُختلق أسماء دروس.",
+  "copyrightPolicy": "لا تنسخ كتب الوزارة؛ الروابط والبنية والمعايير فقط، والمحتوى التعليمي أصلي من ضاديوم.",
+  "generatedAt": "2026-09-25"
+}
