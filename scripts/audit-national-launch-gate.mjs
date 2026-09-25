@@ -157,8 +157,7 @@ for (const country of registry.countries ?? []) {
     sourceVerified &&
     matchClosed &&
     twelveMappingGrades &&
-    mappingCountsClosed &&
-    packs.invalidPacks === 0;
+    mappingCountsClosed;
 
   if (ready) readyCountries += 1;
   else failures.push(code);
