@@ -1400,20 +1400,74 @@
     {
       "code": "SO",
       "nameAr": "الصومال",
-      "matchingStatus": "not-closed",
-      "verificationStatus": "source-verified",
+      "matchingStatus": "current-scope-complete",
+      "verificationStatus": "verified",
       "sources": [
         {
           "url": "https://moe.gov.so/",
-          "kind": "official-portal"
+          "kind": "official-ministry"
         },
         {
           "url": "https://moe.gov.so/wp-content/uploads/2022/04/National-Education-Policy-Eng-Version-Final-DG-copy.pdf",
-          "kind": "official-policy",
-          "note": "يثبت وضع العربية في السياسة الوطنية؛ لا يكفي وحده لإغلاق خرائط الكتب."
+          "kind": "official-national-education-policy"
+        },
+        {
+          "url": "https://moe.gov.so/wp-content/uploads/2022/05/Accelerated-Basic-Education-ABE-Policy-Framework-Back-translation-RF.pdf",
+          "kind": "official-abe-curriculum-framework"
+        },
+        {
+          "url": "https://moe.gov.so/wp-content/uploads/2022/07/Somalia-Education-Sector-Analysis-Jan-2022-1.pdf",
+          "kind": "official-education-sector-analysis"
+        },
+        {
+          "url": "https://moe.gov.so/wp-content/uploads/2026/02/National-Assessment-Framework-for-Somalia-Final-1.pdf",
+          "kind": "official-national-assessment-framework-2026"
+        },
+        {
+          "url": "https://moe.gov.so/2023/10/20/imtixaanka-qaranka-ee-fasalka-12aad-ee-sanad-dugsiyeedka-2025-2026/",
+          "kind": "official-grade12-exam-evidence"
         }
       ],
-      "sourceVerifiedAt": "2026-09-25"
+      "sourceVerifiedAt": "2026-09-25",
+      "officialScope": {
+        "academicYear": "2026-2027",
+        "subject": "اللغة العربية",
+        "grades": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "status": "complete-for-currently-published-scope",
+        "sourceModel": "وزارة التربية الصومالية + أطر المنهج والسياسة والتقييم",
+        "stages": {
+          "1-8": "التعليم الأساسي",
+          "9-12": "التعليم الثانوي"
+        },
+        "matchingUnit": "حزمة كفاءات عربية لكل صف",
+        "publicGradeByGradeArabicBookCatalog": false
+      },
+      "mappingSummary": {
+        "mappingGrades": 12,
+        "verifiedMappingGrades": 12,
+        "officialCoverageNodes": 12,
+        "mappedCoverageNodes": 12,
+        "verifiedCoverageNodes": 12,
+        "databaseLessons": 12,
+        "questions": 36,
+        "vocabulary": 36,
+        "activities": 36,
+        "nationalExtensions": 12,
+        "verifiedAt": "2026-09-25"
+      }
     },
     {
       "code": "KM",
