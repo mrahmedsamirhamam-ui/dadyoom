@@ -1,0 +1,258 @@
+{
+  "schemaVersion": 1,
+  "packKey": "KM:2026-2027:arabic:g1:current-scope",
+  "country": {
+    "code": "KM",
+    "nameAr": "جزر القمر",
+    "nameEn": "Comoros"
+  },
+  "academicYear": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "stage": {
+    "code": "elementary",
+    "nameAr": "التعليم الابتدائي"
+  },
+  "grade": {
+    "number": 1,
+    "nameAr": "السنة 1 من التعليم الابتدائي",
+    "nameEn": "Grade 1"
+  },
+  "semester": null,
+  "curriculum": {
+    "nameAr": "اللغة العربية — المطابقة الرسمية القمرية",
+    "nameEn": "Arabic — Comoros Official Curriculum Match",
+    "description": "طبقة وطنية مستقلة تربط ضاديوم بالهيكل التعليمي الرسمي ودور العربية في المنهج المدرسي بجزر القمر.",
+    "storageNameAr": "اللغة العربية — المطابقة الرسمية القمرية"
+  },
+  "rights": {
+    "contentOwner": "dadyoom",
+    "sourceLabel": "وزارة التربية الوطنية وقانون توجيه التعليم في اتحاد جزر القمر؛ المحتوى والأسئلة والأنشطة أصلية لضاديوم.",
+    "sourceUrl": "https://mineducomores.gouv.km/cloture-de-la-formation-en-langue-arabe-aux-comores-un-pas-de-plus-vers-le-renforcement-des-capacites-educatives/",
+    "verified": true
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "اللغة العربية — حزمة الكفاءات الوطنية",
+      "description": "السنة 1 من التعليم الابتدائي: حزمة عربية أصلية مرتبطة بالهيكل الرسمي ودور العربية في المنهج، دون اختلاق عناوين كتب أو دروس غير منشورة.",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "اللغة العربية — السنة 1 من التعليم الابتدائي — حزمة الكفاءات الوطنية",
+          "type": "reading",
+          "estimatedMinutes": 40,
+          "summary": "حزمة وطنية أصلية من ضاديوم لتغطية تعلم العربية في السنة 1 من التعليم الابتدائي وفق الهيكل التعليمي الرسمي لجزر القمر ودور العربية في المنهج المدرسي.",
+          "content": "تمثل هذه العقدة «اللغة العربية — السنة 1 من التعليم الابتدائي — حزمة الكفاءات الوطنية» حزمة مواءمة وطنية ضمن الهيكل الرسمي للتعليم في اتحاد جزر القمر. ينظم القانون التعليم بعد المرحلة قبل الابتدائية في خمس سنوات ابتدائية، ثم أربع سنوات في الدورة الأولى من الثانوي، ثم ثلاث سنوات في الدورة الثانية، بينما تؤكد وزارة التربية أن العربية لغة رسمية وجزء من المنهج المدرسي وأن تطوير تدريسها هدف وطني. لا ينشر الموقع العام للوزارة فهرسًا قابلاً للتدقيق لعناوين كتب ودروس العربية صفًا صفًا؛ لذلك لا يخترع ضاديوم أسماء دروس رسمية، بل يبني حزمة كفاءات أصلية تغطي الفهم والاستماع والتحدث والقراءة والكتابة والمفردات والتراكيب وفق التدرج العمري، مع الرجوع إلى المصدر أو الكتاب المرخص عند توفره.",
+          "objectives": [
+            "أن يستخدم المتعلم العربية للتواصل بما يناسب السنة 1 من التعليم الابتدائي.",
+            "أن يطبق المتعلم مهارة قراءة أو استماع أو كتابة في موقف جديد.",
+            "أن يراجع المتعلم إنتاجه اللغوي ويصححه وفق معيار واضح."
+          ],
+          "vocabulary": [
+            {
+              "word": "تواصل",
+              "meaning": "استخدام اللغة لفهم المعنى ونقله بوضوح."
+            },
+            {
+              "word": "مفردات",
+              "meaning": "الكلمات والتراكيب التي يستخدمها المتعلم في السياق."
+            },
+            {
+              "word": "كفاءة",
+              "meaning": "قدرة على توظيف المعرفة والمهارة في موقف جديد."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما وظيفة هذه الحزمة داخل ضاديوم؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تغطية الكفاءات العربية ضمن الهيكل الرسمي بمحتوى أصلي."
+                },
+                {
+                  "id": "b",
+                  "text": "ادعاء وجود كتاب رسمي غير منشور."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ مواد غير مرخصة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الحزمة تحافظ على المواءمة دون اختلاق أو نسخ.",
+              "points": 1
+            },
+            {
+              "question": "ما أقوى دليل على إتقان اللغة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "استخدام مستقل للغة مع فهم وتفسير."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ اسم المادة فقط."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ إجابة جاهزة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الاستخدام المستقل يعكس الإتقان.",
+              "points": 1
+            },
+            {
+              "question": "كيف تتم المراجعة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن الناتج بالهدف والمعيار وأصحح."
+                },
+                {
+                  "id": "b",
+                  "text": "أتجاوز المراجعة."
+                },
+                {
+                  "id": "c",
+                  "text": "أغيّر الإجابة عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة القائمة على معيار تحسن التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "فهم وتواصل",
+              "activityType": "multiple_choice",
+              "instructions": "حدد الاستجابة اللغوية الأنسب للموقف.",
+              "content": {
+                "origin": "DADYOOM_KM_OFFICIAL_2026_2027_V1",
+                "grade": 1
+              },
+              "published": true
+            },
+            {
+              "title": "تطبيق مستقل",
+              "activityType": "reading",
+              "instructions": "اقرأ أو استمع لمادة أصلية ثم طبق المهارة المطلوبة.",
+              "content": {
+                "origin": "DADYOOM_KM_OFFICIAL_2026_2027_V1",
+                "grade": 1
+              },
+              "published": true
+            },
+            {
+              "title": "إنتاج ومراجعة",
+              "activityType": "writing",
+              "instructions": "اكتب استجابة قصيرة ثم راجعها وفق معيار النجاح.",
+              "content": {
+                "origin": "DADYOOM_KM_OFFICIAL_2026_2027_V1",
+                "grade": 1
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "وزارة التربية الوطنية بجزر القمر + قانون توجيه التعليم",
+            "url": "https://mineducomores.gouv.km/cloture-de-la-formation-en-langue-arabe-aux-comores-un-pas-de-plus-vers-le-renforcement-des-capacites-educatives/",
+            "additionalUrls": [
+              "https://mineducomores.gouv.km/ministere/",
+              "https://justice.gouv.km/wp-content/uploads/2025/03/decret-n-21-005pr-portant-promulgation-de-la-loi-n-20-034au-du-29-decembre-2020-portant-revision-de-la-loi-n-94-035af-relative-a-lorientation-et-a-leducation.pdf",
+              "https://mineducomores.gouv.km/atelier-sur-les-strategies-de-production-et-diffusion-des-ressources-educatives-aux-comores/",
+              "https://mineducomores.gouv.km/participation-de-luniversite-midocean-a-la-reunion-consultative-nationale-sur-la-reforme-de-leducation-aux-comores/"
+            ]
+          },
+          "alignment": {
+            "mode": "official-education-structure+national-arabic-competency-bundle",
+            "officialGradeByGradeArabicIndexPublished": false,
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "km-dadyoom-core-g1-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "km-dadyoom-core-g1-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "km-dadyoom-core-g1-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "km-dadyoom-core-g1-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "km-dadyoom-core-g1-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "km-dadyoom-core-g1-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "km-dadyoom-core-g1-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "km-dadyoom-core-g1-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "km-dadyoom-core-g1-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "km-dadyoom-core-g1-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "km-dadyoom-core-g1-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "km-dadyoom-core-g1-l12",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "km-dadyoom-core-g1-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "km-dadyoom-core-g1-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "km-dadyoom-core-g1-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "km-dadyoom-core-g1-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "km-dadyoom-core-g1-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "km-dadyoom-core-g1-l18",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
