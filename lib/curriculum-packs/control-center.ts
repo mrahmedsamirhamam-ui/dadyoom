@@ -75,6 +75,8 @@ export type CurriculumControlCenter = {
   totalCountries: number;
   readyCountries: number;
   officialReadyCountries: number;
+  sourceVerifiedCountries: number;
+  partialMatchCountries: number;
   sourceRequiredCountries: number;
   totalPacks: number;
   totalLessons: number;
@@ -501,10 +503,24 @@ export function getCurriculumControlCenter():
         country.officialReady
     ).length;
 
+  const sourceVerifiedCountries =
+    countries.filter(
+      (country) =>
+        country.officialVerificationStatus === "source-verified" ||
+        country.officialVerificationStatus === "verified"
+    ).length;
+
+  const partialMatchCountries =
+    countries.filter(
+      (country) =>
+        country.officialStatus === "partial"
+    ).length;
+
   const sourceRequiredCountries =
     countries.filter(
       (country) =>
-        !country.officialReady
+        country.officialVerificationStatus !== "source-verified" &&
+        country.officialVerificationStatus !== "verified"
     ).length;
 
   const totalLessons =
@@ -521,6 +537,8 @@ export function getCurriculumControlCenter():
       countries.length,
     readyCountries,
     officialReadyCountries,
+    sourceVerifiedCountries,
+    partialMatchCountries,
     sourceRequiredCountries,
     totalPacks:
       validReadyPacks.length,
