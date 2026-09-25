@@ -676,25 +676,97 @@
     {
       "code": "KW",
       "nameAr": "الكويت",
-      "matchingStatus": "not-closed",
-      "verificationStatus": "source-verified",
+      "matchingStatus": "current-scope-complete",
+      "verificationStatus": "verified",
       "sources": [
         {
           "url": "https://elibrary.moe.edu.kw/StudentsLibrary",
           "kind": "official-library"
         },
         {
+          "url": "https://elibrary.moe.edu.kw/NationalStandards",
+          "kind": "official-national-standards-index"
+        },
+        {
           "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/85",
           "kind": "official-arabic-standards-primary",
-          "note": "مصفوفة معايير اللغة العربية للمرحلة الابتدائية."
+          "note": "مصفوفة مهارات اللغة العربية للمرحلة الابتدائية."
         },
         {
           "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/95",
-          "kind": "official-arabic-standards-middle",
-          "note": "مصفوفة معايير اللغة العربية للمرحلة المتوسطة."
+          "kind": "official-arabic-standards-middle-s1",
+          "note": "مصفوفة مهارات اللغة العربية للمرحلة المتوسطة — الفصل الأول."
+        },
+        {
+          "url": "https://elibrary.moe.edu.kw/api/File/download/nationalstandard/94",
+          "kind": "official-arabic-standards-middle-s2",
+          "note": "مصفوفة مهارات اللغة العربية للمرحلة المتوسطة — الفصل الثاني."
+        },
+        {
+          "url": "https://moe.edu.kw/news/869",
+          "kind": "official-current-curriculum-development",
+          "note": "تطوير المناهج واستكمال مواد الصف العاشر للعام 2026-2027."
+        },
+        {
+          "url": "https://www.moe.edu.kw/pages/calendar",
+          "kind": "official-2026-2027-calendar"
+        },
+        {
+          "url": "https://www.moe.edu.kw/news/1343",
+          "kind": "official-secondary-masar-2026-2027",
+          "note": "تجربة نظام المسارات للصف العاشر؛ سنة تأسيسية مشتركة."
+        },
+        {
+          "url": "https://moe.edu.kw/news/1036",
+          "kind": "official-secondary-arabic-evidence",
+          "note": "دليل وزاري على مقرر/اختبارات العربية في الثانوية."
         }
       ],
-      "sourceVerifiedAt": "2026-09-25"
+      "sourceVerifiedAt": "2026-09-25",
+      "officialScope": {
+        "academicYear": "2026-2027",
+        "subject": "اللغة العربية",
+        "grades": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "semesters": 2,
+        "status": "complete-for-currently-published-scope",
+        "sourceModel": "وزارة التربية الكويتية — المكتبة الإلكترونية + مصفوفات المهارات + تطوير المناهج + التقويم والنظام الثانوي",
+        "stages": {
+          "1-5": "المرحلة الابتدائية",
+          "6-9": "المرحلة المتوسطة",
+          "10-12": "المرحلة الثانوية"
+        },
+        "matchingUnit": {
+          "1-9": "9 مجالات مهارية وطنية لكل صف",
+          "10-12": "حزمتا مقرر/فصل لكل صف دون اختلاق عناوين دروس غير منشورة"
+        },
+        "note": "تغطي ضاديوم النطاق الرسمي المنشور والقابل للتحقق حاليًا، ويضاف أي تحديث وزاري لاحق إلى الطبقة الوطنية."
+      },
+      "mappingSummary": {
+        "mappingGrades": 12,
+        "verifiedMappingGrades": 12,
+        "officialCoverageNodes": 87,
+        "mappedCoverageNodes": 87,
+        "verifiedCoverageNodes": 87,
+        "databaseLessons": 87,
+        "questions": 261,
+        "vocabulary": 261,
+        "activities": 261,
+        "nationalExtensions": 87,
+        "verifiedAt": "2026-09-25"
+      }
     },
     {
       "code": "DZ",
