@@ -137,6 +137,19 @@ jobs:
           fi
           echo "PRODUCTION_ROBOTS_SITEMAP_REFERENCE=PASS"
 
+          VERSION_BODY="$(curl --fail --silent --show-error --retry 3 --retry-delay 2 "$BASE/app-version.json" || true)"
+          if [[ -n "$VERSION_BODY" ]]; then
+            echo "PRODUCTION_APP_VERSION_JSON=$VERSION_BODY"
+            node -e '
+              const body = JSON.parse(process.argv[1]);
+              console.log("PRODUCTION_APP_COMMIT=" + String(body.commit || ""));
+              console.log("PRODUCTION_APP_VERSION=" + String(body.version || ""));
+              console.log("PRODUCTION_APP_BUILT_AT=" + String(body.builtAt || ""));
+            ' "$VERSION_BODY"
+          else
+            echo "PRODUCTION_APP_VERSION_JSON=UNAVAILABLE"
+          fi
+
       - name: Mobile PWA verify
         run: npm run mobile:pwa:verify
 
