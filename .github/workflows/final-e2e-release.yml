@@ -1,0 +1,68 @@
+name: Final E2E Release Gate
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - fix/mobile-cloud-video-final-20260923
+    paths:
+      - "app/**"
+      - "components/**"
+      - "lib/**"
+      - "services/**"
+      - "scripts/final-e2e-release-gate.mjs"
+      - "package.json"
+      - "package-lock.json"
+      - "wrangler.jsonc"
+      - ".github/workflows/final-e2e-release.yml"
+
+jobs:
+  e2e:
+    name: Authenticated release E2E
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      BYTEZ_API_KEY: ${{ secrets.BYTEZ_API_KEY }}
+      AI_PROVIDER_ORDER: ${{ secrets.AI_PROVIDER_ORDER }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Verify required secrets
+        shell: bash
+        run: |
+          set -euo pipefail
+          missing=0
+          for key in NEXT_PUBLIC_SUPABASE_URL NEXT_PUBLIC_SUPABASE_ANON_KEY SUPABASE_SERVICE_ROLE_KEY; do
+            if [[ -z "${!key:-}" ]]; then
+              echo "MISSING_SECRET=$key"
+              missing=1
+            fi
+          done
+          if [[ "$missing" -ne 0 ]]; then
+            echo "FINAL_E2E_SECRET_GATE=FAIL"
+            exit 1
+          fi
+          echo "FINAL_E2E_SECRET_GATE=PASS"
+
+      - name: Install
+        run: npm install --legacy-peer-deps
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Build Vinext
+        run: npm run build:vinext
+
+      - name: Run authenticated E2E release gate
+        run: node scripts/final-e2e-release-gate.mjs
