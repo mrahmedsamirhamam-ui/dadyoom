@@ -11,6 +11,7 @@ const config: CapacitorConfig = {
     allowNavigation: [
       "dadyoom.mrahmedsamirhamam.workers.dev",
     ],
+    errorPath: "offline-native.html",
   },
   ios: {
     contentInset: "automatic",
