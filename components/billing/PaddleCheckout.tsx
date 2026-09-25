@@ -12,6 +12,7 @@ type PaddleConfig = {
   email: string;
   amount: number;
   currency: string;
+  checkoutBinding: string;
   successUrl: string;
 };
 
@@ -113,6 +114,7 @@ export default function PaddleCheckout() {
           !payload.clientToken ||
           !payload.priceId ||
           !payload.userId ||
+          !payload.checkoutBinding ||
           !payload.successUrl
         ) {
           throw new Error("إعداد Paddle غير مكتمل.");
@@ -187,6 +189,7 @@ export default function PaddleCheckout() {
         customData: {
           dadyoom_user_id: config.userId,
           dadyoom_plan_id: "plus",
+          dadyoom_checkout_sig: config.checkoutBinding,
         },
         settings: {
           displayMode: "overlay",
