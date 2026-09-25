@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "EG",
+    "nameAr": "مصر"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "status": "current-scope-complete",
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-09-25",
+  "authority": {
+    "nameAr": "وزارة التربية والتعليم والتعليم الفني",
+    "baseUrl": "https://moe.gov.eg/",
+    "eLearningUrl": "https://moe.gov.eg/ar/elearningenterypage/e-learning/",
+    "digitalCurriculaEvidence": "https://moe.gov.eg/ar/what-s-on/news/16-9-25/"
+  },
+  "coverage": {
+    "grades": "12/12",
+    "verifiedMappingGrades": "12/12",
+    "officialCoverageNodes": 145,
+    "mappedCoverageNodes": 145,
+    "verifiedCoverageNodes": 145,
+    "database": {
+      "lessons": 145,
+      "questions": 435,
+      "vocabulary": 435,
+      "activities": 435
+    },
+    "primary": {
+      "grades": "G1-G6",
+      "nodes": 72,
+      "model": "6 official Arabic domains × 2 semesters"
+    },
+    "preparatory": {
+      "grades": "G7-G9",
+      "nodes": 36,
+      "model": "6 official Arabic domains × 2 semesters"
+    },
+    "secondary": {
+      "grades": "G10-G11",
+      "nodes": 24,
+      "model": "6 official Arabic domains × 2 semesters"
+    },
+    "grade12": {
+      "nodes": 13,
+      "model": "6 Arabic domains + 7 official units published on the Ministry e-learning portal"
+    }
+  },
+  "officialDomains": {
+    "primaryAndPreparatory": [
+      "الاستماع والتحدث",
+      "القراءة والفهم",
+      "النصوص والتذوق الأدبي",
+      "النحو والبناء اللغوي",
+      "الإملاء والخط",
+      "الكتابة والتعبير"
+    ],
+    "secondary": [
+      "القراءة",
+      "النصوص الأدبية",
+      "الأدب",
+      "البلاغة",
+      "النحو والصرف",
+      "الكتابة والتعبير"
+    ]
+  },
+  "databaseCleanup": {
+    "legacyGrade2Curriculum": "deactivated-not-deleted",
+    "activeOfficialCurriculum": "اللغة العربية — المطابقة الرسمية المصرية"
+  },
+  "qualityGates": {
+    "allLessonsPublished": true,
+    "allLessonsHaveOfficialSource": true,
+    "minimumQuestionsPerLesson": 3,
+    "minimumVocabularyPerLesson": 3,
+    "minimumActivitiesPerLesson": 3,
+    "packGradesValid": "12/12",
+    "mappingGradesVerified": "12/12"
+  },
+  "claimPolicy": "عبارة «مطابق للمنهج الرسمي المصري» تعني أن ضاديوم مواءم مع كتب ومجالات/وحدات اللغة العربية المنشورة على بوابة وزارة التربية والتعليم المصرية للنطاق الحالي. لا تعني اعتمادًا أو شراكة أو تأييدًا من الوزارة.",
+  "copyrightPolicy": "لا يعيد ضاديوم نشر نصوص الكتب المحمية. تستخدم بنية المادة ومجالاتها وروابط الوزارة لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية لضاديوم."
+}
