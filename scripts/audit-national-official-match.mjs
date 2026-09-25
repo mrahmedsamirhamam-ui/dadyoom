@@ -274,6 +274,43 @@ for (const country of registry.countries ?? []) {
 console.log(`NATIONAL_OFFICIAL_SOURCE_VERIFIED=${sourceVerifiedCountries}/22`);
 console.log(`NATIONAL_OFFICIAL_COMPLETE=${completeCountries}/22`);
 
+if (sourceVerifiedCountries !== 22) {
+  console.error(
+    `NATIONAL_OFFICIAL_SOURCE_AUTHORITY_INCOMPLETE=${sourceVerifiedCountries}/22`,
+  );
+  process.exitCode = 1;
+}
+
+for (const row of sourceRows) {
+  const status = String(row.verificationStatus ?? "candidate");
+  const verified =
+    status === "source-verified" ||
+    status === "verified";
+
+  if (!verified) continue;
+
+  if (!row.sourceVerifiedAt) {
+    console.error(`NATIONAL_SOURCE_VERIFIED_DATE_MISSING=${row.code}`);
+    process.exitCode = 1;
+  }
+
+  const sourceList =
+    Array.isArray(row.sources)
+      ? row.sources
+      : [];
+
+  if (
+    sourceList.length === 0 ||
+    sourceList.some(
+      (source) =>
+        !String(source?.url ?? "").startsWith("https://"),
+    )
+  ) {
+    console.error(`NATIONAL_SOURCE_URL_INVALID=${row.code}`);
+    process.exitCode = 1;
+  }
+}
+
 if (process.exitCode) {
   process.exit(process.exitCode);
 }
