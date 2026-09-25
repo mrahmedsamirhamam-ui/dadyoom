@@ -30,7 +30,9 @@ jobs:
         run: npm run lint
 
       - name: Dependency high-severity audit
-        run: npm audit --audit-level=high
+        run: |
+          npm install --package-lock-only --legacy-peer-deps --ignore-scripts
+          npm audit --audit-level=high
 
       - name: Product source gates
         run: |
