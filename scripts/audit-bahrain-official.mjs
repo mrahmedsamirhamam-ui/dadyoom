@@ -54,8 +54,8 @@ const url =
   process.env.SUPABASE_URL;
 
 const key =
-  process.env.SUPABASE_SERVICE_ROLE_KEY ||
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  process.env.SUPABASE_SECRET_KEY ||
+  process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 if (!url || !key) {
   throw new Error("SUPABASE_ENV_MISSING");
@@ -74,7 +74,8 @@ const { data, error } = await supabase
     "id,title,status,units!inner(grades!inner(grade_number,curricula!inner(academic_year,countries!inner(code))))",
   )
   .eq("units.grades.curricula.countries.code", "BH")
-  .eq("units.grades.curricula.academic_year", "2026-2027");
+  .eq("units.grades.curricula.academic_year", "2026-2027")
+  .eq("units.grades.curricula.name_ar", "اللغة العربية");
 
 if (error) throw error;
 
