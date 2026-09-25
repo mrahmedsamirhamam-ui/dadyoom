@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "DZ",
+    "nameAr": "الجزائر"
+  },
+  "academicYear": "2026-2027",
+  "grade": 10,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 2,
+  "mappedLessons": 2,
+  "verifiedLessons": 2,
+  "scope": "current-officially-published-and-publicly-verifiable-scope",
+  "policy": "الكتاب/المنهاج أو مسار الثانوي هو وحدة المطابقة؛ لا تُنسخ النصوص ولا تُختلق عناوين غير موثقة.",
+  "mappings": [
+    {
+      "officialSlug": "dz-2026-2027-g10-common-letters",
+      "officialTitle": "اللغة العربية وآدابها — الأولى ثانوي — الجذع المشترك آداب",
+      "source": {
+        "label": "وزارة التربية الوطنية الجزائرية — منهاج السنة الأولى ثانوي",
+        "url": "https://education.gov.dz/wp-content/uploads/2015/04/%D8%A7%D9%84%D9%84%D8%BA%D9%80%D9%80%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7-%D8%A7%D9%84%D8%B3%D9%86%D8%A9-%D8%A7%D9%84%D8%A7%D9%88%D9%84%D9%89.pdf",
+        "current20262027Url": "https://www.education.gov.dz/2026/07/30/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9-%D9%8A%D9%86%D8%B4%D9%91%D8%B7-%D9%86%D8%AF%D9%88%D8%A9-%D8%B5%D8%AD%D9%81%D9%8A%D8%A9/",
+        "onpsUrl": "https://www.onps.dz/"
+      },
+      "relationType": "official-secondary-track+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المطابقة تفصل مسارات الثانوي بحسب التنظيم والمنهاج الرسميين، مع محتوى ضاديوم أصلي وعدم اختلاق عناوين دروس.",
+      "coreCoverage": [
+        {
+          "slug": "dz-dadyoom-core-g10-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-ministry-current-2026-2027+official-curriculum+official-onps+national-pack"
+    },
+    {
+      "officialSlug": "dz-2026-2027-g10-common-science-tech",
+      "officialTitle": "اللغة العربية وآدابها — الأولى ثانوي — الجذع المشترك علوم وتكنولوجيا",
+      "source": {
+        "label": "وزارة التربية الوطنية الجزائرية — منهاج السنة الأولى ثانوي",
+        "url": "https://education.gov.dz/wp-content/uploads/2015/04/%D8%A7%D9%84%D9%84%D8%BA%D9%80%D9%80%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7-%D8%A7%D9%84%D8%B3%D9%86%D8%A9-%D8%A7%D9%84%D8%A7%D9%88%D9%84%D9%89.pdf",
+        "current20262027Url": "https://www.education.gov.dz/2026/07/30/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9-%D9%8A%D9%86%D8%B4%D9%91%D8%B7-%D9%86%D8%AF%D9%88%D8%A9-%D8%B5%D8%AD%D9%81%D9%8A%D8%A9/",
+        "onpsUrl": "https://www.onps.dz/"
+      },
+      "relationType": "official-secondary-track+national-extension",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المطابقة تفصل مسارات الثانوي بحسب التنظيم والمنهاج الرسميين، مع محتوى ضاديوم أصلي وعدم اختلاق عناوين دروس.",
+      "coreCoverage": [
+        {
+          "slug": "dz-dadyoom-core-g10-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "dz-dadyoom-core-g10-l18",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-ministry-current-2026-2027+official-curriculum+official-onps+national-pack"
+    }
+  ]
+}
