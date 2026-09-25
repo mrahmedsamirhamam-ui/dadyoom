@@ -1,0 +1,256 @@
+{
+  "schemaVersion": 1,
+  "packKey": "TN:2026-2027:arabic:g8:current-scope",
+  "country": {
+    "code": "TN",
+    "nameAr": "تونس",
+    "nameEn": "Tunisia"
+  },
+  "academicYear": "2026-2027",
+  "subject": {
+    "code": "arabic",
+    "nameAr": "اللغة العربية"
+  },
+  "stage": {
+    "code": "lower-secondary",
+    "nameAr": "التعليم الأساسي — المرحلة الإعدادية"
+  },
+  "grade": {
+    "number": 8,
+    "nameAr": "السنة 8 أساسي",
+    "nameEn": "Level 8"
+  },
+  "semester": null,
+  "curriculum": {
+    "nameAr": "اللغة العربية — المطابقة الرسمية التونسية",
+    "nameEn": "Arabic — Tunisia Official Curriculum Match",
+    "description": "طبقة وطنية مستقلة مرتبطة بالكتب الرسمية وبنية التعليم التونسية.",
+    "storageNameAr": "اللغة العربية — المطابقة الرسمية التونسية"
+  },
+  "rights": {
+    "contentOwner": "dadyoom",
+    "sourceLabel": "CNP / Ministry of Education Tunisia",
+    "sourceUrl": "https://www.cnp.com.tn/",
+    "verified": true
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "اللغة العربية — حزمة الكتاب الرسمي",
+      "description": "السنة 8 أساسي: تغطية رسمية على مستوى السنة.",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "اللغة العربية — السنة 8 أساسي — حزمة الكتاب الرسمي",
+          "type": "reading",
+          "estimatedMinutes": 40,
+          "summary": "حزمة وطنية أصلية لمواءمة العربية في السنة 8 أساسي مع الكتب الرسمية التونسية.",
+          "content": "تمثل هذه العقدة «اللغة العربية — السنة 8 أساسي — حزمة الكتاب الرسمي» وحدة مطابقة وطنية على مستوى السنة الدراسية في النظام التونسي. يعلن المركز الوطني البيداغوجي الكتب المدرسية الرسمية للسنة 2026-2027، وتنشر وزارة التربية القوائم المطلوبة للمراحل الابتدائية والإعدادية والثانوية بما يشمل السنوات الأربع للتعليم الثانوي. يقدم ضاديوم تعلمًا أصليًا في القراءة والفهم والتعبير والقواعد والمفردات، من دون إعادة نشر النصوص المحمية أو اختلاق عناوين وحدات غير موثقة.",
+          "objectives": [
+            "أن يفسر المتعلم متطلبات العربية في السنة 8 أساسي.",
+            "أن يطبق مهارة قراءة أو لغة أو تعبير في موقف جديد.",
+            "أن يراجع أداءه ويصححه وفق معيار واضح."
+          ],
+          "vocabulary": [
+            {
+              "word": "قراءة",
+              "meaning": "فهم النص وتحليل معناه وبنيته."
+            },
+            {
+              "word": "تعبير",
+              "meaning": "إنتاج شفهي أو كتابي يحقق غرضًا تواصليًا."
+            },
+            {
+              "word": "لغة",
+              "meaning": "المفردات والتراكيب والقواعد المنظمة للاستعمال."
+            }
+          ],
+          "questions": [
+            {
+              "question": "ما وظيفة الحزمة؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "مواءمة الكتاب الرسمي بمحتوى أصلي."
+                },
+                {
+                  "id": "b",
+                  "text": "نسخ الكتاب كاملًا."
+                },
+                {
+                  "id": "c",
+                  "text": "اختراع مقرر."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المواءمة لا تتطلب النسخ.",
+              "points": 1
+            },
+            {
+              "question": "ما دليل الإتقان؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "تطبيق مستقل مع تفسير."
+                },
+                {
+                  "id": "b",
+                  "text": "حفظ الاسم."
+                },
+                {
+                  "id": "c",
+                  "text": "نسخ إجابة."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "الأداء المستقل يعكس الإتقان.",
+              "points": 1
+            },
+            {
+              "question": "كيف تراجع؟",
+              "type": "multiple_choice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أقارن بالمعيار وأصحح."
+                },
+                {
+                  "id": "b",
+                  "text": "لا أراجع."
+                },
+                {
+                  "id": "c",
+                  "text": "أغير عشوائيًا."
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "المراجعة تحسن التعلم.",
+              "points": 1
+            }
+          ],
+          "activities": [
+            {
+              "title": "فهم",
+              "activityType": "multiple_choice",
+              "instructions": "حدد المهارة الأنسب.",
+              "content": {
+                "origin": "DADYOOM_TN_OFFICIAL_2026_2027_V1",
+                "grade": 8
+              },
+              "published": true
+            },
+            {
+              "title": "قراءة",
+              "activityType": "reading",
+              "instructions": "طبّق مهارة الفهم.",
+              "content": {
+                "origin": "DADYOOM_TN_OFFICIAL_2026_2027_V1",
+                "grade": 8
+              },
+              "published": true
+            },
+            {
+              "title": "كتابة ومراجعة",
+              "activityType": "writing",
+              "instructions": "اكتب ثم راجع.",
+              "content": {
+                "origin": "DADYOOM_TN_OFFICIAL_2026_2027_V1",
+                "grade": 8
+              },
+              "published": true
+            }
+          ],
+          "source": {
+            "label": "المركز الوطني البيداغوجي + وزارة التربية التونسية",
+            "url": "https://www.cnp.com.tn/",
+            "additionalUrls": [
+              "https://cnp.com.tn/arabic/index.htm",
+              "https://cnp.com.tn/arabic/annee-actuelle/listeOfficielle.htm",
+              "https://education.gov.tn/"
+            ]
+          },
+          "alignment": {
+            "mode": "official-grade-textbook-bundle",
+            "nationalExtension": true,
+            "coreCoverage": [
+              {
+                "slug": "tn-dadyoom-core-g8-l01",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "tn-dadyoom-core-g8-l02",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "tn-dadyoom-core-g8-l03",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "tn-dadyoom-core-g8-l04",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "tn-dadyoom-core-g8-l05",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "tn-dadyoom-core-g8-l06",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "tn-dadyoom-core-g8-l07",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "tn-dadyoom-core-g8-l08",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "tn-dadyoom-core-g8-l09",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "tn-dadyoom-core-g8-l10",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "tn-dadyoom-core-g8-l11",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "tn-dadyoom-core-g8-l12",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "tn-dadyoom-core-g8-l13",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "tn-dadyoom-core-g8-l14",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "tn-dadyoom-core-g8-l15",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "tn-dadyoom-core-g8-l16",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "tn-dadyoom-core-g8-l17",
+                "relation": "supporting-skill"
+              },
+              {
+                "slug": "tn-dadyoom-core-g8-l18",
+                "relation": "supporting-skill"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
