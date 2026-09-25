@@ -578,6 +578,28 @@ if (writeMappings) {
       ? "مملكة البحرين"
       : countryCode;
 
+  const existingGrades = new Set();
+
+  for (const entry of fs.readdirSync(mappingOutputDir, { withFileTypes: true })) {
+    if (!entry.isFile() || !entry.name.endsWith(".json")) continue;
+
+    try {
+      const existing = JSON.parse(
+        fs.readFileSync(path.join(mappingOutputDir, entry.name), "utf8"),
+      );
+
+      if (
+        String(existing?.country?.code ?? "").trim().toUpperCase() === countryCode &&
+        String(existing?.academicYear ?? "").trim() === academicYear &&
+        Number.isInteger(Number(existing?.grade))
+      ) {
+        existingGrades.add(Number(existing.grade));
+      }
+    } catch {
+      // Invalid files are reported by the national audit; do not overwrite them here.
+    }
+  }
+
   const byGrade = new Map();
 
   for (const row of mappings) {
@@ -590,6 +612,13 @@ if (writeMappings) {
   for (const [gradeNumber, gradeMappings] of [...byGrade.entries()].sort(
     (a, b) => a[0] - b[0],
   )) {
+    if (existingGrades.has(gradeNumber)) {
+      console.log(
+        `OFFICIAL_MAPPING_SKELETON_SKIPPED_EXISTING=${countryCode}:G${gradeNumber}`,
+      );
+      continue;
+    }
+
     const normalizedMappings =
       gradeMappings
         .sort((a, b) => {
