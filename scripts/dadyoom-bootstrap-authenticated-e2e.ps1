@@ -71,7 +71,8 @@ Write-Host "SUPABASE_ELEVATED_KEY_LOCAL_VALIDATION=PASS" -ForegroundColor Green
 & gh auth status | Out-Null
 
 # Keep the existing Actions secret name for compatibility with the workflow.
-$serviceKey | & gh secret set SUPABASE_SERVICE_ROLE_KEY --repo $Repository --body -
+# gh secret set --body expects the secret value itself; using --body - would store a literal dash.
+& gh secret set SUPABASE_SERVICE_ROLE_KEY --repo $Repository --body $serviceKey
 if ($LASTEXITCODE -ne 0) { throw "Failed to set GitHub Actions secret." }
 Write-Host "SUPABASE_SERVICE_ROLE_KEY=CONFIGURED_IN_GITHUB" -ForegroundColor Green
 
