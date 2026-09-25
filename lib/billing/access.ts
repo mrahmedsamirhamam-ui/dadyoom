@@ -80,19 +80,40 @@ export async function billingStatus() {
 
   const plan = user ? await currentPlan() : "free";
 
-  const { data: planRow } = await db
-    .from("edu_subscription_plans")
-    .select("id,name_ar,monthly_price,currency,ads_enabled,limits")
-    .eq("id", plan)
-    .maybeSingle();
+  const [{ data: planRow }, { data: plusPlanRow }] =
+    await Promise.all([
+      db
+        .from("edu_subscription_plans")
+        .select(
+          "id,name_ar,monthly_price,currency,ads_enabled,limits",
+        )
+        .eq("id", plan)
+        .maybeSingle(),
+      db
+        .from("edu_subscription_plans")
+        .select("monthly_price,currency")
+        .eq("id", "plus")
+        .maybeSingle(),
+    ]);
 
   return {
     authenticated: Boolean(user),
     plan,
     plus: plan === "plus",
-    showAds: plan !== "plus" && Boolean(planRow?.ads_enabled ?? true),
-    limits: (planRow?.limits ?? {}) as Record<string, number>,
+    showAds:
+      plan !== "plus" &&
+      Boolean(planRow?.ads_enabled ?? true),
+    limits: (planRow?.limits ?? {}) as Record<
+      string,
+      number
+    >,
     price: Number(planRow?.monthly_price ?? 0),
     currency: String(planRow?.currency ?? "BHD"),
+    plusPrice: Number(
+      plusPlanRow?.monthly_price ?? 10,
+    ),
+    plusCurrency: String(
+      plusPlanRow?.currency ?? "USD",
+    ),
   };
 }
