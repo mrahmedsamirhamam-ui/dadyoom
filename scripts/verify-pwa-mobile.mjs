@@ -37,6 +37,10 @@ const layout = read(
   "app/layout.tsx"
 );
 
+const clientRuntime = read(
+  "components/runtime/DadyoomClientRuntime.tsx"
+);
+
 const prompt = read(
   "components/pwa/DadyoomInstallPrompt.tsx"
 );
@@ -150,8 +154,11 @@ check(
 check(
   "INSTALL_UI_WIRED_IN_ROOT_LAYOUT",
   layout.includes(
-    "<DadyoomInstallPrompt />"
-  )
+    "<DadyoomClientRuntime />"
+  ) &&
+    clientRuntime.includes(
+      "<DadyoomInstallPrompt />"
+    )
 );
 
 check(
@@ -170,8 +177,11 @@ check(
 check(
   "AUTO_UPDATE_WIRED",
   layout.includes(
-    "<DadyoomAutoUpdate />"
+    "<DadyoomClientRuntime />"
   ) &&
+    clientRuntime.includes(
+      "<DadyoomAutoUpdate />"
+    ) &&
     autoUpdate.includes(
       "/app-version.json"
     ) &&
@@ -244,8 +254,11 @@ check(
 check(
   "ANDROID_NATIVE_UPDATER_WIRED",
   layout.includes(
-    "<NativeAppUpdater />"
+    "<DadyoomClientRuntime />"
   ) &&
+    clientRuntime.includes(
+      "<NativeAppUpdater />"
+    ) &&
     nativeUpdater.includes(
       "↻ تحديث"
     ) &&
