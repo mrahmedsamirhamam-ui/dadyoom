@@ -1,0 +1,864 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "SA",
+    "nameAr": "السعودية"
+  },
+  "academicYear": "2026-2027",
+  "grade": 12,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 25,
+  "mappedLessons": 25,
+  "verifiedLessons": 25,
+  "scope": "current-official-two-semester-published-scope",
+  "policy": "مواءمة الكتب والمواد والمسارات الرسمية مع Core Bundles وNational Extensions أصلية؛ لا إعادة نشر للنصوص.",
+  "mappings": [
+    {
+      "officialSlug": "sa-2026-2027-g12-u1-l1",
+      "officialTitle": "الأدب العربي وتاريخه — العام",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack السعودية الخصائص الوطنية الخاصة في «الأدب العربي وتاريخه — العام» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u1-l2",
+      "officialTitle": "تحليل النص الأدبي — العام",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «تحليل النص الأدبي — العام» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u1-l3",
+      "officialTitle": "السياق والمدارس الأدبية — العام",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «السياق والمدارس الأدبية — العام» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u1-l4",
+      "officialTitle": "التذوق والنقد الأدبي — العام",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «التذوق والنقد الأدبي — العام» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u1-l5",
+      "officialTitle": "الكتابة الوظيفية والإبداعية — مجال اختياري",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack السعودية الخصائص الوطنية الخاصة في «الكتابة الوظيفية والإبداعية — مجال اختياري» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l13",
+          "relation": "supporting-skill",
+          "title": "المقال الحجاجي"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l14",
+          "relation": "supporting-skill",
+          "title": "البحث والتوثيق"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l15",
+          "relation": "supporting-skill",
+          "title": "التلخيص الأكاديمي"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u2-l1",
+      "officialTitle": "الأدب العربي وتاريخه — علوم الحاسب والهندسة",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack السعودية الخصائص الوطنية الخاصة في «الأدب العربي وتاريخه — علوم الحاسب والهندسة» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u2-l2",
+      "officialTitle": "تحليل النص الأدبي — علوم الحاسب والهندسة",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «تحليل النص الأدبي — علوم الحاسب والهندسة» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u2-l3",
+      "officialTitle": "السياق والمدارس الأدبية — علوم الحاسب والهندسة",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «السياق والمدارس الأدبية — علوم الحاسب والهندسة» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u2-l4",
+      "officialTitle": "التذوق والنقد الأدبي — علوم الحاسب والهندسة",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «التذوق والنقد الأدبي — علوم الحاسب والهندسة» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u3-l1",
+      "officialTitle": "الأدب العربي وتاريخه — الصحة والحياة",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack السعودية الخصائص الوطنية الخاصة في «الأدب العربي وتاريخه — الصحة والحياة» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u3-l2",
+      "officialTitle": "تحليل النص الأدبي — الصحة والحياة",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «تحليل النص الأدبي — الصحة والحياة» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u3-l3",
+      "officialTitle": "السياق والمدارس الأدبية — الصحة والحياة",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «السياق والمدارس الأدبية — الصحة والحياة» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u3-l4",
+      "officialTitle": "التذوق والنقد الأدبي — الصحة والحياة",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «التذوق والنقد الأدبي — الصحة والحياة» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u4-l1",
+      "officialTitle": "الأدب العربي وتاريخه — إدارة الأعمال",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack السعودية الخصائص الوطنية الخاصة في «الأدب العربي وتاريخه — إدارة الأعمال» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u4-l2",
+      "officialTitle": "تحليل النص الأدبي — إدارة الأعمال",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «تحليل النص الأدبي — إدارة الأعمال» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u4-l3",
+      "officialTitle": "السياق والمدارس الأدبية — إدارة الأعمال",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «السياق والمدارس الأدبية — إدارة الأعمال» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u4-l4",
+      "officialTitle": "التذوق والنقد الأدبي — إدارة الأعمال",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «التذوق والنقد الأدبي — إدارة الأعمال» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u4-l5",
+      "officialTitle": "الدراسات البلاغية — إدارة الأعمال",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack السعودية الخصائص الوطنية الخاصة في «الدراسات البلاغية — إدارة الأعمال» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l12",
+          "relation": "supporting-skill",
+          "title": "الإيجاز والإطناب"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u4-l6",
+      "officialTitle": "الدراسات النقدية — إدارة الأعمال",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack السعودية الخصائص الوطنية الخاصة في «الدراسات النقدية — إدارة الأعمال» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u5-l1",
+      "officialTitle": "الأدب العربي وتاريخه — الشرعي",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack السعودية الخصائص الوطنية الخاصة في «الأدب العربي وتاريخه — الشرعي» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u5-l2",
+      "officialTitle": "تحليل النص الأدبي — الشرعي",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «تحليل النص الأدبي — الشرعي» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u5-l3",
+      "officialTitle": "السياق والمدارس الأدبية — الشرعي",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «السياق والمدارس الأدبية — الشرعي» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u5-l4",
+      "officialTitle": "التذوق والنقد الأدبي — الشرعي",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تُغطى «التذوق والنقد الأدبي — الشرعي» بحزمة Core المناسبة مع تطبيق سعودي أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u5-l5",
+      "officialTitle": "الدراسات البلاغية — الشرعي",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack السعودية الخصائص الوطنية الخاصة في «الدراسات البلاغية — الشرعي» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l12",
+          "relation": "supporting-skill",
+          "title": "الإيجاز والإطناب"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "sa-2026-2027-g12-u5-l6",
+      "officialTitle": "الدراسات النقدية — الشرعي",
+      "source": {
+        "label": "وزارة التعليم السعودية — المقرر/دليل الخطط",
+        "url": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Documents/Curriculum_Guide_Fifth_Edition_13oct2025.pdf"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "تغطي Core مهارات داعمة ويغلق Pack السعودية الخصائص الوطنية الخاصة في «الدراسات النقدية — الشرعي» بمحتوى أصلي.",
+      "coreCoverage": [
+        {
+          "slug": "sa-dadyoom-core-g12-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "sa-dadyoom-core-g12-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-madrasati+fifth-study-plan+two-semester-policy+core-bundle+national-pack-v1"
+    }
+  ]
+}
