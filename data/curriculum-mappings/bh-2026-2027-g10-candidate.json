@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "country": {
     "code": "BH",
     "nameAr": "مملكة البحرين"
@@ -12,8 +12,8 @@
   "officialLessons": 14,
   "mappedLessons": 14,
   "verifiedLessons": 0,
-  "policy": "ملف مرشحات قابل للتدقيق. بُني من الطبقة الوطنية الموجودة في قاعدة ضاديوم وربط بمهارات Dadyoom Core. لا يصبح أي درس verified دون مراجعة المصدر والأهداف، ولا يعاد نشر نص الكتاب الوزاري.",
-  "generatedBy": "Dadyoom official-to-core matcher",
+  "matchingModel": "official-to-core-skill-bundle-v2",
+  "policy": "مرشحات مطابقة قابلة للتدقيق. تغطية Core قد تكون حزمة من عدة مهارات. لا يصبح أي درس verified دون مراجعة المصدر والأهداف.",
   "mappings": [
     {
       "officialLessonId": "be139de5-036e-48bd-8253-cac25309c01d",
@@ -34,13 +34,30 @@
       "confidence": "low",
       "score": 0.4881,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g10-l06",
           "relation": "text-specific",
           "title": "القراءة النقدية",
-          "score": 0.4881
+          "score": 0.8026
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l02",
+          "relation": "text-specific",
+          "title": "تحليل النثر",
+          "score": 0.8
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l01",
+          "relation": "text-specific",
+          "title": "تحليل الشعر",
+          "score": 0.7981
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l03",
+          "relation": "text-specific",
+          "title": "السياق الثقافي للنص",
+          "score": 0.6931
         }
       ],
       "candidates": [
@@ -64,6 +81,20 @@
           "coreTitle": "تحليل الشعر",
           "coreLessonType": "reading",
           "score": 0.4808
+        },
+        {
+          "coreLessonId": "1787ca53-1055-49c8-8349-7de14d1bdbc6",
+          "coreSlug": "bh-dadyoom-core-g10-l03",
+          "coreTitle": "السياق الثقافي للنص",
+          "coreLessonType": "reading",
+          "score": 0.3114
+        },
+        {
+          "coreLessonId": "ed8ee12c-6dde-40e6-bab6-c794a8fb3a84",
+          "coreSlug": "bh-dadyoom-core-g10-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.2839
         }
       ]
     },
@@ -79,20 +110,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.3273,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
-          "slug": "bh-dadyoom-core-g10-l06",
-          "relation": "unmapped",
-          "title": "القراءة النقدية",
-          "score": 0.3273
+          "slug": "bh-dadyoom-core-g10-l09",
+          "relation": "coverage-bundle",
+          "title": "الحال والتمييز المتقدم",
+          "score": 0.6311
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l11",
+          "relation": "coverage-bundle",
+          "title": "الشرط والاستثناء",
+          "score": 0.6303
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l10",
+          "relation": "coverage-bundle",
+          "title": "التوابع والاتساق",
+          "score": 0.6298
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l07",
+          "relation": "coverage-bundle",
+          "title": "النواسخ في السياق",
+          "score": 0.6297
         }
       ],
       "candidates": [
@@ -116,6 +164,20 @@
           "coreTitle": "تحليل النثر",
           "coreLessonType": "reading",
           "score": 0.3073
+        },
+        {
+          "coreLessonId": "99fae34c-e9c2-4cb4-b880-b4c6c0d2a65d",
+          "coreSlug": "bh-dadyoom-core-g10-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.3021
+        },
+        {
+          "coreLessonId": "442a2013-2ea5-411b-af40-317ba0f9dae5",
+          "coreSlug": "bh-dadyoom-core-g10-l09",
+          "coreTitle": "الحال والتمييز المتقدم",
+          "coreLessonType": "grammar",
+          "score": 0.2356
         }
       ]
     },
@@ -131,20 +193,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.6364,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
-          "slug": "bh-dadyoom-core-g10-l18",
-          "relation": "supporting-skill",
-          "title": "مراجعة الثانوية الشاملة",
-          "score": 0.6364
+          "slug": "bh-dadyoom-core-g10-l17",
+          "relation": "coverage-bundle",
+          "title": "الكتابة الوظيفية",
+          "score": 0.8534
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l15",
+          "relation": "coverage-bundle",
+          "title": "التلخيص الأكاديمي",
+          "score": 0.8317
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l14",
+          "relation": "coverage-bundle",
+          "title": "البحث والتوثيق",
+          "score": 0.75
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l13",
+          "relation": "coverage-bundle",
+          "title": "المقال الحجاجي",
+          "score": 0.7485
         }
       ],
       "candidates": [
@@ -168,6 +247,20 @@
           "coreTitle": "التلخيص الأكاديمي",
           "coreLessonType": "writing",
           "score": 0.5188
+        },
+        {
+          "coreLessonId": "488e2611-f9d2-46fb-b0f1-c62a21753f93",
+          "coreSlug": "bh-dadyoom-core-g10-l14",
+          "coreTitle": "البحث والتوثيق",
+          "coreLessonType": "writing",
+          "score": 0.4677
+        },
+        {
+          "coreLessonId": "2a7bf2fb-29ff-4afc-9183-a0a7aa51224e",
+          "coreSlug": "bh-dadyoom-core-g10-l13",
+          "coreTitle": "المقال الحجاجي",
+          "coreLessonType": "writing",
+          "score": 0.4654
         }
       ]
     },
@@ -190,13 +283,30 @@
       "confidence": "low",
       "score": 0.4844,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g10-l06",
           "relation": "text-specific",
           "title": "القراءة النقدية",
-          "score": 0.4844
+          "score": 0.8004
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l02",
+          "relation": "text-specific",
+          "title": "تحليل النثر",
+          "score": 0.7989
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l01",
+          "relation": "text-specific",
+          "title": "تحليل الشعر",
+          "score": 0.7971
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l03",
+          "relation": "text-specific",
+          "title": "السياق الثقافي للنص",
+          "score": 0.6907
         }
       ],
       "candidates": [
@@ -220,6 +330,20 @@
           "coreTitle": "تحليل الشعر",
           "coreLessonType": "reading",
           "score": 0.4792
+        },
+        {
+          "coreLessonId": "1787ca53-1055-49c8-8349-7de14d1bdbc6",
+          "coreSlug": "bh-dadyoom-core-g10-l03",
+          "coreTitle": "السياق الثقافي للنص",
+          "coreLessonType": "reading",
+          "score": 0.3076
+        },
+        {
+          "coreLessonId": "ed8ee12c-6dde-40e6-bab6-c794a8fb3a84",
+          "coreSlug": "bh-dadyoom-core-g10-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.2818
         }
       ]
     },
@@ -235,20 +359,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.2976,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g10-l09",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "الحال والتمييز المتقدم",
-          "score": 0.2976
+          "score": 0.7445
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l11",
+          "relation": "coverage-bundle",
+          "title": "الشرط والاستثناء",
+          "score": 0.7439
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l08",
+          "relation": "coverage-bundle",
+          "title": "المفاعيل ودلالاتها",
+          "score": 0.74
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l07",
+          "relation": "coverage-bundle",
+          "title": "النواسخ في السياق",
+          "score": 0.7366
         }
       ],
       "candidates": [
@@ -272,6 +413,20 @@
           "coreTitle": "المفاعيل ودلالاتها",
           "coreLessonType": "grammar",
           "score": 0.2904
+        },
+        {
+          "coreLessonId": "d950b440-9041-49fd-aeb6-751877f46069",
+          "coreSlug": "bh-dadyoom-core-g10-l07",
+          "coreTitle": "النواسخ في السياق",
+          "coreLessonType": "grammar",
+          "score": 0.2849
+        },
+        {
+          "coreLessonId": "b1915fdd-9453-4164-ad44-a7bf3f18c343",
+          "coreSlug": "bh-dadyoom-core-g10-l10",
+          "coreTitle": "التوابع والاتساق",
+          "coreLessonType": "grammar",
+          "score": 0.2362
         }
       ]
     },
@@ -294,13 +449,30 @@
       "confidence": "low",
       "score": 0.5382,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g10-l01",
           "relation": "text-specific",
           "title": "تحليل الشعر",
-          "score": 0.5382
+          "score": 0.8337
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l02",
+          "relation": "text-specific",
+          "title": "تحليل النثر",
+          "score": 0.7963
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l06",
+          "relation": "text-specific",
+          "title": "القراءة النقدية",
+          "score": 0.7915
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l03",
+          "relation": "text-specific",
+          "title": "السياق الثقافي للنص",
+          "score": 0.6781
         }
       ],
       "candidates": [
@@ -324,6 +496,20 @@
           "coreTitle": "القراءة النقدية",
           "coreLessonType": "reading",
           "score": 0.4702
+        },
+        {
+          "coreLessonId": "1787ca53-1055-49c8-8349-7de14d1bdbc6",
+          "coreSlug": "bh-dadyoom-core-g10-l03",
+          "coreTitle": "السياق الثقافي للنص",
+          "coreLessonType": "reading",
+          "score": 0.2873
+        },
+        {
+          "coreLessonId": "ed8ee12c-6dde-40e6-bab6-c794a8fb3a84",
+          "coreSlug": "bh-dadyoom-core-g10-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.2774
         }
       ]
     },
@@ -339,20 +525,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.3099,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g10-l09",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "الحال والتمييز المتقدم",
-          "score": 0.3099
+          "score": 0.7522
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l11",
+          "relation": "coverage-bundle",
+          "title": "الشرط والاستثناء",
+          "score": 0.7475
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l08",
+          "relation": "coverage-bundle",
+          "title": "المفاعيل ودلالاتها",
+          "score": 0.7429
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l07",
+          "relation": "coverage-bundle",
+          "title": "النواسخ في السياق",
+          "score": 0.7388
         }
       ],
       "candidates": [
@@ -376,6 +579,20 @@
           "coreTitle": "المفاعيل ودلالاتها",
           "coreLessonType": "grammar",
           "score": 0.295
+        },
+        {
+          "coreLessonId": "d950b440-9041-49fd-aeb6-751877f46069",
+          "coreSlug": "bh-dadyoom-core-g10-l07",
+          "coreTitle": "النواسخ في السياق",
+          "coreLessonType": "grammar",
+          "score": 0.2884
+        },
+        {
+          "coreLessonId": "b1915fdd-9453-4164-ad44-a7bf3f18c343",
+          "coreSlug": "bh-dadyoom-core-g10-l10",
+          "coreTitle": "التوابع والاتساق",
+          "coreLessonType": "grammar",
+          "score": 0.2413
         }
       ]
     },
@@ -391,20 +608,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "supporting-skill",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "partial",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "medium",
       "score": 0.6376,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
-          "slug": "bh-dadyoom-core-g10-l18",
-          "relation": "supporting-skill",
-          "title": "مراجعة الثانوية الشاملة",
-          "score": 0.6376
+          "slug": "bh-dadyoom-core-g10-l17",
+          "relation": "coverage-bundle",
+          "title": "الكتابة الوظيفية",
+          "score": 0.8589
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l15",
+          "relation": "coverage-bundle",
+          "title": "التلخيص الأكاديمي",
+          "score": 0.8324
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l14",
+          "relation": "coverage-bundle",
+          "title": "البحث والتوثيق",
+          "score": 0.7508
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l13",
+          "relation": "coverage-bundle",
+          "title": "المقال الحجاجي",
+          "score": 0.7493
         }
       ],
       "candidates": [
@@ -428,6 +662,20 @@
           "coreTitle": "التلخيص الأكاديمي",
           "coreLessonType": "writing",
           "score": 0.5201
+        },
+        {
+          "coreLessonId": "488e2611-f9d2-46fb-b0f1-c62a21753f93",
+          "coreSlug": "bh-dadyoom-core-g10-l14",
+          "coreTitle": "البحث والتوثيق",
+          "coreLessonType": "writing",
+          "score": 0.469
+        },
+        {
+          "coreLessonId": "2a7bf2fb-29ff-4afc-9183-a0a7aa51224e",
+          "coreSlug": "bh-dadyoom-core-g10-l13",
+          "coreTitle": "المقال الحجاجي",
+          "coreLessonType": "writing",
+          "score": 0.4667
         }
       ]
     },
@@ -450,13 +698,30 @@
       "confidence": "low",
       "score": 0.4892,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g10-l01",
           "relation": "text-specific",
           "title": "تحليل الشعر",
-          "score": 0.4892
+          "score": 0.7283
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l02",
+          "relation": "text-specific",
+          "title": "تحليل النثر",
+          "score": 0.6884
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l06",
+          "relation": "text-specific",
+          "title": "القراءة النقدية",
+          "score": 0.6864
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l03",
+          "relation": "text-specific",
+          "title": "السياق الثقافي للنص",
+          "score": 0.5699
         }
       ],
       "candidates": [
@@ -480,6 +745,20 @@
           "coreTitle": "القراءة النقدية",
           "coreLessonType": "reading",
           "score": 0.4216
+        },
+        {
+          "coreLessonId": "ed8ee12c-6dde-40e6-bab6-c794a8fb3a84",
+          "coreSlug": "bh-dadyoom-core-g10-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.3017
+        },
+        {
+          "coreLessonId": "1787ca53-1055-49c8-8349-7de14d1bdbc6",
+          "coreSlug": "bh-dadyoom-core-g10-l03",
+          "coreTitle": "السياق الثقافي للنص",
+          "coreLessonType": "reading",
+          "score": 0.2337
         }
       ]
     },
@@ -495,20 +774,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.3242,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g10-l08",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "المفاعيل ودلالاتها",
-          "score": 0.3242
+          "score": 0.761
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l09",
+          "relation": "coverage-bundle",
+          "title": "الحال والتمييز المتقدم",
+          "score": 0.7465
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l11",
+          "relation": "coverage-bundle",
+          "title": "الشرط والاستثناء",
+          "score": 0.7438
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l07",
+          "relation": "coverage-bundle",
+          "title": "النواسخ في السياق",
+          "score": 0.74
         }
       ],
       "candidates": [
@@ -532,6 +828,20 @@
           "coreTitle": "الشرط والاستثناء",
           "coreLessonType": "grammar",
           "score": 0.2965
+        },
+        {
+          "coreLessonId": "d950b440-9041-49fd-aeb6-751877f46069",
+          "coreSlug": "bh-dadyoom-core-g10-l07",
+          "coreTitle": "النواسخ في السياق",
+          "coreLessonType": "grammar",
+          "score": 0.2904
+        },
+        {
+          "coreLessonId": "b1915fdd-9453-4164-ad44-a7bf3f18c343",
+          "coreSlug": "bh-dadyoom-core-g10-l10",
+          "coreTitle": "التوابع والاتساق",
+          "coreLessonType": "grammar",
+          "score": 0.2359
         }
       ]
     },
@@ -554,13 +864,30 @@
       "confidence": "low",
       "score": 0.5239,
       "needsNationalExtension": false,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g10-l01",
           "relation": "text-specific",
           "title": "تحليل الشعر",
-          "score": 0.5239
+          "score": 0.8248
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l02",
+          "relation": "text-specific",
+          "title": "تحليل النثر",
+          "score": 0.7951
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l06",
+          "relation": "text-specific",
+          "title": "القراءة النقدية",
+          "score": 0.7938
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l03",
+          "relation": "text-specific",
+          "title": "السياق الثقافي للنص",
+          "score": 0.6823
         }
       ],
       "candidates": [
@@ -584,6 +911,20 @@
           "coreTitle": "القراءة النقدية",
           "coreLessonType": "reading",
           "score": 0.4739
+        },
+        {
+          "coreLessonId": "1787ca53-1055-49c8-8349-7de14d1bdbc6",
+          "coreSlug": "bh-dadyoom-core-g10-l03",
+          "coreTitle": "السياق الثقافي للنص",
+          "coreLessonType": "reading",
+          "score": 0.294
+        },
+        {
+          "coreLessonId": "ed8ee12c-6dde-40e6-bab6-c794a8fb3a84",
+          "coreSlug": "bh-dadyoom-core-g10-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.2811
         }
       ]
     },
@@ -599,20 +940,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "very-low",
       "score": 0.2996,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g10-l09",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "الحال والتمييز المتقدم",
-          "score": 0.2996
+          "score": 0.7457
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l11",
+          "relation": "coverage-bundle",
+          "title": "الشرط والاستثناء",
+          "score": 0.7446
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l08",
+          "relation": "coverage-bundle",
+          "title": "المفاعيل ودلالاتها",
+          "score": 0.7408
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l07",
+          "relation": "coverage-bundle",
+          "title": "النواسخ في السياق",
+          "score": 0.7372
         }
       ],
       "candidates": [
@@ -636,6 +994,20 @@
           "coreTitle": "المفاعيل ودلالاتها",
           "coreLessonType": "grammar",
           "score": 0.2916
+        },
+        {
+          "coreLessonId": "d950b440-9041-49fd-aeb6-751877f46069",
+          "coreSlug": "bh-dadyoom-core-g10-l07",
+          "coreTitle": "النواسخ في السياق",
+          "coreLessonType": "grammar",
+          "score": 0.2857
+        },
+        {
+          "coreLessonId": "b1915fdd-9453-4164-ad44-a7bf3f18c343",
+          "coreSlug": "bh-dadyoom-core-g10-l10",
+          "coreTitle": "التوابع والاتساق",
+          "coreLessonType": "grammar",
+          "score": 0.2375
         }
       ]
     },
@@ -651,20 +1023,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "low",
       "score": 0.3572,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g10-l07",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "النواسخ في السياق",
-          "score": 0.3572
+          "score": 0.7815
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l11",
+          "relation": "coverage-bundle",
+          "title": "الشرط والاستثناء",
+          "score": 0.7512
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l09",
+          "relation": "coverage-bundle",
+          "title": "الحال والتمييز المتقدم",
+          "score": 0.7488
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l08",
+          "relation": "coverage-bundle",
+          "title": "المفاعيل ودلالاتها",
+          "score": 0.7409
         }
       ],
       "candidates": [
@@ -688,6 +1077,20 @@
           "coreTitle": "الحال والتمييز المتقدم",
           "coreLessonType": "grammar",
           "score": 0.3045
+        },
+        {
+          "coreLessonId": "ac69c5c1-556f-47f2-8a7b-d3c75eabaaa8",
+          "coreSlug": "bh-dadyoom-core-g10-l08",
+          "coreTitle": "المفاعيل ودلالاتها",
+          "coreLessonType": "grammar",
+          "score": 0.2918
+        },
+        {
+          "coreLessonId": "b1915fdd-9453-4164-ad44-a7bf3f18c343",
+          "coreSlug": "bh-dadyoom-core-g10-l10",
+          "coreTitle": "التوابع والاتساق",
+          "coreLessonType": "grammar",
+          "score": 0.2472
         }
       ]
     },
@@ -703,20 +1106,37 @@
         "pageStart": null,
         "pageEnd": null
       },
-      "relationType": "unmapped",
+      "relationType": "coverage-bundle",
       "reviewStatus": "candidate",
       "verificationStatus": "needs-source-review",
-      "coverageStatus": "gap",
+      "coverageStatus": "bundle-covered-candidate",
       "confidence": "low",
       "score": 0.3572,
-      "needsNationalExtension": true,
-      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "needsNationalExtension": false,
       "coreCoverage": [
         {
           "slug": "bh-dadyoom-core-g10-l07",
-          "relation": "unmapped",
+          "relation": "coverage-bundle",
           "title": "النواسخ في السياق",
-          "score": 0.3572
+          "score": 0.7815
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l09",
+          "relation": "coverage-bundle",
+          "title": "الحال والتمييز المتقدم",
+          "score": 0.7492
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l11",
+          "relation": "coverage-bundle",
+          "title": "الشرط والاستثناء",
+          "score": 0.7444
+        },
+        {
+          "slug": "bh-dadyoom-core-g10-l08",
+          "relation": "coverage-bundle",
+          "title": "المفاعيل ودلالاتها",
+          "score": 0.7379
         }
       ],
       "candidates": [
@@ -740,6 +1160,20 @@
           "coreTitle": "الشرط والاستثناء",
           "coreLessonType": "grammar",
           "score": 0.2975
+        },
+        {
+          "coreLessonId": "ac69c5c1-556f-47f2-8a7b-d3c75eabaaa8",
+          "coreSlug": "bh-dadyoom-core-g10-l08",
+          "coreTitle": "المفاعيل ودلالاتها",
+          "coreLessonType": "grammar",
+          "score": 0.2869
+        },
+        {
+          "coreLessonId": "b1915fdd-9453-4164-ad44-a7bf3f18c343",
+          "coreSlug": "bh-dadyoom-core-g10-l10",
+          "coreTitle": "التوابع والاتساق",
+          "coreLessonType": "grammar",
+          "score": 0.2421
         }
       ]
     }
