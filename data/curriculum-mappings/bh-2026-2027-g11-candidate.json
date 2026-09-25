@@ -1,0 +1,1163 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "BH",
+    "nameAr": "مملكة البحرين"
+  },
+  "academicYear": "2026-2027",
+  "grade": 11,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "candidate",
+  "officialLessons": 22,
+  "mappedLessons": 22,
+  "verifiedLessons": 0,
+  "policy": "ملف مرشحات قابل للتدقيق. بُني من الطبقة الوطنية الموجودة في قاعدة ضاديوم وربط بمهارات Dadyoom Core. لا يصبح أي درس verified دون مراجعة المصدر والأهداف، ولا يعاد نشر نص الكتاب الوزاري.",
+  "generatedBy": "Dadyoom official-to-core matcher",
+  "mappings": [
+    {
+      "officialLessonId": "57b22e6f-a490-45d4-b4e9-4231ef5e34ed",
+      "officialSlug": "bh-g11-arab201-01",
+      "officialTitle": "وعيد أبي قابوس.",
+      "officialLessonType": "reading",
+      "unitNumber": 1,
+      "unitTitle": "عرب 201 — في النص الحجاجي",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4817,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l02",
+          "relation": "text-specific",
+          "title": "تحليل النثر",
+          "score": 0.4817
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "37bd4add-40b9-4a8b-9d8d-00860f4fcea1",
+          "coreSlug": "bh-dadyoom-core-g11-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4817
+        },
+        {
+          "coreLessonId": "25e6f3d7-49a7-40c7-8c66-78669e040384",
+          "coreSlug": "bh-dadyoom-core-g11-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.4787
+        },
+        {
+          "coreLessonId": "2d2ce757-c06e-425f-aa6f-6f12d9c50856",
+          "coreSlug": "bh-dadyoom-core-g11-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.4687
+        }
+      ]
+    },
+    {
+      "officialLessonId": "a083a0c0-a6e2-4f63-9f72-7ae5b0bb02f2",
+      "officialSlug": "bh-g11-arab201-02",
+      "officialTitle": "الخبر: مفهومه، أضربه، أدوات التوكيد.",
+      "officialLessonType": "grammar",
+      "unitNumber": 1,
+      "unitTitle": "عرب 201 — في النص الحجاجي",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.2887,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l09",
+          "relation": "unmapped",
+          "title": "الحال والتمييز المتقدم",
+          "score": 0.2887
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "9cd933f1-d111-49f4-93e3-ffcadad75abb",
+          "coreSlug": "bh-dadyoom-core-g11-l09",
+          "coreTitle": "الحال والتمييز المتقدم",
+          "coreLessonType": "grammar",
+          "score": 0.2887
+        },
+        {
+          "coreLessonId": "815f8ee1-98ea-4ad4-9aeb-3783ac02480e",
+          "coreSlug": "bh-dadyoom-core-g11-l08",
+          "coreTitle": "المفاعيل ودلالاتها",
+          "coreLessonType": "grammar",
+          "score": 0.2864
+        },
+        {
+          "coreLessonId": "0e942d3f-a950-4698-9175-73e3cd401fa1",
+          "coreSlug": "bh-dadyoom-core-g11-l11",
+          "coreTitle": "الشرط والاستثناء",
+          "coreLessonType": "grammar",
+          "score": 0.2853
+        }
+      ]
+    },
+    {
+      "officialLessonId": "fe49bc3d-bed6-4685-b436-cb78ed717e65",
+      "officialSlug": "bh-g11-arab201-03",
+      "officialTitle": "الأغراض البلاغية للخبر.",
+      "officialLessonType": "grammar",
+      "unitNumber": 1,
+      "unitTitle": "عرب 201 — في النص الحجاجي",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.2965,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l08",
+          "relation": "unmapped",
+          "title": "المفاعيل ودلالاتها",
+          "score": 0.2965
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "815f8ee1-98ea-4ad4-9aeb-3783ac02480e",
+          "coreSlug": "bh-dadyoom-core-g11-l08",
+          "coreTitle": "المفاعيل ودلالاتها",
+          "coreLessonType": "grammar",
+          "score": 0.2965
+        },
+        {
+          "coreLessonId": "0e942d3f-a950-4698-9175-73e3cd401fa1",
+          "coreSlug": "bh-dadyoom-core-g11-l11",
+          "coreTitle": "الشرط والاستثناء",
+          "coreLessonType": "grammar",
+          "score": 0.296
+        },
+        {
+          "coreLessonId": "ae7730d8-1e92-46a4-94b1-f9e088e95336",
+          "coreSlug": "bh-dadyoom-core-g11-l07",
+          "coreTitle": "النواسخ في السياق",
+          "coreLessonType": "grammar",
+          "score": 0.2884
+        }
+      ]
+    },
+    {
+      "officialLessonId": "faf10304-ff9e-4d7e-bcaf-aeab48553ee2",
+      "officialSlug": "bh-g11-arab201-04",
+      "officialTitle": "الإنتاج الكتابي: إنتاج نص ذي بنية حجاجية.",
+      "officialLessonType": "writing",
+      "unitNumber": 1,
+      "unitTitle": "عرب 201 — في النص الحجاجي",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.6429,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l18",
+          "relation": "supporting-skill",
+          "title": "مراجعة الثانوية الشاملة",
+          "score": 0.6429
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "77ab90b3-4cfa-415e-ba58-07a5b84f1b76",
+          "coreSlug": "bh-dadyoom-core-g11-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.6429
+        },
+        {
+          "coreLessonId": "5132470a-0a56-44dc-bf08-3ac88d4cb635",
+          "coreSlug": "bh-dadyoom-core-g11-l17",
+          "coreTitle": "الكتابة الوظيفية",
+          "coreLessonType": "writing",
+          "score": 0.5515
+        },
+        {
+          "coreLessonId": "9d54232b-7ecf-4f9b-9612-0b0f18147a99",
+          "coreSlug": "bh-dadyoom-core-g11-l15",
+          "coreTitle": "التلخيص الأكاديمي",
+          "coreLessonType": "writing",
+          "score": 0.5144
+        }
+      ]
+    },
+    {
+      "officialLessonId": "9cce6637-3d0b-4b2e-a68b-dd2fb28f9358",
+      "officialSlug": "bh-g11-arab201-05",
+      "officialTitle": "الحمامة المطوقة والجرذ.",
+      "officialLessonType": "reading",
+      "unitNumber": 1,
+      "unitTitle": "عرب 201 — في النص الحجاجي",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.488,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l06",
+          "relation": "text-specific",
+          "title": "القراءة النقدية",
+          "score": 0.488
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "2d2ce757-c06e-425f-aa6f-6f12d9c50856",
+          "coreSlug": "bh-dadyoom-core-g11-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.488
+        },
+        {
+          "coreLessonId": "37bd4add-40b9-4a8b-9d8d-00860f4fcea1",
+          "coreSlug": "bh-dadyoom-core-g11-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4875
+        },
+        {
+          "coreLessonId": "25e6f3d7-49a7-40c7-8c66-78669e040384",
+          "coreSlug": "bh-dadyoom-core-g11-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.4844
+        }
+      ]
+    },
+    {
+      "officialLessonId": "9c0cd04c-a9a1-49ab-80aa-260715e2d6c1",
+      "officialSlug": "bh-g11-arab201-06",
+      "officialTitle": "الإنشاء وأنواعه: الأمر - النهي - الاستفهام.",
+      "officialLessonType": "grammar",
+      "unitNumber": 1,
+      "unitTitle": "عرب 201 — في النص الحجاجي",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.3139,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l11",
+          "relation": "unmapped",
+          "title": "الشرط والاستثناء",
+          "score": 0.3139
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "0e942d3f-a950-4698-9175-73e3cd401fa1",
+          "coreSlug": "bh-dadyoom-core-g11-l11",
+          "coreTitle": "الشرط والاستثناء",
+          "coreLessonType": "grammar",
+          "score": 0.3139
+        },
+        {
+          "coreLessonId": "ae7730d8-1e92-46a4-94b1-f9e088e95336",
+          "coreSlug": "bh-dadyoom-core-g11-l07",
+          "coreTitle": "النواسخ في السياق",
+          "coreLessonType": "grammar",
+          "score": 0.3
+        },
+        {
+          "coreLessonId": "9cd933f1-d111-49f4-93e3-ffcadad75abb",
+          "coreSlug": "bh-dadyoom-core-g11-l09",
+          "coreTitle": "الحال والتمييز المتقدم",
+          "coreLessonType": "grammar",
+          "score": 0.2925
+        }
+      ]
+    },
+    {
+      "officialLessonId": "91b51947-3fbb-4578-bbd0-c3064f18a649",
+      "officialSlug": "bh-g11-arab201-07",
+      "officialTitle": "الثعلب والديك لأحمد شوقي.",
+      "officialLessonType": "reading",
+      "unitNumber": 1,
+      "unitTitle": "عرب 201 — في النص الحجاجي",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4863,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l02",
+          "relation": "text-specific",
+          "title": "تحليل النثر",
+          "score": 0.4863
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "37bd4add-40b9-4a8b-9d8d-00860f4fcea1",
+          "coreSlug": "bh-dadyoom-core-g11-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4863
+        },
+        {
+          "coreLessonId": "25e6f3d7-49a7-40c7-8c66-78669e040384",
+          "coreSlug": "bh-dadyoom-core-g11-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.4833
+        },
+        {
+          "coreLessonId": "2d2ce757-c06e-425f-aa6f-6f12d9c50856",
+          "coreSlug": "bh-dadyoom-core-g11-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.4793
+        }
+      ]
+    },
+    {
+      "officialLessonId": "52d3ad40-ef38-4169-aba6-92a2e72923bb",
+      "officialSlug": "bh-g11-arab201-08",
+      "officialTitle": "الإنتاج الكتابي: إنتاج نص حجاجي مغتنٍ بالوصف.",
+      "officialLessonType": "writing",
+      "unitNumber": 1,
+      "unitTitle": "عرب 201 — في النص الحجاجي",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.6345,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l18",
+          "relation": "supporting-skill",
+          "title": "مراجعة الثانوية الشاملة",
+          "score": 0.6345
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "77ab90b3-4cfa-415e-ba58-07a5b84f1b76",
+          "coreSlug": "bh-dadyoom-core-g11-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.6345
+        },
+        {
+          "coreLessonId": "5132470a-0a56-44dc-bf08-3ac88d4cb635",
+          "coreSlug": "bh-dadyoom-core-g11-l17",
+          "coreTitle": "الكتابة الوظيفية",
+          "coreLessonType": "writing",
+          "score": 0.5454
+        },
+        {
+          "coreLessonId": "9d54232b-7ecf-4f9b-9612-0b0f18147a99",
+          "coreSlug": "bh-dadyoom-core-g11-l15",
+          "coreTitle": "التلخيص الأكاديمي",
+          "coreLessonType": "writing",
+          "score": 0.5123
+        }
+      ]
+    },
+    {
+      "officialLessonId": "63a638a5-665f-4bfe-8b5b-f936bc585be6",
+      "officialSlug": "bh-g11-arab201-09",
+      "officialTitle": "خطبة الراعي والرعية.",
+      "officialLessonType": "reading",
+      "unitNumber": 1,
+      "unitTitle": "عرب 201 — في النص الحجاجي",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4966,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l06",
+          "relation": "text-specific",
+          "title": "القراءة النقدية",
+          "score": 0.4966
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "2d2ce757-c06e-425f-aa6f-6f12d9c50856",
+          "coreSlug": "bh-dadyoom-core-g11-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.4966
+        },
+        {
+          "coreLessonId": "37bd4add-40b9-4a8b-9d8d-00860f4fcea1",
+          "coreSlug": "bh-dadyoom-core-g11-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4893
+        },
+        {
+          "coreLessonId": "25e6f3d7-49a7-40c7-8c66-78669e040384",
+          "coreSlug": "bh-dadyoom-core-g11-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.4855
+        }
+      ]
+    },
+    {
+      "officialLessonId": "f9e47e84-902d-4509-8ca4-759f09cfc884",
+      "officialSlug": "bh-g11-arab201-10",
+      "officialTitle": "الإنشاء وأنواعه: التمني - النداء.",
+      "officialLessonType": "grammar",
+      "unitNumber": 1,
+      "unitTitle": "عرب 201 — في النص الحجاجي",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.3117,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l11",
+          "relation": "unmapped",
+          "title": "الشرط والاستثناء",
+          "score": 0.3117
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "0e942d3f-a950-4698-9175-73e3cd401fa1",
+          "coreSlug": "bh-dadyoom-core-g11-l11",
+          "coreTitle": "الشرط والاستثناء",
+          "coreLessonType": "grammar",
+          "score": 0.3117
+        },
+        {
+          "coreLessonId": "ae7730d8-1e92-46a4-94b1-f9e088e95336",
+          "coreSlug": "bh-dadyoom-core-g11-l07",
+          "coreTitle": "النواسخ في السياق",
+          "coreLessonType": "grammar",
+          "score": 0.305
+        },
+        {
+          "coreLessonId": "9cd933f1-d111-49f4-93e3-ffcadad75abb",
+          "coreSlug": "bh-dadyoom-core-g11-l09",
+          "coreTitle": "الحال والتمييز المتقدم",
+          "coreLessonType": "grammar",
+          "score": 0.3021
+        }
+      ]
+    },
+    {
+      "officialLessonId": "9fff08c1-3738-4e02-8f1e-99a78cf3301e",
+      "officialSlug": "bh-g11-arab201-11",
+      "officialTitle": "فضيلة الكلام للجاحظ.",
+      "officialLessonType": "reading",
+      "unitNumber": 1,
+      "unitTitle": "عرب 201 — في النص الحجاجي",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.4882,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l02",
+          "relation": "text-specific",
+          "title": "تحليل النثر",
+          "score": 0.4882
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "37bd4add-40b9-4a8b-9d8d-00860f4fcea1",
+          "coreSlug": "bh-dadyoom-core-g11-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4882
+        },
+        {
+          "coreLessonId": "25e6f3d7-49a7-40c7-8c66-78669e040384",
+          "coreSlug": "bh-dadyoom-core-g11-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.4852
+        },
+        {
+          "coreLessonId": "2d2ce757-c06e-425f-aa6f-6f12d9c50856",
+          "coreSlug": "bh-dadyoom-core-g11-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.4818
+        }
+      ]
+    },
+    {
+      "officialLessonId": "d0fc39af-b4c7-41f2-a8ca-66ae15bc1973",
+      "officialSlug": "bh-g11-arab201-12",
+      "officialTitle": "الإنشاء غير الطلبي: التعجب - القسم - المدح والذم.",
+      "officialLessonType": "grammar",
+      "unitNumber": 1,
+      "unitTitle": "عرب 201 — في النص الحجاجي",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "unmapped",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "gap",
+      "confidence": "very-low",
+      "score": 0.3024,
+      "needsNationalExtension": true,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l09",
+          "relation": "unmapped",
+          "title": "الحال والتمييز المتقدم",
+          "score": 0.3024
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "9cd933f1-d111-49f4-93e3-ffcadad75abb",
+          "coreSlug": "bh-dadyoom-core-g11-l09",
+          "coreTitle": "الحال والتمييز المتقدم",
+          "coreLessonType": "grammar",
+          "score": 0.3024
+        },
+        {
+          "coreLessonId": "0e942d3f-a950-4698-9175-73e3cd401fa1",
+          "coreSlug": "bh-dadyoom-core-g11-l11",
+          "coreTitle": "الشرط والاستثناء",
+          "coreLessonType": "grammar",
+          "score": 0.3022
+        },
+        {
+          "coreLessonId": "815f8ee1-98ea-4ad4-9aeb-3783ac02480e",
+          "coreSlug": "bh-dadyoom-core-g11-l08",
+          "coreTitle": "المفاعيل ودلالاتها",
+          "coreLessonType": "grammar",
+          "score": 0.2922
+        }
+      ]
+    },
+    {
+      "officialLessonId": "77d94e90-59e4-4ba3-a0c4-6ba49be7d5a4",
+      "officialSlug": "bh-g11-arab201-13",
+      "officialTitle": "الإنتاج الكتابي: إنتاج نص حجاجي مغتنٍ بالسرد.",
+      "officialLessonType": "writing",
+      "unitNumber": 1,
+      "unitTitle": "عرب 201 — في النص الحجاجي",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.6333,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l18",
+          "relation": "supporting-skill",
+          "title": "مراجعة الثانوية الشاملة",
+          "score": 0.6333
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "77ab90b3-4cfa-415e-ba58-07a5b84f1b76",
+          "coreSlug": "bh-dadyoom-core-g11-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.6333
+        },
+        {
+          "coreLessonId": "5132470a-0a56-44dc-bf08-3ac88d4cb635",
+          "coreSlug": "bh-dadyoom-core-g11-l17",
+          "coreTitle": "الكتابة الوظيفية",
+          "coreLessonType": "writing",
+          "score": 0.5389
+        },
+        {
+          "coreLessonId": "9d54232b-7ecf-4f9b-9612-0b0f18147a99",
+          "coreSlug": "bh-dadyoom-core-g11-l15",
+          "coreTitle": "التلخيص الأكاديمي",
+          "coreLessonType": "writing",
+          "score": 0.5111
+        }
+      ]
+    },
+    {
+      "officialLessonId": "1694fcc0-4844-4dc6-8362-14f968c61605",
+      "officialSlug": "bh-g11-arab201-14",
+      "officialTitle": "حرية الصحافة.",
+      "officialLessonType": "reading",
+      "unitNumber": 1,
+      "unitTitle": "عرب 201 — في النص الحجاجي",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.5039,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l06",
+          "relation": "text-specific",
+          "title": "القراءة النقدية",
+          "score": 0.5039
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "2d2ce757-c06e-425f-aa6f-6f12d9c50856",
+          "coreSlug": "bh-dadyoom-core-g11-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.5039
+        },
+        {
+          "coreLessonId": "37bd4add-40b9-4a8b-9d8d-00860f4fcea1",
+          "coreSlug": "bh-dadyoom-core-g11-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4921
+        },
+        {
+          "coreLessonId": "25e6f3d7-49a7-40c7-8c66-78669e040384",
+          "coreSlug": "bh-dadyoom-core-g11-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.4897
+        }
+      ]
+    },
+    {
+      "officialLessonId": "a110156a-3705-4fc2-9e34-248f60bd16d9",
+      "officialSlug": "bh-g11-arab213-01",
+      "officialTitle": "الشعر الجاهلي: «سئمت تكاليف الحياة» لزهير بن أبي سلمى.",
+      "officialLessonType": "reading",
+      "unitNumber": 2,
+      "unitTitle": "عرب 213 — الشعر العربي القديم",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.5411,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l01",
+          "relation": "text-specific",
+          "title": "تحليل الشعر",
+          "score": 0.5411
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "25e6f3d7-49a7-40c7-8c66-78669e040384",
+          "coreSlug": "bh-dadyoom-core-g11-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.5411
+        },
+        {
+          "coreLessonId": "37bd4add-40b9-4a8b-9d8d-00860f4fcea1",
+          "coreSlug": "bh-dadyoom-core-g11-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.479
+        },
+        {
+          "coreLessonId": "2d2ce757-c06e-425f-aa6f-6f12d9c50856",
+          "coreSlug": "bh-dadyoom-core-g11-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.4709
+        }
+      ]
+    },
+    {
+      "officialLessonId": "31332557-1272-454a-b592-95e4dcfd82fd",
+      "officialSlug": "bh-g11-arab213-02",
+      "officialTitle": "الإنتاج الكتابي: التدريب على النمط التفسيري - الإنتاج الكامل.",
+      "officialLessonType": "writing",
+      "unitNumber": 2,
+      "unitTitle": "عرب 213 — الشعر العربي القديم",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.6459,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l18",
+          "relation": "supporting-skill",
+          "title": "مراجعة الثانوية الشاملة",
+          "score": 0.6459
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "77ab90b3-4cfa-415e-ba58-07a5b84f1b76",
+          "coreSlug": "bh-dadyoom-core-g11-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.6459
+        },
+        {
+          "coreLessonId": "5132470a-0a56-44dc-bf08-3ac88d4cb635",
+          "coreSlug": "bh-dadyoom-core-g11-l17",
+          "coreTitle": "الكتابة الوظيفية",
+          "coreLessonType": "writing",
+          "score": 0.5442
+        },
+        {
+          "coreLessonId": "9d54232b-7ecf-4f9b-9612-0b0f18147a99",
+          "coreSlug": "bh-dadyoom-core-g11-l15",
+          "coreTitle": "التلخيص الأكاديمي",
+          "coreLessonType": "writing",
+          "score": 0.5217
+        }
+      ]
+    },
+    {
+      "officialLessonId": "1dd8d009-cf40-4119-9269-5c894df72f75",
+      "officialSlug": "bh-g11-arab213-03",
+      "officialTitle": "الشعر الجاهلي: «قذى بعينك» للخنساء.",
+      "officialLessonType": "reading",
+      "unitNumber": 2,
+      "unitTitle": "عرب 213 — الشعر العربي القديم",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "medium",
+      "score": 0.5756,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l01",
+          "relation": "text-specific",
+          "title": "تحليل الشعر",
+          "score": 0.5756
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "25e6f3d7-49a7-40c7-8c66-78669e040384",
+          "coreSlug": "bh-dadyoom-core-g11-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.5756
+        },
+        {
+          "coreLessonId": "37bd4add-40b9-4a8b-9d8d-00860f4fcea1",
+          "coreSlug": "bh-dadyoom-core-g11-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4839
+        },
+        {
+          "coreLessonId": "2d2ce757-c06e-425f-aa6f-6f12d9c50856",
+          "coreSlug": "bh-dadyoom-core-g11-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.4771
+        }
+      ]
+    },
+    {
+      "officialLessonId": "8449df54-bc8a-4f0c-b102-885b4bdfed7d",
+      "officialSlug": "bh-g11-arab213-04",
+      "officialTitle": "الإنتاج الكتابي: إنتاج نص حجاجي: بنية النمط الحجاجي - الإنتاج الكامل.",
+      "officialLessonType": "writing",
+      "unitNumber": 2,
+      "unitTitle": "عرب 213 — الشعر العربي القديم",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.646,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l18",
+          "relation": "supporting-skill",
+          "title": "مراجعة الثانوية الشاملة",
+          "score": 0.646
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "77ab90b3-4cfa-415e-ba58-07a5b84f1b76",
+          "coreSlug": "bh-dadyoom-core-g11-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.646
+        },
+        {
+          "coreLessonId": "5132470a-0a56-44dc-bf08-3ac88d4cb635",
+          "coreSlug": "bh-dadyoom-core-g11-l17",
+          "coreTitle": "الكتابة الوظيفية",
+          "coreLessonType": "writing",
+          "score": 0.5438
+        },
+        {
+          "coreLessonId": "8b2a38eb-7408-4813-ba3c-13a9b011ecae",
+          "coreSlug": "bh-dadyoom-core-g11-l13",
+          "coreTitle": "المقال الحجاجي",
+          "coreLessonType": "writing",
+          "score": 0.5332
+        }
+      ]
+    },
+    {
+      "officialLessonId": "f0e69904-365f-46ef-bd40-6317a4631fce",
+      "officialSlug": "bh-g11-arab213-05",
+      "officialTitle": "الشعر العربي في القرنين الهجريين الثاني والثالث: «هوى أحر من النار» للعباس بن الأحنف.",
+      "officialLessonType": "reading",
+      "unitNumber": 2,
+      "unitTitle": "عرب 213 — الشعر العربي القديم",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.5217,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l01",
+          "relation": "text-specific",
+          "title": "تحليل الشعر",
+          "score": 0.5217
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "25e6f3d7-49a7-40c7-8c66-78669e040384",
+          "coreSlug": "bh-dadyoom-core-g11-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.5217
+        },
+        {
+          "coreLessonId": "37bd4add-40b9-4a8b-9d8d-00860f4fcea1",
+          "coreSlug": "bh-dadyoom-core-g11-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4795
+        },
+        {
+          "coreLessonId": "2d2ce757-c06e-425f-aa6f-6f12d9c50856",
+          "coreSlug": "bh-dadyoom-core-g11-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.4782
+        }
+      ]
+    },
+    {
+      "officialLessonId": "dbf5f6da-957a-4d62-b2d5-360f7bf2899c",
+      "officialSlug": "bh-g11-arab213-06",
+      "officialTitle": "الإنتاج الكتابي: التدريب على تدوين رؤوس الأقلام.",
+      "officialLessonType": "writing",
+      "unitNumber": 2,
+      "unitTitle": "عرب 213 — الشعر العربي القديم",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.6397,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l18",
+          "relation": "supporting-skill",
+          "title": "مراجعة الثانوية الشاملة",
+          "score": 0.6397
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "77ab90b3-4cfa-415e-ba58-07a5b84f1b76",
+          "coreSlug": "bh-dadyoom-core-g11-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.6397
+        },
+        {
+          "coreLessonId": "5132470a-0a56-44dc-bf08-3ac88d4cb635",
+          "coreSlug": "bh-dadyoom-core-g11-l17",
+          "coreTitle": "الكتابة الوظيفية",
+          "coreLessonType": "writing",
+          "score": 0.543
+        },
+        {
+          "coreLessonId": "9d54232b-7ecf-4f9b-9612-0b0f18147a99",
+          "coreSlug": "bh-dadyoom-core-g11-l15",
+          "coreTitle": "التلخيص الأكاديمي",
+          "coreLessonType": "writing",
+          "score": 0.5215
+        }
+      ]
+    },
+    {
+      "officialLessonId": "88afd62f-3267-4673-bb27-914bb744c967",
+      "officialSlug": "bh-g11-arab213-07",
+      "officialTitle": "الشعر العربي في القرنين الهجريين الثاني والثالث: «فتح عمورية» لأبي تمام.",
+      "officialLessonType": "reading",
+      "unitNumber": 2,
+      "unitTitle": "عرب 213 — الشعر العربي القديم",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "text-specific",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial-text-specific",
+      "confidence": "low",
+      "score": 0.5319,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l01",
+          "relation": "text-specific",
+          "title": "تحليل الشعر",
+          "score": 0.5319
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "25e6f3d7-49a7-40c7-8c66-78669e040384",
+          "coreSlug": "bh-dadyoom-core-g11-l01",
+          "coreTitle": "تحليل الشعر",
+          "coreLessonType": "reading",
+          "score": 0.5319
+        },
+        {
+          "coreLessonId": "2d2ce757-c06e-425f-aa6f-6f12d9c50856",
+          "coreSlug": "bh-dadyoom-core-g11-l06",
+          "coreTitle": "القراءة النقدية",
+          "coreLessonType": "reading",
+          "score": 0.4803
+        },
+        {
+          "coreLessonId": "37bd4add-40b9-4a8b-9d8d-00860f4fcea1",
+          "coreSlug": "bh-dadyoom-core-g11-l02",
+          "coreTitle": "تحليل النثر",
+          "coreLessonType": "reading",
+          "score": 0.4785
+        }
+      ]
+    },
+    {
+      "officialLessonId": "4eab3c15-1686-444d-aa21-2a4533f679f0",
+      "officialSlug": "bh-g11-arab213-08",
+      "officialTitle": "الإنتاج الكتابي: التلخيص: تعريفه - مراحله - الإنتاج الكامل.",
+      "officialLessonType": "writing",
+      "unitNumber": 2,
+      "unitTitle": "عرب 213 — الشعر العربي القديم",
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "pageStart": null,
+        "pageEnd": null
+      },
+      "relationType": "supporting-skill",
+      "reviewStatus": "candidate",
+      "verificationStatus": "needs-source-review",
+      "coverageStatus": "partial",
+      "confidence": "medium",
+      "score": 0.6549,
+      "needsNationalExtension": false,
+      "rationale": "مطابقة آلية مرشحة بالعنوان والأهداف ونوع المهارة. تتطلب مراجعة المصدر والهدف قبل التحويل إلى verified.",
+      "coreCoverage": [
+        {
+          "slug": "bh-dadyoom-core-g11-l18",
+          "relation": "supporting-skill",
+          "title": "مراجعة الثانوية الشاملة",
+          "score": 0.6549
+        }
+      ],
+      "candidates": [
+        {
+          "coreLessonId": "77ab90b3-4cfa-415e-ba58-07a5b84f1b76",
+          "coreSlug": "bh-dadyoom-core-g11-l18",
+          "coreTitle": "مراجعة الثانوية الشاملة",
+          "coreLessonType": "assessment",
+          "score": 0.6549
+        },
+        {
+          "coreLessonId": "9d54232b-7ecf-4f9b-9612-0b0f18147a99",
+          "coreSlug": "bh-dadyoom-core-g11-l15",
+          "coreTitle": "التلخيص الأكاديمي",
+          "coreLessonType": "writing",
+          "score": 0.6003
+        },
+        {
+          "coreLessonId": "5132470a-0a56-44dc-bf08-3ac88d4cb635",
+          "coreSlug": "bh-dadyoom-core-g11-l17",
+          "coreTitle": "الكتابة الوظيفية",
+          "coreLessonType": "writing",
+          "score": 0.5411
+        }
+      ]
+    }
+  ]
+}
