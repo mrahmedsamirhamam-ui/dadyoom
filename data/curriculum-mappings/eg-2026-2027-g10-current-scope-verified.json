@@ -1,0 +1,443 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "EG",
+    "nameAr": "مصر"
+  },
+  "academicYear": "2026-2027",
+  "grade": 10,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 12,
+  "mappedLessons": 12,
+  "verifiedLessons": 12,
+  "scope": "current-ministry-published-scope",
+  "policy": "مواءمة موثقة مع مجالات/وحدات وزارة التربية والتعليم ومحتوى ضاديوم الأصلي؛ لا إعادة نشر لنصوص الكتب.",
+  "mappings": [
+    {
+      "officialSlug": "eg-2026-2027-g10-s1-reading",
+      "officialTitle": "القراءة — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?schoolStageId=1931&schoolYearId=1936"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «القراءة» مغطى بحزمة Core المناسبة وبمحتوى وطني مصري أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g10-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g10-s1-texts",
+      "officialTitle": "النصوص الأدبية — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?schoolStageId=1931&schoolYearId=1936"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «النصوص الأدبية» مغطى بحزمة Core المناسبة وبمحتوى وطني مصري أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g10-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g10-s1-literature",
+      "officialTitle": "الأدب — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?schoolStageId=1931&schoolYearId=1936"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «الأدب» مغطى بحزمة Core المناسبة وبمحتوى وطني مصري أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g10-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g10-s1-rhetoric",
+      "officialTitle": "البلاغة — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?schoolStageId=1931&schoolYearId=1936"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «البلاغة» مغطى بحزمة Core المناسبة وبمحتوى وطني مصري أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g10-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l12",
+          "relation": "supporting-skill",
+          "title": "الإيجاز والإطناب"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g10-s1-grammar",
+      "officialTitle": "النحو والصرف — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?schoolStageId=1931&schoolYearId=1936"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «النحو والصرف» مغطى بحزمة Core المناسبة وبمحتوى وطني مصري أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g10-l07",
+          "relation": "supporting-skill",
+          "title": "النواسخ في السياق"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l08",
+          "relation": "supporting-skill",
+          "title": "المفاعيل ودلالاتها"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l09",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز المتقدم"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l10",
+          "relation": "supporting-skill",
+          "title": "التوابع والاتساق"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l11",
+          "relation": "supporting-skill",
+          "title": "الشرط والاستثناء"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g10-s1-writing",
+      "officialTitle": "الكتابة والتعبير — الفصل الأول",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?schoolStageId=1931&schoolYearId=1936"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «الكتابة والتعبير» مغطى بحزمة Core المناسبة وبمحتوى وطني مصري أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g10-l13",
+          "relation": "supporting-skill",
+          "title": "المقال الحجاجي"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l14",
+          "relation": "supporting-skill",
+          "title": "البحث والتوثيق"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l15",
+          "relation": "supporting-skill",
+          "title": "التلخيص الأكاديمي"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g10-s2-reading",
+      "officialTitle": "القراءة — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?schoolStageId=1931&schoolYearId=1936"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «القراءة» مغطى بحزمة Core المناسبة وبمحتوى وطني مصري أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g10-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l05",
+          "relation": "supporting-skill",
+          "title": "الحجة وتقويم الأدلة"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g10-s2-texts",
+      "officialTitle": "النصوص الأدبية — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?schoolStageId=1931&schoolYearId=1936"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «النصوص الأدبية» مغطى بحزمة Core المناسبة وبمحتوى وطني مصري أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g10-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g10-s2-literature",
+      "officialTitle": "الأدب — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?schoolStageId=1931&schoolYearId=1936"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «الأدب» مغطى بحزمة Core المناسبة وبمحتوى وطني مصري أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g10-l01",
+          "relation": "supporting-skill",
+          "title": "تحليل الشعر"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l02",
+          "relation": "supporting-skill",
+          "title": "تحليل النثر"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l03",
+          "relation": "supporting-skill",
+          "title": "السياق الثقافي للنص"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l06",
+          "relation": "supporting-skill",
+          "title": "القراءة النقدية"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g10-s2-rhetoric",
+      "officialTitle": "البلاغة — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?schoolStageId=1931&schoolYearId=1936"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «البلاغة» مغطى بحزمة Core المناسبة وبمحتوى وطني مصري أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g10-l04",
+          "relation": "supporting-skill",
+          "title": "الصورة الفنية"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l12",
+          "relation": "supporting-skill",
+          "title": "الإيجاز والإطناب"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g10-s2-grammar",
+      "officialTitle": "النحو والصرف — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?schoolStageId=1931&schoolYearId=1936"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «النحو والصرف» مغطى بحزمة Core المناسبة وبمحتوى وطني مصري أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g10-l07",
+          "relation": "supporting-skill",
+          "title": "النواسخ في السياق"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l08",
+          "relation": "supporting-skill",
+          "title": "المفاعيل ودلالاتها"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l09",
+          "relation": "supporting-skill",
+          "title": "الحال والتمييز المتقدم"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l10",
+          "relation": "supporting-skill",
+          "title": "التوابع والاتساق"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l11",
+          "relation": "supporting-skill",
+          "title": "الشرط والاستثناء"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-domain+core-skill-bundle+national-pack-v1"
+    },
+    {
+      "officialSlug": "eg-2026-2027-g10-s2-writing",
+      "officialTitle": "الكتابة والتعبير — الفصل الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم والتعليم الفني — بوابة التعليم الإلكتروني",
+        "url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?schoolStageId=1931&schoolYearId=1936"
+      },
+      "relationType": "coverage-bundle",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "مجال «الكتابة والتعبير» مغطى بحزمة Core المناسبة وبمحتوى وطني مصري أصلي داخل ضاديوم.",
+      "coreCoverage": [
+        {
+          "slug": "eg-dadyoom-core-g10-l13",
+          "relation": "supporting-skill",
+          "title": "المقال الحجاجي"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l14",
+          "relation": "supporting-skill",
+          "title": "البحث والتوثيق"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l15",
+          "relation": "supporting-skill",
+          "title": "التلخيص الأكاديمي"
+        },
+        {
+          "slug": "eg-dadyoom-core-g10-l17",
+          "relation": "supporting-skill",
+          "title": "الكتابة الوظيفية"
+        }
+      ],
+      "nationalExtensionInPack": false,
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-portal+official-domain+core-skill-bundle+national-pack-v1"
+    }
+  ]
+}
