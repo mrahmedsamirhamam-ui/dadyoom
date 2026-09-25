@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "AE",
+    "nameAr": "الإمارات العربية المتحدة"
+  },
+  "academicYear": "2026-2027",
+  "grade": 6,
+  "semester": null,
+  "subject": "اللغة العربية",
+  "status": "verified",
+  "officialLessons": 6,
+  "mappedLessons": 6,
+  "verifiedLessons": 6,
+  "scope": "current-publicly-verifiable-national-domain-scope-across-three-terms",
+  "policy": "المطابقة على مستوى المجالات الوطنية الرسمية، مع Core Skill Bundles كدعم وNational Extensions أصلية لضمان عدم إسقاط أي مجال؛ لا إعادة نشر نصوص الكتب.",
+  "mappings": [
+    {
+      "officialSlug": "ae-2026-2027-g6-foundations",
+      "officialTitle": "أساسيات القراءة والكتابة",
+      "source": {
+        "label": "وزارة التربية والتعليم الإماراتية — المنهج والمعايير والتقييم",
+        "url": "https://www.moe.gov.ae/ar/guides/Pages/Student-Assessment-Policy-Guide-2026-2027.aspx",
+        "calendarUrl": "https://www.moe.gov.ae/en/guides/Documents/Academic-Calender-2026-2027/Academic-Calender-2026-2027-Ar.pdf",
+        "diwanUrl": "https://u.ae/en/information-and-services/education/school-education-k-12/e-learning-reading-and-educational-resources/diwan-e-book-reader",
+        "standardsUrl": "https://emsat.moe.gov.ae/emsat/doc/Advantage%20Arabic%20Public%20Test%20Specifications%20-%20English%202021%20Sep%20F.pdf"
+      },
+      "relationType": "national-extension+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المجال الوطني «أساسيات القراءة والكتابة» ممثل كعقدة وطنية أصلية كاملة في Pack الإمارات، مع استخدام Core كحزمة مهارات مساندة فقط وعدم افتراض مطابقة 1:1.",
+      "coreCoverage": [
+        {
+          "slug": "ae-dadyoom-core-g6-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ae-dadyoom-core-g6-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ae-dadyoom-core-g6-l12",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "termCoverage": [
+        1,
+        2,
+        3
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-current-assessment+official-2026-2027-calendar+official-government-diwan+national-standards+national-extension"
+    },
+    {
+      "officialSlug": "ae-2026-2027-g6-literary-reading",
+      "officialTitle": "القراءة الأدبية",
+      "source": {
+        "label": "وزارة التربية والتعليم الإماراتية — المنهج والمعايير والتقييم",
+        "url": "https://www.moe.gov.ae/ar/guides/Pages/Student-Assessment-Policy-Guide-2026-2027.aspx",
+        "calendarUrl": "https://www.moe.gov.ae/en/guides/Documents/Academic-Calender-2026-2027/Academic-Calender-2026-2027-Ar.pdf",
+        "diwanUrl": "https://u.ae/en/information-and-services/education/school-education-k-12/e-learning-reading-and-educational-resources/diwan-e-book-reader",
+        "standardsUrl": "https://emsat.moe.gov.ae/emsat/doc/Advantage%20Arabic%20Public%20Test%20Specifications%20-%20English%202021%20Sep%20F.pdf"
+      },
+      "relationType": "national-extension+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المجال الوطني «القراءة الأدبية» ممثل كعقدة وطنية أصلية كاملة في Pack الإمارات، مع استخدام Core كحزمة مهارات مساندة فقط وعدم افتراض مطابقة 1:1.",
+      "coreCoverage": [
+        {
+          "slug": "ae-dadyoom-core-g6-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ae-dadyoom-core-g6-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ae-dadyoom-core-g6-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ae-dadyoom-core-g6-l06",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "termCoverage": [
+        1,
+        2,
+        3
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-current-assessment+official-2026-2027-calendar+official-government-diwan+national-standards+national-extension"
+    },
+    {
+      "officialSlug": "ae-2026-2027-g6-informational-reading",
+      "officialTitle": "القراءة المعلوماتية",
+      "source": {
+        "label": "وزارة التربية والتعليم الإماراتية — المنهج والمعايير والتقييم",
+        "url": "https://www.moe.gov.ae/ar/guides/Pages/Student-Assessment-Policy-Guide-2026-2027.aspx",
+        "calendarUrl": "https://www.moe.gov.ae/en/guides/Documents/Academic-Calender-2026-2027/Academic-Calender-2026-2027-Ar.pdf",
+        "diwanUrl": "https://u.ae/en/information-and-services/education/school-education-k-12/e-learning-reading-and-educational-resources/diwan-e-book-reader",
+        "standardsUrl": "https://emsat.moe.gov.ae/emsat/doc/Advantage%20Arabic%20Public%20Test%20Specifications%20-%20English%202021%20Sep%20F.pdf"
+      },
+      "relationType": "national-extension+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المجال الوطني «القراءة المعلوماتية» ممثل كعقدة وطنية أصلية كاملة في Pack الإمارات، مع استخدام Core كحزمة مهارات مساندة فقط وعدم افتراض مطابقة 1:1.",
+      "coreCoverage": [
+        {
+          "slug": "ae-dadyoom-core-g6-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ae-dadyoom-core-g6-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ae-dadyoom-core-g6-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ae-dadyoom-core-g6-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ae-dadyoom-core-g6-l06",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "termCoverage": [
+        1,
+        2,
+        3
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-current-assessment+official-2026-2027-calendar+official-government-diwan+national-standards+national-extension"
+    },
+    {
+      "officialSlug": "ae-2026-2027-g6-listening-speaking",
+      "officialTitle": "الاستماع والتحدث",
+      "source": {
+        "label": "وزارة التربية والتعليم الإماراتية — المنهج والمعايير والتقييم",
+        "url": "https://www.moe.gov.ae/ar/guides/Pages/Student-Assessment-Policy-Guide-2026-2027.aspx",
+        "calendarUrl": "https://www.moe.gov.ae/en/guides/Documents/Academic-Calender-2026-2027/Academic-Calender-2026-2027-Ar.pdf",
+        "diwanUrl": "https://u.ae/en/information-and-services/education/school-education-k-12/e-learning-reading-and-educational-resources/diwan-e-book-reader",
+        "standardsUrl": "https://emsat.moe.gov.ae/emsat/doc/Advantage%20Arabic%20Public%20Test%20Specifications%20-%20English%202021%20Sep%20F.pdf"
+      },
+      "relationType": "national-extension+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المجال الوطني «الاستماع والتحدث» ممثل كعقدة وطنية أصلية كاملة في Pack الإمارات، مع استخدام Core كحزمة مهارات مساندة فقط وعدم افتراض مطابقة 1:1.",
+      "coreCoverage": [
+        {
+          "slug": "ae-dadyoom-core-g6-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ae-dadyoom-core-g6-l17",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "termCoverage": [
+        1,
+        2,
+        3
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-current-assessment+official-2026-2027-calendar+official-government-diwan+national-standards+national-extension"
+    },
+    {
+      "officialSlug": "ae-2026-2027-g6-writing",
+      "officialTitle": "الكتابة",
+      "source": {
+        "label": "وزارة التربية والتعليم الإماراتية — المنهج والمعايير والتقييم",
+        "url": "https://www.moe.gov.ae/ar/guides/Pages/Student-Assessment-Policy-Guide-2026-2027.aspx",
+        "calendarUrl": "https://www.moe.gov.ae/en/guides/Documents/Academic-Calender-2026-2027/Academic-Calender-2026-2027-Ar.pdf",
+        "diwanUrl": "https://u.ae/en/information-and-services/education/school-education-k-12/e-learning-reading-and-educational-resources/diwan-e-book-reader",
+        "standardsUrl": "https://emsat.moe.gov.ae/emsat/doc/Advantage%20Arabic%20Public%20Test%20Specifications%20-%20English%202021%20Sep%20F.pdf"
+      },
+      "relationType": "national-extension+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المجال الوطني «الكتابة» ممثل كعقدة وطنية أصلية كاملة في Pack الإمارات، مع استخدام Core كحزمة مهارات مساندة فقط وعدم افتراض مطابقة 1:1.",
+      "coreCoverage": [
+        {
+          "slug": "ae-dadyoom-core-g6-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ae-dadyoom-core-g6-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ae-dadyoom-core-g6-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ae-dadyoom-core-g6-l15",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "termCoverage": [
+        1,
+        2,
+        3
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-current-assessment+official-2026-2027-calendar+official-government-diwan+national-standards+national-extension"
+    },
+    {
+      "officialSlug": "ae-2026-2027-g6-language",
+      "officialTitle": "اللغة",
+      "source": {
+        "label": "وزارة التربية والتعليم الإماراتية — المنهج والمعايير والتقييم",
+        "url": "https://www.moe.gov.ae/ar/guides/Pages/Student-Assessment-Policy-Guide-2026-2027.aspx",
+        "calendarUrl": "https://www.moe.gov.ae/en/guides/Documents/Academic-Calender-2026-2027/Academic-Calender-2026-2027-Ar.pdf",
+        "diwanUrl": "https://u.ae/en/information-and-services/education/school-education-k-12/e-learning-reading-and-educational-resources/diwan-e-book-reader",
+        "standardsUrl": "https://emsat.moe.gov.ae/emsat/doc/Advantage%20Arabic%20Public%20Test%20Specifications%20-%20English%202021%20Sep%20F.pdf"
+      },
+      "relationType": "national-extension+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "المجال الوطني «اللغة» ممثل كعقدة وطنية أصلية كاملة في Pack الإمارات، مع استخدام Core كحزمة مهارات مساندة فقط وعدم افتراض مطابقة 1:1.",
+      "coreCoverage": [
+        {
+          "slug": "ae-dadyoom-core-g6-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ae-dadyoom-core-g6-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ae-dadyoom-core-g6-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ae-dadyoom-core-g6-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ae-dadyoom-core-g6-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "ae-dadyoom-core-g6-l12",
+          "relation": "supporting-skill"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "termCoverage": [
+        1,
+        2,
+        3
+      ],
+      "verifiedAt": "2026-09-25",
+      "verificationMethod": "official-moe-current-assessment+official-2026-2027-calendar+official-government-diwan+national-standards+national-extension"
+    }
+  ]
+}
