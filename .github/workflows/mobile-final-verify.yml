@@ -46,12 +46,8 @@ jobs:
           node scripts/check-finish-curriculum-ops.mjs
           npm run curriculum:gate:official-22
           # Canonical national curriculum closure is enforced above by curriculum:gate:official-22.
-          # Legacy catalog/official audits predate the 22-country closure and are intentionally not release gates.
-          npm run mvp:verify:closure
-          node scripts/seed-dadyoom-core-22.mjs
-          node scripts/import-curriculum-pack.mjs --pack data/curriculum-packs/bahrain-2026-2027-final/bh-2026-2027-arabic-unified-secondary-g10-s1.json
-          node scripts/import-curriculum-pack.mjs --pack data/curriculum-packs/bahrain-2026-2027-final/bh-2026-2027-arabic-unified-secondary-g11-s1.json
-          node scripts/import-curriculum-pack.mjs --pack data/curriculum-packs/bahrain-2026-2027-final/bh-2026-2027-arabic-unified-secondary-g12-s1.json
+          # Legacy catalog/closure/seed/import checks predate the 22-country closure and are intentionally not release gates.
+          # Verification must not mutate curriculum data during Commerce launch.
 
       - name: Targeted lint
         run: >
