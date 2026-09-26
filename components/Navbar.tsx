@@ -67,6 +67,7 @@ export default async function Navbar() {
             <Link
               key={item.href}
               href={item.href}
+              prefetch={false}
               className="whitespace-nowrap rounded-full px-4 py-2.5 transition hover:bg-[#f3ead7] hover:text-[#123f39]"
             >
               {item.label}
@@ -83,6 +84,7 @@ export default async function Navbar() {
             </div>
             <Link
               href={dashboard.href}
+              prefetch={false}
               className="rounded-full bg-[#123f39] px-4 py-2.5 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#0c332e]"
             >
               {dashboard.label}
@@ -93,12 +95,14 @@ export default async function Navbar() {
           <div className="flex items-center gap-2">
             <Link
               href="/login"
+              prefetch={false}
               className="rounded-full border border-[#d7c59f] bg-[#fffaf0] px-4 py-2.5 text-sm font-black text-[#6b5d45] transition hover:border-[#b88a34] hover:text-[#123f39]"
             >
               دخول
             </Link>
             <Link
               href="/signup"
+              prefetch={false}
               className="rounded-full bg-[#123f39] px-4 py-2.5 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#0c332e]"
             >
               حساب جديد
