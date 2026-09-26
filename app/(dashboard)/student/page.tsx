@@ -239,6 +239,7 @@ export default async function StudentPage() {
 
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
+                  prefetch={false}
                   href={
                     continueLesson
                       ? `/lessons/${continueLesson.id}`
@@ -251,6 +252,7 @@ export default async function StudentPage() {
 
                 <Link
                   href="/ask"
+                  prefetch={false}
                   className="rounded-xl border border-white/40 bg-white/10 px-5 py-3 font-black text-white transition hover:bg-white/20"
                 >
                   اسأل ضاد
@@ -258,6 +260,7 @@ export default async function StudentPage() {
 
                 <Link
                   href="/pricing"
+                  prefetch={false}
                   className="rounded-xl border border-[#f4d58a]/60 bg-[#f4d58a]/10 px-5 py-3 font-black text-[#f8e6b0] transition hover:bg-[#f4d58a]/20"
                 >
                   ضاديوم Plus
@@ -318,6 +321,7 @@ export default async function StudentPage() {
 
             <Link
               href="/courses"
+              prefetch={false}
               className="rounded-xl bg-teal-700 px-4 py-2 font-black text-white"
             >
               عرض كل الدروس
@@ -336,6 +340,7 @@ export default async function StudentPage() {
               <Link
                 key={lesson.id}
                 href={`/lessons/${lesson.id}`}
+                prefetch={false}
                 className={[
                   "flex flex-col gap-4 rounded-2xl border p-4 transition sm:flex-row sm:items-center",
                   lesson.completed
@@ -412,6 +417,7 @@ function QuickLink({
   return (
     <Link
       href={href}
+      prefetch={false}
       className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-teal-300 hover:shadow-md"
     >
       <h2 className="font-black text-[#123f39]">{title}</h2>
