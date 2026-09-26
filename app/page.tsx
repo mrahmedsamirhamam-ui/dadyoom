@@ -3,6 +3,9 @@ import Link from "next/link";
 import DadyoomLogo, { DadyoomMark } from "@/components/brand/DadyoomLogo";
 
 import HomeInteractionPanel from "@/components/home/HomeInteractionPanel";
+export const dynamic = "force-static";
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
@@ -30,13 +33,13 @@ export default function HomePage() {
           <nav className="hidden items-center gap-6 text-sm font-black text-[#655c51] md:flex">
             <a href="#mvp" className="transition hover:text-[#174f47]">المنهج</a>
             <a href="#skills" className="transition hover:text-[#174f47]">المهارات</a>
-            <Link href="/courses" className="transition hover:text-[#174f47]">استكشف الدروس</Link>
-            <Link href="/pricing" className="transition hover:text-[#174f47]">ضاديوم Plus</Link>
-            <Link href="/ask" className="transition hover:text-[#174f47]">اسأل ضاد</Link>
+            <Link prefetch={false} href="/courses" className="transition hover:text-[#174f47]">استكشف الدروس</Link>
+            <Link prefetch={false} href="/pricing" className="transition hover:text-[#174f47]">ضاديوم Plus</Link>
+            <Link prefetch={false} href="/ask" className="transition hover:text-[#174f47]">اسأل ضاد</Link>
           </nav>
           <div className="flex items-center gap-2">
-            <Link href="/login" className="hidden rounded-xl px-4 py-2.5 text-sm font-black text-[#5d554c] hover:bg-[#f3ead7] sm:inline-flex">دخول</Link>
-            <Link href="/signup" className="rounded-xl bg-[#174f47] px-4 py-2.5 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#103f39]">ابدأ مجانًا</Link>
+            <Link prefetch={false} href="/login" className="hidden rounded-xl px-4 py-2.5 text-sm font-black text-[#5d554c] hover:bg-[#f3ead7] sm:inline-flex">دخول</Link>
+            <Link prefetch={false} href="/signup" className="rounded-xl bg-[#174f47] px-4 py-2.5 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#103f39]">ابدأ مجانًا</Link>
           </div>
         </div>
       </header>
@@ -56,9 +59,9 @@ export default function HomePage() {
               ضاديوم (Dadyoom) يجمع منهجًا منظمًا، والمهارات الأربع، والتقييم والتقدم، و«ضاد» رفيقًا ذكيًا يساعد الطالب في اللحظة التي يحتاج فيها إلى شرح أو تدريب.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/signup" className="rounded-2xl bg-[#174f47] px-7 py-4 font-black text-white shadow-lg shadow-[#174f47]/15 transition hover:-translate-y-0.5 hover:bg-[#103f39]">أنشئ حسابك</Link>
-              <Link href="/ask" className="rounded-2xl border border-[#d6b569] bg-[#fffef9] px-7 py-4 font-black text-[#72551c] transition hover:-translate-y-0.5 hover:bg-[#fff6df]">جرّب ضاد الآن</Link>
-              <Link href="/courses" className="rounded-2xl border border-[#d9cdb7] bg-white px-7 py-4 font-black text-[#4d4438] transition hover:border-[#84a89f] hover:text-[#174f47]">تصفّح المنهج</Link>
+              <Link prefetch={false} href="/signup" className="rounded-2xl bg-[#174f47] px-7 py-4 font-black text-white shadow-lg shadow-[#174f47]/15 transition hover:-translate-y-0.5 hover:bg-[#103f39]">أنشئ حسابك</Link>
+              <Link prefetch={false} href="/ask" className="rounded-2xl border border-[#d6b569] bg-[#fffef9] px-7 py-4 font-black text-[#72551c] transition hover:-translate-y-0.5 hover:bg-[#fff6df]">جرّب ضاد الآن</Link>
+              <Link prefetch={false} href="/courses" className="rounded-2xl border border-[#d9cdb7] bg-white px-7 py-4 font-black text-[#4d4438] transition hover:border-[#84a89f] hover:text-[#174f47]">تصفّح المنهج</Link>
             </div>
             <div className="mt-9 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
               <MiniStat value="22/22" label="دولة Core Live" />
@@ -133,7 +136,7 @@ export default function HomePage() {
               <h2 className="mt-3 font-arabic-display text-3xl font-black sm:text-4xl">اختر دولتك ودورك، وابدأ من مكان واضح</h2>
               <p className="mt-3 max-w-2xl font-arabic-reading text-lg leading-8 text-[#e7f0ec]">يمكنك التسجيل بالبريد أو Google، ثم اختيار دولتك وصفك والدخول إلى مسار ضاديوم الأساسي، مع المهارات الأربع وقاموس السياق وضاد في رحلة واحدة.</p>
             </div>
-            <Link href="/signup" className="inline-flex shrink-0 justify-center rounded-2xl bg-[#f5cf7a] px-7 py-4 font-black text-[#493814] transition hover:-translate-y-0.5 hover:bg-[#ffe39e]">ابدأ رحلتك</Link>
+            <Link prefetch={false} href="/signup" className="inline-flex shrink-0 justify-center rounded-2xl bg-[#f5cf7a] px-7 py-4 font-black text-[#493814] transition hover:-translate-y-0.5 hover:bg-[#ffe39e]">ابدأ رحلتك</Link>
           </div>
         </div>
       </section>
