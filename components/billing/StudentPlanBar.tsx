@@ -40,6 +40,7 @@ export default function StudentPlanBar() {
 
       <Link
         href="/pricing"
+        prefetch={false}
         className="dadyoom-arabic-button shrink-0 rounded-xl px-4 py-2 font-black text-white"
       >
         {plan === "plus" ? "إدارة Plus" : "اكتشف Plus"}
