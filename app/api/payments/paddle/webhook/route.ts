@@ -110,6 +110,17 @@ function periodFromSubscription(data: JsonObject) {
   };
 }
 
+function scheduledCancellationFromSubscription(
+  data: JsonObject,
+) {
+  const scheduledChange = record(data.scheduled_change);
+
+  return (
+    stringValue(scheduledChange.action) === "cancel" &&
+    Boolean(stringValue(scheduledChange.effective_at))
+  );
+}
+
 function customUser(data: JsonObject) {
   const custom = record(data.custom_data);
 
@@ -388,6 +399,8 @@ export async function POST(request: Request) {
 
       const status = stringValue(data.status);
       const period = periodFromSubscription(data);
+      const cancelAtPeriodEnd =
+        scheduledCancellationFromSubscription(data);
 
       const mappedStatus =
         status === "past_due"
@@ -411,7 +424,8 @@ export async function POST(request: Request) {
             current_period_end:
               period.end || null,
             cancel_at_period_end:
-              mappedStatus === "cancelled",
+              mappedStatus === "cancelled" ||
+              cancelAtPeriodEnd,
             grant_source: "paddle_payment",
             updated_at: new Date().toISOString(),
           },
@@ -440,6 +454,12 @@ export async function POST(request: Request) {
           paddle_subscription_id:
             stringValue(data.id),
           paddle_status: status,
+          scheduled_cancel: cancelAtPeriodEnd,
+          scheduled_cancel_at: cancelAtPeriodEnd
+            ? stringValue(
+                record(data.scheduled_change).effective_at,
+              )
+            : null,
         },
       });
 
