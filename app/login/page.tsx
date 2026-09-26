@@ -1,22 +1,8 @@
 import EmailPasswordAuthForm from "@/components/auth/EmailPasswordAuthForm";
 
-function safeNext(value?: string) {
-  if (!value || !value.startsWith("/") || value.startsWith("//")) {
-    return "";
-  }
-  return value;
-}
+export const dynamic = "force-static";
+export const revalidate = 86400;
 
-export default async function LoginPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ next?: string }>;
-}) {
-  const params = await searchParams;
-  return (
-    <EmailPasswordAuthForm
-      mode="login"
-      nextPath={safeNext(params.next)}
-    />
-  );
+export default function LoginPage() {
+  return <EmailPasswordAuthForm mode="login" />;
 }
