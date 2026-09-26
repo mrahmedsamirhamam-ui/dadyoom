@@ -179,4 +179,47 @@ describe("Paddle webhook security", () => {
       expect(db.mutations[0].value.status).toBe(eventType === "subscription.canceled" ? "cancelled" : "active");
     },
   );
+
+  it("keeps Plus active while Paddle cancellation is scheduled for period end", async () => {
+    const db = database();
+    const raw = JSON.stringify({
+      ...event,
+      event_id: "evt_local_scheduled_cancel",
+      event_type: "subscription.updated",
+      data: {
+        ...event.data,
+        id: "sub_local_1",
+        status: "active",
+        current_billing_period: event.data.billing_period,
+        scheduled_change: {
+          action: "cancel",
+          effective_at: "2026-10-14T10:00:00Z",
+          resume_at: null,
+        },
+      },
+    });
+
+    expect((await POST(request(raw, signature(raw)))).status).toBe(200);
+    expect(db.mutations).toHaveLength(2);
+    expect(db.mutations[0]).toMatchObject({
+      table: "edu_subscriptions",
+      operation: "upsert",
+      value: {
+        status: "active",
+        cancel_at_period_end: true,
+      },
+    });
+    expect(db.mutations[1]).toMatchObject({
+      table: "edu_subscription_events",
+      operation: "insert",
+      value: {
+        action: "payment_activated",
+        metadata: {
+          event_type: "subscription.updated",
+          scheduled_cancel: true,
+          scheduled_cancel_at: "2026-10-14T10:00:00Z",
+        },
+      },
+    });
+  });
 });
