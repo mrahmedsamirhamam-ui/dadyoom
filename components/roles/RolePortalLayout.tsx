@@ -143,6 +143,7 @@ export default async function RolePortalLayout({
 
             <Link
               href="/ask"
+              prefetch={false}
               className="rounded-full bg-[#f5cf7a] px-5 py-3 text-sm font-black text-[#123f39] transition hover:brightness-95"
             >
               اسأل ضاد
@@ -157,6 +158,7 @@ export default async function RolePortalLayout({
               <Link
                 key={link.href}
                 href={link.href}
+                prefetch={false}
                 className="flex shrink-0 items-center gap-2 rounded-full border border-[#ddcbaa] bg-[#fffdf8] px-4 py-2.5 text-sm font-black text-[#5c554c] transition hover:border-[#b68d46] hover:bg-[#fff7e5] hover:text-[#123f39]"
               >
                 <span aria-hidden="true">
