@@ -16,6 +16,13 @@ type Props = {
 
 const NATIVE_INTENT_KEY = "dadyoom_native_oauth_intent";
 
+function safeNextPath(value: string | null | undefined) {
+  if (!value || !value.startsWith("/") || value.startsWith("//")) {
+    return "";
+  }
+  return value;
+}
+
 function timeout(ms: number) {
   return new Promise<never>((_, reject) => {
     window.setTimeout(
@@ -78,6 +85,11 @@ export default function GoogleAuthButton({
       }
 
       const isNative = Capacitor.isNativePlatform();
+      const effectiveNextPath =
+        safeNextPath(nextPath) ||
+        safeNextPath(
+          new URLSearchParams(window.location.search).get("next"),
+        );
 
       if (mode === "signup") {
         setPhase("جارٍ تجهيز بيانات الحساب…");
@@ -129,7 +141,7 @@ export default function GoogleAuthButton({
           options: {
             redirectTo: isNative
               ? `${window.location.origin}/auth/callback?native=1`
-              : `${window.location.origin}/auth/callback${nextPath ? `?next=${encodeURIComponent(nextPath)}` : ""}`,
+              : `${window.location.origin}/auth/callback${effectiveNextPath ? `?next=${encodeURIComponent(effectiveNextPath)}` : ""}`,
             skipBrowserRedirect: isNative,
             queryParams: {
               prompt: "select_account",
