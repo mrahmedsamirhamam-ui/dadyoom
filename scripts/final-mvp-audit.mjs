@@ -390,14 +390,86 @@ const paddleConfig = fs.readFileSync(
   "utf8",
 );
 
-if (
-  !checkoutUI.includes("الدفع غير مفعّل حاليًا") ||
-  !tapCreate.includes("PAYMENTS_PAUSED") ||
-  !paddleConfig.includes("PAYMENTS_PAUSED")
-) {
+const paddleWebhook = fs.readFileSync(
+  path.resolve(
+    root,
+    "app/api/payments/paddle/webhook/route.ts",
+  ),
+  "utf8",
+);
+
+const paddleManage = fs.readFileSync(
+  path.resolve(
+    root,
+    "app/api/payments/paddle/manage/route.ts",
+  ),
+  "utf8",
+);
+
+/*
+ * Commerce launch contract:
+ * - Plus checkout is live through Paddle.
+ * - Legacy Tap remains intentionally paused.
+ * - Checkout is bound server-side to the authenticated user.
+ * - Paddle price is verified server-side.
+ * - Webhook signature, user binding and duplicate delivery handling are present.
+ * - Subscription management stays server-side through Paddle API.
+ */
+for (const marker of [
+  'import PaddleCheckout from "@/components/billing/PaddleCheckout"',
+  'return <PaddleCheckout />',
+]) {
+  if (!checkoutUI.includes(marker)) {
+    throw new Error(
+      `FINAL_PADDLE_CHECKOUT_MARKER_MISSING:${marker}`,
+    );
+  }
+}
+
+if (!tapCreate.includes("PAYMENTS_PAUSED")) {
   throw new Error(
-    "FINAL_ZERO_COST_PAYMENT_PAUSE_MISSING",
+    "FINAL_LEGACY_TAP_PAYMENT_PAUSE_MISSING",
   );
+}
+
+for (const marker of [
+  "signCheckoutBinding",
+  "verifyConfiguredPrice",
+  "PADDLE_WEBHOOK_SECRET",
+  "PADDLE_PLUS_PRICE_ID",
+]) {
+  if (!paddleConfig.includes(marker)) {
+    throw new Error(
+      `FINAL_PADDLE_CONFIG_MARKER_MISSING:${marker}`,
+    );
+  }
+}
+
+for (const marker of [
+  "verifySignature",
+  "verifyCheckoutBinding",
+  "alreadyHandled",
+  "provider_event_id",
+  "scheduledCancellationFromSubscription",
+]) {
+  if (!paddleWebhook.includes(marker)) {
+    throw new Error(
+      `FINAL_PADDLE_WEBHOOK_MARKER_MISSING:${marker}`,
+    );
+  }
+}
+
+for (const marker of [
+  "PADDLE_API_KEY",
+  "management_urls",
+  "update_payment_method",
+  "cancel",
+]) {
+  if (!paddleManage.includes(marker)) {
+    throw new Error(
+      `FINAL_PADDLE_MANAGE_MARKER_MISSING:${marker}`,
+    );
+  }
 }
 
 const tracked = execFileSync(
@@ -447,7 +519,8 @@ console.log("FINAL_DAD_GUARDS=PASS");
 console.log("FINAL_ROLE_GUARDS=PASS");
 console.log("FINAL_CANONICAL_COMPLETION_GATE=PASS");
 console.log("FINAL_LEGACY_COMPLETION_BYPASSES=0");
-console.log("FINAL_ZERO_COST_PAYMENTS=PAUSED");
+console.log("FINAL_PADDLE_PLUS_COMMERCE=ENABLED");
+console.log("FINAL_LEGACY_TAP_PAYMENTS=PAUSED");
 console.log("FINAL_LOCAL_ARTIFACTS_TRACKED=0");
 console.log("FINAL_TRACKED_BACKUPS_EXISTING=0");
 console.log("FINAL_INTERNAL_LINK_CODE_GENERATORS=SERVICE_ROLE_ONLY");
