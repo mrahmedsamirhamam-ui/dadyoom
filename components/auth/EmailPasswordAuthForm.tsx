@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
 
 import GoogleAuthButton from "@/components/auth/GoogleAuthButton";
 import { getSupabaseBrowserClient } from "@/lib/auth/supabase-browser";
@@ -121,14 +121,6 @@ export default function EmailPasswordAuthForm({
 }) {
   const router = useRouter();
   const countries = useMemo(() => getArabicCountryOptions(), []);
-  const [resolvedNextPath, setResolvedNextPath] = useState(nextPath);
-
-  useEffect(() => {
-    if (nextPath || typeof window === "undefined") return;
-    setResolvedNextPath(
-      safeNextPath(new URLSearchParams(window.location.search).get("next")),
-    );
-  }, [nextPath]);
 
   const [fullName, setFullName] = useState("");
   const [role, setRole] = useState("student");
@@ -247,7 +239,13 @@ export default function EmailPasswordAuthForm({
         router.replace(
           destination === "/onboarding"
             ? destination
-            : resolvedNextPath || destination,
+            : safeNextPath(nextPath) ||
+                (typeof window !== "undefined"
+                  ? safeNextPath(
+                      new URLSearchParams(window.location.search).get("next"),
+                    )
+                  : "") ||
+                destination,
         );
         router.refresh();
         return;
@@ -511,7 +509,7 @@ export default function EmailPasswordAuthForm({
             fullName={fullName}
             role={role}
             country={country}
-            nextPath={resolvedNextPath}
+            nextPath={nextPath}
           />
 
           <p className="text-center text-sm font-bold text-[#685b47]">
