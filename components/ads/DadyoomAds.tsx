@@ -3,19 +3,6 @@
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
-const blockedPrefixes = [
-  "/lessons/",
-  "/student/",
-  "/teacher/",
-  "/school/",
-  "/admin/",
-  "/payments/",
-  "/pricing",
-  "/login",
-  "/signup",
-  "/onboarding",
-];
-
 function isNativeMobileApp() {
   const candidate =
     window as unknown as {
@@ -43,12 +30,10 @@ export default function DadyoomAds() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (
-      isNativeMobileApp() ||
-      blockedPrefixes.some((prefix) =>
-        pathname.startsWith(prefix),
-      )
-    ) {
+    // Ads are intentionally limited to the public home page only.
+    // Student, teacher, school, auth, pricing, lessons, and every other
+    // route stay ad-free regardless of future route additions.
+    if (isNativeMobileApp() || pathname !== "/") {
       return;
     }
 
