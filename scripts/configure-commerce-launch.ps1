@@ -69,13 +69,21 @@ if ($Environment -eq "production" -and $clientToken -notmatch '^live_') {
   throw "PADDLE_CLIENT_TOKEN must start with live_ in production."
 }
 
-if ($apiKey -notmatch '^pdl_(live|sdbx)_apikey_') {
-  Write-Warning "Paddle API key does not look like a current Paddle Billing API key."
+if ($Environment -eq "sandbox" -and $apiKey -notmatch '^pdl_sdbx_apikey_') {
+  throw "PADDLE_API_KEY must be a Sandbox key starting with pdl_sdbx_apikey_."
+}
+
+if ($Environment -eq "production" -and $apiKey -notmatch '^pdl_live_apikey_') {
+  throw "PADDLE_API_KEY must be a Live key starting with pdl_live_apikey_."
 }
 
 if (
   -not [string]::IsNullOrWhiteSpace($adsenseClient) -and
-  $adsenseClient -notmatch '^ca-pub-\d{16}
+  $adsenseClient -notmatch '^ca-pub-\d{16}$'
+) {
+  throw "ADSENSE_CLIENT must use the ca-pub-0000000000000000 format, or be left blank to keep AdSense disabled."
+}
+
 Set-WorkerSecret -Name "PADDLE_ENVIRONMENT" -Value $Environment
 Set-WorkerSecret -Name "PADDLE_CLIENT_TOKEN" -Value $clientToken
 Set-WorkerSecret -Name "PADDLE_PLUS_PRICE_ID" -Value $priceId
@@ -110,40 +118,6 @@ Write-Host "  npm run lint"
 Write-Host "  npm run test:run"
 Write-Host "  npm run curriculum:gate:official-22"
 Write-Host "  npm run build:vinext"
-Write-Host "  npm run deploy:vinext"
-Write-Host ""
-Write-Host "Paddle webhook URL:"
-Write-Host "  https://<production-domain>/api/payments/paddle/webhook"
-Write-Host ""
-Write-Host "Do not paste these secrets into chat, Git, or screenshots."
-
-) {
-  throw "ADSENSE_CLIENT must use the ca-pub-0000000000000000 format, or be left blank to keep AdSense disabled."
-}
-
-Set-WorkerSecret -Name "PADDLE_ENVIRONMENT" -Value $Environment
-Set-WorkerSecret -Name "PADDLE_CLIENT_TOKEN" -Value $clientToken
-Set-WorkerSecret -Name "PADDLE_PLUS_PRICE_ID" -Value $priceId
-Set-WorkerSecret -Name "PADDLE_WEBHOOK_SECRET" -Value $webhookSecret
-Set-WorkerSecret -Name "PADDLE_API_KEY" -Value $apiKey
-Set-WorkerSecret -Name "ADSENSE_CLIENT" -Value $adsenseClient
-
-# Also expose these values to the local build process without writing them to disk.
-$env:PADDLE_ENVIRONMENT = $Environment
-$env:PADDLE_CLIENT_TOKEN = $clientToken
-$env:PADDLE_PLUS_PRICE_ID = $priceId
-$env:PADDLE_WEBHOOK_SECRET = $webhookSecret
-$env:PADDLE_API_KEY = $apiKey
-$env:ADSENSE_CLIENT = $adsenseClient
-
-Write-Host ""
-Write-Host "Cloudflare launch variables configured." -ForegroundColor Green
-Write-Host "Next verification commands:" -ForegroundColor Yellow
-Write-Host "  npm run lint"
-Write-Host "  npm run test:run"
-Write-Host "  npm run curriculum:gate:official-22"
-Write-Host "  npm run build:vinext"
-Write-Host "  npm run deploy:vinext"
 Write-Host ""
 Write-Host "Paddle webhook URL:"
 Write-Host "  https://<production-domain>/api/payments/paddle/webhook"
