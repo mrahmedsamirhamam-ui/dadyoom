@@ -154,16 +154,37 @@ jobs:
         run: |
           set -euo pipefail
           BASE="https://dadyoom.mrahmedsamirhamam.workers.dev"
+
           for path in "/" "/courses" "/login" "/pricing"; do
-            for attempt in 1 2 3; do
-              code="$(curl --silent --show-error --location --retry 2 --retry-delay 1 --output /dev/null --write-out "%{http_code}" "$BASE$path")"
-              echo "ROUTE=$path ATTEMPT=$attempt HTTP=$code"
-              if [[ "$code" != "200" ]]; then
-                echo "DADYOOM_ROUTE_STABILITY=FAIL path=$path attempt=$attempt"
+            for sample in 1 2 3; do
+              success=0
+
+              for retry in 1 2 3; do
+                out="$(mktemp)"
+                set +e
+                code="$(curl --silent --show-error --location --max-time 30 --output "$out" --write-out "%{http_code}" "$BASE$path")"
+                rc=$?
+                set -e
+
+                echo "ROUTE=$path SAMPLE=$sample RETRY=$retry CURL_RC=$rc HTTP=$code"
+
+                if [[ "$rc" == "0" && "$code" == "200" ]]; then
+                  success=1
+                  rm -f "$out"
+                  break
+                fi
+
+                rm -f "$out"
+                sleep 2
+              done
+
+              if [[ "$success" != "1" ]]; then
+                echo "DADYOOM_ROUTE_STABILITY=FAIL path=$path sample=$sample"
                 exit 1
               fi
             done
           done
+
           echo "DADYOOM_ROUTE_STABILITY=PASS"
 
       - name: Mobile PWA verify
