@@ -67,6 +67,18 @@ const stamp =
 const password =
   `Dadyoom!E2E-${crypto.randomBytes(10).toString("base64url")}9`;
 
+const artifactDir =
+  process.env.DADYOOM_E2E_ARTIFACT_DIR?.trim()
+    ? path.resolve(process.env.DADYOOM_E2E_ARTIFACT_DIR.trim())
+    : "";
+
+const skipExternalAi =
+  process.env.DADYOOM_E2E_SKIP_EXTERNAL_AI?.trim().toLowerCase() === "true";
+
+if (artifactDir) {
+  fs.mkdirSync(artifactDir, { recursive: true });
+}
+
 const roles = [
   ["student", "/student"],
   ["child", "/child"],
@@ -95,6 +107,20 @@ function gate(condition, message) {
   if (!condition) {
     throw new Error(message);
   }
+}
+
+async function capture(page, name) {
+  if (!artifactDir) return;
+
+  const safe = String(name)
+    .replace(/[^a-z0-9-_]+/giu, "-")
+    .replace(/^-+|-+$/gu, "")
+    .toLowerCase();
+
+  await page.screenshot({
+    path: path.join(artifactDir, `${safe || "page"}.png`),
+    fullPage: true,
+  });
 }
 
 function dotenvValue(value) {
@@ -1742,6 +1768,11 @@ async function studentFlow(
   let aiLivePassed = false;
   let aiTransient = false;
 
+  if (skipExternalAi) {
+    console.log(
+      "E2E_AI_SMOKE=SKIPPED_BY_CONFIGURATION",
+    );
+  } else {
   for (
     let attempt = 1;
     attempt <= 3;
@@ -1828,6 +1859,7 @@ async function studentFlow(
     console.log(
       "E2E_AI_ROUTE_RESILIENCE=PASS",
     );
+  }
   }
 
   await page.goto(
@@ -2781,6 +2813,11 @@ try {
       role,
     );
 
+    await capture(
+      page,
+      `role-${role}-dashboard`,
+    );
+
     if (
       role ===
       "student"
@@ -2862,6 +2899,74 @@ try {
 
     console.log(
       `E2E_REWARDS_${role.toUpperCase()}=PASS`,
+    );
+
+    await page.goto(
+      `${baseUrl}/pricing`,
+      {
+        waitUntil: "networkidle",
+        timeout: 60_000,
+      },
+    );
+
+    const pricingText =
+      await page
+        .locator("body")
+        .innerText();
+
+    const dashboardLabels = {
+      student: "لوحة الطالب",
+      child: "لوحة الطالب",
+      teacher: "لوحة المعلم",
+      parent: "لوحة ولي الأمر",
+      school: "لوحة المدرسة",
+    };
+
+    gate(
+      pricingText.includes("ضاديوم Plus") &&
+      pricingText.includes("مكتبة الفيديوهات") &&
+      pricingText.includes(
+        dashboardLabels[role] ?? "لوحتي",
+      ),
+      `E2E_PRICING_NAV_${role.toUpperCase()}_FAILED`,
+    );
+
+    console.log(
+      `E2E_PRICING_NAV_${role.toUpperCase()}=PASS`,
+    );
+
+    await capture(
+      page,
+      `role-${role}-pricing`,
+    );
+
+    await page.goto(
+      `${baseUrl}/courses/video-library`,
+      {
+        waitUntil: "domcontentloaded",
+        timeout: 60_000,
+      },
+    );
+
+    const videoBody =
+      await page
+        .locator("body")
+        .innerText();
+
+    gate(
+      videoBody.includes(
+        "500 فيديو لتعلم العربية",
+      ),
+      `E2E_VIDEO_LIBRARY_${role.toUpperCase()}_FAILED`,
+    );
+
+    console.log(
+      `E2E_VIDEO_LIBRARY_${role.toUpperCase()}=PASS`,
+    );
+
+    await capture(
+      page,
+      `role-${role}-video-library`,
     );
 
     await context.close();
