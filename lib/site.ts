@@ -1,9 +1,10 @@
 
 export const SITE_NAME = "ضاديوم";
 export const SITE_NAME_LATIN = "Dadyoom";
+export const SITE_NAME_ARABIC_ALT = "ضاضيوم";
 export const SITE_TAGLINE = "بيت العربية الرقمي";
 export const SITE_DESCRIPTION =
-  "ضاديوم (Dadyoom) منصة عربية ذكية متكاملة لتعلّم اللغة العربية عبر المناهج والدروس والمهارات الأربع وقاموس السياق والرفيق التعليمي ضاد.";
+  "ضاديوم (Dadyoom)، ويُكتب أحيانًا في البحث «ضاضيوم»، منصة عربية ذكية متكاملة لتعلّم اللغة العربية عبر المناهج والدروس والمهارات الأربع وقاموس السياق والرفيق التعليمي ضاد.";
 
 function normalizeOrigin(value: string | undefined): string | null {
   const clean = value?.trim();
