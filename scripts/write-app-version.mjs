@@ -52,8 +52,32 @@ const payload = {
   buildId,
 };
 
-const target = resolve(process.cwd(), "public", "app-version.json");
-mkdirSync(dirname(target), { recursive: true });
-writeFileSync(target, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
+const publicTarget = resolve(
+  process.cwd(),
+  "public",
+  "app-version.json",
+);
+mkdirSync(dirname(publicTarget), { recursive: true });
+writeFileSync(
+  publicTarget,
+  `${JSON.stringify(payload, null, 2)}\n`,
+  "utf8",
+);
+
+const generatedTarget = resolve(
+  process.cwd(),
+  "generated",
+  "build-info.ts",
+);
+mkdirSync(dirname(generatedTarget), { recursive: true });
+writeFileSync(
+  generatedTarget,
+  `export const BUILD_INFO = ${JSON.stringify(
+    payload,
+    null,
+    2,
+  )} as const;\n`,
+  "utf8",
+);
 
 console.log(`DADYOOM_APP_VERSION=${version}`);

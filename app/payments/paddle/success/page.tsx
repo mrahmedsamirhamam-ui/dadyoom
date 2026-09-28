@@ -1,4 +1,4 @@
-import Link from "next/link";
+import PaymentSuccessNavigation from "@/components/billing/PaymentSuccessNavigation";
 
 export default function PaddleSuccessPage() {
   return (
@@ -17,12 +17,7 @@ export default function PaddleSuccessPage() {
           افتح صفحة الاشتراك مرة أخرى بعد تحديث الصفحة.
         </p>
 
-        <Link
-          href="/pricing"
-          className="dadyoom-arabic-button mt-6 inline-flex rounded-2xl px-6 py-3 font-black text-white"
-        >
-          العودة إلى ضاديوم Plus
-        </Link>
+        <PaymentSuccessNavigation />
       </section>
     </main>
   );

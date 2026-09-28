@@ -53,6 +53,10 @@ const autoUpdate = read(
   "components/pwa/DadyoomAutoUpdate.tsx"
 );
 
+const deployVersionRoute = read(
+  "app/api/deploy/version/route.ts"
+);
+
 const capacitorConfig = read(
   "capacitor.config.ts"
 );
@@ -187,10 +191,13 @@ check(
       "<DadyoomAutoUpdate />"
     ) &&
     autoUpdate.includes(
-      "/app-version.json"
+      "/api/deploy/version"
     ) &&
-    exists(
-      "public/app-version.json"
+    deployVersionRoute.includes(
+      "BUILD_INFO"
+    ) &&
+    deployVersionRoute.includes(
+      "no-store"
     )
 );
 

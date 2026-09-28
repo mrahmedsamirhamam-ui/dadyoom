@@ -22,26 +22,28 @@ function writeCiBuildMetadata() {
     process.env.GITHUB_RUN_ID?.trim() ||
     null;
 
+  const payload = {
+    version: `${commit.slice(0, 12)}-${Date.now()}`,
+    builtAt: new Date().toISOString(),
+    commit,
+    branch,
+    buildId,
+  };
+
   const target = resolve(
     process.cwd(),
-    "public",
-    "app-version.json",
+    "generated",
+    "build-info.ts",
   );
 
   mkdirSync(dirname(target), { recursive: true });
   writeFileSync(
     target,
-    `${JSON.stringify(
-      {
-        version: `${commit.slice(0, 12)}-${Date.now()}`,
-        builtAt: new Date().toISOString(),
-        commit,
-        branch,
-        buildId,
-      },
+    `export const BUILD_INFO = ${JSON.stringify(
+      payload,
       null,
       2,
-    )}\n`,
+    )} as const;\n`,
     "utf8",
   );
 }

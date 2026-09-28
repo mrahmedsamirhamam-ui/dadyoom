@@ -207,9 +207,9 @@ jobs:
           PAGES="https://dadyoom.pages.dev"
 
           matched=0
-          for attempt in $(seq 1 30); do
+          for attempt in $(seq 1 60); do
             set +e
-            body="$(curl --silent --show-error --max-time 20 "$WORKER/app-version.json")"
+            body="$(curl --silent --show-error --max-time 20 "$WORKER/api/deploy/version")"
             rc=$?
             set -e
 

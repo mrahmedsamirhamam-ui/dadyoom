@@ -11,7 +11,7 @@ const CHECK_INTERVAL_MS = 5 * 60 * 1000;
 
 async function fetchServerVersion() {
   const response = await fetch(
-    `/app-version.json?ts=${Date.now()}`,
+    `/api/deploy/version?ts=${Date.now()}`,
     {
       cache: "no-store",
       headers: {
