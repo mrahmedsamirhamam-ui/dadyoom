@@ -49,7 +49,7 @@ function uniq<T extends { id: string }>(items: T[]): T[] {
 }
 
 function gradeName(number: number | null, fallback = ""): string {
-  return gradeNames[Number(number)] ?? fallback || `المستوى ${number ?? ""}`;
+  return gradeNames[Number(number)] ?? (fallback || `المستوى ${number ?? ""}`);
 }
 
 function stageName(number: number | null): string {
