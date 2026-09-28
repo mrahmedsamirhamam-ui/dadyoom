@@ -1,0 +1,101 @@
+name: Production Role QA
+
+on:
+  workflow_run:
+    workflows:
+      - Mobile Final Verify
+    types:
+      - completed
+  workflow_dispatch:
+
+concurrency:
+  group: production-role-qa
+  cancel-in-progress: true
+
+jobs:
+  role-qa:
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (
+        github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.head_branch == 'fix/mobile-cloud-video-final-20260923'
+      )
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+
+    steps:
+      - name: Resolve tested SHA
+        id: source
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_run" ]]; then
+            echo "sha=${{ github.event.workflow_run.head_sha }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "sha=${{ github.sha }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout tested source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.source.outputs.sha }}
+
+      - name: Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install
+        run: npm install --legacy-peer-deps --no-package-lock
+
+      - name: Verify production matches tested SHA
+        shell: bash
+        env:
+          EXPECTED_SHA: ${{ steps.source.outputs.sha }}
+        run: |
+          set -euo pipefail
+          body="$(curl --fail --silent --show-error --max-time 30 https://dadyoom.pages.dev/api/deploy/version)"
+          actual="$(node -e '
+            const body = JSON.parse(process.argv[1]);
+            process.stdout.write(String(body.commit || ""));
+          ' "$body")"
+
+          echo "EXPECTED_SHA=$EXPECTED_SHA"
+          echo "DEPLOYED_SHA=$actual"
+
+          if [[ "$actual" != "$EXPECTED_SHA" ]]; then
+            echo "PRODUCTION_ROLE_QA_DEPLOY_SYNC=FAIL"
+            exit 1
+          fi
+
+          echo "PRODUCTION_ROLE_QA_DEPLOY_SYNC=PASS"
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run autonomous role QA
+        env:
+          DADYOOM_E2E_BASE_URL: "https://dadyoom.pages.dev"
+          DADYOOM_E2E_ARTIFACT_DIR: "artifacts/production-role-qa"
+          DADYOOM_E2E_SKIP_EXTERNAL_AI: "true"
+          NEXT_PUBLIC_SUPABASE_URL: "https://hvqsvtomhlxavmfqoxfz.supabase.co"
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || secrets.DADYOOM_SUPABASE_SERVICE_ROLE_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ -z "${SUPABASE_SERVICE_ROLE_KEY:-}" ]]; then
+            echo "PRODUCTION_ROLE_QA_SECRET=FAIL_MISSING"
+            echo "Add one Supabase service-role repository secret for autonomous role QA."
+            exit 42
+          fi
+
+          node scripts/final-e2e-release-gate.mjs
+
+      - name: Upload QA screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-role-qa-${{ steps.source.outputs.sha }}
+          path: artifacts/production-role-qa
+          if-no-files-found: ignore
+          retention-days: 7
