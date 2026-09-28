@@ -6,6 +6,21 @@ import { createClient } from "@/lib/supabase/server";
 
 export type DadyoomPlan = "free" | "plus";
 
+function dashboardForRole(role?: string | null) {
+  switch (role?.trim().toLowerCase()) {
+    case "teacher":
+      return { href: "/teacher", label: "لوحة المعلم" };
+    case "parent":
+      return { href: "/parent", label: "لوحة ولي الأمر" };
+    case "school":
+      return { href: "/school", label: "لوحة المدرسة" };
+    case "admin":
+      return { href: "/admin", label: "لوحة الإدارة" };
+    default:
+      return { href: "/student", label: "لوحة الطالب" };
+  }
+}
+
 export type FeatureAccess = {
   allowed: boolean;
   plan: DadyoomPlan;
@@ -80,6 +95,25 @@ export async function billingStatus() {
 
   const plan = user ? await currentPlan() : "free";
 
+  let role: string | null = null;
+
+  if (user) {
+    const { data: profile } = await db
+      .from("profiles")
+      .select("role")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    role =
+      typeof profile?.role === "string"
+        ? profile.role
+        : typeof user.user_metadata?.role === "string"
+          ? user.user_metadata.role
+          : null;
+  }
+
+  const dashboard = dashboardForRole(role);
+
   const [{ data: planRow }, { data: plusPlanRow }] =
     await Promise.all([
       db
@@ -98,6 +132,9 @@ export async function billingStatus() {
 
   return {
     authenticated: Boolean(user),
+    role,
+    dashboardHref: dashboard.href,
+    dashboardLabel: dashboard.label,
     plan,
     plus: plan === "plus",
     showAds:
