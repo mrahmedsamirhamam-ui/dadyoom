@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
+
 import CurriculumCatalogClient from "./CurriculumCatalogClient";
-import { getStudentCurriculumCatalog } from "@/services/lessons/student-curriculum-catalog";
+import {
+  ARAB_COUNTRY_CODES,
+  getArabicCountryOptions,
+} from "@/lib/countries";
+
+export const dynamic = "force-static";
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: "مناهج اللغة العربية | ضاديوم",
@@ -9,6 +16,19 @@ export const metadata: Metadata = {
   alternates: { canonical: "/courses" },
 };
 
-export default async function CoursesPage() {
-  return <CurriculumCatalogClient units={await getStudentCurriculumCatalog()} />;
+export default function CoursesPage() {
+  const arabCodes = new Set<string>(ARAB_COUNTRY_CODES);
+
+  const countries = getArabicCountryOptions()
+    .filter((item) => arabCodes.has(item.code))
+    .map((item) => ({
+      code: item.code,
+      name: item.name,
+      maxGrade:
+        item.code === "TN" || item.code === "MR"
+          ? 13
+          : 12,
+    }));
+
+  return <CurriculumCatalogClient countries={countries} />;
 }
