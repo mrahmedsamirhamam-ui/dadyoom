@@ -3,6 +3,7 @@ import {
   getSiteUrl,
   SITE_DESCRIPTION,
   SITE_NAME,
+  SITE_NAME_ARABIC_ALT,
   SITE_NAME_LATIN,
   SITE_TAGLINE,
 } from "@/lib/site";
@@ -35,7 +36,7 @@ const structuredData = [
     name: SITE_NAME,
     alternateName: [
       SITE_NAME_LATIN,
-      SITE_NAME,
+      SITE_NAME_ARABIC_ALT,
     ],
     url: siteUrl,
     description: SITE_DESCRIPTION,
@@ -45,7 +46,10 @@ const structuredData = [
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
     name: SITE_NAME,
-    alternateName: SITE_NAME_LATIN,
+    alternateName: [
+      SITE_NAME_LATIN,
+      SITE_NAME_ARABIC_ALT,
+    ],
     url: siteUrl,
     description: SITE_DESCRIPTION,
   },
