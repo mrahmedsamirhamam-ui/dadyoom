@@ -54,6 +54,10 @@ export default function HomePage() {
             <p className="mt-6 max-w-2xl font-arabic-reading text-xl leading-10 text-[#655d53]">
               ضاديوم (Dadyoom) يجمع منهجًا منظمًا، والمهارات الأربع، والتقييم والتقدم، و«ضاد» رفيقًا ذكيًا يساعد الطالب في اللحظة التي يحتاج فيها إلى شرح أو تدريب.
             </p>
+            <p className="mt-3 text-sm font-bold text-[#7b7165]">
+              الاسم الرسمي: ضاديوم (Dadyoom)، ويُكتب أحيانًا في البحث «ضاضيوم».
+            </p>
+
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/signup" className="rounded-2xl bg-[#174f47] px-7 py-4 font-black text-white shadow-lg shadow-[#174f47]/15 transition hover:-translate-y-0.5 hover:bg-[#103f39]">أنشئ حسابك</Link>
               <Link href="/ask" className="rounded-2xl border border-[#d6b569] bg-[#fffef9] px-7 py-4 font-black text-[#72551c] transition hover:-translate-y-0.5 hover:bg-[#fff6df]">جرّب ضاد الآن</Link>
