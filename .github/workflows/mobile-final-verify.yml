@@ -149,6 +149,23 @@ jobs:
             echo "PRODUCTION_APP_VERSION_JSON=UNAVAILABLE"
           fi
 
+      - name: Production route stability smoke
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="https://dadyoom.mrahmedsamirhamam.workers.dev"
+          for path in "/" "/courses" "/login" "/pricing"; do
+            for attempt in 1 2 3; do
+              code="$(curl --silent --show-error --location --retry 2 --retry-delay 1 --output /dev/null --write-out "%{http_code}" "$BASE$path")"
+              echo "ROUTE=$path ATTEMPT=$attempt HTTP=$code"
+              if [[ "$code" != "200" ]]; then
+                echo "DADYOOM_ROUTE_STABILITY=FAIL path=$path attempt=$attempt"
+                exit 1
+              fi
+            done
+          done
+          echo "DADYOOM_ROUTE_STABILITY=PASS"
+
       - name: Mobile PWA verify
         run: npm run mobile:pwa:verify
 
