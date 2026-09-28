@@ -49,7 +49,10 @@ function uniq<T extends { id: string }>(items: T[]): T[] {
 }
 
 function gradeName(number: number | null, fallback = ""): string {
-  return gradeNames[Number(number)] ?? (fallback || `المستوى ${number ?? ""}`);
+  return (
+    gradeNames[Number(number)] ??
+    (fallback || `المستوى ${number ?? ""}`)
+  );
 }
 
 function stageName(number: number | null): string {
@@ -70,12 +73,96 @@ function curriculumName(name: string): string {
 export default function CurriculumCatalogClient({
   countries,
 }: Props) {
+  const initialCountry =
+    countries.find((item) => item.code === "BH") ??
+    countries[0];
+
   const [country, setCountry] = useState(
-    countries.find((item) => item.code === "BH")?.code ??
-      countries[0]?.code ??
-      "BH",
+    initialCountry?.code ?? "BH",
   );
   const [gradeNumber, setGradeNumber] = useState(1);
+
+  const activeCountry =
+    countries.find((item) => item.code === country) ??
+    initialCountry;
+
+  const gradeOptions = Array.from(
+    { length: activeCountry?.maxGrade ?? 12 },
+    (_, index) => index + 1,
+  );
+
+  return (
+    <main
+      dir="rtl"
+      className="min-h-screen w-full min-w-0 overflow-x-hidden px-3 py-5 sm:px-5"
+    >
+      <div className="mx-auto w-full min-w-0 max-w-[1500px] space-y-5">
+        <section className="overflow-hidden rounded-[2rem] border border-[#c9b47c] bg-[#123f39] p-5 text-white shadow-xl sm:p-8">
+          <div className="min-w-0">
+            <div className="inline-flex rounded-full bg-white/10 px-4 py-2 text-xs font-black text-[#ffe7ae]">
+              بوابة المناهج
+            </div>
+
+            <h1 className="mt-3 text-3xl font-black sm:text-4xl">
+              اختر الدولة والصف ثم المسار
+            </h1>
+
+            <p className="mt-2 max-w-3xl leading-8 text-[#e9f3ef]">
+              يحمل ضاديوم الصف الذي اخترته فقط بدل تحميل آلاف الدروس دفعة
+              واحدة، لتبقى البوابة أسرع وأكثر استقرارًا.
+            </p>
+          </div>
+        </section>
+
+        <section className="min-w-0 rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-4 sm:p-6">
+          <div className="grid min-w-0 gap-3 sm:grid-cols-2">
+            <SelectBox
+              label="الدولة"
+              value={country}
+              options={countries.map((item) => [
+                item.code,
+                item.name,
+              ])}
+              onChange={(value) => {
+                setCountry(value);
+                setGradeNumber(1);
+              }}
+            />
+
+            <SelectBox
+              label="الصف"
+              value={String(gradeNumber)}
+              options={gradeOptions.map((value) => [
+                String(value),
+                gradeName(value),
+              ])}
+              onChange={(value) => {
+                setGradeNumber(Number(value));
+              }}
+            />
+          </div>
+        </section>
+
+        <CatalogScope
+          key={`${country}:${gradeNumber}`}
+          country={country}
+          countryName={activeCountry?.name ?? country}
+          gradeNumber={gradeNumber}
+        />
+      </div>
+    </main>
+  );
+}
+
+function CatalogScope({
+  country,
+  countryName,
+  gradeNumber,
+}: {
+  country: string;
+  countryName: string;
+  gradeNumber: number;
+}) {
   const [units, setUnits] = useState<StudentCatalogUnit[]>([]);
   const [year, setYear] = useState("");
   const [curriculum, setCurriculum] = useState("");
@@ -84,23 +171,8 @@ export default function CurriculumCatalogClient({
   const [error, setError] = useState("");
   const [reloadKey, setReloadKey] = useState(0);
 
-  const activeCountry =
-    countries.find((item) => item.code === country) ?? countries[0];
-
-  const gradeOptions = Array.from(
-    { length: activeCountry?.maxGrade ?? 12 },
-    (_, index) => index + 1,
-  );
-
   useEffect(() => {
     const controller = new AbortController();
-
-    setLoading(true);
-    setError("");
-    setUnits([]);
-    setYear("");
-    setCurriculum("");
-    setUnit("");
 
     void fetch(
       `/api/courses/catalog?country=${encodeURIComponent(country)}&grade=${gradeNumber}`,
@@ -115,14 +187,19 @@ export default function CurriculumCatalogClient({
 
         if (!response.ok) {
           throw new Error(
-            payload.error || `تعذر تحميل المناهج (HTTP ${response.status}).`,
+            payload.error ||
+              `تعذر تحميل المناهج (HTTP ${response.status}).`,
           );
         }
 
         return payload;
       })
       .then((payload) => {
+        if (controller.signal.aborted) return;
+
         setUnits(payload.units ?? []);
+        setError("");
+        setLoading(false);
       })
       .catch((cause) => {
         if (controller.signal.aborted) return;
@@ -132,11 +209,7 @@ export default function CurriculumCatalogClient({
             ? cause.message
             : "تعذر تحميل دروس هذا الصف الآن.",
         );
-      })
-      .finally(() => {
-        if (!controller.signal.aborted) {
-          setLoading(false);
-        }
+        setLoading(false);
       });
 
     return () => {
@@ -164,7 +237,9 @@ export default function CurriculumCatalogClient({
       .map((item) => item.curriculum),
   ).sort((a, b) => a.name.localeCompare(b.name, "ar"));
 
-  const curriculumId = curricula.some((item) => item.id === curriculum)
+  const curriculumId = curricula.some(
+    (item) => item.id === curriculum,
+  )
     ? curriculum
     : curricula[0]?.id ?? "";
 
@@ -173,7 +248,8 @@ export default function CurriculumCatalogClient({
       (item) =>
         (!selectedYear ||
           item.curriculum.academicYear === selectedYear) &&
-        (!curriculumId || item.curriculum.id === curriculumId),
+        (!curriculumId ||
+          item.curriculum.id === curriculumId),
     )
     .sort((a, b) => a.order - b.order);
 
@@ -188,7 +264,8 @@ export default function CurriculumCatalogClient({
 
   const done = shown.reduce(
     (sum, item) =>
-      sum + item.lessons.filter((lesson) => lesson.completed).length,
+      sum +
+      item.lessons.filter((lesson) => lesson.completed).length,
     0,
   );
 
@@ -198,220 +275,193 @@ export default function CurriculumCatalogClient({
   );
 
   return (
-    <main
-      dir="rtl"
-      className="min-h-screen w-full min-w-0 overflow-x-hidden px-3 py-5 sm:px-5"
-    >
-      <div className="mx-auto w-full min-w-0 max-w-[1500px] space-y-5">
-        <section className="overflow-hidden rounded-[2rem] border border-[#c9b47c] bg-[#123f39] p-5 text-white shadow-xl sm:p-8">
-          <div className="grid min-w-0 gap-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
-            <div className="min-w-0">
-              <div className="inline-flex rounded-full bg-white/10 px-4 py-2 text-xs font-black text-[#ffe7ae]">
-                بوابة المناهج
-              </div>
+    <>
+      <section className="min-w-0 rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-4 sm:p-6">
+        <div className="grid min-w-0 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <SelectBox
+            label="السنة"
+            value={selectedYear}
+            options={
+              years.length
+                ? years.map((item) => [item, item])
+                : [["", "—"]]
+            }
+            onChange={(value) => {
+              setYear(value);
+              setCurriculum("");
+              setUnit("");
+            }}
+          />
 
-              <h1 className="mt-3 text-3xl font-black sm:text-4xl">
-                اختر الدولة والصف ثم المسار
-              </h1>
+          <SelectBox
+            label={
+              gradeNumber >= 10
+                ? "المسار الثانوي"
+                : "المنهج"
+            }
+            value={curriculumId}
+            options={
+              curricula.length
+                ? curricula.map((item) => [
+                    item.id,
+                    curriculumName(item.name),
+                  ])
+                : [["", "—"]]
+            }
+            onChange={(value) => {
+              setCurriculum(value);
+              setUnit("");
+            }}
+          />
 
-              <p className="mt-2 leading-8 text-[#e9f3ef]">
-                تحمل ضاديوم الصف الذي اخترته فقط بدل تحميل آلاف الدروس دفعة
-                واحدة، لتبقى البوابة أسرع وأكثر استقرارًا.
-              </p>
-            </div>
+          <SelectBox
+            label="المجموعة"
+            value={unit}
+            options={[
+              ["", "كل المجموعات"],
+              ...gradeUnits.map((item) => [
+                item.id,
+                item.title,
+              ]),
+            ]}
+            onChange={setUnit}
+          />
+        </div>
 
-            <div className="grid grid-cols-3 gap-2 text-center">
-              <Metric value={String(shown.length)} label="مجموعات" />
-              <Metric value={String(total)} label="دروس" />
-              <Metric value={String(done)} label="مكتملة" />
-            </div>
-          </div>
+        <div className="mt-4 flex flex-wrap gap-2 text-xs font-black text-[#6f572c]">
+          <span className="rounded-full bg-[#fff2d5] px-3 py-2">
+            {countryName}
+          </span>
+          <span className="rounded-full bg-[#eef4f0] px-3 py-2">
+            المرحلة {stageName(gradeNumber)}
+          </span>
+          <span className="rounded-full bg-[#eef4f0] px-3 py-2">
+            {gradeName(gradeNumber)}
+          </span>
+          <span className="rounded-full bg-[#eef4f0] px-3 py-2">
+            {currentTrackLessonCount} درسًا في المسار
+          </span>
+          {curricula.length > 1 ? (
+            <span className="rounded-full bg-[#e8f3ff] px-3 py-2">
+              {curricula.length} مسارات متاحة
+            </span>
+          ) : null}
+        </div>
+
+        <div className="mt-4 grid grid-cols-3 gap-2 text-center sm:max-w-md">
+          <SmallMetric value={String(shown.length)} label="مجموعات" />
+          <SmallMetric value={String(total)} label="دروس" />
+          <SmallMetric value={String(done)} label="مكتملة" />
+        </div>
+      </section>
+
+      {loading ? (
+        <section className="rounded-[2rem] border border-[#dfcfad] bg-white p-8 text-center">
+          <div className="mx-auto h-8 w-8 animate-spin rounded-full border-4 border-[#d9c69c] border-t-[#123f39]" />
+          <p className="mt-4 font-black text-[#123f39]">
+            جارٍ تحميل هذا الصف فقط…
+          </p>
         </section>
-
-        <section className="min-w-0 rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-4 sm:p-6">
-          <div className="grid min-w-0 gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            <SelectBox
-              label="الدولة"
-              value={country}
-              options={countries.map((item) => [item.code, item.name])}
-              onChange={(value) => {
-                setCountry(value);
-                setGradeNumber(1);
-              }}
-            />
-
-            <SelectBox
-              label="الصف"
-              value={String(gradeNumber)}
-              options={gradeOptions.map((value) => [
-                String(value),
-                gradeName(value),
-              ])}
-              onChange={(value) => {
-                setGradeNumber(Number(value));
-              }}
-            />
-
-            <SelectBox
-              label="السنة"
-              value={selectedYear}
-              options={
-                years.length
-                  ? years.map((item) => [item, item])
-                  : [["", "—"]]
-              }
-              onChange={(value) => {
-                setYear(value);
-                setCurriculum("");
-                setUnit("");
-              }}
-            />
-
-            <SelectBox
-              label={gradeNumber >= 10 ? "المسار الثانوي" : "المنهج"}
-              value={curriculumId}
-              options={
-                curricula.length
-                  ? curricula.map((item) => [
-                      item.id,
-                      curriculumName(item.name),
-                    ])
-                  : [["", "—"]]
-              }
-              onChange={(value) => {
-                setCurriculum(value);
-                setUnit("");
-              }}
-            />
-
-            <SelectBox
-              label="المجموعة"
-              value={unit}
-              options={[
-                ["", "كل المجموعات"],
-                ...gradeUnits.map((item) => [item.id, item.title]),
-              ]}
-              onChange={setUnit}
-            />
-          </div>
-
-          <div className="mt-4 flex flex-wrap gap-2 text-xs font-black text-[#6f572c]">
-            <span className="rounded-full bg-[#fff2d5] px-3 py-2">
-              {activeCountry?.name ?? country}
-            </span>
-            <span className="rounded-full bg-[#eef4f0] px-3 py-2">
-              المرحلة {stageName(gradeNumber)}
-            </span>
-            <span className="rounded-full bg-[#eef4f0] px-3 py-2">
-              {gradeName(gradeNumber)}
-            </span>
-            <span className="rounded-full bg-[#eef4f0] px-3 py-2">
-              {currentTrackLessonCount} درسًا في المسار
-            </span>
-            {curricula.length > 1 ? (
-              <span className="rounded-full bg-[#e8f3ff] px-3 py-2">
-                {curricula.length} مسارات متاحة
-              </span>
-            ) : null}
-          </div>
+      ) : error ? (
+        <section className="rounded-[2rem] border border-rose-200 bg-rose-50 p-8 text-center">
+          <h2 className="text-xl font-black text-rose-900">
+            تعذر تحميل هذا الصف
+          </h2>
+          <p className="mt-2 font-bold leading-7 text-rose-800">
+            {error}
+          </p>
+          <button
+            type="button"
+            onClick={() => {
+              setLoading(true);
+              setError("");
+              setReloadKey((value) => value + 1);
+            }}
+            className="mt-5 rounded-2xl bg-[#123f39] px-6 py-3 font-black text-white"
+          >
+            إعادة المحاولة
+          </button>
         </section>
-
-        {loading ? (
-          <section className="rounded-[2rem] border border-[#dfcfad] bg-white p-8 text-center">
-            <div className="mx-auto h-8 w-8 animate-spin rounded-full border-4 border-[#d9c69c] border-t-[#123f39]" />
-            <p className="mt-4 font-black text-[#123f39]">
-              جارٍ تحميل هذا الصف فقط…
-            </p>
-          </section>
-        ) : error ? (
-          <section className="rounded-[2rem] border border-rose-200 bg-rose-50 p-8 text-center">
-            <h2 className="text-xl font-black text-rose-900">
-              تعذر تحميل هذا الصف
-            </h2>
-            <p className="mt-2 font-bold leading-7 text-rose-800">
-              {error}
-            </p>
-            <button
-              type="button"
-              onClick={() => setReloadKey((value) => value + 1)}
-              className="mt-5 rounded-2xl bg-[#123f39] px-6 py-3 font-black text-white"
+      ) : shown.length === 0 ? (
+        <section className="rounded-[2rem] border border-[#dfcfad] bg-white p-8 text-center">
+          <h2 className="text-xl font-black text-[#123f39]">
+            لا توجد دروس منشورة لهذا الاختيار حاليًا
+          </h2>
+          <p className="mt-2 font-bold text-[#766c60]">
+            اختر صفًا آخر أو دولة أخرى من الأعلى.
+          </p>
+        </section>
+      ) : (
+        <section className="min-w-0 space-y-5">
+          {shown.map((item) => (
+            <article
+              key={item.id}
+              className="min-w-0 overflow-hidden rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8]"
             >
-              إعادة المحاولة
-            </button>
-          </section>
-        ) : shown.length === 0 ? (
-          <section className="rounded-[2rem] border border-[#dfcfad] bg-white p-8 text-center">
-            <h2 className="text-xl font-black text-[#123f39]">
-              لا توجد دروس منشورة لهذا الاختيار حاليًا
-            </h2>
-            <p className="mt-2 font-bold text-[#766c60]">
-              اختر صفًا آخر أو دولة أخرى من الأعلى.
-            </p>
-          </section>
-        ) : (
-          <section className="min-w-0 space-y-5">
-            {shown.map((item) => (
-              <article
-                key={item.id}
-                className="min-w-0 overflow-hidden rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8]"
-              >
-                <header className="flex min-w-0 items-center justify-between gap-3 border-b border-[#eadfc9] p-5">
-                  <div className="min-w-0">
-                    <p className="text-xs font-black text-[#9a702a]">
-                      {gradeName(item.grade.number, item.grade.name)}
-                    </p>
-                    <h2 className="break-words text-xl font-black text-[#123f39]">
-                      {item.title}
-                    </h2>
-                  </div>
-
-                  <span className="shrink-0 rounded-full bg-white px-4 py-2 text-sm font-black">
-                    {item.lessons.length} درسًا
-                  </span>
-                </header>
-
-                <div className="grid min-w-0 gap-3 p-4 sm:grid-cols-2 xl:grid-cols-3">
-                  {item.lessons.map((lesson) => (
-                    <Link
-                      key={lesson.id}
-                      href={`/lessons/${lesson.id}`}
-                      className="min-w-0 rounded-2xl border border-[#e5d8bf] bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-md"
-                    >
-                      <div className="flex justify-between gap-2">
-                        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#f5ecd8] font-black">
-                          {lesson.completed ? "✓" : lesson.order}
-                        </span>
-
-                        <span className="rounded-full bg-[#f6f0e5] px-3 py-1 text-xs font-black">
-                          {diff[lesson.difficulty]}
-                        </span>
-                      </div>
-
-                      <h3 className="mt-3 break-words text-lg font-black leading-8">
-                        {lesson.title}
-                      </h3>
-
-                      <p className="mt-2 line-clamp-2 break-words text-sm leading-7 text-[#766c60]">
-                        {lesson.objective ?? "درس عربي تفاعلي ضمن مسارك."}
-                      </p>
-
-                      <div className="mt-3 flex justify-between border-t pt-3 text-xs font-black text-[#887d70]">
-                        <span>⏱ {lesson.estimatedMinutes} دقيقة</span>
-                        <span>✦ {lesson.points} نقطة</span>
-                      </div>
-                    </Link>
-                  ))}
+              <header className="flex min-w-0 items-center justify-between gap-3 border-b border-[#eadfc9] p-5">
+                <div className="min-w-0">
+                  <p className="text-xs font-black text-[#9a702a]">
+                    {gradeName(
+                      item.grade.number,
+                      item.grade.name,
+                    )}
+                  </p>
+                  <h2 className="break-words text-xl font-black text-[#123f39]">
+                    {item.title}
+                  </h2>
                 </div>
-              </article>
-            ))}
-          </section>
-        )}
-      </div>
-    </main>
+
+                <span className="shrink-0 rounded-full bg-white px-4 py-2 text-sm font-black">
+                  {item.lessons.length} درسًا
+                </span>
+              </header>
+
+              <div className="grid min-w-0 gap-3 p-4 sm:grid-cols-2 xl:grid-cols-3">
+                {item.lessons.map((lesson) => (
+                  <Link
+                    key={lesson.id}
+                    href={`/lessons/${lesson.id}`}
+                    className="min-w-0 rounded-2xl border border-[#e5d8bf] bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-md"
+                  >
+                    <div className="flex justify-between gap-2">
+                      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#f5ecd8] font-black">
+                        {lesson.completed
+                          ? "✓"
+                          : lesson.order}
+                      </span>
+
+                      <span className="rounded-full bg-[#f6f0e5] px-3 py-1 text-xs font-black">
+                        {diff[lesson.difficulty]}
+                      </span>
+                    </div>
+
+                    <h3 className="mt-3 break-words text-lg font-black leading-8">
+                      {lesson.title}
+                    </h3>
+
+                    <p className="mt-2 line-clamp-2 break-words text-sm leading-7 text-[#766c60]">
+                      {lesson.objective ??
+                        "درس عربي تفاعلي ضمن مسارك."}
+                    </p>
+
+                    <div className="mt-3 flex justify-between border-t pt-3 text-xs font-black text-[#887d70]">
+                      <span>
+                        ⏱ {lesson.estimatedMinutes} دقيقة
+                      </span>
+                      <span>✦ {lesson.points} نقطة</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </article>
+          ))}
+        </section>
+      )}
+    </>
   );
 }
 
-function Metric({
+function SmallMetric({
   value,
   label,
 }: {
@@ -419,9 +469,11 @@ function Metric({
   label: string;
 }) {
   return (
-    <div className="min-w-[70px] rounded-2xl bg-white/10 px-3 py-3">
-      <b className="text-xl text-[#f5cf7a]">{value}</b>
-      <div className="text-[10px]">{label}</div>
+    <div className="rounded-xl bg-[#f6f0e5] px-3 py-2">
+      <b className="text-lg text-[#123f39]">{value}</b>
+      <div className="text-[10px] font-black text-[#766c60]">
+        {label}
+      </div>
     </div>
   );
 }
@@ -439,21 +491,30 @@ function SelectBox({
 }) {
   return (
     <label className="min-w-0">
-      <span className="mb-2 block text-xs font-black">{label}</span>
+      <span className="mb-2 block text-xs font-black">
+        {label}
+      </span>
 
       <select
         className="w-full min-w-0 max-w-full rounded-2xl border border-[#dac9a7] bg-white px-3 py-3 font-black"
         value={value}
-        onChange={(event) => onChange(event.target.value)}
+        onChange={(event) =>
+          onChange(event.target.value)
+        }
       >
-        {options.map(([optionValue, optionLabel], index) => (
-          <option
-            key={optionValue || `${label}-${index}`}
-            value={optionValue}
-          >
-            {optionLabel}
-          </option>
-        ))}
+        {options.map(
+          ([optionValue, optionLabel], index) => (
+            <option
+              key={
+                optionValue ||
+                `${label}-${index}`
+              }
+              value={optionValue}
+            >
+              {optionLabel}
+            </option>
+          ),
+        )}
       </select>
     </label>
   );
