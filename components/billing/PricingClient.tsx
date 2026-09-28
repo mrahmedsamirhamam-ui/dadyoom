@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import CheckoutButtons from "@/components/billing/CheckoutButtons";
@@ -7,6 +9,9 @@ import PaddleManageSubscription from "@/components/billing/PaddleManageSubscript
 
 type BillingStatus = {
   authenticated: boolean;
+  role: string | null;
+  dashboardHref: string;
+  dashboardLabel: string;
   plan: "free" | "plus";
   plus: boolean;
   showAds: boolean;
@@ -19,6 +24,9 @@ type BillingStatus = {
 
 const FALLBACK: BillingStatus = {
   authenticated: false,
+  role: null,
+  dashboardHref: "/student",
+  dashboardLabel: "لوحة الطالب",
   plan: "free",
   plus: false,
   showAds: true,
@@ -30,6 +38,7 @@ const FALLBACK: BillingStatus = {
 };
 
 export default function PricingClient() {
+  const router = useRouter();
   const [status, setStatus] = useState<BillingStatus>(FALLBACK);
 
   useEffect(() => {
@@ -63,6 +72,45 @@ export default function PricingClient() {
       className="dadyoom-arabic-surface min-h-screen px-4 py-10"
     >
       <div className="mx-auto max-w-6xl space-y-8">
+        <nav
+          aria-label="العودة من صفحة الاشتراك"
+          className="flex flex-wrap items-center gap-3 rounded-2xl border border-[#dfcfaf] bg-white/90 p-3 shadow-sm backdrop-blur"
+        >
+          <button
+            type="button"
+            onClick={() => router.back()}
+            className="rounded-full border border-[#d7c59f] bg-[#fffaf0] px-4 py-2.5 text-sm font-black text-[#6b5d45] transition hover:border-[#b88a34] hover:text-[#123f39]"
+          >
+            ← العودة
+          </button>
+
+          {status.authenticated ? (
+            <Link
+              href={status.dashboardHref}
+              prefetch={false}
+              className="rounded-full bg-[#123f39] px-4 py-2.5 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#0c332e]"
+            >
+              {status.dashboardLabel}
+            </Link>
+          ) : (
+            <Link
+              href="/"
+              prefetch={false}
+              className="rounded-full bg-[#123f39] px-4 py-2.5 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#0c332e]"
+            >
+              الصفحة الرئيسية
+            </Link>
+          )}
+
+          <Link
+            href="/courses/video-library"
+            prefetch={false}
+            className="rounded-full border border-[#c8a65d] bg-[#fff8e6] px-4 py-2.5 text-sm font-black text-[#71551e] transition hover:bg-[#f7e8bc]"
+          >
+            مكتبة الفيديوهات
+          </Link>
+        </nav>
+
         <section className="rounded-[2.4rem] border border-[#c8a65d] bg-[#123f39] p-7 text-white shadow-xl">
           <div className="text-sm font-black text-[#f4d58a]">
             ضاديوم Plus
