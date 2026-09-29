@@ -1,4 +1,5 @@
 import { requireOwnerAdmin } from "@/lib/admin/owner-access";
+import { livekitConfigured } from "@/lib/livekit/server";
 
 function Flag({
   ok,
@@ -50,6 +51,8 @@ export default async function MonetizationAdminPage() {
     "";
   const adsense =
     /^ca-pub-\d{16}$/u.test(adsenseCandidate);
+  const liveReady =
+    livekitConfigured();
 
   return (
     <main
@@ -94,6 +97,24 @@ export default async function MonetizationAdminPage() {
           البيئة الحالية: <strong>{paddleEnvironment}</strong>.
           السعر المستهدف: 10 USD شهريًا. وسيلة الدفع
           الظاهرة للعميل: Card فقط.
+        </p>
+      </section>
+
+      <section className="rounded-[2rem] border bg-white p-6">
+        <h2 className="text-xl font-black">
+          Dadyoom Live
+        </h2>
+
+        <div className="mt-4">
+          <Flag
+            ok={liveReady}
+            label="LiveKit production connection"
+          />
+        </div>
+
+        <p className="mt-4 text-sm leading-7 text-slate-600">
+          لا تُعرض أي مفاتيح هنا. عند اكتمال الربط يستطيع
+          المعلم والطالب الحصول على Token آمن لغرفة الحصة.
         </p>
       </section>
 
