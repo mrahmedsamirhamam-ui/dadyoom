@@ -144,17 +144,23 @@ export default async function TeacherPage() {
 
       supabase
         .from("lessons")
-        .select(`
-          id,
-          title,
-          lesson_number,
-          lesson_type,
-          status,
-          estimated_minutes
-        `)
+        .select(
+          `
+            id,
+            title,
+            lesson_number,
+            lesson_type,
+            status,
+            estimated_minutes
+          `,
+          {
+            count: "estimated",
+          },
+        )
         .order(
           "lesson_number"
-        ),
+        )
+        .limit(50),
     ]);
 
   if (
@@ -180,6 +186,10 @@ export default async function TeacherPage() {
       lessonsResult.data ??
       []
     ) as LessonRow[];
+
+  const totalLessonCount =
+    lessonsResult.count ??
+    lessons.length;
 
   const classIds =
     classes.map(
@@ -293,7 +303,7 @@ export default async function TeacherPage() {
 
             <Metric
               label="الدروس"
-              value={lessons.length}
+              value={totalLessonCount}
             />
           </div>
         </section>
