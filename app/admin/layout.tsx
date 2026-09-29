@@ -73,19 +73,20 @@ export default async function AdminLayout({
               <Link
                 key={item.href}
                 href={item.href}
+                prefetch={false}
                 className="whitespace-nowrap rounded-full px-4 py-2.5 transition hover:bg-[#f3ead7] hover:text-[#123f39]"
               >
                 {item.label}
               </Link>
             ))}
           
-            <Link href="/admin/payments">المدفوعات والاستلام</Link>
+            <Link href="/admin/payments" prefetch={false}>المدفوعات والاستلام</Link>
           
-            <Link href="/admin/subscriptions">
+            <Link href="/admin/subscriptions" prefetch={false}>
               الاشتراكات والعروض
             </Link>
           
-            <Link href="/admin/monetization">
+            <Link href="/admin/monetization" prefetch={false}>
               تحقيق الدخل
             </Link>
           </nav>
@@ -102,6 +103,7 @@ export default async function AdminLayout({
 
             <Link
               href="/courses"
+              prefetch={false}
               className="rounded-full border border-[#d7c59f] bg-[#fffaf0] px-4 py-2.5 text-sm font-black text-[#6b5d45]"
             >
               عرض المنصة
