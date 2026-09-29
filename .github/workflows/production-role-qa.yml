@@ -102,7 +102,6 @@ jobs:
           DADYOOM_E2E_BASE_URL: "https://dadyoom.pages.dev"
           DADYOOM_E2E_ARTIFACT_DIR: "artifacts/production-role-qa"
           DADYOOM_E2E_SKIP_EXTERNAL_AI: "false"
-          DADYOOM_E2E_VIDEO_SMOKE: "true"
           NEXT_PUBLIC_SUPABASE_URL: "https://hvqsvtomhlxavmfqoxfz.supabase.co"
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || secrets.DADYOOM_SUPABASE_SERVICE_ROLE_KEY }}
         shell: bash
