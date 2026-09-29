@@ -306,6 +306,59 @@ async def make_tts(text: str, output_path: Path) -> None:
     )
     await communicate.save(str(output_path))
 
+def _srt_time(seconds: float) -> str:
+    total_ms = max(0, int(round(seconds * 1000)))
+    hours, rem = divmod(total_ms, 3_600_000)
+    minutes, rem = divmod(rem, 60_000)
+    secs, millis = divmod(rem, 1000)
+    return f"{hours:02d}:{minutes:02d}:{secs:02d},{millis:03d}"
+
+def write_arabic_subtitles(
+    text: str,
+    output_path: Path,
+    duration: float,
+) -> None:
+    clean = " ".join(str(text or "").split())
+    if not clean:
+        output_path.write_text("", encoding="utf-8")
+        return
+
+    words = clean.split()
+    chunks: list[str] = []
+    current: list[str] = []
+
+    for word in words:
+        candidate = " ".join([*current, word])
+        if current and len(candidate) > 76:
+            chunks.append(" ".join(current))
+            current = [word]
+        else:
+            current.append(word)
+
+    if current:
+        chunks.append(" ".join(current))
+
+    chunks = chunks[:12]
+    slot = max(1.5, duration / max(1, len(chunks)))
+    rows: list[str] = []
+
+    for index, chunk in enumerate(chunks):
+        start = min(duration, index * slot)
+        end = min(duration, max(start + 1.0, (index + 1) * slot))
+        rows.extend(
+            [
+                str(index + 1),
+                f"{_srt_time(start)} --> {_srt_time(end)}",
+                chunk,
+                "",
+            ]
+        )
+
+    output_path.write_text(
+        "\n".join(rows),
+        encoding="utf-8",
+    )
+
 def scene_prompt(
     job: dict[str, Any],
     scene_index: int,
@@ -453,6 +506,7 @@ def concat_scenes(
 def mux_audio(
     video_path: Path,
     audio_path: Path,
+    subtitle_path: Path,
     output_path: Path,
     target_duration: int,
 ) -> None:
@@ -464,12 +518,16 @@ def mux_audio(
             str(video_path),
             "-i",
             str(audio_path),
+            "-i",
+            str(subtitle_path),
             "-filter_complex",
             "[1:a]apad=pad_dur=60[a]",
             "-map",
             "0:v:0",
             "-map",
             "[a]",
+            "-map",
+            "2:0",
             "-t",
             str(target_duration),
             "-c:v",
@@ -478,6 +536,10 @@ def mux_audio(
             "aac",
             "-b:a",
             "160k",
+            "-c:s",
+            "mov_text",
+            "-metadata:s:s:0",
+            "language=ara",
             "-movflags",
             "+faststart",
             str(output_path),
@@ -623,10 +685,18 @@ def render_job(
             )
         )
 
+        subtitles = root / "captions-ar.srt"
+        write_arabic_subtitles(
+            narration,
+            subtitles,
+            float(target),
+        )
+
         final = root / "final.mp4"
         mux_audio(
             silent,
             audio,
+            subtitles,
             final,
             target,
         )
