@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -62,6 +63,21 @@ export default function VideoLibraryClient({
 
   const playerRef =
     useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const requested =
+      new URLSearchParams(
+        window.location.search
+      ).get("room");
+
+    if (
+      requested === "native" ||
+      requested === "non-native"
+    ) {
+      setRoom(requested);
+      setPage(1);
+    }
+  }, []);
 
   const categories =
     useMemo(
