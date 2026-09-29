@@ -27,6 +27,7 @@ import StartLessonButton from "@/features/student-progress/components/StartLesso
 import LearningCompleteLessonButton from "@/features/student-progress/components/CompleteLessonButton";
 import LessonTutor from "@/features/ai-tutor/components/LessonTutor";
 import DadLessonContext from "@/components/dad-ai/DadLessonContext";
+import DadLessonVideoButton from "@/components/dad-ai/DadLessonVideoButton";
 
 type LessonPageProps = {
   params: Promise<{
@@ -350,6 +351,13 @@ export default async function LessonPage({
             </Link>
           </div>
         </section>
+
+        {user ? (
+          <DadLessonVideoButton
+            lessonId={lesson.id}
+            lessonTitle={lesson.title}
+          />
+        ) : null}
         {/* DADYOOM_LESSON_VIDEO_BUTTON_V1 */}
         <section className="lesson-arabic-card rounded-3xl border border-[#d7bd83] bg-[#fff7e3] p-5 shadow-sm">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
