@@ -305,6 +305,348 @@ async function roleRouteSmoke(page, role, baseUrl) {
   );
 }
 
+
+async function humanUiJourneySmoke(
+  page,
+  role,
+  baseUrl,
+  expectedPath,
+) {
+  const visited = new Set([
+    expectedPath,
+  ]);
+
+  let clicked = 0;
+
+  for (
+    let step = 1;
+    step <= 4;
+    step += 1
+  ) {
+    await page.goto(
+      \`\${baseUrl}\${expectedPath}\`,
+      {
+        waitUntil:
+          "domcontentloaded",
+        timeout:
+          60_000,
+      },
+    );
+
+    await page.waitForTimeout(
+      500,
+    );
+
+    const candidate =
+      await page
+        .locator("a[href]")
+        .evaluateAll(
+          (
+            anchors,
+            seen,
+          ) => {
+            for (
+              let index = 0;
+              index <
+              anchors.length;
+              index += 1
+            ) {
+              const anchor =
+                anchors[index];
+
+              if (
+                !(
+                  anchor instanceof
+                  HTMLAnchorElement
+                )
+              ) {
+                continue;
+              }
+
+              const raw =
+                (
+                  anchor.getAttribute(
+                    "href",
+                  ) ?? ""
+                ).trim();
+
+              const text =
+                (
+                  anchor.textContent ??
+                  ""
+                )
+                  .replace(
+                    /\s+/g,
+                    " ",
+                  )
+                  .trim();
+
+              const rect =
+                anchor.getBoundingClientRect();
+
+              const visible =
+                rect.width > 0 &&
+                rect.height > 0 &&
+                window.getComputedStyle(
+                  anchor,
+                ).visibility !==
+                  "hidden" &&
+                window.getComputedStyle(
+                  anchor,
+                ).display !==
+                  "none";
+
+              const safe =
+                raw.startsWith(
+                  "/",
+                ) &&
+                !raw.startsWith(
+                  "//",
+                ) &&
+                !raw.startsWith(
+                  "/api/",
+                ) &&
+                !raw.startsWith(
+                  "/login",
+                ) &&
+                !raw.startsWith(
+                  "/auth",
+                ) &&
+                !raw.includes(
+                  "logout",
+                ) &&
+                !raw.includes(
+                  "delete",
+                ) &&
+                !raw.includes(
+                  "remove",
+                ) &&
+                !anchor.hasAttribute(
+                  "download",
+                ) &&
+                anchor.target !==
+                  "_blank";
+
+              if (
+                visible &&
+                safe &&
+                text &&
+                !seen.includes(
+                  raw,
+                )
+              ) {
+                return {
+                  index,
+                  href: raw,
+                  text,
+                };
+              }
+            }
+
+            return null;
+          },
+          [...visited],
+        );
+
+    if (!candidate) {
+      break;
+    }
+
+    const diagnosticStart =
+      qaReport.diagnostics.length;
+
+    const link =
+      page
+        .locator("a[href]")
+        .nth(
+          candidate.index,
+        );
+
+    await link
+      .scrollIntoViewIfNeeded();
+
+    await link.click({
+      timeout:
+        20_000,
+    });
+
+    await page
+      .waitForLoadState(
+        "domcontentloaded",
+        {
+          timeout:
+            30_000,
+        },
+      )
+      .catch(() => {});
+
+    await page.waitForTimeout(
+      600,
+    );
+
+    const current =
+      new URL(
+        page.url(),
+      );
+
+    const bodyText =
+      await page
+        .locator("body")
+        .innerText()
+        .catch(() => "");
+
+    const serious =
+      qaReport.diagnostics
+        .slice(
+          diagnosticStart,
+        )
+        .filter(
+          item =>
+            item.role ===
+              role &&
+            (
+              item.kind ===
+                "pageerror" ||
+              (
+                item.kind ===
+                  "http5xx" &&
+                !(
+                  item.status ===
+                    503 &&
+                  String(
+                    item.url ??
+                      "",
+                  ).includes(
+                    "/api/live/health",
+                  )
+                )
+              )
+            ),
+        );
+
+    gate(
+      current.origin ===
+        new URL(
+          baseUrl,
+        ).origin &&
+        current.pathname !==
+          "/login" &&
+        bodyText
+          .trim()
+          .length > 0,
+      \`E2E_HUMAN_UI_\${role.toUpperCase()}_NAV_FAILED:\${candidate.href}:\${current.pathname}\`,
+    );
+
+    gate(
+      serious.length === 0,
+      \`E2E_HUMAN_UI_\${role.toUpperCase()}_RUNTIME_ERROR:\${candidate.href}:\${serious
+        .map(
+          item =>
+            item.kind,
+        )
+        .join(",")}\`,
+    );
+
+    clicked += 1;
+    visited.add(
+      candidate.href,
+    );
+
+    await capture(
+      page,
+      \`human-\${role}-step-\${step}\`,
+    );
+  }
+
+  if (
+    role === "child"
+  ) {
+    await page.goto(
+      \`\${baseUrl}/child\`,
+      {
+        waitUntil:
+          "domcontentloaded",
+        timeout:
+          60_000,
+      },
+    );
+
+    const diagnosticStart =
+      qaReport.diagnostics.length;
+
+    for (
+      const label of [
+        "اكتب",
+        "اسمع",
+        "اقرأ",
+        "ألعاب",
+        "فيديو",
+        "الحروف",
+      ]
+    ) {
+      const button =
+        page.getByRole(
+          "button",
+          {
+            name:
+              label,
+            exact:
+              true,
+          },
+        );
+
+      gate(
+        (await button.count()) >
+          0,
+        \`E2E_CHILD_TAB_MISSING:\${label}\`,
+      );
+
+      await button
+        .first()
+        .click();
+
+      await page.waitForTimeout(
+        120,
+      );
+    }
+
+    const serious =
+      qaReport.diagnostics
+        .slice(
+          diagnosticStart,
+        )
+        .filter(
+          item =>
+            item.role ===
+              role &&
+            (
+              item.kind ===
+                "pageerror" ||
+              item.kind ===
+                "http5xx"
+            ),
+        );
+
+    gate(
+      serious.length === 0,
+      "E2E_CHILD_UI_RUNTIME_ERROR",
+    );
+
+    console.log(
+      "E2E_CHILD_TABS_UI=PASS",
+    );
+  }
+
+  gate(
+    clicked >= 1,
+    \`E2E_HUMAN_UI_\${role.toUpperCase()}_NO_CLICKABLE_INTERNAL_LINKS\`,
+  );
+
+  console.log(
+    \`E2E_HUMAN_UI_\${role.toUpperCase()}=PASS CLICKS=\${clicked}\`,
+  );
+}
+
 function gate(condition, message) {
   if (!condition) {
     throw new Error(message);
@@ -3147,6 +3489,13 @@ try {
     );
 
     await responsiveSmoke(
+      page,
+      role,
+      baseUrl,
+      expectedPath,
+    );
+
+    await humanUiJourneySmoke(
       page,
       role,
       baseUrl,
