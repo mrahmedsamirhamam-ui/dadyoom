@@ -8,8 +8,7 @@ import { invalidateStudentCaches } from "@/features/student-progress/services/in
 import { syncLearningProfile } from "@/features/learning-profile/services/sync-profile";
 import { syncLessonMasteryAction } from "@/features/lesson-mastery/actions/syncLessonMastery";
 import { completeAdaptiveStep } from "@/features/learning-plan/services/adaptive-path-lifecycle";
-import { getUnifiedGamificationXP } from "@/features/student-progress/services/unified-gamification";
-import { syncGamificationMilestones } from "@/features/gamification/sync-milestones";
+
 import { updateStreak } from "@/services/gamification/streak";
 
 import { completeLesson } from "../services/progress";
@@ -33,6 +32,29 @@ type ProgressGamificationRow = {
 };
 
 const REQUIRED_MASTERY_SCORE = 90;
+
+async function getCanonicalTotalXP(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  studentId: string
+) {
+  const { data, error } =
+    await supabase.rpc(
+      "edu_total_xp",
+      {
+        p_student: studentId,
+      }
+    );
+
+  if (error) {
+    throw error;
+  }
+
+  const total = Number(data ?? 0);
+
+  return Number.isFinite(total)
+    ? Math.max(0, total)
+    : 0;
+}
 
 function createGamificationSnapshot(
   rows: ProgressGamificationRow[],
@@ -167,10 +189,17 @@ export async function completeLessonAction(
     throw beforeProgressError;
   }
 
+  /*
+   * Keep lesson completion bounded on Cloudflare.
+   *
+   * edu_total_xp is the canonical aggregate already used
+   * across Dadyoom. Reading it directly avoids re-querying
+   * every XP source before and after completion.
+   */
   const beforeUnifiedXP =
-    await getUnifiedGamificationXP(
-      user.id,
-      supabase
+    await getCanonicalTotalXP(
+      supabase,
+      user.id
     );
 
   const beforeSnapshot =
@@ -179,7 +208,7 @@ export async function completeLessonAction(
         beforeProgressData ??
         []
       ) as ProgressGamificationRow[],
-      beforeUnifiedXP.totalXP
+      beforeUnifiedXP
     );
 
 
@@ -638,9 +667,9 @@ export async function completeLessonAction(
   }
 
   const afterUnifiedXP =
-    await getUnifiedGamificationXP(
-      user.id,
-      supabase
+    await getCanonicalTotalXP(
+      supabase,
+      user.id
     );
 
   const afterSnapshot =
@@ -649,7 +678,7 @@ export async function completeLessonAction(
         afterProgressData ??
         []
       ) as ProgressGamificationRow[],
-      afterUnifiedXP.totalXP
+      afterUnifiedXP
     );
 
   const xpGained =
@@ -716,12 +745,17 @@ export async function completeLessonAction(
         }
       : null;
 
-  await syncGamificationMilestones({
-    supabase,
-    userId: user.id,
-    userEmail: user.email,
-  });
-
+  /*
+   * Do not run the full reward snapshot synchronously here.
+   * That snapshot fans out to several XP/reward sources and
+   * can exhaust Worker request/subrequest budget after the
+   * canonical completion has already succeeded.
+   *
+   * The newly unlocked lesson badges/achievements are already
+   * calculated above from the before/after snapshots and the
+   * Rewards surface computes the full cross-feature snapshot
+   * when it is opened.
+   */
   await syncLearningProfile(
     user.id
   );
