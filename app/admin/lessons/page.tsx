@@ -120,31 +120,54 @@ export default async function AdminLessonsPage() {
   const supabase =
     await createClient();
 
+  const [
+    lessonsResult,
+    publishedResult,
+    draftResult,
+  ] = await Promise.all([
+    supabase
+      .from("lessons")
+      .select(
+        `
+          id,
+          title,
+          slug,
+          lesson_number,
+          lesson_type,
+          estimated_minutes,
+          status,
+          source_page_start,
+          source_page_end,
+          units (
+            title,
+            unit_number,
+            grades (
+              name_ar,
+              grade_number
+            )
+          )
+        `,
+        { count: "estimated" },
+      )
+      .order("lesson_number", { ascending: true })
+      .limit(100),
+
+    supabase
+      .from("lessons")
+      .select("id", { count: "estimated", head: true })
+      .eq("status", "published"),
+
+    supabase
+      .from("lessons")
+      .select("id", { count: "estimated", head: true })
+      .eq("status", "draft"),
+  ]);
+
   const {
     data,
     error,
-  } =
-    await supabase
-      .from("lessons")
-      .select(`
-        id,
-        title,
-        slug,
-        lesson_number,
-        lesson_type,
-        estimated_minutes,
-        status,
-        source_page_start,
-        source_page_end,
-        units (
-          title,
-          unit_number,
-          grades (
-            name_ar,
-            grade_number
-          )
-        )
-      `);
+    count: totalLessonCount,
+  } = lessonsResult;
 
   if (error) {
     console.error(
@@ -172,92 +195,28 @@ export default async function AdminLessonsPage() {
     );
   }
 
+  if (publishedResult.error) {
+    console.error(
+      "ADMIN_LESSONS_PUBLISHED_COUNT_ERROR:",
+      publishedResult.error.message,
+    );
+  }
+
+  if (draftResult.error) {
+    console.error(
+      "ADMIN_LESSONS_DRAFT_COUNT_ERROR:",
+      draftResult.error.message,
+    );
+  }
+
   const lessons =
-    ((data ?? []) as Lesson[])
-      .sort(
-        (a, b) => {
-          const aUnit =
-            getRelation(
-              a.units
-            );
-
-          const bUnit =
-            getRelation(
-              b.units
-            );
-
-          const aGrade =
-            getRelation(
-              aUnit?.grades ??
-                null
-            );
-
-          const bGrade =
-            getRelation(
-              bUnit?.grades ??
-                null
-            );
-
-          const gradeDiff =
-            Number(
-              aGrade?.grade_number ??
-              999
-            ) -
-            Number(
-              bGrade?.grade_number ??
-              999
-            );
-
-          if (
-            gradeDiff !==
-            0
-          ) {
-            return gradeDiff;
-          }
-
-          const unitDiff =
-            Number(
-              aUnit?.unit_number ??
-              999
-            ) -
-            Number(
-              bUnit?.unit_number ??
-              999
-            );
-
-          if (
-            unitDiff !==
-            0
-          ) {
-            return unitDiff;
-          }
-
-          return (
-            Number(
-              a.lesson_number ??
-              999
-            ) -
-            Number(
-              b.lesson_number ??
-              999
-            )
-          );
-        }
-      );
+    (data ?? []) as Lesson[];
 
   const publishedCount =
-    lessons.filter(
-      (lesson) =>
-        lesson.status ===
-        "published"
-    ).length;
+    publishedResult.count ?? 0;
 
   const draftCount =
-    lessons.filter(
-      (lesson) =>
-        lesson.status ===
-        "draft"
-    ).length;
+    draftResult.count ?? 0;
 
   return (
     <div
@@ -278,6 +237,7 @@ export default async function AdminLessonsPage() {
         <div className="flex flex-wrap gap-2">
           <Link
             href="/admin/curriculum"
+            prefetch={false}
             className="rounded-full border border-[#d3c099] bg-[#fffaf0] px-5 py-2.5 text-sm font-black text-[#6f572d]"
           >
             بوابة المناهج
@@ -285,6 +245,7 @@ export default async function AdminLessonsPage() {
 
           <Link
             href="/courses"
+            prefetch={false}
             className="rounded-full bg-[#123f39] px-5 py-2.5 text-sm font-black text-white"
           >
             معاينة المنشور
@@ -299,7 +260,7 @@ export default async function AdminLessonsPage() {
           </p>
 
           <p className="mt-2 text-3xl font-bold">
-            {lessons.length}
+            {totalLessonCount ?? lessons.length}
           </p>
         </div>
 
@@ -325,6 +286,9 @@ export default async function AdminLessonsPage() {
       </div>
 
       <div className="overflow-hidden rounded-xl border bg-card">
+        <div className="border-b px-4 py-3 text-xs font-bold text-muted-foreground">
+          عرض أول {lessons.length} درسًا فقط للحفاظ على سرعة لوحة الإدارة.
+        </div>
         <Table>
           <TableHeader>
             <TableRow>
@@ -421,6 +385,7 @@ export default async function AdminLessonsPage() {
                       <TableCell className="font-medium">
                         <Link
                           href={`/admin/lessons/${lesson.id}`}
+                          prefetch={false}
                           className="hover:underline"
                         >
                           {lesson.title}
@@ -475,6 +440,7 @@ export default async function AdminLessonsPage() {
                           render={
                             <Link
                               href={`/admin/lessons/${lesson.id}`}
+                              prefetch={false}
                             />
                           }
                         >
