@@ -465,23 +465,50 @@ async function humanUiJourneySmoke(
     await link
       .scrollIntoViewIfNeeded();
 
+    const beforeClick =
+      new URL(
+        page.url(),
+      );
+
     await link.click({
       timeout:
         20_000,
     });
 
+    /*
+     * Behave like a real user: let the client navigation finish instead of
+     * immediately jumping back to the dashboard and aborting the RSC request.
+     * Aborted navigation storms are not representative of ordinary use and
+     * can overload the Cloudflare worker during QA itself.
+     */
     await page
-      .waitForLoadState(
-        "domcontentloaded",
+      .waitForURL(
+        next =>
+          next.pathname !==
+            beforeClick.pathname ||
+          next.search !==
+            beforeClick.search,
         {
           timeout:
             30_000,
+          waitUntil:
+            "domcontentloaded",
+        },
+      )
+      .catch(() => {});
+
+    await page
+      .waitForLoadState(
+        "networkidle",
+        {
+          timeout:
+            15_000,
         },
       )
       .catch(() => {});
 
     await page.waitForTimeout(
-      600,
+      900,
     );
 
     const current =
