@@ -11,6 +11,7 @@ type BatchJobRow = {
   output_duration_seconds: number | null;
   error_code: string | null;
   error_message: string | null;
+  attempts?: number | null;
   created_at?: string;
   updated_at?: string;
 };
@@ -66,7 +67,7 @@ export async function enqueueBatchVideo(input: {
     await db
       .from("video_batch_jobs")
       .select(
-        "id,status,output_url,output_duration_seconds,error_code,error_message,created_at,updated_at",
+        "id,status,output_url,output_duration_seconds,error_code,error_message,attempts,created_at,updated_at",
       )
       .eq("requested_by", input.userId)
       .contains("metadata", {
@@ -81,7 +82,56 @@ export async function enqueueBatchVideo(input: {
   }
 
   if (existing) {
-    return mapStatus(existing as BatchJobRow);
+    const row =
+      existing as BatchJobRow;
+
+    if (
+      (row.status === "failed" ||
+        row.status === "cancelled") &&
+      Number(row.attempts ?? 0) < 3
+    ) {
+      const {
+        data: retried,
+        error: retryError,
+      } =
+        await db
+          .from("video_batch_jobs")
+          .update({
+            status: "queued",
+            worker_id: null,
+            claimed_at: null,
+            started_at: null,
+            completed_at: null,
+            output_path: null,
+            output_url: null,
+            output_duration_seconds: null,
+            render_seconds: null,
+            gpu_seconds: null,
+            error_code: null,
+            error_message: null,
+            updated_at:
+              new Date().toISOString(),
+          })
+          .eq("id", row.id)
+          .eq("requested_by", input.userId)
+          .select(
+            "id,status,output_url,output_duration_seconds,error_code,error_message,attempts,created_at,updated_at",
+          )
+          .single();
+
+      if (retryError || !retried) {
+        throw retryError ??
+          new Error(
+            "VIDEO_BATCH_RETRY_FAILED",
+          );
+      }
+
+      return mapStatus(
+        retried as BatchJobRow,
+      );
+    }
+
+    return mapStatus(row);
   }
 
   const prompt =
@@ -129,7 +179,7 @@ export async function enqueueBatchVideo(input: {
         },
       })
       .select(
-        "id,status,output_url,output_duration_seconds,error_code,error_message,created_at,updated_at",
+        "id,status,output_url,output_duration_seconds,error_code,error_message,attempts,created_at,updated_at",
       )
       .single();
 
@@ -150,7 +200,7 @@ export async function getBatchVideoStatus(input: {
     await db
       .from("video_batch_jobs")
       .select(
-        "id,status,output_url,output_duration_seconds,error_code,error_message,created_at,updated_at",
+        "id,status,output_url,output_duration_seconds,error_code,error_message,attempts,created_at,updated_at",
       )
       .eq("id", input.jobId)
       .eq("requested_by", input.userId)
@@ -162,7 +212,58 @@ export async function getBatchVideoStatus(input: {
     return null;
   }
 
-  return mapStatus(data as BatchJobRow);
+  const row =
+    data as BatchJobRow;
+
+  const updatedAt =
+    row.updated_at
+      ? new Date(row.updated_at).getTime()
+      : Date.now();
+
+  const stale =
+    ["claimed", "rendering", "uploading"].includes(
+      row.status,
+    ) &&
+    Date.now() - updatedAt >
+      90 * 60_000;
+
+  if (stale) {
+    const {
+      data: requeued,
+      error: requeueError,
+    } =
+      await db
+        .from("video_batch_jobs")
+        .update({
+          status: "queued",
+          worker_id: null,
+          claimed_at: null,
+          started_at: null,
+          error_code:
+            "VIDEO_BATCH_STALE_REQUEUED",
+          error_message: null,
+          updated_at:
+            new Date().toISOString(),
+        })
+        .eq("id", row.id)
+        .eq("requested_by", input.userId)
+        .select(
+          "id,status,output_url,output_duration_seconds,error_code,error_message,attempts,created_at,updated_at",
+        )
+        .single();
+
+    if (requeueError) {
+      throw requeueError;
+    }
+
+    if (requeued) {
+      return mapStatus(
+        requeued as BatchJobRow,
+      );
+    }
+  }
+
+  return mapStatus(row);
 }
 
 export async function listBatchVideoHistory(
