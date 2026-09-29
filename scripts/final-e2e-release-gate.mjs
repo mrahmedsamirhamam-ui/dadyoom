@@ -93,6 +93,7 @@ const users = new Map();
 const fixture = {
   schoolId: null,
   classId: null,
+  liveSessionId: null,
   learningLessonId: null,
   nextLessonId: null,
   activityIds: [],
@@ -245,11 +246,12 @@ async function roleRouteSmoke(page, role, baseUrl) {
   const teacher = users.get("teacher");
 
   const routes = {
-    student: ["/student", "/courses", "/assessment", "/skills"],
+    student: ["/student", "/student/live", "/courses", "/assessment", "/skills"],
     child: ["/child", "/courses", "/skills"],
     teacher: [
       "/teacher",
       "/teacher/classroom",
+      "/teacher/live",
       ...(fixture.classId ? [`/teacher/classes/${fixture.classId}`] : []),
     ],
     parent: [
@@ -270,6 +272,7 @@ async function roleRouteSmoke(page, role, baseUrl) {
       "/admin/lessons",
       "/admin/students",
       "/admin/teachers",
+      "/admin/monetization",
     ],
   };
 
@@ -687,6 +690,60 @@ async function seedRelationships() {
   if (membership.error) {
     throw membership.error;
   }
+
+  const liveStart =
+    new Date(
+      Date.now() -
+        2 * 60_000,
+    );
+  const liveEnd =
+    new Date(
+      Date.now() +
+        45 * 60_000,
+    );
+
+  const liveSession =
+    await admin
+      .from(
+        "edu_live_sessions",
+      )
+      .insert({
+        teacher_id:
+          teacher.id,
+        class_id:
+          fixture.classId,
+        course_id:
+          null,
+        title:
+          "E2E Dadyoom Live",
+        description:
+          "Temporary live release gate session",
+        starts_at:
+          liveStart.toISOString(),
+        ends_at:
+          liveEnd.toISOString(),
+        room_name:
+          `e2e-live-${stamp.replace(/[^a-zA-Z0-9]/g, "").slice(-24)}`,
+        status:
+          "live",
+      })
+      .select("id")
+      .single();
+
+  if (
+    liveSession.error ||
+    !liveSession.data?.id
+  ) {
+    throw (
+      liveSession.error ??
+      new Error(
+        "E2E_LIVE_SESSION_CREATE_FAILED",
+      )
+    );
+  }
+
+  fixture.liveSessionId =
+    liveSession.data.id;
 
   const parentLink =
     await admin
@@ -1714,6 +1771,71 @@ async function canonicalLearningFlow(
   );
   console.log(
     "E2E_CANONICAL_LEARNING_FLOW=PASS",
+  );
+}
+
+async function liveTokenSmoke(
+  page,
+  role,
+) {
+  gate(
+    Boolean(
+      fixture.liveSessionId,
+    ),
+    "E2E_LIVE_SESSION_FIXTURE_MISSING",
+  );
+
+  const health =
+    await browserFetch(
+      page,
+      "/api/live/health",
+    );
+
+  if (
+    health.status === 503 &&
+    health.data?.configured === false
+  ) {
+    console.log(
+      `E2E_LIVE_${role.toUpperCase()}=BLOCKED_EXTERNAL_CONFIG`,
+    );
+    return;
+  }
+
+  gate(
+    health.status === 200 &&
+      health.data?.configured === true,
+    `E2E_LIVE_HEALTH_FAILED:${role}:${health.status}`,
+  );
+
+  const token =
+    await browserFetch(
+      page,
+      "/api/live/token",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type":
+            "application/json",
+        },
+        body:
+          JSON.stringify({
+            sessionId:
+              fixture.liveSessionId,
+          }),
+      },
+    );
+
+  gate(
+    token.status === 200 &&
+      typeof token.data?.token === "string" &&
+      token.data.token.length > 40 &&
+      typeof token.data?.serverUrl === "string" &&
+      token.data.serverUrl.startsWith("wss://"),
+    `E2E_LIVE_TOKEN_FAILED:${role}:${token.status}`,
+  );
+
+  console.log(
+    `E2E_LIVE_${role.toUpperCase()}=PASS`,
   );
 }
 
@@ -3036,6 +3158,16 @@ try {
       role,
       baseUrl,
     );
+
+    if (
+      role === "student" ||
+      role === "teacher"
+    ) {
+      await liveTokenSmoke(
+        page,
+        role,
+      );
+    }
 
     if (
       role ===
