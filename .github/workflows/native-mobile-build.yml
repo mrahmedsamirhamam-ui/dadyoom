@@ -120,7 +120,7 @@ jobs:
 
   ios-native:
     name: iOS native app
-    if: ${{ github.event_name != 'workflow_dispatch' || inputs.build_ios }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.build_ios }}
     runs-on: macos-latest
     timeout-minutes: 90
     env:
