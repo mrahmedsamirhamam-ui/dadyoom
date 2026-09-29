@@ -262,7 +262,7 @@ for (const marker of [
   "REQUIRED_MASTERY_SCORE = 90",
   "syncLessonMasteryAction",
   "updateStreak",
-  "getUnifiedGamificationXP",
+  "getCanonicalTotalXP",
   "completeAdaptiveStep",
 ]) {
   if (!canonicalCompletion.includes(marker)) {
