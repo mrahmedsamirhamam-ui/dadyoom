@@ -2,6 +2,10 @@ import { NextResponse } from "next/server";
 
 import { createClient } from "@/lib/supabase/server";
 import {
+  BATCH_VIDEO_PROVIDER,
+  getBatchVideoStatus,
+} from "@/lib/video/batch-fallback";
+import {
   cinematicVideoConfigured,
   getCinematicVideoStatus,
   isCinematicProviderId,
@@ -63,14 +67,60 @@ export async function GET(request: Request) {
 
     if (
       !provider ||
-      !isCinematicProviderId(
-        provider,
-      ) ||
       !sessionId ||
       !safeId(sessionId) ||
       (
         videoId &&
         !safeId(videoId)
+      )
+    ) {
+      return NextResponse.json(
+        {
+          error:
+            "بيانات مهمة الفيديو غير صالحة.",
+        },
+        { status: 400 },
+      );
+    }
+
+    if (
+      provider ===
+      BATCH_VIDEO_PROVIDER
+    ) {
+      const batch =
+        await getBatchVideoStatus({
+          userId:
+            user.id,
+          jobId:
+            videoId ||
+            sessionId,
+        });
+
+      if (!batch) {
+        return NextResponse.json(
+          {
+            error:
+              "مهمة الفيديو غير موجودة.",
+          },
+          { status: 404 },
+        );
+      }
+
+      return NextResponse.json(
+        batch,
+        {
+          status: 200,
+          headers: {
+            "Cache-Control":
+              "no-store, max-age=0",
+          },
+        },
+      );
+    }
+
+    if (
+      !isCinematicProviderId(
+        provider,
       )
     ) {
       return NextResponse.json(
