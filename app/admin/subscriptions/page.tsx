@@ -34,7 +34,7 @@ export default async function AdminSubscriptionsPage({
       "id,user_id,plan_id,status,provider,current_period_end,grant_source,updated_at",
     )
     .order("updated_at", { ascending: false })
-    .limit(500);
+    .limit(100);
 
   if (error) throw error;
 
@@ -219,7 +219,7 @@ return row.status === "active";
       <section className="rounded-[2rem] border bg-white p-5 shadow-sm">
         <div className="mb-4 flex items-center justify-between gap-3">
           <h2 className="text-xl font-black text-[#123f39]">المشتركون</h2>
-          <span className="text-sm font-bold text-slate-500">آخر 500 سجل</span>
+          <span className="text-sm font-bold text-slate-500">آخر 100 سجل</span>
         </div>
 
         <div className="overflow-x-auto">
