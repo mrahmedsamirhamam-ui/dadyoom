@@ -74,7 +74,8 @@ export default async function CurriculumPage() {
     supabase
       .from("countries")
       .select("id,code,name_ar,is_active")
-      .order("name_ar"),
+      .order("name_ar")
+      .limit(50),
 
     supabase
       .from("curricula")
@@ -88,33 +89,34 @@ export default async function CurriculumPage() {
           code
         )
       `)
-      .order("created_at", { ascending: false }),
+      .order("created_at", { ascending: false })
+      .limit(100),
 
     countTable(
       supabase
         .from("grades")
-        .select("id", { count: "exact", head: true }),
+        .select("id", { count: "estimated", head: true }),
       "grades"
     ),
 
     countTable(
       supabase
         .from("units")
-        .select("id", { count: "exact", head: true }),
+        .select("id", { count: "estimated", head: true }),
       "units"
     ),
 
     countTable(
       supabase
         .from("lessons")
-        .select("id", { count: "exact", head: true }),
+        .select("id", { count: "estimated", head: true }),
       "lessons"
     ),
 
     countTable(
       supabase
         .from("lessons")
-        .select("id", { count: "exact", head: true })
+        .select("id", { count: "estimated", head: true })
         .eq("status", "published"),
       "published lessons"
     ),
