@@ -17,20 +17,33 @@ type ProgressRow = {
 export default async function AdminStudentsPage() {
   const supabase = await createClient();
 
-  const [
-    studentsResult,
-    progressResult,
-  ] = await Promise.all([
-    supabase
+  const studentsResult =
+    await supabase
       .from("profiles")
-      .select("id,full_name,email,country,created_at")
+      .select(
+        "id,full_name,email,country,created_at",
+        { count: "estimated" },
+      )
       .eq("role", "student")
-      .order("created_at", { ascending: false }),
+      .order("created_at", { ascending: false })
+      .limit(50);
 
-    supabase
-      .from("student_lesson_progress")
-      .select("student_id,status,xp"),
-  ]);
+  const studentIds =
+    (studentsResult.data ?? []).map(
+      (student) => student.id,
+    );
+
+  const progressResult =
+    studentIds.length > 0
+      ? await supabase
+          .from("student_lesson_progress")
+          .select("student_id,status,xp")
+          .in("student_id", studentIds)
+          .limit(5000)
+      : {
+          data: [] as ProgressRow[],
+          error: null,
+        };
 
   if (studentsResult.error) {
     throw new Error(
@@ -102,7 +115,7 @@ export default async function AdminStudentsPage() {
 
           <div className="rounded-2xl bg-[#123f39] px-5 py-3 text-center text-white">
             <div className="text-2xl font-black text-[#f5cf7a]">
-              {students.length}
+              {studentsResult.count ?? students.length}
             </div>
             <div className="text-[10px] font-black">
               حساب
@@ -111,6 +124,9 @@ export default async function AdminStudentsPage() {
         </section>
 
         <div className="overflow-hidden rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] shadow-sm">
+          <div className="border-b border-[#eee3cf] px-4 py-3 text-xs font-bold text-[#7b7164]">
+            عرض أحدث {students.length} حسابًا؛ تُحمّل بيانات التقدم لهذا النطاق فقط.
+          </div>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[760px] text-right">
               <thead className="bg-[#f4ead7] text-xs font-black text-[#6f5a36]">
