@@ -6,7 +6,6 @@ import {
   getBatchVideoStatus,
 } from "@/lib/video/batch-fallback";
 import {
-  cinematicVideoConfigured,
   getCinematicVideoStatus,
   isCinematicProviderId,
 } from "@/lib/video/cinematic-avatar-agent";
@@ -28,16 +27,6 @@ export async function GET(request: Request) {
       return NextResponse.json(
         { error: "يجب تسجيل الدخول." },
         { status: 401 },
-      );
-    }
-
-    if (!cinematicVideoConfigured()) {
-      return NextResponse.json(
-        {
-          error:
-            "ميزة فيديو الأفاتار السينمائي غير مفعلة بعد على حساب ضاديوم.",
-        },
-        { status: 503 },
       );
     }
 
