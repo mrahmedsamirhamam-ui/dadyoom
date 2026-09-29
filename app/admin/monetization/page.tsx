@@ -27,17 +27,29 @@ export default async function MonetizationAdminPage() {
   await requireOwnerAdmin();
 
   const paddleToken = Boolean(
-    process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN?.trim(),
+    process.env.PADDLE_CLIENT_TOKEN?.trim() ||
+      process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN?.trim(),
   );
   const paddlePrice = Boolean(
-    process.env.NEXT_PUBLIC_PADDLE_PLUS_PRICE_ID?.trim(),
+    process.env.PADDLE_PLUS_PRICE_ID?.trim() ||
+      process.env.NEXT_PUBLIC_PADDLE_PLUS_PRICE_ID?.trim(),
+  );
+  const paddleApiKey = Boolean(
+    process.env.PADDLE_API_KEY?.trim(),
   );
   const paddleWebhook = Boolean(
     process.env.PADDLE_WEBHOOK_SECRET?.trim(),
   );
-  const adsense = Boolean(
-    process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.trim(),
-  );
+  const paddleEnvironment =
+    process.env.PADDLE_ENVIRONMENT?.trim().toLowerCase() === "production"
+      ? "Production"
+      : "Sandbox";
+  const adsenseCandidate =
+    process.env.ADSENSE_CLIENT?.trim() ||
+    process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.trim() ||
+    "";
+  const adsense =
+    /^ca-pub-\d{16}$/u.test(adsenseCandidate);
 
   return (
     <main
@@ -69,12 +81,17 @@ export default async function MonetizationAdminPage() {
             label="Plus monthly Price ID"
           />
           <Flag
+            ok={paddleApiKey}
+            label="Server API key"
+          />
+          <Flag
             ok={paddleWebhook}
             label="Webhook secret"
           />
         </div>
 
         <p className="mt-4 text-sm leading-7 text-slate-600">
+          البيئة الحالية: <strong>{paddleEnvironment}</strong>.
           السعر المستهدف: 10 USD شهريًا. وسيلة الدفع
           الظاهرة للعميل: Card فقط.
         </p>
