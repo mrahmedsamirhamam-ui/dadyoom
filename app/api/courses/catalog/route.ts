@@ -3,46 +3,44 @@ import { NextResponse } from "next/server";
 import { ARAB_COUNTRY_CODES } from "@/lib/countries";
 import { createClient } from "@/lib/supabase/server";
 
+type Country = {
+  id: string;
+  code: string;
+  name_ar: string;
+};
+
+type Curriculum = {
+  id: string;
+  country_id: string;
+  name_ar: string;
+  academic_year: string | null;
+};
+
+type Grade = {
+  id: string;
+  curriculum_id: string;
+  name_ar: string;
+  grade_number: number | null;
+};
+
+type RawUnit = {
+  id: string;
+  grade_id: string;
+  title: string;
+  description: string | null;
+  sort_order: number | null;
+  unit_number: number | null;
+};
+
 type RawLesson = {
   id: string;
+  unit_id: string;
   title: string;
   summary: string | null;
   estimated_minutes: number | null;
   lesson_number: number | null;
   sort_order: number | null;
   status: string;
-};
-
-type Country = {
-  id: string;
-  code: string;
-  name_ar: string;
-  is_active: boolean;
-};
-
-type Curriculum = {
-  id: string;
-  name_ar: string;
-  academic_year: string | null;
-  is_active: boolean;
-  countries: Country | Country[] | null;
-};
-
-type Grade = {
-  id: string;
-  name_ar: string;
-  grade_number: number | null;
-  curricula: Curriculum | Curriculum[] | null;
-};
-
-type RawUnit = {
-  id: string;
-  title: string;
-  description: string | null;
-  sort_order: number | null;
-  unit_number: number | null;
-  grades: Grade | Grade[] | null;
-  lessons?: RawLesson[] | null;
 };
 
 type Progress = {
@@ -52,12 +50,12 @@ type Progress = {
   xp: number | null;
 };
 
-function one<T>(value: T | T[] | null | undefined): T | null {
-  return Array.isArray(value) ? (value[0] ?? null) : (value ?? null);
-}
+function difficulty(
+  grade: number | null,
+) {
+  const value =
+    Number(grade ?? 0);
 
-function difficulty(grade: number | null) {
-  const value = Number(grade ?? 0);
   return value >= 9
     ? ("advanced" as const)
     : value >= 4
@@ -65,156 +63,655 @@ function difficulty(grade: number | null) {
       : ("beginner" as const);
 }
 
-export async function GET(request: Request) {
-  const url = new URL(request.url);
-  const country = String(url.searchParams.get("country") ?? "")
-    .trim()
-    .toUpperCase();
-  const grade = Number(url.searchParams.get("grade") ?? 0);
+function errorResponse(
+  stage: string,
+  error: {
+    message?: string;
+    code?: string;
+  } | null,
+) {
+  console.error(
+    "DADYOOM_SCOPED_CATALOG_ERROR",
+    {
+      stage,
+      code:
+        error?.code ??
+        null,
+      message:
+        error?.message ??
+        "unknown",
+    },
+  );
+
+  return NextResponse.json(
+    {
+      error:
+        "تعذر تحميل دروس هذا الصف الآن.",
+    },
+    { status: 503 },
+  );
+}
+
+export async function GET(
+  request: Request,
+) {
+  const url =
+    new URL(request.url);
+
+  const countryCode =
+    String(
+      url.searchParams.get(
+        "country",
+      ) ?? "",
+    )
+      .trim()
+      .toUpperCase();
+
+  const gradeNumber =
+    Number(
+      url.searchParams.get(
+        "grade",
+      ) ?? 0,
+    );
 
   if (
-    !(ARAB_COUNTRY_CODES as readonly string[]).includes(country) ||
-    !Number.isInteger(grade) ||
-    grade < 1 ||
-    grade > 13
+    !(
+      ARAB_COUNTRY_CODES as readonly string[]
+    ).includes(countryCode) ||
+    !Number.isInteger(
+      gradeNumber,
+    ) ||
+    gradeNumber < 1 ||
+    gradeNumber > 13
   ) {
     return NextResponse.json(
-      { error: "اختيار الدولة أو الصف غير صالح." },
+      {
+        error:
+          "اختيار الدولة أو الصف غير صالح.",
+      },
       { status: 400 },
     );
   }
 
-  const supabase = await createClient();
+  const supabase =
+    await createClient();
+
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } =
+    await supabase.auth.getUser();
 
-  const { data, error } = await supabase
-    .from("units")
-    .select(`
-      id,title,description,sort_order,unit_number,
-      grades!inner(
-        id,name_ar,grade_number,
-        curricula!inner(
-          id,name_ar,academic_year,is_active,
-          countries!inner(id,code,name_ar,is_active)
-        )
-      ),
-      lessons!inner(
-        id,title,summary,estimated_minutes,lesson_number,sort_order,status
+  /*
+   * Keep the public catalog query intentionally flat.
+   * The previous PostgREST nested join over
+   * countries -> curricula -> grades -> units -> lessons
+   * could exceed the production request budget even for one grade.
+   * These bounded lookups preserve the same catalog contract without
+   * loading or rewriting curriculum content.
+   */
+
+  const {
+    data: countryData,
+    error: countryError,
+  } =
+    await supabase
+      .from("countries")
+      .select(
+        "id,code,name_ar",
       )
-    `)
-    .eq("grades.grade_number", grade)
-    .eq("grades.curricula.is_active", true)
-    .eq("grades.curricula.countries.code", country)
-    .eq("grades.curricula.countries.is_active", true)
-    .eq("lessons.status", "published")
-    .limit(120);
+      .eq(
+        "code",
+        countryCode,
+      )
+      .eq(
+        "is_active",
+        true,
+      )
+      .limit(1)
+      .maybeSingle();
 
-  if (error) {
-    console.error("DADYOOM_SCOPED_CATALOG_ERROR", error);
-    return NextResponse.json(
-      { error: "تعذر تحميل دروس هذا الصف الآن." },
-      { status: 503 },
+  if (
+    countryError
+  ) {
+    return errorResponse(
+      "country",
+      countryError,
     );
   }
 
-  const rawUnits = (data ?? []) as unknown as RawUnit[];
-  const lessonIds = rawUnits.flatMap((unit) =>
-    (unit.lessons ?? []).map((lesson) => lesson.id),
-  );
-
-  let progress: Progress[] = [];
-
-  if (user && lessonIds.length > 0) {
-    const { data: progressRows } = await supabase
-      .from("student_lesson_progress")
-      .select("lesson_id,status,progress_percent,xp")
-      .eq("student_id", user.id)
-      .in("lesson_id", lessonIds);
-
-    progress = (progressRows ?? []) as unknown as Progress[];
+  if (!countryData) {
+    return NextResponse.json(
+      { units: [] },
+      {
+        headers: {
+          "Cache-Control":
+            user
+              ? "private, no-store"
+              : "public, max-age=60, s-maxage=300",
+        },
+      },
+    );
   }
 
-  const progressByLesson = new Map(
-    progress.map((row) => [row.lesson_id, row]),
-  );
+  const country =
+    countryData as Country;
 
-  const units = rawUnits
-    .map((raw) => {
-      const gradeRow = one(raw.grades);
-      const curriculum = one(gradeRow?.curricula);
-      const countryRow = one(curriculum?.countries);
+  const {
+    data: curriculaData,
+    error:
+      curriculaError,
+  } =
+    await supabase
+      .from("curricula")
+      .select(
+        "id,country_id,name_ar,academic_year",
+      )
+      .eq(
+        "country_id",
+        country.id,
+      )
+      .eq(
+        "is_active",
+        true,
+      )
+      .limit(20);
 
-      if (!gradeRow || !curriculum || !countryRow) return null;
+  if (
+    curriculaError
+  ) {
+    return errorResponse(
+      "curricula",
+      curriculaError,
+    );
+  }
 
-      const lessons = (raw.lessons ?? [])
-        .filter((lesson) => lesson.status === "published")
-        .sort(
-          (a, b) =>
-            Number(a.sort_order ?? a.lesson_number ?? 9999) -
-            Number(b.sort_order ?? b.lesson_number ?? 9999),
+  const curricula =
+    (curriculaData ??
+      []) as Curriculum[];
+
+  const curriculumIds =
+    curricula.map(
+      item => item.id,
+    );
+
+  if (
+    curriculumIds.length ===
+    0
+  ) {
+    return NextResponse.json(
+      { units: [] },
+      {
+        headers: {
+          "Cache-Control":
+            user
+              ? "private, no-store"
+              : "public, max-age=60, s-maxage=300",
+        },
+      },
+    );
+  }
+
+  const {
+    data: gradesData,
+    error: gradesError,
+  } =
+    await supabase
+      .from("grades")
+      .select(
+        "id,curriculum_id,name_ar,grade_number",
+      )
+      .in(
+        "curriculum_id",
+        curriculumIds,
+      )
+      .eq(
+        "grade_number",
+        gradeNumber,
+      )
+      .limit(30);
+
+  if (
+    gradesError
+  ) {
+    return errorResponse(
+      "grades",
+      gradesError,
+    );
+  }
+
+  const grades =
+    (gradesData ??
+      []) as Grade[];
+
+  const gradeIds =
+    grades.map(
+      item => item.id,
+    );
+
+  if (
+    gradeIds.length === 0
+  ) {
+    return NextResponse.json(
+      { units: [] },
+      {
+        headers: {
+          "Cache-Control":
+            user
+              ? "private, no-store"
+              : "public, max-age=60, s-maxage=300",
+        },
+      },
+    );
+  }
+
+  const {
+    data: unitsData,
+    error: unitsError,
+  } =
+    await supabase
+      .from("units")
+      .select(
+        "id,grade_id,title,description,sort_order,unit_number",
+      )
+      .in(
+        "grade_id",
+        gradeIds,
+      )
+      .order(
+        "sort_order",
+        {
+          ascending:
+            true,
+        },
+      )
+      .order(
+        "unit_number",
+        {
+          ascending:
+            true,
+        },
+      )
+      .limit(120);
+
+  if (
+    unitsError
+  ) {
+    return errorResponse(
+      "units",
+      unitsError,
+    );
+  }
+
+  const rawUnits =
+    (unitsData ??
+      []) as RawUnit[];
+
+  const unitIds =
+    rawUnits.map(
+      item => item.id,
+    );
+
+  if (
+    unitIds.length === 0
+  ) {
+    return NextResponse.json(
+      { units: [] },
+      {
+        headers: {
+          "Cache-Control":
+            user
+              ? "private, no-store"
+              : "public, max-age=60, s-maxage=300",
+        },
+      },
+    );
+  }
+
+  const {
+    data: lessonsData,
+    error: lessonsError,
+  } =
+    await supabase
+      .from("lessons")
+      .select(
+        "id,unit_id,title,summary,estimated_minutes,lesson_number,sort_order,status",
+      )
+      .in(
+        "unit_id",
+        unitIds,
+      )
+      .eq(
+        "status",
+        "published",
+      )
+      .order(
+        "sort_order",
+        {
+          ascending:
+            true,
+        },
+      )
+      .order(
+        "lesson_number",
+        {
+          ascending:
+            true,
+        },
+      )
+      .limit(500);
+
+  if (
+    lessonsError
+  ) {
+    return errorResponse(
+      "lessons",
+      lessonsError,
+    );
+  }
+
+  const lessons =
+    (lessonsData ??
+      []) as RawLesson[];
+
+  const lessonIds =
+    lessons.map(
+      item => item.id,
+    );
+
+  let progress:
+    Progress[] = [];
+
+  if (
+    user &&
+    lessonIds.length >
+      0
+  ) {
+    const {
+      data:
+        progressRows,
+      error:
+        progressError,
+    } =
+      await supabase
+        .from(
+          "student_lesson_progress",
         )
-        .map((lesson, index) => {
-          const row = progressByLesson.get(lesson.id);
-          const completed =
-            row?.status === "completed" || row?.status === "mastered";
+        .select(
+          "lesson_id,status,progress_percent,xp",
+        )
+        .eq(
+          "student_id",
+          user.id,
+        )
+        .in(
+          "lesson_id",
+          lessonIds,
+        )
+        .limit(500);
+
+    if (
+      progressError
+    ) {
+      console.warn(
+        "DADYOOM_SCOPED_CATALOG_PROGRESS_ERROR",
+        {
+          code:
+            progressError.code ??
+            null,
+          message:
+            progressError.message,
+        },
+      );
+    } else {
+      progress =
+        (progressRows ??
+          []) as Progress[];
+    }
+  }
+
+  const curriculumById =
+    new Map(
+      curricula.map(
+        item => [
+          item.id,
+          item,
+        ],
+      ),
+    );
+
+  const gradeById =
+    new Map(
+      grades.map(
+        item => [
+          item.id,
+          item,
+        ],
+      ),
+    );
+
+  const lessonsByUnit =
+    new Map<
+      string,
+      RawLesson[]
+    >();
+
+  for (
+    const lesson of
+    lessons
+  ) {
+    const rows =
+      lessonsByUnit.get(
+        lesson.unit_id,
+      ) ?? [];
+
+    rows.push(
+      lesson,
+    );
+
+    lessonsByUnit.set(
+      lesson.unit_id,
+      rows,
+    );
+  }
+
+  const progressByLesson =
+    new Map(
+      progress.map(
+        row => [
+          row.lesson_id,
+          row,
+        ],
+      ),
+    );
+
+  const units =
+    rawUnits
+      .map(
+        raw => {
+          const gradeRow =
+            gradeById.get(
+              raw.grade_id,
+            );
+
+          if (
+            !gradeRow
+          ) {
+            return null;
+          }
+
+          const curriculum =
+            curriculumById.get(
+              gradeRow.curriculum_id,
+            );
+
+          if (
+            !curriculum
+          ) {
+            return null;
+          }
+
+          const unitLessons =
+            (
+              lessonsByUnit.get(
+                raw.id,
+              ) ?? []
+            )
+              .sort(
+                (
+                  a,
+                  b,
+                ) =>
+                  Number(
+                    a.sort_order ??
+                      a.lesson_number ??
+                      9999,
+                  ) -
+                  Number(
+                    b.sort_order ??
+                      b.lesson_number ??
+                      9999,
+                  ),
+              )
+              .map(
+                (
+                  lesson,
+                  index,
+                ) => {
+                  const row =
+                    progressByLesson.get(
+                      lesson.id,
+                    );
+
+                  const completed =
+                    row?.status ===
+                      "completed" ||
+                    row?.status ===
+                      "mastered";
+
+                  return {
+                    id:
+                      lesson.id,
+                    title:
+                      lesson.title,
+                    objective:
+                      lesson.summary,
+                    estimatedMinutes:
+                      Number(
+                        lesson.estimated_minutes ??
+                          20,
+                      ),
+                    difficulty:
+                      difficulty(
+                        gradeRow.grade_number,
+                      ),
+                    points:
+                      Math.max(
+                        10,
+                        Number(
+                          row?.xp ??
+                            0,
+                        ),
+                      ),
+                    order:
+                      Number(
+                        lesson.sort_order ??
+                          lesson.lesson_number ??
+                          index +
+                            1,
+                      ),
+                    completed,
+                    progressPercent:
+                      completed
+                        ? 100
+                        : Math.max(
+                            0,
+                            Math.min(
+                              100,
+                              Number(
+                                row?.progress_percent ??
+                                  0,
+                              ),
+                            ),
+                          ),
+                  };
+                },
+              );
+
+          if (
+            unitLessons.length ===
+            0
+          ) {
+            return null;
+          }
 
           return {
-            id: lesson.id,
-            title: lesson.title,
-            objective: lesson.summary,
-            estimatedMinutes: Number(lesson.estimated_minutes ?? 20),
-            difficulty: difficulty(gradeRow.grade_number),
-            points: Math.max(10, Number(row?.xp ?? 0)),
-            order: Number(
-              lesson.sort_order ?? lesson.lesson_number ?? index + 1,
-            ),
-            completed,
-            progressPercent: completed
-              ? 100
-              : Math.max(
-                  0,
-                  Math.min(100, Number(row?.progress_percent ?? 0)),
-                ),
+            id: raw.id,
+            title:
+              raw.title,
+            description:
+              raw.description,
+            order:
+              Number(
+                raw.sort_order ??
+                  raw.unit_number ??
+                  9999,
+              ),
+            country: {
+              id:
+                country.id,
+              code:
+                country.code,
+              name:
+                country.name_ar,
+            },
+            curriculum: {
+              id:
+                curriculum.id,
+              name:
+                curriculum.name_ar,
+              academicYear:
+                curriculum.academic_year,
+            },
+            grade: {
+              id:
+                gradeRow.id,
+              name:
+                gradeRow.name_ar,
+              number:
+                gradeRow.grade_number,
+            },
+            lessons:
+              unitLessons,
           };
-        });
-
-      if (!lessons.length) return null;
-
-      return {
-        id: raw.id,
-        title: raw.title,
-        description: raw.description,
-        order: Number(raw.sort_order ?? raw.unit_number ?? 9999),
-        country: {
-          id: countryRow.id,
-          code: countryRow.code,
-          name: countryRow.name_ar,
         },
-        curriculum: {
-          id: curriculum.id,
-          name: curriculum.name_ar,
-          academicYear: curriculum.academic_year,
-        },
-        grade: {
-          id: gradeRow.id,
-          name: gradeRow.name_ar,
-          number: gradeRow.grade_number,
-        },
-        lessons,
-      };
-    })
-    .filter((unit): unit is NonNullable<typeof unit> => Boolean(unit))
-    .sort((a, b) => a.order - b.order);
+      )
+      .filter(
+        (
+          unit,
+        ): unit is NonNullable<
+          typeof unit
+        > =>
+          Boolean(
+            unit,
+          ),
+      )
+      .sort(
+        (
+          a,
+          b,
+        ) =>
+          a.order -
+          b.order,
+      );
 
   return NextResponse.json(
     { units },
     {
       headers: {
-        "Cache-Control": user
-          ? "private, no-store"
-          : "public, max-age=60, s-maxage=300",
+        "Cache-Control":
+          user
+            ? "private, no-store"
+            : "public, max-age=60, s-maxage=300",
       },
     },
   );
