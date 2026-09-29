@@ -1,28 +1,31 @@
 # ضاديوم — حالة المنتج الفعلية
 
-آخر مراجعة تشغيلية: 28 سبتمبر 2026.
+آخر مراجعة تشغيلية: 29 سبتمبر 2026.
 
 ## الخط الأساسي المعتمد
 
 - فرع الإصدار الحالي: `fix/mobile-cloud-video-final-20260923`.
 - هذا الفرع هو خط الإنتاج المعتمد حاليًا.
-- `main` متباعد تاريخيًا عن خط الإصدار؛ لا يتم دمجه أو عمل reset/clean له بصورة عمياء. المزامنة الشاملة مشروع صيانة مستقل وليست شرطًا لإطلاق ضاديوم الحالي.
+- `main` متباعد تاريخيًا عن خط الإصدار؛ لا يتم دمجه أو عمل reset/clean له بصورة عمياء.
 - كل تطوير محلي/Build/Cache/Temp يجب أن يبقى على قرص `G:` وفق سياسة المشروع.
 
 ## جاهز الآن
 
-- المصادقة بالبريد وGoogle على مستوى الكود، مع توجيه الأدوار وProvider health في الإنتاج.
+- المصادقة بالبريد وGoogle على مستوى الكود، مع Google provider health ناجح في الإنتاج.
 - Onboarding بحسب الدور والدولة والصف والهدف وأسلوب التعلم.
 - الطالب: المناهج والدروس والتقدم والتقييم والمهارات والقاموس وضاد والتحفيز.
 - المعلم: الفصول والطلاب وإثراء الدروس والأسئلة والأهداف والوسائط.
 - ولي الأمر والمدرسة: الربط والمتابعة والتقارير والمكافآت.
-- الإدارة: المناهج والدروس والطلاب والمعلمون ومراجعة المحتوى.
+- الإدارة: المناهج والدروس والطلاب والمعلمون ومراجعة المحتوى وتحقيق الدخل.
 - XP والمستويات والشارات والتحدي اليومي والشهادات.
 - SEO التقني: الصفحة الرئيسية وrobots وsitemap وmetadata وstructured data.
 - Cloudflare Worker + Pages front door.
 - Android Native 1.0.2: APK موقّع، Google OAuth deep link، TTS عربي Native، Qwen Offline، وفحص تحديثات من GitHub Releases.
 - صفحة Plus: رجوع مباشر + رجوع للوحة المناسبة حسب الدور + رابط مكتبة الفيديوهات.
-- Homepage: اتجاه بصري جديد قائم على هوية عربية احترافية، بدون فيديو/animation runtime ثقيل فوق الطيّة.
+- Homepage: هوية عربية احترافية بدون runtime ثقيل فوق الطيّة.
+- `npm run qa:full`: PASS في الإنتاج للأدوار الستة.
+- AI assistant smoke الحقيقي: PASS.
+- إصلاحات Worker 1101 و5xx للمعلم والإدارة والكتالوج العام: مطبقة ومختبرة.
 
 ## المناهج
 
@@ -42,55 +45,73 @@
 ## الذكاء الاصطناعي
 
 - ضاد وAI health متصلان بالإنتاج.
-- Bytez/provider routing + fallback موجودان.
+- مسار `/api/ask` اجتاز smoke حقيقيًا داخل بوابة E2E.
+- Provider routing + fallback موجودان.
 - Offline Qwen موجود داخل Native.
 - انقطاع مزود خارجي لا يجب أن يسقط المنصة كلها.
-- لا نغيّر Bytez أو مسارات AI المستقرة ضمن أعمال الإطلاق الحالية إلا عند وجود عطل مثبت.
+- **زر إنشاء فيديو AI والتوليد الجديد عند الطلب مؤجلان صراحة حسب النطاق الحالي، ولا يتم العمل عليهما الآن.**
+
+## Dadyoom Live
+
+- البنية البرمجية مكتملة: إنشاء حصة، صفحة طالب، صفحة معلم، غرفة LiveKit، صوت/فيديو، وإصدار token آمن.
+- `edu_can_join_live_session` يقيّد الدخول للمعلم أو طالب الفصل/المشتري المسموح.
+- RLS موجود للحصص والحضور.
+- الـE2E ينشئ حصة مؤقتة حقيقية ويختبر مسارات الطالب والمعلم.
+- تمت إضافة `/api/live/health` وفحص readiness لا يعرض أسرارًا.
+- نتيجة الإنتاج الحالية: `LIVE=MISSING`.
+- المتبقي هو ربط `LIVEKIT_URL` و`LIVEKIT_API_KEY` و`LIVEKIT_API_SECRET` في بيئة Cloudflare/الإنتاج ثم إعادة نفس الاختبار.
 
 ## الاشتراك والدفع
 
 - Free + Plus.
 - Plus: 10 USD شهريًا.
 - تجربة المستخدم الجديد: Plus لمدة 24 ساعة.
-- Paddle Sandbox: Checkout + signed binding + webhook + subscription activation + billing management + cancellation + idempotency تم اختبارها.
-- Success URL المعتمد: `https://dadyoom.pages.dev/payments/paddle/success`.
+- Paddle Sandbox: Checkout + signed binding + webhook + subscription activation + billing management + cancellation + idempotency: PASS.
+- تمت إضافة معالجة `transaction.payment_failed` وتحويل الاشتراك إلى `past_due`.
+- تمت إضافة حاجز يمنع خلط مفاتيح Sandbox وProduction.
 - مصدر حقيقة الاشتراك هو Paddle webhook/قاعدة البيانات، وليس redirect النجاح.
-- Paddle Live مؤجل؛ لا يُعامل كحاجز حالي.
+- نتيجة الإنتاج الحالية: `PADDLE=CONFIGURED PADDLE_ENV=sandbox`.
+- Paddle Live ليس مفعّلًا بعد. الانتقال إلى التحصيل الحقيقي يحتاج بيانات Paddle Live في بيئة التشغيل + webhook Live + دفعة حقيقية مضبوطة للاختبار.
 
 ## الإعلانات
 
 - Google AdSense مدمج تقنيًا.
-- `ads.txt` وmeta verification جاهزان.
+- نتيجة الإنتاج الحالية: `ADSENSE=CONFIGURED`.
+- `ads.txt` وmeta verification مربوطان بالـPublisher ID من البيئة.
 - تحميل AdSense مقصور عمدًا على الصفحة الرئيسية فقط.
-- لا إعلانات داخل الطالب/المعلم/المدرسة/الدروس/التسعير/تسجيل الدخول.
+- لا إعلانات داخل الطالب/المعلم/المدرسة/الدروس/التسعير/تسجيل الدخول أو التطبيق Native.
+- Plus بدون إعلانات.
 - موافقة Google النهائية خطوة خارجية وليست تعديل كود.
 
 ## SEO والفهرسة
 
-- Google Search Console بدأ تسجيل impressions.
 - public SEO smoke يختبر Home + robots + sitemap في الإنتاج.
-- تمت إضافة IndexNow ليتم إخطار Bing ومحركات IndexNow بعد عمليات النشر من خلال `dadyoom.pages.dev`.
-- المتابعة داخل Search Console/Bing Webmaster Tools تظل تحققًا خارجيًا بعد النشر وليست blocker برمجيًا.
+- تمت إضافة IndexNow لإخطار Bing ومحركات IndexNow بعد النشر.
+- متابعة Search Console/Bing بعد إعادة الزحف تحقق خارجي وليست نقصًا في المناهج أو البناء.
 
 ## الاستقرار والنشر
 
-- بوابات Cloudflare Verify وMobile Final Verify تشمل TypeScript/ESLint/tests/security/curriculum/build/smoke.
-- تمت إضافة فحص تكراري للروابط الحرجة `/`, `/courses`, `/login`, `/pricing` لاكتشاف رجوع أخطاء Worker 5xx/CPU.
-- `app-version.json` أصبح يقرأ `WORKERS_CI_COMMIT_SHA` وبيانات Workers Builds حتى لا يفقد SHA في نشر Cloudflare Git.
-- النشر القياسي هو Cloudflare Git integration من فرع الإصدار، وليس نشر archive قديم يدويًا.
+- Cloudflare Verify: PASS على آخر إصدار مختبر.
+- Mobile/production verify: PASS على آخر إصدار مختبر.
+- Workers Build: PASS.
+- Authenticated role QA: PASS.
+- الكتالوج العام `/api/courses/catalog?country=BH&grade=1` كان يسقط بعد nested join استغرق أكثر من 15 ثانية؛ تم تفكيكه إلى استعلامات bounded صغيرة، وبعده عادت بوابات verify إلى PASS.
+- النشر القياسي هو Cloudflare Git integration من فرع الإصدار.
 
-## مؤجل صراحة
+## مؤجل صراحة حسب النطاق الحالي
 
 - iOS signed IPA / Apple Developer / provisioning الحقيقي.
-- توليد فيديو AI جديد عند الطلب واعتمادات/مدفوعات مزودي الفيديو.
-- Paddle Live/التحصيل الحي.
-- أي مدفوعات أو خدمات خارجية جديدة غير لازمة للإطلاق الحالي.
+- زر إنشاء فيديو AI / توليد فيديو جديد عند الطلب.
 
-## ما يحتاج تحققًا بشريًا/خارجيًا فقط
+هذان البندان ليسا blockers في الإغلاق الحالي.
 
-- Real Google OAuth round-trip بحساب Google فعلي حتى العودة إلى اللوحة المناسبة.
+## ما يحتاج تنفيذًا/تحققًا خارجيًا فقط
+
+- ربط LiveKit production secrets ثم إعادة اختبار token للحصة.
+- تحويل Paddle من Sandbox إلى Production ببيانات Live الحقيقية، ضبط Live webhook، ثم دفعة حقيقية صغيرة مضبوطة.
+- Real Google OAuth round-trip بحساب Google فعلي.
 - موافقة AdSense النهائية.
 - مراجعة Search Console/Bing Webmaster Tools بعد إعادة الزحف.
-- فحص بصري نهائي للـHomepage الجديدة على Desktop + Mobile بعد وصول آخر deploy.
+- فحص بصري نهائي للـHomepage على Desktop + Mobile.
 
-هذه البنود لا تعني نقصًا في المناهج أو Commerce Sandbox أو بوابات البناء.
+هذه البنود لا تعني نقصًا في المناهج أو فشلًا في QA البرمجي.
