@@ -192,7 +192,8 @@ async function saveEvent(args: {
   subscriptionId?: string | null;
   action:
     | "payment_activated"
-    | "payment_cancelled";
+    | "payment_cancelled"
+    | "payment_failed";
   metadata: JsonObject;
 }) {
   const { error } = await args.db
@@ -367,8 +368,140 @@ export async function POST(request: Request) {
     }
 
     if (
+      eventType ===
+      "transaction.payment_failed"
+    ) {
+      const {
+        userId,
+        planId,
+      } =
+        customUser(data);
+
+      if (
+        !userId ||
+        planId !== "plus"
+      ) {
+        return NextResponse.json({
+          ok: true,
+          ignored: true,
+        });
+      }
+
+      const expectedPrice =
+        process.env.PADDLE_PLUS_PRICE_ID?.trim() ||
+        process.env.NEXT_PUBLIC_PADDLE_PLUS_PRICE_ID?.trim() ||
+        "";
+
+      const receivedPrice =
+        transactionPriceId(
+          data,
+        );
+
+      if (
+        !expectedPrice ||
+        receivedPrice !==
+          expectedPrice
+      ) {
+        return NextResponse.json(
+          {
+            error:
+              "PADDLE_PRICE_MISMATCH",
+          },
+          { status: 409 },
+        );
+      }
+
+      if (
+        !verifyCheckoutBinding({
+          data,
+          secret,
+          priceId:
+            expectedPrice,
+        })
+      ) {
+        return NextResponse.json(
+          {
+            error:
+              "PADDLE_USER_BINDING_INVALID",
+          },
+          { status: 409 },
+        );
+      }
+
+      const {
+        data: subscription,
+        error,
+      } =
+        await db
+          .from(
+            "edu_subscriptions",
+          )
+          .update({
+            status:
+              "past_due",
+            provider:
+              "paddle",
+            provider_subscription_id:
+              stringValue(
+                data.subscription_id,
+              ) ||
+              null,
+            updated_at:
+              new Date().toISOString(),
+          })
+          .eq(
+            "user_id",
+            userId,
+          )
+          .select("id")
+          .maybeSingle();
+
+      if (error) {
+        throw error;
+      }
+
+      await saveEvent({
+        db,
+        eventId,
+        userId,
+        subscriptionId:
+          subscription?.id
+            ? String(
+                subscription.id,
+              )
+            : null,
+        action:
+          "payment_failed",
+        metadata: {
+          event_type:
+            eventType,
+          transaction_id:
+            stringValue(
+              data.id,
+            ),
+          paddle_subscription_id:
+            stringValue(
+              data.subscription_id,
+            ),
+          price_id:
+            receivedPrice,
+          currency_code:
+            stringValue(
+              data.currency_code,
+            ),
+        },
+      });
+
+      return NextResponse.json({
+        ok: true,
+        pastDue: true,
+      });
+    }
+
+    if (
       eventType === "subscription.updated" ||
-      eventType === "subscription.activated"
+      eventType === "subscription.activated" ||
+      eventType === "subscription.past_due"
     ) {
       const { userId, planId } = customUser(data);
 
