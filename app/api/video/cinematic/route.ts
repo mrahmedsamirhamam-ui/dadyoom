@@ -4,6 +4,10 @@ import { consumeFeature } from "@/lib/billing/access";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 import {
+  BATCH_VIDEO_PROVIDER,
+  enqueueBatchVideo,
+} from "@/lib/video/batch-fallback";
+import {
   cinematicVideoConfigured,
   configuredCinematicProviderIds,
   startCinematicLessonVideo,
@@ -11,21 +15,12 @@ import {
 
 export const runtime = "nodejs";
 
-const publicVideoAiEnabled =
-  process.env.DADYOOM_VIDEO_AI_PUBLIC_ENABLED === "true";
+const cloudVideoAiEnabled =
+  process.env.DADYOOM_VIDEO_AI_PUBLIC_ENABLED
+    ?.trim()
+    .toLowerCase() !== "false";
 
 export async function POST(request: Request) {
-  if (!publicVideoAiEnabled) {
-    return NextResponse.json(
-      {
-        error:
-          "ميزة إنشاء فيديو الدرس بالذكاء الاصطناعي قيد التجهيز وستتوفر قريبًا.",
-        code: "VIDEO_AI_COMING_SOON",
-      },
-      { status: 503 },
-    );
-  }
-
   try {
     const supabase = await createClient();
     const {
@@ -36,18 +31,6 @@ export async function POST(request: Request) {
       return NextResponse.json(
         { error: "يجب تسجيل الدخول." },
         { status: 401 },
-      );
-    }
-
-    if (!cinematicVideoConfigured()) {
-      return NextResponse.json(
-        {
-          error:
-            "ميزة فيديو الأفاتار السينمائي غير مفعلة بعد على حساب ضاديوم.",
-          code:
-            "CINEMATIC_VIDEO_NOT_CONFIGURED",
-        },
-        { status: 503 },
       );
     }
 
@@ -247,96 +230,153 @@ export async function POST(request: Request) {
         );
     }
 
-    const result =
-      await startCinematicLessonVideo({
-        title:
-          lesson
-            ? String(
-                lesson.title ?? "",
-              )
-            : "فيديو ضاديوم",
-        summary:
-          lesson?.summary
-            ? String(
-                lesson.summary,
-              )
-            : prompt || null,
-        content:
-          lesson?.content
-            ? String(
-                lesson.content,
-              )
-            : prompt || null,
-        userPrompt:
-          prompt || null,
-        excludeProviders:
-          attemptedProviders,
-      });
+    const title =
+      lesson
+        ? String(lesson.title ?? "")
+        : "فيديو ضاديوم";
 
-    const nextAttemptedProviders =
-      Array.from(
-        new Set([
-          ...attemptedProviders,
-          result.provider,
-        ]),
-      );
+    const summary =
+      lesson?.summary
+        ? String(lesson.summary)
+        : prompt || null;
 
-    const {
-      error: updateRequestError,
-    } =
-      await admin
-        .from(
-          "video_generation_requests",
-        )
-        .update({
-          attempted_providers:
-            nextAttemptedProviders,
-          updated_at:
-            new Date().toISOString(),
-        })
-        .eq(
-          "id",
-          requestId,
-        )
-        .eq(
-          "user_id",
-          user.id,
+    const content =
+      lesson?.content
+        ? String(lesson.content)
+        : prompt || null;
+
+    const configuredProviders =
+      configuredCinematicProviderIds();
+
+    if (
+      cloudVideoAiEnabled &&
+      cinematicVideoConfigured()
+    ) {
+      try {
+        const result =
+          await startCinematicLessonVideo({
+            title,
+            summary,
+            content,
+            userPrompt:
+              prompt || null,
+            excludeProviders:
+              attemptedProviders,
+          });
+
+        const nextAttemptedProviders =
+          Array.from(
+            new Set([
+              ...attemptedProviders,
+              result.provider,
+            ]),
+          );
+
+        const {
+          error: updateRequestError,
+        } =
+          await admin
+            .from(
+              "video_generation_requests",
+            )
+            .update({
+              attempted_providers:
+                nextAttemptedProviders,
+              updated_at:
+                new Date().toISOString(),
+            })
+            .eq(
+              "id",
+              requestId,
+            )
+            .eq(
+              "user_id",
+              user.id,
+            );
+
+        if (updateRequestError) {
+          console.error(
+            "VIDEO_REQUEST_UPDATE_FAILED",
+            updateRequestError.message,
+          );
+        }
+
+        return NextResponse.json(
+          {
+            requestId,
+            provider:
+              result.provider,
+            sessionId:
+              result.sessionId,
+            videoId:
+              result.videoId,
+            videoUrl:
+              result.videoUrl,
+            thumbnailUrl:
+              result.thumbnailUrl,
+            duration:
+              result.duration,
+            status:
+              result.status,
+            format:
+              prompt
+                ? "prompt-directed-video"
+                : "lesson-cinematic-video",
+            degraded:
+              Boolean(
+                result.degraded,
+              ),
+            configuredProviders,
+          },
+          { status: 202 },
         );
-
-    if (updateRequestError) {
-      console.error(
-        "VIDEO_REQUEST_UPDATE_FAILED",
-        updateRequestError.message,
-      );
+      } catch (cloudError) {
+        console.error(
+          "CINEMATIC_VIDEO_CLOUD_FALLBACK",
+          cloudError instanceof Error
+            ? cloudError.message
+            : String(cloudError),
+        );
+      }
     }
+
+    const batch =
+      await enqueueBatchVideo({
+        userId:
+          user.id,
+        requestId,
+        lessonId:
+          lessonId || null,
+        title,
+        summary,
+        content,
+        prompt:
+          prompt || null,
+      });
 
     return NextResponse.json(
       {
         requestId,
         provider:
-          result.provider,
+          BATCH_VIDEO_PROVIDER,
         sessionId:
-          result.sessionId,
+          batch.videoId,
         videoId:
-          result.videoId,
+          batch.videoId,
         videoUrl:
-          result.videoUrl,
-        thumbnailUrl:
-          result.thumbnailUrl,
+          batch.videoUrl,
         duration:
-          result.duration,
+          batch.duration,
         status:
-          result.status,
+          batch.status,
         format:
           prompt
             ? "prompt-directed-video"
             : "lesson-cinematic-video",
-        degraded:
-          Boolean(
-            result.degraded,
-          ),
-        configuredProviders:
-          configuredCinematicProviderIds(),
+        degraded: true,
+        configuredProviders,
+        fallback:
+          BATCH_VIDEO_PROVIDER,
       },
       { status: 202 },
     );
