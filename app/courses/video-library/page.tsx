@@ -30,22 +30,12 @@ export const metadata = {
 };
 
 export const dynamic =
-  "force-dynamic";
+  "force-static";
 
 const catalog =
   catalogData as Catalog;
 
-export default async function VideoLibraryPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ room?: string }>;
-}) {
-  const params = await searchParams;
-  const initialRoom =
-    params.room === "native" ||
-    params.room === "non-native"
-      ? params.room
-      : "all";
+export default function VideoLibraryPage() {
   return (
     <main
       dir="rtl"
@@ -110,7 +100,6 @@ export default async function VideoLibraryPage({
 
         <VideoLibraryClient
           videos={catalog.videos}
-          initialRoom={initialRoom}
         />
       </div>
     </main>
