@@ -977,7 +977,7 @@ const hfMinimaxH3Hq: Provider = {
         env(
           "HF_MINIMAX_H3_HQ_DURATION",
         ) ||
-          "5",
+          "8",
       );
     const steps =
       Number(
@@ -1528,7 +1528,7 @@ const hfMinimaxH3: Provider = {
         env(
           "HF_MINIMAX_H3_DURATION",
         ) ||
-          "5",
+          "8",
       );
     const steps =
       Number(
@@ -1788,7 +1788,7 @@ const hfLtx23: Provider = {
         env(
           "HF_LTX23_DURATION",
         ) ||
-          "5",
+          "8",
       );
 
     const height =
@@ -2365,7 +2365,7 @@ const hfWan22: Provider = {
           prompt,
           height: 704,
           width: 1280,
-          duration_seconds: 5,
+          duration_seconds: 8,
           sampling_steps: 30,
           guide_scale: 5,
           shift: 5,
@@ -2376,7 +2376,7 @@ const hfWan22: Provider = {
           prompt,
           704,
           1280,
-          5,
+          8,
           30,
           5,
           5,
@@ -2523,7 +2523,7 @@ const hfWan22: Provider = {
             videoId:
               eventId,
             videoUrl,
-            duration: 5,
+            duration: 8,
           };
         }
 
