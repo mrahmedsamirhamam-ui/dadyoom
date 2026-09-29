@@ -320,7 +320,7 @@ async function humanUiJourneySmoke(
 
   for (
     let step = 1;
-    step <= 4;
+    step <= 8;
     step += 1
   ) {
     await page.goto(
@@ -552,6 +552,10 @@ async function humanUiJourneySmoke(
       candidate.href,
     );
 
+    console.log(
+      `E2E_HUMAN_UI_CLICK ROLE=${role.toUpperCase()} STEP=${step} TEXT=${candidate.text.slice(0, 80)} HREF=${candidate.href} FINAL=${current.pathname}`,
+    );
+
     await capture(
       page,
       `human-${role}-step-${step}`,
@@ -637,13 +641,20 @@ async function humanUiJourneySmoke(
     );
   }
 
+  const minimumClicks =
+    role === "child"
+      ? 2
+      : role === "parent"
+        ? 3
+        : 4;
+
   gate(
-    clicked >= 1,
-    `E2E_HUMAN_UI_${role.toUpperCase()}_NO_CLICKABLE_INTERNAL_LINKS`,
+    clicked >= minimumClicks,
+    `E2E_HUMAN_UI_${role.toUpperCase()}_INSUFFICIENT_CLICKS:${clicked}/${minimumClicks}`,
   );
 
   console.log(
-    `E2E_HUMAN_UI_${role.toUpperCase()}=PASS CLICKS=${clicked}`,
+    `E2E_HUMAN_UI_${role.toUpperCase()}=PASS CLICKS=${clicked} MIN=${minimumClicks}`,
   );
 }
 
