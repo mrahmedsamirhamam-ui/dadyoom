@@ -125,6 +125,7 @@ export default async function AdminPage() {
             <Link
               key={item.href}
               href={item.href}
+              prefetch={false}
               className="group rounded-[1.8rem] border border-[#dfcfad] bg-[#fffdf8] p-6 shadow-sm transition hover:-translate-y-1 hover:border-[#b9944e] hover:shadow-lg"
             >
               <div className="flex items-center justify-between">
