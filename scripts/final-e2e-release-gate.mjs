@@ -75,6 +75,9 @@ const artifactDir =
 const skipExternalAi =
   process.env.DADYOOM_E2E_SKIP_EXTERNAL_AI?.trim().toLowerCase() === "true";
 
+const requireVideoSmoke =
+  process.env.DADYOOM_E2E_VIDEO_SMOKE?.trim().toLowerCase() === "true";
+
 if (artifactDir) {
   fs.mkdirSync(artifactDir, { recursive: true });
 }
@@ -2059,6 +2062,195 @@ async function studentFlow(
       "E2E_AI_ROUTE_RESILIENCE=PASS",
     );
   }
+  }
+
+  if (requireVideoSmoke) {
+    const videoHealth =
+      await browserFetch(
+        page,
+        "/api/video/cinematic/health",
+      );
+
+    gate(
+      videoHealth.status === 200 &&
+        videoHealth.data?.ok === true,
+      `E2E_VIDEO_HEALTH_FAILED:${videoHealth.status}`,
+    );
+
+    gate(
+      videoHealth.data?.cloudReady === true,
+      "E2E_VIDEO_CLOUD_PROVIDER_NOT_READY",
+    );
+
+    gate(
+      Boolean(
+        fixture.learningLessonId,
+      ),
+      "E2E_VIDEO_LESSON_FIXTURE_MISSING",
+    );
+
+    const createdVideo =
+      await browserFetch(
+        page,
+        "/api/video/cinematic",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type":
+              "application/json",
+          },
+          body:
+            JSON.stringify({
+              lessonId:
+                fixture.learningLessonId,
+              prompt:
+                "أنشئ فيديو تعليميًا عربيًا قصيرًا جدًا من 8 إلى 20 ثانية، بمشهد صف عربي واقعي وحركة واضحة، دون أي نص مكتوب داخل الصورة.",
+            }),
+        },
+      );
+
+    gate(
+      createdVideo.status === 202 &&
+        typeof createdVideo.data?.provider === "string" &&
+        typeof createdVideo.data?.sessionId === "string",
+      `E2E_VIDEO_CREATE_FAILED:${createdVideo.status}`,
+    );
+
+    gate(
+      createdVideo.data.provider !==
+        "batch-factory",
+      "E2E_VIDEO_PRIMARY_PROVIDER_FELL_BACK_TO_BATCH",
+    );
+
+    let finalVideo =
+      createdVideo.data;
+
+    for (
+      let attempt = 1;
+      attempt <= 60;
+      attempt += 1
+    ) {
+      if (
+        finalVideo?.status === "completed" &&
+        typeof finalVideo?.videoUrl === "string" &&
+        finalVideo.videoUrl.trim()
+      ) {
+        break;
+      }
+
+      await new Promise(
+        resolve =>
+          setTimeout(
+            resolve,
+            5000,
+          ),
+      );
+
+      const query =
+        new URLSearchParams({
+          provider:
+            String(
+              createdVideo.data.provider,
+            ),
+          sessionId:
+            String(
+              createdVideo.data.sessionId,
+            ),
+          ...(createdVideo.data.videoId
+            ? {
+                videoId:
+                  String(
+                    createdVideo.data.videoId,
+                  ),
+              }
+            : {}),
+        });
+
+      const status =
+        await browserFetch(
+          page,
+          `/api/video/cinematic/status?${query.toString()}`,
+        );
+
+      gate(
+        status.status === 200,
+        `E2E_VIDEO_STATUS_HTTP_FAILED:${status.status}`,
+      );
+
+      finalVideo =
+        status.data;
+
+      gate(
+        finalVideo?.status !== "failed",
+        "E2E_VIDEO_PROVIDER_RENDER_FAILED",
+      );
+    }
+
+    gate(
+      finalVideo?.status === "completed" &&
+        typeof finalVideo?.videoUrl === "string" &&
+        finalVideo.videoUrl.trim().length > 0,
+      "E2E_VIDEO_COMPLETION_TIMEOUT",
+    );
+
+    const duration =
+      Number(
+        finalVideo?.duration ??
+        createdVideo.data?.duration ??
+        0,
+      );
+
+    if (
+      Number.isFinite(duration) &&
+      duration > 0
+    ) {
+      gate(
+        duration >= 8 &&
+          duration <= 20,
+        `E2E_VIDEO_DURATION_OUT_OF_RANGE:${duration}`,
+      );
+    }
+
+    const mediaResponse =
+      await fetch(
+        finalVideo.videoUrl,
+        {
+          method: "GET",
+          headers: {
+            Range:
+              "bytes=0-2047",
+          },
+          redirect:
+            "follow",
+        },
+      );
+
+    const contentType =
+      mediaResponse.headers.get(
+        "content-type",
+      ) ?? "";
+
+    gate(
+      (
+        mediaResponse.ok ||
+        mediaResponse.status === 206
+      ) &&
+        (
+          /video|octet-stream/iu.test(
+            contentType,
+          ) ||
+          String(
+            finalVideo.videoUrl,
+          ).includes(
+            ".mp4",
+          )
+        ),
+      `E2E_VIDEO_URL_NOT_PLAYABLE:${mediaResponse.status}:${contentType}`,
+    );
+
+    console.log(
+      `E2E_VIDEO_GENERATION=PASS PROVIDER=${createdVideo.data.provider} DURATION=${duration || "UNKNOWN"} URL=${String(finalVideo.videoUrl).slice(0, 180)}`,
+    );
   }
 
   await page.goto(
