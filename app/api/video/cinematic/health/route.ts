@@ -5,6 +5,9 @@ import {
 import {
   cinematicVideoRuntimeHealth,
 } from "@/lib/video/cinematic-avatar-agent";
+import {
+  batchVideoRuntimeHealth,
+} from "@/lib/video/batch-fallback";
 
 export const runtime = "nodejs";
 export const dynamic =
@@ -12,12 +15,24 @@ export const dynamic =
 
 export async function GET() {
   try {
-    const health =
-      await cinematicVideoRuntimeHealth();
+    const [
+      health,
+      batch,
+    ] =
+      await Promise.all([
+        cinematicVideoRuntimeHealth(),
+        batchVideoRuntimeHealth(),
+      ]);
+
+    const ready =
+      health.ready ||
+      batch.queueReady;
 
     return NextResponse.json(
       {
         ok:
+          ready,
+        cloudReady:
           health.ready,
         configuredCount:
           health.configuredCount,
@@ -27,10 +42,23 @@ export async function GET() {
           health.freeFirst,
         paidEnabled:
           health.paidEnabled,
+        batchQueueReady:
+          batch.queueReady,
+        batchWorkerObservedRecently:
+          batch.workerObservedRecently,
+        batchQueued:
+          batch.queued,
+        batchCompleted:
+          batch.completed,
+        batchFailed:
+          batch.failed,
+        degraded:
+          !health.ready &&
+          batch.queueReady,
       },
       {
         status:
-          health.ready
+          ready
             ? 200
             : 503,
         headers: {
@@ -54,6 +82,12 @@ export async function GET() {
         coolingCount: 0,
         freeFirst: true,
         paidEnabled: false,
+        batchQueueReady: false,
+        batchWorkerObservedRecently: false,
+        batchQueued: 0,
+        batchCompleted: 0,
+        batchFailed: 0,
+        degraded: false,
       },
       {
         status: 503,
