@@ -1,61 +1,68 @@
-# ضاديوم — حالة المنتج الفعلية
+# ضاديوم — حالة الإطلاق المختصرة
 
-آخر مراجعة تشغيلية: 25 سبتمبر 2026.
+آخر مراجعة: 29 سبتمبر 2026.
 
-## جاهز الآن
+## مغلق برمجيًا
 
-- المصادقة بالبريد وGoogle وتوجيه الأدوار.
-- Onboarding بحسب الدور والدولة والصف والهدف وأسلوب التعلم.
-- الطالب: المناهج والدروس والتقدم والتقييم والمهارات والقاموس وضاد والتحفيز.
-- المعلم: الفصول والطلاب وإثراء الدروس والأسئلة والأهداف والوسائط.
-- ولي الأمر والمدرسة: الربط والمتابعة والتقارير والمكافآت.
-- الإدارة: المناهج والدروس والطلاب والمعلمون ومراجعة المحتوى.
-- XP والمستويات والشارات والتحدي اليومي والشهادات.
-- SEO وrobots وsitemap وmanifest.
-- Android Native 1.0.2: APK موقّع، Google OAuth deep link، TTS عربي Native، Qwen Offline، وفحص تحديثات من GitHub Releases.
-- PWA نسخة احتياطية وليست المنتج المحمول الأساسي.
+- Dadyoom Core وNational Official Match: 22/22 PASS.
+- TypeScript / ESLint / tests / Vinext / Workers Builds: PASS.
+- Cloudflare Worker + Pages: يعملان من فرع `fix/mobile-cloud-video-final-20260923`.
+- `npm run qa:full`: PASS للأدوار الستة.
+- AI assistant عبر `/api/ask`: PASS.
+- Android Native 1.0.2 ومسار التحديث: جاهز.
+- Paddle Sandbox الكامل: PASS.
+- AdSense: مركب ومهيأ في الإنتاج، الصفحة الرئيسية فقط.
+- إصلاحات استقرار teacher/admin/catalog مطبقة ومختبرة.
 
-## المناهج
+## Live
 
-هناك طبقتان منفصلتان حتى لا نخلط المحتوى الأصلي بالمناهج الوزارية:
+الكود مكتمل للحصص المباشرة: teacher/student pages، إنشاء الحصة، LiveKit room، authorization، RLS، attendance، token endpoint وE2E fixture.
 
-1. **Dadyoom Core**: مكتمل للدول العربية الـ22، الصفوف 1–12، بحد أدنى 216 درسًا منشورًا لكل دولة، ومحتوى ضاديوم أصلي.
-2. **National Official Match**: مطابقة ترتيب الكتاب/الوحدات/الدروس بالمصدر الوطني. لا تُعد مكتملة إلا بعد دليل موثق للصف والفصل والوحدة والدرس.
+حالة الإنتاج الحالية: `LIVE=MISSING`.
 
-تم إثراء فجوة ثانوي البحرين القديمة: 55 درسًا منشورًا كانت بلا محتوى/أهداف/أسئلة/مفردات وأصبحت تملك محتوى ضاديوم أصليًا وأهدافًا و3 أسئلة و3 مفردات على الأقل.
+المتبقي خارجي: إضافة `LIVEKIT_URL` و`LIVEKIT_API_KEY` و`LIVEKIT_API_SECRET` إلى بيئة الإنتاج ثم إعادة الـsmoke.
 
-## الهاتف
+## Paddle
 
-- Android: Release 1.0.2 جاهز وموقّع.
-- iOS: المشروع Native ومسار البناء وDeep Link وTTS وQwen موجودة. نبني Simulator وIPA جهاز غير موقّع في CI.
-- تثبيت iOS على جهاز حقيقي يحتاج Apple certificate + provisioning profile؛ التوقيع الخارجي ليس شيئًا يمكن اختلاقه داخل الكود.
+- Plus = 10 USD/month.
+- Welcome Trial = 24h.
+- Webhook موقّع + idempotency + activation/cancel/manage: PASS.
+- `transaction.payment_failed` أصبح يسجل `payment_failed` ويحوّل الحالة إلى `past_due`.
+- يوجد fail-closed guard يمنع خلط Sandbox/Production credentials.
+- حالة الإنتاج الحالية: `PADDLE=CONFIGURED PADDLE_ENV=sandbox`.
 
-## الذكاء الاصطناعي
+المتبقي خارجي: Live credentials + Live webhook + controlled real payment test.
 
-- ضاد وAI health متصلان بالإنتاج.
-- Bytez/provider routing يعملان مع fallback.
-- Offline Qwen موجود داخل تطبيقات Native.
-- انقطاع مزود خارجي لا يجب أن يسقط المنصة كلها.
+## AdSense
 
-## الفيديو
+حالة الإنتاج الحالية: `ADSENSE=CONFIGURED`.
 
-- مكتبة الفيديو المنشور موجودة.
-- **توليد فيديو جديد عند الطلب ليس Release-ready بعد**؛ توجد jobs معلقة/فاشلة وتفاوت في توفر/اعتماد مزودي الفيديو.
-- لا نعرض مولد الفيديو كميزة مكتملة حتى ينجح render + quota + provider health بصورة مستقرة.
+- `ads.txt` جاهز.
+- metadata جاهزة.
+- السكربت لا يحمل إلا على الصفحة الرئيسية.
+- Plus وNative ومساحات التعلم بلا إعلانات.
+- موافقة Google النهائية تبقى خطوة خارجية.
 
-## الاشتراك والدفع
+## مؤجل بطلب صاحب المشروع
 
-- Free + Plus.
-- سعر Plus المرجعي في قاعدة البيانات: 10 USD شهريًا.
-- تجربة المستخدم الجديد: Plus لمدة **يوم واحد**.
-- Plus Checkout مبني على Paddle؛ Tap محفوظ لمسار Marketplace عند تفعيله.
-- لا نعتبر الدفع الحي PASS قبل تنفيذ دفعة حقيقية أو اختبار Sandbox موثق ينتج Payment Order/Webhook مكتملًا.
+- iOS signed device release.
+- زر إنشاء فيديو AI / on-demand AI video generation.
 
-## المتبقي قبل اعتبار كل شيء مغلقًا
+لا يتم العمل على هذين البندين ضمن الإغلاق الحالي.
 
-- استكمال National Official Match للدول والصفوف والفصول بمصادر رسمية موثقة، دون ادعاءات أو نسخ كتب محمية.
-- توقيع iOS بأصول Apple الحقيقية ثم اختبار جهاز حقيقي.
-- اختبار دفع End-to-End موثق.
-- تثبيت مولد الفيديو أو إبقاؤه Beta/غير معلن.
-- التحقق من نشر آخر HEAD على Cloudflare بعد كل دفعة كود.
-- تشغيل بوابات الإصدار: TypeScript + ESLint + tests + source gates + curriculum gates + Vinext build + smoke.
+## آخر بوابة إنتاج
+
+على commit `923f8b51d7b2deb49f48ffe84b965269ba6d5812`:
+
+- Workers Builds: PASS.
+- verify: PASS.
+- verify: PASS.
+- role-qa: PASS.
+- `FINAL_E2E_RELEASE_GATE=PASS`.
+
+## لا تلمس
+
+- لا تعيد بناء أو استيراد المناهج 22/22.
+- لا تعرض secrets.
+- لا تضع إعلانات خارج الصفحة الرئيسية.
+- لا تضعف تحقق Paddle webhook أو ربط المستخدم.
