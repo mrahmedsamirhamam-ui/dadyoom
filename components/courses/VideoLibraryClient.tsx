@@ -74,9 +74,17 @@ export default function VideoLibraryClient({
       requested === "native" ||
       requested === "non-native"
     ) {
-      setRoom(requested);
-      setPage(1);
+      const timer =
+        window.setTimeout(() => {
+          setRoom(requested);
+          setPage(1);
+        }, 0);
+
+      return () =>
+        window.clearTimeout(timer);
     }
+
+    return undefined;
   }, []);
 
   const categories =
