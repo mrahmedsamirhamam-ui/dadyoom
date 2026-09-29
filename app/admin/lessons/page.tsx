@@ -25,63 +25,26 @@ type Lesson = {
   id: string;
   title: string;
   slug: string | null;
-  lesson_number: number;
+  lesson_number: number | null;
   lesson_type: string;
   estimated_minutes: number | null;
   status: string;
   source_page_start: number | null;
   source_page_end: number | null;
-
-  units:
-    | {
-        title: string;
-        unit_number: number | null;
-
-        grades:
-          | {
-              name_ar: string;
-              grade_number: number | null;
-            }
-          | {
-              name_ar: string;
-              grade_number: number | null;
-            }[]
-          | null;
-      }
-    | {
-        title: string;
-        unit_number: number | null;
-
-        grades:
-          | {
-              name_ar: string;
-              grade_number: number | null;
-            }
-          | {
-              name_ar: string;
-              grade_number: number | null;
-            }[]
-          | null;
-      }[]
-    | null;
+  unit_id: string;
 };
 
-function getRelation<T>(
-  relation:
-    | T
-    | T[]
-    | null
-): T | null {
-  if (!relation) {
-    return null;
-  }
+type UnitRow = {
+  id: string;
+  title: string;
+  grade_id: string;
+};
 
-  return Array.isArray(
-    relation
-  )
-    ? relation[0] ?? null
-    : relation;
-}
+type GradeRow = {
+  id: string;
+  name_ar: string;
+  grade_number: number | null;
+};
 
 function getLessonTypeName(
   type: string
@@ -128,29 +91,11 @@ export default async function AdminLessonsPage() {
     supabase
       .from("lessons")
       .select(
-        `
-          id,
-          title,
-          slug,
-          lesson_number,
-          lesson_type,
-          estimated_minutes,
-          status,
-          source_page_start,
-          source_page_end,
-          units (
-            title,
-            unit_number,
-            grades (
-              name_ar,
-              grade_number
-            )
-          )
-        `,
+        "id,title,slug,lesson_number,lesson_type,estimated_minutes,status,source_page_start,source_page_end,unit_id",
         { count: "estimated" },
       )
       .order("lesson_number", { ascending: true })
-      .limit(100),
+      .limit(50),
 
     supabase
       .from("lessons")
@@ -217,6 +162,68 @@ export default async function AdminLessonsPage() {
 
   const draftCount =
     draftResult.count ?? 0;
+
+  const unitIds =
+    Array.from(
+      new Set(
+        lessons
+          .map((lesson) => lesson.unit_id)
+          .filter(Boolean),
+      ),
+    );
+
+  const unitsResult =
+    unitIds.length > 0
+      ? await supabase
+          .from("units")
+          .select("id,title,grade_id")
+          .in("id", unitIds)
+      : { data: [] as UnitRow[], error: null };
+
+  if (unitsResult.error) {
+    console.error(
+      "ADMIN_LESSONS_UNITS_FETCH_ERROR:",
+      unitsResult.error.message,
+    );
+  }
+
+  const units =
+    (unitsResult.data ?? []) as UnitRow[];
+
+  const gradeIds =
+    Array.from(
+      new Set(
+        units
+          .map((unit) => unit.grade_id)
+          .filter(Boolean),
+      ),
+    );
+
+  const gradesResult =
+    gradeIds.length > 0
+      ? await supabase
+          .from("grades")
+          .select("id,name_ar,grade_number")
+          .in("id", gradeIds)
+      : { data: [] as GradeRow[], error: null };
+
+  if (gradesResult.error) {
+    console.error(
+      "ADMIN_LESSONS_GRADES_FETCH_ERROR:",
+      gradesResult.error.message,
+    );
+  }
+
+  const unitById =
+    new Map(
+      units.map((unit) => [unit.id, unit]),
+    );
+
+  const gradeById =
+    new Map(
+      ((gradesResult.data ?? []) as GradeRow[])
+        .map((grade) => [grade.id, grade]),
+    );
 
   return (
     <div
@@ -352,15 +359,16 @@ export default async function AdminLessonsPage() {
                   index
                 ) => {
                   const unit =
-                    getRelation(
-                      lesson.units
-                    );
+                    unitById.get(
+                      lesson.unit_id,
+                    ) ?? null;
 
                   const grade =
-                    getRelation(
-                      unit?.grades ??
-                        null
-                    );
+                    unit
+                      ? gradeById.get(
+                          unit.grade_id,
+                        ) ?? null
+                      : null;
 
                   const pages =
                     lesson.source_page_start &&
