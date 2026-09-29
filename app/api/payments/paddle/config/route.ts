@@ -56,6 +56,42 @@ function apiBase() {
     : "https://sandbox-api.paddle.com";
 }
 
+function tokenEnvironment(
+  token: string,
+) {
+  if (token.startsWith("live_")) {
+    return "production" as const;
+  }
+
+  if (token.startsWith("test_")) {
+    return "sandbox" as const;
+  }
+
+  return "unknown" as const;
+}
+
+function apiKeyEnvironment(
+  apiKey: string,
+) {
+  if (
+    apiKey.startsWith(
+      "pdl_live_apikey_",
+    )
+  ) {
+    return "production" as const;
+  }
+
+  if (
+    apiKey.startsWith(
+      "pdl_sdbx_apikey_",
+    )
+  ) {
+    return "sandbox" as const;
+  }
+
+  return "unknown" as const;
+}
+
 async function verifyConfiguredPrice(args: {
   apiKey: string;
   priceId: string;
@@ -144,6 +180,40 @@ export async function POST() {
           "Retry-After": "3600",
         },
       },
+    );
+  }
+
+  const selectedEnvironment =
+    environment();
+  const clientEnvironment =
+    tokenEnvironment(
+      clientToken,
+    );
+  const serverEnvironment =
+    apiKeyEnvironment(
+      apiKey,
+    );
+
+  if (
+    clientEnvironment ===
+      "unknown" ||
+    clientEnvironment !==
+      selectedEnvironment ||
+    (
+      serverEnvironment !==
+        "unknown" &&
+      serverEnvironment !==
+        selectedEnvironment
+    )
+  ) {
+    return NextResponse.json(
+      {
+        error:
+          "PADDLE_ENVIRONMENT_MISMATCH",
+        message:
+          "بيئة Paddle لا تطابق مفاتيح التشغيل. استخدم بيانات Sandbox مع sandbox أو بيانات Live مع production فقط.",
+      },
+      { status: 503 },
     );
   }
 
