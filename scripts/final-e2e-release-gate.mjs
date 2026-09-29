@@ -324,7 +324,7 @@ async function humanUiJourneySmoke(
     step += 1
   ) {
     await page.goto(
-      \`\${baseUrl}\${expectedPath}\`,
+      `${baseUrl}${expectedPath}`,
       {
         waitUntil:
           "domcontentloaded",
@@ -534,17 +534,17 @@ async function humanUiJourneySmoke(
         bodyText
           .trim()
           .length > 0,
-      \`E2E_HUMAN_UI_\${role.toUpperCase()}_NAV_FAILED:\${candidate.href}:\${current.pathname}\`,
+      `E2E_HUMAN_UI_${role.toUpperCase()}_NAV_FAILED:${candidate.href}:${current.pathname}`,
     );
 
     gate(
       serious.length === 0,
-      \`E2E_HUMAN_UI_\${role.toUpperCase()}_RUNTIME_ERROR:\${candidate.href}:\${serious
+      `E2E_HUMAN_UI_${role.toUpperCase()}_RUNTIME_ERROR:${candidate.href}:${serious
         .map(
           item =>
             item.kind,
         )
-        .join(",")}\`,
+        .join(",")}`,
     );
 
     clicked += 1;
@@ -554,7 +554,7 @@ async function humanUiJourneySmoke(
 
     await capture(
       page,
-      \`human-\${role}-step-\${step}\`,
+      `human-${role}-step-${step}`,
     );
   }
 
@@ -562,7 +562,7 @@ async function humanUiJourneySmoke(
     role === "child"
   ) {
     await page.goto(
-      \`\${baseUrl}/child\`,
+      `${baseUrl}/child`,
       {
         waitUntil:
           "domcontentloaded",
@@ -598,7 +598,7 @@ async function humanUiJourneySmoke(
       gate(
         (await button.count()) >
           0,
-        \`E2E_CHILD_TAB_MISSING:\${label}\`,
+        `E2E_CHILD_TAB_MISSING:${label}`,
       );
 
       await button
@@ -639,11 +639,11 @@ async function humanUiJourneySmoke(
 
   gate(
     clicked >= 1,
-    \`E2E_HUMAN_UI_\${role.toUpperCase()}_NO_CLICKABLE_INTERNAL_LINKS\`,
+    `E2E_HUMAN_UI_${role.toUpperCase()}_NO_CLICKABLE_INTERNAL_LINKS`,
   );
 
   console.log(
-    \`E2E_HUMAN_UI_\${role.toUpperCase()}=PASS CLICKS=\${clicked}\`,
+    `E2E_HUMAN_UI_${role.toUpperCase()}=PASS CLICKS=${clicked}`,
   );
 }
 
