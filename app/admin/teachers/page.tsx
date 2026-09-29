@@ -21,20 +21,33 @@ export default async function AdminTeachersPage() {
   const classroomDb =
     supabase as unknown as SupabaseClient;
 
-  const [
-    teachersResult,
-    classesResult,
-  ] = await Promise.all([
-    supabase
+  const teachersResult =
+    await supabase
       .from("profiles")
-      .select("id,full_name,email,country,created_at")
+      .select(
+        "id,full_name,email,country,created_at",
+        { count: "estimated" },
+      )
       .eq("role", "teacher")
-      .order("created_at", { ascending: false }),
+      .order("created_at", { ascending: false })
+      .limit(100);
 
-    classroomDb
-      .from("teacher_classes")
-      .select("teacher_id,is_active"),
-  ]);
+  const teacherIds =
+    (teachersResult.data ?? []).map(
+      (teacher) => teacher.id,
+    );
+
+  const classesResult =
+    teacherIds.length > 0
+      ? await classroomDb
+          .from("teacher_classes")
+          .select("teacher_id,is_active")
+          .in("teacher_id", teacherIds)
+          .limit(2000)
+      : {
+          data: [] as ClassRow[],
+          error: null,
+        };
 
   if (teachersResult.error) {
     throw new Error(
@@ -91,7 +104,7 @@ export default async function AdminTeachersPage() {
 
           <div className="rounded-2xl bg-[#123f39] px-5 py-3 text-center text-white">
             <div className="text-2xl font-black text-[#f5cf7a]">
-              {teachers.length}
+              {teachersResult.count ?? teachers.length}
             </div>
             <div className="text-[10px] font-black">
               معلم
@@ -100,6 +113,9 @@ export default async function AdminTeachersPage() {
         </section>
 
         <div className="overflow-hidden rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] shadow-sm">
+          <div className="border-b border-[#eee3cf] px-4 py-3 text-xs font-bold text-[#7b7164]">
+            عرض أحدث {teachers.length} معلمًا؛ تُحمّل الفصول لهذا النطاق فقط.
+          </div>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[720px] text-right">
               <thead className="bg-[#f4ead7] text-xs font-black text-[#6f5a36]">
