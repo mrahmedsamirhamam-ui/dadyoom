@@ -3037,6 +3037,58 @@ try {
       baseUrl,
     );
 
+    if (
+      role ===
+      "admin"
+    ) {
+      const readiness =
+        await browserFetch(
+          page,
+          "/api/admin/readiness",
+        );
+
+      gate(
+        readiness.status === 200 &&
+          readiness.data?.ok === true,
+        `E2E_ADMIN_READINESS_ROUTE_FAILED:${readiness.status}`,
+      );
+
+      const liveConfigured =
+        readiness.data?.live?.configured === true;
+      const adsConfigured =
+        readiness.data?.adsense?.configured === true;
+      const paddleConfigured =
+        readiness.data?.paddle?.configured === true;
+      const paddleEnvironment =
+        String(
+          readiness.data?.paddle?.environment ??
+          "unknown",
+        );
+
+      console.log(
+        `E2E_OPS_READINESS LIVE=${liveConfigured ? "CONFIGURED" : "MISSING"} ADSENSE=${adsConfigured ? "CONFIGURED" : "MISSING"} PADDLE=${paddleConfigured ? "CONFIGURED" : "MISSING"} PADDLE_ENV=${paddleEnvironment}`,
+      );
+
+      const paddleConfig =
+        await browserFetch(
+          page,
+          "/api/payments/paddle/config",
+          {
+            method: "POST",
+          },
+        );
+
+      const paddleError =
+        String(
+          paddleConfig.data?.error ??
+          "",
+        );
+
+      console.log(
+        `E2E_PADDLE_CONFIG_PROBE STATUS=${paddleConfig.status} ENV=${String(paddleConfig.data?.environment ?? paddleEnvironment)} ERROR=${paddleError || "NONE"}`,
+      );
+    }
+
     await capture(
       page,
       `role-${role}-dashboard`,
