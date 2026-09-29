@@ -122,15 +122,60 @@ export async function getLessonPageBundle(
   // Published lessons continue to use the canonical RPC.
   // ==========================================================
 
-  const {
-    data,
-    error,
-  } = await supabase.rpc(
-    "get_lesson_page_bundle",
-    {
-      p_lesson_id: lessonId,
+  let data: unknown = null;
+  let error: {
+    message?: string;
+    code?: string;
+  } | null = null;
+
+  for (
+    let attempt = 1;
+    attempt <= 2;
+    attempt += 1
+  ) {
+    const result =
+      await supabase.rpc(
+        "get_lesson_page_bundle",
+        {
+          p_lesson_id:
+            lessonId,
+        }
+      );
+
+    data =
+      result.data;
+
+    error =
+      result.error;
+
+    if (!error) {
+      break;
     }
-  );
+
+    console.warn(
+      "LESSON_PAGE_BUNDLE_RETRY",
+      {
+        lessonId,
+        attempt,
+        code:
+          error.code ??
+          null,
+        message:
+          error.message ??
+          "unknown",
+      }
+    );
+
+    if (attempt < 2) {
+      await new Promise(
+        resolve =>
+          setTimeout(
+            resolve,
+            350
+          )
+      );
+    }
+  }
 
   if (error) {
     console.error(
