@@ -40,6 +40,38 @@ function validAdsenseClient() {
   );
 }
 
+function credentialEnvironment(
+  clientToken: string,
+  apiKey: string,
+) {
+  const client =
+    clientToken.startsWith(
+      "live_",
+    )
+      ? "production"
+      : clientToken.startsWith(
+            "test_",
+          )
+        ? "sandbox"
+        : "unknown";
+
+  const server =
+    apiKey.startsWith(
+      "pdl_live_apikey_",
+    )
+      ? "production"
+      : apiKey.startsWith(
+            "pdl_sdbx_apikey_",
+          )
+        ? "sandbox"
+        : "unknown";
+
+  return {
+    client,
+    server,
+  };
+}
+
 export async function GET() {
   const supabase =
     await createClient();
@@ -71,15 +103,37 @@ export async function GET() {
       ? "production"
       : "sandbox";
 
+  const paddleClientToken =
+    envValue(
+      "PADDLE_CLIENT_TOKEN",
+      "NEXT_PUBLIC_PADDLE_CLIENT_TOKEN",
+    );
+  const paddleApiKey =
+    envValue(
+      "PADDLE_API_KEY",
+    );
+  const detected =
+    credentialEnvironment(
+      paddleClientToken,
+      paddleApiKey,
+    );
+
+  const credentialsMatchEnvironment =
+    detected.client ===
+      paddleEnvironment &&
+    (
+      detected.server ===
+        "unknown" ||
+      detected.server ===
+        paddleEnvironment
+    );
+
   const paddle = {
     environment:
       paddleEnvironment,
     clientToken:
       Boolean(
-        envValue(
-          "PADDLE_CLIENT_TOKEN",
-          "NEXT_PUBLIC_PADDLE_CLIENT_TOKEN",
-        ),
+        paddleClientToken,
       ),
     priceId:
       Boolean(
@@ -90,9 +144,7 @@ export async function GET() {
       ),
     apiKey:
       Boolean(
-        envValue(
-          "PADDLE_API_KEY",
-        ),
+        paddleApiKey,
       ),
     webhookSecret:
       Boolean(
@@ -100,6 +152,7 @@ export async function GET() {
           "PADDLE_WEBHOOK_SECRET",
         ),
       ),
+    credentialsMatchEnvironment,
   };
 
   return NextResponse.json(
@@ -121,7 +174,8 @@ export async function GET() {
           paddle.clientToken &&
           paddle.priceId &&
           paddle.apiKey &&
-          paddle.webhookSecret,
+          paddle.webhookSecret &&
+          paddle.credentialsMatchEnvironment,
       },
     },
     {
