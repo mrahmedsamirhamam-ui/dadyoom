@@ -2089,114 +2089,159 @@ async function studentFlow(
       "E2E_VIDEO_LESSON_FIXTURE_MISSING",
     );
 
-    const createdVideo =
-      await browserFetch(
-        page,
-        "/api/video/cinematic",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
-          body:
-            JSON.stringify({
-              lessonId:
-                fixture.learningLessonId,
-              prompt:
-                "أنشئ فيديو تعليميًا عربيًا قصيرًا جدًا من 8 إلى 20 ثانية، بمشهد صف عربي واقعي وحركة واضحة، دون أي نص مكتوب داخل الصورة.",
-            }),
-        },
-      );
+    const videoPrompt =
+      "أنشئ فيديو تعليميًا عربيًا قصيرًا جدًا من 8 إلى 20 ثانية، بمشهد صف عربي واقعي وحركة واضحة، دون أي نص مكتوب داخل الصورة.";
 
-    gate(
-      createdVideo.status === 202 &&
-        typeof createdVideo.data?.provider === "string" &&
-        typeof createdVideo.data?.sessionId === "string",
-      `E2E_VIDEO_CREATE_FAILED:${createdVideo.status}`,
-    );
-
-    gate(
-      createdVideo.data.provider !==
-        "batch-factory",
-      "E2E_VIDEO_PRIMARY_PROVIDER_FELL_BACK_TO_BATCH",
-    );
-
-    let finalVideo =
-      createdVideo.data;
+    let requestId = "";
+    let completedVideo = null;
+    const failedProviders = [];
 
     for (
-      let attempt = 1;
-      attempt <= 60;
-      attempt += 1
+      let providerAttempt = 1;
+      providerAttempt <= 8;
+      providerAttempt += 1
     ) {
-      if (
-        finalVideo?.status === "completed" &&
-        typeof finalVideo?.videoUrl === "string" &&
-        finalVideo.videoUrl.trim()
-      ) {
-        break;
-      }
-
-      await new Promise(
-        resolve =>
-          setTimeout(
-            resolve,
-            5000,
-          ),
-      );
-
-      const query =
-        new URLSearchParams({
-          provider:
-            String(
-              createdVideo.data.provider,
-            ),
-          sessionId:
-            String(
-              createdVideo.data.sessionId,
-            ),
-          ...(createdVideo.data.videoId
-            ? {
-                videoId:
-                  String(
-                    createdVideo.data.videoId,
-                  ),
-              }
-            : {}),
-        });
-
-      const status =
+      const createdVideo =
         await browserFetch(
           page,
-          `/api/video/cinematic/status?${query.toString()}`,
+          "/api/video/cinematic",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type":
+                "application/json",
+            },
+            body:
+              JSON.stringify({
+                lessonId:
+                  fixture.learningLessonId,
+                prompt:
+                  videoPrompt,
+                ...(requestId
+                  ? {
+                      requestId,
+                    }
+                  : {}),
+              }),
+          },
         );
 
       gate(
-        status.status === 200,
-        `E2E_VIDEO_STATUS_HTTP_FAILED:${status.status}`,
+        createdVideo.status === 202 &&
+          typeof createdVideo.data?.provider === "string" &&
+          typeof createdVideo.data?.sessionId === "string",
+        `E2E_VIDEO_CREATE_FAILED:${createdVideo.status}:ATTEMPT_${providerAttempt}`,
       );
 
-      finalVideo =
-        status.data;
+      requestId =
+        String(
+          createdVideo.data?.requestId ??
+          requestId,
+        );
+
+      const provider =
+        String(
+          createdVideo.data.provider,
+        );
 
       gate(
-        finalVideo?.status !== "failed",
-        "E2E_VIDEO_PROVIDER_RENDER_FAILED",
+        provider !==
+          "batch-factory",
+        `E2E_VIDEO_CLOUDS_EXHAUSTED_BEFORE_COMPLETION:${failedProviders.join(",")}`,
+      );
+
+      let finalVideo =
+        createdVideo.data;
+
+      for (
+        let attempt = 1;
+        attempt <= 36;
+        attempt += 1
+      ) {
+        if (
+          finalVideo?.status === "completed" &&
+          typeof finalVideo?.videoUrl === "string" &&
+          finalVideo.videoUrl.trim()
+        ) {
+          completedVideo = {
+            ...finalVideo,
+            provider,
+          };
+          break;
+        }
+
+        if (
+          finalVideo?.status === "failed"
+        ) {
+          break;
+        }
+
+        await new Promise(
+          resolve =>
+            setTimeout(
+              resolve,
+              5000,
+            ),
+        );
+
+        const query =
+          new URLSearchParams({
+            provider,
+            sessionId:
+              String(
+                createdVideo.data.sessionId,
+              ),
+            ...(finalVideo?.videoId ||
+            createdVideo.data.videoId
+              ? {
+                  videoId:
+                    String(
+                      finalVideo?.videoId ??
+                      createdVideo.data.videoId,
+                    ),
+                }
+              : {}),
+          });
+
+        const status =
+          await browserFetch(
+            page,
+            `/api/video/cinematic/status?${query.toString()}`,
+          );
+
+        gate(
+          status.status === 200,
+          `E2E_VIDEO_STATUS_HTTP_FAILED:${status.status}:${provider}`,
+        );
+
+        finalVideo =
+          status.data;
+      }
+
+      if (completedVideo) {
+        break;
+      }
+
+      failedProviders.push(
+        provider,
+      );
+
+      console.log(
+        `E2E_VIDEO_PROVIDER_FAILOVER provider=${provider} next_attempt=${providerAttempt + 1}`,
       );
     }
 
     gate(
-      finalVideo?.status === "completed" &&
-        typeof finalVideo?.videoUrl === "string" &&
-        finalVideo.videoUrl.trim().length > 0,
-      "E2E_VIDEO_COMPLETION_TIMEOUT",
+      completedVideo &&
+        completedVideo.status === "completed" &&
+        typeof completedVideo.videoUrl === "string" &&
+        completedVideo.videoUrl.trim().length > 0,
+      `E2E_VIDEO_COMPLETION_FAILED_ALL_CLOUDS:${failedProviders.join(",")}`,
     );
 
     const duration =
       Number(
-        finalVideo?.duration ??
-        createdVideo.data?.duration ??
+        completedVideo?.duration ??
         0,
       );
 
@@ -2213,7 +2258,7 @@ async function studentFlow(
 
     const mediaResponse =
       await fetch(
-        finalVideo.videoUrl,
+        completedVideo.videoUrl,
         {
           method: "GET",
           headers: {
@@ -2240,7 +2285,7 @@ async function studentFlow(
             contentType,
           ) ||
           String(
-            finalVideo.videoUrl,
+            completedVideo.videoUrl,
           ).includes(
             ".mp4",
           )
@@ -2249,7 +2294,7 @@ async function studentFlow(
     );
 
     console.log(
-      `E2E_VIDEO_GENERATION=PASS PROVIDER=${createdVideo.data.provider} DURATION=${duration || "UNKNOWN"} URL=${String(finalVideo.videoUrl).slice(0, 180)}`,
+      `E2E_VIDEO_GENERATION=PASS PROVIDER=${completedVideo.provider} DURATION=${duration || "UNKNOWN"} FAILOVERS=${failedProviders.length} URL=${String(completedVideo.videoUrl).slice(0, 180)}`,
     );
   }
 
