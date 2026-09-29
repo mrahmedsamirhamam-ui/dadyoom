@@ -1,6 +1,9 @@
 name: Production Role QA
 
 on:
+  push:
+    branches:
+      - fix/mobile-cloud-video-final-20260923
   workflow_run:
     workflows:
       - Mobile Final Verify
@@ -16,6 +19,7 @@ jobs:
   role-qa:
     if: >
       github.event_name == 'workflow_dispatch' ||
+      github.event_name == 'push' ||
       (
         github.event.workflow_run.conclusion == 'success' &&
         github.event.workflow_run.head_branch == 'fix/mobile-cloud-video-final-20260923'

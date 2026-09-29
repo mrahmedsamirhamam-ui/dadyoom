@@ -85,6 +85,7 @@ const roles = [
   ["teacher", "/teacher"],
   ["parent", "/parent"],
   ["school", "/school"],
+  ["admin", "/admin"],
 ];
 
 const users = new Map();
@@ -102,6 +103,204 @@ const fixture = {
 let server = null;
 let browser = null;
 let localDevVarsPath = null;
+let activePage = null;
+let activeRole = null;
+
+const qaReport = {
+  startedAt: new Date().toISOString(),
+  baseUrl: null,
+  roles: {},
+  diagnostics: [],
+  failed: false,
+};
+
+function recordDiagnostic(kind, role, detail = {}) {
+  if (qaReport.diagnostics.length >= 500) return;
+
+  qaReport.diagnostics.push({
+    at: new Date().toISOString(),
+    kind,
+    role: role || null,
+    ...detail,
+  });
+}
+
+function writeQaReport(status, error = null) {
+  if (!artifactDir) return;
+
+  fs.writeFileSync(
+    path.join(artifactDir, "qa-report.json"),
+    JSON.stringify(
+      {
+        ...qaReport,
+        status,
+        finishedAt: new Date().toISOString(),
+        error:
+          error instanceof Error
+            ? {
+                name: error.name,
+                message: error.message,
+                stack: error.stack ?? null,
+              }
+            : error
+              ? { message: String(error) }
+              : null,
+      },
+      null,
+      2,
+    ),
+    "utf8",
+  );
+}
+
+function attachPageDiagnostics(page, role) {
+  page.on("console", message => {
+    if (message.type() === "error" || message.type() === "warning") {
+      recordDiagnostic("console", role, {
+        level: message.type(),
+        text: message.text().slice(0, 1200),
+      });
+    }
+  });
+
+  page.on("pageerror", error => {
+    recordDiagnostic("pageerror", role, {
+      message: error.message.slice(0, 1200),
+    });
+  });
+
+  page.on("requestfailed", request => {
+    recordDiagnostic("requestfailed", role, {
+      method: request.method(),
+      url: request.url().slice(0, 1200),
+      failure: request.failure()?.errorText ?? null,
+    });
+  });
+
+  page.on("response", response => {
+    if (response.status() >= 500) {
+      recordDiagnostic("http5xx", role, {
+        status: response.status(),
+        url: response.url().slice(0, 1200),
+      });
+    }
+  });
+}
+
+async function responsiveSmoke(page, role, baseUrl, expectedPath) {
+  const original = page.viewportSize();
+
+  for (const viewport of [
+    { name: "desktop", width: 1365, height: 900 },
+    { name: "mobile", width: 390, height: 844 },
+  ]) {
+    await page.setViewportSize({
+      width: viewport.width,
+      height: viewport.height,
+    });
+
+    const response = await page.goto(
+      `${baseUrl}${expectedPath}`,
+      {
+        waitUntil: "domcontentloaded",
+        timeout: 60_000,
+      },
+    );
+
+    gate(
+      !response || response.status() < 500,
+      `E2E_RESPONSIVE_${role.toUpperCase()}_${viewport.name.toUpperCase()}_HTTP_${response?.status() ?? "NO_RESPONSE"}`,
+    );
+
+    const state = await page.evaluate(() => ({
+      width: window.innerWidth,
+      height: window.innerHeight,
+      bodyText: document.body?.innerText?.trim().length ?? 0,
+    }));
+
+    gate(
+      state.width > 0 &&
+        state.height > 0 &&
+        state.bodyText > 0,
+      `E2E_RESPONSIVE_${role.toUpperCase()}_${viewport.name.toUpperCase()}_FAILED`,
+    );
+
+    await capture(
+      page,
+      `role-${role}-${viewport.name}`,
+    );
+  }
+
+  if (original) {
+    await page.setViewportSize(original);
+  }
+
+  console.log(
+    `E2E_RESPONSIVE_${role.toUpperCase()}=PASS`,
+  );
+}
+
+async function roleRouteSmoke(page, role, baseUrl) {
+  const student = users.get("student");
+  const teacher = users.get("teacher");
+
+  const routes = {
+    student: ["/student", "/courses", "/assessment", "/skills"],
+    child: ["/child", "/courses", "/skills"],
+    teacher: [
+      "/teacher",
+      "/teacher/classroom",
+      ...(fixture.classId ? [`/teacher/classes/${fixture.classId}`] : []),
+    ],
+    parent: [
+      "/parent",
+      ...(student ? [`/parent/children/${student.id}`] : []),
+    ],
+    school: [
+      "/school",
+      "/school/reports",
+      "/school/rewards",
+      ...(fixture.classId ? [`/school/classes/${fixture.classId}`] : []),
+      ...(student ? [`/school/students/${student.id}`] : []),
+      ...(teacher ? [`/school/teachers/${teacher.id}`] : []),
+    ],
+    admin: [
+      "/admin",
+      "/admin/curriculum",
+      "/admin/lessons",
+      "/admin/students",
+      "/admin/teachers",
+    ],
+  };
+
+  for (const route of routes[role] ?? []) {
+    const response = await page.goto(
+      `${baseUrl}${route}`,
+      {
+        waitUntil: "domcontentloaded",
+        timeout: 60_000,
+      },
+    );
+
+    const status = response?.status() ?? 200;
+    const finalPath = new URL(page.url()).pathname;
+    const bodyText = await page
+      .locator("body")
+      .innerText()
+      .catch(() => "");
+
+    gate(
+      status < 500 &&
+        finalPath !== "/login" &&
+        bodyText.trim().length > 0,
+      `E2E_ROUTE_${role.toUpperCase()}_${route.replace(/[^a-z0-9]+/giu, "_")}_FAILED:${status}:${finalPath}`,
+    );
+  }
+
+  console.log(
+    `E2E_ROLE_ROUTES_${role.toUpperCase()}=PASS`,
+  );
+}
 
 function gate(condition, message) {
   if (!condition) {
@@ -2327,6 +2526,8 @@ async function roleDashboardGate(
       "ولي الأمر",
     school:
       "المدرسة",
+    admin:
+      "إدارة ضاديوم",
   };
 
   const marker =
@@ -2655,6 +2856,8 @@ const baseUrl =
   configuredBase ||
   "http://127.0.0.1:3219";
 
+qaReport.baseUrl = baseUrl;
+
 try {
   for (
     const [role] of
@@ -2666,7 +2869,7 @@ try {
   }
 
   console.log(
-    "E2E_TEMP_USERS=5",
+    "E2E_TEMP_USERS=6",
   );
 
   await seedStudent();
@@ -2794,6 +2997,14 @@ try {
       await context
         .newPage();
 
+    activePage = page;
+    activeRole = role;
+
+    attachPageDiagnostics(
+      page,
+      role,
+    );
+
     const user =
       users.get(role);
 
@@ -2811,6 +3022,19 @@ try {
     await roleDashboardGate(
       page,
       role,
+    );
+
+    await responsiveSmoke(
+      page,
+      role,
+      baseUrl,
+      expectedPath,
+    );
+
+    await roleRouteSmoke(
+      page,
+      role,
+      baseUrl,
     );
 
     await capture(
@@ -2920,6 +3144,7 @@ try {
       teacher: "لوحة المعلم",
       parent: "لوحة ولي الأمر",
       school: "لوحة المدرسة",
+      admin: "لوحة الإدارة",
     };
 
     gate(
@@ -2969,8 +3194,18 @@ try {
       `role-${role}-video-library`,
     );
 
+    qaReport.roles[role] = {
+      status: "PASS",
+      completedAt:
+        new Date().toISOString(),
+    };
+
     await context.close();
+    activePage = null;
+    activeRole = null;
   }
+
+  writeQaReport("PASS");
 
   console.log(
     "FINAL_E2E_RELEASE_GATE=PASS",
@@ -2979,6 +3214,35 @@ try {
   console.log(
     "EXTERNAL_AI_PROVIDER_OUTAGE_DOES_NOT_FAIL_PLATFORM_GATE=YES",
   );
+}
+catch (error) {
+  qaReport.failed = true;
+
+  if (activeRole) {
+    qaReport.roles[activeRole] = {
+      status: "FAIL",
+      completedAt:
+        new Date().toISOString(),
+      error:
+        error instanceof Error
+          ? error.message
+          : String(error),
+    };
+  }
+
+  if (activePage) {
+    await capture(
+      activePage,
+      `failure-${activeRole ?? "unknown"}`,
+    ).catch(() => {});
+  }
+
+  writeQaReport(
+    "FAIL",
+    error,
+  );
+
+  throw error;
 }
 finally {
   if (browser) {
@@ -2990,6 +3254,12 @@ finally {
   }
 
   await cleanup();
+
+  writeQaReport(
+    qaReport.failed
+      ? "FAIL"
+      : "PASS",
+  );
 
   console.log(
     "E2E_TEMP_DATA_CLEANUP=PASS",
