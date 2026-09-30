@@ -368,8 +368,8 @@ export async function POST(request: Request) {
     }
 
     if (
-      eventType ===
-      "transaction.payment_failed"
+      eventType === "transaction.payment_failed" ||
+      eventType === "transaction.past_due"
     ) {
       const {
         userId,
@@ -499,6 +499,7 @@ export async function POST(request: Request) {
     }
 
     if (
+      eventType === "subscription.created" ||
       eventType === "subscription.updated" ||
       eventType === "subscription.activated" ||
       eventType === "subscription.past_due"

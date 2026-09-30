@@ -168,7 +168,46 @@ describe("Paddle webhook security", () => {
     expect(db.mutations).toEqual([]);
   });
 
-  it.each(["subscription.updated", "subscription.activated", "subscription.canceled"])(
+  it.each(["transaction.payment_failed", "transaction.past_due"])(
+    "marks Plus past due for valid %s delivery", async (eventType) => {
+      const db = database();
+      const raw = JSON.stringify({
+        ...event,
+        event_id: `evt_local_${eventType.replaceAll(".", "_")}`,
+        event_type: eventType,
+      });
+
+      const response = await POST(request(raw, signature(raw)));
+
+      expect(response.status).toBe(200);
+      expect(await response.json()).toEqual({ ok: true, pastDue: true });
+      expect(db.mutations).toHaveLength(2);
+      expect(db.mutations[0]).toMatchObject({
+        table: "edu_subscriptions",
+        operation: "update",
+        value: {
+          status: "past_due",
+          provider: "paddle",
+          provider_subscription_id: "sub_local_1",
+        },
+      });
+      expect(db.mutations[1]).toMatchObject({
+        table: "edu_subscription_events",
+        operation: "insert",
+        value: {
+          action: "payment_failed",
+          metadata: {
+            event_type: eventType,
+            transaction_id: "txn_local_1",
+            paddle_subscription_id: "sub_local_1",
+            price_id: "pri_local_plus",
+          },
+        },
+      });
+    },
+  );
+
+  it.each(["subscription.created", "subscription.updated", "subscription.activated", "subscription.canceled"])(
     "preserves valid %s processing", async (eventType) => {
       const db = database();
       const raw = JSON.stringify({ ...event, event_type: eventType, data: {
