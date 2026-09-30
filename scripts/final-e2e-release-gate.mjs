@@ -318,6 +318,44 @@ async function humanUiJourneySmoke(
 
   let clicked = 0;
 
+  async function assertHumanSession(stage) {
+    const billing =
+      await browserFetch(
+        page,
+        "/api/billing/status",
+      );
+
+    const authenticated =
+      billing.status === 200 &&
+      billing.data?.authenticated === true;
+
+    const actualRole =
+      String(
+        billing.data?.role ??
+          "",
+      )
+        .trim()
+        .toLowerCase();
+
+    gate(
+      authenticated &&
+        (
+          actualRole === role ||
+          (
+            role === "child" &&
+            actualRole === "child"
+          )
+        ),
+      `E2E_HUMAN_SESSION_${role.toUpperCase()}_FAILED:${stage}:STATUS=${billing.status}:AUTH=${String(
+        billing.data?.authenticated,
+      )}:ROLE=${actualRole || "NONE"}:PATH=${new URL(page.url()).pathname}`,
+    );
+
+    console.log(
+      `E2E_HUMAN_SESSION_${role.toUpperCase()}=PASS STAGE=${stage} PATH=${new URL(page.url()).pathname}`,
+    );
+  }
+
   for (
     let step = 1;
     step <= 8;
@@ -331,6 +369,15 @@ async function humanUiJourneySmoke(
         timeout:
           60_000,
       },
+    );
+
+    gate(
+      new URL(page.url()).pathname === expectedPath,
+      `E2E_HUMAN_UI_${role.toUpperCase()}_START_PATH_FAILED:STEP=${step}:PATH=${new URL(page.url()).pathname}`,
+    );
+
+    await assertHumanSession(
+      `before-step-${step}`,
     );
 
     await page.waitForTimeout(
@@ -408,6 +455,9 @@ async function humanUiJourneySmoke(
                 ) &&
                 !raw.startsWith(
                   "/login",
+                ) &&
+                !raw.startsWith(
+                  "/signup",
                 ) &&
                 !raw.startsWith(
                   "/auth",
@@ -515,6 +565,10 @@ async function humanUiJourneySmoke(
       new URL(
         page.url(),
       );
+
+    await assertHumanSession(
+      `after-step-${step}`,
+    );
 
     const bodyText =
       await page
