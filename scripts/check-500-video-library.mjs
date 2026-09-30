@@ -7,6 +7,12 @@ const catalogPath =
     "data/video-library/catalog.json"
   );
 
+const publicCatalogPath =
+  path.resolve(
+    process.cwd(),
+    "public/video-library/catalog.json"
+  );
+
 if (!fs.existsSync(catalogPath)) {
   throw new Error(
     "VIDEO_LIBRARY_CATALOG_MISSING"
@@ -20,6 +26,29 @@ const catalog =
       "utf8"
     )
   );
+
+if (!fs.existsSync(publicCatalogPath)) {
+  throw new Error(
+    "VIDEO_LIBRARY_STATIC_CATALOG_MISSING"
+  );
+}
+
+const publicCatalog =
+  JSON.parse(
+    fs.readFileSync(
+      publicCatalogPath,
+      "utf8"
+    )
+  );
+
+if (
+  JSON.stringify(publicCatalog) !==
+  JSON.stringify(catalog)
+) {
+  throw new Error(
+    "VIDEO_LIBRARY_STATIC_CATALOG_OUT_OF_SYNC"
+  );
+}
 
 if (
   !Array.isArray(
@@ -118,6 +147,9 @@ console.log(
 );
 console.log(
   `VIDEO_LIBRARY_CATEGORIES=${categoryCount}`
+);
+console.log(
+  "VIDEO_LIBRARY_STATIC_CATALOG=PASS"
 );
 console.log(
   "VIDEO_LIBRARY_500_GATE=PASS"
