@@ -339,7 +339,7 @@ export default async function LessonPage({
                 استوديو الدرس الذكي
               </div>
               <h2 className="mt-1 font-arabic-display text-xl font-black text-[#173f38]">
-                ملخص • PowerPoint • دفتري • فيديو AI
+                ملخص • PowerPoint • دفتري • فيديو AI قريبًا
               </h2>
             </div>
             <Link

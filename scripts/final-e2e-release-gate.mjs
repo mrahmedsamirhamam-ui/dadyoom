@@ -3660,6 +3660,23 @@ try {
       console.log(
         `E2E_PADDLE_CONFIG_PROBE STATUS=${paddleConfig.status} ENV=${String(paddleConfig.data?.environment ?? paddleEnvironment)} ERROR=${paddleError || "NONE"}`,
       );
+
+      const videoAiHealth =
+        await browserFetch(
+          page,
+          "/api/video/cinematic/health",
+        );
+
+      gate(
+        videoAiHealth.status === 200 &&
+          videoAiHealth.data?.enabled === false &&
+          videoAiHealth.data?.status === "soon",
+        `E2E_VIDEO_AI_RELEASE_STATE_FAILED:${videoAiHealth.status}:${String(videoAiHealth.data?.status ?? "unknown")}`,
+      );
+
+      console.log(
+        "E2E_VIDEO_AI=SOON_DISABLED",
+      );
     }
 
     await capture(
@@ -3775,6 +3792,7 @@ try {
     gate(
       pricingText.includes("ضاديوم Plus") &&
       pricingText.includes("مكتبة الفيديوهات") &&
+      pricingText.includes("فيديو AI — قريبًا") &&
       pricingText.includes(
         dashboardLabels[role] ?? "لوحتي",
       ),

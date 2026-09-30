@@ -7,6 +7,10 @@ import {
   useState,
 } from "react";
 
+import {
+  isVideoAiGenerationEnabled,
+} from "@/lib/video/release-state";
+
 type Lesson = {
   id: string;
   title: string;
@@ -194,6 +198,9 @@ export default function LessonStudyStudio({
 }: {
   lesson: Lesson;
 }) {
+  const videoAiEnabled =
+    isVideoAiGenerationEnabled();
+
   const [tab, setTab] =
     useState<"summary" | "slides" | "notebook" | "video">("summary");
   const [busy, setBusy] = useState("");
@@ -514,7 +521,7 @@ export default function LessonStudyStudio({
           </div>
           <h1 className="mt-2 text-3xl font-black">{lesson.title}</h1>
           <p className="mt-2 leading-8">
-            الدرس متاح كملخص وشرائح دائمًا، مع الطباعة والتنزيل. حدود Free تخص فقط إنشاء نسخ جديدة بالـAI والفيديو.
+            الدرس متاح كملخص وشرائح دائمًا، مع الطباعة والتنزيل. فيديو AI قريبًا وغير مفعّل حاليًا.
           </p>
           <Link
             href={`/lessons/${lesson.id}`}
@@ -777,6 +784,7 @@ export default function LessonStudyStudio({
         ) : null}
 
         {tab === "video" ? (
+          videoAiEnabled ? (
           <section className="rounded-[2rem] border bg-white p-5">
             <div className="flex flex-wrap gap-2">
               <Action
@@ -823,6 +831,16 @@ export default function LessonStudyStudio({
               />
             ) : null}
           </section>
+          ) : (
+            <section className="rounded-[2rem] border bg-white p-5">
+              <h2 className="text-2xl font-black text-[#123f39]">
+                إنشاء فيديو AI — قريبًا
+              </h2>
+              <p className="mt-3 leading-8 text-[#756b5f]">
+                الميزة غير مفعّلة حاليًا، ولا يتم إرسال أي طلب إنشاء فيديو إلى مزود خارجي.
+              </p>
+            </section>
+          )
         ) : null}
       </div>
     </main>
