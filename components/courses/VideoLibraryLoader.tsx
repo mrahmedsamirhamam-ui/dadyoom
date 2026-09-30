@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import VideoLibraryClient from "@/components/courses/VideoLibraryClient";
 
@@ -42,10 +42,10 @@ export default function VideoLibraryLoader() {
   const [attempt, setAttempt] =
     useState(0);
 
-  const load =
-    useCallback(async () => {
-      setError("");
+  useEffect(() => {
+    let cancelled = false;
 
+    async function loadCatalog() {
       try {
         const response =
           await fetch(
@@ -70,20 +70,28 @@ export default function VideoLibraryLoader() {
           );
         }
 
-        setCatalog(value);
+        if (!cancelled) {
+          setCatalog(value);
+          setError("");
+        }
       } catch (cause) {
-        setCatalog(null);
-        setError(
-          cause instanceof Error
-            ? cause.message
-            : "تعذر تحميل مكتبة الفيديو.",
-        );
+        if (!cancelled) {
+          setCatalog(null);
+          setError(
+            cause instanceof Error
+              ? cause.message
+              : "تعذر تحميل مكتبة الفيديو.",
+          );
+        }
       }
-    }, []);
+    }
 
-  useEffect(() => {
-    void load();
-  }, [load, attempt]);
+    void loadCatalog();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [attempt]);
 
   if (!catalog) {
     return (
