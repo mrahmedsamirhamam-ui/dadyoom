@@ -91,66 +91,172 @@ export async function consumeFeature(
 export async function billingStatus() {
   const supabase = await createClient();
   const db = supabase as unknown as SupabaseClient;
-  const { data: { user } } = await supabase.auth.getUser();
 
-  const plan = user ? await currentPlan() : "free";
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser();
 
-  let role: string | null = null;
-
-  if (user) {
-    const { data: profile } = await db
-      .from("profiles")
-      .select("role")
-      .eq("id", user.id)
-      .maybeSingle();
-
-    role =
-      typeof profile?.role === "string"
-        ? profile.role
-        : typeof user.user_metadata?.role === "string"
-          ? user.user_metadata.role
-          : null;
+  if (authError) {
+    console.warn(
+      "BILLING_STATUS_AUTH_WARNING",
+      authError.message,
+    );
   }
 
-  const dashboard = dashboardForRole(role);
+  let role: string | null =
+    typeof user?.user_metadata?.role === "string"
+      ? user.user_metadata.role
+      : null;
 
-  const [{ data: planRow }, { data: plusPlanRow }] =
-    await Promise.all([
+  let plan: DadyoomPlan = "free";
+  let planLookupFailed = false;
+
+  if (user) {
+    const [
+      planResult,
+      profileResult,
+    ] = await Promise.all([
+      db.rpc("edu_current_plan", {
+        p_user: user.id,
+      }),
       db
-        .from("edu_subscription_plans")
-        .select(
-          "id,name_ar,monthly_price,currency,ads_enabled,limits",
-        )
-        .eq("id", plan)
-        .maybeSingle(),
-      db
-        .from("edu_subscription_plans")
-        .select("monthly_price,currency")
-        .eq("id", "plus")
+        .from("profiles")
+        .select("role")
+        .eq("id", user.id)
         .maybeSingle(),
     ]);
+
+    if (planResult.error) {
+      planLookupFailed = true;
+      console.warn(
+        "BILLING_STATUS_PLAN_WARNING",
+        planResult.error.message,
+      );
+    } else {
+      plan =
+        planResult.data === "plus"
+          ? "plus"
+          : "free";
+    }
+
+    if (profileResult.error) {
+      console.warn(
+        "BILLING_STATUS_PROFILE_WARNING",
+        profileResult.error.message,
+      );
+    } else if (
+      typeof profileResult.data?.role === "string"
+    ) {
+      role = profileResult.data.role;
+    }
+  }
+
+  const dashboard =
+    dashboardForRole(role);
+
+  const [
+    planRowResult,
+    plusPlanRowResult,
+  ] = await Promise.all([
+    db
+      .from("edu_subscription_plans")
+      .select(
+        "id,name_ar,monthly_price,currency,ads_enabled,limits",
+      )
+      .eq("id", plan)
+      .maybeSingle(),
+    db
+      .from("edu_subscription_plans")
+      .select("monthly_price,currency")
+      .eq("id", "plus")
+      .maybeSingle(),
+  ]);
+
+  if (planRowResult.error) {
+    console.warn(
+      "BILLING_STATUS_PLAN_ROW_WARNING",
+      planRowResult.error.message,
+    );
+  }
+
+  if (plusPlanRowResult.error) {
+    console.warn(
+      "BILLING_STATUS_PLUS_ROW_WARNING",
+      plusPlanRowResult.error.message,
+    );
+  }
+
+  const planRow =
+    planRowResult.data;
+
+  const plusPlanRow =
+    plusPlanRowResult.data;
+
+  /*
+   * Billing status is a presentation/readiness endpoint. A transient
+   * subscription lookup must never crash a logged-in page. If plan lookup
+   * is degraded, fail closed for ads so a Plus customer is not shown an ad
+   * merely because the billing backend had a brief error.
+   */
+  const showAds =
+    user
+      ? !planLookupFailed &&
+        plan !== "plus" &&
+        Boolean(
+          planRow?.ads_enabled ??
+            true,
+        )
+      : Boolean(
+          planRow?.ads_enabled ??
+            true,
+        );
 
   return {
     authenticated: Boolean(user),
     role,
-    dashboardHref: dashboard.href,
-    dashboardLabel: dashboard.label,
+    dashboardHref:
+      dashboard.href,
+    dashboardLabel:
+      dashboard.label,
     plan,
-    plus: plan === "plus",
-    showAds:
-      plan !== "plus" &&
-      Boolean(planRow?.ads_enabled ?? true),
-    limits: (planRow?.limits ?? {}) as Record<
-      string,
-      number
-    >,
-    price: Number(planRow?.monthly_price ?? 0),
-    currency: String(planRow?.currency ?? "BHD"),
-    plusPrice: Number(
-      plusPlanRow?.monthly_price ?? 10,
-    ),
-    plusCurrency: String(
-      plusPlanRow?.currency ?? "USD",
-    ),
+    plus:
+      plan === "plus",
+    showAds,
+    degraded:
+      Boolean(authError) ||
+      planLookupFailed ||
+      Boolean(
+        planRowResult.error,
+      ) ||
+      Boolean(
+        plusPlanRowResult.error,
+      ),
+    limits:
+      (planRow?.limits ??
+        {}) as Record<
+          string,
+          number
+        >,
+    price:
+      Number(
+        planRow?.monthly_price ??
+          0,
+      ),
+    currency:
+      String(
+        planRow?.currency ??
+          "BHD",
+      ),
+    plusPrice:
+      Number(
+        plusPlanRow?.monthly_price ??
+          10,
+      ),
+    plusCurrency:
+      String(
+        plusPlanRow?.currency ??
+          "USD",
+      ),
   };
 }
