@@ -99,12 +99,6 @@ export default async function TeacherPage() {
     );
   }
 
-  const schoolLinkCode: ActiveSchoolTeacherLinkCode | null =
-    await getActiveSchoolTeacherLinkCode(
-      supabase as unknown as SupabaseClient
-    );
-
-
   /*
    * جداول Classroom أضيفت بعد آخر
    * توليد لأنواع Supabase.
@@ -114,10 +108,22 @@ export default async function TeacherPage() {
       SupabaseClient;
 
   const [
+    schoolLinkCode,
     classesResult,
     lessonsResult,
   ] =
     await Promise.all([
+      getActiveSchoolTeacherLinkCode(
+        classroomDb
+      ).catch((error) => {
+        console.warn(
+          "TEACHER_SCHOOL_LINK_LOAD_WARNING",
+          error instanceof Error
+            ? error.message
+            : String(error)
+        );
+        return null;
+      }),
       classroomDb
         .from(
           "teacher_classes"
@@ -140,7 +146,8 @@ export default async function TeacherPage() {
           {
             ascending: false,
           }
-        ),
+        )
+        .limit(100),
 
       supabase
         .from("lessons")
@@ -160,36 +167,48 @@ export default async function TeacherPage() {
         .order(
           "lesson_number"
         )
-        .limit(50),
+        .limit(30),
     ]);
 
   if (
     classesResult.error
   ) {
-    throw classesResult.error;
+    console.warn(
+      "TEACHER_CLASSES_LOAD_WARNING",
+      classesResult.error.message
+    );
   }
 
   if (
     lessonsResult.error
   ) {
-    throw lessonsResult.error;
+    console.warn(
+      "TEACHER_LESSONS_LOAD_WARNING",
+      lessonsResult.error.message
+    );
   }
 
   const classes =
     (
-      classesResult.data ??
-      []
+      classesResult.error
+        ? []
+        : classesResult.data ??
+          []
     ) as TeacherClassRow[];
 
   const lessons =
     (
-      lessonsResult.data ??
-      []
+      lessonsResult.error
+        ? []
+        : lessonsResult.data ??
+          []
     ) as LessonRow[];
 
   const totalLessonCount =
-    lessonsResult.count ??
-    lessons.length;
+    lessonsResult.error
+      ? 0
+      : lessonsResult.count ??
+        lessons.length;
 
   const classIds =
     classes.map(
@@ -219,14 +238,17 @@ export default async function TeacherPage() {
       );
 
     if (error) {
-      throw error;
+      console.warn(
+        "TEACHER_MEMBERSHIPS_LOAD_WARNING",
+        error.message
+      );
+    } else {
+      memberships =
+        (
+          data ??
+          []
+        ) as ClassStudentRow[];
     }
-
-    memberships =
-      (
-        data ??
-        []
-      ) as ClassStudentRow[];
   }
 
   const studentCountByClass =
