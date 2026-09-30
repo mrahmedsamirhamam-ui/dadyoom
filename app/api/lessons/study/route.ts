@@ -16,6 +16,10 @@ import {
   runAgent,
   runAgentJson,
 } from "@/lib/ai/agents";
+import {
+  isVideoAiGenerationEnabled,
+  VIDEO_AI_SOON_MESSAGE,
+} from "@/lib/video/release-state";
 
 export const runtime = "nodejs";
 
@@ -707,6 +711,24 @@ export async function POST(
         },
         {
           status: 400,
+        },
+      );
+    }
+
+    if (
+      task === "video_storyboard" &&
+      !isVideoAiGenerationEnabled()
+    ) {
+      return NextResponse.json(
+        {
+          error: "VIDEO_AI_SOON",
+          enabled: false,
+          status: "soon",
+          message: VIDEO_AI_SOON_MESSAGE,
+        },
+        {
+          status: 503,
+          headers: { "Cache-Control": "no-store, max-age=0" },
         },
       );
     }

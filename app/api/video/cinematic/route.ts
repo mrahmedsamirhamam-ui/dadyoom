@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server";
 
+import {
+  isVideoAiGenerationEnabled,
+  VIDEO_AI_SOON_MESSAGE,
+} from "@/lib/video/release-state";
+
 import { consumeFeature } from "@/lib/billing/access";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
@@ -21,6 +26,21 @@ const cloudVideoAiEnabled =
     .toLowerCase() !== "false";
 
 export async function POST(request: Request) {
+  if (!isVideoAiGenerationEnabled()) {
+    return NextResponse.json(
+      {
+        error: "VIDEO_AI_SOON",
+        enabled: false,
+        status: "soon",
+        message: VIDEO_AI_SOON_MESSAGE,
+      },
+      {
+        status: 503,
+        headers: { "Cache-Control": "no-store, max-age=0" },
+      },
+    );
+  }
+
   try {
     const supabase = await createClient();
     const {

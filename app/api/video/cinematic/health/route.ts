@@ -3,6 +3,11 @@ import {
 } from "next/server";
 
 import {
+  isVideoAiGenerationEnabled,
+  VIDEO_AI_SOON_MESSAGE,
+} from "@/lib/video/release-state";
+
+import {
   cinematicVideoRuntimeHealth,
 } from "@/lib/video/cinematic-avatar-agent";
 import {
@@ -14,6 +19,32 @@ export const dynamic =
   "force-dynamic";
 
 export async function GET() {
+  if (!isVideoAiGenerationEnabled()) {
+    return NextResponse.json(
+      {
+        ok: true,
+        enabled: false,
+        status: "soon",
+        message: VIDEO_AI_SOON_MESSAGE,
+        cloudReady: false,
+        configuredCount: 0,
+        coolingCount: 0,
+        freeFirst: true,
+        paidEnabled: false,
+        batchQueueReady: false,
+        batchWorkerObservedRecently: false,
+        batchQueued: 0,
+        batchCompleted: 0,
+        batchFailed: 0,
+        degraded: false,
+      },
+      {
+        status: 200,
+        headers: { "Cache-Control": "no-store, max-age=0" },
+      },
+    );
+  }
+
   try {
     const [
       health,
