@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
+import type { SupabaseClient } from "@supabase/supabase-js";
+
 import {
   advanceGradeForAcademicYear,
   currentAcademicYear,
@@ -12,6 +14,7 @@ type LessonRow = {
   title: string | null;
   estimated_minutes: number | null;
   lesson_number: number | null;
+  total_count?: number | string | null;
 };
 
 type ProgressRow = {
@@ -107,42 +110,54 @@ export default async function StudentPage() {
   const countryCode =
     studentProfile.country?.trim().toUpperCase() || "BH";
 
-  let lessonsQuery = supabase
-    .from("lessons")
-    .select(
-      `
-        id,
-        title,
-        estimated_minutes,
-        lesson_number,
-        units!inner(
-          grades!inner(
-            grade_number,
-            curricula!inner(
-              countries!inner(code)
-            )
-          )
-        )
-      `,
-      { count: "exact" },
-    )
-    .eq("status", "published")
-    .order("lesson_number", { ascending: true })
-    .limit(24);
+  const dashboardDb =
+    supabase as unknown as SupabaseClient;
 
-  if (
+  const hasStudentScope =
     studentRole === "student" &&
     Number.isInteger(gradeNumber) &&
     gradeNumber >= 1 &&
-    gradeNumber <= 12
-  ) {
-    lessonsQuery = lessonsQuery
-      .eq("units.grades.grade_number", gradeNumber)
-      .eq("units.grades.curricula.countries.code", countryCode);
-  }
+    gradeNumber <= 12;
 
-  const [lessonsResult, progressResult] = await Promise.all([
-    lessonsQuery,
+  const lessonsRequest =
+    hasStudentScope
+      ? dashboardDb.rpc(
+          "get_student_dashboard_lessons",
+          {
+            p_country_code:
+              countryCode,
+            p_grade_number:
+              gradeNumber,
+            p_limit: 24,
+          },
+        )
+      : dashboardDb
+          .from("lessons")
+          .select(
+            "id,title,estimated_minutes,lesson_number",
+            {
+              count:
+                "estimated",
+            },
+          )
+          .eq(
+            "status",
+            "published",
+          )
+          .order(
+            "lesson_number",
+            {
+              ascending:
+                true,
+            },
+          )
+          .limit(24);
+
+  const [
+    lessonsResult,
+    progressResult,
+  ] = await Promise.all([
+    lessonsRequest,
     supabase
       .from("student_lesson_progress")
       .select("lesson_id,status,progress_percent,updated_at")
@@ -196,7 +211,17 @@ export default async function StudentPage() {
       row.status === "completed" || row.status === "mastered",
   ).length;
 
-  const totalLessons = lessonsResult.count ?? lessonCards.length;
+  const totalLessons =
+    hasStudentScope
+      ? Number(
+          lessons[0]
+            ?.total_count ??
+            lessonCards.length,
+        )
+      : Number(
+          lessonsResult.count ??
+            lessonCards.length,
+        );
   const progressPercent =
     totalLessons > 0
       ? Math.min(
