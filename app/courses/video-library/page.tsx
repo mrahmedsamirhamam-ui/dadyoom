@@ -1,26 +1,4 @@
-import VideoLibraryClient from "@/components/courses/VideoLibraryClient";
-import catalogData from "@/data/video-library/catalog.json";
-
-type Catalog = {
-  generatedAt: string;
-  target: number;
-  total: number;
-  countsBySource: Record<
-    string,
-    number
-  >;
-  countsByCategory: Record<
-    string,
-    number
-  >;
-  countsByRoom: Record<
-    string,
-    number
-  >;
-  videos: Parameters<
-    typeof VideoLibraryClient
-  >[0]["videos"];
-};
+import VideoLibraryLoader from "@/components/courses/VideoLibraryLoader";
 
 export const metadata = {
   title:
@@ -31,9 +9,6 @@ export const metadata = {
 
 export const dynamic =
   "force-static";
-
-const catalog =
-  catalogData as Catalog;
 
 export default function VideoLibraryPage() {
   return (
@@ -62,31 +37,6 @@ export default function VideoLibraryPage() {
               غير الناطقين بالعربية والطلاب العرب، مع القراءة والنحو
               والمفردات والنطق والمحادثة والكتابة والبلاغة.
             </p>
-
-            <div className="mt-6 flex flex-wrap gap-2">
-              <Metric
-                label="الفيديوهات"
-                value={catalog.total}
-              />
-
-              <Metric
-                label="المجالات"
-                value={
-                  Object.keys(
-                    catalog.countsByCategory
-                  ).length
-                }
-              />
-
-              <Metric
-                label="المصادر"
-                value={
-                  Object.keys(
-                    catalog.countsBySource
-                  ).length
-                }
-              />
-            </div>
           </div>
         </section>
 
@@ -98,27 +48,8 @@ export default function VideoLibraryPage() {
           </p>
         </section>
 
-        <VideoLibraryClient
-          videos={catalog.videos}
-        />
+        <VideoLibraryLoader />
       </div>
     </main>
-  );
-}
-
-function Metric({
-  label,
-  value,
-}: {
-  label: string;
-  value: number;
-}) {
-  return (
-    <div className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-black">
-      {label}:{" "}
-      <span className="text-[#f5cf7a]">
-        {value}
-      </span>
-    </div>
   );
 }
