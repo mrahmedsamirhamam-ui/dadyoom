@@ -407,6 +407,11 @@ export default function HomePage() {
           <div className="text-sm font-bold">
             العربية لقلب الطالب قبل عقله.
           </div>
+          <nav aria-label="الروابط القانونية" className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm font-bold">
+            <Link prefetch={false} href="/terms" className="hover:text-white hover:underline">الشروط والأحكام</Link>
+            <Link prefetch={false} href="/privacy" className="hover:text-white hover:underline">سياسة الخصوصية</Link>
+            <Link prefetch={false} href="/refund-policy" className="hover:text-white hover:underline">سياسة الاسترداد</Link>
+          </nav>
           <div className="text-sm">© 2026 ضاديوم</div>
         </div>
       </footer>
