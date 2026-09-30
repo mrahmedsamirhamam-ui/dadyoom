@@ -5,6 +5,7 @@ export const VIDEO_AI_SOON_MESSAGE =
 
 export function isVideoAiGenerationEnabled() {
   // Release gate: keep AI video generation disabled until it is explicitly
-  // approved for production. Do not derive this from provider credentials.
+  // approved for production. This intentionally has no environment override:
+  // provider credentials must never make the public feature active by accident.
   return false;
 }
