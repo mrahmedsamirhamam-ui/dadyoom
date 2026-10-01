@@ -13,6 +13,7 @@ export async function createDadyoomLiveToken(input: {
   identity: string;
   name: string;
   isTeacher: boolean;
+  participantRole?: string;
 }) {
   const apiKey = process.env.LIVEKIT_API_KEY?.trim();
   const apiSecret =
@@ -30,7 +31,9 @@ export async function createDadyoomLiveToken(input: {
       name: input.name,
       ttl: "2h",
       metadata: JSON.stringify({
-        role: input.isTeacher ? "teacher" : "student",
+        role:
+          input.participantRole?.trim() ||
+          (input.isTeacher ? "teacher" : "student"),
       }),
     },
   );
