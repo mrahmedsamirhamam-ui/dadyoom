@@ -702,7 +702,13 @@ const teacherCount =
     >
       <div className="mx-auto max-w-7xl space-y-7">
 
-        <div className="flex justify-end">
+        <div className="flex flex-wrap justify-end gap-3">
+          <Link
+            href="/school/meetings"
+            className="inline-flex items-center justify-center rounded-xl bg-indigo-700 px-5 py-3 text-sm font-black text-white shadow-sm transition hover:bg-indigo-800"
+          >
+            🎥 اجتماعات المعلمين
+          </Link>
 
           <Link
             href="/school/reports"
@@ -710,7 +716,6 @@ const teacherCount =
           >
             📊 التقارير المدرسية
           </Link>
-
         </div>
 
 
