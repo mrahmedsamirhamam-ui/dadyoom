@@ -9,6 +9,10 @@
     "binding": "ASSETS",
     "not_found_handling": "none"
   },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
   "kv_namespaces": [
     {
       "binding": "VINEXT_KV_CACHE",
