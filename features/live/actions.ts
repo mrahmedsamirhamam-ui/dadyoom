@@ -13,6 +13,7 @@ export async function createLiveSessionAction(
   form: FormData,
 ) {
   const supabase = await createClient();
+  const db = supabase as unknown as SupabaseClient;
 
   const {
     data: { user },
@@ -169,7 +170,7 @@ export async function createSchoolMeetingAction(
   const roomName =
     `dadyoom-school-${String(school.id).slice(0, 8)}-${crypto.randomUUID()}`;
 
-  const { error } = await supabase
+  const { error } = await db
     .from("edu_live_sessions")
     .insert({
       teacher_id: user.id,
