@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { SupabaseClient } from "@supabase/supabase-js";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import CheckoutButtons from "@/components/billing/CheckoutButtons";
@@ -76,6 +77,15 @@ export default async function CoursePage({
     )
     .eq("course_id", course.id)
     .order("sort_order");
+
+  const { data: liveSessions } = hasAccess
+    ? await db
+        .from("edu_live_sessions")
+        .select("id,title,description,starts_at,ends_at,status")
+        .eq("course_id", course.id)
+        .in("status", ["scheduled", "live", "ended"])
+        .order("starts_at", { ascending: true })
+    : { data: [] };
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -161,6 +171,47 @@ export default async function CoursePage({
             لديك وصول كامل إلى الدورة.
           </div>
         )}
+
+        {hasAccess && liveSessions?.length ? (
+          <section className="rounded-[2rem] border border-emerald-200 bg-emerald-50 p-5">
+            <div className="text-sm font-black text-emerald-700">
+              🎥 الحصص المباشرة
+            </div>
+            <h2 className="mt-1 text-2xl font-black text-[#123f39]">
+              غرف الدورة
+            </h2>
+            <p className="mt-2 text-sm leading-7 text-slate-600">
+              ستجد هنا كل غرفة مباشرة أضافها المعلم للدورة، ويمكنك الدخول من داخل ضاديوم.
+            </p>
+
+            <div className="mt-4 space-y-3">
+              {liveSessions.map((session) => (
+                <article
+                  key={session.id}
+                  className="rounded-2xl border border-emerald-200 bg-white p-4"
+                >
+                  <div className="font-black text-slate-900">
+                    {session.title}
+                  </div>
+                  {session.description ? (
+                    <p className="mt-1 text-sm text-slate-600">
+                      {session.description}
+                    </p>
+                  ) : null}
+                  <div className="mt-2 text-sm text-slate-500">
+                    {new Date(session.starts_at).toLocaleString("ar-BH")}
+                  </div>
+                  <Link
+                    href={`/live/${session.id}`}
+                    className="mt-3 inline-flex rounded-xl bg-[#123f39] px-4 py-2 text-sm font-black text-white"
+                  >
+                    دخول الغرفة
+                  </Link>
+                </article>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <section className="space-y-3">
           {(lessons ?? []).map((lesson, index) => {
