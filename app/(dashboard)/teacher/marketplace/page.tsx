@@ -14,7 +14,7 @@ export default async function TeacherMarketplacePage() {
   const { data: courses } = await db
     .from("edu_marketplace_courses")
     .select(
-      "id,slug,title,description,price,currency,delivery_mode,status,commission_bps,created_at",
+      "id,slug,title,description,price,currency,delivery_mode,status,commission_bps,starts_at,ends_at,schedule_note,max_students,created_at",
     )
     .eq("teacher_id", user.id)
     .order("created_at", {
