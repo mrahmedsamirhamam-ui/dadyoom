@@ -1,5 +1,6 @@
 "use server";
 
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { revalidatePath } from "next/cache";
 
 import { createClient } from "@/lib/supabase/server";
@@ -84,7 +85,7 @@ export async function createLiveSessionAction(
   const roomName =
     `dadyoom-${user.id.slice(0, 8)}-${crypto.randomUUID()}`;
 
-  const { error } = await supabase
+  const { error } = await db
     .from("edu_live_sessions")
     .insert({
       teacher_id: user.id,
@@ -111,6 +112,7 @@ export async function createSchoolMeetingAction(
   form: FormData,
 ) {
   const supabase = await createClient();
+  const db = supabase as unknown as SupabaseClient;
 
   const {
     data: { user },
