@@ -1,3 +1,4 @@
+import type { SupabaseClient } from "@supabase/supabase-js";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -7,6 +8,7 @@ import { createClient } from "@/lib/supabase/server";
 
 export default async function SchoolMeetingsPage() {
   const supabase = await createClient();
+  const db = supabase as unknown as SupabaseClient;
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -38,7 +40,7 @@ export default async function SchoolMeetingsPage() {
     redirect("/school");
   }
 
-  const { data: sessions } = await supabase
+  const { data: sessions } = await db
     .from("edu_live_sessions")
     .select("id,title,description,starts_at,ends_at,status")
     .eq("school_id", school.id)
