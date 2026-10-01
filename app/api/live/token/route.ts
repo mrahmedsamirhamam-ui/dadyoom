@@ -88,6 +88,18 @@ export async function POST(request: Request) {
     const isTeacher =
       session.teacher_id === user.id;
 
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("role")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    const participantRole =
+      String(profile?.role ?? "")
+        .trim()
+        .toLowerCase() ||
+      (isTeacher ? "teacher" : "student");
+
     const token =
       await createDadyoomLiveToken({
         room: session.room_name,
@@ -98,6 +110,7 @@ export async function POST(request: Request) {
             "Dadyoom user",
         ).slice(0, 100),
         isTeacher,
+        participantRole,
       });
 
     await supabase
@@ -106,7 +119,7 @@ export async function POST(request: Request) {
         {
           session_id: sessionId,
           user_id: user.id,
-          role: isTeacher ? "teacher" : "student",
+          role: participantRole,
           joined_at: new Date().toISOString(),
           updated_at: new Date().toISOString(),
         },
