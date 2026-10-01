@@ -1,10 +1,20 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
+
+import CopyLiveLinkButton from "@/components/live/CopyLiveLinkButton";
 
 import { createLiveSessionAction } from "@/features/live/actions";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function TeacherLivePage() {
   const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
 
   const [
     sessions,
@@ -14,6 +24,7 @@ export default async function TeacherLivePage() {
     supabase
       .from("edu_live_sessions")
       .select("id,title,starts_at,status")
+      .eq("teacher_id", user.id)
       .order("starts_at", { ascending: true }),
     supabase
       .from("edu_marketplace_courses")
@@ -139,12 +150,15 @@ export default async function TeacherLivePage() {
                   </div>
                 </div>
 
-                <Link
-                  href={`/live/${session.id}`}
-                  className="rounded-2xl bg-[#123f39] px-4 py-2 text-center font-black text-white"
-                >
-                  افتح الغرفة
-                </Link>
+                <div className="flex flex-wrap gap-2">
+                  <Link
+                    href={`/live/${session.id}`}
+                    className="rounded-2xl bg-[#123f39] px-4 py-2 text-center font-black text-white"
+                  >
+                    افتح الغرفة
+                  </Link>
+                  <CopyLiveLinkButton sessionId={session.id} />
+                </div>
               </div>
             ))}
           </div>
