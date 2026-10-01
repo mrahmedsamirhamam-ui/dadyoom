@@ -372,37 +372,61 @@ export async function POST(
       throw saveError;
     }
 
-    const dailyChallenge =
-      await completeDailyChallengeFromSkillResult({
-        supabase,
-        userId:
-          user.id,
-        userEmail:
-          user.email,
-        skill:
-          typedSkill,
-        score,
-      });
+    let dailyChallenge: unknown = null;
 
-    if (user.email?.trim()) {
-      await updateStreak({
-        supabase,
-        studentEmail: user.email.trim(),
-        activityDate: new Date(),
-      });
+    try {
+      dailyChallenge =
+        await completeDailyChallengeFromSkillResult({
+          supabase,
+          userId:
+            user.id,
+          userEmail:
+            user.email,
+          skill:
+            typedSkill,
+          score,
+        });
+    } catch (error) {
+      console.error(
+        "SKILLS_PROGRESS_DAILY_CHALLENGE_DEGRADED:",
+        error,
+      );
     }
 
-    await syncGamificationMilestones({
-      supabase,
-      userId: user.id,
-      userEmail: user.email,
-    });
+    const secondaryTasks: Promise<unknown>[] = [
+      syncGamificationMilestones({
+        supabase,
+        userId: user.id,
+        userEmail: user.email,
+      }),
+      invalidateStudentCaches({
+        studentId: user.id,
+        studentEmail: user.email,
+        supabase,
+      }),
+    ];
 
-    await invalidateStudentCaches({
-      studentId: user.id,
-      studentEmail: user.email,
-      supabase,
-    });
+    if (user.email?.trim()) {
+      secondaryTasks.push(
+        updateStreak({
+          supabase,
+          studentEmail: user.email.trim(),
+          activityDate: new Date(),
+        }),
+      );
+    }
+
+    const secondaryResults =
+      await Promise.allSettled(secondaryTasks);
+
+    for (const result of secondaryResults) {
+      if (result.status === "rejected") {
+        console.error(
+          "SKILLS_PROGRESS_SECONDARY_EFFECT_DEGRADED:",
+          result.reason,
+        );
+      }
+    }
 
     return NextResponse.json({
       dailyChallenge,
