@@ -3590,6 +3590,16 @@ try {
       expectedPath,
     );
 
+    if (
+      role === "student" ||
+      role === "teacher"
+    ) {
+      await liveTokenSmoke(
+        page,
+        role,
+      );
+    }
+
     await humanUiJourneySmoke(
       page,
       role,
@@ -3602,16 +3612,6 @@ try {
       role,
       baseUrl,
     );
-
-    if (
-      role === "student" ||
-      role === "teacher"
-    ) {
-      await liveTokenSmoke(
-        page,
-        role,
-      );
-    }
 
     if (
       role ===
