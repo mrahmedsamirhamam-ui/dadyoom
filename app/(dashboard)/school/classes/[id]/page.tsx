@@ -123,6 +123,28 @@ export default async function SchoolClassDetailsPage({
     supabase as unknown as SupabaseClient;
 
   const {
+    data: classFallback,
+    error: classFallbackError,
+  } = await db
+    .from("teacher_classes")
+    .select(
+      "id,name,description,academic_year,join_code,is_active,created_at,teacher_id",
+    )
+    .eq("id", id)
+    .maybeSingle();
+
+  if (classFallbackError) {
+    console.error(
+      "SCHOOL_CLASS_FALLBACK_LOAD_FAILED:",
+      classFallbackError,
+    );
+  }
+
+  if (!classFallback) {
+    notFound();
+  }
+
+  const {
     data,
     error,
   } =
@@ -134,13 +156,44 @@ export default async function SchoolClassDetailsPage({
     );
 
   if (error) {
-    throw error;
+    console.error(
+      "SCHOOL_CLASS_DETAILS_RPC_DEGRADED:",
+      error,
+    );
   }
 
   const rows =
     (
-      data ??
-      []
+      error
+        ? [
+            {
+              class_id: classFallback.id,
+              class_name: classFallback.name,
+              class_description:
+                classFallback.description,
+              academic_year:
+                classFallback.academic_year,
+              join_code:
+                classFallback.join_code,
+              class_is_active:
+                classFallback.is_active,
+              class_created_at:
+                classFallback.created_at,
+              teacher_id:
+                classFallback.teacher_id,
+              teacher_name: null,
+              teacher_email: null,
+              student_id: null,
+              student_name: null,
+              student_email: null,
+              joined_at: null,
+              completed_lessons: 0,
+              mastered_lessons: 0,
+              average_best_score: 0,
+              total_xp: 0,
+            },
+          ]
+        : data ?? []
     ) as SchoolClassRow[];
 
   if (rows.length === 0) {
