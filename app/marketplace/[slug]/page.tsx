@@ -48,7 +48,7 @@ export default async function CoursePage({
   const { data: course } = await db
     .from("edu_marketplace_courses")
     .select(
-      "id,teacher_id,slug,title,description,price,currency,delivery_mode,status",
+      "id,teacher_id,slug,title,description,price,currency,delivery_mode,status,starts_at,ends_at,schedule_note,max_students",
     )
     .eq("slug", slug)
     .eq("status", "published")
@@ -123,6 +123,24 @@ export default async function CoursePage({
           <div className="mt-4 text-xl font-black text-[#f3d18a]">
             {Number(course.price).toFixed(3)}{" "}
             {course.currency}
+          </div>
+
+          <div className="mt-4 flex flex-wrap gap-2 text-sm font-bold text-white/85">
+            {course.starts_at ? (
+              <span className="rounded-full bg-white/10 px-3 py-2">
+                تبدأ {new Date(course.starts_at).toLocaleString("ar-BH")}
+              </span>
+            ) : null}
+            {course.max_students ? (
+              <span className="rounded-full bg-white/10 px-3 py-2">
+                حتى {course.max_students} طالب
+              </span>
+            ) : null}
+            {course.schedule_note ? (
+              <span className="rounded-full bg-white/10 px-3 py-2">
+                {course.schedule_note}
+              </span>
+            ) : null}
           </div>
         </section>
 
