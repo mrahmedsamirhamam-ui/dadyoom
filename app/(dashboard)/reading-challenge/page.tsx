@@ -34,10 +34,15 @@ export default async function ReadingChallengePage() {
   }
 
   const [
+    profileResult,
     lessonsResult,
-    progressResult,
-    passportResult,
   ] = await Promise.all([
+    supabase
+      .from("profiles")
+      .select("role")
+      .eq("id", user.id)
+      .maybeSingle(),
+
     supabase
       .from("lessons")
       .select(
@@ -49,21 +54,7 @@ export default async function ReadingChallengePage() {
         ascending: true,
         nullsFirst: false,
       })
-      .limit(40),
-
-    supabase
-      .from("student_lesson_progress")
-      .select(
-        "lesson_id,status,progress_percent,best_score,xp,completed_at"
-      )
-      .eq("student_id", user.id),
-
-    supabase
-      .from("reading_passport_entries")
-      .select(
-        "lesson_id,summary,critical_reflection,creative_response,comprehension_score,status,completed_at"
-      )
-      .eq("student_id", user.id),
+      .limit(24),
   ]);
 
   if (lessonsResult.error) {
@@ -72,6 +63,48 @@ export default async function ReadingChallengePage() {
 
   const lessons =
     (lessonsResult.data ?? []) as ReadingLesson[];
+
+  const role = String(
+    profileResult.data?.role ?? "",
+  )
+    .trim()
+    .toLowerCase();
+
+  const isLearner =
+    role === "student" ||
+    role === "child";
+
+  const lessonIds =
+    lessons.map(
+      (lesson) => lesson.id,
+    );
+
+  const [
+    progressResult,
+    passportResult,
+  ] =
+    isLearner && lessonIds.length > 0
+      ? await Promise.all([
+          supabase
+            .from("student_lesson_progress")
+            .select(
+              "lesson_id,status,progress_percent,best_score,xp,completed_at"
+            )
+            .eq("student_id", user.id)
+            .in("lesson_id", lessonIds),
+
+          supabase
+            .from("reading_passport_entries")
+            .select(
+              "lesson_id,summary,critical_reflection,creative_response,comprehension_score,status,completed_at"
+            )
+            .eq("student_id", user.id)
+            .in("lesson_id", lessonIds),
+        ])
+      : [
+          { data: [], error: null },
+          { data: [], error: null },
+        ];
 
   const progressByLesson =
     new Map(
@@ -241,7 +274,13 @@ export default async function ReadingChallengePage() {
                     key={lesson.id}
                     className="overflow-hidden rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] shadow-sm"
                   >
-                    <div className="grid gap-5 p-5 lg:grid-cols-[minmax(0,1fr)_minmax(320px,.9fr)] lg:p-7">
+                    <div
+                      className={
+                        isLearner
+                          ? "grid gap-5 p-5 lg:grid-cols-[minmax(0,1fr)_minmax(320px,.9fr)] lg:p-7"
+                          : "p-5 lg:p-7"
+                      }
+                    >
                       <div>
                         <div className="flex items-start gap-4">
                           <div
@@ -298,31 +337,39 @@ export default async function ReadingChallengePage() {
                           </Link>
                         </div>
 
-                        <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                          <SmallStat
-                            label="تقدم الدرس"
-                            value={`${Number(
-                              progress?.progress_percent ??
+                        {isLearner ? (
+                          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                            <SmallStat
+                              label="تقدم الدرس"
+                              value={`${Number(
+                                progress?.progress_percent ??
+                                  0
+                              )}%`}
+                            />
+                            <SmallStat
+                              label="أفضل نتيجة"
+                              value={
+                                progress?.best_score ??
+                                "—"
+                              }
+                            />
+                            <SmallStat
+                              label="XP"
+                              value={
+                                progress?.xp ??
                                 0
-                            )}%`}
-                          />
-                          <SmallStat
-                            label="أفضل نتيجة"
-                            value={
-                              progress?.best_score ??
-                              "—"
-                            }
-                          />
-                          <SmallStat
-                            label="XP"
-                            value={
-                              progress?.xp ??
-                              0
-                            }
-                          />
-                        </div>
+                              }
+                            />
+                          </div>
+                        ) : (
+                          <div className="mt-5 rounded-2xl border border-[#e4d6b9] bg-white p-4 text-sm leading-7 text-[#6e665d]">
+                            هذه معاينة خفيفة لتحدي القراءة. تسجيل جواز القراءة
+                            والتقدم متاحان للطالب داخل حسابه.
+                          </div>
+                        )}
                       </div>
 
+                      {isLearner ? (
                       <form
                         action={
                           saveReadingPassportEntry
@@ -427,6 +474,7 @@ export default async function ReadingChallengePage() {
                           </button>
                         </div>
                       </form>
+                      ) : null}
                     </div>
                   </article>
                 );
