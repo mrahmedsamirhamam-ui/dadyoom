@@ -330,6 +330,46 @@ export default async function TeacherPage() {
           </div>
         </section>
 
+        <section className="grid gap-4 sm:grid-cols-3">
+          <Link
+            href="/teacher/marketplace"
+            className="rounded-3xl border border-amber-200 bg-amber-50 p-5 transition hover:-translate-y-0.5 hover:shadow-sm"
+          >
+            <div className="text-3xl">🎓</div>
+            <h2 className="mt-3 text-xl font-black text-slate-900">
+              الدورات
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              أنشئ دورة مدفوعة، حدّد السعر والمواعيد، وأضف الدروس.
+            </p>
+          </Link>
+
+          <Link
+            href="/teacher/live"
+            className="rounded-3xl border border-emerald-200 bg-emerald-50 p-5 transition hover:-translate-y-0.5 hover:shadow-sm"
+          >
+            <div className="text-3xl">🎥</div>
+            <h2 className="mt-3 text-xl font-black text-slate-900">
+              البث المباشر
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              أنشئ غرفة صوت وصورة ومحادثة وشارك رابطها مع الطلاب.
+            </p>
+          </Link>
+
+          <Link
+            href="/teacher/marketplace/earnings"
+            className="rounded-3xl border border-indigo-200 bg-indigo-50 p-5 transition hover:-translate-y-0.5 hover:shadow-sm"
+          >
+            <div className="text-3xl">💰</div>
+            <h2 className="mt-3 text-xl font-black text-slate-900">
+              الأرباح
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              تابع المبيعات وعمولة ضاديوم وصافي أرباحك.
+            </p>
+          </Link>
+        </section>
 
         <section className="grid gap-6 lg:grid-cols-[380px_1fr]">
 
