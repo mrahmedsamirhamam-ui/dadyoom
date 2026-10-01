@@ -63,6 +63,58 @@ function levelFromScore(
   return "مبتدئ";
 }
 
+function bahrainDate(
+  date = new Date()
+): string {
+  const parts =
+    new Intl.DateTimeFormat(
+      "en-CA",
+      {
+        timeZone:
+          "Asia/Bahrain",
+        year:
+          "numeric",
+        month:
+          "2-digit",
+        day:
+          "2-digit",
+      }
+    )
+      .formatToParts(
+        date
+      );
+
+  const year =
+    parts.find(
+      part =>
+        part.type === "year"
+    )?.value;
+
+  const month =
+    parts.find(
+      part =>
+        part.type === "month"
+    )?.value;
+
+  const day =
+    parts.find(
+      part =>
+        part.type === "day"
+    )?.value;
+
+  if (
+    !year ||
+    !month ||
+    !day
+  ) {
+    return date
+      .toISOString()
+      .slice(0, 10);
+  }
+
+  return `${year}-${month}-${day}`;
+}
+
 function xpFromScore(
   score: number
 ): number {
@@ -372,23 +424,49 @@ export async function POST(
       throw saveError;
     }
 
-    const {
-      data: challengeSync,
-      error: challengeSyncError,
-    } = await db.rpc(
-      "complete_daily_challenge_light",
-      {
-        p_skill: typedSkill,
-        p_score: score,
-      },
-    );
+    const [
+      challengeResult,
+      streakResult,
+    ] = await Promise.all([
+      db.rpc(
+        "complete_daily_challenge_light",
+        {
+          p_skill: typedSkill,
+          p_score: score,
+        },
+      ),
+      user.email?.trim()
+        ? db.rpc(
+            "update_student_streak",
+            {
+              p_student_email:
+                user.email.trim(),
+              p_activity_date:
+                bahrainDate(),
+            },
+          )
+        : Promise.resolve({
+            data: null,
+            error: null,
+          }),
+    ]);
 
-    if (challengeSyncError) {
+    if (challengeResult.error) {
       console.warn(
         "SKILLS_PROGRESS_DAILY_CHALLENGE_LIGHT_WARNING:",
-        challengeSyncError,
+        challengeResult.error,
       );
     }
+
+    if (streakResult.error) {
+      console.warn(
+        "SKILLS_PROGRESS_STREAK_LIGHT_WARNING:",
+        streakResult.error,
+      );
+    }
+
+    const challengeSync =
+      challengeResult.data;
 
     return NextResponse.json({
       ok: true,
