@@ -55,6 +55,32 @@ export async function saveSkillProgress(
       return null;
     }
 
+    void fetch(
+      "/api/skills/progress/sync",
+      {
+        method:
+          "POST",
+
+        headers: {
+          "Content-Type":
+            "application/json",
+        },
+
+        body:
+          JSON.stringify({
+            skill,
+            score,
+          }),
+      }
+    ).catch(
+      (error) => {
+        console.warn(
+          "SKILL_SECONDARY_SYNC_FAILED:",
+          error
+        );
+      }
+    );
+
     return data.progress;
   }
   catch (error) {
