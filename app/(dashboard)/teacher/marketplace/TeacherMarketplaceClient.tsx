@@ -22,6 +22,10 @@ type Course = {
   delivery_mode: string;
   status: string;
   commission_bps: number;
+  starts_at: string | null;
+  ends_at: string | null;
+  schedule_note: string | null;
+  max_students: number | null;
   created_at: string;
 };
 
@@ -93,7 +97,7 @@ export default function TeacherMarketplaceClient({
             سوق ضاديوم للمعلمين
           </div>
           <h1 className="mt-2 text-3xl font-black">
-            حوّل خبرتك إلى دورة مدفوعة
+            الدورات المدفوعة
           </h1>
           <p className="mt-2 leading-8">
             المعلم يحصل على 85% من كل بيع، وضاديوم يحتفظ بـ15% مقابل المنصة والدفع والتسويق.
@@ -167,6 +171,41 @@ export default function TeacherMarketplaceClient({
                   مسجلة + مباشرة
                 </option>
               </select>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                <label className="text-sm font-bold text-[#51483d]">
+                  بداية الدورة
+                  <input
+                    name="startsAt"
+                    type="datetime-local"
+                    className="mt-2 w-full rounded-2xl border p-3"
+                  />
+                </label>
+                <label className="text-sm font-bold text-[#51483d]">
+                  نهاية الدورة
+                  <input
+                    name="endsAt"
+                    type="datetime-local"
+                    className="mt-2 w-full rounded-2xl border p-3"
+                  />
+                </label>
+              </div>
+
+              <input
+                name="scheduleNote"
+                placeholder="المواعيد: مثال الأحد والثلاثاء 7:00 مساءً"
+                className="rounded-2xl border p-3"
+              />
+
+              <input
+                name="maxStudents"
+                type="number"
+                min="1"
+                max="10000"
+                placeholder="الحد الأقصى للطلاب (اختياري)"
+                className="rounded-2xl border p-3"
+              />
+
               <button className="dadyoom-arabic-button rounded-2xl p-3 font-black text-white">
                 إنشاء الدورة
               </button>
@@ -276,6 +315,21 @@ export default function TeacherMarketplaceClient({
                     ? "منشورة"
                     : "مسودة"}
                 </div>
+                {course.starts_at ? (
+                  <div className="mt-2 text-xs font-bold text-[#51483d]">
+                    تبدأ: {new Date(course.starts_at).toLocaleString("ar-BH")}
+                  </div>
+                ) : null}
+                {course.schedule_note ? (
+                  <div className="mt-1 text-xs text-[#746957]">
+                    {course.schedule_note}
+                  </div>
+                ) : null}
+                {course.max_students ? (
+                  <div className="mt-1 text-xs text-[#746957]">
+                    حتى {course.max_students} طالب
+                  </div>
+                ) : null}
 
                 {course.status !== "published" ? (
                   <form
