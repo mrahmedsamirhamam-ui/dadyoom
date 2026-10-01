@@ -44,10 +44,31 @@ export async function createMarketplaceCourse(
     const title = text(formData, "title");
     const description = text(formData, "description");
     const deliveryMode = text(formData, "deliveryMode");
+    const startsAtRaw = text(formData, "startsAt");
+    const endsAtRaw = text(formData, "endsAt");
+    const scheduleNote = text(formData, "scheduleNote");
+    const maxStudentsRaw = text(formData, "maxStudents");
+    const startsAt = startsAtRaw ? new Date(startsAtRaw) : null;
+    const endsAt = endsAtRaw ? new Date(endsAtRaw) : null;
+    const maxStudents = maxStudentsRaw
+      ? Math.max(1, Math.min(10000, Number(maxStudentsRaw)))
+      : null;
     const price = Math.max(
       0.5,
       Number(text(formData, "price") || 0.5),
     );
+
+    if (
+      (startsAt && Number.isNaN(startsAt.getTime())) ||
+      (endsAt && Number.isNaN(endsAt.getTime())) ||
+      (startsAt && endsAt && endsAt <= startsAt) ||
+      (maxStudents !== null && !Number.isFinite(maxStudents))
+    ) {
+      return {
+        ok: false,
+        message: "راجع موعد الدورة وعدد المقاعد.",
+      };
+    }
 
     if (!title) {
       return {
@@ -73,6 +94,10 @@ export async function createMarketplaceCourse(
             : "recorded",
         status: "draft",
         commission_bps: 1500,
+        starts_at: startsAt?.toISOString() ?? null,
+        ends_at: endsAt?.toISOString() ?? null,
+        schedule_note: scheduleNote || null,
+        max_students: maxStudents,
       });
 
     if (error) throw error;
