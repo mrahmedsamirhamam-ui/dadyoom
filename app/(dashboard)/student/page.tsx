@@ -128,7 +128,7 @@ export default async function StudentPage() {
               countryCode,
             p_grade_number:
               gradeNumber,
-            p_limit: 24,
+            p_limit: 8,
           },
         )
       : dashboardDb
@@ -151,18 +151,21 @@ export default async function StudentPage() {
                 true,
             },
           )
-          .limit(24);
+          .limit(8);
 
   const [
     lessonsResult,
-    progressResult,
+    completedCountResult,
   ] = await Promise.all([
     lessonsRequest,
     supabase
       .from("student_lesson_progress")
-      .select("lesson_id,status,progress_percent,updated_at")
+      .select("lesson_id", {
+        count: "exact",
+        head: true,
+      })
       .eq("student_id", user.id)
-      .order("updated_at", { ascending: false }),
+      .in("status", ["completed", "mastered"]),
   ]);
 
   if (lessonsResult.error) {
@@ -172,6 +175,28 @@ export default async function StudentPage() {
     );
   }
 
+  if (completedCountResult.error) {
+    console.warn(
+      "STUDENT_FAST_DASHBOARD_COUNT_WARNING",
+      completedCountResult.error.message,
+    );
+  }
+
+  const lessons = (lessonsResult.data ?? []) as unknown as LessonRow[];
+  const lessonIds = lessons.map((lesson) => lesson.id);
+
+  const progressResult =
+    lessonIds.length > 0
+      ? await supabase
+          .from("student_lesson_progress")
+          .select("lesson_id,status,progress_percent,updated_at")
+          .eq("student_id", user.id)
+          .in("lesson_id", lessonIds)
+      : {
+          data: [],
+          error: null,
+        };
+
   if (progressResult.error) {
     console.warn(
       "STUDENT_FAST_DASHBOARD_PROGRESS_WARNING",
@@ -179,14 +204,11 @@ export default async function StudentPage() {
     );
   }
 
-  const lessons = (lessonsResult.data ?? []) as unknown as LessonRow[];
   const progress = (progressResult.data ?? []) as ProgressRow[];
 
   const progressByLesson = new Map<string, ProgressRow>();
   for (const row of progress) {
-    if (!progressByLesson.has(row.lesson_id)) {
-      progressByLesson.set(row.lesson_id, row);
-    }
+    progressByLesson.set(row.lesson_id, row);
   }
 
   const lessonCards = lessons.map((lesson) => {
@@ -206,10 +228,8 @@ export default async function StudentPage() {
     };
   });
 
-  const completedCount = progress.filter(
-    (row) =>
-      row.status === "completed" || row.status === "mastered",
-  ).length;
+  const completedCount =
+    Number(completedCountResult.count ?? 0);
 
   const totalLessons =
     hasStudentScope
@@ -339,7 +359,7 @@ export default async function StudentPage() {
                 مسار التعلم
               </h2>
               <p className="mt-1 text-sm text-slate-500">
-                نعرض أول 24 درسًا هنا لتبقى الصفحة سريعة. بقية الدروس
+                نعرض أول 8 دروس هنا لتبقى الصفحة سريعة جدًا. بقية الدروس
                 موجودة في صفحة المناهج.
               </p>
             </div>
