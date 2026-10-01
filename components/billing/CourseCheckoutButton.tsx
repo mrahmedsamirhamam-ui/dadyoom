@@ -17,7 +17,7 @@ export default function CourseCheckoutButton({
     setMessage("");
 
     try {
-      const response = await fetch("/api/payments/tap/create", {
+      const response = await fetch("/api/payments/tap/create-course", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
