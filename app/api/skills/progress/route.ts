@@ -1,3 +1,4 @@
+import type { SupabaseClient } from "@supabase/supabase-js";
 import {
   NextResponse,
 } from "next/server";
@@ -239,6 +240,9 @@ export async function POST(
         body.score
       );
 
+    const db =
+      supabase as unknown as SupabaseClient;
+
     const {
       data: existing,
       error:
@@ -368,8 +372,30 @@ export async function POST(
       throw saveError;
     }
 
+    const {
+      data: challengeSync,
+      error: challengeSyncError,
+    } = await db.rpc(
+      "complete_daily_challenge_light",
+      {
+        p_skill: typedSkill,
+        p_score: score,
+      },
+    );
+
+    if (challengeSyncError) {
+      console.warn(
+        "SKILLS_PROGRESS_DAILY_CHALLENGE_LIGHT_WARNING:",
+        challengeSyncError,
+      );
+    }
+
     return NextResponse.json({
       ok: true,
+      dailyChallenge:
+        Array.isArray(challengeSync)
+          ? challengeSync[0] ?? null
+          : challengeSync ?? null,
 
       progress: {
         skill:
