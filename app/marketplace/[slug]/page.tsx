@@ -63,7 +63,7 @@ export default async function CoursePage({
         .select("id,status")
         .eq("buyer_id", user.id)
         .eq("course_id", course.id)
-        .eq("status", "active")
+        .in("status", ["active", "completed"])
         .maybeSingle()
     : { data: null };
 
