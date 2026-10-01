@@ -11,39 +11,54 @@ export default async function TeacherMarketplacePage() {
 
   if (!user) return null;
 
-  const { data: courses } = await db
-    .from("edu_marketplace_courses")
-    .select(
-      "id,slug,title,description,price,currency,delivery_mode,status,commission_bps,starts_at,ends_at,schedule_note,max_students,created_at",
-    )
-    .eq("teacher_id", user.id)
-    .order("created_at", {
-      ascending: false,
-    });
+  const [
+    coursesResult,
+    earningsResult,
+    payoutResult,
+  ] = await Promise.all([
+    db
+      .from("edu_marketplace_courses")
+      .select(
+        "id,slug,title,description,price,currency,delivery_mode,status,commission_bps,starts_at,ends_at,schedule_note,max_students,created_at",
+      )
+      .eq("teacher_id", user.id)
+      .order("created_at", {
+        ascending: false,
+      })
+      .limit(50),
 
-  const { data: earnings } = await db
-    .from("edu_teacher_earnings")
-    .select(
-      "id,gross_amount,platform_fee,net_amount,currency,status,created_at",
-    )
-    .eq("teacher_id", user.id)
-    .order("created_at", {
-      ascending: false,
-    });
+    db
+      .from("edu_teacher_earnings")
+      .select(
+        "id,gross_amount,platform_fee,net_amount,currency,status,created_at",
+      )
+      .eq("teacher_id", user.id)
+      .order("created_at", {
+        ascending: false,
+      })
+      .limit(100),
 
-  const { data: payout } = await db
-    .from("edu_teacher_payout_profiles")
-    .select(
-      "paypal_email,iban,account_holder_name,bank_name,swift_bic,country,is_verified",
-    )
-    .eq("teacher_id", user.id)
-    .maybeSingle();
+    db
+      .from("edu_teacher_payout_profiles")
+      .select(
+        "paypal_email,iban,account_holder_name,bank_name,swift_bic,country,is_verified",
+      )
+      .eq("teacher_id", user.id)
+      .maybeSingle(),
+  ]);
+
+  const courses =
+    coursesResult.data ?? [];
+  const earnings =
+    earningsResult.data ?? [];
+  const payout =
+    payoutResult.data ?? null;
 
   return (
     <TeacherMarketplaceClient
-      courses={courses ?? []}
-      earnings={earnings ?? []}
-      payout={payout ?? null}
+      courses={courses}
+      earnings={earnings}
+      payout={payout}
     />
   );
 }
