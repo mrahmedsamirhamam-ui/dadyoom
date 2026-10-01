@@ -252,6 +252,8 @@ async function roleRouteSmoke(page, role, baseUrl) {
       "/teacher",
       "/teacher/classroom",
       "/teacher/live",
+      "/teacher/marketplace",
+      "/teacher/marketplace/earnings",
       ...(fixture.classId ? [`/teacher/classes/${fixture.classId}`] : []),
     ],
     parent: [
@@ -262,6 +264,7 @@ async function roleRouteSmoke(page, role, baseUrl) {
       "/school",
       "/school/reports",
       "/school/rewards",
+      "/school/meetings",
       ...(fixture.classId ? [`/school/classes/${fixture.classId}`] : []),
       ...(student ? [`/school/students/${student.id}`] : []),
       ...(teacher ? [`/school/teachers/${teacher.id}`] : []),
