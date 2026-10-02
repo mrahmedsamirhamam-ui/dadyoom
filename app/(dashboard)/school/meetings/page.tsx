@@ -66,6 +66,7 @@ export default async function SchoolMeetingsPage() {
           </div>
 
           <Link
+            prefetch={false}
             href="/school"
             className="rounded-xl border border-slate-200 bg-white px-4 py-2 font-black text-slate-700"
           >
@@ -152,6 +153,7 @@ export default async function SchoolMeetingsPage() {
 
                   <div className="mt-4 flex flex-wrap gap-2">
                     <Link
+                      prefetch={false}
                       href={`/live/${session.id}`}
                       className="rounded-2xl bg-[#123f39] px-4 py-2 text-sm font-black text-white"
                     >
