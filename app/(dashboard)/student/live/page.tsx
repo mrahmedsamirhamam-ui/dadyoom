@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { createClient } from "@/lib/supabase/server";
 
+// Cloudflare Workers: avoid locale-dependent SSR formatting here.
 function formatBahrainDateTime(value: string | null) {
   if (!value) return "الموعد غير محدد";
 
