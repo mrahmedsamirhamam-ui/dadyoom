@@ -413,41 +413,52 @@ export default async function SchoolPage({
   }
 
 
-  const {
-  data: schoolTeachersData,
-  error: schoolTeachersError,
-} = await db.rpc(
-  "get_school_teachers"
-);
+  const [
+  schoolTeachersResult,
+  schoolAnalyticsResult,
+  teacherClassAnalyticsResult,
+  schoolInsightsResult,
+  schoolInterventionsResult,
+] = await Promise.all([
+  db.rpc("get_school_teachers"),
+  db.rpc("get_school_analytics_v1"),
+  db.rpc("get_school_teacher_class_analytics_v1"),
+  db.rpc("get_school_insights_v1"),
+  db.rpc("get_school_interventions_v1"),
+]);
 
-if (schoolTeachersError) {
-  throw schoolTeachersError;
+if (schoolTeachersResult.error) {
+  throw schoolTeachersResult.error;
+}
+
+if (schoolAnalyticsResult.error) {
+  throw schoolAnalyticsResult.error;
+}
+
+if (teacherClassAnalyticsResult.error) {
+  throw teacherClassAnalyticsResult.error;
+}
+
+if (schoolInsightsResult.error) {
+  throw schoolInsightsResult.error;
+}
+
+if (schoolInterventionsResult.error) {
+  throw schoolInterventionsResult.error;
 }
 
 const schoolTeachers =
   (
-    schoolTeachersData ??
+    schoolTeachersResult.data ??
     []
   ) as SchoolTeacherRow[];
 
-
-const {
-  data: schoolAnalyticsData,
-  error: schoolAnalyticsError,
-} = await db.rpc(
-  "get_school_analytics_v1"
-);
-
-if (schoolAnalyticsError) {
-  throw schoolAnalyticsError;
-}
-
 const analyticsRow =
   Array.isArray(
-    schoolAnalyticsData
+    schoolAnalyticsResult.data
   )
-    ? schoolAnalyticsData[0]
-    : schoolAnalyticsData;
+    ? schoolAnalyticsResult.data[0]
+    : schoolAnalyticsResult.data;
 
 const analytics =
   analyticsRow
@@ -456,20 +467,9 @@ const analytics =
       )
     : null;
 
-const {
-  data: teacherClassAnalyticsData,
-  error: teacherClassAnalyticsError,
-} = await db.rpc(
-  "get_school_teacher_class_analytics_v1"
-);
-
-if (teacherClassAnalyticsError) {
-  throw teacherClassAnalyticsError;
-}
-
 const teacherClassAnalytics =
   (
-    teacherClassAnalyticsData ??
+    teacherClassAnalyticsResult.data ??
     []
   ) as SchoolTeacherClassAnalyticsRow[];
 
@@ -485,20 +485,9 @@ const rankedTeacherClasses =
         )
     );
 
-const {
-  data: schoolInsightsData,
-  error: schoolInsightsError,
-} = await db.rpc(
-  "get_school_insights_v1"
-);
-
-if (schoolInsightsError) {
-  throw schoolInsightsError;
-}
-
 const schoolInsights =
   (
-    schoolInsightsData ??
+    schoolInsightsResult.data ??
     []
   ) as SchoolInsightRow[];
 
@@ -520,20 +509,9 @@ const positiveInsights =
       item.severity === "positive"
   );
 
-const {
-  data: schoolInterventionsData,
-  error: schoolInterventionsError,
-} = await db.rpc(
-  "get_school_interventions_v1"
-);
-
-if (schoolInterventionsError) {
-  throw schoolInterventionsError;
-}
-
 const schoolInterventions =
   (
-    schoolInterventionsData ??
+    schoolInterventionsResult.data ??
     []
   ) as SchoolInterventionRow[];
 
@@ -559,7 +537,7 @@ const resolvedInterventions =
 const normalizedInterventionSearch =
   interventionSearchQuery
     .trim()
-    .toLocaleLowerCase("ar");
+    .toLowerCase();
 
 const interventionTeachers =
   schoolInterventions
@@ -608,7 +586,7 @@ const filteredSchoolInterventions =
         ]
           .filter(Boolean)
           .join(" ")
-          .toLocaleLowerCase("ar")
+          .toLowerCase()
           .includes(
             normalizedInterventionSearch
           );
