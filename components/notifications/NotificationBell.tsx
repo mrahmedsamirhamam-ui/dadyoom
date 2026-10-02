@@ -6,6 +6,7 @@ export default function NotificationBell() {
   return (
     <Link
       href="/student/reminders"
+      prefetch={false}
       aria-label="التنبيهات والتذكيرات"
       title="التنبيهات"
       className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-xl transition hover:bg-white/20"
