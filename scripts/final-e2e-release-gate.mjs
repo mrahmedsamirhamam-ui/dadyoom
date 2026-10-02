@@ -99,6 +99,9 @@ const fixture = {
   activityIds: [],
   assessmentIds: [],
   assessmentSessionId: null,
+  marketplaceCourseId: null,
+  bpayPaymentOrderId: null,
+  bpayReference: null,
 };
 
 let server = null;
@@ -1203,6 +1206,63 @@ async function seedRelationships() {
 
   console.log(
     "E2E_RELATIONSHIPS=PASS",
+  );
+}
+
+async function seedMarketplaceFixture() {
+  const teacher = users.get("teacher");
+
+  gate(
+    teacher,
+    "E2E_BPAY_TEACHER_MISSING",
+  );
+
+  const payout = await admin
+    .from("edu_teacher_payout_profiles")
+    .upsert(
+      {
+        teacher_id: teacher.id,
+        bpay_mobile: "+97330000000",
+        bpay_name: "E2E Dadyoom Teacher",
+        updated_at: new Date().toISOString(),
+      },
+      {
+        onConflict: "teacher_id",
+      },
+    );
+
+  if (payout.error) {
+    throw payout.error;
+  }
+
+  const course = await admin
+    .from("edu_marketplace_courses")
+    .insert({
+      teacher_id: teacher.id,
+      slug: `e2e-bpay-${stamp.replace(/[^a-zA-Z0-9]/g, "").slice(-18)}`,
+      title: "E2E BPay Course",
+      description: "Temporary BPay marketplace release-gate course",
+      price: 5,
+      currency: "BHD",
+      delivery_mode: "live",
+      status: "published",
+      commission_bps: 1500,
+      max_students: 20,
+    })
+    .select("id")
+    .single();
+
+  if (course.error || !course.data?.id) {
+    throw (
+      course.error ??
+      new Error("E2E_BPAY_COURSE_CREATE_FAILED")
+    );
+  }
+
+  fixture.marketplaceCourseId = course.data.id;
+
+  console.log(
+    "E2E_BPAY_FIXTURE=PASS",
   );
 }
 
@@ -2817,6 +2877,198 @@ async function studentFlow(
   );
 }
 
+async function studentBpayMarketplaceFlow(
+  page,
+) {
+  gate(
+    fixture.marketplaceCourseId,
+    "E2E_BPAY_COURSE_FIXTURE_MISSING",
+  );
+
+  const create = await browserFetch(
+    page,
+    "/api/payments/bpay/create-course",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        courseId: fixture.marketplaceCourseId,
+      }),
+    },
+  );
+
+  gate(
+    create.status === 200 &&
+      create.data?.paymentOrderId &&
+      create.data?.status === "pending" &&
+      Number(create.data?.amount) === 5 &&
+      String(create.data?.currency) === "BHD" &&
+      String(create.data?.bpayMobile) === "+97330000000",
+    `E2E_BPAY_CREATE_FAILED:${create.status}`,
+  );
+
+  fixture.bpayPaymentOrderId =
+    create.data.paymentOrderId;
+  fixture.bpayReference =
+    `E2E-BPAY-${stamp.replace(/[^a-zA-Z0-9]/g, "").slice(-20)}`;
+
+  const submit = await browserFetch(
+    page,
+    "/api/payments/bpay/submit-course",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        paymentOrderId:
+          fixture.bpayPaymentOrderId,
+        reference:
+          fixture.bpayReference,
+      }),
+    },
+  );
+
+  gate(
+    submit.status === 200 &&
+      submit.data?.ok === true &&
+      submit.data?.status === "approved",
+    `E2E_BPAY_SUBMIT_FAILED:${submit.status}`,
+  );
+
+  console.log(
+    "E2E_BPAY_STUDENT=PASS",
+  );
+}
+
+async function teacherBpayMarketplaceFlow(
+  page,
+  baseUrl,
+) {
+  const student =
+    users.get("student");
+
+  gate(
+    student &&
+      fixture.marketplaceCourseId &&
+      fixture.bpayPaymentOrderId &&
+      fixture.bpayReference,
+    "E2E_BPAY_CONFIRM_FIXTURE_MISSING",
+  );
+
+  await page.goto(
+    `${baseUrl}/teacher/marketplace`,
+    {
+      waitUntil: "networkidle",
+      timeout: 60_000,
+    },
+  );
+
+  await page
+    .getByText(
+      fixture.bpayReference,
+      { exact: false },
+    )
+    .waitFor({
+      timeout: 20_000,
+    });
+
+  await page
+    .getByRole(
+      "button",
+      {
+        name:
+          "تأكيد وصول المبلغ وفتح الدورة",
+      },
+    )
+    .click();
+
+  await page
+    .getByText(
+      "تم تأكيد استلام BPay وفتح الدورة للطالب.",
+      { exact: false },
+    )
+    .waitFor({
+      timeout: 20_000,
+    });
+
+  const payment = await admin
+    .from("edu_payment_orders")
+    .select("status")
+    .eq(
+      "id",
+      fixture.bpayPaymentOrderId,
+    )
+    .maybeSingle();
+
+  if (payment.error) {
+    throw payment.error;
+  }
+
+  gate(
+    payment.data?.status === "completed",
+    "E2E_BPAY_PAYMENT_NOT_COMPLETED",
+  );
+
+  const purchase = await admin
+    .from("edu_marketplace_purchases")
+    .select("id,status,amount_paid,currency")
+    .eq(
+      "buyer_id",
+      student.id,
+    )
+    .eq(
+      "course_id",
+      fixture.marketplaceCourseId,
+    )
+    .maybeSingle();
+
+  if (purchase.error) {
+    throw purchase.error;
+  }
+
+  gate(
+    purchase.data?.id &&
+      purchase.data?.status === "active" &&
+      Number(purchase.data?.amount_paid) === 5 &&
+      String(purchase.data?.currency) === "BHD",
+    "E2E_BPAY_PURCHASE_FAILED",
+  );
+
+  const earning = await admin
+    .from("edu_teacher_earnings")
+    .select(
+      "gross_amount,platform_fee,net_amount,currency,status",
+    )
+    .eq(
+      "purchase_id",
+      purchase.data.id,
+    )
+    .maybeSingle();
+
+  if (earning.error) {
+    throw earning.error;
+  }
+
+  gate(
+    Number(earning.data?.gross_amount) === 5 &&
+      Number(earning.data?.platform_fee) === 0.75 &&
+      Number(earning.data?.net_amount) === 4.25 &&
+      String(earning.data?.currency) === "BHD",
+    "E2E_BPAY_SPLIT_FAILED",
+  );
+
+  console.log(
+    "E2E_BPAY_TEACHER=PASS",
+  );
+
+  console.log(
+    "E2E_BPAY_SPLIT=PASS PLATFORM=15 TEACHER=85",
+  );
+}
+
 async function teacherRewardFlow(
   page,
   baseUrl,
@@ -3375,6 +3627,69 @@ async function cleanup() {
       );
   }
 
+  if (fixture.marketplaceCourseId) {
+    await admin
+      .from("edu_teacher_earnings")
+      .delete()
+      .eq(
+        "course_id",
+        fixture.marketplaceCourseId,
+      );
+
+    await admin
+      .from("edu_marketplace_purchases")
+      .delete()
+      .eq(
+        "course_id",
+        fixture.marketplaceCourseId,
+      );
+
+    await admin
+      .from("edu_payment_orders")
+      .delete()
+      .eq(
+        "course_id",
+        fixture.marketplaceCourseId,
+      );
+
+    await admin
+      .from("edu_live_sessions")
+      .delete()
+      .eq(
+        "course_id",
+        fixture.marketplaceCourseId,
+      );
+
+    await admin
+      .from("edu_marketplace_course_lessons")
+      .delete()
+      .eq(
+        "course_id",
+        fixture.marketplaceCourseId,
+      );
+
+    await admin
+      .from("edu_marketplace_courses")
+      .delete()
+      .eq(
+        "id",
+        fixture.marketplaceCourseId,
+      );
+  }
+
+  const teacher =
+    users.get("teacher");
+
+  if (teacher) {
+    await admin
+      .from("edu_teacher_payout_profiles")
+      .delete()
+      .eq(
+        "teacher_id",
+        teacher.id,
+      );
+  }
+
   for (
     const user of
     [...users.values()]
@@ -3433,6 +3748,7 @@ try {
 
   await seedStudent();
   await seedRelationships();
+  await seedMarketplaceFixture();
 
   if (!configuredBase) {
     prepareWranglerDevVars();
@@ -3695,6 +4011,10 @@ try {
         page,
         baseUrl,
       );
+
+      await studentBpayMarketplaceFlow(
+        page,
+      );
     }
 
     if (
@@ -3702,6 +4022,11 @@ try {
       "teacher"
     ) {
       await teacherRewardFlow(
+        page,
+        baseUrl,
+      );
+
+      await teacherBpayMarketplaceFlow(
         page,
         baseUrl,
       );
