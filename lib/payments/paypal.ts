@@ -138,34 +138,8 @@ export async function capturePayPalOrder(orderId: string) {
     );
   }
 
-  const payload = (await response.json()) as {
+  return (await response.json()) as {
     id: string;
     status: string;
-    purchase_units?: Array<{
-      reference_id?: string;
-      payments?: {
-        captures?: Array<{
-          id?: string;
-          status?: string;
-          amount?: {
-            currency_code?: string;
-            value?: string;
-          };
-        }>;
-      };
-    }>;
-  };
-
-  const purchaseUnit = payload.purchase_units?.[0];
-  const capture = purchaseUnit?.payments?.captures?.[0];
-
-  return {
-    id: payload.id,
-    status: payload.status,
-    referenceId: purchaseUnit?.reference_id ?? null,
-    captureId: capture?.id ?? null,
-    captureStatus: capture?.status ?? null,
-    amount: Number(capture?.amount?.value ?? NaN),
-    currency: capture?.amount?.currency_code ?? null,
   };
 }
