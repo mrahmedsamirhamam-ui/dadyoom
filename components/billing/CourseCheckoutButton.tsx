@@ -1,77 +1,23 @@
 "use client";
 
-import { useState } from "react";
-
 export default function CourseCheckoutButton({
-  courseId,
+  courseId: _courseId,
 }: {
   courseId: string;
 }) {
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
-
-  async function checkout() {
-    if (loading) return;
-
-    setLoading(true);
-    setMessage("");
-
-    try {
-      const response = await fetch("/api/payments/tap/create-course", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ courseId }),
-      });
-
-      const payload = (await response.json()) as {
-        url?: string;
-        message?: string;
-        error?: string;
-      };
-
-      if (response.status === 401) {
-        window.location.assign("/login");
-        return;
-      }
-
-      if (!response.ok || !payload.url) {
-        setMessage(
-          payload.message ??
-            "تعذر فتح صفحة الدفع الآن.",
-        );
-        return;
-      }
-
-      window.location.assign(payload.url);
-    } catch {
-      setMessage("الدفع الإلكتروني للدورات متوقف مؤقتًا حتى تفعيل مسار BPay المناسب.");
-    } finally {
-      setLoading(false);
-    }
-  }
-
   return (
     <div className="space-y-3">
       <button
         type="button"
-        onClick={checkout}
-        disabled={loading}
-        className="w-full rounded-2xl bg-[#123f39] px-5 py-3 font-black text-white transition hover:bg-[#0d312d] disabled:cursor-wait disabled:opacity-60"
+        disabled
+        className="w-full cursor-not-allowed rounded-2xl bg-[#123f39] px-5 py-3 font-black text-white opacity-60"
       >
-        {loading ? "جارٍ تجهيز الدفع..." : "شراء الدورة"}
+        الدفع للدورات قيد التفعيل
       </button>
 
       <p className="text-xs leading-6 text-[#746a5e]">
-        الدفع الإلكتروني للدورات قيد التحويل إلى مسار مناسب للحسابات الفردية في البحرين. لن يتم تنفيذ دفع حقيقي قبل اكتمال التحقق.
+        يتم تجهيز مسار دفع مناسب للحسابات الفردية في البحرين. لن يتم تنفيذ أي دفع حقيقي قبل اكتمال التحقق.
       </p>
-
-      {message ? (
-        <div className="rounded-xl bg-amber-50 p-3 text-sm font-bold text-amber-800">
-          {message}
-        </div>
-      ) : null}
     </div>
   );
 }
