@@ -84,7 +84,7 @@ export async function createPayPalOrder(params: {
           experience_context: {
             user_action: "PAY_NOW",
             shipping_preference: "NO_SHIPPING",
-            return_url: `${siteUrl}/payments/paypal/return`,
+            return_url: `${siteUrl}/payments/paypal/return?paymentOrderId=${encodeURIComponent(params.reference)}`,
             cancel_url: `${siteUrl}/pricing?paypal=cancelled`,
           },
         },
