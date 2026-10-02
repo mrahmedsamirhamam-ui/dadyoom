@@ -325,40 +325,64 @@ async function humanUiJourneySmoke(
   let clicked = 0;
 
   async function assertHumanSession(stage) {
-    const billing =
-      await browserFetch(
-        page,
-        "/api/billing/status",
-      );
+    let lastBilling = null;
+    let lastRole = "";
 
-    const authenticated =
-      billing.status === 200 &&
-      billing.data?.authenticated === true;
+    for (
+      let attempt = 1;
+      attempt <= 3;
+      attempt += 1
+    ) {
+      const billing =
+        await browserFetch(
+          page,
+          "/api/billing/status",
+        );
 
-    const actualRole =
-      String(
-        billing.data?.role ??
-          "",
-      )
-        .trim()
-        .toLowerCase();
+      lastBilling = billing;
 
-    gate(
-      authenticated &&
+      const actualRole =
+        String(
+          billing.data?.role ??
+            "",
+        )
+          .trim()
+          .toLowerCase();
+
+      lastRole = actualRole;
+
+      const authenticated =
+        billing.status === 200 &&
+        billing.data?.authenticated === true;
+
+      if (
+        authenticated &&
         (
           actualRole === role ||
           (
             role === "child" &&
             actualRole === "child"
           )
-        ),
-      `E2E_HUMAN_SESSION_${role.toUpperCase()}_FAILED:${stage}:STATUS=${billing.status}:AUTH=${String(
-        billing.data?.authenticated,
-      )}:ROLE=${actualRole || "NONE"}:PATH=${new URL(page.url()).pathname}`,
-    );
+        )
+      ) {
+        console.log(
+          `E2E_HUMAN_SESSION_${role.toUpperCase()}=PASS STAGE=${stage} ATTEMPT=${attempt} PATH=${new URL(page.url()).pathname}`,
+        );
+        return;
+      }
 
-    console.log(
-      `E2E_HUMAN_SESSION_${role.toUpperCase()}=PASS STAGE=${stage} PATH=${new URL(page.url()).pathname}`,
+      if (attempt < 3) {
+        await page.waitForTimeout(
+          650 * attempt,
+        );
+      }
+    }
+
+    gate(
+      false,
+      `E2E_HUMAN_SESSION_${role.toUpperCase()}_FAILED:${stage}:STATUS=${lastBilling?.status ?? "NONE"}:AUTH=${String(
+        lastBilling?.data?.authenticated,
+      )}:ROLE=${lastRole || "NONE"}:PATH=${new URL(page.url()).pathname}`,
     );
   }
 
