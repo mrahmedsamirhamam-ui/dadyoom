@@ -755,7 +755,8 @@ async function humanUiJourneySmoke(
   const minimumClicks =
     role === "child"
       ? 2
-      : role === "parent"
+      : role === "parent" ||
+          role === "school"
         ? 3
         : 4;
 
