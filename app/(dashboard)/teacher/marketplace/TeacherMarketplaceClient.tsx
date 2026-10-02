@@ -114,10 +114,10 @@ export default function TeacherMarketplaceClient({
             الدورات المدفوعة
           </h1>
           <p className="mt-2 leading-8">
-            المعلم يحصل على 85% من كل بيع، وضاديوم يحتفظ بـ15% مقابل المنصة والدفع والتسويق.
+            في BPay يدفع الطالب للمعلم مباشرة. يسجّل ضاديوم 15% كعمولة مستحقة للمنصة، ويبقى 85% صافي المعلم.
           </p>
           <div className="mt-4 rounded-2xl bg-white/10 p-4 font-black">
-            أرباح متاحة: {available.toFixed(3)} BHD
+            صافي المعلم المسجل: {available.toFixed(3)} BHD
           </div>
           <Link
             href="/teacher/marketplace/earnings"
@@ -458,13 +458,6 @@ export default function TeacherMarketplaceClient({
               inputMode="tel"
               defaultValue={payout?.bpay_mobile ?? ""}
               placeholder="رقم BPay البحريني"
-              className="rounded-2xl border p-3"
-            />
-            <input
-              name="paypalEmail"
-              type="email"
-              defaultValue={payout?.paypal_email ?? ""}
-              placeholder="بريد PayPal"
               className="rounded-2xl border p-3"
             />
             <input
