@@ -40,13 +40,10 @@ async function accessToken() {
     throw new Error(`PAYPAL_AUTH_${response.status}`);
   }
 
-  const payload = (await response.json()) as { access_token?: string };
-
-  if (!payload.access_token) {
-    throw new Error("PAYPAL_TOKEN_MISSING");
-  }
-
-  return payload.access_token;
+  return (await response.json()) as {
+    id: string;
+    status: string;
+  };
 }
 
 export async function createPayPalOrder(params: {
@@ -84,7 +81,7 @@ export async function createPayPalOrder(params: {
           experience_context: {
             user_action: "PAY_NOW",
             shipping_preference: "NO_SHIPPING",
-            return_url: `${siteUrl}/payments/paypal/return?paymentOrderId=${encodeURIComponent(params.reference)}`,
+            return_url: `${siteUrl}/payments/paypal/return`,
             cancel_url: `${siteUrl}/pricing?paypal=cancelled`,
           },
         },
