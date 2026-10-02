@@ -10,6 +10,27 @@ type Params = {
   slug: string;
 };
 
+function formatBahrainDateTime(value: string | null) {
+  if (!value) return "الموعد غير محدد";
+
+  const timestamp = Date.parse(value);
+  if (!Number.isFinite(timestamp)) return "الموعد غير محدد";
+
+  const date = new Date(timestamp + 3 * 60 * 60 * 1000);
+  const pad = (part: number) => String(part).padStart(2, "0");
+
+  return [
+    pad(date.getUTCDate()),
+    pad(date.getUTCMonth() + 1),
+    date.getUTCFullYear(),
+  ].join("/") +
+    " " +
+    [
+      pad(date.getUTCHours()),
+      pad(date.getUTCMinutes()),
+    ].join(":");
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -138,7 +159,7 @@ export default async function CoursePage({
           <div className="mt-4 flex flex-wrap gap-2 text-sm font-bold text-white/85">
             {course.starts_at ? (
               <span className="rounded-full bg-white/10 px-3 py-2">
-                تبدأ {new Date(course.starts_at).toLocaleString("ar-BH")}
+                تبدأ {formatBahrainDateTime(course.starts_at)}
               </span>
             ) : null}
             {course.max_students ? (
@@ -199,10 +220,11 @@ export default async function CoursePage({
                     </p>
                   ) : null}
                   <div className="mt-2 text-sm text-slate-500">
-                    {new Date(session.starts_at).toLocaleString("ar-BH")}
+                    {formatBahrainDateTime(session.starts_at)}
                   </div>
                   <Link
                     href={`/live/${session.id}`}
+                    prefetch={false}
                     className="mt-3 inline-flex rounded-xl bg-[#123f39] px-4 py-2 text-sm font-black text-white"
                   >
                     دخول الغرفة
