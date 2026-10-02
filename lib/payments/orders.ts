@@ -1,24 +1,11 @@
-import {
-  createClient as createAdminClient,
-  type SupabaseClient,
-} from "@supabase/supabase-js";
+import type { SupabaseClient } from "@supabase/supabase-js";
+
+import { createAdminClient } from "@/lib/supabase/admin";
 
 const PLUS_MONTHLY_PRICE_CAP_USD = 10.000;
 
 function admin(): SupabaseClient {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
-
-  if (!url || !key) {
-    throw new Error("SUPABASE_SERVICE_ROLE_REQUIRED");
-  }
-
-  return createAdminClient(url, key, {
-    auth: {
-      persistSession: false,
-      autoRefreshToken: false,
-    },
-  });
+  return createAdminClient();
 }
 
 export async function offerFor(params: {
