@@ -3,6 +3,8 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { revalidatePath } from "next/cache";
 
+import { finalizePaymentOrder } from "@/lib/payments/orders";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 
 type Result = {
@@ -287,6 +289,87 @@ export async function savePayoutProfile(
         error instanceof Error
           ? error.message
           : "تعذر حفظ بيانات السحب.",
+    };
+  }
+}
+
+
+export async function confirmBpayCoursePayment(
+  formData: FormData,
+): Promise<Result> {
+  try {
+    const { db, user } = await teacherSession();
+    const paymentOrderId = text(formData, "paymentOrderId");
+
+    if (!paymentOrderId) {
+      return {
+        ok: false,
+        message: "طلب الدفع غير محدد.",
+      };
+    }
+
+    const admin = createAdminClient();
+
+    const { data: payment, error: paymentError } = await admin
+      .from("edu_payment_orders")
+      .select("id,course_id,status,provider,bank_reference")
+      .eq("id", paymentOrderId)
+      .eq("kind", "course")
+      .eq("provider", "bpay")
+      .maybeSingle();
+
+    if (paymentError || !payment?.course_id) {
+      return {
+        ok: false,
+        message: "طلب BPay غير موجود.",
+      };
+    }
+
+    if (payment.status === "completed") {
+      return {
+        ok: true,
+        message: "تم تأكيد هذه الدفعة سابقًا.",
+      };
+    }
+
+    if (payment.status !== "approved" || !payment.bank_reference) {
+      return {
+        ok: false,
+        message: "الطالب لم يرسل مرجع BPay بعد.",
+      };
+    }
+
+    const { data: ownedCourse } = await db
+      .from("edu_marketplace_courses")
+      .select("id")
+      .eq("id", payment.course_id)
+      .eq("teacher_id", user.id)
+      .maybeSingle();
+
+    if (!ownedCourse) {
+      return {
+        ok: false,
+        message: "لا تملك صلاحية تأكيد هذه الدفعة.",
+      };
+    }
+
+    await finalizePaymentOrder(paymentOrderId);
+
+    revalidatePath("/teacher/marketplace");
+    revalidatePath("/teacher/marketplace/earnings");
+    revalidatePath("/marketplace");
+
+    return {
+      ok: true,
+      message: "تم تأكيد استلام BPay وفتح الدورة للطالب.",
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      message:
+        error instanceof Error
+          ? error.message
+          : "تعذر تأكيد دفعة BPay.",
     };
   }
 }
