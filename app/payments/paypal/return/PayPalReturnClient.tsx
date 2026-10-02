@@ -11,12 +11,11 @@ export default function PayPalReturnClient() {
   useEffect(() => {
     const controller = new AbortController();
 
-    const orderId =
-      new URLSearchParams(
-        window.location.search,
-      ).get("token");
+    const params = new URLSearchParams(window.location.search);
+    const orderId = params.get("token");
+    const paymentOrderId = params.get("paymentOrderId");
 
-    if (!orderId) {
+    if (!orderId || !paymentOrderId) {
       const timer = window.setTimeout(() => {
         setMessage("معرف PayPal غير موجود.");
       }, 0);
@@ -30,7 +29,7 @@ export default function PayPalReturnClient() {
     async function capturePayment() {
       try {
         const response = await fetch(
-          "/api/payments/paypal/capture",
+          "/api/payments/paypal/capture-course",
           {
             method: "POST",
             headers: {
@@ -39,6 +38,7 @@ export default function PayPalReturnClient() {
             },
             body: JSON.stringify({
               orderId,
+              paymentOrderId,
             }),
             signal: controller.signal,
           },
@@ -57,7 +57,7 @@ export default function PayPalReturnClient() {
         }
 
         setMessage(
-          "تم الدفع وتفعيل الخدمة بنجاح.",
+          "تم تأكيد دفع PayPal Sandbox وتفعيل الدورة بنجاح.",
         );
       } catch (error) {
         if (controller.signal.aborted) {
