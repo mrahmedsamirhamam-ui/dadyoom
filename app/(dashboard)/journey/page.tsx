@@ -35,20 +35,57 @@ export default async function JourneyPage() {
     redirect("/login");
   }
 
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("full_name,country,role")
+    .eq("id", user.id)
+    .maybeSingle();
+
+  const role =
+    profile?.role?.trim().toLowerCase() ?? "";
+
+  const displayName =
+    profile?.full_name?.trim() ||
+    user.email?.split("@")[0] ||
+    "صديق العربية";
+
+  if (role !== "student" && role !== "child") {
+    return (
+      <main
+        dir="rtl"
+        className="min-h-screen px-4 py-7 sm:px-6 lg:px-8"
+      >
+        <div className="mx-auto max-w-5xl space-y-6">
+          <section className="rounded-[2.5rem] border border-[#cdb778] bg-[#123f39] p-7 text-white shadow-xl sm:p-10">
+            <span className="inline-flex rounded-full border border-[#f3d18b]/30 bg-white/10 px-4 py-2 text-xs font-black text-[#ffe8b2]">
+              معاينة رحلة الطالب
+            </span>
+            <h1 className="mt-4 font-arabic-display text-3xl font-black sm:text-5xl">
+              أهلاً {displayName}
+            </h1>
+            <p className="mt-4 max-w-3xl font-arabic-reading text-lg leading-9 text-[#e7f1ed]">
+              رحلة ضاديوم الشخصية مخصصة للطالب والطفل. يمكنك استعراض أدوات التعلم الرئيسية دون تحميل تقدم طالب أو بيانات مهارات غير لازمة لدورك.
+            </p>
+          </section>
+
+          <section className="grid gap-4 md:grid-cols-2">
+            <HubCard icon="📚" title="المناهج" text="استعرض المناهج والدروس الجاهزة حسب الدولة والصف." href="/courses" action="افتح المناهج" />
+            <HubCard icon="🧠" title="المهارات الأربع" text="استعرض القراءة والكتابة والاستماع والتحدث." href="/skills" action="افتح المهارات" />
+            <HubCard icon="📖" title="تحدي القراءة" text="استعرض تجربة القراءة والأنشطة المتاحة." href="/reading-challenge" action="افتح التحدي" />
+            <HubCard icon="🤖" title="ضاد" text="استخدم المساعد العربي للفهم والاستفسار." href="/ask" action="اسأل ضاد" />
+          </section>
+        </div>
+      </main>
+    );
+  }
+
   const [
     catalog,
-    profileResult,
     progressResult,
     skillsResult,
     statsResult,
   ] = await Promise.all([
     getPublishedUnits(),
-
-    supabase
-      .from("profiles")
-      .select("full_name,country,role")
-      .eq("id", user.id)
-      .maybeSingle(),
 
     supabase
       .from("student_lesson_progress")
@@ -168,15 +205,6 @@ export default async function JourneyPage() {
   const stats =
     statsResult.data;
 
-  const displayName =
-    profileResult.data
-      ?.full_name
-      ?.trim() ||
-    user.email?.split(
-      "@"
-    )[0] ||
-    "صديق العربية";
-
   const assessmentHref =
     nextLesson
       ? `/assessment/${nextLesson.id}`
@@ -212,7 +240,7 @@ export default async function JourneyPage() {
 
               <div className="mt-6 flex flex-wrap gap-2 text-xs font-black">
                 <span className="rounded-full bg-white/10 px-4 py-2">
-                  {profileResult.data?.country ??
+                  {profile?.country ??
                     "الدولة من ملفك"}
                 </span>
                 <span className="rounded-full bg-white/10 px-4 py-2">
