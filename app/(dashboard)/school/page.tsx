@@ -704,6 +704,7 @@ const teacherCount =
 
         <div className="flex flex-wrap justify-end gap-3">
           <Link
+            prefetch={false}
             href="/school/meetings"
             className="inline-flex items-center justify-center rounded-xl bg-indigo-700 px-5 py-3 text-sm font-black text-white shadow-sm transition hover:bg-indigo-800"
           >
@@ -711,6 +712,7 @@ const teacherCount =
           </Link>
 
           <Link
+            prefetch={false}
             href="/school/reports"
             className="inline-flex items-center justify-center rounded-xl bg-violet-700 px-5 py-3 text-sm font-black text-white shadow-sm transition hover:bg-violet-800"
           >
@@ -1029,6 +1031,7 @@ const teacherCount =
                             </span>
 
                             <Link
+                              prefetch={false}
                               href={`/school/classes/${insight.class_id}`}
                               className="font-black text-slate-900 hover:underline"
                             >
@@ -1046,6 +1049,7 @@ const teacherCount =
                           <div className="mt-4 flex flex-wrap gap-2 text-xs font-bold text-slate-600">
 
                             <Link
+                              prefetch={false}
                               href={`/school/teachers/${insight.teacher_id}`}
                               className="rounded-full bg-white/70 px-3 py-1 hover:underline"
                             >
@@ -1151,6 +1155,7 @@ const teacherCount =
                         </form>
 
                         <Link
+                          prefetch={false}
                           href={`/school/classes/${insight.class_id}`}
                           className="shrink-0 rounded-xl bg-white px-4 py-2 text-sm font-black text-slate-800 shadow-sm ring-1 ring-slate-200 transition hover:bg-slate-50"
                         >
@@ -1432,6 +1437,7 @@ const teacherCount =
               <div className="mt-4 flex flex-wrap items-center gap-3">
 
                 <Link
+                  prefetch={false}
                   href="/school"
                   className="inline-flex rounded-xl bg-white px-4 py-2 text-sm font-black text-slate-700 ring-1 ring-slate-300 transition hover:bg-slate-100"
                 >
@@ -1517,6 +1523,7 @@ const teacherCount =
 
                             {item.teacher_id ? (
                               <Link
+                                prefetch={false}
                                 href={`/school/teachers/${item.teacher_id}`}
                                 className="rounded-full bg-indigo-50 px-3 py-1 text-indigo-700 hover:underline"
                               >
@@ -1529,6 +1536,7 @@ const teacherCount =
 
                             {item.class_id ? (
                               <Link
+                                prefetch={false}
                                 href={`/school/classes/${item.class_id}`}
                                 className="rounded-full bg-violet-50 px-3 py-1 text-violet-700 hover:underline"
                               >
@@ -1803,6 +1811,7 @@ const teacherCount =
                           <div className="min-w-0">
 
                             <Link
+                              prefetch={false}
                               href={`/school/teachers/${row.teacher_id}`}
                               className="text-lg font-black text-slate-900 hover:text-violet-700 hover:underline"
                             >
@@ -1826,6 +1835,7 @@ const teacherCount =
                             <div className="mt-3 flex flex-wrap items-center gap-2">
 
                               <Link
+                                prefetch={false}
                                 href={`/school/classes/${row.class_id}`}
                                 className="rounded-full bg-indigo-50 px-3 py-1 text-sm font-black text-indigo-700 transition hover:bg-indigo-100"
                               >
@@ -1884,6 +1894,7 @@ const teacherCount =
 
                           <div className="flex items-center justify-center">
                             <Link
+                              prefetch={false}
                               href={`/school/classes/${row.class_id}`}
                               className="inline-flex w-full items-center justify-center rounded-xl bg-violet-600 px-4 py-3 text-sm font-black text-white transition hover:bg-violet-700"
                             >
