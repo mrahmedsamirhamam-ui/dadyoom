@@ -3639,14 +3639,12 @@ async function focusedMarketplaceLiveFlow(
       .click();
 
     await studentPage
-      .getByText(
-        "تم إرسال مرجع BPay",
-        {
-          exact:
-            false,
-        },
+      .locator(
+        'input[placeholder="مرجع عملية BPay"]',
       )
       .waitFor({
+        state:
+          "detached",
         timeout:
           20_000,
       });
