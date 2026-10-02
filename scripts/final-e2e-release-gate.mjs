@@ -102,6 +102,10 @@ const fixture = {
   marketplaceCourseId: null,
   bpayPaymentOrderId: null,
   bpayReference: null,
+  uiMarketplaceCourseId: null,
+  uiMarketplaceCourseSlug: null,
+  uiCourseLiveSessionId: null,
+  schoolMeetingSessionId: null,
 };
 
 let server = null;
@@ -3097,6 +3101,989 @@ async function teacherBpayMarketplaceFlow(
   );
 }
 
+
+async function waitForDbRow(
+  fetcher,
+  errorCode,
+) {
+  for (let attempt = 1; attempt <= 12; attempt += 1) {
+    const result = await fetcher();
+
+    if (result.error) {
+      throw result.error;
+    }
+
+    if (result.data) {
+      return result.data;
+    }
+
+    if (attempt < 12) {
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
+  }
+
+  throw new Error(errorCode);
+}
+
+function futureLocalDateTime(
+  minutesFromNow,
+) {
+  const date = new Date(
+    Date.now() +
+      minutesFromNow *
+        60_000,
+  );
+
+  return date
+    .toISOString()
+    .slice(0, 16);
+}
+
+async function focusedMarketplaceLiveFlow(
+  baseUrl,
+) {
+  gate(
+    browser,
+    "E2E_FOCUSED_BROWSER_MISSING",
+  );
+
+  const teacher =
+    users.get("teacher");
+  const student =
+    users.get("student");
+
+  gate(
+    teacher && student,
+    "E2E_FOCUSED_MARKETPLACE_USERS_MISSING",
+  );
+
+  const suffix =
+    stamp
+      .replace(
+        /[^a-zA-Z0-9]/g,
+        "",
+      )
+      .slice(-10);
+
+  const courseTitle =
+    "E2E UI Course " +
+    suffix;
+
+  const liveTitle =
+    "E2E UI Course Live " +
+    suffix;
+
+  const paymentReference =
+    "E2E-UI-BPAY-" +
+    suffix;
+
+  const teacherContext =
+    await browser.newContext({
+      acceptDownloads:
+        true,
+    });
+
+  const studentContext =
+    await browser.newContext({
+      acceptDownloads:
+        true,
+    });
+
+  const teacherPage =
+    await teacherContext
+      .newPage();
+
+  const studentPage =
+    await studentContext
+      .newPage();
+
+  attachPageDiagnostics(
+    teacherPage,
+    "teacher-focused",
+  );
+
+  attachPageDiagnostics(
+    studentPage,
+    "student-focused",
+  );
+
+  try {
+    await login(
+      teacherPage,
+      teacher,
+      "/teacher",
+      baseUrl,
+    );
+
+    await teacherPage.goto(
+      baseUrl +
+        "/teacher/marketplace",
+      {
+        waitUntil:
+          "networkidle",
+        timeout:
+          60_000,
+      },
+    );
+
+    const createButton =
+      teacherPage
+        .getByRole(
+          "button",
+          {
+            name:
+              "إنشاء الدورة",
+          },
+        )
+        .first();
+
+    const createForm =
+      createButton
+        .locator(
+          "xpath=ancestor::form",
+        );
+
+    await createForm
+      .locator(
+        'input[name="title"]',
+      )
+      .fill(
+        courseTitle,
+      );
+
+    await createForm
+      .locator(
+        'textarea[name="description"]',
+      )
+      .fill(
+        "Temporary UI-created marketplace course for release gate.",
+      );
+
+    await createForm
+      .locator(
+        'input[name="price"]',
+      )
+      .fill("7.000");
+
+    await createForm
+      .locator(
+        'select[name="deliveryMode"]',
+      )
+      .selectOption(
+        "live",
+      );
+
+    await createForm
+      .locator(
+        'input[name="scheduleNote"]',
+      )
+      .fill(
+        "E2E live schedule",
+      );
+
+    await createForm
+      .locator(
+        'input[name="maxStudents"]',
+      )
+      .fill("25");
+
+    await createButton.click();
+
+    await teacherPage
+      .getByText(
+        "تم إنشاء الدورة بنسبة 85% للمعلم و15% لضاديوم.",
+        {
+          exact:
+            false,
+        },
+      )
+      .waitFor({
+        timeout:
+          20_000,
+      });
+
+    const course =
+      await waitForDbRow(
+        () =>
+          admin
+            .from(
+              "edu_marketplace_courses",
+            )
+            .select(
+              "id,slug,status,price,currency,commission_bps",
+            )
+            .eq(
+              "teacher_id",
+              teacher.id,
+            )
+            .eq(
+              "title",
+              courseTitle,
+            )
+            .order(
+              "created_at",
+              {
+                ascending:
+                  false,
+              },
+            )
+            .limit(1)
+            .maybeSingle(),
+        "E2E_MARKETPLACE_UI_CREATE_DB_FAILED",
+      );
+
+    gate(
+      course.status ===
+        "draft" &&
+        Number(
+          course.price,
+        ) === 7 &&
+        String(
+          course.currency,
+        ) === "BHD" &&
+        Number(
+          course.commission_bps,
+        ) === 1500,
+      "E2E_MARKETPLACE_UI_CREATE_VALUES_FAILED",
+    );
+
+    fixture.uiMarketplaceCourseId =
+      course.id;
+    fixture.uiMarketplaceCourseSlug =
+      course.slug;
+
+    const courseCard =
+      teacherPage
+        .locator(
+          "article",
+        )
+        .filter({
+          hasText:
+            courseTitle,
+        })
+        .first();
+
+    await courseCard
+      .getByRole(
+        "button",
+        {
+          name:
+            "نشر الدورة",
+        },
+      )
+      .click();
+
+    await teacherPage
+      .getByText(
+        "تم نشر الدورة في سوق ضاديوم.",
+        {
+          exact:
+            false,
+        },
+      )
+      .waitFor({
+        timeout:
+          20_000,
+      });
+
+    const published =
+      await waitForDbRow(
+        () =>
+          admin
+            .from(
+              "edu_marketplace_courses",
+            )
+            .select(
+              "id,status",
+            )
+            .eq(
+              "id",
+              course.id,
+            )
+            .eq(
+              "status",
+              "published",
+            )
+            .maybeSingle(),
+        "E2E_MARKETPLACE_UI_PUBLISH_DB_FAILED",
+      );
+
+    gate(
+      published.status ===
+        "published",
+      "E2E_MARKETPLACE_UI_PUBLISH_FAILED",
+    );
+
+    console.log(
+      "E2E_MARKETPLACE_TEACHER_CREATE_PUBLISH=PASS",
+    );
+
+    await teacherPage.goto(
+      baseUrl +
+        "/teacher/live",
+      {
+        waitUntil:
+          "networkidle",
+        timeout:
+          60_000,
+      },
+    );
+
+    const liveButton =
+      teacherPage
+        .getByRole(
+          "button",
+          {
+            name:
+              "أنشئ الحصة",
+          },
+        )
+        .first();
+
+    const liveForm =
+      liveButton
+        .locator(
+          "xpath=ancestor::form",
+        );
+
+    await liveForm
+      .locator(
+        'input[name="title"]',
+      )
+      .fill(
+        liveTitle,
+      );
+
+    await liveForm
+      .locator(
+        'textarea[name="description"]',
+      )
+      .fill(
+        "Temporary course live room for release gate.",
+      );
+
+    await liveForm
+      .locator(
+        'input[name="startsAt"]',
+      )
+      .fill(
+        futureLocalDateTime(
+          5,
+        ),
+      );
+
+    await liveForm
+      .locator(
+        'input[name="endsAt"]',
+      )
+      .fill(
+        futureLocalDateTime(
+          45,
+        ),
+      );
+
+    await liveForm
+      .locator(
+        'select[name="courseId"]',
+      )
+      .selectOption(
+        String(
+          course.id,
+        ),
+      );
+
+    await liveButton.click();
+
+    const liveSession =
+      await waitForDbRow(
+        () =>
+          admin
+            .from(
+              "edu_live_sessions",
+            )
+            .select(
+              "id,status,course_id,teacher_id",
+            )
+            .eq(
+              "course_id",
+              course.id,
+            )
+            .eq(
+              "title",
+              liveTitle,
+            )
+            .order(
+              "created_at",
+              {
+                ascending:
+                  false,
+              },
+            )
+            .limit(1)
+            .maybeSingle(),
+        "E2E_COURSE_LIVE_CREATE_DB_FAILED",
+      );
+
+    fixture.uiCourseLiveSessionId =
+      liveSession.id;
+
+    const teacherLiveToken =
+      await browserFetch(
+        teacherPage,
+        "/api/live/token",
+        {
+          method:
+            "POST",
+          headers: {
+            "Content-Type":
+              "application/json",
+          },
+          body:
+            JSON.stringify({
+              sessionId:
+                liveSession.id,
+            }),
+        },
+      );
+
+    gate(
+      teacherLiveToken.status ===
+        200 &&
+        typeof teacherLiveToken
+          .data?.token ===
+          "string" &&
+        teacherLiveToken
+          .data.token.length >
+          40,
+      "E2E_COURSE_LIVE_TEACHER_FAILED:" +
+        teacherLiveToken.status,
+    );
+
+    console.log(
+      "E2E_COURSE_LIVE_TEACHER=PASS",
+    );
+
+    await login(
+      studentPage,
+      student,
+      "/student",
+      baseUrl,
+    );
+
+    await studentPage.goto(
+      baseUrl +
+        "/marketplace/" +
+        course.slug,
+      {
+        waitUntil:
+          "networkidle",
+        timeout:
+          60_000,
+      },
+    );
+
+    const marketplaceBody =
+      await studentPage
+        .locator("body")
+        .innerText();
+
+    gate(
+      marketplaceBody.includes(
+        courseTitle,
+      ) &&
+        marketplaceBody.includes(
+          "الدفع عبر BPay",
+        ),
+      "E2E_MARKETPLACE_STUDENT_DISCOVERY_FAILED",
+    );
+
+    await studentPage
+      .getByRole(
+        "button",
+        {
+          name:
+            "الدفع عبر BPay",
+        },
+      )
+      .click();
+
+    await studentPage
+      .getByText(
+        "بيانات الدفع عبر BPay",
+        {
+          exact:
+            false,
+        },
+      )
+      .waitFor({
+        timeout:
+          20_000,
+      });
+
+    await studentPage
+      .locator(
+        'input[placeholder="مرجع عملية BPay"]',
+      )
+      .fill(
+        paymentReference,
+      );
+
+    await studentPage
+      .getByRole(
+        "button",
+        {
+          name:
+            "أرسلت المبلغ — إرسال المرجع",
+        },
+      )
+      .click();
+
+    await studentPage
+      .getByText(
+        "تم إرسال مرجع BPay",
+        {
+          exact:
+            false,
+        },
+      )
+      .waitFor({
+        timeout:
+          20_000,
+      });
+
+    console.log(
+      "E2E_MARKETPLACE_STUDENT_CHECKOUT_UI=PASS",
+    );
+
+    await teacherPage.goto(
+      baseUrl +
+        "/teacher/marketplace",
+      {
+        waitUntil:
+          "networkidle",
+        timeout:
+          60_000,
+      },
+    );
+
+    await teacherPage
+      .getByText(
+        paymentReference,
+        {
+          exact:
+            false,
+        },
+      )
+      .waitFor({
+        timeout:
+          20_000,
+      });
+
+    await teacherPage
+      .getByRole(
+        "button",
+        {
+          name:
+            "تأكيد وصول المبلغ وفتح الدورة",
+        },
+      )
+      .first()
+      .click();
+
+    await teacherPage
+      .getByText(
+        "تم تأكيد استلام BPay وفتح الدورة للطالب.",
+        {
+          exact:
+            false,
+        },
+      )
+      .waitFor({
+        timeout:
+          20_000,
+      });
+
+    const purchase =
+      await waitForDbRow(
+        () =>
+          admin
+            .from(
+              "edu_marketplace_purchases",
+            )
+            .select(
+              "id,status,amount_paid,currency",
+            )
+            .eq(
+              "buyer_id",
+              student.id,
+            )
+            .eq(
+              "course_id",
+              course.id,
+            )
+            .eq(
+              "status",
+              "active",
+            )
+            .maybeSingle(),
+        "E2E_MARKETPLACE_UI_PURCHASE_FAILED",
+      );
+
+    const earning =
+      await waitForDbRow(
+        () =>
+          admin
+            .from(
+              "edu_teacher_earnings",
+            )
+            .select(
+              "gross_amount,platform_fee,net_amount,currency",
+            )
+            .eq(
+              "purchase_id",
+              purchase.id,
+            )
+            .maybeSingle(),
+        "E2E_MARKETPLACE_UI_EARNING_FAILED",
+      );
+
+    gate(
+      Number(
+        earning.gross_amount,
+      ) === 7 &&
+        Number(
+          earning.platform_fee,
+        ) === 1.05 &&
+        Number(
+          earning.net_amount,
+        ) === 5.95 &&
+        String(
+          earning.currency,
+        ) === "BHD",
+      "E2E_MARKETPLACE_UI_SPLIT_FAILED",
+    );
+
+    await studentPage.reload({
+      waitUntil:
+        "networkidle",
+      timeout:
+        60_000,
+    });
+
+    const accessBody =
+      await studentPage
+        .locator("body")
+        .innerText();
+
+    gate(
+      accessBody.includes(
+        "لديك وصول كامل إلى الدورة.",
+      ) &&
+        accessBody.includes(
+          liveTitle,
+        ) &&
+        accessBody.includes(
+          "دخول الغرفة",
+        ),
+      "E2E_MARKETPLACE_STUDENT_ACCESS_FAILED",
+    );
+
+    const studentLiveToken =
+      await browserFetch(
+        studentPage,
+        "/api/live/token",
+        {
+          method:
+            "POST",
+          headers: {
+            "Content-Type":
+              "application/json",
+          },
+          body:
+            JSON.stringify({
+              sessionId:
+                liveSession.id,
+            }),
+        },
+      );
+
+    gate(
+      studentLiveToken.status ===
+        200 &&
+        typeof studentLiveToken
+          .data?.token ===
+          "string" &&
+        studentLiveToken
+          .data.token.length >
+          40,
+      "E2E_COURSE_LIVE_STUDENT_FAILED:" +
+        studentLiveToken.status,
+    );
+
+    console.log(
+      "E2E_COURSE_LIVE_STUDENT=PASS",
+    );
+
+    console.log(
+      "E2E_MARKETPLACE_UI_FLOW=PASS PLATFORM=15 TEACHER=85",
+    );
+  }
+  finally {
+    await studentContext
+      .close();
+
+    await teacherContext
+      .close();
+  }
+}
+
+async function focusedSchoolMeetingFlow(
+  baseUrl,
+) {
+  gate(
+    browser &&
+      fixture.schoolId,
+    "E2E_SCHOOL_MEETING_BROWSER_OR_FIXTURE_MISSING",
+  );
+
+  const school =
+    users.get("school");
+  const teacher =
+    users.get("teacher");
+
+  gate(
+    school && teacher,
+    "E2E_SCHOOL_MEETING_USERS_MISSING",
+  );
+
+  const suffix =
+    stamp
+      .replace(
+        /[^a-zA-Z0-9]/g,
+        "",
+      )
+      .slice(-10);
+
+  const meetingTitle =
+    "E2E School Meeting " +
+    suffix;
+
+  const schoolContext =
+    await browser.newContext();
+
+  const teacherContext =
+    await browser.newContext();
+
+  const schoolPage =
+    await schoolContext
+      .newPage();
+
+  const teacherPage =
+    await teacherContext
+      .newPage();
+
+  attachPageDiagnostics(
+    schoolPage,
+    "school-meeting-focused",
+  );
+
+  attachPageDiagnostics(
+    teacherPage,
+    "school-teacher-focused",
+  );
+
+  try {
+    await login(
+      schoolPage,
+      school,
+      "/school",
+      baseUrl,
+    );
+
+    await schoolPage.goto(
+      baseUrl +
+        "/school/meetings",
+      {
+        waitUntil:
+          "networkidle",
+        timeout:
+          60_000,
+      },
+    );
+
+    const createButton =
+      schoolPage
+        .getByRole(
+          "button",
+          {
+            name:
+              "إنشاء غرفة الاجتماع",
+          },
+        )
+        .first();
+
+    const form =
+      createButton
+        .locator(
+          "xpath=ancestor::form",
+        );
+
+    await form
+      .locator(
+        'input[name="title"]',
+      )
+      .fill(
+        meetingTitle,
+      );
+
+    await form
+      .locator(
+        'textarea[name="description"]',
+      )
+      .fill(
+        "Temporary school teacher meeting for release gate.",
+      );
+
+    await form
+      .locator(
+        'input[name="startsAt"]',
+      )
+      .fill(
+        futureLocalDateTime(
+          5,
+        ),
+      );
+
+    await form
+      .locator(
+        'input[name="endsAt"]',
+      )
+      .fill(
+        futureLocalDateTime(
+          35,
+        ),
+      );
+
+    await createButton.click();
+
+    const meeting =
+      await waitForDbRow(
+        () =>
+          admin
+            .from(
+              "edu_live_sessions",
+            )
+            .select(
+              "id,school_id,status",
+            )
+            .eq(
+              "school_id",
+              fixture.schoolId,
+            )
+            .eq(
+              "title",
+              meetingTitle,
+            )
+            .order(
+              "created_at",
+              {
+                ascending:
+                  false,
+              },
+            )
+            .limit(1)
+            .maybeSingle(),
+        "E2E_SCHOOL_MEETING_CREATE_DB_FAILED",
+      );
+
+    fixture.schoolMeetingSessionId =
+      meeting.id;
+
+    const schoolToken =
+      await browserFetch(
+        schoolPage,
+        "/api/live/token",
+        {
+          method:
+            "POST",
+          headers: {
+            "Content-Type":
+              "application/json",
+          },
+          body:
+            JSON.stringify({
+              sessionId:
+                meeting.id,
+            }),
+        },
+      );
+
+    gate(
+      schoolToken.status ===
+        200 &&
+        typeof schoolToken
+          .data?.token ===
+          "string",
+      "E2E_SCHOOL_MEETING_OWNER_FAILED:" +
+        schoolToken.status,
+    );
+
+    console.log(
+      "E2E_SCHOOL_MEETING_CREATE=PASS",
+    );
+
+    await login(
+      teacherPage,
+      teacher,
+      "/teacher",
+      baseUrl,
+    );
+
+    const teacherToken =
+      await browserFetch(
+        teacherPage,
+        "/api/live/token",
+        {
+          method:
+            "POST",
+          headers: {
+            "Content-Type":
+              "application/json",
+          },
+          body:
+            JSON.stringify({
+              sessionId:
+                meeting.id,
+            }),
+        },
+      );
+
+    gate(
+      teacherToken.status ===
+        200 &&
+        typeof teacherToken
+          .data?.token ===
+          "string" &&
+        teacherToken
+          .data.token.length >
+          40,
+      "E2E_SCHOOL_MEETING_TEACHER_FAILED:" +
+        teacherToken.status,
+    );
+
+    console.log(
+      "E2E_SCHOOL_MEETING_TEACHER=PASS",
+    );
+  }
+  finally {
+    await teacherContext
+      .close();
+
+    await schoolContext
+      .close();
+  }
+}
+
 async function teacherRewardFlow(
   page,
   baseUrl,
@@ -3610,6 +4597,109 @@ async function cleanup() {
       .eq(
         "student_id",
         student.id,
+      );
+  }
+
+
+  if (
+    fixture.uiCourseLiveSessionId
+  ) {
+    await admin
+      .from(
+        "edu_live_attendance",
+      )
+      .delete()
+      .eq(
+        "session_id",
+        fixture.uiCourseLiveSessionId,
+      );
+  }
+
+  if (
+    fixture.schoolMeetingSessionId
+  ) {
+    await admin
+      .from(
+        "edu_live_attendance",
+      )
+      .delete()
+      .eq(
+        "session_id",
+        fixture.schoolMeetingSessionId,
+      );
+
+    await admin
+      .from(
+        "edu_live_sessions",
+      )
+      .delete()
+      .eq(
+        "id",
+        fixture.schoolMeetingSessionId,
+      );
+  }
+
+  if (
+    fixture.uiMarketplaceCourseId
+  ) {
+    await admin
+      .from(
+        "edu_teacher_earnings",
+      )
+      .delete()
+      .eq(
+        "course_id",
+        fixture.uiMarketplaceCourseId,
+      );
+
+    await admin
+      .from(
+        "edu_marketplace_purchases",
+      )
+      .delete()
+      .eq(
+        "course_id",
+        fixture.uiMarketplaceCourseId,
+      );
+
+    await admin
+      .from(
+        "edu_payment_orders",
+      )
+      .delete()
+      .eq(
+        "course_id",
+        fixture.uiMarketplaceCourseId,
+      );
+
+    await admin
+      .from(
+        "edu_live_sessions",
+      )
+      .delete()
+      .eq(
+        "course_id",
+        fixture.uiMarketplaceCourseId,
+      );
+
+    await admin
+      .from(
+        "edu_marketplace_course_lessons",
+      )
+      .delete()
+      .eq(
+        "course_id",
+        fixture.uiMarketplaceCourseId,
+      );
+
+    await admin
+      .from(
+        "edu_marketplace_courses",
+      )
+      .delete()
+      .eq(
+        "id",
+        fixture.uiMarketplaceCourseId,
       );
   }
 
@@ -4203,6 +5293,14 @@ try {
     activePage = null;
     activeRole = null;
   }
+
+  await focusedMarketplaceLiveFlow(
+    baseUrl,
+  );
+
+  await focusedSchoolMeetingFlow(
+    baseUrl,
+  );
 
   writeQaReport("PASS");
 
