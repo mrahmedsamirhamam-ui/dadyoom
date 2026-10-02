@@ -208,16 +208,48 @@ export async function publishMarketplaceCourse(
     const { db, user } = await teacherSession();
     const courseId = text(formData, "courseId");
 
-    const { error } = await db
+    if (!courseId) {
+      return {
+        ok: false,
+        message: "الدورة غير محددة.",
+      };
+    }
+
+    const { data: payout, error: payoutError } = await db
+      .from("edu_teacher_payout_profiles")
+      .select("bpay_mobile")
+      .eq("teacher_id", user.id)
+      .maybeSingle();
+
+    if (payoutError) throw payoutError;
+
+    if (!payout?.bpay_mobile) {
+      return {
+        ok: false,
+        message:
+          "أضف رقم BPay البحريني في بيانات استلام الأرباح قبل نشر الدورة.",
+      };
+    }
+
+    const { data: publishedCourse, error } = await db
       .from("edu_marketplace_courses")
       .update({
         status: "published",
         updated_at: new Date().toISOString(),
       })
       .eq("id", courseId)
-      .eq("teacher_id", user.id);
+      .eq("teacher_id", user.id)
+      .select("id")
+      .maybeSingle();
 
     if (error) throw error;
+
+    if (!publishedCourse) {
+      return {
+        ok: false,
+        message: "الدورة غير موجودة أو لا تملك صلاحية نشرها.",
+      };
+    }
 
     revalidatePath("/teacher/marketplace");
     revalidatePath("/marketplace");
