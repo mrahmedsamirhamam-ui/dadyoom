@@ -40,6 +40,8 @@ type Earning = {
 };
 
 type Payout = {
+  bpay_mobile: string | null;
+  bpay_name: string | null;
   paypal_email: string | null;
   iban: string | null;
   account_holder_name: string | null;
@@ -370,10 +372,23 @@ export default function TeacherMarketplaceClient({
             استلام أرباح المعلم
           </h2>
           <p className="mt-2 text-sm leading-7">
-            أضف PayPal أو بيانات الحساب البنكي. لا تظهر هذه البيانات للطلاب.
+            أضف رقم BPay المسجل باسمك. يظهر للطالب فقط عند إنشاء طلب دفع لهذه الدورة، ولا نعرض بياناتك البنكية العامة.
           </p>
 
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            <input
+              name="bpayName"
+              defaultValue={payout?.bpay_name ?? ""}
+              placeholder="الاسم المسجل في BPay"
+              className="rounded-2xl border p-3"
+            />
+            <input
+              name="bpayMobile"
+              inputMode="tel"
+              defaultValue={payout?.bpay_mobile ?? ""}
+              placeholder="رقم BPay البحريني"
+              className="rounded-2xl border p-3"
+            />
             <input
               name="paypalEmail"
               type="email"
@@ -414,7 +429,7 @@ export default function TeacherMarketplaceClient({
               className="rounded-2xl border p-3"
             />
             <button className="dadyoom-arabic-button sm:col-span-2 rounded-2xl p-3 font-black text-white">
-              حفظ بيانات السحب
+              حفظ بيانات BPay والاستلام
             </button>
           </div>
         </form>
