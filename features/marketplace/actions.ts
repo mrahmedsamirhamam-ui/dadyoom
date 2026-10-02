@@ -36,6 +36,17 @@ function text(formData: FormData, name: string) {
   return String(formData.get(name) ?? "").trim();
 }
 
+function normalizeBpayMobile(value: string) {
+  const digits = value.replace(/\D/gu, "");
+  const local = digits.startsWith("973") ? digits.slice(3) : digits;
+
+  if (!/^\d{8}$/u.test(local)) {
+    return null;
+  }
+
+  return `+973${local}`;
+}
+
 export async function createMarketplaceCourse(
   formData: FormData,
 ): Promise<Result> {
@@ -230,11 +241,23 @@ export async function savePayoutProfile(
   try {
     const { db, user } = await teacherSession();
 
+    const bpayRaw = text(formData, "bpayMobile");
+    const bpayMobile = bpayRaw ? normalizeBpayMobile(bpayRaw) : null;
+
+    if (bpayRaw && !bpayMobile) {
+      return {
+        ok: false,
+        message: "اكتب رقم BPay البحريني المكوّن من 8 أرقام.",
+      };
+    }
+
     const { error } = await db
       .from("edu_teacher_payout_profiles")
       .upsert(
         {
           teacher_id: user.id,
+          bpay_mobile: bpayMobile,
+          bpay_name: text(formData, "bpayName") || null,
           paypal_email: text(formData, "paypalEmail") || null,
           iban: text(formData, "iban") || null,
           account_holder_name:
@@ -255,7 +278,7 @@ export async function savePayoutProfile(
 
     return {
       ok: true,
-      message: "تم حفظ طريقة استلام أرباحك.",
+      message: "تم حفظ بيانات BPay وطريقة استلام أرباحك.",
     };
   } catch (error) {
     return {
