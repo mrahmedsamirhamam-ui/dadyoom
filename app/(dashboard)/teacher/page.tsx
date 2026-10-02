@@ -114,7 +114,7 @@ export default async function TeacherPage() {
             ascending: false,
           }
         )
-        .limit(50),
+        .limit(12),
 
       supabase
         .from("lessons")
@@ -134,7 +134,7 @@ export default async function TeacherPage() {
         .order(
           "lesson_number"
         )
-        .limit(30),
+        .limit(8),
     ]);
 
   if (
@@ -207,7 +207,7 @@ export default async function TeacherPage() {
         "is_active",
         true
       )
-      .limit(1000);
+      .limit(300);
 
     if (error) {
       console.warn(
@@ -283,6 +283,7 @@ export default async function TeacherPage() {
 
         <section className="grid gap-4 sm:grid-cols-3">
           <Link
+            prefetch={false}
             href="/teacher/marketplace"
             className="rounded-3xl border border-amber-200 bg-amber-50 p-5 transition hover:-translate-y-0.5 hover:shadow-sm"
           >
@@ -296,6 +297,7 @@ export default async function TeacherPage() {
           </Link>
 
           <Link
+            prefetch={false}
             href="/teacher/live"
             className="rounded-3xl border border-emerald-200 bg-emerald-50 p-5 transition hover:-translate-y-0.5 hover:shadow-sm"
           >
@@ -309,6 +311,7 @@ export default async function TeacherPage() {
           </Link>
 
           <Link
+            prefetch={false}
             href="/teacher/marketplace/earnings"
             className="rounded-3xl border border-indigo-200 bg-indigo-50 p-5 transition hover:-translate-y-0.5 hover:shadow-sm"
           >
@@ -513,6 +516,7 @@ export default async function TeacherPage() {
                         </div>
 
                         <Link
+                          prefetch={false}
                           href={`/teacher/classes/${teacherClass.id}`}
                           className="mt-5 inline-flex font-black text-emerald-700"
                         >
@@ -557,6 +561,7 @@ export default async function TeacherPage() {
             </div>
 
             <Link
+              prefetch={false}
               href="/teacher/new"
               className="rounded-xl bg-indigo-600 px-5 py-3 font-black text-white transition hover:bg-indigo-700"
             >
@@ -644,6 +649,7 @@ export default async function TeacherPage() {
 
                         <td className="p-4">
                           <Link
+                            prefetch={false}
                             href={`/teacher/${lesson.id}`}
                             className="font-black text-emerald-700"
                           >
