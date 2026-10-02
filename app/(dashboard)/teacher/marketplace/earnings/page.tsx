@@ -1,6 +1,3 @@
-import {
-  createClient as createAdminClient,
-} from "@supabase/supabase-js";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -62,56 +59,10 @@ export default async function TeacherEarningsPage() {
       "edu_teacher_payout_profiles",
     )
     .select(
-      "paypal_email,iban,account_holder_name,bank_name,swift_bic,country,is_verified",
+      "bpay_mobile,bpay_name,paypal_email,iban,account_holder_name,bank_name,swift_bic,country,is_verified",
     )
     .eq("teacher_id", user.id)
     .maybeSingle();
-
-  let routing:
-    | {
-        onboarding_status?: string;
-        payout_enabled?: boolean;
-      }
-    | null = null;
-
-  const url =
-    process.env
-      .NEXT_PUBLIC_SUPABASE_URL
-      ?.trim();
-  const key =
-    process.env
-      .SUPABASE_SERVICE_ROLE_KEY
-      ?.trim();
-
-  if (url && key) {
-    const admin =
-      createAdminClient(
-        url,
-        key,
-        {
-          auth: {
-            persistSession: false,
-            autoRefreshToken: false,
-          },
-        },
-      );
-
-    const { data } =
-      await admin
-        .from(
-          "edu_teacher_payout_routing",
-        )
-        .select(
-          "onboarding_status,payout_enabled",
-        )
-        .eq(
-          "teacher_id",
-          user.id,
-        )
-        .maybeSingle();
-
-    routing = data;
-  }
 
   const rows =
     earnings ?? [];
@@ -207,27 +158,21 @@ export default async function TeacherEarningsPage() {
 
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           <Info
-            label="بيانات PayPal / البنك"
+            label="BPay"
             value={
-              payout
-                ? "محفوظة في حسابك الخاص"
-                : "لم تُحفظ بعد"
+              payout?.bpay_mobile
+                ? `مفعّل على ${payout.bpay_mobile}`
+                : "لم تضف رقم BPay بعد"
             }
           />
           <Info
-            label="تحويل Tap التلقائي"
-            value={
-              routing?.payout_enabled
-                ? "مفعّل"
-                : routing?.onboarding_status === "pending"
-                  ? "KYC قيد المراجعة"
-                  : "غير مفعّل بعد"
-            }
+            label="عمولة ضاديوم"
+            value="15% تُسجَّل على كل عملية مؤكدة"
           />
         </div>
 
         <p className="mt-4 text-sm leading-7 text-slate-600">
-          التحويل التلقائي إلى البنك يحتاج موافقة KYC من مزود الدفع قبل تفعيل Destination الخاص بالمعلم.
+          في المسار الحالي يدفع الطالب لك مباشرة عبر BPay. بعد تأكيدك وصول المبلغ تفتح الدورة للطالب، ويُسجَّل 15% كعمولة مستحقة لضاديوم و85% كصافي المعلم.
         </p>
 
         <Link
