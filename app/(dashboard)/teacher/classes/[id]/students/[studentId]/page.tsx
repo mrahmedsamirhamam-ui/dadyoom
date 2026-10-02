@@ -82,16 +82,36 @@ function toNumber(
 function formatDate(
   value: string
 ) {
-  return new Intl.DateTimeFormat(
-    "ar-BH",
-    {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    }
-  ).format(
-    new Date(value)
-  );
+  const timestamp = Date.parse(value);
+
+  if (!Number.isFinite(timestamp)) {
+    return "-";
+  }
+
+  const date =
+    new Date(
+      timestamp +
+        3 * 60 * 60 * 1000
+    );
+
+  const pad = (
+    part: number
+  ) =>
+    String(part)
+      .padStart(
+        2,
+        "0"
+      );
+
+  return [
+    pad(
+      date.getUTCDate()
+    ),
+    pad(
+      date.getUTCMonth() + 1
+    ),
+    date.getUTCFullYear(),
+  ].join("/");
 }
 
 
@@ -284,6 +304,7 @@ export default async function TeacherStudentPage({
         <div className="flex flex-wrap items-center justify-between gap-3">
 
           <Link
+            prefetch={false}
             href={`/teacher/classes/${teacherClass.id}`}
             className="text-sm font-black text-emerald-700 hover:underline"
           >
@@ -291,6 +312,7 @@ export default async function TeacherStudentPage({
           </Link>
 
           <Link
+            prefetch={false}
             href="/teacher"
             className="text-sm font-black text-slate-600 hover:underline"
           >
@@ -490,6 +512,7 @@ export default async function TeacherStudentPage({
 
 
           <Link
+            prefetch={false}
             href={`/teacher/classes/${teacherClass.id}`}
             className="mt-5 inline-flex rounded-xl bg-emerald-600 px-6 py-3 font-black text-white transition hover:bg-emerald-700"
           >
