@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import PayPalReturnClient from "./PayPalReturnClient";
 
-export default function PayPalDisabledPage() {
-  redirect("/pricing?payment=cards-only");
+export default function PayPalReturnPage() {
+  return <PayPalReturnClient />;
 }
