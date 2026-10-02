@@ -17,7 +17,7 @@ export default function CourseCheckoutButton({
     setMessage("");
 
     try {
-      const response = await fetch("/api/payments/tap/create-course", {
+      const response = await fetch("/api/payments/paypal/create-course", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export default function CourseCheckoutButton({
 
       window.location.assign(payload.url);
     } catch {
-      setMessage("تعذر الاتصال ببوابة الدفع الآن.");
+      setMessage("تعذر الاتصال بـ PayPal Sandbox الآن.");
     } finally {
       setLoading(false);
     }
@@ -64,7 +64,7 @@ export default function CourseCheckoutButton({
       </button>
 
       <p className="text-xs leading-6 text-[#746a5e]">
-        بعد نجاح الدفع تُفتح الدورة تلقائيًا، وتُسجَّل 15% عمولة لضاديوم و85% صافيًا للمعلم.
+        الاختبار الحالي عبر PayPal Sandbox فقط. بعد نجاح الاختبار تُفتح الدورة تلقائيًا، وتُسجَّل 15% عمولة لضاديوم و85% صافيًا للمعلم.
       </p>
 
       {message ? (
