@@ -6,6 +6,27 @@ import CopyLiveLinkButton from "@/components/live/CopyLiveLinkButton";
 import { createLiveSessionAction } from "@/features/live/actions";
 import { createClient } from "@/lib/supabase/server";
 
+function formatBahrainDateTime(value: string | null) {
+  if (!value) return "الموعد غير محدد";
+
+  const timestamp = Date.parse(value);
+  if (!Number.isFinite(timestamp)) return "الموعد غير محدد";
+
+  const date = new Date(timestamp + 3 * 60 * 60 * 1000);
+  const pad = (part: number) => String(part).padStart(2, "0");
+
+  return [
+    pad(date.getUTCDate()),
+    pad(date.getUTCMonth() + 1),
+    date.getUTCFullYear(),
+  ].join("/") +
+    " " +
+    [
+      pad(date.getUTCHours()),
+      pad(date.getUTCMinutes()),
+    ].join(":");
+}
+
 export default async function TeacherLivePage() {
   const supabase = await createClient();
   const {
@@ -144,15 +165,16 @@ export default async function TeacherLivePage() {
                     {session.title}
                   </div>
                   <div className="mt-1 text-sm text-[#756b5f]">
-                    {new Date(
+                    {formatBahrainDateTime(
                       session.starts_at,
-                    ).toLocaleString("ar")}
+                    )}
                   </div>
                 </div>
 
                 <div className="flex flex-wrap gap-2">
                   <Link
                     href={`/live/${session.id}`}
+                    prefetch={false}
                     className="rounded-2xl bg-[#123f39] px-4 py-2 text-center font-black text-white"
                   >
                     افتح الغرفة

@@ -6,6 +6,27 @@ import CopyLiveLinkButton from "@/components/live/CopyLiveLinkButton";
 import { createSchoolMeetingAction } from "@/features/live/actions";
 import { createClient } from "@/lib/supabase/server";
 
+function formatBahrainDateTime(value: string | null) {
+  if (!value) return "الموعد غير محدد";
+
+  const timestamp = Date.parse(value);
+  if (!Number.isFinite(timestamp)) return "الموعد غير محدد";
+
+  const date = new Date(timestamp + 3 * 60 * 60 * 1000);
+  const pad = (part: number) => String(part).padStart(2, "0");
+
+  return [
+    pad(date.getUTCDate()),
+    pad(date.getUTCMonth() + 1),
+    date.getUTCFullYear(),
+  ].join("/") +
+    " " +
+    [
+      pad(date.getUTCHours()),
+      pad(date.getUTCMinutes()),
+    ].join(":");
+}
+
 export default async function SchoolMeetingsPage() {
   const supabase = await createClient();
   const db = supabase as unknown as SupabaseClient;
@@ -148,7 +169,7 @@ export default async function SchoolMeetingsPage() {
                   ) : null}
 
                   <div className="mt-2 text-sm text-slate-500">
-                    {new Date(session.starts_at).toLocaleString("ar-BH")}
+                    {formatBahrainDateTime(session.starts_at)}
                   </div>
 
                   <div className="mt-4 flex flex-wrap gap-2">
