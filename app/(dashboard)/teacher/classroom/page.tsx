@@ -14,14 +14,50 @@ export default async function TeacherClassroomPage() {
 
   if (!user) return null;
 
-  const { data: classesData } = await db
-    .from("teacher_classes")
-    .select("id,name,academic_year")
-    .eq("teacher_id", user.id)
-    .eq("is_active", true)
-    .order("created_at");
+  const [
+    classesResult,
+    lessonsResult,
+    conversationResult,
+    assignmentResult,
+    rewardResult,
+  ] = await Promise.all([
+    db
+      .from("teacher_classes")
+      .select("id,name,academic_year")
+      .eq("teacher_id", user.id)
+      .eq("is_active", true)
+      .order("created_at")
+      .limit(50),
 
-  const classes = classesData ?? [];
+    db
+      .from("lessons")
+      .select("id,title")
+      .eq("status", "published")
+      .order("lesson_number")
+      .limit(120),
+
+    db
+      .from("edu_conversations")
+      .select("id,class_id,student_id")
+      .eq("teacher_id", user.id)
+      .limit(100),
+
+    db
+      .from("edu_assignments")
+      .select("id,class_id,title,kind,target_mode,status,due_at,created_at")
+      .eq("teacher_id", user.id)
+      .order("created_at", { ascending: false })
+      .limit(50),
+
+    db
+      .from("edu_rewards")
+      .select("id,student_id,title,points,icon,created_at")
+      .eq("issuer_id", user.id)
+      .order("created_at", { ascending: false })
+      .limit(50),
+  ]);
+
+  const classes = classesResult.data ?? [];
   const classIds = classes.map((item) => String(item.id));
 
   const { data: membershipData } = classIds.length
@@ -30,6 +66,7 @@ export default async function TeacherClassroomPage() {
         .select("class_id,student_id")
         .in("class_id", classIds)
         .eq("is_active", true)
+        .limit(1000)
     : { data: [] };
 
   const memberships = membershipData ?? [];
@@ -37,15 +74,28 @@ export default async function TeacherClassroomPage() {
     ...new Set(memberships.map((item) => String(item.student_id))),
   ];
 
-  const { data: profileData } = studentIds.length
-    ? await db
-        .from("profiles")
-        .select("id,full_name,email")
-        .in("id", studentIds)
-    : { data: [] };
+  const conversations = conversationResult.data ?? [];
+  const conversationIds = conversations.map((item) => String(item.id));
+
+  const [profileResult, messageResult] = await Promise.all([
+    studentIds.length
+      ? db
+          .from("profiles")
+          .select("id,full_name,email")
+          .in("id", studentIds)
+      : Promise.resolve({ data: [] }),
+    conversationIds.length
+      ? db
+          .from("edu_messages")
+          .select("id,conversation_id,sender_id,body,created_at")
+          .in("conversation_id", conversationIds)
+          .order("created_at", { ascending: false })
+          .limit(100)
+      : Promise.resolve({ data: [] }),
+  ]);
 
   const profileById = new Map(
-    (profileData ?? []).map((item) => [String(item.id), item]),
+    (profileResult.data ?? []).map((item) => [String(item.id), item]),
   );
 
   const students = memberships.map((item) => {
@@ -58,59 +108,21 @@ export default async function TeacherClassroomPage() {
     };
   });
 
-  const { data: lessonsData } = await db
-    .from("lessons")
-    .select("id,title")
-    .eq("status", "published")
-    .order("lesson_number")
-    .limit(300);
-
-  const { data: conversationData } = await db
-    .from("edu_conversations")
-    .select("id,class_id,student_id")
-    .eq("teacher_id", user.id);
-
-  const conversations = conversationData ?? [];
-  const conversationIds = conversations.map((item) => String(item.id));
-
-  const { data: messageData } = conversationIds.length
-    ? await db
-        .from("edu_messages")
-        .select("id,conversation_id,sender_id,body,created_at")
-        .in("conversation_id", conversationIds)
-        .order("created_at", { ascending: false })
-        .limit(100)
-    : { data: [] };
-
-  const { data: assignmentData } = await db
-    .from("edu_assignments")
-    .select("id,class_id,title,kind,target_mode,status,due_at,created_at")
-    .eq("teacher_id", user.id)
-    .order("created_at", { ascending: false })
-    .limit(50);
-
-  const { data: rewardData } = await db
-    .from("edu_rewards")
-    .select("id,student_id,title,points,icon,created_at")
-    .eq("issuer_id", user.id)
-    .order("created_at", { ascending: false })
-    .limit(50);
-
   return (
     <TeacherClassroomClient
       teacherId={user.id}
       classes={classes as Array<{ id: string; name: string; academic_year: string | null }>}
       students={students}
-      lessons={(lessonsData ?? []) as Array<{ id: string; title: string }>}
+      lessons={(lessonsResult.data ?? []) as Array<{ id: string; title: string }>}
       conversations={conversations as Array<{ id: string; class_id: string; student_id: string }>}
-      messages={(messageData ?? []) as Array<{
+      messages={(messageResult.data ?? []) as Array<{
         id: string;
         conversation_id: string;
         sender_id: string;
         body: string;
         created_at: string;
       }>}
-      assignments={(assignmentData ?? []) as Array<{
+      assignments={(assignmentResult.data ?? []) as Array<{
         id: string;
         class_id: string;
         title: string;
@@ -120,7 +132,7 @@ export default async function TeacherClassroomPage() {
         due_at: string | null;
         created_at: string;
       }>}
-      rewards={(rewardData ?? []) as Array<{
+      rewards={(rewardResult.data ?? []) as Array<{
         id: string;
         student_id: string;
         title: string;
