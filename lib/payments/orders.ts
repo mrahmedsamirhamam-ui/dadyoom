@@ -86,7 +86,7 @@ export async function offerFor(params: {
 export async function createPaymentRecord(params: {
   buyerId: string;
   kind: "plus" | "course";
-  provider: "paypal" | "bank" | "tap";
+  provider: "paypal" | "bank" | "tap" | "bpay";
   amount: number;
   currency: string;
   planId?: string | null;
