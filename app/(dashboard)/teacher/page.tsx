@@ -30,7 +30,6 @@ type TeacherClassRow = {
 
 type ClassStudentRow = {
   class_id: string;
-  is_active: boolean;
 };
 
 type LessonRow = {
@@ -61,43 +60,11 @@ export default async function TeacherPage() {
     );
   }
 
-  const {
-    data: profile,
-    error: profileError,
-  } = await supabase
-    .from("profiles")
-    .select(
-      "full_name,role"
-    )
-    .eq(
-      "id",
-      user.id
-    )
-    .maybeSingle();
-
-  if (
-    profileError ||
-    !profile
-  ) {
-    throw new Error(
-      "تعذر تحميل بيانات المعلم."
-    );
-  }
-
-  const role =
-    profile.role
-      ?.trim()
-      .toLowerCase() ??
-    "";
-
-  if (
-    role !== "teacher" &&
-    role !== "admin"
-  ) {
-    redirect(
-      "/student"
-    );
-  }
+  const displayName =
+    typeof user.user_metadata?.full_name === "string" &&
+    user.user_metadata.full_name.trim()
+      ? user.user_metadata.full_name.trim()
+      : user.email?.split("@")[0] ?? "المعلم";
 
   /*
    * جداول Classroom أضيفت بعد آخر
@@ -147,7 +114,7 @@ export default async function TeacherPage() {
             ascending: false,
           }
         )
-        .limit(100),
+        .limit(50),
 
       supabase
         .from("lessons")
@@ -230,12 +197,17 @@ export default async function TeacherPage() {
         "teacher_class_students"
       )
       .select(
-        "class_id,is_active"
+        "class_id"
       )
       .in(
         "class_id",
         classIds
-      );
+      )
+      .eq(
+        "is_active",
+        true
+      )
+      .limit(1000);
 
     if (error) {
       console.warn(
@@ -252,42 +224,21 @@ export default async function TeacherPage() {
   }
 
   const studentCountByClass =
-    new Map<
-      string,
-      number
-    >();
+    new Map<string, number>();
 
-  for (
-    const membership of
-    memberships
-  ) {
-    if (
-      !membership.is_active
-    ) {
-      continue;
-    }
-
+  for (const membership of memberships) {
     studentCountByClass.set(
       membership.class_id,
-      (
-        studentCountByClass.get(
-          membership.class_id
-        ) ??
-        0
-      ) + 1
+      (studentCountByClass.get(membership.class_id) ?? 0) + 1,
     );
   }
 
   const totalStudents =
-    memberships.filter(
-      (membership) =>
-        membership.is_active
-    ).length;
+    memberships.length;
 
   const activeClasses =
     classes.filter(
-      (item) =>
-        item.is_active
+      (item) => item.is_active,
     ).length;
 
   return (
@@ -304,7 +255,7 @@ export default async function TeacherPage() {
 
           <h1 className="mt-2 text-3xl font-black sm:text-4xl">
             مرحبًا{" "}
-            {profile.full_name}
+            {displayName}
             {" 👋"}
           </h1>
 
