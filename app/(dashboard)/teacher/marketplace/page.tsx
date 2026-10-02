@@ -41,7 +41,7 @@ export default async function TeacherMarketplacePage() {
     db
       .from("edu_teacher_payout_profiles")
       .select(
-        "paypal_email,iban,account_holder_name,bank_name,swift_bic,country,is_verified",
+        "bpay_mobile,bpay_name,paypal_email,iban,account_holder_name,bank_name,swift_bic,country,is_verified",
       )
       .eq("teacher_id", user.id)
       .maybeSingle(),
