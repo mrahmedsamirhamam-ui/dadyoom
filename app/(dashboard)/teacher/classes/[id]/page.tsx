@@ -76,16 +76,36 @@ function toNumber(
 function formatDate(
   value: string
 ) {
-  return new Intl.DateTimeFormat(
-    "ar-BH",
-    {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    }
-  ).format(
-    new Date(value)
-  );
+  const timestamp = Date.parse(value);
+
+  if (!Number.isFinite(timestamp)) {
+    return "-";
+  }
+
+  const date =
+    new Date(
+      timestamp +
+        3 * 60 * 60 * 1000
+    );
+
+  const pad = (
+    part: number
+  ) =>
+    String(part)
+      .padStart(
+        2,
+        "0"
+      );
+
+  return [
+    pad(
+      date.getUTCDate()
+    ),
+    pad(
+      date.getUTCMonth() + 1
+    ),
+    date.getUTCFullYear(),
+  ].join("/");
 }
 
 export default async function TeacherClassPage({
@@ -245,6 +265,7 @@ export default async function TeacherClassPage({
 
         <div>
           <Link
+            prefetch={false}
             href="/teacher"
             className="text-sm font-black text-emerald-700 hover:underline"
           >
@@ -443,6 +464,7 @@ export default async function TeacherClassPage({
 
                               <div>
                                 <Link
+  prefetch={false}
   href={`/teacher/classes/${teacherClass.id}/students/${student.student_id}`}
   className="font-black text-slate-900 transition hover:text-emerald-700 hover:underline"
 >
