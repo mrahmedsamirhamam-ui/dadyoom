@@ -2569,7 +2569,10 @@ async function studentFlow(
       "الدروس المكتملة",
     ) &&
       body.includes(
-        "المهارات",
+        "التدريب التكيفي",
+      ) &&
+      body.includes(
+        "المناهج والدروس",
       ),
     "E2E_STUDENT_DASHBOARD_FAILED",
   );
