@@ -17,7 +17,7 @@ export default function CourseCheckoutButton({
     setMessage("");
 
     try {
-      const response = await fetch("/api/payments/paypal/create-course", {
+      const response = await fetch("/api/payments/tap/create-course", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export default function CourseCheckoutButton({
 
       window.location.assign(payload.url);
     } catch {
-      setMessage("تعذر الاتصال بـ PayPal Sandbox الآن.");
+      setMessage("الدفع الإلكتروني للدورات متوقف مؤقتًا حتى تفعيل مسار BPay المناسب.");
     } finally {
       setLoading(false);
     }
@@ -64,7 +64,7 @@ export default function CourseCheckoutButton({
       </button>
 
       <p className="text-xs leading-6 text-[#746a5e]">
-        الاختبار الحالي عبر PayPal Sandbox فقط. بعد نجاح الاختبار تُفتح الدورة تلقائيًا، وتُسجَّل 15% عمولة لضاديوم و85% صافيًا للمعلم.
+        الدفع الإلكتروني للدورات قيد التحويل إلى مسار مناسب للحسابات الفردية في البحرين. لن يتم تنفيذ دفع حقيقي قبل اكتمال التحقق.
       </p>
 
       {message ? (
