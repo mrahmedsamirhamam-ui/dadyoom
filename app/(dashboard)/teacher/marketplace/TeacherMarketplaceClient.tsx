@@ -7,6 +7,7 @@ import { useState } from "react";
 
 import {
   addMarketplaceLesson,
+  confirmBpayCoursePayment,
   createMarketplaceCourse,
   publishMarketplaceCourse,
   savePayoutProfile,
@@ -39,6 +40,15 @@ type Earning = {
   created_at: string;
 };
 
+type PendingBpayPayment = {
+  id: string;
+  course_id: string;
+  amount: number;
+  currency: string;
+  bank_reference: string | null;
+  updated_at: string;
+};
+
 type Payout = {
   bpay_mobile: string | null;
   bpay_name: string | null;
@@ -55,10 +65,12 @@ export default function TeacherMarketplaceClient({
   courses,
   earnings,
   payout,
+  pendingBpayPayments,
 }: {
   courses: Course[];
   earnings: Earning[];
   payout: Payout | null;
+  pendingBpayPayments: PendingBpayPayment[];
 }) {
   const router = useRouter();
   const [status, setStatus] = useState("");
@@ -119,6 +131,65 @@ export default function TeacherMarketplaceClient({
           <div className="rounded-2xl bg-[#fff7e4] p-3 font-bold">
             {status}
           </div>
+        ) : null}
+
+        {pendingBpayPayments.length ? (
+          <section className="rounded-[2rem] border border-amber-200 bg-amber-50 p-5">
+            <h2 className="text-xl font-black text-[#123f39]">
+              دفعات BPay تنتظر تأكيدك
+            </h2>
+            <p className="mt-2 text-sm leading-7 text-[#665b4d]">
+              افتح تطبيق BPay وتأكد من وصول المبلغ والمرجع قبل الضغط على تأكيد. بعد التأكيد تُفتح الدورة للطالب ويُسجَّل 15% كعمولة مستحقة لضاديوم.
+            </p>
+
+            <div className="mt-4 grid gap-3 lg:grid-cols-2">
+              {pendingBpayPayments.map((payment) => {
+                const course = courses.find(
+                  (item) => item.id === payment.course_id,
+                );
+
+                return (
+                  <article
+                    key={payment.id}
+                    className="rounded-2xl border border-amber-200 bg-white p-4"
+                  >
+                    <div className="font-black text-[#123f39]">
+                      {course?.title ?? "دورة مدفوعة"}
+                    </div>
+                    <div className="mt-2 text-sm font-bold">
+                      {Number(payment.amount).toFixed(3)} {payment.currency}
+                    </div>
+                    <div className="mt-2 rounded-xl bg-[#fff8e8] p-3 text-sm">
+                      مرجع BPay:{" "}
+                      <b dir="ltr">{payment.bank_reference ?? "—"}</b>
+                    </div>
+                    <div className="mt-2 text-xs text-[#746957]">
+                      أُرسل: {new Date(payment.updated_at).toLocaleString("ar-BH")}
+                    </div>
+
+                    <form
+                      className="mt-3"
+                      action={async (formData) => {
+                        await runAction(
+                          confirmBpayCoursePayment,
+                          formData,
+                        );
+                      }}
+                    >
+                      <input
+                        type="hidden"
+                        name="paymentOrderId"
+                        value={payment.id}
+                      />
+                      <button className="dadyoom-arabic-button w-full rounded-xl px-4 py-2 font-black text-white">
+                        تأكيد وصول المبلغ وفتح الدورة
+                      </button>
+                    </form>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
         ) : null}
 
         <section className="grid gap-5 xl:grid-cols-2">
