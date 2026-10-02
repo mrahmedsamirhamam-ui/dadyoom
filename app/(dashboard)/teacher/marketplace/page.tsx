@@ -2,6 +2,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 
 import TeacherMarketplaceClient from "./TeacherMarketplaceClient";
 
+import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function TeacherMarketplacePage() {
@@ -54,11 +55,45 @@ export default async function TeacherMarketplacePage() {
   const payout =
     payoutResult.data ?? null;
 
+  let pendingBpayPayments: Array<{
+    id: string;
+    course_id: string;
+    amount: number;
+    currency: string;
+    bank_reference: string | null;
+    updated_at: string;
+  }> = [];
+
+  if (courses.length) {
+    const admin = createAdminClient();
+    const courseIds = courses.map((course) => course.id);
+
+    const { data } = await admin
+      .from("edu_payment_orders")
+      .select("id,course_id,amount,currency,bank_reference,updated_at")
+      .eq("provider", "bpay")
+      .eq("kind", "course")
+      .eq("status", "approved")
+      .in("course_id", courseIds)
+      .order("updated_at", { ascending: false })
+      .limit(100);
+
+    pendingBpayPayments = (data ?? []).map((item) => ({
+      id: String(item.id),
+      course_id: String(item.course_id),
+      amount: Number(item.amount),
+      currency: String(item.currency),
+      bank_reference: item.bank_reference ? String(item.bank_reference) : null,
+      updated_at: String(item.updated_at),
+    }));
+  }
+
   return (
     <TeacherMarketplaceClient
       courses={courses}
       earnings={earnings}
       payout={payout}
+      pendingBpayPayments={pendingBpayPayments}
     />
   );
 }
