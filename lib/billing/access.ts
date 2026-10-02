@@ -104,7 +104,7 @@ export async function billingStatus() {
     );
   }
 
-  let role: string | null =
+  const role: string | null =
     typeof user?.user_metadata?.role === "string"
       ? user.user_metadata.role
       : null;
@@ -113,19 +113,10 @@ export async function billingStatus() {
   let planLookupFailed = false;
 
   if (user) {
-    const [
-      planResult,
-      profileResult,
-    ] = await Promise.all([
-      db.rpc("edu_current_plan", {
+    const planResult =
+      await db.rpc("edu_current_plan", {
         p_user: user.id,
-      }),
-      db
-        .from("profiles")
-        .select("role")
-        .eq("id", user.id)
-        .maybeSingle(),
-    ]);
+      });
 
     if (planResult.error) {
       planLookupFailed = true;
@@ -139,59 +130,48 @@ export async function billingStatus() {
           ? "plus"
           : "free";
     }
-
-    if (profileResult.error) {
-      console.warn(
-        "BILLING_STATUS_PROFILE_WARNING",
-        profileResult.error.message,
-      );
-    } else if (
-      typeof profileResult.data?.role === "string"
-    ) {
-      role = profileResult.data.role;
-    }
   }
 
   const dashboard =
     dashboardForRole(role);
 
-  const [
-    planRowResult,
-    plusPlanRowResult,
-  ] = await Promise.all([
-    db
+  /*
+   * Fetch both the current plan presentation data and Plus pricing in one
+   * request. This endpoint is called frequently by role shells, so keeping it
+   * lightweight matters on Cloudflare's CPU budget.
+   */
+  const plansResult =
+    await db
       .from("edu_subscription_plans")
       .select(
         "id,name_ar,monthly_price,currency,ads_enabled,limits",
       )
-      .eq("id", plan)
-      .maybeSingle(),
-    db
-      .from("edu_subscription_plans")
-      .select("monthly_price,currency")
-      .eq("id", "plus")
-      .maybeSingle(),
-  ]);
+      .in(
+        "id",
+        plan === "plus"
+          ? ["plus"]
+          : ["free", "plus"],
+      );
 
-  if (planRowResult.error) {
+  if (plansResult.error) {
     console.warn(
-      "BILLING_STATUS_PLAN_ROW_WARNING",
-      planRowResult.error.message,
+      "BILLING_STATUS_PLAN_ROWS_WARNING",
+      plansResult.error.message,
     );
   }
 
-  if (plusPlanRowResult.error) {
-    console.warn(
-      "BILLING_STATUS_PLUS_ROW_WARNING",
-      plusPlanRowResult.error.message,
-    );
-  }
+  const planRows =
+    plansResult.data ?? [];
 
   const planRow =
-    planRowResult.data;
+    planRows.find(
+      row => row.id === plan,
+    ) ?? null;
 
   const plusPlanRow =
-    plusPlanRowResult.data;
+    planRows.find(
+      row => row.id === "plus",
+    ) ?? null;
 
   /*
    * Billing status is a presentation/readiness endpoint. A transient
@@ -227,10 +207,7 @@ export async function billingStatus() {
       Boolean(authError) ||
       planLookupFailed ||
       Boolean(
-        planRowResult.error,
-      ) ||
-      Boolean(
-        plusPlanRowResult.error,
+        plansResult.error,
       ),
     limits:
       (planRow?.limits ??
