@@ -63,7 +63,7 @@ export async function POST(request: Request) {
 
     const { data: course, error: courseError } = await db
       .from("edu_marketplace_courses")
-      .select("id,teacher_id,max_students,status")
+      .select("id,teacher_id,max_students,status,commission_bps")
       .eq("id", courseId)
       .eq("status", "published")
       .maybeSingle();
@@ -136,6 +136,48 @@ export async function POST(request: Request) {
       courseId,
     });
 
+    const { data: payoutRouting, error: payoutRoutingError } = await db
+      .from("edu_teacher_payout_routing")
+      .select("tap_destination_id,onboarding_status,payout_enabled")
+      .eq("teacher_id", course.teacher_id)
+      .maybeSingle();
+
+    if (
+      payoutRoutingError ||
+      !payoutRouting?.tap_destination_id ||
+      payoutRouting.onboarding_status !== "approved" ||
+      payoutRouting.payout_enabled !== true
+    ) {
+      return NextResponse.json(
+        {
+          error: "TEACHER_MARKETPLACE_ONBOARDING_REQUIRED",
+          message:
+            "شراء هذه الدورة سيتاح بعد اكتمال تفعيل حساب المعلم لاستلام حصته عبر Tap Marketplace.",
+        },
+        { status: 503 },
+      );
+    }
+
+    const commissionBps = Number(course.commission_bps ?? 1500);
+    if (
+      !Number.isInteger(commissionBps) ||
+      commissionBps < 0 ||
+      commissionBps > 10000
+    ) {
+      throw new Error("INVALID_COURSE_COMMISSION");
+    }
+
+    const teacherAmount = Number(
+      (
+        offer.amount *
+        ((10000 - commissionBps) / 10000)
+      ).toFixed(3),
+    );
+
+    if (!(teacherAmount > 0) || teacherAmount >= offer.amount) {
+      throw new Error("INVALID_MARKETPLACE_SPLIT");
+    }
+
     const paymentOrderId = await createPaymentRecord({
       buyerId: user.id,
       kind: "course",
@@ -158,7 +200,11 @@ export async function POST(request: Request) {
           null,
         email: user.email ?? null,
       },
-      destination: null,
+      destination: {
+        id: payoutRouting.tap_destination_id,
+        amount: teacherAmount,
+        currency: offer.currency,
+      },
     });
 
     const { error: updateError } = await db
