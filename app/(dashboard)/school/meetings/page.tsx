@@ -38,34 +38,64 @@ export default async function SchoolMeetingsPage() {
     redirect("/login");
   }
 
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("role")
-    .eq("id", user.id)
-    .maybeSingle();
+  const [
+    profileResult,
+    schoolResult,
+  ] = await Promise.all([
+    supabase
+      .from("profiles")
+      .select("role")
+      .eq("id", user.id)
+      .maybeSingle(),
+    supabase
+      .from("schools")
+      .select("id,name")
+      .eq("owner_id", user.id)
+      .eq("is_active", true)
+      .maybeSingle(),
+  ]);
 
-  const role = String(profile?.role ?? "").trim().toLowerCase();
+  if (profileResult.error) {
+    throw profileResult.error;
+  }
 
-  if (role !== "school" && role !== "admin") {
+  const role = String(
+    profileResult.data?.role ?? "",
+  )
+    .trim()
+    .toLowerCase();
+
+  if (
+    role !== "school" &&
+    role !== "admin"
+  ) {
     redirect("/student");
   }
 
-  const { data: school } = await supabase
-    .from("schools")
-    .select("id,name")
-    .eq("owner_id", user.id)
-    .eq("is_active", true)
-    .maybeSingle();
+  if (schoolResult.error) {
+    throw schoolResult.error;
+  }
+
+  const school =
+    schoolResult.data;
 
   if (!school) {
     redirect("/school");
   }
 
-  const { data: sessions } = await db
+  const {
+    data: sessions,
+    error: sessionsError,
+  } = await db
     .from("edu_live_sessions")
     .select("id,title,description,starts_at,ends_at,status")
     .eq("school_id", school.id)
-    .order("starts_at", { ascending: true });
+    .order("starts_at", { ascending: true })
+    .limit(50);
+
+  if (sessionsError) {
+    throw sessionsError;
+  }
 
   return (
     <main
