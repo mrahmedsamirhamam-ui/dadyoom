@@ -111,5 +111,11 @@
       "verifiedAt": "2026-09-25",
       "verificationMethod": "official-state-ministry-arabic+national-curriculum-center-books+2026-stage-evidence+national-pack"
     }
-  ]
+  ],
+  "detailedOfficialTopics": 60,
+  "detailedOfficialSource": {
+    "label": "وزارة التربية والتعليم - مفردات مقررات الصف الأول الثانوي المطور",
+    "url": "https://gmoe.gov.sd/wp-content/uploads/2026/01/%D9%85%D9%81%D8%B1%D8%AF%D8%A7%D8%AA-%D9%85%D9%82%D8%B1%D8%B1%D8%A7%D8%AA-%D8%A7%D9%84%D8%B5%D9%81-%D8%A7%D9%84%D8%A3%D9%88%D9%84-%D8%AB%D8%A7%D9%86%D9%88%D9%8A.pdf",
+    "verifiedAt": "2026-10-03"
+  }
 }
