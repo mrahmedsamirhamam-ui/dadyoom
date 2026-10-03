@@ -247,7 +247,6 @@ export default function EmailPasswordAuthForm({
                   : "") ||
                 destination,
         );
-        router.refresh();
         return;
       }
 
@@ -332,7 +331,6 @@ export default function EmailPasswordAuthForm({
       router.replace(
         roleDestinations[role] || "/student",
       );
-      router.refresh();
     } catch (cause) {
       const message =
         cause instanceof Error
@@ -516,6 +514,7 @@ export default function EmailPasswordAuthForm({
             {signup ? "لديك حساب بالفعل؟ " : "ليس لديك حساب؟ "}
             <Link
               href={signup ? "/login" : "/signup"}
+              prefetch={false}
               className="font-black text-[#123f39] underline"
             >
               {signup ? "تسجيل الدخول" : "إنشاء حساب"}
