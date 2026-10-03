@@ -9,16 +9,24 @@ import {
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+const GOOGLE_VERIFICATION_FILE =
+  "/google4170b7663eaee81a.html";
+
 export async function GET() {
   const siteUrl = getSiteUrl();
+  const googleMetaConfigured =
+    Boolean(process.env.GOOGLE_SITE_VERIFICATION?.trim());
 
   return NextResponse.json({
     ok: true,
     siteUrl,
     robotsUrl: `${siteUrl}/robots.txt`,
     sitemapUrl: `${siteUrl}/sitemap.xml`,
-    googleVerificationConfigured:
-      Boolean(process.env.GOOGLE_SITE_VERIFICATION?.trim()),
+    googleVerificationConfigured: true,
+    googleVerificationMethod:
+      googleMetaConfigured ? "meta" : "static-file",
+    googleVerificationUrl:
+      `${siteUrl}${GOOGLE_VERIFICATION_FILE}`,
     bingVerificationConfigured:
       Boolean(process.env.BING_SITE_VERIFICATION?.trim()),
     dynamicLessonSitemapConfigured:
