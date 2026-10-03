@@ -83,6 +83,7 @@ for (const code of expected) {
     officialLessons: 0,
     mappedLessons: 0,
     verifiedLessons: 0,
+    secondaryCoreByGrade: new Map(),
   });
 }
 
@@ -111,6 +112,25 @@ if (fs.existsSync(mappingDir)) {
     state.officialLessons += officialLessons;
     state.mappedLessons += mappedLessons;
     state.verifiedLessons += verifiedLessons;
+
+    if (
+      Number.isInteger(grade) &&
+      grade >= 10 &&
+      grade <= 13
+    ) {
+      const slugs =
+        state.secondaryCoreByGrade.get(grade) ??
+        new Set();
+
+      for (const item of mapping?.mappings ?? []) {
+        for (const core of item?.coreCoverage ?? []) {
+          const slug = String(core?.slug ?? "").trim();
+          if (slug) slugs.add(slug);
+        }
+      }
+
+      state.secondaryCoreByGrade.set(grade, slugs);
+    }
 
     if (
       Number.isInteger(grade) &&
@@ -153,11 +173,18 @@ for (const country of registry.countries ?? []) {
     mappings.mappedLessons === mappings.officialLessons &&
     mappings.verifiedLessons === mappings.officialLessons;
 
+  const secondaryCoreClosed =
+    [10, 11, 12].every(
+      (grade) =>
+        (mappings.secondaryCoreByGrade.get(grade)?.size ?? 0) >= 18,
+    );
+
   const ready =
     sourceVerified &&
     matchClosed &&
     twelveMappingGrades &&
-    mappingCountsClosed;
+    mappingCountsClosed &&
+    secondaryCoreClosed;
 
   if (ready) readyCountries += 1;
   else failures.push(code);
@@ -170,12 +197,39 @@ for (const country of registry.countries ?? []) {
       `PACK_GRADES=${packs.grades.size}/12`,
       `VERIFIED_MAPPING_GRADES=${mappings.verifiedGrades.size}/12`,
       `MAPPED=${mappings.mappedLessons}/${mappings.officialLessons}`,
+      `SECONDARY_CORE=G10:${mappings.secondaryCoreByGrade.get(10)?.size ?? 0},G11:${mappings.secondaryCoreByGrade.get(11)?.size ?? 0},G12:${mappings.secondaryCoreByGrade.get(12)?.size ?? 0}`,
       `READY=${ready ? "YES" : "NO"}`,
     ].join(" "),
   );
 }
 
 console.log(`OFFICIAL_22_READY=${readyCountries}/22`);
+
+const grade13Countries = ["TN", "MR"];
+const grade13Failures = [];
+
+for (const code of grade13Countries) {
+  const mappings = mappingState.get(code);
+  const coreCount =
+    mappings?.secondaryCoreByGrade.get(13)?.size ?? 0;
+
+  console.log(
+    `SECONDARY_G13 COUNTRY=${code} CORE=${coreCount}/18`,
+  );
+
+  if (coreCount < 18) {
+    grade13Failures.push(code);
+  }
+}
+
+if (grade13Failures.length > 0) {
+  console.error(
+    `SECONDARY_G13_GATE=FAIL PENDING=${grade13Failures.join(",")}`,
+  );
+  process.exit(1);
+}
+
+console.log("SECONDARY_G13_GATE=PASS");
 
 if (readyCountries !== 22) {
   console.error(`OFFICIAL_22_GATE=FAIL PENDING=${failures.join(",")}`);
