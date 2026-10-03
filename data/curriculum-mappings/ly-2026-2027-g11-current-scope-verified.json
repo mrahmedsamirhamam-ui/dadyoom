@@ -903,5 +903,80 @@
       "verifiedAt": "2026-09-25",
       "verificationMethod": "official-cerc-catalog+2026-2027-academic-plan+core-skill-bundle+national-pack-v1"
     }
-  ]
+  ],
+  "secondarySupportCoverage": [
+    {
+      "slug": "ly-dadyoom-core-g11-l01",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "ly-dadyoom-core-g11-l02",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "ly-dadyoom-core-g11-l03",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "ly-dadyoom-core-g11-l04",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "ly-dadyoom-core-g11-l05",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "ly-dadyoom-core-g11-l06",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "ly-dadyoom-core-g11-l07",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "ly-dadyoom-core-g11-l08",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "ly-dadyoom-core-g11-l09",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "ly-dadyoom-core-g11-l10",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "ly-dadyoom-core-g11-l11",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "ly-dadyoom-core-g11-l12",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "ly-dadyoom-core-g11-l13",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "ly-dadyoom-core-g11-l14",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "ly-dadyoom-core-g11-l15",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "ly-dadyoom-core-g11-l16",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "ly-dadyoom-core-g11-l17",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "ly-dadyoom-core-g11-l18",
+      "relation": "grade-level-support"
+    }
+  ],
+  "secondarySupportPolicy": "Grade-level Dadyoom support coverage is separate from official lesson-to-skill mappings and does not imply 1:1 ministry equivalence."
 }
