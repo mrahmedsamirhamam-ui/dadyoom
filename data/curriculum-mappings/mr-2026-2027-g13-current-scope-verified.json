@@ -32,7 +32,80 @@
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
       "rationale": "الكتب الرسمية الحالية تفصل العربية بين الشعبتين الأدبية والعلمية في السنوات 5-7 من الثانوي؛ تُحفظ هذه الفروق في المطابقة.",
-      "coreCoverage": [],
+      "coreCoverage": [
+        {
+          "slug": "mr-dadyoom-core-g13-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l18",
+          "relation": "supporting-skill"
+        }
+      ],
       "nationalExtensionInPack": true,
       "verifiedAt": "2026-09-25",
       "verificationMethod": "official-ipn-koutoubi+official-ministry-reform+official-current-year-preparation+national-pack"
@@ -54,7 +127,80 @@
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
       "rationale": "الكتب الرسمية الحالية تفصل العربية بين الشعبتين الأدبية والعلمية في السنوات 5-7 من الثانوي؛ تُحفظ هذه الفروق في المطابقة.",
-      "coreCoverage": [],
+      "coreCoverage": [
+        {
+          "slug": "mr-dadyoom-core-g13-l01",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l02",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l03",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l04",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l05",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l06",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l07",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l08",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l09",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l10",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l11",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l12",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l13",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l14",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l15",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l16",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l17",
+          "relation": "supporting-skill"
+        },
+        {
+          "slug": "mr-dadyoom-core-g13-l18",
+          "relation": "supporting-skill"
+        }
+      ],
       "nationalExtensionInPack": true,
       "verifiedAt": "2026-09-25",
       "verificationMethod": "official-ipn-koutoubi+official-ministry-reform+official-current-year-preparation+national-pack"

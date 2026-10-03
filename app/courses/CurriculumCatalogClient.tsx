@@ -28,6 +28,17 @@ const diff = {
   advanced: "متقدم",
 } as const;
 
+const SECONDARY_COMPLETE_ID =
+  "__secondary_complete__";
+
+function isDadyoomCoreCurriculum(
+  name: string,
+): boolean {
+  return name.includes(
+    "المسار العربي الأساسي لضاديوم",
+  );
+}
+
 const gradeNames: Record<number, string> = {
   1: "الصف الأول الابتدائي",
   2: "الصف الثاني الابتدائي",
@@ -48,9 +59,32 @@ function uniq<T extends { id: string }>(items: T[]): T[] {
   return [...new Map(items.map((item) => [item.id, item])).values()];
 }
 
-function gradeName(number: number | null, fallback = ""): string {
+function gradeName(
+  number: number | null,
+  fallback = "",
+  countryCode = "",
+): string {
+  const value = Number(number);
+
+  if (value === 13) {
+    if (countryCode === "TN") {
+      return "السنة الرابعة ثانوي";
+    }
+
+    if (countryCode === "MR") {
+      return "السنة السابعة ثانوي";
+    }
+
+    if (fallback) {
+      return fallback.replace(
+        /\s*—\s*مسار ضاديوم$/u,
+        "",
+      );
+    }
+  }
+
   return (
-    gradeNames[Number(number)] ??
+    gradeNames[value] ??
     (fallback || `المستوى ${number ?? ""}`)
   );
 }
@@ -134,7 +168,11 @@ export default function CurriculumCatalogClient({
               value={String(gradeNumber)}
               options={gradeOptions.map((value) => [
                 String(value),
-                gradeName(value),
+                gradeName(
+                  value,
+                  "",
+                  country,
+                ),
               ])}
               onChange={(value) => {
                 setGradeNumber(Number(value));
@@ -237,21 +275,64 @@ function CatalogScope({
       .map((item) => item.curriculum),
   ).sort((a, b) => a.name.localeCompare(b.name, "ar"));
 
-  const curriculumId = curricula.some(
-    (item) => item.id === curriculum,
-  )
-    ? curriculum
-    : curricula[0]?.id ?? "";
+  const hasSecondaryComplete =
+    gradeNumber >= 10 &&
+    curricula.length > 1;
+
+  const curriculumId =
+    curriculum ===
+      SECONDARY_COMPLETE_ID &&
+    hasSecondaryComplete
+      ? SECONDARY_COMPLETE_ID
+      : curricula.some(
+            (item) =>
+              item.id ===
+              curriculum,
+          )
+        ? curriculum
+        : hasSecondaryComplete
+          ? SECONDARY_COMPLETE_ID
+          : curricula[0]?.id ?? "";
 
   const gradeUnits = units
     .filter(
       (item) =>
         (!selectedYear ||
           item.curriculum.academicYear === selectedYear) &&
-        (!curriculumId ||
-          item.curriculum.id === curriculumId),
+        (
+          curriculumId ===
+            SECONDARY_COMPLETE_ID ||
+          !curriculumId ||
+          item.curriculum.id ===
+            curriculumId
+        ),
     )
-    .sort((a, b) => a.order - b.order);
+    .sort((a, b) => {
+      if (
+        curriculumId ===
+        SECONDARY_COMPLETE_ID
+      ) {
+        const aCore =
+          isDadyoomCoreCurriculum(
+            a.curriculum.name,
+          )
+            ? 1
+            : 0;
+
+        const bCore =
+          isDadyoomCoreCurriculum(
+            b.curriculum.name,
+          )
+            ? 1
+            : 0;
+
+        if (aCore !== bCore) {
+          return aCore - bCore;
+        }
+      }
+
+      return a.order - b.order;
+    });
 
   const shown = unit
     ? gradeUnits.filter((item) => item.id === unit)
@@ -273,6 +354,36 @@ function CatalogScope({
     (sum, item) => sum + item.lessons.length,
     0,
   );
+
+  const officialLessonCount =
+    gradeUnits
+      .filter(
+        (item) =>
+          !isDadyoomCoreCurriculum(
+            item.curriculum.name,
+          ),
+      )
+      .reduce(
+        (sum, item) =>
+          sum +
+          item.lessons.length,
+        0,
+      );
+
+  const supportingLessonCount =
+    gradeUnits
+      .filter(
+        (item) =>
+          isDadyoomCoreCurriculum(
+            item.curriculum.name,
+          ),
+      )
+      .reduce(
+        (sum, item) =>
+          sum +
+          item.lessons.length,
+        0,
+      );
 
   return (
     <>
@@ -296,16 +407,24 @@ function CatalogScope({
           <SelectBox
             label={
               gradeNumber >= 10
-                ? "المسار الثانوي"
+                ? "عرض المرحلة الثانوية"
                 : "المنهج"
             }
             value={curriculumId}
             options={
               curricula.length
-                ? curricula.map((item) => [
-                    item.id,
-                    curriculumName(item.name),
-                  ])
+                ? [
+                    ...(hasSecondaryComplete
+                      ? [[
+                          SECONDARY_COMPLETE_ID,
+                          "المسار الكامل — الرسمي + دروس ضاديوم الداعمة",
+                        ]]
+                      : []),
+                    ...curricula.map((item) => [
+                      item.id,
+                      curriculumName(item.name),
+                    ]),
+                  ]
                 : [["", "—"]]
             }
             onChange={(value) => {
@@ -341,6 +460,17 @@ function CatalogScope({
           <span className="rounded-full bg-[#eef4f0] px-3 py-2">
             {currentTrackLessonCount} درسًا في المسار
           </span>
+          {curriculumId ===
+          SECONDARY_COMPLETE_ID ? (
+            <>
+              <span className="rounded-full bg-[#e8f3ff] px-3 py-2">
+                {officialLessonCount} عقدة/درس رسمي موثق
+              </span>
+              <span className="rounded-full bg-[#eef9ef] px-3 py-2">
+                {supportingLessonCount} درس ضاديوم داعم
+              </span>
+            </>
+          ) : null}
           {curricula.length > 1 ? (
             <span className="rounded-full bg-[#e8f3ff] px-3 py-2">
               {curricula.length} مسارات متاحة
@@ -400,12 +530,22 @@ function CatalogScope({
             >
               <header className="flex min-w-0 items-center justify-between gap-3 border-b border-[#eadfc9] p-5">
                 <div className="min-w-0">
-                  <p className="text-xs font-black text-[#9a702a]">
-                    {gradeName(
-                      item.grade.number,
-                      item.grade.name,
-                    )}
-                  </p>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <p className="text-xs font-black text-[#9a702a]">
+                      {gradeName(
+                        item.grade.number,
+                        item.grade.name,
+                        item.country.code,
+                      )}
+                    </p>
+                    <span className="rounded-full bg-[#f6f0e5] px-2.5 py-1 text-[10px] font-black text-[#6f572c]">
+                      {isDadyoomCoreCurriculum(
+                        item.curriculum.name,
+                      )
+                        ? "دروس ضاديوم الداعمة"
+                        : "المطابقة الوطنية الموثقة"}
+                    </span>
+                  </div>
                   <h2 className="break-words text-xl font-black text-[#123f39]">
                     {item.title}
                   </h2>
