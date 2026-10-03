@@ -229,5 +229,80 @@
       "verifiedAt": "2026-09-25",
       "verificationMethod": "official-2026-arabic-assessment+official-curriculum-library+official-digital-textbooks+official-arabic-skills+national-pack"
     }
-  ]
+  ],
+  "secondarySupportCoverage": [
+    {
+      "slug": "om-dadyoom-core-g12-l01",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "om-dadyoom-core-g12-l02",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "om-dadyoom-core-g12-l03",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "om-dadyoom-core-g12-l04",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "om-dadyoom-core-g12-l05",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "om-dadyoom-core-g12-l06",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "om-dadyoom-core-g12-l07",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "om-dadyoom-core-g12-l08",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "om-dadyoom-core-g12-l09",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "om-dadyoom-core-g12-l10",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "om-dadyoom-core-g12-l11",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "om-dadyoom-core-g12-l12",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "om-dadyoom-core-g12-l13",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "om-dadyoom-core-g12-l14",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "om-dadyoom-core-g12-l15",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "om-dadyoom-core-g12-l16",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "om-dadyoom-core-g12-l17",
+      "relation": "grade-level-support"
+    },
+    {
+      "slug": "om-dadyoom-core-g12-l18",
+      "relation": "grade-level-support"
+    }
+  ],
+  "secondarySupportPolicy": "Grade-level Dadyoom support coverage is separate from official lesson-to-skill mappings and does not imply 1:1 ministry equivalence."
 }

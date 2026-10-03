@@ -129,6 +129,11 @@ if (fs.existsSync(mappingDir)) {
         }
       }
 
+      for (const core of mapping?.secondarySupportCoverage ?? []) {
+        const slug = String(core?.slug ?? "").trim();
+        if (slug) slugs.add(slug);
+      }
+
       state.secondaryCoreByGrade.set(grade, slugs);
     }
 
