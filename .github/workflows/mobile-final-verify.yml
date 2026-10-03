@@ -398,6 +398,11 @@ jobs:
 
           echo "DADYOOM_FRONT_DOOR_SMOKE=PASS"
 
+      - name: Notify IndexNow after deploy
+        env:
+          DADYOOM_INDEXNOW_SITE: "https://dadyoom.dpdns.org"
+        run: node scripts/submit-indexnow.mjs
+
       - name: Authenticated product E2E
         if: github.event_name == 'workflow_dispatch'
         env:

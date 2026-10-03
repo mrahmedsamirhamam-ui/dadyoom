@@ -1,6 +1,6 @@
 const SITE = (
   process.env.DADYOOM_INDEXNOW_SITE ||
-  "https://dadyoom.pages.dev"
+  "https://dadyoom.dpdns.org"
 ).replace(/\/$/u, "");
 
 const KEY = "7d8e3f1a2b4c5d6e7f8091a2b3c4d5e6";
