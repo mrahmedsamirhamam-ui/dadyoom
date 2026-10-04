@@ -426,3 +426,45 @@ The remaining items are not missing application code:
 - Catch-all Yemen secondary bundle placeholders were switched to `draft` so they are not counted as separate official books.
 - Old superseded generic activities were removed after the refined book nodes were added.
 - Internal textbook lesson titles remain unexpanded until a readable official TOC is available.
+
+
+## 2026-10-04 — Secondary source-depth follow-up: Morocco, Tunisia, Syria, Somalia, Comoros
+
+### Morocco
+- Official Ministry TelmidTice now provides strong digital-course coverage evidence:
+  - Grade 10 / جذع مشترك أدبي / اللغة العربية: 45 lessons across 17 weeks.
+  - Grade 12 / السنة الثانية باكالوريا آداب / اللغة العربية وآدابها: 49 lessons across 17 weeks.
+- These official counts and exact TelmidTice listing URLs are recorded in the mapping/catalog metadata.
+- The counts were NOT converted into Dadyoom lesson nodes because the dynamic official interface did not expose a stable auditable list of lesson titles through the available non-interactive retrieval path.
+
+### Tunisia
+- Fixed stale mapping metadata that still reported one official lesson per secondary grade while production already contained the verified CNP textbook nodes.
+- GitHub mappings now match the official CNP book structure and production DB:
+  - G10: 2 official Arabic books;
+  - G11: 3 official Arabic books;
+  - G12: 3 official Arabic books;
+  - G13: 4 official Arabic books.
+- Verified titles/codes remain sourced from CNP grade lists (e.g. آفاق أدبية، عيون الأدب، علامات، رؤى, and the Arts/Sport variants).
+- Added migration `20261005013000_link_tunisia_secondary_official_book_sources.sql`.
+- All 12 published Tunisia secondary official book nodes now have the exact CNP grade-list source URL attached.
+
+### Syria
+- Current Ministry portal confirms the 2026 textbook production/distribution program, including a plan for 41 million school books.
+- No current Ministry-hosted public secondary Arabic textbook file or auditable Arabic TOC was found.
+- No third-party lesson list was promoted to official Dadyoom data.
+
+### Somalia
+- Federal Ministry sources confirm the unified Grade 9-12 secondary structure, national curriculum harmonization, and Arabic as a secondary textbook/subject.
+- No current grade-by-grade official Arabic textbook catalog or TOC was publicly exposed.
+- Coverage remains at national bundle level; no titles were invented.
+
+### Comoros
+- Ministry sources confirm Arabic-language teaching in lycées and active teacher-capacity work.
+- No current Ministry-hosted grade-specific Arabic secondary textbook/program TOC was found.
+- Coverage remains at official bundle level; no titles were invented.
+
+### Iraq / Kuwait / Djibouti G11
+- Iraq official curriculum portal remains blocked from public indexing of the Arabic secondary files.
+- Kuwait official e-library exposes the textbook/standards library and filters but not a stable static result endpoint for secondary Arabic titles.
+- Djibouti Première Arabic detailed programme remains unavailable publicly; only the official secondary-series structure is currently verifiable.
+- These scopes remain intentionally unexpanded rather than guessed.
