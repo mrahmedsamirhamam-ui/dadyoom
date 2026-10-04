@@ -10,6 +10,13 @@
   - G13 literary: 4 units / 50 lessons / 150 questions / 150 activities.
 - Mauritania G13 literary production API verification: PASS.
 - No invented titles were added for sources whose public official TOC is unavailable or OCR-corrupted. Current detailed blockers include Mauritania G12/G13 scientific TOCs, Sudan G11/G12, Yemen, Syria, Iraq, Kuwait, Morocco, Qatar, Somalia, Djibouti and Comoros. Those remain official book/grade/standards coverage bundles until a clean official detailed source is obtained.
+- Jordan G11 current 2026-2027 Semester 1 enrichment:
+  - 5 official units / 25 structured skill lessons / 75 questions / 75 activities.
+  - Production API PASS, including «من القيم الإنسانية في القرآن الكريم», «التعليم التقني بوابة المستقبل», and «أبني لغتي».
+  - Semester 2 was not fabricated; it remains pending a current 2026-2027 official NCCD publication.
+- Mauritania G10 / 4AS official detailed enrichment:
+  - 4 units / 43 official lessons / 129 questions / 129 activities from the 2025 IPN textbook TOC.
+  - Supabase migration applied successfully and production API PASS.
 - Djibouti secondary enrichment:
   - G10 Seconde: 13 official programme units/domains, 46 verified topics, 138 questions, 138 activities.
   - G12 Terminale: 14 units/domains, 44 verified readable official topics, 132 questions, 132 activities; 4 OCR-unresolved official slots intentionally not guessed.
