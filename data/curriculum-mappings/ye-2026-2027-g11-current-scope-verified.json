@@ -9,9 +9,9 @@
   "semester": null,
   "subject": "اللغة العربية",
   "status": "verified",
-  "officialLessons": 1,
-  "mappedLessons": 1,
-  "verifiedLessons": 1,
+  "officialLessons": 5,
+  "mappedLessons": 5,
+  "verifiedLessons": 5,
   "scope": "current-officially-published-and-publicly-verifiable-scope",
   "policy": "المطابقة على مستوى حزمة كتب العربية لكل صف من الأول الأساسي إلى الثالث الثانوي.",
   "mappings": [
@@ -25,13 +25,39 @@
         "currentYearUrl": "https://moe-ye.net/37553",
         "gradePage": "https://e-learning-moe.edu.ye/ClassEleven.php",
         "searchVerifiedBookTitles": [
-          "الأدب والنصوص والبلاغة"
+          "الأدب والنصوص والبلاغة — الجزء الأول",
+          "الأدب والنصوص والبلاغة — الجزء الثاني",
+          "القراءة — الجزء الأول",
+          "القراءة — الجزء الثاني",
+          "النحو والصرف — الجزء الأول"
+        ],
+        "directOfficialBookUrls": [
+          {
+            "title": "الأدب والنصوص والبلاغة — الجزء الأول",
+            "url": "https://e-learning-moe.edu.ye/adel/android_1/book_11/nosos_part1_11th.pdf"
+          },
+          {
+            "title": "الأدب والنصوص والبلاغة — الجزء الثاني",
+            "url": "https://e-learning-moe.edu.ye/adel/android_1/book_11/nosos_part2_11th.pdf"
+          },
+          {
+            "title": "القراءة — الجزء الأول",
+            "url": "https://e-learning-moe.edu.ye/adel/android_1/book_11/reading_part1_11th.pdf"
+          },
+          {
+            "title": "القراءة — الجزء الثاني",
+            "url": "https://e-learning-moe.edu.ye/adel/android_1/book_11/reading_part2_11th.pdf"
+          },
+          {
+            "title": "النحو والصرف — الجزء الأول",
+            "url": "https://e-learning-moe.edu.ye/adel/android_1/book_11/nahw_part1_11th.pdf"
+          }
         ]
       },
       "relationType": "official-grade-textbook+national-extension",
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
-      "rationale": "بوابة الوزارة تعرض المناهج اليمنية من الصف الأول الأساسي إلى الثالث الثانوي، وتعرض أدلة المعلم لمادة اللغة العربية؛ الحزمة تمثل كتب العربية على مستوى الصف. أمكن كذلك التحقق من عناوين كتب عربية ظاهرة في فهرس الصف الرسمي: الأدب والنصوص والبلاغة؛ ولا تُستنتج عناوين أخرى من صفحات غير قابلة للاستخراج.",
+      "rationale": "بوابة وزارة التربية اليمنية تعرض كتب الصف الثاني الثانوي، وتم التحقق من خمسة أجزاء/كتب عربية بروابط مباشرة على نطاق الإدارة العامة للتعليم الإلكتروني. تمثل ضاديوم كل كتاب/جزء بعقدة مستقلة، دون اختلاق عناوين الدروس الداخلية.",
       "coreCoverage": [
         {
           "slug": "ye-dadyoom-core-g11-l01",
@@ -108,11 +134,15 @@
       ],
       "nationalExtensionInPack": true,
       "verifiedAt": "2026-10-04",
-      "verificationMethod": "official-ministry-elearning-catalog+indexed-official-grade-page+official-arabic-teacher-guides+2026-2027-year-evidence+national-pack"
+      "verificationMethod": "official-ministry-elearning-catalog+direct-official-book-urls+official-current-ministry-channel+original-dadyoom-support"
     }
   ],
-  "officialBookNodesVerified": 1,
+  "officialBookNodesVerified": 5,
   "verifiedOfficialBookTitles": [
-    "الأدب والنصوص والبلاغة"
+    "الأدب والنصوص والبلاغة — الجزء الأول",
+    "الأدب والنصوص والبلاغة — الجزء الثاني",
+    "القراءة — الجزء الأول",
+    "القراءة — الجزء الثاني",
+    "النحو والصرف — الجزء الأول"
   ]
 }
