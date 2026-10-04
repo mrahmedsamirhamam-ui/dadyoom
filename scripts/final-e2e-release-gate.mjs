@@ -3465,6 +3465,47 @@ async function teacherBpayMarketplaceFlow(
     "E2E_BPAY_SPLIT_FAILED",
   );
 
+  const platformFee =
+    await admin
+      .from(
+        "edu_platform_fee_receivables",
+      )
+      .select(
+        "fee_amount,gross_amount,currency,status,payment_order_id",
+      )
+      .eq(
+        "purchase_id",
+        purchase.data.id,
+      )
+      .maybeSingle();
+
+  if (platformFee.error) {
+    throw platformFee.error;
+  }
+
+  gate(
+    platformFee.data &&
+      Number(
+        platformFee.data.fee_amount,
+      ) === 0.75 &&
+      Number(
+        platformFee.data.gross_amount,
+      ) === 5 &&
+      String(
+        platformFee.data.currency,
+      ) === "BHD" &&
+      platformFee.data.status ===
+        "due" &&
+      platformFee.data
+        .payment_order_id ===
+        fixture.bpayPaymentOrderId,
+    "E2E_BPAY_PLATFORM_FEE_RECEIVABLE_FAILED",
+  );
+
+  console.log(
+    "E2E_BPAY_PLATFORM_FEE_RECEIVABLE=PASS",
+  );
+
   console.log(
     "E2E_BPAY_TEACHER=PASS",
   );
