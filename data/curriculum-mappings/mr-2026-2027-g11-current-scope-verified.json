@@ -26,7 +26,8 @@
         "arabicPolicyUrl": "https://www.education.gov.mr/ar/node/1090",
         "currentYearPrepUrl": "https://www.education.gov.mr/index.php/ar/node/1132",
         "textbookDistributionUrl": "https://education.gov.mr/fr/node/982",
-        "reformUrl": "https://www.education.gov.mr/ar/node/555"
+        "reformUrl": "https://www.education.gov.mr/ar/node/555",
+        "textbookPdf": "https://docs.bsimr.com/pdfs/secondaire2s/AR-5AS-LM.pdf"
       },
       "relationType": "official-textbook-by-upper-secondary-track+national-extension",
       "reviewStatus": "verified-system",
@@ -107,8 +108,11 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-ipn-koutoubi+official-ministry-reform+official-current-year-preparation+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-ipn-koutoubi+official-linked-2025-textbook-toc+official-current-year-preparation+original-dadyoom-support",
+      "detailedOfficialUnits": 4,
+      "detailedOfficialLessons": 39,
+      "detailedOfficialCatalog": "data/national-catalogs/mr-g11-literary-arabic-detailed-2026.json"
     },
     {
       "officialSlug": "mr-2026-2027-g11-scientific-arabic",
