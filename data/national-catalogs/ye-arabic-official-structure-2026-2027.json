@@ -82,18 +82,46 @@
       "officialLevel": "الثاني الثانوي",
       "gradePage": "https://e-learning-moe.edu.ye/ClassEleven.php",
       "books": [
-        "الأدب والنصوص والبلاغة"
+        {
+          "title": "الأدب والنصوص والبلاغة — الجزء الأول",
+          "url": "https://e-learning-moe.edu.ye/adel/android_1/book_11/nosos_part1_11th.pdf"
+        },
+        {
+          "title": "الأدب والنصوص والبلاغة — الجزء الثاني",
+          "url": "https://e-learning-moe.edu.ye/adel/android_1/book_11/nosos_part2_11th.pdf"
+        },
+        {
+          "title": "القراءة — الجزء الأول",
+          "url": "https://e-learning-moe.edu.ye/adel/android_1/book_11/reading_part1_11th.pdf"
+        },
+        {
+          "title": "القراءة — الجزء الثاني",
+          "url": "https://e-learning-moe.edu.ye/adel/android_1/book_11/reading_part2_11th.pdf"
+        },
+        {
+          "title": "النحو والصرف — الجزء الأول",
+          "url": "https://e-learning-moe.edu.ye/adel/android_1/book_11/nahw_part1_11th.pdf"
+        }
       ]
     },
     "12": {
       "officialLevel": "الثالث الثانوي",
       "gradePage": "https://e-learning-moe.edu.ye/ClassTwelve.php",
       "books": [
-        "النحو والصرف",
-        "الأدب والنصوص والبلاغة",
-        "القراءة"
+        {
+          "title": "الأدب والنصوص والبلاغة",
+          "url": "https://e-learning-moe.edu.ye/adel/android_1/book_12/nosos_12th.pdf"
+        },
+        {
+          "title": "القراءة",
+          "url": "https://e-learning-moe.edu.ye/adel/android_1/book_12/reading_12th.pdf"
+        },
+        {
+          "title": "النحو والصرف",
+          "url": "https://e-learning-moe.edu.ye/adel/android_1/book_12/nahw_12th.pdf"
+        }
       ]
     }
   },
-  "verificationNote": "أضيفت فقط أسماء الكتب التي تظهر بوضوح في نتائج الفهرس الرسمي القابل للبحث؛ لم تُخمن الكتب أو الدروس غير الظاهرة."
+  "verificationNote": "تُسجّل فقط الكتب/الأجزاء التي أمكن ربطها بروابط مباشرة على نطاق الإدارة العامة للتعليم الإلكتروني أو إثباتها من القنوات الرسمية الحالية. لا تُخمن عناوين الدروس داخل الكتب."
 }
