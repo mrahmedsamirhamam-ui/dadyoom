@@ -285,3 +285,41 @@ The remaining items are not missing application code:
   - AI health: ok;
   - LiveKit: ok/configured;
   - Worker and Pages deployment sync continued normally.
+
+
+## 2026-10-04 — Final production hygiene, live attendance, marketplace QA isolation, and BPay commission accounting
+
+- Live attendance production defect fixed:
+  - PostgreSQL logs showed repeated `23514` failures on `edu_live_attendance_role_check`.
+  - `edu_can_join_live_session()` explicitly permits the school owner to join school-scoped sessions, but attendance accepted only `teacher/student/assistant`.
+  - Migration `20261004234500_allow_school_live_attendance_role.sql` added the already-authorized `school` role to the attendance constraint.
+  - Recent Edge/Auth log review showed no current 5xx; remaining diagnostic SQL errors were from maintenance queries, not application traffic.
+- Marketplace SEO / QA fixture isolation:
+  - public marketplace listing and sitemap exclude all course slugs beginning `e2e-`;
+  - direct E2E course pages are `noindex,nofollow` and only accessible to explicit QA accounts matching `dadyoom.e2e.*@example.com`;
+  - ordinary users cannot open those fixture details;
+  - release-gate BPay and marketplace UI coverage remains testable.
+- Release-gate cleanup hardened:
+  - stale QA courses are cleaned in dependency-safe order;
+  - stale email-keyed learning rows, `quiz_attempts`, orphaned `profiles`, and Auth test users are cleaned before creating a new QA fixture set;
+  - current-run profiles are explicitly removed before Auth test-user deletion;
+  - one-time cleanup migration `20261004235900_cleanup_stale_e2e_fixtures.sql` removed the historical backlog.
+  - verification after cleanup: Auth E2E users=0, E2E profiles=0, E2E marketplace courses=0, E2E payment orders=0.
+- Marketplace public copy corrected:
+  - the old message claiming that course purchasing/payment was stopped was removed;
+  - the marketplace now accurately states that published courses can be purchased through BPay when the teacher has configured receiving details, with access opened after transfer confirmation.
+- BPay 15% commission accounting corrected:
+  - BPay currently transfers the buyer's full course amount directly to the teacher, so the previous `platform_fee` field alone did not mean the platform had physically collected the fee.
+  - Added `edu_platform_fee_receivables` with an auditable `due/settled/waived/reversed` lifecycle.
+  - `finalizePaymentOrder()` now creates/upserts a `due` receivable for the 15% platform fee on completed BPay course purchases.
+  - Release Gate now requires the 15% receivable row to exist with the expected amount and payment-order linkage.
+  - This records the platform's economic receivable truthfully; automatic collection still requires a platform-owned collection channel to be configured later.
+- Foreign-key advisor posture restored after the new receivable table:
+  - course relation indexed via `20261004235930_index_platform_fee_course.sql`;
+  - only the three intentionally deferred AI Video / video-analysis FK indexes remain unindexed.
+- Production checks during closure:
+  - AI health: `ok=true`;
+  - LiveKit: `ok=true`, configured;
+  - Google provider: enabled/configured;
+  - marketplace public copy reflects live BPay flow;
+  - 22 countries retain 12/12 published grade coverage; secondary G10-G12 remains >=19 published lessons per country, with MR/TN G13 present.
