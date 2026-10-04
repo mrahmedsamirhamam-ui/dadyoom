@@ -68,5 +68,32 @@
     }
   ],
   "copyrightPolicy": "لا تعيد ضاديوم نشر الكتب اليمنية؛ تستخدم فهرس المناهج والكتب وأدلة المعلم لإثبات المواءمة، بينما المحتوى التعليمي أصلي.",
-  "generatedAt": "2026-09-25"
+  "generatedAt": "2026-09-25",
+  "secondaryVerifiedBookNodes": {
+    "10": {
+      "officialLevel": "الأول الثانوي",
+      "gradePage": "https://e-learning-moe.edu.ye/ClassTen.php?id=10",
+      "books": [
+        "النحو والصرف",
+        "الأدب والنصوص والبلاغة"
+      ]
+    },
+    "11": {
+      "officialLevel": "الثاني الثانوي",
+      "gradePage": "https://e-learning-moe.edu.ye/ClassEleven.php",
+      "books": [
+        "الأدب والنصوص والبلاغة"
+      ]
+    },
+    "12": {
+      "officialLevel": "الثالث الثانوي",
+      "gradePage": "https://e-learning-moe.edu.ye/ClassTwelve.php",
+      "books": [
+        "النحو والصرف",
+        "الأدب والنصوص والبلاغة",
+        "القراءة"
+      ]
+    }
+  },
+  "verificationNote": "أضيفت فقط أسماء الكتب التي تظهر بوضوح في نتائج الفهرس الرسمي القابل للبحث؛ لم تُخمن الكتب أو الدروس غير الظاهرة."
 }
