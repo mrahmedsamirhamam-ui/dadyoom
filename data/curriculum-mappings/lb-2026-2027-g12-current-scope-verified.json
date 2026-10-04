@@ -21,12 +21,14 @@
       "source": {
         "label": "المركز التربوي للبحوث والإنماء — منهج اللغة العربية وآدابها",
         "url": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
-        "booksUrl": "https://www.crdp.org/books-pdf"
+        "booksUrl": "https://www.crdp.org/books-pdf",
+        "curriculumReformDecreeUrl": "https://www.crdp.org/news/%D8%A7%D9%84%D9%84%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%AD%D9%88%D8%A7%D8%B1%D9%8A-%D8%A7%D9%84%D8%A3%D9%88%D9%84-%D9%84%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D8%AD%D9%88%D9%84-%D9%85%D9%86%D9%87%D8%A7%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D9%85%D8%A7-%D9%82%D8%A8%D9%84-%D8%A7%D9%84%D8%AC%D8%A7%D9%85%D8%B9%D9%8A",
+        "currentArabicCurriculumUrl": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A"
       },
       "relationType": "official-domain+secondary-track+national-extension",
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
-      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي، وتمثلهما حزمة ضاديوم أصلية مع Core كدعم مهاري فقط.",
+      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي،؛ وتظل هذه المطابقة على مستوى المجال/المسار إلى أن تنشر CRDP خطة تنفيذ عربية ثانوية 2026-2027 تفصيلية للمنهاج الجديد.",
       "coreCoverage": [
         {
           "slug": "lb-dadyoom-core-g12-l01",
@@ -70,8 +72,8 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-crdp-arabic-curriculum+official-books-catalog+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-crdp-arabic-structure+decree-3445-2026+official-gradual-rollout-status+national-pack"
     },
     {
       "officialSlug": "lb-2026-2027-g12-literature-humanities-language-system",
@@ -79,12 +81,14 @@
       "source": {
         "label": "المركز التربوي للبحوث والإنماء — منهج اللغة العربية وآدابها",
         "url": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
-        "booksUrl": "https://www.crdp.org/books-pdf"
+        "booksUrl": "https://www.crdp.org/books-pdf",
+        "curriculumReformDecreeUrl": "https://www.crdp.org/news/%D8%A7%D9%84%D9%84%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%AD%D9%88%D8%A7%D8%B1%D9%8A-%D8%A7%D9%84%D8%A3%D9%88%D9%84-%D9%84%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D8%AD%D9%88%D9%84-%D9%85%D9%86%D9%87%D8%A7%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D9%85%D8%A7-%D9%82%D8%A8%D9%84-%D8%A7%D9%84%D8%AC%D8%A7%D9%85%D8%B9%D9%8A",
+        "currentArabicCurriculumUrl": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A"
       },
       "relationType": "official-domain+secondary-track+national-extension",
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
-      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي، وتمثلهما حزمة ضاديوم أصلية مع Core كدعم مهاري فقط.",
+      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي،؛ وتظل هذه المطابقة على مستوى المجال/المسار إلى أن تنشر CRDP خطة تنفيذ عربية ثانوية 2026-2027 تفصيلية للمنهاج الجديد.",
       "coreCoverage": [
         {
           "slug": "lb-dadyoom-core-g12-l07",
@@ -112,8 +116,8 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-crdp-arabic-curriculum+official-books-catalog+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-crdp-arabic-structure+decree-3445-2026+official-gradual-rollout-status+national-pack"
     },
     {
       "officialSlug": "lb-2026-2027-g12-literature-humanities-expression",
@@ -121,12 +125,14 @@
       "source": {
         "label": "المركز التربوي للبحوث والإنماء — منهج اللغة العربية وآدابها",
         "url": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
-        "booksUrl": "https://www.crdp.org/books-pdf"
+        "booksUrl": "https://www.crdp.org/books-pdf",
+        "curriculumReformDecreeUrl": "https://www.crdp.org/news/%D8%A7%D9%84%D9%84%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%AD%D9%88%D8%A7%D8%B1%D9%8A-%D8%A7%D9%84%D8%A3%D9%88%D9%84-%D9%84%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D8%AD%D9%88%D9%84-%D9%85%D9%86%D9%87%D8%A7%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D9%85%D8%A7-%D9%82%D8%A8%D9%84-%D8%A7%D9%84%D8%AC%D8%A7%D9%85%D8%B9%D9%8A",
+        "currentArabicCurriculumUrl": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A"
       },
       "relationType": "official-domain+secondary-track+national-extension",
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
-      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي، وتمثلهما حزمة ضاديوم أصلية مع Core كدعم مهاري فقط.",
+      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي،؛ وتظل هذه المطابقة على مستوى المجال/المسار إلى أن تنشر CRDP خطة تنفيذ عربية ثانوية 2026-2027 تفصيلية للمنهاج الجديد.",
       "coreCoverage": [
         {
           "slug": "lb-dadyoom-core-g12-l13",
@@ -154,8 +160,8 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-crdp-arabic-curriculum+official-books-catalog+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-crdp-arabic-structure+decree-3445-2026+official-gradual-rollout-status+national-pack"
     },
     {
       "officialSlug": "lb-2026-2027-g12-socio-economics-reading-literature",
@@ -163,12 +169,14 @@
       "source": {
         "label": "المركز التربوي للبحوث والإنماء — منهج اللغة العربية وآدابها",
         "url": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
-        "booksUrl": "https://www.crdp.org/books-pdf"
+        "booksUrl": "https://www.crdp.org/books-pdf",
+        "curriculumReformDecreeUrl": "https://www.crdp.org/news/%D8%A7%D9%84%D9%84%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%AD%D9%88%D8%A7%D8%B1%D9%8A-%D8%A7%D9%84%D8%A3%D9%88%D9%84-%D9%84%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D8%AD%D9%88%D9%84-%D9%85%D9%86%D9%87%D8%A7%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D9%85%D8%A7-%D9%82%D8%A8%D9%84-%D8%A7%D9%84%D8%AC%D8%A7%D9%85%D8%B9%D9%8A",
+        "currentArabicCurriculumUrl": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A"
       },
       "relationType": "official-domain+secondary-track+national-extension",
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
-      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي، وتمثلهما حزمة ضاديوم أصلية مع Core كدعم مهاري فقط.",
+      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي،؛ وتظل هذه المطابقة على مستوى المجال/المسار إلى أن تنشر CRDP خطة تنفيذ عربية ثانوية 2026-2027 تفصيلية للمنهاج الجديد.",
       "coreCoverage": [
         {
           "slug": "lb-dadyoom-core-g12-l01",
@@ -212,8 +220,8 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-crdp-arabic-curriculum+official-books-catalog+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-crdp-arabic-structure+decree-3445-2026+official-gradual-rollout-status+national-pack"
     },
     {
       "officialSlug": "lb-2026-2027-g12-socio-economics-language-system",
@@ -221,12 +229,14 @@
       "source": {
         "label": "المركز التربوي للبحوث والإنماء — منهج اللغة العربية وآدابها",
         "url": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
-        "booksUrl": "https://www.crdp.org/books-pdf"
+        "booksUrl": "https://www.crdp.org/books-pdf",
+        "curriculumReformDecreeUrl": "https://www.crdp.org/news/%D8%A7%D9%84%D9%84%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%AD%D9%88%D8%A7%D8%B1%D9%8A-%D8%A7%D9%84%D8%A3%D9%88%D9%84-%D9%84%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D8%AD%D9%88%D9%84-%D9%85%D9%86%D9%87%D8%A7%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D9%85%D8%A7-%D9%82%D8%A8%D9%84-%D8%A7%D9%84%D8%AC%D8%A7%D9%85%D8%B9%D9%8A",
+        "currentArabicCurriculumUrl": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A"
       },
       "relationType": "official-domain+secondary-track+national-extension",
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
-      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي، وتمثلهما حزمة ضاديوم أصلية مع Core كدعم مهاري فقط.",
+      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي،؛ وتظل هذه المطابقة على مستوى المجال/المسار إلى أن تنشر CRDP خطة تنفيذ عربية ثانوية 2026-2027 تفصيلية للمنهاج الجديد.",
       "coreCoverage": [
         {
           "slug": "lb-dadyoom-core-g12-l07",
@@ -254,8 +264,8 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-crdp-arabic-curriculum+official-books-catalog+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-crdp-arabic-structure+decree-3445-2026+official-gradual-rollout-status+national-pack"
     },
     {
       "officialSlug": "lb-2026-2027-g12-socio-economics-expression",
@@ -263,12 +273,14 @@
       "source": {
         "label": "المركز التربوي للبحوث والإنماء — منهج اللغة العربية وآدابها",
         "url": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
-        "booksUrl": "https://www.crdp.org/books-pdf"
+        "booksUrl": "https://www.crdp.org/books-pdf",
+        "curriculumReformDecreeUrl": "https://www.crdp.org/news/%D8%A7%D9%84%D9%84%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%AD%D9%88%D8%A7%D8%B1%D9%8A-%D8%A7%D9%84%D8%A3%D9%88%D9%84-%D9%84%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D8%AD%D9%88%D9%84-%D9%85%D9%86%D9%87%D8%A7%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D9%85%D8%A7-%D9%82%D8%A8%D9%84-%D8%A7%D9%84%D8%AC%D8%A7%D9%85%D8%B9%D9%8A",
+        "currentArabicCurriculumUrl": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A"
       },
       "relationType": "official-domain+secondary-track+national-extension",
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
-      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي، وتمثلهما حزمة ضاديوم أصلية مع Core كدعم مهاري فقط.",
+      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي،؛ وتظل هذه المطابقة على مستوى المجال/المسار إلى أن تنشر CRDP خطة تنفيذ عربية ثانوية 2026-2027 تفصيلية للمنهاج الجديد.",
       "coreCoverage": [
         {
           "slug": "lb-dadyoom-core-g12-l13",
@@ -296,8 +308,8 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-crdp-arabic-curriculum+official-books-catalog+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-crdp-arabic-structure+decree-3445-2026+official-gradual-rollout-status+national-pack"
     },
     {
       "officialSlug": "lb-2026-2027-g12-general-sciences-reading-literature",
@@ -305,12 +317,14 @@
       "source": {
         "label": "المركز التربوي للبحوث والإنماء — منهج اللغة العربية وآدابها",
         "url": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
-        "booksUrl": "https://www.crdp.org/books-pdf"
+        "booksUrl": "https://www.crdp.org/books-pdf",
+        "curriculumReformDecreeUrl": "https://www.crdp.org/news/%D8%A7%D9%84%D9%84%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%AD%D9%88%D8%A7%D8%B1%D9%8A-%D8%A7%D9%84%D8%A3%D9%88%D9%84-%D9%84%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D8%AD%D9%88%D9%84-%D9%85%D9%86%D9%87%D8%A7%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D9%85%D8%A7-%D9%82%D8%A8%D9%84-%D8%A7%D9%84%D8%AC%D8%A7%D9%85%D8%B9%D9%8A",
+        "currentArabicCurriculumUrl": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A"
       },
       "relationType": "official-domain+secondary-track+national-extension",
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
-      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي، وتمثلهما حزمة ضاديوم أصلية مع Core كدعم مهاري فقط.",
+      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي،؛ وتظل هذه المطابقة على مستوى المجال/المسار إلى أن تنشر CRDP خطة تنفيذ عربية ثانوية 2026-2027 تفصيلية للمنهاج الجديد.",
       "coreCoverage": [
         {
           "slug": "lb-dadyoom-core-g12-l01",
@@ -354,8 +368,8 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-crdp-arabic-curriculum+official-books-catalog+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-crdp-arabic-structure+decree-3445-2026+official-gradual-rollout-status+national-pack"
     },
     {
       "officialSlug": "lb-2026-2027-g12-general-sciences-language-system",
@@ -363,12 +377,14 @@
       "source": {
         "label": "المركز التربوي للبحوث والإنماء — منهج اللغة العربية وآدابها",
         "url": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
-        "booksUrl": "https://www.crdp.org/books-pdf"
+        "booksUrl": "https://www.crdp.org/books-pdf",
+        "curriculumReformDecreeUrl": "https://www.crdp.org/news/%D8%A7%D9%84%D9%84%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%AD%D9%88%D8%A7%D8%B1%D9%8A-%D8%A7%D9%84%D8%A3%D9%88%D9%84-%D9%84%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D8%AD%D9%88%D9%84-%D9%85%D9%86%D9%87%D8%A7%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D9%85%D8%A7-%D9%82%D8%A8%D9%84-%D8%A7%D9%84%D8%AC%D8%A7%D9%85%D8%B9%D9%8A",
+        "currentArabicCurriculumUrl": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A"
       },
       "relationType": "official-domain+secondary-track+national-extension",
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
-      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي، وتمثلهما حزمة ضاديوم أصلية مع Core كدعم مهاري فقط.",
+      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي،؛ وتظل هذه المطابقة على مستوى المجال/المسار إلى أن تنشر CRDP خطة تنفيذ عربية ثانوية 2026-2027 تفصيلية للمنهاج الجديد.",
       "coreCoverage": [
         {
           "slug": "lb-dadyoom-core-g12-l07",
@@ -396,8 +412,8 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-crdp-arabic-curriculum+official-books-catalog+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-crdp-arabic-structure+decree-3445-2026+official-gradual-rollout-status+national-pack"
     },
     {
       "officialSlug": "lb-2026-2027-g12-general-sciences-expression",
@@ -405,12 +421,14 @@
       "source": {
         "label": "المركز التربوي للبحوث والإنماء — منهج اللغة العربية وآدابها",
         "url": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
-        "booksUrl": "https://www.crdp.org/books-pdf"
+        "booksUrl": "https://www.crdp.org/books-pdf",
+        "curriculumReformDecreeUrl": "https://www.crdp.org/news/%D8%A7%D9%84%D9%84%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%AD%D9%88%D8%A7%D8%B1%D9%8A-%D8%A7%D9%84%D8%A3%D9%88%D9%84-%D9%84%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D8%AD%D9%88%D9%84-%D9%85%D9%86%D9%87%D8%A7%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D9%85%D8%A7-%D9%82%D8%A8%D9%84-%D8%A7%D9%84%D8%AC%D8%A7%D9%85%D8%B9%D9%8A",
+        "currentArabicCurriculumUrl": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A"
       },
       "relationType": "official-domain+secondary-track+national-extension",
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
-      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي، وتمثلهما حزمة ضاديوم أصلية مع Core كدعم مهاري فقط.",
+      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي،؛ وتظل هذه المطابقة على مستوى المجال/المسار إلى أن تنشر CRDP خطة تنفيذ عربية ثانوية 2026-2027 تفصيلية للمنهاج الجديد.",
       "coreCoverage": [
         {
           "slug": "lb-dadyoom-core-g12-l13",
@@ -438,8 +456,8 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-crdp-arabic-curriculum+official-books-catalog+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-crdp-arabic-structure+decree-3445-2026+official-gradual-rollout-status+national-pack"
     },
     {
       "officialSlug": "lb-2026-2027-g12-life-sciences-reading-literature",
@@ -447,12 +465,14 @@
       "source": {
         "label": "المركز التربوي للبحوث والإنماء — منهج اللغة العربية وآدابها",
         "url": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
-        "booksUrl": "https://www.crdp.org/books-pdf"
+        "booksUrl": "https://www.crdp.org/books-pdf",
+        "curriculumReformDecreeUrl": "https://www.crdp.org/news/%D8%A7%D9%84%D9%84%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%AD%D9%88%D8%A7%D8%B1%D9%8A-%D8%A7%D9%84%D8%A3%D9%88%D9%84-%D9%84%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D8%AD%D9%88%D9%84-%D9%85%D9%86%D9%87%D8%A7%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D9%85%D8%A7-%D9%82%D8%A8%D9%84-%D8%A7%D9%84%D8%AC%D8%A7%D9%85%D8%B9%D9%8A",
+        "currentArabicCurriculumUrl": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A"
       },
       "relationType": "official-domain+secondary-track+national-extension",
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
-      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي، وتمثلهما حزمة ضاديوم أصلية مع Core كدعم مهاري فقط.",
+      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي،؛ وتظل هذه المطابقة على مستوى المجال/المسار إلى أن تنشر CRDP خطة تنفيذ عربية ثانوية 2026-2027 تفصيلية للمنهاج الجديد.",
       "coreCoverage": [
         {
           "slug": "lb-dadyoom-core-g12-l01",
@@ -496,8 +516,8 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-crdp-arabic-curriculum+official-books-catalog+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-crdp-arabic-structure+decree-3445-2026+official-gradual-rollout-status+national-pack"
     },
     {
       "officialSlug": "lb-2026-2027-g12-life-sciences-language-system",
@@ -505,12 +525,14 @@
       "source": {
         "label": "المركز التربوي للبحوث والإنماء — منهج اللغة العربية وآدابها",
         "url": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
-        "booksUrl": "https://www.crdp.org/books-pdf"
+        "booksUrl": "https://www.crdp.org/books-pdf",
+        "curriculumReformDecreeUrl": "https://www.crdp.org/news/%D8%A7%D9%84%D9%84%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%AD%D9%88%D8%A7%D8%B1%D9%8A-%D8%A7%D9%84%D8%A3%D9%88%D9%84-%D9%84%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D8%AD%D9%88%D9%84-%D9%85%D9%86%D9%87%D8%A7%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D9%85%D8%A7-%D9%82%D8%A8%D9%84-%D8%A7%D9%84%D8%AC%D8%A7%D9%85%D8%B9%D9%8A",
+        "currentArabicCurriculumUrl": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A"
       },
       "relationType": "official-domain+secondary-track+national-extension",
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
-      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي، وتمثلهما حزمة ضاديوم أصلية مع Core كدعم مهاري فقط.",
+      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي،؛ وتظل هذه المطابقة على مستوى المجال/المسار إلى أن تنشر CRDP خطة تنفيذ عربية ثانوية 2026-2027 تفصيلية للمنهاج الجديد.",
       "coreCoverage": [
         {
           "slug": "lb-dadyoom-core-g12-l07",
@@ -538,8 +560,8 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-crdp-arabic-curriculum+official-books-catalog+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-crdp-arabic-structure+decree-3445-2026+official-gradual-rollout-status+national-pack"
     },
     {
       "officialSlug": "lb-2026-2027-g12-life-sciences-expression",
@@ -547,12 +569,14 @@
       "source": {
         "label": "المركز التربوي للبحوث والإنماء — منهج اللغة العربية وآدابها",
         "url": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
-        "booksUrl": "https://www.crdp.org/books-pdf"
+        "booksUrl": "https://www.crdp.org/books-pdf",
+        "curriculumReformDecreeUrl": "https://www.crdp.org/news/%D8%A7%D9%84%D9%84%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%AD%D9%88%D8%A7%D8%B1%D9%8A-%D8%A7%D9%84%D8%A3%D9%88%D9%84-%D9%84%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D8%AD%D9%88%D9%84-%D9%85%D9%86%D9%87%D8%A7%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D9%85%D8%A7-%D9%82%D8%A8%D9%84-%D8%A7%D9%84%D8%AC%D8%A7%D9%85%D8%B9%D9%8A",
+        "currentArabicCurriculumUrl": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A"
       },
       "relationType": "official-domain+secondary-track+national-extension",
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
-      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي، وتمثلهما حزمة ضاديوم أصلية مع Core كدعم مهاري فقط.",
+      "rationale": "المجال والمسار مثبتان في منهج CRDP الرسمي،؛ وتظل هذه المطابقة على مستوى المجال/المسار إلى أن تنشر CRDP خطة تنفيذ عربية ثانوية 2026-2027 تفصيلية للمنهاج الجديد.",
       "coreCoverage": [
         {
           "slug": "lb-dadyoom-core-g12-l13",
@@ -580,8 +604,20 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-crdp-arabic-curriculum+official-books-catalog+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-crdp-arabic-structure+decree-3445-2026+official-gradual-rollout-status+national-pack"
     }
-  ]
+  ],
+  "curriculumReform2026": {
+    "decreeNumber": 3445,
+    "decreeDate": "2026-07-15",
+    "status": "new-pre-university-curriculum-issued-implementation-planning-and-gradual-rollout",
+    "source": "https://www.crdp.org/news/%D8%A7%D9%84%D9%84%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%AD%D9%88%D8%A7%D8%B1%D9%8A-%D8%A7%D9%84%D8%A3%D9%88%D9%84-%D9%84%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D8%AD%D9%88%D9%84-%D9%85%D9%86%D9%87%D8%A7%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D9%85%D8%A7-%D9%82%D8%A8%D9%84-%D8%A7%D9%84%D8%AC%D8%A7%D9%85%D8%B9%D9%8A",
+    "note": "أُقر المنهاج الجديد بالمرسوم 3445، وتعلن CRDP أن المرحلة التالية تشمل إعداد الأدلة والمعايير وخطط التدريب والتطبيق التجريبي والتدريجي. لذلك لا تُعامل وثيقة التخفيف 2025-2026 كأنها خطة تنفيذ 2026-2027."
+  },
+  "currentArabicStructureEvidence": {
+    "source": "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
+    "scope": "secondary-track-hours-and-general-arabic-curriculum-structure",
+    "note": "تُستخدم البنية والمسارات والحصص المعلنة رسميًا فقط إلى أن تنشر CRDP وثيقة تنفيذ عربية ثانوية 2026-2027 بعناوين محتوى قابلة للتدقيق."
+  }
 }
