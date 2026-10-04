@@ -9,24 +9,24 @@
   "semester": null,
   "subject": "اللغة العربية",
   "status": "verified",
-  "officialLessons": 1,
-  "mappedLessons": 1,
-  "verifiedLessons": 1,
+  "officialLessons": 46,
+  "mappedLessons": 46,
+  "verifiedLessons": 46,
   "scope": "current-officially-published-and-publicly-verifiable-scope",
   "policy": "المطابقة على مستوى السنة/المقرر أو السلسلة الثانوية؛ لا تعاد النصوص المحمية ولا تختلق عناوين غير منشورة.",
   "mappings": [
     {
       "officialSlug": "dj-2026-2027-g10-seconde",
-      "officialTitle": "اللغة العربية — Seconde — الحزمة المشتركة",
+      "officialTitle": "اللغة العربية — Seconde — البرنامج الرسمي التفصيلي",
       "source": {
         "label": "CRIPEN — البرامج المجمعة للتعليم الثانوي",
         "url": "https://cripen.dj/wp-content/uploads/2025/05/Programmes-compile-seconde.pdf",
         "currentExamUrl": "https://cripen.dj/index.php/2026/06/08/visite-officielle-du-ministre-dans-les-centres-dexamens/"
       },
-      "relationType": "official-secondary-series+national-extension",
+      "relationType": "official-secondary-programme-detailed+national-extension",
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
-      "rationale": "الحزمة تمثل العربية في السلسلة الثانوية الموثقة رسميًا، دون اختلاق عناوين دروس.",
+      "rationale": "البرنامج الرسمي لـCRIPEN يحدد مجالات الصف الأول الثانوي وموضوعاتها، إضافة إلى موضوعات النحو والبلاغة والإملاء؛ ضاديوم يحتفظ بالعناوين والبنية ويقدم محتوى أصليًا.",
       "coreCoverage": [
         {
           "slug": "dj-dadyoom-core-g10-l01",
@@ -102,8 +102,11 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-menfop-cripen-curriculum+official-guides+secondary-programs+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-menfop-cripen-secondary-programme+official-detailed-arabic-topics+national-pack",
+      "detailedOfficialUnits": 13,
+      "detailedOfficialLessons": 46,
+      "detailedOfficialCatalog": "data/national-catalogs/dj-g10-arabic-detailed-2026.json"
     }
   ]
 }
