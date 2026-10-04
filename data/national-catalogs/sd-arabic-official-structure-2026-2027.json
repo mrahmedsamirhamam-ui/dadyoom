@@ -103,5 +103,9 @@
   ],
   "copyrightPolicy": "لا تعيد ضاديوم نشر نصوص الكتب السودانية؛ تستخدم المراحل والمادة وأغلفة/كتب المركز القومي للمناهج ومصادر الوزارة لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية.",
   "generatedAt": "2026-09-25",
-  "grade10DetailedTopics": 60
+  "grade10DetailedTopics": 60,
+  "grade12DetailedCoverageStatus": "verified-partial-detailed",
+  "grade12DetailedTopics": 21,
+  "grade12DetailedCatalog": "data/national-catalogs/sd-g12-arabic-grammar-detailed-verified-partial-2026.json",
+  "grade12DetailedSource": "https://mdl.edu.sd/img/bookpdf/nahw3_1678863142.pdf"
 }
