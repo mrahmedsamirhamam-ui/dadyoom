@@ -22,7 +22,10 @@
         "label": "وزارة التربية الوطنية والتعليم الأولي والرياضة — المنهاج والموارد الرقمية",
         "url": "https://telmidtice.men.gov.ma/",
         "ministryUrl": "https://www.men.gov.ma/",
-        "currentYearUrl": "https://www.men.gov.ma/%D8%A7%D9%84%D8%AA%D8%B0%D9%83%D9%8A%D8%B1-%D8%A8%D9%85%D9%88%D8%A7%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D8%AF%D8%AE%D9%88%D9%84-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A-2027/2026/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AC%D8%AF%D8%A7%D8%AA"
+        "currentYearUrl": "https://www.men.gov.ma/%D8%A7%D9%84%D8%AA%D8%B0%D9%83%D9%8A%D8%B1-%D8%A8%D9%85%D9%88%D8%A7%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D8%AF%D8%AE%D9%88%D9%84-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A-2027/2026/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AC%D8%AF%D8%A7%D8%AA",
+        "telmidTiceCourseListing": "https://telmidtice.men.gov.ma/courses?category=67c59d79062e69f770de725a&level=3&subCategory=67c59d7a062e69f770de72b3",
+        "telmidTiceLessonCount": 45,
+        "telmidTiceWeeks": 17
       },
       "relationType": "official-upper-secondary-track+national-extension",
       "reviewStatus": "verified-system",
@@ -103,8 +106,8 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-men-2026-2027-structure+official-telmidtice+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-men-2026-2027-structure+official-telmidtice-course-listing+national-pack"
     },
     {
       "officialSlug": "ma-2026-2027-g10-science-tech-arabic",
@@ -197,5 +200,14 @@
       "verifiedAt": "2026-09-25",
       "verificationMethod": "official-men-2026-2027-structure+official-telmidtice+national-pack"
     }
-  ]
+  ],
+  "digitalCourseEvidence": {
+    "status": "verified-official-course-count",
+    "track": "جذع مشترك أدبي",
+    "subject": "اللغة العربية",
+    "officialPortal": "https://telmidtice.men.gov.ma/courses?category=67c59d79062e69f770de725a&level=3&subCategory=67c59d7a062e69f770de72b3",
+    "portalLessonCount": 45,
+    "portalWeeks": 17,
+    "note": "العدد منشور على TelmidTice الرسمية؛ لم تُحوّل هذه الـ45 إلى عقد دروس في ضاديوم لأن أسماء الدروس لم تُستخرج من واجهة رسمية قابلة للتدقيق."
+  }
 }
