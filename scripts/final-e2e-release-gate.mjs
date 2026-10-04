@@ -774,6 +774,184 @@ async function humanUiJourneySmoke(
   );
 }
 
+async function secondaryCurriculumCoverageGate() {
+  const result =
+    await admin
+      .from("grades")
+      .select(
+        "id,grade_number,curricula!inner(id,name_ar,is_active,countries!inner(code)),units(id,lessons(id,status))",
+      )
+      .gte("grade_number", 10)
+      .lte("grade_number", 13)
+      .eq("is_active", true)
+      .eq(
+        "curricula.is_active",
+        true,
+      );
+
+  if (result.error) {
+    throw result.error;
+  }
+
+  const coverage =
+    new Map();
+
+  for (
+    const row of
+    result.data ?? []
+  ) {
+    const curriculum =
+      Array.isArray(
+        row.curricula,
+      )
+        ? row.curricula[0]
+        : row.curricula;
+
+    const countryRow =
+      Array.isArray(
+        curriculum?.countries,
+      )
+        ? curriculum.countries[0]
+        : curriculum?.countries;
+
+    const country =
+      String(
+        countryRow?.code ??
+          "",
+      )
+        .trim()
+        .toUpperCase();
+
+    const grade =
+      Number(
+        row.grade_number,
+      );
+
+    if (
+      !country ||
+      !Number.isFinite(
+        grade,
+      )
+    ) {
+      continue;
+    }
+
+    const publishedLessons =
+      (
+        row.units ?? []
+      )
+        .flatMap(
+          unit =>
+            unit.lessons ??
+            [],
+        )
+        .filter(
+          lesson =>
+            lesson.status ===
+            "published",
+        )
+        .length;
+
+    const key =
+      `${country}:${grade}`;
+
+    const current =
+      coverage.get(key) ?? {
+        country,
+        grade,
+        core: 0,
+        official: 0,
+      };
+
+    const isCore =
+      String(
+        curriculum?.name_ar ??
+          "",
+      ).includes(
+        "المسار العربي الأساسي لضاديوم",
+      );
+
+    if (isCore) {
+      current.core +=
+        publishedLessons;
+    }
+    else {
+      current.official +=
+        publishedLessons;
+    }
+
+    coverage.set(
+      key,
+      current,
+    );
+  }
+
+  for (
+    const grade of
+    [10, 11, 12]
+  ) {
+    const rows =
+      [...coverage.values()]
+        .filter(
+          item =>
+            item.grade ===
+            grade,
+        );
+
+    const countries =
+      new Set(
+        rows.map(
+          item =>
+            item.country,
+        ),
+      );
+
+    gate(
+      countries.size === 22,
+      `E2E_SECONDARY_G${grade}_COUNTRY_COUNT_FAILED:${countries.size}/22`,
+    );
+
+    const incomplete =
+      rows.filter(
+        item =>
+          item.core < 18 ||
+          item.official < 1,
+      );
+
+    gate(
+      incomplete.length ===
+        0,
+      `E2E_SECONDARY_G${grade}_COVERAGE_FAILED:${incomplete
+        .map(
+          item =>
+            `${item.country}[core=${item.core},official=${item.official}]`,
+        )
+        .join(",")}`,
+    );
+  }
+
+  for (
+    const country of
+    ["TN", "MR"]
+  ) {
+    const item =
+      coverage.get(
+        `${country}:13`,
+      );
+
+    gate(
+      item &&
+        item.core >= 18 &&
+        item.official >= 1,
+      `E2E_SECONDARY_G13_${country}_COVERAGE_FAILED:${item ? `core=${item.core},official=${item.official}` : "missing"}`,
+    );
+  }
+
+  console.log(
+    "E2E_SECONDARY_CURRICULUM_COVERAGE=PASS COUNTRIES=22 G10=PASS G11=PASS G12=PASS G13=TN,MR MIN_CORE=18",
+  );
+}
+
 function gate(condition, message) {
   if (!condition) {
     throw new Error(message);
@@ -4849,6 +5027,8 @@ const baseUrl =
 qaReport.baseUrl = baseUrl;
 
 try {
+  await secondaryCurriculumCoverageGate();
+
   for (
     const [role] of
     roles
