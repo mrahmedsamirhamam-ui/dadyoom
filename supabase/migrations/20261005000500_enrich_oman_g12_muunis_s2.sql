@@ -90,8 +90,7 @@ insert into public.lessons(
 select tu.id,e.lesson_title,
   'om-official-g12-muunis-s2-u'||lpad(e.unit_number::text,2,'0')||'-l'||lpad(e.lesson_number::text,2,'0'),
   e.lesson_number,e.lesson_number,
-  case when e.unit_number<=5 then 'literature'
-       when e.unit_number=6 then 'reading'
+  case when e.unit_number<=6 then 'reading'
        else 'writing' end,
   'درس مواءمة أصلي من ضاديوم للعنوان الرسمي «'||e.lesson_title||'» ضمن «'||e.unit_title||'».',
   'راجع كتاب المؤنس الرسمي أو نسخة مرخصة منه لدراسة النص أو المادة، ثم استخدم ضاديوم للفهم والتحليل والتطبيق دون إعادة نشر نص الكتاب.',
