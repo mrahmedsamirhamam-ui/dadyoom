@@ -10,6 +10,19 @@ type Params = {
   slug: string;
 };
 
+function isE2ESlug(slug: string) {
+  return slug.toLowerCase().startsWith("e2e-");
+}
+
+function isE2EUser(email: string | null | undefined) {
+  const value = String(email ?? "").trim().toLowerCase();
+
+  return (
+    value.startsWith("dadyoom.e2e.") &&
+    value.endsWith("@example.com")
+  );
+}
+
 function formatBahrainDateTime(value: string | null) {
   if (!value) return "الموعد غير محدد";
 
@@ -37,6 +50,18 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { slug } = await params;
+
+  if (isE2ESlug(slug)) {
+    return {
+      title: "اختبار داخلي | ضاديوم",
+      description: "صفحة اختبار داخلية غير مخصصة للفهرسة.",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
   const supabase = await createClient();
   const db = supabase as unknown as SupabaseClient;
 
@@ -45,7 +70,6 @@ export async function generateMetadata({
     .select("title,description")
     .eq("slug", slug)
     .eq("status", "published")
-    .not("slug", "like", "e2e-%")
     .maybeSingle();
 
   return {
@@ -68,6 +92,13 @@ export default async function CoursePage({
   const db = supabase as unknown as SupabaseClient;
   const { data: { user } } = await supabase.auth.getUser();
 
+  if (
+    isE2ESlug(slug) &&
+    !isE2EUser(user?.email)
+  ) {
+    notFound();
+  }
+
   const { data: course } = await db
     .from("edu_marketplace_courses")
     .select(
@@ -75,7 +106,6 @@ export default async function CoursePage({
     )
     .eq("slug", slug)
     .eq("status", "published")
-    .not("slug", "like", "e2e-%")
     .maybeSingle();
 
   if (!course) notFound();
