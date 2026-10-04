@@ -9,9 +9,9 @@
   "semester": null,
   "subject": "اللغة العربية",
   "status": "verified",
-  "officialLessons": 1,
-  "mappedLessons": 1,
-  "verifiedLessons": 1,
+  "officialLessons": 4,
+  "mappedLessons": 4,
+  "verifiedLessons": 4,
   "scope": "current-officially-published-and-publicly-verifiable-scope",
   "policy": "المطابقة على مستوى الكتاب الرسمي لكل سنة. البنية الرسمية 6 ابتدائي + 3 إعدادي + 4 ثانوي = 13 مستوى.",
   "mappings": [
@@ -22,12 +22,35 @@
         "label": "المركز الوطني البيداغوجي + وزارة التربية التونسية",
         "url": "https://www.cnp.com.tn/",
         "officialListUrl": "https://cnp.com.tn/arabic/annee-actuelle/listeOfficielle.htm",
-        "ministryUrl": "https://education.gov.tn/"
+        "ministryUrl": "https://education.gov.tn/",
+        "officialGradeListUrl": "https://cnp.com.tn/arabic/annee-actuelle/listeOff/4SE.htm",
+        "verifiedBooks": [
+          {
+            "code": "201403",
+            "title": "النصوص: رؤى — كافة الشعب ما عدا الآداب",
+            "source": "https://cnp.com.tn/arabic/annee-actuelle/listeOff/4SE.htm"
+          },
+          {
+            "code": "201421",
+            "title": "نصوص — آداب — الجزء الأول",
+            "source": "https://cnp.com.tn/arabic/annee-actuelle/listeOff/4SE.htm"
+          },
+          {
+            "code": "201422",
+            "title": "نصوص — آداب — الجزء الثاني",
+            "source": "https://cnp.com.tn/arabic/annee-actuelle/listeOff/4SE.htm"
+          },
+          {
+            "code": "201481",
+            "title": "كتاب العربية — رياضة",
+            "source": "https://cnp.com.tn/arabic/annee-actuelle/listeOff/4SE.htm"
+          }
+        ]
       },
       "relationType": "official-grade-textbook+national-extension",
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
-      "rationale": "المركز الوطني البيداغوجي يعلن الكتب المدرسية الرسمية 2026-2027، ووزارة التربية تنشر قوائم الكتب للمراحل والسنوات. حزمة ضاديوم تمثل العربية على مستوى السنة دون إعادة نشر النصوص.",
+      "rationale": "المطابقة موثقة على مستوى 4 كتاب/عقدة عربية رسمية منشورة في قائمة المركز الوطني البيداغوجي للسنة الثانوية المقابلة. لا تُستنتج عناوين دروس داخلية من دون فهرس كتاب رسمي قابل للقراءة.",
       "coreCoverage": [
         {
           "slug": "tn-dadyoom-core-g13-l01",
@@ -103,8 +126,21 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-cnp-2026-2027-books+official-ministry-2026-2027-lists+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-cnp-current-grade-list+official-book-codes+official-2026-2027-cnp-catalog+national-pack"
     }
+  ],
+  "officialBookNodesVerified": 4,
+  "verifiedOfficialBookTitles": [
+    "النصوص: رؤى — كافة الشعب ما عدا الآداب",
+    "نصوص — آداب — الجزء الأول",
+    "نصوص — آداب — الجزء الثاني",
+    "كتاب العربية — رياضة"
+  ],
+  "verifiedOfficialBookCodes": [
+    "201403",
+    "201421",
+    "201422",
+    "201481"
   ]
 }
