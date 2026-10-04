@@ -10,6 +10,10 @@
   - G13 literary: 4 units / 50 lessons / 150 questions / 150 activities.
 - Mauritania G13 literary production API verification: PASS.
 - No invented titles were added for sources whose public official TOC is unavailable or OCR-corrupted. Current detailed blockers include Mauritania G12/G13 scientific TOCs, Sudan G11/G12, Yemen, Syria, Iraq, Kuwait, Morocco, Qatar, Somalia, Djibouti and Comoros. Those remain official book/grade/standards coverage bundles until a clean official detailed source is obtained.
+- Djibouti secondary enrichment:
+  - G10 Seconde: 13 official programme units/domains, 46 verified topics, 138 questions, 138 activities.
+  - G12 Terminale: 14 units/domains, 44 verified readable official topics, 132 questions, 132 activities; 4 OCR-unresolved official slots intentionally not guessed.
+  - G11 Première remains at official L/ES/S/SG series-bundle level because no accessible detailed CRIPEN programme file was found.
 - Tunisia secondary remains correctly represented by official CNP textbook nodes (2/3/3/4 books for G10/G11/G12/G13); book titles are official, but lesson-level expansion is intentionally not fabricated.
 - TinyFish interactive browser automation is currently unavailable because its wallet is below zero; static fetch/search and other project tools remain usable.
 
