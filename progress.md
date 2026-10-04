@@ -207,3 +207,45 @@ The remaining items are not missing application code:
 - Do not break Android.
 - Do not enable AI video.
 - Do not introduce new paid services without approval.
+
+
+## 2026-10-04 — Secondary official-depth continuation (Mauritania scientific + Yemen + catalog cleanup)
+
+- Mauritania official IPN/Koutoubi scientific-track expansion completed from the current 2025 textbooks linked by Koutoubi:
+  - G12 scientific: 4 units / 29 verified lesson-topic titles / 87 original Dadyoom questions / 87 original activities.
+    - Official page: https://koutoubi.mr/secondaire2/6eme/Arabe/
+    - Official-linked PDF: https://docs.bsimr.com/pdfs/secondaire2s/AR-6AS-M.pdf
+    - Migration: `20261004203000_enrich_mauritania_g12_scientific_official_arabic.sql`
+  - G13 scientific: 4 units / 28 verified lesson-topic titles / 84 original Dadyoom questions / 84 original activities.
+    - Official page: https://koutoubi.mr/secondaire2/7eme/Arabe/
+    - Official-linked PDF: https://docs.bsimr.com/pdfs/secondaire2s/AR-7AS-CD.pdf
+    - Migration: `20261004204500_enrich_mauritania_g13_scientific_official_arabic.sql`
+  - Both migrations applied successfully to production Supabase and are visible through the live course catalog.
+- Kuwait 2026/27 secondary metadata corrected against current Ministry decisions:
+  - Masarat is an approved regulation from 2026/27.
+  - Current initial rollout is optional for Grade 10 applicants in 12 designated schools.
+  - The legacy secondary system remains for learners outside that rollout.
+  - No unverified secondary Arabic lesson sequence was invented.
+- Yemen official secondary book-level evidence deepened from the Ministry e-learning grade indexes without inferring unavailable lesson TOCs:
+  - G10 verified book nodes: النحو والصرف؛ الأدب والنصوص والبلاغة.
+  - G11 verified book node: الأدب والنصوص والبلاغة.
+  - G12 verified book nodes: النحو والصرف؛ الأدب والنصوص والبلاغة؛ القراءة.
+  - Migration `20261004210000_expand_yemen_secondary_official_book_nodes.sql` applied successfully.
+  - Resulting official-node totals (including the retained grade bundle fallback): G10=3, G11=2, G12=4.
+- Public catalog duplicate cleanup completed:
+  - `app/api/courses/catalog/route.ts` now suppresses the older generic `المطابقة الرسمية` bundle only when the same country/grade has a detailed official curriculum with at least 10 published lessons.
+  - Dadyoom Core is never hidden.
+  - Bundle/domain fallback remains visible for countries/grades where deeper official public evidence is unavailable.
+  - Production verification PASS:
+    - MR G12: scientific + literary + Dadyoom Core; generic bundle hidden.
+    - DJ G10: detailed official + Dadyoom Core; generic bundle hidden.
+    - JO G11: detailed official + Dadyoom Core; generic bundle hidden.
+    - YE G12: fallback official bundle retained and new verified book nodes visible.
+- Source-discipline blockers remain intentionally unexpanded rather than guessed:
+  - Sudan G11/G12: older national-curriculum PDFs are discoverable in public archives, but current 2026/27 applicability is not sufficiently established.
+  - Iraq: official catalog remains bot-blocked to automated extraction.
+  - Syria: current Ministry curriculum host is live but secondary Arabic PDF/index paths are not publicly indexed enough for safe title extraction.
+  - Somalia: current Ministry sources establish the national curriculum/secondary framework but not a public grade-by-grade Arabic TOC.
+  - Comoros: Ministry evidence confirms Arabic in secondary education but no public current grade-level official Arabic TOC was found.
+  - Qatar/Morocco/Tunisia/Lebanon/UAE/Oman/Kuwait: retain verified bundle/domain/book-level scope where current detailed official lesson sequences are not safely extractable.
+- Oman current 2026/27 Arabic guidance bulletin was located on the Ministry domain (74-page flipbook). Its HTML pages expose image-only page content to the available extractor, so no lesson titles were inferred from it.
