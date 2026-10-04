@@ -20,6 +20,12 @@ begin
   where slug like 'e2e-%';
 
   if cardinality(v_course_ids) > 0 then
+    delete from public.edu_teacher_earnings
+    where course_id = any(v_course_ids);
+
+    delete from public.edu_marketplace_purchases
+    where course_id = any(v_course_ids);
+
     delete from public.edu_payment_orders
     where course_id = any(v_course_ids);
 
