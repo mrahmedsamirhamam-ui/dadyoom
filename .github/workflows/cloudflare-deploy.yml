@@ -1,0 +1,89 @@
+name: Cloudflare Deploy
+
+on:
+  push:
+    branches:
+      - fix/mobile-cloud-video-final-20260923
+  workflow_dispatch:
+
+concurrency:
+  group: cloudflare-production-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install
+        run: npm install --legacy-peer-deps --no-package-lock
+
+      - name: Build
+        run: npm run build:vinext
+
+      - name: Deploy production when Cloudflare credentials are configured
+        shell: bash
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN || secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || secrets.CF_ACCOUNT_ID }}
+        run: |
+          set -euo pipefail
+
+          if [[ -z "${CLOUDFLARE_API_TOKEN:-}" || -z "${CLOUDFLARE_ACCOUNT_ID:-}" ]]; then
+            echo "DADYOOM_CLOUDFLARE_DEPLOY=SKIPPED_MISSING_REPOSITORY_SECRETS"
+            echo "Configure CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID (or CF_API_TOKEN / CF_ACCOUNT_ID)."
+            exit 0
+          fi
+
+          npm run deploy:vinext
+          echo "DADYOOM_CLOUDFLARE_DEPLOY=PASS"
+
+      - name: Verify deployed commit when deployment credentials are configured
+        shell: bash
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN || secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || secrets.CF_ACCOUNT_ID }}
+        run: |
+          set -euo pipefail
+
+          if [[ -z "${CLOUDFLARE_API_TOKEN:-}" || -z "${CLOUDFLARE_ACCOUNT_ID:-}" ]]; then
+            echo "DADYOOM_DEPLOY_VERIFY=SKIPPED_MISSING_REPOSITORY_SECRETS"
+            exit 0
+          fi
+
+          for base in             "https://dadyoom.mrahmedsamirhamam.workers.dev"             "https://dadyoom.pages.dev"; do
+            matched=0
+            for attempt in $(seq 1 30); do
+              body="$(curl --silent --show-error --max-time 20 "$base/api/deploy/version" || true)"
+              actual="$(node -e '
+                try {
+                  const body = JSON.parse(process.argv[1]);
+                  process.stdout.write(String(body.commit || ""));
+                } catch {
+                  process.stdout.write("");
+                }
+              ' "$body")"
+              echo "DEPLOY_VERIFY base=$base attempt=$attempt expected=$EXPECTED_SHA actual=$actual"
+              if [[ "$actual" == "$EXPECTED_SHA" ]]; then
+                matched=1
+                break
+              fi
+              sleep 10
+            done
+            if [[ "$matched" != "1" ]]; then
+              echo "DADYOOM_DEPLOY_VERIFY=FAIL base=$base"
+              exit 1
+            fi
+          done
+
+          echo "DADYOOM_DEPLOY_VERIFY=PASS"
