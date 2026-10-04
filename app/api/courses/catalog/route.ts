@@ -524,7 +524,7 @@ export async function GET(
       ),
     );
 
-  const units =
+  const mappedUnits =
     rawUnits
       .map(
         raw => {
@@ -703,6 +703,67 @@ export async function GET(
           a.order -
           b.order,
       );
+
+  /*
+   * When a grade has a sufficiently detailed official curriculum,
+   * hide the older generic "official matching" bundle from the public
+   * catalog. This avoids duplicate-looking official content while
+   * preserving the generic bundle as the fallback for countries/grades
+   * whose public official source is only verifiable at bundle/domain level.
+   *
+   * Dadyoom Core is never hidden.
+   */
+  const officialLessonCountByCurriculum =
+    new Map<string, number>();
+
+  for (const unit of mappedUnits) {
+    officialLessonCountByCurriculum.set(
+      unit.curriculum.id,
+      (
+        officialLessonCountByCurriculum.get(
+          unit.curriculum.id,
+        ) ?? 0
+      ) + unit.lessons.length,
+    );
+  }
+
+  const hasDetailedOfficialCurriculum =
+    Array.from(
+      officialLessonCountByCurriculum.entries(),
+    ).some(
+      ([curriculumId, lessonCount]) => {
+        const curriculum =
+          curriculumById.get(
+            curriculumId,
+          );
+
+        if (!curriculum) {
+          return false;
+        }
+
+        return (
+          lessonCount >= 10 &&
+          curriculum.name_ar.startsWith(
+            "اللغة العربية — ",
+          ) &&
+          !curriculum.name_ar.includes(
+            "المطابقة الرسمية",
+          ) &&
+          curriculum.name_ar !==
+            "المسار العربي الأساسي لضاديوم"
+        );
+      },
+    );
+
+  const units =
+    hasDetailedOfficialCurriculum
+      ? mappedUnits.filter(
+          unit =>
+            !unit.curriculum.name.includes(
+              "المطابقة الرسمية",
+            ),
+        )
+      : mappedUnits;
 
   return NextResponse.json(
     { units },
