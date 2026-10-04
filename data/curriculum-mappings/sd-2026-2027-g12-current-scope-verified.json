@@ -108,8 +108,15 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-state-ministry-arabic+national-curriculum-center-books+2026-stage-evidence+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-national-digital-library+official-grade12-grammar-book+verified-readable-toc+original-dadyoom-support",
+      "detailedOfficialCatalog": "data/national-catalogs/sd-g12-arabic-grammar-detailed-verified-partial-2026.json",
+      "detailedVerifiedTopics": 21
     }
-  ]
+  ],
+  "detailedCoverageStatus": "verified-partial-detailed",
+  "detailedVerifiedTopics": 21,
+  "detailedOfficialCatalog": "data/national-catalogs/sd-g12-arabic-grammar-detailed-verified-partial-2026.json",
+  "detailedOfficialSource": "https://mdl.edu.sd/img/bookpdf/nahw3_1678863142.pdf",
+  "detailedScopeNote": "أضيفت فقط الموضوعات المقروءة بوضوح من فهرس كتاب قواعد اللغة العربية الرسمي للصف الثالث الثانوي؛ لم تُخمن العناصر المشوشة."
 }
