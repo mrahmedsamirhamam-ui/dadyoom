@@ -115,6 +115,18 @@
       "verifiedAt": "2026-10-04"
     },
     {
+      "grade": 12,
+      "officialLevel": "السنة السادسة الثانوية",
+      "track": "الشعبة العلمية",
+      "units": 4,
+      "lessons": 29,
+      "edition": 2025,
+      "officialLanding": "https://koutoubi.mr/secondaire2/6eme/Arabe/",
+      "source": "https://docs.bsimr.com/pdfs/secondaire2s/AR-6AS-M.pdf",
+      "catalog": "data/national-catalogs/mr-g12-scientific-arabic-detailed-2026.json",
+      "verifiedAt": "2026-10-04"
+    },
+    {
       "grade": 13,
       "officialLevel": "السنة السابعة الثانوية",
       "track": "الشعبة الأدبية",
@@ -124,6 +136,18 @@
       "officialLanding": "https://koutoubi.mr/secondaire2/7eme/Arabe/",
       "source": "https://docs.bsimr.com/pdfs/secondaire2s/AR-7AS-LM.pdf",
       "catalog": "data/national-catalogs/mr-g13-literary-arabic-detailed-2026.json",
+      "verifiedAt": "2026-10-04"
+    },
+    {
+      "grade": 13,
+      "officialLevel": "السنة السابعة الثانوية",
+      "track": "الشعبة العلمية",
+      "units": 4,
+      "lessons": 28,
+      "edition": 2025,
+      "officialLanding": "https://koutoubi.mr/secondaire2/7eme/Arabe/",
+      "source": "https://docs.bsimr.com/pdfs/secondaire2s/AR-7AS-CD.pdf",
+      "catalog": "data/national-catalogs/mr-g13-scientific-arabic-detailed-2026.json",
       "verifiedAt": "2026-10-04"
     }
   ]
