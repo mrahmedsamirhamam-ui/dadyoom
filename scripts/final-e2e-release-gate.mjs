@@ -1581,6 +1581,26 @@ async function cleanupStaleMarketplaceFixtures() {
     return;
   }
 
+  const earningsCleanup =
+    await admin
+      .from("edu_teacher_earnings")
+      .delete()
+      .in("course_id", staleIds);
+
+  if (earningsCleanup.error) {
+    throw earningsCleanup.error;
+  }
+
+  const purchasesCleanup =
+    await admin
+      .from("edu_marketplace_purchases")
+      .delete()
+      .in("course_id", staleIds);
+
+  if (purchasesCleanup.error) {
+    throw purchasesCleanup.error;
+  }
+
   const paymentCleanup =
     await admin
       .from("edu_payment_orders")
@@ -1592,9 +1612,8 @@ async function cleanupStaleMarketplaceFixtures() {
   }
 
   /*
-   * The remaining course dependencies use ON DELETE CASCADE.
-   * Removing the course clears stale purchases, earnings, lessons,
-   * live sessions and their attendance rows from cancelled QA runs.
+   * Remaining course dependencies are CASCADE-safe.
+   * Removing the course clears stale lessons, live sessions and attendance.
    */
   const courseCleanup =
     await admin
