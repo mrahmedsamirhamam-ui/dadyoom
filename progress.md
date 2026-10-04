@@ -387,3 +387,42 @@ The remaining items are not missing application code:
   - محاضر الاجتماعات;
   - البرهنة (رهانات المستقبل).
 - Public course catalog now automatically hides the older six-node Oman G12 generic official bundle because the detailed official curriculum exceeds the detailed-coverage threshold; Dadyoom Core remains separate.
+
+
+## 2026-10-04 — Yemen secondary official Arabic book-node refinement
+
+- Official Yemen e-learning catalog confirms curriculum PDFs from primary through Grade 12.
+- Direct Ministry-domain Arabic book files were resolved and stored instead of relying only on slow grade landing pages.
+- Grade 10:
+  - 6 published official book/part nodes;
+  - 18 original Dadyoom questions;
+  - 18 original Dadyoom activities.
+  - Verified nodes:
+    - الأدب والنصوص والبلاغة — الجزء الأول;
+    - الأدب والنصوص والبلاغة — الجزء الثاني;
+    - القراءة — الجزء الأول;
+    - القراءة — الجزء الثاني;
+    - النحو والصرف — الجزء الأول;
+    - النحو والصرف — الجزء الثاني.
+- Grade 11:
+  - 5 published official book/part nodes;
+  - 15 original Dadyoom questions;
+  - 15 original Dadyoom activities.
+  - Verified nodes:
+    - الأدب والنصوص والبلاغة — الجزء الأول;
+    - الأدب والنصوص والبلاغة — الجزء الثاني;
+    - القراءة — الجزء الأول;
+    - القراءة — الجزء الثاني;
+    - النحو والصرف — الجزء الأول.
+  - A second G11 grammar-part URL was not added because the indexed external listing duplicated the part-1 URL; no guess was made.
+- Grade 12:
+  - 3 published official book nodes;
+  - 9 original Dadyoom questions;
+  - 9 original Dadyoom activities.
+  - Direct official files now attached:
+    - الأدب والنصوص والبلاغة;
+    - القراءة;
+    - النحو والصرف.
+- Catch-all Yemen secondary bundle placeholders were switched to `draft` so they are not counted as separate official books.
+- Old superseded generic activities were removed after the refined book nodes were added.
+- Internal textbook lesson titles remain unexpanded until a readable official TOC is available.
