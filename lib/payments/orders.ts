@@ -238,6 +238,29 @@ export async function finalizePaymentOrder(orderId: string) {
       );
 
     if (earningError) throw earningError;
+
+    if (order.provider === "bpay") {
+      const { error: receivableError } = await db
+        .from("edu_platform_fee_receivables")
+        .upsert(
+          {
+            teacher_id: course.teacher_id,
+            course_id: order.course_id,
+            purchase_id: purchase.id,
+            payment_order_id: order.id,
+            gross_amount: order.amount,
+            fee_amount: fee,
+            currency: order.currency,
+            status: "due",
+            updated_at: new Date().toISOString(),
+          },
+          {
+            onConflict: "purchase_id",
+          },
+        );
+
+      if (receivableError) throw receivableError;
+    }
   }
 
   const { data: completed, error: completeError } = await db
