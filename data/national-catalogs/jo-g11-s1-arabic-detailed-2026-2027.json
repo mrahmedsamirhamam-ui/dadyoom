@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "JO",
+    "nameAr": "الأردن"
+  },
+  "academicYear": "2026-2027",
+  "grade": 11,
+  "semester": 1,
+  "subject": "اللغة العربية",
+  "officialBook": "العربية لغتي — كتاب الطالب — الصف الحادي عشر — الفصل الدراسي الأول",
+  "verificationStatus": "verified-current-official-book+crosschecked-unit-index",
+  "sources": {
+    "officialCurrentGradePage": "https://nccd.gov.jo/ar/pages/TextBooksGrade/118",
+    "officialStudentBook": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Arabic/2025/%D8%B9%D8%B1%D8%A8%D9%8A%206.7.2025/11/%D9%83%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D8%AD%D8%A7%D8%AF%D9%8A%20%D8%B9%D8%B4%D8%B1%20%D9%811%20%D8%A7%D8%B9%D8%A7%D8%AF%D8%A9%20%D8%B7%D8%A8%D8%A7%D8%B9%D8%A9%2025-5.pdf",
+    "unitCrosscheck": "Current 2026 lesson index cross-checked against the NCCD student book; no question-bank content copied."
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "من القيم الإنسانية في القرآن الكريم",
+      "lessons": [
+        "الاستماع",
+        "التحدث",
+        "القراءة",
+        "الكتابة",
+        "أبني لغتي"
+      ]
+    },
+    {
+      "number": 2,
+      "title": "في حب الوطن",
+      "lessons": [
+        "الاستماع",
+        "التحدث",
+        "القراءة",
+        "الكتابة",
+        "أبني لغتي"
+      ]
+    },
+    {
+      "number": 3,
+      "title": "أمراض العصر",
+      "lessons": [
+        "الاستماع",
+        "التحدث",
+        "القراءة",
+        "الكتابة",
+        "أبني لغتي"
+      ]
+    },
+    {
+      "number": 4,
+      "title": "نحن والإعلام",
+      "lessons": [
+        "الاستماع",
+        "التحدث",
+        "القراءة",
+        "الكتابة",
+        "أبني لغتي"
+      ]
+    },
+    {
+      "number": 5,
+      "title": "التعليم التقني بوابة المستقبل",
+      "lessons": [
+        "الاستماع",
+        "التحدث",
+        "القراءة",
+        "الكتابة",
+        "أبني لغتي"
+      ]
+    }
+  ],
+  "officialUnits": 5,
+  "structuredSkillNodes": 25,
+  "copyrightPolicy": "تحتفظ ضاديوم بعناوين الوحدات وبنية المهارات فقط؛ الشرح والأسئلة والأنشطة أصلية."
+}
