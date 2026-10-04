@@ -9,15 +9,15 @@
   "semester": null,
   "subject": "اللغة العربية",
   "status": "verified",
-  "officialLessons": 1,
-  "mappedLessons": 1,
-  "verifiedLessons": 1,
-  "scope": "current-officially-published-and-publicly-verifiable-scope",
+  "officialLessons": 43,
+  "mappedLessons": 43,
+  "verifiedLessons": 43,
+  "scope": "current-official-2025-textbook-detailed",
   "policy": "المطابقة على مستوى الكتاب الرسمي لكل سنة، مع فصل الأدبي/العلمي في السنوات 5-7 من الثانوي. البنية الرسمية الحالية 6 ابتدائي + 4 إعدادي + 3 ثانوي، أي 13 مستوى دراسيًا.",
   "mappings": [
     {
       "officialSlug": "mr-2026-2027-g10-all-arabic",
-      "officialTitle": "اللغة العربية — السنة 4 إعدادي — حزمة الكتاب الرسمي",
+      "officialTitle": "اللغة العربية — السنة الرابعة الإعدادية — الكتاب الرسمي التفصيلي",
       "source": {
         "label": "المعهد التربوي الوطني — كُتبي + وزارة التربية",
         "url": "https://koutoubi.mr/secondaire2/4eme/Arabe/",
@@ -26,9 +26,10 @@
         "arabicPolicyUrl": "https://www.education.gov.mr/ar/node/1090",
         "currentYearPrepUrl": "https://www.education.gov.mr/index.php/ar/node/1132",
         "textbookDistributionUrl": "https://education.gov.mr/fr/node/982",
-        "reformUrl": "https://www.education.gov.mr/ar/node/555"
+        "reformUrl": "https://www.education.gov.mr/ar/node/555",
+        "textbookPdf": "https://docs.bsimr.com/pdfs/secondaire1s/AR-4AS-M.pdf"
       },
-      "relationType": "official-textbook-by-grade+national-extension",
+      "relationType": "official-textbook-toc-detailed+national-extension",
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
       "rationale": "كُتبي مبادرة أطلقها المعهد التربوي الوطني وتعرض الموارد التعليمية الرسمية المعتمدة بحسب المستوى؛ حزمة ضاديوم تغطي الكتاب بمحتوى أصلي.",
@@ -107,8 +108,14 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-ipn-koutoubi+official-ministry-reform+official-current-year-preparation+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-ipn-koutoubi+official-linked-2025-textbook-toc+national-pack",
+      "detailedOfficialUnits": 4,
+      "detailedOfficialLessons": 43,
+      "detailedOfficialCatalog": "data/national-catalogs/mr-g10-arabic-detailed-2026.json"
     }
-  ]
+  ],
+  "detailedOfficialUnits": 4,
+  "detailedOfficialLessons": 43,
+  "detailedOfficialCatalog": "data/national-catalogs/mr-g10-arabic-detailed-2026.json"
 }
