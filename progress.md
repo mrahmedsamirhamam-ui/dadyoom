@@ -9,7 +9,7 @@
   - G12 literary: 4 units / 34 lessons / 102 questions / 102 activities.
   - G13 literary: 4 units / 50 lessons / 150 questions / 150 activities.
 - Mauritania G13 literary production API verification: PASS.
-- No invented titles were added for sources whose public official TOC is unavailable or OCR-corrupted. Current detailed blockers include Mauritania G12/G13 scientific TOCs, Sudan G11/G12, Yemen, Syria, Iraq, Kuwait, Morocco, Qatar, Somalia, Djibouti and Comoros. Those remain official book/grade/standards coverage bundles until a clean official detailed source is obtained.
+- No invented titles are added when a current public official TOC is unavailable or OCR-corrupted. Mauritania G12/G13 scientific, Yemen book nodes, and Djibouti G10/G12 have since been enriched and verified. Remaining source-depth blockers are Sudan G11/G12, Syria, Iraq, Somalia, Comoros, Djibouti G11, and countries where the current official publication is only verifiable at book/domain/bundle level (including Kuwait, Morocco, Qatar, Tunisia, Lebanon, UAE and Oman).
 - Jordan G11 current 2026-2027 Semester 1 enrichment:
   - 5 official units / 25 structured skill lessons / 75 questions / 75 activities.
   - Production API PASS, including «من القيم الإنسانية في القرآن الكريم», «التعليم التقني بوابة المستقبل», and «أبني لغتي».
@@ -249,3 +249,39 @@ The remaining items are not missing application code:
   - Comoros: Ministry evidence confirms Arabic in secondary education but no public current grade-level official Arabic TOC was found.
   - Qatar/Morocco/Tunisia/Lebanon/UAE/Oman/Kuwait: retain verified bundle/domain/book-level scope where current detailed official lesson sequences are not safely extractable.
 - Oman current 2026/27 Arabic guidance bulletin was located on the Ministry domain (74-page flipbook). Its HTML pages expose image-only page content to the available extractor, so no lesson titles were inferred from it.
+
+
+## 2026-10-04 — Database security/performance hardening
+
+- Public course-catalog duplication fixed in `app/api/courses/catalog/route.ts`:
+  - when a country/grade has a detailed official curriculum (>=10 published lessons), the older generic `المطابقة الرسمية` bundle is hidden from the public catalog;
+  - Dadyoom Core remains visible;
+  - bundle/domain fallback remains visible when no detailed official curriculum exists.
+- `get_lesson_page_bundle(uuid)` changed from `SECURITY DEFINER` to `SECURITY INVOKER` after verifying that published lesson/question/activity access and caller-owned progress/attempt/tutor access are already protected correctly by RLS.
+  - anonymous RPC test PASS: published lesson + questions + activities returned, student payload remains null.
+- Duplicate database indexes/constraints removed safely:
+  - one duplicate `lesson_activities(lesson_id)` index removed;
+  - one duplicate `student_memory(student_id, updated_at desc)` index removed;
+  - two duplicate `student_progress(student_email, lesson_id)` UNIQUE constraints removed, leaving one canonical UNIQUE constraint.
+- RLS policy consolidation:
+  - redundant `lesson_activities` SELECT policies collapsed without changing effective access;
+  - equivalent permissive policies for lessons, questions, parent/student links, profiles and teacher-class relations were consolidated into the same logical OR conditions;
+  - Supabase `multiple_permissive_policies` warning reduced from 13 to 0.
+- RLS auth initialization optimized:
+  - exact policies flagged by Supabase were rewritten to scalar-subquery auth calls, preserving predicate logic;
+  - `auth_rls_initplan` warning reduced from 142 to 0.
+- `get_student_dashboard_lessons(text, integer, integer)` changed to `SECURITY INVOKER` because it only reads published lessons joined to active public catalog tables already protected by RLS.
+- Foreign-key indexing:
+  - 39 covering FK indexes added for live learning, assessment, messaging, school, subscription, marketplace and teacher-course flows;
+  - `unindexed_foreign_keys` reduced from 42 to 3;
+  - the 3 intentionally remaining FKs belong to deferred AI Video / video-analysis paths and stay unindexed while that feature remains disabled.
+- Current Supabase advisor posture after hardening:
+  - no `multiple_permissive_policies` warning;
+  - no `auth_rls_initplan` warning;
+  - 3 INFO-level unindexed FKs intentionally deferred with AI Video;
+  - `SECURITY DEFINER` warnings that remain are authenticated RPC/helper functions with explicit identity/role checks or RLS-helper requirements; do not convert them blindly.
+  - leaked-password protection remains an external Supabase Auth setting (Dashboard Auth settings; Pro-plan feature) and is not changeable through the installed database connector.
+- Production health remained healthy through the hardening sequence:
+  - AI health: ok;
+  - LiveKit: ok/configured;
+  - Worker and Pages deployment sync continued normally.
