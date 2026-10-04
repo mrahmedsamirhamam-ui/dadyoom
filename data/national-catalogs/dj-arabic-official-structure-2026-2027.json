@@ -79,6 +79,15 @@
       "source": "https://cripen.dj/wp-content/uploads/2025/05/Programmes-compile-seconde.pdf",
       "catalog": "data/national-catalogs/dj-g10-arabic-detailed-2026.json",
       "verifiedAt": "2026-10-04"
+    },
+    {
+      "grade": 12,
+      "officialLevel": "Terminale / الصف الثالث الثانوي",
+      "verifiedTopics": 44,
+      "unresolvedOfficialSlots": 4,
+      "source": "https://cripen.dj/wp-content/uploads/2025/05/Programme-compile-Terminale.pdf",
+      "catalog": "data/national-catalogs/dj-g12-arabic-detailed-verified-partial-2026.json",
+      "verifiedAt": "2026-10-04"
     }
   ]
 }
