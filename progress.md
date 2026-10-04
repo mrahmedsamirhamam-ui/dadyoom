@@ -1,3 +1,18 @@
+## 2026-10-04 — Secondary curriculum continuation + production sync
+
+- Production deployment gap resolved: Worker and Pages moved from the stale September build to commit `a795b8290c16be118695f2c8f69cb00b0ad68874` on the working branch. A guarded `.github/workflows/cloudflare-deploy.yml` was added at commit `8cd7d9579fd1f40dcec80fb313e098a4bbc49731`; it deploys only when Cloudflare repository credentials are configured and never prints secrets.
+- Production health after sync: AI health `ok=true`; Google provider `google=true, configured=true`; LiveKit `ok=true, configured=true`.
+- Algeria G12 science source was corrected from a non-official mirror to the official Ministry PDF; 12 production lessons now reference the Ministry source.
+- Mauritania detailed official secondary Arabic added from IPN/Koutoubi 2025 textbooks:
+  - G11 literary: 4 units / 39 lessons / 117 questions / 117 activities.
+  - G11 scientific: 4 units / 24 lessons / 72 questions / 72 activities.
+  - G12 literary: 4 units / 34 lessons / 102 questions / 102 activities.
+  - G13 literary: 4 units / 50 lessons / 150 questions / 150 activities.
+- Mauritania G13 literary production API verification: PASS.
+- No invented titles were added for sources whose public official TOC is unavailable or OCR-corrupted. Current detailed blockers include Mauritania G12/G13 scientific TOCs, Sudan G11/G12, Yemen, Syria, Iraq, Kuwait, Morocco, Qatar, Somalia, Djibouti and Comoros. Those remain official book/grade/standards coverage bundles until a clean official detailed source is obtained.
+- Tunisia secondary remains correctly represented by official CNP textbook nodes (2/3/3/4 books for G10/G11/G12/G13); book titles are official, but lesson-level expansion is intentionally not fabricated.
+- TinyFish interactive browser automation is currently unavailable because its wallet is below zero; static fetch/search and other project tools remain usable.
+
 # progress.md — Dadyoom production state
 
 Updated: 2026-10-04
