@@ -74,8 +74,33 @@
     {
       "kind": "official-grade1-arabic-guide-moufid",
       "url": "https://www.men.gov.ma/Ar/Documents/dc/G-Moufid-LarabeN1-1AP2019.pdf"
+    },
+    {
+      "kind": "official-telmidtice-g10-literary-arabic-course-listing",
+      "url": "https://telmidtice.men.gov.ma/courses?category=67c59d79062e69f770de725a&level=3&subCategory=67c59d7a062e69f770de72b3",
+      "note": "45 درسًا / 17 أسبوعًا"
+    },
+    {
+      "kind": "official-telmidtice-g12-arts-arabic-course-listing",
+      "url": "https://telmidtice.men.gov.ma/courses?category=67c6fa462852c37f346d37ae&level=3&subCategory=67dbf8692d3e5329c49de9a5",
+      "note": "49 درسًا / 17 أسبوعًا"
     }
   ],
   "copyrightPolicy": "لا تعيد ضاديوم نشر الكتب المغربية؛ تستخدم المستوى والمسار والموارد الرسمية لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية.",
-  "generatedAt": "2026-09-25"
+  "generatedAt": "2026-09-25",
+  "officialDigitalCourseEvidence": {
+    "grade10Literary": {
+      "subject": "اللغة العربية",
+      "lessons": 45,
+      "weeks": 17,
+      "url": "https://telmidtice.men.gov.ma/courses?category=67c59d79062e69f770de725a&level=3&subCategory=67c59d7a062e69f770de72b3"
+    },
+    "grade12Arts": {
+      "subject": "اللغة العربية وآدابها",
+      "lessons": 49,
+      "weeks": 17,
+      "url": "https://telmidtice.men.gov.ma/courses?category=67c6fa462852c37f346d37ae&level=3&subCategory=67dbf8692d3e5329c49de9a5"
+    },
+    "policy": "هذه أعداد مقررات رقمية منشورة رسميًا، وليست بديلًا عن عناوين الدروس. لا تُنشأ عقد درس بلا عنوان رسمي قابل للتدقيق."
+  }
 }
