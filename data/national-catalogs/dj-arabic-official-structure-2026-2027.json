@@ -66,10 +66,14 @@
     {
       "kind": "official-2026-arabic-bac-evidence",
       "url": "https://cripen.dj/index.php/2026/06/08/visite-officielle-du-ministre-dans-les-centres-dexamens/"
+    },
+    {
+      "kind": "official-premiere-programs",
+      "url": "https://cripen.dj/wp-content/uploads/2025/05/Programme-compile-1ere.pdf"
     }
   ],
   "copyrightPolicy": "لا تعيد ضاديوم نشر نصوص الأدلة والكتب؛ تستخدم البنية والمقرر والسلسلة وروابط المصادر لإثبات المواءمة، والمحتوى التعليمي أصلي.",
-  "generatedAt": "2026-09-25",
+  "generatedAt": "2026-10-04",
   "detailedSecondaryPrograms": [
     {
       "grade": 10,
@@ -78,6 +82,15 @@
       "topics": 46,
       "source": "https://cripen.dj/wp-content/uploads/2025/05/Programmes-compile-seconde.pdf",
       "catalog": "data/national-catalogs/dj-g10-arabic-detailed-2026.json",
+      "verifiedAt": "2026-10-04"
+    },
+    {
+      "grade": 11,
+      "officialLevel": "Première / الصف الثاني الثانوي",
+      "verifiedTopics": 60,
+      "unresolvedOfficialSlots": 1,
+      "source": "https://cripen.dj/wp-content/uploads/2025/05/Programme-compile-1ere.pdf",
+      "catalog": "data/national-catalogs/dj-g11-arabic-detailed-verified-partial-2026.json",
       "verifiedAt": "2026-10-04"
     },
     {
