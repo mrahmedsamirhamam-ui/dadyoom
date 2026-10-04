@@ -57,6 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         .from("edu_marketplace_courses")
         .select("slug,updated_at")
         .eq("status", "published")
+        .not("slug", "like", "e2e-bpay-%")
         .order("slug", { ascending: true })
         .range(from, from + pageSize - 1);
 
