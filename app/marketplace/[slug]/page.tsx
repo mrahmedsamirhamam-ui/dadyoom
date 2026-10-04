@@ -45,7 +45,7 @@ export async function generateMetadata({
     .select("title,description")
     .eq("slug", slug)
     .eq("status", "published")
-    .not("slug", "like", "e2e-bpay-%")
+    .not("slug", "like", "e2e-%")
     .maybeSingle();
 
   return {
@@ -75,7 +75,7 @@ export default async function CoursePage({
     )
     .eq("slug", slug)
     .eq("status", "published")
-    .not("slug", "like", "e2e-bpay-%")
+    .not("slug", "like", "e2e-%")
     .maybeSingle();
 
   if (!course) notFound();
