@@ -95,8 +95,22 @@
     {
       "kind": "official-onps-first-secondary-literature-book",
       "url": "https://www.onps.dz/591"
+    },
+    {
+      "kind": "official-third-secondary-foreign-languages-progression",
+      "url": "https://education.gov.dz/wp-content/uploads/2015/04/3-AS-LE-arabe.pdf"
     }
   ],
   "copyrightPolicy": "لا تعيد ضاديوم نشر نصوص الكتب الرسمية؛ تستخدم أسماء الكتب والمناهج والمسارات وروابط الجهات الرسمية لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية.",
-  "generatedAt": "2026-09-25"
+  "generatedAt": "2026-09-25",
+  "detailedSecondaryTracks": [
+    {
+      "grade": 12,
+      "track": "شعبة اللغات الأجنبية",
+      "units": 12,
+      "primaryLiteraryLessons": 24,
+      "source": "https://education.gov.dz/wp-content/uploads/2015/04/3-AS-LE-arabe.pdf",
+      "verifiedAt": "2026-10-04"
+    }
+  ]
 }

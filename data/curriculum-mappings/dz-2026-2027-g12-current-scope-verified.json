@@ -17,10 +17,10 @@
   "mappings": [
     {
       "officialSlug": "dz-2026-2027-g12-letters-languages",
-      "officialTitle": "اللغة العربية وآدابها — الثالثة ثانوي — آداب/فلسفة/لغات",
+      "officialTitle": "اللغة العربية وآدابها — الثالثة ثانوي — شعبة اللغات الأجنبية",
       "source": {
-        "label": "وزارة التربية الوطنية الجزائرية — منهاج العربية للشعب الأدبية واللغات",
-        "url": "https://education.gov.dz/wp-content/uploads/2015/04/Arabe-2AS-Letres-et-Philo-Langues-1-Copie.pdf",
+        "label": "وزارة التربية الوطنية الجزائرية — التدرجات السنوية للعربية — الثالثة ثانوي شعبة لغات أجنبية",
+        "url": "https://education.gov.dz/wp-content/uploads/2015/04/3-AS-LE-arabe.pdf",
         "current20262027Url": "https://www.education.gov.dz/2026/07/30/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9-%D9%8A%D9%86%D8%B4%D9%91%D8%B7-%D9%86%D8%AF%D9%88%D8%A9-%D8%B5%D8%AD%D9%81%D9%8A%D8%A9/",
         "onpsUrl": "https://www.onps.dz/"
       },
@@ -103,8 +103,11 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-ministry-current-2026-2027+official-curriculum+official-onps+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-ministry-third-secondary-annual-progression+current-2026-2027-ministry-context+original-dadyoom-support",
+      "detailedOfficialUnits": 12,
+      "detailedOfficialLessons": 24,
+      "detailedOfficialCatalog": "data/national-catalogs/dz-g12-languages-arabic-detailed-2026.json"
     },
     {
       "officialSlug": "dz-2026-2027-g12-science-technology",
@@ -196,6 +199,20 @@
       "nationalExtensionInPack": true,
       "verifiedAt": "2026-09-25",
       "verificationMethod": "official-ministry-current-2026-2027+official-curriculum+official-onps+national-pack"
+    }
+  ],
+  "detailedOfficialTracks": [
+    {
+      "officialSlug": "dz-2026-2027-g12-foreign-languages-detailed",
+      "track": "شعبة اللغات الأجنبية",
+      "units": 12,
+      "lessons": 24,
+      "source": {
+        "label": "وزارة التربية الوطنية الجزائرية - التدرجات السنوية لمادة اللغة العربية - السنة الثالثة ثانوي شعبة لغات أجنبية",
+        "url": "https://education.gov.dz/wp-content/uploads/2015/04/3-AS-LE-arabe.pdf",
+        "currentContextUrl": "https://www.education.gov.dz/2026/07/30/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9-%D9%8A%D9%86%D8%B4%D9%91%D8%B7-%D9%86%D8%AF%D9%88%D8%A9-%D8%B5%D8%AD%D9%81%D9%8A%D8%A9/"
+      },
+      "verifiedAt": "2026-10-04"
     }
   ]
 }
