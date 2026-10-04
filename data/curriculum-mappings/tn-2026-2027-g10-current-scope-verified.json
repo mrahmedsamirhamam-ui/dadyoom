@@ -9,9 +9,9 @@
   "semester": null,
   "subject": "اللغة العربية",
   "status": "verified",
-  "officialLessons": 1,
-  "mappedLessons": 1,
-  "verifiedLessons": 1,
+  "officialLessons": 2,
+  "mappedLessons": 2,
+  "verifiedLessons": 2,
   "scope": "current-officially-published-and-publicly-verifiable-scope",
   "policy": "المطابقة على مستوى الكتاب الرسمي لكل سنة.",
   "mappings": [
@@ -21,12 +21,25 @@
       "source": {
         "label": "CNP Tunisia",
         "url": "https://www.cnp.com.tn/",
-        "ministryUrl": "https://education.gov.tn/"
+        "ministryUrl": "https://education.gov.tn/",
+        "officialGradeListUrl": "https://cnp.com.tn/arabic/annee-actuelle/listeOff/1SE.htm",
+        "verifiedBooks": [
+          {
+            "code": "201103",
+            "title": "آفاق أدبية — كتاب النصوص",
+            "source": "https://cnp.com.tn/arabic/annee-actuelle/listeOff/1SE.htm"
+          },
+          {
+            "code": "201104",
+            "title": "كتاب النصوص — رياضة",
+            "source": "https://cnp.com.tn/arabic/annee-actuelle/listeOff/1SE.htm"
+          }
+        ]
       },
       "relationType": "official-grade-textbook+national-extension",
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
-      "rationale": "الكتاب والمستوى مثبتان عبر المركز الوطني البيداغوجي وقوائم وزارة التربية للسنة 2026-2027.",
+      "rationale": "المطابقة موثقة على مستوى 2 كتاب/عقدة عربية رسمية منشورة في قائمة المركز الوطني البيداغوجي للسنة الثانوية المقابلة. لا تُستنتج عناوين دروس داخلية من دون فهرس كتاب رسمي قابل للقراءة.",
       "coreCoverage": [
         {
           "slug": "tn-dadyoom-core-g10-l01",
@@ -102,8 +115,17 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-cnp+official-ministry+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-cnp-current-grade-list+official-book-codes+official-2026-2027-cnp-catalog+national-pack"
     }
+  ],
+  "officialBookNodesVerified": 2,
+  "verifiedOfficialBookTitles": [
+    "آفاق أدبية — كتاب النصوص",
+    "كتاب النصوص — رياضة"
+  ],
+  "verifiedOfficialBookCodes": [
+    "201103",
+    "201104"
   ]
 }
