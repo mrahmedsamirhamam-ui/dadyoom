@@ -344,3 +344,46 @@ The remaining items are not missing application code:
   - النسب;
   - الجامد والمشتق.
 - Sudan G11 remains at official bundle level because no current government-hosted detailed TOC was found; third-party lists were not promoted to official platform data.
+
+
+## 2026-10-04 — Oman G12 Al-Mu'nis Semester 2 detailed official enrichment
+
+- Official current digital-library source:
+  - `https://ict.moe.gov.om/eBooks/index.php`
+  - Book: `المؤنس — الصف الثاني عشر — الفصل الدراسي الثاني`
+  - TOC page: `https://ict.moe.gov.om/book/PDF/12/cls12_Muunis_P2/files/basic-html/page12.html`
+  - Direct official book URL: `https://ict.moe.gov.om/book/PDF/12/cls12_Muunis_P2/files/downloads/cls12_Muunis_P2.pdf`
+- The book introduction explicitly states that enrichment texts are not part of the official syllabus; Dadyoom therefore excluded all enrichment texts from the official lesson count.
+- Added detailed catalog: `data/national-catalogs/om-g12-muunis-s2-detailed-2026-2027.json`.
+- Updated Oman G12 mapping and national structure metadata.
+- Migration: `20261005000500_enrich_oman_g12_muunis_s2.sql`.
+- Verified production result:
+  - 7 official units;
+  - 25 official scheduled topics/lessons;
+  - 75 original Dadyoom questions;
+  - 75 original Dadyoom activities.
+- Representative official lessons now exposed by production API include:
+  - قضية الشعر الجديد;
+  - أنشودة المطر;
+  - قصيدة حب إلى مطرح;
+  - الأدب المسرحي;
+  - كم لبثنا في الكهف؟;
+  - أدب السيرة الذاتية;
+  - عهد الطفولة;
+  - مغامر عُماني في أدغال إفريقيا;
+  - القصة;
+  - اليوم الجديد;
+  - زمن الفقر;
+  - حوار الترجمة الأدبية ومشكلاتها;
+  - الصحراء العربية;
+  - حوار الشعوب;
+  - الشباب ووقت الفراغ;
+  - السينما والأدب;
+  - كيف تكتب بحثًا;
+  - الحوار الصحفي;
+  - كتابة القصة;
+  - الاستدلال;
+  - التخطيط;
+  - محاضر الاجتماعات;
+  - البرهنة (رهانات المستقبل).
+- Public course catalog now automatically hides the older six-node Oman G12 generic official bundle because the detailed official curriculum exceeds the detailed-coverage threshold; Dadyoom Core remains separate.
