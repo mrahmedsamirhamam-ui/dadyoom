@@ -1,6 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
-import { getUnifiedGamificationXP } from "@/features/student-progress/services/unified-gamification";
 import type {
   LearnerRewardSnapshot,
   SkillKey,
@@ -55,20 +54,43 @@ export async function getLearnerRewardSnapshot(
       ? rawGrade
       : null;
 
+  const publishedQuery = gradeNumber
+    ? supabase
+        .from("lessons")
+        .select(
+          "id,units!inner(grades!inner(grade_number,curricula!inner(countries!inner(code))))",
+          { count: "exact", head: true },
+        )
+        .eq("status", "published")
+        .eq(
+          "units.grades.grade_number",
+          gradeNumber,
+        )
+        .eq(
+          "units.grades.curricula.countries.code",
+          country,
+        )
+    : Promise.resolve({
+        data: null,
+        error: null,
+        count: 0,
+      });
+
   const [
-    unifiedXP,
     lessonsResult,
     skillsResult,
     streakResult,
     challengeResult,
     awardsResult,
     claimsResult,
+    gameResult,
+    pointTransactionResult,
+    canonicalResult,
+    publishedResult,
   ] = await Promise.all([
-    getUnifiedGamificationXP(userId, supabase),
-
     supabase
       .from("student_lesson_progress")
-      .select("status")
+      .select("status,xp")
       .eq("student_id", userId),
 
     supabase
@@ -84,9 +106,8 @@ export async function getLearnerRewardSnapshot(
 
     supabase
       .from("student_daily_challenges")
-      .select("id", { count: "exact", head: true })
-      .eq("user_id", userId)
-      .eq("status", "completed"),
+      .select("status,bonus_xp")
+      .eq("user_id", userId),
 
     supabase
       .from("edu_rewards")
@@ -100,29 +121,81 @@ export async function getLearnerRewardSnapshot(
       .select("achievement_key")
       .eq("student_email", userEmail)
       .like("achievement_key", "CLAIMED_%"),
+
+    supabase
+      .from("edu_game_attempts")
+      .select("xp_earned")
+      .eq("student_id", userId),
+
+    supabase
+      .from("edu_point_transactions")
+      .select("points")
+      .eq("student_id", userId),
+
+    supabase.rpc("edu_total_xp", {
+      p_student: userId,
+    }),
+
+    publishedQuery,
   ]);
 
-  if (lessonsResult.error) throw lessonsResult.error;
-  for (const result of [skillsResult, streakResult, challengeResult]) {
-    if (result.error && result.error.code !== "42P01") throw result.error;
+  if (lessonsResult.error) {
+    throw lessonsResult.error;
+  }
+
+  for (const result of [
+    skillsResult,
+    streakResult,
+    challengeResult,
+  ]) {
+    if (
+      result.error &&
+      result.error.code !== "42P01"
+    ) {
+      throw result.error;
+    }
   }
 
   if (awardsResult.error) {
-    console.warn("REWARD_SNAPSHOT_MANUAL_AWARDS_WARNING", awardsResult.error.message);
+    console.warn(
+      "REWARD_SNAPSHOT_MANUAL_AWARDS_WARNING",
+      awardsResult.error.message,
+    );
   }
 
   if (claimsResult.error) {
-    console.warn("REWARD_SNAPSHOT_CLAIMS_WARNING", claimsResult.error.message);
+    console.warn(
+      "REWARD_SNAPSHOT_CLAIMS_WARNING",
+      claimsResult.error.message,
+    );
   }
 
-  const lessonRows = lessonsResult.data ?? [];
-  const completedLessons = lessonRows.filter(
-    (row) => row.status === "completed" || row.status === "mastered",
-  ).length;
-  const masteredLessons = lessonRows.filter((row) => row.status === "mastered").length;
+  const lessonRows =
+    lessonsResult.data ?? [];
 
-  const blank = (): SkillRewardStat => ({ bestScore: 0, attempts: 0, xp: 0 });
-  const skills: Record<SkillKey, SkillRewardStat> = {
+  const completedLessons =
+    lessonRows.filter(
+      row =>
+        row.status === "completed" ||
+        row.status === "mastered",
+    ).length;
+
+  const masteredLessons =
+    lessonRows.filter(
+      row =>
+        row.status === "mastered",
+    ).length;
+
+  const blank = (): SkillRewardStat => ({
+    bestScore: 0,
+    attempts: 0,
+    xp: 0,
+  });
+
+  const skills: Record<
+    SkillKey,
+    SkillRewardStat
+  > = {
     reading: blank(),
     writing: blank(),
     listening: blank(),
@@ -130,32 +203,126 @@ export async function getLearnerRewardSnapshot(
   };
 
   for (const row of skillsResult.data ?? []) {
-    const key = String(row.skill ?? "") as SkillKey;
+    const key =
+      String(row.skill ?? "") as SkillKey;
+
     if (!(key in skills)) continue;
+
     skills[key] = {
-      bestScore: safeNumber(row.best_score),
-      attempts: safeNumber(row.attempts),
-      xp: safeNumber(row.xp),
+      bestScore:
+        safeNumber(row.best_score),
+      attempts:
+        safeNumber(row.attempts),
+      xp:
+        safeNumber(row.xp),
     };
   }
 
-  let publishedGradeLessons = 0;
+  const lessonXP =
+    lessonRows.reduce(
+      (sum, row) =>
+        sum +
+        safeNumber(row.xp),
+      0,
+    );
 
-  if (gradeNumber) {
-    const published = await supabase
-      .from("lessons")
-      .select(
-        "id,units!inner(grades!inner(grade_number,curricula!inner(countries!inner(code))))",
-        { count: "exact", head: true },
+  const skillXP =
+    (skillsResult.data ?? []).reduce(
+      (sum, row) =>
+        sum +
+        safeNumber(row.xp),
+      0,
+    );
+
+  const challengeRows =
+    challengeResult.data ?? [];
+
+  const dailyChallengeXP =
+    challengeRows
+      .filter(
+        row =>
+          row.status ===
+          "completed",
       )
-      .eq("status", "published")
-      .eq("units.grades.grade_number", gradeNumber)
-      .eq("units.grades.curricula.countries.code", country);
+      .reduce(
+        (sum, row) =>
+          sum +
+          safeNumber(
+            row.bonus_xp,
+          ),
+        0,
+      );
 
-    if (!published.error) {
-      publishedGradeLessons = published.count ?? 0;
-    }
-  }
+  const rewardRows =
+    awardsResult.data ?? [];
+
+  const rewardXP =
+    rewardRows.reduce(
+      (sum, row) =>
+        sum +
+        safeNumber(
+          row.points,
+        ),
+      0,
+    );
+
+  const gameXP =
+    gameResult.error
+      ? 0
+      : (
+          gameResult.data ??
+          []
+        ).reduce(
+          (sum, row) =>
+            sum +
+            safeNumber(
+              row.xp_earned,
+            ),
+          0,
+        );
+
+  const pointTransactionXP =
+    pointTransactionResult.error
+      ? 0
+      : (
+          pointTransactionResult.data ??
+          []
+        ).reduce(
+          (sum, row) =>
+            sum +
+            safeNumber(
+              row.points,
+            ),
+          0,
+        );
+
+  const fallbackTotal =
+    lessonXP +
+    skillXP +
+    dailyChallengeXP +
+    rewardXP +
+    gameXP +
+    pointTransactionXP;
+
+  const totalXP =
+    canonicalResult.error
+      ? fallbackTotal
+      : safeNumber(
+          canonicalResult.data,
+        );
+
+  const publishedGradeLessons =
+    publishedResult.error
+      ? 0
+      : publishedResult.count ??
+        0;
+
+  const dailyChallengesCompleted =
+    challengeRows.filter(
+      row =>
+        row.status ===
+        "completed",
+    ).length;
 
   return {
     displayName:
@@ -166,21 +333,21 @@ export async function getLearnerRewardSnapshot(
     country,
     gradeNumber,
     stats: {
-      totalXP: unifiedXP.totalXP,
-      lessonXP: unifiedXP.lessonXP,
-      skillXP: unifiedXP.skillXP,
-      dailyChallengeXP: unifiedXP.dailyChallengeXP,
-      rewardXP: unifiedXP.rewardXP,
-      gameXP: unifiedXP.gameXP,
+      totalXP,
+      lessonXP,
+      skillXP,
+      dailyChallengeXP,
+      rewardXP,
+      gameXP,
       completedLessons,
       masteredLessons,
       currentStreak: safeNumber(streakResult.data?.current_streak),
       longestStreak: safeNumber(streakResult.data?.longest_streak),
-      dailyChallengesCompleted: challengeResult.count ?? 0,
+      dailyChallengesCompleted,
       publishedGradeLessons,
       skills,
     },
-    manualAwards: (awardsResult.data ?? []).map((row) => ({
+    manualAwards: rewardRows.map((row) => ({
       id: String(row.id),
       title: String(row.title ?? "جائزة"),
       description: row.description ? String(row.description) : null,
