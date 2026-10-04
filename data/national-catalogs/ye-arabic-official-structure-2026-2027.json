@@ -74,8 +74,30 @@
       "officialLevel": "الأول الثانوي",
       "gradePage": "https://e-learning-moe.edu.ye/ClassTen.php?id=10",
       "books": [
-        "النحو والصرف",
-        "الأدب والنصوص والبلاغة"
+        {
+          "title": "الأدب والنصوص والبلاغة — الجزء الأول",
+          "url": "https://e-learning-moe.edu.ye/adel/android_1/book_10/nosos_part1_10th.pdf"
+        },
+        {
+          "title": "الأدب والنصوص والبلاغة — الجزء الثاني",
+          "url": "https://e-learning-moe.edu.ye/adel/android_1/book_10/nosos_part2_10th.pdf"
+        },
+        {
+          "title": "القراءة — الجزء الأول",
+          "url": "https://e-learning-moe.edu.ye/adel/android_1/book_10/reading_part1_10th.pdf"
+        },
+        {
+          "title": "القراءة — الجزء الثاني",
+          "url": "https://e-learning-moe.edu.ye/adel/android_1/book_10/reading_part2_10th%e2%80%ab%e2%80%ac.pdf"
+        },
+        {
+          "title": "النحو والصرف — الجزء الأول",
+          "url": "https://e-learning-moe.edu.ye/adel/android_1/book_10/nahw_part1_10th.pdf"
+        },
+        {
+          "title": "النحو والصرف — الجزء الثاني",
+          "url": "https://e-learning-moe.edu.ye/adel/android_1/book_10/nahw_part2_10th.pdf"
+        }
       ]
     },
     "11": {
