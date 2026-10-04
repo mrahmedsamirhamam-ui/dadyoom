@@ -37,8 +37,11 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-2026-arabic-assessment+official-curriculum-library+official-digital-textbooks+official-arabic-skills+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-oman-digital-textbook+official-muunis-g12-s2-toc+original-dadyoom-support",
+      "detailedOfficialCatalog": "data/national-catalogs/om-g12-muunis-s2-detailed-2026-2027.json",
+      "detailedVerifiedTopics": 25,
+      "detailedSemester": 2
     },
     {
       "officialSlug": "om-2026-2027-g12-speaking",
@@ -62,8 +65,11 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-2026-arabic-assessment+official-curriculum-library+official-digital-textbooks+official-arabic-skills+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-oman-digital-textbook+official-muunis-g12-s2-toc+original-dadyoom-support",
+      "detailedOfficialCatalog": "data/national-catalogs/om-g12-muunis-s2-detailed-2026-2027.json",
+      "detailedVerifiedTopics": 25,
+      "detailedSemester": 2
     },
     {
       "officialSlug": "om-2026-2027-g12-reading",
@@ -107,8 +113,11 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-2026-arabic-assessment+official-curriculum-library+official-digital-textbooks+official-arabic-skills+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-oman-digital-textbook+official-muunis-g12-s2-toc+original-dadyoom-support",
+      "detailedOfficialCatalog": "data/national-catalogs/om-g12-muunis-s2-detailed-2026-2027.json",
+      "detailedVerifiedTopics": 25,
+      "detailedSemester": 2
     },
     {
       "officialSlug": "om-2026-2027-g12-writing",
@@ -144,8 +153,11 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-2026-arabic-assessment+official-curriculum-library+official-digital-textbooks+official-arabic-skills+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-oman-digital-textbook+official-muunis-g12-s2-toc+original-dadyoom-support",
+      "detailedOfficialCatalog": "data/national-catalogs/om-g12-muunis-s2-detailed-2026-2027.json",
+      "detailedVerifiedTopics": 25,
+      "detailedSemester": 2
     },
     {
       "officialSlug": "om-2026-2027-g12-language-system",
@@ -185,8 +197,11 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-2026-arabic-assessment+official-curriculum-library+official-digital-textbooks+official-arabic-skills+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-oman-digital-textbook+official-muunis-g12-s2-toc+original-dadyoom-support",
+      "detailedOfficialCatalog": "data/national-catalogs/om-g12-muunis-s2-detailed-2026-2027.json",
+      "detailedVerifiedTopics": 25,
+      "detailedSemester": 2
     },
     {
       "officialSlug": "om-2026-2027-g12-literary-arts",
@@ -226,8 +241,11 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-2026-arabic-assessment+official-curriculum-library+official-digital-textbooks+official-arabic-skills+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-oman-digital-textbook+official-muunis-g12-s2-toc+original-dadyoom-support",
+      "detailedOfficialCatalog": "data/national-catalogs/om-g12-muunis-s2-detailed-2026-2027.json",
+      "detailedVerifiedTopics": 25,
+      "detailedSemester": 2
     }
   ],
   "secondarySupportCoverage": [
@@ -304,5 +322,11 @@
       "relation": "grade-level-support"
     }
   ],
-  "secondarySupportPolicy": "Grade-level Dadyoom support coverage is separate from official lesson-to-skill mappings and does not imply 1:1 ministry equivalence."
+  "secondarySupportPolicy": "Grade-level Dadyoom support coverage is separate from official lesson-to-skill mappings and does not imply 1:1 ministry equivalence.",
+  "detailedCoverageStatus": "verified-current-official-digital-book-detailed",
+  "detailedSemester": 2,
+  "detailedVerifiedTopics": 25,
+  "detailedOfficialCatalog": "data/national-catalogs/om-g12-muunis-s2-detailed-2026-2027.json",
+  "detailedOfficialSource": "https://ict.moe.gov.om/book/PDF/12/cls12_Muunis_P2/files/basic-html/page12.html",
+  "detailedScopeNote": "فهرس المؤنس الرسمي للصف 12، الفصل الثاني؛ النصوص الإثرائية مستبعدة صراحة من العد لأنها ليست من المقرر الرسمي."
 }
