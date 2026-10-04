@@ -41,7 +41,7 @@
   ],
   "gradeScope": {
     "10": {
-      "source": "المنهج المطور للصف العاشر 2026-2027 + نظام المسارات المعتمد بتطبيق اختياري أولي في 12 مدرسة + استمرار النظام الثانوي القائم لغير المشمولين",
+      "source": "المنهج المطور للصف العاشر 2026-2027 + نظام «مسارات» قيد التطبيق الفعلي في 12 مدرسة ضمن مرحلة التأسيس والاستكشاف؛ اللغة العربية مقرر مشترك، ولا يُفترض تعميم المسارات على G11/G12 الحالية بلا دليل مستقل.",
       "publicMatchingUnit": "course-semester-bundle"
     },
     "1-5": {
@@ -84,7 +84,7 @@
     ],
     "pilotMasarat": {
       "starts": "2026-2027",
-      "grade10Foundation": "مشترك",
+      "grade10Foundation": "مرحلة التأسيس والاستكشاف",
       "arabic": "مقرر عام مشترك",
       "futureTracks": [
         "اللغات",
@@ -96,15 +96,20 @@
         "الصناعي",
         "التكنولوجيا والذكاء الاصطناعي"
       ],
-      "status": "approved-regulation-limited-initial-rollout",
+      "status": "active-limited-rollout-2026-2027",
       "entryGrade": 10,
-      "optional": true,
       "initialSchools": 12,
       "legacySystemContinuesForNonParticipants": true,
-      "regulationUrl": "https://www.moe.edu.kw/News/GetNewsDetail?NewsId=1321",
+      "regulationUrl": "https://www.moe.edu.kw/news/1343",
       "regulationDetailUrl": "https://www.moe.edu.kw/news/1343",
       "platformUrl": "https://stdservice.moe.edu.kw/masarSystem/",
-      "note": "اعتمدت الوزارة لائحة المسارات رسميًا، ويبدأ التطبيق الحالي على الراغبين الملتحقين بالصف العاشر في 12 مدرسة محددة، مع استمرار النظام القائم لغير المشمولين."
+      "note": "اعتمدت الوزارة لائحة «مسارات» للعمل بها في 2026/2027، وبدأ التطبيق الفعلي في 12 مدرسة على 2991 متعلمًا/متعلمة. يبدأ المقبولون بمرحلة تأسيس واستكشاف تشمل اللغة العربية ضمن المقررات المشتركة، ويبدأ تحديد المسار بعد اجتياز 18 وحدة. لا يُستخدم هذا كدليل على انتقال جميع طلبة G11/G12 الحاليين إلى المسارات.",
+      "currentStudents": 2991,
+      "currentRolloutDate": "2026-09-15",
+      "durationYears": 3,
+      "semesters": 6,
+      "foundationUnitsBeforePathSelection": 18,
+      "currentRolloutEvidenceUrl": "https://www.moe.edu.kw/news/1344"
     }
   },
   "sources": [
@@ -155,6 +160,11 @@
     {
       "kind": "official-masar-platform",
       "url": "https://stdservice.moe.edu.kw/masarSystem/"
+    },
+    {
+      "kind": "official-masar-live-rollout-2026-2027",
+      "url": "https://www.moe.edu.kw/news/1344",
+      "note": "بدأ التطبيق الفعلي في 15-09-2026 على 2991 متعلمًا/متعلمة في 12 مدرسة."
     }
   ],
   "counts": {
@@ -163,5 +173,5 @@
     "totalOfficialCoverageNodes": 87
   },
   "copyrightPolicy": "لا تعيد ضاديوم نشر نصوص الكتب؛ تستخدم أسماء المجالات/المقرر وروابط الوزارة لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية.",
-  "generatedAt": "2026-09-25"
+  "generatedAt": "2026-10-04"
 }

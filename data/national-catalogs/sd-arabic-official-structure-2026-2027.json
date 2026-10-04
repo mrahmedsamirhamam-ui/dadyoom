@@ -99,13 +99,29 @@
       "kind": "official-2026-grade10-detailed-syllabus",
       "url": "https://gmoe.gov.sd/wp-content/uploads/2026/01/%D9%85%D9%81%D8%B1%D8%AF%D8%A7%D8%AA-%D9%85%D9%82%D8%B1%D8%B1%D8%A7%D8%AA-%D8%A7%D9%84%D8%B5%D9%81-%D8%A7%D9%84%D8%A3%D9%88%D9%84-%D8%AB%D8%A7%D9%86%D9%88%D9%8A.pdf",
       "note": "ينشر مفردات مقرر اللغة العربية المطور للصف الأول الثانوي بالتفصيل."
+    },
+    {
+      "kind": "ministry-curriculum-secondary2-grammar",
+      "url": "https://mdl.edu.sd/img/bookpdf/%20%D8%A7%D9%84%D9%86%D8%AD%D9%88%20-%20%D8%AB%D8%A7%D9%86%D9%8A%20%D8%AB%D8%A7%D9%86%D9%88%D9%8A%20-%20%D8%A7%D9%84%D8%B3%D9%88%D8%AF%D8%A7%D9%86_removed_1679070697.pdf",
+      "note": "كتاب «النحو — ثاني ثانوي» ظاهر مباشرة ضمن قسم المرحلة الثانوية في مكتبة الميزاب الرقمية الرسمية."
     }
   ],
   "copyrightPolicy": "لا تعيد ضاديوم نشر نصوص الكتب السودانية؛ تستخدم المراحل والمادة وأغلفة/كتب المركز القومي للمناهج ومصادر الوزارة لإثبات المواءمة، بينما الشرح والأسئلة والأنشطة أصلية.",
-  "generatedAt": "2026-09-25",
+  "generatedAt": "2026-10-04",
   "grade10DetailedTopics": 60,
   "grade12DetailedCoverageStatus": "verified-partial-detailed",
   "grade12DetailedTopics": 21,
   "grade12DetailedCatalog": "data/national-catalogs/sd-g12-arabic-grammar-detailed-verified-partial-2026.json",
-  "grade12DetailedSource": "https://mdl.edu.sd/img/bookpdf/nahw3_1678863142.pdf"
+  "grade12DetailedSource": "https://mdl.edu.sd/img/bookpdf/nahw3_1678863142.pdf",
+  "grade11BookCoverageStatus": "verified-book-level-partial",
+  "grade11VerifiedBookNodes": 1,
+  "grade11VerifiedBooks": [
+    {
+      "title": "النحو — الصف الثاني الثانوي",
+      "source": "https://mdl.edu.sd/img/bookpdf/%20%D8%A7%D9%84%D9%86%D8%AD%D9%88%20-%20%D8%AB%D8%A7%D9%86%D9%8A%20%D8%AB%D8%A7%D9%86%D9%88%D9%8A%20-%20%D8%A7%D9%84%D8%B3%D9%88%D8%AF%D8%A7%D9%86_removed_1679070697.pdf",
+      "verification": "official-national-digital-library-direct-pdf"
+    }
+  ],
+  "grade11DetailedCoverageStatus": "blocked-source-pdf-text-layer-unreadable",
+  "grade11DetailedCoverageNote": "الكتاب الرسمي متاح، لكن طبقة النص المستخرجة من PDF مشوشة وغير موثوقة لاستخراج فهرس تفصيلي؛ لذلك لم تُنشأ عناوين دروس تفصيلية ولم يُستخدم التخمين."
 }

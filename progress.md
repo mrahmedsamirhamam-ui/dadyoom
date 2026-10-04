@@ -491,3 +491,12 @@ The remaining items are not missing application code:
 - No current public 2026-2027 secondary Arabic topic/lesson list was found after the 2026 reform decree.
 - Lebanon G10/G11/G12 therefore remain at the verified domain/track level; no new lesson titles were fabricated.
 - Updated all Lebanon 2026-2027 mapping JSONs and the national catalog with Decree 3445 and rollout status.
+
+## 2026-10-04 — live deployment + Kuwait/Sudan secondary verification follow-up
+
+- Live deployment re-verified against branch HEAD `05cf2cf46225b2a27d2fcc3bc7a3e8bd4ffed4a8`: Worker, Pages, and `dadyoom.dpdns.org` all reported the same commit/build metadata before this metadata-only source correction.
+- Production health at that checkpoint: AI `ok=true`; LiveKit `ok=true, configured=true`; Google provider enabled/configured. Supabase project remained `ACTIVE_HEALTHY`; recent error scan returned no 5xx/error rows in the checked window.
+- Kuwait G10: refreshed the 2026/2027 official status from Ministry news 1343/1344. «مسارات» is in active limited rollout in 12 schools; 2991 learners started on 15-09-2026. The foundation/exploration stage includes Arabic as a shared course and path selection begins after 18 units. G10 remains course-semester bundle-level because no auditable public secondary Arabic lesson sequence was exposed. G11/G12 were not reclassified as Masarat cohorts without separate evidence.
+- Sudan G11: the official national digital library now directly exposes the book «النحو — ثاني ثانوي». The G11 mapping was corrected to reference that G11 book instead of using the G12 grammar PDF as supporting evidence.
+- Sudan G11 detailed expansion remains intentionally blocked: the official PDF text layer is unreadable/garbled for trustworthy TOC extraction, so no lesson title was inferred and no DB migration/count change was made.
+- Oman G10/G11 were rechecked against official Ministry book/library evidence, but no stable government-hosted auditable TOC was exposed in the available static source path; they remain bundle/book-level rather than importing third-party lesson lists.
