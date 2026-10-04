@@ -1416,6 +1416,148 @@ async function seedRelationships() {
   );
 }
 
+async function cleanupStaleE2EUsers() {
+  const staleProfiles =
+    await admin
+      .from("profiles")
+      .select("id,email")
+      .like(
+        "email",
+        "dadyoom.e2e.%@example.com",
+      );
+
+  if (staleProfiles.error) {
+    throw staleProfiles.error;
+  }
+
+  const profileRows =
+    staleProfiles.data ?? [];
+
+  const staleIds =
+    profileRows
+      .map(row => row.id)
+      .filter(Boolean);
+
+  const staleEmails =
+    profileRows
+      .map(row => row.email)
+      .filter(Boolean);
+
+  if (staleEmails.length > 0) {
+    for (const table of [
+      "ai_assessments",
+      "student_stats",
+      "student_skills",
+      "student_mistakes",
+      "student_assessments",
+      "student_achievements",
+      "student_streaks",
+      "learning_plans",
+      "ai_recommendations",
+      "student_progress",
+    ]) {
+      const result =
+        await admin
+          .from(table)
+          .delete()
+          .in(
+            "student_email",
+            staleEmails,
+          );
+
+      if (result.error) {
+        throw result.error;
+      }
+    }
+  }
+
+  if (staleIds.length > 0) {
+    const quizCleanup =
+      await admin
+        .from("quiz_attempts")
+        .delete()
+        .in(
+          "student_id",
+          staleIds,
+        );
+
+    if (quizCleanup.error) {
+      throw quizCleanup.error;
+    }
+
+    const profileCleanup =
+      await admin
+        .from("profiles")
+        .delete()
+        .in(
+          "id",
+          staleIds,
+        );
+
+    if (profileCleanup.error) {
+      throw profileCleanup.error;
+    }
+  }
+
+  let page = 1;
+  let deletedAuthUsers = 0;
+
+  while (true) {
+    const listed =
+      await admin.auth.admin.listUsers({
+        page,
+        perPage: 1000,
+      });
+
+    if (listed.error) {
+      throw listed.error;
+    }
+
+    const batch =
+      listed.data?.users ?? [];
+
+    const staleUsers =
+      batch.filter(user => {
+        const email =
+          String(
+            user.email ?? "",
+          ).toLowerCase();
+
+        return (
+          email.startsWith(
+            "dadyoom.e2e.",
+          ) &&
+          email.endsWith(
+            "@example.com",
+          )
+        );
+      });
+
+    for (const user of staleUsers) {
+      const removed =
+        await admin.auth.admin.deleteUser(
+          user.id,
+        );
+
+      if (removed.error) {
+        throw removed.error;
+      }
+
+      deletedAuthUsers += 1;
+    }
+
+    if (batch.length < 1000) {
+      break;
+    }
+
+    page += 1;
+  }
+
+  console.log(
+    `E2E_STALE_USERS=CLEANED PROFILES=${staleIds.length} AUTH=${deletedAuthUsers}`,
+  );
+}
+
 async function cleanupStaleMarketplaceFixtures() {
   const staleCourses =
     await admin
@@ -5037,6 +5179,29 @@ async function cleanup() {
       );
   }
 
+  const currentUserIds =
+    [...users.values()]
+      .map(user => user.id)
+      .filter(Boolean);
+
+  if (currentUserIds.length > 0) {
+    await admin
+      .from("quiz_attempts")
+      .delete()
+      .in(
+        "student_id",
+        currentUserIds,
+      );
+
+    await admin
+      .from("profiles")
+      .delete()
+      .in(
+        "id",
+        currentUserIds,
+      );
+  }
+
   for (
     const user of
     [...users.values()]
@@ -5095,6 +5260,7 @@ try {
     "E2E_TEMP_USERS=6",
   );
 
+  await cleanupStaleE2EUsers();
   await cleanupStaleMarketplaceFixtures();
   await seedStudent();
   await seedRelationships();
