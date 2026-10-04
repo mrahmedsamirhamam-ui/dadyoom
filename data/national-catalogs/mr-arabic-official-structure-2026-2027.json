@@ -89,6 +89,18 @@
       "source": "https://docs.bsimr.com/pdfs/secondaire2s/AR-5AS-LM.pdf",
       "catalog": "data/national-catalogs/mr-g11-literary-arabic-detailed-2026.json",
       "verifiedAt": "2026-10-04"
+    },
+    {
+      "grade": 11,
+      "officialLevel": "السنة الخامسة الثانوية",
+      "track": "الشعبة العلمية",
+      "units": 4,
+      "lessons": 24,
+      "edition": 2025,
+      "officialLanding": "https://koutoubi.mr/secondaire2/5eme/Arabe/",
+      "source": "https://docs.bsimr.com/pdfs/secondaire2s/AR-5AS-CD.pdf",
+      "catalog": "data/national-catalogs/mr-g11-scientific-arabic-detailed-2026.json",
+      "verifiedAt": "2026-10-04"
     }
   ]
 }
