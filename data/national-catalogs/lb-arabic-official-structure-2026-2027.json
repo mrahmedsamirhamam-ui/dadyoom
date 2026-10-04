@@ -68,13 +68,26 @@
     {
       "kind": "latest-published-reduced-curriculum",
       "url": "https://www.crdp.org/curriculum/%D8%A7%D9%84%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85%D9%8A-%D9%84%D9%84%D8%B9%D8%A7%D9%85-%D9%A2%D9%A0%D9%A2%D9%A5-%D9%A2%D9%A0%D9%A2%D9%A6%D8%8C-%D9%88%D8%B2%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%8A-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D9%84%D9%84%D8%A8%D8%AD%D9%88%D8%AB",
-      "note": "آخر تخفيف منشور علنًا هو 2025-2026؛ المطابقة 2026-2027 تعتمد بنية المنهج الرسمي المستمر ما لم يصدر تخفيف أحدث."
+      "note": "هذه الوثيقة تخص 2025-2026 حصراً. لا تُستخدم كوثيقة تنفيذ 2026-2027 بعد صدور المرسوم 3445؛ تبقى البنية العامة الرسمية فقط مرجعاً مؤقتاً حتى نشر تفاصيل التطبيق الجديدة."
     },
     {
       "kind": "official-2026-2027-school-year-evidence",
       "url": "https://nsl.mehe.gov.lb/Downloads.aspx?d=ODM1OTQ%3D&g=ZDUwNWY3NGQtZGYwMy00MGRjLWI0NmQtZmJhNDJkNzJkZGM1&s=c2FpbnRlZmFtaWxsZWJlY2hhcnJpQGhvdG1haWwuY29t"
+    },
+    {
+      "kind": "official-2026-curriculum-decree-and-rollout",
+      "url": "https://www.crdp.org/news/%D8%A7%D9%84%D9%84%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%AD%D9%88%D8%A7%D8%B1%D9%8A-%D8%A7%D9%84%D8%A3%D9%88%D9%84-%D9%84%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D8%AD%D9%88%D9%84-%D9%85%D9%86%D9%87%D8%A7%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D9%85%D8%A7-%D9%82%D8%A8%D9%84-%D8%A7%D9%84%D8%AC%D8%A7%D9%85%D8%B9%D9%8A",
+      "note": "CRDP confirms Decree 3445 dated 15 July 2026 and subsequent preparation for guides, standards, training, pilot and gradual rollout."
     }
   ],
   "copyrightPolicy": "لا تعيد ضاديوم نشر نصوص الكتب اللبنانية؛ تستخدم تدرج المجالات والمسارات وروابط CRDP لإثبات المواءمة، بينما المحتوى التعليمي أصلي.",
-  "generatedAt": "2026-09-25"
+  "generatedAt": "2026-09-25",
+  "curriculumReform2026": {
+    "decreeNumber": 3445,
+    "decreeDate": "2026-07-15",
+    "decreeSource": "https://www.crdp.org/news/%D8%A7%D9%84%D9%84%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%AD%D9%88%D8%A7%D8%B1%D9%8A-%D8%A7%D9%84%D8%A3%D9%88%D9%84-%D9%84%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D8%AD%D9%88%D9%84-%D9%85%D9%86%D9%87%D8%A7%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D9%85%D8%A7-%D9%82%D8%A8%D9%84-%D8%A7%D9%84%D8%AC%D8%A7%D9%85%D8%B9%D9%8A",
+    "rolloutStatus": "implementation-guides-standards-training-and-pilot-gradual-application-in-preparation",
+    "subjectImplementationStatus": "no-current-public-2026-2027-secondary-arabic-topic-list-found",
+    "policy": "لا تُنسب تخفيضات 2025-2026 إلى 2026-2027، ولا تُنشأ عناوين دروس جديدة قبل صدور وثيقة عربية ثانوية حديثة قابلة للتدقيق."
+  }
 }
