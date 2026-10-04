@@ -69,5 +69,16 @@
     }
   ],
   "copyrightPolicy": "لا تعيد ضاديوم نشر نصوص الأدلة والكتب؛ تستخدم البنية والمقرر والسلسلة وروابط المصادر لإثبات المواءمة، والمحتوى التعليمي أصلي.",
-  "generatedAt": "2026-09-25"
+  "generatedAt": "2026-09-25",
+  "detailedSecondaryPrograms": [
+    {
+      "grade": 10,
+      "officialLevel": "Seconde / الصف الأول الثانوي",
+      "units": 13,
+      "topics": 46,
+      "source": "https://cripen.dj/wp-content/uploads/2025/05/Programmes-compile-seconde.pdf",
+      "catalog": "data/national-catalogs/dj-g10-arabic-detailed-2026.json",
+      "verifiedAt": "2026-10-04"
+    }
+  ]
 }
