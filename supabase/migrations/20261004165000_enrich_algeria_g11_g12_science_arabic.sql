@@ -228,7 +228,7 @@ select tu.id,e.lesson_title,
     jsonb_build_object('word','الدليل','meaning','شاهد أو مثال يدعم الاستنتاج.')
   ),
   jsonb_build_array('حدّد الفكرة الأساسية للوحدة.','اربطها بالسياق الأدبي أو التاريخي.','طبّقها على مثال أو نص جديد.','اكتب خلاصة قصيرة من صياغتك.'),
-  $$https://www.scribd.com/document/689391083/Plans-Annuels2023-Arabic3as$$,'published',true,35
+  $$https://education.gov.dz/wp-content/uploads/2015/04/3-AS-LE-arabe.pdf$$,'published',true,35
 from expanded e
 join tu on tu.unit_number=e.unit_number
 on conflict (unit_id,lesson_number)
