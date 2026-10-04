@@ -20,7 +20,7 @@
       "years": 4
     }
   },
-  "officialCoverageNodes": 13,
+  "officialCoverageNodes": 21,
   "sources": [
     {
       "kind": "official-cnp-current-books-2026-2027",
@@ -44,5 +44,75 @@
     }
   ],
   "copyrightPolicy": "يستخدم ضاديوم بنية المستويات والقوائم الرسمية لإثبات المواءمة، والمحتوى التعليمي أصلي.",
-  "generatedAt": "2026-09-25"
+  "generatedAt": "2026-09-25",
+  "secondaryOfficialTextbooks": {
+    "10": [
+      {
+        "code": "201103",
+        "title": "آفاق أدبية — كتاب النصوص",
+        "source": "https://cnp.com.tn/arabic/annee-actuelle/listeOff/1SE.htm"
+      },
+      {
+        "code": "201104",
+        "title": "كتاب النصوص — رياضة",
+        "source": "https://cnp.com.tn/arabic/annee-actuelle/listeOff/1SE.htm"
+      }
+    ],
+    "11": [
+      {
+        "code": "201202",
+        "title": "عيون الأدب — الجزء الأول",
+        "source": "https://cnp.com.tn/arabic/annee-actuelle/listeOff/2SE.htm"
+      },
+      {
+        "code": "201203",
+        "title": "عيون الأدب — الجزء الثاني",
+        "source": "https://cnp.com.tn/arabic/annee-actuelle/listeOff/2SE.htm"
+      },
+      {
+        "code": "201281",
+        "title": "كتاب النصوص — رياضة",
+        "source": "https://cnp.com.tn/arabic/annee-actuelle/listeOff/2SE.htm"
+      }
+    ],
+    "12": [
+      {
+        "code": "201302",
+        "title": "علامات — كتاب النصوص",
+        "source": "https://cnp.com.tn/arabic/annee-actuelle/listeOff/3SE.htm"
+      },
+      {
+        "code": "201321",
+        "title": "نصوص — آداب",
+        "source": "https://cnp.com.tn/arabic/annee-actuelle/listeOff/3SE.htm"
+      },
+      {
+        "code": "201381",
+        "title": "كتاب النصوص — رياضة",
+        "source": "https://cnp.com.tn/arabic/annee-actuelle/listeOff/3SE.htm"
+      }
+    ],
+    "13": [
+      {
+        "code": "201403",
+        "title": "النصوص: رؤى — كافة الشعب ما عدا الآداب",
+        "source": "https://cnp.com.tn/arabic/annee-actuelle/listeOff/4SE.htm"
+      },
+      {
+        "code": "201421",
+        "title": "نصوص — آداب — الجزء الأول",
+        "source": "https://cnp.com.tn/arabic/annee-actuelle/listeOff/4SE.htm"
+      },
+      {
+        "code": "201422",
+        "title": "نصوص — آداب — الجزء الثاني",
+        "source": "https://cnp.com.tn/arabic/annee-actuelle/listeOff/4SE.htm"
+      },
+      {
+        "code": "201481",
+        "title": "كتاب العربية — رياضة",
+        "source": "https://cnp.com.tn/arabic/annee-actuelle/listeOff/4SE.htm"
+      }
+    ]
+  }
 }
