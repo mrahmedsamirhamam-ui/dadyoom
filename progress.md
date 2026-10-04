@@ -500,3 +500,15 @@ The remaining items are not missing application code:
 - Sudan G11: the official national digital library now directly exposes the book «النحو — ثاني ثانوي». The G11 mapping was corrected to reference that G11 book instead of using the G12 grammar PDF as supporting evidence.
 - Sudan G11 detailed expansion remains intentionally blocked: the official PDF text layer is unreadable/garbled for trustworthy TOC extraction, so no lesson title was inferred and no DB migration/count change was made.
 - Oman G10/G11 were rechecked against official Ministry book/library evidence, but no stable government-hosted auditable TOC was exposed in the available static source path; they remain bundle/book-level rather than importing third-party lesson lists.
+
+## 2026-10-04 — Djibouti Première / G11 official detailed Arabic
+
+- Unblocked G11 using CRIPEN's official `Programme-compile-1ere.pdf`; the official PDF table of contents places Arabic in the Première programme, and the Arabic section explicitly covers the second-secondary programme.
+- Added `data/national-catalogs/dj-g11-arabic-detailed-verified-partial-2026.json` with 15 official units/domains and 60 clearly readable official topics.
+- One environmental slot remains intentionally unresolved because the RTL text layer was garbled and the PDF screenshot endpoint did not provide a reliable visual confirmation; no memory-based correction was used.
+- Updated G11 mapping from four generic series nodes to the detailed Première programme: 60 official / 60 mapped / 60 verified topics.
+- Applied Supabase migration `20261004204737_enrich_djibouti_g11_official_arabic.sql` successfully.
+- Post-migration verification: 15 units / 60 lessons / 180 original Dadyoom questions / 180 original Dadyoom activities.
+- The old generic G11 series bundle remains in DB for provenance/backward compatibility; course-catalog cleanup can hide it because detailed coverage now exceeds the >=10 threshold.
+- This supersedes the earlier note in this file that Djibouti G11 detailed programme was unavailable.
+
