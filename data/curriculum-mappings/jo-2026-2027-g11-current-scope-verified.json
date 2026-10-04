@@ -9,10 +9,10 @@
   "semester": null,
   "subject": "اللغة العربية",
   "status": "verified",
-  "officialLessons": 5,
-  "mappedLessons": 5,
-  "verifiedLessons": 5,
-  "scope": "explicit-2026-2027-semester-1",
+  "officialLessons": 25,
+  "mappedLessons": 25,
+  "verifiedLessons": 25,
+  "scope": "explicit-2026-2027-semester-1-detailed",
   "policy": "مطابقة كفايات NCCD مع Core Skill Bundles ومحتوى وطني أصلي من ضاديوم؛ ليست اعتمادًا مؤسسيًا من NCCD.",
   "mappings": [
     {
@@ -50,8 +50,9 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-nccd-catalog+official-arabic-framework+core-skill-bundle+national-pack-v1"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-nccd-2026-2027-grade-page+official-current-student-book+detailed-unit-skill-structure+national-pack",
+      "detailedOfficialCatalog": "data/national-catalogs/jo-g11-s1-arabic-detailed-2026-2027.json"
     },
     {
       "officialSlug": "jo-2026-2027-g11-u1-aspeaking",
@@ -73,8 +74,9 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-nccd-catalog+official-arabic-framework+core-skill-bundle+national-pack-v1"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-nccd-2026-2027-grade-page+official-current-student-book+detailed-unit-skill-structure+national-pack",
+      "detailedOfficialCatalog": "data/national-catalogs/jo-g11-s1-arabic-detailed-2026-2027.json"
     },
     {
       "officialSlug": "jo-2026-2027-g11-u1-areading",
@@ -121,8 +123,9 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-nccd-catalog+official-arabic-framework+core-skill-bundle+national-pack-v1"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-nccd-2026-2027-grade-page+official-current-student-book+detailed-unit-skill-structure+national-pack",
+      "detailedOfficialCatalog": "data/national-catalogs/jo-g11-s1-arabic-detailed-2026-2027.json"
     },
     {
       "officialSlug": "jo-2026-2027-g11-u1-awriting",
@@ -159,8 +162,9 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-nccd-catalog+official-arabic-framework+core-skill-bundle+national-pack-v1"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-nccd-2026-2027-grade-page+official-current-student-book+detailed-unit-skill-structure+national-pack",
+      "detailedOfficialCatalog": "data/national-catalogs/jo-g11-s1-arabic-detailed-2026-2027.json"
     },
     {
       "officialSlug": "jo-2026-2027-g11-u1-alanguage",
@@ -207,8 +211,9 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-nccd-catalog+official-arabic-framework+core-skill-bundle+national-pack-v1"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-nccd-2026-2027-grade-page+official-current-student-book+detailed-unit-skill-structure+national-pack",
+      "detailedOfficialCatalog": "data/national-catalogs/jo-g11-s1-arabic-detailed-2026-2027.json"
     }
   ],
   "secondarySupportCoverage": [
@@ -285,5 +290,10 @@
       "relation": "grade-level-support"
     }
   ],
-  "secondarySupportPolicy": "Grade-level Dadyoom support coverage is separate from official lesson-to-skill mappings and does not imply 1:1 ministry equivalence."
+  "secondarySupportPolicy": "Grade-level Dadyoom support coverage is separate from official lesson-to-skill mappings and does not imply 1:1 ministry equivalence.",
+  "detailedOfficialUnits": 5,
+  "detailedStructuredSkillNodes": 25,
+  "detailedOfficialCatalog": "data/national-catalogs/jo-g11-s1-arabic-detailed-2026-2027.json",
+  "currentOfficialBook": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Arabic/2025/%D8%B9%D8%B1%D8%A8%D9%8A%206.7.2025/11/%D9%83%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D8%AD%D8%A7%D8%AF%D9%8A%20%D8%B9%D8%B4%D8%B1%20%D9%811%20%D8%A7%D8%B9%D8%A7%D8%AF%D8%A9%20%D8%B7%D8%A8%D8%A7%D8%B9%D8%A9%2025-5.pdf",
+  "detailedVerificationNote": "الفصل الأول الحالي منشور رسميًا من NCCD. عناوين الوحدات وبنية المهارات الخمس تم تفصيلها دون نسخ نصوص الكتاب."
 }
