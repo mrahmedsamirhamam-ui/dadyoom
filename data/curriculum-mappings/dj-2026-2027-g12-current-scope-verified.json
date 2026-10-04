@@ -102,8 +102,11 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-cripen-terminale-program+official-arabic-bac-evidence+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-cripen-terminale-programme+verified-readable-detailed-topics+national-pack",
+      "detailedOfficialCatalog": "data/national-catalogs/dj-g12-arabic-detailed-verified-partial-2026.json",
+      "detailedVerifiedTopics": 44,
+      "detailedUnresolvedSlots": 4
     },
     {
       "officialSlug": "dj-2026-2027-g12-es",
@@ -192,8 +195,11 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-cripen-terminale-program+official-arabic-bac-evidence+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-cripen-terminale-programme+verified-readable-detailed-topics+national-pack",
+      "detailedOfficialCatalog": "data/national-catalogs/dj-g12-arabic-detailed-verified-partial-2026.json",
+      "detailedVerifiedTopics": 44,
+      "detailedUnresolvedSlots": 4
     },
     {
       "officialSlug": "dj-2026-2027-g12-s",
@@ -282,8 +288,11 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-cripen-terminale-program+official-arabic-bac-evidence+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-cripen-terminale-programme+verified-readable-detailed-topics+national-pack",
+      "detailedOfficialCatalog": "data/national-catalogs/dj-g12-arabic-detailed-verified-partial-2026.json",
+      "detailedVerifiedTopics": 44,
+      "detailedUnresolvedSlots": 4
     },
     {
       "officialSlug": "dj-2026-2027-g12-sg",
@@ -372,8 +381,15 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-cripen-terminale-program+official-arabic-bac-evidence+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-cripen-terminale-programme+verified-readable-detailed-topics+national-pack",
+      "detailedOfficialCatalog": "data/national-catalogs/dj-g12-arabic-detailed-verified-partial-2026.json",
+      "detailedVerifiedTopics": 44,
+      "detailedUnresolvedSlots": 4
     }
-  ]
+  ],
+  "detailedCoverageStatus": "verified-partial-detailed",
+  "detailedVerifiedTopics": 44,
+  "detailedUnresolvedSlots": 4,
+  "detailedOfficialCatalog": "data/national-catalogs/dj-g12-arabic-detailed-verified-partial-2026.json"
 }
