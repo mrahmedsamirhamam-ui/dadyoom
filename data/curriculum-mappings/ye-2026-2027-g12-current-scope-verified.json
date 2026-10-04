@@ -22,12 +22,18 @@
         "label": "الإدارة العامة للتعليم الإلكتروني — وزارة التربية والتعليم والبحث العلمي",
         "url": "https://e-learning-moe.edu.ye/",
         "guidesUrl": "https://www.e-learning-moe.edu.ye/teachergiude.php",
-        "currentYearUrl": "https://moe-ye.net/37553"
+        "currentYearUrl": "https://moe-ye.net/37553",
+        "gradePage": "https://e-learning-moe.edu.ye/ClassTwelve.php",
+        "searchVerifiedBookTitles": [
+          "النحو والصرف",
+          "الأدب والنصوص والبلاغة",
+          "القراءة"
+        ]
       },
       "relationType": "official-grade-textbook+national-extension",
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
-      "rationale": "بوابة الوزارة تعرض المناهج اليمنية من الصف الأول الأساسي إلى الثالث الثانوي، وتعرض أدلة المعلم لمادة اللغة العربية؛ الحزمة تمثل كتب العربية على مستوى الصف.",
+      "rationale": "بوابة الوزارة تعرض المناهج اليمنية من الصف الأول الأساسي إلى الثالث الثانوي، وتعرض أدلة المعلم لمادة اللغة العربية؛ الحزمة تمثل كتب العربية على مستوى الصف. أمكن كذلك التحقق من عناوين كتب عربية ظاهرة في فهرس الصف الرسمي: النحو والصرف، الأدب والنصوص والبلاغة، القراءة؛ ولا تُستنتج عناوين أخرى من صفحات غير قابلة للاستخراج.",
       "coreCoverage": [
         {
           "slug": "ye-dadyoom-core-g12-l01",
@@ -103,8 +109,14 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-ministry-elearning-catalog+official-arabic-teacher-guides+2026-2027-year-evidence+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-ministry-elearning-catalog+indexed-official-grade-page+official-arabic-teacher-guides+2026-2027-year-evidence+national-pack"
     }
+  ],
+  "officialBookNodesVerified": 3,
+  "verifiedOfficialBookTitles": [
+    "النحو والصرف",
+    "الأدب والنصوص والبلاغة",
+    "القراءة"
   ]
 }
