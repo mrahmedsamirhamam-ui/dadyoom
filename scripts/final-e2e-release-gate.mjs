@@ -5247,6 +5247,9 @@ qaReport.baseUrl = baseUrl;
 try {
   await secondaryCurriculumCoverageGate();
 
+  await cleanupStaleE2EUsers();
+  await cleanupStaleMarketplaceFixtures();
+
   for (
     const [role] of
     roles
@@ -5260,8 +5263,6 @@ try {
     "E2E_TEMP_USERS=6",
   );
 
-  await cleanupStaleE2EUsers();
-  await cleanupStaleMarketplaceFixtures();
   await seedStudent();
   await seedRelationships();
   await seedMarketplaceFixture();
