@@ -468,3 +468,26 @@ The remaining items are not missing application code:
 - Kuwait official e-library exposes the textbook/standards library and filters but not a stable static result endpoint for secondary Arabic titles.
 - Djibouti Première Arabic detailed programme remains unavailable publicly; only the official secondary-series structure is currently verifiable.
 - These scopes remain intentionally unexpanded rather than guessed.
+
+
+## 2026-10-04 — Lebanon 2026 curriculum-reform status
+
+- CRDP officially confirms issuance of the new pre-university general-education curriculum by Decree No. 3445 dated 15 July 2026.
+- CRDP also states that the next implementation stage includes:
+  - preparation of guides and standards;
+  - training plans;
+  - pilot implementation;
+  - gradual rollout;
+  - monitoring and evaluation.
+- The current public Arabic curriculum page remains useful for the official secondary track/hour structure:
+  - First secondary: 2 weekly / 60 annual;
+  - Second secondary humanities: 2 / 60;
+  - Second secondary sciences: 4 / 120;
+  - Third secondary Arts & Humanities: 6 / 180;
+  - Third secondary Sociology & Economics: 3 / 90;
+  - Third secondary General Sciences: 6 / 180;
+  - Third secondary Life Sciences: 5 / 150.
+- The latest publicly exposed year-specific reduced curriculum remains 2025-2026; it is now explicitly marked as historical/year-specific evidence and is NOT treated as the 2026-2027 implementation plan.
+- No current public 2026-2027 secondary Arabic topic/lesson list was found after the 2026 reform decree.
+- Lebanon G10/G11/G12 therefore remain at the verified domain/track level; no new lesson titles were fabricated.
+- Updated all Lebanon 2026-2027 mapping JSONs and the national catalog with Decree 3445 and rollout status.
