@@ -41,7 +41,7 @@
   ],
   "gradeScope": {
     "10": {
-      "source": "المنهج الجديد للصف العاشر 2026-2027 + نظام الثانوية القائم + تجربة المسارات",
+      "source": "المنهج المطور للصف العاشر 2026-2027 + نظام المسارات المعتمد بتطبيق اختياري أولي في 12 مدرسة + استمرار النظام الثانوي القائم لغير المشمولين",
       "publicMatchingUnit": "course-semester-bundle"
     },
     "1-5": {
@@ -95,7 +95,16 @@
         "العلوم",
         "الصناعي",
         "التكنولوجيا والذكاء الاصطناعي"
-      ]
+      ],
+      "status": "approved-regulation-limited-initial-rollout",
+      "entryGrade": 10,
+      "optional": true,
+      "initialSchools": 12,
+      "legacySystemContinuesForNonParticipants": true,
+      "regulationUrl": "https://www.moe.edu.kw/News/GetNewsDetail?NewsId=1321",
+      "regulationDetailUrl": "https://www.moe.edu.kw/news/1343",
+      "platformUrl": "https://stdservice.moe.edu.kw/masarSystem/",
+      "note": "اعتمدت الوزارة لائحة المسارات رسميًا، ويبدأ التطبيق الحالي على الراغبين الملتحقين بالصف العاشر في 12 مدرسة محددة، مع استمرار النظام القائم لغير المشمولين."
     }
   },
   "sources": [
@@ -134,6 +143,18 @@
     {
       "kind": "official-secondary-arabic-evidence",
       "url": "https://moe.edu.kw/news/1036"
+    },
+    {
+      "kind": "official-masar-adoption-2026",
+      "url": "https://www.moe.edu.kw/News/GetNewsDetail?NewsId=1321"
+    },
+    {
+      "kind": "official-masar-regulation-2026",
+      "url": "https://www.moe.edu.kw/news/1343"
+    },
+    {
+      "kind": "official-masar-platform",
+      "url": "https://stdservice.moe.edu.kw/masarSystem/"
     }
   ],
   "counts": {
