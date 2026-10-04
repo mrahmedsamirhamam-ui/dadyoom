@@ -22,7 +22,7 @@ export default async function MarketplacePage() {
       "id,slug,title,description,price,currency,delivery_mode,created_at",
     )
     .eq("status", "published")
-    .not("slug", "like", "e2e-bpay-%")
+    .not("slug", "like", "e2e-%")
     .order("created_at", {
       ascending: false,
     });
