@@ -113,8 +113,9 @@
       "officialSlug": "dz-2026-2027-g12-science-technology",
       "officialTitle": "اللغة العربية وآدابها — الثالثة ثانوي — علوم/رياضيات/تقني/تسيير",
       "source": {
-        "label": "وزارة التربية الوطنية الجزائرية — منهاج العربية للشعب العلمية والتقنية",
-        "url": "https://education.gov.dz/wp-content/uploads/2015/04/Arabe-2AS-Sces-Maths-TM-gestion.pdf",
+        "label": "وزارة التربية الوطنية الجزائرية — التدرجات السنوية سبتمبر 2022 — الثالثة ثانوي الشعب العلمية (نسخة مفهرسة)",
+        "url": "https://www.scribd.com/document/689391083/Plans-Annuels2023-Arabic3as",
+        "progressionIndexUrl": "https://www.educafile.com/2022/09/repartitions.arabe.lycee.html",
         "current20262027Url": "https://www.education.gov.dz/2026/07/30/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9-%D9%8A%D9%86%D8%B4%D9%91%D8%B7-%D9%86%D8%AF%D9%88%D8%A9-%D8%B5%D8%AD%D9%81%D9%8A%D8%A9/",
         "onpsUrl": "https://www.onps.dz/"
       },
@@ -197,8 +198,11 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-ministry-current-2026-2027+official-curriculum+official-onps+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "ministry-branded-annual-progression-september-2022+current-2026-2027-ministry-context+original-dadyoom-learning-content",
+      "detailedOfficialUnits": 2,
+      "detailedOfficialLessons": 12,
+      "detailedOfficialCatalog": "data/national-catalogs/dz-g12-science-arabic-detailed-2026.json"
     }
   ],
   "detailedOfficialTracks": [
@@ -211,6 +215,20 @@
         "label": "وزارة التربية الوطنية الجزائرية - التدرجات السنوية لمادة اللغة العربية - السنة الثالثة ثانوي شعبة لغات أجنبية",
         "url": "https://education.gov.dz/wp-content/uploads/2015/04/3-AS-LE-arabe.pdf",
         "currentContextUrl": "https://www.education.gov.dz/2026/07/30/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9-%D9%8A%D9%86%D8%B4%D9%91%D8%B7-%D9%86%D8%AF%D9%88%D8%A9-%D8%B5%D8%AD%D9%81%D9%8A%D8%A9/"
+      },
+      "verifiedAt": "2026-10-04"
+    },
+    {
+      "officialSlug": "dz-2026-2027-g12-science-technology-detailed",
+      "track": "الشعب العلمية المشتركة",
+      "units": 2,
+      "lessons": 12,
+      "source": {
+        "label": "وزارة التربية الوطنية الجزائرية — التدرجات السنوية سبتمبر 2022 — السنة الثالثة الشعب العلمية (نسخة مفهرسة)",
+        "url": "https://www.scribd.com/document/689391083/Plans-Annuels2023-Arabic3as",
+        "progressionIndexUrl": "https://www.educafile.com/2022/09/repartitions.arabe.lycee.html",
+        "currentContextUrl": "https://www.education.gov.dz/2026/07/30/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9-%D9%8A%D9%86%D8%B4%D9%91%D8%B7-%D9%86%D8%AF%D9%88%D8%A9-%D8%B5%D8%AD%D9%81%D9%8A%D8%A9/",
+        "verificationNote": "الوثيقة تحمل ترويسة وزارة التربية الوطنية والمفتشية العامة للتربية الوطنية؛ استُخدمت العناوين والبنية فقط."
       },
       "verifiedAt": "2026-10-04"
     }

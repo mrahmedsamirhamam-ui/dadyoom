@@ -113,10 +113,11 @@
       "officialSlug": "dz-2026-2027-g11-science-technology",
       "officialTitle": "اللغة العربية وآدابها — الثانية ثانوي — علوم/رياضيات/تقني/تسيير",
       "source": {
-        "label": "وزارة التربية الوطنية الجزائرية — منهاج العربية للشعب العلمية والتقنية",
+        "label": "وزارة التربية الوطنية الجزائرية — منهاج العربية للشعب العلمية والتقنية + التدرجات السنوية",
         "url": "https://education.gov.dz/wp-content/uploads/2015/04/Arabe-2AS-Sces-Maths-TM-gestion.pdf",
         "current20262027Url": "https://www.education.gov.dz/2026/07/30/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9-%D9%8A%D9%86%D8%B4%D9%91%D8%B7-%D9%86%D8%AF%D9%88%D8%A9-%D8%B5%D8%AD%D9%81%D9%8A%D8%A9/",
-        "onpsUrl": "https://www.onps.dz/"
+        "onpsUrl": "https://www.onps.dz/",
+        "progressionUrl": "https://www.scribd.com/document/673328924/%D8%B32-%D8%A7%D9%84%D8%B4%D8%B9%D8%A8-%D8%A7%D9%84%D8%B9%D9%84%D9%85%D9%8A%D8%A9-%D8%A7%D9%84%D9%85%D8%B4%D8%AA%D8%B1%D9%83%D8%A9"
       },
       "relationType": "official-secondary-track+national-extension",
       "reviewStatus": "verified-system",
@@ -197,8 +198,11 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-ministry-current-2026-2027+official-curriculum+official-onps+national-pack"
+      "verifiedAt": "2026-10-04",
+      "verificationMethod": "official-ministry-curriculum+ministry-branded-annual-progression+current-2026-2027-ministry-context+original-dadyoom-learning-content",
+      "detailedOfficialUnits": 4,
+      "detailedOfficialLessons": 12,
+      "detailedOfficialCatalog": "data/national-catalogs/dz-g11-science-arabic-detailed-2026.json"
     }
   ],
   "detailedOfficialTracks": [
@@ -211,6 +215,20 @@
         "url": "https://education.gov.dz/wp-content/uploads/2015/04/Arabe-2AS-Letres-et-Philo-Langues-1-Copie.pdf",
         "current20262027Url": "https://www.education.gov.dz/2026/07/30/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9-%D9%8A%D9%86%D8%B4%D9%91%D8%B7-%D9%86%D8%AF%D9%88%D8%A9-%D8%B5%D8%AD%D9%81%D9%8A%D8%A9/",
         "onpsUrl": "https://www.onps.dz/"
+      },
+      "verifiedAt": "2026-10-04"
+    },
+    {
+      "officialSlug": "dz-2026-2027-g11-science-technology-detailed",
+      "track": "الشعب العلمية المشتركة",
+      "units": 4,
+      "lessons": 12,
+      "source": {
+        "label": "وزارة التربية الوطنية الجزائرية — منهاج العربية للسنة الثانية ثانوي للشعب العلمية والتقنية",
+        "url": "https://education.gov.dz/wp-content/uploads/2015/04/Arabe-2AS-Sces-Maths-TM-gestion.pdf",
+        "progressionIndexUrl": "https://www.educafile.com/2022/09/repartitions.arabe.lycee.html",
+        "currentContextUrl": "https://www.education.gov.dz/2026/07/30/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9-%D9%8A%D9%86%D8%B4%D9%91%D8%B7-%D9%86%D8%AF%D9%88%D8%A9-%D8%B5%D8%AD%D9%81%D9%8A%D8%A9/",
+        "verificationNote": "عناوين الوحدات راجعت كذلك مقابل التدرجات السنوية الوزارية المفهرسة للشعب العلمية."
       },
       "verifiedAt": "2026-10-04"
     }

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "DZ",
+    "nameAr": "الجزائر"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية وآدابها",
+  "grade": {
+    "number": 11,
+    "nameAr": "السنة الثانية ثانوي"
+  },
+  "track": "الشعب العلمية المشتركة",
+  "verificationStatus": "verified-official-progression-structure",
+  "source": {
+    "label": "وزارة التربية الوطنية الجزائرية — منهاج العربية للسنة الثانية ثانوي للشعب العلمية والتقنية",
+    "url": "https://education.gov.dz/wp-content/uploads/2015/04/Arabe-2AS-Sces-Maths-TM-gestion.pdf",
+    "progressionIndexUrl": "https://www.educafile.com/2022/09/repartitions.arabe.lycee.html",
+    "currentContextUrl": "https://www.education.gov.dz/2026/07/30/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9-%D9%8A%D9%86%D8%B4%D9%91%D8%B7-%D9%86%D8%AF%D9%88%D8%A9-%D8%B5%D8%AD%D9%81%D9%8A%D8%A9/",
+    "verificationNote": "عناوين الوحدات راجعت كذلك مقابل التدرجات السنوية الوزارية المفهرسة للشعب العلمية."
+  },
+  "units": [
+    {
+      "number": 1,
+      "title": "أدب العصر العباسي الأول",
+      "lessons": [
+        "النزعة العقلية في الشعر",
+        "الدعوة إلى التجديد والقضاء على القديم",
+        "شعر الزهد",
+        "التقليد والتجديد في النتاج الشعري العباسي",
+        "نشاط النثر"
+      ]
+    },
+    {
+      "number": 2,
+      "title": "العصر العباسي الثاني",
+      "lessons": [
+        "الحكمة والفلسفة في الشعر",
+        "الشكوى واضطراب أحوال المجتمع"
+      ]
+    },
+    {
+      "number": 3,
+      "title": "الحركة الشعرية في المغرب العربي",
+      "lessons": [
+        "من قضايا الشعر في عهد الدولة الرستمية",
+        "الشعر في ظل الصراعات الداخلية على السلطة"
+      ]
+    },
+    {
+      "number": 4,
+      "title": "الأدب الأندلسي",
+      "lessons": [
+        "وصف الطبيعة الجميلة",
+        "رثاء الممالك",
+        "الموشحات"
+      ]
+    }
+  ],
+  "officialDetailedLessons": 12,
+  "copyrightPolicy": "تُخزن أسماء المحاور والوحدات الرسمية فقط؛ الشرح والأسئلة والأنشطة داخل ضاديوم أصلية ولا تعيد نشر نصوص الكتاب."
+}
