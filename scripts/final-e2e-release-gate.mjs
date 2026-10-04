@@ -1416,6 +1416,59 @@ async function seedRelationships() {
   );
 }
 
+async function cleanupStaleMarketplaceFixtures() {
+  const staleCourses =
+    await admin
+      .from("edu_marketplace_courses")
+      .select("id")
+      .like("slug", "e2e-%");
+
+  if (staleCourses.error) {
+    throw staleCourses.error;
+  }
+
+  const staleIds =
+    (staleCourses.data ?? [])
+      .map(row => row.id)
+      .filter(Boolean);
+
+  if (staleIds.length === 0) {
+    console.log(
+      "E2E_STALE_MARKETPLACE_FIXTURES=NONE",
+    );
+    return;
+  }
+
+  const paymentCleanup =
+    await admin
+      .from("edu_payment_orders")
+      .delete()
+      .in("course_id", staleIds);
+
+  if (paymentCleanup.error) {
+    throw paymentCleanup.error;
+  }
+
+  /*
+   * The remaining course dependencies use ON DELETE CASCADE.
+   * Removing the course clears stale purchases, earnings, lessons,
+   * live sessions and their attendance rows from cancelled QA runs.
+   */
+  const courseCleanup =
+    await admin
+      .from("edu_marketplace_courses")
+      .delete()
+      .in("id", staleIds);
+
+  if (courseCleanup.error) {
+    throw courseCleanup.error;
+  }
+
+  console.log(
+    `E2E_STALE_MARKETPLACE_FIXTURES=CLEANED COUNT=${staleIds.length}`,
+  );
+}
+
 async function seedMarketplaceFixture() {
   const teacher = users.get("teacher");
 
@@ -5042,6 +5095,7 @@ try {
     "E2E_TEMP_USERS=6",
   );
 
+  await cleanupStaleMarketplaceFixtures();
   await seedStudent();
   await seedRelationships();
   await seedMarketplaceFixture();
