@@ -323,3 +323,24 @@ The remaining items are not missing application code:
   - Google provider: enabled/configured;
   - marketplace public copy reflects live BPay flow;
   - 22 countries retain 12/12 published grade coverage; secondary G10-G12 remains >=19 published lessons per country, with MR/TN G13 present.
+
+
+## 2026-10-04 — Sudan G12 official grammar enrichment
+
+- Official Sudan source: `https://mdl.edu.sd/img/bookpdf/nahw3_1678863142.pdf`
+  - Ministry of General Education / National Centre for Curricula and Educational Research.
+  - Book: `قواعد اللغة العربية — الصف الثالث الثانوي`.
+- Added only the clearly readable official TOC portion; ambiguous/corrupted TOC rows were intentionally omitted.
+- Detailed catalog: `data/national-catalogs/sd-g12-arabic-grammar-detailed-verified-partial-2026.json`.
+- Production migration: `20261004235945_enrich_sudan_g12_official_grammar.sql`.
+- Verified detailed result:
+  - 4 units;
+  - 21 official topics/lessons;
+  - 63 original Dadyoom questions;
+  - 63 original Dadyoom activities.
+- Verified units currently loaded:
+  - الجمل وأشباه الجمل التي لها محل من الإعراب;
+  - أسلوب الشرط;
+  - النسب;
+  - الجامد والمشتق.
+- Sudan G11 remains at official bundle level because no current government-hosted detailed TOC was found; third-party lists were not promoted to official platform data.
