@@ -207,5 +207,14 @@
     }
   ],
   "copyrightPolicy": "لا تعيد ضاديوم نشر نصوص الكتب؛ تستخدم البنية والمهارات وروابط الوزارة لإثبات المواءمة، والمحتوى التعليمي أصلّي.",
-  "generatedAt": "2026-09-25"
+  "generatedAt": "2026-09-25",
+  "grade12DetailedCoverage": {
+    "status": "verified-current-official-digital-book-detailed",
+    "semester": 2,
+    "book": "المؤنس",
+    "verifiedOfficialTopics": 25,
+    "enrichmentExcluded": true,
+    "catalog": "data/national-catalogs/om-g12-muunis-s2-detailed-2026-2027.json",
+    "source": "https://ict.moe.gov.om/book/PDF/12/cls12_Muunis_P2/files/basic-html/page12.html"
+  }
 }
