@@ -58,11 +58,17 @@ type SecondaryTrack = {
   grades: number[] | null;
   status: string;
   lesson_coverage: string;
+  official_unit_scope: "all-mapped-curriculum" | "mapped-only";
 };
 
 type TrackCurriculum = {
   secondary_track_id: string;
   curriculum_id: string;
+};
+
+type TrackUnit = {
+  secondary_track_id: string;
+  unit_id: string;
 };
 
 function difficulty(
@@ -219,7 +225,9 @@ export async function GET(
     countryData as Country;
 
   let secondaryTracks: SecondaryTrack[] = [];
+  let selectedSecondaryTrack: SecondaryTrack | null = null;
   let allowedCurriculumIds: Set<string> | null = null;
+  let allowedOfficialUnitIds: Set<string> | null = null;
 
   if (gradeNumber >= 10) {
     const {
@@ -227,7 +235,7 @@ export async function GET(
       error: trackError,
     } = await supabase
       .from("secondary_tracks")
-      .select("id,country_code,system_name_ar,track_name_ar,grades,status,lesson_coverage")
+      .select("id,country_code,system_name_ar,track_name_ar,grades,status,lesson_coverage,official_unit_scope")
       .eq("country_code", countryCode)
       .eq("academic_year", "2026-2027")
       .eq("is_active", true)
@@ -247,11 +255,12 @@ export async function GET(
     );
 
     if (requestedTrackId) {
-      const selectedTrack = secondaryTracks.find(
-        (track) => track.id === requestedTrackId,
-      );
+      selectedSecondaryTrack =
+        secondaryTracks.find(
+          (track) => track.id === requestedTrackId,
+        ) ?? null;
 
-      if (!selectedTrack) {
+      if (!selectedSecondaryTrack) {
         return NextResponse.json(
           { error: "المسار الثانوي المختار غير متاح لهذا الصف." },
           { status: 400 },
@@ -276,6 +285,29 @@ export async function GET(
           (row) => row.curriculum_id,
         ),
       );
+
+      if (
+        selectedSecondaryTrack.official_unit_scope === "mapped-only"
+      ) {
+        const {
+          data: unitMappingRows,
+          error: unitMappingError,
+        } = await supabase
+          .from("secondary_track_units")
+          .select("secondary_track_id,unit_id")
+          .eq("secondary_track_id", requestedTrackId)
+          .limit(200);
+
+        if (unitMappingError) {
+          return errorResponse("secondary_track_units", unitMappingError);
+        }
+
+        allowedOfficialUnitIds = new Set(
+          ((unitMappingRows ?? []) as TrackUnit[]).map(
+            (row) => row.unit_id,
+          ),
+        );
+      }
     }
   }
 
@@ -632,6 +664,17 @@ export async function GET(
 
           if (
             !curriculum
+          ) {
+            return null;
+          }
+
+          if (
+            requestedTrackId &&
+            selectedSecondaryTrack?.official_unit_scope === "mapped-only" &&
+            !curriculum.name_ar.includes(
+              "المسار العربي الأساسي لضاديوم",
+            ) &&
+            !allowedOfficialUnitIds?.has(raw.id)
           ) {
             return null;
           }
