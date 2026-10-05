@@ -465,7 +465,7 @@ function CatalogScope({
                     ...(hasSecondaryComplete
                       ? [[
                           SECONDARY_COMPLETE_ID,
-                          "المسار الكامل — الرسمي + دروس ضاديوم الداعمة",
+                          "كل المحتوى المتاح حاليًا — الرسمي الموثق + دروس ضاديوم الداعمة",
                         ]]
                       : []),
                     ...curricula.map((item) => [
