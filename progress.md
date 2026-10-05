@@ -574,3 +574,22 @@ The remaining items are not missing application code:
 - Morocco: specific TelmidTice source links are now attached to G10 literary (45 lessons / 17 weeks), G11 scientific course page from the official sitemap, and G12 arts (49 lessons / 17 weeks). The React UI still does not expose lesson titles in static HTML, so counts are evidence only and are not converted into fabricated lesson nodes.
 - Source-integrity rule reaffirmed: when a government source proves structure/count/book existence but not a readable current lesson title, Dadyoom keeps book/bundle-level matching and preserves the 18-lesson Core separately.
 
+## 2026-10-05 — AdSense rejection diagnosis and public-content remediation
+
+- Production AdSense integration is configured and public: `/api/ads/config` returns a valid publisher client; `/ads.txt` emits the matching Google DIRECT line; the AdSense account meta is present on public pages.
+- Gmail review found the latest Google AdSense decision dated 01-10-2026: «يجب تعديل طلب AdSense». The email did not identify a single policy code, but explicitly pointed to site readiness/content quality.
+- Public audit found concrete review risks:
+  - `/about` returned 404;
+  - `/contact` returned 404;
+  - `/dictionary` and `/ask` are login-protected;
+  - `/courses` depended on client loading and exposed an initial thin/zero-content state to static crawlers.
+- Added fully public, indexable, original pages:
+  - `/about` — mission, curriculum methodology, source-integrity and rights policy;
+  - `/contact` — public support/funding/privacy contact guidance without publishing a personal email;
+  - `/learn-arabic` — substantial original Arabic-learning guide covering reading, writing, listening, speaking, grammar, vocabulary and weekly study habits.
+- Added About / Contact / learning guide links to the homepage navigation/footer and global navigation, and registered all three in the dynamic sitemap.
+- Added server-rendered explanatory content to `/courses` so AdSense/Search crawlers see meaningful curriculum methodology before the dynamic catalog loads.
+- Google OAuth production provider remains enabled/configured. A final real human Google-login confirmation remains an external manual check.
+- Paddle remains intentionally Sandbox. Database Plus price is active at 10.00 USD/month and existing Paddle lifecycle events are sandbox-era tests. Do not switch to Live or perform a real-money payment without explicit user approval.
+- Next AdSense action after the new pages deploy and pass production gates: sign in to AdSense > Sites > Dadyoom > confirm fixes > Request review.
+
