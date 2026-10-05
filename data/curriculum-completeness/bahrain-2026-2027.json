@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "BH",
+    "nameAr": "مملكة البحرين"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "goal": "full-national-track-semester-unit-lesson-coverage",
+  "auditedAt": "2026-10-05",
+  "officialCurrentSemesterGuide": "https://edunet.bh/Econtent/LessonsGuide",
+  "currentOfficialSemester": 1,
+  "officialArabicScopesPublishedForSemester1": [
+    "التعليم الأساسي",
+    "توحيد المسارات",
+    "التعليم الفني والمهني",
+    "التعليم الديني",
+    "المسار الإداري والتكنولوجي - الهندسي",
+    "التعليم المستمر",
+    "برنامج السنوات المتوسطة MYP — الصف الثامن — اللغة والأدب"
+  ],
+  "verifiedDirectSources": [
+    {
+      "scope": "توحيد المسارات",
+      "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf"
+    },
+    {
+      "scope": "التعليم الديني",
+      "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan4.pdf"
+    },
+    {
+      "scope": "التعليم المستمر",
+      "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan6.pdf"
+    },
+    {
+      "scope": "MYP — اللغة والأدب",
+      "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan7.pdf"
+    }
+  ],
+  "productionAudit": {
+    "grade10": {
+      "currentOfficialUnits": 1,
+      "currentOfficialLessons": 14,
+      "importedScope": [
+        "توحيد المسارات — الفصل الأول"
+      ],
+      "complete": false
+    },
+    "grade11": {
+      "currentOfficialUnits": 2,
+      "currentOfficialLessons": 22,
+      "importedScope": [
+        "توحيد المسارات — الفصل الأول"
+      ],
+      "complete": false
+    },
+    "grade12": {
+      "currentOfficialUnits": 2,
+      "currentOfficialLessons": 19,
+      "importedScope": [
+        "توحيد المسارات — الفصل الأول"
+      ],
+      "complete": false
+    }
+  },
+  "semester2": {
+    "currentYearPlanPublishedAsOfAudit": false,
+    "latestOfficialHistoricalReferenceYear": "2025-2026",
+    "policy": "لا تُنسب خطة الفصل الثاني السابقة إلى 2026-2027. تُستخدم فقط كمرجع تاريخي/لبناء قائمة تحقق إلى أن تنشر الوزارة خطة 2026-2027."
+  },
+  "completionRule": "لا تعتبر البحرين مكتملة حتى تمثل كل المسارات الرسمية المنشورة، وكل فصل دراسي منشور، وكل وحدة/درس رسمي أو تُسجل صراحة كغير منشور/غير متاح من المصدر الرسمي."
+}
