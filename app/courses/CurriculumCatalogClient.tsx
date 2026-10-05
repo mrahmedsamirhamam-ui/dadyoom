@@ -131,6 +131,54 @@ export default function CurriculumCatalogClient({
       className="min-h-screen w-full min-w-0 overflow-x-hidden px-3 py-5 sm:px-5"
     >
       <div className="mx-auto w-full min-w-0 max-w-[1500px] space-y-5">
+        <section className="rounded-[2rem] border border-[#dfcfad] bg-[#fffaf0] p-5 sm:p-8">
+          <p className="text-sm font-black text-[#a7772f]">
+            بوابة المناهج العربية
+          </p>
+          <h1 className="mt-2 font-arabic-display text-3xl font-black leading-[1.45] text-[#123f39] sm:text-4xl">
+            تعلّم من موقعك الحقيقي في المنهج، ثم قوِّ المهارة
+          </h1>
+          <div className="mt-5 max-w-5xl space-y-4 font-arabic-reading leading-8 text-[#625b51]">
+            <p>
+              تغطي ضاديوم الدول العربية عبر مسار أساسي موحد للمهارات، مع طبقات
+              وطنية تربط الصفوف والكتب والمجالات بالمصادر الرسمية المتاحة. عندما
+              يتوفر فهرس حكومي واضح نستخدم عناوينه كبنية مرجعية، وعندما يثبت المصدر
+              كتابًا أو مجالًا فقط نحافظ على المطابقة عند هذا المستوى ولا نختلق
+              عناوين غير منشورة.
+            </p>
+            <p>
+              في المرحلة الثانوية قد ترى «المطابقة الوطنية الموثقة» إلى جانب
+              «دروس ضاديوم الداعمة». الأولى توضح ما أمكن التحقق منه من المصدر
+              الوطني، والثانية تقدم شرحًا وأسئلة وأنشطة أصلية في القراءة والكتابة
+              والاستماع والتحدث والنحو والمفردات لتقوية المهارات حول المنهج.
+            </p>
+          </div>
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            <div className="rounded-2xl border border-[#e1d4ba] bg-white p-4">
+              <div className="text-2xl font-black text-[#123f39]">22</div>
+              <div className="mt-1 text-sm font-bold text-[#6c6257]">دولة عربية ضمن التغطية</div>
+            </div>
+            <div className="rounded-2xl border border-[#e1d4ba] bg-white p-4">
+              <div className="text-2xl font-black text-[#123f39]">1–12+</div>
+              <div className="mt-1 text-sm font-bold text-[#6c6257]">صفوف ومستويات بحسب الدولة</div>
+            </div>
+            <div className="rounded-2xl border border-[#e1d4ba] bg-white p-4">
+              <div className="text-2xl font-black text-[#123f39]">4</div>
+              <div className="mt-1 text-sm font-bold text-[#6c6257]">مهارات لغوية مترابطة</div>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-wrap gap-3 text-sm font-black">
+            <Link href="/learn-arabic" className="rounded-xl bg-[#123f39] px-4 py-2.5 text-white">
+              اقرأ دليل تعلم العربية
+            </Link>
+            <Link href="/about" className="rounded-xl border border-[#cdbb96] px-4 py-2.5 text-[#123f39]">
+              كيف نبني المطابقة؟
+            </Link>
+          </div>
+        </section>
+
         <section className="overflow-hidden rounded-[2rem] border border-[#c9b47c] bg-[#123f39] p-5 text-white shadow-xl sm:p-8">
           <div className="min-w-0">
             <div className="inline-flex rounded-full bg-white/10 px-4 py-2 text-xs font-black text-[#ffe7ae]">
