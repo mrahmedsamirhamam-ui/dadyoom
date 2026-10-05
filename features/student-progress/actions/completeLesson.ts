@@ -6,7 +6,6 @@ import { createClient } from "@/lib/supabase/server";
 import { getCorrectAnswerSpec } from "@/lib/lesson-activities/grading";
 import { invalidateStudentCaches } from "@/features/student-progress/services/invalidate-student-caches";
 import { syncLearningProfile } from "@/features/learning-profile/services/sync-profile";
-import { syncLessonMasteryAction } from "@/features/lesson-mastery/actions/syncLessonMastery";
 import { completeAdaptiveStep } from "@/features/learning-plan/services/adaptive-path-lifecycle";
 
 import { updateStreak } from "@/services/gamification/streak";
@@ -585,9 +584,52 @@ export async function completeLessonAction(
         );
     }
   }
-  await syncLessonMasteryAction(
-    progress.lesson_id
-  );
+  /*
+   * DADYOOM_CANONICAL_MASTERY_FAST_PATH_V1
+   *
+   * completeLessonAction already loaded and graded the canonical
+   * activity/question attempts above. Re-fetching the same lesson
+   * through syncLessonMasteryAction() repeated auth + activities +
+   * attempts queries and could exhaust the production Worker budget
+   * before the canonical completion response was returned.
+   *
+   * Persist the already-calculated canonical mastery directly.
+   * This remains fail-closed: if the mastery row cannot be stored,
+   * lesson completion is not committed.
+   */
+  const {
+    error: masteryError,
+  } = await supabase
+    .from("lesson_mastery")
+    .upsert(
+      {
+        student_id: user.id,
+        lesson_id:
+          progress.lesson_id,
+        mastery_score:
+          score,
+        correct_answers:
+          correctAnswers,
+        wrong_answers:
+          Math.max(
+            0,
+            totalQuestions -
+              correctAnswers
+          ),
+        asked_questions:
+          totalQuestions,
+        updated_at:
+          new Date().toISOString(),
+      },
+      {
+        onConflict:
+          "student_id,lesson_id",
+      }
+    );
+
+  if (masteryError) {
+    throw masteryError;
+  }
 
   if (
     questionIds.length > 0 &&
@@ -612,25 +654,100 @@ export async function completeLessonAction(
       )
     );
 
-  if (user.email?.trim()) {
-    await updateStreak({
-      supabase,
-      studentEmail: user.email.trim(),
-      activityDate: new Date(),
-    });
-  }
-
   /*
-   * بعد نجاح إكمال الدرس الحقيقي،
-   * نغلق خطوة lesson في المسار التكيفي
-   * ونفتح الخطوة التالية تلقائيًا.
+   * DADYOOM_POST_COMPLETION_RESILIENCE_V1
    *
-   * العملية idempotent داخل Lifecycle،
-   * لذلك إعادة المحاولة لا تعيد إكمال
-   * الخطوة إذا كانت مكتملة بالفعل.
+   * From this point onward the canonical lesson progress is already
+   * committed. Post-completion integrations must not convert that
+   * durable success into HTTP 500.
+   *
+   * We also avoid two extra readbacks by deriving the immediate
+   * after-snapshot from the row we just wrote.
    */
-  const adaptiveLessonStep =
-    await completeAdaptiveStep({
+  const previousLessonRow =
+    (
+      beforeProgressData ??
+      []
+    ).find(
+      (row) =>
+        row.id === progress.id
+    );
+
+  const resultStatus =
+    String(
+      result?.status ??
+        previousLessonRow?.status ??
+        "completed"
+    );
+
+  const resultXP =
+    Number(
+      result?.xp ??
+        previousLessonRow?.xp ??
+        0
+    );
+
+  const previousLessonXP =
+    Number(
+      previousLessonRow?.xp ??
+        0
+    );
+
+  const afterProgressData =
+    (
+      beforeProgressData ??
+      []
+    ).map(
+      (row) =>
+        row.id === progress.id
+          ? {
+              ...row,
+              status:
+                resultStatus,
+              xp:
+                resultXP,
+            }
+          : row
+    );
+
+  const afterUnifiedXP =
+    Math.max(
+      0,
+      beforeUnifiedXP +
+        Math.max(
+          0,
+          resultXP -
+            previousLessonXP
+        )
+    );
+
+  const afterSnapshot =
+    createGamificationSnapshot(
+      afterProgressData as ProgressGamificationRow[],
+      afterUnifiedXP
+    );
+
+  const fallbackAdaptiveStep = {
+    updated: false,
+    reason:
+      "post_completion_side_effect_pending" as const,
+    currentStep: null,
+    nextStep: null,
+    pathCompleted: false,
+  };
+
+  const postCompletionTasks = [
+    user.email?.trim()
+      ? updateStreak({
+          supabase,
+          studentEmail:
+            user.email.trim(),
+          activityDate:
+            new Date(),
+        })
+      : Promise.resolve(null),
+
+    completeAdaptiveStep({
       supabase,
       studentId:
         user.id,
@@ -638,48 +755,90 @@ export async function completeLessonAction(
         progress.lesson_id,
       stepType:
         "lesson",
-
       focusSkill:
         adaptiveFocusSkill,
-    });
+    }),
 
-  /*
-   * نقرأ الحالة بعد الإنهاء،
-   * ثم نقارنها بما قبل الإنهاء.
-   */
-  const {
-    data: afterProgressData,
-    error: afterProgressError,
-  } = await supabase
-    .from("student_lesson_progress")
-    .select(`
-      id,
-      status,
-      xp
-    `)
-    .eq(
-      "student_id",
-      user.id
+    syncLearningProfile(
+      user.id,
+      supabase
+    ),
+
+    invalidateStudentCaches({
+      studentId:
+        user.id,
+      studentEmail:
+        user.email,
+      supabase,
+    }),
+  ] as const;
+
+  const [
+    streakResult,
+    adaptiveResult,
+    profileResult,
+    cacheResult,
+  ] =
+    await Promise.allSettled(
+      postCompletionTasks
     );
 
-  if (afterProgressError) {
-    throw afterProgressError;
+  const postCompletionResults = [
+    [
+      "streak",
+      streakResult,
+    ],
+    [
+      "adaptive",
+      adaptiveResult,
+    ],
+    [
+      "learning_profile",
+      profileResult,
+    ],
+    [
+      "cache",
+      cacheResult,
+    ],
+  ] as const;
+
+  for (
+    const [
+      name,
+      sideEffect,
+    ] of postCompletionResults
+  ) {
+    if (
+      sideEffect.status ===
+      "rejected"
+    ) {
+      console.warn(
+        "DADYOOM_POST_COMPLETION_SIDE_EFFECT_WARNING",
+        {
+          name,
+          lessonId:
+            progress.lesson_id,
+          studentId:
+            user.id,
+          message:
+            sideEffect.reason instanceof
+            Error
+              ? sideEffect.reason
+                  .message
+              : String(
+                  sideEffect.reason ??
+                    "unknown"
+                ),
+        }
+      );
+    }
   }
 
-  const afterUnifiedXP =
-    await getCanonicalTotalXP(
-      supabase,
-      user.id
-    );
-
-  const afterSnapshot =
-    createGamificationSnapshot(
-      (
-        afterProgressData ??
-        []
-      ) as ProgressGamificationRow[],
-      afterUnifiedXP
-    );
+  const adaptiveLessonStep =
+    adaptiveResult.status ===
+      "fulfilled"
+      ? adaptiveResult.value
+      : fallbackAdaptiveStep;
 
   const xpGained =
     Math.max(
@@ -756,16 +915,6 @@ export async function completeLessonAction(
    * Rewards surface computes the full cross-feature snapshot
    * when it is opened.
    */
-  await syncLearningProfile(
-    user.id
-  );
-
-  await invalidateStudentCaches({
-    studentId: user.id,
-    studentEmail: user.email,
-    supabase,
-  });
-
   revalidatePath("/student");
   revalidatePath("/rewards");
   revalidatePath("/lessons");
