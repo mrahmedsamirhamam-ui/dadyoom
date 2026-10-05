@@ -26,13 +26,14 @@
           "https://sana.sy/education/2449235/",
           "https://sana.sy/education/2519264/",
           "https://sana.sy/education/2403508/",
-          "https://sana.sy/education/2462169/"
+          "https://sana.sy/education/2462169/",
+          "https://moed.gov.sy/news/11233"
         ]
       },
       "relationType": "official-grade-book-curriculum+national-extension",
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
-      "rationale": "المركز الوطني لتطوير المناهج يتيح الكتب الرقمية والتفاعلية لجميع الصفوف والمراحل، والكتب الرقمية تماثل الكتاب الورقي المعتمد. تُستخدم حزمة صفية أصلية دون إعادة نشر النصوص أو اختلاق عناوين وحدات غير متحققة.",
+      "rationale": "المركز الوطني لتطوير المناهج يتيح الكتب الرقمية/التفاعلية للمراحل، كما تؤكد وزارة التربية في 17/09/2026 خطة تأمين كتب العام الحالي. لم يظهر فهرس حكومي عام قابل للتدقيق لعناوين دروس العربية الثانوية؛ لذلك تبقى المطابقة على مستوى كتاب/منهاج الصف دون اختلاق عناوين.",
       "coreCoverage": [
         {
           "slug": "sy-dadyoom-core-g10-l01",
@@ -108,8 +109,8 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-ministry-portal+government-curriculum-center-reports+2026-textbook-development+national-pack"
+      "verifiedAt": "2026-10-05",
+      "verificationMethod": "official-ministry-portal+government-curriculum-center-reports+official-current-year-textbook-supply-2026-2027+national-pack"
     }
   ]
 }
