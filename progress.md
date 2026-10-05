@@ -657,7 +657,7 @@ The remaining items are not missing application code:
 
 - Added canonical secondary-track registry:
   `data/secondary-tracks/arab-22-secondary-tracks-2026-2027.json`.
-- Registry coverage: **22/22 countries**, **136 track/program entries**, no missing country codes.
+- Registry coverage: **22/22 countries**, **140 track/program entries**, no missing country codes.
 - Added validator:
   `scripts/audit-secondary-tracks-22.mjs`
   and npm command:
@@ -672,7 +672,21 @@ The remaining items are not missing application code:
 
 - Added production table `public.secondary_tracks` with public read RLS for active rows.
 - Applied additive migration successfully to Dadyoom Supabase.
-- Production verification: **136 active secondary track/program rows across 22/22 countries**.
+- Production verification: **140 active secondary track/program rows across 22/22 countries**.
 - Source-controlled migration:
   `supabase/migrations/20261005215500_add_secondary_tracks_registry_22_arab_countries.sql`.
 - This makes the complete track inventory available to the application/database; detailed lesson ingestion remains governed separately by official-source completeness.
+
+
+### Track-aware catalog filtering deployed
+
+- Added production mapping tables:
+  - `public.secondary_track_curricula`
+  - `public.secondary_track_units`
+- The public catalog API now accepts a secondary `track` id and limits official content to the verified curriculum/unit mappings for that track while keeping Dadyoom Core as clearly marked supporting material.
+- The Courses UI now exposes a real **المسار الثانوي** selector instead of treating curriculum bundles as if they were tracks.
+- Grade scopes were refined for Saudi Arabia, Palestine, and Libya; common/pre-track years are represented separately where the stored official curriculum shows a shared year.
+- Unit-level scoping is active for Bahrain, Saudi Arabia, Palestine, and Libya to stop students seeing lessons from another track merely because they live in the same national curriculum row.
+- Shared detailed grade-level official corpora are linked where source structure supports sharing (Djibouti by level, Jordan G11 official Arabic book, Oman G12 Al-Muunis).
+- Current production registry verification: **22/22 countries, 140 active track/program rows**.
+- Remaining lesson-detail gaps are not filled by invention. Example: Bahrain's current Ministry lessons guide confirms separate Arabic plans for technical/vocational, administrative/technological-engineering, and continuing education, but detailed titles must come from those current plan files before they are marked official.
