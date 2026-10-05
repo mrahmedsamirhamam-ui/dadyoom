@@ -9,219 +9,193 @@
   "semester": null,
   "subject": "اللغة العربية",
   "status": "verified",
-  "officialLessons": 6,
-  "mappedLessons": 6,
-  "verifiedLessons": 6,
-  "scope": "current-officially-published-and-publicly-verifiable-scope",
-  "policy": "المطابقة على مستوى حزم المهارات/الفنون الوطنية وفق ما تنشره الوزارة؛ لا تُختلق عناوين دروس غير متاحة علنًا، وكل فجوة ممثلة بمحتوى وطني أصلي.",
+  "officialLessons": 2,
+  "mappedLessons": 2,
+  "verifiedLessons": 2,
+  "scope": "current-officially-published-book-level-scope",
+  "policy": "المطابقة على مستوى الكتب الرسمية الحالية المثبتة بدليل طبعات وزارة التربية والتعليم العُمانية 2026/2027؛ لا تُنقل عناوين داخلية من أعوام سابقة ولا تُختلق فهارس غير منشورة.",
   "mappings": [
     {
-      "officialSlug": "om-2026-2027-g10-listening",
-      "officialTitle": "حزمة الاستماع — الصف 10",
+      "officialSlug": "om-2026-2027-g10-lughati-jamila-p1",
+      "officialTitle": "لغتي الجميلة — الفصل الدراسي الأول",
       "source": {
-        "label": "وزارة التعليم العُمانية — وثائق تقويم ومناهج اللغة العربية",
-        "url": "https://home.moe.gov.om/library/171",
-        "digitalTextbooksUrl": "https://ict.moe.gov.om/eBooks/index.php",
-        "curriculumLibraryUrl": "https://home.moe.gov.om/library/96",
-        "skillsReferenceUrl": "https://home.moe.gov.om/topics/1/show/11856"
+        "label": "وزارة التربية والتعليم العُمانية — دليل طبعات الكتب المدرسية وأدلة المعلمين 2026/2027",
+        "url": "https://ict.moe.gov.om/book/PDF/10/lugati_jamila_g10p1_Classical/index.html",
+        "editionsGuideUrl": "https://ict.moe.gov.om/flyers/PDF/2025/EditionsGuide_2025/files/basic-html/page38.html",
+        "digitalTextbooksUrl": "https://ict.moe.gov.om/eBooks/index.php"
       },
-      "relationType": "national-skill-bundle+core-support",
+      "relationType": "official-current-textbook+core-support",
       "reviewStatus": "verified-system",
       "verificationStatus": "verified",
-      "rationale": "تُستخدم حزمة «الاستماع» كوحدة مطابقة وطنية لأن المصادر الرسمية الحالية تثبت بنية المادة والمهارات/الفنون دون إتاحة تسلسل عام قابل للتدقيق لكل عناوين الدروس؛ الحزمة أصلية وتستند إلى Core كدعم فقط.",
-      "coreCoverage": [
-        {
-          "slug": "om-dadyoom-core-g10-l16",
-          "relation": "supporting-skill"
-        }
-      ],
-      "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-2026-arabic-assessment+official-curriculum-library+official-digital-textbooks+official-arabic-skills+national-pack"
-    },
-    {
-      "officialSlug": "om-2026-2027-g10-speaking",
-      "officialTitle": "حزمة التحدث — الصف 10",
-      "source": {
-        "label": "وزارة التعليم العُمانية — وثائق تقويم ومناهج اللغة العربية",
-        "url": "https://home.moe.gov.om/library/171",
-        "digitalTextbooksUrl": "https://ict.moe.gov.om/eBooks/index.php",
-        "curriculumLibraryUrl": "https://home.moe.gov.om/library/96",
-        "skillsReferenceUrl": "https://home.moe.gov.om/topics/1/show/11856"
-      },
-      "relationType": "national-skill-bundle+core-support",
-      "reviewStatus": "verified-system",
-      "verificationStatus": "verified",
-      "rationale": "تُستخدم حزمة «التحدث» كوحدة مطابقة وطنية لأن المصادر الرسمية الحالية تثبت بنية المادة والمهارات/الفنون دون إتاحة تسلسل عام قابل للتدقيق لكل عناوين الدروس؛ الحزمة أصلية وتستند إلى Core كدعم فقط.",
-      "coreCoverage": [
-        {
-          "slug": "om-dadyoom-core-g10-l16",
-          "relation": "supporting-skill"
-        }
-      ],
-      "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-2026-arabic-assessment+official-curriculum-library+official-digital-textbooks+official-arabic-skills+national-pack"
-    },
-    {
-      "officialSlug": "om-2026-2027-g10-reading",
-      "officialTitle": "حزمة القراءة — الصف 10",
-      "source": {
-        "label": "وزارة التعليم العُمانية — وثائق تقويم ومناهج اللغة العربية",
-        "url": "https://home.moe.gov.om/library/171",
-        "digitalTextbooksUrl": "https://ict.moe.gov.om/eBooks/index.php",
-        "curriculumLibraryUrl": "https://home.moe.gov.om/library/96",
-        "skillsReferenceUrl": "https://home.moe.gov.om/topics/1/show/11856"
-      },
-      "relationType": "national-skill-bundle+core-support",
-      "reviewStatus": "verified-system",
-      "verificationStatus": "verified",
-      "rationale": "تُستخدم حزمة «القراءة» كوحدة مطابقة وطنية لأن المصادر الرسمية الحالية تثبت بنية المادة والمهارات/الفنون دون إتاحة تسلسل عام قابل للتدقيق لكل عناوين الدروس؛ الحزمة أصلية وتستند إلى Core كدعم فقط.",
+      "rationale": "يثبت دليل الطبعات الرسمي للعام 2026/2027 أن «لغتي الجميلة — الفصل الدراسي الأول» من كتب العربية الحالية للصف 10. لا تُحوَّل عناوين دروس عام سابق إلى 2026/2027 دون فهرس حالي قابل للتدقيق.",
       "coreCoverage": [
         {
           "slug": "om-dadyoom-core-g10-l01",
-          "relation": "supporting-skill"
+          "relation": "grade-level-support"
         },
         {
           "slug": "om-dadyoom-core-g10-l02",
-          "relation": "supporting-skill"
+          "relation": "grade-level-support"
         },
         {
           "slug": "om-dadyoom-core-g10-l03",
-          "relation": "supporting-skill"
+          "relation": "grade-level-support"
         },
         {
           "slug": "om-dadyoom-core-g10-l04",
-          "relation": "supporting-skill"
+          "relation": "grade-level-support"
         },
         {
           "slug": "om-dadyoom-core-g10-l05",
-          "relation": "supporting-skill"
+          "relation": "grade-level-support"
         },
         {
           "slug": "om-dadyoom-core-g10-l06",
-          "relation": "supporting-skill"
-        }
-      ],
-      "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-2026-arabic-assessment+official-curriculum-library+official-digital-textbooks+official-arabic-skills+national-pack"
-    },
-    {
-      "officialSlug": "om-2026-2027-g10-writing",
-      "officialTitle": "حزمة الكتابة — الصف 10",
-      "source": {
-        "label": "وزارة التعليم العُمانية — وثائق تقويم ومناهج اللغة العربية",
-        "url": "https://home.moe.gov.om/library/171",
-        "digitalTextbooksUrl": "https://ict.moe.gov.om/eBooks/index.php",
-        "curriculumLibraryUrl": "https://home.moe.gov.om/library/96",
-        "skillsReferenceUrl": "https://home.moe.gov.om/topics/1/show/11856"
-      },
-      "relationType": "national-skill-bundle+core-support",
-      "reviewStatus": "verified-system",
-      "verificationStatus": "verified",
-      "rationale": "تُستخدم حزمة «الكتابة» كوحدة مطابقة وطنية لأن المصادر الرسمية الحالية تثبت بنية المادة والمهارات/الفنون دون إتاحة تسلسل عام قابل للتدقيق لكل عناوين الدروس؛ الحزمة أصلية وتستند إلى Core كدعم فقط.",
-      "coreCoverage": [
-        {
-          "slug": "om-dadyoom-core-g10-l13",
-          "relation": "supporting-skill"
+          "relation": "grade-level-support"
         },
-        {
-          "slug": "om-dadyoom-core-g10-l14",
-          "relation": "supporting-skill"
-        },
-        {
-          "slug": "om-dadyoom-core-g10-l15",
-          "relation": "supporting-skill"
-        },
-        {
-          "slug": "om-dadyoom-core-g10-l17",
-          "relation": "supporting-skill"
-        }
-      ],
-      "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-2026-arabic-assessment+official-curriculum-library+official-digital-textbooks+official-arabic-skills+national-pack"
-    },
-    {
-      "officialSlug": "om-2026-2027-g10-language-system",
-      "officialTitle": "حزمة النظام اللغوي وفروعه — الصف 10",
-      "source": {
-        "label": "وزارة التعليم العُمانية — وثائق تقويم ومناهج اللغة العربية",
-        "url": "https://home.moe.gov.om/library/171",
-        "digitalTextbooksUrl": "https://ict.moe.gov.om/eBooks/index.php",
-        "curriculumLibraryUrl": "https://home.moe.gov.om/library/96",
-        "skillsReferenceUrl": "https://home.moe.gov.om/topics/1/show/11856"
-      },
-      "relationType": "national-skill-bundle+core-support",
-      "reviewStatus": "verified-system",
-      "verificationStatus": "verified",
-      "rationale": "تُستخدم حزمة «النظام اللغوي وفروعه» كوحدة مطابقة وطنية لأن المصادر الرسمية الحالية تثبت بنية المادة والمهارات/الفنون دون إتاحة تسلسل عام قابل للتدقيق لكل عناوين الدروس؛ الحزمة أصلية وتستند إلى Core كدعم فقط.",
-      "coreCoverage": [
         {
           "slug": "om-dadyoom-core-g10-l07",
-          "relation": "supporting-skill"
+          "relation": "grade-level-support"
         },
         {
           "slug": "om-dadyoom-core-g10-l08",
-          "relation": "supporting-skill"
+          "relation": "grade-level-support"
         },
         {
           "slug": "om-dadyoom-core-g10-l09",
-          "relation": "supporting-skill"
+          "relation": "grade-level-support"
         },
         {
           "slug": "om-dadyoom-core-g10-l10",
-          "relation": "supporting-skill"
+          "relation": "grade-level-support"
         },
         {
           "slug": "om-dadyoom-core-g10-l11",
-          "relation": "supporting-skill"
-        }
-      ],
-      "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-2026-arabic-assessment+official-curriculum-library+official-digital-textbooks+official-arabic-skills+national-pack"
-    },
-    {
-      "officialSlug": "om-2026-2027-g10-literary-arts",
-      "officialTitle": "حزمة الفنون الأدبية والبلاغية — الصف 10",
-      "source": {
-        "label": "وزارة التعليم العُمانية — وثائق تقويم ومناهج اللغة العربية",
-        "url": "https://home.moe.gov.om/library/171",
-        "digitalTextbooksUrl": "https://ict.moe.gov.om/eBooks/index.php",
-        "curriculumLibraryUrl": "https://home.moe.gov.om/library/96",
-        "skillsReferenceUrl": "https://home.moe.gov.om/topics/1/show/11856"
-      },
-      "relationType": "national-skill-bundle+core-support",
-      "reviewStatus": "verified-system",
-      "verificationStatus": "verified",
-      "rationale": "تُستخدم حزمة «الفنون الأدبية والبلاغية» كوحدة مطابقة وطنية لأن المصادر الرسمية الحالية تثبت بنية المادة والمهارات/الفنون دون إتاحة تسلسل عام قابل للتدقيق لكل عناوين الدروس؛ الحزمة أصلية وتستند إلى Core كدعم فقط.",
-      "coreCoverage": [
-        {
-          "slug": "om-dadyoom-core-g10-l01",
-          "relation": "supporting-skill"
-        },
-        {
-          "slug": "om-dadyoom-core-g10-l02",
-          "relation": "supporting-skill"
-        },
-        {
-          "slug": "om-dadyoom-core-g10-l03",
-          "relation": "supporting-skill"
-        },
-        {
-          "slug": "om-dadyoom-core-g10-l04",
-          "relation": "supporting-skill"
+          "relation": "grade-level-support"
         },
         {
           "slug": "om-dadyoom-core-g10-l12",
-          "relation": "supporting-skill"
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l13",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l14",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l15",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l16",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l17",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l18",
+          "relation": "grade-level-support"
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-2026-arabic-assessment+official-curriculum-library+official-digital-textbooks+official-arabic-skills+national-pack"
+      "verifiedAt": "2026-10-05",
+      "verificationMethod": "official-2026-2027-editions-guide+official-digital-textbooks+national-pack"
+    },
+    {
+      "officialSlug": "om-2026-2027-g10-lughati-jamila-p2",
+      "officialTitle": "لغتي الجميلة — الفصل الدراسي الثاني",
+      "source": {
+        "label": "وزارة التربية والتعليم العُمانية — دليل طبعات الكتب المدرسية وأدلة المعلمين 2026/2027",
+        "url": "https://ict.moe.gov.om/book/PDF/10/lugati_jamila_g10p2_Classical/index.html",
+        "editionsGuideUrl": "https://ict.moe.gov.om/flyers/PDF/2025/EditionsGuide_2025/files/basic-html/page38.html",
+        "digitalTextbooksUrl": "https://ict.moe.gov.om/eBooks/index.php"
+      },
+      "relationType": "official-current-textbook+core-support",
+      "reviewStatus": "verified-system",
+      "verificationStatus": "verified",
+      "rationale": "يثبت دليل الطبعات الرسمي للعام 2026/2027 أن «لغتي الجميلة — الفصل الدراسي الثاني» من كتب العربية الحالية للصف 10. لا تُحوَّل عناوين دروس عام سابق إلى 2026/2027 دون فهرس حالي قابل للتدقيق.",
+      "coreCoverage": [
+        {
+          "slug": "om-dadyoom-core-g10-l01",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l02",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l03",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l04",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l05",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l06",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l07",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l08",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l09",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l10",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l11",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l12",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l13",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l14",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l15",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l16",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l17",
+          "relation": "grade-level-support"
+        },
+        {
+          "slug": "om-dadyoom-core-g10-l18",
+          "relation": "grade-level-support"
+        }
+      ],
+      "nationalExtensionInPack": true,
+      "verifiedAt": "2026-10-05",
+      "verificationMethod": "official-2026-2027-editions-guide+official-digital-textbooks+national-pack"
     }
   ],
   "secondarySupportCoverage": [
