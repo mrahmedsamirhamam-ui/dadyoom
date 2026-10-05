@@ -218,7 +218,6 @@ export default function CurriculumCatalogClient({
               onChange={(value) => {
                 setCountry(value);
                 setGradeNumber(1);
-                setTrack("");
               }}
             />
 
@@ -235,7 +234,6 @@ export default function CurriculumCatalogClient({
               ])}
               onChange={(value) => {
                 setGradeNumber(Number(value));
-                setTrack("");
               }}
             />
           </div>
