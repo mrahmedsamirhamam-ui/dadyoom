@@ -147,7 +147,12 @@
         1,
         2
       ],
-      "coverageBundles": 6
+      "coverageBundles": 2,
+      "coverageType": "verified-current-official-books",
+      "officialBooks": [
+        "لغتي الجميلة — الفصل الدراسي الأول",
+        "لغتي الجميلة — الفصل الدراسي الثاني"
+      ]
     },
     {
       "grade": 11,
@@ -156,7 +161,13 @@
         1,
         2
       ],
-      "coverageBundles": 6
+      "coverageBundles": 3,
+      "coverageType": "verified-current-official-books",
+      "officialBooks": [
+        "المؤنس — الفصل الدراسي الأول",
+        "المؤنس — الفصل الدراسي الثاني",
+        "المفيد"
+      ]
     },
     {
       "grade": 12,
@@ -168,7 +179,7 @@
       "coverageBundles": 6
     }
   ],
-  "officialCoverageNodes": 68,
+  "officialCoverageNodes": 61,
   "sources": [
     {
       "kind": "official-current-arabic-assessment-library",
@@ -204,10 +215,28 @@
     {
       "kind": "official-2026-2027-readiness",
       "url": "https://home.moe.gov.om/region/dahira/topics/1/show/12879"
+    },
+    {
+      "kind": "official-2026-2027-editions-guide-g10",
+      "url": "https://ict.moe.gov.om/flyers/PDF/2025/EditionsGuide_2025/files/basic-html/page38.html",
+      "note": "يثبت لغتي الجميلة للفصلين الأول والثاني للصف العاشر، طبعات 2026."
+    },
+    {
+      "kind": "official-2026-2027-editions-guide-g11",
+      "url": "https://ict.moe.gov.om/flyers/PDF/2025/EditionsGuide_2025/files/basic-html/page41.html",
+      "note": "يثبت المؤنس للفصلين الأول والثاني والمفيد للصف الحادي عشر، طبعات 2026."
+    },
+    {
+      "kind": "official-g10-lughati-jamila-p1",
+      "url": "https://ict.moe.gov.om/book/PDF/10/lugati_jamila_g10p1_Classical/index.html"
+    },
+    {
+      "kind": "official-g10-lughati-jamila-p2",
+      "url": "https://ict.moe.gov.om/book/PDF/10/lugati_jamila_g10p2_Classical/index.html"
     }
   ],
   "copyrightPolicy": "لا تعيد ضاديوم نشر نصوص الكتب؛ تستخدم البنية والمهارات وروابط الوزارة لإثبات المواءمة، والمحتوى التعليمي أصلّي.",
-  "generatedAt": "2026-09-25",
+  "generatedAt": "2026-10-05",
   "grade12DetailedCoverage": {
     "status": "verified-current-official-digital-book-detailed",
     "semester": 2,
@@ -216,5 +245,30 @@
     "enrichmentExcluded": true,
     "catalog": "data/national-catalogs/om-g12-muunis-s2-detailed-2026-2027.json",
     "source": "https://ict.moe.gov.om/book/PDF/12/cls12_Muunis_P2/files/basic-html/page12.html"
+  },
+  "grade10BookCoverage": {
+    "status": "verified-current-official-book-level",
+    "verifiedOfficialBooks": 2,
+    "books": [
+      "لغتي الجميلة — الفصل الدراسي الأول",
+      "لغتي الجميلة — الفصل الدراسي الثاني"
+    ],
+    "editionsGuide": "https://ict.moe.gov.om/flyers/PDF/2025/EditionsGuide_2025/files/basic-html/page38.html",
+    "directOfficialFlipbooks": [
+      "https://ict.moe.gov.om/book/PDF/10/lugati_jamila_g10p1_Classical/index.html",
+      "https://ict.moe.gov.om/book/PDF/10/lugati_jamila_g10p2_Classical/index.html"
+    ],
+    "note": "العناوين الداخلية لا تُنقل من نشرة 2025/2026 إلى 2026/2027 دون فهرس حالي قابل للتدقيق."
+  },
+  "grade11BookCoverage": {
+    "status": "verified-current-official-book-level",
+    "verifiedOfficialBooks": 3,
+    "books": [
+      "المؤنس — الفصل الدراسي الأول",
+      "المؤنس — الفصل الدراسي الثاني",
+      "المفيد"
+    ],
+    "editionsGuide": "https://ict.moe.gov.om/flyers/PDF/2025/EditionsGuide_2025/files/basic-html/page41.html",
+    "note": "دليل الطبعات 2026/2027 يثبت الكتب الثلاثة وطبعاتها الحالية؛ لا تُفترض عناوين الدروس الداخلية."
   }
 }
