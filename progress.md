@@ -512,3 +512,43 @@ The remaining items are not missing application code:
 - The old generic G11 series bundle remains in DB for provenance/backward compatibility; course-catalog cleanup can hide it because detailed coverage now exceeds the >=10 threshold.
 - This supersedes the earlier note in this file that Djibouti G11 detailed programme was unavailable.
 
+## 2026-10-05 — canonical completion/BPay hardening + Oman G10/G11 current books
+
+### Production Role QA hardening
+- Role QA on commit `94b628ab46ae23c2f3e7f633a8ca3eb2fc62c8a4` exposed a real `E2E_CANONICAL_COMPLETION_FAILED:500` after the lesson activity flow had otherwise passed.
+- Commit `57820eead0bc180f9a505872b047e429953b6fe5` hardened canonical completion:
+  - removed the redundant mastery re-fetch/re-grading path;
+  - writes the already-calculated mastery result directly and remains fail-closed before durable completion;
+  - post-completion streak/adaptive/profile/cache integrations now run as best-effort side effects and cannot turn an already-committed lesson completion into HTTP 500;
+  - post-completion XP snapshot no longer performs redundant readbacks.
+- The next Production Role QA run confirmed the lesson fix: `E2E_LESSON_COMPLETION_MASTERY=PASS`, `E2E_ASSESSMENT_SESSION=PASS`, `E2E_NEXT_LESSON=PASS`, and `E2E_CANONICAL_LEARNING_FLOW=PASS`.
+- That run then exposed a later independent BPay submit 500. Supabase logs proved checkout/order creation and duplicate-reference probing succeeded, but no PATCH reached PostgREST.
+- Commit `643edb4f980bf3e69d00c39c1d475f024ba9387e` made BPay reference submission atomic:
+  - removed the read-before-write duplicate probe;
+  - relies on the existing unique `edu_payment_orders.bank_reference` constraint;
+  - maps PostgreSQL `23505` to the intended 409 duplicate-reference response;
+  - adds explicit error observability and idempotent approved-state handling.
+- Cloudflare Verify, Cloudflare Deploy, and Mobile Final Verify passed for the BPay-fix commit. Production Role QA for that commit was still executing at the last status poll and must be checked before declaring the full role gate green.
+
+### Oman G10/G11 — current 2026/2027 official textbooks
+- The Ministry's 2026/2027 editions guide superseded the older generic six-skill secondary placeholders for these grades.
+- Grade 10 current official Arabic books:
+  - «لغتي الجميلة — الفصل الدراسي الأول»;
+  - «لغتي الجميلة — الفصل الدراسي الثاني».
+  - Official editions-guide evidence: `https://ict.moe.gov.om/flyers/PDF/2025/EditionsGuide_2025/files/basic-html/page38.html`.
+  - Direct Ministry flipbooks were also verified for both semesters.
+- Grade 11 current official Arabic books:
+  - «المؤنس — الفصل الدراسي الأول»;
+  - «المؤنس — الفصل الدراسي الثاني»;
+  - «المفيد».
+  - Official editions-guide evidence: `https://ict.moe.gov.om/flyers/PDF/2025/EditionsGuide_2025/files/basic-html/page41.html`.
+- Applied Supabase migrations:
+  - `20261005125831_refine_oman_g10_g11_official_arabic_books_v2.sql`;
+  - `20261005125859_cleanup_oman_g10_g11_superseded_activities.sql`.
+- Production DB/API verification:
+  - G10 official match = 2 published book nodes, each with 3 questions and 3 published activities;
+  - G11 official match = 3 published book nodes, each with 3 questions and 3 published activities;
+  - superseded generic skill bundles remain stored as draft for provenance;
+  - Dadyoom Core remains separate at 18 published support lessons per grade.
+- No 2025/2026 internal lesson title was promoted as a 2026/2027 title. The current 2026/2027 Arabic orientation bulletin is scanned-image based; detailed internal expansion remains blocked until its tables can be read from an auditable current source.
+
