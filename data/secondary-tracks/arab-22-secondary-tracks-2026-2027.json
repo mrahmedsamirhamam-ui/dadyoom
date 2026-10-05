@@ -1,0 +1,1030 @@
+{
+  "schemaVersion": 1,
+  "academicYear": "2026-2027",
+  "scope": "secondary-arabic-track-registry",
+  "generatedAt": "2026-10-05",
+  "policy": {
+    "completionMeaning": "This registry records every secondary track/program structure that can be verified from current official or national education sources. It does not mark lesson-level coverage complete unless the lessons are separately verified.",
+    "noGuessing": true,
+    "sharedArabicPolicy": "When the same Arabic curriculum is shared by multiple tracks, keep one Arabic lesson corpus and map multiple tracks to it rather than duplicating invented track-specific lessons.",
+    "unpublishedTerms": "Do not relabel prior-year semester content as 2026-2027."
+  },
+  "countries": [
+    {
+      "code": "BH",
+      "nameAr": "مملكة البحرين",
+      "systems": [
+        {
+          "nameAr": "الثانوي العام/النوعي",
+          "tracks": [
+            {
+              "nameAr": "توحيد المسارات",
+              "status": "active",
+              "arabicPolicy": "specific-or-shared-by-course"
+            },
+            {
+              "nameAr": "التعليم الديني",
+              "status": "active",
+              "arabicPolicy": "partly-shared-with-unified"
+            },
+            {
+              "nameAr": "التعليم الفني والمهني",
+              "status": "active",
+              "arabicPolicy": "needs-detailed-current-arabic-plan"
+            },
+            {
+              "nameAr": "المسار الإداري والتكنولوجي - الهندسي",
+              "status": "active",
+              "arabicPolicy": "needs-detailed-current-arabic-plan"
+            },
+            {
+              "nameAr": "التعليم المستمر",
+              "status": "active",
+              "arabicPolicy": "needs-detailed-current-arabic-plan"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://edunet.bh/Econtent/LessonsGuide",
+        "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf"
+      ],
+      "lessonCoverage": "partial"
+    },
+    {
+      "code": "EG",
+      "nameAr": "مصر",
+      "systems": [
+        {
+          "nameAr": "الثانوية العامة",
+          "tracks": [
+            {
+              "nameAr": "الصف الأول الثانوي — مشترك",
+              "status": "active",
+              "grades": [
+                10
+              ]
+            },
+            {
+              "nameAr": "الشعبة العلمية",
+              "status": "active",
+              "grades": [
+                11
+              ]
+            },
+            {
+              "nameAr": "الشعبة الأدبية",
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
+            },
+            {
+              "nameAr": "علوم",
+              "status": "active",
+              "grades": [
+                12
+              ]
+            },
+            {
+              "nameAr": "رياضيات",
+              "status": "active",
+              "grades": [
+                12
+              ]
+            }
+          ]
+        },
+        {
+          "nameAr": "البكالوريا المصرية",
+          "status": "active-parallel-option",
+          "tracks": [
+            {
+              "nameAr": "الطب وعلوم الحياة",
+              "status": "active"
+            },
+            {
+              "nameAr": "الهندسة وعلوم الحاسب",
+              "status": "active"
+            },
+            {
+              "nameAr": "الأعمال",
+              "status": "active"
+            },
+            {
+              "nameAr": "الآداب والفنون",
+              "status": "active"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://moe.gov.eg/ar/elearningenterypage/e-learning/"
+      ],
+      "lessonCoverage": "generic-or-partial"
+    },
+    {
+      "code": "JO",
+      "nameAr": "الأردن",
+      "systems": [
+        {
+          "nameAr": "المسار الأكاديمي",
+          "tracks": [
+            {
+              "nameAr": "الأكاديمي",
+              "status": "active"
+            }
+          ]
+        },
+        {
+          "nameAr": "المسار المهني والتقني BTEC",
+          "tracks": [
+            {
+              "nameAr": "تكنولوجيا المعلومات",
+              "status": "active"
+            },
+            {
+              "nameAr": "الأعمال",
+              "status": "active"
+            },
+            {
+              "nameAr": "الضيافة",
+              "status": "active"
+            },
+            {
+              "nameAr": "السفر والسياحة",
+              "status": "active"
+            },
+            {
+              "nameAr": "الإعلام الإبداعي/الوسائط المتعددة",
+              "status": "active"
+            },
+            {
+              "nameAr": "التصميم",
+              "status": "active"
+            },
+            {
+              "nameAr": "الهندسة",
+              "status": "active"
+            },
+            {
+              "nameAr": "الرياضة",
+              "status": "active"
+            },
+            {
+              "nameAr": "الصحة والرعاية الاجتماعية",
+              "status": "active"
+            },
+            {
+              "nameAr": "الزراعة",
+              "status": "active"
+            },
+            {
+              "nameAr": "الإنشاءات",
+              "status": "active"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://nccd.gov.jo/Ar/Pages/textbooks",
+        "https://nccd.gov.jo/Ar/Pages/Publications/?MaterialStudy=92"
+      ],
+      "lessonCoverage": "partial"
+    },
+    {
+      "code": "LY",
+      "nameAr": "ليبيا",
+      "systems": [
+        {
+          "nameAr": "التعليم الثانوي العام",
+          "tracks": [
+            {
+              "nameAr": "القسم العلمي",
+              "status": "active"
+            },
+            {
+              "nameAr": "القسم الأدبي",
+              "status": "active"
+            }
+          ]
+        },
+        {
+          "nameAr": "التعليم الديني",
+          "tracks": [
+            {
+              "nameAr": "الثانوي الديني",
+              "status": "active",
+              "arabicPolicy": "needs-detailed-current-source"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://cerc.moe.gov.ly/educational-curricul/"
+      ],
+      "lessonCoverage": "partial"
+    },
+    {
+      "code": "PS",
+      "nameAr": "فلسطين",
+      "systems": [
+        {
+          "nameAr": "الثانوي",
+          "tracks": [
+            {
+              "nameAr": "علمي",
+              "status": "active"
+            },
+            {
+              "nameAr": "علوم إنسانية",
+              "status": "active"
+            },
+            {
+              "nameAr": "ريادة وأعمال",
+              "status": "active"
+            },
+            {
+              "nameAr": "صناعي",
+              "status": "active"
+            },
+            {
+              "nameAr": "شرعي",
+              "status": "active",
+              "grades": [
+                12
+              ]
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://moe.edu.ps/pal-books",
+        "https://moe.edu.ps/class12/books"
+      ],
+      "lessonCoverage": "generic-or-partial"
+    },
+    {
+      "code": "TN",
+      "nameAr": "تونس",
+      "systems": [
+        {
+          "nameAr": "التعليم الثانوي",
+          "tracks": [
+            {
+              "nameAr": "الآداب",
+              "status": "active"
+            },
+            {
+              "nameAr": "الرياضيات",
+              "status": "active"
+            },
+            {
+              "nameAr": "العلوم التجريبية",
+              "status": "active"
+            },
+            {
+              "nameAr": "الاقتصاد والتصرف",
+              "status": "active"
+            },
+            {
+              "nameAr": "العلوم التقنية",
+              "status": "active"
+            },
+            {
+              "nameAr": "علوم الإعلامية",
+              "status": "active"
+            },
+            {
+              "nameAr": "الرياضة",
+              "status": "active"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://cnp.com.tn/arabic/annee-actuelle/listeOfficielle.htm"
+      ],
+      "lessonCoverage": "book-level"
+    },
+    {
+      "code": "LB",
+      "nameAr": "لبنان",
+      "systems": [
+        {
+          "nameAr": "الثانوي العام",
+          "tracks": [
+            {
+              "nameAr": "الأولى الثانوية — مشترك",
+              "status": "active",
+              "grades": [
+                10
+              ]
+            },
+            {
+              "nameAr": "إنسانيات",
+              "status": "active",
+              "grades": [
+                11
+              ]
+            },
+            {
+              "nameAr": "علوم",
+              "status": "active",
+              "grades": [
+                11
+              ]
+            },
+            {
+              "nameAr": "آداب وإنسانيات",
+              "status": "active",
+              "grades": [
+                12
+              ]
+            },
+            {
+              "nameAr": "اجتماع واقتصاد",
+              "status": "active",
+              "grades": [
+                12
+              ]
+            },
+            {
+              "nameAr": "علوم عامة",
+              "status": "active",
+              "grades": [
+                12
+              ]
+            },
+            {
+              "nameAr": "علوم الحياة",
+              "status": "active",
+              "grades": [
+                12
+              ]
+            }
+          ]
+        },
+        {
+          "nameAr": "التعليم المهني والتقني",
+          "tracks": [
+            {
+              "nameAr": "الثانوي التقني/المهني",
+              "status": "active",
+              "arabicPolicy": "needs-detailed-current-arabic-source"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://www.crdp.org/books-pdf",
+        "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A"
+      ],
+      "lessonCoverage": "generic-or-partial"
+    },
+    {
+      "code": "MR",
+      "nameAr": "موريتانيا",
+      "systems": [
+        {
+          "nameAr": "الثانوي",
+          "tracks": [
+            {
+              "nameAr": "الشعبة الأدبية",
+              "status": "active",
+              "grades": [
+                11,
+                12,
+                13
+              ]
+            },
+            {
+              "nameAr": "الشعبة العلمية",
+              "status": "active",
+              "grades": [
+                11,
+                12,
+                13
+              ]
+            },
+            {
+              "nameAr": "السنة الرابعة الثانوية — مشترك",
+              "status": "active",
+              "grades": [
+                10
+              ]
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://koutoubi.mr/"
+      ],
+      "lessonCoverage": "detailed-partial-to-strong"
+    },
+    {
+      "code": "OM",
+      "nameAr": "عُمان",
+      "systems": [
+        {
+          "nameAr": "التعليم الأساسي",
+          "tracks": [
+            {
+              "nameAr": "الصف العاشر — مشترك",
+              "status": "active",
+              "grades": [
+                10
+              ]
+            }
+          ]
+        },
+        {
+          "nameAr": "التعليم ما بعد الأساسي",
+          "tracks": [
+            {
+              "nameAr": "المسار العام مع المواد الاختيارية",
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
+            },
+            {
+              "nameAr": "المسار المهني والتقني",
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
+            },
+            {
+              "nameAr": "المعاهد الإسلامية",
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://home.moe.gov.om/library/171",
+        "https://ict.moe.gov.om/eBooks/index.php"
+      ],
+      "lessonCoverage": "book-level-and-partial-detailed"
+    },
+    {
+      "code": "AE",
+      "nameAr": "الإمارات العربية المتحدة",
+      "systems": [
+        {
+          "nameAr": "الثانوية",
+          "tracks": [
+            {
+              "nameAr": "المسار العام",
+              "status": "active"
+            },
+            {
+              "nameAr": "المسار المتقدم",
+              "status": "active"
+            },
+            {
+              "nameAr": "المسار المهني (التخصصي)",
+              "status": "transition-or-limited"
+            },
+            {
+              "nameAr": "مسار النخبة",
+              "status": "legacy-no-new-intake"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://www.moe.gov.ae/",
+        "https://u.ae/ar/information-and-services/education/school-education-k-12/stages-and-streams-of-school-education"
+      ],
+      "lessonCoverage": "generic"
+    },
+    {
+      "code": "MA",
+      "nameAr": "المغرب",
+      "systems": [
+        {
+          "nameAr": "الثانوي التأهيلي",
+          "tracks": [
+            {
+              "nameAr": "الآداب",
+              "status": "active"
+            },
+            {
+              "nameAr": "العلوم الإنسانية",
+              "status": "active"
+            },
+            {
+              "nameAr": "العلوم الرياضية أ",
+              "status": "active"
+            },
+            {
+              "nameAr": "العلوم الرياضية ب",
+              "status": "active"
+            },
+            {
+              "nameAr": "علوم الحياة والأرض",
+              "status": "active"
+            },
+            {
+              "nameAr": "العلوم الفيزيائية",
+              "status": "active"
+            },
+            {
+              "nameAr": "العلوم الاقتصادية والتدبير",
+              "status": "active"
+            },
+            {
+              "nameAr": "علوم التدبير المحاسباتي",
+              "status": "active"
+            },
+            {
+              "nameAr": "العلوم والتكنولوجيات الميكانيكية",
+              "status": "active"
+            },
+            {
+              "nameAr": "العلوم والتكنولوجيات الكهربائية",
+              "status": "active"
+            },
+            {
+              "nameAr": "الفنون التطبيقية",
+              "status": "active"
+            },
+            {
+              "nameAr": "مسالك البكالوريا المهنية",
+              "status": "active"
+            },
+            {
+              "nameAr": "العلوم الزراعية",
+              "status": "active"
+            },
+            {
+              "nameAr": "العلوم الشرعية",
+              "status": "active"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://www.men.gov.ma/",
+        "https://telmidtice.men.gov.ma/"
+      ],
+      "lessonCoverage": "partial-digital-course"
+    },
+    {
+      "code": "SD",
+      "nameAr": "السودان",
+      "systems": [
+        {
+          "nameAr": "الثانوي",
+          "tracks": [
+            {
+              "nameAr": "المساق العلمي",
+              "status": "active"
+            },
+            {
+              "nameAr": "المساق الأدبي",
+              "status": "active"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://gmoe.gov.sd/?page_id=1343",
+        "https://mdl.edu.sd/"
+      ],
+      "lessonCoverage": "partial-detailed"
+    },
+    {
+      "code": "QA",
+      "nameAr": "قطر",
+      "systems": [
+        {
+          "nameAr": "الثانوي العام",
+          "tracks": [
+            {
+              "nameAr": "المسار العلمي",
+              "status": "active"
+            },
+            {
+              "nameAr": "مسار الآداب والإنسانيات",
+              "status": "active"
+            },
+            {
+              "nameAr": "المسار التكنولوجي",
+              "status": "active"
+            },
+            {
+              "nameAr": "المسار الموازي",
+              "status": "active"
+            }
+          ]
+        },
+        {
+          "nameAr": "المسارات والمدارس التخصصية",
+          "tracks": [
+            {
+              "nameAr": "مدرسة قطر للعلوم والتكنولوجيا — تكنولوجيا المعلومات",
+              "status": "active"
+            },
+            {
+              "nameAr": "مدرسة قطر للعلوم والتكنولوجيا — الهندسة",
+              "status": "active"
+            },
+            {
+              "nameAr": "مدرسة قطر للعلوم والتكنولوجيا — الطبي",
+              "status": "active"
+            },
+            {
+              "nameAr": "المدارس التقنية",
+              "status": "active"
+            },
+            {
+              "nameAr": "المدارس المصرفية وإدارة الأعمال",
+              "status": "active"
+            },
+            {
+              "nameAr": "المعهد الديني — علمي",
+              "status": "active"
+            },
+            {
+              "nameAr": "المعهد الديني — آداب وإنسانيات",
+              "status": "active"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://www.edu.gov.qa/ar/Content/CurriculumSection"
+      ],
+      "lessonCoverage": "generic"
+    },
+    {
+      "code": "SY",
+      "nameAr": "سوريا",
+      "systems": [
+        {
+          "nameAr": "الثانوية العامة",
+          "tracks": [
+            {
+              "nameAr": "الفرع العلمي",
+              "status": "active"
+            },
+            {
+              "nameAr": "الفرع الأدبي",
+              "status": "active"
+            }
+          ]
+        },
+        {
+          "nameAr": "الثانوية الشرعية",
+          "tracks": [
+            {
+              "nameAr": "الشرعي",
+              "status": "active"
+            }
+          ]
+        },
+        {
+          "nameAr": "الثانوية المهنية",
+          "tracks": [
+            {
+              "nameAr": "الصناعية",
+              "status": "active"
+            },
+            {
+              "nameAr": "التجارية",
+              "status": "active"
+            },
+            {
+              "nameAr": "النسوية",
+              "status": "active"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://moed.gov.sy/"
+      ],
+      "lessonCoverage": "book-level"
+    },
+    {
+      "code": "IQ",
+      "nameAr": "العراق",
+      "systems": [
+        {
+          "nameAr": "المرحلة الإعدادية",
+          "tracks": [
+            {
+              "nameAr": "العلمي",
+              "status": "active",
+              "arabicPolicy": "shared-current-arabic-books"
+            },
+            {
+              "nameAr": "الأدبي",
+              "status": "active",
+              "arabicPolicy": "shared-current-arabic-books"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://manahj.edu.iq/"
+      ],
+      "lessonCoverage": "generic-book-bundle"
+    },
+    {
+      "code": "KW",
+      "nameAr": "الكويت",
+      "systems": [
+        {
+          "nameAr": "النظام الثانوي القائم",
+          "tracks": [
+            {
+              "nameAr": "القسم العلمي",
+              "status": "active"
+            },
+            {
+              "nameAr": "القسم الأدبي",
+              "status": "active"
+            }
+          ]
+        },
+        {
+          "nameAr": "نظام مسارات — تطبيق محدود 2026-2027",
+          "status": "pilot",
+          "tracks": [
+            {
+              "nameAr": "مرحلة التأسيس والاستكشاف — الصف العاشر",
+              "status": "pilot-active"
+            },
+            {
+              "nameAr": "اللغات",
+              "status": "future-after-foundation"
+            },
+            {
+              "nameAr": "القانون",
+              "status": "future-after-foundation"
+            },
+            {
+              "nameAr": "العلوم الاجتماعية",
+              "status": "future-after-foundation"
+            },
+            {
+              "nameAr": "التجاري",
+              "status": "future-after-foundation"
+            },
+            {
+              "nameAr": "الرياضيات",
+              "status": "future-after-foundation"
+            },
+            {
+              "nameAr": "العلوم",
+              "status": "future-after-foundation"
+            },
+            {
+              "nameAr": "الصناعي",
+              "status": "future-after-foundation"
+            },
+            {
+              "nameAr": "التكنولوجيا والذكاء الاصطناعي",
+              "status": "future-after-foundation"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://www.moe.edu.kw/news/1343",
+        "https://elibrary.moe.edu.kw/StudentsLibrary"
+      ],
+      "lessonCoverage": "generic-book-bundle"
+    },
+    {
+      "code": "DZ",
+      "nameAr": "الجزائر",
+      "systems": [
+        {
+          "nameAr": "التعليم الثانوي",
+          "tracks": [
+            {
+              "nameAr": "جذع مشترك آداب",
+              "status": "active",
+              "grades": [
+                10
+              ]
+            },
+            {
+              "nameAr": "جذع مشترك علوم وتكنولوجيا",
+              "status": "active",
+              "grades": [
+                10
+              ]
+            },
+            {
+              "nameAr": "آداب وفلسفة",
+              "status": "active"
+            },
+            {
+              "nameAr": "لغات أجنبية",
+              "status": "active"
+            },
+            {
+              "nameAr": "علوم تجريبية",
+              "status": "active"
+            },
+            {
+              "nameAr": "رياضيات",
+              "status": "active"
+            },
+            {
+              "nameAr": "تقني رياضي",
+              "status": "active"
+            },
+            {
+              "nameAr": "تسيير واقتصاد",
+              "status": "active"
+            },
+            {
+              "nameAr": "معلوماتية",
+              "status": "new-or-reorganized-2026-2027"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://www.education.gov.dz/",
+        "https://www.onps.dz/"
+      ],
+      "lessonCoverage": "partial-detailed"
+    },
+    {
+      "code": "SA",
+      "nameAr": "السعودية",
+      "systems": [
+        {
+          "nameAr": "نظام المسارات",
+          "tracks": [
+            {
+              "nameAr": "المسار العام",
+              "status": "active"
+            },
+            {
+              "nameAr": "مسار علوم الحاسب والهندسة",
+              "status": "active"
+            },
+            {
+              "nameAr": "مسار الصحة والحياة",
+              "status": "active"
+            },
+            {
+              "nameAr": "مسار إدارة الأعمال",
+              "status": "active"
+            },
+            {
+              "nameAr": "المسار الشرعي",
+              "status": "active"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Pages/Study-plans.aspx"
+      ],
+      "lessonCoverage": "generic-or-track-extra-partial"
+    },
+    {
+      "code": "YE",
+      "nameAr": "اليمن",
+      "systems": [
+        {
+          "nameAr": "الثانوي",
+          "tracks": [
+            {
+              "nameAr": "القسم العلمي",
+              "status": "active",
+              "arabicPolicy": "shared-books-unless-verified-otherwise"
+            },
+            {
+              "nameAr": "القسم الأدبي",
+              "status": "active",
+              "arabicPolicy": "shared-books-unless-verified-otherwise"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://e-learning-moe.edu.ye/lcms/"
+      ],
+      "lessonCoverage": "book-level"
+    },
+    {
+      "code": "DJ",
+      "nameAr": "جيبوتي",
+      "systems": [
+        {
+          "nameAr": "الثانوي العام",
+          "tracks": [
+            {
+              "nameAr": "L",
+              "status": "active"
+            },
+            {
+              "nameAr": "ES",
+              "status": "active"
+            },
+            {
+              "nameAr": "S",
+              "status": "active"
+            },
+            {
+              "nameAr": "SG",
+              "status": "active"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://cripen.dj/"
+      ],
+      "lessonCoverage": "detailed-partial-to-strong"
+    },
+    {
+      "code": "SO",
+      "nameAr": "الصومال",
+      "systems": [
+        {
+          "nameAr": "الثانوي",
+          "tracks": [
+            {
+              "nameAr": "الثانوي العام",
+              "status": "active"
+            },
+            {
+              "nameAr": "الثانوي التقني",
+              "status": "active"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://moe.gov.so/"
+      ],
+      "lessonCoverage": "generic"
+    },
+    {
+      "code": "KM",
+      "nameAr": "جزر القمر",
+      "systems": [
+        {
+          "nameAr": "الثانوي الأعلى",
+          "tracks": [
+            {
+              "nameAr": "A1",
+              "status": "current-national-exam-evidence"
+            },
+            {
+              "nameAr": "A2",
+              "status": "current-national-exam-evidence"
+            },
+            {
+              "nameAr": "A4",
+              "status": "current-national-exam-evidence"
+            },
+            {
+              "nameAr": "C",
+              "status": "current-national-exam-evidence"
+            },
+            {
+              "nameAr": "D",
+              "status": "current-national-exam-evidence"
+            },
+            {
+              "nameAr": "G",
+              "status": "current-national-exam-evidence"
+            },
+            {
+              "nameAr": "STI",
+              "status": "current-national-exam-evidence"
+            },
+            {
+              "nameAr": "STC",
+              "status": "current-national-exam-evidence"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "https://mineducomores.gouv.km/"
+      ],
+      "lessonCoverage": "structure-only"
+    }
+  ]
+}
