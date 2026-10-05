@@ -41,7 +41,8 @@
     "auth:audit:oauth": "node scripts/check-oauth-contract.mjs",
     "curriculum:audit:catalogs": "node scripts/audit-national-catalogs.mjs",
     "curriculum:gate:official-22": "node scripts/audit-national-launch-gate.mjs",
-    "qa:full": "node scripts/final-e2e-release-gate.mjs"
+    "qa:full": "node scripts/final-e2e-release-gate.mjs",
+    "curriculum:audit:secondary-tracks": "node scripts/audit-secondary-tracks-22.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
