@@ -25,6 +25,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: base, changeFrequency: "weekly", priority: 1 },
     { url: `${base}/courses`, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${base}/learn-arabic`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${base}/about`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/contact`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/courses/arabic-from-zero`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/courses/rooms`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/courses/rooms/native-arabic`, changeFrequency: "weekly", priority: 0.8 },
