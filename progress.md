@@ -628,3 +628,26 @@ The remaining items are not missing application code:
 - Current AdSense site state shown in the dashboard: preparing the site for ads / review in progress.
 - No further AdSense code, payment, Paddle, curriculum, or production changes are required while Google review is pending.
 - Final AdSense approval remains an external Google-controlled step.
+
+
+## 2026-10-05 — Curriculum completeness audit reopened after live user review
+
+- The previous `22/22` launch gate is a **minimum verified national-coverage gate**, not proof that every national track, semester, unit and lesson is present.
+- Live production audit of Bahrain confirmed the user's observation:
+  - Grade 10 official production layer: 1 unit / 14 published official lessons.
+  - Grade 11 official production layer: 2 units / 22 published official lessons.
+  - Grade 12 official production layer: 2 units / 19 published official lessons.
+  - These are currently from the unified-track first-semester layer only; they are not the whole Bahrain secondary Arabic offering.
+- Bahrain Ministry's current 2026-2027 semester-1 lessons guide publishes separate Arabic scopes for:
+  - basic education;
+  - unified tracks;
+  - technical/vocational education;
+  - religious education;
+  - administrative + technological/engineering track;
+  - continuing education;
+  - Grade 8 MYP language & literature.
+- Therefore Bahrain must not be described as "fully complete" until those published scopes are represented and each current published semester is covered.
+- Semester 2 for academic year 2026-2027 is not yet published in the current Ministry lessons guide as of this audit date. Historical 2025-2026 semester-2 plans may be used only as reference and must never be relabeled as current 2026-2027 material.
+- A tracker was added at `data/curriculum-completeness/bahrain-2026-2027.json`.
+- The public secondary selector wording was corrected from "المسار الكامل" to "كل المحتوى المتاح حاليًا" so the UI no longer overstates completeness.
+- New completion rule for all countries: a country is only "fully complete" when every officially published track/branch, semester/term, unit and lesson is represented, or explicitly recorded as unavailable/not yet published from an official source.
