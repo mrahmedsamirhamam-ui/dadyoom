@@ -666,3 +666,13 @@ The remaining items are not missing application code:
 - This closes the **track-structure inventory**, not lesson-level completion.
 - Lesson-level completion remains a separate requirement: each active track must either map to a verified shared Arabic corpus or have its own verified official semester/unit/lesson corpus. No duplicate or invented track-specific lessons are allowed.
 - Bahrain source supplied by the user confirms the current Plan2 file is first-semester 2026-2027 for unified/religious scope; the detailed lesson packs already present are therefore not evidence that every Bahrain secondary track is complete.
+
+
+### Secondary track registry deployed to Supabase
+
+- Added production table `public.secondary_tracks` with public read RLS for active rows.
+- Applied additive migration successfully to Dadyoom Supabase.
+- Production verification: **136 active secondary track/program rows across 22/22 countries**.
+- Source-controlled migration:
+  `supabase/migrations/20261005215500_add_secondary_tracks_registry_22_arab_countries.sql`.
+- This makes the complete track inventory available to the application/database; detailed lesson ingestion remains governed separately by official-source completeness.
