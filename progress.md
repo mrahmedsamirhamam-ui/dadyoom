@@ -593,3 +593,27 @@ The remaining items are not missing application code:
 - Paddle remains intentionally Sandbox. Database Plus price is active at 10.00 USD/month and existing Paddle lifecycle events are sandbox-era tests. Do not switch to Live or perform a real-money payment without explicit user approval.
 - Next AdSense action after the new pages deploy and pass production gates: sign in to AdSense > Sites > Dadyoom > confirm fixes > Request review.
 
+## 2026-10-05 — Final production closure after AdSense remediation
+
+- Final production SHA: `bf177c09a3ad0af9209b716427c69e8dcef6d1d0`.
+- All four production gates are green on this SHA:
+  - Cloudflare Verify: SUCCESS
+  - Cloudflare Deploy: SUCCESS
+  - Mobile Final Verify: SUCCESS
+  - Production Role QA: SUCCESS
+- Autonomous role QA completed its canonical learning/payment flow, including a completed BPay E2E order, and cleaned up all temporary fixtures afterward.
+- Post-QA cleanup verified: 0 E2E profiles, 0 E2E marketplace courses, 0 E2E payment orders.
+- Supabase logs during the final QA window contained no 5xx/error failures.
+- Google OAuth is proven operational from production auth data: 10 Google identities exist and the latest successful Google sign-in was 02-10-2026.
+- AdSense remediation is live and crawler-visible:
+  - public `/about`, `/contact`, and `/learn-arabic` pages;
+  - curriculum methodology content rendered inside the `/courses` main content;
+  - home navigation links to trust/content pages and legal policies;
+  - sitemap contains the new pages and published lessons;
+  - valid AdSense publisher meta/config and matching `ads.txt`;
+  - AdSense script is intentionally restricted to the public homepage only, keeping student/child/teacher/school/auth/pricing/lesson/native-app routes ad-free.
+- Latest AdSense email (01-10-2026) requested site fixes before approval. The concrete public-content/navigation readiness risks identified in production have now been remediated.
+- Remaining AdSense action is external/account-only: sign in to Google AdSense and submit Request review for Dadyoom.
+- No TinyFish browser profile currently has a recorded Google/AdSense sign-in, so the review submission cannot be clicked until the user signs in once in a saved browser profile.
+- Paddle remains Sandbox-only. No email evidence of Live approval/business verification approval was found. Do not switch to Live or run a real-money payment without explicit user approval.
+
