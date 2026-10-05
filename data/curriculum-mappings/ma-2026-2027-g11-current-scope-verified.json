@@ -113,7 +113,9 @@
         "label": "وزارة التربية الوطنية والتعليم الأولي والرياضة — المنهاج والموارد الرقمية",
         "url": "https://telmidtice.men.gov.ma/",
         "ministryUrl": "https://www.men.gov.ma/",
-        "currentYearUrl": "https://www.men.gov.ma/%D8%A7%D9%84%D8%AA%D8%B0%D9%83%D9%8A%D8%B1-%D8%A8%D9%85%D9%88%D8%A7%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D8%AF%D8%AE%D9%88%D9%84-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A-2027/2026/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AC%D8%AF%D8%A7%D8%AA"
+        "currentYearUrl": "https://www.men.gov.ma/%D8%A7%D9%84%D8%AA%D8%B0%D9%83%D9%8A%D8%B1-%D8%A8%D9%85%D9%88%D8%A7%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D8%AF%D8%AE%D9%88%D9%84-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A-2027/2026/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AC%D8%AF%D8%A7%D8%AA",
+        "coursePage": "https://telmidtice.men.gov.ma/course/اللغة-العربية---السنة-الأولى-باكالوريا---علوم-تجريبية---الثانوي-التأهيلي",
+        "sitemap": "https://telmidtice.men.gov.ma/sitemap.xml"
       },
       "relationType": "official-upper-secondary-track+national-extension",
       "reviewStatus": "verified-system",
@@ -194,8 +196,8 @@
         }
       ],
       "nationalExtensionInPack": true,
-      "verifiedAt": "2026-09-25",
-      "verificationMethod": "official-men-2026-2027-structure+official-telmidtice+national-pack"
+      "verifiedAt": "2026-10-05",
+      "verificationMethod": "official-men-2026-2027-structure+official-telmidtice-sitemap+official-course-page+national-pack"
     }
   ]
 }
