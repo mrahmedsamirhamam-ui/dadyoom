@@ -80,24 +80,19 @@ export async function POST(request: Request) {
       );
     }
 
-    const { data: duplicate } = await db
-      .from("edu_payment_orders")
-      .select("id")
-      .eq("bank_reference", reference)
-      .neq("id", paymentOrderId)
-      .maybeSingle();
-
-    if (duplicate) {
-      return NextResponse.json(
-        {
-          error: "BPAY_REFERENCE_ALREADY_USED",
-          message: "مرجع العملية مستخدم بالفعل في طلب دفع آخر.",
-        },
-        { status: 409 },
-      );
-    }
-
-    const { error: updateError } = await db
+    /*
+     * DADYOOM_BPAY_ATOMIC_REFERENCE_V1
+     *
+     * bank_reference already has a database UNIQUE constraint.
+     * Let PostgreSQL arbitrate the reference atomically instead of
+     * doing a read-before-write duplicate probe. This removes one
+     * production round-trip and closes the race where two requests
+     * could both pass the duplicate read before either update.
+     */
+    const {
+      data: updatedPayment,
+      error: updateError,
+    } = await db
       .from("edu_payment_orders")
       .update({
         bank_reference: reference,
@@ -106,16 +101,83 @@ export async function POST(request: Request) {
       })
       .eq("id", paymentOrderId)
       .eq("buyer_id", user.id)
-      .eq("status", "pending");
+      .eq("kind", "course")
+      .eq("provider", "bpay")
+      .eq("status", "pending")
+      .select("id,status,bank_reference")
+      .maybeSingle();
 
-    if (updateError) throw updateError;
+    if (updateError) {
+      if (updateError.code === "23505") {
+        return NextResponse.json(
+          {
+            error: "BPAY_REFERENCE_ALREADY_USED",
+            message: "مرجع العملية مستخدم بالفعل في طلب دفع آخر.",
+          },
+          { status: 409 },
+        );
+      }
+
+      console.error(
+        "BPAY_REFERENCE_UPDATE_FAILED",
+        {
+          paymentOrderId,
+          buyerId: user.id,
+          code: updateError.code,
+          message: updateError.message,
+        },
+      );
+
+      throw updateError;
+    }
+
+    if (!updatedPayment) {
+      const {
+        data: latestPayment,
+        error: latestError,
+      } = await db
+        .from("edu_payment_orders")
+        .select("status,bank_reference")
+        .eq("id", paymentOrderId)
+        .eq("buyer_id", user.id)
+        .maybeSingle();
+
+      if (latestError) {
+        throw latestError;
+      }
+
+      if (
+        latestPayment?.status === "approved" &&
+        latestPayment.bank_reference === reference
+      ) {
+        return NextResponse.json({
+          ok: true,
+          status: "approved",
+          message: "تم إرسال المرجع بالفعل وينتظر تأكيد المعلم.",
+        });
+      }
+
+      return NextResponse.json(
+        {
+          error: "PAYMENT_ORDER_NOT_PENDING",
+        },
+        { status: 409 },
+      );
+    }
 
     return NextResponse.json({
       ok: true,
       status: "approved",
       message: "تم إرسال مرجع BPay. ستُفتح الدورة بعد تأكيد المعلم استلام التحويل.",
     });
-  } catch {
+  } catch (cause) {
+    console.error(
+      "BPAY_REFERENCE_SUBMIT_FAILED",
+      cause instanceof Error
+        ? cause.message
+        : String(cause ?? "unknown"),
+    );
+
     return NextResponse.json(
       {
         error: "BPAY_REFERENCE_SUBMIT_FAILED",
