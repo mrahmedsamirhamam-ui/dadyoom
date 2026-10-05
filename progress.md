@@ -617,3 +617,14 @@ The remaining items are not missing application code:
 - No TinyFish browser profile currently has a recorded Google/AdSense sign-in, so the review submission cannot be clicked until the user signs in once in a saved browser profile.
 - Paddle remains Sandbox-only. No email evidence of Live approval/business verification approval was found. Do not switch to Live or run a real-money payment without explicit user approval.
 
+
+
+## 2026-10-05 — AdSense ownership verified and review submitted
+
+- Canonical site: `https://dadyoom.dpdns.org`.
+- AdSense site ownership verification completed successfully using the existing public `ads.txt`.
+- AdSense reports `ads.txt` as authorized for the canonical domain.
+- The site review request has been submitted successfully.
+- Current AdSense site state shown in the dashboard: preparing the site for ads / review in progress.
+- No further AdSense code, payment, Paddle, curriculum, or production changes are required while Google review is pending.
+- Final AdSense approval remains an external Google-controlled step.
