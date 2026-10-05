@@ -17,8 +17,18 @@ type Props = {
   countries: CountryOption[];
 };
 
+type SecondaryTrackOption = {
+  id: string;
+  systemName: string;
+  name: string;
+  status: string;
+  lessonCoverage: string;
+};
+
 type CatalogResponse = {
   units?: StudentCatalogUnit[];
+  tracks?: SecondaryTrackOption[];
+  selectedTrackId?: string | null;
   error?: string;
 };
 
@@ -208,6 +218,7 @@ export default function CurriculumCatalogClient({
               onChange={(value) => {
                 setCountry(value);
                 setGradeNumber(1);
+                setTrack("");
               }}
             />
 
@@ -224,6 +235,7 @@ export default function CurriculumCatalogClient({
               ])}
               onChange={(value) => {
                 setGradeNumber(Number(value));
+                setTrack("");
               }}
             />
           </div>
@@ -250,6 +262,8 @@ function CatalogScope({
   gradeNumber: number;
 }) {
   const [units, setUnits] = useState<StudentCatalogUnit[]>([]);
+  const [tracks, setTracks] = useState<SecondaryTrackOption[]>([]);
+  const [track, setTrack] = useState("");
   const [year, setYear] = useState("");
   const [curriculum, setCurriculum] = useState("");
   const [unit, setUnit] = useState("");
@@ -260,8 +274,17 @@ function CatalogScope({
   useEffect(() => {
     const controller = new AbortController();
 
+    const params = new URLSearchParams({
+      country,
+      grade: String(gradeNumber),
+    });
+
+    if (track) {
+      params.set("track", track);
+    }
+
     void fetch(
-      `/api/courses/catalog?country=${encodeURIComponent(country)}&grade=${gradeNumber}`,
+      `/api/courses/catalog?${params.toString()}`,
       {
         cache: "no-store",
         credentials: "include",
@@ -284,6 +307,7 @@ function CatalogScope({
         if (controller.signal.aborted) return;
 
         setUnits(payload.units ?? []);
+        setTracks(payload.tracks ?? []);
         setError("");
         setLoading(false);
       })
@@ -301,7 +325,7 @@ function CatalogScope({
     return () => {
       controller.abort();
     };
-  }, [country, gradeNumber, reloadKey]);
+  }, [country, gradeNumber, track, reloadKey]);
 
   const years = [
     ...new Set(
@@ -436,7 +460,26 @@ function CatalogScope({
   return (
     <>
       <section className="min-w-0 rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-4 sm:p-6">
-        <div className="grid min-w-0 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid min-w-0 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {gradeNumber >= 10 ? (
+            <SelectBox
+              label="المسار الثانوي"
+              value={track}
+              options={[
+                ["", "كل المسارات الرسمية المتاحة"],
+                ...tracks.map((item) => [
+                  item.id,
+                  `${item.name} — ${item.systemName}`,
+                ]),
+              ]}
+              onChange={(value) => {
+                setTrack(value);
+                setCurriculum("");
+                setUnit("");
+              }}
+            />
+          ) : null}
+
           <SelectBox
             label="السنة"
             value={selectedYear}
@@ -455,7 +498,7 @@ function CatalogScope({
           <SelectBox
             label={
               gradeNumber >= 10
-                ? "عرض المرحلة الثانوية"
+                ? "المحتوى / المقرر"
                 : "المنهج"
             }
             value={curriculumId}
@@ -505,6 +548,11 @@ function CatalogScope({
           <span className="rounded-full bg-[#eef4f0] px-3 py-2">
             {gradeName(gradeNumber)}
           </span>
+          {track ? (
+            <span className="rounded-full bg-[#fff2d5] px-3 py-2">
+              {tracks.find((item) => item.id === track)?.name ?? "المسار المختار"}
+            </span>
+          ) : null}
           <span className="rounded-full bg-[#eef4f0] px-3 py-2">
             {currentTrackLessonCount} درسًا في المسار
           </span>
@@ -521,7 +569,7 @@ function CatalogScope({
           ) : null}
           {curricula.length > 1 ? (
             <span className="rounded-full bg-[#e8f3ff] px-3 py-2">
-              {curricula.length} مسارات متاحة
+              {curricula.length} حزم محتوى متاحة
             </span>
           ) : null}
         </div>
