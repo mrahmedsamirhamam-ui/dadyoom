@@ -552,3 +552,13 @@ The remaining items are not missing application code:
   - Dadyoom Core remains separate at 18 published support lessons per grade.
 - No 2025/2026 internal lesson title was promoted as a 2026/2027 title. The current 2026/2027 Arabic orientation bulletin is scanned-image based; detailed internal expansion remains blocked until its tables can be read from an auditable current source.
 
+
+
+## 2026-10-05 — final production gate
+
+- Final production gate: SUCCESS on HEAD f0bf062e1174f6a45adde332833d5ad5f85d94b8.
+- Production Role QA run 37313734071: success.
+- Cloudflare Deploy run 37313734132: success.
+- Cloudflare Verify run 37313734082: success.
+- Mobile Final Verify run 37313734097: success.
+- Canonical lesson completion and BPay submit regressions are closed on the production-gated branch.
