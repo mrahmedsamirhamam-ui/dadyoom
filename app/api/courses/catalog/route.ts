@@ -50,6 +50,21 @@ type Progress = {
   xp: number | null;
 };
 
+type SecondaryTrack = {
+  id: string;
+  country_code: string;
+  system_name_ar: string;
+  track_name_ar: string;
+  grades: number[] | null;
+  status: string;
+  lesson_coverage: string;
+};
+
+type TrackCurriculum = {
+  secondary_track_id: string;
+  curriculum_id: string;
+};
+
 function difficulty(
   grade: number | null,
 ) {
@@ -113,6 +128,13 @@ export async function GET(
         "grade",
       ) ?? 0,
     );
+
+  const requestedTrackId =
+    String(
+      url.searchParams.get(
+        "track",
+      ) ?? "",
+    ).trim();
 
   if (
     !(
@@ -196,6 +218,67 @@ export async function GET(
   const country =
     countryData as Country;
 
+  let secondaryTracks: SecondaryTrack[] = [];
+  let allowedCurriculumIds: Set<string> | null = null;
+
+  if (gradeNumber >= 10) {
+    const {
+      data: trackRows,
+      error: trackError,
+    } = await supabase
+      .from("secondary_tracks")
+      .select("id,country_code,system_name_ar,track_name_ar,grades,status,lesson_coverage")
+      .eq("country_code", countryCode)
+      .eq("academic_year", "2026-2027")
+      .eq("is_active", true)
+      .order("system_name_ar", { ascending: true })
+      .order("track_name_ar", { ascending: true })
+      .limit(80);
+
+    if (trackError) {
+      return errorResponse("secondary_tracks", trackError);
+    }
+
+    secondaryTracks = ((trackRows ?? []) as SecondaryTrack[]).filter(
+      (track) =>
+        !Array.isArray(track.grades) ||
+        track.grades.length === 0 ||
+        track.grades.includes(gradeNumber),
+    );
+
+    if (requestedTrackId) {
+      const selectedTrack = secondaryTracks.find(
+        (track) => track.id === requestedTrackId,
+      );
+
+      if (!selectedTrack) {
+        return NextResponse.json(
+          { error: "المسار الثانوي المختار غير متاح لهذا الصف." },
+          { status: 400 },
+        );
+      }
+
+      const {
+        data: mappingRows,
+        error: mappingError,
+      } = await supabase
+        .from("secondary_track_curricula")
+        .select("secondary_track_id,curriculum_id")
+        .eq("secondary_track_id", requestedTrackId)
+        .limit(40);
+
+      if (mappingError) {
+        return errorResponse("secondary_track_curricula", mappingError);
+      }
+
+      allowedCurriculumIds = new Set(
+        ((mappingRows ?? []) as TrackCurriculum[]).map(
+          (row) => row.curriculum_id,
+        ),
+      );
+    }
+  }
+
   const {
     data: curriculaData,
     error:
@@ -226,8 +309,11 @@ export async function GET(
   }
 
   const curricula =
-    (curriculaData ??
-      []) as Curriculum[];
+    ((curriculaData ?? []) as Curriculum[]).filter(
+      (item) =>
+        !allowedCurriculumIds ||
+        allowedCurriculumIds.has(item.id),
+    );
 
   const curriculumIds =
     curricula.map(
@@ -766,7 +852,17 @@ export async function GET(
       : mappedUnits;
 
   return NextResponse.json(
-    { units },
+    {
+      units,
+      tracks: secondaryTracks.map((track) => ({
+        id: track.id,
+        systemName: track.system_name_ar,
+        name: track.track_name_ar,
+        status: track.status,
+        lessonCoverage: track.lesson_coverage,
+      })),
+      selectedTrackId: requestedTrackId || null,
+    },
     {
       headers: {
         "Cache-Control":
