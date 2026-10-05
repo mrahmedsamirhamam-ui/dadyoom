@@ -201,12 +201,27 @@
           "nameAr": "التعليم الثانوي العام",
           "tracks": [
             {
+              "nameAr": "السنة الأولى ثانوي — مشترك",
+              "status": "active",
+              "grades": [
+                10
+              ]
+            },
+            {
               "nameAr": "القسم العلمي",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "القسم الأدبي",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             }
           ]
         },
@@ -216,7 +231,12 @@
             {
               "nameAr": "الثانوي الديني",
               "status": "active",
-              "arabicPolicy": "needs-detailed-current-source"
+              "arabicPolicy": "needs-detailed-current-source",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             }
           ]
         }
@@ -234,20 +254,50 @@
           "nameAr": "الثانوي",
           "tracks": [
             {
+              "nameAr": "المسار المهني",
+              "status": "active",
+              "grades": [
+                10
+              ]
+            },
+            {
+              "nameAr": "المسار العام",
+              "status": "active",
+              "grades": [
+                10
+              ]
+            },
+            {
               "nameAr": "علمي",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "علوم إنسانية",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "ريادة وأعمال",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "صناعي",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "شرعي",
@@ -873,24 +923,52 @@
           "nameAr": "نظام المسارات",
           "tracks": [
             {
+              "nameAr": "السنة الأولى المشتركة",
+              "status": "active",
+              "grades": [
+                10
+              ],
+              "arabicPolicy": "الكفايات اللغوية 1 — مشترك"
+            },
+            {
               "nameAr": "المسار العام",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "مسار علوم الحاسب والهندسة",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "مسار الصحة والحياة",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "مسار إدارة الأعمال",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "المسار الشرعي",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             }
           ]
         }
