@@ -6,6 +6,8 @@ import { createClient } from "@/lib/supabase/server";
 
 const links = [
   { href: "/courses", label: "المناهج" },
+  { href: "/learn-arabic", label: "دليل العربية" },
+  { href: "/about", label: "عن ضاديوم" },
   { href: "/journey", label: "رحلتي" },
   { href: "/skills", label: "المهارات الأربع" },
   { href: "/reading-challenge", label: "تحدي القراءة" },
