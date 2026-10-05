@@ -97,6 +97,20 @@ export default function HomePage() {
             </Link>
             <Link
               prefetch={false}
+              href="/learn-arabic"
+              className="rounded-full px-4 py-2 transition hover:bg-[#f1e7d4] hover:text-[#123f39]"
+            >
+              تعلّم العربية
+            </Link>
+            <Link
+              prefetch={false}
+              href="/about"
+              className="rounded-full px-4 py-2 transition hover:bg-[#f1e7d4] hover:text-[#123f39]"
+            >
+              عن ضاديوم
+            </Link>
+            <Link
+              prefetch={false}
               href="/pricing"
               className="rounded-full px-4 py-2 transition hover:bg-[#f1e7d4] hover:text-[#123f39]"
             >
@@ -408,6 +422,9 @@ export default function HomePage() {
             العربية لقلب الطالب قبل عقله.
           </div>
           <nav aria-label="الروابط القانونية" className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm font-bold">
+            <Link prefetch={false} href="/about" className="hover:text-white hover:underline">عن ضاديوم</Link>
+            <Link prefetch={false} href="/learn-arabic" className="hover:text-white hover:underline">دليل تعلم العربية</Link>
+            <Link prefetch={false} href="/contact" className="hover:text-white hover:underline">تواصل معنا</Link>
             <Link prefetch={false} href="/terms" className="hover:text-white hover:underline">الشروط والأحكام</Link>
             <Link prefetch={false} href="/privacy" className="hover:text-white hover:underline">سياسة الخصوصية</Link>
             <Link prefetch={false} href="/refund-policy" className="hover:text-white hover:underline">سياسة الاسترداد</Link>
