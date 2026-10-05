@@ -651,3 +651,18 @@ The remaining items are not missing application code:
 - A tracker was added at `data/curriculum-completeness/bahrain-2026-2027.json`.
 - The public secondary selector wording was corrected from "المسار الكامل" to "كل المحتوى المتاح حاليًا" so the UI no longer overstates completeness.
 - New completion rule for all countries: a country is only "fully complete" when every officially published track/branch, semester/term, unit and lesson is represented, or explicitly recorded as unavailable/not yet published from an official source.
+
+
+## 2026-10-05 — Secondary track inventory expanded to all 22 Arab countries
+
+- Added canonical secondary-track registry:
+  `data/secondary-tracks/arab-22-secondary-tracks-2026-2027.json`.
+- Registry coverage: **22/22 countries**, **136 track/program entries**, no missing country codes.
+- Added validator:
+  `scripts/audit-secondary-tracks-22.mjs`
+  and npm command:
+  `npm run curriculum:audit:secondary-tracks`.
+- Registry validation result from repository data: PASS (22/22; 136 entries; no missing/extra country; no empty system/source block).
+- This closes the **track-structure inventory**, not lesson-level completion.
+- Lesson-level completion remains a separate requirement: each active track must either map to a verified shared Arabic corpus or have its own verified official semester/unit/lesson corpus. No duplicate or invented track-specific lessons are allowed.
+- Bahrain source supplied by the user confirms the current Plan2 file is first-semester 2026-2027 for unified/religious scope; the detailed lesson packs already present are therefore not evidence that every Bahrain secondary track is complete.
