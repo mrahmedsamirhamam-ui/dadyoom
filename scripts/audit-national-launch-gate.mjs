@@ -154,7 +154,7 @@ if (fs.existsSync(mappingDir)) {
 let readyCountries = 0;
 const failures = [];
 
-console.log("=== DADYOOM NATIONAL OFFICIAL 22 LAUNCH GATE ===");
+console.log("=== DADYOOM NATIONAL OFFICIAL 22 LAUNCH GATE ===");\nconsole.log("OFFICIAL_22_MEANING=MINIMUM_VERIFIED_SCOPE_NOT_FULL_CURRICULUM");
 
 for (const country of registry.countries ?? []) {
   const code = String(country.code ?? "").trim();
