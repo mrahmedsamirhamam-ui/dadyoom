@@ -35,6 +35,9 @@ jobs:
       - name: Official 22-country launch gate
         run: npm run curriculum:gate:official-22
 
+      - name: Secondary tracks 22-country gate
+        run: npm run curriculum:audit:secondary-tracks
+
       - name: Vinext build
         run: npm run build:vinext
 
