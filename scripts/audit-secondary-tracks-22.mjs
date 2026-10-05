@@ -1,0 +1,107 @@
+import fs from "node:fs";
+import path from "node:path";
+
+const root = process.cwd();
+const registryPath = path.join(
+  root,
+  "data/secondary-tracks/arab-22-secondary-tracks-2026-2027.json",
+);
+const countriesPath = path.join(
+  root,
+  "data/curriculum-packs/arab-countries.json",
+);
+
+const registry = JSON.parse(fs.readFileSync(registryPath, "utf8"));
+const countries = JSON.parse(fs.readFileSync(countriesPath, "utf8"));
+
+const expected = new Map(
+  (countries.countries ?? []).map((country) => [
+    String(country.code ?? "").trim(),
+    String(country.nameAr ?? "").trim(),
+  ]),
+);
+
+const rows = Array.isArray(registry.countries)
+  ? registry.countries
+  : [];
+
+const seen = new Set();
+const failures = [];
+let trackCount = 0;
+
+for (const row of rows) {
+  const code = String(row?.code ?? "").trim();
+  const systems = Array.isArray(row?.systems) ? row.systems : [];
+  const sources = Array.isArray(row?.sources) ? row.sources : [];
+
+  if (!expected.has(code)) {
+    failures.push(`UNKNOWN_COUNTRY=${code || "EMPTY"}`);
+    continue;
+  }
+
+  if (seen.has(code)) {
+    failures.push(`DUPLICATE_COUNTRY=${code}`);
+    continue;
+  }
+
+  seen.add(code);
+
+  if (systems.length === 0) {
+    failures.push(`NO_SECONDARY_SYSTEM=${code}`);
+  }
+
+  if (sources.length === 0) {
+    failures.push(`NO_SOURCE=${code}`);
+  }
+
+  let countryTracks = 0;
+
+  for (const system of systems) {
+    const tracks = Array.isArray(system?.tracks) ? system.tracks : [];
+
+    if (tracks.length === 0) {
+      failures.push(
+        `NO_TRACKS=${code}:${String(system?.nameAr ?? "UNNAMED")}`,
+      );
+      continue;
+    }
+
+    for (const track of tracks) {
+      const nameAr = String(track?.nameAr ?? "").trim();
+
+      if (!nameAr) {
+        failures.push(`EMPTY_TRACK_NAME=${code}`);
+        continue;
+      }
+
+      countryTracks += 1;
+      trackCount += 1;
+    }
+  }
+
+  console.log(
+    `SECONDARY_TRACK_COUNTRY=${code} SYSTEMS=${systems.length} TRACKS=${countryTracks} LESSON_COVERAGE=${row.lessonCoverage ?? "unknown"}`,
+  );
+}
+
+for (const code of expected.keys()) {
+  if (!seen.has(code)) {
+    failures.push(`MISSING_COUNTRY=${code}`);
+  }
+}
+
+console.log(`SECONDARY_TRACK_COUNTRIES=${seen.size}/${expected.size}`);
+console.log(`SECONDARY_TRACKS_REGISTERED=${trackCount}`);
+
+if (seen.size !== expected.size || failures.length > 0) {
+  for (const failure of failures) {
+    console.error(failure);
+  }
+  console.error("SECONDARY_TRACK_REGISTRY_GATE=FAIL");
+  process.exit(1);
+}
+
+console.log("SECONDARY_TRACK_REGISTRY_GATE=PASS");
+console.log(
+  "SECONDARY_TRACK_LESSON_COMPLETENESS=SEPARATE_GATE_REQUIRED",
+);
