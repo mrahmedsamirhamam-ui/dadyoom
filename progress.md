@@ -562,3 +562,15 @@ The remaining items are not missing application code:
 - Cloudflare Verify run 37313734082: success.
 - Mobile Final Verify run 37313734097: success.
 - Canonical lesson completion and BPay submit regressions are closed on the production-gated branch.
+
+## 2026-10-05 — weakest-secondary-source deep scan
+
+- Syria G10-G12: refreshed current-year evidence with the official Ministry announcement dated 17-09-2026, «41 مليون كتاب: خطة شاملة لتأمين الكتاب المدرسي لكل طالب سوري» (`https://moed.gov.sy/news/11233`). This verifies current 2026/2027 textbook supply but does not expose auditable public secondary-Arabic TOCs, so mappings remain one book/curriculum bundle per grade with no invented lesson titles.
+- Somalia G10-G12: queried the official Ministry WordPress media API for `Arabic`, `العربية`, and Forms 1-4. All targeted media searches returned empty arrays. No public grade-by-grade secondary Arabic PDF/catalog was promoted; national competency bundles remain the verified ceiling.
+- Comoros G10-G12: queried the official Ministry WordPress media API for `arabe`, `Arabic`, `Seconde`, `Première`, `Terminale`, and `programme`. All targeted media searches returned empty arrays. Existing education-law + ministry Arabic-policy competency bundles remain the verified ceiling.
+- Kuwait G10-G12: inspected the official e-library student filters and probed the public `api/File/download/nationalstandard/{id}` range. Arabic matrices discovered were primary/middle (IDs 93-95); ID 96 is Qur'an for middle stage. Explicit Arabic-secondary matches were not found across the probed 1-115 range, so secondary Arabic remains semester/course-bundle level rather than guessing file IDs or lesson titles.
+- Qatar G10-G12: official `maktabaty.edu.gov.qa` and its public SharePoint API endpoints were externally unreachable during this pass; `qlearning.edu.gov.qa` was also unavailable from the verification environment. No third-party textbook list was imported.
+- Iraq G10-G12: existing mappings already use the official General Directorate of Curricula preparatory catalog and two book-part nodes per grade. Historical direct `manahj.edu.iq/upload/upfile` PDF URLs surfaced for G11/G12, but the host was unreachable during direct verification, so the current live catalog remains the authoritative source and no stale direct URL was promoted.
+- Morocco: specific TelmidTice source links are now attached to G10 literary (45 lessons / 17 weeks), G11 scientific course page from the official sitemap, and G12 arts (49 lessons / 17 weeks). The React UI still does not expose lesson titles in static HTML, so counts are evidence only and are not converted into fabricated lesson nodes.
+- Source-integrity rule reaffirmed: when a government source proves structure/count/book existence but not a readable current lesson title, Dadyoom keeps book/bundle-level matching and preserves the 18-lesson Core separately.
+
