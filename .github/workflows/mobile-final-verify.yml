@@ -152,6 +152,7 @@ jobs:
           node scripts/check-finish-admin.mjs
           node scripts/check-finish-curriculum-ops.mjs
           npm run curriculum:gate:official-22
+          npm run curriculum:audit:secondary-tracks
           # Canonical national curriculum closure is enforced above by curriculum:gate:official-22.
           # Legacy catalog/closure/seed/import checks predate the 22-country closure and are intentionally not release gates.
           # Verification must not mutate curriculum data during Commerce launch.
