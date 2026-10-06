@@ -1,0 +1,172 @@
+name: SEO Production Gate
+
+on:
+  workflow_run:
+    workflows:
+      - Cloudflare Deploy
+    types:
+      - completed
+  workflow_dispatch:
+
+concurrency:
+  group: seo-production-gate
+  cancel-in-progress: true
+
+jobs:
+  seo-gate:
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (
+        github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.head_branch == 'fix/mobile-cloud-video-final-20260923'
+      )
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Resolve expected SHA
+        id: source
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_run" ]]; then
+            echo "sha=${{ github.event.workflow_run.head_sha }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "sha=${{ github.sha }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Wait for canonical domain deployment
+        shell: bash
+        env:
+          EXPECTED_SHA: ${{ steps.source.outputs.sha }}
+          BASE: https://dadyoom.dpdns.org
+        run: |
+          set -euo pipefail
+
+          matched=0
+          for attempt in $(seq 1 60); do
+            body="$(curl --silent --show-error --max-time 20 "$BASE/api/deploy/version" || true)"
+            actual="$(node -e '
+              try {
+                const body = JSON.parse(process.argv[1]);
+                process.stdout.write(String(body.commit || ""));
+              } catch {
+                process.stdout.write("");
+              }
+            ' "$body")"
+
+            echo "SEO_DEPLOY_SYNC attempt=$attempt expected=$EXPECTED_SHA actual=$actual"
+
+            if [[ "$actual" == "$EXPECTED_SHA" ]]; then
+              matched=1
+              break
+            fi
+
+            sleep 10
+          done
+
+          if [[ "$matched" != "1" ]]; then
+            echo "SEO_DEPLOY_SYNC=FAIL"
+            exit 1
+          fi
+
+          echo "SEO_DEPLOY_SYNC=PASS"
+
+      - name: Verify canonical homepage, robots and sitemap
+        shell: bash
+        env:
+          BASE: https://dadyoom.dpdns.org
+        run: |
+          set -euo pipefail
+
+          home="$(mktemp)"
+          robots="$(mktemp)"
+          sitemap="$(mktemp)"
+
+          home_code="$(curl --silent --show-error --location --max-time 30             --output "$home" --write-out "%{http_code}" "$BASE/")"
+          robots_code="$(curl --silent --show-error --location --max-time 30             --output "$robots" --write-out "%{http_code}" "$BASE/robots.txt")"
+          sitemap_code="$(curl --silent --show-error --location --max-time 30             --output "$sitemap" --write-out "%{http_code}" "$BASE/sitemap.xml")"
+
+          test "$home_code" = "200"
+          test "$robots_code" = "200"
+          test "$sitemap_code" = "200"
+
+          grep -Fq "dadyoom.dpdns.org" "$home"
+          grep -Fq "Sitemap: $BASE/sitemap.xml" "$robots"
+          grep -Fq "<loc>$BASE" "$sitemap"
+
+          if grep -Eq 'dadyoom\.pages\.dev|dadyoom\.mrahmedsamirhamam\.workers\.dev' "$sitemap"; then
+            echo "SEO_SITEMAP_LEGACY_HOST=FAIL"
+            exit 1
+          fi
+
+          url_count="$(grep -o '<loc>' "$sitemap" | wc -l | tr -d ' ')"
+
+          if (( url_count < 20 || url_count > 50000 )); then
+            echo "SEO_SITEMAP_URL_COUNT=FAIL count=$url_count"
+            exit 1
+          fi
+
+          echo "SEO_CANONICAL_HOME=PASS"
+          echo "SEO_ROBOTS=PASS"
+          echo "SEO_SITEMAP=PASS count=$url_count"
+
+      - name: Verify sitemap sample is crawlable
+        shell: bash
+        env:
+          BASE: https://dadyoom.dpdns.org
+        run: |
+          set -euo pipefail
+
+          sitemap="$(curl --silent --show-error --location --max-time 30 "$BASE/sitemap.xml")"
+
+          mapfile -t urls < <(
+            printf '%s' "$sitemap" |
+              grep -oE '<loc>[^<]+' |
+              sed 's#<loc>##' |
+              head -n 30
+          )
+
+          if (( ${#urls[@]} == 0 )); then
+            echo "SEO_SITEMAP_SAMPLE=FAIL_EMPTY"
+            exit 1
+          fi
+
+          for url in "${urls[@]}"; do
+            code="$(curl --silent --show-error --max-time 30               --output /dev/null --write-out "%{http_code}"               -H "User-Agent: Googlebot" "$url")"
+
+            echo "SEO_SAMPLE url=$url http=$code"
+
+            if [[ "$code" != "200" ]]; then
+              echo "SEO_SITEMAP_SAMPLE=FAIL url=$url http=$code"
+              exit 1
+            fi
+          done
+
+          echo "SEO_SITEMAP_SAMPLE=PASS checked=${#urls[@]}"
+
+      - name: Verify legacy public hosts consolidate to canonical
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          for legacy in             "https://dadyoom.mrahmedsamirhamam.workers.dev/"             "https://dadyoom.pages.dev/"; do
+
+            headers="$(mktemp)"
+            code="$(curl --silent --show-error --max-time 30               --output /dev/null --dump-header "$headers"               --write-out "%{http_code}" "$legacy")"
+
+            location="$(awk 'BEGIN{IGNORECASE=1} /^location:/ {gsub(/\r/,""); sub(/^location:[[:space:]]*/,""); print; exit}' "$headers")"
+
+            echo "SEO_LEGACY_REDIRECT host=$legacy http=$code location=$location"
+
+            if [[ "$code" != "308" ]]; then
+              echo "SEO_LEGACY_REDIRECT=FAIL_STATUS host=$legacy"
+              exit 1
+            fi
+
+            if [[ "$location" != "https://dadyoom.dpdns.org/" ]]; then
+              echo "SEO_LEGACY_REDIRECT=FAIL_LOCATION host=$legacy location=$location"
+              exit 1
+            fi
+          done
+
+          echo "SEO_LEGACY_REDIRECT=PASS"
