@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import CurriculumCatalogClient from "./CurriculumCatalogClient";
 import {
@@ -30,5 +31,22 @@ export default function CoursesPage() {
           : 12,
     }));
 
-  return <CurriculumCatalogClient countries={countries} />;
+  return (
+    <>
+      <section dir="rtl" className="border-b border-[#e2d6bf] bg-[#fffaf0] px-4 py-4">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
+          <p className="text-sm font-bold text-[#625b51]">
+            تريد روابط مباشرة قابلة للتصفح لكل دولة؟
+          </p>
+          <Link
+            href="/curriculum"
+            className="rounded-xl border border-[#cdbb96] bg-white px-4 py-2 text-sm font-black text-[#174f47] hover:underline"
+          >
+            افتح دليل المناهج والدروس
+          </Link>
+        </div>
+      </section>
+      <CurriculumCatalogClient countries={countries} />
+    </>
+  );
 }
