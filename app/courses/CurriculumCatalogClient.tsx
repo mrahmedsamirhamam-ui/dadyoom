@@ -408,7 +408,12 @@ function CatalogScope({
       (item) =>
         !selectedSemester ||
         item.semester === selectedSemester ||
-        item.semester == null,
+        (
+          item.semester == null &&
+          isDadyoomCoreCurriculum(
+            item.curriculum.name,
+          )
+        ),
     )
     .sort((a, b) => {
       if (
