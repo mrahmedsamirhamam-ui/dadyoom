@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import CheckoutButtons from "@/components/billing/CheckoutButtons";
+import { getSiteUrl } from "@/lib/site";
 import { createClient } from "@/lib/supabase/server";
 
 type Params = {
@@ -161,9 +162,8 @@ export default async function CoursePage({
     provider: {
       "@type": "Organization",
       name: "ضاديوم",
-      sameAs:
-        process.env.NEXT_PUBLIC_SITE_URL ??
-        "http://localhost:3000",
+      url: getSiteUrl(),
+      sameAs: getSiteUrl(),
     },
     offers: {
       "@type": "Offer",
