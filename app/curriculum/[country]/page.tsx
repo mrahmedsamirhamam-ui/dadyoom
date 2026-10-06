@@ -13,6 +13,13 @@ import {
 } from "@/lib/supabase/public-config";
 
 export const revalidate = 3600;
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return ARAB_COUNTRY_CODES.map((code) => ({
+    country: code.toLowerCase(),
+  }));
+}
 
 type PageProps = {
   params: Promise<{ country: string }>;
