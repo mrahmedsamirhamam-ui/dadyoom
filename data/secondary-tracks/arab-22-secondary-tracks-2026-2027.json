@@ -836,12 +836,22 @@
             {
               "nameAr": "العلمي",
               "status": "active",
-              "arabicPolicy": "shared-current-arabic-books"
+              "arabicPolicy": "shared-current-arabic-books",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "الأدبي",
               "status": "active",
-              "arabicPolicy": "shared-current-arabic-books"
+              "arabicPolicy": "shared-current-arabic-books",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             }
           ]
         }
@@ -849,7 +859,7 @@
       "sources": [
         "https://manahj.edu.iq/"
       ],
-      "lessonCoverage": "generic-book-bundle"
+      "lessonCoverage": "generic-book-bundle-grade-scoped"
     },
     {
       "code": "KW",
