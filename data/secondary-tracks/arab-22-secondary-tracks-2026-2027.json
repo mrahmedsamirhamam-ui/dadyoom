@@ -133,7 +133,12 @@
           "tracks": [
             {
               "nameAr": "الأكاديمي",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             }
           ]
         },
@@ -142,56 +147,112 @@
           "tracks": [
             {
               "nameAr": "تكنولوجيا المعلومات",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "الأعمال",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "الضيافة",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "السفر والسياحة",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "الإعلام الإبداعي/الوسائط المتعددة",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "التصميم",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "الهندسة",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "الرياضة",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "الصحة والرعاية الاجتماعية",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "الزراعة",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "الإنشاءات",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             }
           ]
         }
       ],
       "sources": [
         "https://nccd.gov.jo/Ar/Pages/textbooks",
-        "https://nccd.gov.jo/Ar/Pages/Publications/?MaterialStudy=92"
+        "https://nccd.gov.jo/Ar/Pages/Publications/?MaterialStudy=92",
+        "https://www.nccd.gov.jo/EBV4.0/Root_Storage/AR/FW/%D8%A7%D9%84%D8%A5%D8%B7%D8%A7%D8%B1_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC__%D8%A7%D9%84%D8%A3%D8%B1%D8%AF%D9%86%D9%8A%D8%A9.pdf"
       ],
-      "lessonCoverage": "partial"
+      "lessonCoverage": "partial-grade-scoped"
     },
     {
       "code": "LY",
