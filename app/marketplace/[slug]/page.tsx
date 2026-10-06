@@ -72,13 +72,26 @@ export async function generateMetadata({
     .eq("status", "published")
     .maybeSingle();
 
+  const title = data?.title
+    ? `${data.title} | سوق ضاديوم`
+    : "دورة | سوق ضاديوم";
+
+  const description =
+    String(data?.description ?? "").slice(0, 155) ||
+    "دورة تعليمية على منصة ضاديوم.";
+
   return {
-    title: data?.title
-      ? `${data.title} | سوق ضاديوم`
-      : "دورة | سوق ضاديوم",
-    description:
-      String(data?.description ?? "").slice(0, 155) ||
-      "دورة تعليمية على منصة ضاديوم.",
+    title,
+    description,
+    alternates: {
+      canonical: `/marketplace/${slug}`,
+    },
+    openGraph: {
+      type: "website",
+      url: `/marketplace/${slug}`,
+      title,
+      description,
+    },
   };
 }
 
