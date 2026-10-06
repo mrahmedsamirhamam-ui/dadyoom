@@ -23,6 +23,11 @@ type SecondaryTrackOption = {
   name: string;
   status: string;
   lessonCoverage: string;
+  officialUnits: number;
+  officialLessons: number;
+  unclassifiedOfficialLessons: number;
+  officialSemesters: number[];
+  supportingLessons: number;
 };
 
 type CatalogResponse = {
@@ -343,6 +348,11 @@ function CatalogScope({
 
   const selectedYear = year || years[0] || "";
 
+  const selectedTrackOption =
+    tracks.find(
+      (item) => item.id === track,
+    ) ?? null;
+
   const curricula = uniq(
     units
       .filter(
@@ -626,13 +636,32 @@ function CatalogScope({
           </span>
           {track ? (
             <span className="rounded-full bg-[#fff2d5] px-3 py-2">
-              {tracks.find((item) => item.id === track)?.name ?? "المسار المختار"}
+              {selectedTrackOption?.name ?? "المسار المختار"}
             </span>
           ) : null}
           {selectedSemester ? (
             <span className="rounded-full bg-[#e8f3ff] px-3 py-2">
               {semesterName(selectedSemester)}
             </span>
+          ) : null}
+          {selectedTrackOption ? (
+            <>
+              <span className="rounded-full bg-[#e8f3ff] px-3 py-2">
+                {selectedTrackOption.officialLessons} درسًا رسميًا موثقًا للمسار
+              </span>
+              {selectedTrackOption.officialSemesters.length ? (
+                <span className="rounded-full bg-[#eef9ef] px-3 py-2">
+                  الفصول المصنفة:{" "}
+                  {selectedTrackOption.officialSemesters
+                    .map(semesterName)
+                    .join("، ")}
+                </span>
+              ) : (
+                <span className="rounded-full bg-[#fff4df] px-3 py-2">
+                  الفصل غير محدد في المصدر الحالي
+                </span>
+              )}
+            </>
           ) : null}
           <span className="rounded-full bg-[#eef4f0] px-3 py-2">
             {currentTrackLessonCount} درسًا في المسار
