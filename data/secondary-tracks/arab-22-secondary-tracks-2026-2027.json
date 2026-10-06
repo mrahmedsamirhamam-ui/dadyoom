@@ -324,39 +324,99 @@
           "tracks": [
             {
               "nameAr": "الآداب",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12,
+                13
+              ]
             },
             {
               "nameAr": "الرياضيات",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                12,
+                13
+              ]
             },
             {
               "nameAr": "العلوم التجريبية",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                12,
+                13
+              ]
             },
             {
               "nameAr": "الاقتصاد والتصرف",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                12,
+                13
+              ]
             },
             {
               "nameAr": "العلوم التقنية",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                12,
+                13
+              ]
             },
             {
               "nameAr": "علوم الإعلامية",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                12,
+                13
+              ]
             },
             {
               "nameAr": "الرياضة",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12,
+                13
+              ]
+            },
+            {
+              "nameAr": "جذع مشترك",
+              "status": "active",
+              "grades": [
+                10
+              ]
+            },
+            {
+              "nameAr": "العلوم",
+              "status": "active",
+              "grades": [
+                11
+              ]
+            },
+            {
+              "nameAr": "الاقتصاد والخدمات",
+              "status": "active",
+              "grades": [
+                11
+              ]
+            },
+            {
+              "nameAr": "تكنولوجيا الإعلامية",
+              "status": "active",
+              "grades": [
+                11
+              ]
             }
           ]
         }
       ],
       "sources": [
-        "https://cnp.com.tn/arabic/annee-actuelle/listeOfficielle.htm"
+        "https://cnp.com.tn/arabic/annee-actuelle/listeOfficielle.htm",
+        "https://education.gov.tn/?s=Secondaire"
       ],
-      "lessonCoverage": "book-level"
+      "lessonCoverage": "book-level-current-grade-scoped"
     },
     {
       "code": "LB",
