@@ -8,7 +8,7 @@ type SaveAssessmentSessionAnswerParams = {
   assessmentId: string;
   studentId: string;
   lessonId: string;
-  skill: string;
+  skill: string | null | undefined;
   selectedAnswer: number;
   correctAnswer: number;
   isCorrect: boolean;
@@ -40,7 +40,7 @@ export async function saveAssessmentSessionAnswer({
         lesson_id:
           lessonId,
         skill:
-          skill.trim() ||
+          String(skill ?? "").trim() ||
           "الاستيعاب",
         selected_answer:
           selectedAnswer,
