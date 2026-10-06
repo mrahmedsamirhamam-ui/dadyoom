@@ -25,6 +25,44 @@ type PageProps = {
   params: Promise<{ country: string }>;
 };
 
+type GradeCatalogRow = {
+  id: string;
+  name_ar: string;
+  grade_number: number | null;
+  curricula:
+    | {
+        id: string;
+        name_ar: string;
+        academic_year: string | null;
+        countries:
+          | {
+              code: string;
+              name_ar: string;
+            }
+          | Array<{
+              code: string;
+              name_ar: string;
+            }>
+          | null;
+      }
+    | Array<{
+        id: string;
+        name_ar: string;
+        academic_year: string | null;
+        countries:
+          | {
+              code: string;
+              name_ar: string;
+            }
+          | Array<{
+              code: string;
+              name_ar: string;
+            }>
+          | null;
+      }>
+    | null;
+};
+
 type SeoLessonRow = {
   id: string;
   title: string;
@@ -100,6 +138,58 @@ export default async function CountryCurriculumPage({
       },
     },
   );
+
+  const { data: gradeCatalogData } =
+    await db
+      .from("grades")
+      .select(
+        "id,name_ar,grade_number,curricula!inner(id,name_ar,academic_year,countries!inner(code,name_ar))",
+      )
+      .eq("is_active", true)
+      .eq("curricula.is_active", true)
+      .eq(
+        "curricula.countries.code",
+        info.code,
+      )
+      .order("grade_number", {
+        ascending: true,
+      });
+
+  const gradeCatalog =
+    (gradeCatalogData ?? []) as unknown as GradeCatalogRow[];
+
+  const curriculumNames =
+    new Set<string>();
+
+  for (const grade of gradeCatalog) {
+    const curriculum = Array.isArray(
+      grade.curricula,
+    )
+      ? grade.curricula[0]
+      : grade.curricula;
+
+    if (curriculum?.name_ar) {
+      curriculumNames.add(
+        curriculum.name_ar,
+      );
+    }
+  }
+
+  const activeGradeNumbers =
+    new Set(
+      gradeCatalog
+        .map((grade) =>
+          Number(
+            grade.grade_number,
+          ),
+        )
+        .filter(
+          (gradeNumber) =>
+            Number.isFinite(
+              gradeNumber,
+            ),
+        ),
+    );
 
   const rows: SeoLessonRow[] = [];
   const pageSize = 1000;
@@ -279,19 +369,77 @@ export default async function CountryCurriculumPage({
           </p>
         </header>
 
+        <section className="mt-8 rounded-[2rem] border border-[#ddcfb4] bg-[#fffdf8] p-6 shadow-sm sm:p-8">
+          <h2 className="text-2xl font-black text-[#123f39]">
+            نظرة سريعة على التغطية
+          </h2>
+          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+            <div className="rounded-2xl bg-[#f8f1e5] p-4">
+              <div className="text-2xl font-black text-[#123f39]">
+                {curriculumNames.size}
+              </div>
+              <div className="mt-1 text-sm font-bold text-[#6d665c]">
+                منهج أو مسار نشط
+              </div>
+            </div>
+            <div className="rounded-2xl bg-[#f8f1e5] p-4">
+              <div className="text-2xl font-black text-[#123f39]">
+                {activeGradeNumbers.size}
+              </div>
+              <div className="mt-1 text-sm font-bold text-[#6d665c]">
+                صف دراسي ظاهر في الدليل
+              </div>
+            </div>
+            <div className="rounded-2xl bg-[#f8f1e5] p-4">
+              <div className="text-2xl font-black text-[#123f39]">
+                {rows.length}
+              </div>
+              <div className="mt-1 text-sm font-bold text-[#6d665c]">
+                درس فريد جاهز للعرض المباشر
+              </div>
+            </div>
+          </div>
+
+          {curriculumNames.size > 0 ? (
+            <div className="mt-5">
+              <h3 className="font-black text-[#8b6426]">
+                المناهج والمسارات
+              </h3>
+              <ul className="mt-3 grid gap-2 md:grid-cols-2">
+                {[...curriculumNames]
+                  .sort((a, b) =>
+                    a.localeCompare(
+                      b,
+                      "ar",
+                    ),
+                  )
+                  .map((name) => (
+                    <li
+                      key={name}
+                      className="rounded-xl border border-[#eadfc9] bg-white px-4 py-3 font-bold text-[#4c554f]"
+                    >
+                      {name}
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          ) : null}
+        </section>
+
         {gradeGroups.length ===
         0 ? (
           <section className="mt-8 rounded-3xl border border-[#ddcfb4] bg-[#fffdf8] p-7">
             <h2 className="text-2xl font-black text-[#123f39]">
-              يتم تجهيز الدليل
-              المنشور لهذه الدولة
+              افتح المنهج الكامل
+              لهذه الدولة
             </h2>
             <p className="mt-3 leading-8 text-[#655e54]">
-              يمكنك استخدام مستكشف
-              المناهج التفاعلي الآن،
-              وسيظهر هنا المحتوى
-              الفريد بعد اعتماده
-              للنشر والفهرسة.
+              يعرض مستكشف ضاديوم
+              جميع المناهج والصفوف
+              المتاحة لهذه الدولة،
+              بينما تجمع هذه الصفحة
+              الروابط المباشرة للدروس
+              ذات المحتوى الفريد.
             </p>
             <Link
               href="/courses"
