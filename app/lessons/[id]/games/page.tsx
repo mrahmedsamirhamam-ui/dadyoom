@@ -1,8 +1,13 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { createClient } from "@/lib/supabase/server";
 
 import LessonGamesClient from "./LessonGamesClient";
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: true },
+};
 
 export default async function LessonGamesPage({
   params,
