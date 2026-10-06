@@ -7,8 +7,11 @@ import {
   SUPABASE_PUBLIC_URL,
 } from "@/lib/supabase/public-config";
 
-const LEGACY_PUBLIC_HOST =
-  "dadyoom.mrahmedsamirhamam.workers.dev";
+const LEGACY_PUBLIC_HOSTS =
+  new Set([
+    "dadyoom.mrahmedsamirhamam.workers.dev",
+    "dadyoom.pages.dev",
+  ]);
 
 const CANONICAL_PUBLIC_HOST =
   "dadyoom.dpdns.org";
@@ -125,7 +128,7 @@ export async function proxy(
       .toLowerCase();
 
   if (
-    host === LEGACY_PUBLIC_HOST &&
+    LEGACY_PUBLIC_HOSTS.has(host) &&
     isPublicSeoPath(pathname)
   ) {
     const canonical =
