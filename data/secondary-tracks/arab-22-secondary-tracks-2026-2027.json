@@ -1064,7 +1064,12 @@
           "tracks": [
             {
               "nameAr": "الشرعي",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             }
           ]
         },
@@ -1073,15 +1078,30 @@
           "tracks": [
             {
               "nameAr": "الصناعية",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "التجارية",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "النسوية",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             }
           ]
         }
@@ -1090,7 +1110,7 @@
         "https://moed.gov.sy/",
         "https://moed.gov.sy/news/11233"
       ],
-      "lessonCoverage": "book-level-general-branch-grade-scoped"
+      "lessonCoverage": "book-level-stage-scoped"
     },
     {
       "code": "IQ",
@@ -1524,35 +1544,59 @@
           "tracks": [
             {
               "nameAr": "A1",
-              "status": "current-national-exam-evidence"
+              "status": "current-national-exam-evidence",
+              "grades": [
+                12
+              ]
             },
             {
               "nameAr": "A2",
-              "status": "current-national-exam-evidence"
+              "status": "current-national-exam-evidence",
+              "grades": [
+                12
+              ]
             },
             {
               "nameAr": "A4",
-              "status": "current-national-exam-evidence"
+              "status": "current-national-exam-evidence",
+              "grades": [
+                12
+              ]
             },
             {
               "nameAr": "C",
-              "status": "current-national-exam-evidence"
+              "status": "current-national-exam-evidence",
+              "grades": [
+                12
+              ]
             },
             {
               "nameAr": "D",
-              "status": "current-national-exam-evidence"
+              "status": "current-national-exam-evidence",
+              "grades": [
+                12
+              ]
             },
             {
               "nameAr": "G",
-              "status": "current-national-exam-evidence"
+              "status": "current-national-exam-evidence",
+              "grades": [
+                12
+              ]
             },
             {
               "nameAr": "STI",
-              "status": "current-national-exam-evidence"
+              "status": "current-national-exam-evidence",
+              "grades": [
+                12
+              ]
             },
             {
               "nameAr": "STC",
-              "status": "current-national-exam-evidence"
+              "status": "current-national-exam-evidence",
+              "grades": [
+                12
+              ]
             }
           ]
         }
@@ -1560,7 +1604,7 @@
       "sources": [
         "https://mineducomores.gouv.km/"
       ],
-      "lessonCoverage": "structure-only"
+      "lessonCoverage": "national-exam-series-terminal-grade-scoped"
     }
   ]
 }
