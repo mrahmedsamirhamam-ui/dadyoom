@@ -215,7 +215,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          BASE="https://dadyoom.mrahmedsamirhamam.workers.dev"
+          BASE="https://dadyoom.dpdns.org"
 
           check_200() {
             local path="$1"
