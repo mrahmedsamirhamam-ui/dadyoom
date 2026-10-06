@@ -111,12 +111,25 @@ function gradeName(
   );
 }
 
-function stageName(number: number | null): string {
+function isSecondaryGrade(
+  countryCode: string,
+  number: number | null,
+): boolean {
+  const value = Number(number);
+  return countryCode === "SO"
+    ? value >= 9
+    : value >= 10;
+}
+
+function stageName(
+  number: number | null,
+  countryCode = "",
+): string {
   const value = Number(number);
 
   if (value <= 6) return "الابتدائية";
-  if (value <= 9) return "الإعدادية";
-  return "الثانوية";
+  if (isSecondaryGrade(countryCode, value)) return "الثانوية";
+  return "الإعدادية";
 }
 
 function semesterName(value: number): string {
@@ -371,7 +384,7 @@ function CatalogScope({
   ).sort((a, b) => a.name.localeCompare(b.name, "ar"));
 
   const hasSecondaryComplete =
-    gradeNumber >= 10 &&
+    isSecondaryGrade(country, gradeNumber) &&
     curricula.length > 1;
 
   const curriculumId =
@@ -549,7 +562,7 @@ function CatalogScope({
     <>
       <section className="min-w-0 rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-4 sm:p-6">
         <div className="grid min-w-0 gap-3 sm:grid-cols-2 lg:grid-cols-5">
-          {gradeNumber >= 10 ? (
+          {isSecondaryGrade(country, gradeNumber) ? (
             <SelectBox
               label="المسار الثانوي"
               value={track}
@@ -587,7 +600,7 @@ function CatalogScope({
 
           <SelectBox
             label={
-              gradeNumber >= 10
+              isSecondaryGrade(country, gradeNumber)
                 ? "المحتوى / المقرر"
                 : "المنهج"
             }
@@ -667,7 +680,7 @@ function CatalogScope({
             {countryName}
           </span>
           <span className="rounded-full bg-[#eef4f0] px-3 py-2">
-            المرحلة {stageName(gradeNumber)}
+            المرحلة {stageName(gradeNumber, country)}
           </span>
           <span className="rounded-full bg-[#eef4f0] px-3 py-2">
             {gradeName(gradeNumber)}
