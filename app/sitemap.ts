@@ -71,7 +71,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           "SEO_SITEMAP_COURSES_FAILED",
           error.message,
         );
-        break;
+        throw new Error(
+          `SEO_SITEMAP_COURSES_FAILED:${error.message}`,
+        );
       }
 
       const batch =
@@ -104,7 +106,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           "SEO_SITEMAP_LESSONS_FAILED",
           error.message,
         );
-        break;
+        throw new Error(
+          `SEO_SITEMAP_LESSONS_FAILED:${error.message}`,
+        );
       }
 
       const batch =
