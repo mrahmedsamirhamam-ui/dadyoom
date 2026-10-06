@@ -30,51 +30,59 @@
             {
               "nameAr": "التعليم الديني",
               "status": "active",
-              "arabicPolicy": "partly-shared-with-unified",
+              "arabicPolicy": "current-detailed-plan-imported-plus-shared-courses",
               "grades": [
                 10,
                 11,
                 12
-              ]
+              ],
+              "sourceUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan4.pdf"
             },
             {
               "nameAr": "التعليم الفني والمهني",
               "status": "active",
-              "arabicPolicy": "needs-detailed-current-arabic-plan",
+              "arabicPolicy": "current-detailed-plan-imported",
               "grades": [
                 10,
                 11,
                 12
-              ]
+              ],
+              "sourceUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan3.pdf"
             },
             {
               "nameAr": "المسار الإداري والتكنولوجي - الهندسي",
               "status": "active",
-              "arabicPolicy": "needs-detailed-current-arabic-plan",
+              "arabicPolicy": "current-detailed-plan-imported",
               "grades": [
                 10,
                 11,
                 12
-              ]
+              ],
+              "sourceUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan5.pdf"
             },
             {
               "nameAr": "التعليم المستمر",
               "status": "active",
-              "arabicPolicy": "needs-detailed-current-arabic-plan",
+              "arabicPolicy": "current-detailed-plan-available-nonstandard-levels",
               "grades": [
                 10,
                 11,
                 12
-              ]
+              ],
+              "sourceUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan6.pdf"
             }
           ]
         }
       ],
       "sources": [
         "https://edunet.bh/Econtent/LessonsGuide",
-        "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf"
+        "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+        "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan3.pdf",
+        "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan4.pdf",
+        "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan5.pdf",
+        "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan6.pdf"
       ],
-      "lessonCoverage": "partial-current-semester-grade-scoped"
+      "lessonCoverage": "mixed-detailed-current-semester-1"
     },
     {
       "code": "EG",
