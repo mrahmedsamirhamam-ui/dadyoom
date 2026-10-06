@@ -20,8 +20,7 @@ where l.unit_id = u.id
   );
 
 update public.units u
-set semester = 1,
-    updated_at = now()
+set semester = 1
 from public.grades g
 join public.curricula cur on cur.id = g.curriculum_id
 join public.countries c on c.id = cur.country_id
