@@ -95,7 +95,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     for (let from = 0; ; from += pageSize) {
       const { data, error } = await db
-        .from("seo_indexable_lessons")
+        .from("seo_indexable_lessons_fast")
         .select("id,slug,updated_at")
         .order("id", { ascending: true })
         .range(from, from + pageSize - 1);
