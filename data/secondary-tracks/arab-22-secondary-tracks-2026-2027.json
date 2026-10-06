@@ -20,27 +20,52 @@
             {
               "nameAr": "توحيد المسارات",
               "status": "active",
-              "arabicPolicy": "specific-or-shared-by-course"
+              "arabicPolicy": "specific-or-shared-by-course",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "التعليم الديني",
               "status": "active",
-              "arabicPolicy": "partly-shared-with-unified"
+              "arabicPolicy": "partly-shared-with-unified",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "التعليم الفني والمهني",
               "status": "active",
-              "arabicPolicy": "needs-detailed-current-arabic-plan"
+              "arabicPolicy": "needs-detailed-current-arabic-plan",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "المسار الإداري والتكنولوجي - الهندسي",
               "status": "active",
-              "arabicPolicy": "needs-detailed-current-arabic-plan"
+              "arabicPolicy": "needs-detailed-current-arabic-plan",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "التعليم المستمر",
               "status": "active",
-              "arabicPolicy": "needs-detailed-current-arabic-plan"
+              "arabicPolicy": "needs-detailed-current-arabic-plan",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             }
           ]
         }
@@ -49,7 +74,7 @@
         "https://edunet.bh/Econtent/LessonsGuide",
         "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf"
       ],
-      "lessonCoverage": "partial"
+      "lessonCoverage": "partial-current-semester-grade-scoped"
     },
     {
       "code": "EG",
