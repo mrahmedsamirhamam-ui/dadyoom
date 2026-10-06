@@ -415,6 +415,7 @@ export default async function LessonPage({
             </div>
             <Link
               href={`/lessons/${lesson.id}/games`}
+              rel="nofollow"
               className="dadyoom-arabic-button rounded-2xl px-5 py-3 text-center font-black text-white"
             >
               افتح الألعاب
@@ -433,6 +434,7 @@ export default async function LessonPage({
             </div>
             <Link
               href={`/lessons/${lesson.id}/study`}
+              rel="nofollow"
               className="rounded-2xl bg-[#173f38] px-5 py-3 text-center font-black text-white"
             >
               افتح استوديو الدرس
@@ -455,6 +457,7 @@ export default async function LessonPage({
             </div>
             <Link
               href={`/lessons/${lesson.id}/video`}
+              rel="nofollow"
               className="rounded-2xl bg-[#b5842b] px-5 py-3 text-center font-black text-white"
             >
               شاهد الفيديو
@@ -465,6 +468,7 @@ export default async function LessonPage({
         <div>
           <Link
             href="/student"
+              rel="nofollow"
             className="text-sm font-semibold text-emerald-700 hover:underline"
           >
             العودة إلى لوحة الطالب
@@ -807,6 +811,7 @@ export default async function LessonPage({
 
 <Link
 href={`/assessment/${lesson.id}`}
+              rel="nofollow"
 className="mt-5 inline-flex rounded-xl bg-emerald-600 px-6 py-3 font-bold text-white"
 >
 ابدأ الاختبار الذكي
