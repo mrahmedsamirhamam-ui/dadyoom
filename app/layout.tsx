@@ -73,15 +73,9 @@ export const metadata: Metadata = {
   },
   description: SITE_DESCRIPTION,
   category: "education",
-  alternates: {
-    languages: {
-      ar: "/",
-    },
-  },
   openGraph: {
     type: "website",
     locale: "ar_AR",
-    url: "/",
     siteName: `${SITE_NAME} ${SITE_NAME_LATIN}`,
     title: `${SITE_NAME} ${SITE_NAME_LATIN} | ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
