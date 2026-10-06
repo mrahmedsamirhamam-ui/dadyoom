@@ -831,20 +831,30 @@
           "tracks": [
             {
               "nameAr": "المساق العلمي",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "المساق الأدبي",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             }
           ]
         }
       ],
       "sources": [
         "https://gmoe.gov.sd/?page_id=1343",
-        "https://mdl.edu.sd/"
+        "https://mdl.edu.sd/",
+        "https://gmoe.gov.sd/?page_id=2251",
+        "https://gmoe.gov.sd/wp-content/uploads/2025/08/%D8%AF%D9%84%D9%8A%D9%84-%D8%A7%D9%85%D8%AA%D8%AD%D8%A7%D9%86%D8%A7%D8%AA-%D8%A7%D9%84%D8%B4%D9%87%D8%A7%D8%AF%D8%A9-%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%88%D9%8A%D8%A9-2025%D9%85.pdf"
       ],
-      "lessonCoverage": "partial-detailed"
+      "lessonCoverage": "partial-detailed-grade-scoped"
     },
     {
       "code": "QA",
