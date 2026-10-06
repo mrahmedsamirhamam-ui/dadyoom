@@ -759,59 +759,115 @@
           "tracks": [
             {
               "nameAr": "الآداب",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "العلوم الإنسانية",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "العلوم الرياضية أ",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "العلوم الرياضية ب",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "علوم الحياة والأرض",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "العلوم الفيزيائية",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "العلوم الاقتصادية والتدبير",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "علوم التدبير المحاسباتي",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "العلوم والتكنولوجيات الميكانيكية",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "العلوم والتكنولوجيات الكهربائية",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "الفنون التطبيقية",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "مسالك البكالوريا المهنية",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "العلوم الزراعية",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "العلوم الشرعية",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             }
           ]
         }
@@ -820,7 +876,7 @@
         "https://www.men.gov.ma/",
         "https://telmidtice.men.gov.ma/"
       ],
-      "lessonCoverage": "partial-digital-course"
+      "lessonCoverage": "partial-digital-course-post-common-core"
     },
     {
       "code": "SD",
