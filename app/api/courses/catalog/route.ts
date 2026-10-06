@@ -78,6 +78,15 @@ type TrackUnit = {
   unit_id: string;
 };
 
+type TrackTerm = {
+  secondary_track_id: string;
+  semester: number;
+  publication_status: string;
+  detail_status: string;
+  source_url: string | null;
+  audited_at: string;
+};
+
 function difficulty(
   grade: number | null,
 ) {
@@ -235,6 +244,7 @@ export async function GET(
   let selectedSecondaryTrack: SecondaryTrack | null = null;
   let allowedCurriculumIds: Set<string> | null = null;
   let allowedOfficialUnitIds: Set<string> | null = null;
+  let secondaryTrackTerms: TrackTerm[] = [];
 
   if (gradeNumber >= 10) {
     const {
@@ -259,6 +269,27 @@ export async function GET(
         track.grades.length === 0 ||
         track.grades.includes(gradeNumber),
     );
+
+    const trackIds = secondaryTracks.map((track) => track.id);
+
+    if (trackIds.length > 0) {
+      const {
+        data: termRows,
+        error: termError,
+      } = await supabase
+        .from("secondary_track_terms")
+        .select("secondary_track_id,semester,publication_status,detail_status,source_url,audited_at")
+        .in("secondary_track_id", trackIds)
+        .eq("academic_year", "2026-2027")
+        .order("semester", { ascending: true })
+        .limit(240);
+
+      if (termError) {
+        return errorResponse("secondary_track_terms", termError);
+      }
+
+      secondaryTrackTerms = (termRows ?? []) as TrackTerm[];
+    }
 
     if (requestedTrackId) {
       selectedSecondaryTrack =
@@ -926,6 +957,15 @@ export async function GET(
           ? track.official_semesters.map(Number)
           : [],
         supportingLessons: Number(track.supporting_lessons ?? 0),
+        terms: secondaryTrackTerms
+          .filter((term) => term.secondary_track_id === track.id)
+          .map((term) => ({
+            semester: Number(term.semester),
+            publicationStatus: term.publication_status,
+            detailStatus: term.detail_status,
+            sourceUrl: term.source_url,
+            auditedAt: term.audited_at,
+          })),
       })),
       selectedTrackId: requestedTrackId || null,
     },
