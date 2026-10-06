@@ -16,6 +16,9 @@ jobs:
     timeout-minutes: 20
 
     steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
       - name: Resolve expected SHA
         id: source
         shell: bash
@@ -211,6 +214,14 @@ jobs:
           fi
 
           echo "SEO_LESSON_METADATA=PASS url=$lesson_url"
+
+      - name: Submit sitemap to IndexNow
+        shell: bash
+        env:
+          DADYOOM_INDEXNOW_SITE: https://dadyoom.dpdns.org
+        run: |
+          set -euo pipefail
+          node scripts/submit-indexnow.mjs
 
       - name: Verify legacy public hosts consolidate to canonical
         shell: bash
