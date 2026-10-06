@@ -5,8 +5,8 @@ export const metadata = {
     "مكتبة 500 فيديو عربي | ضاديوم",
   description:
     "مكتبة فيديو متنوعة لتعلم العربية للعرب ولغير الناطقين بها من مصادر YouTube تعليمية متعددة.",
-};
   alternates: { canonical: "/courses/video-library" },
+};
 
 export const dynamic =
   "force-static";
