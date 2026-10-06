@@ -34,6 +34,7 @@ const structuredData = [
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${siteUrl}/#website`,
     name: SITE_NAME,
     alternateName: [
       SITE_NAME_LATIN,
@@ -43,10 +44,14 @@ const structuredData = [
     url: siteUrl,
     description: SITE_DESCRIPTION,
     inLanguage: "ar",
+    publisher: {
+      "@id": `${siteUrl}/#organization`,
+    },
   },
   {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
+    "@id": `${siteUrl}/#organization`,
     name: SITE_NAME,
     alternateName: [
       SITE_NAME_LATIN,
@@ -55,6 +60,7 @@ const structuredData = [
     ],
     url: siteUrl,
     description: SITE_DESCRIPTION,
+    logo: `${siteUrl}/pwa/icon-512.png`,
   },
 ];
 
