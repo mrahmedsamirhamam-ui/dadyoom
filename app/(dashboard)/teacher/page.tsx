@@ -131,8 +131,15 @@ export default async function TeacherPage() {
             count: "estimated",
           },
         )
+        .eq(
+          "created_by",
+          user.id,
+        )
         .order(
-          "lesson_number"
+          "updated_at",
+          {
+            ascending: false,
+          },
         )
         .limit(8),
     ]);
