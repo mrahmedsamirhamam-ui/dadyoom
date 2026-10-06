@@ -950,6 +950,95 @@ async function secondaryCurriculumCoverageGate() {
   console.log(
     "E2E_SECONDARY_CURRICULUM_COVERAGE=PASS COUNTRIES=22 G10=PASS G11=PASS G12=PASS G13=TN,MR MIN_CORE=18",
   );
+
+  /*
+   * Per-track gate: country/grade aggregate coverage alone can hide a missing
+   * official branch behind another branch in the same country. Require every
+   * registered active track to have the Dadyoom supporting core, and require
+   * official detail unless the registry explicitly records a source-model gap.
+   */
+  const trackCoverage =
+    await admin
+      .from("secondary_track_coverage")
+      .select(
+        "country_code,track_name_ar,grades,status,lesson_coverage,official_units,official_lessons,supporting_lessons",
+      )
+      .eq("academic_year", "2026-2027");
+
+  if (trackCoverage.error) {
+    throw trackCoverage.error;
+  }
+
+  const trackRows =
+    trackCoverage.data ?? [];
+
+  const trackCountries =
+    new Set(
+      trackRows.map(row =>
+        String(row.country_code ?? "").trim().toUpperCase(),
+      ),
+    );
+
+  gate(
+    trackCountries.size === 22,
+    `E2E_SECONDARY_TRACK_COUNTRY_COUNT_FAILED:${trackCountries.size}/22`,
+  );
+
+  const missingCore =
+    trackRows.filter(
+      row =>
+        Number(row.supporting_lessons ?? 0) < 18,
+    );
+
+  gate(
+    missingCore.length === 0,
+    `E2E_SECONDARY_TRACK_CORE_FAILED:${missingCore
+      .map(row =>
+        `${row.country_code}:${row.track_name_ar}[supporting=${row.supporting_lessons}]`,
+      )
+      .join(",")}`,
+  );
+
+  const explicitOfficialGap = row => {
+    const coverage =
+      String(row.lesson_coverage ?? "");
+
+    return (
+      coverage ===
+        "current-detailed-source-nonstandard-levels" ||
+      coverage ===
+        "awaiting-current-official-detail"
+    );
+  };
+
+  const missingOfficial =
+    trackRows.filter(
+      row =>
+        Number(row.official_lessons ?? 0) < 1 &&
+        !explicitOfficialGap(row),
+    );
+
+  gate(
+    missingOfficial.length === 0,
+    `E2E_SECONDARY_TRACK_OFFICIAL_FAILED:${missingOfficial
+      .map(row =>
+        `${row.country_code}:${row.track_name_ar}[coverage=${row.lesson_coverage}]`,
+      )
+      .join(",")}`,
+  );
+
+  const explicitPending =
+    trackRows.filter(
+      row =>
+        Number(row.official_lessons ?? 0) < 1 &&
+        explicitOfficialGap(row),
+    );
+
+  console.log(
+    `E2E_SECONDARY_TRACK_COVERAGE=PASS TRACKS=${trackRows.length} COUNTRIES=22 CORE_MIN=18 OFFICIAL_EXPLICIT_PENDING=${explicitPending
+      .map(row => `${row.country_code}:${row.track_name_ar}`)
+      .join("|") || "NONE"}`,
+  );
 }
 
 function gate(condition, message) {

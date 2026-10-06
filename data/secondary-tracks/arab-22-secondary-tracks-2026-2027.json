@@ -20,12 +20,13 @@
             {
               "nameAr": "توحيد المسارات",
               "status": "active",
-              "arabicPolicy": "specific-or-shared-by-course",
+              "arabicPolicy": "current-detailed-plan-imported",
               "grades": [
                 10,
                 11,
                 12
-              ]
+              ],
+              "sourceUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf"
             },
             {
               "nameAr": "التعليم الديني",
@@ -348,7 +349,9 @@
                 10,
                 11,
                 12
-              ]
+              ],
+              "detailStatus": "awaiting-current-official-detail",
+              "sourceUrl": "https://cerc.moe.gov.ly/"
             }
           ]
         }
@@ -356,7 +359,7 @@
       "sources": [
         "https://cerc.moe.gov.ly/educational-curricul/"
       ],
-      "lessonCoverage": "partial"
+      "lessonCoverage": "mixed-with-explicit-religious-source-gap"
     },
     {
       "code": "PS",
