@@ -28,6 +28,7 @@ const rows = Array.isArray(registry.countries)
 const seen = new Set();
 const failures = [];
 let trackCount = 0;
+let gradeScopedTrackCount = 0;
 
 for (const row of rows) {
   const code = String(row?.code ?? "").trim();
@@ -74,6 +75,30 @@ for (const row of rows) {
         continue;
       }
 
+      const grades =
+        Array.isArray(track?.grades)
+          ? track.grades.map(Number)
+          : [];
+
+      if (grades.length === 0) {
+        failures.push(
+          `NO_GRADE_SCOPE=${code}:${nameAr}`,
+        );
+      } else if (
+        grades.some(
+          (grade) =>
+            !Number.isInteger(grade) ||
+            grade < 9 ||
+            grade > 13,
+        )
+      ) {
+        failures.push(
+          `INVALID_GRADE_SCOPE=${code}:${nameAr}:${JSON.stringify(grades)}`,
+        );
+      } else {
+        gradeScopedTrackCount += 1;
+      }
+
       countryTracks += 1;
       trackCount += 1;
     }
@@ -92,8 +117,15 @@ for (const code of expected.keys()) {
 
 console.log(`SECONDARY_TRACK_COUNTRIES=${seen.size}/${expected.size}`);
 console.log(`SECONDARY_TRACKS_REGISTERED=${trackCount}`);
+console.log(
+  `SECONDARY_TRACKS_GRADE_SCOPED=${gradeScopedTrackCount}/${trackCount}`,
+);
 
-if (seen.size !== expected.size || failures.length > 0) {
+if (
+  seen.size !== expected.size ||
+  gradeScopedTrackCount !== trackCount ||
+  failures.length > 0
+) {
   for (const failure of failures) {
     console.error(failure);
   }
@@ -102,6 +134,7 @@ if (seen.size !== expected.size || failures.length > 0) {
 }
 
 console.log("SECONDARY_TRACK_REGISTRY_GATE=PASS");
+console.log("SECONDARY_TRACK_GRADE_SCOPE_GATE=PASS");
 console.log(
   "SECONDARY_TRACK_LESSON_COMPLETENESS=SEPARATE_GATE_REQUIRED",
 );
