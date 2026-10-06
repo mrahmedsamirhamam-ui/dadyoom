@@ -115,5 +115,8 @@
     "protobufjs": true,
     "unrs-resolver": true,
     "workerd": true
+  },
+  "overrides": {
+    "sharp": "0.35.5"
   }
 }
