@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
     data: seoLesson,
     error: seoError,
   } = await supabase
-    .from("seo_indexable_lessons")
+    .from("seo_indexable_lessons_fast")
     .select("title,summary,country_name,grade_name,unit_title")
     .eq("id", id)
     .maybeSingle();
