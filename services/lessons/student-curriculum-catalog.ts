@@ -5,6 +5,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 
 export type StudentCatalogLesson = {
   id: string; title: string; objective: string | null;
+  semester: number | null;
   estimatedMinutes: number; difficulty: "beginner" | "intermediate" | "advanced";
   points: number; order: number; completed: boolean; progressPercent: number;
 };
@@ -20,6 +21,7 @@ export type StudentCatalogUnit = {
 
 type RawLesson = {
   id: string; title: string; summary: string | null;
+  semester: number | null;
   estimated_minutes: number | null; lesson_number: number | null;
   sort_order: number | null; status: string;
 };
@@ -100,7 +102,7 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
         countries!inner(id,code,name_ar,is_active)
       )
     ),
-    lessons(id,title,summary,estimated_minutes,lesson_number,sort_order,status)
+    lessons(id,title,summary,semester,estimated_minutes,lesson_number,sort_order,status)
   `);
 
   if (error) throw new Error(`تعذر تحميل المناهج: ${error.message}`);
@@ -151,6 +153,7 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
           id: lesson.id,
           title: lesson.title,
           objective: lesson.summary,
+          semester: lesson.semester == null ? null : Number(lesson.semester),
           estimatedMinutes: Number(lesson.estimated_minutes ?? 20),
           difficulty: level(grade.grade_number),
           points: Math.max(10, Number(p?.xp ?? 0)),
