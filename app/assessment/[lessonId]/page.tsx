@@ -5,7 +5,7 @@ import LessonAssessment from "@/features/assessment/components/LessonAssessment"
 import { getLessonById } from "@/features/lessons/queries/getLessonById";
 
 export const metadata: Metadata = {
-  robots: { index: false, follow: true },
+  robots: { index: false, follow: false },
 };
 
 type AssessmentPageProps = {
