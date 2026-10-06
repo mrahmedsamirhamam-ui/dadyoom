@@ -39,9 +39,81 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
   const { id } = await params;
   const supabase = await createClient();
 
-  const { data, error } = await supabase
+  const {
+    data: seoLesson,
+    error: seoError,
+  } = await supabase
+    .from("seo_indexable_lessons")
+    .select("title,summary,country_name,grade_name,unit_title")
+    .eq("id", id)
+    .maybeSingle();
+
+  if (!seoError && seoLesson) {
+    const title =
+      seoLesson.title?.trim() ||
+      "درس العربية";
+
+    const context =
+      [
+        seoLesson.country_name,
+        seoLesson.grade_name,
+      ]
+        .filter(Boolean)
+        .join("، ");
+
+    const seoTitle =
+      context
+        ? `${title} – ${context}`
+        : title;
+
+    const baseDescription =
+      seoLesson.summary?.trim() ||
+      `تعلّم ${title} في ضاديوم من خلال المحتوى والأنشطة والأسئلة التفاعلية.`;
+
+    const description =
+      (
+        context
+          ? `${baseDescription} — ${context}.`
+          : baseDescription
+      ).slice(0, 170);
+
+    return {
+      title: seoTitle,
+      description,
+      alternates: {
+        canonical:
+          `/lessons/${id}`,
+      },
+      robots: {
+        index: true,
+        follow: true,
+      },
+      openGraph: {
+        type: "article",
+        url: `/lessons/${id}`,
+        title: seoTitle,
+        description,
+      },
+    };
+  }
+
+  if (seoError) {
+    console.error(
+      "SEO_LESSON_INDEXABILITY_LOOKUP_FAILED",
+      {
+        id,
+        message:
+          seoError.message,
+      },
+    );
+  }
+
+  const {
+    data,
+    error,
+  } = await supabase
     .from("lessons")
-    .select("title,summary,slug")
+    .select("title,summary")
     .eq("id", id)
     .eq("status", "published")
     .maybeSingle();
@@ -49,25 +121,37 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
   if (error || !data) {
     return {
       title: "درس العربية",
-      description: SITE_DESCRIPTION,
-      robots: { index: false, follow: true },
+      description:
+        SITE_DESCRIPTION,
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
-  const title = data.title?.trim() || "درس العربية";
-  const isTemplatedCoreLesson =
-    data.slug?.includes("-dadyoom-core-") ?? false;
+  const title =
+    data.title?.trim() ||
+    "درس العربية";
+
   const description =
-    data.summary?.trim().slice(0, 170) ||
+    data.summary?.trim().slice(
+      0,
+      170,
+    ) ||
     `تعلّم ${title} في ضاديوم من خلال المحتوى والأنشطة والأسئلة التفاعلية.`;
 
   return {
     title,
     description,
-    alternates: { canonical: `/lessons/${id}` },
-    robots: isTemplatedCoreLesson
-      ? { index: false, follow: false }
-      : { index: true, follow: true },
+    alternates: {
+      canonical:
+        `/lessons/${id}`,
+    },
+    robots: {
+      index: false,
+      follow: false,
+    },
     openGraph: {
       type: "article",
       url: `/lessons/${id}`,
