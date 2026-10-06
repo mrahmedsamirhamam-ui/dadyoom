@@ -1012,6 +1012,18 @@ function CatalogScope({
                       {lesson.title}
                     </h3>
 
+                    {lesson.officialContentScope ===
+                    "official-book-unscheduled" ? (
+                      <span className="mt-2 inline-flex rounded-full bg-[#fff4df] px-2.5 py-1 text-[10px] font-black text-[#7d5b1d]">
+                        محتوى كتاب رسمي — غير مصنف كمقرر حاليًا
+                      </span>
+                    ) : lesson.officialContentScope ===
+                      "plan-scheduled" ? (
+                      <span className="mt-2 inline-flex rounded-full bg-[#e8f7ee] px-2.5 py-1 text-[10px] font-black text-[#245b3a]">
+                        مقرر في الخطة الرسمية الحالية
+                      </span>
+                    ) : null}
+
                     <p className="mt-2 line-clamp-2 break-words text-sm leading-7 text-[#766c60]">
                       {lesson.objective ??
                         "درس عربي تفاعلي ضمن مسارك."}
