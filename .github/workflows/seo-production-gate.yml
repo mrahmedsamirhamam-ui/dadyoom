@@ -112,13 +112,13 @@ jobs:
               printf '%s' "$sitemap" |
                 grep -oE '<loc>[^<]+' |
                 sed 's#<loc>##' |
-                head -n 20
+                sed -n '1,20p'
 
               printf '%s' "$sitemap" |
                 grep -oE '<loc>[^<]+' |
                 sed 's#<loc>##' |
                 grep '/lessons/' |
-                head -n 20
+                sed -n '1,20p'
             } |
               awk '!seen[$0]++'
           )
@@ -155,17 +155,17 @@ jobs:
 
             html="$(curl --silent --show-error --location --max-time 30               -H "User-Agent: Googlebot" "$BASE$path")"
 
-            if ! printf '%s' "$html" | grep -Fq "<title>$expected_title"; then
+            if ! grep -Fq "<title>$expected_title" <<<"$html"; then
               echo "SEO_PAGE_TITLE=FAIL path=$path expected=$expected_title"
               exit 1
             fi
 
-            if ! printf '%s' "$html" | grep -Fq "href=\"$BASE$expected_canonical\""; then
+            if ! grep -Fq "href=\"$BASE$expected_canonical\"" <<<"$html"; then
               echo "SEO_PAGE_CANONICAL=FAIL path=$path expected=$BASE$expected_canonical"
               exit 1
             fi
 
-            if ! printf '%s' "$html" | grep -Eiq '<meta[^>]+name="robots"[^>]+content="[^"]*index[^"]*follow'; then
+            if ! grep -Eiq '<meta[^>]+name="robots"[^>]+content="[^"]*index[^"]*follow' <<<"$html"; then
               echo "SEO_PAGE_ROBOTS=FAIL path=$path"
               exit 1
             fi
@@ -200,12 +200,12 @@ jobs:
 
           html="$(curl --silent --show-error --location --max-time 30             -H "User-Agent: Googlebot" "$lesson_url")"
 
-          if ! printf '%s' "$html" | grep -Fq 'rel="canonical"'; then
+          if ! grep -Fq 'rel="canonical"' <<<"$html"; then
             echo "SEO_LESSON_METADATA=FAIL_CANONICAL url=$lesson_url"
             exit 1
           fi
 
-          if printf '%s' "$html" | grep -Eiq '<meta[^>]+name="robots"[^>]+content="[^"]*noindex'; then
+          if grep -Eiq '<meta[^>]+name="robots"[^>]+content="[^"]*noindex' <<<"$html"; then
             echo "SEO_LESSON_METADATA=FAIL_NOINDEX url=$lesson_url"
             exit 1
           fi
