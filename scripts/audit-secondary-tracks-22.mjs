@@ -29,6 +29,7 @@ const seen = new Set();
 const failures = [];
 let trackCount = 0;
 let gradeScopedTrackCount = 0;
+let nonStandardScopedTrackCount = 0;
 
 for (const row of rows) {
   const code = String(row?.code ?? "").trim();
@@ -80,10 +81,28 @@ for (const row of rows) {
           ? track.grades.map(Number)
           : [];
 
+      const nonStandardLevels =
+        Array.isArray(track?.nonStandardLevels)
+          ? track.nonStandardLevels
+              .map((level) => String(level ?? "").trim())
+              .filter(Boolean)
+          : [];
+
       if (grades.length === 0) {
-        failures.push(
-          `NO_GRADE_SCOPE=${code}:${nameAr}`,
-        );
+        if (
+          nonStandardLevels.length > 0 &&
+          String(track?.detailStatus ?? "").trim() ===
+            "current-detailed-source-nonstandard-levels"
+        ) {
+          nonStandardScopedTrackCount += 1;
+          console.log(
+            `NONSTANDARD_LEVEL_SCOPE=${code}:${nameAr}:${nonStandardLevels.join("|")}`,
+          );
+        } else {
+          failures.push(
+            `NO_GRADE_SCOPE=${code}:${nameAr}`,
+          );
+        }
       } else if (
         grades.some(
           (grade) =>
@@ -120,10 +139,13 @@ console.log(`SECONDARY_TRACKS_REGISTERED=${trackCount}`);
 console.log(
   `SECONDARY_TRACKS_GRADE_SCOPED=${gradeScopedTrackCount}/${trackCount}`,
 );
+console.log(
+  `SECONDARY_TRACKS_NONSTANDARD_SCOPED=${nonStandardScopedTrackCount}/${trackCount}`,
+);
 
 if (
   seen.size !== expected.size ||
-  gradeScopedTrackCount !== trackCount ||
+  gradeScopedTrackCount + nonStandardScopedTrackCount !== trackCount ||
   failures.length > 0
 ) {
   for (const failure of failures) {
