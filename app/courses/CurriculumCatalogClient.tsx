@@ -771,6 +771,16 @@ function CatalogScope({
               تم استيراد الجزء الرسمي المتاح لهذا الفصل
             </span>
           ) : null}
+          {selectedTermStatus?.sourceUrl ? (
+            <a
+              href={selectedTermStatus.sourceUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full bg-[#f3ecff] px-3 py-2 text-[#523b79] underline decoration-dotted underline-offset-4"
+            >
+              المصدر الرسمي لهذا الفصل
+            </a>
+          ) : null}
           {selectedTrackOption ? (
             <>
               <span className="rounded-full bg-[#e8f3ff] px-3 py-2">
