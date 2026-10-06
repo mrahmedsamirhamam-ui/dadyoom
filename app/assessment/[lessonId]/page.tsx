@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import LessonAssessment from "@/features/assessment/components/LessonAssessment";
 import { getLessonById } from "@/features/lessons/queries/getLessonById";
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: true },
+};
 
 type AssessmentPageProps = {
   params: Promise<{
