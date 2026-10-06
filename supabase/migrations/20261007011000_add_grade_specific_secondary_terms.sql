@@ -90,8 +90,6 @@ select
   st.system_name_ar as system,
   scoped_grade.grade,
   st.track_name_ar as track,
-  st.status,
-  st.official_unit_scope,
   st.academic_year,
   coalesce(official_stats.official_semesters, '{}'::smallint[]) as official_semesters,
   coalesce(official_stats.official_curricula, 0)::integer as official_curricula,
@@ -169,7 +167,9 @@ select
       then 'COMPLETE'
     else 'PARTIAL'
   end as audit_status,
-  st.lesson_coverage
+  st.lesson_coverage,
+  st.status,
+  st.official_unit_scope
 from public.secondary_tracks st
 cross join lateral (
   select grade
