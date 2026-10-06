@@ -139,6 +139,27 @@ function semesterName(value: number): string {
   return `الفصل الدراسي ${value}`;
 }
 
+function trackStatusLabel(status: string): string {
+  switch (status) {
+    case "active":
+      return "";
+    case "pilot-active":
+      return " — تجريبي حالي";
+    case "future-after-foundation":
+      return " — يبدأ بعد سنة التأسيس";
+    case "legacy-no-new-intake":
+      return " — مسار قديم بلا قبول جديد";
+    case "transition-or-limited":
+      return " — انتقالي/محدود";
+    case "new-or-reorganized-2026-2027":
+      return " — جديد/معاد تنظيمه";
+    case "current-national-exam-evidence":
+      return " — مثبت بامتحان وطني";
+    default:
+      return status ? ` — ${status}` : "";
+  }
+}
+
 function curriculumName(name: string): string {
   return name
     .replace(/^اللغة العربية\s*[—-]\s*/u, "")
@@ -570,7 +591,7 @@ function CatalogScope({
                 ["", "كل المسارات الرسمية المتاحة"],
                 ...tracks.map((item) => [
                   item.id,
-                  `${item.name} — ${item.systemName}`,
+                  `${item.name} — ${item.systemName}${trackStatusLabel(item.status)}`,
                 ]),
               ]}
               onChange={(value) => {
@@ -688,6 +709,9 @@ function CatalogScope({
           {track ? (
             <span className="rounded-full bg-[#fff2d5] px-3 py-2">
               {selectedTrackOption?.name ?? "المسار المختار"}
+              {selectedTrackOption
+                ? trackStatusLabel(selectedTrackOption.status)
+                : ""}
             </span>
           ) : null}
           {selectedSemester ? (
