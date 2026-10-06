@@ -17,6 +17,21 @@ type Props = {
   countries: CountryOption[];
 };
 
+type CurriculumTermStatus = {
+  semester: number;
+  publicationStatus: string;
+  detailStatus: string;
+  sourceUrl: string | null;
+  auditedAt: string;
+};
+
+type CurriculumStatusOption = {
+  id: string;
+  name: string;
+  academicYear: string | null;
+  terms: CurriculumTermStatus[];
+};
+
 type SecondaryTrackOption = {
   id: string;
   systemName: string;
@@ -28,19 +43,18 @@ type SecondaryTrackOption = {
   unclassifiedOfficialLessons: number;
   officialSemesters: number[];
   supportingLessons: number;
-  terms: Array<{
-    semester: number;
-    publicationStatus: string;
-    detailStatus: string;
-    sourceUrl: string | null;
-    auditedAt: string;
-  }>;
+  terms: CurriculumTermStatus[];
 };
 
 type CatalogResponse = {
   units?: StudentCatalogUnit[];
   tracks?: SecondaryTrackOption[];
   selectedTrackId?: string | null;
+  error?: string;
+};
+
+type TermStatusResponse = {
+  curricula?: CurriculumStatusOption[];
   error?: string;
 };
 
@@ -345,6 +359,7 @@ function CatalogScope({
 }) {
   const [units, setUnits] = useState<StudentCatalogUnit[]>([]);
   const [tracks, setTracks] = useState<SecondaryTrackOption[]>([]);
+  const [curriculumStatuses, setCurriculumStatuses] = useState<CurriculumStatusOption[]>([]);
   const [track, setTrack] = useState("");
   const [year, setYear] = useState("");
   const [curriculum, setCurriculum] = useState("");
@@ -366,15 +381,20 @@ function CatalogScope({
       params.set("track", track);
     }
 
-    void fetch(
-      `/api/courses/catalog?${params.toString()}`,
-      {
-        cache: "no-store",
-        credentials: "include",
-        signal: controller.signal,
-      },
-    )
-      .then(async (response) => {
+    const termParams = new URLSearchParams({
+      country,
+      grade: String(gradeNumber),
+    });
+
+    void Promise.all([
+      fetch(
+        `/api/courses/catalog?${params.toString()}`,
+        {
+          cache: "no-store",
+          credentials: "include",
+          signal: controller.signal,
+        },
+      ).then(async (response) => {
         const payload = (await response.json()) as CatalogResponse;
 
         if (!response.ok) {
@@ -385,12 +405,30 @@ function CatalogScope({
         }
 
         return payload;
-      })
-      .then((payload) => {
+      }),
+      fetch(
+        `/api/courses/term-status?${termParams.toString()}`,
+        {
+          cache: "no-store",
+          credentials: "include",
+          signal: controller.signal,
+        },
+      )
+        .then(async (response) => {
+          if (!response.ok) {
+            return { curricula: [] } as TermStatusResponse;
+          }
+
+          return (await response.json()) as TermStatusResponse;
+        })
+        .catch(() => ({ curricula: [] }) as TermStatusResponse),
+    ])
+      .then(([payload, termPayload]) => {
         if (controller.signal.aborted) return;
 
         setUnits(payload.units ?? []);
         setTracks(payload.tracks ?? []);
+        setCurriculumStatuses(termPayload.curricula ?? []);
         setError("");
         setLoading(false);
       })
@@ -411,11 +449,14 @@ function CatalogScope({
   }, [country, gradeNumber, track, reloadKey]);
 
   const years = [
-    ...new Set(
-      units
+    ...new Set([
+      ...units
         .map((item) => item.curriculum.academicYear)
         .filter((value): value is string => Boolean(value)),
-    ),
+      ...curriculumStatuses
+        .map((item) => item.academicYear)
+        .filter((value): value is string => Boolean(value)),
+    ]),
   ].sort().reverse();
 
   const selectedYear = year || years[0] || "";
@@ -425,15 +466,26 @@ function CatalogScope({
       (item) => item.id === track,
     ) ?? null;
 
-  const curricula = uniq(
-    units
+  const curricula = uniq([
+    ...units
       .filter(
         (item) =>
           !selectedYear ||
           item.curriculum.academicYear === selectedYear,
       )
       .map((item) => item.curriculum),
-  ).sort((a, b) => a.name.localeCompare(b.name, "ar"));
+    ...curriculumStatuses
+      .filter(
+        (item) =>
+          !selectedYear ||
+          item.academicYear === selectedYear,
+      )
+      .map((item) => ({
+        id: item.id,
+        name: item.name,
+        academicYear: item.academicYear,
+      })),
+  ]).sort((a, b) => a.name.localeCompare(b.name, "ar"));
 
   const hasSecondaryComplete =
     isSecondaryGrade(country, gradeNumber) &&
@@ -467,6 +519,19 @@ function CatalogScope({
       ),
   );
 
+  const selectedCurriculumStatus =
+    curriculumId &&
+    curriculumId !== SECONDARY_COMPLETE_ID
+      ? curriculumStatuses.find(
+          (item) => item.id === curriculumId,
+        ) ?? null
+      : null;
+
+  const effectiveTerms =
+    selectedTrackOption?.terms?.length
+      ? selectedTrackOption.terms
+      : selectedCurriculumStatus?.terms ?? [];
+
   const semesterOptions = [
     ...new Set([
       ...curriculumScopedUnits
@@ -479,7 +544,7 @@ function CatalogScope({
         .filter((value): value is number =>
           Number.isInteger(value),
         ),
-      ...(selectedTrackOption?.terms ?? [])
+      ...effectiveTerms
         .map((term) => term.semester)
         .filter((value) =>
           Number.isInteger(value),
@@ -497,7 +562,7 @@ function CatalogScope({
 
   const selectedTermStatus =
     selectedSemester
-      ? selectedTrackOption?.terms.find(
+      ? effectiveTerms.find(
           (term) =>
             term.semester ===
             selectedSemester,
@@ -687,7 +752,7 @@ function CatalogScope({
               ["", "كل الفصول المتاحة"],
               ...semesterOptions.map((value) => {
                 const term =
-                  selectedTrackOption?.terms.find(
+                  effectiveTerms.find(
                     (item) =>
                       item.semester === value,
                   );
@@ -759,6 +824,11 @@ function CatalogScope({
             "published-pending-extraction" ? (
             <span className="rounded-full bg-[#fff4df] px-3 py-2">
               الخطة الرسمية منشورة — تفاصيل الدروس قيد الاستخراج الموثق
+            </span>
+          ) : selectedTermStatus?.detailStatus ===
+            "book-content-pending-extraction" ? (
+            <span className="rounded-full bg-[#fff4df] px-3 py-2">
+              دليل الكتاب الرسمي منشور — محتوى الكتاب قيد الاستخراج الكامل
             </span>
           ) : selectedTermStatus?.detailStatus ===
             "detailed-imported" ? (
@@ -866,10 +936,22 @@ function CatalogScope({
       ) : shown.length === 0 ? (
         <section className="rounded-[2rem] border border-[#dfcfad] bg-white p-8 text-center">
           <h2 className="text-xl font-black text-[#123f39]">
-            لا توجد دروس منشورة لهذا الاختيار حاليًا
+            {selectedTermStatus?.publicationStatus ===
+            "not-published-as-of-audit"
+              ? "غير منشور رسميًا للسنة الحالية حتى آخر مراجعة"
+              : selectedTermStatus?.detailStatus ===
+                  "published-pending-extraction"
+                ? "الخطة الرسمية منشورة — تفاصيل الدروس قيد الاستخراج الموثق"
+                : "لا توجد دروس منشورة لهذا الاختيار حاليًا"}
           </h2>
-          <p className="mt-2 font-bold text-[#766c60]">
-            اختر صفًا آخر أو دولة أخرى من الأعلى.
+          <p className="mt-2 font-bold leading-7 text-[#766c60]">
+            {selectedTermStatus?.detailStatus ===
+            "book-content-pending-extraction"
+              ? "دليل الكتاب الرسمي موجود، ونعمل على استخراج محتوى الكتاب كاملًا دون اختلاق عناوين أو نسبته إلى الخطة قبل نشرها."
+              : selectedTermStatus?.publicationStatus ===
+                  "not-published-as-of-audit"
+                ? "سيظل هذا الفصل ظاهرًا بحالته الحقيقية، ولن ننسب إليه دروسًا على أنها مقررة قبل نشر المصدر الرسمي."
+                : "اختر صفًا أو منهجًا آخر من الأعلى."}
           </p>
         </section>
       ) : (
