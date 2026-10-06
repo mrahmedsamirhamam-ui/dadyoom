@@ -388,7 +388,12 @@ function CatalogScope({
   const semesterOptions = [
     ...new Set(
       curriculumScopedUnits
-        .map((item) => item.semester)
+        .flatMap((item) =>
+          item.lessons.map(
+            (lesson) =>
+              lesson.semester,
+          ),
+        )
         .filter((value): value is number =>
           Number.isInteger(value),
         ),
@@ -404,16 +409,32 @@ function CatalogScope({
       : 0;
 
   const gradeUnits = curriculumScopedUnits
+    .map((item) => {
+      if (!selectedSemester) {
+        return item;
+      }
+
+      const keepUnclassified =
+        isDadyoomCoreCurriculum(
+          item.curriculum.name,
+        );
+
+      return {
+        ...item,
+        lessons: item.lessons.filter(
+          (lesson) =>
+            lesson.semester ===
+              selectedSemester ||
+            (
+              keepUnclassified &&
+              lesson.semester == null
+            ),
+        ),
+      };
+    })
     .filter(
       (item) =>
-        !selectedSemester ||
-        item.semester === selectedSemester ||
-        (
-          item.semester == null &&
-          isDadyoomCoreCurriculum(
-            item.curriculum.name,
-          )
-        ),
+        item.lessons.length > 0,
     )
     .sort((a, b) => {
       if (
