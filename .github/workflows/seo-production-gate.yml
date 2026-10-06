@@ -89,7 +89,7 @@ jobs:
 
           url_count="$(grep -o '<loc>' "$sitemap" | wc -l | tr -d ' ')"
 
-          if (( url_count < 20 || url_count > 50000 )); then
+          if (( url_count < 20 || url_count > 3000 )); then
             echo "SEO_SITEMAP_URL_COUNT=FAIL count=$url_count"
             exit 1
           fi
@@ -108,10 +108,19 @@ jobs:
           sitemap="$(curl --silent --show-error --location --max-time 30 "$BASE/sitemap.xml")"
 
           mapfile -t urls < <(
-            printf '%s' "$sitemap" |
-              grep -oE '<loc>[^<]+' |
-              sed 's#<loc>##' |
-              head -n 30
+            {
+              printf '%s' "$sitemap" |
+                grep -oE '<loc>[^<]+' |
+                sed 's#<loc>##' |
+                head -n 20
+
+              printf '%s' "$sitemap" |
+                grep -oE '<loc>[^<]+' |
+                sed 's#<loc>##' |
+                grep '/lessons/' |
+                head -n 20
+            } |
+              awk '!seen[$0]++'
           )
 
           if (( ${#urls[@]} == 0 )); then
@@ -131,6 +140,41 @@ jobs:
           done
 
           echo "SEO_SITEMAP_SAMPLE=PASS checked=${#urls[@]}"
+
+      - name: Verify one indexable lesson metadata
+        shell: bash
+        env:
+          BASE: https://dadyoom.dpdns.org
+        run: |
+          set -euo pipefail
+
+          sitemap="$(curl --silent --show-error --location --max-time 30 "$BASE/sitemap.xml")"
+          lesson_url="$(
+            printf '%s' "$sitemap" |
+              grep -oE '<loc>[^<]+' |
+              sed 's#<loc>##' |
+              grep '/lessons/' |
+              head -n 1
+          )"
+
+          if [[ -z "$lesson_url" ]]; then
+            echo "SEO_LESSON_METADATA=FAIL_NO_LESSON"
+            exit 1
+          fi
+
+          html="$(curl --silent --show-error --location --max-time 30             -H "User-Agent: Googlebot" "$lesson_url")"
+
+          if ! printf '%s' "$html" | grep -Fq 'rel="canonical"'; then
+            echo "SEO_LESSON_METADATA=FAIL_CANONICAL url=$lesson_url"
+            exit 1
+          fi
+
+          if printf '%s' "$html" | grep -Eiq '<meta[^>]+name="robots"[^>]+content="[^"]*noindex'; then
+            echo "SEO_LESSON_METADATA=FAIL_NOINDEX url=$lesson_url"
+            exit 1
+          fi
+
+          echo "SEO_LESSON_METADATA=PASS url=$lesson_url"
 
       - name: Verify legacy public hosts consolidate to canonical
         shell: bash
