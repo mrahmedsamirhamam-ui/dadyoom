@@ -65,12 +65,15 @@
               "nameAr": "التعليم المستمر",
               "status": "active",
               "arabicPolicy": "current-detailed-plan-available-nonstandard-levels",
-              "grades": [
-                10,
-                11,
-                12
+              "grades": [],
+              "sourceUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan6.pdf",
+              "nonStandardLevels": [
+                "محو الأمية",
+                "المتابعة",
+                "التقوية"
               ],
-              "sourceUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan6.pdf"
+              "detailStatus": "current-detailed-source-nonstandard-levels",
+              "lastAudited": "2026-10-06"
             }
           ]
         }
@@ -351,7 +354,9 @@
                 12
               ],
               "detailStatus": "awaiting-current-official-detail",
-              "sourceUrl": "https://cerc.moe.gov.ly/"
+              "sourceUrl": "https://cerc.moe.gov.ly/educational-curricul/",
+              "lastAudited": "2026-10-06",
+              "auditNoteAr": "المصدر الرسمي يعرض قسم التعليم الديني، لكن لم يمكن التحقق من بنية الفصول أو عناوين دروس 2026-2027 تفصيليًا؛ لا تُنشأ أسماء أو فصول بالافتراض."
             }
           ]
         }
