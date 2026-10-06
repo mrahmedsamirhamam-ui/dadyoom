@@ -24,6 +24,36 @@ function arg(name) {
   return index >= 0 ? process.argv[index + 1] : null;
 }
 
+function semesterFromTitle(value) {
+  const text = String(value ?? "");
+  if (/الفصل(?:\s+الدراسي)?\s+الأول/u.test(text)) return 1;
+  if (/الفصل(?:\s+الدراسي)?\s+الثاني/u.test(text)) return 2;
+  if (/الفصل(?:\s+الدراسي)?\s+الثالث/u.test(text)) return 3;
+  return null;
+}
+
+function resolveSemester(pack, unitPack, lessonPack = null) {
+  const candidates = [
+    lessonPack?.semester,
+    lessonPack?.alignment?.semester,
+    unitPack?.semester,
+    unitPack?.alignment?.semester,
+    pack?.semester,
+    semesterFromTitle(lessonPack?.title),
+    semesterFromTitle(unitPack?.title),
+    semesterFromTitle(pack?.curriculum?.nameAr),
+  ];
+
+  for (const candidate of candidates) {
+    const value = Number(candidate);
+    if (Number.isInteger(value) && value >= 1 && value <= 3) {
+      return value;
+    }
+  }
+
+  return null;
+}
+
 const packArg = arg("--pack") || process.argv.find((item, index) => index > 1 && !item.startsWith("--"));
 if (!packArg) throw new Error("Usage: node scripts/import-curriculum-pack.mjs --pack <file.json> [--apply]");
 const apply = process.argv.includes("--apply");
@@ -67,8 +97,8 @@ for (const [table, columns] of [
   ["countries", "id,code,name_ar,name_en,is_active"],
   ["curricula", "id,country_id,name_ar,name_en,academic_year,is_active"],
   ["grades", "id,curriculum_id,grade_number,name_ar,name_en,sort_order,is_active"],
-  ["units", "id,grade_id,title,unit_number,sort_order,description"],
-  ["lessons", "id,unit_id,title,lesson_number,lesson_type,content,summary,learning_objectives,status"],
+  ["units", "id,grade_id,title,unit_number,sort_order,description,semester"],
+  ["lessons", "id,unit_id,title,lesson_number,lesson_type,content,summary,learning_objectives,status,semester"],
   ["questions", "id,lesson_id,question_order,question,question_type,options,correct_answer,explanation,points"],
   ["lesson_vocabulary", "id,lesson_id,word,meaning,example,display_order"],
 ]) {
@@ -151,6 +181,20 @@ let insertedVocabulary = 0;
 let insertedActivities = 0;
 
 for (const unitPack of pack.units) {
+  const resolvedUnitSemesters = [
+    ...new Set(
+      (unitPack.lessons ?? [])
+        .map((lessonPack) =>
+          resolveSemester(pack, unitPack, lessonPack),
+        )
+        .filter((value) => value != null),
+    ),
+  ];
+  const unitSemester =
+    resolvedUnitSemesters.length === 1
+      ? resolvedUnitSemesters[0]
+      : resolveSemester(pack, unitPack);
+
   let unit = await one("units", (q) => q.eq("grade_id", grade.id).eq("unit_number", unitPack.number));
   if (!unit) {
     const { data, error } = await supabase.from("units").insert({
@@ -159,7 +203,17 @@ for (const unitPack of pack.units) {
       description: unitPack.description ?? `وحدة من حزمة ${pack.packKey}.`,
       unit_number: unitPack.number,
       sort_order: unitPack.number,
+      semester: unitSemester,
     }).select("*").single();
+    if (error) throw error;
+    unit = data;
+  } else if (unitSemester && unit.semester !== unitSemester) {
+    const { data, error } = await supabase
+      .from("units")
+      .update({ semester: unitSemester })
+      .eq("id", unit.id)
+      .select("*")
+      .single();
     if (error) throw error;
     unit = data;
   }
@@ -182,6 +236,7 @@ for (const unitPack of pack.units) {
       source_page_start: lessonPack.source?.pageStart ?? null,
       source_page_end: lessonPack.source?.pageEnd ?? null,
       source_pdf_url: lessonPack.source?.url ?? null,
+      semester: resolveSemester(pack, unitPack, lessonPack),
       is_free: true,
       status: "published",
     };
