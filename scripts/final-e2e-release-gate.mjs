@@ -2582,7 +2582,7 @@ async function canonicalLearningFlow(
           ?.success === true &&
         submitted.data
           ?.correct === true,
-      `E2E_ASSESSMENT_SUBMIT_FAILED:${submitted.status}`,
+      `E2E_ASSESSMENT_SUBMIT_FAILED:${submitted.status}:${submitted.data?.message ?? "no-message"}`,
     );
 
     const advanced =
