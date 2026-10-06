@@ -655,28 +655,50 @@
           "tracks": [
             {
               "nameAr": "المسار العام",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "المسار المتقدم",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "المسار المهني (التخصصي)",
-              "status": "transition-or-limited"
+              "status": "transition-or-limited",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "مسار النخبة",
-              "status": "legacy-no-new-intake"
+              "status": "legacy-no-new-intake",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             }
           ]
         }
       ],
       "sources": [
         "https://www.moe.gov.ae/",
-        "https://u.ae/ar/information-and-services/education/school-education-k-12/stages-and-streams-of-school-education"
+        "https://u.ae/ar/information-and-services/education/school-education-k-12/stages-and-streams-of-school-education",
+        "https://www.moe.gov.ae/Ar/ImportantLinks/Documents/Parents%20Guide%20to%20Educational%20Pathways.pdf",
+        "https://www.moe.gov.ae/Ar/MediaCenter/News/Pages/MoE-announces-updated-educational-streams-for-Cycle-3-students-starting-from-Academic-Year-2025%E2%80%932026.aspx"
       ],
-      "lessonCoverage": "generic"
+      "lessonCoverage": "generic-grade-scoped-current-and-legacy-status-aware"
     },
     {
       "code": "MA",
