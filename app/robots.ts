@@ -11,6 +11,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: [
         "/",
         "/courses",
+        "/curriculum",
         "/pricing",
         "/privacy",
         "/terms",
