@@ -4,6 +4,7 @@ import {
   SITE_DESCRIPTION,
   SITE_NAME,
   SITE_NAME_ARABIC_ALT,
+  SITE_NAME_ARABIC_ALT_DADYOOM,
   SITE_NAME_LATIN,
   SITE_TAGLINE,
 } from "@/lib/site";
@@ -37,6 +38,7 @@ const structuredData = [
     alternateName: [
       SITE_NAME_LATIN,
       SITE_NAME_ARABIC_ALT,
+      SITE_NAME_ARABIC_ALT_DADYOOM,
     ],
     url: siteUrl,
     description: SITE_DESCRIPTION,
@@ -49,6 +51,7 @@ const structuredData = [
     alternateName: [
       SITE_NAME_LATIN,
       SITE_NAME_ARABIC_ALT,
+      SITE_NAME_ARABIC_ALT_DADYOOM,
     ],
     url: siteUrl,
     description: SITE_DESCRIPTION,
