@@ -1,9 +1,10 @@
 export const SITE_NAME = "ضاديوم";
 export const SITE_NAME_LATIN = "Dadyoom";
 export const SITE_NAME_ARABIC_ALT = "ضاضيوم";
+export const SITE_NAME_ARABIC_ALT_DADYOOM = "داديوم";
 export const SITE_TAGLINE = "بيت العربية الرقمي";
 export const SITE_DESCRIPTION =
-  "ضاديوم (Dadyoom)، ويُكتب أحيانًا في البحث «ضاضيوم»، منصة عربية ذكية متكاملة لتعلّم اللغة العربية عبر المناهج والدروس والمهارات الأربع وقاموس السياق والرفيق التعليمي ضاد.";
+  "ضاديوم (Dadyoom)، ويُكتب أحيانًا في البحث «ضاضيوم» أو «داديوم»، منصة عربية ذكية متكاملة لتعلّم اللغة العربية عبر المناهج والدروس والمهارات الأربع وقاموس السياق والرفيق التعليمي ضاد.";
 
 export const PRODUCTION_FALLBACK_SITE_URL =
   "https://dadyoom.dpdns.org";
