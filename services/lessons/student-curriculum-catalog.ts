@@ -11,6 +11,7 @@ export type StudentCatalogLesson = {
 
 export type StudentCatalogUnit = {
   id: string; title: string; description: string | null; order: number;
+  semester: number | null;
   country: { id: string; code: string; name: string };
   curriculum: { id: string; name: string; academicYear: string | null };
   grade: { id: string; name: string; number: number | null };
@@ -34,7 +35,7 @@ type Grade = {
 };
 type RawUnit = {
   id: string; title: string; description: string | null;
-  sort_order: number | null; unit_number: number | null;
+  sort_order: number | null; unit_number: number | null; semester: number | null;
   grades: Grade | Grade[] | null; lessons?: RawLesson[] | null;
 };
 type Progress = {
@@ -91,7 +92,7 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
       : supabase;
 
   const { data, error } = await catalogDb.from("units").select(`
-    id,title,description,sort_order,unit_number,
+    id,title,description,sort_order,unit_number,semester,
     grades!inner(
       id,name_ar,grade_number,
       curricula!inner(
@@ -139,6 +140,7 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
       title: raw.title,
       description: raw.description,
       order: Number(raw.sort_order ?? raw.unit_number ?? 9999),
+      semester: raw.semester == null ? null : Number(raw.semester),
       country: { id: country.id, code: country.code, name: country.name_ar },
       curriculum: { id: curriculum.id, name: curriculum.name_ar, academicYear: curriculum.academic_year },
       grade: { id: grade.id, name: grade.name_ar, number: grade.grade_number },
