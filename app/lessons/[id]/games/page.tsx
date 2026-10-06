@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase/server";
 import LessonGamesClient from "./LessonGamesClient";
 
 export const metadata: Metadata = {
-  robots: { index: false, follow: true },
+  robots: { index: false, follow: false },
 };
 
 export default async function LessonGamesPage({
