@@ -714,10 +714,10 @@ function CatalogScope({
           />
 
           <SelectBox
-            label="المجموعة"
+            label="الوحدة / المقرر"
             value={unit}
             options={[
-              ["", "كل المجموعات"],
+              ["", "كل الوحدات / المقررات"],
               ...gradeUnits.map((item) => [
                 item.id,
                 item.title,
@@ -830,7 +830,7 @@ function CatalogScope({
         </div>
 
         <div className="mt-4 grid grid-cols-3 gap-2 text-center sm:max-w-md">
-          <SmallMetric value={String(shown.length)} label="مجموعات" />
+          <SmallMetric value={String(shown.length)} label="وحدات" />
           <SmallMetric value={String(total)} label="دروس" />
           <SmallMetric value={String(done)} label="مكتملة" />
         </div>
