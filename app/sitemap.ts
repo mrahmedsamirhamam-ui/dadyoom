@@ -16,6 +16,7 @@ type MarketplaceRow = {
 
 type LessonRow = {
   id: string;
+  slug: string | null;
   updated_at: string | null;
 };
 
@@ -92,7 +93,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (let from = 0; ; from += pageSize) {
       const { data, error } = await db
         .from("lessons")
-        .select("id,updated_at")
+        .select("id,slug,updated_at")
         .eq("status", "published")
         .order("id", { ascending: true })
         .range(from, from + pageSize - 1);
@@ -134,8 +135,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     }));
 
+  // The Dadyoom Core seed intentionally reuses a compact bank of teaching
+  // templates across countries and grades. Those pages stay available to
+  // learners, but we do not advertise thousands of near-duplicate URLs to
+  // search engines. This keeps the sitemap focused on nationally matched and
+  // otherwise unique published lessons.
+  const indexableLessons = lessons.filter(
+    (lesson) =>
+      !lesson.slug?.includes("-dadyoom-core-"),
+  );
+
+  const excludedCoreRoutes =
+    lessons.length - indexableLessons.length;
+
   const lessonRoutes: MetadataRoute.Sitemap =
-    lessons.map((lesson) => ({
+    indexableLessons.map((lesson) => ({
       url: `${base}/lessons/${lesson.id}`,
       lastModified: lesson.updated_at
         ? new Date(lesson.updated_at)
@@ -148,6 +162,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     staticRoutes: staticRoutes.length,
     marketplaceRoutes: marketplaceRoutes.length,
     lessonRoutes: lessonRoutes.length,
+    excludedCoreRoutes,
     total:
       staticRoutes.length +
       marketplaceRoutes.length +
