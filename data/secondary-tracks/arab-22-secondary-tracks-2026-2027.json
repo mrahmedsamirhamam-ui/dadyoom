@@ -1474,6 +1474,15 @@
           "nameAr": "الثانوي العام",
           "tracks": [
             {
+              "nameAr": "السنة الأولى ثانوي — مشترك",
+              "status": "active",
+              "grades": [
+                10
+              ],
+              "detailStatus": "official-program-detailed-semester-unclassified",
+              "lastAudited": "2026-10-06"
+            },
+            {
               "nameAr": "L",
               "status": "active",
               "grades": [
