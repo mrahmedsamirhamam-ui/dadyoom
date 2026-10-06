@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
 
   const { data, error } = await supabase
     .from("lessons")
-    .select("title,summary")
+    .select("title,summary,slug")
     .eq("id", id)
     .eq("status", "published")
     .maybeSingle();
@@ -55,6 +55,8 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
   }
 
   const title = data.title?.trim() || "درس العربية";
+  const isTemplatedCoreLesson =
+    data.slug?.includes("-dadyoom-core-") ?? false;
   const description =
     data.summary?.trim().slice(0, 170) ||
     `تعلّم ${title} في ضاديوم من خلال المحتوى والأنشطة والأسئلة التفاعلية.`;
@@ -63,6 +65,9 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
     title,
     description,
     alternates: { canonical: `/lessons/${id}` },
+    robots: isTemplatedCoreLesson
+      ? { index: false, follow: true }
+      : { index: true, follow: true },
     openGraph: {
       type: "article",
       url: `/lessons/${id}`,
