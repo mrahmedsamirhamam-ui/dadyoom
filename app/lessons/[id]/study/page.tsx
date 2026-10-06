@@ -8,7 +8,7 @@ import {
 import LessonStudyStudio from "./LessonStudyStudio";
 
 export const metadata: Metadata = {
-  robots: { index: false, follow: true },
+  robots: { index: false, follow: false },
 };
 
 export default async function LessonStudyPage({
