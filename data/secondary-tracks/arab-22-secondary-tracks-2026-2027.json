@@ -783,19 +783,36 @@
           "tracks": [
             {
               "nameAr": "المسار العلمي",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "مسار الآداب والإنسانيات",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "المسار التكنولوجي",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "المسار الموازي",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             }
           ]
         },
@@ -804,39 +821,78 @@
           "tracks": [
             {
               "nameAr": "مدرسة قطر للعلوم والتكنولوجيا — تكنولوجيا المعلومات",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "مدرسة قطر للعلوم والتكنولوجيا — الهندسة",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "مدرسة قطر للعلوم والتكنولوجيا — الطبي",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "المدارس التقنية",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "المدارس المصرفية وإدارة الأعمال",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "المعهد الديني — علمي",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "المعهد الديني — آداب وإنسانيات",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             }
           ]
         }
       ],
       "sources": [
-        "https://www.edu.gov.qa/ar/Content/CurriculumSection"
+        "https://www.edu.gov.qa/ar/Content/CurriculumSection",
+        "https://www.edu.gov.qa/ar/Content/QatariSecondaryCertificate",
+        "https://www.edu.gov.qa/ar/News/Details/17493000",
+        "https://www.edu.gov.qa/ar/Content/AdultEducationParallelTrack",
+        "https://www.edu.gov.qa/ar/News/Details/18921000"
       ],
-      "lessonCoverage": "generic"
+      "lessonCoverage": "generic-current-grade-scoped"
     },
     {
       "code": "SY",
