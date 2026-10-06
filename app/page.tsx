@@ -195,6 +195,7 @@ export default function HomePage() {
               <Link
                 prefetch={false}
                 href="/ask"
+                rel="nofollow"
                 className="rounded-2xl px-6 py-4 font-black text-[#8b6426] transition hover:bg-[#fff8e8]"
               >
                 اسأل ضاد ←
@@ -284,6 +285,7 @@ export default function HomePage() {
                     <Link
                       prefetch={false}
                       href="/ask"
+                      rel="nofollow"
                       className="shrink-0 rounded-xl bg-white px-4 py-2.5 text-sm font-black text-[#123f39] shadow-sm"
                     >
                       ابدأ
