@@ -976,7 +976,13 @@ function CatalogScope({
                         item.curriculum.name,
                       )
                         ? "دروس ضاديوم الداعمة"
-                        : "المطابقة الوطنية الموثقة"}
+                        : item.lessons.every(
+                            (lesson) =>
+                              lesson.officialContentScope ===
+                              "official-book-unscheduled",
+                          )
+                          ? "محتوى كتاب رسمي — غير مجدول حاليًا"
+                          : "المطابقة الوطنية الموثقة"}
                     </span>
                   </div>
                   <h2 className="break-words text-xl font-black text-[#123f39]">
