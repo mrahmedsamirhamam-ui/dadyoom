@@ -30,6 +30,7 @@ type RawUnit = {
   description: string | null;
   sort_order: number | null;
   unit_number: number | null;
+  semester: number | null;
 };
 
 type RawLesson = {
@@ -429,7 +430,7 @@ export async function GET(
     await supabase
       .from("units")
       .select(
-        "id,grade_id,title,description,sort_order,unit_number",
+        "id,grade_id,title,description,sort_order,unit_number,semester",
       )
       .in(
         "grade_id",
@@ -785,6 +786,10 @@ export async function GET(
                   raw.unit_number ??
                   9999,
               ),
+            semester:
+              raw.semester == null
+                ? null
+                : Number(raw.semester),
             country: {
               id:
                 country.id,
