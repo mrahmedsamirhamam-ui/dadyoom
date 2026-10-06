@@ -87,6 +87,15 @@ type TrackTerm = {
   audited_at: string;
 };
 
+function isSecondaryGrade(
+  countryCode: string,
+  grade: number,
+): boolean {
+  return countryCode === "SO"
+    ? grade >= 9
+    : grade >= 10;
+}
+
 function difficulty(
   grade: number | null,
 ) {
@@ -246,7 +255,7 @@ export async function GET(
   let allowedOfficialUnitIds: Set<string> | null = null;
   let secondaryTrackTerms: TrackTerm[] = [];
 
-  if (gradeNumber >= 10) {
+  if (isSecondaryGrade(countryCode, gradeNumber)) {
     const {
       data: trackRows,
       error: trackError,
