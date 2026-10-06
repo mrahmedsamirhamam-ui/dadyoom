@@ -68,6 +68,22 @@ type SecondaryTrack = {
   supporting_lessons: number;
 };
 
+type SecondaryTrackGradeRow = {
+  secondary_track_id: string;
+  country_code: string;
+  system: string;
+  grade: number | null;
+  track: string;
+  status: string;
+  lesson_coverage: string;
+  official_unit_scope: "all-mapped-curriculum" | "mapped-only";
+  official_units: number;
+  official_lessons: number;
+  unclassified_lessons: number;
+  official_semesters: number[] | null;
+  supporting_lessons: number;
+};
+
 type TrackCurriculum = {
   secondary_track_id: string;
   curriculum_id: string;
@@ -85,6 +101,10 @@ type TrackTerm = {
   detail_status: string;
   source_url: string | null;
   audited_at: string;
+};
+
+type GradeTrackTerm = TrackTerm & {
+  grade_number: number;
 };
 
 function isSecondaryGrade(
@@ -254,29 +274,46 @@ export async function GET(
   let allowedCurriculumIds: Set<string> | null = null;
   let allowedOfficialUnitIds: Set<string> | null = null;
   let secondaryTrackTerms: TrackTerm[] = [];
+  let secondaryTrackGradeTerms: GradeTrackTerm[] = [];
 
   if (isSecondaryGrade(countryCode, gradeNumber)) {
     const {
       data: trackRows,
       error: trackError,
     } = await supabase
-      .from("secondary_track_coverage")
-      .select("id,country_code,system_name_ar,track_name_ar,grades,status,lesson_coverage,official_unit_scope,official_units,official_lessons,unclassified_official_lessons,official_semesters,supporting_lessons")
+      .from("secondary_track_grade_audit_report")
+      .select("secondary_track_id,country_code,system,grade,track,status,lesson_coverage,official_unit_scope,official_units,official_lessons,unclassified_lessons,official_semesters,supporting_lessons")
       .eq("country_code", countryCode)
       .eq("academic_year", "2026-2027")
-      .order("system_name_ar", { ascending: true })
-      .order("track_name_ar", { ascending: true })
+      .eq("grade", gradeNumber)
+      .order("system", { ascending: true })
+      .order("track", { ascending: true })
       .limit(80);
 
     if (trackError) {
       return errorResponse("secondary_tracks", trackError);
     }
 
-    secondaryTracks = ((trackRows ?? []) as SecondaryTrack[]).filter(
-      (track) =>
-        Array.isArray(track.grades) &&
-        track.grades.length > 0 &&
-        track.grades.includes(gradeNumber),
+    secondaryTracks = ((trackRows ?? []) as SecondaryTrackGradeRow[]).map(
+      (row) => ({
+        id: row.secondary_track_id,
+        country_code: row.country_code,
+        system_name_ar: row.system,
+        track_name_ar: row.track,
+        grades: row.grade === null ? [] : [Number(row.grade)],
+        status: row.status,
+        lesson_coverage: row.lesson_coverage,
+        official_unit_scope: row.official_unit_scope,
+        official_units: Number(row.official_units ?? 0),
+        official_lessons: Number(row.official_lessons ?? 0),
+        unclassified_official_lessons: Number(
+          row.unclassified_lessons ?? 0,
+        ),
+        official_semesters: Array.isArray(row.official_semesters)
+          ? row.official_semesters.map(Number)
+          : [],
+        supporting_lessons: Number(row.supporting_lessons ?? 0),
+      }),
     );
 
     const trackIds = secondaryTracks.map((track) => track.id);
@@ -298,6 +335,25 @@ export async function GET(
       }
 
       secondaryTrackTerms = (termRows ?? []) as TrackTerm[];
+
+      const {
+        data: gradeTermRows,
+        error: gradeTermError,
+      } = await supabase
+        .from("secondary_track_grade_terms")
+        .select("secondary_track_id,grade_number,semester,publication_status,detail_status,source_url,audited_at")
+        .in("secondary_track_id", trackIds)
+        .eq("academic_year", "2026-2027")
+        .eq("grade_number", gradeNumber)
+        .order("semester", { ascending: true })
+        .limit(240);
+
+      if (gradeTermError) {
+        return errorResponse("secondary_track_grade_terms", gradeTermError);
+      }
+
+      secondaryTrackGradeTerms =
+        (gradeTermRows ?? []) as GradeTrackTerm[];
     }
 
     if (requestedTrackId) {
@@ -966,15 +1022,25 @@ export async function GET(
           ? track.official_semesters.map(Number)
           : [],
         supportingLessons: Number(track.supporting_lessons ?? 0),
-        terms: secondaryTrackTerms
-          .filter((term) => term.secondary_track_id === track.id)
-          .map((term) => ({
+        terms: (() => {
+          const gradeTerms = secondaryTrackGradeTerms.filter(
+            (term) => term.secondary_track_id === track.id,
+          );
+          const effectiveTerms =
+            gradeTerms.length > 0
+              ? gradeTerms
+              : secondaryTrackTerms.filter(
+                  (term) => term.secondary_track_id === track.id,
+                );
+
+          return effectiveTerms.map((term) => ({
             semester: Number(term.semester),
             publicationStatus: term.publication_status,
             detailStatus: term.detail_status,
             sourceUrl: term.source_url,
             auditedAt: term.audited_at,
-          })),
+          }));
+        })(),
       })),
       selectedTrackId: requestedTrackId || null,
     },
