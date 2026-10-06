@@ -1,11 +1,9 @@
 name: SEO Production Gate
 
 on:
-  workflow_run:
-    workflows:
-      - Cloudflare Deploy
-    types:
-      - completed
+  push:
+    branches:
+      - fix/mobile-cloud-video-final-20260923
   workflow_dispatch:
 
 concurrency:
@@ -14,12 +12,6 @@ concurrency:
 
 jobs:
   seo-gate:
-    if: >
-      github.event_name == 'workflow_dispatch' ||
-      (
-        github.event.workflow_run.conclusion == 'success' &&
-        github.event.workflow_run.head_branch == 'fix/mobile-cloud-video-final-20260923'
-      )
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
@@ -28,11 +20,7 @@ jobs:
         id: source
         shell: bash
         run: |
-          if [[ "${{ github.event_name }}" == "workflow_run" ]]; then
-            echo "sha=${{ github.event.workflow_run.head_sha }}" >> "$GITHUB_OUTPUT"
-          else
-            echo "sha=${{ github.sha }}" >> "$GITHUB_OUTPUT"
-          fi
+          echo "sha=${{ github.sha }}" >> "$GITHUB_OUTPUT"
 
       - name: Wait for canonical domain deployment
         shell: bash
