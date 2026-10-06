@@ -9,6 +9,11 @@ export const SITE_DESCRIPTION =
 export const PRODUCTION_FALLBACK_SITE_URL =
   "https://dadyoom.dpdns.org";
 
+const LEGACY_SITE_HOSTS = new Set([
+  "dadyoom.pages.dev",
+  "dadyoom.mrahmedsamirhamam.workers.dev",
+]);
+
 function normalizeOrigin(value: string | undefined): string | null {
   const clean = value?.trim();
 
@@ -29,11 +34,31 @@ function normalizeOrigin(value: string | undefined): string | null {
 }
 
 export function getSiteUrl(): string {
-  return (
-    normalizeOrigin(process.env.NEXT_PUBLIC_SITE_URL) ??
-    normalizeOrigin(process.env.DADYOOM_PRODUCTION_URL) ??
-    normalizeOrigin(process.env.VERCEL_PROJECT_PRODUCTION_URL) ??
-    normalizeOrigin(process.env.VERCEL_URL) ??
-    PRODUCTION_FALLBACK_SITE_URL
-  );
+  const candidates = [
+    normalizeOrigin(process.env.NEXT_PUBLIC_SITE_URL),
+    normalizeOrigin(process.env.DADYOOM_PRODUCTION_URL),
+    normalizeOrigin(process.env.VERCEL_PROJECT_PRODUCTION_URL),
+    normalizeOrigin(process.env.VERCEL_URL),
+  ];
+
+  for (const candidate of candidates) {
+    if (!candidate) {
+      continue;
+    }
+
+    try {
+      const hostname =
+        new URL(candidate).hostname.toLowerCase();
+
+      if (LEGACY_SITE_HOSTS.has(hostname)) {
+        continue;
+      }
+
+      return candidate;
+    } catch {
+      continue;
+    }
+  }
+
+  return PRODUCTION_FALLBACK_SITE_URL;
 }
