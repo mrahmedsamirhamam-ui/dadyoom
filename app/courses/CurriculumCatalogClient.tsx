@@ -28,6 +28,13 @@ type SecondaryTrackOption = {
   unclassifiedOfficialLessons: number;
   officialSemesters: number[];
   supportingLessons: number;
+  terms: Array<{
+    semester: number;
+    publicationStatus: string;
+    detailStatus: string;
+    sourceUrl: string | null;
+    auditedAt: string;
+  }>;
 };
 
 type CatalogResponse = {
@@ -396,8 +403,8 @@ function CatalogScope({
   );
 
   const semesterOptions = [
-    ...new Set(
-      curriculumScopedUnits
+    ...new Set([
+      ...curriculumScopedUnits
         .flatMap((item) =>
           item.lessons.map(
             (lesson) =>
@@ -407,7 +414,12 @@ function CatalogScope({
         .filter((value): value is number =>
           Number.isInteger(value),
         ),
-    ),
+      ...(selectedTrackOption?.terms ?? [])
+        .map((term) => term.semester)
+        .filter((value) =>
+          Number.isInteger(value),
+        ),
+    ]),
   ].sort((a, b) => a - b);
 
   const selectedSemester =
@@ -417,6 +429,15 @@ function CatalogScope({
     )
       ? Number(semester)
       : 0;
+
+  const selectedTermStatus =
+    selectedSemester
+      ? selectedTrackOption?.terms.find(
+          (term) =>
+            term.semester ===
+            selectedSemester,
+        ) ?? null
+      : null;
 
   const gradeUnits = curriculumScopedUnits
     .map((item) => {
@@ -599,10 +620,27 @@ function CatalogScope({
             value={selectedSemester ? String(selectedSemester) : ""}
             options={[
               ["", "كل الفصول المتاحة"],
-              ...semesterOptions.map((value) => [
-                String(value),
-                semesterName(value),
-              ]),
+              ...semesterOptions.map((value) => {
+                const term =
+                  selectedTrackOption?.terms.find(
+                    (item) =>
+                      item.semester === value,
+                  );
+
+                const suffix =
+                  term?.publicationStatus ===
+                  "not-published-as-of-audit"
+                    ? " — غير منشور رسميًا حتى آخر مراجعة"
+                    : term?.detailStatus ===
+                        "published-pending-extraction"
+                      ? " — منشور وجارٍ استخراج التفاصيل"
+                      : "";
+
+                return [
+                  String(value),
+                  `${semesterName(value)}${suffix}`,
+                ];
+              }),
             ]}
             onChange={(value) => {
               setSemester(value);
@@ -642,6 +680,17 @@ function CatalogScope({
           {selectedSemester ? (
             <span className="rounded-full bg-[#e8f3ff] px-3 py-2">
               {semesterName(selectedSemester)}
+            </span>
+          ) : null}
+          {selectedTermStatus?.publicationStatus ===
+          "not-published-as-of-audit" ? (
+            <span className="rounded-full bg-[#fff0e8] px-3 py-2 text-[#8a3f1f]">
+              هذا الفصل غير منشور رسميًا للسنة الحالية حتى {selectedTermStatus.auditedAt}
+            </span>
+          ) : selectedTermStatus?.detailStatus ===
+            "published-pending-extraction" ? (
+            <span className="rounded-full bg-[#fff4df] px-3 py-2">
+              الخطة الرسمية منشورة — تفاصيل الدروس قيد الاستخراج الموثق
             </span>
           ) : null}
           {selectedTrackOption ? (
