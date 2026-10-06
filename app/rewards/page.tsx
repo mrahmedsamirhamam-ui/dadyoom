@@ -9,7 +9,6 @@ import {
 } from "@/features/gamification/reward-engine";
 import { getLearnerRewardSnapshot } from "@/features/gamification/learner-reward-snapshot";
 import { getLevelByXp } from "@/lib/constants/levels";
-import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -39,7 +38,7 @@ export default async function RewardsPage() {
 
   if ((role === "student" || role === "child") && user.email) {
     const bundle = await getLearnerRewardSnapshot(
-      createAdminClient(),
+      supabase,
       user.id,
       user.email,
     );
