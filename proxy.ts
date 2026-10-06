@@ -7,6 +7,25 @@ import {
   SUPABASE_PUBLIC_URL,
 } from "@/lib/supabase/public-config";
 
+const LEGACY_PUBLIC_HOST =
+  "dadyoom.mrahmedsamirhamam.workers.dev";
+
+const CANONICAL_PUBLIC_HOST =
+  "dadyoom.dpdns.org";
+
+function isPublicSeoPath(
+  pathname: string,
+) {
+  return (
+    pathname === "/" ||
+    /^\/(?:courses|curriculum|learn-arabic|about|contact|pricing|privacy|terms|refund-policy|marketplace|lessons)(?:\/|$)/u.test(
+      pathname,
+    ) ||
+    pathname === "/sitemap.xml" ||
+    pathname === "/robots.txt"
+  );
+}
+
 type AllowedRoles =
   readonly string[];
 
@@ -98,6 +117,30 @@ export async function proxy(
 ) {
   const pathname =
     request.nextUrl.pathname;
+
+  const host =
+    (request.headers.get("host") ?? "")
+      .split(":")[0]
+      .trim()
+      .toLowerCase();
+
+  if (
+    host === LEGACY_PUBLIC_HOST &&
+    isPublicSeoPath(pathname)
+  ) {
+    const canonical =
+      request.nextUrl.clone();
+
+    canonical.protocol = "https:";
+    canonical.hostname =
+      CANONICAL_PUBLIC_HOST;
+    canonical.port = "";
+
+    return NextResponse.redirect(
+      canonical,
+      308,
+    );
+  }
 
   const roles =
     rolesForPath(
@@ -339,6 +382,20 @@ export async function proxy(
 
 export const config = {
   matcher: [
+    "/",
+    "/courses/:path*",
+    "/curriculum/:path*",
+    "/learn-arabic",
+    "/about",
+    "/contact",
+    "/pricing",
+    "/privacy",
+    "/terms",
+    "/refund-policy",
+    "/marketplace/:path*",
+    "/lessons/:path*",
+    "/sitemap.xml",
+    "/robots.txt",
     "/student/:path*",
     "/child/:path*",
     "/teacher/:path*",
