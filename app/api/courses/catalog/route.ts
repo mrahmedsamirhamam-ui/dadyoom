@@ -61,6 +61,11 @@ type SecondaryTrack = {
   status: string;
   lesson_coverage: string;
   official_unit_scope: "all-mapped-curriculum" | "mapped-only";
+  official_units: number;
+  official_lessons: number;
+  unclassified_official_lessons: number;
+  official_semesters: number[] | null;
+  supporting_lessons: number;
 };
 
 type TrackCurriculum = {
@@ -236,11 +241,10 @@ export async function GET(
       data: trackRows,
       error: trackError,
     } = await supabase
-      .from("secondary_tracks")
-      .select("id,country_code,system_name_ar,track_name_ar,grades,status,lesson_coverage,official_unit_scope")
+      .from("secondary_track_coverage")
+      .select("id,country_code,system_name_ar,track_name_ar,grades,status,lesson_coverage,official_unit_scope,official_units,official_lessons,unclassified_official_lessons,official_semesters,supporting_lessons")
       .eq("country_code", countryCode)
       .eq("academic_year", "2026-2027")
-      .eq("is_active", true)
       .order("system_name_ar", { ascending: true })
       .order("track_name_ar", { ascending: true })
       .limit(80);
@@ -913,6 +917,15 @@ export async function GET(
         name: track.track_name_ar,
         status: track.status,
         lessonCoverage: track.lesson_coverage,
+        officialUnits: Number(track.official_units ?? 0),
+        officialLessons: Number(track.official_lessons ?? 0),
+        unclassifiedOfficialLessons: Number(
+          track.unclassified_official_lessons ?? 0,
+        ),
+        officialSemesters: Array.isArray(track.official_semesters)
+          ? track.official_semesters.map(Number)
+          : [],
+        supportingLessons: Number(track.supporting_lessons ?? 0),
       })),
       selectedTrackId: requestedTrackId || null,
     },
