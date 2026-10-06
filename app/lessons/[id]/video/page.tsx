@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
-  robots: { index: false, follow: true },
+  robots: { index: false, follow: false },
 };
 
 type LessonVideoPageProps = {
