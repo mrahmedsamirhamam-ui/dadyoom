@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import type { MetadataRoute } from "next";
 
+import { ARAB_COUNTRY_CODES } from "@/lib/countries";
 import { getSiteUrl } from "@/lib/site";
 import {
   SUPABASE_PUBLIC_KEY,
@@ -32,8 +33,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/contact`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/courses/arabic-from-zero`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/courses/rooms`, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${base}/courses/rooms/native-arabic`, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${base}/courses/rooms/non-native`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/courses/video-library`, changeFrequency: "weekly", priority: 0.7 },
     { url: `${base}/pricing`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/privacy`, changeFrequency: "yearly", priority: 0.4 },
@@ -41,6 +40,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/refund-policy`, changeFrequency: "yearly", priority: 0.4 },
     { url: `${base}/marketplace`, changeFrequency: "daily", priority: 0.9 },
   ];
+
+  const countryDirectoryRoutes: MetadataRoute.Sitemap =
+    ARAB_COUNTRY_CODES.map((code) => ({
+      url: `${base}/curriculum/${code.toLowerCase()}`,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    }));
 
   const db = createClient(
     SUPABASE_PUBLIC_URL,
@@ -152,15 +158,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   console.info("SEO_SITEMAP_READY", {
     staticRoutes: staticRoutes.length,
     marketplaceRoutes: marketplaceRoutes.length,
+    countryDirectoryRoutes: countryDirectoryRoutes.length,
     lessonRoutes: lessonRoutes.length,
     total:
       staticRoutes.length +
+      countryDirectoryRoutes.length +
       marketplaceRoutes.length +
       lessonRoutes.length,
   });
 
   return [
     ...staticRoutes,
+    ...countryDirectoryRoutes,
     ...marketplaceRoutes,
     ...lessonRoutes,
   ];
