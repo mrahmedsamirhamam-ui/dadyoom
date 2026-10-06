@@ -39,6 +39,7 @@ type RawLesson = {
   title: string;
   summary: string | null;
   semester: number | null;
+  official_content_scope: "plan-scheduled" | "official-book-unscheduled" | null;
   estimated_minutes: number | null;
   lesson_number: number | null;
   sort_order: number | null;
@@ -594,7 +595,7 @@ export async function GET(
     await supabase
       .from("lessons")
       .select(
-        "id,unit_id,title,summary,semester,estimated_minutes,lesson_number,sort_order,status",
+        "id,unit_id,title,summary,semester,official_content_scope,estimated_minutes,lesson_number,sort_order,status",
       )
       .in(
         "unit_id",
@@ -830,6 +831,8 @@ export async function GET(
                       lesson.semester == null
                         ? null
                         : Number(lesson.semester),
+                    officialContentScope:
+                      lesson.official_content_scope ?? null,
                     estimatedMinutes:
                       Number(
                         lesson.estimated_minutes ??
