@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 
 export default function NonNativeRoomPage() {
-  redirect("/courses/video-library?room=non-native");
+  permanentRedirect("/courses/video-library?room=non-native");
 }
