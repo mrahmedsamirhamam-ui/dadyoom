@@ -9,6 +9,7 @@ export const metadata = {
   description:
     "غرفتان واضحتان في ضاديوم: العربية لغير الناطقين بها، والعربية للعرب مع معلمين عرب.",
 };
+  alternates: { canonical: "/courses/rooms" },
 
 export default function CourseRoomsPage() {
   return (
