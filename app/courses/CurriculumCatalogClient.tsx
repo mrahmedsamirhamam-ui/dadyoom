@@ -107,6 +107,13 @@ function stageName(number: number | null): string {
   return "الثانوية";
 }
 
+function semesterName(value: number): string {
+  if (value === 1) return "الفصل الدراسي الأول";
+  if (value === 2) return "الفصل الدراسي الثاني";
+  if (value === 3) return "الفصل الدراسي الثالث";
+  return `الفصل الدراسي ${value}`;
+}
+
 function curriculumName(name: string): string {
   return name
     .replace(/^اللغة العربية\s*[—-]\s*/u, "")
@@ -264,6 +271,7 @@ function CatalogScope({
   const [track, setTrack] = useState("");
   const [year, setYear] = useState("");
   const [curriculum, setCurriculum] = useState("");
+  const [semester, setSemester] = useState("");
   const [unit, setUnit] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -364,18 +372,43 @@ function CatalogScope({
           ? SECONDARY_COMPLETE_ID
           : curricula[0]?.id ?? "";
 
-  const gradeUnits = units
+  const curriculumScopedUnits = units.filter(
+    (item) =>
+      (!selectedYear ||
+        item.curriculum.academicYear === selectedYear) &&
+      (
+        curriculumId ===
+          SECONDARY_COMPLETE_ID ||
+        !curriculumId ||
+        item.curriculum.id ===
+          curriculumId
+      ),
+  );
+
+  const semesterOptions = [
+    ...new Set(
+      curriculumScopedUnits
+        .map((item) => item.semester)
+        .filter((value): value is number =>
+          Number.isInteger(value),
+        ),
+    ),
+  ].sort((a, b) => a - b);
+
+  const selectedSemester =
+    semester &&
+    semesterOptions.includes(
+      Number(semester),
+    )
+      ? Number(semester)
+      : 0;
+
+  const gradeUnits = curriculumScopedUnits
     .filter(
       (item) =>
-        (!selectedYear ||
-          item.curriculum.academicYear === selectedYear) &&
-        (
-          curriculumId ===
-            SECONDARY_COMPLETE_ID ||
-          !curriculumId ||
-          item.curriculum.id ===
-            curriculumId
-        ),
+        !selectedSemester ||
+        item.semester === selectedSemester ||
+        item.semester == null,
     )
     .sort((a, b) => {
       if (
@@ -458,7 +491,7 @@ function CatalogScope({
   return (
     <>
       <section className="min-w-0 rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-4 sm:p-6">
-        <div className="grid min-w-0 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid min-w-0 gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {gradeNumber >= 10 ? (
             <SelectBox
               label="المسار الثانوي"
@@ -473,6 +506,7 @@ function CatalogScope({
               onChange={(value) => {
                 setTrack(value);
                 setCurriculum("");
+                setSemester("");
                 setUnit("");
               }}
             />
@@ -489,6 +523,7 @@ function CatalogScope({
             onChange={(value) => {
               setYear(value);
               setCurriculum("");
+              setSemester("");
               setUnit("");
             }}
           />
@@ -518,6 +553,23 @@ function CatalogScope({
             }
             onChange={(value) => {
               setCurriculum(value);
+              setSemester("");
+              setUnit("");
+            }}
+          />
+
+          <SelectBox
+            label="الفصل الدراسي"
+            value={selectedSemester ? String(selectedSemester) : ""}
+            options={[
+              ["", "كل الفصول المتاحة"],
+              ...semesterOptions.map((value) => [
+                String(value),
+                semesterName(value),
+              ]),
+            ]}
+            onChange={(value) => {
+              setSemester(value);
               setUnit("");
             }}
           />
@@ -549,6 +601,11 @@ function CatalogScope({
           {track ? (
             <span className="rounded-full bg-[#fff2d5] px-3 py-2">
               {tracks.find((item) => item.id === track)?.name ?? "المسار المختار"}
+            </span>
+          ) : null}
+          {selectedSemester ? (
+            <span className="rounded-full bg-[#e8f3ff] px-3 py-2">
+              {semesterName(selectedSemester)}
             </span>
           ) : null}
           <span className="rounded-full bg-[#eef4f0] px-3 py-2">
