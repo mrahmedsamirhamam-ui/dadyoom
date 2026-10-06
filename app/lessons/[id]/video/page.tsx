@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: true },
+};
 
 type LessonVideoPageProps = {
   params: Promise<{
