@@ -1,0 +1,132 @@
+-- Secondary curriculum audit integrity: non-standard Bahrain levels + conservative cross-country audit report.
+-- No official lesson/unit names are created by this migration.
+
+update public.secondary_tracks
+set grades = '{}'::integer[],
+    lesson_coverage = 'current-detailed-source-nonstandard-levels',
+    arabic_policy = 'official-plan-nonstandard-levels-no-grade-10-12-mapping',
+    updated_at = now()
+where country_code = 'BH'
+  and academic_year = '2026-2027'
+  and track_name_ar = 'التعليم المستمر'
+  and is_active;
+
+update public.secondary_tracks
+set source_urls = '["https://cerc.moe.gov.ly/educational-curricul/"]'::jsonb,
+    arabic_policy = 'official-religious-library-visible-current-detail-not-verified',
+    lesson_coverage = 'awaiting-current-official-detail',
+    updated_at = now()
+where country_code = 'LY'
+  and academic_year = '2026-2027'
+  and track_name_ar = 'الثانوي الديني'
+  and is_active;
+
+create or replace view public.secondary_track_audit_report
+with (security_invoker = true)
+as
+select
+  st.id as secondary_track_id,
+  st.country_code,
+  st.country_name_ar as country,
+  st.system_name_ar as system,
+  g.grade,
+  st.track_name_ar as track,
+  st.academic_year,
+  cov.official_semesters,
+  (
+    select count(distinct stc.curriculum_id)::integer
+    from public.secondary_track_curricula stc
+    where stc.secondary_track_id = st.id
+      and stc.relation_type in ('official','track-specific')
+  ) as official_curricula,
+  cov.official_units,
+  cov.official_lessons,
+  cov.supporting_lessons,
+  cov.unclassified_official_lessons as unclassified_lessons,
+  coalesce(src.source_urls, '{}'::text[]) as source_urls,
+  (
+    select max(t.audited_at)
+    from public.secondary_track_terms t
+    where t.secondary_track_id = st.id
+      and t.academic_year = st.academic_year
+  ) as last_audited_date,
+  case
+    when st.lesson_coverage = 'current-detailed-source-nonstandard-levels'
+      then 'PARTIAL'
+    when coalesce(cov.official_units,0) = 0
+      or coalesce(cov.official_lessons,0) = 0
+      then 'PENDING OFFICIAL SOURCE'
+    when coalesce(cov.unclassified_official_lessons,0) > 0
+      then 'PARTIAL'
+    when exists (
+      select 1
+      from public.secondary_track_terms t
+      where t.secondary_track_id = st.id
+        and t.academic_year = st.academic_year
+        and t.publication_status = 'published'
+        and t.detail_status <> 'detailed-imported'
+    )
+      then 'PARTIAL'
+    when exists (
+      select 1
+      from public.secondary_track_terms t
+      where t.secondary_track_id = st.id
+        and t.academic_year = st.academic_year
+        and t.publication_status = 'published'
+        and t.detail_status = 'detailed-imported'
+    )
+      then 'COMPLETE'
+    else 'PARTIAL'
+  end as audit_status,
+  st.lesson_coverage
+from public.secondary_tracks st
+join public.secondary_track_coverage cov
+  on cov.id = st.id
+cross join lateral (
+  select grade
+  from unnest(
+    case
+      when coalesce(cardinality(st.grades),0) > 0 then st.grades
+      else array[null]::integer[]
+    end
+  ) as grade
+) g
+left join lateral (
+  select array_agg(distinct source_url order by source_url) as source_urls
+  from (
+    select jsonb_array_elements_text(
+      case
+        when jsonb_typeof(st.source_urls) = 'array' then st.source_urls
+        else '[]'::jsonb
+      end
+    ) as source_url
+    union all
+    select t.source_url
+    from public.secondary_track_terms t
+    where t.secondary_track_id = st.id
+      and t.academic_year = st.academic_year
+      and t.source_url is not null
+  ) urls
+  where nullif(trim(source_url),'') is not null
+) src on true
+where st.is_active;
+
+create or replace view public.secondary_track_grade_scope_violations
+with (security_invoker = true)
+as
+select
+  id,
+  country_code,
+  country_name_ar,
+  system_name_ar,
+  track_name_ar,
+  academic_year,
+  grades,
+  lesson_coverage
+from public.secondary_tracks
+where is_active
+  and coalesce(cardinality(grades),0) = 0
+  and lesson_coverage <> 'current-detailed-source-nonstandard-levels';
+
+grant select on public.secondary_track_audit_report to anon, authenticated;
+grant select on public.secondary_track_grade_scope_violations to anon, authenticated;
