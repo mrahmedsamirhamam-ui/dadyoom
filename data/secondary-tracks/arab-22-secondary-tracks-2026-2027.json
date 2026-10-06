@@ -859,12 +859,27 @@
           "nameAr": "النظام الثانوي القائم",
           "tracks": [
             {
+              "nameAr": "الصف العاشر — النظام القائم",
+              "status": "active",
+              "grades": [
+                10
+              ]
+            },
+            {
               "nameAr": "القسم العلمي",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "القسم الأدبي",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             }
           ]
         },
@@ -874,48 +889,84 @@
           "tracks": [
             {
               "nameAr": "مرحلة التأسيس والاستكشاف — الصف العاشر",
-              "status": "pilot-active"
+              "status": "pilot-active",
+              "grades": [
+                10
+              ]
             },
             {
               "nameAr": "اللغات",
-              "status": "future-after-foundation"
+              "status": "future-after-foundation",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "القانون",
-              "status": "future-after-foundation"
+              "status": "future-after-foundation",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "العلوم الاجتماعية",
-              "status": "future-after-foundation"
+              "status": "future-after-foundation",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "التجاري",
-              "status": "future-after-foundation"
+              "status": "future-after-foundation",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "الرياضيات",
-              "status": "future-after-foundation"
+              "status": "future-after-foundation",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "العلوم",
-              "status": "future-after-foundation"
+              "status": "future-after-foundation",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "الصناعي",
-              "status": "future-after-foundation"
+              "status": "future-after-foundation",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "التكنولوجيا والذكاء الاصطناعي",
-              "status": "future-after-foundation"
+              "status": "future-after-foundation",
+              "grades": [
+                11,
+                12
+              ]
             }
           ]
         }
       ],
       "sources": [
         "https://www.moe.edu.kw/news/1343",
-        "https://elibrary.moe.edu.kw/StudentsLibrary"
+        "https://elibrary.moe.edu.kw/StudentsLibrary",
+        "https://www.moe.edu.kw/News/GetNewsDetail?NewsId=1321"
       ],
-      "lessonCoverage": "generic-book-bundle"
+      "lessonCoverage": "generic-book-bundle-current-grade-scoped"
     },
     {
       "code": "DZ",
