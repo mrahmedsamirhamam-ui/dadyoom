@@ -319,46 +319,8 @@ export default async function CountryCurriculumPage({
         b.gradeNumber,
     );
 
-  const pageTitle =
-    `مناهج اللغة العربية في ${info.name} | ضاديوم Dadyoom`;
-
-  const pageDescription =
-    `دليل دروس ومناهج اللغة العربية المنشورة في ضاديوم لطلاب ${info.name}، مرتبة حسب الصف والوحدة.`;
-
-  const canonicalUrl =
-    `https://dadyoom.dpdns.org/curriculum/${info.code.toLowerCase()}`;
-
   return (
-    <>
-      {/* COUNTRY_METADATA_FALLBACK:
-          React 19 hoists these tags to <head>. This intentionally
-          backs up generateMetadata on the Cloudflare/Vinext runtime. */}
-      <title>{pageTitle}</title>
-      <meta
-        name="description"
-        content={pageDescription}
-      />
-      <meta
-        name="robots"
-        content="index, follow"
-      />
-      <link
-        rel="canonical"
-        href={canonicalUrl}
-      />
-      <meta
-        property="og:title"
-        content={pageTitle}
-      />
-      <meta
-        property="og:description"
-        content={pageDescription}
-      />
-      <meta
-        property="og:url"
-        content={canonicalUrl}
-      />
-      <main
+    <main
       dir="rtl"
       className="min-h-screen bg-[#f7f1e6] px-4 py-12 text-[#202c29]"
     >
@@ -578,7 +540,6 @@ export default async function CountryCurriculumPage({
           </div>
         )}
       </div>
-      </main>
-    </>
+    </main>
   );
 }
