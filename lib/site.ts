@@ -6,7 +6,7 @@ export const SITE_DESCRIPTION =
   "ضاديوم (Dadyoom)، ويُكتب أحيانًا في البحث «ضاضيوم»، منصة عربية ذكية متكاملة لتعلّم اللغة العربية عبر المناهج والدروس والمهارات الأربع وقاموس السياق والرفيق التعليمي ضاد.";
 
 export const PRODUCTION_FALLBACK_SITE_URL =
-  "https://dadyoom.mrahmedsamirhamam.workers.dev";
+  "https://dadyoom.dpdns.org";
 
 function normalizeOrigin(value: string | undefined): string | null {
   const clean = value?.trim();
