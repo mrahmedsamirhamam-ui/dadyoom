@@ -24,7 +24,8 @@ function isPublicSeoPath(
     /^\/(?:courses|curriculum|learn-arabic|about|contact|pricing|privacy|terms|refund-policy|marketplace|lessons)(?:\/|$)/u.test(
       pathname,
     ) ||
-    pathname === "/sitemap.xml"
+    pathname === "/sitemap.xml" ||
+    pathname === "/robots.txt"
   );
 }
 
