@@ -274,8 +274,8 @@ export async function GET(
 
     secondaryTracks = ((trackRows ?? []) as SecondaryTrack[]).filter(
       (track) =>
-        !Array.isArray(track.grades) ||
-        track.grades.length === 0 ||
+        Array.isArray(track.grades) &&
+        track.grades.length > 0 &&
         track.grades.includes(gradeNumber),
     );
 
