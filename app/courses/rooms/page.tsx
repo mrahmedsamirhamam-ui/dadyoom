@@ -8,8 +8,8 @@ export const metadata = {
     "غرف تعلم العربية | ضاديوم",
   description:
     "غرفتان واضحتان في ضاديوم: العربية لغير الناطقين بها، والعربية للعرب مع معلمين عرب.",
-};
   alternates: { canonical: "/courses/rooms" },
+};
 
 export default function CourseRoomsPage() {
   return (
