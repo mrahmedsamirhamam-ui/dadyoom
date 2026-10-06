@@ -160,6 +160,37 @@ function trackStatusLabel(status: string): string {
   }
 }
 
+
+function lessonCoverageLabel(value: string): string {
+  if (value === "detailed-current-semester-1") {
+    return "تفاصيل الدروس الرسمية للفصل الأول مستوردة";
+  }
+
+  if (value === "current-detailed-source-nonstandard-levels") {
+    return "الخطة الرسمية مفصلة، لكن مستوياتها خاصة بالتعليم المستمر وليست صفوف 10–12";
+  }
+
+  if (value === "awaiting-current-official-detail") {
+    return "المسار رسمي، لكن عناوين دروس العربية الحالية لم تُنشر تفصيليًا في المصدر المتاح";
+  }
+
+  if (
+    value.includes("book-level") ||
+    value.includes("generic") ||
+    value.includes("bundle") ||
+    value.includes("partial")
+  ) {
+    return "التغطية الرسمية الحالية موثقة جزئيًا/على مستوى الكتب أو الحزم";
+  }
+
+  return "";
+}
+
+function hasDetailedLessonCoverage(value: string): boolean {
+  return value.includes("detailed-current") ||
+    value === "detailed";
+}
+
 function curriculumName(name: string): string {
   return name
     .replace(/^اللغة العربية\s*[—-]\s*/u, "")
@@ -729,12 +760,30 @@ function CatalogScope({
             <span className="rounded-full bg-[#fff4df] px-3 py-2">
               الخطة الرسمية منشورة — تفاصيل الدروس قيد الاستخراج الموثق
             </span>
+          ) : selectedTermStatus?.detailStatus ===
+            "detailed-imported" ? (
+            <span className="rounded-full bg-[#e8f7ee] px-3 py-2 text-[#245b3a]">
+              تم استيراد تفاصيل هذا الفصل من الخطة الرسمية
+            </span>
+          ) : selectedTermStatus?.detailStatus ===
+            "partial-imported" ? (
+            <span className="rounded-full bg-[#fff4df] px-3 py-2">
+              تم استيراد الجزء الرسمي المتاح لهذا الفصل
+            </span>
           ) : null}
           {selectedTrackOption ? (
             <>
               <span className="rounded-full bg-[#e8f3ff] px-3 py-2">
-                {selectedTrackOption.officialLessons} درسًا رسميًا موثقًا للمسار
+                {selectedTrackOption.officialLessons}{" "}
+                {hasDetailedLessonCoverage(selectedTrackOption.lessonCoverage)
+                  ? "درسًا رسميًا موثقًا للمسار"
+                  : "عقدة/درسًا رسميًا موثقًا للمسار"}
               </span>
+              {lessonCoverageLabel(selectedTrackOption.lessonCoverage) ? (
+                <span className="rounded-full bg-[#fff4df] px-3 py-2">
+                  {lessonCoverageLabel(selectedTrackOption.lessonCoverage)}
+                </span>
+              ) : null}
               {selectedTrackOption.officialSemesters.length ? (
                 <span className="rounded-full bg-[#eef9ef] px-3 py-2">
                   الفصول المصنفة:{" "}
