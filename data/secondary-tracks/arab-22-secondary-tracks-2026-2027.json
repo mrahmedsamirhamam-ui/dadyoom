@@ -1320,27 +1320,44 @@
           "tracks": [
             {
               "nameAr": "L",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "ES",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "S",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "SG",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             }
           ]
         }
       ],
       "sources": [
-        "https://cripen.dj/"
+        "https://cripen.dj/",
+        "https://cripen.dj/wp-content/uploads/2025/05/Programmes-compile-seconde.pdf"
       ],
-      "lessonCoverage": "detailed-partial-to-strong"
+      "lessonCoverage": "partial-detailed-grade-scoped"
     },
     {
       "code": "SO",
