@@ -7,8 +7,8 @@ import {
   getArabicCountryOptions,
 } from "@/lib/countries";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const dynamic = "force-static";
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: "مناهج اللغة العربية | ضاديوم",
