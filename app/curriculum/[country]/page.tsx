@@ -99,7 +99,7 @@ export default async function CountryCurriculumPage({
 
   for (let from = 0; ; from += pageSize) {
     const { data, error } = await db
-      .from("seo_indexable_lessons")
+      .from("seo_indexable_lessons_fast")
       .select(
         "id,title,slug,summary,lesson_number,sort_order,lesson_semester,unit_title,unit_number,unit_sort_order,unit_semester,grade_name,grade_number,country_code,country_name",
       )
