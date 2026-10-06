@@ -102,27 +102,45 @@
           "tracks": [
             {
               "nameAr": "الطب وعلوم الحياة",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "الهندسة وعلوم الحاسب",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "الأعمال",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             },
             {
               "nameAr": "الآداب والفنون",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                11,
+                12
+              ]
             }
           ]
         }
       ],
       "sources": [
-        "https://moe.gov.eg/ar/elearningenterypage/e-learning/"
+        "https://moe.gov.eg/ar/elearningenterypage/e-learning/",
+        "https://moe.gov.eg/ar/what-s-on/news/house-of-rep-3/",
+        "https://moe.gov.eg/ar/what-s-on/news/bacca-1/%5C"
       ],
-      "lessonCoverage": "generic-or-partial"
+      "lessonCoverage": "generic-or-partial-grade-scoped"
     },
     {
       "code": "JO",
