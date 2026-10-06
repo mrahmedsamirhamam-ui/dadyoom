@@ -586,16 +586,23 @@
             {
               "nameAr": "الثانوي التقني/المهني",
               "status": "active",
-              "arabicPolicy": "needs-detailed-current-arabic-source"
+              "arabicPolicy": "needs-detailed-current-arabic-source",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             }
           ]
         }
       ],
       "sources": [
         "https://www.crdp.org/books-pdf",
-        "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A"
+        "https://www.crdp.org/curriculum-content_details/%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A2%D8%AF%D8%A7%D8%A8%D9%87%D8%A7/%D8%B9%D8%B1%D8%A8%D9%8A",
+        "https://www.crdp.org/magazine-details1/683/1164/1161",
+        "https://www.crdp.org/sites/default/files/2025-11/Connection%20to%20%20vocational%20and%20technical%20education.pdf"
       ],
-      "lessonCoverage": "generic-or-partial"
+      "lessonCoverage": "generic-or-partial-grade-scoped"
     },
     {
       "code": "MR",
