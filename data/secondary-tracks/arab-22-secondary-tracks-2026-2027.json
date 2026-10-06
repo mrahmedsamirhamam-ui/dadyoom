@@ -1368,19 +1368,33 @@
           "tracks": [
             {
               "nameAr": "الثانوي العام",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                9,
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "الثانوي التقني",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                9,
+                10,
+                11,
+                12
+              ]
             }
           ]
         }
       ],
       "sources": [
-        "https://moe.gov.so/"
+        "https://moe.gov.so/",
+        "https://moe.gov.so/wp-content/uploads/2026/02/National-Assessment-Framework-for-Somalia-Final-1.pdf",
+        "https://moe.gov.so/wp-content/uploads/2022/07/ESSP-2022-2026.pdf"
       ],
-      "lessonCoverage": "generic"
+      "lessonCoverage": "generic-book-bundle-grade-scoped"
     },
     {
       "code": "KM",
