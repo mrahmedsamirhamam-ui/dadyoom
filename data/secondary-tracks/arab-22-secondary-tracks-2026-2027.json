@@ -975,11 +975,21 @@
           "tracks": [
             {
               "nameAr": "الفرع العلمي",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             },
             {
               "nameAr": "الفرع الأدبي",
-              "status": "active"
+              "status": "active",
+              "grades": [
+                10,
+                11,
+                12
+              ]
             }
           ]
         },
@@ -1011,9 +1021,10 @@
         }
       ],
       "sources": [
-        "https://moed.gov.sy/"
+        "https://moed.gov.sy/",
+        "https://moed.gov.sy/news/11233"
       ],
-      "lessonCoverage": "book-level"
+      "lessonCoverage": "book-level-general-branch-grade-scoped"
     },
     {
       "code": "IQ",
