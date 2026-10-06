@@ -141,6 +141,42 @@ jobs:
 
           echo "SEO_SITEMAP_SAMPLE=PASS checked=${#urls[@]}"
 
+      - name: Verify Googlebot page metadata
+        shell: bash
+        env:
+          BASE: https://dadyoom.dpdns.org
+        run: |
+          set -euo pipefail
+
+          check_page() {
+            path="$1"
+            expected_title="$2"
+            expected_canonical="$3"
+
+            html="$(curl --silent --show-error --location --max-time 30               -H "User-Agent: Googlebot" "$BASE$path")"
+
+            if ! printf '%s' "$html" | grep -Fq "<title>$expected_title"; then
+              echo "SEO_PAGE_TITLE=FAIL path=$path expected=$expected_title"
+              exit 1
+            fi
+
+            if ! printf '%s' "$html" | grep -Fq "href=\"$BASE$expected_canonical\""; then
+              echo "SEO_PAGE_CANONICAL=FAIL path=$path expected=$BASE$expected_canonical"
+              exit 1
+            fi
+
+            if ! printf '%s' "$html" | grep -Eiq '<meta[^>]+name="robots"[^>]+content="[^"]*index[^"]*follow'; then
+              echo "SEO_PAGE_ROBOTS=FAIL path=$path"
+              exit 1
+            fi
+
+            echo "SEO_PAGE_METADATA=PASS path=$path"
+          }
+
+          check_page "/about" "عن ضاديوم" "/about"
+          check_page "/courses" "مناهج اللغة العربية" "/courses"
+          check_page "/curriculum/bh" "مناهج اللغة العربية في البحرين" "/curriculum/bh"
+
       - name: Verify one indexable lesson metadata
         shell: bash
         env:
