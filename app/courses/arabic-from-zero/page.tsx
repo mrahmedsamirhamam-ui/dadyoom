@@ -10,8 +10,8 @@ export const metadata = {
     "العربية من الصفر | ضاديوم",
   description:
     "كورس فيديو منظم لتعلم الحروف والحركات والمدود والعبارات العربية الأساسية.",
-};
   alternates: { canonical: "/courses/arabic-from-zero" },
+};
 
 export default function ArabicFromZeroCoursePage() {
   const course =
