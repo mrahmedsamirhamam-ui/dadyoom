@@ -141,7 +141,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const lessonRoutes: MetadataRoute.Sitemap =
     lessons.map((lesson) => ({
-    indexableLessons.map((lesson) => ({
       url: `${base}/lessons/${lesson.id}`,
       lastModified: lesson.updated_at
         ? new Date(lesson.updated_at)
