@@ -154,7 +154,7 @@ jobs:
               grep -oE '<loc>[^<]+' |
               sed 's#<loc>##' |
               grep '/lessons/' |
-              head -n 1
+              sed -n '1p'
           )"
 
           if [[ -z "$lesson_url" ]]; then
