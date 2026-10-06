@@ -66,7 +66,7 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
     description,
     alternates: { canonical: `/lessons/${id}` },
     robots: isTemplatedCoreLesson
-      ? { index: false, follow: true }
+      ? { index: false, follow: false }
       : { index: true, follow: true },
     openGraph: {
       type: "article",
