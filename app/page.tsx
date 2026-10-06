@@ -171,7 +171,7 @@ export default function HomePage() {
             </p>
 
             <p className="mt-3 text-sm font-bold text-[#7b7165]">
-              الاسم الرسمي: ضاديوم (Dadyoom)، ويُكتب أحيانًا في البحث «ضاضيوم».
+              الاسم الرسمي: ضاديوم (Dadyoom)، ويُكتب أحيانًا في البحث «ضاضيوم» أو «داديوم».
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -424,6 +424,7 @@ export default function HomePage() {
           <nav aria-label="الروابط القانونية" className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm font-bold">
             <Link prefetch={false} href="/about" className="hover:text-white hover:underline">عن ضاديوم</Link>
             <Link prefetch={false} href="/learn-arabic" className="hover:text-white hover:underline">دليل تعلم العربية</Link>
+            <Link prefetch={false} href="/curriculum" className="hover:text-white hover:underline">دليل المناهج والدروس</Link>
             <Link prefetch={false} href="/contact" className="hover:text-white hover:underline">تواصل معنا</Link>
             <Link prefetch={false} href="/terms" className="hover:text-white hover:underline">الشروط والأحكام</Link>
             <Link prefetch={false} href="/privacy" className="hover:text-white hover:underline">سياسة الخصوصية</Link>
