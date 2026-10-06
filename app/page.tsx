@@ -122,6 +122,7 @@ export default function HomePage() {
             <Link
               prefetch={false}
               href="/login"
+              rel="nofollow"
               className="hidden rounded-full px-4 py-2.5 text-sm font-black text-[#4e4941] transition hover:bg-white sm:inline-flex"
             >
               دخول
@@ -129,6 +130,7 @@ export default function HomePage() {
             <Link
               prefetch={false}
               href="/signup"
+              rel="nofollow"
               className="rounded-full bg-[#123f39] px-5 py-2.5 text-sm font-black text-white shadow-lg shadow-[#123f39]/15 transition hover:-translate-y-0.5 hover:bg-[#0c332e]"
             >
               ابدأ مجانًا
@@ -178,6 +180,7 @@ export default function HomePage() {
               <Link
                 prefetch={false}
                 href="/signup"
+              rel="nofollow"
                 className="rounded-2xl bg-[#123f39] px-7 py-4 font-black text-white shadow-xl shadow-[#123f39]/15 transition hover:-translate-y-0.5 hover:bg-[#0b332e]"
               >
                 ابدأ رحلتك
@@ -360,6 +363,7 @@ export default function HomePage() {
               <Link
                 key={role.label}
                 href={role.href}
+                rel="nofollow"
                 prefetch={false}
                 className="group relative overflow-hidden rounded-[2rem] border border-[#ddcfb4] bg-[#fffdf8] p-6 shadow-sm transition hover:-translate-y-1 hover:border-[#a99161] hover:shadow-xl"
               >
@@ -407,6 +411,7 @@ export default function HomePage() {
             <Link
               prefetch={false}
               href="/signup"
+              rel="nofollow"
               className="inline-flex justify-center rounded-2xl bg-[#123f39] px-8 py-4 font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#0c332e]"
             >
               إنشاء حساب مجاني
