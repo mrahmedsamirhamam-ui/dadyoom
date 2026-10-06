@@ -35,19 +35,67 @@ export default async function StudentPage() {
     redirect("/login");
   }
 
-  const {
-    data: studentProfile,
-    error: studentProfileError,
-  } = await supabase
-    .from("profiles")
-    .select(
-      "full_name,role,grade_number,onboarding_completed,country,interests,learning_goal,preferred_learning_style,grade_academic_year",
-    )
-    .eq("id", user.id)
-    .maybeSingle();
+  const loadStudentProfile = () =>
+    supabase
+      .from("profiles")
+      .select(
+        "full_name,role,grade_number,onboarding_completed,country,interests,learning_goal,preferred_learning_style,grade_academic_year",
+      )
+      .eq("id", user.id)
+      .maybeSingle();
 
-  if (studentProfileError || !studentProfile) {
-    throw new Error("تعذر تحميل بيانات حساب الطالب.");
+  let studentProfileResult =
+    await loadStudentProfile();
+
+  if (
+    studentProfileResult.error ||
+    !studentProfileResult.data
+  ) {
+    console.warn(
+      "STUDENT_PROFILE_LOAD_RETRY",
+      studentProfileResult.error?.message ??
+        "profile-not-returned",
+    );
+
+    studentProfileResult =
+      await loadStudentProfile();
+  }
+
+  const studentProfile =
+    studentProfileResult.data;
+
+  if (
+    studentProfileResult.error ||
+    !studentProfile
+  ) {
+    console.error(
+      "STUDENT_PROFILE_LOAD_FAILED",
+      studentProfileResult.error?.message ??
+        "profile-not-returned",
+    );
+
+    return (
+      <main
+        dir="rtl"
+        className="min-h-screen bg-slate-50 px-4 py-8"
+      >
+        <section className="mx-auto max-w-xl rounded-3xl border border-amber-200 bg-white p-8 text-center shadow-sm">
+          <h1 className="text-2xl font-black text-slate-900">
+            تعذر تحميل لوحة الطالب مؤقتًا
+          </h1>
+          <p className="mt-3 leading-8 text-slate-600">
+            حسابك ما زال محفوظًا. أعد المحاولة لفتح اللوحة من جديد.
+          </p>
+          <Link
+            href="/student"
+            prefetch={false}
+            className="mt-6 inline-flex min-h-12 items-center justify-center rounded-2xl bg-teal-700 px-6 font-black text-white"
+          >
+            إعادة المحاولة
+          </Link>
+        </section>
+      </main>
+    );
   }
 
   const studentRole =
