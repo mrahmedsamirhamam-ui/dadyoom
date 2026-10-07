@@ -7,6 +7,7 @@ const links = [
   { href: "/pricing", label: "ضاديوم Plus", icon: "" },
   { href: "/teacher/marketplace", label: "سوق المعلم", icon: "" },
   { href: "/teacher/classroom", label: "الفصل الذكي", icon: "" },
+  { href: "/teacher/qr", label: "QR الذكي", icon: "▦" },
   { href: "/teacher", label: "لوحة المعلم", icon: "" },
   { href: "/rewards", label: "الجوائز والشهادات", icon: "🏆" },
   { href: "/teacher/academy", label: "غرفة تدريب المعلم", icon: "" },

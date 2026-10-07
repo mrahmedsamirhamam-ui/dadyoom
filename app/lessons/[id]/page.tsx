@@ -17,6 +17,7 @@ import AdaptiveRecommendationCard from "@/features/adaptive-learning/components/
 import WeakQuestionsReview from "@/features/adaptive-learning/components/WeakQuestionsReview";
 
 import LessonProgress from "@/components/lesson/LessonProgress";
+import SmartQrCard from "@/components/lesson/SmartQrCard";
 import LessonLearningSlides from "@/components/lesson/LessonLearningSlides";
 import VocabularyCard from "@/components/lesson/VocabularyCard";
 import MultipleChoiceQuestion from "@/components/lesson/MultipleChoiceQuestion";
@@ -464,6 +465,8 @@ export default async function LessonPage({
             </Link>
           </div>
         </section>
+
+        <SmartQrCard lessonId={lesson.id} lessonTitle={lesson.title} />
 
         <div>
           <Link
