@@ -148,7 +148,14 @@ for (const track of tracks) {
   }
 }
 
-for (const level of ["محو الأمية", "المتابعة", "التقوية"]) {
+for (const level of [
+  "الأول محو الأمية",
+  "الثاني محو الأمية",
+  "الأول متابعة",
+  "الثاني متابعة",
+  "الأول تقوية",
+  "الثاني تقوية",
+]) {
   for (const term of [1, 2]) {
     requireScope(
       row =>

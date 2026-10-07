@@ -58,6 +58,36 @@ type TermStatusResponse = {
   error?: string;
 };
 
+type ContinuingEducationLesson = {
+  id: string;
+  title: string;
+  lessonType: string;
+  summary: string | null;
+  order: number;
+  semester: number | null;
+  sourcePdfUrl: string | null;
+  sourcePageStart: number | null;
+  sourcePageEnd: number | null;
+};
+
+type ContinuingEducationUnit = {
+  id: string;
+  title: string;
+  description: string | null;
+  semester: number | null;
+  order: number;
+  lessons: ContinuingEducationLesson[];
+};
+
+type ContinuingEducationResponse = {
+  level?: string;
+  academicYear?: string;
+  units?: ContinuingEducationUnit[];
+  terms?: CurriculumTermStatus[];
+  lessonCount?: number;
+  error?: string;
+};
+
 const diff = {
   beginner: "تمهيدي",
   intermediate: "متوسط",
@@ -76,10 +106,24 @@ function isDadyoomCoreCurriculum(
 }
 
 const bahrainContinuingLevels = [
-  "محو الأمية",
-  "المتابعة",
-  "التقوية",
+  "الأول محو الأمية",
+  "الثاني محو الأمية",
+  "الأول متابعة",
+  "الثاني متابعة",
+  "الأول تقوية",
+  "الثاني تقوية",
 ] as const;
+
+const continuingLessonTypeLabel: Record<string, string> = {
+  reading: "قراءة",
+  writing: "إنتاج كتابي",
+  grammar: "قواعد وتراكيب",
+  spelling: "إملاء وخط",
+  assessment: "مراجعة وتقويم",
+  listening: "استماع",
+  speaking: "تحدث",
+  vocabulary: "مفردات",
+};
 
 const gradeNames: Record<number, string> = {
   1: "الصف الأول الابتدائي",
@@ -188,6 +232,10 @@ function lessonCoverageLabel(value: string): string {
 
   if (value === "current-detailed-source-nonstandard-levels") {
     return "الخطة الرسمية مفصلة، لكن مستوياتها خاصة بالتعليم المستمر وليست صفوف 10–12";
+  }
+
+  if (value === "detailed-current-s1-nonstandard-levels") {
+    return "مستويات التعليم المستمر الستة ودروس الفصل الأول الحالية مستوردة تفصيليًا دون ربطها بصفوف 10–12";
   }
 
   if (value === "detailed-current-s1-plus-current-book-s2") {
@@ -394,76 +442,256 @@ function BahrainContinuingEducationPanel({
   level: string;
 }) {
   const [semester, setSemester] = useState("1");
+  const [payload, setPayload] =
+    useState<ContinuingEducationResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [reloadKey, setReloadKey] = useState(0);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    setSemester("1");
+    setLoading(true);
+    setError("");
+
+    const params = new URLSearchParams({
+      country: "BH",
+      level,
+    });
+
+    void fetch(
+      `/api/courses/continuing-education?${params.toString()}`,
+      {
+        cache: "no-store",
+        credentials: "include",
+        signal: controller.signal,
+      },
+    )
+      .then(async (response) => {
+        const body =
+          (await response.json()) as ContinuingEducationResponse;
+
+        if (!response.ok) {
+          throw new Error(
+            body.error ||
+              `تعذر تحميل التعليم المستمر (HTTP ${response.status}).`,
+          );
+        }
+
+        return body;
+      })
+      .then((body) => {
+        if (controller.signal.aborted) return;
+        setPayload(body);
+        setLoading(false);
+      })
+      .catch((cause) => {
+        if (controller.signal.aborted) return;
+        setError(
+          cause instanceof Error
+            ? cause.message
+            : "تعذر تحميل دروس التعليم المستمر.",
+        );
+        setLoading(false);
+      });
+
+    return () => controller.abort();
+  }, [level, reloadKey]);
+
   const firstSemester = semester === "1";
+  const selectedTerm =
+    payload?.terms?.find(
+      (item) => item.semester === Number(semester),
+    ) ?? null;
+  const units =
+    firstSemester ? payload?.units ?? [] : [];
+  const visibleLessons = units.reduce(
+    (sum, item) => sum + item.lessons.length,
+    0,
+  );
 
   return (
-    <section className="min-w-0 rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-5 sm:p-7">
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        <div>
-          <p className="text-xs font-black text-[#9a702a]">
-            البحرين — التعليم المستمر
-          </p>
-          <h2 className="mt-1 text-2xl font-black text-[#123f39]">
-            {level}
-          </h2>
-          <p className="mt-2 max-w-3xl font-bold leading-8 text-[#625b51]">
-            هذا مستوى رسمي مستقل في خطة التعليم المستمر، وليس الصف العاشر
-            أو الحادي عشر أو الثاني عشر.
-          </p>
-        </div>
-        <span className="rounded-full bg-[#fff4df] px-4 py-2 text-xs font-black text-[#7d5b1d]">
-          0 دروس مستوردة حتى آخر تدقيق
-        </span>
-      </div>
-
-      <div className="mt-5 grid gap-3 sm:grid-cols-2">
-        <div className="rounded-2xl border border-[#e5d8bf] bg-white p-4">
-          <div className="text-xs font-black text-[#887d70]">السنة</div>
-          <div className="mt-1 font-black text-[#123f39]">2026-2027</div>
-        </div>
-        <SelectBox
-          label="الفصل الدراسي"
-          value={semester}
-          options={[
-            ["1", "الفصل الدراسي الأول"],
-            ["2", "الفصل الدراسي الثاني"],
-          ]}
-          onChange={setSemester}
-        />
-      </div>
-
-      <div className="mt-5 rounded-2xl border border-[#e5d8bf] bg-white p-5">
-        {firstSemester ? (
-          <>
-            <div className="inline-flex rounded-full bg-[#e8f7ee] px-3 py-1 text-xs font-black text-[#245b3a]">
-              الخطة الرسمية الحالية منشورة
-            </div>
-            <p className="mt-3 font-bold leading-8 text-[#625b51]">
-              Plan6 يثبت برنامج التعليم المستمر ومستوياته الحقيقية. لم نضف
-              عناوين وحدات أو دروس قبل استخراجها حرفيًا من المصدر؛ لذلك تبقى
-              الدروس قيد الاستخراج الموثق بدل اختلاق محتوى.
+    <section className="min-w-0 space-y-5">
+      <div className="rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-5 sm:p-7">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="text-xs font-black text-[#9a702a]">
+              البحرين — التعليم المستمر
             </p>
+            <h2 className="mt-1 text-2xl font-black text-[#123f39]">
+              {level}
+            </h2>
+            <p className="mt-2 max-w-3xl font-bold leading-8 text-[#625b51]">
+              مستوى رسمي مستقل في Plan6، وليس الصف العاشر أو الحادي عشر
+              أو الثاني عشر.
+            </p>
+          </div>
+          <span className="rounded-full bg-[#e8f7ee] px-4 py-2 text-xs font-black text-[#245b3a]">
+            {loading
+              ? "جارٍ التحميل…"
+              : `${payload?.lessonCount ?? 0} درسًا رسميًا مستوردًا`}
+          </span>
+        </div>
+
+        <div className="mt-5 grid gap-3 sm:grid-cols-2">
+          <div className="rounded-2xl border border-[#e5d8bf] bg-white p-4">
+            <div className="text-xs font-black text-[#887d70]">السنة</div>
+            <div className="mt-1 font-black text-[#123f39]">
+              {payload?.academicYear ?? "2026-2027"}
+            </div>
+          </div>
+          <SelectBox
+            label="الفصل الدراسي"
+            value={semester}
+            options={[
+              ["1", "الفصل الدراسي الأول"],
+              ["2", "الفصل الدراسي الثاني"],
+            ]}
+            onChange={setSemester}
+          />
+        </div>
+
+        <div className="mt-5 rounded-2xl border border-[#e5d8bf] bg-white p-5">
+          {firstSemester ? (
+            <>
+              <div className="inline-flex rounded-full bg-[#e8f7ee] px-3 py-1 text-xs font-black text-[#245b3a]">
+                الخطة الرسمية الحالية مستوردة تفصيليًا
+              </div>
+              <p className="mt-3 font-bold leading-8 text-[#625b51]">
+                تم استخراج عناوين هذا المستوى من Plan6 الرسمي للفصل الأول
+                2026-2027 وإدخالها كدروس مقررة، مع إبقاء رقم الصف فارغًا
+                لأن التعليم المستمر يستخدم مستويات غير قياسية.
+              </p>
+            </>
+          ) : (
+            <>
+              <div className="inline-flex rounded-full bg-[#fff0e8] px-3 py-1 text-xs font-black text-[#8a3f1f]">
+                {selectedTerm?.publicationStatus ===
+                "not-published-as-of-audit"
+                  ? "غير منشور رسميًا للسنة الحالية حتى آخر تدقيق"
+                  : "لا توجد خطة حالية منشورة"}
+              </div>
+              <p className="mt-3 font-bold leading-8 text-[#625b51]">
+                الكتب الحالية مثبتة في دليل الكتب 2026-2027، لكن لا ننسب
+                أي درس إلى الفصل الثاني قبل نشر خطة 2026-2027 الرسمية.
+              </p>
+            </>
+          )}
+
+          {(selectedTerm?.sourceUrl ||
+            (firstSemester &&
+              "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan6.pdf")) ? (
             <a
-              href="https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan6.pdf"
+              href={
+                selectedTerm?.sourceUrl ??
+                "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan6.pdf"
+              }
               target="_blank"
               rel="noreferrer"
               className="mt-4 inline-flex rounded-xl border border-[#cdbb96] px-4 py-2 text-sm font-black text-[#174f47] underline decoration-dotted underline-offset-4"
             >
-              المصدر الرسمي — Plan6
+              المصدر الرسمي لهذا الفصل
             </a>
-          </>
-        ) : (
-          <>
-            <div className="inline-flex rounded-full bg-[#fff0e8] px-3 py-1 text-xs font-black text-[#8a3f1f]">
-              غير منشور رسميًا للسنة الحالية حتى آخر تدقيق
-            </div>
-            <p className="mt-3 font-bold leading-8 text-[#625b51]">
-              لا ننسب خطة فصل ثانٍ قديمة إلى 2026-2027، ولا نعرض أي عنوان
-              على أنه مقرر حاليًا قبل نشر المصدر الرسمي للسنة الحالية.
-            </p>
-          </>
-        )}
+          ) : null}
+        </div>
       </div>
+
+      {loading ? (
+        <section className="rounded-[2rem] border border-[#dfcfad] bg-white p-8 text-center">
+          <div className="mx-auto h-8 w-8 animate-spin rounded-full border-4 border-[#d9c69c] border-t-[#123f39]" />
+          <p className="mt-4 font-black text-[#123f39]">
+            جارٍ تحميل دروس {level}…
+          </p>
+        </section>
+      ) : error ? (
+        <section className="rounded-[2rem] border border-rose-200 bg-rose-50 p-8 text-center">
+          <h3 className="text-xl font-black text-rose-900">
+            تعذر تحميل المستوى
+          </h3>
+          <p className="mt-2 font-bold text-rose-800">{error}</p>
+          <button
+            type="button"
+            onClick={() => setReloadKey((value) => value + 1)}
+            className="mt-5 rounded-2xl bg-[#123f39] px-6 py-3 font-black text-white"
+          >
+            إعادة المحاولة
+          </button>
+        </section>
+      ) : firstSemester && units.length > 0 ? (
+        <section className="space-y-5">
+          <div className="rounded-2xl bg-[#eef6f2] px-4 py-3 text-sm font-black text-[#245b3a]">
+            المعروض الآن: {visibleLessons} درسًا/بندًا رسميًا في Plan6
+          </div>
+          {units.map((item) => (
+            <article
+              key={item.id}
+              className="overflow-hidden rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8]"
+            >
+              <header className="border-b border-[#eadfc9] p-5">
+                <p className="text-xs font-black text-[#9a702a]">
+                  الفصل الدراسي الأول
+                </p>
+                <h3 className="mt-1 text-xl font-black text-[#123f39]">
+                  {item.title}
+                </h3>
+                {item.description ? (
+                  <p className="mt-2 text-sm font-bold leading-7 text-[#766c60]">
+                    {item.description}
+                  </p>
+                ) : null}
+              </header>
+
+              <div className="grid gap-3 p-4 sm:grid-cols-2 xl:grid-cols-3">
+                {item.lessons.map((lesson) => (
+                  <Link
+                    key={lesson.id}
+                    href={`/lessons/${lesson.id}`}
+                    className="rounded-2xl border border-[#e5d8bf] bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-md"
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#f5ecd8] font-black">
+                        {lesson.order}
+                      </span>
+                      <span className="rounded-full bg-[#f6f0e5] px-3 py-1 text-xs font-black text-[#6f572c]">
+                        {continuingLessonTypeLabel[lesson.lessonType] ??
+                          lesson.lessonType}
+                      </span>
+                    </div>
+                    <h4 className="mt-3 text-base font-black leading-7 text-[#123f39]">
+                      {lesson.title}
+                    </h4>
+                    {lesson.sourcePageStart ? (
+                      <p className="mt-3 text-xs font-bold text-[#887d70]">
+                        المصدر: Plan6، الصفحات{" "}
+                        {lesson.sourcePageStart}
+                        {lesson.sourcePageEnd &&
+                        lesson.sourcePageEnd !== lesson.sourcePageStart
+                          ? `–${lesson.sourcePageEnd}`
+                          : ""}
+                      </p>
+                    ) : null}
+                  </Link>
+                ))}
+              </div>
+            </article>
+          ))}
+        </section>
+      ) : firstSemester ? (
+        <section className="rounded-[2rem] border border-[#dfcfad] bg-white p-8 text-center">
+          <h3 className="text-xl font-black text-[#123f39]">
+            لا توجد دروس منشورة لهذا المستوى
+          </h3>
+        </section>
+      ) : (
+        <section className="rounded-[2rem] border border-[#dfcfad] bg-white p-8 text-center">
+          <h3 className="text-xl font-black text-[#123f39]">
+            الفصل الثاني غير منشور رسميًا للسنة الحالية
+          </h3>
+          <p className="mt-2 font-bold leading-7 text-[#766c60]">
+            سيظل ظاهرًا بهذه الحالة حتى تنشر وزارة التربية خطة 2026-2027.
+          </p>
+        </section>
+      )}
     </section>
   );
 }
