@@ -90,10 +90,10 @@ export default function HomePage() {
             </a>
             <Link
               prefetch={false}
-              href="/courses"
+              href="/curriculum"
               className="rounded-full px-4 py-2 transition hover:bg-[#f1e7d4] hover:text-[#123f39]"
             >
-              المناهج
+              مناهج الدول
             </Link>
             <Link
               prefetch={false}
@@ -187,10 +187,10 @@ export default function HomePage() {
               </Link>
               <Link
                 prefetch={false}
-                href="/courses"
+                href="/curriculum"
                 className="rounded-2xl border border-[#cdbb96] bg-[#fffdf8] px-7 py-4 font-black text-[#3f493f] shadow-sm transition hover:-translate-y-0.5 hover:border-[#8ca99f]"
               >
-                استكشف المناهج
+                استكشف مناهج الدول
               </Link>
               <Link
                 prefetch={false}
@@ -203,7 +203,7 @@ export default function HomePage() {
             </div>
 
             <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3 border-t border-[#d8ccb5] pt-6 text-sm font-black text-[#625b51]">
-              <Metric value="22/22" label="دولة جاهزة" />
+              <Metric value="22" label="دولة في الدليل" />
               <span aria-hidden="true" className="hidden h-8 w-px bg-[#d7cab0] sm:block" />
               <Metric value="1–12" label="الصفوف" />
               <span aria-hidden="true" className="hidden h-8 w-px bg-[#d7cab0] sm:block" />
