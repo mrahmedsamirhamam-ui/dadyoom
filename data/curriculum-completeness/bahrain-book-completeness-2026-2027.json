@@ -31,7 +31,14 @@
       "https://edunet.bh/manual/books2026/books4.pdf",
       "https://edunet.bh/manual/books2026/books5.pdf"
     ],
-    "historicalSemester2PlansAreEvidenceOnly": true
+    "historicalSemester2PlansAreEvidenceOnly": true,
+    "currentBookCatalogEvidence": {
+      "basic": "https://edunet.bh/manual/books2026/books1.pdf",
+      "secondary": "https://edunet.bh/manual/books2026/books2.pdf",
+      "religious": "https://edunet.bh/manual/books2026/books3.pdf",
+      "continuing": "https://edunet.bh/manual/books2026/books4.pdf",
+      "rule": "Catalog titles identify current official books only; COMPLETE_BOOK still requires independent 1:1 TOC matching."
+    }
   },
   "summary": {
     "auditRows": 56,
@@ -41,10 +48,12 @@
     "officialBookNotFound": 2,
     "bahrainComplete": false,
     "blockingGaps": [
-      "لم تُستخرج بعد فهارس TOC الحالية المستقلة وتُطابق 1:1 لكل الكتب؛ لذلك لا يوجد ادعاء COMPLETE_BOOK في هذا التدقيق.",
-      "التعليم المستمر: اكتمل استخراج Plan6 للفصل الأول في ستة مستويات غير قياسية، والكتب الحالية مثبتة؛ يبقى TOC المستقل والفصل الثاني عند نشره.",
-      "خطة الفصل الثاني 2026-2027 لم تُنشر حتى آخر تدقيق؛ أي محتوى فصل ثانٍ من مراجع أقدم لا يُنسب إلى الجدول الحالي."
-    ]
+      "تم تثبيت أسماء الكتب الحالية من أدلة books1–4؛ ما زالت فهارس TOC المستقلة تحتاج مطابقة 1:1 قبل COMPLETE_BOOK.",
+      "التعليم المستمر: Plan6 للفصل الأول مستورد في ستة مستويات (177 درسًا)، والفصل الثاني 2026-2027 غير منشور حتى آخر تدقيق.",
+      "MYP: Plan7 للفصل الأول مستورد، لكن لم يُثبت بعد كتاب/TOC رسمي مستقل في دليل الكتب الحالي."
+    ],
+    "catalogEvidenceUpdatedAt": "2026-10-07",
+    "catalogEvidenceScope": "basic-1-9 + secondary-physical-books + religious + continuing"
   },
   "books": [
     {
@@ -70,7 +79,15 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "المحتوى المقرر للفصل الأول مستورد، لكن لم يُثبت بعد عدّ فهرس الكتاب الحالي 1:1 مستقلًا عن خطة المحتوى، لذلك لا يمنح التدقيق COMPLETE_BOOK."
+      "notes": "المحتوى المقرر للفصل الأول مستورد، لكن لم يُثبت بعد عدّ فهرس الكتاب الحالي 1:1 مستقلًا عن خطة المحتوى، لذلك لا يمنح التدقيق COMPLETE_BOOK.",
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
+      "currentBookCatalogTitles": [
+        "كتاب براعم العربية الجزء الأول",
+        "كتاب براعم العربية الجزء الثاني",
+        "وحدة نتهيأ إلى المدرسة"
+      ],
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
     },
     {
       "grade": 1,
@@ -94,7 +111,15 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "المحتوى المستورد مصنف official-book-unscheduled. خطة الفصل الثاني 2026-2027 غير منشورة حتى آخر تدقيق؛ المرجع التاريخي لا يُعامل كخطة حالية. يلزم استخراج TOC الحالي ومطابقته 1:1 قبل COMPLETE_BOOK."
+      "notes": "المحتوى المستورد مصنف official-book-unscheduled. خطة الفصل الثاني 2026-2027 غير منشورة حتى آخر تدقيق؛ المرجع التاريخي لا يُعامل كخطة حالية. يلزم استخراج TOC الحالي ومطابقته 1:1 قبل COMPLETE_BOOK.",
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
+      "currentBookCatalogTitles": [
+        "كتاب براعم العربية الجزء الأول",
+        "كتاب براعم العربية الجزء الثاني",
+        "وحدة نتهيأ إلى المدرسة"
+      ],
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
     },
     {
       "grade": 2,
@@ -116,7 +141,17 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "خطة الفصل الأول الحالية مستوردة تفصيليًا. دليل الكتب الرسمي موجود، لكن فهرس الكتاب الحالي لم يُستخرج ويُطابق 1:1 بعد."
+      "notes": "خطة الفصل الأول الحالية مستوردة تفصيليًا. دليل الكتب الرسمي موجود، لكن فهرس الكتاب الحالي لم يُستخرج ويُطابق 1:1 بعد.",
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
+      "currentBookCatalogTitles": [
+        "كتاب براعم العربية الجزء الأول",
+        "التدريبات اللغوية لبراعم العربية الجزء الأول",
+        "كتاب براعم العربية الجزء الثاني",
+        "التدريبات اللغوية لبراعم العربية الجزء الثاني",
+        "التدريبات اللغوية / اللغة العربية — وحدة المراجعة"
+      ],
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
     },
     {
       "grade": 2,
@@ -138,7 +173,17 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "المحتوى المستورد مصنف official-book-unscheduled. خطة الفصل الثاني 2026-2027 غير منشورة حتى آخر تدقيق؛ المرجع التاريخي لا يُعامل كخطة حالية. يلزم استخراج TOC الحالي ومطابقته 1:1 قبل COMPLETE_BOOK."
+      "notes": "المحتوى المستورد مصنف official-book-unscheduled. خطة الفصل الثاني 2026-2027 غير منشورة حتى آخر تدقيق؛ المرجع التاريخي لا يُعامل كخطة حالية. يلزم استخراج TOC الحالي ومطابقته 1:1 قبل COMPLETE_BOOK.",
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
+      "currentBookCatalogTitles": [
+        "كتاب براعم العربية الجزء الأول",
+        "التدريبات اللغوية لبراعم العربية الجزء الأول",
+        "كتاب براعم العربية الجزء الثاني",
+        "التدريبات اللغوية لبراعم العربية الجزء الثاني",
+        "التدريبات اللغوية / اللغة العربية — وحدة المراجعة"
+      ],
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
     },
     {
       "grade": 3,
@@ -160,7 +205,15 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "خطة الفصل الأول الحالية مستوردة تفصيليًا. دليل الكتب الرسمي موجود، لكن فهرس الكتاب الحالي لم يُستخرج ويُطابق 1:1 بعد."
+      "notes": "خطة الفصل الأول الحالية مستوردة تفصيليًا. دليل الكتب الرسمي موجود، لكن فهرس الكتاب الحالي لم يُستخرج ويُطابق 1:1 بعد.",
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
+      "currentBookCatalogTitles": [
+        "كتاب براعم العربية الجزء الثاني",
+        "التدريبات اللغوية الجزء الأول لبراعم العربية",
+        "التدريبات اللغوية الجزء الثاني لبراعم العربية"
+      ],
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "تم تسجيل العناوين العربية الواضحة فقط من books1.pdf؛ يوجد صف OCR ملتبس في دليل الكتب للصف الثالث ولم يُصحح بالافتراض."
     },
     {
       "grade": 3,
@@ -182,7 +235,15 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "المحتوى المستورد مصنف official-book-unscheduled. خطة الفصل الثاني 2026-2027 غير منشورة حتى آخر تدقيق؛ المرجع التاريخي لا يُعامل كخطة حالية. يلزم استخراج TOC الحالي ومطابقته 1:1 قبل COMPLETE_BOOK."
+      "notes": "المحتوى المستورد مصنف official-book-unscheduled. خطة الفصل الثاني 2026-2027 غير منشورة حتى آخر تدقيق؛ المرجع التاريخي لا يُعامل كخطة حالية. يلزم استخراج TOC الحالي ومطابقته 1:1 قبل COMPLETE_BOOK.",
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
+      "currentBookCatalogTitles": [
+        "كتاب براعم العربية الجزء الثاني",
+        "التدريبات اللغوية الجزء الأول لبراعم العربية",
+        "التدريبات اللغوية الجزء الثاني لبراعم العربية"
+      ],
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "تم تسجيل العناوين العربية الواضحة فقط من books1.pdf؛ يوجد صف OCR ملتبس في دليل الكتب للصف الثالث ولم يُصحح بالافتراض."
     },
     {
       "grade": 4,
@@ -204,7 +265,17 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "خطة الفصل الأول الحالية مستوردة تفصيليًا. دليل الكتب الرسمي موجود، لكن فهرس الكتاب الحالي لم يُستخرج ويُطابق 1:1 بعد."
+      "notes": "خطة الفصل الأول الحالية مستوردة تفصيليًا. دليل الكتب الرسمي موجود، لكن فهرس الكتاب الحالي لم يُستخرج ويُطابق 1:1 بعد.",
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
+      "currentBookCatalogTitles": [
+        "كتاب اللغة العربية",
+        "التدريبات اللغوية / اللغة العربية الجزء الأول",
+        "التدريبات اللغوية / اللغة العربية الجزء الثاني",
+        "كراسة الخط العربي",
+        "كراسة الإنتاج الكتابي / دروب الكتابة"
+      ],
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
     },
     {
       "grade": 4,
@@ -226,7 +297,17 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "المحتوى المستورد مصنف official-book-unscheduled. خطة الفصل الثاني 2026-2027 غير منشورة حتى آخر تدقيق؛ المرجع التاريخي لا يُعامل كخطة حالية. يلزم استخراج TOC الحالي ومطابقته 1:1 قبل COMPLETE_BOOK."
+      "notes": "المحتوى المستورد مصنف official-book-unscheduled. خطة الفصل الثاني 2026-2027 غير منشورة حتى آخر تدقيق؛ المرجع التاريخي لا يُعامل كخطة حالية. يلزم استخراج TOC الحالي ومطابقته 1:1 قبل COMPLETE_BOOK.",
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
+      "currentBookCatalogTitles": [
+        "كتاب اللغة العربية",
+        "التدريبات اللغوية / اللغة العربية الجزء الأول",
+        "التدريبات اللغوية / اللغة العربية الجزء الثاني",
+        "كراسة الخط العربي",
+        "كراسة الإنتاج الكتابي / دروب الكتابة"
+      ],
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
     },
     {
       "grade": 5,
@@ -248,7 +329,17 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "خطة الفصل الأول الحالية مستوردة تفصيليًا. دليل الكتب الرسمي موجود، لكن فهرس الكتاب الحالي لم يُستخرج ويُطابق 1:1 بعد."
+      "notes": "خطة الفصل الأول الحالية مستوردة تفصيليًا. دليل الكتب الرسمي موجود، لكن فهرس الكتاب الحالي لم يُستخرج ويُطابق 1:1 بعد.",
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
+      "currentBookCatalogTitles": [
+        "كتاب اللغة العربية",
+        "التدريبات اللغوية / اللغة العربية الجزء الأول",
+        "التدريبات اللغوية / اللغة العربية الجزء الثاني",
+        "كراسة الخط العربي",
+        "كراسة الإنتاج الكتابي / دروب الكتابة"
+      ],
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
     },
     {
       "grade": 5,
@@ -270,7 +361,17 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "المحتوى المستورد مصنف official-book-unscheduled. خطة الفصل الثاني 2026-2027 غير منشورة حتى آخر تدقيق؛ المرجع التاريخي لا يُعامل كخطة حالية. يلزم استخراج TOC الحالي ومطابقته 1:1 قبل COMPLETE_BOOK."
+      "notes": "المحتوى المستورد مصنف official-book-unscheduled. خطة الفصل الثاني 2026-2027 غير منشورة حتى آخر تدقيق؛ المرجع التاريخي لا يُعامل كخطة حالية. يلزم استخراج TOC الحالي ومطابقته 1:1 قبل COMPLETE_BOOK.",
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
+      "currentBookCatalogTitles": [
+        "كتاب اللغة العربية",
+        "التدريبات اللغوية / اللغة العربية الجزء الأول",
+        "التدريبات اللغوية / اللغة العربية الجزء الثاني",
+        "كراسة الخط العربي",
+        "كراسة الإنتاج الكتابي / دروب الكتابة"
+      ],
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
     },
     {
       "grade": 6,
@@ -292,7 +393,16 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "خطة الفصل الأول الحالية مستوردة تفصيليًا. دليل الكتب الرسمي موجود، لكن فهرس الكتاب الحالي لم يُستخرج ويُطابق 1:1 بعد."
+      "notes": "خطة الفصل الأول الحالية مستوردة تفصيليًا. دليل الكتب الرسمي موجود، لكن فهرس الكتاب الحالي لم يُستخرج ويُطابق 1:1 بعد.",
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
+      "currentBookCatalogTitles": [
+        "كتاب اللغة العربية",
+        "التدريبات اللغوية / اللغة العربية الجزء الأول",
+        "التدريبات اللغوية / اللغة العربية الجزء الثاني",
+        "كراسة الإنتاج الكتابي / تعلم السرد"
+      ],
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
     },
     {
       "grade": 6,
@@ -314,7 +424,16 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "المحتوى المستورد مصنف official-book-unscheduled. خطة الفصل الثاني 2026-2027 غير منشورة حتى آخر تدقيق؛ المرجع التاريخي لا يُعامل كخطة حالية. يلزم استخراج TOC الحالي ومطابقته 1:1 قبل COMPLETE_BOOK."
+      "notes": "المحتوى المستورد مصنف official-book-unscheduled. خطة الفصل الثاني 2026-2027 غير منشورة حتى آخر تدقيق؛ المرجع التاريخي لا يُعامل كخطة حالية. يلزم استخراج TOC الحالي ومطابقته 1:1 قبل COMPLETE_BOOK.",
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
+      "currentBookCatalogTitles": [
+        "كتاب اللغة العربية",
+        "التدريبات اللغوية / اللغة العربية الجزء الأول",
+        "التدريبات اللغوية / اللغة العربية الجزء الثاني",
+        "كراسة الإنتاج الكتابي / تعلم السرد"
+      ],
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
     },
     {
       "grade": 7,
@@ -336,7 +455,14 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "خطة الفصل الأول الحالية مستوردة تفصيليًا. دليل الكتب الرسمي موجود، لكن فهرس الكتاب الحالي لم يُستخرج ويُطابق 1:1 بعد."
+      "notes": "خطة الفصل الأول الحالية مستوردة تفصيليًا. دليل الكتب الرسمي موجود، لكن فهرس الكتاب الحالي لم يُستخرج ويُطابق 1:1 بعد.",
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
+      "currentBookCatalogTitles": [
+        "كتاب اللغة العربية الجزء الأول",
+        "كتاب اللغة العربية الجزء الثاني"
+      ],
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
     },
     {
       "grade": 7,
@@ -358,7 +484,14 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "المحتوى المستورد مصنف official-book-unscheduled. خطة الفصل الثاني 2026-2027 غير منشورة حتى آخر تدقيق؛ المرجع التاريخي لا يُعامل كخطة حالية. يلزم استخراج TOC الحالي ومطابقته 1:1 قبل COMPLETE_BOOK."
+      "notes": "المحتوى المستورد مصنف official-book-unscheduled. خطة الفصل الثاني 2026-2027 غير منشورة حتى آخر تدقيق؛ المرجع التاريخي لا يُعامل كخطة حالية. يلزم استخراج TOC الحالي ومطابقته 1:1 قبل COMPLETE_BOOK.",
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
+      "currentBookCatalogTitles": [
+        "كتاب اللغة العربية الجزء الأول",
+        "كتاب اللغة العربية الجزء الثاني"
+      ],
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
     },
     {
       "grade": 8,
@@ -380,7 +513,14 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "خطة الفصل الأول الحالية مستوردة تفصيليًا. دليل الكتب الرسمي موجود، لكن فهرس الكتاب الحالي لم يُستخرج ويُطابق 1:1 بعد."
+      "notes": "خطة الفصل الأول الحالية مستوردة تفصيليًا. دليل الكتب الرسمي موجود، لكن فهرس الكتاب الحالي لم يُستخرج ويُطابق 1:1 بعد.",
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
+      "currentBookCatalogTitles": [
+        "كتاب اللغة العربية الجزء الأول",
+        "كتاب اللغة العربية الجزء الثاني"
+      ],
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
     },
     {
       "grade": 8,
@@ -402,7 +542,14 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "المحتوى المستورد مصنف official-book-unscheduled. خطة الفصل الثاني 2026-2027 غير منشورة حتى آخر تدقيق؛ المرجع التاريخي لا يُعامل كخطة حالية. يلزم استخراج TOC الحالي ومطابقته 1:1 قبل COMPLETE_BOOK."
+      "notes": "المحتوى المستورد مصنف official-book-unscheduled. خطة الفصل الثاني 2026-2027 غير منشورة حتى آخر تدقيق؛ المرجع التاريخي لا يُعامل كخطة حالية. يلزم استخراج TOC الحالي ومطابقته 1:1 قبل COMPLETE_BOOK.",
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
+      "currentBookCatalogTitles": [
+        "كتاب اللغة العربية الجزء الأول",
+        "كتاب اللغة العربية الجزء الثاني"
+      ],
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
     },
     {
       "grade": 9,
@@ -424,7 +571,14 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "خطة الفصل الأول الحالية مستوردة تفصيليًا. دليل الكتب الرسمي موجود، لكن فهرس الكتاب الحالي لم يُستخرج ويُطابق 1:1 بعد."
+      "notes": "خطة الفصل الأول الحالية مستوردة تفصيليًا. دليل الكتب الرسمي موجود، لكن فهرس الكتاب الحالي لم يُستخرج ويُطابق 1:1 بعد.",
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
+      "currentBookCatalogTitles": [
+        "كتاب اللغة العربية الجزء الأول",
+        "كتاب اللغة العربية الجزء الثاني"
+      ],
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
     },
     {
       "grade": 9,
@@ -446,7 +600,14 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "المحتوى المستورد مصنف official-book-unscheduled. خطة الفصل الثاني 2026-2027 غير منشورة حتى آخر تدقيق؛ المرجع التاريخي لا يُعامل كخطة حالية. يلزم استخراج TOC الحالي ومطابقته 1:1 قبل COMPLETE_BOOK."
+      "notes": "المحتوى المستورد مصنف official-book-unscheduled. خطة الفصل الثاني 2026-2027 غير منشورة حتى آخر تدقيق؛ المرجع التاريخي لا يُعامل كخطة حالية. يلزم استخراج TOC الحالي ومطابقته 1:1 قبل COMPLETE_BOOK.",
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
+      "currentBookCatalogTitles": [
+        "كتاب اللغة العربية الجزء الأول",
+        "كتاب اللغة العربية الجزء الثاني"
+      ],
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
     },
     {
       "grade": 8,
@@ -514,7 +675,13 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK."
+      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "اللغة العربية للمرحلة الثانوية — عرب 101/102 (المقرر العام الحالي حسب الخطة؛ دليل الكتب يثبت منظومة كتب العربية الثانوية)"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 10,
@@ -538,7 +705,13 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK."
+      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "اللغة العربية للمرحلة الثانوية — عرب 101/102 (المقرر العام الحالي حسب الخطة؛ دليل الكتب يثبت منظومة كتب العربية الثانوية)"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 11,
@@ -563,7 +736,14 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK."
+      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "الشعر العربي القديم / كتاب الطالب — عرب 213",
+        "الشعر العربي القديم / كتاب التدريبات والأنشطة — عرب 213"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 11,
@@ -588,7 +768,14 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK."
+      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "الشعر العربي القديم / كتاب الطالب — عرب 213",
+        "الشعر العربي القديم / كتاب التدريبات والأنشطة — عرب 213"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 12,
@@ -613,7 +800,20 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK."
+      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "الأدب العربي الحديث - التيار الإحيائي والتيار الرومنسي — عرب 221",
+        "الأدب العربي الحديث - المدرسة الواقعية / كتاب التدريبات والأنشطة — عرب 222",
+        "الأدب البحريني / كتاب الطالب — عرب 301",
+        "الأدب البحريني / كتاب التدريبات والأنشطة — عرب 301",
+        "النص على النص / كتاب الطالب — عرب 302",
+        "النص على النص / كتاب التدريبات والأنشطة — عرب 302",
+        "من الأدب العالمي / كتاب الطالب — عرب 311",
+        "من الأدب العالمي / كتاب التدريبات والأنشطة — عرب 311"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 12,
@@ -639,7 +839,20 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK."
+      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "الأدب العربي الحديث - التيار الإحيائي والتيار الرومنسي — عرب 221",
+        "الأدب العربي الحديث - المدرسة الواقعية / كتاب التدريبات والأنشطة — عرب 222",
+        "الأدب البحريني / كتاب الطالب — عرب 301",
+        "الأدب البحريني / كتاب التدريبات والأنشطة — عرب 301",
+        "النص على النص / كتاب الطالب — عرب 302",
+        "النص على النص / كتاب التدريبات والأنشطة — عرب 302",
+        "من الأدب العالمي / كتاب الطالب — عرب 311",
+        "من الأدب العالمي / كتاب التدريبات والأنشطة — عرب 311"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 10,
@@ -663,7 +876,14 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK."
+      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 801/811",
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 802/812"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 10,
@@ -687,7 +907,14 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK."
+      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 801/811",
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 802/812"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 11,
@@ -711,7 +938,14 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK."
+      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 803/813",
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 804/814"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 11,
@@ -735,7 +969,14 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK."
+      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 803/813",
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 804/814"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 12,
@@ -759,7 +1000,14 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK."
+      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 805/815",
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 806/816"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 12,
@@ -783,7 +1031,14 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK."
+      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 805/815",
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 806/816"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 10,
@@ -807,7 +1062,15 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK."
+      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 801",
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 802",
+        "اللغة العربية لطلبة التدريب المهني بالتعليم الصناعي – السنة الأولى — عرب 501/502"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 10,
@@ -832,7 +1095,15 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK."
+      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 801",
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 802",
+        "اللغة العربية لطلبة التدريب المهني بالتعليم الصناعي – السنة الأولى — عرب 501/502"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 11,
@@ -856,7 +1127,15 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK."
+      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 803",
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 804",
+        "اللغة العربية لطلبة التدريب المهني بالتعليم الصناعي – السنة الثانية — عرب 503/504"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 11,
@@ -881,7 +1160,15 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK."
+      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 803",
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 804",
+        "اللغة العربية لطلبة التدريب المهني بالتعليم الصناعي – السنة الثانية — عرب 503/504"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 12,
@@ -905,7 +1192,14 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK."
+      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 805",
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 806"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 12,
@@ -929,7 +1223,14 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK."
+      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 805",
+        "اللغة العربية للمرحلة الثانوية المسار الفني والمهني — عرب 806"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 10,
@@ -955,7 +1256,17 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK."
+      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "أسرار البيان",
+        "شرح ابن عقيل الجزء الأول",
+        "الصرف الميسر الجزء الأول",
+        "الأدب والنصوص — أدب 111",
+        "الأدب والنصوص — أدب 112"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books3.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 10,
@@ -981,7 +1292,17 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK."
+      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "أسرار البيان",
+        "شرح ابن عقيل الجزء الأول",
+        "الصرف الميسر الجزء الأول",
+        "الأدب والنصوص — أدب 111",
+        "الأدب والنصوص — أدب 112"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books3.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 11,
@@ -1007,7 +1328,17 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK."
+      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "شرح ابن عقيل الجزء الثاني",
+        "الصرف الميسر الجزء الثاني",
+        "المنار في البلاغة",
+        "الأدب والنصوص — أدب 211",
+        "الأدب والنصوص — أدب 212"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books3.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 11,
@@ -1033,7 +1364,17 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK."
+      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "شرح ابن عقيل الجزء الثاني",
+        "الصرف الميسر الجزء الثاني",
+        "المنار في البلاغة",
+        "الأدب والنصوص — أدب 211",
+        "الأدب والنصوص — أدب 212"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books3.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 12,
@@ -1060,7 +1401,16 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK."
+      "notes": "تفاصيل الفصل الأول الحالي مستوردة وفق المسار. فهرس الكتاب الحالي المستقل لم يُطابق 1:1 بعد، لذلك الحالة ليست COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "شرح ابن عقيل الجزء الثالث",
+        "مفتاح البلاغة",
+        "الأدب والنصوص — أدب 311",
+        "الأدب والنصوص — أدب 312"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books3.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": 12,
@@ -1086,7 +1436,16 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK."
+      "notes": "محتوى الجزء الثاني محفوظ كـ official-book-unscheduled. المرجع التاريخي يساعد في التحقق من بنية الكتاب ولا يُعامل كخطة الفصل الثاني 2026-2027. يلزم TOC حالي مستقل قبل COMPLETE_BOOK.",
+      "currentBookCatalogTitles": [
+        "شرح ابن عقيل الجزء الثالث",
+        "مفتاح البلاغة",
+        "الأدب والنصوص — أدب 311",
+        "الأدب والنصوص — أدب 312"
+      ],
+      "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books3.pdf",
+      "currentBookCatalogVerified": true,
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
     },
     {
       "grade": null,
