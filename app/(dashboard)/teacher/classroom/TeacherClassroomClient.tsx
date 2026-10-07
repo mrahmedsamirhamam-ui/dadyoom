@@ -216,7 +216,6 @@ export default function TeacherClassroomClient(props: Props) {
                   new FormData(event.currentTarget),
                 );
                 setStatus(result.message);
-                if (result.ok) router.refresh();
               }}
             >
               <input type="hidden" name="classId" value={classId} />
