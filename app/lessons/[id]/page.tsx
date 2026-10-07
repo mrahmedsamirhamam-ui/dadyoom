@@ -466,7 +466,12 @@ export default async function LessonPage({
           </div>
         </section>
 
-        <SmartQrCard lessonId={lesson.id} lessonTitle={lesson.title} />
+        {lesson.status === "published" ? (
+          <SmartQrCard
+            lessonId={lesson.id}
+            lessonTitle={lesson.title}
+          />
+        ) : null}
 
         <div>
           <Link

@@ -1,3 +1,4 @@
+import qrcode from "qrcode-generator";
 import { NextResponse } from "next/server";
 
 import { getSiteUrl } from "@/lib/site";
@@ -35,49 +36,43 @@ export async function GET(
     );
   }
 
-  const targetUrl = getSiteUrl() + "/q/" + id;
+  const targetUrl =
+    getSiteUrl() + "/q/" + id;
 
-  const qrResponse = await fetch("https://quickchart.io/qr", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      text: targetUrl,
-      size: 720,
-      format: "png",
-      margin: 4,
-      dark: "123f39",
-      light: "ffffff",
-      ecLevel: "M",
-    }),
-  });
+  const qr = qrcode(0, "M");
+  qr.addData(targetUrl);
+  qr.make();
 
-  if (!qrResponse.ok) {
-    console.error("SMART_QR_RENDER_FAILED", {
-      lessonId: id,
-      status: qrResponse.status,
-    });
-
-    return NextResponse.json(
-      { error: "تعذر إنشاء رمز QR الآن." },
-      { status: 502 },
+  const svg = qr
+    .createSvgTag({
+      cellSize: 12,
+      margin: 48,
+      scalable: true,
+    })
+    .replace(
+      /fill="black"/gu,
+      'fill="#123f39"',
     );
-  }
 
-  const bytes = await qrResponse.arrayBuffer();
   const download =
-    new URL(request.url).searchParams.get("download") === "1";
+    new URL(request.url).searchParams.get(
+      "download",
+    ) === "1";
 
-  return new Response(bytes, {
+  return new Response(svg, {
     status: 200,
     headers: {
-      "Content-Type": "image/png",
-      "Cache-Control": "public, max-age=3600, s-maxage=86400",
+      "Content-Type":
+        "image/svg+xml; charset=utf-8",
+      "Cache-Control":
+        "public, max-age=86400, s-maxage=604800",
       "Content-Disposition": download
-        ? 'attachment; filename="dadyoom-lesson-' + id + '-qr.png"'
+        ? 'attachment; filename="dadyoom-lesson-' +
+          id +
+          '-qr.svg"'
         : "inline",
-      "X-Robots-Tag": "noindex, nofollow",
+      "X-Robots-Tag":
+        "noindex, nofollow",
     },
   });
 }
