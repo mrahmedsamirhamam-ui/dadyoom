@@ -1,0 +1,1167 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "code": "BH",
+    "nameAr": "مملكة البحرين"
+  },
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "program": "التعليم المستمر",
+  "semester": 1,
+  "sourceUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan6.pdf",
+  "booksGuideUrl": "https://www.edunet.bh/Econtent/BooksGuide",
+  "booksListUrl": "https://edunet.bh/manual/books2026/books4.pdf",
+  "auditedAt": "2026-10-07",
+  "rule": "No grade 10-12 mapping. These are official non-standard continuing-education levels.",
+  "levels": [
+    {
+      "level": "الأول محو الأمية",
+      "sourcePages": {
+        "start": 2,
+        "end": 5
+      },
+      "currentBooks": [
+        "اللغة العربية للصف الأول محو الأمية لتعليم الكبار"
+      ],
+      "lessonCount": 25,
+      "lessons": [
+        {
+          "order": 1,
+          "title": "القراءة: الدرس الأول: أسرة جاسم (1)",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 2,
+          "title": "التراكيب اللغوية: الجمل القصيرة (من كلمتين)",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 3,
+          "title": "الإملاء والخط: رسم الكلمات بحسب التنقيط؛ مراعاة الحركات والمدود بأنواعها",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 4,
+          "title": "القراءة: الدرس الثاني: أسرة جاسم (2)",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 5,
+          "title": "التراكيب اللغوية: الجمل القصيرة (من كلمتين أو ثلاث)",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 6,
+          "title": "الإملاء والخط: تحليل الكلمات إلى حروف ومقاطع؛ الحرف المستهدف (ج)",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 7,
+          "title": "القراءة: الدرس الثالث: زيارة إلى بيت جاسم (1)",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 8,
+          "title": "التراكيب اللغوية: أسلوب الاستفهام",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 9,
+          "title": "الإملاء والخط: تحليل الكلمات إلى حروف ومقاطع؛ الحرف المستهدف (م)؛ رسم الكلمات بحسب التنقيط",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 10,
+          "title": "القراءة: الدرس الرابع: زيارة إلى بيت جاسم (2)",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 11,
+          "title": "التراكيب اللغوية: الفعل الماضي؛ الجملة الفعلية",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 12,
+          "title": "الإملاء والخط: تحليل الكلمات إلى حروف ومقاطع؛ الحرفان المستهدفان (د، ر)؛ تركيب كلمات من الحروف والمقاطع؛ رسم الكلمات بحسب التنقيط",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 13,
+          "title": "القراءة: الدرس الخامس: رحلة",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 14,
+          "title": "التراكيب اللغوية: استعمال بعض ظروف الزمان والمكان (داخل، خارج، بعد، قبل)",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 15,
+          "title": "الإملاء والخط: تحليل الكلمات إلى حروف ومقاطع؛ الحرفان المستهدفان (خ، ظ)؛ تركيب كلمات من الحروف والمقاطع؛ رسم الكلمات بحسب التنقيط",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 16,
+          "title": "القراءة: الدرس السادس: سهرة عائلية",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 17,
+          "title": "التراكيب اللغوية: الحوار",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 18,
+          "title": "الإملاء والخط: تحليل الكلمات إلى حروف ومقاطع؛ الحرفان المستهدفان (ف، ق)؛ تركيب كلمات من الحروف والمقاطع؛ كتابة الكلمات بحسب الصور",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 19,
+          "title": "القراءة: الدرس السابع: بيت جاسم",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 20,
+          "title": "التراكيب اللغوية: استعمال الضمير (أنا)",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 21,
+          "title": "الإملاء والخط: تحليل الكلمات إلى حروف ومقاطع؛ الحرفان المستهدفان (ث، ن)؛ تركيب كلمات من الحروف والمقاطع",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 22,
+          "title": "القراءة: الدرس الثامن: حسن جار جاسم",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 23,
+          "title": "التراكيب اللغوية: استعمال حروف الجر",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 24,
+          "title": "الإملاء والخط: تحليل الكلمات إلى حروف ومقاطع؛ الحرفان المستهدفان (س، ك)؛ تركيب كلمات من الحروف والمقاطع؛ كتابة الكلمات بحسب الصور؛ مراعاة التضعيف (الشدة) في الكلمات",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 25,
+          "title": "مراجعة عامة",
+          "type": "assessment",
+          "officialContentScope": "plan-scheduled"
+        }
+      ]
+    },
+    {
+      "level": "الثاني محو الأمية",
+      "sourcePages": {
+        "start": 6,
+        "end": 9
+      },
+      "currentBooks": [
+        "اللغة العربية للصف الثاني محو الأمية لتعليم الكبار"
+      ],
+      "lessonCount": 32,
+      "lessons": [
+        {
+          "order": 1,
+          "title": "القراءة: من القرآن الكريم (أقرأ وأتدبر)",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 2,
+          "title": "التراكيب اللغوية: استعمال فعل الأمر",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 3,
+          "title": "الإملاء والخط: مراجعة عامة لما سبق دراسته",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 4,
+          "title": "القراءة: الصندوق الخيري",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 5,
+          "title": "التراكيب اللغوية: استعمال الفعل الناسخ (كان)؛ أقسام الكلام (الاسم، الفعل، الحرف)؛ استعمال حروف الجر",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 6,
+          "title": "الإملاء والخط: كتابة آية بخط النسخ",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 7,
+          "title": "التعبير: تكوين جمل قصيرة للتعبير عن فكرة أو موقف؛ كتابة فقرة مترابطة (في حدود سبع جمل)",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 8,
+          "title": "القراءة: جمعية مدينتنا التعاونية",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 9,
+          "title": "التراكيب اللغوية: استعمال أداة الشرط «كلما» في تكوين جمل",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 10,
+          "title": "الإملاء والخط: التاء المفتوحة والتاء المربوطة",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 11,
+          "title": "التعبير: تكوين جمل قصيرة للتعبير عن فكرة أو موقف؛ كتابة فقرة مترابطة للتعبير عن مقترح",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 12,
+          "title": "القراءة: أوقات الفراغ",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 13,
+          "title": "التراكيب اللغوية: استعمال السين وسوف مع الفعل المضارع؛ استعمال أداة الجزم «لم» وأداة النصب «لن»؛ استعمال أدوات الاستفهام المختلفة",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 14,
+          "title": "الإملاء والخط: علامات الترقيم",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 15,
+          "title": "التعبير: كتابة فقرة مترابطة بتوظيف علامات الترقيم المناسبة",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 16,
+          "title": "القراءة: البحرين ترحب بكم",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 17,
+          "title": "التراكيب اللغوية: الجملة الفعلية والجملة الاسمية",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 18,
+          "title": "الإملاء والخط: كتابة جملة بخط النسخ",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 19,
+          "title": "التعبير: التعبير شفويًا عن الصور؛ كتابة لافتة إعلانية؛ كتابة فقرة مترابطة بتوظيف علامات الترقيم المناسبة",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 20,
+          "title": "القراءة: صنع في البحرين",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 21,
+          "title": "التراكيب اللغوية: أسلوب النفي",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 22,
+          "title": "الإملاء والخط: كتابة حديث شريف بخط النسخ",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 23,
+          "title": "التعبير: كتابة حوار بتوظيف أدوات الاستفهام",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 24,
+          "title": "القراءة: في ذاكرتي",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 25,
+          "title": "التراكيب اللغوية: استعمال الظرف (منذ، مع، بعد)",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 26,
+          "title": "الإملاء والخط: مواضع كتابة التاء المفتوحة؛ كتابة جملة بخط النسخ",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 27,
+          "title": "التعبير: كتابة فقرة مترابطة للمقارنة بين شيئين؛ كتابة فقرة مترابطة لوصف المشاعر",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 28,
+          "title": "القراءة: الأرض الطيبة",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 29,
+          "title": "التراكيب اللغوية: استعمال الفعل الناسخ (أصبح)؛ اشتقاق كلمات مختلفة من نفس الجذر",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 30,
+          "title": "الإملاء والخط: كتابة آية بخط النسخ",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 31,
+          "title": "التعبير: التعبير شفويًا عن الصور؛ كتابة فقرة مترابطة بتوظيف علامات الترقيم المناسبة",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 32,
+          "title": "مراجعة عامة",
+          "type": "assessment",
+          "officialContentScope": "plan-scheduled"
+        }
+      ]
+    },
+    {
+      "level": "الأول متابعة",
+      "sourcePages": {
+        "start": 11,
+        "end": 13
+      },
+      "currentBooks": [
+        "اللغة العربية للصف الخامس",
+        "اللغة العربية للصف السادس",
+        "التدريبات اللغوية الجزء الأول للصف الخامس",
+        "التدريبات اللغوية الجزء الثاني للصف الخامس",
+        "التدريبات اللغوية الجزء الأول للصف السادس",
+        "التدريبات اللغوية الجزء الثاني للصف السادس"
+      ],
+      "lessonCount": 43,
+      "lessons": [
+        {
+          "order": 1,
+          "title": "القراءة: معلمنا الأول",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 2,
+          "title": "القواعد النحوية: إعراب الفعل الماضي",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 3,
+          "title": "الإملاء: الألف اللينة",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 4,
+          "title": "القواعد النحوية: إعراب الفعل المضارع - رفع الفعل المضارع",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 5,
+          "title": "الإملاء: همزتا الوصل والقطع",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 6,
+          "title": "القراءة: جدتي",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 7,
+          "title": "القواعد النحوية: إعراب الفعل المضارع - نصب الفعل المضارع",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 8,
+          "title": "الإملاء: الهمزة المتوسطة المفتوحة وما قبلها مفتوح",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 9,
+          "title": "القراءة: اعتذار صديق",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 10,
+          "title": "القواعد النحوية: إعراب الفعل المضارع - جزم الفعل المضارع",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 11,
+          "title": "الإنتاج الكتابي: التقرير (1)",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 12,
+          "title": "الإنتاج الكتابي: التقرير (2)",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 13,
+          "title": "القواعد النحوية: إعراب فعل الأمر",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 14,
+          "title": "الإنتاج الكتابي: الرسالة الشخصية (1)",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 15,
+          "title": "القواعد النحوية: الفاعل",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 16,
+          "title": "الإملاء: الهمزة المتوسطة المفتوحة وما قبلها حرف ساكن غير المد",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 17,
+          "title": "الإنتاج الكتابي: الرسالة الشخصية (2)",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 18,
+          "title": "القراءة: البحرين تتكلم - دراسة القصيدة كاملة وحفظ القصيدة كاملة",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 19,
+          "title": "القواعد النحوية: المفعول به",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 20,
+          "title": "القواعد النحوية: المبتدأ والخبر",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 21,
+          "title": "القواعد النحوية: الأفعال الناسخة",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 22,
+          "title": "الإملاء: الهمزة المتوسطة المضمومة",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 23,
+          "title": "القراءة: الكهرباء في وطني",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 24,
+          "title": "القواعد النحوية: الحروف الناسخة",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 25,
+          "title": "الإنتاج الكتابي: المذكرات اليومية (1) و(2)",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 26,
+          "title": "القراءة: نزهة في أحضان الطبيعة",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 27,
+          "title": "القواعد النحوية: الأسماء المجرورة بحروف الجر",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 28,
+          "title": "الإملاء: الهمزة المتوسطة المكسورة (1)",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 29,
+          "title": "الإنتاج الكتابي: المذكرات اليومية (3)",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 30,
+          "title": "القراءة: بيئتنا حياتنا - دراسة القصيدة كاملة، والحفظ من 1 إلى 6",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 31,
+          "title": "القواعد النحوية: الأسماء المجرورة بالإضافة",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 32,
+          "title": "الإملاء: الهمزة المتوسطة المكسورة (2)",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 33,
+          "title": "القواعد النحوية: الصفة والموصوف",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 34,
+          "title": "الإملاء: الهمزة المتوسطة المكسور ما قبلها",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 35,
+          "title": "القراءة: على شواطئ البحرين - دراسة القصيدة كاملة، والحفظ من 1 إلى 5",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 36,
+          "title": "القواعد النحوية: النفي بـ(ما، لم، لن، لا، ليس)",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 37,
+          "title": "القراءة: الكلب والحمامة - دراسة القصيدة كاملة، والحفظ من 1 إلى 5",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 38,
+          "title": "الإملاء: الهمزة المتطرفة المكسور ما قبلها",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 39,
+          "title": "الإنتاج الكتابي: بطاقة الدعوة (1) و(2)",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 40,
+          "title": "القواعد النحوية: العطف بـ(الواو، ثم، أو)",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 41,
+          "title": "الإنتاج الكتابي: بطاقة الدعوة (3)",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 42,
+          "title": "الإملاء: الهمزة المتطرفة المسبوقة بحرف ساكن صحيح أو حرف علة",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 43,
+          "title": "مراجعة عامة",
+          "type": "assessment",
+          "officialContentScope": "plan-scheduled"
+        }
+      ]
+    },
+    {
+      "level": "الثاني متابعة",
+      "sourcePages": {
+        "start": 14,
+        "end": 15
+      },
+      "currentBooks": [
+        "اللغة العربية للصف السابع الجزء الأول",
+        "اللغة العربية للصف السابع الجزء الثاني"
+      ],
+      "lessonCount": 27,
+      "lessons": [
+        {
+          "order": 1,
+          "title": "القراءة: من الهدي القرآني",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 2,
+          "title": "الإملاء: رسم ألف التفريق",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 3,
+          "title": "القراءة: لماذا نقرأ؟",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 4,
+          "title": "الإملاء: الاسم المعرف بـ(أل) والمبدوء بلام",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 5,
+          "title": "القراءة: أمير البحرين في عهد الرسول صلى الله عليه وسلم",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 6,
+          "title": "الإنتاج الكتابي: إعداد خطة عمل للموضوع الإنشائي السردي (تحديد الأحداث الرئيسة مرتبة)",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 7,
+          "title": "القواعد: الإعراب والبناء - المبني من الأسماء",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 8,
+          "title": "الإملاء: رسم الهمزة المتوسطة على النبرة",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 9,
+          "title": "القراءة: بلادي - دراسة القصيدة كاملة، والحفظ من 10 إلى 16",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 10,
+          "title": "القواعد: أحوال بناء الفعل الماضي وأحوال بناء فعل الأمر",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 11,
+          "title": "القراءة: المخترع - دراسة القصيدة كاملة، وحفظ القصيدة كاملة",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 12,
+          "title": "الإنتاج الكتابي: كتابة نص سردي ذي بنية ثلاثية تتوفر فيه عناصر القصة",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 13,
+          "title": "القواعد: علامات الإعراب الأصلية وعلامات إعراب المثنى",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 14,
+          "title": "الإنتاج الكتابي: كتابة التقرير (رحلة، زيارة، فعالية، حدث...)",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 15,
+          "title": "القواعد: جمع المذكر السالم",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 16,
+          "title": "الإملاء: ألف التفريق",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 17,
+          "title": "القراءة: الحرية",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 18,
+          "title": "القواعد: جمع المؤنث السالم والأسماء الخمسة",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 19,
+          "title": "الإملاء: رسم الهمزة المتطرفة بعد مد (ألف)",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 20,
+          "title": "القراءة: ابن ماجد بحار الخليج الأكبر",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 21,
+          "title": "القواعد: المبتدأ والخبر، أنواع الخبر",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 22,
+          "title": "الإنتاج الكتابي: كتابة قصة تُسرد فيها الأحداث سردًا خطيًا",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 23,
+          "title": "القواعد: الأفعال الناسخة - كان وأخواتها",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 24,
+          "title": "الإملاء: الهمزة المتطرفة",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 25,
+          "title": "القراءة: الأزهار",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 26,
+          "title": "القواعد: الحروف الناسخة (إن وأخواتها)",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 27,
+          "title": "مراجعة عامة",
+          "type": "assessment",
+          "officialContentScope": "plan-scheduled"
+        }
+      ]
+    },
+    {
+      "level": "الأول تقوية",
+      "sourcePages": {
+        "start": 17,
+        "end": 18
+      },
+      "currentBooks": [
+        "اللغة العربية للصف الثامن الجزء الأول",
+        "اللغة العربية للصف الثامن الجزء الثاني"
+      ],
+      "lessonCount": 28,
+      "lessons": [
+        {
+          "order": 1,
+          "title": "القراءة: قائد دون العشرين",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 2,
+          "title": "القواعد: الاسم المقصور والاسم المنقوص",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 3,
+          "title": "القراءة: البحرين في عيون زائريها",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 4,
+          "title": "الإنتاج الكتابي: تفكيك الموضوع الإنشائي الوصفي إلى عناصره الأساسية",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 5,
+          "title": "القواعد: اللازم والمتعدي من الأفعال، والفعل المتعدي إلى مفعولين أصلهما مبتدأ وخبر",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 6,
+          "title": "القراءة: البنفسجة الطموح",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 7,
+          "title": "الإنتاج الكتابي: إعداد خطة عمل لكتابة فقرة وصفية",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 8,
+          "title": "القواعد: الفعل المتعدي إلى مفعولين ليس أصلهما المبتدأ والخبر",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 9,
+          "title": "الإملاء: حذف ألف (ما) الاستفهامية",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 10,
+          "title": "الإنتاج الكتابي: كتابة قصة تتضمن مقطعًا وصفيًا (وصف شخص خِلقيًا وخُلقيًا)",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 11,
+          "title": "الإملاء: مراجعة رسم الهمزة المتوسطة",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 12,
+          "title": "القراءة: حب وإيمان - دراسة القصيدة كاملة، والحفظ من 9 إلى 14",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 13,
+          "title": "الإنتاج الكتابي: كتابة بطاقة التهنئة",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 14,
+          "title": "القواعد: المفعول المطلق",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 15,
+          "title": "القراءة: عصير الذهن",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 16,
+          "title": "الإملاء: مراجعة رسم الهمزة المتوسطة",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 17,
+          "title": "الإنتاج الكتابي: كتابة قصة تتضمن مقطعًا وصفيًا (وصف مكان مفتوح أو مغلق)",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 18,
+          "title": "القواعد: الحال",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 19,
+          "title": "القواعد: الاستثناء - المستثنى بإلا",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 20,
+          "title": "الإملاء: الهمزة المتطرفة",
+          "type": "spelling",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 21,
+          "title": "القراءة: الخليج العربي - دراسة القصيدة كاملة، والحفظ من 6 إلى 10",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 22,
+          "title": "القراءة: فن الإصغاء",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 23,
+          "title": "الإنتاج الكتابي: تلخيص قصة قصيرة تتضمن مقطعًا وصفيًا",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 24,
+          "title": "القواعد: التمييز",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 25,
+          "title": "القراءة: من أغاني الرعاة - دراسة القصيدة كاملة، وحفظ المقطعين 1 و2",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 26,
+          "title": "القواعد: النداء",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 27,
+          "title": "الإنتاج الكتابي: كتابة كلمة توعوية",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 28,
+          "title": "مراجعة عامة",
+          "type": "assessment",
+          "officialContentScope": "plan-scheduled"
+        }
+      ]
+    },
+    {
+      "level": "الثاني تقوية",
+      "sourcePages": {
+        "start": 19,
+        "end": 20
+      },
+      "currentBooks": [
+        "اللغة العربية للصف التاسع الجزء الأول",
+        "اللغة العربية للصف التاسع الجزء الثاني"
+      ],
+      "lessonCount": 22,
+      "lessons": [
+        {
+          "order": 1,
+          "title": "القواعد: مراجعة عامة لما سبقت دراسته",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 2,
+          "title": "القراءة: أنت الهوى - دراسة القصيدة كاملة، والحفظ من 1 إلى 7",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 3,
+          "title": "القواعد: المقصور والمنقوص والممدود (تثنيتها وجمعها جمعًا سالمًا)",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 4,
+          "title": "الإنتاج الكتابي: إعداد خطة عمل للموضوع الإنشائي السردي - تحديد الأحداث الرئيسة",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 5,
+          "title": "القراءة: إلى ولدي",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 6,
+          "title": "القواعد: أسلوب الاستثناء - المستثنى بـ(إلا)",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 7,
+          "title": "القراءة: كن بلسمًا - دراسة القصيدة كاملة، والحفظ من 1 إلى 6",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 8,
+          "title": "الإنتاج الكتابي: كتابة قصة متسلسلة الأحداث مستوفية العناصر (1)",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 9,
+          "title": "القواعد: أسلوب الاستثناء - المستثنى بغير وسوى وخلا وعدا",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 10,
+          "title": "الإنتاج الكتابي: كتابة قصة متسلسلة الأحداث مستوفية العناصر (2)",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 11,
+          "title": "القراءة: يا شباب العرب",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 12,
+          "title": "القواعد: الممنوع من الصرف لعلة واحدة",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 13,
+          "title": "القراءة: لا تسل كيف كنا - دراسة القصيدة كاملة",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 14,
+          "title": "القواعد: أسلوب الشرط",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 15,
+          "title": "القراءة: الإنسان وأسرار الكون",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 16,
+          "title": "الإنتاج الكتابي: تضمين القصة مقطعًا وصفيًا لوصف الشخصيات خارجيًا وداخليًا ووصف المشاعر والحركة والعمل",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 17,
+          "title": "القراءة: إن الكرام قليل - دراسة القصيدة كاملة، والحفظ من 1 إلى 6",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 18,
+          "title": "الإنتاج الكتابي: تضمين القصة مقطعًا وصفيًا لوصف مكان مغلق أو مكان مفتوح",
+          "type": "writing",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 19,
+          "title": "القواعد: أسلوب التعجب",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 20,
+          "title": "القراءة: مروءة ووفاء",
+          "type": "reading",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 21,
+          "title": "القواعد: أسلوب الاستفهام (مراجعة)",
+          "type": "grammar",
+          "officialContentScope": "plan-scheduled"
+        },
+        {
+          "order": 22,
+          "title": "مراجعة عامة",
+          "type": "assessment",
+          "officialContentScope": "plan-scheduled"
+        }
+      ]
+    }
+  ],
+  "totalLessons": 177
+}
