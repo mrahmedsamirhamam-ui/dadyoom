@@ -75,6 +75,12 @@ function isDadyoomCoreCurriculum(
   );
 }
 
+const bahrainContinuingLevels = [
+  "محو الأمية",
+  "المتابعة",
+  "التقوية",
+] as const;
+
 const gradeNames: Record<number, string> = {
   1: "الصف الأول الابتدائي",
   2: "الصف الثاني الابتدائي",
@@ -184,6 +190,10 @@ function lessonCoverageLabel(value: string): string {
     return "الخطة الرسمية مفصلة، لكن مستوياتها خاصة بالتعليم المستمر وليست صفوف 10–12";
   }
 
+  if (value === "detailed-current-s1-plus-current-book-s2") {
+    return "الفصل الأول الحالي مستورد تفصيليًا، ومحتوى الجزء الثاني من الكتاب الرسمي محفوظ منفصلًا عن الجدول الحالي";
+  }
+
   if (value === "awaiting-current-official-detail") {
     return "المسار رسمي، لكن عناوين دروس العربية الحالية لم تُنشر تفصيليًا في المصدر المتاح";
   }
@@ -223,6 +233,7 @@ export default function CurriculumCatalogClient({
     initialCountry?.code ?? "BH",
   );
   const [gradeNumber, setGradeNumber] = useState(1);
+  const [continuingLevel, setContinuingLevel] = useState("");
 
   const activeCountry =
     countries.find((item) => item.code === country) ??
@@ -316,6 +327,7 @@ export default function CurriculumCatalogClient({
               onChange={(value) => {
                 setCountry(value);
                 setGradeNumber(1);
+                setContinuingLevel("");
               }}
             />
 
@@ -332,19 +344,127 @@ export default function CurriculumCatalogClient({
               ])}
               onChange={(value) => {
                 setGradeNumber(Number(value));
+                setContinuingLevel("");
               }}
             />
           </div>
         </section>
 
-        <CatalogScope
-          key={`${country}:${gradeNumber}`}
-          country={country}
-          countryName={activeCountry?.name ?? country}
-          gradeNumber={gradeNumber}
-        />
+        {country === "BH" ? (
+          <section className="rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-4 sm:p-6">
+            <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+              <SelectBox
+                label="برنامج خاص — التعليم المستمر"
+                value={continuingLevel}
+                options={[
+                  ["", "التعليم النظامي حسب الصف"],
+                  ...bahrainContinuingLevels.map((level) => [
+                    level,
+                    `التعليم المستمر — ${level}`,
+                  ]),
+                ]}
+                onChange={setContinuingLevel}
+              />
+              <div className="rounded-2xl bg-[#f6f0e5] p-4 text-sm font-bold leading-7 text-[#625b51]">
+                مستويات التعليم المستمر في البحرين مستقلة عن الصفوف 10–12.
+                اختيار أحدها لا يغيّر رقم الصف ولا ينشئ Mapping وهميًا.
+              </div>
+            </div>
+          </section>
+        ) : null}
+
+        {country === "BH" && continuingLevel ? (
+          <BahrainContinuingEducationPanel level={continuingLevel} />
+        ) : (
+          <CatalogScope
+            key={`${country}:${gradeNumber}`}
+            country={country}
+            countryName={activeCountry?.name ?? country}
+            gradeNumber={gradeNumber}
+          />
+        )}
       </div>
     </main>
+  );
+}
+
+function BahrainContinuingEducationPanel({
+  level,
+}: {
+  level: string;
+}) {
+  const [semester, setSemester] = useState("1");
+  const firstSemester = semester === "1";
+
+  return (
+    <section className="min-w-0 rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-5 sm:p-7">
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <p className="text-xs font-black text-[#9a702a]">
+            البحرين — التعليم المستمر
+          </p>
+          <h2 className="mt-1 text-2xl font-black text-[#123f39]">
+            {level}
+          </h2>
+          <p className="mt-2 max-w-3xl font-bold leading-8 text-[#625b51]">
+            هذا مستوى رسمي مستقل في خطة التعليم المستمر، وليس الصف العاشر
+            أو الحادي عشر أو الثاني عشر.
+          </p>
+        </div>
+        <span className="rounded-full bg-[#fff4df] px-4 py-2 text-xs font-black text-[#7d5b1d]">
+          0 دروس مستوردة حتى آخر تدقيق
+        </span>
+      </div>
+
+      <div className="mt-5 grid gap-3 sm:grid-cols-2">
+        <div className="rounded-2xl border border-[#e5d8bf] bg-white p-4">
+          <div className="text-xs font-black text-[#887d70]">السنة</div>
+          <div className="mt-1 font-black text-[#123f39]">2026-2027</div>
+        </div>
+        <SelectBox
+          label="الفصل الدراسي"
+          value={semester}
+          options={[
+            ["1", "الفصل الدراسي الأول"],
+            ["2", "الفصل الدراسي الثاني"],
+          ]}
+          onChange={setSemester}
+        />
+      </div>
+
+      <div className="mt-5 rounded-2xl border border-[#e5d8bf] bg-white p-5">
+        {firstSemester ? (
+          <>
+            <div className="inline-flex rounded-full bg-[#e8f7ee] px-3 py-1 text-xs font-black text-[#245b3a]">
+              الخطة الرسمية الحالية منشورة
+            </div>
+            <p className="mt-3 font-bold leading-8 text-[#625b51]">
+              Plan6 يثبت برنامج التعليم المستمر ومستوياته الحقيقية. لم نضف
+              عناوين وحدات أو دروس قبل استخراجها حرفيًا من المصدر؛ لذلك تبقى
+              الدروس قيد الاستخراج الموثق بدل اختلاق محتوى.
+            </p>
+            <a
+              href="https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan6.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-flex rounded-xl border border-[#cdbb96] px-4 py-2 text-sm font-black text-[#174f47] underline decoration-dotted underline-offset-4"
+            >
+              المصدر الرسمي — Plan6
+            </a>
+          </>
+        ) : (
+          <>
+            <div className="inline-flex rounded-full bg-[#fff0e8] px-3 py-1 text-xs font-black text-[#8a3f1f]">
+              غير منشور رسميًا للسنة الحالية حتى آخر تدقيق
+            </div>
+            <p className="mt-3 font-bold leading-8 text-[#625b51]">
+              لا ننسب خطة فصل ثانٍ قديمة إلى 2026-2027، ولا نعرض أي عنوان
+              على أنه مقرر حاليًا قبل نشر المصدر الرسمي للسنة الحالية.
+            </p>
+          </>
+        )}
+      </div>
+    </section>
   );
 }
 
