@@ -66,6 +66,7 @@ const journey = [
 export default function HomePage() {
   const site = getSiteUrl();
 
+  // DADYOOM_SITE_NAME_SCHEMA_V1
   const websiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
