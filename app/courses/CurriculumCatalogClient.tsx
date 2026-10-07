@@ -422,7 +422,10 @@ export default function CurriculumCatalogClient({
         ) : null}
 
         {country === "BH" && continuingLevel ? (
-          <BahrainContinuingEducationPanel level={continuingLevel} />
+          <BahrainContinuingEducationPanel
+            key={continuingLevel}
+            level={continuingLevel}
+          />
         ) : (
           <CatalogScope
             key={`${country}:${gradeNumber}`}
@@ -450,7 +453,6 @@ function BahrainContinuingEducationPanel({
 
   useEffect(() => {
     const controller = new AbortController();
-    setSemester("1");
     setLoading(true);
     setError("");
 
