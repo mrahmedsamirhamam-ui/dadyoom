@@ -1,6 +1,7 @@
 import RolePortalLayout from "@/components/roles/RolePortalLayout";
 
 const links = [
+  { href: "/teacher/studio", label: "Teacher Studio", icon: "✨" },
   { href: "/teacher/marketplace/new", label: "بيع درس/كورس", icon: "" },
   { href: "/teacher/marketplace/earnings", label: "أرباحي", icon: "" },
   { href: "/teacher/live", label: "الحصص المباشرة", icon: "" },
