@@ -288,7 +288,20 @@ export default async function TeacherPage() {
           </div>
         </section>
 
-        <section className="grid gap-4 sm:grid-cols-3">
+        <section className="grid gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          <Link
+            prefetch={false}
+            href="/teacher/studio"
+            className="rounded-3xl border border-teal-200 bg-teal-50 p-5 transition hover:-translate-y-0.5 hover:shadow-sm"
+          >
+            <div className="text-3xl">✨</div>
+            <h2 className="mt-3 text-xl font-black text-slate-900">
+              Teacher Studio
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              اختر درسًا وأنشئ خطة الحصة وأهداف بلوم وورقة العمل والاختبار والعرض من مكان واحد.
+            </p>
+          </Link>
           <Link
             prefetch={false}
             href="/teacher/marketplace"
