@@ -115,6 +115,10 @@ export async function generateMetadata({
       canonical:
         `/curriculum/${info.code.toLowerCase()}`,
     },
+    robots: {
+      index: true,
+      follow: true,
+    },
   };
 }
 
@@ -160,6 +164,8 @@ export default async function CountryCurriculumPage({
 
   const curriculumNames =
     new Set<string>();
+  const academicYears =
+    new Set<string>();
 
   for (const grade of gradeCatalog) {
     const curriculum = Array.isArray(
@@ -171,6 +177,15 @@ export default async function CountryCurriculumPage({
     if (curriculum?.name_ar) {
       curriculumNames.add(
         curriculum.name_ar,
+      );
+    }
+
+    const academicYear =
+      curriculum?.academic_year?.trim();
+
+    if (academicYear) {
+      academicYears.add(
+        academicYear,
       );
     }
   }
@@ -319,6 +334,27 @@ export default async function CountryCurriculumPage({
         b.gradeNumber,
     );
 
+  const orderedActiveGradeNumbers =
+    [...activeGradeNumbers].sort(
+      (a, b) => a - b,
+    );
+
+  const indexableGradeNumbers =
+    new Set(
+      gradeGroups.map(
+        (grade) =>
+          grade.gradeNumber,
+      ),
+    );
+
+  const indexableUnitCount =
+    gradeGroups.reduce(
+      (total, grade) =>
+        total +
+        grade.units.size,
+      0,
+    );
+
   return (
     <main
       dir="rtl"
@@ -361,11 +397,12 @@ export default async function CountryCurriculumPage({
             {info.name}
           </h1>
           <p className="mt-4 max-w-3xl font-arabic-reading text-lg leading-9 text-[#655e54]">
-            روابط مباشرة للدروس
-            المنشورة ذات المحتوى
-            الفريد والكافي للفهرسة،
-            مرتبة حسب الصف
-            والوحدة.
+            دليل قابل للزحف يوضح
+            المناهج والمسارات
+            والصفوف المتاحة في
+            ضاديوم، ويصل منها إلى
+            الدروس ذات المحتوى
+            الفريد المؤهل للفهرسة.
           </p>
         </header>
 
@@ -373,7 +410,7 @@ export default async function CountryCurriculumPage({
           <h2 className="text-2xl font-black text-[#123f39]">
             نظرة سريعة على التغطية
           </h2>
-          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-2xl bg-[#f8f1e5] p-4">
               <div className="text-2xl font-black text-[#123f39]">
                 {curriculumNames.size}
@@ -392,6 +429,14 @@ export default async function CountryCurriculumPage({
             </div>
             <div className="rounded-2xl bg-[#f8f1e5] p-4">
               <div className="text-2xl font-black text-[#123f39]">
+                {indexableUnitCount}
+              </div>
+              <div className="mt-1 text-sm font-bold text-[#6d665c]">
+                وحدة ضمن المحتوى المؤهل للفهرسة
+              </div>
+            </div>
+            <div className="rounded-2xl bg-[#f8f1e5] p-4">
+              <div className="text-2xl font-black text-[#123f39]">
                 {rows.length}
               </div>
               <div className="mt-1 text-sm font-bold text-[#6d665c]">
@@ -399,6 +444,19 @@ export default async function CountryCurriculumPage({
               </div>
             </div>
           </div>
+
+          {academicYears.size > 0 ? (
+            <div className="mt-5">
+              <h3 className="font-black text-[#8b6426]">
+                السنة الدراسية
+              </h3>
+              <p className="mt-2 font-bold leading-7 text-[#4c554f]">
+                {[...academicYears]
+                  .sort()
+                  .join(" • ")}
+              </p>
+            </div>
+          ) : null}
 
           {curriculumNames.size > 0 ? (
             <div className="mt-5">
@@ -424,6 +482,45 @@ export default async function CountryCurriculumPage({
               </ul>
             </div>
           ) : null}
+
+          {orderedActiveGradeNumbers.length > 0 ? (
+            <div className="mt-5">
+              <h3 className="font-black text-[#8b6426]">
+                الصفوف المتاحة
+              </h3>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {orderedActiveGradeNumbers.map(
+                  (gradeNumber) =>
+                    indexableGradeNumbers.has(
+                      gradeNumber,
+                    ) ? (
+                      <Link
+                        key={gradeNumber}
+                        href={`/curriculum/${info.code.toLowerCase()}/${gradeNumber}`}
+                        className="rounded-full border border-[#d8c7a4] bg-white px-3 py-2 text-sm font-black text-[#174f47] hover:border-[#8ca99f]"
+                      >
+                        الصف {gradeNumber}
+                      </Link>
+                    ) : (
+                      <span
+                        key={gradeNumber}
+                        className="rounded-full border border-[#eadfc9] bg-[#f8f1e5] px-3 py-2 text-sm font-bold text-[#6d665c]"
+                      >
+                        الصف {gradeNumber}
+                      </span>
+                    ),
+                )}
+              </div>
+              <p className="mt-3 text-sm font-bold leading-7 text-[#6d665c]">
+                الرابط المباشر يظهر
+                للصفوف التي تحتوي
+                حاليًا على درس يحقق
+                بوابة الفهرسة؛ وتظل
+                بقية الصفوف متاحة
+                داخل مستكشف المناهج.
+              </p>
+            </div>
+          ) : null}
         </section>
 
         {gradeGroups.length ===
@@ -434,12 +531,15 @@ export default async function CountryCurriculumPage({
               لهذه الدولة
             </h2>
             <p className="mt-3 leading-8 text-[#655e54]">
-              يعرض مستكشف ضاديوم
-              جميع المناهج والصفوف
-              المتاحة لهذه الدولة،
-              بينما تجمع هذه الصفحة
-              الروابط المباشرة للدروس
-              ذات المحتوى الفريد.
+              لا توجد حاليًا لهذه
+              الدولة دروس تحقق بوابة
+              الفهرسة الفريدة، لكن
+              المناهج والمسارات
+              والصفوف المتاحة موضحة
+              أعلاه وتظل قابلة
+              للاستكشاف داخل ضاديوم
+              دون إدخال صفحات دروس
+              مكررة إلى محركات البحث.
             </p>
             <Link
               href="/courses"
