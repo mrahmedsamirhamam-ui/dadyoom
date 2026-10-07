@@ -43,7 +43,8 @@
     "curriculum:gate:official-22": "node scripts/audit-national-launch-gate.mjs",
     "qa:full": "node scripts/final-e2e-release-gate.mjs",
     "curriculum:audit:secondary-tracks": "node scripts/audit-secondary-tracks-22.mjs",
-    "curriculum:audit:strict-full-coverage": "node scripts/audit-strict-full-curriculum-coverage.mjs"
+    "curriculum:audit:strict-full-coverage": "node scripts/audit-strict-full-curriculum-coverage.mjs",
+    "curriculum:audit:bahrain-books": "node scripts/audit-bahrain-book-completeness.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
