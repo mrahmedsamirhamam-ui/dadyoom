@@ -28,6 +28,14 @@ type CurriculumRow = {
   countries: CurriculumRelation;
 };
 
+type SecondaryCoverageRow = {
+  country_code: string;
+  country_name_ar: string;
+  lesson_coverage: string | null;
+  is_active: boolean;
+  last_audited_date: string | null;
+};
+
 function relationOne<T>(
   value: T | T[] | null
 ): T | null {
@@ -70,6 +78,7 @@ export default async function CurriculumPage() {
     unitCount,
     lessonCount,
     publishedCount,
+    secondaryCoverageResult,
   ] = await Promise.all([
     supabase
       .from("countries")
@@ -120,6 +129,14 @@ export default async function CurriculumPage() {
         .eq("status", "published"),
       "published lessons"
     ),
+
+    supabase
+      .from("secondary_tracks")
+      .select(
+        "country_code,country_name_ar,lesson_coverage,is_active,last_audited_date"
+      )
+      .eq("is_active", true)
+      .order("country_code"),
   ]);
 
   if (countriesResult.error) {
@@ -134,6 +151,12 @@ export default async function CurriculumPage() {
     );
   }
 
+  if (secondaryCoverageResult.error) {
+    throw new Error(
+      secondaryCoverageResult.error.message
+    );
+  }
+
   const countries =
     (countriesResult.data ?? []) as CountryRow[];
 
@@ -143,6 +166,80 @@ export default async function CurriculumPage() {
   const activeCountries =
     countries.filter(
       (country) => country.is_active
+    ).length;
+
+  const secondaryCoverageRows =
+    (secondaryCoverageResult.data ?? []) as SecondaryCoverageRow[];
+
+  const coverageByCountry = new Map<
+    string,
+    {
+      name: string;
+      rows: SecondaryCoverageRow[];
+      lastAudited: string | null;
+    }
+  >();
+
+  for (const row of secondaryCoverageRows) {
+    const current =
+      coverageByCountry.get(row.country_code) ?? {
+        name: row.country_name_ar,
+        rows: [],
+        lastAudited: null,
+      };
+
+    current.rows.push(row);
+
+    if (
+      row.last_audited_date &&
+      (!current.lastAudited ||
+        row.last_audited_date > current.lastAudited)
+    ) {
+      current.lastAudited = row.last_audited_date;
+    }
+
+    coverageByCountry.set(
+      row.country_code,
+      current
+    );
+  }
+
+  const weakCoveragePattern =
+    /(partial|generic|awaiting|book-level|national-exam|legacy)/iu;
+
+  const coverageCards =
+    [...coverageByCountry.entries()]
+      .map(([code, item]) => {
+        const labels = item.rows.map(
+          (row) =>
+            String(
+              row.lesson_coverage ?? ""
+            ).trim()
+        );
+
+        const detailed =
+          labels.length > 0 &&
+          labels.every(
+            (label) =>
+              label.includes("detailed") &&
+              !weakCoveragePattern.test(label)
+          );
+
+        return {
+          code,
+          name: item.name,
+          tracks: item.rows.length,
+          detailed,
+          lastAudited: item.lastAudited,
+        };
+      })
+      .sort((a, b) =>
+        a.code.localeCompare(b.code)
+      );
+
+  const detailedCountries =
+    coverageCards.filter(
+      (item) => item.detailed
     ).length;
 
   return (
@@ -184,6 +281,70 @@ export default async function CurriculumPage() {
             value={publishedCount}
             note={`من ${lessonCount}`}
           />
+        </section>
+
+        <section className="rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-6 shadow-sm">
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <p className="text-xs font-black text-[#9a7028]">
+                تدقيق صارم — مسارات الثانوية
+              </p>
+              <h2 className="mt-1 font-arabic-display text-2xl font-black text-[#123f39]">
+                حالة التغطية التفصيلية حسب الدولة
+              </h2>
+              <p className="mt-2 max-w-3xl text-sm leading-7 text-[#73695d]">
+                «مدعوم» لا يعني «مكتمل». اللون الأخضر يظهر فقط عندما تكون
+                كل المسارات النشطة موسومة بتغطية تفصيلية وليست عامة أو جزئية.
+              </p>
+            </div>
+
+            <div className="rounded-full bg-[#eef6f2] px-4 py-2 text-sm font-black text-[#1f6a50]">
+              تفصيلي: {detailedCountries}/{coverageCards.length}
+            </div>
+          </div>
+
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {coverageCards.map((item) => (
+              <article
+                key={item.code}
+                className={`rounded-2xl border p-4 ${
+                  item.detailed
+                    ? "border-emerald-200 bg-emerald-50"
+                    : "border-amber-200 bg-amber-50"
+                }`}
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <div className="text-xs font-black text-slate-500">
+                      {item.code}
+                    </div>
+                    <h3 className="mt-1 font-black text-slate-900">
+                      {item.name}
+                    </h3>
+                  </div>
+
+                  <span
+                    className={`rounded-full px-3 py-1 text-xs font-black ${
+                      item.detailed
+                        ? "bg-emerald-100 text-emerald-800"
+                        : "bg-amber-100 text-amber-800"
+                    }`}
+                  >
+                    {item.detailed
+                      ? "تفصيلي"
+                      : "جزئي/عام"}
+                  </span>
+                </div>
+
+                <div className="mt-3 text-xs font-bold text-slate-600">
+                  {item.tracks} مسار نشط
+                  {item.lastAudited
+                    ? ` • آخر تدقيق: ${item.lastAudited}`
+                    : ""}
+                </div>
+              </article>
+            ))}
+          </div>
         </section>
 
         <section className="grid gap-5 lg:grid-cols-[1fr_.85fr]">
