@@ -453,8 +453,6 @@ function BahrainContinuingEducationPanel({
 
   useEffect(() => {
     const controller = new AbortController();
-    setLoading(true);
-    setError("");
 
     const params = new URLSearchParams({
       country: "BH",
@@ -613,7 +611,11 @@ function BahrainContinuingEducationPanel({
           <p className="mt-2 font-bold text-rose-800">{error}</p>
           <button
             type="button"
-            onClick={() => setReloadKey((value) => value + 1)}
+            onClick={() => {
+              setLoading(true);
+              setError("");
+              setReloadKey((value) => value + 1);
+            }}
             className="mt-5 rounded-2xl bg-[#123f39] px-6 py-3 font-black text-white"
           >
             إعادة المحاولة
