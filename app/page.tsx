@@ -129,6 +129,13 @@ export default function HomePage() {
             </Link>
             <Link
               prefetch={false}
+              href="/teachers"
+              className="rounded-full px-4 py-2 transition hover:bg-[#f1e7d4] hover:text-[#123f39]"
+            >
+              للمعلمين
+            </Link>
+            <Link
+              prefetch={false}
               href="/about"
               className="rounded-full px-4 py-2 transition hover:bg-[#f1e7d4] hover:text-[#123f39]"
             >
