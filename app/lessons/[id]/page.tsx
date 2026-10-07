@@ -349,10 +349,18 @@ export default async function LessonPage({
   }
   const objectives: string[] =
     Array.isArray(lesson.learning_objectives)
-      ? lesson.learning_objectives.filter(
-          (item: unknown): item is string =>
-            typeof item === "string"
-        )
+      ? lesson.learning_objectives
+          .filter(
+            (item: unknown): item is string =>
+              typeof item === "string",
+          )
+          .map(
+            (objective) =>
+              normalizeArabicDisplayText(
+                objective,
+              ),
+          )
+          .filter(Boolean)
       : [];
 
   const vocabulary: VocabularyItem[] =
