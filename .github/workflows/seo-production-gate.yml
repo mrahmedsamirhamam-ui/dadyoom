@@ -220,6 +220,8 @@ jobs:
 
           check_page "/about" "عن ضاديوم" "/about"
           check_page "/courses" "مناهج اللغة العربية" "/courses"
+          check_page "/teachers" "ذكاء اصطناعي للمعلمين" "/teachers"
+          check_page "/bahrain" "مناهج البحرين في ضاديوم" "/bahrain"
           check_page "/curriculum/bh" "مناهج اللغة العربية في البحرين" "/curriculum/bh"
 
       - name: Verify all country landing pages
