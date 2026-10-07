@@ -283,6 +283,11 @@ jobs:
               exit 1
             fi
 
+            if grep -Fq "الصف 0" "$html"; then
+              echo "SEO_COUNTRY_PAGE=FAIL_NONSTANDARD_AS_GRADE_ZERO url=$url"
+              exit 1
+            fi
+
             echo "SEO_COUNTRY_PAGE=PASS url=$url"
           done
 
