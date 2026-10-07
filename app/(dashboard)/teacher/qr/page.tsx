@@ -13,9 +13,6 @@ export const metadata: Metadata = {
 type QrLessonRow = {
   id: string;
   title: string;
-  country_name: string | null;
-  grade_name: string | null;
-  unit_title: string | null;
   updated_at: string | null;
 };
 
@@ -53,8 +50,9 @@ export default async function TeacherQrPage({
   const q = rawQ.trim().slice(0, 120);
 
   let query = supabase
-    .from("seo_indexable_lessons_fast")
-    .select("id,title,country_name,grade_name,unit_title,updated_at")
+    .from("lessons")
+    .select("id,title,updated_at")
+    .eq("status", "published")
     .order("updated_at", { ascending: false })
     .limit(36);
 
@@ -120,13 +118,8 @@ export default async function TeacherQrPage({
         <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {lessons.map((lesson) => {
             const qrSrc = "/api/qr/lesson/" + lesson.id;
-            const context = [
-              lesson.country_name,
-              lesson.grade_name,
-              lesson.unit_title,
-            ]
-              .filter(Boolean)
-              .join(" • ");
+            const context =
+              "درس منشور في ضاديوم • QR متاح للطباعة";
 
             return (
               <article
@@ -150,7 +143,7 @@ export default async function TeacherQrPage({
                       {lesson.title}
                     </h2>
                     <p className="mt-2 text-sm leading-6 text-slate-500">
-                      {context || "درس منشور في ضاديوم"}
+                      {context}
                     </p>
                   </div>
                 </div>
