@@ -7,6 +7,7 @@ import {
   ARAB_COUNTRY_CODES,
   getArabicCountryOptions,
 } from "@/lib/countries";
+import { normalizeArabicDisplayText } from "@/lib/seo/normalize-arabic-display";
 import {
   SUPABASE_PUBLIC_KEY,
   SUPABASE_PUBLIC_URL,
@@ -632,7 +633,9 @@ export default async function CountryCurriculumPage({
                                         className="block rounded-2xl border border-[#e5dac5] bg-white px-4 py-3 font-bold text-[#244841] transition hover:border-[#8ca99f] hover:underline"
                                       >
                                         {
-                                          lesson.title
+                                          normalizeArabicDisplayText(
+                                            lesson.title,
+                                          )
                                         }
                                       </Link>
                                     </li>
