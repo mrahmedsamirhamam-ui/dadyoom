@@ -221,8 +221,22 @@ jobs:
           check_page "/about" "عن ضاديوم" "/about"
           check_page "/courses" "مناهج اللغة العربية" "/courses"
           check_page "/teachers" "ذكاء اصطناعي للمعلمين" "/teachers"
-          check_page "/bahrain" "مناهج البحرين في ضاديوم" "/bahrain"
           check_page "/curriculum/bh" "مناهج اللغة العربية في البحرين" "/curriculum/bh"
+
+          bahrain_app_html="$(curl --silent --show-error --location --max-time 30 \
+            -H "User-Agent: Googlebot" "$BASE/bahrain")"
+
+          if ! grep -Fq "href=\"$BASE/curriculum/bh\"" <<<"$bahrain_app_html"; then
+            echo "SEO_BAHRAIN_APP_CANONICAL=FAIL"
+            exit 1
+          fi
+
+          if ! grep -Eiq '<meta[^>]+name="robots"[^>]+content="[^"]*noindex[^"]*follow' <<<"$bahrain_app_html"; then
+            echo "SEO_BAHRAIN_APP_NOINDEX=FAIL"
+            exit 1
+          fi
+
+          echo "SEO_BAHRAIN_APP_CONSOLIDATION=PASS"
 
       - name: Verify all country landing pages
         shell: bash
