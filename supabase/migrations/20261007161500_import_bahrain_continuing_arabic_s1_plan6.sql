@@ -36,12 +36,12 @@ with cur as (
 ),
 rows(name_ar,name_en,grade_number,sort_order,is_active) as (
   values
-  ('الأول محو الأمية','الأول محو الأمية',NULL,1,true),
-  ('الثاني محو الأمية','الثاني محو الأمية',NULL,2,true),
-  ('الأول متابعة','الأول متابعة',NULL,3,true),
-  ('الثاني متابعة','الثاني متابعة',NULL,4,true),
-  ('الأول تقوية','الأول تقوية',NULL,5,true),
-  ('الثاني تقوية','الثاني تقوية',NULL,6,true)
+  ('الأول محو الأمية','الأول محو الأمية',NULL::integer,1,true),
+  ('الثاني محو الأمية','الثاني محو الأمية',NULL::integer,2,true),
+  ('الأول متابعة','الأول متابعة',NULL::integer,3,true),
+  ('الثاني متابعة','الثاني متابعة',NULL::integer,4,true),
+  ('الأول تقوية','الأول تقوية',NULL::integer,5,true),
+  ('الثاني تقوية','الثاني تقوية',NULL::integer,6,true)
 )
 insert into public.grades (
   curriculum_id,name_ar,name_en,grade_number,sort_order,is_active
