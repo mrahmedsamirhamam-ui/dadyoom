@@ -5,6 +5,7 @@ import DadyoomLogo, {
   DadyoomMark,
 } from "@/components/brand/DadyoomLogo";
 import HomeInteractionPanel from "@/components/home/HomeInteractionPanel";
+import { getSiteUrl } from "@/lib/site";
 
 export const dynamic = "force-static";
 export const revalidate = 86400;
@@ -63,11 +64,34 @@ const journey = [
 ];
 
 export default function HomePage() {
+  const site = getSiteUrl();
+
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "ضاديوم",
+    alternateName: [
+      "Dadyoom",
+      "ضاضيوم",
+      "داديوم",
+    ],
+    url: site,
+  };
+
   return (
     <main
       dir="rtl"
       className="min-h-screen overflow-hidden bg-[#f7f1e6] text-[#202c29]"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html:
+            JSON.stringify(
+              websiteJsonLd,
+            ).replace(/</g, "\\u003c"),
+        }}
+      />
       <header className="sticky top-0 z-50 border-b border-[#d9ccb2]/80 bg-[#fffdf8]/92 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
           <DadyoomLogo className="ml-auto" />
