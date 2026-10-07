@@ -12,6 +12,7 @@ import {
   SUPABASE_PUBLIC_KEY,
   SUPABASE_PUBLIC_URL,
 } from "@/lib/supabase/public-config";
+import { getSiteUrl } from "@/lib/site";
 
 export const revalidate = 3600;
 export const dynamicParams = false;
@@ -356,11 +357,79 @@ export default async function CountryCurriculumPage({
       0,
     );
 
+  const site = getSiteUrl();
+  const countryPath =
+    `/curriculum/${info.code.toLowerCase()}`;
+
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "ضاديوم",
+          item: site,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "دليل المناهج",
+          item: `${site}/curriculum`,
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: `مناهج ${info.name}`,
+          item: `${site}${countryPath}`,
+        },
+      ],
+    },
+    ...(gradeGroups.length > 0
+      ? [
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name:
+              `صفوف اللغة العربية في ${info.name}`,
+            numberOfItems:
+              gradeGroups.length,
+            itemListElement:
+              gradeGroups.map(
+                (grade, index) => ({
+                  "@type":
+                    "ListItem",
+                  position:
+                    index + 1,
+                  name:
+                    grade.gradeName,
+                  url:
+                    `${site}${countryPath}/${grade.gradeNumber}`,
+                }),
+              ),
+          },
+        ]
+      : []),
+  ];
+
   return (
     <main
       dir="rtl"
       className="min-h-screen bg-[#f7f1e6] px-4 py-12 text-[#202c29]"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html:
+            JSON.stringify(
+              structuredData,
+            ).replace(
+              /</g,
+              "\\u003c",
+            ),
+        }}
+      />
       <div className="mx-auto max-w-6xl">
         <nav
           className="mb-8 text-sm font-bold text-[#6d665c]"
