@@ -6,6 +6,7 @@ import LessonMasteryCard from "@/features/lesson-mastery/components/LessonMaster
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { SITE_DESCRIPTION } from "@/lib/site";
+import { normalizeArabicDisplayText } from "@/lib/seo/normalize-arabic-display";
 import {
   getLessonPageBundle,
 } from "@/features/lessons/queries/getLessonPageBundle";
@@ -51,7 +52,9 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
 
   if (!seoError && seoLesson) {
     const title =
-      seoLesson.title?.trim() ||
+      normalizeArabicDisplayText(
+        seoLesson.title,
+      ) ||
       "درس العربية";
 
     const context =
@@ -132,7 +135,9 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
   }
 
   const title =
-    data.title?.trim() ||
+    normalizeArabicDisplayText(
+      data.title,
+    ) ||
     "درس العربية";
 
   const description =
@@ -222,6 +227,12 @@ export default async function LessonPage({
 
   const lesson =
     bundle.lesson;
+
+  const lessonDisplayTitle =
+    normalizeArabicDisplayText(
+      lesson.title,
+    ) ||
+    "درس العربية";
 
   const lessonQuestions =
     bundle.questions;
@@ -401,8 +412,8 @@ export default async function LessonPage({
       className="lesson-arabic-shell min-h-screen px-4 py-8"
     >
       <DadLessonContext
-        pageTitle={`درس: ${lesson.title}`}
-        lessonTitle={lesson.title}
+        pageTitle={`درس: ${lessonDisplayTitle}`}
+        lessonTitle={lessonDisplayTitle}
         lessonContent={lesson.content ?? ""}
       />
       <div className="mx-auto max-w-5xl space-y-6">
@@ -469,7 +480,7 @@ export default async function LessonPage({
         {lesson.status === "published" ? (
           <SmartQrCard
             lessonId={lesson.id}
-            lessonTitle={lesson.title}
+            lessonTitle={lessonDisplayTitle}
           />
         ) : null}
 
@@ -497,7 +508,7 @@ export default async function LessonPage({
           </div>
 
           <h1 className="font-arabic-display text-3xl font-black text-[#173f38] sm:text-4xl">
-            {lesson.title}
+            {lessonDisplayTitle}
           </h1>
 
           <LessonProgress
@@ -572,7 +583,7 @@ export default async function LessonPage({
         ) : null}
 
         <LessonLearningSlides
-          title={lesson.title}
+          title={lessonDisplayTitle}
           summary={lesson.summary}
           content={lesson.content}
           objectives={objectives}
