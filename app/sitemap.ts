@@ -19,6 +19,8 @@ type LessonRow = {
   id: string;
   slug: string | null;
   updated_at: string | null;
+  country_code: string;
+  grade_number: number | null;
 };
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -102,7 +104,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (let from = 0; ; from += pageSize) {
       const { data, error } = await db
         .from("seo_indexable_lessons_fast")
-        .select("id,slug,updated_at")
+        .select("id,slug,updated_at,country_code,grade_number")
         .order("id", { ascending: true })
         .range(from, from + pageSize - 1);
 
@@ -155,14 +157,69 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     }));
 
+  const gradeRouteMap = new Map<
+    string,
+    string | null
+  >();
+
+  for (const lesson of lessons) {
+    const gradeNumber = Number(
+      lesson.grade_number,
+    );
+
+    if (
+      !lesson.country_code ||
+      !Number.isInteger(gradeNumber) ||
+      gradeNumber < 1 ||
+      gradeNumber > 13
+    ) {
+      continue;
+    }
+
+    const key =
+      `${lesson.country_code.toLowerCase()}/${gradeNumber}`;
+
+    const current =
+      gradeRouteMap.get(key) ?? null;
+
+    if (
+      lesson.updated_at &&
+      (!current ||
+        lesson.updated_at > current)
+    ) {
+      gradeRouteMap.set(
+        key,
+        lesson.updated_at,
+      );
+    } else if (
+      !gradeRouteMap.has(key)
+    ) {
+      gradeRouteMap.set(key, null);
+    }
+  }
+
+  const gradeDirectoryRoutes: MetadataRoute.Sitemap =
+    [...gradeRouteMap.entries()].map(
+      ([key, updatedAt]) => ({
+        url: `${base}/curriculum/${key}`,
+        lastModified: updatedAt
+          ? new Date(updatedAt)
+          : undefined,
+        changeFrequency: "weekly",
+        priority: 0.82,
+      }),
+    );
+
   console.info("SEO_SITEMAP_READY", {
     staticRoutes: staticRoutes.length,
     marketplaceRoutes: marketplaceRoutes.length,
     countryDirectoryRoutes: countryDirectoryRoutes.length,
+    gradeDirectoryRoutes: gradeDirectoryRoutes.length,
     lessonRoutes: lessonRoutes.length,
     total:
       staticRoutes.length +
       countryDirectoryRoutes.length +
+      gradeDirectoryRoutes.length +
       marketplaceRoutes.length +
       lessonRoutes.length,
   });
@@ -170,6 +227,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...staticRoutes,
     ...countryDirectoryRoutes,
+    ...gradeDirectoryRoutes,
     ...marketplaceRoutes,
     ...lessonRoutes,
   ];

@@ -458,11 +458,20 @@ export default async function CountryCurriculumPage({
                   }
                   className="rounded-[2rem] border border-[#ddcfb4] bg-[#fffdf8] p-6 shadow-sm sm:p-8"
                 >
-                  <h2 className="text-3xl font-black text-[#123f39]">
-                    {
-                      grade.gradeName
-                    }
-                  </h2>
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <h2 className="text-3xl font-black text-[#123f39]">
+                      {
+                        grade.gradeName
+                      }
+                    </h2>
+
+                    <Link
+                      href={`/curriculum/${info.code.toLowerCase()}/${grade.gradeNumber}`}
+                      className="rounded-full border border-[#d8c7a4] bg-white px-4 py-2 text-sm font-black text-[#174f47] transition hover:border-[#8ca99f]"
+                    >
+                      صفحة الصف كاملة ←
+                    </Link>
+                  </div>
 
                   <div className="mt-6 space-y-6">
                     {[
