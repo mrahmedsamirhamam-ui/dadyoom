@@ -195,17 +195,26 @@ export default async function CountryCurriculumPage({
   const activeGradeNumbers =
     new Set(
       gradeCatalog
-        .map((grade) =>
-          Number(
-            grade.grade_number,
-          ),
-        )
-        .filter(
-          (gradeNumber) =>
-            Number.isFinite(
-              gradeNumber,
-            ),
-        ),
+        .flatMap((grade) => {
+          if (
+            grade.grade_number === null
+          ) {
+            return [];
+          }
+
+          const gradeNumber =
+            Number(
+              grade.grade_number,
+            );
+
+          return Number.isInteger(
+            gradeNumber,
+          ) &&
+            gradeNumber >= 1 &&
+            gradeNumber <= 13
+            ? [gradeNumber]
+            : [];
+        }),
     );
 
   const rows: SeoLessonRow[] = [];
