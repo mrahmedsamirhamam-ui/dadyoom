@@ -91,9 +91,51 @@ jobs:
           fi
 
           url_count="$(grep -o '<loc>' "$sitemap" | wc -l | tr -d ' ')"
+          unique_count="$(
+            grep -oE '<loc>[^<]+' "$sitemap" |
+              sed 's#<loc>##' |
+              sort -u |
+              wc -l |
+              tr -d ' '
+          )"
+          country_count="$(
+            grep -oE '<loc>[^<]+' "$sitemap" |
+              sed 's#<loc>##' |
+              grep -Ec "^$BASE/curriculum/[a-z]{2}$" || true
+          )"
+          grade_count="$(
+            grep -oE '<loc>[^<]+' "$sitemap" |
+              sed 's#<loc>##' |
+              grep -Ec "^$BASE/curriculum/[a-z]{2}/[0-9]+$" || true
+          )"
+          lesson_count="$(
+            grep -oE '<loc>[^<]+' "$sitemap" |
+              sed 's#<loc>##' |
+              grep -c "^$BASE/lessons/" || true
+          )"
 
           if (( url_count < 20 || url_count > 3000 )); then
             echo "SEO_SITEMAP_URL_COUNT=FAIL count=$url_count"
+            exit 1
+          fi
+
+          if [[ "$url_count" != "$unique_count" ]]; then
+            echo "SEO_SITEMAP_DUPLICATES=FAIL total=$url_count unique=$unique_count"
+            exit 1
+          fi
+
+          if [[ "$country_count" != "22" ]]; then
+            echo "SEO_SITEMAP_COUNTRIES=FAIL count=$country_count"
+            exit 1
+          fi
+
+          if (( grade_count < 1 || grade_count > 300 )); then
+            echo "SEO_SITEMAP_GRADES=FAIL count=$grade_count"
+            exit 1
+          fi
+
+          if (( lesson_count < 100 || lesson_count > 2000 )); then
+            echo "SEO_SITEMAP_LESSONS=FAIL count=$lesson_count"
             exit 1
           fi
 
@@ -179,6 +221,137 @@ jobs:
           check_page "/about" "عن ضاديوم" "/about"
           check_page "/courses" "مناهج اللغة العربية" "/courses"
           check_page "/curriculum/bh" "مناهج اللغة العربية في البحرين" "/curriculum/bh"
+
+      - name: Verify all country landing pages
+        shell: bash
+        env:
+          BASE: https://dadyoom.dpdns.org
+        run: |
+          set -euo pipefail
+
+          sitemap="$(curl --silent --show-error --location --max-time 30 "$BASE/sitemap.xml")"
+
+          mapfile -t country_urls < <(
+            printf '%s' "$sitemap" |
+              grep -oE '<loc>[^<]+' |
+              sed 's#<loc>##' |
+              grep -E "^$BASE/curriculum/[a-z]{2}$"
+          )
+
+          if [[ "${#country_urls[@]}" != "22" ]]; then
+            echo "SEO_COUNTRY_PAGES=FAIL_COUNT count=${#country_urls[@]}"
+            exit 1
+          fi
+
+          for url in "${country_urls[@]}"; do
+            html="$(mktemp)"
+            code="$(curl --silent --show-error --max-time 30               --output "$html" --write-out "%{http_code}"               -H "User-Agent: Googlebot" "$url")"
+
+            if [[ "$code" != "200" ]]; then
+              echo "SEO_COUNTRY_PAGE=FAIL_HTTP url=$url http=$code"
+              exit 1
+            fi
+
+            if ! grep -Fq "href=\"$url\"" "$html"; then
+              echo "SEO_COUNTRY_PAGE=FAIL_CANONICAL url=$url"
+              exit 1
+            fi
+
+            if grep -Eiq '<meta[^>]+name="robots"[^>]+content="[^"]*noindex' "$html"; then
+              echo "SEO_COUNTRY_PAGE=FAIL_NOINDEX url=$url"
+              exit 1
+            fi
+
+            if grep -Eq 'dadyoom\.pages\.dev|dadyoom\.mrahmedsamirhamam\.workers\.dev' "$html"; then
+              echo "SEO_COUNTRY_PAGE=FAIL_LEGACY_HOST url=$url"
+              exit 1
+            fi
+
+            echo "SEO_COUNTRY_PAGE=PASS url=$url"
+          done
+
+          echo "SEO_COUNTRY_PAGES=PASS count=${#country_urls[@]}"
+
+      - name: Verify distributed grade and lesson metadata
+        shell: bash
+        env:
+          BASE: https://dadyoom.dpdns.org
+        run: |
+          set -euo pipefail
+
+          sitemap="$(curl --silent --show-error --location --max-time 30 "$BASE/sitemap.xml")"
+
+          mapfile -t grade_urls < <(
+            printf '%s' "$sitemap" |
+              grep -oE '<loc>[^<]+' |
+              sed 's#<loc>##' |
+              grep -E "^$BASE/curriculum/[a-z]{2}/[0-9]+$" |
+              awk 'NR == 1 || NR % 10 == 0'
+          )
+
+          mapfile -t lesson_urls < <(
+            printf '%s' "$sitemap" |
+              grep -oE '<loc>[^<]+' |
+              sed 's#<loc>##' |
+              grep "^$BASE/lessons/" |
+              awk 'NR == 1 || NR % 100 == 0'
+          )
+
+          check_indexable_url() {
+            url="$1"
+            kind="$2"
+            html="$(mktemp)"
+
+            code="$(curl --silent --show-error --max-time 30               --output "$html" --write-out "%{http_code}"               -H "User-Agent: Googlebot" "$url")"
+
+            if [[ "$code" != "200" ]]; then
+              echo "SEO_DISTRIBUTED=FAIL_HTTP kind=$kind url=$url http=$code"
+              exit 1
+            fi
+
+            if ! grep -Fq "rel=\"canonical\"" "$html" ||
+               ! grep -Fq "href=\"$url\"" "$html"; then
+              echo "SEO_DISTRIBUTED=FAIL_CANONICAL kind=$kind url=$url"
+              exit 1
+            fi
+
+            if ! grep -Eiq '<title>[^<]+' "$html"; then
+              echo "SEO_DISTRIBUTED=FAIL_TITLE kind=$kind url=$url"
+              exit 1
+            fi
+
+            if ! grep -Eiq '<meta[^>]+name="description"[^>]+content="[^"]+' "$html"; then
+              echo "SEO_DISTRIBUTED=FAIL_DESCRIPTION kind=$kind url=$url"
+              exit 1
+            fi
+
+            if grep -Eiq '<meta[^>]+name="robots"[^>]+content="[^"]*noindex' "$html"; then
+              echo "SEO_DISTRIBUTED=FAIL_NOINDEX kind=$kind url=$url"
+              exit 1
+            fi
+
+            if grep -Eq 'dadyoom\.pages\.dev|dadyoom\.mrahmedsamirhamam\.workers\.dev' "$html"; then
+              echo "SEO_DISTRIBUTED=FAIL_LEGACY_HOST kind=$kind url=$url"
+              exit 1
+            fi
+
+            echo "SEO_DISTRIBUTED=PASS kind=$kind url=$url"
+          }
+
+          if (( ${#grade_urls[@]} == 0 || ${#lesson_urls[@]} == 0 )); then
+            echo "SEO_DISTRIBUTED=FAIL_EMPTY_SAMPLE"
+            exit 1
+          fi
+
+          for url in "${grade_urls[@]}"; do
+            check_indexable_url "$url" "grade"
+          done
+
+          for url in "${lesson_urls[@]}"; do
+            check_indexable_url "$url" "lesson"
+          done
+
+          echo "SEO_DISTRIBUTED=PASS grades=${#grade_urls[@]} lessons=${#lesson_urls[@]}"
 
       - name: Verify one indexable lesson metadata
         shell: bash
