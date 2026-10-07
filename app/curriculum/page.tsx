@@ -5,12 +5,17 @@ import {
   ARAB_COUNTRY_CODES,
   getArabicCountryOptions,
 } from "@/lib/countries";
+import { getSiteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "دليل المناهج والدروس العربية",
   description:
     "دليل ضاديوم القابل للزحف لمناهج ودروس اللغة العربية في 22 دولة عربية، مع روابط مباشرة إلى صفحات الدول والدروس المنشورة.",
   alternates: { canonical: "/curriculum" },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function CurriculumDirectoryPage() {
@@ -18,9 +23,56 @@ export default function CurriculumDirectoryPage() {
   const countries = getArabicCountryOptions().filter((item) =>
     arabCodes.has(item.code),
   );
+  const site = getSiteUrl();
+
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "ضاديوم",
+          item: site,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "دليل المناهج والدروس",
+          item: `${site}/curriculum`,
+        },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "مناهج اللغة العربية في 22 دولة عربية",
+      numberOfItems: countries.length,
+      itemListElement: countries.map(
+        (country, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: `مناهج اللغة العربية في ${country.name}`,
+          url:
+            `${site}/curriculum/${country.code.toLowerCase()}`,
+        }),
+      ),
+    },
+  ];
 
   return (
     <main dir="rtl" className="min-h-screen bg-[#f7f1e6] px-4 py-12 text-[#202c29]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html:
+            JSON.stringify(jsonLd).replace(
+              /</g,
+              "\\u003c",
+            ),
+        }}
+      />
       <div className="mx-auto max-w-6xl">
         <nav className="mb-8 text-sm font-bold text-[#6d665c]" aria-label="مسار التنقل">
           <Link href="/" className="hover:underline">ضاديوم</Link>
