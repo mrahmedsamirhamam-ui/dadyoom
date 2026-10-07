@@ -8,6 +8,7 @@ import {
   getArabicCountryOptions,
 } from "@/lib/countries";
 import { getSiteUrl } from "@/lib/site";
+import { normalizeArabicDisplayText } from "@/lib/seo/normalize-arabic-display";
 import {
   SUPABASE_PUBLIC_KEY,
   SUPABASE_PUBLIC_URL,
@@ -367,7 +368,9 @@ export default async function GradeCurriculumPage({
                           >
                             <h3 className="font-black leading-7 text-[#244841]">
                               {
-                                lesson.title
+                                normalizeArabicDisplayText(
+                                  lesson.title,
+                                )
                               }
                             </h3>
 
