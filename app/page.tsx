@@ -75,6 +75,7 @@ export default function HomePage() {
       "Dadyoom",
       "ضاضيوم",
       "داديوم",
+      "ضاديو",
     ],
     url: site,
   };
