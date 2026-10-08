@@ -1,6 +1,6 @@
 ﻿import { NextResponse } from "next/server";
 
-import { completeLessonAction } from "@/features/student-progress/actions/completeLesson";
+import { completeLessonCore } from "@/features/student-progress/services/complete-lesson-core";
 import { createClient } from "@/lib/supabase/server";
 import { isCompletionGateError } from "@/lib/lesson-activities/completion-gate-error";
 
@@ -55,7 +55,7 @@ export async function POST(request: Request) {
      * It MUST NOT mark a lesson complete directly.
      *
      * All completion semantics are delegated to
-     * completeLessonAction(), which enforces:
+     * completeLessonCore(), which enforces:
      *
      * - authenticated ownership
      * - required activity completion
@@ -110,7 +110,7 @@ export async function POST(request: Request) {
       );
     }
 
-    await completeLessonAction(
+    await completeLessonCore(
       progress.id
     );
 
