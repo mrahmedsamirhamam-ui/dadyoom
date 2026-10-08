@@ -4,7 +4,7 @@ Official Edunet flipbook viewers may expose the number of viewer pages and the o
 
 Extract source metadata offline: node scripts/extract-edunet-flipbook-metadata.mjs --viewer-url URL --config-file downloaded-config.js
 Extract source metadata online: node scripts/extract-edunet-flipbook-metadata.mjs --viewer-url URL --output book-metadata.json
-Run parser tests: node --test tests/curriculum/edunet-flipbook-metadata.test.mjs
+Run parser tests: npm run test:run -- tests/curriculum/edunet-flipbook-metadata.test.mjs
 
 The script is read-only and never evaluates remote JavaScript. All source URLs must be HTTPS URLs on edunet.bh. If original PDFs are blocked or the extracted text is scrambled, retain PENDING_HUMAN_TOC_MATCH and DO NOT set COMPLETE_BOOK.
 

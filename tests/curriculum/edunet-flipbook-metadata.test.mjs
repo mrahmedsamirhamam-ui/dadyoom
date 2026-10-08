@@ -1,5 +1,4 @@
-import test from "node:test";
-import assert from "node:assert/strict";
+import { test, expect } from "vitest";
 
 import {
   officialUrl,
@@ -22,30 +21,30 @@ const fixture = "var htmlConfig = " + JSON.stringify(baseConfig) + ";";
 
 test("reads config JSON without eval and handles escaped strings", () => {
   const parsed = parseHtmlConfig("<html><body>" + fixture + "</body></html>");
-  assert.equal(parsed.fliphtml5_pages.length, 3);
+  expect(parsed.fliphtml5_pages.length).toBe(3);
 });
 
 test("does not mistake page count for verified lessons", () => {
   const result = extractBookMetadata(fixture, viewer);
-  assert.equal(result.viewerPageCount, 3);
-  assert.equal(result.tocEntryCount, null);
-  assert.equal(result.tocVerified, false);
-  assert.equal(result.status, "PENDING_HUMAN_TOC_MATCH");
-  assert.match(result.pdfUrl, /Arabic%204th%20T%20P2-17_6_2025\.pdf$/);
+  expect(result.viewerPageCount).toBe(3);
+  expect(result.tocEntryCount).toBeNull();
+  expect(result.tocVerified).toBe(false);
+  expect(result.status).toBe("PENDING_HUMAN_TOC_MATCH");
+  expect(result.pdfUrl).toMatch(/Arabic%204th%20T%20P2-17_6_2025\.pdf$/);
 });
 
 test("rejects off-domain and insecure sources", () => {
-  assert.throws(() => officialUrl("https://example.org/book"), /UNTRUSTED_/);
-  assert.throws(() => officialUrl("http://www.edunet.bh/book"), /UNTRUSTED_/);
+  expect(() => officialUrl("https://example.org/book")).toThrow(/UNTRUSTED_/);
+  expect(() => officialUrl("http://www.edunet.bh/book")).toThrow(/UNTRUSTED_/);
   const bad = "var htmlConfig = " + JSON.stringify({
     ...baseConfig,
     downloadconfig:{pdf:{url:"https://evil.example/capture.pdf"}}
   });
-  assert.throws(() => extractBookMetadata(bad, viewer), /UNTRUSTED_/);
+  expect(() => extractBookMetadata(bad, viewer)).toThrow(/UNTRUSTED_/);
 });
 
 test("rejects absent, truncated and empty flipbook configurations", () => {
-  assert.throws(() => parseHtmlConfig("var somethingElse = {}"), /NOT_FOUND/);
-  assert.throws(() => parseHtmlConfig('var htmlConfig = {"fliphtml5_pages":[]};'), /PAGE_LIST_MISSING/);
-  assert.throws(() => parseHtmlConfig('var htmlConfig = {"fliphtml5_pages":[{}]'), /UNTERMINATED/);
+  expect(() => parseHtmlConfig("var somethingElse = {}")).toThrow(/NOT_FOUND/);
+  expect(() => parseHtmlConfig('var htmlConfig = {"fliphtml5_pages":[]};')).toThrow(/PAGE_LIST_MISSING/);
+  expect(() => parseHtmlConfig('var htmlConfig = {"fliphtml5_pages":[{}]')).toThrow(/UNTERMINATED/);
 });
