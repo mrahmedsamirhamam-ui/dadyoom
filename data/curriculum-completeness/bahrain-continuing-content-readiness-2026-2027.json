@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "country": "BH",
+  "academicYear": "2026-2027",
+  "semester": 1,
+  "scope": "Adult continuing education original Dadyoom support only",
+  "officialPlanTitles": 177,
+  "authoredDrafts": 177,
+  "levels": [
+    {
+      "level": "الأول محو الأمية",
+      "titles": 25
+    },
+    {
+      "level": "الثاني محو الأمية",
+      "titles": 32
+    },
+    {
+      "level": "الأول متابعة",
+      "titles": 43
+    },
+    {
+      "level": "الثاني متابعة",
+      "titles": 27
+    },
+    {
+      "level": "الأول تقوية",
+      "titles": 28
+    },
+    {
+      "level": "الثاني تقوية",
+      "titles": 22
+    }
+  ],
+  "reviewState": "PENDING_EDUCATIONAL_EDITORIAL_REVIEW",
+  "textbookStatus": "NOT_COMPLETE_BOOK",
+  "officialBookTOCParityVerified": false,
+  "currentSemester2Verified": false,
+  "technicalNotes": "Verified as of 2026-10-08 by Supabase read-only checks: 177 scoped lessons with 3+ objectives, substantial Dadyoom-original content and >=1 published activity. An activity is not proof that its scoring was end-to-end QA tested.",
+  "qaState": "PRODUCTION_ROLE_QA_CANONICAL_COMPLETION_500_OPEN",
+  "contentFiles": [
+    "bahrain-continuing-arabic-literacy1-drafts-2026-2027.json",
+    "bahrain-continuing-arabic-literacy2-drafts-2026-2027.json",
+    "bahrain-continuing-followup1-original-drafts-part1-2026-2027.json",
+    "bahrain-continuing-followup1-original-drafts-part2-2026-2027.json",
+    "bahrain-continuing-followup1-original-drafts-part3-2026-2027.json",
+    "bahrain-continuing-followup2-original-drafts-part1-2026-2027.json",
+    "bahrain-continuing-followup2-original-drafts-part2-2026-2027.json",
+    "bahrain-continuing-reinforcement1-original-drafts-part1-2026-2027.json",
+    "bahrain-continuing-reinforcement1-original-drafts-part2a-2026-2027.json",
+    "bahrain-continuing-reinforcement1-original-drafts-part2b-2026-2027.json",
+    "bahrain-continuing-reinforcement2-original-drafts-part1-2026-2027.json",
+    "bahrain-continuing-reinforcement2-original-drafts-part2-2026-2027.json"
+  ]
+}
