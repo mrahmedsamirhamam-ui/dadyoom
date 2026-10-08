@@ -4,6 +4,7 @@ import ListenButton from "@/features/lesson-activities/components/ListenButton";
 import LessonActivityImage from "@/features/lesson-activities/components/LessonActivityImage";
 
 import HandwritingCanvas from "@/features/lesson-activities/components/HandwritingCanvas";
+import { allowsMultipleSelection } from "@/lib/lesson-activities/multiple-choice-mode";
 
 import {
   useMemo,
@@ -909,8 +910,7 @@ export default function InteractiveLessonActivities({
                           optionIndex
                         ) => {
 
-                          const multi =
-                            options.length > 3;
+                          const multi = allowsMultipleSelection(content, options.length);
 
                           const active =
                             answer.includes(
