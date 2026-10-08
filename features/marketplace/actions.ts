@@ -256,8 +256,12 @@ export async function publishMarketplaceCourse(
       };
     }
 
-    revalidatePath("/teacher/marketplace");
-    revalidatePath("/marketplace");
+    // Publishing has been persisted. Keep cache revalidation outside the
+    // Server Action response to avoid Cloudflare Worker timeouts.
+    after(() => {
+      revalidatePath("/teacher/marketplace");
+      revalidatePath("/marketplace");
+    });
 
     return {
       ok: true,
