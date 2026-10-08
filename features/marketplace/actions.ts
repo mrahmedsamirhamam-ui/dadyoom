@@ -2,6 +2,7 @@
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { revalidatePath } from "next/cache";
+import { after } from "next/server";
 
 import { finalizePaymentOrder } from "@/lib/payments/orders";
 import { createAdminClient } from "@/lib/supabase/admin";
@@ -115,8 +116,12 @@ export async function createMarketplaceCourse(
 
     if (error) throw error;
 
-    revalidatePath("/teacher/marketplace");
-    revalidatePath("/marketplace");
+    // The draft is saved; return its result without waiting for route
+    // re-rendering on CPU-constrained Cloudflare Workers.
+    after(() => {
+      revalidatePath("/teacher/marketplace");
+      revalidatePath("/marketplace");
+    });
 
     return {
       ok: true,

@@ -139,6 +139,25 @@ async function verifyConfiguredPrice(args: {
 }
 
 export async function POST() {
+  // Dadyoom is free. Never expose live Paddle checkout credentials,
+  // even when production secrets are still configured on Cloudflare.
+  // An explicit sandbox-only flag permits non-charging internal tests.
+  if (
+    environment() !== "sandbox" ||
+    process.env.DADYOOM_SANDBOX_CHECKOUT_ENABLED !== "true"
+  ) {
+    return NextResponse.json(
+      {
+        error: "PAYMENTS_PAUSED",
+        message: "ضاديوم مجاني حاليًا؛ لا توجد اشتراكات مدفوعة.",
+      },
+      {
+        status: 503,
+        headers: { "Cache-Control": "no-store" },
+      },
+    );
+  }
+
   const supabase = await createClient();
   const {
     data: { user },

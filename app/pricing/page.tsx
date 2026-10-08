@@ -6,9 +6,9 @@ export const dynamic = "force-static";
 export const revalidate = 86400;
 
 export const metadata: Metadata = {
-  title: "ضاديوم Plus | اشتراك التعلم العربي الذكي",
+  title: "ضاديوم | التعلم المجاني وخطط المنصة",
   description:
-    "ضاديوم العادي يمنح الدرس والملخص والشرائح والطباعة والتنزيل، وPlus يزيل الإعلانات ويفتح إنشاءات AI الموسعة.",
+    "تعلّم العربية مجانًا على ضاديوم، مع الدروس والملخصات والطباعة. الاشتراكات المدفوعة الجديدة غير متاحة حاليًا.",
   alternates: { canonical: "/pricing" },
 };
 

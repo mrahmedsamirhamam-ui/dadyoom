@@ -3868,18 +3868,20 @@ async function focusedMarketplaceLiveFlow(
 
     await createButton.click();
 
-    await teacherPage
-      .getByText(
-        "تم إنشاء الدورة بنسبة 85% للمعلم و15% لضاديوم.",
-        {
-          exact:
-            false,
-        },
-      )
-      .waitFor({
-        timeout:
-          20_000,
-      });
+    try {
+      await teacherPage
+        .getByText(
+          "تم إنشاء الدورة بنسبة 85% للمعلم و15% لضاديوم.",
+          { exact: false },
+        )
+        .waitFor({ timeout: 20_000 });
+    } catch (error) {
+      console.error(
+        "E2E_MARKETPLACE_CREATE_UI_STATUS",
+        await teacherPage.getByRole("status").allTextContents(),
+      );
+      throw error;
+    }
 
     const course =
       await waitForDbRow(
@@ -5734,6 +5736,14 @@ try {
       console.log(
         `E2E_PADDLE_CONFIG_PROBE STATUS=${paddleConfig.status} ENV=${String(paddleConfig.data?.environment ?? paddleEnvironment)} ERROR=${paddleError || "NONE"}`,
       );
+
+      // A live environment must never expose an active checkout.
+      if (paddleEnvironment === "production") {
+        gate(
+          paddleConfig.status === 503 && paddleError === "PAYMENTS_PAUSED",
+          `E2E_LIVE_PADDLE_CHECKOUT_NOT_PAUSED:${paddleConfig.status}:${paddleError}`,
+        );
+      }
 
       const videoAiHealth =
         await browserFetch(

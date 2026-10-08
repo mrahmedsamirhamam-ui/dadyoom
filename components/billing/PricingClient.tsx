@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import CheckoutButtons from "@/components/billing/CheckoutButtons";
 import PaddleManageSubscription from "@/components/billing/PaddleManageSubscription";
 
 type BillingStatus = {
@@ -143,7 +142,7 @@ export default function PricingClient() {
 
           <PlanCard
             title="ضاديوم Plus"
-            subtitle={`${status.plusPrice.toFixed(2)} ${status.plusCurrency} / شهريًا`}
+            subtitle="الاشتراكات الجديدة متوقفة حاليًا"
             current={status.plan === "plus"}
             accent
             features={[
@@ -156,10 +155,12 @@ export default function PricingClient() {
               "كل مزايا الدرس الأساسية والطباعة والتنزيل",
             ]}
           >
-            {status.plan !== "plus" ? (
-              <CheckoutButtons kind="plus" />
-            ) : (
+            {status.plan === "plus" ? (
               <PaddleManageSubscription />
+            ) : (
+              <p className="text-sm font-bold text-[#123f39]">
+                لا يوجد شراء أو اشتراك مدفوع حاليًا. يمكنك التعلم مجانًا في ضاديوم.
+              </p>
             )}
           </PlanCard>
         </section>
