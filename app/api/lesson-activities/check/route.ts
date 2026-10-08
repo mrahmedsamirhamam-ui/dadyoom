@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import {
   getCorrectAnswerSpec,
 } from "@/lib/lesson-activities/grading";
+import { activityProgressState } from "@/lib/lesson-activities/progress-state";
 
 
 type RequestBody = {
@@ -702,12 +703,17 @@ export async function POST(
      * - mastery
      * - XP
      */
+    const activityProgress = activityProgressState(
+      existingProgress?.status,
+      progressPercent
+    );
+
     const progressValues = {
       status:
-        "in_progress",
+        activityProgress.status,
 
       progress_percent:
-        progressPercent,
+        activityProgress.progressPercent,
 
       last_score:
         currentScore,
