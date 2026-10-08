@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { after } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 
 import { startLesson } from "../services/progress";
@@ -32,10 +33,21 @@ export async function startLessonAction(
     lessonId
   );
 
-  await syncLearningProfile(studentId);
-
-  revalidatePath("/student");
-  revalidatePath(`/lessons/${lessonId}`);
+  // Progress has been saved. Do not delay the Server Action response with
+  // profile aggregation or path revalidation on CPU-constrained Workers.
+  // The client refreshes the lesson after this action resolves.
+  after(async () => {
+    try {
+      await syncLearningProfile(studentId, supabase);
+      revalidatePath("/student");
+      revalidatePath(`/lessons/${lessonId}`);
+    } catch (error) {
+      console.warn(
+        "START_LESSON_POST_COMMIT_SYNC_WARNING",
+        error instanceof Error ? error.message : "profile-sync-failed",
+      );
+    }
+  });
 
   return result;
 }
