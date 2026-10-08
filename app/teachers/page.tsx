@@ -4,7 +4,7 @@ import Link from "next/link";
 import { getSiteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "ذكاء اصطناعي للمعلمين | تحضير الدروس وأوراق العمل والاختبارات",
+  title: "أدوات المعلم الذكية | تحضير الدروس وأوراق العمل",
   description:
     "ضاديوم للمعلمين: أنشئ حزمة درس عربية كاملة بالذكاء الاصطناعي تشمل أهداف بلوم، خطة الحصة، أنشطة متمايزة، ورقة عمل، اختبارًا، واجبًا، مخطط شرائح، PowerPoint وQR.",
   keywords: [

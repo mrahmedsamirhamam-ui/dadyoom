@@ -5,7 +5,7 @@ export const dynamic = "force-static";
 export const revalidate = 86400;
 
 export const metadata: Metadata = {
-  title: "عن ضاديوم",
+  title: "عن ضاديوم | منصة تعليم العربية ومناهجها",
   description:
     "تعرف على ضاديوم، رسالتها التعليمية، منهجها في ربط المناهج بمهارات اللغة العربية، وكيف تحافظ على المحتوى الأصلي والمصادر الرسمية.",
   alternates: { canonical: "/about" },

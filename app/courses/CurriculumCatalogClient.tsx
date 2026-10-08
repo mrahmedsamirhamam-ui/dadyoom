@@ -354,9 +354,9 @@ export default function CurriculumCatalogClient({
               بوابة المناهج
             </div>
 
-            <h1 className="mt-3 text-3xl font-black sm:text-4xl">
+            <h2 className="mt-3 text-3xl font-black sm:text-4xl">
               اختر الدولة والصف ثم المسار
-            </h1>
+            </h2>
 
             <p className="mt-2 max-w-3xl leading-8 text-[#e9f3ef]">
               يحمل ضاديوم الصف الذي اخترته فقط بدل تحميل آلاف الدروس دفعة

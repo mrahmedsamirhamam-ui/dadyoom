@@ -145,6 +145,57 @@ export default async function CountryCurriculumPage({
     },
   );
 
+  // Independent read-only catalog and lesson queries may overlap to lower
+  // server response time without changing SSR output or the ISR policy.
+  const lessonsPromise = (async (): Promise<SeoLessonRow[]> => {
+      const rows: SeoLessonRow[] = [];
+      const pageSize = 1000;
+  
+      for (let from = 0; ; from += pageSize) {
+        const { data, error } = await db
+          .from("seo_indexable_lessons_fast")
+          .select(
+            "id,title,slug,summary,lesson_number,sort_order,lesson_semester,unit_title,unit_number,unit_sort_order,unit_semester,grade_name,grade_number,country_code,country_name",
+          )
+          .eq("country_code", info.code)
+          .order("grade_number", {
+            ascending: true,
+          })
+          .order("unit_sort_order", {
+            ascending: true,
+          })
+          .order("sort_order", {
+            ascending: true,
+          })
+          .range(
+            from,
+            from + pageSize - 1,
+          );
+  
+        if (error) {
+          console.error(
+            "SEO_CURRICULUM_DIRECTORY_FAILED",
+            {
+              country: info.code,
+              message: error.message,
+            },
+          );
+          break;
+        }
+  
+        const batch =
+          (data ?? []) as unknown as
+            SeoLessonRow[];
+  
+        rows.push(...batch);
+  
+        if (batch.length < pageSize) {
+          break;
+        }
+      }
+    return rows;
+  })();
+
   const { data: gradeCatalogData } =
     await db
       .from("grades")
@@ -217,51 +268,7 @@ export default async function CountryCurriculumPage({
         }),
     );
 
-  const rows: SeoLessonRow[] = [];
-  const pageSize = 1000;
-
-  for (let from = 0; ; from += pageSize) {
-    const { data, error } = await db
-      .from("seo_indexable_lessons_fast")
-      .select(
-        "id,title,slug,summary,lesson_number,sort_order,lesson_semester,unit_title,unit_number,unit_sort_order,unit_semester,grade_name,grade_number,country_code,country_name",
-      )
-      .eq("country_code", info.code)
-      .order("grade_number", {
-        ascending: true,
-      })
-      .order("unit_sort_order", {
-        ascending: true,
-      })
-      .order("sort_order", {
-        ascending: true,
-      })
-      .range(
-        from,
-        from + pageSize - 1,
-      );
-
-    if (error) {
-      console.error(
-        "SEO_CURRICULUM_DIRECTORY_FAILED",
-        {
-          country: info.code,
-          message: error.message,
-        },
-      );
-      break;
-    }
-
-    const batch =
-      (data ?? []) as unknown as
-        SeoLessonRow[];
-
-    rows.push(...batch);
-
-    if (batch.length < pageSize) {
-      break;
-    }
-  }
+  const rows = await lessonsPromise;
 
   const groups = new Map<
     string,

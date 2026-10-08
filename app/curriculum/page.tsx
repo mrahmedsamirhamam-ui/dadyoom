@@ -105,6 +105,20 @@ export default function CurriculumDirectoryPage() {
           ))}
         </section>
 
+        <section className="mt-8 rounded-[2rem] border border-[#ddcfb4] bg-[#fffdf8] p-6 sm:p-8">
+          <h2 className="text-2xl font-black text-[#123f39]">كيف تستفيد من دليل المناهج؟</h2>
+          <div className="mt-4 space-y-4 font-arabic-reading leading-9 text-[#655e54]">
+            <p>ابدأ باختيار بلد الدراسة، ثم انتقل إلى الصف المناسب للاطلاع على الوحدات والدروس ذات المحتوى التعليمي المتاح. قد تختلف أسماء الصفوف والمسارات والفصول الدراسية من دولة إلى أخرى؛ لذلك اعتمد على الصف والمسار الظاهرين في صفحة بلدك بدل افتراض أن جميع الدول تستخدم الكتب نفسها.</p>
+            <p>يفرق ضاديوم بين الفهرس التعليمي والشرح الجاهز للاستخدام. وجود اسم درس في خطة أو كتاب لا يعني بالضرورة أن شرحًا متكاملًا قد اكتمل له على المنصة. اقرأ حالة التغطية ومصدر المنهج قبل الاعتماد على الدرس في التحضير أو المراجعة، واستخدم الروابط المباشرة للانتقال إلى الدروس المنشورة.</p>
+            <p>للمذاكرة يمكنك متابعة ترتيب الوحدات ثم مراجعة الأمثلة والأنشطة والتقويمات عند توفرها. وللمعلمين توجد موارد لتخطيط الحصة وأوراق العمل، بينما يقدم دليل تعلم العربية مدخلًا إلى مهارات القراءة والكتابة والاستماع والتحدث.</p>
+          </div>
+          <div className="mt-5 flex flex-wrap gap-4 font-bold text-[#174f47]">
+            <Link href="/learn-arabic" className="hover:underline">دليل تعلم العربية</Link>
+            <Link href="/teachers" className="hover:underline">موارد المعلمين</Link>
+            <Link href="/about" className="hover:underline">تعرف إلى ضاديوم</Link>
+          </div>
+        </section>
+
         <div className="mt-10">
           <Link href="/courses" className="font-black text-[#174f47] hover:underline">
             افتح مستكشف المناهج التفاعلي
