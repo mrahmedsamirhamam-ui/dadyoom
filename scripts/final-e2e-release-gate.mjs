@@ -2445,6 +2445,31 @@ async function canonicalLearningFlow(
       },
     );
 
+  // Diagnostic readbacks happen only after a failed completion request;
+  // they do not change QA fixtures, ownership, grading or the product API.
+  if (complete.status >= 500) {
+    const [masteryReadback, progressReadback] = await Promise.all([
+      admin.from("lesson_mastery")
+        .select("mastery_score,asked_questions")
+        .eq("student_id",student.id)
+        .eq("lesson_id",lesson.id).maybeSingle(),
+      admin.from("student_lesson_progress")
+        .select("status,progress_percent,best_score,xp,completed_at")
+        .eq("student_id",student.id)
+        .eq("lesson_id",lesson.id).maybeSingle(),
+    ]);
+    console.error("E2E_CANONICAL_POSTFAIL_DB_STATE",JSON.stringify({
+      masteryStored:!!masteryReadback.data,
+      masteryScore:Number(masteryReadback.data?.mastery_score??0),
+      masteryReadError:!!masteryReadback.error,
+      progressStatus:String(progressReadback.data?.status??"missing"),
+      progressPercent:Number(progressReadback.data?.progress_percent??0),
+      progressScore:Number(progressReadback.data?.best_score??0),
+      progressReadError:!!progressReadback.error,
+      hasCompletedAt:!!progressReadback.data?.completed_at,
+    }));
+  }
+
   gate(
     complete.status === 200 &&
       complete.data?.success ===
