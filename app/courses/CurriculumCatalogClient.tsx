@@ -63,6 +63,7 @@ type ContinuingEducationLesson = {
   title: string;
   lessonType: string;
   summary: string | null;
+  contentReady: boolean;
   order: number;
   semester: number | null;
   sourcePdfUrl: string | null;
@@ -85,6 +86,7 @@ type ContinuingEducationResponse = {
   units?: ContinuingEducationUnit[];
   terms?: CurriculumTermStatus[];
   lessonCount?: number;
+  draftCount?: number;
   error?: string;
 };
 
@@ -529,7 +531,7 @@ function BahrainContinuingEducationPanel({
           <span className="rounded-full bg-[#e8f7ee] px-4 py-2 text-xs font-black text-[#245b3a]">
             {loading
               ? "جارٍ التحميل…"
-              : `${payload?.lessonCount ?? 0} درسًا رسميًا مستوردًا`}
+              : `${payload?.lessonCount ?? 0} عنوانًا مقررًا، ${payload?.draftCount ?? 0} بمحتوى أولي`}
           </span>
         </div>
 
@@ -555,12 +557,13 @@ function BahrainContinuingEducationPanel({
           {firstSemester ? (
             <>
               <div className="inline-flex rounded-full bg-[#e8f7ee] px-3 py-1 text-xs font-black text-[#245b3a]">
-                الخطة الرسمية الحالية مستوردة تفصيليًا
+                عناوين خطة الفصل الأول الرسمية مثبتة
               </div>
               <p className="mt-3 font-bold leading-8 text-[#625b51]">
-                تم استخراج عناوين هذا المستوى من Plan6 الرسمي للفصل الأول
-                2026-2027 وإدخالها كدروس مقررة، مع إبقاء رقم الصف فارغًا
-                لأن التعليم المستمر يستخدم مستويات غير قياسية.
+                العناوين مأخوذة من Plan6 الرسمي 2026-2027، ومستوياتها
+                مستقلة عن الصفوف 10–12. وجود عنوان الدرس في الفهرس
+                لا يعني اكتمال الشرح والأنشطة والتقويم. يُفتح الدرس
+                عندما تتوافر له مادة تعليمية فعلية.
               </p>
             </>
           ) : (
@@ -624,7 +627,7 @@ function BahrainContinuingEducationPanel({
       ) : firstSemester && units.length > 0 ? (
         <section className="space-y-5">
           <div className="rounded-2xl bg-[#eef6f2] px-4 py-3 text-sm font-black text-[#245b3a]">
-            المعروض الآن: {visibleLessons} درسًا/بندًا رسميًا في Plan6
+            المعروض الآن: {visibleLessons} عنوانًا مقررًا في Plan6؛ المحتوى الأولي متاح لـ{payload?.draftCount ?? 0}
           </div>
           {units.map((item) => (
             <article
@@ -647,10 +650,9 @@ function BahrainContinuingEducationPanel({
 
               <div className="grid gap-3 p-4 sm:grid-cols-2 xl:grid-cols-3">
                 {item.lessons.map((lesson) => (
-                  <Link
+                  <div
                     key={lesson.id}
-                    href={`/lessons/${lesson.id}`}
-                    className="rounded-2xl border border-[#e5d8bf] bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-md"
+                    className="rounded-2xl border border-[#e5d8bf] bg-white p-4 "
                   >
                     <div className="flex items-start justify-between gap-2">
                       <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#f5ecd8] font-black">
@@ -674,7 +676,19 @@ function BahrainContinuingEducationPanel({
                           : ""}
                       </p>
                     ) : null}
-                  </Link>
+                    {lesson.contentReady ? (
+                      <Link
+                        href={`/lessons/${lesson.id}`}
+                        className="mt-4 inline-flex rounded-xl bg-[#123f39] px-4 py-2 text-sm font-black text-white"
+                      >
+                        افتح محتوى الدرس
+                      </Link>
+                    ) : (
+                      <p className="mt-4 rounded-xl bg-[#fff2df] px-3 py-2 text-xs font-bold text-[#835621]">
+                        العنوان مقرر — الشرح والأنشطة قيد الإعداد
+                      </p>
+                    )}
+                  </div>
                 ))}
               </div>
             </article>

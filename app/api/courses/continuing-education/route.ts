@@ -25,6 +25,7 @@ type LessonRow = {
   title: string;
   lesson_type: string;
   summary: string | null;
+  content: string | null;
   lesson_number: number | null;
   sort_order: number | null;
   semester: number | null;
@@ -40,6 +41,11 @@ type TermRow = {
   source_url: string | null;
   audited_at: string;
 };
+
+function hasInstructionalDraft(content: string | null): boolean {
+  const text = content?.trim() ?? "";
+  return text.length > 0 && !text.startsWith("محتوى مقرر في الخطة الرسمية الحالية.");
+}
 
 function unavailable() {
   return NextResponse.json(
@@ -139,7 +145,7 @@ export async function GET(request: Request) {
       await supabase
         .from("lessons")
         .select(
-          "id,unit_id,title,lesson_type,summary,lesson_number,sort_order,semester,source_pdf_url,source_page_start,source_page_end",
+          "id,unit_id,title,lesson_type,summary,content,lesson_number,sort_order,semester,source_pdf_url,source_page_start,source_page_end",
         )
         .in("unit_id", unitIds)
         .eq("status", "published")
@@ -194,6 +200,7 @@ export async function GET(request: Request) {
         title: lesson.title,
         lessonType: lesson.lesson_type,
         summary: lesson.summary,
+        contentReady: hasInstructionalDraft(lesson.content),
         order: Number(
           lesson.lesson_number ??
             lesson.sort_order ??
@@ -213,6 +220,9 @@ export async function GET(request: Request) {
         curriculum.academic_year ?? "2026-2027",
       units: payloadUnits,
       lessonCount: lessons.length,
+      draftCount: lessons.filter((lesson) =>
+        hasInstructionalDraft(lesson.content),
+      ).length,
       terms: terms.map((term) => ({
         semester: Number(term.semester),
         publicationStatus: term.publication_status,
