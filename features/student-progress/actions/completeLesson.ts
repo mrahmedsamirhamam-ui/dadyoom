@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { after } from "next/server";
 
 import { createClient } from "@/lib/supabase/server";
 import { getCorrectAnswerSpec } from "@/lib/lesson-activities/grading";
@@ -736,109 +737,93 @@ export async function completeLessonAction(
     pathCompleted: false,
   };
 
-  const postCompletionTasks = [
-    user.email?.trim()
-      ? updateStreak({
-          supabase,
-          studentEmail:
-            user.email.trim(),
-          activityDate:
-            new Date(),
-        })
-      : Promise.resolve(null),
+  after(async () => {
+    const postCompletionTasks = [
+      user.email?.trim()
+        ? updateStreak({
+            supabase,
+            studentEmail:
+              user.email.trim(),
+            activityDate:
+              new Date(),
+          })
+        : Promise.resolve(null),
 
-    completeAdaptiveStep({
-      supabase,
-      studentId:
+      completeAdaptiveStep({
+        supabase,
+        studentId:
+          user.id,
+        lessonId:
+          progress.lesson_id,
+        stepType:
+          "lesson",
+        focusSkill:
+          adaptiveFocusSkill,
+      }),
+
+      syncLearningProfile(
         user.id,
-      lessonId:
-        progress.lesson_id,
-      stepType:
-        "lesson",
-      focusSkill:
-        adaptiveFocusSkill,
-    }),
+        supabase
+      ),
 
-    syncLearningProfile(
-      user.id,
-      supabase
-    ),
+      invalidateStudentCaches({
+        studentId:
+          user.id,
+        studentEmail:
+          user.email,
+        supabase,
+      }),
+    ] as const;
 
-    invalidateStudentCaches({
-      studentId:
-        user.id,
-      studentEmail:
-        user.email,
-      supabase,
-    }),
-  ] as const;
-
-  const [
-    streakResult,
-    adaptiveResult,
-    profileResult,
-    cacheResult,
-  ] =
-    await Promise.allSettled(
-      postCompletionTasks
-    );
-
-  const postCompletionResults = [
-    [
-      "streak",
-      streakResult,
-    ],
-    [
-      "adaptive",
-      adaptiveResult,
-    ],
-    [
-      "learning_profile",
-      profileResult,
-    ],
-    [
-      "cache",
-      cacheResult,
-    ],
-  ] as const;
-
-  for (
-    const [
-      name,
-      sideEffect,
-    ] of postCompletionResults
-  ) {
-    if (
-      sideEffect.status ===
-      "rejected"
-    ) {
-      console.warn(
-        "DADYOOM_POST_COMPLETION_SIDE_EFFECT_WARNING",
-        {
-          name,
-          lessonId:
-            progress.lesson_id,
-          studentId:
-            user.id,
-          message:
-            sideEffect.reason instanceof
-            Error
-              ? sideEffect.reason
-                  .message
-              : String(
-                  sideEffect.reason ??
-                    "unknown"
-                ),
-        }
+    const postCompletionResults =
+      await Promise.allSettled(
+        postCompletionTasks
       );
-    }
-  }
+
+    const names = [
+      "streak",
+      "adaptive",
+      "learning_profile",
+      "cache",
+    ] as const;
+
+    postCompletionResults.forEach(
+      (
+        sideEffect,
+        index,
+      ) => {
+        if (
+          sideEffect.status ===
+          "rejected"
+        ) {
+          console.warn(
+            "DADYOOM_POST_COMPLETION_SIDE_EFFECT_WARNING",
+            {
+              name:
+                names[index] ??
+                "unknown",
+              lessonId:
+                progress.lesson_id,
+              studentId:
+                user.id,
+              message:
+                sideEffect.reason instanceof
+                Error
+                  ? sideEffect.reason
+                      .message
+                  : String(
+                      sideEffect.reason ??
+                        "unknown"
+                    ),
+            }
+          );
+        }
+      }
+    );
+  });
 
   const adaptiveLessonStep =
-    adaptiveResult.status ===
-      "fulfilled"
-      ? adaptiveResult.value
-      : fallbackAdaptiveStep;
+    fallbackAdaptiveStep;
 
   const xpGained =
     Math.max(
