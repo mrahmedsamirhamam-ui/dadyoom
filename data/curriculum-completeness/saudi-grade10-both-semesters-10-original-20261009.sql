@@ -65,12 +65,30 @@ BEGIN
       answer=jsonb_build_object('correct',r.a2)
     WHERE lesson_id=target_id AND activity_order=2 AND activity_type='multiple_choice'
       AND content->>'origin'='DADYOOM_SA_OFFICIAL_2026_2027_V1';
-   UPDATE public.lesson_activities SET prompt=r.writing,
-     content=content||jsonb_build_object('origin','DADYOOM_SA_G10_TERM12_ORIGINAL_V1_20261009','previousOrigin','DADYOOM_SA_OFFICIAL_2026_2027_V1',
-      'text',r.writing,'notOfficialBook',true,'humanReviewRequired',true,
-      'sourceVerification','pending')
-     WHERE lesson_id=target_id AND activity_order=3 AND activity_type='writing'
-      AND content->>'origin'='DADYOOM_SA_OFFICIAL_2026_2027_V1';
+   -- Activity #3 is a reading task for competency 3, a speaking task
+   -- for competency 5, and a writing task for the other competencies.
+   -- Keep the student's original activity type and preserve its ID.
+   UPDATE public.lesson_activities SET
+     prompt=CASE WHEN r.n=3 THEN
+       'اقرأ المثال المستقل، واستخرج الفكرة والدليل، ثم ناقش استنتاجًا مسنودًا.'
+       WHEN r.n=5 THEN
+       'قدّم شرحًا شفهيًا قصيرًا للمهارة بمقدمة وحجة وخاتمة، واطلب تغذية راجعة.'
+       ELSE r.writing END,
+     content=content||jsonb_build_object(
+       'origin','DADYOOM_SA_G10_TERM12_ORIGINAL_V1_20261009',
+       'previousOrigin','DADYOOM_SA_OFFICIAL_2026_2027_V1',
+       'text',CASE WHEN r.n=3 THEN
+         'قراءة تطبيقية: اقرأ المثال واكتب الفكرة الرئيسة والدليل والاستنتاج المسموح.'
+         WHEN r.n=5 THEN
+         'ممارسة شفوية: قدّم شرحًا أو مناقشة قصيرة ثم اطلب مراجعة المعلم.'
+         ELSE r.writing END,
+       'notOfficialBook',true,'humanReviewRequired',true,
+       'sourceVerification','pending')
+     WHERE lesson_id=target_id AND activity_order=3
+       AND activity_type=CASE WHEN r.n=3 THEN 'reading'
+                              WHEN r.n=5 THEN 'speaking'
+                              ELSE 'writing' END
+       AND content->>'origin'='DADYOOM_SA_OFFICIAL_2026_2027_V1';
    SELECT count(*) INTO changed FROM public.lesson_activities
      WHERE lesson_id=target_id AND content->>'origin'='DADYOOM_SA_G10_TERM12_ORIGINAL_V1_20261009';
    IF changed<>3 THEN RAISE EXCEPTION 'SA_G10_UPDATE_FAILED_%',r.title; END IF;
