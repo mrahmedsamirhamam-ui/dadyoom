@@ -218,9 +218,9 @@ jobs:
             echo "SEO_PAGE_METADATA=PASS path=$path"
           }
 
-          check_page "/about" "عن ضاديوم" "/about"
+          check_page "/about" "عن ضاديوم | منصة تعليم العربية ومناهجها" "/about"
           check_page "/courses" "مناهج اللغة العربية" "/courses"
-          check_page "/teachers" "ذكاء اصطناعي للمعلمين" "/teachers"
+          check_page "/teachers" "أدوات المعلم الذكية | تحضير الدروس وأوراق العمل" "/teachers"
           check_page "/curriculum/bh" "مناهج اللغة العربية في البحرين" "/curriculum/bh"
 
           bahrain_app_html="$(curl --silent --show-error --location --max-time 30 \
