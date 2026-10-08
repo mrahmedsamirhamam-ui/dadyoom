@@ -2,19 +2,12 @@
 
 import { completeLessonAction } from "@/features/student-progress/actions/completeLesson";
 import { createClient } from "@/lib/supabase/server";
+import { isCompletionGateError } from "@/lib/lesson-activities/completion-gate-error";
 
 type CompleteLessonBody = {
   lessonId?: string;
 };
 
-function isCompletionGateError(message: string) {
-  return (
-    message.includes("أكمل أنشطة التقويم المطلوبة") ||
-    message.includes("مستوى إتقانك الحالي") ||
-    message.includes("المطلوب 90%") ||
-    message.includes("إنهاء الدرس")
-  );
-}
 
 export async function POST(request: Request) {
   try {
