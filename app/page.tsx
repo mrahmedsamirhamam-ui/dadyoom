@@ -206,7 +206,7 @@ export default function HomePage() {
             </p>
 
             <p className="mt-3 text-sm font-bold text-[#7b7165]">
-              الاسم الرسمي: ضاديوم (Dadyoom)، ويُكتب أحيانًا في البحث «ضاضيوم» أو «داديوم».
+              الاسم الرسمي: ضاديوم (Dadyoom). وقد يبحث عنه البعض باسم «ضاديو» أو «داديوم» أو «ضاضيوم».
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
