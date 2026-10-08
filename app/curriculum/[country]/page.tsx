@@ -583,6 +583,7 @@ export default async function CountryCurriculumPage({
                       <Link
                         key={gradeNumber}
                         href={`/curriculum/${info.code.toLowerCase()}/${gradeNumber}`}
+                        prefetch={false}
                         className="rounded-full border border-[#d8c7a4] bg-white px-3 py-2 text-sm font-black text-[#174f47] hover:border-[#8ca99f]"
                       >
                         الصف {gradeNumber}
@@ -653,6 +654,7 @@ export default async function CountryCurriculumPage({
 
                     <Link
                       href={`/curriculum/${info.code.toLowerCase()}/${grade.gradeNumber}`}
+                      prefetch={false}
                       className="rounded-full border border-[#d8c7a4] bg-white px-4 py-2 text-sm font-black text-[#174f47] transition hover:border-[#8ca99f]"
                     >
                       صفحة الصف كاملة ←
@@ -719,6 +721,7 @@ export default async function CountryCurriculumPage({
                                         href={
                                           `/lessons/${lesson.id}`
                                         }
+                                        prefetch={false}
                                         className="block rounded-2xl border border-[#e5dac5] bg-white px-4 py-3 font-bold text-[#244841] transition hover:border-[#8ca99f] hover:underline"
                                       >
                                         {

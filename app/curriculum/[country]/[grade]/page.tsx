@@ -364,6 +364,7 @@ export default async function GradeCurriculumPage({
                         >
                           <Link
                             href={`/lessons/${lesson.id}`}
+                            prefetch={false}
                             className="block h-full rounded-2xl border border-[#e5dac5] bg-white p-4 transition hover:-translate-y-0.5 hover:border-[#8ca99f] hover:shadow-sm"
                           >
                             <h3 className="font-black leading-7 text-[#244841]">
