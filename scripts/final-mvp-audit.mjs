@@ -250,26 +250,45 @@ for (const rel of legacyCompletionFiles) {
   }
 }
 
+// Completion checks now live in a normal server module so the API route
+// does not invoke a Next.js Server Action proxy in the Cloudflare worker.
+// Audit the actual implementation, not the backwards-compatible wrapper.
 const canonicalCompletion = fs.readFileSync(
-  path.resolve(
-    root,
-    "features/student-progress/actions/completeLesson.ts",
-  ),
+  path.resolve(root, "features/student-progress/services/complete-lesson-core.ts"),
+  "utf8",
+);
+const canonicalCompletionRoute = fs.readFileSync(
+  path.resolve(root, "app/api/lessons/complete/route.ts"),
+  "utf8",
+);
+const canonicalCompletionAction = fs.readFileSync(
+  path.resolve(root, "features/student-progress/actions/completeLesson.ts"),
   "utf8",
 );
 
 for (const marker of [
   "REQUIRED_MASTERY_SCORE = 90",
-  "syncLessonMasteryAction",
+  '.from("lesson_mastery")',
   "updateStreak",
   "getCanonicalTotalXP",
   "completeAdaptiveStep",
+  "requiredCompletionActivities",
+  "gradableActivities",
+  "await completeLesson(",
 ]) {
   if (!canonicalCompletion.includes(marker)) {
     throw new Error(
       `FINAL_CANONICAL_COMPLETION_MARKER_MISSING:${marker}`,
     );
   }
+}
+
+if (
+  !canonicalCompletionRoute.includes("await completeLessonCore(") ||
+  canonicalCompletionRoute.includes("await completeLessonAction(") ||
+  !canonicalCompletionAction.includes("return completeLessonCore(progressId);")
+) {
+  throw new Error("FINAL_CANONICAL_COMPLETION_BOUNDARY_MISMATCH");
 }
 
 const semanticSearchRoute = fs.readFileSync(
