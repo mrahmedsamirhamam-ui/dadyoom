@@ -112,7 +112,8 @@ function createGamificationSnapshot(
 }
 
 export async function completeLessonCore(
-  progressId: string
+  progressId: string,
+  options: { legacyHttpCompatibility?: boolean } = {}
 ) {
   const supabase =
     await createClient();
@@ -638,6 +639,53 @@ export async function completeLessonCore(
         0
       )
     );
+
+  /*
+   * DADYOOM_LEGACY_HTTP_FAST_COMMIT_ACK_V1
+   *
+   * The compatibility API needs only acknowledgement of the already
+   * authenticated, graded and durably committed canonical completion.
+   * The production Role QA proved mastery=100 and progress=mastered,
+   * then saw an empty 500 from the Worker after this write. Preserve
+   * all ownership, required-activity, >=90% and XP persistence gates
+   * above, but do not run optional after()/cache/reward work inside
+   * this legacy HTTP request. The modern Server Action retains the
+   * full gamification, adaptive, streak and cache integrations.
+   */
+  if (options.legacyHttpCompatibility) {
+    const previousLessonXP =
+      Number((beforeProgressData ?? []).find(
+        (row) => row.id === progress.id
+      )?.xp ?? 0);
+
+    const savedLessonXP = Number(result?.xp ?? 0);
+    const xpGained = Math.max(0, savedLessonXP - previousLessonXP);
+    const totalXP = Math.max(0, beforeUnifiedXP + xpGained);
+
+    return {
+      progress: result,
+      lessonId: progress.lesson_id,
+      adaptivePath: {
+        updated: false,
+        reason: "legacy_http_compat_core_committed",
+        pathCompleted: false,
+        currentStep: null,
+        nextStep: null,
+      },
+      score,
+      xp: xpGained,
+      lessonXP: savedLessonXP,
+      totalXP,
+      level: calculateLevel(totalXP).level,
+      levelUp: null,
+      unlockedBadges: [],
+      completedAchievements: [],
+      correctAnswers,
+      answeredQuestions,
+      totalQuestions: questionIds.length,
+      masteryRequired: REQUIRED_MASTERY_SCORE,
+    };
+  }
 
   /*
    * DADYOOM_POST_COMPLETION_RESILIENCE_V1

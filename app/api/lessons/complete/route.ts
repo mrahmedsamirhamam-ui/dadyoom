@@ -111,7 +111,8 @@ export async function POST(request: Request) {
     }
 
     await completeLessonCore(
-      progress.id
+      progress.id,
+      { legacyHttpCompatibility: true }
     );
 
     return NextResponse.json({

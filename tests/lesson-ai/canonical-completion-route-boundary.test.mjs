@@ -11,6 +11,11 @@ describe("canonical completion server action and route boundaries", () => {
   it("calls an ordinary shared server module directly from the HTTP API", () => {
     expect(core).not.toMatch(/^"use server"/);
     expect(route).toContain("await completeLessonCore(");
+    expect(route).toContain("legacyHttpCompatibility: true");
+    expect(core).toContain("if (options.legacyHttpCompatibility)");
+    expect(core.indexOf("if (options.legacyHttpCompatibility)")).toBeGreaterThan(core.indexOf("await completeLesson("));
+    expect(core.indexOf("if (options.legacyHttpCompatibility)")).toBeLessThan(core.indexOf("after(async () => {"));
+
     expect(route).not.toContain("await completeLessonAction(");
     expect(action).toContain('"use server";');
     expect(action).toContain("return completeLessonCore(progressId);");
