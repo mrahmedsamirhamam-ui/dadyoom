@@ -21,7 +21,7 @@ updated AS (
      instructions=jsonb_build_array(jsonb_build_object('origin','DADYOOM_BH_FOLLOWUP1_DRAFT_V1','editorial_review','required','book_text_copied',false)),
      updated_at=now()
  FROM target t
- WHERE l.id=t.lesson_id AND t.existing_content="محتوى مقرر في الخطة الرسمية الحالية. يُحفظ العنوان كما في المصدر بعد تنظيف أخطاء OCR الشكلية فقط." AND t.learning_objectives='[]'::jsonb AND t.instructions='[]'::jsonb
+ WHERE l.id=t.lesson_id AND t.existing_content='محتوى مقرر في الخطة الرسمية الحالية. يُحفظ العنوان كما في المصدر بعد تنظيف أخطاء OCR الشكلية فقط.' AND t.learning_objectives='[]'::jsonb AND t.instructions='[]'::jsonb
  RETURNING l.id
 )
 SELECT count(*) updated_drafts FROM updated;
