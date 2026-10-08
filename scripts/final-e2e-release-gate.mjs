@@ -4704,24 +4704,56 @@ async function teacherRewardFlow(
       "Teacher E2E award",
     );
 
+  // Explicitly select the seeded pupil, even if the class later
+  // gains other memberships. The test must never award a bystander.
+  gate(
+    await form.locator('input[name="studentId"]').inputValue() === student.id,
+    "E2E_TEACHER_REWARD_STUDENT_SELECT_MISMATCH",
+  );
+
   await form
     .getByRole(
       "button",
-      {
-        name:
-          "منح الجائزة",
-      },
+      { name: "منح الجائزة" },
     )
     .click();
 
-  await page
-    .getByText(
-      "تم منح 17 نقطة وجائزة E2E Teacher UI Award.",
-    )
-    .waitFor({
-      timeout:
-        20_000,
-    });
+  const expectedAward =
+    "تم منح 17 نقطة وجائزة E2E Teacher UI Award.";
+
+  try {
+    await page
+      .getByRole("status")
+      .getByText(expectedAward, { exact: true })
+      .waitFor({ timeout: 20_000 });
+  } catch (awardUiError) {
+    const visibleStatus =
+      await page
+        .getByRole("status")
+        .allInnerTexts()
+        .catch(() => []);
+    const rewardRows =
+      await admin
+        .from("edu_rewards")
+        .select("id,points")
+        .eq("issuer_id", teacher.id)
+        .eq("student_id", student.id)
+        .eq("title", "E2E Teacher UI Award")
+        .limit(2);
+    console.error(
+      "E2E_TEACHER_REWARD_UI_DIAGNOSTIC",
+      JSON.stringify({
+        url: page.url(),
+        visibleStatus,
+        rewardAlreadyStored: (rewardRows.data ?? []).length,
+        rewardReadError: rewardRows.error?.message ?? null,
+        error: awardUiError instanceof Error
+          ? awardUiError.message
+          : String(awardUiError),
+      }),
+    );
+    throw awardUiError;
+  }
 
   const reward =
     await admin

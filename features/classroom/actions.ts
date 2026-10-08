@@ -2,6 +2,7 @@
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { revalidatePath } from "next/cache";
+import { after } from "next/server";
 
 import { createClient } from "@/lib/supabase/server";
 import { invalidateStudentCaches } from "@/features/student-progress/services/invalidate-student-caches";
@@ -254,23 +255,30 @@ export async function awardStudentAction(
 
     if (error) throw error;
 
-    const target = await db
-      .from("profiles")
-      .select("email")
-      .eq("id", studentId)
-      .maybeSingle();
+    // The reward is durably saved above. Do not block the award response
+    // on unrelated profile lookups, cache invalidation, or five page
+    // revalidations (which would re-render the current Server Action
+    // response on Cloudflare and could exceed CPU limits).
+    after(async () => {
+      try {
+        const target = await db
+          .from("profiles")
+          .select("email")
+          .eq("id", studentId)
+          .maybeSingle();
 
-    await invalidateStudentCaches({
-      studentId,
-      studentEmail: target.data?.email ?? null,
-      supabase,
+        await invalidateStudentCaches({
+          studentId,
+          studentEmail: target.data?.email ?? null,
+          supabase,
+        });
+      } catch (cacheError) {
+        console.warn(
+          "TEACHER_AWARD_POST_COMMIT_CACHE_WARNING",
+          cacheError instanceof Error ? cacheError.message : "cache-error",
+        );
+      }
     });
-
-    revalidatePath("/teacher/classroom");
-    revalidatePath("/student");
-    revalidatePath("/student/classroom");
-    revalidatePath("/school/rewards");
-    revalidatePath("/rewards");
 
     return {
       ok: true,

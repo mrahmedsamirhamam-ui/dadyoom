@@ -144,7 +144,7 @@ export default function TeacherClassroomClient(props: Props) {
             options={classStudents.map((item) => [item.id, item.name])}
           />
           {status ? (
-            <div className="sm:col-span-2 rounded-2xl bg-[#fff7e8] p-3 text-sm font-bold">
+            <div role="status" aria-live="polite" className="sm:col-span-2 rounded-2xl bg-[#fff7e8] p-3 text-sm font-bold">
               {status}
             </div>
           ) : null}
@@ -212,10 +212,18 @@ export default function TeacherClassroomClient(props: Props) {
               className="mt-4 grid gap-3 sm:grid-cols-2"
               onSubmit={async (event) => {
                 event.preventDefault();
-                const result = await awardStudentAction(
-                  new FormData(event.currentTarget),
-                );
-                setStatus(result.message);
+                try {
+                  const result = await awardStudentAction(
+                    new FormData(event.currentTarget),
+                  );
+                  setStatus(result.message);
+                } catch (awardError) {
+                  setStatus(
+                    awardError instanceof Error
+                      ? awardError.message
+                      : "تعذر منح الجائزة مؤقتًا. تحقق من سجل الجوائز قبل إعادة المحاولة.",
+                  );
+                }
               }}
             >
               <input type="hidden" name="classId" value={classId} />
