@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "BH",
+  "academicYear": "2026-2027",
+  "subject": "اللغة العربية",
+  "status": "SOURCE_STRUCTURE_VERIFIED_TOC_NOT_VERIFIED",
+  "sources": [
+    {
+      "grade": 1,
+      "semesterOrBookPart": 1,
+      "book": "براعم العربية - كتاب الطالب - الجزء الأول",
+      "officialViewer": "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_1/e_books/Arabic-Baraem-G1-P1-2026/Arabic%20Baraem%20G1%20P1%202026/index.html",
+      "viewerPageCount": 190,
+      "countEvidence": "Official page1.html links to page190.html",
+      "countType": "viewer_pages_not_lessons",
+      "tocVerified": false
+    },
+    {
+      "grade": 4,
+      "semesterOrBookPart": 2,
+      "book": "التدريبات اللغوية - الجزء الثاني",
+      "officialViewer": "https://www.edunet.bh/e_content/level_1/stage_4/subject_ID_1/Part_2/e_books/Arabic-G4-P2-WB-2024/Arabic%20G4%20P2%20WB%202024/index.html",
+      "viewerPageCount": 128,
+      "countEvidence": "Official javascript/config.js fliphtml5_pages length = 128",
+      "countType": "viewer_pages_not_lessons",
+      "pdfUrl": "https://www.edunet.bh/e_content/level_1/stage_4/subject_ID_1/Part_2/e_books/Arabic-G4-P2-WB-2024/Arabic%20G4%20P2%20WB%202024/files/Arabic%204th%20T%20P2-17_6_2025.pdf",
+      "originalPdfDirectlyAccessible": false,
+      "tocVerified": false
+    }
+  ],
+  "rule": "Do not set bookTotalTOCItems from viewerPageCount. Human-check current official textbook TOC and match each line to a Dadyoom lesson."
+}
