@@ -2454,8 +2454,9 @@ async function canonicalLearningFlow(
         true,
     `E2E_CANONICAL_COMPLETION_FAILED:${complete.status}:${String(
       complete.data?.error ??
+      complete.errorDiagnostics?.bodyPreview ??
         "",
-    ).slice(0, 160)}`,
+    ).slice(0, 160)}:${JSON.stringify(complete.errorDiagnostics ?? {})}`,
   );
 
   const mastery =
@@ -2877,10 +2878,25 @@ async function browserFetch(
         data = raw;
       }
 
+      // Only capture bounded, non-sensitive diagnostics when the canonical
+      // lesson completion endpoint fails. Never record session cookies,
+      // authorization headers, request bodies, or user tokens.
+      const completionFailure =
+        response.status >= 500 &&
+        requestUrl === "/api/lessons/complete";
+
       return {
         status:
           response.status,
         data,
+        ...(completionFailure ? {
+          errorDiagnostics: {
+            contentType: response.headers.get("content-type") ?? "",
+            cfRay: response.headers.get("cf-ray") ?? "",
+            server: response.headers.get("server") ?? "",
+            bodyPreview: raw.slice(0, 250),
+          },
+        } : {}),
       };
     },
     {
