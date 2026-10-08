@@ -98,12 +98,14 @@ export default function TeacherMarketplaceClient({
       if (result.ok) {
         router.refresh();
       }
+      return result.ok;
     } catch (actionError) {
       setStatus(
         actionError instanceof Error
           ? actionError.message
           : "تعذر إكمال العملية مؤقتًا. تحقق من الحالة المحفوظة قبل إعادة المحاولة.",
       );
+      return false;
     }
   }
 
@@ -204,11 +206,13 @@ export default function TeacherMarketplaceClient({
             className="rounded-[2rem] border bg-white p-5"
             onSubmit={async (event) => {
               event.preventDefault();
-              await runAction(
+              // React event.currentTarget is no longer reliable after await.
+              const form = event.currentTarget;
+              const created = await runAction(
                 createMarketplaceCourse,
-                new FormData(event.currentTarget),
+                new FormData(form),
               );
-              event.currentTarget.reset();
+              if (created) form.reset();
             }}
           >
             <h2 className="text-xl font-black text-[#123f39]">

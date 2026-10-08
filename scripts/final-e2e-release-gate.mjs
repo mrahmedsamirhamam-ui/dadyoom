@@ -3876,10 +3876,20 @@ async function focusedMarketplaceLiveFlow(
         )
         .waitFor({ timeout: 20_000 });
     } catch (error) {
-      console.error(
-        "E2E_MARKETPLACE_CREATE_UI_STATUS",
-        await teacherPage.getByRole("status").allTextContents(),
-      );
+      const statusMessages = await teacherPage.getByRole("status").allTextContents().catch(() => []);
+      const persisted = await admin.from("edu_marketplace_courses")
+        .select("id,status,price,currency,commission_bps")
+        .eq("teacher_id", teacher.id)
+        .eq("title", courseTitle)
+        .order("created_at", { ascending: false })
+        .limit(1).maybeSingle();
+      console.error("E2E_MARKETPLACE_CREATE_UI_DIAGNOSTIC", JSON.stringify({
+        statusMessages,
+        currentUrl: teacherPage.url(),
+        persisted: persisted.data ?? null,
+        readError: persisted.error?.message ?? null,
+        uiError: error instanceof Error ? error.message : String(error),
+      }));
       throw error;
     }
 
