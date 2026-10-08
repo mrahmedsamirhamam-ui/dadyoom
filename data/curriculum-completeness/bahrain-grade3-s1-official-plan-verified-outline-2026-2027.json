@@ -1,0 +1,206 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "BH",
+  "grade": 3,
+  "semester": 1,
+  "academicYear": "2026-2027",
+  "sourceType": "MINISTRY_OFFICIAL_PLAN_NOT_COMPLETE_BOOK_TOC",
+  "sourceDocument": "User-uploaded Plan1.pdf, official pages 14–16",
+  "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+  "status": "18_SCHEDULED_CORE_ROWS_TRANSCRIBED_BOOK_TOC_PENDING",
+  "warning": "The official table also contains workbook exercise substeps with their own page spans. They must be individually reconciled against textbook TOC before marking book complete.",
+  "lessons": [
+    {
+      "kind": "listening",
+      "unit": "الوحدة الأولى: قيم ومبادئ",
+      "title": "الاستماع: أريد أن ألعب معكم",
+      "sourcePdfPage": 14,
+      "book": "التدريبات اللغوية — براعم العربية الجزء الأول",
+      "bookPageStart": 8,
+      "bookPageEnd": 13,
+      "identity": "CURRENT_OFFICIAL_PLAN_VERIFIED_TOC_PENDING"
+    },
+    {
+      "kind": "speaking",
+      "unit": "الوحدة الأولى: قيم ومبادئ",
+      "title": "التحدث — الوحدة الأولى: قيم ومبادئ",
+      "sourcePdfPage": 14,
+      "book": "براعم العربية — الجزء الأول",
+      "bookPageStart": 10,
+      "bookPageEnd": 10,
+      "identity": "CURRENT_OFFICIAL_PLAN_VERIFIED_TOC_PENDING"
+    },
+    {
+      "kind": "reading",
+      "lessonNumber": 1,
+      "unit": "الوحدة الأولى: قيم ومبادئ",
+      "title": "القراءة: الأصدقاء الأربعة (1)",
+      "sourcePdfPage": 14,
+      "book": "براعم العربية — الجزء الأول",
+      "bookPageStart": 11,
+      "bookPageEnd": 20,
+      "identity": "CURRENT_OFFICIAL_PLAN_VERIFIED_TOC_PENDING"
+    },
+    {
+      "kind": "reading",
+      "lessonNumber": 2,
+      "unit": "الوحدة الأولى: قيم ومبادئ",
+      "title": "القراءة: الأصدقاء الأربعة (2)",
+      "sourcePdfPage": 14,
+      "book": "براعم العربية — الجزء الأول",
+      "bookPageStart": 21,
+      "bookPageEnd": 30,
+      "identity": "CURRENT_OFFICIAL_PLAN_VERIFIED_TOC_PENDING"
+    },
+    {
+      "kind": "reading",
+      "lessonNumber": 3,
+      "unit": "الوحدة الأولى: قيم ومبادئ",
+      "title": "القراءة: حكمة أب",
+      "sourcePdfPage": 14,
+      "book": "براعم العربية — الجزء الأول",
+      "bookPageStart": 31,
+      "bookPageEnd": 37,
+      "identity": "CURRENT_OFFICIAL_PLAN_VERIFIED_TOC_PENDING"
+    },
+    {
+      "kind": "reading",
+      "lessonNumber": 4,
+      "unit": "الوحدة الأولى: قيم ومبادئ",
+      "title": "القراءة: وتعاونوا..",
+      "sourcePdfPage": 14,
+      "book": "براعم العربية — الجزء الأول",
+      "bookPageStart": 38,
+      "bookPageEnd": 47,
+      "identity": "CURRENT_OFFICIAL_PLAN_VERIFIED_TOC_PENDING"
+    },
+    {
+      "kind": "listening",
+      "unit": "الوحدة الثانية: ألعاب وهوايات",
+      "title": "الاستماع: التصوير الفوتوغرافي",
+      "sourcePdfPage": 15,
+      "book": "التدريبات اللغوية — براعم العربية الجزء الأول",
+      "bookPageStart": 48,
+      "bookPageEnd": 52,
+      "identity": "CURRENT_OFFICIAL_PLAN_VERIFIED_TOC_PENDING"
+    },
+    {
+      "kind": "speaking",
+      "unit": "الوحدة الثانية: ألعاب وهوايات",
+      "title": "التحدث — الوحدة الثانية: ألعاب وهوايات",
+      "sourcePdfPage": 15,
+      "book": "براعم العربية — الجزء الأول",
+      "bookPageStart": 50,
+      "bookPageEnd": 50,
+      "identity": "CURRENT_OFFICIAL_PLAN_VERIFIED_TOC_PENDING"
+    },
+    {
+      "kind": "reading",
+      "lessonNumber": 5,
+      "unit": "الوحدة الثانية: ألعاب وهوايات",
+      "title": "القراءة: الولع بالرسم (1)",
+      "sourcePdfPage": 15,
+      "book": "براعم العربية — الجزء الأول",
+      "bookPageStart": 51,
+      "bookPageEnd": 62,
+      "identity": "CURRENT_OFFICIAL_PLAN_VERIFIED_TOC_PENDING"
+    },
+    {
+      "kind": "reading",
+      "lessonNumber": 6,
+      "unit": "الوحدة الثانية: ألعاب وهوايات",
+      "title": "القراءة: الولع بالرسم (2)",
+      "sourcePdfPage": 15,
+      "book": "براعم العربية — الجزء الأول",
+      "bookPageStart": 63,
+      "bookPageEnd": 75,
+      "identity": "CURRENT_OFFICIAL_PLAN_VERIFIED_TOC_PENDING"
+    },
+    {
+      "kind": "reading",
+      "lessonNumber": 7,
+      "unit": "الوحدة الثانية: ألعاب وهوايات",
+      "title": "القراءة: وقت الراحات",
+      "sourcePdfPage": 15,
+      "book": "براعم العربية — الجزء الأول",
+      "bookPageStart": 76,
+      "bookPageEnd": 84,
+      "identity": "CURRENT_OFFICIAL_PLAN_VERIFIED_TOC_PENDING"
+    },
+    {
+      "kind": "reading",
+      "lessonNumber": 8,
+      "unit": "الوحدة الثانية: ألعاب وهوايات",
+      "title": "القراءة: لعبة يحبها الملايين",
+      "sourcePdfPage": 15,
+      "book": "براعم العربية — الجزء الأول",
+      "bookPageStart": 85,
+      "bookPageEnd": 97,
+      "identity": "CURRENT_OFFICIAL_PLAN_VERIFIED_TOC_PENDING"
+    },
+    {
+      "kind": "listening",
+      "unit": "الوحدة الثالثة: مواقف وعبر",
+      "title": "الاستماع: حقيقة الكنز",
+      "sourcePdfPage": 15,
+      "book": "التدريبات اللغوية — براعم العربية الجزء الأول",
+      "bookPageStart": 90,
+      "bookPageEnd": 94,
+      "identity": "CURRENT_OFFICIAL_PLAN_VERIFIED_TOC_PENDING"
+    },
+    {
+      "kind": "speaking",
+      "unit": "الوحدة الثالثة: مواقف وعبر",
+      "title": "التحدث — الوحدة الثالثة: مواقف وعبر",
+      "sourcePdfPage": 15,
+      "book": "براعم العربية — الجزء الأول",
+      "bookPageStart": 100,
+      "bookPageEnd": 100,
+      "identity": "CURRENT_OFFICIAL_PLAN_VERIFIED_TOC_PENDING"
+    },
+    {
+      "kind": "reading",
+      "lessonNumber": 9,
+      "unit": "الوحدة الثالثة: مواقف وعبر",
+      "title": "القراءة: الأمانة (1)",
+      "sourcePdfPage": 15,
+      "book": "براعم العربية — الجزء الأول",
+      "bookPageStart": 101,
+      "bookPageEnd": 112,
+      "identity": "CURRENT_OFFICIAL_PLAN_VERIFIED_TOC_PENDING"
+    },
+    {
+      "kind": "reading",
+      "lessonNumber": 10,
+      "unit": "الوحدة الثالثة: مواقف وعبر",
+      "title": "القراءة: الأمانة (2)",
+      "sourcePdfPage": 16,
+      "book": "براعم العربية — الجزء الأول",
+      "bookPageStart": 113,
+      "bookPageEnd": 125,
+      "identity": "CURRENT_OFFICIAL_PLAN_VERIFIED_TOC_PENDING"
+    },
+    {
+      "kind": "reading",
+      "lessonNumber": 11,
+      "unit": "الوحدة الثالثة: مواقف وعبر",
+      "title": "القراءة: جزاء المعتدي",
+      "sourcePdfPage": 16,
+      "book": "براعم العربية — الجزء الأول",
+      "bookPageStart": 126,
+      "bookPageEnd": 136,
+      "identity": "CURRENT_OFFICIAL_PLAN_VERIFIED_TOC_PENDING"
+    },
+    {
+      "kind": "reading",
+      "lessonNumber": 12,
+      "unit": "الوحدة الثالثة: مواقف وعبر",
+      "title": "القراءة: دروس من حياة توماس إديسون",
+      "sourcePdfPage": 16,
+      "book": "براعم العربية — الجزء الأول",
+      "bookPageStart": 137,
+      "bookPageEnd": 150,
+      "identity": "CURRENT_OFFICIAL_PLAN_VERIFIED_TOC_PENDING"
+    }
+  ]
+}
