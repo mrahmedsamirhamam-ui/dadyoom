@@ -74,12 +74,17 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
       seoLesson.summary?.trim() ||
       `تعلّم ${title} في ضاديوم من خلال المحتوى والأنشطة والأسئلة التفاعلية.`;
 
-    const description =
-      (
-        context
+    // Some imported summaries are only a few words. A concise,
+    // descriptive fallback helps searchers understand the lesson.
+    const enrichedDescription =
+      baseDescription.length < 105
+        ? `${baseDescription} شرح وتدريبات لغة عربية لدرس ${title}${context ? ` في ${context}` : ""}، مع أنشطة فهم ومراجعة من ضاديوم.`
+        : context
           ? `${baseDescription} — ${context}.`
-          : baseDescription
-      ).slice(0, 170);
+          : baseDescription;
+
+    const description =
+      enrichedDescription.slice(0, 155);
 
     return {
       title: seoTitle,
