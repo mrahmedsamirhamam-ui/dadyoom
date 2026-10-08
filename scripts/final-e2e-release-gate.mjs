@@ -4757,13 +4757,48 @@ async function teacherRewardFlow(
     "E2E_TEACHER_REWARD_FIXTURE_MISSING",
   );
 
-  await page.goto(
-    `${baseUrl}/teacher/classroom`,
-    {
-      waitUntil:
-        "networkidle",
-    },
-  );
+  // The classroom is SSR-backed. A transient Cloudflare 5xx or an
+  // unhydrated response must not silently bypass the award UI assertion.
+  // Retry a bounded number of times; a persistent missing form fails hard.
+  let rewardFormReady = false;
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    const response = await page.goto(
+      `${baseUrl}/teacher/classroom`,
+      { waitUntil: "domcontentloaded", timeout: 60_000 },
+    );
+    const responseStatus = response?.status() ?? 0;
+    const awardTitleInput = page
+      .getByRole("button", { name: "منح الجائزة" })
+      .first()
+      .locator("xpath=ancestor::form")
+      .locator('input[name="title"]');
+
+    if (responseStatus > 0 && responseStatus < 500) {
+      try {
+        await awardTitleInput.waitFor({ state: "visible", timeout: 12_000 });
+        rewardFormReady = true;
+        break;
+      } catch {
+        // A 200 page without the expected form remains an error on
+        // the final attempt, including after a login redirect.
+      }
+    }
+    console.warn(
+      "E2E_TEACHER_REWARD_FORM_DIAGNOSTIC",
+      JSON.stringify({
+        attempt,
+        httpStatus: responseStatus,
+        finalPath: new URL(page.url()).pathname,
+        awardButtons: await page
+          .getByRole("button", { name: "منح الجائزة" }).count(),
+        rewardInputs: await page.locator('input[name="title"]').count(),
+      }),
+    );
+    if (attempt < 3) {
+      await page.waitForTimeout(1500 * attempt);
+    }
+  }
+  gate(rewardFormReady, "E2E_TEACHER_REWARD_FORM_UNAVAILABLE");
 
   const form =
     page
