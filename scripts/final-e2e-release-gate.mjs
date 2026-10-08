@@ -3554,22 +3554,47 @@ async function teacherBpayMarketplaceFlow(
     "E2E_BPAY_CONFIRM_FIXTURE_MISSING",
   );
 
-  await page.goto(
-    `${baseUrl}/teacher/marketplace`,
-    {
-      waitUntil: "networkidle",
-      timeout: 60_000,
-    },
-  );
+  // Keep a real production 5xx visible in logs, but tolerate a brief,
+  // transient Cloudflare resource-limit response while workers settle.
+  // Persistent failure remains a hard release-gate failure.
+  let marketplaceReady = false;
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    const response = await page.goto(
+      `${baseUrl}/teacher/marketplace`,
+      { waitUntil: "domcontentloaded", timeout: 60_000 },
+    );
+    const statusCode = response?.status() ?? 0;
 
-  await page
-    .getByText(
-      fixture.bpayReference,
-      { exact: false },
-    )
-    .waitFor({
-      timeout: 20_000,
-    });
+    if (statusCode >= 500 || !response) {
+      console.warn(
+        `E2E_BPAY_MARKETPLACE_LOAD_RETRY attempt=${attempt} http=${statusCode}`,
+      );
+      recordDiagnostic("marketplace-load-5xx", "teacher", {
+        attempt,
+        status: statusCode,
+      });
+      if (attempt < 3) {
+        await page.waitForTimeout(1500 * attempt);
+        continue;
+      }
+      gate(false, `E2E_BPAY_MARKETPLACE_UNAVAILABLE_HTTP_${statusCode}`);
+    }
+
+    try {
+      await page
+        .getByText(fixture.bpayReference, { exact: false })
+        .waitFor({ timeout: 12_000 });
+      marketplaceReady = true;
+      break;
+    } catch (error) {
+      console.warn(
+        `E2E_BPAY_REFERENCE_NOT_VISIBLE attempt=${attempt} http=${statusCode}`,
+      );
+      if (attempt === 3) throw error;
+      await page.waitForTimeout(1500 * attempt);
+    }
+  }
+  gate(marketplaceReady, "E2E_BPAY_MARKETPLACE_REFERENCE_MISSING");
 
   await page
     .getByRole(
