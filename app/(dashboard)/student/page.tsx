@@ -7,7 +7,7 @@ import {
   advanceGradeForAcademicYear,
   currentAcademicYear,
 } from "@/lib/student/academic-year";
-import { createClient } from "@/lib/supabase/server";
+import { getDashboardRequestViewer } from "@/lib/auth/request-viewer";
 
 type LessonRow = {
   id: string;
@@ -25,52 +25,23 @@ type ProgressRow = {
 };
 
 export default async function StudentPage() {
-  const supabase = await createClient();
-
   const {
-    data: { user },
-  } = await supabase.auth.getUser();
+    supabase, user,
+    profile: studentProfile,
+    profileError: studentProfileError,
+  } = await getDashboardRequestViewer();
 
   if (!user) {
     redirect("/login");
   }
 
-  const loadStudentProfile = () =>
-    supabase
-      .from("profiles")
-      .select(
-        "full_name,role,grade_number,onboarding_completed,country,interests,learning_goal,preferred_learning_style,grade_academic_year",
-      )
-      .eq("id", user.id)
-      .maybeSingle();
-
-  let studentProfileResult =
-    await loadStudentProfile();
-
   if (
-    studentProfileResult.error ||
-    !studentProfileResult.data
-  ) {
-    console.warn(
-      "STUDENT_PROFILE_LOAD_RETRY",
-      studentProfileResult.error?.message ??
-        "profile-not-returned",
-    );
-
-    studentProfileResult =
-      await loadStudentProfile();
-  }
-
-  const studentProfile =
-    studentProfileResult.data;
-
-  if (
-    studentProfileResult.error ||
+    studentProfileError ||
     !studentProfile
   ) {
     console.error(
       "STUDENT_PROFILE_LOAD_FAILED",
-      studentProfileResult.error?.message ??
+      studentProfileError?.message ??
         "profile-not-returned",
     );
 

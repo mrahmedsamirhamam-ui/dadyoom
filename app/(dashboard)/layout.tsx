@@ -1,5 +1,5 @@
 import { redirect as dadyoomRedirect } from "next/navigation";
-import { createClient as createDadyoomServerClient } from "@/lib/supabase/server";
+import { getDashboardRequestViewer } from "@/lib/auth/request-viewer";
 
 import Navbar from "@/components/Navbar";
 
@@ -11,18 +11,12 @@ export default async function DashboardLayout({
   children: React.ReactNode;
 }) {
   // DADYOOM_PROFILE_COMPLETENESS_GATE
-  const dadyoomSupabase = await createDadyoomServerClient();
-  const { data: { user: dadyoomUser } } = await dadyoomSupabase.auth.getUser();
+  const { user: dadyoomUser, profile: dadyoomProfile } =
+    await getDashboardRequestViewer();
 
   if (!dadyoomUser) {
     dadyoomRedirect("/login");
   }
-
-  const { data: dadyoomProfile } = await dadyoomSupabase
-    .from("profiles")
-    .select("full_name,role,country")
-    .eq("id", dadyoomUser.id)
-    .maybeSingle();
 
   const dadyoomRole = dadyoomProfile?.role?.trim().toLowerCase() ?? "";
   const dadyoomAllowedRoles = new Set(["student","child","teacher","parent","school","admin"]);

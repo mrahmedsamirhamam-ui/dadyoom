@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import DadyoomLogo from "@/components/brand/DadyoomLogo";
-import { createClient } from "@/lib/supabase/server";
+import { getDashboardRequestViewer } from "@/lib/auth/request-viewer";
 
 export type PortalRole =
   | "student"
@@ -52,25 +52,13 @@ export default async function RolePortalLayout({
   links: PortalLink[];
   children: React.ReactNode;
 }) {
-  const supabase = await createClient();
-
   const {
-    data: { user },
-    error: userError,
-  } = await supabase.auth.getUser();
+    user, userError, profile, profileError,
+  } = await getDashboardRequestViewer();
 
   if (userError || !user) {
     redirect("/login");
   }
-
-  const {
-    data: profile,
-    error: profileError,
-  } = await supabase
-    .from("profiles")
-    .select("full_name,role,country")
-    .eq("id", user.id)
-    .maybeSingle();
 
   if (profileError) {
     throw new Error(profileError.message);
