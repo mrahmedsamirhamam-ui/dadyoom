@@ -6,7 +6,7 @@
 DO $dadyoom$
 DECLARE
   r RECORD;
-  lesson_id uuid;
+  target_lesson_id uuid;
   previous_content text;
   existing_count integer;
   used_count integer;
@@ -32,7 +32,7 @@ BEGIN
     n integer,title text,skill text,passage text,question text,
     correct text,wrong text[],writing text
   ) LOOP
-    SELECT l.id,l.content INTO STRICT lesson_id,previous_content
+    SELECT l.id,l.content INTO STRICT target_lesson_id,previous_content
     FROM public.lessons l JOIN public.units u ON u.id=l.unit_id
     JOIN public.grades g ON g.id=u.grade_id AND g.grade_number=10
     JOIN public.curricula cu ON cu.id=g.curriculum_id AND cu.id='66b6722e-6ca0-4bd0-8c4e-5ce525c37123'::uuid
@@ -54,11 +54,11 @@ BEGIN
         ||E'\n\n'||'حالة المصدر: مراجعة مطابقته الكتابية الرسمية معلقة. لا تنسب عبارات التدريب إلى مؤلفي النصوص التاريخية.'
         ||E'\n\n'||'النص السابق المحفوظ: '||coalesce(previous_content,''),
         updated_at=now()
-      WHERE id=lesson_id;
+      WHERE id=target_lesson_id;
     END IF;
 
     SELECT count(*) INTO existing_count FROM public.lesson_activities
-      WHERE lesson_id=lesson_id AND content->>'origin'='DADYOOM_DZ_SECONDARY_OFFICIAL_DETAIL';
+      WHERE lesson_id=target_lesson_id AND content->>'origin'='DADYOOM_DZ_SECONDARY_OFFICIAL_DETAIL';
     IF existing_count<>3 THEN
       RAISE EXCEPTION 'DZ_CRITICISM_EXPECTED_3_ORIGINAL_PLACEHOLDERS_FOR_%_FOUND_%',r.n,existing_count;
     END IF;
@@ -70,7 +70,7 @@ BEGIN
          'text',r.passage,'notOfficialBook',true,
          'teacherReviewRequired',true,'sourceVerification','pending'
       )
-    WHERE lesson_id=lesson_id AND activity_type='reading'
+    WHERE lesson_id=target_lesson_id AND activity_type='reading'
       AND content->>'origin'='DADYOOM_DZ_SECONDARY_OFFICIAL_DETAIL'
       AND answer='{}'::jsonb;
 
@@ -88,7 +88,7 @@ BEGIN
         'notOfficialBook',true,'sourceVerification','pending'
       ),
       answer=jsonb_build_object('correct',r.correct)
-    WHERE lesson_id=lesson_id AND activity_type='multiple_choice'
+    WHERE lesson_id=target_lesson_id AND activity_type='multiple_choice'
       AND content->>'origin'='DADYOOM_DZ_SECONDARY_OFFICIAL_DETAIL'
       AND answer='{}'::jsonb;
 
@@ -99,12 +99,12 @@ BEGIN
         'text',r.writing,'notOfficialBook',true,'humanReviewRequired',true,
         'sourceVerification','pending'
       )
-    WHERE lesson_id=lesson_id AND activity_type='writing'
+    WHERE lesson_id=target_lesson_id AND activity_type='writing'
       AND content->>'origin'='DADYOOM_DZ_SECONDARY_OFFICIAL_DETAIL'
       AND answer='{}'::jsonb;
     SELECT count(*) INTO existing_count
       FROM public.lesson_activities
-      WHERE lesson_id=lesson_id AND content->>'origin'='DADYOOM_DZ_G10_CRITICISM_ORIGINAL_V1_20261008';
+      WHERE lesson_id=target_lesson_id AND content->>'origin'='DADYOOM_DZ_G10_CRITICISM_ORIGINAL_V1_20261008';
     IF existing_count<>3 THEN
       RAISE EXCEPTION 'DZ_CRITICISM_ACTIVITY_UPDATE_FAILED_%_COUNT_%',r.n,existing_count;
     END IF;
