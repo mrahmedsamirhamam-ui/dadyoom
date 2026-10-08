@@ -3539,14 +3539,30 @@ async function teacherBpayMarketplaceFlow(
     )
     .click();
 
-  await page
-    .getByText(
-      "تم تأكيد استلام BPay وفتح الدورة للطالب.",
-      { exact: false },
-    )
-    .waitFor({
-      timeout: 20_000,
-    });
+  try {
+    await page.getByRole("status")
+      .getByText("تم تأكيد استلام BPay وفتح الدورة للطالب.", { exact: false })
+      .waitFor({ timeout: 20_000 });
+  } catch (uiError) {
+    const statusMessages = await page.getByRole("status").allInnerTexts()
+      .catch(() => []);
+    const persisted = await admin.from("edu_payment_orders")
+      .select("status,bank_reference")
+      .eq("id", fixture.bpayPaymentOrderId)
+      .maybeSingle();
+    console.error(
+      "E2E_BPAY_TEACHER_UI_DIAGNOSTIC",
+      JSON.stringify({
+        statusMessages,
+        currentUrl: page.url(),
+        storedOrderStatus: persisted.data?.status ?? null,
+        storedReferencePresent: Boolean(persisted.data?.bank_reference),
+        readError: persisted.error?.message ?? null,
+        uiError: uiError instanceof Error ? uiError.message : String(uiError),
+      }),
+    );
+    throw uiError;
+  }
 
   const payment = await admin
     .from("edu_payment_orders")

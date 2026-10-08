@@ -385,11 +385,12 @@ export async function confirmBpayCoursePayment(
       };
     }
 
+    // Payment recording and entitlement provisioning must finish first.
+    // The client refreshes the current page *after* receiving this result.
+    // Revalidating three routes within this Server Action also returns an
+    // expensive refreshed RSC tree and can withhold the confirmation message.
+    // Existing auth, course ownership, BPay-reference and completion guards remain.
     await finalizePaymentOrder(paymentOrderId);
-
-    revalidatePath("/teacher/marketplace");
-    revalidatePath("/teacher/marketplace/earnings");
-    revalidatePath("/marketplace");
 
     return {
       ok: true,

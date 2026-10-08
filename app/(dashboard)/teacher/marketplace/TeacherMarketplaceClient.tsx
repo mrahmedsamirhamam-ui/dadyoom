@@ -91,12 +91,19 @@ export default function TeacherMarketplaceClient({
     }>,
     formData: FormData,
   ) {
-    const result = await fn(formData);
+    try {
+      const result = await fn(formData);
+      setStatus(result.message);
 
-    setStatus(result.message);
-
-    if (result.ok) {
-      router.refresh();
+      if (result.ok) {
+        router.refresh();
+      }
+    } catch (actionError) {
+      setStatus(
+        actionError instanceof Error
+          ? actionError.message
+          : "تعذر إكمال العملية مؤقتًا. تحقق من الحالة المحفوظة قبل إعادة المحاولة.",
+      );
     }
   }
 
@@ -128,7 +135,7 @@ export default function TeacherMarketplaceClient({
         </section>
 
         {status ? (
-          <div className="rounded-2xl bg-[#fff7e4] p-3 font-bold">
+          <div role="status" aria-live="polite" className="rounded-2xl bg-[#fff7e4] p-3 font-bold">
             {status}
           </div>
         ) : null}
