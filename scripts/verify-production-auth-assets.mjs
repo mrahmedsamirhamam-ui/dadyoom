@@ -27,8 +27,11 @@ for (const route of ["/login", "/signup"]) {
   if (!response.ok) throw new Error("AUTH_ASSET_PAGE_HTTP_" + route + "_" + response.status);
   const html = await response.text();
   const chunks = [...new Set(
-    [...html.matchAll(/(?:src|href)=[\"']([^\"']*\\/_next\\/static\\/chunks\\/[^\"']+?\\.js(?:\\?[^\"']*)?)[\"']/gu)]
-      .map((match) => new URL(match[1], base).toString()),
+    [...html.matchAll(/(?:src|href)=["']([^"']+)["']/gu)]
+      .map((match) => match[1])
+      .filter((url) => url.includes("/_next/static/chunks/") &&
+        /\.js(?:\?|$)/u.test(url))
+      .map((url) => new URL(url, base).toString()),
   )];
   if (chunks.length === 0) throw new Error("AUTH_ASSET_NO_CLIENT_CHUNKS_" + route);
   for (const url of chunks.slice(0, 16)) {
