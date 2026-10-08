@@ -2002,41 +2002,60 @@ async function login(
     750,
   );
 
+  // Collect request/response evidence without ever logging POST bodies,
+  // access tokens or user credentials. The E2E still fails on timeout.
+  let passwordPostStarted = 0;
+  let passwordPostFailed = 0;
+  let lastFailure = "";
+  const isPasswordRequest = request => {
+    try {
+      return request.method() === "POST" &&
+        new URL(request.url()).pathname === "/api/auth/password-login";
+    } catch {
+      return false;
+    }
+  };
+  const onPasswordRequest = request => {
+    if (isPasswordRequest(request)) passwordPostStarted += 1;
+  };
+  const onPasswordRequestFailed = request => {
+    if (isPasswordRequest(request)) {
+      passwordPostFailed += 1;
+      lastFailure = String(request.failure()?.errorText ?? "").slice(0, 180);
+    }
+  };
+  page.on("request", onPasswordRequest);
+  page.on("requestfailed", onPasswordRequestFailed);
+
   const responsePromise =
     page.waitForResponse(
-      response => {
-        try {
-          const url =
-            new URL(
-              response.url(),
-            );
-
-          return (
-            response
-              .request()
-              .method() ===
-              "POST" &&
-            url.pathname ===
-              "/api/auth/password-login"
-          );
-        }
-        catch {
-          return false;
-        }
-      },
-      {
-        timeout:
-          30_000,
-      },
+      response => isPasswordRequest(response.request()),
+      { timeout: 30_000 },
     );
 
-  await submitButton.click({
-    timeout:
-      30_000,
-  });
-
-  const loginResponse =
-    await responsePromise;
+  let loginResponse;
+  try {
+    await submitButton.click({ timeout: 30_000 });
+    loginResponse = await responsePromise;
+  } catch (cause) {
+    const formVisible = await emailInput.isVisible().catch(() => false);
+    const buttonDisabled = await submitButton.isDisabled().catch(() => false);
+    const pageBody = await page.locator("body").innerText().catch(() => "");
+    console.error("E2E_LOGIN_POST_DIAGNOSTIC", JSON.stringify({
+      role: user.role,
+      passwordPostStarted,
+      passwordPostFailed,
+      lastFailure,
+      formVisible,
+      buttonDisabled,
+      pageBodyPreview: pageBody.slice(0, 250),
+      reason: cause instanceof Error ? cause.message : String(cause),
+    }));
+    throw cause;
+  } finally {
+    page.off("request", onPasswordRequest);
+    page.off("requestfailed", onPasswordRequestFailed);
+  }
 
   const loginStatus =
     loginResponse.status();
