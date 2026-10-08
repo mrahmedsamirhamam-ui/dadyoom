@@ -30,7 +30,7 @@ test("current-edition verification remains explicitly pending on all 55 term-two
     expect(source.targetAcademicYear).toBe("2026-2027");
     for (const row of source.records) {
       expect(row.sourceStatus).toContain("TOC");
-      expect(row.sourceStatus).toContain("UNVERIFIED");
+      expect(row.sourceStatus).toMatch(/(?:UNVERIFIED|NOT_VERIFIED)/);
       expect(row.bookTextCopied).toBe(false);
       expect(row.editorialReview).toBe("required");
       expect(row.content.length).toBeGreaterThanOrEqual(1100);
