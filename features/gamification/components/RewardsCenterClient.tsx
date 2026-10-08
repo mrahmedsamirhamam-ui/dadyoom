@@ -1,6 +1,5 @@
 "use client";
 
-import { PDFDocument } from "pdf-lib";
 import { useMemo, useState } from "react";
 
 import type {
@@ -103,6 +102,9 @@ async function certificatePdf(
   const pngBytes = await fetch(canvas.toDataURL("image/png", 1)).then((r) =>
     r.arrayBuffer(),
   );
+
+  const { PDFDocument } =
+    await import("pdf-lib");
 
   const pdf = await PDFDocument.create();
   const page = pdf.addPage([842, 595]);
