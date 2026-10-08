@@ -114,7 +114,10 @@ jobs:
               grep -c "^$BASE/lessons/" || true
           )"
 
-          if (( url_count < 20 || url_count > 3000 )); then
+          # Curriculum authoring expands the quality-filtered SEO lesson view.
+          # Preserve duplicate/coverage/crawlability gates; do not cap at 2000.
+          # Keep a generous safety ceiling (well below Google's 50k URL limit).
+          if (( url_count < 20 || url_count > 12000 )); then
             echo "SEO_SITEMAP_URL_COUNT=FAIL count=$url_count"
             exit 1
           fi
@@ -134,7 +137,7 @@ jobs:
             exit 1
           fi
 
-          if (( lesson_count < 100 || lesson_count > 2000 )); then
+          if (( lesson_count < 100 || lesson_count > 10000 )); then
             echo "SEO_SITEMAP_LESSONS=FAIL count=$lesson_count"
             exit 1
           fi
