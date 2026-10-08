@@ -15,7 +15,7 @@ BEGIN
     JOIN public.grades g ON g.id=u.grade_id AND g.grade_number=12
     JOIN public.curricula cu ON cu.id=g.curriculum_id AND cu.academic_year='2026-2027' AND cu.id='9a42a857-58d7-428b-80f7-c02a52e69f6b'
     JOIN public.countries c ON c.id=cu.country_id AND c.code='BH'
-    WHERE u.title='عرب 801 — اللغة العربية للتعليم الفني والمهني' AND u.semester=1 AND l.sort_order=r.n AND l.status='published'
+    WHERE u.title='عرب 805 — اللغة العربية للتعليم الفني والمهني' AND u.semester=1 AND l.sort_order=r.n AND l.status='published'
     FOR UPDATE OF l;
     IF char_length(coalesce(target_content,''))<350 THEN
       UPDATE public.lessons SET
