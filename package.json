@@ -45,7 +45,8 @@
     "curriculum:audit:secondary-tracks": "node scripts/audit-secondary-tracks-22.mjs",
     "curriculum:audit:strict-full-coverage": "node scripts/audit-strict-full-curriculum-coverage.mjs",
     "curriculum:audit:bahrain-books": "node scripts/audit-bahrain-book-completeness.mjs",
-    "curriculum:audit:bahrain:full": "npm run curriculum:audit:bahrain-books && npm run curriculum:audit:bahrain"
+    "curriculum:audit:bahrain:full": "npm run curriculum:audit:bahrain-books && npm run curriculum:audit:bahrain",
+    "curriculum:audit:bahrain-literacy-drafts": "node scripts/audit-bahrain-continuing-literacy-drafts.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
