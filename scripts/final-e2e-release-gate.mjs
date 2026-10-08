@@ -1916,7 +1916,10 @@ async function login(
   expectedPath,
   baseUrl,
 ) {
-  await page.goto(
+  // A login form timeout is not automatically a credential failure.
+  // Diagnose 5xx/challenge/redirect responses instead of reporting a
+  // misleading selector failure, while retaining all strict role gates.
+  const loginPageResponse = await page.goto(
     `${baseUrl}/login`,
     {
       waitUntil:
@@ -1925,6 +1928,7 @@ async function login(
         60_000,
     },
   );
+  const formHttpStatus = loginPageResponse?.status() ?? null;
 
   const emailInput =
     page.locator(
@@ -1945,12 +1949,31 @@ async function login(
       },
     );
 
-  await emailInput.waitFor({
-    state:
-      "visible",
-    timeout:
-      30_000,
-  });
+  try {
+    await emailInput.waitFor({
+      state:
+        "visible",
+      timeout:
+        30_000,
+    });
+  } catch (cause) {
+    const body = await page.locator("body").innerText().catch(() => "");
+    const documentTitle = await page.title().catch(() => "");
+    const pathname = (() => {
+      try { return new URL(page.url()).pathname; } catch { return "unknown"; }
+    })();
+    console.error("E2E_LOGIN_FORM_DIAGNOSTIC", JSON.stringify({
+      role: user.role,
+      formHttpStatus,
+      pathname,
+      documentTitle: documentTitle.slice(0, 160),
+      bodyPreview: body.slice(0, 500),
+      emailInputCount: await emailInput.count().catch(() => -1),
+      passwordInputCount: await passwordInput.count().catch(() => -1),
+      cause: cause instanceof Error ? cause.message : String(cause),
+    }));
+    throw cause;
+  }
 
   await passwordInput.waitFor({
     state:
