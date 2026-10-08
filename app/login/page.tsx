@@ -9,8 +9,9 @@ export const metadata: Metadata = {
   },
 };
 
-export const dynamic = "force-static";
-export const revalidate = 86400;
+// Keep auth HTML aligned with its current hashed JavaScript assets across deployments.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default function LoginPage() {
   return <EmailPasswordAuthForm mode="login" />;

@@ -8,7 +8,7 @@ on:
 
 concurrency:
   group: cloudflare-production-deploy
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -83,3 +83,9 @@ jobs:
           fi
 
           echo "DADYOOM_DEPLOY_VERIFY=PASS"
+
+      - name: Verify login and signup static chunks
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+          DADYOOM_BASE_URL: https://dadyoom.dpdns.org
+        run: node scripts/verify-production-auth-assets.mjs
