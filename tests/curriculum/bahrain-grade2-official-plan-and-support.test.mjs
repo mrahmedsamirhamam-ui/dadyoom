@@ -8,6 +8,7 @@ const plan = load("bahrain-grade2-s1-official-plan-verified-outline-2026-2027.js
 const readings = load("bahrain-grade2-s1-official-reading-original-support-2026-2027.json");
 const listening = load("bahrain-grade2-s1-missing-listening-original-packs-2026-2027.json");
 const reviews = load("bahrain-grade2-s1-official-review-original-support-2026-2027.json");
+const unresolved = load("bahrain-grade2-s1-unresolved-ocr-original-support-2026-2027.json");
 const sem2 = load("bahrain-grade2-sem2-original-lessons-pending-toc-2026-2027.json");
 
 test("verified current-year grade-two plan has 10 review, 12 reading and 3 listening entries", () => {
@@ -87,5 +88,20 @@ test("ten official scheduled grade-two review topics have exact supporting mater
     expect(row.content).toContain("مفتاح الإجابة");
     expect(row.bookTextCopied).toBe(false);
     expect(row.editorialReview).toBe("required");
+  }
+});
+
+
+test("OCR-enriched grade-two published fragments remain explicitly unverified", () => {
+  expect(unresolved.status).toBe("OCR_19_ENTRIES_ENRICHED_BUT_NOT_CANONICAL_RECONCILED");
+  expect(unresolved.rows).toHaveLength(19);
+  expect(new Set(unresolved.rows.map(row => row.slug)).size).toBe(19);
+  for (const row of unresolved.rows) {
+    expect(row.officialBookTocVerified).toBe(false);
+    expect(row.editorialReview).toBe("required");
+    expect(row.bookTextCopied).toBe(false);
+    expect(row.content).toContain("مفتاح الإجابة");
+    expect(row.content).toContain("مدخل OCR غير محسوم");
+    expect(row.content.length).toBeGreaterThan(750);
   }
 });
