@@ -7,6 +7,7 @@ const load = name => JSON.parse(
 const plan = load("bahrain-grade2-s1-official-plan-verified-outline-2026-2027.json");
 const readings = load("bahrain-grade2-s1-official-reading-original-support-2026-2027.json");
 const listening = load("bahrain-grade2-s1-missing-listening-original-packs-2026-2027.json");
+const reviews = load("bahrain-grade2-s1-official-review-original-support-2026-2027.json");
 const sem2 = load("bahrain-grade2-sem2-original-lessons-pending-toc-2026-2027.json");
 
 test("verified current-year grade-two plan has 10 review, 12 reading and 3 listening entries", () => {
@@ -67,5 +68,24 @@ test("15 prior-year second-term materials remain original, free of false current
     expect(record.editorialReview).toBe("required");
     expect(record.content).toContain("مفتاح الإجابة");
     expect(record.content).toContain("فهرس 2026–2027 غير موثق");
+  }
+});
+
+
+test("ten official scheduled grade-two review topics have exact supporting materials, including ninth", () => {
+  expect(reviews.rows).toHaveLength(10);
+  expect(new Set(reviews.rows.map(x => x.slug)).size).toBe(10);
+  const expected = plan.lessons.filter(x => x.kind === "review");
+  expect(expected).toHaveLength(10);
+  expect(reviews.rows[8].slug).toBe("bh-2026-g2-s1-review09-letters4");
+  expect(reviews.rows[8].needsNewLesson).toBe(true);
+  for (const [index, row] of reviews.rows.entries()) {
+    expect(row.officialTitle).toBe(expected[index].title);
+    expect(row.bookPageStart).toBe(expected[index].bookPageStart);
+    expect(row.bookPageEnd).toBe(expected[index].bookPageEnd);
+    expect(row.content.length).toBeGreaterThanOrEqual(800);
+    expect(row.content).toContain("مفتاح الإجابة");
+    expect(row.bookTextCopied).toBe(false);
+    expect(row.editorialReview).toBe("required");
   }
 });
