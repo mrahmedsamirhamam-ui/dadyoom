@@ -155,6 +155,7 @@ jobs:
           npm run curriculum:audit:secondary-tracks
           npm run curriculum:audit:bahrain-books
           npm run curriculum:audit:bahrain-literacy-drafts
+          npm run curriculum:audit:bahrain-literacy-quizzes
           # Canonical national curriculum closure is enforced above by curriculum:gate:official-22.
           # Legacy catalog/closure/seed/import checks predate the 22-country closure and are intentionally not release gates.
           # Verification must not mutate curriculum data during Commerce launch.
