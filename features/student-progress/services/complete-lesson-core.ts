@@ -173,19 +173,23 @@ export async function completeLessonCore(
    * Cloudflare Worker, without relaxing mastery, ownership or XP rules.
    * Keep the original checks and fail closed on every database error.
    */
+  // The compatibility HTTP response only needs the current progress row.
+  // Keep the same authenticated Supabase client and ownership filters.
+  const studentProgressQuery = supabase
+    .from("student_lesson_progress")
+    .select("id,status,xp")
+    .eq("student_id", user.id);
+
+  const boundedProgressQuery = options.legacyHttpCompatibility
+    ? studentProgressQuery.eq("id", progressId)
+    : studentProgressQuery;
+
   const [
     beforeProgressResult,
     beforeUnifiedXP,
     activityResult,
   ] = await Promise.all([
-    supabase
-      .from("student_lesson_progress")
-      .select(`
-        id,
-        status,
-        xp
-      `)
-      .eq("student_id", user.id),
+    boundedProgressQuery,
 
     getCanonicalTotalXP(
       supabase,
