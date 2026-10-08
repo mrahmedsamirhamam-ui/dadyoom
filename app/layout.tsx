@@ -7,13 +7,13 @@ import {
   SITE_NAME_ARABIC_ALT_DADYOOM,
   SITE_NAME_ARABIC_ALT_SHORT,
   SITE_NAME_LATIN,
-  SITE_TAGLINE,
 } from "@/lib/site";
 import "./globals.css";
 import DadyoomClientRuntime from "@/components/runtime/DadyoomClientRuntime";
 
 
 const siteUrl = getSiteUrl();
+const homeSeoTitle = `${SITE_NAME} | ${SITE_NAME_LATIN} — منصة تعليم اللغة العربية`;
 
 const googleVerification =
   process.env.GOOGLE_SITE_VERIFICATION?.trim();
@@ -71,8 +71,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: SITE_NAME,
   title: {
-    default: `${SITE_NAME} ${SITE_NAME_LATIN} | ${SITE_TAGLINE}`,
-    template: `%s | ${SITE_NAME} ${SITE_NAME_LATIN}`,
+    default: homeSeoTitle,
+    template: `%s | ${SITE_NAME_LATIN}`,
   },
   description: SITE_DESCRIPTION,
   category: "education",
@@ -80,12 +80,12 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ar_AR",
     siteName: `${SITE_NAME} ${SITE_NAME_LATIN}`,
-    title: `${SITE_NAME} ${SITE_NAME_LATIN} | ${SITE_TAGLINE}`,
+    title: homeSeoTitle,
     description: SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary",
-    title: `${SITE_NAME} ${SITE_NAME_LATIN} | ${SITE_TAGLINE}`,
+    title: homeSeoTitle,
     description: SITE_DESCRIPTION,
   },
   robots: {
