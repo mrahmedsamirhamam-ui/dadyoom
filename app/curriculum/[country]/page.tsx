@@ -695,6 +695,10 @@ export default async function CountryCurriculumPage({
                                       999,
                                     ),
                                 )
+                                // This hub should preview lessons, not SSR every
+                                // lesson in every grade on a single page.
+                                // Every full grade listing stays one click away.
+                                .slice(0, 2)
                                 .map(
                                   (
                                     lesson,
@@ -720,6 +724,18 @@ export default async function CountryCurriculumPage({
                                   ),
                                 )}
                             </ul>
+                            {unit.lessons.length > 2 ? (
+                              <p className="mt-2 text-sm font-semibold text-[#6d665c]">
+                                عرض درسين من {unit.lessons.length} درسًا في هذه الوحدة.
+                                <Link
+                                  href={`/curriculum/${info.code.toLowerCase()}/${grade.gradeNumber}`}
+                                  prefetch={false}
+                                  className="mr-2 text-[#174f47] hover:underline"
+                                >
+                                  عرض جميع دروس الصف ←
+                                </Link>
+                              </p>
+                            ) : null}
                           </div>
                         ),
                       )}
