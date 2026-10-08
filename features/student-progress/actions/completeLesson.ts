@@ -167,77 +167,63 @@ export async function completeLessonAction(
 
 
   /*
-   * نحفظ حالة Gamification قبل الإنهاء،
-   * حتى نعرف ما الذي كسبه الطالب فعلًا الآن.
+   * DADYOOM_CANONICAL_PARALLEL_READS_V1
+   *
+   * Three independent, read-only queries share the same authenticated
+   * context. Fetch concurrently to reduce completion latency on the
+   * Cloudflare Worker, without relaxing mastery, ownership or XP rules.
+   * Keep the original checks and fail closed on every database error.
    */
+  const [
+    beforeProgressResult,
+    beforeUnifiedXP,
+    activityResult,
+  ] = await Promise.all([
+    supabase
+      .from("student_lesson_progress")
+      .select(`
+        id,
+        status,
+        xp
+      `)
+      .eq("student_id", user.id),
+
+    getCanonicalTotalXP(
+      supabase,
+      user.id
+    ),
+
+    supabase
+      .from("lesson_activities")
+      .select(`
+        id,
+        answer,
+        points,
+        is_required
+      `)
+      .eq("lesson_id", progress.lesson_id)
+      .eq("is_published", true),
+  ]);
+
   const {
     data: beforeProgressData,
     error: beforeProgressError,
-  } = await supabase
-    .from("student_lesson_progress")
-    .select(`
-      id,
-      status,
-      xp
-    `)
-    .eq(
-      "student_id",
-      user.id
-    );
+  } = beforeProgressResult;
 
   if (beforeProgressError) {
     throw beforeProgressError;
   }
 
-  /*
-   * Keep lesson completion bounded on Cloudflare.
-   *
-   * edu_total_xp is the canonical aggregate already used
-   * across Dadyoom. Reading it directly avoids re-querying
-   * every XP source before and after completion.
-   */
-  const beforeUnifiedXP =
-    await getCanonicalTotalXP(
-      supabase,
-      user.id
-    );
-
   const beforeSnapshot =
     createGamificationSnapshot(
-      (
-        beforeProgressData ??
-        []
-      ) as ProgressGamificationRow[],
+      (beforeProgressData ?? []) as ProgressGamificationRow[],
       beforeUnifiedXP
     );
-
-
-  /*
-   * Interactive activities are the primary assessment
-   * when a lesson has gradable lesson_activities.
-   *
-   * Older lessons without activities keep using questions.
-   */
 
   const {
     data: activityRows,
     error: activitiesError,
-  } = await supabase
-    .from("lesson_activities")
-    .select(`
-      id,
-      answer,
-      points,
-      is_required
-    `)
-    .eq(
-      "lesson_id",
-      progress.lesson_id
-    )
-    .eq(
-      "is_published",
-      true
-    );
+  } = activityResult;
 
   if (activitiesError) {
     throw activitiesError;
