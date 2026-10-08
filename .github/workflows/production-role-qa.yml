@@ -11,9 +11,11 @@ on:
       - completed
   workflow_dispatch:
 
+# Preserve the currently running end-to-end role test when curriculum commits
+# land in parallel. GitHub keeps at most one pending run in this group.
 concurrency:
   group: production-role-qa
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   role-qa:
