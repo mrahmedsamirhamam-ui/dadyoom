@@ -97,6 +97,7 @@ export default function SkillsPage() {
               <Link
                 key={skill.key}
                 href={`/skills/${skill.key}`}
+                prefetch={false}
                 className="group rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-6 shadow-sm transition hover:-translate-y-1 hover:border-[#b9944e] hover:shadow-lg"
               >
                 <div className="flex items-center gap-4">
@@ -149,6 +150,7 @@ export default function SkillsPage() {
           </div>
           <Link
             href="/skills/adaptive"
+            prefetch={false}
             className="rounded-full bg-[#123f39] px-6 py-3 text-sm font-black text-white"
           >
             ابدأ التدريب التكيفي
