@@ -152,6 +152,49 @@ function jsonLd(value: unknown) {
   );
 }
 
+const staleChunkRecoveryScript = String.raw`(function () {
+  if (window.__dadyoomAssetRecoveryInstalled) return;
+  window.__dadyoomAssetRecoveryInstalled = true;
+  var key = "dadyoom_asset_retry_v1";
+  function isOwnChunk(address) {
+    if (!address) return false;
+    try {
+      var url = new URL(String(address), window.location.href);
+      return url.origin === window.location.origin &&
+        url.pathname.indexOf("/_next/static/chunks/") === 0;
+    } catch (_) { return false; }
+  }
+  function isChunkFailure(event) {
+    var target = event && event.target;
+    var address = target && (target.src || target.href);
+    if (isOwnChunk(address)) return true;
+    var reason = event && (event.reason || event.error || event.message);
+    var message = String(reason && reason.message || reason || "");
+    return /Failed to fetch dynamically imported module|Importing a module script failed|Loading chunk.*failed|ChunkLoadError/i.test(message) &&
+      message.indexOf("/_next/static/chunks/") !== -1 &&
+      message.indexOf(window.location.origin) !== -1;
+  }
+  function recover() {
+    var current = window.location;
+    if (/^\\/auth(?:\\/|$)/.test(current.pathname) ||
+        new URL(current.href).searchParams.has("code")) return;
+    var now = Date.now();
+    try {
+      var previous = JSON.parse(window.sessionStorage.getItem(key) || "{}");
+      if (previous.path === current.pathname && now - Number(previous.at || 0) < 300000) return;
+      window.sessionStorage.setItem(key, JSON.stringify({ path: current.pathname, at: now }));
+    } catch (_) { return; }
+    var fresh = new URL(current.href);
+    fresh.searchParams.set("dadyoom_asset_retry", String(now));
+    current.replace(fresh.toString());
+  }
+  function onFailure(event) {
+    if (isChunkFailure(event)) recover();
+  }
+  window.addEventListener("error", onFailure, true);
+  window.addEventListener("unhandledrejection", onFailure);
+})();`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -165,6 +208,10 @@ export default function RootLayout({
       suppressHydrationWarning
       data-scroll-behavior="smooth"
     >
+      <head>
+        {/* Runs before client chunks, so a stale deployment can self-recover once. */}
+        <script dangerouslySetInnerHTML={{ __html: staleChunkRecoveryScript }} />
+      </head>
       <body className="flex min-h-full flex-col bg-[#fffaf0] text-[#27231f]">
         <script
           type="application/ld+json"
