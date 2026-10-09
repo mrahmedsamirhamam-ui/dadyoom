@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import CurriculumCatalogClient from "./CurriculumCatalogClient";
+import { LocalizedText } from "@/components/i18n/LanguageProvider";
 import {
   ARAB_COUNTRY_CODES,
   getArabicCountryOptions,
@@ -36,13 +37,13 @@ export default function CoursesPage() {
       <section dir="rtl" className="border-b border-[#e2d6bf] bg-[#fffaf0] px-4 py-4">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
           <p className="text-sm font-bold text-[#625b51]">
-            تريد روابط مباشرة قابلة للتصفح لكل دولة؟
+            <LocalizedText ar="تريد روابط مباشرة قابلة للتصفح لكل دولة؟" en="Want direct links to each country’s Arabic curricula?" />
           </p>
           <Link
             href="/curriculum"
             className="rounded-xl border border-[#cdbb96] bg-white px-4 py-2 text-sm font-black text-[#174f47] hover:underline"
           >
-            افتح دليل المناهج والدروس
+            <LocalizedText ar="افتح دليل المناهج والدروس" en="Open the country directory" />
           </Link>
         </div>
       </section>
