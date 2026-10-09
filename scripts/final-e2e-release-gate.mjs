@@ -207,16 +207,31 @@ async function responsiveSmoke(page, role, baseUrl, expectedPath) {
       height: viewport.height,
     });
 
-    const response = await page.goto(
-      `${baseUrl}${expectedPath}`,
-      {
-        waitUntil: "domcontentloaded",
-        timeout: 60_000,
-      },
-    );
+    // A transient Cloudflare Worker 503 can coincide with the SSR route
+    // navigating after a viewport change. Retry the same authenticated route
+    // with short backoff, but NEVER pass a persistent server error.
+    let response = null;
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      response = await page.goto(
+        `${baseUrl}${expectedPath}`,
+        {
+          waitUntil: "domcontentloaded",
+          timeout: 60_000,
+        },
+      );
+      const status = response?.status() ?? 0;
+      if (status > 0 && status < 500) break;
+
+      console.warn(
+        `E2E_RESPONSIVE_LOAD_RETRY role=${role} viewport=${viewport.name} attempt=${attempt} http=${status}`,
+      );
+      if (attempt < 3) {
+        await page.waitForTimeout(attempt * 1200);
+      }
+    }
 
     gate(
-      !response || response.status() < 500,
+      Boolean(response) && response.status() < 500,
       `E2E_RESPONSIVE_${role.toUpperCase()}_${viewport.name.toUpperCase()}_HTTP_${response?.status() ?? "NO_RESPONSE"}`,
     );
 
