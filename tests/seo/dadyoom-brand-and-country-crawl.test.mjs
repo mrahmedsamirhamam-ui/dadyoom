@@ -11,7 +11,8 @@ test("brand and canonical stay consistent", () => {
   expect(layout).toContain("siteName: SITE_NAME");
   expect(layout).toContain("new URL(siteUrl).hostname");
   expect(homepage).not.toContain('"@type": "WebSite"');
-  expect(homepage).toContain("«ضاديو»");
+  expect(homepage).toContain("ضاديوم (Dadyoom) — بيت العربية الرقمي");
+  expect(homepage).not.toContain("«ضاديو»");
   const description = site.match(/export const SITE_DESCRIPTION =\s*"([^"]+)"/);
   expect(description).not.toBeNull();
   expect(description[1].length).toBeLessThanOrEqual(160);
