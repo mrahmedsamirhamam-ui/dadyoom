@@ -1,5 +1,6 @@
-import { stableChoiceOrder } from "@/lib/assessments/stable-choice-order";
 "use client";
+
+import { stableChoiceOrder } from "@/lib/assessments/stable-choice-order";
 
 import { useState } from "react";
 
