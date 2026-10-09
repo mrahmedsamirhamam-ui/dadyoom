@@ -8,7 +8,7 @@ test("E2E captures bounded Cloudflare 5xx diagnostics with no auth headers or re
  expect(s).toContain("complete.errorDiagnostics?.bodyPreview");
  expect(s).not.toContain("response.headers.get(\"set-cookie\")");
 });
-test("responsive QA retries only transient server 5xx and never accepts persistent 503", () => {
+test("responsive QA rejects persistent 5xx, 404, and login redirects", () => {
  const start = s.indexOf("async function responsiveSmoke(");
  const end = s.indexOf("async function roleRouteSmoke(", start);
  expect(start).toBeGreaterThan(-1);
@@ -16,7 +16,10 @@ test("responsive QA retries only transient server 5xx and never accepts persiste
  const code = s.slice(start, end);
  expect(code).toContain("attempt <= 3");
  expect(code).toContain("E2E_RESPONSIVE_LOAD_RETRY");
- expect(code).toContain("response.status() < 500");
+ expect(code).toContain("response.status() === 200");
+ expect(code).toContain("status === 200");
+ expect(code).toContain("observedPath === requiredPath");
+ expect(code).toContain("PATH_MISMATCH");
  expect(code).toContain("Boolean(response)");
  expect(code).toContain("await page.waitForTimeout(attempt * 1200)");
 });
