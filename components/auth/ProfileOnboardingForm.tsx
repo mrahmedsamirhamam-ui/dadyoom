@@ -13,6 +13,7 @@ import {
   getArabicCountryOptions,
 } from "@/lib/countries";
 import { useSiteLanguage } from "@/components/i18n/LanguageProvider";
+import { maxGradeForCountry, thirteenthGradeArabicLabel } from "@/lib/student/country-grade-limits";
 
 const roles = [
   {
@@ -377,11 +378,11 @@ export default function ProfileOnboardingForm({
         <select
           required
           value={country}
-          onChange={(event) =>
-            setCountry(
-              event.target.value,
-            )
-          }
+          onChange={(event) => {
+            const nextCountry = event.target.value;
+            setCountry(nextCountry);
+            if (Number(gradeNumber) > maxGradeForCountry(nextCountry)) setGradeNumber("");
+          }}
           className="w-full rounded-xl border border-[#d8cbb3] bg-white px-4 py-3 outline-none focus:border-[#32776d] focus:ring-4 focus:ring-[#32776d]/10"
         >
           {countries.map(
@@ -423,7 +424,7 @@ export default function ProfileOnboardingForm({
               <option value="">
                 {tr("اختر صفك", "Choose your grade")}
               </option>
-              {gradeOptions.filter(([value]) => value !== 13 || country === "MR").map(
+              {gradeOptions.filter(([value]) => value <= maxGradeForCountry(country)).map(
                 ([
                   value,
                   label,
@@ -432,7 +433,7 @@ export default function ProfileOnboardingForm({
                     key={value}
                     value={value}
                   >
-                    {language === "en" ? `Grade ${value}` : label}
+                    {language === "en" ? `Grade ${value}` : value === 13 ? thirteenthGradeArabicLabel(country) : label}
                   </option>
                 ),
               )}
