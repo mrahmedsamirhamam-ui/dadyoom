@@ -96,6 +96,7 @@ export default function CurriculumDirectoryPage() {
             <Link
               key={country.code}
               href={`/curriculum/${country.code.toLowerCase()}`}
+              prefetch={false}
               className="rounded-3xl border border-[#ddcfb4] bg-[#fffdf8] p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-[#a99161] hover:shadow-lg"
             >
               <div className="text-xs font-black text-[#9a712c]">{country.code}</div>
