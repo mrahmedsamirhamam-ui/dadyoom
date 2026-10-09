@@ -22,7 +22,10 @@ export function SiteLanguageProvider({ children }: { children: React.ReactNode }
     let cancelled = false;
     const inEnglishRoute = pathname === "/en" || pathname.startsWith("/en/");
     let selected: SiteLanguage = inEnglishRoute ? "en" : "ar";
-    if (!inEnglishRoute) {
+    if (inEnglishRoute) {
+      // Direct visitors from Google should stay in English when opening sign-up.
+      try { window.localStorage.setItem(KEY, "en"); } catch { /* Storage is optional. */ }
+    } else {
       try { selected = window.localStorage.getItem(KEY) === "en" ? "en" : "ar"; }
       catch { /* Storage is optional. */ }
     }
