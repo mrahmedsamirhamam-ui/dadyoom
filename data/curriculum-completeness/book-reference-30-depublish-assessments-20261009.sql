@@ -3,7 +3,7 @@
 -- modified, and 30 precise lesson IDs are validated before any write.
 DO $dadyoom$
 DECLARE
-  references uuid[] := ARRAY[
+  book_ids uuid[] := ARRAY[
     '409a3723-ac04-4b9f-828f-d78a6fa16f5d',
     'fa77fc34-0c9e-439c-819a-d21dd9193218',
     '5fc3a3eb-1ac8-4c26-ad74-04a1116bc221',
@@ -45,7 +45,7 @@ BEGIN
   JOIN public.grades g ON g.id=u.grade_id
   JOIN public.curricula c ON c.id=g.curriculum_id
   JOIN public.countries co ON co.id=c.country_id
-  WHERE l.id=ANY(references) AND l.status='published'
+  WHERE l.id=ANY(book_ids) AND l.status='published'
     AND char_length(btrim(coalesce(l.content,'')))<350
     AND (
       (co.code='LY' AND l.title LIKE '%تغطية كتابية تكاملية%')
@@ -58,27 +58,27 @@ BEGIN
   END IF;
 
   SELECT count(*) INTO used FROM public.student_lesson_progress
-  WHERE lesson_id=ANY(references);
+  WHERE lesson_id=ANY(book_ids);
   IF used<>0 THEN RAISE EXCEPTION 'BOOK_REFERENCES_PROGRESS_IN_USE_%',used; END IF;
 
   SELECT count(*) INTO used FROM public.lesson_activity_attempts att
   JOIN public.lesson_activities a ON a.id=att.activity_id
-  WHERE a.lesson_id=ANY(references);
+  WHERE a.lesson_id=ANY(book_ids);
   IF used<>0 THEN RAISE EXCEPTION 'BOOK_REFERENCES_ACTIVITY_ATTEMPTS_IN_USE_%',used; END IF;
 
   SELECT count(*) INTO used FROM public.question_attempts att
   JOIN public.questions q ON q.id=att.question_id
-  WHERE q.lesson_id=ANY(references);
+  WHERE q.lesson_id=ANY(book_ids);
   IF used<>0 THEN RAISE EXCEPTION 'BOOK_REFERENCES_QUESTION_ATTEMPTS_IN_USE_%',used; END IF;
 
   UPDATE public.lesson_activities
     SET is_published=false, updated_at=now()
-  WHERE lesson_id=ANY(references) AND is_published=true;
+  WHERE lesson_id=ANY(book_ids) AND is_published=true;
   GET DIAGNOSTICS changed = ROW_COUNT;
 
   IF changed<>90 THEN RAISE EXCEPTION 'BOOK_REFERENCES_ACTIVITY_COUNT_MISMATCH_%',changed; END IF;
 
   SELECT count(*) INTO used FROM public.lesson_activities
-  WHERE lesson_id=ANY(references) AND is_published=true;
+  WHERE lesson_id=ANY(book_ids) AND is_published=true;
   IF used<>0 THEN RAISE EXCEPTION 'BOOK_REFERENCES_STILL_PUBLISHED_%',used; END IF;
 END $dadyoom$;
