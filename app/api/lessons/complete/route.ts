@@ -1,3 +1,4 @@
+import { isKnownBookReferenceId } from "@/lib/curriculum/verified-book-reference";
 ﻿import { NextResponse } from "next/server";
 
 import { completeLessonCore } from "@/features/student-progress/services/complete-lesson-core";
@@ -45,6 +46,13 @@ export async function POST(request: Request) {
         {
           status: 400,
         }
+      );
+    }
+
+    if (isKnownBookReferenceId(lessonId)) {
+      return NextResponse.json(
+        { success: false, error: "مرجع الكتاب ليس درسًا قابلاً للإكمال.", canonicalGate: true },
+        { status: 409 },
       );
     }
 

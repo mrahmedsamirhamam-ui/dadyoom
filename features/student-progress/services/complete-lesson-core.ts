@@ -1,3 +1,4 @@
+import { isKnownBookReferenceId } from "@/lib/curriculum/verified-book-reference";
 import { revalidatePath } from "next/cache";
 import { after } from "next/server";
 
@@ -155,6 +156,12 @@ export async function completeLessonCore(
     );
   }
 
+
+  // Never grant mastery or XP for a textbook reference card, even if an
+  // old progress row exists; preserve that history without mutating it.
+  if (isKnownBookReferenceId(progress.lesson_id)) {
+    throw new Error("مرجع الكتاب ليس درسًا قابلاً للتقييم أو منح النقاط.");
+  }
 
   /*
    * The current lessons table does not require a skill column.

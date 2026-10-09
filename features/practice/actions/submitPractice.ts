@@ -1,5 +1,6 @@
 "use server";
 
+import { isKnownBookReferenceId } from "@/lib/curriculum/verified-book-reference";
 import {
   revalidatePath,
 } from "next/cache";
@@ -34,6 +35,10 @@ export async function submitPracticeAction(
     throw new Error(
       "معرّف الدرس غير صالح."
     );
+  }
+
+  if (isKnownBookReferenceId(normalizedLessonId)) {
+    throw new Error("هذه بطاقة مرجع كتاب وليست تدريبًا أو اختبارًا.");
   }
 
   const supabase =

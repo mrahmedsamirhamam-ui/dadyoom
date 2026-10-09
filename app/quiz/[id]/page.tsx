@@ -1,3 +1,5 @@
+import { isKnownBookReferenceId } from "@/lib/curriculum/verified-book-reference";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 
 import LessonPractice, {
@@ -75,6 +77,11 @@ export default async function QuizPage({
 
   const lessonId =
     id.trim();
+
+  // Book-title cards retain their legacy questions only for source history.
+  if (isKnownBookReferenceId(lessonId)) {
+    redirect(`/curriculum/books/${lessonId}`);
+  }
 
   const supabase =
     await createClient();
