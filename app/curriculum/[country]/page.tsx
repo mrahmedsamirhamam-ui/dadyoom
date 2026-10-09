@@ -68,19 +68,13 @@ type GradeCatalogRow = {
 type SeoLessonRow = {
   id: string;
   title: string;
-  slug: string | null;
-  summary: string | null;
   lesson_number: number | null;
   sort_order: number | null;
-  lesson_semester: number | null;
   unit_title: string;
   unit_number: number | null;
   unit_sort_order: number | null;
-  unit_semester: number | null;
   grade_name: string;
   grade_number: number | null;
-  country_code: string;
-  country_name: string;
 };
 
 function countryInfo(raw: string) {
@@ -155,7 +149,7 @@ export default async function CountryCurriculumPage({
         const { data, error } = await db
           .from("seo_indexable_lessons_fast")
           .select(
-            "id,title,slug,summary,lesson_number,sort_order,lesson_semester,unit_title,unit_number,unit_sort_order,unit_semester,grade_name,grade_number,country_code,country_name",
+            "id,title,lesson_number,sort_order,unit_title,unit_number,unit_sort_order,grade_name,grade_number",
           )
           .eq("country_code", info.code)
           .order("grade_number", {
