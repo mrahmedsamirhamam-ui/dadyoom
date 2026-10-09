@@ -20,6 +20,10 @@ test("Cloudflare deployments finish atomically and check auth JS chunks", () => 
   expect(workflow).toContain("git ls-remote --heads origin");
   expect(workflow).toContain("exit 1");
   expect(gate).toContain("DADYOOM_AUTH_ASSET_GATE=PASS");
+  expect(gate).toContain('for (const route of ["/", "/login", "/signup"])');
+  expect(gate).toContain("chunks.slice(offset, offset + 6)");
+  expect(gate).toContain('"chunksChecked=" + chunks.length');
+  expect(gate).not.toContain("chunks.slice(0, 16)");
   expect(gate).toContain("AUTH_ASSET_MISSING");
   expect(gate).toContain('asset.headers.get("cf-ray")');
   expect(gate).toContain("startingCommit");
