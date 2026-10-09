@@ -6,8 +6,12 @@ test("brand and canonical stay consistent", () => {
   expect(site).toContain('SITE_NAME = "ضاديوم"');
   expect(site).toContain('SITE_NAME_ARABIC_ALT_SHORT = "ضاديو"');
   expect(site).toContain("https://dadyoom.dpdns.org");
-  expect(file("app/layout.tsx")).toContain("SITE_NAME_ARABIC_ALT_SHORT");
-  expect(file("app/page.tsx")).toContain('"ضاديو"');
+  const layout = file("app/layout.tsx");
+  const homepage = file("app/page.tsx");
+  expect(layout).toContain("siteName: SITE_NAME");
+  expect(layout).toContain("new URL(siteUrl).hostname");
+  expect(homepage).not.toContain('"@type": "WebSite"');
+  expect(homepage).toContain("«ضاديو»");
   const description = site.match(/export const SITE_DESCRIPTION =\s*"([^"]+)"/);
   expect(description).not.toBeNull();
   expect(description[1].length).toBeLessThanOrEqual(160);
