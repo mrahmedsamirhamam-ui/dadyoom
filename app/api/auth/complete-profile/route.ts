@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { isCountryCode } from "@/lib/countries";
+import { isValidGradeForCountry } from "@/lib/student/country-grade-limits";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 import {
@@ -232,13 +233,7 @@ export async function POST(
 
   if (
     studentLike &&
-    (
-      !Number.isInteger(
-        gradeNumber,
-      ) ||
-      gradeNumber < 1 ||
-      gradeNumber > 13
-    )
+    !isValidGradeForCountry(gradeNumber, country)
   ) {
     return NextResponse.json(
       {
