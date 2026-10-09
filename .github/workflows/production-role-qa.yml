@@ -62,6 +62,20 @@ jobs:
           matched=0
 
           for attempt in $(seq 1 120); do
+            # Never spend up to 20 minutes waiting for an obsolete commit.
+            # Check the actual remote branch HEAD before hitting production.
+            if (( attempt == 1 || attempt % 6 == 0 )); then
+              latest="$(git ls-remote --heads origin refs/heads/fix/mobile-cloud-video-final-20260923 | awk '{print $1}')"
+              if [[ -z "$latest" ]]; then
+                echo "PRODUCTION_ROLE_QA_BRANCH_HEAD=UNAVAILABLE"
+                exit 1
+              fi
+              if [[ "$latest" != "$EXPECTED_SHA" ]]; then
+                echo "PRODUCTION_ROLE_QA_DEPLOY_SYNC=SUPERSEDED expected=$EXPECTED_SHA latest=$latest"
+                echo "::notice title=Superseded role QA::Newer branch commit exists; old SHA is not considered tested."
+                exit 1
+              fi
+            fi
             set +e
             body="$(curl --silent --show-error --max-time 20 https://dadyoom.dpdns.org/api/deploy/version)"
             rc=$?
