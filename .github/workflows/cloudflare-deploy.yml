@@ -74,6 +74,19 @@ jobs:
               break
             fi
 
+            # A continuously changing curriculum branch can supersede a run
+            # before external Cloudflare deploy ever serves its SHA. Distinguish
+            # that from a broken deploy, and stop consuming runner time.
+            # Fail closed: a superseded SHA is NOT a verified deployment.
+            if (( attempt >= 3 && attempt % 3 == 0 )); then
+              latest="$(git ls-remote --heads origin refs/heads/fix/mobile-cloud-video-final-20260923 | awk '{print $1}' || true)"
+              if [[ -n "$latest" && "$latest" != "$EXPECTED_SHA" ]]; then
+                echo "DADYOOM_DEPLOY_VERIFY=SUPERSEDED expected=$EXPECTED_SHA latest=$latest observed=$actual"
+                echo "::notice title=Superseded production check::A later branch commit replaced $EXPECTED_SHA before production verification. No PASS is claimed."
+                exit 1
+              fi
+            fi
+
             sleep 10
           done
 
