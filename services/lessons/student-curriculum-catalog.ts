@@ -2,11 +2,13 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { isBookReference } from "@/lib/curriculum/verified-book-reference";
 
 export type StudentCatalogLesson = {
   id: string; title: string; objective: string | null;
   semester: number | null;
   officialContentScope: "plan-scheduled" | "official-book-unscheduled" | null;
+  resourceKind?: "lesson" | "book-reference";
   estimatedMinutes: number; difficulty: "beginner" | "intermediate" | "advanced";
   points: number; order: number; completed: boolean; progressPercent: number;
 };
@@ -157,6 +159,11 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
           objective: lesson.summary,
           semester: lesson.semester == null ? null : Number(lesson.semester),
           officialContentScope: lesson.official_content_scope ?? null,
+          resourceKind: isBookReference({
+            countryCode: country.code,
+            unitTitle: raw.title,
+            lessonTitle: lesson.title,
+          }) ? "book-reference" : "lesson",
           estimatedMinutes: Number(lesson.estimated_minutes ?? 20),
           difficulty: level(grade.grade_number),
           points: Math.max(10, Number(p?.xp ?? 0)),

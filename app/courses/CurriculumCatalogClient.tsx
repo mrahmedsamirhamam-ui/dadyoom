@@ -1343,6 +1343,10 @@ function CatalogScope({
                       )
                         ? "دروس ضاديوم الداعمة"
                         : item.lessons.every(
+                            (lesson) => lesson.resourceKind === "book-reference",
+                          )
+                          ? "بطاقات كتب — الفهارس التفصيلية قيد التحقق"
+                          : item.lessons.every(
                             (lesson) =>
                               lesson.officialContentScope ===
                               "official-book-unscheduled",
@@ -1357,12 +1361,34 @@ function CatalogScope({
                 </div>
 
                 <span className="shrink-0 rounded-full bg-white px-4 py-2 text-sm font-black">
-                  {item.lessons.length} درسًا
+                  {item.lessons.filter(
+                    (lesson) => lesson.resourceKind !== "book-reference",
+                  ).length} درسًا
+                  {item.lessons.some((lesson) => lesson.resourceKind === "book-reference")
+                    ? ` • ${item.lessons.filter((lesson) => lesson.resourceKind === "book-reference").length} مرجع كتاب`
+                    : ""}
                 </span>
               </header>
 
               <div className="grid min-w-0 gap-3 p-4 sm:grid-cols-2 xl:grid-cols-3">
                 {item.lessons.map((lesson) => (
+                  lesson.resourceKind === "book-reference" ? (
+                    <div
+                      key={lesson.id}
+                      className="min-w-0 rounded-2xl border border-dashed border-[#d5c49e] bg-[#fffaf0] p-4"
+                    >
+                      <span className="inline-flex rounded-full bg-[#f7ecd5] px-3 py-1 text-xs font-black text-[#8b6426]">
+                        مرجع كتاب — ليس درسًا
+                      </span>
+                      <h3 className="mt-3 break-words text-lg font-black leading-8">
+                        {lesson.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-7 text-[#766c60]">
+                        اسم كتاب أو جزء مقرر مرجعيًا. فهرس الدروس والطبعة الحالية
+                        ما زالا قيد التحقق، لذلك لا يظهر زر بدء درس أو نقاط تحصيل.
+                      </p>
+                    </div>
+                  ) : (
                   <Link
                     key={lesson.id}
                     href={`/lessons/${lesson.id}`}
@@ -1408,6 +1434,7 @@ function CatalogScope({
                       <span>✦ {lesson.points} نقطة</span>
                     </div>
                   </Link>
+                  )
                 ))}
               </div>
             </article>

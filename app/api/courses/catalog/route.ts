@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import { ARAB_COUNTRY_CODES } from "@/lib/countries";
 import { createClient } from "@/lib/supabase/server";
+import { isBookReference } from "@/lib/curriculum/verified-book-reference";
 
 type Country = {
   id: string;
@@ -833,6 +834,11 @@ export async function GET(
                         : Number(lesson.semester),
                     officialContentScope:
                       lesson.official_content_scope ?? null,
+                    resourceKind: isBookReference({
+                      countryCode,
+                      unitTitle: raw.title,
+                      lessonTitle: lesson.title,
+                    }) ? "book-reference" : "lesson",
                     estimatedMinutes:
                       Number(
                         lesson.estimated_minutes ??
