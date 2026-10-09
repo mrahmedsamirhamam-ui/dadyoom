@@ -223,7 +223,7 @@ async function responsiveSmoke(page, role, baseUrl, expectedPath) {
         },
       );
       const status = response?.status() ?? 0;
-      if (status > 0 && status < 500) break;
+      if (status === 200) break;
 
       console.warn(
         `E2E_RESPONSIVE_LOAD_RETRY role=${role} viewport=${viewport.name} attempt=${attempt} http=${status} cfRay=${response?.headers()["cf-ray"] ?? "unavailable"}`,
@@ -234,8 +234,19 @@ async function responsiveSmoke(page, role, baseUrl, expectedPath) {
     }
 
     gate(
-      Boolean(response) && response.status() < 500,
+      Boolean(response) && response.status() === 200,
       `E2E_RESPONSIVE_${role.toUpperCase()}_${viewport.name.toUpperCase()}_HTTP_${response?.status() ?? "NO_RESPONSE"}`,
+    );
+
+    // Playwright follows navigation redirects. A login or error page can
+    // otherwise return HTTP 200 and masquerade as the requested dashboard.
+    const observedPath = response
+      ? new URL(response.url()).pathname.replace(/\\/+$/u, "") || "/"
+      : "";
+    const requiredPath = expectedPath.replace(/\\/+$/u, "") || "/";
+    gate(
+      observedPath === requiredPath,
+      `E2E_RESPONSIVE_${role.toUpperCase()}_${viewport.name.toUpperCase()}_PATH_MISMATCH expected=${requiredPath} actual=${observedPath}`,
     );
 
     const state = await page.evaluate(() => ({
