@@ -7,6 +7,7 @@ import {
 } from "@/lib/site";
 import "./globals.css";
 import DadyoomClientRuntime from "@/components/runtime/DadyoomClientRuntime";
+import { SiteLanguageProvider, LanguageSwitcher } from "@/components/i18n/LanguageProvider";
 
 
 const siteUrl = getSiteUrl();
@@ -174,8 +175,11 @@ export default function RootLayout({
               ),
           }}
         />
-        <DadyoomClientRuntime />
-        {children}
+        <SiteLanguageProvider>
+          <DadyoomClientRuntime />
+          {children}
+          <LanguageSwitcher floating />
+        </SiteLanguageProvider>
       </body>
     </html>
   );
