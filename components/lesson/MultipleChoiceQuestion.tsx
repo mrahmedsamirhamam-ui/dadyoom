@@ -1,3 +1,4 @@
+import { stableChoiceOrder } from "@/lib/assessments/stable-choice-order";
 "use client";
 
 import { useState } from "react";
@@ -161,7 +162,7 @@ export default function MultipleChoiceQuestion({
       </p>
 
       <div className="space-y-3">
-        {choices.map(
+        {stableChoiceOrder(choices, questionId).map(
           (choice) => {
             const isSelected =
               selected ===

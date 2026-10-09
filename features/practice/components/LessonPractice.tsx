@@ -1,3 +1,4 @@
+import { stableChoiceOrder } from "@/lib/assessments/stable-choice-order";
 "use client";
 
 import Link from "next/link";
@@ -294,7 +295,7 @@ export default function LessonPractice({
                 </h2>
 
                 <div className="mt-5 space-y-3">
-                  {question.options.map(
+                  {stableChoiceOrder(question.options, question.id).map(
                     (option) => {
                       const selected =
                         answers[
