@@ -1,4 +1,4 @@
-import { LocalizedText } from "@/components/i18n/LanguageProvider";
+import { LocalizedText, LocalizedLink } from "@/components/i18n/LanguageProvider";
 import NotificationBell from "@/components/notifications/NotificationBell";
 import Link from "next/link";
 import DadyoomLogo from "@/components/brand/DadyoomLogo";
@@ -68,14 +68,14 @@ export default async function Navbar() {
           className="order-3 flex w-full gap-1 overflow-x-auto pb-1 text-sm font-black text-[#5c554d] lg:order-none lg:w-auto lg:flex-1 lg:justify-center lg:overflow-visible lg:pb-0"
         >
           {links.map((item) => (
-            <Link
+            <LocalizedLink
               key={item.href}
               href={item.href}
               prefetch={false}
               className="whitespace-nowrap rounded-full px-4 py-2.5 transition hover:bg-[#f3ead7] hover:text-[#123f39]"
             >
               <LocalizedText ar={item.label} en={item.en} />
-            </Link>
+            </LocalizedLink>
           ))}
                 <NotificationBell />
     </nav>
