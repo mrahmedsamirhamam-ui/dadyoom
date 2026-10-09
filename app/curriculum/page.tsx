@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "دليل المناهج والدروس العربية",
   description:
     "دليل ضاديوم القابل للزحف لمناهج ودروس اللغة العربية في 22 دولة عربية، مع روابط مباشرة إلى صفحات الدول والدروس المنشورة.",
-  alternates: { canonical: "/curriculum" },
+  alternates: { canonical: "/curriculum", languages: { ar: "/curriculum", en: "/en/curriculum" } },
   robots: {
     index: true,
     follow: true,
