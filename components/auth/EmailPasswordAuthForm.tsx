@@ -10,10 +10,22 @@ import { getArabicCountryOptions } from "@/lib/countries";
 type Mode = "login" | "signup";
 
 function safeNextPath(value: string | null | undefined) {
-  if (!value || !value.startsWith("/") || value.startsWith("//")) {
+  if (!value || !value.startsWith("/") || value.startsWith("//") ||
+      value.includes("\\") || /[\r\n]/u.test(value)) {
     return "";
   }
   return value;
+}
+
+function allowedPostLoginNext(value: string | null | undefined, destination: string) {
+  const safe = safeNextPath(value);
+  if (!safe) return "";
+  const segment = safe.split(/[?#]/u)[0].split("/")[1];
+  if (["login", "signup", "auth", "onboarding"].includes(segment)) return "";
+  const role = destination.split("/")[1];
+  if (["student", "child", "teacher", "parent", "school", "admin"].includes(segment) &&
+      segment !== role && role !== "admin") return "";
+  return safe;
 }
 
 const roleDestinations: Record<string, string> = {
@@ -250,8 +262,11 @@ export default function EmailPasswordAuthForm({
 
         // A full navigation avoids unauthenticated Next router cache after
         // the browser has persisted the Supabase session cookies.
-        const requested = safeNextPath(nextPath) ||
-          safeNextPath(new URLSearchParams(window.location.search).get("next"));
+        const requested = allowedPostLoginNext(nextPath, destination) ||
+          allowedPostLoginNext(
+            new URLSearchParams(window.location.search).get("next"),
+            destination,
+          );
         window.location.replace(
           destination === "/onboarding" ? destination : requested || destination,
         );

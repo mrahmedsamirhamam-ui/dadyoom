@@ -21,18 +21,24 @@ const studentRoles =
     "child",
   ]);
 
-function safeNext(
-  value: string | null,
-) {
-  if (
-    !value ||
-    !value.startsWith("/") ||
-    value.startsWith("//")
-  ) {
+function safeNext(value: string | null) {
+  if (!value || !value.startsWith("/") || value.startsWith("//") ||
+      value.includes("\\") || /[\r\n]/u.test(value)) {
     return null;
   }
-
   return value;
+}
+
+// Never bounce an authenticated student, parent or teacher to another
+// role's protected portal via a stale ?next=... parameter.
+function allowedNextForRole(role: string, value: string | null) {
+  const safe = safeNext(value);
+  if (!safe) return null;
+  const segment = safe.split(/[?#]/u)[0].split("/")[1];
+  if (["login", "signup", "auth", "onboarding"].includes(segment)) return null;
+  if (["student", "child", "teacher", "parent", "school", "admin"].includes(segment) &&
+      role !== "admin" && segment !== role) return null;
+  return safe;
 }
 
 function parseIntent(
@@ -207,7 +213,7 @@ function destinationForProfile(
   }
 
   return (
-    requestedNext ||
+    allowedNextForRole(role, requestedNext) ||
     roleDestinations[role] ||
     "/student"
   );
@@ -272,11 +278,10 @@ export async function GET(
     url.origin;
 
   if (!code) {
+    const denied = url.searchParams.get("error") === "access_denied";
     return NextResponse.redirect(
-      new URL(
-        "/login?error=oauth_callback",
-        origin,
-      ),
+      new URL(denied ? "/login?error=access_denied" : "/login?error=oauth_callback", origin),
+      { headers: { "Cache-Control": "no-store" } },
     );
   }
 
@@ -497,7 +502,7 @@ export async function GET(
     studentLike
       ? "/onboarding"
       : (
-          requestedNext ||
+          allowedNextForRole(safeRole, requestedNext) ||
           roleDestinations[
             safeRole
           ] ||

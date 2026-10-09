@@ -32,3 +32,14 @@ test("Mauritanian grade 13 can complete onboarding and enter their portal", () =
   expect(complete).toContain("gradeNumber > 13");
   expect(onboard).toContain('value !== 13 || country === "MR"');
 });
+test("Stale next portal is filtered and Grade 13 retains its session", () => {
+  const callback = readFileSync("app/auth/callback/route.ts", "utf8");
+  const form = readFileSync("components/auth/EmailPasswordAuthForm.tsx", "utf8");
+  const year = readFileSync("lib/student/academic-year.ts", "utf8");
+  const verifier = readFileSync("scripts/verify-production-auth-assets.mjs", "utf8");
+  expect(callback).toContain("allowedNextForRole(role, requestedNext)");
+  expect(callback).toContain("allowedNextForRole(safeRole, requestedNext)");
+  expect(form).toContain("allowedPostLoginNext(nextPath, destination)");
+  expect(year).toContain("if (grade === 13) return 13");
+  expect(verifier).toContain("DADYOOM_OAUTH_CALLBACK_ROUTE=PASS");
+});

@@ -72,5 +72,17 @@ for (const route of ["/login", "/signup"]) {
     "chunksChecked=" + Math.min(chunks.length,16),
     "commit=" + completedCommit);
 }
+// The OAuth callback must be a real, uncached Route Handler in production.
+// A missing or intercepted callback makes Google sign-in appear to loop.
+const callbackResponse = await fetch(
+  new URL("/auth/callback?auth_route_probe=1", base),
+  { redirect: "manual", cache: "no-store", signal: AbortSignal.timeout(20_000) },
+);
+const callbackLocation = callbackResponse.headers.get("location") || "";
+if (![302, 303, 307, 308].includes(callbackResponse.status) ||
+    !callbackLocation.includes("/login?error=oauth_callback")) {
+  throw new Error("AUTH_OAUTH_CALLBACK_ROUTE_BAD_RESPONSE_" + callbackResponse.status);
+}
+console.log("DADYOOM_OAUTH_CALLBACK_ROUTE=PASS", "status=" + callbackResponse.status);
 await verifyDeployment();
 console.log("DADYOOM_AUTH_ASSET_GATE=PASS");

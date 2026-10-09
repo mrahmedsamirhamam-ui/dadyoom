@@ -44,10 +44,14 @@ export function advanceGradeForAcademicYear(
   if (
     !Number.isInteger(grade) ||
     grade < 1 ||
-    grade > 12
+    grade > 13
   ) {
     return null;
   }
+
+  // Mauritania has a seventh secondary year. Do not trap its learners
+  // in repeated onboarding, and do not auto-promote grade 12 elsewhere.
+  if (grade === 13) return 13;
 
   const storedStart =
     academicStartYear(storedAcademicYear);
