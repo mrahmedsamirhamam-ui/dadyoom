@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import DadyoomLogo from "@/components/brand/DadyoomLogo";
+import { LocalizedText } from "@/components/i18n/LanguageProvider";
 
 export default function AuthShell({ title, description, children }: { title: string; description: string; children: ReactNode }) {
   return (
@@ -10,18 +11,18 @@ export default function AuthShell({ title, description, children }: { title: str
           <div className="relative">
             <DadyoomLogo inverse />
             <h2 className="mt-16 font-arabic-display text-4xl font-black leading-tight">
-              العربية تصل إلى القلب
-              <span className="block text-[#f5cf7a]">ثم تفتح أبواب المعرفة</span>
+              <LocalizedText ar="العربية تصل إلى القلب" en="Arabic reaches the heart" />
+              <span className="block text-[#f5cf7a]"><LocalizedText ar="ثم تفتح أبواب المعرفة" en="and opens the door to knowledge" /></span>
             </h2>
             <p className="mt-5 max-w-md leading-8 text-[#e8f2ed]">
-              تعلّم من منهجك، نمِّ مهاراتك الأربع، واسأل ضاد عندما تحتاج إلى شرح أو تدريب.
+              <LocalizedText ar="تعلّم من منهجك، نمِّ مهاراتك الأربع، واسأل ضاد عندما تحتاج إلى شرح أو تدريب." en="Choose your curriculum, build all four Arabic skills and practise at your own pace." />
             </p>
           </div>
 
           <div className="relative rounded-3xl border border-white/10 bg-white/10 p-5 backdrop-blur">
-            <div className="font-black">تجربة عربية من البداية</div>
+            <div className="font-black"><LocalizedText ar="تجربة عربية من البداية" en="Your Arabic journey starts here" /></div>
             <p className="mt-2 text-sm leading-7 text-[#e8f2ed]">
-              طالب، معلم، ولي أمر أو مدرسة — لكل حساب رحلة واضحة ومحتوى يناسب دوره.
+              <LocalizedText ar="طالب، معلم، ولي أمر أو مدرسة — لكل حساب رحلة واضحة ومحتوى يناسب دوره." en="Students, teachers, parents and schools each have their own learning tools." />
             </p>
           </div>
         </section>
@@ -29,8 +30,8 @@ export default function AuthShell({ title, description, children }: { title: str
         <section className="flex items-center p-6 sm:p-10 lg:p-12">
           <div className="w-full">
             <div className="lg:hidden"><DadyoomLogo /></div>
-            <h1 className="mt-7 font-arabic-display text-3xl font-black text-[#27231f]">{title}</h1>
-            <p className="mt-2 text-sm leading-7 text-[#746b60]">{description}</p>
+            <h1 className="mt-7 font-arabic-display text-3xl font-black text-[#27231f]"><LocalizedText ar={title} en={title === "عرّفنا بك قليلًا" ? "Tell us about yourself" : title} /></h1>
+            <p className="mt-2 text-sm leading-7 text-[#746b60]"><LocalizedText ar={description} en={title === "عرّفنا بك قليلًا" ? "Choose your role, country and learning goals to get a study path suited to you." : description} /></p>
             <div className="mt-8">{children}</div>
           </div>
         </section>
