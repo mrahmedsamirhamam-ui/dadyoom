@@ -29,7 +29,8 @@ async function verifyDeployment() {
 }
 
 await verifyDeployment();
-for (const route of ["/login", "/signup"]) {
+// The homepage shares the root runtime/chunks used by the auth pages.
+for (const route of ["/", "/login", "/signup"]) {
   const startingCommit = await verifyDeployment();
   const response = await get(new URL(route + "?auth_asset_check=" + Date.now(), base));
   if (!response.ok) throw new Error("AUTH_ASSET_PAGE_HTTP_" + route + "_" + response.status);
@@ -42,8 +43,12 @@ for (const route of ["/login", "/signup"]) {
       .map((url) => new URL(url, base).toString()),
   )];
   if (chunks.length === 0) throw new Error("AUTH_ASSET_NO_CLIENT_CHUNKS_" + route);
-  for (const url of chunks.slice(0, 16)) {
-    const asset = await get(url);
+  // Check *all* JS URLs directly referenced in this HTML, not just the first
+  // 16. Bound parallelism to avoid stressing Cloudflare during deployment.
+  for (let offset = 0; offset < chunks.length; offset += 6) {
+    const batch = chunks.slice(offset, offset + 6);
+    await Promise.all(batch.map(async (url) => {
+      const asset = await get(url);
     if (asset.status !== 200) {
       // The deployment version may change while cached HTML still references
       // hashed chunks from a previous build. Preserve hard failure, but log
@@ -65,11 +70,12 @@ for (const route of ["/login", "/signup"]) {
     if (!/javascript|ecmascript/.test(type)) {
       throw new Error("AUTH_ASSET_CHUNK_BAD_CONTENT_TYPE_" + type);
     }
-    await asset.arrayBuffer();
+      await asset.arrayBuffer();
+    }));
   }
   const completedCommit = await verifyDeployment();
   console.log("DADYOOM_AUTH_ASSETS=PASS", route,
-    "chunksChecked=" + Math.min(chunks.length,16),
+    "chunksChecked=" + chunks.length,
     "commit=" + completedCommit);
 }
 // The OAuth callback must be a real, uncached Route Handler in production.
