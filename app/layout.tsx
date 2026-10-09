@@ -3,9 +3,6 @@ import {
   getSiteUrl,
   SITE_DESCRIPTION,
   SITE_NAME,
-  SITE_NAME_ARABIC_ALT,
-  SITE_NAME_ARABIC_ALT_DADYOOM,
-  SITE_NAME_ARABIC_ALT_SHORT,
   SITE_NAME_LATIN,
 } from "@/lib/site";
 import "./globals.css";
@@ -37,13 +34,8 @@ const structuredData = [
     "@type": "WebSite",
     "@id": `${siteUrl}/#website`,
     name: SITE_NAME,
-    alternateName: [
-      SITE_NAME_LATIN,
-      SITE_NAME_ARABIC_ALT,
-      SITE_NAME_ARABIC_ALT_DADYOOM,
-      SITE_NAME_ARABIC_ALT_SHORT,
-    ],
-    url: siteUrl,
+    alternateName: [SITE_NAME_LATIN, new URL(siteUrl).hostname],
+    url: `${siteUrl}/`,
     description: SITE_DESCRIPTION,
     inLanguage: "ar",
     publisher: {
@@ -55,13 +47,8 @@ const structuredData = [
     "@type": "EducationalOrganization",
     "@id": `${siteUrl}/#organization`,
     name: SITE_NAME,
-    alternateName: [
-      SITE_NAME_LATIN,
-      SITE_NAME_ARABIC_ALT,
-      SITE_NAME_ARABIC_ALT_DADYOOM,
-      SITE_NAME_ARABIC_ALT_SHORT,
-    ],
-    url: siteUrl,
+    alternateName: [SITE_NAME_LATIN, new URL(siteUrl).hostname],
+    url: `${siteUrl}/`,
     description: SITE_DESCRIPTION,
     logo: `${siteUrl}/pwa/icon-512.png`,
   },
@@ -79,7 +66,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ar_AR",
-    siteName: `${SITE_NAME} ${SITE_NAME_LATIN}`,
+    siteName: SITE_NAME,
     title: homeSeoTitle,
     description: SITE_DESCRIPTION,
   },
