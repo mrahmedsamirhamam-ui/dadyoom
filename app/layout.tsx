@@ -176,7 +176,7 @@ const staleChunkRecoveryScript = String.raw`(function () {
   }
   function recover() {
     var current = window.location;
-    if (/^\\/auth(?:\\/|$)/.test(current.pathname) ||
+    if (/^\/auth(?:\/|$)/.test(current.pathname) ||
         new URL(current.href).searchParams.has("code")) return;
     var now = Date.now();
     try {
