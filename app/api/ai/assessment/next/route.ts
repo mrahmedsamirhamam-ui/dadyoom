@@ -1,3 +1,4 @@
+import { isKnownBookReferenceId } from "@/lib/curriculum/verified-book-reference";
 import {
   NextResponse,
 } from "next/server";
@@ -74,6 +75,19 @@ export async function POST(
           status: 401,
         }
       );
+    }
+
+    // Reject old textbook-card sessions before any state changes or XP.
+    const { data: existingSession, error: lookupError } = await supabase
+      .from("assessment_sessions")
+      .select("lesson_id")
+      .eq("id", sessionId)
+      .eq("student_id", user.id)
+      .maybeSingle();
+
+    if (lookupError) throw lookupError;
+    if (existingSession?.lesson_id && isKnownBookReferenceId(existingSession.lesson_id)) {
+      return NextResponse.json({ success: false, error: "مرجع الكتاب ليس درسًا قابلاً للاختبار أو منح النقاط." }, { status: 409 });
     }
 
     const session =

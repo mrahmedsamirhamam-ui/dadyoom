@@ -1,3 +1,4 @@
+import { isKnownBookReferenceId } from "@/lib/curriculum/verified-book-reference";
 import { invalidateStudentCaches } from "@/features/student-progress/services/invalidate-student-caches";
 import {
   NextResponse,
@@ -130,6 +131,11 @@ export async function POST(
           status: 404,
         }
       );
+    }
+
+    // Check before claiming an assessment or awarding XP: preserve legacy rows.
+    if (assessment.lesson_id && isKnownBookReferenceId(assessment.lesson_id)) {
+      return NextResponse.json({ success: false, message: "مرجع الكتاب ليس درسًا قابلاً للاختبار أو منح النقاط." }, { status: 409 });
     }
 
     if (assessment.completed) {

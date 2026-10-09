@@ -1,3 +1,4 @@
+import { isKnownBookReferenceId } from "@/lib/curriculum/verified-book-reference";
 import {
   NextResponse,
 } from "next/server";
@@ -36,6 +37,10 @@ export async function POST(
           status: 400,
         }
       );
+    }
+
+    if (isKnownBookReferenceId(lessonId)) {
+      return NextResponse.json({ success: false, error: "مرجع الكتاب ليس درسًا قابلاً للاختبار أو منح النقاط." }, { status: 409 });
     }
 
     const supabase =

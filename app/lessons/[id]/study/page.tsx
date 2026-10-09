@@ -1,3 +1,5 @@
+import { isKnownBookReferenceId } from "@/lib/curriculum/verified-book-reference";
+import { redirect } from "next/navigation";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -17,6 +19,7 @@ export default async function LessonStudyPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  if (isKnownBookReferenceId(id)) redirect(`/curriculum/books/${id}`);
   const supabase = await createClient();
 
   const { data: lesson, error } = await supabase

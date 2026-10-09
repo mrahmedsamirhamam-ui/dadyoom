@@ -1,3 +1,4 @@
+import { isKnownBookReferenceId } from "@/lib/curriculum/verified-book-reference";
 import { logger } from "@/lib/logger";
 import {
   GoogleGenAI,
@@ -297,6 +298,10 @@ export async function GET(
           status: 400,
         }
       );
+    }
+
+    if (isKnownBookReferenceId(lessonId)) {
+      return NextResponse.json({ success: false, error: "مرجع الكتاب ليس درسًا قابلاً للاختبار أو منح النقاط." }, { status: 409 });
     }
 
     const supabase =

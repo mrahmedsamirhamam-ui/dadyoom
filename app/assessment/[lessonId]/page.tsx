@@ -1,3 +1,5 @@
+import { isKnownBookReferenceId } from "@/lib/curriculum/verified-book-reference";
+import { redirect } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -18,6 +20,10 @@ export default async function AssessmentPage({
   params,
 }: AssessmentPageProps) {
   const { lessonId } = await params;
+
+  if (isKnownBookReferenceId(lessonId)) {
+    redirect(`/curriculum/books/${lessonId}`);
+  }
 
   const lesson =
     await getLessonById(
