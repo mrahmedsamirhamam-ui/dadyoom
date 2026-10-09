@@ -5,6 +5,7 @@ import { Capacitor } from "@capacitor/core";
 import { useEffect, useState } from "react";
 
 import { getSupabaseBrowserClient } from "@/lib/auth/supabase-browser";
+import { useSiteLanguage } from "@/components/i18n/LanguageProvider";
 
 type Props = {
   mode: "login" | "signup";
@@ -39,6 +40,8 @@ export default function GoogleAuthButton({
   country = "",
   nextPath = "",
 }: Props) {
+  const { language } = useSiteLanguage();
+  const tr = (ar: string, en: string) => language === "en" ? en : ar;
   const [loading, setLoading] = useState(false);
   const [providerEnabled, setProviderEnabled] =
     useState<boolean | null>(null);
@@ -243,15 +246,15 @@ export default function GoogleAuthButton({
         </span>
 
         {loading
-          ? "جارٍ تجهيز Google…"
+          ? tr("جارٍ تجهيز Google…", "Connecting to Google…")
           : mode === "signup"
-            ? "إنشاء الحساب باستخدام Google"
-            : "الدخول باستخدام Google"}
+            ? tr("إنشاء الحساب باستخدام Google", "Sign up with Google")
+            : tr("الدخول باستخدام Google", "Continue with Google")}
       </button>
 
       {phase ? (
         <p className="rounded-xl bg-[#eef8f4] p-3 text-center text-xs font-bold leading-6 text-[#123f39]">
-          {phase}
+          {language === "en" ? "Opening Google sign-in…" : phase}
         </p>
       ) : null}
 
@@ -261,7 +264,7 @@ export default function GoogleAuthButton({
           onClick={openManualGoogle}
           className="touch-manipulation w-full rounded-xl bg-[#123f39] px-5 py-3 font-black text-white transition active:scale-[0.98]"
         >
-          فتح Google الآن
+          {tr("فتح Google الآن", "Open Google now")}
         </button>
       ) : null}
 
