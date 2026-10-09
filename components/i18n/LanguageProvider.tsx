@@ -2,6 +2,8 @@
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+import type { ComponentProps } from "react";
 
 export type SiteLanguage = "ar" | "en";
 const KEY = "dadyoom_ui_language_v1";
@@ -76,4 +78,13 @@ export function LanguageSwitcher({ floating = false }: { floating?: boolean }) {
       className={["min-h-9 rounded-full px-3", language === "en" ? "bg-[#123f39] text-white" : "hover:bg-[#f3ead7]"].join(" ")}
       onClick={() => setLanguage("en")}>English</button>
   </div>;
+}
+
+/** Keep links within the selected language when translations exist. */
+export function LocalizedLink(props: ComponentProps<typeof Link>) {
+  const { language } = useSiteLanguage();
+  const href = typeof props.href === "string" && language === "en"
+    ? pages[props.href] ?? props.href
+    : props.href;
+  return <Link {...props} href={href} />;
 }
