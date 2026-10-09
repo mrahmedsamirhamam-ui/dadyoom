@@ -241,9 +241,9 @@ async function responsiveSmoke(page, role, baseUrl, expectedPath) {
     // Playwright follows navigation redirects. A login or error page can
     // otherwise return HTTP 200 and masquerade as the requested dashboard.
     const observedPath = response
-      ? new URL(response.url()).pathname.replace(/\\/+$/u, "") || "/"
+      ? new URL(response.url()).pathname.replace(/\/+$/u, "") || "/"
       : "";
-    const requiredPath = expectedPath.replace(/\\/+$/u, "") || "/";
+    const requiredPath = expectedPath.replace(/\/+$/u, "") || "/";
     gate(
       observedPath === requiredPath,
       `E2E_RESPONSIVE_${role.toUpperCase()}_${viewport.name.toUpperCase()}_PATH_MISMATCH expected=${requiredPath} actual=${observedPath}`,
