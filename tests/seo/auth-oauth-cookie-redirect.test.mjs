@@ -29,8 +29,9 @@ test("Mauritanian grade 13 can complete onboarding and enter their portal", () =
   const onboard = readFileSync("components/auth/ProfileOnboardingForm.tsx", "utf8");
   expect(callback).toContain("grade > 13");
   expect(form).toContain("gradeNumber > 13");
-  expect(complete).toContain("gradeNumber > 13");
-  expect(onboard).toContain('value !== 13 || country === "MR"');
+  expect(complete).toContain("isValidGradeForCountry(gradeNumber, country)");
+  expect(onboard).toContain("value <= maxGradeForCountry(country)");
+  expect(onboard).toContain("thirteenthGradeArabicLabel(country)");
 });
 test("Stale next portal is filtered and Grade 13 retains its session", () => {
   const callback = readFileSync("app/auth/callback/route.ts", "utf8");
