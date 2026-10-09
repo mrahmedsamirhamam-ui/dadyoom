@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "دليل تعلم اللغة العربية",
   description:
     "دليل عملي من ضاديوم لتعلّم القراءة والكتابة والاستماع والتحدث والنحو والمفردات بالعربية بخطة تدريجية قابلة للتطبيق.",
-  alternates: { canonical: "/learn-arabic" },
+  alternates: { canonical: "/learn-arabic", languages: { ar: "/learn-arabic", en: "/en/learn-arabic" } },
 };
 
 const stages = [
