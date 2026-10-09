@@ -1,0 +1,195 @@
+{
+  "kind": "textbook_table_of_contents_source_audit",
+  "country": "LY",
+  "grade": 12,
+  "track": "literary",
+  "capture_date": "2026-10-09",
+  "scope": "historical_books_only_not_2026_2027_verified",
+  "status": "pending_current_edition_validation",
+  "warning": "The 2019-2020 textbooks provide actual source table-of-contents candidates. Do NOT imply 2026-2027 currency, reproduce chapters, or claim all official textbook lessons are imported until edition verification. For the literature book the text extraction did not expose a reliable contents page.",
+  "source_directory": "https://liasinstitute.com/ar/programs/resources/libyan-curriculum/",
+  "books": [
+    {
+      "title": "المطالعة والإنشاء",
+      "edition": "2019-2020",
+      "pdf_url": "https://liasinstitute.com/PDFs/12-1_%D8%A7%D9%84%D9%85%D8%B7%D8%A7%D9%84%D8%B9%D8%A9_%D9%88%D8%A7%D9%84%D8%A5%D9%86%D8%B4%D8%A7%D8%A1.pdf",
+      "page_count": 47,
+      "contents_pdf_page_index": 2,
+      "current_edition_verified": false,
+      "extraction": "toc_text_readable_with_minor_normalization",
+      "chapters": [
+        {
+          "title": "أسلوب الشابي",
+          "printed_page": 6,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "الرحمة",
+          "printed_page": 10,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "العقد الفريد",
+          "printed_page": 13,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "انتشار اللغة العربية في بلاد السند والملتان",
+          "printed_page": 15,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "في الحاسد والمحسود",
+          "printed_page": 18,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "التربية وتنمية المواطن",
+          "printed_page": 20,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "الكتابة في صدر الإسلام",
+          "printed_page": 23,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "الفردوس المفقود (الأندلس)",
+          "printed_page": 26,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "الحاسوب",
+          "printed_page": 29,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "آداب الحديث",
+          "printed_page": 32,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "الاعتماد على النفس",
+          "printed_page": 34,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "المرأة في الإسلام",
+          "printed_page": 37,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "الحضارة",
+          "printed_page": 40,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "المجتمع المدني",
+          "printed_page": 42,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "غاية الفن",
+          "printed_page": 45,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        }
+      ]
+    },
+    {
+      "title": "النقد الأدبي",
+      "edition": "2019-2020",
+      "pdf_url": "https://liasinstitute.com/PDFs/12-1_%D8%A7%D9%84%D9%86%D9%82%D8%AF_%D8%A7%D9%84%D8%A3%D8%AF%D8%A8%D9%8A.pdf",
+      "page_count": 89,
+      "contents_pdf_page_index": 2,
+      "current_edition_verified": false,
+      "extraction": "ocr_mixed_normalize_manually_before_import",
+      "chapters": [
+        {
+          "title": "النقد والناقد",
+          "printed_page": 7,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "مفهوم النقد",
+          "printed_page": 9,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "نشأة النقد الأدبي عند العرب",
+          "printed_page": 13,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "اللغويون والنحاة ودورهم في تطور النقد الأدبي",
+          "printed_page": 18,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "بدايات التأليف في النقد",
+          "printed_page": 20,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "الخصومة بين القدماء والمحدثين",
+          "printed_page": 23,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "المقياس البلاغي",
+          "printed_page": 24,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "الآمدي وبداية النقد التطبيقي",
+          "printed_page": 26,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "السرقات الشعرية",
+          "printed_page": 28,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "بناء القصيدة العربية",
+          "printed_page": 35,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "النقد الأدبي الحديث",
+          "printed_page": 41,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        },
+        {
+          "title": "عناصر الأدب",
+          "printed_page": 42,
+          "status": "toc_candidate_verify_spelling_against_original_page"
+        }
+      ]
+    },
+    {
+      "title": "الأدب والنصوص",
+      "edition": "2019-2020 edition not confirmed from PDF cover",
+      "pdf_url": "https://liasinstitute.com/PDFs/12-1_%D8%A7%D9%84%D8%A3%D8%AF%D8%A8_%D9%88%D8%A7%D9%84%D9%86%D8%B5%D9%88%D8%B5.pdf",
+      "page_count": 80,
+      "contents_pdf_page_index": null,
+      "current_edition_verified": false,
+      "extraction": "contents_page_not_retrievable",
+      "chapters": []
+    }
+  ],
+  "pending_library_nodes": [
+    {
+      "id": "409a3723-ac04-4b9f-828f-d78a6fa16f5d",
+      "book": "الأدب والنصوص"
+    },
+    {
+      "id": "fa77fc34-0c9e-439c-819a-d21dd9193218",
+      "book": "المطالعة والإنشاء"
+    },
+    {
+      "id": "5fc3a3eb-1ac8-4c26-ad74-04a1116bc221",
+      "book": "النقد الأدبي"
+    }
+  ],
+  "next_step": "Confirm edition and copyrights, validate each printed heading against original page, then insert title-only records and original standalone learning supplements into existing book units without copying textbook prose."
+}
