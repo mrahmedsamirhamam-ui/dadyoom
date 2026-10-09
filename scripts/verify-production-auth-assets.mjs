@@ -49,27 +49,27 @@ for (const route of ["/", "/login", "/signup"]) {
     const batch = chunks.slice(offset, offset + 6);
     await Promise.all(batch.map(async (url) => {
       const asset = await get(url);
-    if (asset.status !== 200) {
-      // The deployment version may change while cached HTML still references
-      // hashed chunks from a previous build. Preserve hard failure, but log
-      // edge Ray ID and observed version so we can isolate that race.
-      const observedCommit = await deploymentCommit().catch(() => "unavailable");
-      console.error("AUTH_ASSET_MISSING", {
-        route,
-        httpStatus: asset.status,
-        chunkPath: new URL(url).pathname,
-        cfRay: asset.headers.get("cf-ray") || "unavailable",
-        htmlRay: response.headers.get("cf-ray") || "unavailable",
-        expectedCommit: expected,
-        startingCommit,
-        observedCommit,
-      });
-      throw new Error("AUTH_ASSET_CHUNK_HTTP_" + asset.status);
-    }
-    const type = asset.headers.get("content-type") || "";
-    if (!/javascript|ecmascript/.test(type)) {
-      throw new Error("AUTH_ASSET_CHUNK_BAD_CONTENT_TYPE_" + type);
-    }
+      if (asset.status !== 200) {
+        // The deployment version may change while cached HTML still references
+        // hashed chunks from a previous build. Preserve hard failure, but log
+        // edge Ray ID and observed version so we can isolate that race.
+        const observedCommit = await deploymentCommit().catch(() => "unavailable");
+        console.error("AUTH_ASSET_MISSING", {
+          route,
+          httpStatus: asset.status,
+          chunkPath: new URL(url).pathname,
+          cfRay: asset.headers.get("cf-ray") || "unavailable",
+          htmlRay: response.headers.get("cf-ray") || "unavailable",
+          expectedCommit: expected,
+          startingCommit,
+          observedCommit,
+        });
+        throw new Error("AUTH_ASSET_CHUNK_HTTP_" + asset.status);
+      }
+      const type = asset.headers.get("content-type") || "";
+      if (!/javascript|ecmascript/.test(type)) {
+        throw new Error("AUTH_ASSET_CHUNK_BAD_CONTENT_TYPE_" + type);
+      }
       await asset.arrayBuffer();
     }));
   }
