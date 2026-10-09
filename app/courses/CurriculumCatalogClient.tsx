@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useSiteLanguage, LocalizedText } from "@/components/i18n/LanguageProvider";
 
 import type {
   StudentCatalogUnit,
@@ -275,6 +276,8 @@ function curriculumName(name: string): string {
 export default function CurriculumCatalogClient({
   countries,
 }: Props) {
+  const { language } = useSiteLanguage();
+  const englishNames = new Intl.DisplayNames(["en"], { type: "region" });
   const initialCountry =
     countries.find((item) => item.code === "BH") ??
     countries[0];
@@ -296,18 +299,24 @@ export default function CurriculumCatalogClient({
 
   return (
     <main
-      dir="rtl"
+      dir={language === "en" ? "ltr" : "rtl"}
+      lang={language}
       className="min-h-screen w-full min-w-0 overflow-x-hidden px-3 py-5 sm:px-5"
     >
       <div className="mx-auto w-full min-w-0 max-w-[1500px] space-y-5">
         <section className="rounded-[2rem] border border-[#dfcfad] bg-[#fffaf0] p-5 sm:p-8">
           <p className="text-sm font-black text-[#a7772f]">
-            بوابة المناهج العربية
+            <LocalizedText ar="بوابة المناهج العربية" en="Arabic curriculum portal" />
           </p>
           <h1 className="mt-2 font-arabic-display text-3xl font-black leading-[1.45] text-[#123f39] sm:text-4xl">
-            تعلّم من موقعك الحقيقي في المنهج، ثم قوِّ المهارة
+            <LocalizedText ar="تعلّم من موقعك الحقيقي في المنهج، ثم قوِّ المهارة" en="Find your curriculum and strengthen your Arabic skills" />
           </h1>
-          <div className="mt-5 max-w-5xl space-y-4 font-arabic-reading leading-8 text-[#625b51]">
+          {language === "en" ? (
+            <div className="mt-5 max-w-5xl space-y-4 leading-8 text-[#625b51]">
+              <p>Explore Arabic across 22 countries. Choose your country and grade to find available curricula, lessons and skills practice.</p>
+              <p>Official national matches are shown separately from Dadyoom learning activities. A book reference is not a complete lesson: we only list verified lesson details when reliable sources are available. The lesson texts remain in Arabic so you can practise the language.</p>
+            </div>
+          ) : <div className="mt-5 max-w-5xl space-y-4 font-arabic-reading leading-8 text-[#625b51]">
             <p>
               تغطي ضاديوم الدول العربية عبر مسار أساسي موحد للمهارات، مع طبقات
               وطنية تربط الصفوف والكتب والمجالات بالمصادر الرسمية المتاحة. عندما
@@ -321,29 +330,29 @@ export default function CurriculumCatalogClient({
               الوطني، والثانية تقدم شرحًا وأسئلة وأنشطة أصلية في القراءة والكتابة
               والاستماع والتحدث والنحو والمفردات لتقوية المهارات حول المنهج.
             </p>
-          </div>
+          </div>}
 
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             <div className="rounded-2xl border border-[#e1d4ba] bg-white p-4">
               <div className="text-2xl font-black text-[#123f39]">22</div>
-              <div className="mt-1 text-sm font-bold text-[#6c6257]">دولة عربية ضمن التغطية</div>
+              <div className="mt-1 text-sm font-bold text-[#6c6257]"><LocalizedText ar="دولة عربية ضمن التغطية" en="Countries covered" /></div>
             </div>
             <div className="rounded-2xl border border-[#e1d4ba] bg-white p-4">
               <div className="text-2xl font-black text-[#123f39]">1–12+</div>
-              <div className="mt-1 text-sm font-bold text-[#6c6257]">صفوف ومستويات بحسب الدولة</div>
+              <div className="mt-1 text-sm font-bold text-[#6c6257]"><LocalizedText ar="صفوف ومستويات بحسب الدولة" en="Grades and levels" /></div>
             </div>
             <div className="rounded-2xl border border-[#e1d4ba] bg-white p-4">
               <div className="text-2xl font-black text-[#123f39]">4</div>
-              <div className="mt-1 text-sm font-bold text-[#6c6257]">مهارات لغوية مترابطة</div>
+              <div className="mt-1 text-sm font-bold text-[#6c6257]"><LocalizedText ar="مهارات لغوية مترابطة" en="Connected language skills" /></div>
             </div>
           </div>
 
           <div className="mt-6 flex flex-wrap gap-3 text-sm font-black">
             <Link href="/learn-arabic" className="rounded-xl bg-[#123f39] px-4 py-2.5 text-white">
-              اقرأ دليل تعلم العربية
+              <LocalizedText ar="اقرأ دليل تعلم العربية" en="English beginner guide" />
             </Link>
             <Link href="/about" className="rounded-xl border border-[#cdbb96] px-4 py-2.5 text-[#123f39]">
-              كيف نبني المطابقة؟
+              <LocalizedText ar="كيف نبني المطابقة؟" en="How we verify curricula" />
             </Link>
           </div>
         </section>
@@ -351,16 +360,15 @@ export default function CurriculumCatalogClient({
         <section className="overflow-hidden rounded-[2rem] border border-[#c9b47c] bg-[#123f39] p-5 text-white shadow-xl sm:p-8">
           <div className="min-w-0">
             <div className="inline-flex rounded-full bg-white/10 px-4 py-2 text-xs font-black text-[#ffe7ae]">
-              بوابة المناهج
+              <LocalizedText ar="بوابة المناهج" en="Explore curricula" />
             </div>
 
             <h2 className="mt-3 text-3xl font-black sm:text-4xl">
-              اختر الدولة والصف ثم المسار
+              <LocalizedText ar="اختر الدولة والصف ثم المسار" en="Choose your country, grade and study track" />
             </h2>
 
             <p className="mt-2 max-w-3xl leading-8 text-[#e9f3ef]">
-              يحمل ضاديوم الصف الذي اخترته فقط بدل تحميل آلاف الدروس دفعة
-              واحدة، لتبقى البوابة أسرع وأكثر استقرارًا.
+              <LocalizedText ar="يحمل ضاديوم الصف الذي اخترته فقط بدل تحميل آلاف الدروس دفعة واحدة، لتبقى البوابة أسرع وأكثر استقرارًا." en="Dadyoom loads only the grade you choose, so you can browse without downloading thousands of lessons at once." />
             </p>
           </div>
         </section>
@@ -368,11 +376,11 @@ export default function CurriculumCatalogClient({
         <section className="min-w-0 rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-4 sm:p-6">
           <div className="grid min-w-0 gap-3 sm:grid-cols-2">
             <SelectBox
-              label="الدولة"
+              label={language === "en" ? "Country" : "الدولة"}
               value={country}
               options={countries.map((item) => [
                 item.code,
-                item.name,
+                language === "en" ? englishNames.of(item.code) ?? item.name : item.name,
               ])}
               onChange={(value) => {
                 setCountry(value);
@@ -382,15 +390,11 @@ export default function CurriculumCatalogClient({
             />
 
             <SelectBox
-              label="الصف"
+              label={language === "en" ? "Grade" : "الصف"}
               value={String(gradeNumber)}
               options={gradeOptions.map((value) => [
                 String(value),
-                gradeName(
-                  value,
-                  "",
-                  country,
-                ),
+                language === "en" ? `Grade ${value}` : gradeName(value, "", country),
               ])}
               onChange={(value) => {
                 setGradeNumber(Number(value));
@@ -404,7 +408,7 @@ export default function CurriculumCatalogClient({
           <section className="rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-4 sm:p-6">
             <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
               <SelectBox
-                label="برنامج خاص — التعليم المستمر"
+                label={language === "en" ? "Special programme — Continuing education" : "برنامج خاص — التعليم المستمر"}
                 value={continuingLevel}
                 options={[
                   ["", "التعليم النظامي حسب الصف"],
