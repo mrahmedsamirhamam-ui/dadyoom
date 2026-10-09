@@ -8,6 +8,7 @@ import {
   currentAcademicYear,
 } from "@/lib/student/academic-year";
 import { getDashboardRequestViewer } from "@/lib/auth/request-viewer";
+import { maxGradeForCountry } from "@/lib/student/country-grade-limits";
 
 type LessonRow = {
   id: string;
@@ -74,9 +75,7 @@ export default async function StudentPage() {
 
   // Tunisia and Mauritania use a thirteenth school grade.
   // Keep all other countries on the existing 12-grade dashboard limit.
-  const maxStudentGrade = ["TN", "MR"].includes(
-    String(studentProfile.country ?? "").trim().toUpperCase(),
-  ) ? 13 : 12;
+  const maxStudentGrade = maxGradeForCountry(studentProfile.country);
 
   const advancedGrade =
     studentRole === "student"
