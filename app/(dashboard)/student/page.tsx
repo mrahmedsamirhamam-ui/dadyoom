@@ -72,6 +72,12 @@ export default async function StudentPage() {
   const studentRole =
     studentProfile.role?.trim().toLowerCase() ?? "";
 
+  // Tunisia and Mauritania use a thirteenth school grade.
+  // Keep all other countries on the existing 12-grade dashboard limit.
+  const maxStudentGrade = ["TN", "MR"].includes(
+    String(studentProfile.country ?? "").trim().toUpperCase(),
+  ) ? 13 : 12;
+
   const advancedGrade =
     studentRole === "student"
       ? advanceGradeForAcademicYear(
@@ -110,7 +116,7 @@ export default async function StudentPage() {
     (studentProfile.onboarding_completed !== true ||
       !Number.isInteger(Number(studentProfile.grade_number)) ||
       Number(studentProfile.grade_number) < 1 ||
-      Number(studentProfile.grade_number) > 12 ||
+      Number(studentProfile.grade_number) > maxStudentGrade ||
       interests.length === 0 ||
       !studentProfile.learning_goal?.trim() ||
       !studentProfile.preferred_learning_style?.trim())
@@ -136,7 +142,7 @@ export default async function StudentPage() {
     studentRole === "student" &&
     Number.isInteger(gradeNumber) &&
     gradeNumber >= 1 &&
-    gradeNumber <= 12;
+    gradeNumber <= maxStudentGrade;
 
   const lessonsRequest =
     hasStudentScope
