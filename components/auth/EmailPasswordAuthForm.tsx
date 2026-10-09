@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 
 import GoogleAuthButton from "@/components/auth/GoogleAuthButton";
+import { useSiteLanguage } from "@/components/i18n/LanguageProvider";
 import { getSupabaseBrowserClient } from "@/lib/auth/supabase-browser";
 import { getArabicCountryOptions } from "@/lib/countries";
 
@@ -130,7 +131,10 @@ export default function EmailPasswordAuthForm({
   mode: Mode;
   nextPath?: string;
 }) {
+  const { language } = useSiteLanguage();
+  const tr = (ar: string, en: string) => language === "en" ? en : ar;
   const countries = useMemo(() => getArabicCountryOptions(), []);
+  const englishRegionNames = useMemo(() => new Intl.DisplayNames(["en"], { type: "region" }), []);
 
   const [fullName, setFullName] = useState("");
   const [role, setRole] = useState("student");
@@ -374,16 +378,17 @@ export default function EmailPasswordAuthForm({
 
   return (
     <main
-      dir="rtl"
+      dir={language === "en" ? "ltr" : "rtl"}
+      lang={language}
       className="min-h-screen bg-[#fbf6ea] px-4 py-8 sm:px-6"
     >
       <section className="mx-auto w-full max-w-lg overflow-hidden rounded-[2rem] border border-[#e3d4b6] bg-white shadow-xl shadow-[#123f39]/10">
         <header className="bg-gradient-to-l from-[#123f39] to-[#1f665c] px-6 py-7 text-white">
           <p className="text-sm font-black text-[#f5cf7a]">
-            ضاديوم · بيت العربية الرقمي
+            {tr("ضاديوم · بيت العربية الرقمي", "Dadyoom · Your digital home for Arabic")}
           </p>
           <h1 className="mt-2 text-3xl font-black">
-            {signup ? "إنشاء حساب" : "تسجيل الدخول"}
+            {signup ? tr("إنشاء حساب", "Create an account") : tr("تسجيل الدخول", "Log in")}
           </h1>
         </header>
 
@@ -396,7 +401,7 @@ export default function EmailPasswordAuthForm({
               <>
                 <label className="block">
                   <span className="mb-1 block text-sm font-black text-[#123f39]">
-                    الاسم الكامل
+                    {tr("الاسم الكامل", "Full name")}
                   </span>
                   <input
                     value={fullName}
@@ -405,13 +410,13 @@ export default function EmailPasswordAuthForm({
                     }
                     autoComplete="name"
                     className="w-full rounded-xl border border-[#d8c7a6] px-4 py-3 text-base outline-none focus:border-[#123f39]"
-                    placeholder="الاسم الكامل"
+                    placeholder={tr("الاسم الكامل", "Full name")}
                   />
                 </label>
 
                 <label className="block">
                   <span className="mb-1 block text-sm font-black text-[#123f39]">
-                    نوع الحساب
+                    {tr("نوع الحساب", "Account type")}
                   </span>
                   <select
                     value={role}
@@ -420,17 +425,17 @@ export default function EmailPasswordAuthForm({
                     }
                     className="w-full rounded-xl border border-[#d8c7a6] px-4 py-3 text-base outline-none focus:border-[#123f39]"
                   >
-                    <option value="child">طفل</option>
-                    <option value="student">طالب</option>
-                    <option value="teacher">معلم</option>
-                    <option value="parent">ولي أمر</option>
-                    <option value="school">مدرسة</option>
+                    <option value="child">{tr("طفل", "Child")}</option>
+                    <option value="student">{tr("طالب", "Student")}</option>
+                    <option value="teacher">{tr("معلم", "Teacher")}</option>
+                    <option value="parent">{tr("ولي أمر", "Parent")}</option>
+                    <option value="school">{tr("مدرسة", "School")}</option>
                   </select>
                 </label>
 
                 <label className="block">
                   <span className="mb-1 block text-sm font-black text-[#123f39]">
-                    الدولة
+                    {tr("الدولة", "Country")}
                   </span>
                   <select
                     value={country}
@@ -441,7 +446,7 @@ export default function EmailPasswordAuthForm({
                   >
                     {countries.map((item) => (
                       <option key={item.code} value={item.code}>
-                        {item.name}
+                        {language === "en" ? englishRegionNames.of(item.code) ?? item.name : item.name}
                       </option>
                     ))}
                   </select>
@@ -451,7 +456,7 @@ export default function EmailPasswordAuthForm({
 
             <label className="block">
               <span className="mb-1 block text-sm font-black text-[#123f39]">
-                البريد الإلكتروني
+                {tr("البريد الإلكتروني", "Email address")}
               </span>
               <input
                 type="email"
@@ -469,7 +474,7 @@ export default function EmailPasswordAuthForm({
 
             <label className="block">
               <span className="mb-1 block text-sm font-black text-[#123f39]">
-                كلمة المرور
+                {tr("كلمة المرور", "Password")}
               </span>
               <input
                 type="password"
@@ -485,7 +490,7 @@ export default function EmailPasswordAuthForm({
                 required
                 minLength={8}
                 className="w-full rounded-xl border border-[#d8c7a6] px-4 py-3 text-base outline-none focus:border-[#123f39]"
-                placeholder="8 أحرف على الأقل"
+                placeholder={tr("8 أحرف على الأقل", "At least 8 characters")}
               />
             </label>
 
@@ -495,22 +500,22 @@ export default function EmailPasswordAuthForm({
               className="touch-manipulation w-full rounded-xl bg-[#123f39] px-5 py-3.5 font-black text-white transition active:scale-[0.98] disabled:opacity-60"
             >
               {loading
-                ? "جارٍ التنفيذ…"
+                ? tr("جارٍ التنفيذ…", "Please wait…")
                 : signup
-                  ? "إنشاء الحساب بالبريد"
-                  : "الدخول بالبريد"}
+                  ? tr("إنشاء الحساب بالبريد", "Sign up with email")
+                  : tr("الدخول بالبريد", "Log in with email")}
             </button>
           </form>
 
           {phase ? (
             <p className="rounded-xl bg-[#eef8f4] p-3 text-center text-sm font-bold text-[#123f39]">
-              {phase}
+              {language === "en" ? (phase.includes("Google") ? "Connecting to Google…" : "Processing…") : phase}
             </p>
           ) : null}
 
           {success ? (
             <p className="rounded-xl bg-emerald-50 p-3 text-center text-sm font-bold leading-6 text-emerald-800">
-              {success}
+              {language === "en" ? "Account created. Check your inbox if email confirmation is required." : success}
             </p>
           ) : null}
 
@@ -523,7 +528,7 @@ export default function EmailPasswordAuthForm({
           <div className="flex items-center gap-3">
             <span className="h-px flex-1 bg-[#eadfc9]" />
             <span className="text-xs font-black text-[#8a7654]">
-              أو
+              {tr("أو", "or")}
             </span>
             <span className="h-px flex-1 bg-[#eadfc9]" />
           </div>
@@ -537,13 +542,13 @@ export default function EmailPasswordAuthForm({
           />
 
           <p className="text-center text-sm font-bold text-[#685b47]">
-            {signup ? "لديك حساب بالفعل؟ " : "ليس لديك حساب؟ "}
+            {signup ? tr("لديك حساب بالفعل؟ ", "Already have an account? ") : tr("ليس لديك حساب؟ ", "New to Dadyoom? ")}
             <Link
               href={signup ? "/login" : "/signup"}
               prefetch={false}
               className="font-black text-[#123f39] underline"
             >
-              {signup ? "تسجيل الدخول" : "إنشاء حساب"}
+              {signup ? tr("تسجيل الدخول", "Log in") : tr("إنشاء حساب", "Sign up")}
             </Link>
           </p>
         </div>
