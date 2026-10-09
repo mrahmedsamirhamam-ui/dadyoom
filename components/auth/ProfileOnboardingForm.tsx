@@ -12,6 +12,7 @@ import {
 import {
   getArabicCountryOptions,
 } from "@/lib/countries";
+import { useSiteLanguage } from "@/components/i18n/LanguageProvider";
 
 const roles = [
   {
@@ -99,6 +100,12 @@ type Props = {
   defaultLearningStyle?: string;
 };
 
+const roleEnglish: Record<string,string> = { child:"Child", student:"Student", teacher:"Teacher", parent:"Parent", school:"School" };
+const noteEnglish: Record<string,string> = { child:"Early learning", student:"Learn and practise", teacher:"Teach and track students", parent:"Follow my children's progress", school:"Manage school learning" };
+const interestEnglish: Record<string,string> = { "القراءة":"Reading", "الكتابة":"Writing", "النحو":"Grammar", "الإملاء":"Spelling", "الشعر والأدب":"Poetry and literature", "القصص":"Stories", "المحادثة":"Conversation", "الخط العربي":"Arabic calligraphy" };
+const goalEnglish: Record<string,string> = { "التفوق في المنهج":"School achievement", "تقوية القراءة والفهم":"Reading and comprehension", "تحسين الكتابة والإملاء":"Writing and spelling", "تقوية النحو":"Grammar", "المحادثة والفصحى":"Conversation and formal Arabic", "تعلّم العربية من الصفر":"Arabic for beginners" };
+const styleEnglish: Record<string,string> = { visual:"Visual learning", practice:"Practice and quizzes", reading:"Reading and explanations", mixed:"A combination of methods" };
+
 export default function ProfileOnboardingForm({
   defaultName,
   defaultRole,
@@ -110,6 +117,9 @@ export default function ProfileOnboardingForm({
   defaultLearningStyle = "",
 }: Props) {
   const router = useRouter();
+  const { language } = useSiteLanguage();
+  const tr = (ar: string, en: string) => language === "en" ? en : ar;
+  const englishCountries = new Intl.DisplayNames(["en"], { type: "region" });
   const countries =
     useMemo(
       () =>
@@ -303,11 +313,11 @@ export default function ProfileOnboardingForm({
     <form
       onSubmit={submit}
       className="space-y-6"
-      dir="rtl"
+      dir={language === "en" ? "ltr" : "rtl"}
     >
       <div>
         <div className="mb-2 text-sm font-black text-[#4d4438]">
-          نوع الحساب
+          {tr("نوع الحساب", "Account type")}
         </div>
 
         <div className="grid grid-cols-2 gap-2">
@@ -331,10 +341,10 @@ export default function ProfileOnboardingForm({
                 }
               >
                 <span className="block font-black">
-                  {item.label}
+                  {language === "en" ? roleEnglish[item.value] : item.label}
                 </span>
                 <span className="mt-1 block text-[11px] font-semibold opacity-75">
-                  {item.note}
+                  {language === "en" ? noteEnglish[item.value] : item.note}
                 </span>
               </button>
             ),
@@ -344,7 +354,7 @@ export default function ProfileOnboardingForm({
 
       <label className="block">
         <span className="mb-2 block text-sm font-black text-[#4d4438]">
-          الاسم الكامل
+          {tr("الاسم الكامل", "Full name")}
         </span>
         <input
           required
@@ -361,7 +371,7 @@ export default function ProfileOnboardingForm({
 
       <label className="block">
         <span className="mb-2 block text-sm font-black text-[#4d4438]">
-          الدولة
+          {tr("الدولة", "Country")}
         </span>
 
         <select
@@ -380,7 +390,7 @@ export default function ProfileOnboardingForm({
                 key={item.code}
                 value={item.code}
               >
-                {item.name}
+                {language === "en" ? englishCountries.of(item.code) ?? item.name : item.name}
               </option>
             ),
           )}
@@ -397,7 +407,7 @@ export default function ProfileOnboardingForm({
         <>
           <label className="block">
             <span className="mb-2 block text-sm font-black text-[#4d4438]">
-              أنت في أي صف؟
+              {tr("أنت في أي صف؟", "Which grade are you in?")}
             </span>
 
             <select
@@ -411,7 +421,7 @@ export default function ProfileOnboardingForm({
               className="w-full rounded-xl border border-[#d8cbb3] bg-white px-4 py-3 font-black outline-none focus:border-[#32776d] focus:ring-4 focus:ring-[#32776d]/10"
             >
               <option value="">
-                اختر صفك
+                {tr("اختر صفك", "Choose your grade")}
               </option>
               {gradeOptions.filter(([value]) => value !== 13 || country === "MR").map(
                 ([
@@ -422,7 +432,7 @@ export default function ProfileOnboardingForm({
                     key={value}
                     value={value}
                   >
-                    {label}
+                    {language === "en" ? `Grade ${value}` : label}
                   </option>
                 ),
               )}
@@ -431,7 +441,7 @@ export default function ProfileOnboardingForm({
 
           <div>
             <div className="mb-2 text-sm font-black text-[#4d4438]">
-              ما الأشياء التي تحبها؟
+              {tr("ما الأشياء التي تحبها؟", "What are your interests?")}
             </div>
 
             <div className="flex flex-wrap gap-2">
@@ -444,7 +454,7 @@ export default function ProfileOnboardingForm({
 
                   return (
                     <button
-                      key={interest}
+                      key={language === "en" ? interestEnglish[interest] ?? interest : interest}
                       type="button"
                       onClick={() =>
                         toggleInterest(
@@ -469,7 +479,7 @@ export default function ProfileOnboardingForm({
 
           <label className="block">
             <span className="mb-2 block text-sm font-black text-[#4d4438]">
-              ما هدفك الأساسي؟
+              {tr("ما هدفك الأساسي؟", "What is your learning goal?")}
             </span>
 
             <select
@@ -482,12 +492,12 @@ export default function ProfileOnboardingForm({
               className="w-full rounded-xl border border-[#d8cbb3] bg-white px-4 py-3 outline-none focus:border-[#32776d]"
             >
               <option value="">
-                اختر هدفًا
+                {tr("اختر هدفًا", "Choose a goal")}
               </option>
               {goalOptions.map(
                 (goal) => (
                   <option
-                    key={goal}
+                    key={language === "en" ? goalEnglish[goal] ?? goal : goal}
                     value={goal}
                   >
                     {goal}
@@ -499,7 +509,7 @@ export default function ProfileOnboardingForm({
 
           <label className="block">
             <span className="mb-2 block text-sm font-black text-[#4d4438]">
-              كيف تحب أن تتعلم؟
+              {tr("كيف تحب أن تتعلم؟", "How do you prefer to learn?")}
             </span>
 
             <select
@@ -514,7 +524,7 @@ export default function ProfileOnboardingForm({
               className="w-full rounded-xl border border-[#d8cbb3] bg-white px-4 py-3 outline-none focus:border-[#32776d]"
             >
               <option value="">
-                اختر ما يناسبك
+                {tr("اختر ما يناسبك", "Choose a learning style")}
               </option>
               {styleOptions.map(
                 ([
@@ -525,7 +535,7 @@ export default function ProfileOnboardingForm({
                     key={value}
                     value={value}
                   >
-                    {label}
+                    {language === "en" ? styleEnglish[value] ?? label : label}
                   </option>
                 ),
               )}
@@ -545,10 +555,10 @@ export default function ProfileOnboardingForm({
         className="w-full rounded-xl bg-[#174f47] px-5 py-3.5 font-black text-white transition hover:bg-[#103f39] disabled:opacity-60"
       >
         {loading
-          ? "جارٍ تجهيز حسابك..."
+          ? tr("جارٍ تجهيز حسابك...", "Setting up your account…")
           : studentLike
-            ? "جهّز لوحتي حسب صفي"
-            : "ابدأ رحلتي في ضاديوم"}
+            ? tr("جهّز لوحتي حسب صفي", "Set up my dashboard")
+            : tr("ابدأ رحلتي في ضاديوم", "Start my Dadyoom journey")}
       </button>
     </form>
   );
