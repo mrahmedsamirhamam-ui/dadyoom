@@ -154,7 +154,12 @@ export default function EmailPasswordAuthForm({
       profile_service: "خدمة إعداد الملف الشخصي غير متاحة الآن. حاول مجددًا.",
       access_denied: "تم إلغاء تسجيل الدخول من موفر الحساب.",
     };
-    if (reason) setError(messages[reason] || "تعذر إكمال تسجيل الدخول. أعد المحاولة.");
+    // Defer the update; synchronous setState in an effect fails React's
+    // set-state-in-effect lint rule and can cascade during hydration.
+    if (reason) {
+      const message = messages[reason] || "تعذر إكمال تسجيل الدخول. أعد المحاولة.";
+      queueMicrotask(() => setError(message));
+    }
   }, []);
 
   async function resolveDestination(
