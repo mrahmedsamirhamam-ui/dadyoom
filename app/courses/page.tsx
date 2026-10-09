@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import CurriculumCatalogClient from "./CurriculumCatalogClient";
+import { maxGradeForCountry } from "@/lib/student/country-grade-limits";
 import { LocalizedText } from "@/components/i18n/LanguageProvider";
 import {
   ARAB_COUNTRY_CODES,
@@ -26,10 +27,7 @@ export default function CoursesPage() {
     .map((item) => ({
       code: item.code,
       name: item.name,
-      maxGrade:
-        item.code === "TN" || item.code === "MR"
-          ? 13
-          : 12,
+      maxGrade: maxGradeForCountry(item.code),
     }));
 
   return (
