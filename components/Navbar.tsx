@@ -1,3 +1,4 @@
+import { LocalizedText } from "@/components/i18n/LanguageProvider";
 import NotificationBell from "@/components/notifications/NotificationBell";
 import Link from "next/link";
 import DadyoomLogo from "@/components/brand/DadyoomLogo";
@@ -5,30 +6,30 @@ import LogoutButton from "@/components/auth/LogoutButton";
 import { createClient } from "@/lib/supabase/server";
 
 const links = [
-  { href: "/curriculum", label: "مناهج الدول" },
-  { href: "/courses", label: "المستكشف" },
-  { href: "/learn-arabic", label: "دليل العربية" },
-  { href: "/about", label: "عن ضاديوم" },
-  { href: "/journey", label: "رحلتي" },
-  { href: "/skills", label: "المهارات الأربع" },
-  { href: "/reading-challenge", label: "تحدي القراءة" },
-  { href: "/rewards", label: "الجوائز والشهادات" },
-  { href: "/dictionary", label: "قاموس السياق" },
-  { href: "/ask", label: "اسأل ضاد" },
+  { href: "/curriculum", label: "مناهج الدول", en: "Curricula" },
+  { href: "/courses", label: "المستكشف", en: "Course explorer" },
+  { href: "/learn-arabic", label: "دليل العربية", en: "Learn Arabic" },
+  { href: "/about", label: "عن ضاديوم", en: "About" },
+  { href: "/journey", label: "رحلتي", en: "My journey" },
+  { href: "/skills", label: "المهارات الأربع", en: "Four skills" },
+  { href: "/reading-challenge", label: "تحدي القراءة", en: "Reading challenge" },
+  { href: "/rewards", label: "الجوائز والشهادات", en: "Rewards" },
+  { href: "/dictionary", label: "قاموس السياق", en: "Dictionary" },
+  { href: "/ask", label: "اسأل ضاد", en: "Ask Dad" },
 ];
 
 function dashboardForRole(role?: string | null) {
   switch (role?.trim().toLowerCase()) {
     case "teacher":
-      return { href: "/teacher", label: "لوحة المعلم" };
+      return { href: "/teacher", label: "لوحة المعلم", en: "Teacher dashboard" };
     case "parent":
-      return { href: "/parent", label: "لوحة ولي الأمر" };
+      return { href: "/parent", label: "لوحة ولي الأمر", en: "Parent dashboard" };
     case "school":
-      return { href: "/school", label: "لوحة المدرسة" };
+      return { href: "/school", label: "لوحة المدرسة", en: "School dashboard" };
     case "admin":
-      return { href: "/admin", label: "لوحة الإدارة" };
+      return { href: "/admin", label: "لوحة الإدارة", en: "Admin dashboard" };
     default:
-      return { href: "/student", label: "لوحتي" };
+      return { href: "/student", label: "لوحتي", en: "My dashboard" };
   }
 }
 
@@ -63,7 +64,7 @@ export default async function Navbar() {
         <DadyoomLogo className="ml-auto" />
 
         <nav
-          aria-label="التنقل الرئيسي"
+          aria-label="Main navigation / التنقل الرئيسي"
           className="order-3 flex w-full gap-1 overflow-x-auto pb-1 text-sm font-black text-[#5c554d] lg:order-none lg:w-auto lg:flex-1 lg:justify-center lg:overflow-visible lg:pb-0"
         >
           {links.map((item) => (
@@ -73,7 +74,7 @@ export default async function Navbar() {
               prefetch={false}
               className="whitespace-nowrap rounded-full px-4 py-2.5 transition hover:bg-[#f3ead7] hover:text-[#123f39]"
             >
-              {item.label}
+              <LocalizedText ar={item.label} en={item.en} />
             </Link>
           ))}
                 <NotificationBell />
@@ -90,7 +91,7 @@ export default async function Navbar() {
               prefetch={false}
               className="rounded-full bg-[#123f39] px-4 py-2.5 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#0c332e]"
             >
-              {dashboard.label}
+              <LocalizedText ar={dashboard.label} en={dashboard.en} />
             </Link>
             <LogoutButton compact />
           </div>
@@ -101,14 +102,14 @@ export default async function Navbar() {
               prefetch={false}
               className="rounded-full border border-[#d7c59f] bg-[#fffaf0] px-4 py-2.5 text-sm font-black text-[#6b5d45] transition hover:border-[#b88a34] hover:text-[#123f39]"
             >
-              دخول
+              <LocalizedText ar="دخول" en="Log in" />
             </Link>
             <Link
               href="/signup"
               prefetch={false}
               className="rounded-full bg-[#123f39] px-4 py-2.5 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#0c332e]"
             >
-              حساب جديد
+              <LocalizedText ar="حساب جديد" en="Sign up" />
             </Link>
           </div>
         )}
