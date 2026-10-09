@@ -100,7 +100,7 @@ export default function EnglishHome() {
             </div>
           )}
         </div>
-        <Link href="/en/learn-arabic" className="mt-8 inline-flex rounded-2xl bg-[#123f39] px-6 py-4 font-bold text-white">Read the beginner's guide</Link>
+        <Link href="/en/learn-arabic" className="mt-8 inline-flex rounded-2xl bg-[#123f39] px-6 py-4 font-bold text-white">Read the beginner&apos;s guide</Link>
       </div>
     </section>
     <footer className="px-5 py-8 text-center text-[#625b51]">
