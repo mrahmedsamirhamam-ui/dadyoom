@@ -3,7 +3,8 @@ import Link from "next/link";
 import InteractiveLessonActivities from "@/features/lessons/components/InteractiveLessonActivities";
 import LessonSemanticSearch from "@/features/semantic-search/components/LessonSemanticSearch";
 import LessonMasteryCard from "@/features/lesson-mastery/components/LessonMasteryCard";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { isKnownBookReferenceId } from "@/lib/curriculum/verified-book-reference";
 import { createClient } from "@/lib/supabase/server";
 import { SITE_DESCRIPTION } from "@/lib/site";
 import { normalizeArabicDisplayText } from "@/lib/seo/normalize-arabic-display";
@@ -39,6 +40,13 @@ type LessonPageProps = {
 
 export async function generateMetadata({ params }: LessonPageProps): Promise<Metadata> {
   const { id } = await params;
+  if (isKnownBookReferenceId(id)) {
+    return {
+      title: "مرجع كتاب — فهرس الدروس قيد التحقق | ضاديوم",
+      robots: { index: false, follow: true },
+      alternates: { canonical: `/curriculum/books/${id}` },
+    };
+  }
   const supabase = await createClient();
 
   const {
@@ -221,6 +229,12 @@ export default async function LessonPage({
   params,
 }: LessonPageProps) {
   const { id } = await params;
+
+  // These legacy IDs refer to textbook titles, not assessable lessons.
+  // Redirect before loading the lesson bundle, tutor, mastery or XP widgets.
+  if (isKnownBookReferenceId(id)) {
+    redirect(`/curriculum/books/${id}`);
+  }
 
   const bundle =
     await getLessonPageBundle(id);

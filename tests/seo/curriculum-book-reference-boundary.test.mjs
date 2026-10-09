@@ -27,3 +27,17 @@ test("book card cannot be opened as scored lesson and counts are distinct", () =
   assert.ok(ui.includes("lesson.resourceKind !== \"book-reference\""));
   assert.ok(ui.includes("لا يظهر زر بدء درس أو نقاط تحصيل"));
 });
+
+test("book reference identity and direct lesson routing are protected", () => {
+  const references = readFileSync("lib/curriculum/verified-book-reference.ts", "utf8");
+  const lesson = readFileSync("app/lessons/[id]/page.tsx", "utf8");
+  const bookPage = readFileSync("app/curriculum/books/[id]/page.tsx", "utf8");
+  const ui = readFileSync("app/courses/CurriculumCatalogClient.tsx", "utf8");
+  expect(references).toContain("export function isKnownBookReferenceId");
+  expect(references).toContain("BOOK_REFERENCE_IDS");
+  expect(lesson).toContain('redirect(`/curriculum/books/${id}`)');
+  expect(lesson).toContain("isKnownBookReferenceId(id)");
+  expect(bookPage).toContain("robots: { index:false, follow:true }");
+  expect(bookPage).toContain("isBookReference({ countryCode");
+  expect(ui).toContain('href={`/curriculum/books/${lesson.id}`}');
+});
