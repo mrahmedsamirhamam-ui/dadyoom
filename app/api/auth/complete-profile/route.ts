@@ -237,7 +237,7 @@ export async function POST(
         gradeNumber,
       ) ||
       gradeNumber < 1 ||
-      gradeNumber > 12
+      gradeNumber > 13
     )
   ) {
     return NextResponse.json(

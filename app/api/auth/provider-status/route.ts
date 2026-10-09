@@ -15,7 +15,7 @@ export async function GET() {
     });
 
     if (!response.ok) {
-      return Response.json({ google: false, configured: false }, { status: 200 });
+      return Response.json({ google: null, configured: false }, { status: 200 });
     }
 
     const settings = (await response.json()) as {
@@ -23,10 +23,10 @@ export async function GET() {
     };
 
     return Response.json({
-      google: settings.external?.google === true,
-      configured: true,
+      google: typeof settings.external?.google === "boolean" ? settings.external.google : null,
+      configured: typeof settings.external?.google === "boolean",
     });
   } catch {
-    return Response.json({ google: false, configured: false }, { status: 200 });
+    return Response.json({ google: null, configured: false }, { status: 200 });
   }
 }

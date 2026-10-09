@@ -1,9 +1,10 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import { createServerClient } from "@supabase/ssr";
 
 import { isCountryCode } from "@/lib/countries";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { createClient } from "@/lib/supabase/server";
+import { SUPABASE_PUBLIC_URL, SUPABASE_PUBLIC_KEY } from "@/lib/supabase/public-config";
 
 const roleDestinations: Record<string, string> = {
   student: "/student",
@@ -199,7 +200,7 @@ function destinationForProfile(
         true ||
       !Number.isInteger(grade) ||
       grade < 1 ||
-      grade > 12
+      grade > 13
     )
   ) {
     return "/onboarding";
@@ -279,8 +280,43 @@ export async function GET(
     );
   }
 
-  const supabase =
-    await createClient();
+  // Explicitly bind SSR auth cookies to the redirect response, including
+  // when the runtime does not merge request-scoped cookie mutations.
+  const cookieStore = await cookies();
+  const authCookieWriters: Array<(response: NextResponse) => void> = [];
+  const supabase = createServerClient(
+    SUPABASE_PUBLIC_URL,
+    SUPABASE_PUBLIC_KEY,
+    {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll();
+        },
+        setAll(cookiesToSet) {
+          authCookieWriters.push((response: NextResponse) => {
+            cookiesToSet.forEach(({ name, value, options }) => {
+              response.cookies.set(name, value, options);
+            });
+          });
+          cookiesToSet.forEach(({ name, value, options }) => {
+            try {
+              cookieStore.set(name, value, options);
+            } catch {
+              // The response writer above persists cookies on redirects.
+            }
+          });
+        },
+      },
+    },
+  );
+
+  function redirectWithAuth(destination: string, clearIntent = false) {
+    const response = NextResponse.redirect(new URL(destination, origin));
+    authCookieWriters.forEach((writeCookies) => writeCookies(response));
+    if (clearIntent) response.cookies.delete("dadyoom_oauth_intent");
+    response.headers.set("Cache-Control", "no-store, private");
+    return response;
+  }
 
   const { error: exchangeError } =
     await supabase.auth.exchangeCodeForSession(
@@ -288,12 +324,8 @@ export async function GET(
     );
 
   if (exchangeError) {
-    return NextResponse.redirect(
-      new URL(
-        "/login?error=oauth_exchange",
-        origin,
-      ),
-    );
+    console.error("DADYOOM_OAUTH_PKCE_EXCHANGE_FAILED", exchangeError.message);
+    return redirectWithAuth("/login?error=oauth_exchange");
   }
 
   const {
@@ -307,12 +339,7 @@ export async function GET(
     !user ||
     !user.email
   ) {
-    return NextResponse.redirect(
-      new URL(
-        "/login?error=oauth_user",
-        origin,
-      ),
-    );
+    return redirectWithAuth("/login?error=oauth_user");
   }
 
   const admin =
@@ -328,9 +355,6 @@ export async function GET(
       )
       .eq("id", user.id)
       .maybeSingle();
-
-  const cookieStore =
-    await cookies();
 
   const intent =
     parseIntent(
@@ -365,22 +389,10 @@ export async function GET(
         .eq("id", user.id);
     }
 
-    const response =
-      NextResponse.redirect(
-        new URL(
-          destinationForProfile(
-            existingProfile,
-            requestedNext,
-          ),
-          origin,
-        ),
-      );
-
-    response.cookies.delete(
-      "dadyoom_oauth_intent",
+    return redirectWithAuth(
+      destinationForProfile(existingProfile, requestedNext),
+      true,
     );
-
-    return response;
   }
 
   const metadata =
@@ -478,12 +490,7 @@ export async function GET(
       profileError.message,
     );
 
-    return NextResponse.redirect(
-      new URL(
-        "/onboarding?error=profile_create",
-        origin,
-      ),
-    );
+    return redirectWithAuth("/onboarding?error=profile_create");
   }
 
   const destination =
@@ -497,17 +504,5 @@ export async function GET(
           "/student"
         );
 
-  const response =
-    NextResponse.redirect(
-      new URL(
-        destination,
-        origin,
-      ),
-    );
-
-  response.cookies.delete(
-    "dadyoom_oauth_intent",
-  );
-
-  return response;
+  return redirectWithAuth(destination, true);
 }

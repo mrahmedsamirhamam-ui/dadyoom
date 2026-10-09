@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 
 import GoogleAuthButton from "@/components/auth/GoogleAuthButton";
 import { getSupabaseBrowserClient } from "@/lib/auth/supabase-browser";
@@ -119,7 +118,6 @@ export default function EmailPasswordAuthForm({
   mode: Mode;
   nextPath?: string;
 }) {
-  const router = useRouter();
   const countries = useMemo(() => getArabicCountryOptions(), []);
 
   const [fullName, setFullName] = useState("");
@@ -132,6 +130,20 @@ export default function EmailPasswordAuthForm({
   const [phase, setPhase] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
+  // A callback failure must not look like a silent return to the login page.
+  useEffect(() => {
+    const reason = new URLSearchParams(window.location.search).get("error");
+    const messages: Record<string, string> = {
+      oauth_callback: "لم يصل تأكيد Google للموقع. حاول مرة أخرى.",
+      oauth_exchange: "لم تكتمل جلسة Google في المتصفح. افتح ضاديوم من الرابط الأصلي وأعد المحاولة.",
+      oauth_user: "لم نتمكن من التحقق من حساب Google. حاول مرة أخرى.",
+      profile_create: "تم الدخول، لكن تعذر إعداد الملف الشخصي. أعد المحاولة أو أكمل بياناتك.",
+      profile_service: "خدمة إعداد الملف الشخصي غير متاحة الآن. حاول مجددًا.",
+      access_denied: "تم إلغاء تسجيل الدخول من موفر الحساب.",
+    };
+    if (reason) setError(messages[reason] || "تعذر إكمال تسجيل الدخول. أعد المحاولة.");
+  }, []);
 
   async function resolveDestination(
     userId: string,
@@ -163,7 +175,7 @@ export default function EmailPasswordAuthForm({
         data?.onboarding_completed !== true ||
         !Number.isInteger(gradeNumber) ||
         gradeNumber < 1 ||
-        gradeNumber > 12
+        gradeNumber > 13
       )
     ) {
       return "/onboarding";
@@ -189,7 +201,7 @@ export default function EmailPasswordAuthForm({
       return;
     }
 
-    if (password.length < 8) {
+    if (mode === "signup" && password.length < 8) {
       setError("كلمة المرور يجب أن تكون 8 أحرف على الأقل.");
       return;
     }
@@ -236,16 +248,12 @@ export default function EmailPasswordAuthForm({
             : undefined,
         );
 
-        router.replace(
-          destination === "/onboarding"
-            ? destination
-            : safeNextPath(nextPath) ||
-                (typeof window !== "undefined"
-                  ? safeNextPath(
-                      new URLSearchParams(window.location.search).get("next"),
-                    )
-                  : "") ||
-                destination,
+        // A full navigation avoids unauthenticated Next router cache after
+        // the browser has persisted the Supabase session cookies.
+        const requested = safeNextPath(nextPath) ||
+          safeNextPath(new URLSearchParams(window.location.search).get("next"));
+        window.location.replace(
+          destination === "/onboarding" ? destination : requested || destination,
         );
         return;
       }
@@ -328,9 +336,7 @@ export default function EmailPasswordAuthForm({
 
       setPhase("تم إنشاء الحساب. جارٍ فتح ضاديوم…");
 
-      router.replace(
-        roleDestinations[role] || "/student",
-      );
+      window.location.replace(roleDestinations[role] || "/student");
     } catch (cause) {
       const message =
         cause instanceof Error

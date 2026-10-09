@@ -53,9 +53,10 @@ export default function GoogleAuthButton({
       cache: "no-store",
     })
       .then((response) => response.json())
-      .then((data: { google?: boolean }) => {
+      .then((data: { google?: boolean; configured?: boolean }) => {
         if (!cancelled) {
-          setProviderEnabled(data.google === true);
+          // Failure to fetch provider settings is not evidence Google is disabled.
+          setProviderEnabled(data.configured === true ? data.google === true : null);
         }
       })
       .catch(() => {

@@ -54,6 +54,7 @@ const gradeOptions = [
   [10, "الصف الأول الثانوي"],
   [11, "الصف الثاني الثانوي"],
   [12, "الصف الثالث الثانوي"],
+  [13, "السنة السابعة الثانوية (موريتانيا)"],
 ] as const;
 
 const interestOptions = [
@@ -412,7 +413,7 @@ export default function ProfileOnboardingForm({
               <option value="">
                 اختر صفك
               </option>
-              {gradeOptions.map(
+              {gradeOptions.filter(([value]) => value !== 13 || country === "MR").map(
                 ([
                   value,
                   label,
