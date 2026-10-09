@@ -23,3 +23,21 @@ test("responsive QA rejects persistent 5xx, 404, and login redirects", () => {
  expect(code).toContain("Boolean(response)");
  expect(code).toContain("await page.waitForTimeout(attempt * 1200)");
 });
+
+test("role route smoke rejects 404, unauthorized redirects, and HTML runtime error shells", () => {
+  const start = s.indexOf("async function roleRouteSmoke(");
+  const end = s.indexOf("async function humanUiJourneySmoke(", start);
+  expect(start).toBeGreaterThan(-1);
+  const code = s.slice(start, end);
+  expect(code).toContain("status === 200");
+  expect(code).toContain("observedPath === requiredPath");
+  expect(code).toContain("hasClientErrorShell");
+});
+
+test("login QA records false-200 client error shells and missing static assets", () => {
+  expect(s).toContain("E2E_LOGIN_CLIENT_ERROR_SHELL_");
+  expect(s).toContain('recordDiagnostic("login_client_error_shell"');
+  expect(s).toContain('recordDiagnostic("client_asset_http_error"');
+  expect(s).toContain('new URL(response.url()).pathname');
+  expect(s).not.toContain('response.headers()["set-cookie"]');
+});

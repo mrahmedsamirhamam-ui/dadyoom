@@ -186,6 +186,15 @@ function attachPageDiagnostics(page, role) {
   });
 
   page.on("response", response => {
+    // A missing hashed client chunk may surface as a 200 HTML error shell.
+    // Preserve its HTTP status and Cloudflare Ray ID without query strings.
+    if (response.status() >= 400 && response.url().includes("/_next/static/")) {
+      recordDiagnostic("client_asset_http_error", role, {
+        status: response.status(),
+        path: new URL(response.url()).pathname,
+        cfRay: response.headers()["cf-ray"] ?? null,
+      });
+    }
     if (response.status() >= 500) {
       recordDiagnostic("http5xx", role, {
         status: response.status(),
@@ -324,16 +333,22 @@ async function roleRouteSmoke(page, role, baseUrl) {
       },
     );
 
-    const status = response?.status() ?? 200;
+    const status = response?.status() ?? 0;
     const finalPath = new URL(page.url()).pathname;
     const bodyText = await page
       .locator("body")
       .innerText()
       .catch(() => "");
+    const observedPath = finalPath.replace(/\/+$/u, "") || "/";
+    const requiredPath = route.replace(/\/+$/u, "") || "/";
+    const hasClientErrorShell =
+      bodyText.includes("This page couldn’t load") ||
+      bodyText.includes("This page couldn't load");
 
     gate(
-      status < 500 &&
-        finalPath !== "/login" &&
+      status === 200 &&
+        observedPath === requiredPath &&
+        !hasClientErrorShell &&
         bodyText.trim().length > 0,
       `E2E_ROUTE_${role.toUpperCase()}_${route.replace(/[^a-z0-9]+/giu, "_")}_FAILED:${status}:${finalPath}`,
     );
@@ -1958,6 +1973,13 @@ async function login(
     },
   );
   const formHttpStatus = loginPageResponse?.status() ?? null;
+  if (formHttpStatus !== 200) {
+    recordDiagnostic("login_document_error", user.role, {
+      status: formHttpStatus,
+      cfRay: loginPageResponse?.headers()["cf-ray"] ?? null,
+    });
+    throw new Error(`E2E_LOGIN_DOCUMENT_HTTP_${formHttpStatus ?? "NO_RESPONSE"}`);
+  }
 
   const emailInput =
     page.locator(
@@ -1977,6 +1999,20 @@ async function login(
           "الدخول بالبريد",
       },
     );
+
+  const loginShellText = await page.locator("body").innerText().catch(() => "");
+  if (
+    (loginShellText.includes("This page couldn’t load") ||
+      loginShellText.includes("This page couldn't load")) &&
+    (await emailInput.count()) === 0
+  ) {
+    recordDiagnostic("login_client_error_shell", user.role, {
+      status: formHttpStatus,
+      cfRay: loginPageResponse?.headers()["cf-ray"] ?? null,
+      text: loginShellText.slice(0, 200),
+    });
+    throw new Error(`E2E_LOGIN_CLIENT_ERROR_SHELL_${user.role.toUpperCase()}`);
+  }
 
   try {
     await emailInput.waitFor({
