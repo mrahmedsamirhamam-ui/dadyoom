@@ -17,6 +17,11 @@ test("Cloudflare deployments finish atomically and check auth JS chunks", () => 
   expect(workflow).toContain("cancel-in-progress: false");
   expect(workflow).toContain("node scripts/verify-production-auth-assets.mjs");
   expect(gate).toContain("DADYOOM_AUTH_ASSET_GATE=PASS");
+  expect(gate).toContain("AUTH_ASSET_MISSING");
+  expect(gate).toContain('asset.headers.get("cf-ray")');
+  expect(gate).toContain("startingCommit");
+  expect(gate).toContain("observedCommit");
+  expect(gate).toContain("DEPLOY_VERSION_CHANGED_DURING_ASSETS_CHECK");
   expect(gate).toContain("/login");
   expect(gate).toContain("/signup");
 });
