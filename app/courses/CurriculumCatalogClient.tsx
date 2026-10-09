@@ -348,7 +348,7 @@ export default function CurriculumCatalogClient({
           </div>
 
           <div className="mt-6 flex flex-wrap gap-3 text-sm font-black">
-            <Link href="/learn-arabic" className="rounded-xl bg-[#123f39] px-4 py-2.5 text-white">
+            <Link href={language === "en" ? "/en/learn-arabic" : "/learn-arabic"} className="rounded-xl bg-[#123f39] px-4 py-2.5 text-white">
               <LocalizedText ar="اقرأ دليل تعلم العربية" en="English beginner guide" />
             </Link>
             <Link href="/about" className="rounded-xl border border-[#cdbb96] px-4 py-2.5 text-[#123f39]">
