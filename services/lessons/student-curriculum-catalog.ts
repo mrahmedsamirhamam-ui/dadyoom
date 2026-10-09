@@ -97,7 +97,15 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
       ? createAdminClient()
       : supabase;
 
-  const { data, error } = await catalogDb.from("units").select(`
+  // The public database currently holds more than 1,000 curriculum units.
+  // An unpaginated PostgREST select silently drops all units past its row cap.
+  // Fetch stable ID-ordered slices without changing status / preview policies.
+  const allUnits: RawUnit[] = [];
+  const unitsPageSize = 200;
+  for (let from = 0; ; from += unitsPageSize) {
+    const { data: unitPage, error: unitError } = await catalogDb
+      .from("units")
+      .select(`
     id,title,description,sort_order,unit_number,semester,
     grades!inner(
       id,name_ar,grade_number,
@@ -107,22 +115,38 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
       )
     ),
     lessons(id,title,summary,semester,official_content_scope,estimated_minutes,lesson_number,sort_order,status)
-  `);
+  `)
+      .order("id", { ascending: true })
+      .range(from, from + unitsPageSize - 1);
 
-  if (error) throw new Error(`تعذر تحميل المناهج: ${error.message}`);
+    if (unitError) throw new Error(`تعذر تحميل المناهج: ${unitError.message}`);
+    const batch = (unitPage ?? []) as unknown as RawUnit[];
+    allUnits.push(...batch);
+    if (batch.length < unitsPageSize) break;
+  }
 
-  let progress: Progress[] = [];
+  const progress: Progress[] = [];
   if (user) {
-    const { data: p } = await supabase
-      .from("student_lesson_progress")
-      .select("lesson_id,status,progress_percent,xp")
-      .eq("student_id", user.id);
-    progress = (p ?? []) as unknown as Progress[];
+    const progressPageSize = 250;
+    for (let from = 0; ; from += progressPageSize) {
+      const { data: p, error: progressError } = await supabase
+        .from("student_lesson_progress")
+        .select("id,lesson_id,status,progress_percent,xp")
+        .eq("student_id", user.id)
+        .order("id", { ascending: true })
+        .range(from, from + progressPageSize - 1);
+      if (progressError) {
+        throw new Error(`تعذر تحميل تقدم الدروس: ${progressError.message}`);
+      }
+      const batch = (p ?? []) as unknown as Progress[];
+      progress.push(...batch);
+      if (batch.length < progressPageSize) break;
+    }
   }
   const byLesson = new Map(progress.map((p) => [p.lesson_id, p]));
   const out: StudentCatalogUnit[] = [];
 
-  for (const raw of (data ?? []) as unknown as RawUnit[]) {
+  for (const raw of allUnits) {
     const grade = one(raw.grades);
     const curriculum = one(grade?.curricula);
     const country = one(curriculum?.countries);
