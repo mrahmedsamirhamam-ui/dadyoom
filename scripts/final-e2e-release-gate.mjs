@@ -190,6 +190,9 @@ function attachPageDiagnostics(page, role) {
       recordDiagnostic("http5xx", role, {
         status: response.status(),
         url: response.url().slice(0, 1200),
+        // Capture edge diagnostic IDs without recording cookies or auth headers.
+        cfRay: response.headers()["cf-ray"] ?? null,
+        cfCacheStatus: response.headers()["cf-cache-status"] ?? null,
       });
     }
   });
@@ -223,7 +226,7 @@ async function responsiveSmoke(page, role, baseUrl, expectedPath) {
       if (status > 0 && status < 500) break;
 
       console.warn(
-        `E2E_RESPONSIVE_LOAD_RETRY role=${role} viewport=${viewport.name} attempt=${attempt} http=${status}`,
+        `E2E_RESPONSIVE_LOAD_RETRY role=${role} viewport=${viewport.name} attempt=${attempt} http=${status} cfRay=${response?.headers()["cf-ray"] ?? "unavailable"}`,
       );
       if (attempt < 3) {
         await page.waitForTimeout(attempt * 1200);
