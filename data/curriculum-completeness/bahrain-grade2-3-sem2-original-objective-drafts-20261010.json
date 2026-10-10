@@ -1,0 +1,412 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-10",
+  "countryCode": "BH",
+  "grades": [
+    2,
+    3
+  ],
+  "semester": 2,
+  "origin": "DADYOOM_BH_G2_G3_T2_READING_OBJECTIVE_DRAFTS_20261010",
+  "sourceContext": {
+    "supportText": "Existing original Dadyoom reading passages stored in production lessons.content; individually checked 2026-10-10",
+    "historicalPlan": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+    "current2026to2027Semester2OfficialBookTOCConfirmed": false,
+    "officialBookTextCopied": false,
+    "sourceEditionStatus": "BHR_SEMESTER2_2026_2027_NOT_VERIFIED"
+  },
+  "publicationPolicy": "UNPUBLISHED_DRAFT_ONLY; TEACHER_REVIEW_REQUIRED; NO_AUTOMATIC_OFFICIAL_TEXTBOOK_ALIGNMENT",
+  "reviewChecklist": [
+    "Verify the passage still matches its live Dadyoom support text",
+    "Check grade-appropriate vocabulary and comprehensible distractors",
+    "Verify exactly one correct option and explanation",
+    "Review current Bahrain 2026-2027 book contents separately before any official alignment claim",
+    "Only approve through authorized editorial workflow; keep student progress and preexisting activities unchanged"
+  ],
+  "items": [
+    {
+      "lessonId": "47ae629d-9ce9-4d18-89ab-1d25bc0a2874",
+      "lessonTitle": "الدرس الأول: فرحة القرقاعون",
+      "grade": 2,
+      "semester": 2,
+      "prompt": "مَن شكر الجيران على استقبالهم اللطيف في النص الداعم؟",
+      "options": [
+        "أخو مريم",
+        "المعلّمة",
+        "صاحب المتجر",
+        "راشد"
+      ],
+      "correct": "أخو مريم",
+      "explanation": "ورد أن أخا مريم شكر الجيران على استقبالهم في ليلة القرقاعون.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "38594fae-4bf7-41c3-aa76-52590a1dbdda",
+      "lessonTitle": "الدرس التاسع: الرجل الطائر",
+      "grade": 2,
+      "semester": 2,
+      "prompt": "ماذا أوضحت المعلمة لفهد عن الاختراع؟",
+      "options": [
+        "أنه يحتاج إلى تجربة ودراسة قواعد السلامة",
+        "أنه لا يحتاج إلى اختبار",
+        "أن رسم جناحين يكفي للطيران",
+        "أنه لا يحتاج إلى تعلم"
+      ],
+      "correct": "أنه يحتاج إلى تجربة ودراسة قواعد السلامة",
+      "explanation": "أوضحت المعلمة أن تطوير الاختراع يحتاج إلى التجربة والتعلم واتباع قواعد السلامة.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "f56f7e48-3753-4b5f-a26b-e5df6c416d67",
+      "lessonTitle": "الدرس الثالث: ما أجمل صناعة أجدادنا!",
+      "grade": 2,
+      "semester": 2,
+      "prompt": "ماذا شاهد راشد في معرض الحِرَف القديمة؟",
+      "options": [
+        "سلالًا منسوجة وأدوات يدوية",
+        "طائرة كبيرة",
+        "سفينة فضاء",
+        "شاشات مطعم حديث"
+      ],
+      "correct": "سلالًا منسوجة وأدوات يدوية",
+      "explanation": "وصف النص سلالًا منسوجة وأدوات مصنوعة يدويًا رآها راشد.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "a18a07b1-5cf1-48e5-b22d-edac1cf553d1",
+      "lessonTitle": "الدرس الثامن: شجرة الحياة",
+      "grade": 2,
+      "semester": 2,
+      "prompt": "كيف اقترحت المعلمة دراسة شجرة الحياة؟",
+      "options": [
+        "البحث في مصادر موثوقة وملاحظتها دون إيذائها",
+        "قطع أغصانها لفحصها",
+        "الاعتماد على التخمين وحده",
+        "تجاهل الأسئلة عنها"
+      ],
+      "correct": "البحث في مصادر موثوقة وملاحظتها دون إيذائها",
+      "explanation": "دعت المعلمة إلى البحث في مصادر موثوقة وملاحظة الشجرة دون إضرار.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "f7ea6d0c-9381-4db6-987b-9b3a71ec1572",
+      "lessonTitle": "الدرس الثاني عشر: اختراع ينير الطريق",
+      "grade": 2,
+      "semester": 2,
+      "prompt": "ما التجربة التي اقترحها الأب على سامي؟",
+      "options": [
+        "تجربة مصباح جاهز ببطارية آمنة تحت إشراف بالغ",
+        "لمس الأسلاك المكشوفة",
+        "صنع دائرة كهربائية بلا إشراف",
+        "ترك المصباح في الماء"
+      ],
+      "correct": "تجربة مصباح جاهز ببطارية آمنة تحت إشراف بالغ",
+      "explanation": "اقترح الأب مصباحًا جاهزًا يعمل ببطارية آمنة مع إشراف شخص بالغ.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "8feb7c6a-3a80-4aa2-8f2d-24ff8792878c",
+      "lessonTitle": "الدرس الثاني: وطني الغالي",
+      "grade": 2,
+      "semester": 2,
+      "prompt": "ما العمل الذي اتفق عليه الأطفال في مدرسة نورة؟",
+      "options": [
+        "تنظيف زاوية القراءة",
+        "إغلاق مكتبة المدرسة",
+        "تمزيق لوحات الفصل",
+        "ترك الساحة متسخة"
+      ],
+      "correct": "تنظيف زاوية القراءة",
+      "explanation": "اتفق الأطفال على تنظيف زاوية القراءة تعبيرًا عن المسؤولية.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "854e3f92-2bbe-47c9-b790-abde711524c3",
+      "lessonTitle": "الدرس الحادي عشر: المطعم الذكي",
+      "grade": 2,
+      "semester": 2,
+      "prompt": "لماذا راجعت ليلى طلبها على شاشة المطعم؟",
+      "options": [
+        "لتتأكد من اختيار الوجبة المناسبة",
+        "لتغلق المطعم",
+        "لتلغي قائمة الطعام",
+        "لتمنع أخاها من القراءة"
+      ],
+      "correct": "لتتأكد من اختيار الوجبة المناسبة",
+      "explanation": "يذكر النص أن ليلى راجعت الطلب قبل تأكيده.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "ead90a2e-97c0-42d7-a11b-c4162cda7f21",
+      "lessonTitle": "الدرس الخامس: نادر في المزرعة",
+      "grade": 2,
+      "semester": 2,
+      "prompt": "ماذا سجّل نادر بعد جولته في المزرعة؟",
+      "options": [
+        "أسماء ثلاثة نباتات شاهدها",
+        "أسماء ثلاث سفن",
+        "قائمة طعام المطعم",
+        "أرقام لاعبي كرة القدم"
+      ],
+      "correct": "أسماء ثلاثة نباتات شاهدها",
+      "explanation": "سجّل نادر أسماء ثلاثة نباتات رآها أثناء زيارته للمزرعة.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "bb91b071-ed16-46b9-a4c3-144cd1fcabf8",
+      "lessonTitle": "الدرس الرابع: معالم من بلادي",
+      "grade": 2,
+      "semester": 2,
+      "prompt": "ما الذي قررت هند فعله بعد جولتها بين معالم البحرين؟",
+      "options": [
+        "أن تحكي لزميلاتها ما تعلمته",
+        "أن تهدم المباني القديمة",
+        "أن تمحو صور الأماكن",
+        "أن تتوقف عن زيارة المعالم"
+      ],
+      "correct": "أن تحكي لزميلاتها ما تعلمته",
+      "explanation": "في ختام النص قررت هند مشاركة ما تعلمته مع زميلاتها.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "ec7bff48-8d51-4404-a1c6-ed1efa394290",
+      "lessonTitle": "الدرس السابع: جاسم والببغاء",
+      "grade": 2,
+      "semester": 2,
+      "prompt": "عمّ سأل جاسم مشرف رعاية الطيور؟",
+      "options": [
+        "عن الطعام المناسب للببغاء",
+        "عن مواعيد قطارات المدينة",
+        "عن صنع سفينة فضاء",
+        "عن قائمة طعام المطعم"
+      ],
+      "correct": "عن الطعام المناسب للببغاء",
+      "explanation": "سأل جاسم المشرف عن الغذاء المناسب للطائر.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "0f5904ec-8aa7-46fa-894b-989c956bf8d9",
+      "lessonTitle": "الدرس السادس: النخلة",
+      "grade": 2,
+      "semester": 2,
+      "prompt": "ما فائدة النخلة التي ذكرتها أم حمد؟",
+      "options": [
+        "يستفيد الناس من ثمارها",
+        "تضيء الشوارع ليلًا",
+        "تصنع الأقلام وحدها",
+        "تطير بأغصانها"
+      ],
+      "correct": "يستفيد الناس من ثمارها",
+      "explanation": "شرحت الأم أن الناس يستفيدون من ثمار النخلة.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "3b6a6f10-36b6-44b7-8617-40ea2b583107",
+      "lessonTitle": "الدرس العاشر: سفينة الفضاء",
+      "grade": 2,
+      "semester": 2,
+      "prompt": "مِمَّ صنعت هبة نموذج سفينة الفضاء؟",
+      "options": [
+        "من علبة كرتونية نظيفة",
+        "من جذع نخلة",
+        "من حجارة ثقيلة",
+        "من ألواح زجاجية حادة"
+      ],
+      "correct": "من علبة كرتونية نظيفة",
+      "explanation": "بدأت هبة مجسمها بعلبة كرتونية نظيفة، ثم أضافت ورقًا للتفاصيل.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "358d0287-668c-4d61-b731-b7e9ae6e13a9",
+      "lessonTitle": "الدرس الأول: نداء الواجب (1)",
+      "grade": 3,
+      "semester": 2,
+      "prompt": "كيف ساهم ناصر في تجهيز معرض الكتب؟",
+      "options": [
+        "رتّب الطاولات ووزّع البطاقات",
+        "أغلق أبواب المعرض",
+        "خبّأ القصص عن الزوار",
+        "ألقى البطاقات في الساحة"
+      ],
+      "correct": "رتّب الطاولات ووزّع البطاقات",
+      "explanation": "بدأ ناصر بالمساعدة في ترتيب الطاولات وتوزيع البطاقات.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "d547f1ae-432e-4148-80c9-daf24453c1ba",
+      "lessonTitle": "الدرس التاسع: ذكريات من أيام الطفولة (1)",
+      "grade": 3,
+      "semester": 2,
+      "prompt": "ما القيمتان اللتان تعلمتهما الجدة من ألعاب طفولتها؟",
+      "options": [
+        "الصبر والتعاون",
+        "الكسل والغضب",
+        "التسرع والأنانية",
+        "الخوف والصمت"
+      ],
+      "correct": "الصبر والتعاون",
+      "explanation": "ذكر النص أن ألعاب الجدة البسيطة علمتها الصبر والتعاون.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "3e2691de-dcf4-4d0a-87d6-863d47e50bc6",
+      "lessonTitle": "الدرس الثالث: صباح الخير يا وطني",
+      "grade": 3,
+      "semester": 2,
+      "prompt": "ما الاقتراح الذي قدّمته فاطمة للمحافظة على المكان العام؟",
+      "options": [
+        "عدم رمي المخلفات في الساحة",
+        "ترك النفايات أمام المدرسة",
+        "إتلاف مقاعد الحديقة",
+        "هدر الماء في الممرات"
+      ],
+      "correct": "عدم رمي المخلفات في الساحة",
+      "explanation": "اقترحت فاطمة المحافظة على نظافة الساحة وعدم رمي المخلفات فيها.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "81f6cec0-b739-43c5-bae5-aa9fbb9d9818",
+      "lessonTitle": "الدرس الثامن: البلاستيك والصحة",
+      "grade": 3,
+      "semester": 2,
+      "prompt": "ماذا أحضر أحمد ووالده إلى المتجر للحدّ من المخلفات؟",
+      "options": [
+        "حقيبة قابلة لإعادة الاستخدام",
+        "أغلفة بلاستيكية إضافية",
+        "أكياسًا للاستعمال مرة واحدة",
+        "زجاجات بلا أغطية"
+      ],
+      "correct": "حقيبة قابلة لإعادة الاستخدام",
+      "explanation": "حمل الاثنان حقيبة قابلة لإعادة الاستخدام وفق النص الداعم.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "e1e62bee-7373-46b7-8aa9-53023dc9c7e7",
+      "lessonTitle": "الدرس الثاني عشر: طفولة مبدعة",
+      "grade": 3,
+      "semester": 2,
+      "prompt": "ماذا فعلت بسمة عندما لاحظت أن سقف مجسمها غير ثابت؟",
+      "options": [
+        "عدّلت تصميم المجسم",
+        "تركت المجسم كما هو دون تجربة",
+        "رمت كل الأدوات فورًا",
+        "منعت المعلم من رؤيته"
+      ],
+      "correct": "عدّلت تصميم المجسم",
+      "explanation": "راجعت بسمة النموذج وطوّرته بعد ملاحظة مشكلة في ثبات السقف.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "0affd0f0-5fa4-4a5a-9305-e97dbe94624b",
+      "lessonTitle": "الدرس الثاني: نداء الواجب (2)",
+      "grade": 3,
+      "semester": 2,
+      "prompt": "كيف ساعد ناصر زائر معرض الكتب؟",
+      "options": [
+        "أرشده إلى رف قصص الأطفال",
+        "طلب منه مغادرة المعرض",
+        "أخفى الكتب عنه",
+        "أعطاه عنوانًا خاطئًا عمدًا"
+      ],
+      "correct": "أرشده إلى رف قصص الأطفال",
+      "explanation": "اصطحب ناصر الزائر إلى الرف الصحيح حتى يجد قصص الأطفال.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "da526b1e-ec9c-47d0-9a12-787d93e0f1a4",
+      "lessonTitle": "الدرس الحادي عشر: مرح الطفولة",
+      "grade": 3,
+      "semester": 2,
+      "prompt": "على ماذا اتفق الأطفال في يوم الألعاب؟",
+      "options": [
+        "ألا يحتكر أحد الأدوات",
+        "ألا يتعاونوا",
+        "أن يمنعوا الصغار من اللعب",
+        "أن يستخدم طفل واحد كل الأدوات"
+      ],
+      "correct": "ألا يحتكر أحد الأدوات",
+      "explanation": "حرص الأطفال على مشاركة الأدوات في جو من التعاون.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "cb508e2a-0999-4462-8a15-f2ba53322b99",
+      "lessonTitle": "الدرس الخامس: معًا نحفظ بيئتنا (1)",
+      "grade": 3,
+      "semester": 2,
+      "prompt": "كيف تصرفت مريم حين وجدت قارورة ملقاة في الحديقة؟",
+      "options": [
+        "أخبرت المسؤول عن نظافة المكان",
+        "ألقتها في بركة الماء",
+        "تركتها دون إبلاغ أحد",
+        "مزّقتها إلى قطع صغيرة"
+      ],
+      "correct": "أخبرت المسؤول عن نظافة المكان",
+      "explanation": "لم تلمس مريم القارورة مباشرة، بل أبلغت المسؤول عن النظافة.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "72edeb7b-4506-4b17-902c-573e46f0a6e3",
+      "lessonTitle": "الدرس الرابع: حرف خالدة",
+      "grade": 3,
+      "semester": 2,
+      "prompt": "عمَّ كتبت خالدة في رسالتها إلى صديقتها؟",
+      "options": [
+        "عن زيارة مكان تراثي مع أسرتها",
+        "عن رحلة إلى محطة فضاء",
+        "عن اختبار في الرياضيات",
+        "عن مباراة في الملعب"
+      ],
+      "correct": "عن زيارة مكان تراثي مع أسرتها",
+      "explanation": "وصفت خالدة زيارة أسرية شاهدت خلالها صورًا وأدوات تراثية.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "ab745f1f-3314-4210-a0f0-c44b998b9c98",
+      "lessonTitle": "الدرس السابع: شكوى الفراشة",
+      "grade": 3,
+      "semester": 2,
+      "prompt": "مِمَّ كانت تشكو الفراشة في قصة أمل؟",
+      "options": [
+        "من إتلاف بعض الزوار للأزهار",
+        "من كثرة زهور الحديقة",
+        "من نظافة الحديقة",
+        "من حماية النباتات"
+      ],
+      "correct": "من إتلاف بعض الزوار للأزهار",
+      "explanation": "أحزنت الفراشة الأزهار التي أتلفها بعض الزوار لأنها تحتاج إلى الزهور السليمة.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "aace1299-589d-4f24-9cc6-1c1849242019",
+      "lessonTitle": "الدرس السادس: معًا نحفظ بيئتنا (2)",
+      "grade": 3,
+      "semester": 2,
+      "prompt": "أي عبارة كتبها الفريق الأول في اللوحات الإرشادية؟",
+      "options": [
+        "لا نهدر الماء",
+        "نقطع الأشجار",
+        "نهمل نظافة المدرسة",
+        "نترك الصنبور مفتوحًا"
+      ],
+      "correct": "لا نهدر الماء",
+      "explanation": "كتب الفريق الأول العبارة الداعية إلى ترشيد استعمال الماء.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    },
+    {
+      "lessonId": "0ab3e6ba-c3ea-4460-a659-70ee473a9216",
+      "lessonTitle": "الدرس العاشر: ذكريات من أيام الطفولة (2)",
+      "grade": 3,
+      "semester": 2,
+      "prompt": "كيف اقترحت الحفيدة الاحتفاظ بذكريات الجدة؟",
+      "options": [
+        "بتسجيل قصة قصيرة ترويها الجدة",
+        "بحذف صور العائلة",
+        "بإهمال القصص القديمة",
+        "بإلقاء الألعاب القديمة في الطريق"
+      ],
+      "correct": "بتسجيل قصة قصيرة ترويها الجدة",
+      "explanation": "اقترحت الحفيدة تسجيل قصة من الجدة حتى تبقى الذكريات محفوظة.",
+      "lessonSourceRefType": "DADYOOM_ORIGINAL_SUPPORT_TEXT"
+    }
+  ]
+}
