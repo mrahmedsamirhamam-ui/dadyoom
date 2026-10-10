@@ -46,3 +46,19 @@ test("login QA records false-200 client error shells and missing static assets",
   expect(s).toContain('new URL(response.url()).pathname');
   expect(s).not.toContain('response.headers()["set-cookie"]');
 });
+
+test("pricing QA waits for the authenticated role and rejects persistent edge failures", () => {
+  const sectionStart = s.indexOf('let pricingResponse = null;');
+  const sectionEnd = s.indexOf('E2E_PRICING_NAV_${role.toUpperCase()}=PASS', sectionStart);
+  expect(sectionStart).toBeGreaterThan(-1);
+  expect(sectionEnd).toBeGreaterThan(sectionStart);
+  const pricing = s.slice(sectionStart, sectionEnd);
+  expect(pricing).toContain('attempt <= 3');
+  expect(pricing).toContain('E2E_PRICING_LOAD_RETRY');
+  expect(pricing).toContain('pricingCode === 200 && pricingPath === "/pricing"');
+  expect(pricing).toContain('waitForFunction(');
+  expect(pricing).toContain('hasPricingDashboard');
+  expect(pricing).toContain('E2E_PRICING_ROLE_DIAGNOSTIC');
+  expect(pricing).toContain('E2E_PRICING_NAV_');
+  expect(pricing).not.toContain("getUser");
+});
