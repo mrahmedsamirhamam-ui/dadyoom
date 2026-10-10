@@ -30,6 +30,9 @@ jobs:
       - name: Build
         run: npm run build:vinext
 
+      - name: Verify packaged browser chunks before deploy
+        run: node scripts/verify-built-client-bundle.mjs
+
       - name: Deploy production when Cloudflare credentials are configured
         shell: bash
         env:
