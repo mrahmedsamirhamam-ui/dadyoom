@@ -1,0 +1,568 @@
+{
+  "schemaVersion": 1,
+  "auditedAt": "2026-10-10T11:36:02.169Z",
+  "countryCode": "BH",
+  "academicYear": "2026-2027",
+  "source": "Read-only live Supabase aggregation of published national-pathway lesson/question/lesson_activities records; excludes Dadyoom Core",
+  "verification": "ASSESSMENT_PRESENCE_ONLY_NOT_PEDAGOGICAL_OR_OFFICIAL_TOC_VERIFICATION",
+  "measurementNotes": [
+    "Legacy questions and lesson activities are different schemas; zero questions does not mean zero learning assessment.",
+    "Published objective activities include multiple_choice, fill_blank and matching only. Writing/reading/listening/speaking activities may still provide practice.",
+    "An activity marked reviewStatus=required requires human review. An absent reviewStatus does not prove educational approval.",
+    "Plan-scheduled classification does not prove each textbook TOC has been matched.",
+    "Second-part content is not the confirmed official 2026-2027 semester-two plan."
+  ],
+  "stats": {
+    "lessons": 1539,
+    "withoutLegacyQuestions": 1132,
+    "withoutObjectiveAssessment": 36,
+    "withPublishedMultipleChoice": 1503,
+    "reviewRequiredActivities": 544,
+    "lessonsWithReviewRequired": 458,
+    "currentPlanLessons": 943,
+    "currentPlanReviewRequiredActivities": 199,
+    "currentPlanWithoutObjective": 0
+  },
+  "buckets": [
+    {
+      "grade_number": 1,
+      "term": 1,
+      "scope": "plan-scheduled",
+      "lessons": 104,
+      "no_legacy_questions": 85,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 85,
+      "review_required_activities": 85,
+      "lessons_with_mcq": 104
+    },
+    {
+      "grade_number": 1,
+      "term": 2,
+      "scope": "official-book-unscheduled",
+      "lessons": 21,
+      "no_legacy_questions": 21,
+      "no_objective_assessment": 12,
+      "lessons_with_review_required": 9,
+      "review_required_activities": 9,
+      "lessons_with_mcq": 9
+    },
+    {
+      "grade_number": 2,
+      "term": 1,
+      "scope": "plan-scheduled",
+      "lessons": 44,
+      "no_legacy_questions": 4,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 4,
+      "review_required_activities": 4,
+      "lessons_with_mcq": 44
+    },
+    {
+      "grade_number": 2,
+      "term": 2,
+      "scope": "official-book-unscheduled",
+      "lessons": 15,
+      "no_legacy_questions": 15,
+      "no_objective_assessment": 12,
+      "lessons_with_review_required": 3,
+      "review_required_activities": 3,
+      "lessons_with_mcq": 3
+    },
+    {
+      "grade_number": 3,
+      "term": 1,
+      "scope": "plan-scheduled",
+      "lessons": 30,
+      "no_legacy_questions": 6,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 6,
+      "review_required_activities": 6,
+      "lessons_with_mcq": 30
+    },
+    {
+      "grade_number": 3,
+      "term": 2,
+      "scope": "official-book-unscheduled",
+      "lessons": 15,
+      "no_legacy_questions": 15,
+      "no_objective_assessment": 12,
+      "lessons_with_review_required": 3,
+      "review_required_activities": 3,
+      "lessons_with_mcq": 3
+    },
+    {
+      "grade_number": 4,
+      "term": 1,
+      "scope": "plan-scheduled",
+      "lessons": 85,
+      "no_legacy_questions": 10,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 10,
+      "review_required_activities": 10,
+      "lessons_with_mcq": 85
+    },
+    {
+      "grade_number": 4,
+      "term": 2,
+      "scope": "official-book-unscheduled",
+      "lessons": 75,
+      "no_legacy_questions": 75,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 75,
+      "review_required_activities": 107,
+      "lessons_with_mcq": 75
+    },
+    {
+      "grade_number": 5,
+      "term": 1,
+      "scope": "plan-scheduled",
+      "lessons": 85,
+      "no_legacy_questions": 15,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 15,
+      "review_required_activities": 27,
+      "lessons_with_mcq": 85
+    },
+    {
+      "grade_number": 5,
+      "term": 2,
+      "scope": "official-book-unscheduled",
+      "lessons": 66,
+      "no_legacy_questions": 66,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 66,
+      "review_required_activities": 98,
+      "lessons_with_mcq": 66
+    },
+    {
+      "grade_number": 6,
+      "term": 1,
+      "scope": "plan-scheduled",
+      "lessons": 57,
+      "no_legacy_questions": 3,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 3,
+      "review_required_activities": 3,
+      "lessons_with_mcq": 57
+    },
+    {
+      "grade_number": 6,
+      "term": 2,
+      "scope": "official-book-unscheduled",
+      "lessons": 47,
+      "no_legacy_questions": 47,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 47,
+      "review_required_activities": 57,
+      "lessons_with_mcq": 47
+    },
+    {
+      "grade_number": 7,
+      "term": 1,
+      "scope": "plan-scheduled",
+      "lessons": 64,
+      "no_legacy_questions": 47,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 47,
+      "review_required_activities": 47,
+      "lessons_with_mcq": 64
+    },
+    {
+      "grade_number": 7,
+      "term": 1,
+      "scope": "UNCLASSIFIED",
+      "lessons": 2,
+      "no_legacy_questions": 0,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 0,
+      "review_required_activities": 0,
+      "lessons_with_mcq": 2
+    },
+    {
+      "grade_number": 7,
+      "term": 2,
+      "scope": "UNCLASSIFIED",
+      "lessons": 37,
+      "no_legacy_questions": 37,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 37,
+      "review_required_activities": 37,
+      "lessons_with_mcq": 37
+    },
+    {
+      "grade_number": 8,
+      "term": 1,
+      "scope": "plan-scheduled",
+      "lessons": 59,
+      "no_legacy_questions": 31,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 17,
+      "review_required_activities": 17,
+      "lessons_with_mcq": 59
+    },
+    {
+      "grade_number": 8,
+      "term": 2,
+      "scope": "official-book-unscheduled",
+      "lessons": 31,
+      "no_legacy_questions": 31,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 31,
+      "review_required_activities": 31,
+      "lessons_with_mcq": 31
+    },
+    {
+      "grade_number": 9,
+      "term": 1,
+      "scope": "plan-scheduled",
+      "lessons": 23,
+      "no_legacy_questions": 0,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 0,
+      "review_required_activities": 0,
+      "lessons_with_mcq": 23
+    },
+    {
+      "grade_number": 9,
+      "term": 2,
+      "scope": "official-book-unscheduled",
+      "lessons": 28,
+      "no_legacy_questions": 28,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 0,
+      "review_required_activities": 0,
+      "lessons_with_mcq": 28
+    },
+    {
+      "grade_number": 10,
+      "term": 1,
+      "scope": "plan-scheduled",
+      "lessons": 69,
+      "no_legacy_questions": 55,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 0,
+      "review_required_activities": 0,
+      "lessons_with_mcq": 69
+    },
+    {
+      "grade_number": 10,
+      "term": 2,
+      "scope": "official-book-unscheduled",
+      "lessons": 83,
+      "no_legacy_questions": 83,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 0,
+      "review_required_activities": 0,
+      "lessons_with_mcq": 83
+    },
+    {
+      "grade_number": 11,
+      "term": 1,
+      "scope": "plan-scheduled",
+      "lessons": 84,
+      "no_legacy_questions": 62,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 0,
+      "review_required_activities": 0,
+      "lessons_with_mcq": 84
+    },
+    {
+      "grade_number": 11,
+      "term": 2,
+      "scope": "official-book-unscheduled",
+      "lessons": 98,
+      "no_legacy_questions": 98,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 0,
+      "review_required_activities": 0,
+      "lessons_with_mcq": 98
+    },
+    {
+      "grade_number": 12,
+      "term": 1,
+      "scope": "plan-scheduled",
+      "lessons": 62,
+      "no_legacy_questions": 43,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 0,
+      "review_required_activities": 0,
+      "lessons_with_mcq": 62
+    },
+    {
+      "grade_number": 12,
+      "term": 2,
+      "scope": "official-book-unscheduled",
+      "lessons": 78,
+      "no_legacy_questions": 78,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 0,
+      "review_required_activities": 0,
+      "lessons_with_mcq": 78
+    },
+    {
+      "grade_number": null,
+      "term": 1,
+      "scope": "plan-scheduled",
+      "lessons": 177,
+      "no_legacy_questions": 177,
+      "no_objective_assessment": 0,
+      "lessons_with_review_required": 0,
+      "review_required_activities": 0,
+      "lessons_with_mcq": 177
+    }
+  ],
+  "missingObjectiveLessons": [
+    {
+      "id": "3c0b38ac-62d1-4855-90a9-c9ba95f37350",
+      "title": "الحرف (هـ)",
+      "grade_number": 1,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "6577a2a6-d5f5-49f9-a619-9acf81990b52",
+      "title": "الحرفان (ط-ز)",
+      "grade_number": 1,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "ffb03161-fd9b-466b-bcf1-837efc0cdca3",
+      "title": "الحرفان (غ-ي)",
+      "grade_number": 1,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "edd67793-647a-465f-b0c1-fb6402db3412",
+      "title": "الحرفان (و-ث)",
+      "grade_number": 1,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "f3bca471-c6e5-42f1-9fd9-74dd569439b8",
+      "title": "الدرس التاسع: حرف (ض)",
+      "grade_number": 1,
+      "term": 2,
+      "source_pdf_url": "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_2/lessons/G1-Linguistic-structure-Thaa-W9-Ins/G1-Linguistic-structure-Thaa-W9-Ins.pdf"
+    },
+    {
+      "id": "e85c153c-3d69-471f-b93c-a4726b73485d",
+      "title": "الدرس الثالث: حرف (ك)",
+      "grade_number": 1,
+      "term": 2,
+      "source_pdf_url": "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_2/lessons/letter-K---aktashif-alharaf%281%29/letter-K---aktashif-alharaf%281%29.pdf"
+    },
+    {
+      "id": "ad069dd9-052d-47fe-8c03-5c4ff9381cdb",
+      "title": "الدرس الثامن: حرفا (خ) و(ذ)",
+      "grade_number": 1,
+      "term": 2,
+      "source_pdf_url": "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_2/lessons/Ershadat-Aktashef-5a2-wa-Thal/Ershadat-Aktashef-5a2-wa-Thal.pdf"
+    },
+    {
+      "id": "c1771cdd-3a3a-4778-9084-6dde00051ddb",
+      "title": "الدرس الرابع عشر: حرف (ظ)",
+      "grade_number": 1,
+      "term": 2,
+      "source_pdf_url": "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_2/lessons/G1-L14-Harf-Althaa-Aktashef-Alharf-W13%281%29/G1-L14-Harf-Althaa-Aktashef-Alharf-W13%281%29.pdf"
+    },
+    {
+      "id": "97ff78ad-d774-4a51-a860-8ca8c3d00ea2",
+      "title": "الدرس الرابع: حرفا (ف) و(أ)",
+      "grade_number": 1,
+      "term": 2,
+      "source_pdf_url": "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_2/lessons/Ershadat-aktashef-f-a/Ershadat-aktashef-f-a.pdf"
+    },
+    {
+      "id": "2d526483-4166-4ba6-af27-d8684fa219b2",
+      "title": "حرف (ش)",
+      "grade_number": 1,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "59e5c063-a3be-409d-a309-078aac5687f0",
+      "title": "حرف (ص)",
+      "grade_number": 1,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "cac8cbdd-c68e-42de-8e09-b0aa809c84a9",
+      "title": "حرف (ق)",
+      "grade_number": 1,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "47ae629d-9ce9-4d18-89ab-1d25bc0a2874",
+      "title": "الدرس الأول: فرحة القرقاعون",
+      "grade_number": 2,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "38594fae-4bf7-41c3-aa76-52590a1dbdda",
+      "title": "الدرس التاسع: الرجل الطائر",
+      "grade_number": 2,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "f56f7e48-3753-4b5f-a26b-e5df6c416d67",
+      "title": "الدرس الثالث: ما أجمل صناعة أجدادنا!",
+      "grade_number": 2,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "a18a07b1-5cf1-48e5-b22d-edac1cf553d1",
+      "title": "الدرس الثامن: شجرة الحياة",
+      "grade_number": 2,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "f7ea6d0c-9381-4db6-987b-9b3a71ec1572",
+      "title": "الدرس الثاني عشر: اختراع ينير الطريق",
+      "grade_number": 2,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "8feb7c6a-3a80-4aa2-8f2d-24ff8792878c",
+      "title": "الدرس الثاني: وطني الغالي",
+      "grade_number": 2,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "854e3f92-2bbe-47c9-b790-abde711524c3",
+      "title": "الدرس الحادي عشر: المطعم الذكي",
+      "grade_number": 2,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "ead90a2e-97c0-42d7-a11b-c4162cda7f21",
+      "title": "الدرس الخامس: نادر في المزرعة",
+      "grade_number": 2,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "bb91b071-ed16-46b9-a4c3-144cd1fcabf8",
+      "title": "الدرس الرابع: معالم من بلادي",
+      "grade_number": 2,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "ec7bff48-8d51-4404-a1c6-ed1efa394290",
+      "title": "الدرس السابع: جاسم والببغاء",
+      "grade_number": 2,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "0f5904ec-8aa7-46fa-894b-989c956bf8d9",
+      "title": "الدرس السادس: النخلة",
+      "grade_number": 2,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "3b6a6f10-36b6-44b7-8617-40ea2b583107",
+      "title": "الدرس العاشر: سفينة الفضاء",
+      "grade_number": 2,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "358d0287-668c-4d61-b731-b7e9ae6e13a9",
+      "title": "الدرس الأول: نداء الواجب (1)",
+      "grade_number": 3,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "d547f1ae-432e-4148-80c9-daf24453c1ba",
+      "title": "الدرس التاسع: ذكريات من أيام الطفولة (1)",
+      "grade_number": 3,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "3e2691de-dcf4-4d0a-87d6-863d47e50bc6",
+      "title": "الدرس الثالث: صباح الخير يا وطني",
+      "grade_number": 3,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "81f6cec0-b739-43c5-bae5-aa9fbb9d9818",
+      "title": "الدرس الثامن: البلاستيك والصحة",
+      "grade_number": 3,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "e1e62bee-7373-46b7-8aa9-53023dc9c7e7",
+      "title": "الدرس الثاني عشر: طفولة مبدعة",
+      "grade_number": 3,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "0affd0f0-5fa4-4a5a-9305-e97dbe94624b",
+      "title": "الدرس الثاني: نداء الواجب (2)",
+      "grade_number": 3,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "da526b1e-ec9c-47d0-9a12-787d93e0f1a4",
+      "title": "الدرس الحادي عشر: مرح الطفولة",
+      "grade_number": 3,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "cb508e2a-0999-4462-8a15-f2ba53322b99",
+      "title": "الدرس الخامس: معًا نحفظ بيئتنا (1)",
+      "grade_number": 3,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "72edeb7b-4506-4b17-902c-573e46f0a6e3",
+      "title": "الدرس الرابع: حرف خالدة",
+      "grade_number": 3,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "ab745f1f-3314-4210-a0f0-c44b998b9c98",
+      "title": "الدرس السابع: شكوى الفراشة",
+      "grade_number": 3,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "aace1299-589d-4f24-9cc6-1c1849242019",
+      "title": "الدرس السادس: معًا نحفظ بيئتنا (2)",
+      "grade_number": 3,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    },
+    {
+      "id": "0ab3e6ba-c3ea-4460-a659-70ee473a9216",
+      "title": "الدرس العاشر: ذكريات من أيام الطفولة (2)",
+      "grade_number": 3,
+      "term": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
+    }
+  ]
+}
