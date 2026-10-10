@@ -2,7 +2,6 @@
 // Read-only, reproducible product-closure evidence. No external network,
 // credentials, student data, migrations or publication mutations.
 import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
 
 const readJson = (name) =>
   JSON.parse(readFileSync(new URL(`../data/curriculum-completeness/${name}`, import.meta.url), "utf8"));
