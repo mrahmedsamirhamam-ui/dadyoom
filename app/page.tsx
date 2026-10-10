@@ -193,6 +193,9 @@ export default function HomePage() {
 
             <p className="mt-3 text-sm font-bold text-[#7b7165]">
               ضاديوم (Dadyoom) — بيت العربية الرقمي، لتعلّم العربية للناطقين بها ولغير الناطقين بها.
+              <span className="mt-1 block text-xs font-medium leading-6">
+                إذا بحثت عن «ضاضيوم»، فأنت تقصد «ضاديوم»؛ الاسم الرسمي لمنصة Dadyoom التعليمية.
+              </span>
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
