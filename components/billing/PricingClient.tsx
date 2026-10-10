@@ -42,24 +42,44 @@ export default function PricingClient() {
 
   useEffect(() => {
     let cancelled = false;
+    const transientStatuses = new Set([429, 502, 503, 504]);
+    const wait = (ms: number) =>
+      new Promise<void>((resolve) => setTimeout(resolve, ms));
 
-    void fetch("/api/billing/status", {
-      cache: "no-store",
-      credentials: "include",
-    })
-      .then(async (response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
+    // Some edge requests can briefly return 503 during deployment.
+    // Retry only transient HTTP/network errors and never infer an
+    // authenticated role or enable payment from a fallback.
+    const loadBillingStatus = async () => {
+      for (let attempt = 1; attempt <= 3 && !cancelled; attempt += 1) {
+        try {
+          const response = await fetch("/api/billing/status", {
+            cache: "no-store",
+            credentials: "include",
+          });
+          if (!response.ok) {
+            if (transientStatuses.has(response.status) && attempt < 3) {
+              await wait(attempt * 800);
+              continue;
+            }
+            throw new Error(`BILLING_HTTP_${response.status}`);
+          }
+          const payload = (await response.json()) as BillingStatus;
+          if (!cancelled) setStatus(payload);
+          return;
+        } catch (error) {
+          // Network errors may also be transient. Permanent HTTP failures
+          // do not retry, and no retry can grant a role or start checkout.
+          if (error instanceof TypeError && attempt < 3) {
+            await wait(attempt * 800);
+            continue;
+          }
+          if (!cancelled) setStatus(FALLBACK);
+          return;
         }
-        return (await response.json()) as BillingStatus;
-      })
-      .then((payload) => {
-        if (!cancelled) setStatus(payload);
-      })
-      .catch(() => {
-        if (!cancelled) setStatus(FALLBACK);
-      });
+      }
+    };
 
+    void loadBillingStatus();
     return () => {
       cancelled = true;
     };
