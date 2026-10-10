@@ -13,6 +13,7 @@ test("brand and canonical stay consistent", () => {
   expect(layout).toContain("siteName: SITE_NAME");
   expect(layout).toContain("new URL(siteUrl).hostname");
   expect(layout).toContain("alternateName: brandAlternateNames");
+  expect(layout).toContain('sameAs: ["https://github.com/mrahmedsamirhamam-ui/dadyoom"]');
   for (const alias of ["SITE_NAME_ARABIC_ALT,", "SITE_NAME_ARABIC_ALT_DADYOOM,", "SITE_NAME_ARABIC_ALT_SHORT,"]) {
     expect(layout).toContain(alias);
   }
