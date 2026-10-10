@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 import SchoolTeacherLinkCard from "@/features/school-link/components/SchoolTeacherLinkCard";
-import { createClient } from "@/lib/supabase/server";
+import { getDashboardRequestViewer } from "@/lib/auth/request-viewer";
 
 import {
   createSchoolAction,
@@ -77,25 +77,19 @@ export default async function SchoolPage({
     error: errorMessage,
   } = await searchParams;
 
-  const supabase = await createClient();
-
+  // Share the request-scoped auth/profile lookup already used by the
+  // dashboard and school layouts. The authorization checks below remain.
   const {
-    data: { user },
-    error: authError,
-  } = await supabase.auth.getUser();
+    supabase,
+    user,
+    userError: authError,
+    profile,
+    profileError,
+  } = await getDashboardRequestViewer();
 
   if (authError || !user) {
     redirect("/login");
   }
-
-  const {
-    data: profile,
-    error: profileError,
-  } = await supabase
-    .from("profiles")
-    .select("full_name,role,country")
-    .eq("id", user.id)
-    .maybeSingle();
 
   if (profileError || !profile) {
     throw new Error(
