@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSiteLanguage, LocalizedText } from "@/components/i18n/LanguageProvider";
+import { countCatalogItems, isDadyoomCoreCurriculum } from "@/lib/curriculum/catalog-item-counts";
 
 import type {
   StudentCatalogUnit,
@@ -99,14 +100,6 @@ const diff = {
 
 const SECONDARY_COMPLETE_ID =
   "__secondary_complete__";
-
-function isDadyoomCoreCurriculum(
-  name: string,
-): boolean {
-  return name.includes(
-    "المسار العربي الأساسي لضاديوم",
-  );
-}
 
 const bahrainContinuingLevels = [
   "الأول محو الأمية",
@@ -998,52 +991,14 @@ function CatalogScope({
     ? gradeUnits.filter((item) => item.id === unit)
     : gradeUnits;
 
-  const total = shown.reduce(
-    (sum, item) => sum + item.lessons.length,
-    0,
-  );
-
-  const done = shown.reduce(
-    (sum, item) =>
-      sum +
-      item.lessons.filter((lesson) => lesson.completed).length,
-    0,
-  );
-
-  const currentTrackLessonCount = gradeUnits.reduce(
-    (sum, item) => sum + item.lessons.length,
-    0,
-  );
-
-  const officialLessonCount =
-    gradeUnits
-      .filter(
-        (item) =>
-          !isDadyoomCoreCurriculum(
-            item.curriculum.name,
-          ),
-      )
-      .reduce(
-        (sum, item) =>
-          sum +
-          item.lessons.length,
-        0,
-      );
-
-  const supportingLessonCount =
-    gradeUnits
-      .filter(
-        (item) =>
-          isDadyoomCoreCurriculum(
-            item.curriculum.name,
-          ),
-      )
-      .reduce(
-        (sum, item) =>
-          sum +
-          item.lessons.length,
-        0,
-      );
+  const selectedCounts = countCatalogItems(shown);
+  const completeCounts = countCatalogItems(gradeUnits);
+  const total = selectedCounts.lessonCount;
+  const done = selectedCounts.completedLessonCount;
+  const currentTrackLessonCount = completeCounts.lessonCount;
+  const officialLessonCount = completeCounts.officialLessonCount;
+  const supportingLessonCount = completeCounts.supportingLessonCount;
+  const bookReferenceCount = completeCounts.bookReferenceCount;
 
   return (
     <>
@@ -1255,12 +1210,17 @@ function CatalogScope({
           SECONDARY_COMPLETE_ID ? (
             <>
               <span className="rounded-full bg-[#e8f3ff] px-3 py-2">
-                {officialLessonCount} عقدة/درس رسمي موثق
+                {officialLessonCount} درس من حزم المناهج (قد تكون التغطية جزئية)
               </span>
               <span className="rounded-full bg-[#eef9ef] px-3 py-2">
                 {supportingLessonCount} درس ضاديوم داعم
               </span>
             </>
+          ) : null}
+          {bookReferenceCount > 0 ? (
+            <span className="rounded-full bg-[#fff4df] px-3 py-2">
+              {bookReferenceCount} بطاقة مرجع كتاب — ليست دروسًا مستقلة
+            </span>
           ) : null}
           {curricula.length > 1 ? (
             <span className="rounded-full bg-[#e8f3ff] px-3 py-2">
