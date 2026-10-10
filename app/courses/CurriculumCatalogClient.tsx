@@ -1392,6 +1392,14 @@ function CatalogScope({
                       {lesson.title}
                     </h3>
 
+                    {lesson.sourcePlanYear && lesson.sourcePlanYear !== "2026-2027" ? (
+                      <span className="mt-2 inline-flex rounded-full bg-[#fef0e9] px-2.5 py-1 text-[10px] font-black text-[#9a4d20]">
+                        {language === "en"
+                          ? `Source: ${lesson.sourcePlanYear} historical plan — not verified for 2026–2027`
+                          : `مرجع من خطة ${lesson.sourcePlanYear} السابقة — لم يثبت ضمن مقرر 2026–2027`}
+                      </span>
+                    ) : null}
+
                     {lesson.officialContentScope ===
                     "official-book-unscheduled" ? (
                       <span className="mt-2 inline-flex rounded-full bg-[#fff4df] px-2.5 py-1 text-[10px] font-black text-[#7d5b1d]">
@@ -1402,7 +1410,8 @@ function CatalogScope({
                       <span className="mt-2 inline-flex rounded-full bg-[#e8f7ee] px-2.5 py-1 text-[10px] font-black text-[#245b3a]">
                         مقرر في الخطة الرسمية الحالية
                       </span>
-                    ) : !isDadyoomCoreCurriculum(item.curriculum.name) ? (
+                    ) : !isDadyoomCoreCurriculum(item.curriculum.name) &&
+                      !(lesson.sourcePlanYear && lesson.sourcePlanYear !== "2026-2027") ? (
                       <span className="mt-2 inline-flex rounded-full bg-[#fff4df] px-2.5 py-1 text-[10px] font-black text-[#7d5b1d]">
                         {language === "en" ? "Lesson source classification pending verification" : "تصنيف الدرس وفق مصدره وخطته قيد التحقق"}
                       </span>

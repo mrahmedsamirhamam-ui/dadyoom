@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { ARAB_COUNTRY_CODES } from "@/lib/countries";
 import { createClient } from "@/lib/supabase/server";
 import { isBookReference } from "@/lib/curriculum/verified-book-reference";
+import { extractBahrainPlanYear } from "@/lib/curriculum/source-plan-year";
 
 type Country = {
   id: string;
@@ -41,6 +42,7 @@ type RawLesson = {
   summary: string | null;
   semester: number | null;
   official_content_scope: "plan-scheduled" | "official-book-unscheduled" | null;
+  source_pdf_url: string | null;
   estimated_minutes: number | null;
   lesson_number: number | null;
   sort_order: number | null;
@@ -596,7 +598,7 @@ export async function GET(
     await supabase
       .from("lessons")
       .select(
-        "id,unit_id,title,summary,semester,official_content_scope,estimated_minutes,lesson_number,sort_order,status",
+        "id,unit_id,title,summary,semester,official_content_scope,source_pdf_url,estimated_minutes,lesson_number,sort_order,status",
       )
       .in(
         "unit_id",
@@ -834,6 +836,10 @@ export async function GET(
                         : Number(lesson.semester),
                     officialContentScope:
                       lesson.official_content_scope ?? null,
+                    sourcePlanYear: extractBahrainPlanYear(
+                      countryCode,
+                      lesson.source_pdf_url,
+                    ),
                     resourceKind: isBookReference({
                       countryCode,
                       unitTitle: raw.title,

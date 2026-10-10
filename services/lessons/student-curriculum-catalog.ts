@@ -8,6 +8,7 @@ export type StudentCatalogLesson = {
   id: string; title: string; objective: string | null;
   semester: number | null;
   officialContentScope: "plan-scheduled" | "official-book-unscheduled" | null;
+  sourcePlanYear?: string | null;
   resourceKind?: "lesson" | "book-reference";
   estimatedMinutes: number; difficulty: "beginner" | "intermediate" | "advanced";
   points: number; order: number; completed: boolean; progressPercent: number;
