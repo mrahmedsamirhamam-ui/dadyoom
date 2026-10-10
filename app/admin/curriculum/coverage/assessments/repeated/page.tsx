@@ -64,6 +64,7 @@ export default async function RepeatedAssessments({
        {" • "}سنة وثيقة المصدر: {extractBahrainPlanYear("BH",r.sourcePdfUrl)??"غير مستخلصة"}
        {" • "}صفحة المصدر: {r.sourcePageStart??"غير محددة"}</p>
      <div className="mt-3 flex flex-wrap gap-4 text-sm font-black text-[#15584e]">
+      <Link className="underline" href={`/admin/curriculum/coverage/assessments/repeated/${r.activityId}`}>افحص السؤال والاختيارات والإجابة</Link>
       <Link className="underline" href={`/lessons/${r.lessonId}`}>افتح الدرس</Link>
       {r.sourcePdfUrl?.startsWith("https://")?<a href={r.sourcePdfUrl} rel="noopener noreferrer" target="_blank" className="underline">مصدر الدرس ↗</a>:null}
      </div>
