@@ -38,6 +38,7 @@ export default function BahrainCurriculumEvidence() {
           اكتمال خطة التدريس لا يثبت وحده اكتمال فهرس الكتاب المدرسي.
           يلزم مصدر رسمي وفهرس مستقل ومطابقة عناصره 1:1 قبل اعتماد أي كتاب مكتملًا.
         </p>
+        <Link href="/admin/curriculum/coverage/unclassified" className="mt-4 inline-flex rounded-xl border border-[#cdbb96] bg-[#fff6dc] px-5 py-3 text-sm font-black text-[#123f39]">مراجعة سجلات الصف السابع غير محددة التصنيف ←</Link>
         <p className="mt-3 text-sm font-bold text-[#8b6426]">
           آخر تدقيق موثق: {audit.auditedAt} — النتائج لا تشمل تغييرات المصادر بعد هذا التاريخ.
         </p>
