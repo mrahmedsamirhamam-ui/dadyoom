@@ -21,3 +21,16 @@ test("grade seven textbook queue excludes Dadyoom core lessons", () => {
   expect(page).toContain("const rows = matchingRows.filter(x => !isSupporting(x))");
   expect(page).toContain("دروس ضاديوم الداعمة المستبعدة");
 });
+
+test("grade seven source audit does not silently truncate or drop older plan editions", () => {
+  const page = read("app/admin/curriculum/coverage/unclassified/page.tsx");
+  expect(page).toContain(".range(offset, offset + pageSize - 1)");
+  expect(page).not.toContain(".limit(120)");
+  expect(page).toContain("const otherEditions = rows.filter");
+  expect(page).toContain("سنوات خطط أخرى");
+  expect(page).toContain("if (result.error)");
+  expect(page).toContain("loadError = true");
+  expect(page).toContain("!loadError ? sections.map");
+  expect(page).not.toContain(".update(");
+  expect(page).not.toContain(".delete(");
+});
