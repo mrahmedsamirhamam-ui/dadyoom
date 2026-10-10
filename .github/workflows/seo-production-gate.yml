@@ -82,6 +82,15 @@ jobs:
           test "$sitemap_code" = "200"
 
           grep -Fq "dadyoom.dpdns.org" "$home"
+          # The public canonical homepage must visibly identify the common
+          # Arabic search misspelling for human visitors and crawlers.
+          # A JSON-LD alternateName alone must not be treated as sufficient.
+          if ! grep -Fq "إذا بحثت عن «ضاضيوم»" "$home" ||
+             ! grep -Fq "فأنت تقصد «ضاديوم»" "$home"; then
+            echo "SEO_BRAND_ARABIC_SPELLING=FAIL"
+            exit 1
+          fi
+          echo "SEO_BRAND_ARABIC_SPELLING=PASS"
           grep -Fq "Sitemap: $BASE/sitemap.xml" "$robots"
           grep -Fq "<loc>$BASE" "$sitemap"
 
