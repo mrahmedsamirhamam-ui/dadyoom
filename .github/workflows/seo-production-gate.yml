@@ -85,6 +85,34 @@ jobs:
           test "$brand_code" = "200"
 
           grep -Fq "dadyoom.dpdns.org" "$home"
+          # Verify the actual crawlable HTML, not only source constants.
+          node - "$home" <<'NODE'
+          const fs = require("node:fs");
+          const html = fs.readFileSync(process.argv[2], "utf8");
+          const blobs = [...html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
+          const nodes = blobs.flatMap((m) => {
+            const parsed = JSON.parse(m[1]);
+            const roots = Array.isArray(parsed) ? parsed : [parsed];
+            return roots.flatMap((root) => root["@graph"] || [root]);
+          });
+          const websites = nodes.filter((n) => n["@type"] === "WebSite");
+          if (websites.length !== 1 ||
+              websites[0].name !== "ضاديوم" ||
+              websites[0].url !== "https://dadyoom.dpdns.org/" ||
+              !websites[0].alternateName?.includes("Dadyoom") ||
+              !websites[0].alternateName?.includes("ضاضيوم")) {
+            throw new Error("SEO_PREFERRED_SITE_NAME=FAIL_STRUCTURED_DATA");
+          }
+          const metaTags = [...html.matchAll(/<meta\b[^>]*>/gi)].map((m) => m[0]);
+          const hasMeta = (key, value) => metaTags.some((tag) =>
+            tag.includes(key) && tag.includes('content="' + value + '"')
+          );
+          if (!hasMeta('property="og:site_name"', "ضاديوم") ||
+              !hasMeta('name="application-name"', "ضاديوم")) {
+            throw new Error("SEO_PREFERRED_SITE_NAME=FAIL_META");
+          }
+          console.log("SEO_PREFERRED_SITE_NAME=PASS");
+          NODE
           # The public canonical homepage must visibly identify the common
           # Arabic search misspelling for human visitors and crawlers.
           # A JSON-LD alternateName alone must not be treated as sufficient.
