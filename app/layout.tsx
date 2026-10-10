@@ -64,6 +64,9 @@ const structuredData = [
     url: `${siteUrl}/`,
     description: SITE_DESCRIPTION,
     logo: `${siteUrl}/pwa/icon-512.png`,
+    // The public, owner-maintained project profile links back to this
+    // canonical domain and explains the same official brand spellings.
+    sameAs: ["https://github.com/mrahmedsamirhamam-ui/dadyoom"],
   },
 ];
 
