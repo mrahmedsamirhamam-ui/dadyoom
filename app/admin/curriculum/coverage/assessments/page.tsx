@@ -55,6 +55,11 @@ export default function BahrainAssessmentQualityPage() {
         <Link href="/admin/curriculum/coverage/assessments/drafts" className="mt-3 inline-flex rounded-xl border border-[#cdbb96] bg-[#eef6ed] px-5 py-3 text-sm font-black text-[#123f39]">افتح المسودات وراجع الإجابات ←</Link>
       </section>
       <section className="rounded-3xl border border-[#d8c7a4] bg-white p-6">
+        <h2 className="text-xl font-black text-[#123f39]">مسودات فهم القراءة — الصفان الثاني والثالث</h2>
+        <p className="mt-2 text-sm leading-7">24 سؤالًا أصليًا مخصصًا لنصوص ضاديوم الداعمة (12 لكل صف)، محفوظة للمراجعة التربوية. هذه مسودات لا تثبت اكتمال كتاب الفصل الثاني 2026–2027، ولا تُنشر تلقائيًا.</p>
+        <Link href="/admin/curriculum/coverage/assessments/reading-drafts" className="mt-3 inline-flex rounded-xl border border-[#cdbb96] bg-[#eef6ed] px-5 py-3 text-sm font-black text-[#123f39]">راجع أسئلة الفهم وإجاباتها ←</Link>
+      </section>
+      <section className="rounded-3xl border border-[#d8c7a4] bg-white p-6">
         <h2 className="text-xl font-black text-[#123f39]">قائمة مهام المراجعة التربوية</h2>
         <p className="mt-2 text-sm leading-7">هناك {audit.reviewQueue.length} درسًا يحتوي على أنشطة موسومة بأنها تحتاج مراجعة، منها {audit.reviewQueue.filter(row => row.scope === "plan-scheduled").length} درسًا من الخطط الحالية. لا تعتمد الأنشطة تلقائيًا قبل فحصها.</p>
         <Link href="/admin/curriculum/coverage/assessments/review" className="mt-3 inline-flex rounded-xl bg-[#123f39] px-5 py-3 text-sm font-black text-white">افتح قائمة المراجعة وصفوفها ←</Link>
