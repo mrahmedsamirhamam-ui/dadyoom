@@ -5,11 +5,20 @@ test("brand and canonical stay consistent", () => {
   const site = file("lib/site.ts");
   expect(site).toContain('SITE_NAME = "ضاديوم"');
   expect(site).toContain('SITE_NAME_ARABIC_ALT_SHORT = "ضاديو"');
+  expect(site).toContain('SITE_NAME_ARABIC_ALT = "ضاضيوم"');
+  expect(site).toContain('SITE_NAME_ARABIC_ALT_DADYOOM = "داديوم"');
   expect(site).toContain("https://dadyoom.dpdns.org");
   const layout = file("app/layout.tsx");
   const homepage = file("app/page.tsx");
   expect(layout).toContain("siteName: SITE_NAME");
   expect(layout).toContain("new URL(siteUrl).hostname");
+  expect(layout).toContain("alternateName: brandAlternateNames");
+  for (const alias of ["SITE_NAME_ARABIC_ALT,", "SITE_NAME_ARABIC_ALT_DADYOOM,", "SITE_NAME_ARABIC_ALT_SHORT,"]) {
+    expect(layout).toContain(alias);
+  }
+  const about = file("app/about/page.tsx");
+  expect(about).toContain("وقد يكتبه بعض الزوار «ضاضيوم»");
+  expect(about).toContain('alternates: { canonical: "/about" }');
   expect(homepage).not.toContain('"@type": "WebSite"');
   expect(homepage).toContain("ضاديوم (Dadyoom) — بيت العربية الرقمي");
   expect(homepage).not.toContain("«ضاديو»");
