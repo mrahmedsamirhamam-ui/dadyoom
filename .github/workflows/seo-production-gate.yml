@@ -450,12 +450,48 @@ jobs:
 
           echo "SEO_LESSON_METADATA=PASS url=$lesson_url"
 
-      - name: Submit sitemap to IndexNow
+      # Never replay the full public sitemap on every CI run. IndexNow is a
+      # change notification, not a bulk request for Google indexing.
+      - name: Notify IndexNow of changed public landing pages only
         shell: bash
         env:
           DADYOOM_INDEXNOW_SITE: https://dadyoom.dpdns.org
         run: |
           set -euo pipefail
+          if [[ "$GITHUB_EVENT_NAME" != "push" ]]; then
+            echo "INDEXNOW=SKIPPED_NOT_A_PUSH"
+            exit 0
+          fi
+
+          changed="$(jq -r '.commits[]? | (.added[]?, .modified[]?, .removed[]?)' "$GITHUB_EVENT_PATH" | sort -u)"
+          if [[ -z "$changed" ]]; then
+            echo "INDEXNOW=SKIPPED_NO_CHANGED_FILES"
+            exit 0
+          fi
+
+          paths=()
+          if grep -Eq '^(app/page\.tsx|app/layout\.tsx|lib/site\.ts|components/brand/DadyoomLogo\.tsx)$' <<< "$changed"; then
+            paths+=("/")
+          fi
+          if grep -Eq '^(app/en/page\.tsx|app/layout\.tsx|lib/site\.ts|components/brand/DadyoomLogo\.tsx)$' <<< "$changed"; then
+            paths+=("/en")
+          fi
+          if grep -Eq '^(app/about/page\.tsx|app/layout\.tsx|lib/site\.ts)$' <<< "$changed"; then
+            paths+=("/about")
+          fi
+          if grep -Eq '^app/curriculum/page\.tsx$' <<< "$changed"; then
+            paths+=("/curriculum")
+          fi
+          if grep -Eq '^app/learn-arabic/page\.tsx$' <<< "$changed"; then
+            paths+=("/learn-arabic")
+          fi
+
+          if (( ${#paths[@]} == 0 )); then
+            echo "INDEXNOW=SKIPPED_NO_CHANGED_PUBLIC_LANDING_PAGES"
+            exit 0
+          fi
+
+          export DADYOOM_INDEXNOW_PATHS="$(printf '%s\n' "${paths[@]}")"
           node scripts/submit-indexnow.mjs
 
       - name: Verify legacy public hosts consolidate to canonical
