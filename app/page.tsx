@@ -176,6 +176,9 @@ export default function HomePage() {
             </div>
 
             <h1 className="mt-7 max-w-4xl font-arabic-display text-[2.65rem] font-black leading-[1.35] tracking-[-0.03em] text-[#123f39] sm:text-5xl lg:text-[4.35rem]">
+              <span className="mb-3 block font-arabic-reading text-lg tracking-normal text-[#174f47] sm:text-xl">
+                ضاديوم (Dadyoom) — بيت العربية الرقمي
+              </span>
               العربية التي تعرف
               <span className="block text-[#a7772f]">
                 أين أنت وإلى أين تذهب
