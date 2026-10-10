@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { LocalizedText } from "@/components/i18n/LanguageProvider";
 
-export const dynamic = "force-static";
-export const revalidate = 86400;
+export const dynamic = "force-dynamic";
 
 // The assessment hub is a navigation page, not a lesson or an indexable quiz.
 export const metadata: Metadata = {
@@ -12,7 +12,19 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-export default function AssessmentHubPage() {
+type AssessmentHubProps = {
+  searchParams: Promise<{ lessonId?: string | string[] }>;
+};
+
+export default async function AssessmentHubPage({
+  searchParams,
+}: AssessmentHubProps) {
+  const { lessonId } = await searchParams;
+  const id = typeof lessonId === "string" ? lessonId.trim() : "";
+  if (id) {
+    redirect(`/assessment/${encodeURIComponent(id)}`);
+  }
+
   return (
     <main className="min-h-screen bg-[#f7f1e6] px-4 py-12">
       <div className="mx-auto max-w-5xl">
