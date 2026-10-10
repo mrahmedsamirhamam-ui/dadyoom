@@ -2941,25 +2941,58 @@ async function canonicalLearningFlow(
     "E2E_ASSESSMENT_SESSION=PASS",
   );
 
-  await page.goto(
-    `${baseUrl}/lessons/${nextLesson.id}`,
-    {
-      waitUntil:
-        "networkidle",
-      timeout:
-        60_000,
-    },
-  );
+  // A functional SSR document can keep background requests open. Requiring
+  // "networkidle" incorrectly fails the release gate after 60s even when
+  // the lesson heading and learning content have already rendered.
+  // Instead require the final route, HTTP 200, and the lesson itself.
+  // A real missing lesson, unexpected redirect or persistent 5xx MUST fail.
+  let nextLessonResponse = null;
+  const expectedNextPath = `/lessons/${nextLesson.id}`;
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    let navigationError = null;
+    try {
+      nextLessonResponse = await page.goto(
+        `${baseUrl}${expectedNextPath}`,
+        { waitUntil: "domcontentloaded", timeout: 45_000 },
+      );
+    } catch (error) {
+      navigationError = error;
+    }
+    const status = nextLessonResponse?.status() ?? 0;
+    const finalPath = new URL(page.url()).pathname;
+    if (!navigationError && status === 200 && finalPath === expectedNextPath) {
+      break;
+    }
+    const transient = [0, 429, 502, 503, 504].includes(status)
+      && (navigationError === null || navigationError?.name === "TimeoutError");
+    console.warn(
+      `E2E_NEXT_LESSON_NAV attempt=${attempt} http=${status} path=${finalPath} cfRay=${nextLessonResponse?.headers()["cf-ray"] ?? "unavailable"} error=${navigationError instanceof Error ? navigationError.message : "none"}`,
+    );
+    recordDiagnostic("next-lesson-navigation", "student", {
+      attempt, status, finalPath,
+      cfRay: nextLessonResponse?.headers()["cf-ray"] ?? null,
+      error: navigationError instanceof Error ? navigationError.message : null,
+    });
+    if (!transient || attempt === 3) {
+      gate(false, `E2E_NEXT_LESSON_NAV_FAILED:${status}:${finalPath}`);
+    }
+    nextLessonResponse = null;
+    await page.waitForTimeout(attempt * 1200);
+  }
 
-  const nextLessonBody =
-    await page
-      .locator("body")
-      .innerText();
-
+  // Wait for meaningful, user-visible content, not unrelated sockets, fonts,
+  // analytics or optional client-side network activity.
+  await page.getByRole("heading", { level: 1 }).first()
+    .waitFor({ state: "visible", timeout: 20_000 });
+  const nextLessonBody = await page.locator("body").innerText();
+  const hasClientErrorShell =
+    nextLessonBody.includes("This page couldn’t load") ||
+    nextLessonBody.includes("This page couldn't load");
   gate(
-    nextLessonBody.includes(
-      nextLesson.title,
-    ),
+    nextLessonResponse?.status() === 200 &&
+      new URL(page.url()).pathname === expectedNextPath &&
+      !hasClientErrorShell &&
+      nextLessonBody.includes(nextLesson.title),
     "E2E_NEXT_LESSON_ACCESS_FAILED",
   );
 
