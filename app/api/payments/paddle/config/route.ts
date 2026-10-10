@@ -152,7 +152,8 @@ export async function POST() {
         message: "ضاديوم مجاني حاليًا؛ لا توجد اشتراكات مدفوعة.",
       },
       {
-        status: 503,
+        // Expected policy denial, not a Cloudflare/service outage.
+        status: 403,
         headers: { "Cache-Control": "no-store" },
       },
     );

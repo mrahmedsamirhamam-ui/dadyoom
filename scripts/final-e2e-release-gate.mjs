@@ -5974,7 +5974,7 @@ try {
       // A live environment must never expose an active checkout.
       if (paddleEnvironment === "production") {
         gate(
-          paddleConfig.status === 503 && paddleError === "PAYMENTS_PAUSED",
+          paddleConfig.status === 403 && paddleError === "PAYMENTS_PAUSED",
           `E2E_LIVE_PADDLE_CHECKOUT_NOT_PAUSED:${paddleConfig.status}:${paddleError}`,
         );
       }
