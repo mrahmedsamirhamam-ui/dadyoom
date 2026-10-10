@@ -20,12 +20,35 @@ async function deploymentCommit() {
 }
 
 async function verifyDeployment() {
-  const actual = await deploymentCommit();
-  if (expected && actual !== expected) {
-    console.error("AUTH_ASSET_DEPLOY_SHA_MISMATCH", { expected, actual });
-    throw new Error("DEPLOY_VERSION_CHANGED_DURING_ASSETS_CHECK");
+  // Different Cloudflare edges may briefly serve old and new versions
+  // during rollout. Recheck with bounded backoff rather than treating one
+  // stale edge response as a confirmed broken deployment.
+  let lastObserved = "";
+  for (let attempt = 1; attempt <= 5; attempt += 1) {
+    try {
+      lastObserved = await deploymentCommit();
+      if (!expected || lastObserved === expected) return lastObserved;
+      console.warn("AUTH_ASSET_DEPLOY_VERSION_RETRY", {
+        attempt,
+        expected,
+        actual: lastObserved,
+      });
+    } catch (error) {
+      if (attempt === 5) throw error;
+      console.warn("AUTH_ASSET_DEPLOY_READ_RETRY", {
+        attempt,
+        error: error instanceof Error ? error.message : String(error),
+      });
+    }
+    if (attempt < 5) {
+      await new Promise((resolve) => setTimeout(resolve, attempt * 500));
+    }
   }
-  return actual;
+  console.error("AUTH_ASSET_DEPLOY_SHA_MISMATCH", {
+    expected,
+    actual: lastObserved,
+  });
+  throw new Error("DEPLOY_VERSION_CHANGED_DURING_ASSETS_CHECK");
 }
 
 await verifyDeployment();
