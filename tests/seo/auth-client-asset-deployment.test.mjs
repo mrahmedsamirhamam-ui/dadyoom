@@ -29,6 +29,11 @@ test("Cloudflare deployments finish atomically and check auth JS chunks", () => 
   expect(gate).toContain("startingCommit");
   expect(gate).toContain("observedCommit");
   expect(gate).toContain("DEPLOY_VERSION_CHANGED_DURING_ASSETS_CHECK");
+  expect(gate).toContain("attempt <= 5");
+  expect(gate).toContain("AUTH_ASSET_DEPLOY_VERSION_RETRY");
+  expect(gate).toContain("AUTH_ASSET_DEPLOY_READ_RETRY");
+  expect(gate).toContain('lastObserved === expected');
+  expect(gate).toContain('throw new Error("DEPLOY_VERSION_CHANGED_DURING_ASSETS_CHECK")');
   expect(gate).toContain("/login");
   expect(gate).toContain("/signup");
 });
