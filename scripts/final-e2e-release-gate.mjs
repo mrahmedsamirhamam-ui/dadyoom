@@ -328,19 +328,48 @@ async function roleRouteSmoke(page, role, baseUrl) {
     // client-side error shells still fail the strict route gate below.
     let response = null;
     for (let attempt = 1; attempt <= 3; attempt += 1) {
-      response = await page.goto(
-        `${baseUrl}${route}`,
-        {
-          waitUntil: "domcontentloaded",
-          timeout: 60_000,
-        },
-      );
+      let navigationError = null;
+      try {
+        response = await page.goto(
+          `${baseUrl}${route}`,
+          {
+            waitUntil: "domcontentloaded",
+            timeout: 60_000,
+          },
+        );
+      } catch (error) {
+        navigationError = error;
+        response = null;
+      }
       const http = response?.status() ?? 0;
-      if (http === 200 || ![429, 502, 503, 504].includes(http)) break;
-      console.warn(
-        `E2E_ROUTE_RETRY role=${role} route=${route} attempt=${attempt} http=${http} cfRay=${response?.headers()["cf-ray"] ?? "unavailable"}`,
-      );
-      if (attempt < 3) await page.waitForTimeout(attempt * 1500);
+      if (!navigationError && http === 200) break;
+      // Chromium may abort an in-flight document request while the app
+      // navigates. A single aborted navigation is not proof of a broken
+      // page, but a persistent abort must still fail the release gate.
+      const transientNavigation =
+        navigationError instanceof Error &&
+        (navigationError.message.includes("net::ERR_ABORTED") ||
+          navigationError.name === "TimeoutError");
+      const transientHttp = !navigationError &&
+        [429, 502, 503, 504].includes(http);
+      if (navigationError || transientHttp) {
+        console.warn(
+          `E2E_ROUTE_RETRY role=${role} route=${route} attempt=${attempt} http=${http} cfRay=${response?.headers()["cf-ray"] ?? "unavailable"} error=${navigationError instanceof Error ? navigationError.message : "none"}`,
+        );
+        recordDiagnostic("role-route-navigation", role, {
+          route, attempt, http,
+          cfRay: response?.headers()["cf-ray"] ?? null,
+          error: navigationError instanceof Error ? navigationError.message : null,
+        });
+      }
+      if (!transientNavigation && !transientHttp) {
+        if (navigationError) throw navigationError;
+        break;
+      }
+      if (attempt === 3) {
+        gate(false, `E2E_ROUTE_NAV_EXHAUSTED role=${role} route=${route} http=${http}`);
+      }
+      await page.waitForTimeout(attempt * 1500);
     }
 
     const status = response?.status() ?? 0;
