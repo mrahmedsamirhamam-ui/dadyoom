@@ -47,7 +47,7 @@ async function verifyKey() {
 // resubmit thousands of unchanged sitemap entries to IndexNow.
 function getChangedUrls() {
   const entries = (process.env.DADYOOM_INDEXNOW_PATHS || "")
-    .split(/[\\n,]+/u)
+    .split(/[\n,]+/u)
     .map((value) => value.trim())
     .filter(Boolean);
 
@@ -62,7 +62,7 @@ function getChangedUrls() {
     const parsed = new URL(entry, site);
     if (parsed.origin !== site.origin || parsed.search || parsed.hash ||
         !parsed.pathname.startsWith("/") ||
-        /^\\/(?:api|admin|student|teacher|school|parent|child|login|signup|onboarding|payments|profile)(?:\\/|$)/u.test(parsed.pathname)) {
+        /^\/(?:api|admin|student|teacher|school|parent|child|login|signup|onboarding|payments|profile)(?:\/|$)/u.test(parsed.pathname)) {
       throw new Error("INDEXNOW_NONPUBLIC_OR_OFFSITE_URL");
     }
     const canonical = parsed.toString();
