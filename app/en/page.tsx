@@ -5,7 +5,7 @@ import DadyoomLogo from "@/components/brand/DadyoomLogo";
 export const dynamic = "force-static";
 export const revalidate = 86400;
 export const metadata: Metadata = {
-  title: "Learn Arabic Online — Dadyoom",
+  title: "Dadyoom — Learn Arabic Online",
   description: "Learn Arabic with reading, writing, listening and speaking. Explore beginner guidance, national curricula, study activities and progress tracking in Dadyoom.",
   alternates: { canonical: "/en", languages: { en: "/en", ar: "/" } },
   openGraph: { locale: "en_US", title: "Learn Arabic Online | Dadyoom" },
@@ -39,6 +39,9 @@ export default function EnglishHome() {
             Dadyoom — Your digital home for Arabic
           </p>
           <h1 className="mt-7 text-4xl font-black leading-tight text-[#123f39] sm:text-6xl">
+            <span className="mb-3 block text-lg font-bold text-[#174f47] sm:text-xl">
+              Dadyoom — Digital Home of Arabic
+            </span>
             Learn Arabic with confidence.
             <span className="mt-3 block text-[#a7772f]">From first words to real understanding.</span>
           </h1>
