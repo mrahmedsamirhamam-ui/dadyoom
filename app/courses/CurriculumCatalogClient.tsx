@@ -1316,7 +1316,19 @@ function CatalogScope({
                               "official-book-unscheduled",
                           )
                           ? "محتوى كتاب رسمي — غير مجدول حاليًا"
-                          : "المطابقة الوطنية الموثقة"}
+                          : item.lessons.some(
+                              (lesson) =>
+                                lesson.resourceKind !== "book-reference" &&
+                                lesson.officialContentScope == null,
+                            )
+                          ? "تصنيف مصدر بعض الدروس قيد التحقق"
+                          : item.lessons.every(
+                              (lesson) =>
+                                lesson.resourceKind === "book-reference" ||
+                                lesson.officialContentScope === "plan-scheduled",
+                            )
+                          ? "مقرر في الخطة الرسمية الحالية"
+                          : "مصادر متنوعة — راجع حالة كل درس"}
                     </span>
                   </div>
                   <h2 className="break-words text-xl font-black text-[#123f39]">
@@ -1388,6 +1400,10 @@ function CatalogScope({
                       "plan-scheduled" ? (
                       <span className="mt-2 inline-flex rounded-full bg-[#e8f7ee] px-2.5 py-1 text-[10px] font-black text-[#245b3a]">
                         مقرر في الخطة الرسمية الحالية
+                      </span>
+                    ) : !isDadyoomCoreCurriculum(item.curriculum.name) ? (
+                      <span className="mt-2 inline-flex rounded-full bg-[#fff4df] px-2.5 py-1 text-[10px] font-black text-[#7d5b1d]">
+                        {language === "en" ? "Lesson source classification pending verification" : "تصنيف الدرس وفق مصدره وخطته قيد التحقق"}
                       </span>
                     ) : null}
 

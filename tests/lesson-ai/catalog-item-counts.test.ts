@@ -32,3 +32,17 @@ describe("catalog counts distinguish lessons from source books", () => {
     expect(countCatalogItems([]).lessonCount).toBe(0);
   });
 });
+
+describe("catalog UI source transparency", () => {
+  it("does not label unclassified national material as a verified match", async () => {
+    const fs = await import("node:fs");
+    const source = fs.readFileSync(
+      new URL("../../app/courses/CurriculumCatalogClient.tsx", import.meta.url),
+      "utf8",
+    );
+    expect(source).toContain("تصنيف مصدر بعض الدروس قيد التحقق");
+    expect(source).toContain("تصنيف الدرس وفق مصدره وخطته قيد التحقق");
+    expect(source).toContain("lesson.officialContentScope == null");
+    expect(source).not.toContain(': "المطابقة الوطنية الموثقة"}');
+  });
+});
