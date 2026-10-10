@@ -478,10 +478,12 @@ async function humanUiJourneySmoke(
       500,
     );
 
-    const candidate =
-      await page
-        .locator("a[href]")
-        .evaluateAll(
+    let candidate = null;
+    for (let readAttempt = 1; readAttempt <= 3; readAttempt += 1) {
+      try {
+        candidate = await page
+          .locator("a[href]")
+          .evaluateAll(
           (
             anchors,
             seen,
@@ -591,6 +593,34 @@ async function humanUiJourneySmoke(
           },
           [...visited],
         );
+        break;
+      } catch (error) {
+        const navigationRace = String(error).includes("Execution context was destroyed");
+        if (!navigationRace || readAttempt === 3) throw error;
+
+        console.warn(
+          `E2E_HUMAN_LINK_CONTEXT_RETRY role=${role} step=${step} attempt=${readAttempt}`,
+        );
+        await page.waitForLoadState("domcontentloaded", {
+          timeout: 15_000,
+        }).catch(() => {});
+
+        const recoveredPath = new URL(page.url()).pathname;
+        if (recoveredPath !== expectedPath) {
+          const restored = await page.goto(`${baseUrl}${expectedPath}`, {
+            waitUntil: "domcontentloaded",
+            timeout: 60_000,
+          });
+          gate(
+            restored?.status() === 200 &&
+              new URL(page.url()).pathname === expectedPath,
+            `E2E_HUMAN_LINK_CONTEXT_RECOVERY_FAILED:ROLE=${role}:STEP=${step}:PATH=${new URL(page.url()).pathname}`,
+          );
+        }
+        await assertHumanSession(`retry-link-step-${step}`);
+        await page.waitForTimeout(readAttempt * 450);
+      }
+    }
 
     if (!candidate) {
       break;
