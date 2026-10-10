@@ -8,7 +8,7 @@ describe("free-only Paddle contract on live Cloudflare", () => {
     const route = read("app/api/payments/paddle/config/route.ts");
     expect(route).toContain('environment() !== "sandbox"');
     expect(route).toContain('process.env.DADYOOM_SANDBOX_CHECKOUT_ENABLED !== "true"');
-    expect(route).toMatch(/error: "PAYMENTS_PAUSED"[\\s\\S]*?status: 403/);
+    expect(route).toMatch(/error: "PAYMENTS_PAUSED"[\s\S]*?status: 403/);
   });
   it("role E2E requires the expected 403 and a closed checkout in production", () => {
     const gate = read("scripts/final-e2e-release-gate.mjs");
