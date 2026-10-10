@@ -134,14 +134,14 @@
       "planSourceUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
       "currentPlanPublished": true,
       "bookTotalTOCItems": null,
-      "scheduledItems": 40,
+      "scheduledItems": 44,
       "unscheduledOfficialBookItems": 0,
-      "importedItems": 40,
+      "importedItems": 44,
       "missingItems": null,
       "sourceVerified": true,
-      "lastAuditedDate": "2026-10-07",
+      "lastAuditedDate": "2026-10-10",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "خطة الفصل الأول الحالية مستوردة تفصيليًا. دليل الكتب الرسمي موجود، لكن فهرس الكتاب الحالي لم يُستخرج ويُطابق 1:1 بعد.",
+      "notes": "خطة الفصل الأول 2026–2027: 44 درسًا منشورًا وموسومًا plan-scheduled وقت إعادة الفحص في 10 أكتوبر؛ زادت القائمة 4 أنشطة استماع/تحدث أو مراجعة منذ لقطة 7 أكتوبر. هذا عدّ سجلات حي ولا يُثبت مطابقة 1:1 لفهرس الكتاب، الذي ما زال مطلوبًا.",
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
       "currentBookCatalogTitles": [
         "كتاب براعم العربية الجزء الأول",
@@ -151,7 +151,21 @@
         "التدريبات اللغوية / اللغة العربية — وحدة المراجعة"
       ],
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-10",
+        "previousSnapshotAt": "2026-10-07",
+        "previousPublishedLessonCount": 40,
+        "currentPublishedLessonCount": 44,
+        "addedLessonTitles": [
+          "الاستماع: السلحفاة والبطتان",
+          "الاستماع: عطلة نهاية الأسبوع",
+          "الاستماع: الوقاية خير من العلاج",
+          "أراجع الحروف (4)"
+        ],
+        "sourceScope": "live-supabase-bahrain-national-arabic-grade-semester1-plan-scheduled",
+        "tocValidated": false
+      }
     },
     {
       "grade": 2,
@@ -198,14 +212,14 @@
       "planSourceUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
       "currentPlanPublished": true,
       "bookTotalTOCItems": null,
-      "scheduledItems": 24,
+      "scheduledItems": 30,
       "unscheduledOfficialBookItems": 0,
-      "importedItems": 24,
+      "importedItems": 30,
       "missingItems": null,
       "sourceVerified": true,
-      "lastAuditedDate": "2026-10-07",
+      "lastAuditedDate": "2026-10-10",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "خطة الفصل الأول الحالية مستوردة تفصيليًا. دليل الكتب الرسمي موجود، لكن فهرس الكتاب الحالي لم يُستخرج ويُطابق 1:1 بعد.",
+      "notes": "خطة الفصل الأول 2026–2027: 30 درسًا منشورًا وموسومًا plan-scheduled وقت إعادة الفحص في 10 أكتوبر؛ زادت القائمة 6 أنشطة استماع/تحدث أو مراجعة منذ لقطة 7 أكتوبر. هذا عدّ سجلات حي ولا يُثبت مطابقة 1:1 لفهرس الكتاب، الذي ما زال مطلوبًا.",
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
       "currentBookCatalogTitles": [
         "كتاب براعم العربية الجزء الثاني",
@@ -213,7 +227,23 @@
         "التدريبات اللغوية الجزء الثاني لبراعم العربية"
       ],
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "تم تسجيل العناوين العربية الواضحة فقط من books1.pdf؛ يوجد صف OCR ملتبس في دليل الكتب للصف الثالث ولم يُصحح بالافتراض."
+      "currentBookCatalogNote": "تم تسجيل العناوين العربية الواضحة فقط من books1.pdf؛ يوجد صف OCR ملتبس في دليل الكتب للصف الثالث ولم يُصحح بالافتراض.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-10",
+        "previousSnapshotAt": "2026-10-07",
+        "previousPublishedLessonCount": 24,
+        "currentPublishedLessonCount": 30,
+        "addedLessonTitles": [
+          "الاستماع: أريد أن ألعب معكم",
+          "الاستماع: التصوير الفوتوغرافي",
+          "الاستماع: حقيقة الكنز",
+          "التحدث — الوحدة الأولى: قيم ومبادئ",
+          "التحدث — الوحدة الثانية: ألعاب وهوايات",
+          "التحدث — الوحدة الثالثة: مواقف وعبر"
+        ],
+        "sourceScope": "live-supabase-bahrain-national-arabic-grade-semester1-plan-scheduled",
+        "tocValidated": false
+      }
     },
     {
       "grade": 3,
