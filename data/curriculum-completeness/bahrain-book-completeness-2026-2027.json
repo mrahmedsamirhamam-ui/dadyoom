@@ -9,7 +9,7 @@
   "auditedAt": "2026-10-07",
   "auditPurpose": "فصل اكتمال خطة المحتوى عن اكتمال الكتاب نفسه ومنع إعلان COMPLETE_BOOK دون مطابقة فهرس رسمي 1:1.",
   "completionRule": {
-    "completeBookRequires": "bookTotalTOCItems === importedItems && missingItems === 0 && sourceVerified === true",
+    "completeBookRequires": "independentTocEvidence reviewed book editions + 1:1 unique matched TOC items and lesson IDs + matchedTOCItems === bookTotalTOCItems + missingItems === 0; raw importedItems count is insufficient",
     "currentSemester2PlanPublished": false,
     "historicalPlansAreCurrentSchedule": false,
     "officialBookUnscheduledScope": "official-book-unscheduled"

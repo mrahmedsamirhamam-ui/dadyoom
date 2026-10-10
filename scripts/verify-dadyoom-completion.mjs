@@ -2,6 +2,7 @@
 // Read-only, reproducible product-closure evidence. No external network,
 // credentials, student data, migrations or publication mutations.
 import { readFileSync } from "node:fs";
+import { independentTocValidation } from "./lib/independent-toc-evidence.mjs";
 
 const readJson = (name) =>
   JSON.parse(readFileSync(new URL(`../data/curriculum-completeness/${name}`, import.meta.url), "utf8"));
@@ -12,7 +13,8 @@ const reading = readJson("bahrain-grade2-3-sem2-original-objective-drafts-202610
 
 const scopes = books.books ?? [];
 const complete = scopes.filter((item) => item.status === "COMPLETE_BOOK" && item.bookTotalTOCItems !== null
-  && item.missingItems === 0 && item.sourceVerified === true).length;
+  && item.missingItems === 0 && item.sourceVerified === true
+  && independentTocValidation(item, books.academicYear).valid).length;
 const unreviewed = scopes.length - complete;
 const missingOrUnverified = scopes.filter((item) => item.status !== "COMPLETE_BOOK").length;
 const draftRows = [...grade1.items, ...reading.items];

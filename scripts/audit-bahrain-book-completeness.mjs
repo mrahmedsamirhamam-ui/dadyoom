@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { independentTocValidation } from "./lib/independent-toc-evidence.mjs";
 
 const file = path.resolve(
   process.cwd(),
@@ -76,15 +77,16 @@ for (const [index, row] of rows.entries()) {
     if (!Number.isInteger(Number(total)) || Number(total) < 0) {
       failures.push(`ROW_${index}_INVALID_BOOK_TOTAL`);
     } else {
-      const expectedMissing = Number(total) - imported;
-      if (expectedMissing < 0) {
-        failures.push(`ROW_${index}_IMPORTED_EXCEEDS_TOC`);
-      }
-      if (missing !== expectedMissing) {
+      // Match count, NOT raw imported lessons, determines TOC coverage.
+      // One book entry can map to a differently subdivided lesson tree.
+      const matched = row.matchedTOCItems;
+      if (!Number.isInteger(matched) || matched < 0 || matched > Number(total)) {
+        failures.push(`ROW_${index}_INVALID_MATCHED_TOC_COUNT`);
+      } else if (missing !== Number(total) - matched) {
         failures.push(`ROW_${index}_MISSING_COUNT_MISMATCH`);
       }
     }
-  } else if (missing !== null) {
+  } else if (missing !== null || row.matchedTOCItems !== undefined) {
     failures.push(`ROW_${index}_MISSING_MUST_BE_NULL_WITHOUT_TOC`);
   }
 
@@ -92,8 +94,9 @@ for (const [index, row] of rows.entries()) {
     if (
       row.sourceVerified !== true ||
       !Number.isInteger(Number(total)) ||
-      Number(total) !== imported ||
-      missing !== 0
+      Number(total) !== row.matchedTOCItems ||
+      missing !== 0 ||
+      !independentTocValidation(row, report.academicYear).valid
     ) {
       failures.push(`ROW_${index}_FALSE_COMPLETE_BOOK`);
     }
