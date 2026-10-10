@@ -7,7 +7,6 @@ import { useState } from "react";
 
 import {
   addMarketplaceLesson,
-  confirmBpayCoursePayment,
   createMarketplaceCourse,
   publishMarketplaceCourse,
   savePayoutProfile,
@@ -74,6 +73,30 @@ export default function TeacherMarketplaceClient({
 }) {
   const router = useRouter();
   const [status, setStatus] = useState("");
+  const [busyPaymentId, setBusyPaymentId] = useState<string | null>(null);
+
+  async function confirmBpayPayment(paymentOrderId: string) {
+    if (busyPaymentId) return;
+    setBusyPaymentId(paymentOrderId);
+    try {
+      const response = await fetch("/api/teacher/marketplace/bpay/confirm", {
+        method: "POST",
+        credentials: "same-origin",
+        cache: "no-store",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ paymentOrderId }),
+      });
+      const result = (await response.json()) as { ok?: boolean; message?: string };
+      setStatus(result.message ?? "تعذر إتمام التأكيد.");
+      if (response.ok && result.ok) router.refresh();
+    } catch {
+      // Never automatically retry a non-idempotent payment-related mutation:
+      // the operation may have committed but its response was lost.
+      setStatus("تعذر استلام الرد. راجع حالة الدفعة قبل إعادة المحاولة.");
+    } finally {
+      setBusyPaymentId(null);
+    }
+  }
 
   const available = earnings
     .filter((item) => item.status === "available")
@@ -178,20 +201,17 @@ export default function TeacherMarketplaceClient({
 
                     <form
                       className="mt-3"
-                      action={async (formData) => {
-                        await runAction(
-                          confirmBpayCoursePayment,
-                          formData,
-                        );
+                      onSubmit={async (event) => {
+                        event.preventDefault();
+                        await confirmBpayPayment(payment.id);
                       }}
                     >
-                      <input
-                        type="hidden"
-                        name="paymentOrderId"
-                        value={payment.id}
-                      />
-                      <button className="dadyoom-arabic-button w-full rounded-xl px-4 py-2 font-black text-white">
-                        تأكيد وصول المبلغ وفتح الدورة
+                      <button
+                        type="submit"
+                        disabled={busyPaymentId !== null}
+                        className="dadyoom-arabic-button w-full rounded-xl px-4 py-2 font-black text-white disabled:opacity-60"
+                      >
+                        {busyPaymentId === payment.id ? "جارٍ التحقق..." : "تأكيد وصول المبلغ وفتح الدورة"}
                       </button>
                     </form>
                   </article>
