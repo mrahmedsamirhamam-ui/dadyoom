@@ -22,6 +22,7 @@ test("brand and canonical stay consistent", () => {
   expect(homepage).not.toContain('"@type": "WebSite"');
   expect(homepage).toContain("ضاديوم (Dadyoom) — بيت العربية الرقمي");
   expect(homepage).toContain("إذا بحثت عن «ضاضيوم»");
+  expect(homepage).toContain("«ضاضيوم» أو «داديوم»");
   expect(homepage).toContain("فأنت تقصد «ضاديوم»");
   expect(homepage).toContain('alternates: { canonical: "/", languages: { ar: "/", en: "/en" } }');
   expect(homepage).not.toContain("«ضاديو»");
