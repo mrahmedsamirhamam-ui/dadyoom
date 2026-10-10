@@ -224,10 +224,8 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <head>
-        {/* Runs before client chunks, so a stale deployment can self-recover once. */}
-        <script dangerouslySetInnerHTML={{ __html: staleChunkRecoveryScript }} />
-      </head>
-      <body className="flex min-h-full flex-col bg-[#fffaf0] text-[#27231f]">
+        {/* Keep the single WebSite site-name declaration in the initial document head,
+            consistent with the primary brand used in page title and og:site_name. */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -237,6 +235,10 @@ export default function RootLayout({
               ),
           }}
         />
+        {/* Runs before client chunks, so a stale deployment can self-recover once. */}
+        <script dangerouslySetInnerHTML={{ __html: staleChunkRecoveryScript }} />
+      </head>
+      <body className="flex min-h-full flex-col bg-[#fffaf0] text-[#27231f]">
         <SiteLanguageProvider>
           <DadyoomClientRuntime />
           {children}
