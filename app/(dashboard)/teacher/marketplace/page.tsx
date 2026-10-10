@@ -3,14 +3,17 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import TeacherMarketplaceClient from "./TeacherMarketplaceClient";
 
 import { createAdminClient } from "@/lib/supabase/admin";
-import { createClient } from "@/lib/supabase/server";
+import { getDashboardRequestViewer } from "@/lib/auth/request-viewer";
 
 export default async function TeacherMarketplacePage() {
-  const supabase = await createClient();
+  // The parent dashboard and role layout already use this request-scoped
+  // verified identity. Do not make a second network auth request on Cloudflare.
+  const { supabase, user, userError, profile } = await getDashboardRequestViewer();
+  if (userError || !user) return null;
+  // A direct entrypoint must never expose teacher earnings to a non-teacher.
+  const role = profile?.role?.trim().toLowerCase();
+  if (role !== "teacher" && role !== "admin") return null;
   const db = supabase as unknown as SupabaseClient;
-  const { data: { user } } = await supabase.auth.getUser();
-
-  if (!user) return null;
 
   const [
     coursesResult,
