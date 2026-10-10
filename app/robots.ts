@@ -40,7 +40,7 @@ export default function robots(): MetadataRoute.Robots {
         "/signup",
       ],
     },
-    sitemap: `${base}/sitemap.xml`,
+    sitemap: [`${base}/sitemap.xml`, `${base}/sitemap-brand.xml`],
     host: base,
   };
 }
