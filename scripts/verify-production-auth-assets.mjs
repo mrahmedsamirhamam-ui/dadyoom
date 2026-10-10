@@ -52,6 +52,12 @@ async function verifyDeployment() {
 }
 
 await verifyDeployment();
+// During Cloudflare static asset rollout, the API commit can switch before
+// the corresponding immutable JS chunks are readable on every edge. Do not
+// issue a false PASS on one matching version endpoint. Give the asset layer
+// a short warm-up period, then verify every referenced chunk strictly.
+await new Promise((resolve) => setTimeout(resolve, 8_000));
+await verifyDeployment();
 // The homepage shares the root runtime/chunks used by the auth pages.
 for (const route of ["/", "/login", "/signup"]) {
   const startingCommit = await verifyDeployment();
@@ -71,29 +77,68 @@ for (const route of ["/", "/login", "/signup"]) {
   for (let offset = 0; offset < chunks.length; offset += 6) {
     const batch = chunks.slice(offset, offset + 6);
     await Promise.all(batch.map(async (url) => {
-      const asset = await get(url);
-      if (asset.status !== 200) {
-        // The deployment version may change while cached HTML still references
-        // hashed chunks from a previous build. Preserve hard failure, but log
-        // edge Ray ID and observed version so we can isolate that race.
+      // Retry ONLY rollout-shaped errors, not redirects or wrong content.
+      // A permanently missing client chunk MUST fail the release.
+      const retryable = new Set([404, 429, 502, 503, 504]);
+      let verified = false;
+      let lastStatus = 0;
+      let lastRay = "unavailable";
+      let lastType = "";
+      for (let attempt = 1; attempt <= 6; attempt += 1) {
+        let asset;
+        try {
+          asset = await get(url);
+        } catch (error) {
+          if (attempt === 6) throw error;
+          console.warn("AUTH_ASSET_FETCH_RETRY", {
+            route,
+            attempt,
+            chunkPath: new URL(url).pathname,
+            reason: error instanceof Error ? error.message : String(error),
+          });
+          await new Promise((resolve) => setTimeout(resolve, attempt * 1500));
+          continue;
+        }
+        lastStatus = asset.status;
+        lastRay = asset.headers.get("cf-ray") || "unavailable";
+        lastType = asset.headers.get("content-type") || "";
+
+        if (asset.status === 200) {
+          if (!/javascript|ecmascript/.test(lastType)) {
+            throw new Error("AUTH_ASSET_CHUNK_BAD_CONTENT_TYPE_" + lastType);
+          }
+          await asset.arrayBuffer();
+          verified = true;
+          break;
+        }
+        if (!retryable.has(lastStatus) || attempt === 6) break;
+        console.warn("AUTH_ASSET_EDGE_RETRY", {
+          route,
+          attempt,
+          httpStatus: lastStatus,
+          chunkPath: new URL(url).pathname,
+          cfRay: lastRay,
+        });
+        await new Promise((resolve) => setTimeout(resolve, attempt * 1500));
+      }
+      if (!verified) {
+        // Persistent 404/503 is still a HARD FAILURE. Even if the route's
+        // metadata commit matched, the actual browser cannot load this JS.
         const observedCommit = await deploymentCommit().catch(() => "unavailable");
         console.error("AUTH_ASSET_MISSING", {
           route,
-          httpStatus: asset.status,
+          httpStatus: lastStatus,
           chunkPath: new URL(url).pathname,
-          cfRay: asset.headers.get("cf-ray") || "unavailable",
+          cfRay: lastRay,
+          contentType: lastType,
           htmlRay: response.headers.get("cf-ray") || "unavailable",
           expectedCommit: expected,
           startingCommit,
           observedCommit,
+          checks: 6,
         });
-        throw new Error("AUTH_ASSET_CHUNK_HTTP_" + asset.status);
+        throw new Error("AUTH_ASSET_CHUNK_HTTP_" + lastStatus);
       }
-      const type = asset.headers.get("content-type") || "";
-      if (!/javascript|ecmascript/.test(type)) {
-        throw new Error("AUTH_ASSET_CHUNK_BAD_CONTENT_TYPE_" + type);
-      }
-      await asset.arrayBuffer();
     }));
   }
   const completedCommit = await verifyDeployment();
