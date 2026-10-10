@@ -84,8 +84,8 @@ export default function BahrainCurriculumEvidence() {
                   </span>
                 </summary>
                 <div className="mt-4 space-y-2 border-t border-[#ece2cf] pt-4 text-sm leading-7">
-                  <p><strong>عناوين الكتب:</strong> {row.currentBookCatalogTitles.length
-                    ? row.currentBookCatalogTitles.join("، ")
+                  <p><strong>عناوين الكتب:</strong> {(row.currentBookCatalogTitles?.length ?? 0)
+                    ? (row.currentBookCatalogTitles ?? []).join("، ")
                     : row.bookTitle || "لم يُثبت عنوان كتاب مستقل"}</p>
                   <p><strong>المستورَد:</strong> {row.importedItems} عنصرًا؛
                     منها {row.scheduledItems} مجدولة بخطة معلنة، و{row.unscheduledOfficialBookItems} من محتوى كتاب غير مجدول بالعام الحالي.</p>
