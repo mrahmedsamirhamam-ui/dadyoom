@@ -720,6 +720,7 @@ function CatalogScope({
   countryName: string;
   gradeNumber: number;
 }) {
+  const { language } = useSiteLanguage();
   const [units, setUnits] = useState<StudentCatalogUnit[]>([]);
   const [tracks, setTracks] = useState<SecondaryTrackOption[]>([]);
   const [curriculumStatuses, setCurriculumStatuses] = useState<CurriculumStatusOption[]>([]);
