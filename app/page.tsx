@@ -104,6 +104,15 @@ export default function HomePage() {
             </Link>
             <Link
               prefetch={false}
+              href="/en"
+              lang="en"
+              dir="ltr"
+              className="rounded-full px-4 py-2 transition hover:bg-[#f1e7d4] hover:text-[#123f39]"
+            >
+              English
+            </Link>
+            <Link
+              prefetch={false}
               href="/teachers"
               className="rounded-full px-4 py-2 transition hover:bg-[#f1e7d4] hover:text-[#123f39]"
             >
@@ -438,6 +447,7 @@ export default function HomePage() {
           <nav aria-label="الروابط القانونية" className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm font-bold">
             <Link prefetch={false} href="/about" className="hover:text-white hover:underline">عن ضاديوم</Link>
             <Link prefetch={false} href="/learn-arabic" className="hover:text-white hover:underline">دليل تعلم العربية</Link>
+            <Link prefetch={false} href="/en" lang="en" dir="ltr" className="hover:text-white hover:underline">English — Learn Arabic</Link>
             <Link prefetch={false} href="/curriculum" className="hover:text-white hover:underline">دليل المناهج والدروس</Link>
             <Link prefetch={false} href="/contact" className="hover:text-white hover:underline">تواصل معنا</Link>
             <Link prefetch={false} href="/terms" className="hover:text-white hover:underline">الشروط والأحكام</Link>
