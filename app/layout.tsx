@@ -4,6 +4,9 @@ import {
   SITE_DESCRIPTION,
   SITE_NAME,
   SITE_NAME_LATIN,
+  SITE_NAME_ARABIC_ALT,
+  SITE_NAME_ARABIC_ALT_DADYOOM,
+  SITE_NAME_ARABIC_ALT_SHORT,
 } from "@/lib/site";
 import "./globals.css";
 import DadyoomClientRuntime from "@/components/runtime/DadyoomClientRuntime";
@@ -12,6 +15,15 @@ import { SiteLanguageProvider, LanguageSwitcher } from "@/components/i18n/Langua
 
 const siteUrl = getSiteUrl();
 const homeSeoTitle = `${SITE_NAME} | ${SITE_NAME_LATIN} — منصة تعليم اللغة العربية`;
+// Keep the canonical name stable. Explicitly associate common Arabic
+// spellings with the same official brand and URL, never duplicate pages.
+const brandAlternateNames = [
+  SITE_NAME_LATIN,
+  SITE_NAME_ARABIC_ALT,
+  SITE_NAME_ARABIC_ALT_DADYOOM,
+  SITE_NAME_ARABIC_ALT_SHORT,
+  new URL(siteUrl).hostname,
+];
 
 const googleVerification =
   process.env.GOOGLE_SITE_VERIFICATION?.trim();
@@ -35,7 +47,7 @@ const structuredData = [
     "@type": "WebSite",
     "@id": `${siteUrl}/#website`,
     name: SITE_NAME,
-    alternateName: [SITE_NAME_LATIN, new URL(siteUrl).hostname],
+    alternateName: brandAlternateNames,
     url: `${siteUrl}/`,
     description: SITE_DESCRIPTION,
     inLanguage: "ar",
@@ -48,7 +60,7 @@ const structuredData = [
     "@type": "EducationalOrganization",
     "@id": `${siteUrl}/#organization`,
     name: SITE_NAME,
-    alternateName: [SITE_NAME_LATIN, new URL(siteUrl).hostname],
+    alternateName: brandAlternateNames,
     url: `${siteUrl}/`,
     description: SITE_DESCRIPTION,
     logo: `${siteUrl}/pwa/icon-512.png`,
