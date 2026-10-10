@@ -6041,23 +6041,39 @@ try {
       );
     }
 
-    await page.goto(
-      `${baseUrl}/rewards`,
-      {
-        waitUntil:
-          "networkidle",
-      },
+    // Distinguish a transient Cloudflare response from a real missing
+    // rewards page, while still failing on repeated 5xx, redirects,
+    // unauthorized responses, or missing page content.
+    let rewardsResponse = null;
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      rewardsResponse = await page.goto(`${baseUrl}/rewards`, {
+        waitUntil: "domcontentloaded",
+        timeout: 60_000,
+      });
+      const code = rewardsResponse?.status() ?? 0;
+      if (code === 200 || ![429, 502, 503, 504].includes(code)) break;
+      console.warn(
+        `E2E_REWARDS_LOAD_RETRY role=${role} attempt=${attempt} http=${code} cfRay=${rewardsResponse?.headers()["cf-ray"] ?? "unavailable"}`,
+      );
+      if (attempt < 3) await page.waitForTimeout(attempt * 1200);
+    }
+
+    const rewardsHttpCode = rewardsResponse?.status() ?? 0;
+    const rewardsPath = new URL(page.url()).pathname;
+    gate(
+      rewardsHttpCode === 200 && rewardsPath === "/rewards",
+      `E2E_REWARDS_HTTP_${role.toUpperCase()}_FAILED:${rewardsHttpCode}:${rewardsPath}:cfRay=${rewardsResponse?.headers()["cf-ray"] ?? "unavailable"}`,
     );
 
-    const rewardsText =
-      await page
-        .locator("body")
-        .innerText();
-
+    const rewardsText = await page.locator("body").innerText();
+    if (!rewardsText.includes("الجوائز والشهادات")) {
+      await capture(page, `role-${role}-rewards-unexpected`);
+      console.error(
+        `E2E_REWARDS_MARKER_MISSING role=${role} path=${rewardsPath} pageTitle=${(await page.title()).slice(0, 120)}`,
+      );
+    }
     gate(
-      rewardsText.includes(
-        "الجوائز والشهادات",
-      ),
+      rewardsText.includes("الجوائز والشهادات"),
       `E2E_REWARDS_${role.toUpperCase()}_FAILED`,
     );
 
