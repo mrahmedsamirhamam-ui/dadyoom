@@ -54,6 +54,11 @@ export default function BahrainAssessmentQualityPage() {
         <p className="mt-2 text-sm leading-7">هناك {audit.reviewQueue.length} درسًا يحتوي على أنشطة موسومة بأنها تحتاج مراجعة، منها {audit.reviewQueue.filter(row => row.scope === "plan-scheduled").length} درسًا من الخطط الحالية. لا تعتمد الأنشطة تلقائيًا قبل فحصها.</p>
         <Link href="/admin/curriculum/coverage/assessments/review" className="mt-3 inline-flex rounded-xl bg-[#123f39] px-5 py-3 text-sm font-black text-white">افتح قائمة المراجعة وصفوفها ←</Link>
       </section>
+      <section className="rounded-3xl border border-[#d8c7a4] bg-white p-6">
+        <h2 className="text-xl font-black text-[#123f39]">الأسئلة المتكررة بين دروس مختلفة</h2>
+        <p className="mt-2 text-sm leading-7">رصدنا سؤالًا عامًا واحدًا متكررًا في {404} دروس مختلفة من الخطط الحالية دون وسم مراجعة، إضافة إلى سؤال مكرر في {11} درسًا موسومًا بالمراجعة. التكرار علامة تدقيق، لا حكم تلقائي على صحة السؤال.</p>
+        <Link href="/admin/curriculum/coverage/assessments/repeated" className="mt-3 inline-flex rounded-xl border border-[#cdbb96] bg-[#fff7e2] px-5 py-3 text-sm font-black text-[#123f39]">افتح قائمة الأسئلة المتكررة ←</Link>
+      </section>
       <section className="rounded-3xl border border-amber-200 bg-amber-50 p-6">
         <h2 className="text-lg font-black text-amber-950">الفرق المهم بين الغياب ومراجعة الجودة</h2>
         <p className="mt-3 text-sm leading-8 text-amber-950">
