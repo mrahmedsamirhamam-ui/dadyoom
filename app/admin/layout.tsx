@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 
 import DadyoomLogo from "@/components/brand/DadyoomLogo";
 import LogoutButton from "@/components/auth/LogoutButton";
-import { createClient } from "@/lib/supabase/server";
+import { getDashboardRequestViewer } from "@/lib/auth/request-viewer";
 
 const adminLinks = [
   { href: "/admin", label: "نظرة عامة" },
@@ -21,25 +21,14 @@ export default async function AdminLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-    error: userError,
-  } = await supabase.auth.getUser();
+  // Share one request-scoped user/profile lookup across admin nested routes.
+  // This avoids redundant auth round trips; the role authorization below stays.
+  const { user, userError, profile, profileError } =
+    await getDashboardRequestViewer();
 
   if (userError || !user) {
     redirect("/login");
   }
-
-  const {
-    data: profile,
-    error: profileError,
-  } = await supabase
-    .from("profiles")
-    .select("role,full_name")
-    .eq("id", user.id)
-    .maybeSingle();
 
   if (
     profileError ||
