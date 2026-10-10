@@ -326,7 +326,15 @@ jobs:
             kind="$2"
             html="$(mktemp)"
 
-            code="$(curl --silent --show-error --max-time 30               --output "$html" --write-out "%{http_code}"               -H "User-Agent: Googlebot" "$url")"
+            code=""
+            # Retry only transient Cloudflare failures, never a persistent 5xx.
+            for attempt in 1 2 3; do
+              code="$(curl --silent --show-error --max-time 30 --retry 0 --output "$html" --write-out "%{http_code}" -H "User-Agent: Googlebot" "$url" || true)"
+              if [[ "$code" == "200" ]]; then break; fi
+              if [[ "$code" != "429" && "$code" != "502" && "$code" != "503" && "$code" != "504" ]]; then break; fi
+              echo "SEO_DISTRIBUTED=RETRY_HTTP kind=$kind url=$url http=$code attempt=$attempt"
+              if (( attempt < 3 )); then sleep $((attempt * 2)); fi
+            done
 
             if [[ "$code" != "200" ]]; then
               echo "SEO_DISTRIBUTED=FAIL_HTTP kind=$kind url=$url http=$code"
