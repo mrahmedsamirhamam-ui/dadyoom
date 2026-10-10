@@ -289,7 +289,6 @@ export async function getLessonPageBundle(
   const accountCountry =
     String(
       profile?.country ??
-      user.user_metadata?.country ??
       ""
     )
       .trim()
@@ -306,6 +305,18 @@ export async function getLessonPageBundle(
 
   const admin =
     createAdminClient();
+
+  // The user's profile.country and Auth user_metadata can be changed by
+  // the account owner. Neither is an authorization boundary for unpublished
+  // lessons. Preview requires explicit server-managed admin enrollment.
+  const { data: trustedReviewer, error: reviewerError } = await admin
+    .from("edu_admin_users")
+    .select("user_id")
+    .eq("user_id", user.id)
+    .maybeSingle();
+  if (reviewerError || !trustedReviewer) {
+    return null;
+  }
 
   const {
     data: lesson,

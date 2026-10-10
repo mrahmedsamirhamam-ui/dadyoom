@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
+import bahrainBookAudit from "@/data/curriculum-completeness/bahrain-book-completeness-2026-2027.json";
 
 import {
   ARAB_COUNTRY_CODES,
@@ -169,6 +170,18 @@ export default async function GradeCurriculumPage({
     lessons[0]?.grade_name?.trim() ||
     `الصف ${gradeValue}`;
 
+  // This is a static ministry-source audit snapshot, not a live bookstore
+  // parity certificate. Only Bahrain receives this country-specific notice.
+  const bahrainScopeRows = info.code === "BH"
+    ? bahrainBookAudit.books.filter((row) => row.grade === gradeValue)
+    : [];
+  const bahrainCertifiedScopes = bahrainScopeRows.filter(
+    (row) => row.status === "COMPLETE_BOOK",
+  ).length;
+  const bahrainTerm2CurrentPlanVerified = bahrainScopeRows.some(
+    (row) => row.semesterOrBookPart === 2 && row.currentPlanPublished,
+  );
+
   const units = new Map<
     string,
     {
@@ -320,6 +333,38 @@ export default async function GradeCurriculumPage({
             </span>
           </div>
         </header>
+
+        {bahrainScopeRows.length > 0 ? (
+          <section aria-labelledby="bahrain-book-evidence-title" className="mt-8 rounded-[2rem] border border-[#dfc58d] bg-[#fff9e9] p-6 sm:p-8">
+            <h2 id="bahrain-book-evidence-title" className="text-2xl font-black text-[#123f39]">
+              حالة توثيق الكتب البحرينية — 2026–2027
+            </h2>
+            <p className="mt-3 leading-8 text-[#655e54]">
+              هذه الصفحة تعرض دروسًا تعليمية قابلة للفهرسة، وليست شهادة اكتمال لجميع كتب هذا الصف.
+              يغطي تقرير المراجعة {bahrainScopeRows.length} نطاقًا لهذا الصف بحسب الفصل أو المسار،
+              ويثبت المطابقة المستقلة لفهرس الكتاب في {bahrainCertifiedScopes} منها فقط.
+            </p>
+            {!bahrainTerm2CurrentPlanVerified ? (
+              <p className="mt-3 font-bold leading-8 text-[#865b16]">
+                لم يثبت في تقرير المراجعة جدول رسمي للفصل الثاني من 2026–2027.
+                بعض مواد الفصل الثاني المتاحة قد تستند إلى سنوات سابقة أو تكون مواد إثرائية،
+                ولا تُعامل تلقائيًا باعتبارها جدول هذا العام.
+              </p>
+            ) : null}
+            <p className="mt-3 text-sm leading-7 text-[#655e54]">
+              المصدر: تقرير تدقيق محفوظ بالمنصة، آخر تاريخ مرجعي {bahrainBookAudit.auditedAt}.
+              لا تعني أسماء الكتب في الدليل الرسمي التحقق من جميع صفحات فهارسها.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-4 text-sm font-black text-[#174f47]">
+              <a href="https://edunet.bh/Econtent/LessonsGuide" target="_blank" rel="noopener noreferrer" className="underline">
+                خطط الدروس في وزارة التربية والتعليم ↗
+              </a>
+              <a href="https://edunet.bh/Econtent/BooksGuide" target="_blank" rel="noopener noreferrer" className="underline">
+                دليل الكتب الرسمي ↗
+              </a>
+            </div>
+          </section>
+        ) : null}
 
         <div className="mt-8 space-y-7">
           {orderedUnits.map(

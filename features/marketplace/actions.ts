@@ -366,20 +366,9 @@ export async function confirmBpayCoursePayment(
       };
     }
 
-    if (payment.status === "completed") {
-      return {
-        ok: true,
-        message: "تم تأكيد هذه الدفعة سابقًا.",
-      };
-    }
-
-    if (payment.status !== "approved" || !payment.bank_reference) {
-      return {
-        ok: false,
-        message: "الطالب لم يرسل مرجع BPay بعد.",
-      };
-    }
-
+    // All status disclosures (even an already completed payment) require
+    // authenticated ownership. Keep this legacy Server Action safe although
+    // the primary interface now uses the smaller guarded JSON endpoint.
     const { data: ownedCourse } = await db
       .from("edu_marketplace_courses")
       .select("id")
@@ -391,6 +380,20 @@ export async function confirmBpayCoursePayment(
       return {
         ok: false,
         message: "لا تملك صلاحية تأكيد هذه الدفعة.",
+      };
+    }
+
+    if (payment.status === "completed") {
+      return {
+        ok: true,
+        message: "تم تأكيد هذه الدفعة سابقًا.",
+      };
+    }
+
+    if (payment.status !== "approved" || !payment.bank_reference) {
+      return {
+        ok: false,
+        message: "الطالب لم يرسل مرجع BPay بعد.",
       };
     }
 
