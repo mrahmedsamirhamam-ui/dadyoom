@@ -325,19 +325,27 @@ jobs:
             url="$1"
             kind="$2"
             html="$(mktemp)"
+            headers="$(mktemp)"
 
             code=""
             # Retry only transient Cloudflare failures, never a persistent 5xx.
+            # Record the public CF-Ray and request duration for production
+            # correlation. Never log cookies, authorization headers or HTML.
             for attempt in 1 2 3; do
-              code="$(curl --silent --show-error --max-time 30 --retry 0 --output "$html" --write-out "%{http_code}" -H "User-Agent: Googlebot" "$url" || true)"
+              : > "$headers"
+              stats="$(curl --silent --show-error --max-time 30 --retry 0 --output "$html" --dump-header "$headers" --write-out "%{http_code} %{time_total}" -H "User-Agent: Googlebot" "$url" || true)"
+              read -r code seconds <<< "$stats"
+              code="${code:-000}"
+              cf_ray="$(awk 'tolower($1) == "cf-ray:" { gsub(/\r/, "", $2); print $2; exit }' "$headers")"
+              cf_cache="$(awk 'tolower($1) == "cf-cache-status:" { gsub(/\r/, "", $2); print $2; exit }' "$headers")"
               if [[ "$code" == "200" ]]; then break; fi
               if [[ "$code" != "429" && "$code" != "502" && "$code" != "503" && "$code" != "504" ]]; then break; fi
-              echo "SEO_DISTRIBUTED=RETRY_HTTP kind=$kind url=$url http=$code attempt=$attempt"
+              echo "SEO_DISTRIBUTED=RETRY_HTTP kind=$kind url=$url http=$code attempt=$attempt cf_ray=${cf_ray:-unavailable} cf_cache=${cf_cache:-unavailable} seconds=${seconds:-unknown}"
               if (( attempt < 3 )); then sleep $((attempt * 2)); fi
             done
 
             if [[ "$code" != "200" ]]; then
-              echo "SEO_DISTRIBUTED=FAIL_HTTP kind=$kind url=$url http=$code"
+              echo "SEO_DISTRIBUTED=FAIL_HTTP kind=$kind url=$url http=$code cf_ray=${cf_ray:-unavailable} cf_cache=${cf_cache:-unavailable} seconds=${seconds:-unknown}"
               exit 1
             fi
 
