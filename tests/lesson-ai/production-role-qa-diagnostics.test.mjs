@@ -32,6 +32,11 @@ test("role route smoke rejects 404, unauthorized redirects, and HTML runtime err
   expect(code).toContain("status === 200");
   expect(code).toContain("observedPath === requiredPath");
   expect(code).toContain("hasClientErrorShell");
+  expect(code).not.toContain('      "/admin/monetization",');
+  expect(code).toContain('role === "admin"');
+  expect(code).toContain('resultUrl.pathname === "/student"');
+  expect(code).toContain('resultUrl.searchParams.get("error") === "admin_access_denied"');
+  expect(code).toContain("E2E_OWNER_PAGE_DENIAL=PASS");
 });
 
 test("login QA records false-200 client error shells and missing static assets", () => {
