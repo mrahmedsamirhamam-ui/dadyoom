@@ -6094,18 +6094,26 @@ try {
       `E2E_REWARDS_${role.toUpperCase()}=PASS`,
     );
 
-    await page.goto(
-      `${baseUrl}/pricing`,
-      {
-        waitUntil: "networkidle",
+    let pricingResponse = null;
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      pricingResponse = await page.goto(`${baseUrl}/pricing`, {
+        waitUntil: "domcontentloaded",
         timeout: 60_000,
-      },
-    );
+      });
+      const code = pricingResponse?.status() ?? 0;
+      if (code === 200 || ![429, 502, 503, 504].includes(code)) break;
+      console.warn(
+        `E2E_PRICING_LOAD_RETRY role=${role} attempt=${attempt} http=${code} cfRay=${pricingResponse?.headers()["cf-ray"] ?? "unavailable"}`,
+      );
+      if (attempt < 3) await page.waitForTimeout(attempt * 1200);
+    }
 
-    const pricingText =
-      await page
-        .locator("body")
-        .innerText();
+    const pricingCode = pricingResponse?.status() ?? 0;
+    const pricingPath = new URL(page.url()).pathname;
+    gate(
+      pricingCode === 200 && pricingPath === "/pricing",
+      `E2E_PRICING_HTTP_${role.toUpperCase()}_FAILED:${pricingCode}:${pricingPath}`,
+    );
 
     const dashboardLabels = {
       student: "لوحة الطالب",
@@ -6115,14 +6123,32 @@ try {
       school: "لوحة المدرسة",
       admin: "لوحة الإدارة",
     };
+    const expectedPricingDashboard = dashboardLabels[role] ?? "لوحتي";
+
+    // PricingClient loads the authenticated billing role asynchronously.
+    // Never mark a pricing page PASS before the correct dashboard link
+    // renders; a stale anonymous fallback must not hide a failed status API.
+    await page.waitForFunction(
+      (label) => document.body?.innerText.includes(label) ?? false,
+      expectedPricingDashboard,
+      { timeout: 12_000 },
+    ).catch(() => {});
+
+    const pricingText = await page.locator("body").innerText();
+    const hasPricingDashboard = pricingText.includes(expectedPricingDashboard);
+    if (!hasPricingDashboard) {
+      const probe = await browserFetch(page, "/api/billing/status")
+        .catch(() => ({ status: 0, data: null }));
+      console.warn(
+        `E2E_PRICING_ROLE_DIAGNOSTIC role=${role} page_http=${pricingCode} billing_http=${probe.status} billing_role=${String(probe.data?.role ?? "unknown")} expected_label=${expectedPricingDashboard} label_found=false`,
+      );
+    }
 
     gate(
       pricingText.includes("ضاديوم Plus") &&
       pricingText.includes("مكتبة الفيديوهات") &&
       pricingText.includes("فيديو AI — قريبًا") &&
-      pricingText.includes(
-        dashboardLabels[role] ?? "لوحتي",
-      ),
+      hasPricingDashboard,
       `E2E_PRICING_NAV_${role.toUpperCase()}_FAILED`,
     );
 
