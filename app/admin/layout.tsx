@@ -9,6 +9,7 @@ const adminLinks = [
   { href: "/admin", label: "نظرة عامة" },
   { href: "/admin/curriculum", label: "بوابة المناهج" },
   { href: "/admin/curriculum/packs", label: "حزم المناهج" },
+  { href: "/admin/curriculum/coverage", label: "تدقيق كتب البحرين" },
   { href: "/admin/lessons", label: "الدروس" },
   { href: "/admin/students", label: "الطلاب" },
   { href: "/admin/teachers", label: "المعلمون" },
