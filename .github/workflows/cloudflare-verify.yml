@@ -41,6 +41,9 @@ jobs:
       - name: Vinext build
         run: npm run build:vinext
 
+      - name: Verify packaged browser chunks
+        run: node scripts/verify-built-client-bundle.mjs
+
       - name: Build metadata gate
         shell: bash
         env:
