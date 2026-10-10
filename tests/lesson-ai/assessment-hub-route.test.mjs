@@ -5,11 +5,12 @@ test("student assessment link has a real bilingual landing route", () => {
   const hub = load("app/assessment/page.tsx");
   const student = load("app/(dashboard)/student/page.tsx");
   expect(student).toContain('href="/assessment"');
-  expect(hub).toContain("export default function AssessmentHubPage()");
+  expect(hub).toMatch(/export default (?:async )?function AssessmentHubPage\s*\(/u);
   expect(hub).toContain("LocalizedText");
   expect(hub).toContain('href="/courses"');
   expect(hub).toContain('href="/student"');
   expect(hub).toContain("index: false");
+  expect(hub).toContain("lessonId");
 });
 test("lesson-scoped assessment and book-reference safeguards remain intact", () => {
   const lesson = load("app/assessment/[lessonId]/page.tsx");
