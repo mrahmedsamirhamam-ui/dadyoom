@@ -30,15 +30,36 @@ function group(rows: Row[], edition: string) {
 
 export default async function GradeSevenSourceAudit() {
   const db = await createClient();
-  const result = await db.from("lessons")
-    .select("id,title,lesson_number,source_pdf_url,source_page_start,units!inner(title,grades!inner(grade_number,curricula!inner(name_ar,countries!inner(code))))")
-    .eq("status", "published")
-    .is("official_content_scope", null)
-    .eq("units.grades.grade_number", 7)
-    .eq("units.grades.curricula.countries.code", "BH")
-    .order("lesson_number", { ascending: true })
-    .limit(120);
-  const matchingRows = ((result.data ?? []) as unknown as Row[]).filter(x => {
+  // Fetch all matching rows, not just a fixed sample.  Every review item
+  // must stay visible as more official source material is imported.
+  const pageSize = 500;
+  const allRows: Row[] = [];
+  let loadError = false;
+  for (let offset = 0; ; offset += pageSize) {
+    const result = await db.from("lessons")
+      .select("id,title,lesson_number,source_pdf_url,source_page_start,units!inner(title,grades!inner(grade_number,curricula!inner(name_ar,countries!inner(code))))")
+      .eq("status", "published")
+      .is("official_content_scope", null)
+      .eq("units.grades.grade_number", 7)
+      .eq("units.grades.curricula.countries.code", "BH")
+      .order("id", { ascending: true })
+      .range(offset, offset + pageSize - 1);
+
+    if (result.error) {
+      console.error("BH_SEVENTH_SOURCE_AUDIT_FETCH_FAILED", {
+        offset,
+        message: result.error.message,
+      });
+      loadError = true;
+      break;
+    }
+
+    const batch = (result.data ?? []) as unknown as Row[];
+    allRows.push(...batch);
+    if (batch.length < pageSize) break;
+  }
+
+  const matchingRows = allRows.filter(x => {
     const grade = first(first(x.units)?.grades ?? null);
     const country = first(first(grade?.curricula ?? null)?.countries ?? null);
     return grade?.grade_number === 7 && country?.code === "BH";
@@ -55,9 +76,14 @@ export default async function GradeSevenSourceAudit() {
   const now = group(rows, "2026-2027");
   const historic = group(rows, "2025-2026");
   const unknown = rows.filter(x => !extractBahrainPlanYear("BH", x.source_pdf_url));
+  const otherEditions = rows.filter(x => {
+    const year = extractBahrainPlanYear("BH", x.source_pdf_url);
+    return year !== null && year !== "2026-2027" && year !== "2025-2026";
+  });
   const sections = [
     { title: "الخطة 2026–2027 — تحتاج مراجعة التصنيف والعنوان", items: now },
     { title: "الخطة 2025–2026 — مرجع تاريخي وليس مقررًا حاليًا مثبتًا", items: historic },
+    { title: "سنوات خطط أخرى — تحتاج مراجعة منفصلة", items: otherEditions },
     { title: "سنة المصدر غير محددة", items: unknown },
   ];
   return (
@@ -71,7 +97,7 @@ export default async function GradeSevenSourceAudit() {
           <h1 className="text-3xl font-black text-[#123f39]">قائمة مراجعة مصادر الصف السابع — البحرين</h1>
           <p className="mt-4 leading-8">تعرض هذه الصفحة بيانات حية للمواد المنشورة التي لم يكتمل تصنيف مصدرها.
           لا تُعدِّل الدروس أو تحذفها، ولا تعني مطابقة مصدر الخطة إثبات اكتمال فهرس الكتاب.</p>
-          {result.error
+          {loadError
             ? <p role="alert" className="mt-4 rounded-xl bg-amber-50 p-4 font-bold text-amber-900">تعذر تحميل السجلات. لا يعني ذلك خلو المنهج من النواقص.</p>
             : <div className="mt-5 flex flex-wrap gap-3 text-sm font-black">
                 <span className="rounded-xl bg-[#edf4ef] px-4 py-2">دروس المناهج الرسمية غير المصنفة: {rows.length}</span>
@@ -79,9 +105,9 @@ export default async function GradeSevenSourceAudit() {
                 <span className="rounded-xl bg-[#fff1dc] px-4 py-2">خطة 2025–2026: {historic.length}</span>
                 <span className="rounded-xl bg-[#edf4ef] px-4 py-2">دروس ضاديوم الداعمة المستبعدة: {supportingCount}</span>
               </div>}
-          <p className="mt-3 text-xs text-[#6f665d]">النطاق: الصف السابع فقط، والحد الأقصى 120 سجلًا، مع المصدر وفق الرابط المحفوظ في قاعدة البيانات.</p>
+          <p className="mt-3 text-xs text-[#6f665d]">النطاق: الصف السابع فقط؛ تُجلب كل السجلات المطابقة على دفعات، وتُصنف بحسب سنة المصدر المحفوظة في قاعدة البيانات. إذا تعذر تحميل أي دفعة، لا تُعرض حصيلة ناقصة على أنها كاملة.</p>
         </header>
-        {!result.error ? sections.map(section => (
+        {!loadError ? sections.map(section => (
           <section key={section.title} className="rounded-3xl border border-[#d8c7a4] bg-white p-6">
             <h2 className="text-xl font-black text-[#123f39]">{section.title} ({section.items.length})</h2>
             <div className="mt-4 space-y-3">
