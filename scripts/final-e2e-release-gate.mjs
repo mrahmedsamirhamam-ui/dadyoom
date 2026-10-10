@@ -320,7 +320,6 @@ async function roleRouteSmoke(page, role, baseUrl) {
       "/admin/lessons",
       "/admin/students",
       "/admin/teachers",
-      "/admin/monetization",
     ],
   };
 
@@ -352,6 +351,23 @@ async function roleRouteSmoke(page, role, baseUrl) {
         bodyText.trim().length > 0,
       `E2E_ROUTE_${role.toUpperCase()}_${route.replace(/[^a-z0-9]+/giu, "_")}_FAILED:${status}:${finalPath}`,
     );
+  }
+
+  // Owner finance pages are not regular admin pages. Verify that a
+  // non-owner test admin receives an access-denied redirect.
+  if (role === "admin") {
+    const ownerPage = await page.goto(`${baseUrl}/admin/monetization`, {
+      waitUntil: "domcontentloaded",
+      timeout: 60_000,
+    });
+    const resultUrl = new URL(page.url());
+    gate(
+      ownerPage?.status() === 200 &&
+        resultUrl.pathname === "/student" &&
+        resultUrl.searchParams.get("error") === "admin_access_denied",
+      `E2E_OWNER_PAGE_DENIAL_FAILED:STATUS=${ownerPage?.status() ?? "NONE"}:PATH=${resultUrl.pathname}`,
+    );
+    console.log("E2E_OWNER_PAGE_DENIAL=PASS");
   }
 
   console.log(
