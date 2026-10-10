@@ -11,8 +11,8 @@ import type {
 } from "@supabase/supabase-js";
 
 import {
-  createClient,
-} from "@/lib/supabase/server";
+  getDashboardRequestViewer,
+} from "@/lib/auth/request-viewer";
 
 import {
   createTeacherClassAction,
@@ -42,14 +42,13 @@ type LessonRow = {
 };
 
 export default async function TeacherPage() {
-  const supabase =
-    await createClient();
-
+  // Reuse the request-scoped viewer already resolved by dashboard
+  // and teacher layouts; never cache identities across requests.
   const {
-    data: { user },
-    error: authError,
-  } =
-    await supabase.auth.getUser();
+    supabase,
+    user,
+    userError: authError,
+  } = await getDashboardRequestViewer();
 
   if (
     authError ||

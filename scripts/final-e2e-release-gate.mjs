@@ -324,13 +324,24 @@ async function roleRouteSmoke(page, role, baseUrl) {
   };
 
   for (const route of routes[role] ?? []) {
-    const response = await page.goto(
-      `${baseUrl}${route}`,
-      {
-        waitUntil: "domcontentloaded",
-        timeout: 60_000,
-      },
-    );
+    // Retry only edge/transient failures. Persistent 5xx, redirects and
+    // client-side error shells still fail the strict route gate below.
+    let response = null;
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      response = await page.goto(
+        `${baseUrl}${route}`,
+        {
+          waitUntil: "domcontentloaded",
+          timeout: 60_000,
+        },
+      );
+      const http = response?.status() ?? 0;
+      if (http === 200 || ![429, 502, 503, 504].includes(http)) break;
+      console.warn(
+        `E2E_ROUTE_RETRY role=${role} route=${route} attempt=${attempt} http=${http} cfRay=${response?.headers()["cf-ray"] ?? "unavailable"}`,
+      );
+      if (attempt < 3) await page.waitForTimeout(attempt * 1500);
+    }
 
     const status = response?.status() ?? 0;
     const finalPath = new URL(page.url()).pathname;
