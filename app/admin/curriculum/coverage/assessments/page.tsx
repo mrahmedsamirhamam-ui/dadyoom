@@ -1,5 +1,6 @@
 import Link from "next/link";
 import audit from "@/data/curriculum-completeness/bahrain-assessment-quality-audit-20261010.json";
+import { extractBahrainPlanYear } from "@/lib/curriculum/source-plan-year";
 
 // A versioned snapshot, not a live query. The admin layout validates access.
 // Avoid expensive per-lesson aggregates during high-load Cloudflare SSR.
@@ -94,12 +95,24 @@ export default function BahrainAssessmentQualityPage() {
           لا تزال محفوظة ولم يُحذف شيء. راجع كل درس قبل تأليف أسئلة جديدة.
         </p>
         <div className="mt-4 grid gap-3 md:grid-cols-2">
-          {audit.missingObjectiveLessons.map(row=>
-            <div key={row.id} className="rounded-xl border border-[#e8ddc9] bg-[#fffdf8] p-4">
+          {audit.missingObjectiveLessons.map(row => {
+            const sourceYear = extractBahrainPlanYear("BH", row.source_pdf_url);
+            return <div key={row.id} className="rounded-xl border border-[#e8ddc9] bg-[#fffdf8] p-4">
               <p className="font-black">{row.title}</p>
               <p className="mt-1 text-xs text-[#6d6356]">الصف {row.grade_number} — الجزء {row.term}</p>
-              <Link href={`/lessons/${row.id}`} className="mt-2 inline-block text-sm font-black text-[#15584e] underline">راجع هذا الدرس ←</Link>
-            </div>)}
+              <p className="mt-2 text-xs font-bold text-[#855f25]">
+                سنة وثيقة المصدر: {sourceYear ?? "غير موثقة من الرابط"}
+                {sourceYear === "2025-2026" ? " — مصدر تاريخي؛ لا يثبت خطة 2026–2027" : null}
+              </p>
+              <div className="mt-3 flex flex-wrap gap-4 text-sm font-black text-[#15584e]">
+                <Link href={`/lessons/${row.id}`} className="underline">راجع هذا الدرس ←</Link>
+                {row.source_pdf_url?.startsWith("https://") ?
+                  <a href={row.source_pdf_url} target="_blank" rel="noopener noreferrer" className="underline">
+                    فتح وثيقة المصدر ↗
+                  </a> : null}
+              </div>
+            </div>;
+          })}
         </div>
       </section>
     </div>
