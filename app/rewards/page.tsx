@@ -9,29 +9,27 @@ import {
 } from "@/features/gamification/reward-engine";
 import { getLearnerRewardSnapshot } from "@/features/gamification/learner-reward-snapshot";
 import { getLevelByXp } from "@/lib/constants/levels";
-import { createClient } from "@/lib/supabase/server";
+import { getDashboardRequestViewer } from "@/lib/auth/request-viewer";
 
 export const dynamic = "force-dynamic";
 
 export default async function RewardsPage() {
-  const supabase = await createClient();
+  // Reuse the request-scoped authenticated identity and profile lookup.
+  // The shared helper retries a failed profile fetch once without caching
+  // credentials or personal data across requests.
   const {
-    data: { user },
-  } = await supabase.auth.getUser();
+    supabase,
+    user,
+    userError,
+    profile,
+    profileError,
+  } = await getDashboardRequestViewer();
 
-  if (!user) redirect("/login?next=/rewards");
+  if (userError || !user) redirect("/login?next=/rewards");
 
-  const profileResult = await supabase
-    .from("profiles")
-    .select("full_name,role")
-    .eq("id", user.id)
-    .maybeSingle();
-
-  if (profileResult.error || !profileResult.data) {
+  if (profileError || !profile) {
     throw new Error("تعذر تحميل بيانات الحساب.");
   }
-
-  const profile = profileResult.data;
   const role = profile.role?.trim().toLowerCase() ?? "";
   const displayName =
     profile.full_name?.trim() || user.email?.split("@")[0] || "صديق ضاديوم";
