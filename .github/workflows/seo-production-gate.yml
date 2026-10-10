@@ -72,14 +72,17 @@ jobs:
           home="$(mktemp)"
           robots="$(mktemp)"
           sitemap="$(mktemp)"
+          brand_sitemap="$(mktemp)"
 
           home_code="$(curl --silent --show-error --location --max-time 30             --output "$home" --write-out "%{http_code}" "$BASE/")"
           robots_code="$(curl --silent --show-error --location --max-time 30             --output "$robots" --write-out "%{http_code}" "$BASE/robots.txt")"
           sitemap_code="$(curl --silent --show-error --location --max-time 30             --output "$sitemap" --write-out "%{http_code}" "$BASE/sitemap.xml")"
+          brand_code="$(curl --silent --show-error --location --max-time 30             --output "$brand_sitemap" --write-out "%{http_code}" "$BASE/sitemap-brand.xml")"
 
           test "$home_code" = "200"
           test "$robots_code" = "200"
           test "$sitemap_code" = "200"
+          test "$brand_code" = "200"
 
           grep -Fq "dadyoom.dpdns.org" "$home"
           # The public canonical homepage must visibly identify the common
@@ -92,7 +95,17 @@ jobs:
           fi
           echo "SEO_BRAND_ARABIC_SPELLING=PASS"
           grep -Fq "Sitemap: $BASE/sitemap.xml" "$robots"
+          grep -Fq "Sitemap: $BASE/sitemap-brand.xml" "$robots"
           grep -Fq "<loc>$BASE" "$sitemap"
+          for url in "$BASE/" "$BASE/en" "$BASE/about"; do
+            grep -Fq "<loc>$url</loc>" "$brand_sitemap" || {
+              echo "SEO_BRAND_SITEMAP=FAIL_MISSING:$url"; exit 1;
+            }
+          done
+          test "$(grep -o '<loc>' "$brand_sitemap" | wc -l | tr -d ' ')" = "3"
+          grep -Fq 'hreflang="ar"' "$brand_sitemap"
+          grep -Fq 'hreflang="en"' "$brand_sitemap"
+          echo "SEO_BRAND_SITEMAP=PASS count=3"
 
           if grep -Eq 'dadyoom\.pages\.dev|dadyoom\.mrahmedsamirhamam\.workers\.dev' "$sitemap"; then
             echo "SEO_SITEMAP_LEGACY_HOST=FAIL"
