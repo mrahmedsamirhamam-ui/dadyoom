@@ -564,5 +564,6048 @@
       "term": 2,
       "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf"
     }
+  ],
+  "reviewQueueDataAt": "2026-10-10",
+  "reviewQueue": [
+    {
+      "lessonId": "aaf059f6-fe8e-4d54-aa75-663f846453c6",
+      "title": "أنشودة الوحدة",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 13,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "37427b56-aac1-4104-862b-29653780c5f4",
+      "title": "التقويم النهائي للوحدة",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 110,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "79ca1d98-4fa8-40a1-b013-13c767d5989d",
+      "title": "تابع ورقة عمل (12) قوانين صفي",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 33,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "191cc594-49fb-49eb-82c0-e5514e850bb9",
+      "title": "تابع ورقة عمل (22) أصوات الحروف والمقاطع",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 49,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "71e9c03a-c6eb-4ff1-9803-52ebea64f27c",
+      "title": "تابع ورقة عمل (3) هذا صفنا",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "47e51385-2d6c-40da-89e8-ecb97aa7d042",
+      "title": "تابع ورقة عمل (41) القراءة المشتركة: أعبر عن مشاعري",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 79,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "0a658fdc-2a13-4835-94ce-3bca59da9525",
+      "title": "تابع ورقة عمل (41) القراءة المشتركة: ماذا نعمل في المدرسة؟ (1)",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 77,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "db8228bf-dcf7-46b6-8223-9808d5bc5426",
+      "title": "تابع ورقة عمل (41) القراءة المشتركة: ماذا نعمل في المدرسة؟ (2)",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 78,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "6f707dfc-1e5e-4d94-87d8-f872d6d104a5",
+      "title": "تابع ورقة عمل (41) القراءة المشتركة: مدارسنا ومدارس أجدادنا",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 80,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "a5e12d3e-006a-425a-aa6f-4f5a60551342",
+      "title": "تابع ورقة عمل (42) حيواني المفضل",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 82,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "c7344ae2-f0c5-45f9-bcb4-3706952d45b5",
+      "title": "قاموسي المصور",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 52,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "a0d8a189-e2b5-408d-bf98-e80307bc0378",
+      "title": "قاموسي المصور",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 100,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "e2fdd7d1-7082-41e3-bd2f-39fd52cf5869",
+      "title": "قاموسي المصور",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 74,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "022b1a1d-e918-4538-8f41-87f765c1f416",
+      "title": "قاموسي المصور",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 92,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "64aa38d2-4f6b-4535-a2e0-239f616abd0f",
+      "title": "قاموسي المصور",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 44,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "db6d40b0-d41f-439e-9be4-acd74fcb057f",
+      "title": "قاموسي المصور",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 108,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "f7018637-c901-4cd6-aa7c-2819daaa6554",
+      "title": "قاموسي المصور",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 84,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "b9989224-77ff-4fe7-a151-a43451384573",
+      "title": "قاموسي المصور",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "6efb795e-a14d-4bad-8880-915c30a353a9",
+      "title": "قاموسي المصور",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 34,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "eea39fd5-a4ae-444c-8aaa-62209dcab35c",
+      "title": "قاموسي المصور",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 62,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "af8d92e7-dac8-4c07-b79c-2899b4ce636a",
+      "title": "قاموسي المصور",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 26,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "b2b52334-9dd3-4703-bc82-d0e2179fd612",
+      "title": "مفكرة التعلم",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 73,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "0654ca3f-4ad0-4ddd-8b09-1bce370a135a",
+      "title": "مفكرة التعلم",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 43,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "67659eed-3c6b-4c40-b7b2-1c3ec79b1fe4",
+      "title": "مفكرة التعلم",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 61,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "e23abbbb-9884-4e8e-8e57-0c21e1b88e4c",
+      "title": "مفكرة التعلم",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 107,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "76c4feaf-a06c-45c1-85e0-17457537fffe",
+      "title": "مفكرة التعلم",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 91,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "b3a94b30-4f09-4430-9aa0-5def68377225",
+      "title": "ورقة عمل (1) علم بلادي",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 16,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "21ed9c24-b1c9-434d-80b9-baab492de209",
+      "title": "ورقة عمل (10) الأشكال المستوية",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "f648995d-9516-458c-9fdc-7508737ba06a",
+      "title": "ورقة عمل (11) أطابق بين الأشياء",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "c1ee63b0-924a-4668-83f1-399058b97ed2",
+      "title": "ورقة عمل (12) قوانين صفي",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "f5f5633c-a7e2-4969-84b5-dc6567e56c2b",
+      "title": "ورقة عمل (13) أعمل وأتعلم في المدرسة",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 36,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "1baccee1-96ae-47b7-b543-7486c3b3dd81",
+      "title": "ورقة عمل (14) أفكر لأبدع",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 37,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "9517674b-1fd5-49c7-aed9-66d849628e23",
+      "title": "ورقة عمل (15) أعبر عن مشاعري",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 38,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "da9b8eb4-b4b2-4644-83a7-0fb3d5635a2d",
+      "title": "ورقة عمل (16) الأحجام والأطوال",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 39,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "a251c1a0-6571-424c-994b-08c032c3c927",
+      "title": "ورقة عمل (17) المختلف",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 40,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "4bf20552-2234-4a05-99e3-66bb8b3bc535",
+      "title": "ورقة عمل (18) أميز سمعيًا",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 41,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "5a9c2728-09bf-4eaf-a556-e1e28c0ec9ba",
+      "title": "ورقة عمل (19) أميز بصريًا",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 42,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "6d29a236-aa40-499d-ab0f-0f35c8e6f1af",
+      "title": "ورقة عمل (2) مرافق مدرستي",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "5fcffccd-fb80-4864-bab3-ccbe34eee6ae",
+      "title": "ورقة عمل (20) ألون المختلف",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 46,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "523cf92c-492c-46e3-b0b6-4711ba310357",
+      "title": "ورقة عمل (21) الوزن والكمية",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 47,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "aa452593-0ebf-4319-8379-eb99ec7c1a31",
+      "title": "ورقة عمل (22) أصوات الحروف والمقاطع",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 48,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "b5b7ba56-5fec-45c7-a376-9b47e8b82ff1",
+      "title": "ورقة عمل (23) فواكه وخضروات وطني",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 50,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "eb7818b9-b56a-4dbb-bfef-61b88fc2603b",
+      "title": "ورقة عمل (24) أنا فنان",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 51,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "0b066f31-4fd1-4c42-9f09-16082f9e3857",
+      "title": "ورقة عمل (25) أتعرف الزمن",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 54,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "2e7dbbc0-afa7-4d13-a095-317aa8f7eb01",
+      "title": "ورقة عمل (26) يمين ويسار",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 55,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "02f00b06-f9bc-4eae-95d3-f3d3f267facd",
+      "title": "ورقة عمل (27) أتعرف المكان",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 56,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "68ca2051-7da8-43bd-9db3-e538b1af5f40",
+      "title": "ورقة عمل (28) قانوني المفضل",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 57,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "580a9a7c-567f-45df-b6e5-6da7957fd8ad",
+      "title": "ورقة عمل (29) أصوات الحروف والمقاطع",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 58,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "35f5690a-cce9-4c90-9cd8-b79011f35ec6",
+      "title": "ورقة عمل (3) هذا صفنا",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 20,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "be2e8eb0-fa21-4522-b9ba-6a0836e061b6",
+      "title": "ورقة عمل (30) ألاحظ وأتعلم",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 59,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "ebd75362-291b-48d1-a5e0-ed1c0eb85df6",
+      "title": "ورقة عمل (31) الأجزاء الناقصة",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 60,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "0ef84d82-6db6-4f7a-b913-7204925d2c2e",
+      "title": "ورقة عمل (32) أجزاء جسمي",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 64,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "7acbbfa0-73ab-4ddd-ba02-ea57d29557ad",
+      "title": "ورقة عمل (33) أنشد وأتعلم",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 65,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "dc70f6f2-a63d-410f-9f1a-87aa4fb76557",
+      "title": "ورقة عمل (34) أنا نظيف",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 66,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "4ce51139-801f-4876-ace1-cd5b079149e7",
+      "title": "ورقة عمل (35) في غرفة مريم",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 67,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "acea7cb1-f923-470b-aa36-02f17b8d0481",
+      "title": "ورقة عمل (36) سلامة مرافق مدرستي",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 68,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "7c46654c-2243-4d7e-9a86-2a67f177a4fe",
+      "title": "ورقة عمل (37) الجزء والكل",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 69,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "fbea7016-284f-4418-90e5-b49fc89474e5",
+      "title": "ورقة عمل (38) الكلمات المتشابهة صوتًا",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 70,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "ac9ca32b-a780-4413-accf-357c6d2d0baa",
+      "title": "ورقة عمل (39) أميز: الجملة / الكلمة / الحرف",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 71,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "1b358fe5-4941-4dec-9663-5441aae9b4e6",
+      "title": "ورقة عمل (4) أشياء في صفي",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "37aeb9a8-72de-4e9d-99d7-20fef2c3ed6e",
+      "title": "ورقة عمل (40) أرسم وجهي",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 72,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "4f5bbf2b-34c7-4984-870e-978089a31729",
+      "title": "ورقة عمل (41) القراءة المشتركة: قصة (في المدرسة)",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 76,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "4621870c-b8d9-429f-81cd-c1224ce12972",
+      "title": "ورقة عمل (42) حيوانات من حولي",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 81,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "e265a274-d027-4c5b-88ad-57e85937259a",
+      "title": "ورقة عمل (43) ألاحظ وأكتشف الفروق",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 83,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "2adb2096-3b05-4ba4-bc83-ae5b6d5af123",
+      "title": "ورقة عمل (44) بيتنا",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 86,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "86e49ddd-fa0e-4c24-86e0-023e0ca260c0",
+      "title": "ورقة عمل (45) مواصلاتي واتصالاتي",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 87,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "43ff20cf-455e-417b-84a9-a810c88752a8",
+      "title": "ورقة عمل (46) المواصلات",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 88,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "48d9f4c2-3e20-425e-ba1b-2292e1e551f3",
+      "title": "ورقة عمل (47) الاتصالات",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 89,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "ae010fb7-9bd0-42f3-bea1-2abc4e2cea4b",
+      "title": "ورقة عمل (48) أسمع وأميز",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 90,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "2002cb22-a32a-464e-a69a-a52cf56dd326",
+      "title": "ورقة عمل (49) حافلة المدرسة",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 94,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "3bae63aa-f2f1-450d-abec-136032d490b2",
+      "title": "ورقة عمل (5) أتعرف الأشكال المستوية",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 23,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "10f420a5-c0d5-4db0-b694-5343d8d24de9",
+      "title": "ورقة عمل (50) العاملون في المدرسة",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 95,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "a5678602-fd5b-4ea6-90f0-fcb335dba523",
+      "title": "ورقة عمل (51) المهن في وطني",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 96,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "00a38595-0d25-438f-9aed-450b4ee7a2b0",
+      "title": "ورقة عمل (52) ملابسي متنوعة",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 97,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "a3c0761a-c4d0-4289-b9b0-1da6e92b6758",
+      "title": "ورقة عمل (53) ملابس المهن",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 98,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "fbef92cd-3ee1-44c9-979d-ddbaa1856d63",
+      "title": "ورقة عمل (54) أسمع وأتعلم",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 99,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "56f025aa-6712-4056-8d2f-69e525d2da87",
+      "title": "ورقة عمل (55) ألعابي المفضلة",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 102,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "71469ec6-8f29-4467-ae6f-677c9068458e",
+      "title": "ورقة عمل (56) ألعب مع النمط",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 103,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "c1879d2a-a023-4d99-a03c-8cc1ef6565ca",
+      "title": "ورقة عمل (57) الطقس من حولي",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 104,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "1d6771a6-fff4-436c-a1fd-40f3ec745991",
+      "title": "ورقة عمل (58) أنا والطقس",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 105,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "d674ccf9-4baf-4a5c-a8ff-acc46c6873ce",
+      "title": "ورقة عمل (59) ألاحظ وأتحدث",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 106,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "f203cd87-9c5e-43ab-80b8-6ba98dce0066",
+      "title": "ورقة عمل (6) الأشكال المستوية",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 24,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "ba82d3a9-f194-41eb-ae96-ca14a6da16dd",
+      "title": "ورقة عمل (7) ألوان علم بلادي",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "9dff733b-eaf0-4725-ac38-d9a58bfddfbc",
+      "title": "ورقة عمل (8) أدواتي المدرسية",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 28,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "93cdf484-e1b1-49fe-ad02-f129bb4d9cc3",
+      "title": "ورقة عمل (9) أبتكر شكلاً غريبًا",
+      "grade": 1,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 29,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "c9b512d5-6f6a-419b-a5ec-f75b68e2dd22",
+      "title": "أراجع الحروف (4)",
+      "grade": 2,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 10,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "5959ac5f-e203-4c16-aa31-4f49e5ecc7e8",
+      "title": "الاستماع: السلحفاة والبطتان",
+      "grade": 2,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 11,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "c273f75b-50de-4fa5-b04f-5cf25c86789f",
+      "title": "الاستماع: الوقاية خير من العلاج",
+      "grade": 2,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 13,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "eb4b06fd-841f-4d69-bd56-1cfbbfde9716",
+      "title": "الاستماع: عطلة نهاية الأسبوع",
+      "grade": 2,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 12,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "652648df-d730-448d-89e2-240980456c4d",
+      "title": "الاستماع: أريد أن ألعب معكم",
+      "grade": 3,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 14,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "ce650924-9d00-4ad6-b5ab-c1302ae33a90",
+      "title": "الاستماع: التصوير الفوتوغرافي",
+      "grade": 3,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 15,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "34cb7a04-47d8-4b59-ba62-a0af0b1bf0cf",
+      "title": "الاستماع: حقيقة الكنز",
+      "grade": 3,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 15,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "3eeb992f-6111-4a41-aac2-b61b7a4c3b8a",
+      "title": "التحدث — الوحدة الأولى: قيم ومبادئ",
+      "grade": 3,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 14,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "6f697bfc-8542-4455-b197-244bd8d21fd9",
+      "title": "التحدث — الوحدة الثالثة: مواقف وعبر",
+      "grade": 3,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 15,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "24344b9b-0a49-466b-ab1b-ed381fda4089",
+      "title": "التحدث — الوحدة الثانية: ألعاب وهوايات",
+      "grade": 3,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 15,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "71602bdb-260a-4ecb-ae2a-cdfca2defae3",
+      "title": "الاستماع: أبو ذر الغفاري",
+      "grade": 4,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "6e98cec6-8e4e-4374-b4b0-1bdf1d85d82f",
+      "title": "الاستماع: أي الأعمال أحب إليك؟",
+      "grade": 4,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 20,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "37838a57-d122-43d2-9703-c2cee899bc0c",
+      "title": "الاستماع: الحمامة البيضاء",
+      "grade": 4,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "3031c5c8-0cb6-4383-a72e-21ed6d018e34",
+      "title": "الاستماع: الطائر الطبيب",
+      "grade": 4,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "c48a119a-f850-489a-97a3-7fc510bd8fa5",
+      "title": "الاستماع: جزاء المعروف",
+      "grade": 4,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 20,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "1fb6f61f-d33d-422c-8894-dd4bcee8378e",
+      "title": "الاستماع: حب الوطن",
+      "grade": 4,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "5c7dedde-588b-4b86-9789-dc0876817593",
+      "title": "الاستماع: حلم يتحقق",
+      "grade": 4,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 19,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "d5de3780-700a-47b4-bc27-d0ecfd837197",
+      "title": "الاستماع: شجرة الكنار",
+      "grade": 4,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 20,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "bdc9e885-5452-4671-a832-c6bbcadacc56",
+      "title": "الاستماع: صديق جديد",
+      "grade": 4,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 19,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "24696d82-67bb-4e70-a344-80ca566d54b9",
+      "title": "الاستماع: عبقرية عالم",
+      "grade": 4,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 19,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "223ddc19-5573-4415-94fa-cebe71c4ddeb",
+      "title": "الاستماع: الأصدقاء الثلاثة",
+      "grade": 5,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 23,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "453c4601-f741-48b1-87cb-9b0c1ac993ec",
+      "title": "الاستماع: سائح عربي في البحرين",
+      "grade": 5,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 24,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "53ab21a8-a8e0-4659-900b-10caeab596d3",
+      "title": "الاستماع: مسبحة جدتي",
+      "grade": 5,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "3b0716bb-daa3-4b6a-9085-85dfabd2c2b5",
+      "title": "الخط: حرف (أ)",
+      "grade": 5,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "bd015181-a28f-4a95-94d5-149e92738d88",
+      "title": "الخط: حرف (ب)",
+      "grade": 5,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "989eabec-8ea6-4b72-852c-ba2bc46f642b",
+      "title": "الخط: حرف (ت)",
+      "grade": 5,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "0df9f6ae-9bb1-4606-9b63-2d5ee477c371",
+      "title": "الخط: حرف (ث)",
+      "grade": 5,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 23,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "13037454-b3ac-4a95-b30a-2c4394f89a06",
+      "title": "الخط: حرف (ج)",
+      "grade": 5,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 23,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "aa67b2c9-d864-4c3c-90f2-695dd5abf616",
+      "title": "الخط: حرف (د)",
+      "grade": 5,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 23,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "d7098fc8-e3ab-4f39-9df9-426c6c59efa8",
+      "title": "الخط: حرف (ذ)",
+      "grade": 5,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 23,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "50d728d9-7cf1-4598-87ff-a670fc11b63c",
+      "title": "الخط: حرف (ر)",
+      "grade": 5,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 24,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "f8db763b-3509-4949-bd2f-72144cf4824f",
+      "title": "الخط: حرف (ز)",
+      "grade": 5,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 24,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "643fa809-3a0d-4f80-aba5-66100b4d94de",
+      "title": "الخط: حرف (ص)",
+      "grade": 5,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "4a365e80-173b-4f96-907d-d4c8dbd25210",
+      "title": "الخط: حرفا (ح) و(خ)",
+      "grade": 5,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 23,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "0c21b90f-4ddf-443d-a8c2-6b1cd81379d5",
+      "title": "الخط: حرفا (س) و(ش)",
+      "grade": 5,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 24,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "030d9679-248e-4d9a-98cd-450fae0e897d",
+      "title": "الاستماع: حلمٌ يتحقق",
+      "grade": 6,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 26,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "3700b0d1-85a8-47e9-b338-be900e5adbc8",
+      "title": "الاستماع: حمام الحمى",
+      "grade": 6,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 28,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "0418e5ac-5d48-475f-9720-9bf29b8b08a6",
+      "title": "الاستماع: عيون الماء في البحرين",
+      "grade": 6,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 27,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "2cea693b-4e3a-4081-8c05-effa345f34bf",
+      "title": "أحوال بناء الفعل الماضي",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "a8e42d33-ae77-4e30-a0e6-fe937a9270f7",
+      "title": "أحوال بناء الفعل المضارع",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "fb8fce80-de95-46b7-a301-dc3c21d4c6d6",
+      "title": "أحوال بناء فعل الأمر",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "687a4a4c-9f46-4503-9252-4b7972e053da",
+      "title": "ألف التفريق: تطبيق",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "9a6d7087-b7fc-435a-96ca-0629e00407c5",
+      "title": "إعداد خطة عمل للموضوع الإنشائي السردي",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "c4be0f74-cf1e-430a-b00c-17d405eceec6",
+      "title": "الأسماء الخمسة",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "abca3b23-89f3-422d-802c-521dcb02f25b",
+      "title": "الأفعال الناسخة: كان وأخواتها",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "a870d96d-1c87-4c55-ad9d-57e5d6e9d40d",
+      "title": "الإعراب والبناء: المبني من الأسماء",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "6bba77ce-7aea-4ab8-8534-b5569712cb43",
+      "title": "الاسم المعرف بأل والمبدوء بلام",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "fc20f28c-6101-4a70-8f80-800cb0637a3f",
+      "title": "الاسم النكرة المنادى",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "1a07f541-9774-43d4-a243-50e7f9ef3b3a",
+      "title": "الحروف الناسخة: إن وأخواتها",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "118e9250-e6cb-4cfc-b856-df985136a00d",
+      "title": "الخط: كتابة الحروف فوق السطر وتحته",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "a1fff5f9-0064-4f4f-8977-5393f6b5fcf3",
+      "title": "الخط: كتابة حرف الجيم",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "02bdd2ca-bb45-47e1-b1dd-82ec5d982230",
+      "title": "الخط: كتابة حرف الحاء",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "da9b65d6-4b65-48b4-9de6-1c12b17a8f27",
+      "title": "الخط: كتابة حرف الدال",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "ee73284c-eb23-4676-b79f-284a8cb9dc14",
+      "title": "الخط: كتابة حرف العين",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "f868e8c6-a8f0-4b8f-a317-5f0c7e6c8017",
+      "title": "الخط: كتابة حرف الغين",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "701ae077-1ee7-4371-b481-6bd2691928ff",
+      "title": "الخط: كتابة حرف الفاء",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "c9fc9b70-87ad-4cfc-9229-adfbd7622d6a",
+      "title": "الخط: كتابة حرف القاف",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "56d858f8-3b5e-41f5-81a8-5d1da33b36b8",
+      "title": "الخط: كتابة حرف الهاء",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "d50f9f8d-09f1-40dc-9067-a09868848f9b",
+      "title": "الخط: كتابة حرف الواو",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "55ac803d-58f9-4b8d-8303-fc6252829111",
+      "title": "المبتدأ والخبر وأنواع الخبر",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "9a0ddf12-c362-49f4-aab4-a5087672b854",
+      "title": "النكرة والمعرفة وأنواع المعارف",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "effd40d8-4d8a-47cb-8b3c-5e40b9b183d3",
+      "title": "توظيف علامات الترقيم توظيفًا سليمًا",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "b253823b-c2cc-49cd-847c-c9a7e10f317b",
+      "title": "جمع المؤنث السالم",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "9bd44a17-e20d-4557-a5db-8bee58be5183",
+      "title": "جمع المذكر السالم",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "ef9fd8fd-bad1-44c2-b601-7682a5ce5877",
+      "title": "رسم ألف التفريق بعد واو الجماعة",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "b10e2dea-97ff-4b10-a665-c651a6eb5c01",
+      "title": "رسم الهمزة المتطرفة",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "6ea204dd-a8ad-4294-98d5-1163d8d0d952",
+      "title": "رسم الهمزة المتطرفة بعد مد بالألف",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "e30b4856-9cda-4ce1-97d3-b2ae35c3512b",
+      "title": "رسم الهمزة المتوسطة الساكنة",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "a95c4b1a-d362-4b39-8cbe-cbda7adc447f",
+      "title": "رسم الهمزة المتوسطة المكسورة",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "d4905750-9ec7-4aa3-94ea-99f4b889cb67",
+      "title": "رسم الهمزة المتوسطة على الألف",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "e0945f6f-b84e-416e-a1dc-5b8247312a7c",
+      "title": "رسم الهمزة المتوسطة على النبرة",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "057520db-41e1-49ec-8536-a60ece54d06c",
+      "title": "علامات إعراب المثنى",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "41a534d5-4c72-4c27-9b43-86716ab6580d",
+      "title": "علامات الإعراب الأصلية",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "e3025ef7-2ee3-43fd-907c-dd405533f07b",
+      "title": "كتابة بطاقة الدعوة",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "63eb2be4-0321-44d9-8c34-aca11c9aea41",
+      "title": "كتابة تقرير عن رحلة أو زيارة أو فعالية",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "2d52fc24-c54d-4513-9d42-824ce8c570e0",
+      "title": "كتابة نص سردي ذي بنية ثلاثية (1)",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "bdfab150-7630-4fcf-b262-4fe1fa6ff014",
+      "title": "كتابة نص سردي ذي بنية ثلاثية (2)",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "3f25f53d-44a3-4f5f-a479-8aa95184437c",
+      "title": "ما يلفظ ولا يكتب في أسماء الإشارة",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "8cf258f2-5a43-458f-bdf7-c0ba65b7f7ad",
+      "title": "من أنواع المعارف: أسماء الإشارة",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "a8c32f26-8c1e-4614-ae3b-90c73f2adbc2",
+      "title": "من أنواع المعارف: اسم العلم",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "4ad88993-bf8e-405a-8f4b-5a3231419860",
+      "title": "من أنواع المعارف: الأسماء الموصولة",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "c6870718-d76a-4d5e-b5c1-4e1fb70eca88",
+      "title": "من أنواع المعارف: الضمائر",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "72187089-88ee-46ec-a359-db219bc362c8",
+      "title": "من أنواع المعارف: المضاف إلى معرفة",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "dc3921df-b318-4ae4-b7b1-cf8d3531437a",
+      "title": "من أنواع المعارف: المعرف بأل",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "9915f31b-8ce6-471d-8490-17c96d8017dd",
+      "title": "مواضع حذف همزة ابن",
+      "grade": 7,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "5552a708-46b7-4b42-97b6-b8a031b90b38",
+      "title": "استماع الوحدة الأولى",
+      "grade": 8,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan7.pdf",
+      "sourcePageStart": 2,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "0f7a2ca9-0867-49b1-9a18-d3b3446e2b83",
+      "title": "ال )كتابيّ: كتابة قصّة تتضمّن مقطعاا وصفيًّا (وصف شخص خِّلْقيًّا وخُلُقيًّا1",
+      "grade": 8,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 33,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "5f68a0fe-6ff8-4749-8a19-b78768071d8c",
+      "title": "ال )كتابيّ: كتابة قصّة تتضمّن مقطعاا وصفيًّا (وصف شخص خِّلْقيًّا وخُلُقيًّا2",
+      "grade": 8,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 33,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "2e9d6725-9b2c-4f16-a9a0-7f665dfc128e",
+      "title": "ال )كتابيّ: كتابة قصّة تتضمّن مقطعاا وصفيًّا (وصف شخص خِّلْقيًّا وخُلُقيًّا3",
+      "grade": 8,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 33,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "76718d43-8adb-4949-9555-b3b630a2d9fd",
+      "title": "الإ نتاج الكتابيّ: تفكيك الموضوع الإنشائيّ الوصفي إلى عناصره الأساسيّة.",
+      "grade": 8,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 33,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "924b373b-6a6a-44dc-a2b9-b4aad1cb8ccb",
+      "title": "الإ نتاج الكتابيّ: كتابة قصّة تتضمّن مقطعاا وصفيًّا (وصف شخص خِّلْقيًّا وخُلُقيًّا) 1",
+      "grade": 8,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 33,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "0fadbd96-4ee9-4179-b67e-a69ffb49a32b",
+      "title": "الإ نتاج الكتابيّ: كتابة قصّة تتضمّن مقطعاا وصفيًّا (وصف شخص خِّلْقيًّا وخُلُقيًّا) 2",
+      "grade": 8,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 33,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "75ae9aaa-2f07-4b1e-8d10-ae1073bb4442",
+      "title": "الإ نتاج الكتابيّ: كتابة قصّة تتضمّن مقطعاا وصفيًّا (وصف شخص خِّلْقيًّا وخُلُقيًّا) 3",
+      "grade": 8,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "sourcePageStart": 33,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "a8942d45-3ecd-40c5-be59-9cde7532b0cf",
+      "title": "الإنتاج الكتابي: كتابة قصة تتضمن حوارًا بين طرفين أو أكثر",
+      "grade": 8,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan7.pdf",
+      "sourcePageStart": 2,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "b53e4bfd-005b-45f8-96da-f13c24227c5e",
+      "title": "الإنتاج الكتابي: كتابة نص سردي ذي بنية ثلاثية",
+      "grade": 8,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan7.pdf",
+      "sourcePageStart": 2,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "af237c90-dc6b-41a9-b019-06f19c7d6368",
+      "title": "القراءة: ساعة صفاء",
+      "grade": 8,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan7.pdf",
+      "sourcePageStart": 2,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "22e28fd1-c090-496b-bdb0-43a6641cfeed",
+      "title": "القراءة: عتبة الحنين",
+      "grade": 8,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan7.pdf",
+      "sourcePageStart": 2,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "a051a197-f76e-479f-9d72-3768e9ab29ee",
+      "title": "القراءة: نزهة مع الجد",
+      "grade": 8,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan7.pdf",
+      "sourcePageStart": 2,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "6f8358a3-0c16-458c-a19b-7814eaa33416",
+      "title": "القراءة: هيا ابتسم يا طفل",
+      "grade": 8,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan7.pdf",
+      "sourcePageStart": 2,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "e45a8714-823e-446c-8f28-42de4d776a0c",
+      "title": "القواعد النحوية: الاسم المقصور والاسم المنقوص",
+      "grade": 8,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan7.pdf",
+      "sourcePageStart": 2,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "ff9cc800-1fcc-4286-a8d4-961b70f05479",
+      "title": "القواعد النحوية: الفعل اللازم والفعل المتعدي",
+      "grade": 8,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan7.pdf",
+      "sourcePageStart": 2,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "a9879079-34bb-4201-a8ec-13986d3dc751",
+      "title": "دراسة الأثر الأدبي: رواية الأيام — الجزء الأول من الفصل 1 إلى الفصل 6",
+      "grade": 8,
+      "semester": 1,
+      "scope": "plan-scheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan7.pdf",
+      "sourcePageStart": 2,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "0031c757-6e24-494e-aeb3-1ec318be271b",
+      "title": "أعزز مكتسباتي — الوحدة الأولى",
+      "grade": 1,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 3,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "83859c34-db5b-479c-b207-2924f41dc281",
+      "title": "أعزز مكتسباتي — الوحدة الثالثة",
+      "grade": 1,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 5,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "694106d9-2e74-4ed5-8002-727975576ec8",
+      "title": "أعزز مكتسباتي — الوحدة الثانية",
+      "grade": 1,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 4,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "b240a275-dff3-4e13-bf27-5ac23ccba783",
+      "title": "أنشودة الوحدة الأولى: بحرين يا أغلى وطن",
+      "grade": 1,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 3,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "0b2fadc8-2986-464e-a20f-4d80eb701464",
+      "title": "أنشودة الوحدة الثالثة: في حينا حديقة",
+      "grade": 1,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 5,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "b1399c8a-a218-484b-b4c2-a007114d9d78",
+      "title": "أنشودة الوحدة الثانية: هيا نقرأ",
+      "grade": 1,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 4,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "86743b0e-68e5-4916-9dbc-14db16ece6e1",
+      "title": "قصة الوحدة الأولى: حمدان يزور مملكة البحرين",
+      "grade": 1,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 3,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "1438079a-19fc-4fb3-b31b-7bb1f3134ad2",
+      "title": "قصة الوحدة الثالثة: كيف أحافظ على صحتي؟",
+      "grade": 1,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 5,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "c9e0b182-0348-4508-8780-68cd0e3e5dbc",
+      "title": "قصة الوحدة الثانية: فاطمة تحب القراءة",
+      "grade": 1,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 4,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "d792833f-7ae0-4905-ba34-40cf992abaf1",
+      "title": "الاستماع: اللاعب الماهر",
+      "grade": 2,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 6,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "c81d2447-6919-4a15-a13a-d0889320b10f",
+      "title": "الاستماع: المجرة الصغيرة",
+      "grade": 2,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 9,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "0b60b985-6eb9-4114-b899-7e516b57a828",
+      "title": "الاستماع: نعمة الماء",
+      "grade": 2,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 7,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "3b98c6f1-a3c4-4041-a523-2891ce7549b1",
+      "title": "الاستماع: الإنسان يقطع أشجار الغابة",
+      "grade": 3,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 11,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "17b02cc0-99f8-4118-9783-f568a9f88133",
+      "title": "الاستماع: ما أجمل اللعب في ساحة الحي!",
+      "grade": 3,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 12,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "865f4a83-5290-487f-9c50-2f67eb5e1e92",
+      "title": "الاستماع: مزرعتي",
+      "grade": 3,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 10,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "45ba960c-e17c-48d7-97d1-2cf29930ee62",
+      "title": "أدوات الاستفهام",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "3cafc8ff-e49b-4f9a-bacc-ea1b19f1feb6",
+      "title": "أدوات النفي: لا، لن",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "7e8da267-025a-4053-aaa3-6d6ea8faeaa1",
+      "title": "أسماء الإشارة",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "3ed50fd1-1481-444a-966a-d8de52bd5dc7",
+      "title": "أصوات تنطق ولا تكتب وحروف تكتب ولا تنطق",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "10ef0448-2a2f-4545-b4b4-4be6c7a53434",
+      "title": "ألعابنا وألعابكم",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "4ca47d03-f084-4af9-8d32-de66fefd08e8",
+      "title": "أنواع الفعل",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 16,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "a1fe1fe3-85b3-4532-a371-34906a0bd55e",
+      "title": "إنتاج فقرة وصفية: وصف المكان (1)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "428e6904-86e5-431d-bbc0-53d89f9e905b",
+      "title": "إنتاج فقرة وصفية: وصف المكان (2)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "9e554727-ed17-4cc6-a3fc-7cfabf6f76af",
+      "title": "إنتاج فقرة وصفية: وصف المكان (3)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "b899a83e-42cb-4a9b-98d1-e76b83e5a127",
+      "title": "إنتاج فقرة وصفية: وصف شخص (1)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "0816f5da-8759-497c-8899-fa9a6a79fad3",
+      "title": "إنتاج فقرة وصفية: وصف شخص (2)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "622acdd1-5aa1-4e0a-855b-8d28e74d00a0",
+      "title": "إنتاج فقرة وصفية: وصف شخص (3)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "74c5ca76-89ca-4c41-8056-d53bdde35350",
+      "title": "الألف اللينة",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "c6f1c5cb-5fa5-4878-8d89-0bb78ae5518d",
+      "title": "الإسراء والمعراج",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "4878c633-cf51-4d8b-b897-862e53fbce54",
+      "title": "الاستماع — الأسبوع الخامس",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "96714310-71df-4799-9c64-85e8d03d19d9",
+      "title": "الاسم الموصول",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "1b2b131b-0d5f-43b5-964a-8587573d2ca6",
+      "title": "البطاقة الإرشادية (1)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "bb46050d-89b3-4837-ad75-a34ae22278e1",
+      "title": "البطاقة الإرشادية (2)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 19,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "9724ab31-95a9-46c1-8880-b0814d597d09",
+      "title": "التعبير الشفوي — الأسبوع التاسع",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "speaking"
+      ]
+    },
+    {
+      "lessonId": "09bf8456-f7a4-4e20-bf04-5f01e0827cdb",
+      "title": "التعبير الشفوي — الأسبوع الثالث",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "speaking"
+      ]
+    },
+    {
+      "lessonId": "f5611a7c-1a17-45c2-9825-9777efc43294",
+      "title": "التعبير الشفوي — الأسبوع الثامن",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "speaking"
+      ]
+    },
+    {
+      "lessonId": "3d945780-c9fe-47bd-9185-5917142e8d6d",
+      "title": "التعبير الشفوي — الأسبوع الثاني",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 16,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "speaking"
+      ]
+    },
+    {
+      "lessonId": "ee031cbe-48fc-499f-96c9-a4c2171fe95b",
+      "title": "التعبير الشفوي — الأسبوع الحادي عشر",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 19,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "speaking"
+      ]
+    },
+    {
+      "lessonId": "417455bd-40c0-4c0b-a8a7-c797ec8e8a46",
+      "title": "التعبير الشفوي — الأسبوع الخامس",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "speaking"
+      ]
+    },
+    {
+      "lessonId": "062d294d-2e89-4bc5-9d00-3b7b5a3a2b09",
+      "title": "التعبير الشفوي — الأسبوع الرابع",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "speaking"
+      ]
+    },
+    {
+      "lessonId": "d9bfc8c0-b3e5-4a11-9813-b3415f6fba6e",
+      "title": "التعبير الشفوي — الأسبوع السابع",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "speaking"
+      ]
+    },
+    {
+      "lessonId": "3fe7c64c-3c64-4321-b4f6-85fb62beb691",
+      "title": "التعبير الشفوي — الأسبوع السادس",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "speaking"
+      ]
+    },
+    {
+      "lessonId": "1418b8ba-14b9-4bba-9fb7-9aceb803c355",
+      "title": "التعبير الشفوي: الحيّة بيّة",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 16,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "speaking"
+      ]
+    },
+    {
+      "lessonId": "6ff119a2-a4b5-4382-b51c-4effbbb04d98",
+      "title": "الحركة الكشفية",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 16,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "9d9f90da-dc2c-49c8-b0d4-fb6ccdd0ebd0",
+      "title": "الحمامة والصياد",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 16,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "b59bb205-eb39-4188-aa46-22449d1bd70c",
+      "title": "الحوار في النص السردي (1)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 16,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "9b5bd247-43ee-47f7-8646-2dbb3167805a",
+      "title": "الحوار في النص السردي (2)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 16,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "9373fa3a-5043-467a-bdfe-bee5f0486d3a",
+      "title": "الراعي الكذاب",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 19,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "1d1e2e9d-7c78-4cf5-8a0a-21724a55a86e",
+      "title": "الزهرة والمطر",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 19,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "42285776-b4e3-4bf4-9c6e-073282d2a2df",
+      "title": "القبرة وابنها",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "b784419e-2f3d-4846-9213-4a96030e2067",
+      "title": "المبدعون الصغار",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "b8aa8507-bb1e-4e97-912d-9319d9374f9e",
+      "title": "النداء",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 19,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "936ba1f4-ece7-4849-b01b-e7ed803e1338",
+      "title": "الهمزة المتطرفة المسبوقة بحرف ممدود أو ساكن",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "ae61f418-aa13-4867-9d63-ca31b9241d71",
+      "title": "الهمزة المتطرفة بعد حرف مضموم",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 16,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "7ea8f3b7-0027-4840-9f63-863dcce0ed36",
+      "title": "الهمزة المتطرفة بعد حرف مكسور",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 16,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "c36c27ce-366c-4e42-b1c8-5c690bf1e42d",
+      "title": "الهمزة المتوسطة الساكنة وما قبلها مفتوح",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "da8b9dfe-6a34-45a2-8d4c-9448e6f52943",
+      "title": "الهمزة المتوسطة المفتوحة وما قبلها مفتوح",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "48af7390-1edc-4102-a436-dce5374df144",
+      "title": "انقلب السحر على الساحر",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "c320d4ee-c659-433e-9021-d3d39bae6428",
+      "title": "بساط الريح",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "8c6209f6-be2e-437c-b231-102bf90cf6cb",
+      "title": "تدريبات للمراجعة في الإملاء",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 19,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "b4883304-e93a-4f78-b800-c91ea8e0550c",
+      "title": "حرف (ض)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 16,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "83abae75-fdf8-4b23-9c34-872df481880b",
+      "title": "حرف (ع)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "24f0f581-dc0c-481e-be4c-f98c1011075d",
+      "title": "حرف (غ)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "1e6fd417-3aee-452d-a003-78c2e44f6260",
+      "title": "حرف (ك)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "44f293fa-5dd7-489d-a634-ca3a2b6c2739",
+      "title": "حرف (ل)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "20b3dd99-782e-47e2-9664-3981f71f1767",
+      "title": "حرف (م)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "4b66fe33-9edb-4112-af25-b1dd8beea2e7",
+      "title": "حرف (ن)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 19,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "03edf202-e895-4c81-8eb8-927085116ffb",
+      "title": "حرف (هـ)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 19,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "3e7e4796-5046-48c7-86a3-31e9512f276f",
+      "title": "حرف (و)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 19,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "7b964dcc-15a8-4ad3-9d16-03a89a090f8e",
+      "title": "حرف (ي)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 19,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "3af7bc63-fd49-4ea2-a593-ab86c03dca08",
+      "title": "حرفا (ط) و(ظ)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 16,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "1fe62cd7-0e0b-4536-aa20-3e5c4e4ff736",
+      "title": "حرفا (ف) و(ق)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "130c9607-1de4-4432-b174-b1729f620b71",
+      "title": "حروف الجر",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "d03a95e0-0d22-4dfd-bc9b-880b0b3e3809",
+      "title": "خبر من الماضي",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "f2ffa901-cd5d-48b1-9d3d-bb7695091349",
+      "title": "دخول اللام على الاسم المبدوء باللام",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "f36b53ea-e17d-4a6d-890e-2508495b1634",
+      "title": "دخول اللام والباء على الاسم المعرّف بـ(ال)",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "9a939479-cc36-44cf-96d7-7cca4d9f86d7",
+      "title": "ذكريات الموسم",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "beaf02e2-1212-40a8-b2ea-33ca6101ca8f",
+      "title": "رائد في عالم الصحافة",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "79ef0f6f-ea13-4805-9e4d-1fca7864ed3f",
+      "title": "رائدات من بلدي",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "faaa39bb-8b67-4944-a1df-997e8235fc7c",
+      "title": "رحلة إلى بلاد الإسكيمو",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 16,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "dc7d137a-3e41-4ed5-8ad1-17ea1441d058",
+      "title": "ضمائر الرفع المنفصلة",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 16,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "6150acbe-0b9e-4f0d-99af-74a66ec9c2f7",
+      "title": "ظرف الزمان وظرف المكان",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "56f3fcd2-2683-4ee8-8d77-245b89680250",
+      "title": "عين عذاري",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 17,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "cc870b2c-c423-4234-a4c4-37ad5969077a",
+      "title": "لقاء كشفي",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 16,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "74c6e2c9-4f1d-4722-988f-4aaecaa1e96e",
+      "title": "لماذا اختفى البدر؟",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 19,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "da7f9e65-5d23-426b-9fed-a59a0b5b0bfc",
+      "title": "مراجعة القواعد النحوية والإملائية",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 19,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "82b54983-eab9-490d-a455-b913102f4bd0",
+      "title": "مراجعة عامة للقراءة والنحو والإملاء",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 19,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "af0351d9-ff6f-432b-aeae-341a65206e85",
+      "title": "مطابقة الصفة للموصوف",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "d40b3a4a-d150-446a-80c4-75829d61721a",
+      "title": "مولد بركان",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 18,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "f843dec9-8aa7-4eec-be38-0b2f4b0906f9",
+      "title": "هي البحرين",
+      "grade": 4,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 16,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "1a5ebab3-91de-4f9a-a2e3-7ea228d99ade",
+      "title": "أنشطة تقويمية في الإملاء",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 23,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "8cef12f8-9347-4a9e-a466-f2f659fd4035",
+      "title": "أنشطة تقويمية في القواعد النحوية",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 23,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "2fc5885a-f505-4db9-85ca-0cba7ed63653",
+      "title": "إنها تحب التصميم",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "30f75772-95b5-4e2c-99a6-ac49b5c0f80a",
+      "title": "الأسماء المجرورة بالإضافة",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 20,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "9a04e16a-edba-4d24-821e-50bd229afacc",
+      "title": "الأسماء المجرورة بحروف الجر",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 20,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "e14e3860-1c60-43e1-8ca4-71f5ed1f092f",
+      "title": "الألف الفارقة",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 23,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "ed7f488f-30e8-45a5-ba57-82e772b47268",
+      "title": "التعبير الشفوي — الأسبوع الأول",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 20,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "speaking"
+      ]
+    },
+    {
+      "lessonId": "ab47e7a3-e035-46cd-8c6f-158e4f96d85c",
+      "title": "التعبير الشفوي — الأسبوع التاسع",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "speaking"
+      ]
+    },
+    {
+      "lessonId": "e32f7838-1fdf-44ad-99d0-1d48d7677055",
+      "title": "التعبير الشفوي — الأسبوع الثالث",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "speaking"
+      ]
+    },
+    {
+      "lessonId": "8f8fa026-d05d-4baf-bccb-964448e9103f",
+      "title": "التعبير الشفوي — الأسبوع الثاني",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 20,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "speaking"
+      ]
+    },
+    {
+      "lessonId": "1d978d8a-0b2c-4098-8eb5-1373fe3cc891",
+      "title": "التعبير الشفوي — الأسبوع الحادي عشر",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 23,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "speaking"
+      ]
+    },
+    {
+      "lessonId": "79591fd1-886f-471a-a9e0-8eb2a03d2d0f",
+      "title": "التعبير الشفوي — الأسبوع الخامس",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "speaking"
+      ]
+    },
+    {
+      "lessonId": "0bd5e1aa-af94-456c-bf47-08297a384800",
+      "title": "التعبير الشفوي — الأسبوع السابع",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "speaking"
+      ]
+    },
+    {
+      "lessonId": "6f97f6f6-84f2-4281-933c-d665ff09c7b1",
+      "title": "التعبير الشفوي — الأسبوع السادس",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "speaking"
+      ]
+    },
+    {
+      "lessonId": "b221b98c-1434-4351-bd90-91fdcd26e5ac",
+      "title": "الحروف الناسخة",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 20,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "65909b42-861b-4902-aa77-ef3ec69bac80",
+      "title": "الخديعة",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "7831552f-9ad8-4e1f-a9f9-b481a48f4329",
+      "title": "الصفة والموصوف",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "d2b66d02-e8bc-4921-86de-aaf4a97c119c",
+      "title": "العطف بـ(الواو - ثم - أو) (1)",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "6dc65480-4874-458e-a415-0582f881bfa4",
+      "title": "العطف بـ(الواو - ثم - أو) (2)",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "ea26dcdc-eea9-480d-b81c-51259425cdf8",
+      "title": "الفارس العربي",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "644e2375-1a00-414f-a6e1-fe77bf856ced",
+      "title": "الفروسية",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "19664102-cfce-4b31-a813-dd5b9960c36b",
+      "title": "الكلب والحمامة",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "509efd86-05b2-4548-b939-4a46b611736a",
+      "title": "الكهرباء في وطني",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 20,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "f488809b-ff53-456d-b8eb-86ada9a137e7",
+      "title": "المذكرات اليومية — أتدرب",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 20,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "08d31972-b2bf-41bc-892e-cd098f3ae4b0",
+      "title": "المذكرات اليومية — أكتشف",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 20,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "5e03d693-6d55-45e1-8c9a-5f97f363bada",
+      "title": "المذكرات اليومية — أنتج",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "25763537-f0f3-46be-bbfc-1dc2847e42d1",
+      "title": "الممثل البارع",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "6a81aec4-b02b-4e6a-ad9f-14c5f2748e35",
+      "title": "النفايات الإلكترونية",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 20,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "2564eee9-137c-4dc7-b025-24c1c4825714",
+      "title": "النفي بـ(ما - لم - لن - لا - ليس) (1)",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "5e229059-a5a1-4567-928c-c8873f83c8a3",
+      "title": "النفي بـ(ما - لم - لن - لا - ليس) (2)",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "c81c2442-c2fe-434d-a618-5533c9976dbe",
+      "title": "الهمزة المتطرفة المسبوقة بحرف ساكن صحيح أو حرف علة",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "abf8be18-9f20-48de-b3af-2a8162f67b66",
+      "title": "الهمزة المتطرفة المفتوح ما قبلها",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "edb77e1a-8e36-49da-a409-614ea09727cf",
+      "title": "الهمزة المتطرفة المكسور ما قبلها",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "73a3aede-1d3b-4405-b461-5ee85db42810",
+      "title": "الهمزة المتوسطة المكسور ما قبلها",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "d1acdaf8-f6b5-4d66-bfe5-608e560be8f7",
+      "title": "الهمزة المتوسطة المكسورة (1)",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 20,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "e3a447b2-7e8e-4c6c-8bcd-b51c67700b9e",
+      "title": "الهمزة المتوسطة المكسورة (2)",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 20,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "9efee9f0-3a94-463f-88b2-2f9ef3034e9b",
+      "title": "بطاقة الدعوة — أتدرب",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 23,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "be638571-d80b-4409-92ec-96b458753570",
+      "title": "بطاقة الدعوة — أكتشف",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "aed9588a-1665-4d8f-951e-cc10d86896df",
+      "title": "بطاقة الدعوة — أنتج",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 23,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "9d4c894e-c021-4a37-a580-d376c99c0cac",
+      "title": "بيئتنا حياتنا",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 20,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "5ad03624-c506-43ba-b0b0-08ca47d29b47",
+      "title": "تثرية النص السردي بالحوار — أتدرب",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "8bfce927-133d-4f22-a772-17f58ab331de",
+      "title": "تثرية النص السردي بالحوار — أكتشف",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "0320d4d1-8762-4024-880d-16c6d14bb401",
+      "title": "تثرية النص السردي بالحوار — أنتج",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "34ee904e-ded6-4659-b616-50e1d45a1611",
+      "title": "تلخيص قصة — أتدرب",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "b671c59c-374a-47a9-953a-73c208288a30",
+      "title": "تلخيص قصة — أكتشف",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "baa3607b-951e-4d60-b570-61a4bfea738f",
+      "title": "تلخيص قصة — أنتج",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "9b85b763-aa80-4672-bb40-fa237f0614a6",
+      "title": "حرف (ض)",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 20,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "1cc06350-344a-43a8-96d8-45762619ec8b",
+      "title": "حرف (ط)",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 20,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "aa815442-b339-4a28-b76d-d1871c1c7c15",
+      "title": "حرف (ظ)",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "a992d228-fb02-4268-9b0f-e0af60aa5b96",
+      "title": "حرف (ع)",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "009fdcaf-0208-4ede-86ac-0e5be216dc43",
+      "title": "حرف (ف)",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "a16a8aeb-cc54-4533-8cc0-f370eee6f308",
+      "title": "حرف (ق)",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "d045f04f-06ec-4a34-893a-36e66f3b3d0e",
+      "title": "حرف (ك)",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "b5842a4f-5c89-43a6-866d-bd4cc8dd1c95",
+      "title": "حرف (ل)",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "1ff5e793-ee2f-4d23-a7c1-47c40a390035",
+      "title": "حرف (م)",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "b4e81095-15a7-4fbf-bb50-ebdd7960172b",
+      "title": "حرف (ن)",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "c284c60a-bf66-488d-8aa7-038acc996f89",
+      "title": "حرف (هـ)",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 23,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "40dda755-584c-4868-a754-499b405b1f39",
+      "title": "حرفا (و) و(ي)",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 23,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "d6c72d84-f2b7-4a55-9248-1166617f7997",
+      "title": "سابق الريح",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "e049c6ac-05b1-47a2-8b4d-a710af279589",
+      "title": "صدى الحياة",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "d565a80a-8bd5-4b90-8548-c437d6dcc0da",
+      "title": "ضمائر الرفع المتصلة (1)",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "f820bed8-29ce-4dbe-91d7-b3d1852a7d0a",
+      "title": "ضمائر الرفع المتصلة (2)",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 22,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "ffae05d0-eb72-4978-a37e-a1956c404120",
+      "title": "ظرفا الزمان والمكان",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "092db88a-1b11-449a-96ec-5daa0eea6f41",
+      "title": "على شواطئ البحرين",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 21,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "6595e3b4-f56e-4f42-b5b4-b2c2d3a5f736",
+      "title": "مراجعة عامة للفصل الثاني",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 23,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "39d67cf3-14de-44fd-9e62-916ed64ec9b2",
+      "title": "نزهة في أحضان الطبيعة",
+      "grade": 5,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 20,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "9ceab3ac-ff2c-4bf8-9323-5d92e817f74a",
+      "title": "أخلاق كريمة",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "8e0e21eb-0e51-44d0-b59d-b6cfb886251a",
+      "title": "أمنية تتحقق",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "b610dabb-5886-40f1-804c-cf73dd7cc7a5",
+      "title": "إغناء النص السردي بالوصف والحوار — أتعرف وأكتشف",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "f1bcec9a-c9ba-42d9-920e-778eeefe89fb",
+      "title": "إغناء النص السردي بالوصف والحوار — أثري وأنتج جزئيًا",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "8488ff78-5548-4ca4-886a-67779a34206c",
+      "title": "إغناء النص السردي بالوصف والحوار — أنتج وأقوم",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "c3b00370-d913-470a-8c15-24a9ab561d52",
+      "title": "إن حاتمًا لم يمت",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 26,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "cb97c412-137b-47ef-b556-7dad62a855be",
+      "title": "الأسماء الخمسة",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 26,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "46eb32be-b4fb-4b53-9092-a24a425049cf",
+      "title": "الإحسان إلى الخلق",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "ce69302e-8d8b-47a7-aae2-5edde63b6da2",
+      "title": "التطابق بين الصفة والموصوف",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "d4eca43f-05fe-4a49-bcb8-98ce588a2119",
+      "title": "التطابق بين الصفة والموصوف — أطبق",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "8c90bf68-9a18-4416-892f-4377f9d7a54b",
+      "title": "التطابق بين المبتدأ والخبر",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 24,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "ff3e015b-878b-4155-921f-efcac6333518",
+      "title": "الحال",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "1d17e947-c28f-43fa-9567-3a197240e1c4",
+      "title": "الصدق منجاة",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "8b8069d9-6331-4b91-abe2-85e595030a65",
+      "title": "القواعد الإملائية — الأسبوع الثامن",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "41cc0285-d0a5-4276-b58e-ca20730cd944",
+      "title": "القواعد الإملائية — الأسبوع الحادي عشر",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 26,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "a9904a30-5c0c-4081-ac81-34ab0b5e927a",
+      "title": "القواعد الإملائية — الأسبوع السابع",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "c3a93eb1-7855-4b48-8c70-7119459b5a2f",
+      "title": "القواعد الإملائية — الأسبوع السادس",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "814ce921-9ceb-4a5e-a231-4ad3267afe54",
+      "title": "القواعد الإملائية — الأسبوع العاشر",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 26,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "deefd0db-3a50-44c7-96a3-191d8d304f94",
+      "title": "المفعول المطلق",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "47761ea4-4d6e-4aa7-ad0a-b3867379872f",
+      "title": "المفعول لأجله",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 26,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "9fabed44-76f3-4ed9-9b1d-f55b1dd04b83",
+      "title": "النخلة المعوجة",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "023d8670-b293-4a9d-b8f5-175989a5592a",
+      "title": "النكرة والمعرفة",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 24,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "878fb409-25f2-4a3a-928f-ea8a0d24c181",
+      "title": "النكرة والمعرفة — أطبق",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "5b96bb89-27b5-4616-989b-57f0443d07a8",
+      "title": "تدريبات التعبير الكتابي — الأسبوع التاسع",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 26,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "df9605a0-527e-4a85-be85-8a44c9f29d35",
+      "title": "تدريبات التعبير الكتابي — الأسبوع الثامن",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "72edd2ec-8c38-4773-8bc4-d46238edb765",
+      "title": "تدريبات التعبير الكتابي — الأسبوع السابع",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "bb77e91b-25be-4f28-9260-de1ddfaac878",
+      "title": "تدريبات التعبير الكتابي — الأسبوعان العاشر والحادي عشر",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 26,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "914e7be6-ae3c-4f6e-979b-218990737c4c",
+      "title": "تدريبات على الهمزة",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 24,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "a7b240c0-72e4-4aa2-9365-42763df41d8e",
+      "title": "تدريبات على الهمزة المتطرفة",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 24,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "bd45a683-30bd-4ee5-bbc6-7c25d651d402",
+      "title": "تدريبات على كان وأخواتها وإن وأخواتها",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 24,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "2f1d62d3-7eea-4749-90d7-67fe572f80e5",
+      "title": "تسلسل الأحداث في النص السردي — أتعرف وأكتشف",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 24,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "069508e8-8702-4144-b52f-9a6b5eb899ff",
+      "title": "تسلسل الأحداث في النص السردي — أثري وأنتج جزئيًا",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 24,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "6ca572fd-463e-45a6-9765-f67a2c3ab3be",
+      "title": "تسلسل الأحداث في النص السردي — أنتج وأقوم",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 24,
+      "reviewRequiredActivities": 2,
+      "activityTypes": [
+        "multiple_choice",
+        "writing"
+      ]
+    },
+    {
+      "lessonId": "b2b128d0-c036-4bd0-8936-72cc45f02206",
+      "title": "تمييز العدد من 11 إلى 99",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 26,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "a94cb98f-46b4-43e5-af1c-53cc9c9a7a08",
+      "title": "تمييز العدد من 3 إلى 10",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 26,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "8a9ddb7a-95bc-414b-a1eb-bc0b081bdefb",
+      "title": "دخول حروف الجر على ما الاستفهامية",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 26,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "fa4e0073-bdd1-4cef-a75d-efda6818ad06",
+      "title": "راعي الميثاق",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "09179e20-7685-4a02-9154-3b31d2732f91",
+      "title": "زرقاء اليمامة",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 24,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "82a0b4b9-151b-430a-aab2-6bc76e0dd732",
+      "title": "صفية بنت عبد المطلب",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 24,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "b1c95f57-d5a6-49fc-be35-d72c929650af",
+      "title": "عالم المفاجآت",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 24,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "b4a93064-b08b-4fa7-871c-031eee1e271b",
+      "title": "قصة نجاح",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "1ee7c119-64f5-4e13-bba9-6b4329855abc",
+      "title": "مثل وقصة",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 26,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "776eae41-f702-4c75-bdb9-b0a13bb17849",
+      "title": "مراجعة القواعد النحوية",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 26,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "cc460d8d-6763-4dc3-bb8f-92301b539db6",
+      "title": "مراجعة عامة للقراءة والنحو والإملاء",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 26,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "afbb7630-5b30-4bbf-9f72-4f3117b8eb74",
+      "title": "مستشفيات الأسماك",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 25,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "5c00ec3c-c8bd-4e47-83d6-3539cf3342be",
+      "title": "مظلات الهبوط",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 24,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "df517cf2-e605-4679-bab1-512cc76fa737",
+      "title": "يونس في بطن الحوت",
+      "grade": 6,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 24,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "58015069-26a5-4503-a6ba-8b3423fa5563",
+      "title": "التوكيد",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 33,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "317a6aa9-4244-4c58-9826-083b4c412455",
+      "title": "الربيع",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "57ccb0a3-76c8-4353-9564-6457f0233a73",
+      "title": "العامل",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 33,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "7ae1af5e-5bd1-4d9c-a691-c90460527af9",
+      "title": "العدد",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "99b4a925-dcb4-4215-b06c-7249dd0552f3",
+      "title": "العطف: معاني حروفه",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 33,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "012a21c2-3102-41c8-8eff-7a3006299736",
+      "title": "المرأة البحرينية ودورها في صنع غد أفضل",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "73a640b6-9770-47c8-afa0-2f1975cf5d96",
+      "title": "المضاف إليه",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "e776bd92-7983-4c67-bac7-0f7931758154",
+      "title": "الممنوع من الصرف لعلتين",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "0e5b61e8-c74d-4e78-97ba-574be28bf055",
+      "title": "النعت الحقيقي",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "d136bbac-e707-416c-bd4a-d3a1959c1c52",
+      "title": "الهمزة المتوسطة والهمزة المتطرفة",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "cc044a79-af9e-4f06-9704-6ae39d7cbbe9",
+      "title": "تدريبات عامة على ما سبق دراسته",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "7905be27-3748-41bf-8c9f-fe8d589dc2c6",
+      "title": "تمييز العدد",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "ddbe8ad0-bbab-476b-a596-826bcf5d9780",
+      "title": "جوائز عالمية",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "5ead0d23-e1f6-49ad-b707-0bbe8000a0e8",
+      "title": "حروف الجر",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "be9d5e29-fd8c-415e-b6a6-e9278391c713",
+      "title": "عروس الصحراء والحقول",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "958d519e-3fea-4a85-b795-a825d91539dc",
+      "title": "في عيد الأم",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "4e4133a3-6468-4c9f-a833-ae5f2d27f476",
+      "title": "قصة الألعاب الأولمبية",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "b739ccd1-1eb7-4e52-9629-f38e1799a68d",
+      "title": "كتابة رسالة شخصية تتضمن وصف المشاعر (1)",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "afa19d48-bcbd-4fa8-8f61-f3de0fd3aa35",
+      "title": "كتابة رسالة شخصية تتضمن وصف المشاعر (2)",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 33,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "f14c0da1-20cd-4c17-b60c-e908f90653eb",
+      "title": "كتابة قصة تتضمن حوارًا بين طرفين أو أكثر (1)",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "289e455d-bad0-4871-ad20-1f4d93cb2ea4",
+      "title": "كتابة قصة تتضمن حوارًا بين طرفين أو أكثر (2)",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "6ba29bd3-dfb5-4128-81a1-5ca3df94365c",
+      "title": "كتابة قصة تتضمن مقطعًا وصفيًا: وصف حيوان",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 33,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "ae9e2589-afc6-4959-8eda-fc6f91581762",
+      "title": "كتابة قصة تتضمن مقطعًا وصفيًا: وصف مشهد طبيعي (1)",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "24116192-9af3-4750-a303-ef8c96e83317",
+      "title": "كتابة قصة تتضمن مقطعًا وصفيًا: وصف مشهد طبيعي (2)",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "7c869193-5156-4e88-9ba7-4e7b8c7a7968",
+      "title": "مراجعة عامة لدروس الفصل الثاني",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 33,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "126b3ed1-b4de-41ca-8153-674afba786fa",
+      "title": "مراجعة علامات الترقيم",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "4afe5a8e-9b26-4500-8fd6-8fc6671600b9",
+      "title": "مراجعة كتابة التاء المربوطة والتاء المفتوحة",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 32,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "6dc085c2-54e1-454c-b7d2-e8a1ce33e343",
+      "title": "مستقبل الطاقة",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 33,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "78a89265-5108-46a0-ada3-a7f935deaebd",
+      "title": "من الهدي النبوي الشريف (1)",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "7462da09-5788-4f07-89cb-44a001fa6584",
+      "title": "موطن الخالدين",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 33,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "771fb657-cc5b-4b07-b911-f99e500c1077",
+      "title": "همزة الوصل والقطع",
+      "grade": 8,
+      "semester": 2,
+      "scope": "official-book-unscheduled",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 31,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "47b31e88-dbae-4378-bba4-cf7a962ad787",
+      "title": "أدوات الاستفهام",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "34e23730-40f6-40d7-8d88-873db64b2056",
+      "title": "إعراب الفعل المضارع المعتل الآخر في حالتي الرفع والنصب",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 29,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "3518e961-37e0-4a1e-b99e-c0e2cb00d4b2",
+      "title": "الأفعال الخمسة",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 29,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "8271d3a5-25a7-4d1b-8a89-51041ebfb6d0",
+      "title": "الأم",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 29,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "226d5b3b-8bcc-43f2-bb67-8d6f46fa8b81",
+      "title": "الأيدي الماهرة",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 28,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "feee9a21-69b2-4e4a-a33a-675958b8cbdc",
+      "title": "التنوين بالفتح: رسم ألف التنوين",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 29,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "3be86aec-35cf-4cdd-85eb-25eb329a13dc",
+      "title": "الشباب أمل الغد",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "01d70448-034e-4135-a410-ee326fd62e4d",
+      "title": "الفاعل: مواضع إفراد الفعل وتأنيثه وجوبًا مع الفاعل",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 28,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "23fafc3e-d2b4-43b1-bc6f-2b503fadf16e",
+      "title": "الفردوس الأخضر",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 29,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "cdbc755d-eab2-4363-9146-dee52debef3d",
+      "title": "الفعل المجرد والفعل المزيد",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 29,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "778ffe3f-8ae4-42d6-8fbc-10622812e861",
+      "title": "المسيرة",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "17d20bf2-eedc-45cd-9a1b-d9bb6c37e8be",
+      "title": "الميزان الصرفي",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "9586f92c-eb6a-446b-9303-efda4bcf2a64",
+      "title": "الياء والألف المقصورة آخر الكلمة",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "533e5b38-0d21-4461-9a04-e1961aa8b4fe",
+      "title": "انتبه... التلوث يغزو بيتك",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "dd0e71dd-2aaf-4581-892a-c39c15eb090f",
+      "title": "تلخيص قصة قصيرة",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 28,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "a99256fc-399b-414c-ae94-58cdcd0b2df7",
+      "title": "جزم الفعل المضارع المعتل الآخر",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 29,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "578e2a46-8958-44cb-9b24-ef2caa7d6ce0",
+      "title": "جمع التكسير",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "a2eacecd-578a-4e88-a5ee-c9daba9a9b71",
+      "title": "خطوات البحث في المعجم",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "9470c30a-f979-4a57-8bdb-2f5bb158b533",
+      "title": "رسم الهمزة المتوسطة المفتوحة وما قبلها مد بالألف",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 29,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "be9504fe-9a68-41f3-a917-cd801b9c7378",
+      "title": "رسم الهمزة المتوسطة على الواو (1)",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "cd34491d-162c-4e14-b081-7d1597bb0081",
+      "title": "رسم الهمزة المتوسطة على الواو (2)",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "0e45ba4d-e943-41d1-9cbf-fc16e5c73686",
+      "title": "علامات الترقيم: الفاصلة والنقطة",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 28,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "04c8249e-fdf9-4a73-b1b1-5a27ece9ebf5",
+      "title": "علامات الترقيم: علامة الاستفهام والفاصلة المنقوطة",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 28,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "d522cae4-f3e4-44bf-b167-79202c268300",
+      "title": "قالت لي جدتي",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 29,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "89273a97-7a70-424d-83f8-0c70c17f93df",
+      "title": "كتابة التاء في آخر جمع الاسم المنقوص",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 29,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "6eed4a4a-d980-4787-b6be-adadc1b8d164",
+      "title": "كتابة الرسالة الرسمية",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "59dbb1d2-8471-48e4-85b0-a4646df9a37b",
+      "title": "كتابة حرف الخاء",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 29,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "9a60f405-7a99-46f9-9be6-33c77dc89d3a",
+      "title": "كتابة حرف الراء",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 28,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "0ad9453b-4481-43d4-844d-6439b4816cf3",
+      "title": "كتابة حرف الضاد",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 29,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "ea259012-6c7f-4c97-a436-8c1e617266b8",
+      "title": "كتابة حرف اللام",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 29,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "5524adf3-e2df-43ff-80ad-9f4b8f544f31",
+      "title": "كتابة رسالة تتضمن سرد أحداث (1)",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 29,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "2aefc10f-d5f7-40a8-8dcd-c5259dbddad6",
+      "title": "كتابة رسالة تتضمن سرد أحداث (2)",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 29,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "fd306f38-184d-45b0-8464-e8dc4357aa92",
+      "title": "كتابة قصة تتضمن حوارًا بين طرفين",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 28,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "3ab4e32f-da0e-4a6a-901c-e431a9e64942",
+      "title": "كتابة قصة تتضمن سردًا غير خطي",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 29,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "03b11621-bfc4-4c59-9f09-d91b1d54203a",
+      "title": "مراجعة عامة لدروس الفصل الثاني",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 30,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "2d6a0d32-e120-4e2a-a62d-8e0e0a28750a",
+      "title": "نائب الفاعل: مواضع إفراد الفعل وتأنيثه وجوبًا مع نائب الفاعل",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 28,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    },
+    {
+      "lessonId": "ed4ddd14-d1b6-4382-b3af-5ce9b0511d1f",
+      "title": "هذه أمنيتي",
+      "grade": 7,
+      "semester": 2,
+      "scope": "UNCLASSIFIED",
+      "sourcePdfUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "sourcePageStart": 28,
+      "reviewRequiredActivities": 1,
+      "activityTypes": [
+        "multiple_choice"
+      ]
+    }
   ]
 }
