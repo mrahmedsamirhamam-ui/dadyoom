@@ -37,5 +37,16 @@ test("country directory gives a small lesson preview and keeps full grade links"
   expect(country).toContain("عرض جميع دروس الصف");
   expect(country).toContain("seo_indexable_lessons_fast");
   expect(file("app/sitemap.ts")).toContain("/curriculum/");
-  expect(file("app/robots.ts")).toContain("sitemap.xml");
+  const robots = file("app/robots.ts");
+  expect(robots).toContain("sitemap.xml");
+  expect(robots).toContain("sitemap-brand.xml");
+  const brandSitemap = file("public/sitemap-brand.xml");
+  expect(brandSitemap).toContain('<loc>https://dadyoom.dpdns.org/</loc>');
+  expect(brandSitemap).toContain('<loc>https://dadyoom.dpdns.org/en</loc>');
+  expect(brandSitemap).toContain('<loc>https://dadyoom.dpdns.org/about</loc>');
+  expect(brandSitemap.match(/<loc>/g)).toHaveLength(3);
+  expect(brandSitemap).toContain('hreflang="ar"');
+  expect(brandSitemap).toContain('hreflang="en"');
+  expect(brandSitemap).not.toContain('priority>');
+  expect(brandSitemap).not.toContain('changefreq>');
 });
