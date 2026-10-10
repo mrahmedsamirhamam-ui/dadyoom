@@ -50,3 +50,22 @@ test("country directory gives a small lesson preview and keeps full grade links"
   expect(brandSitemap).not.toContain('priority>');
   expect(brandSitemap).not.toContain('changefreq>');
 });
+
+test("site name has one primary Arabic identity in crawlable head and site metadata", () => {
+  const layout = file("app/layout.tsx");
+  const brand = file("lib/site.ts");
+  const logo = file("components/brand/DadyoomLogo.tsx");
+  const manifest = file("app/manifest.ts");
+  expect(brand).toContain('SITE_NAME = "ضاديوم"');
+  expect(layout).toContain("name: SITE_NAME");
+  expect(layout).toContain("applicationName: SITE_NAME");
+  expect(layout).toContain("siteName: SITE_NAME");
+  expect(layout).toContain("name: SITE_NAME,");
+  expect(layout).toContain("url: \`\${siteUrl}/\`,");
+  const head = layout.split("<head>")[1]?.split("</head>")[0] ?? "";
+  expect(head).toContain('type="application/ld+json"');
+  expect(layout.match(/type="application\/ld\+json"/g)).toHaveLength(1);
+  expect(manifest).toContain('short_name: "ضاديوم"');
+  expect(logo).toContain("ضاديوم");
+  expect(file("app/page.tsx")).toContain("ضاديوم (Dadyoom) — بيت العربية الرقمي");
+});
