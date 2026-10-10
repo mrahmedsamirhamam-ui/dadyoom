@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { extractBahrainPlanYear } from "@/lib/curriculum/source-plan-year";
+import { isDadyoomCoreCurriculum } from "@/lib/curriculum/catalog-item-counts";
 
 export const dynamic = "force-dynamic";
 
@@ -16,7 +17,7 @@ type Row = {
     title: string;
     grades: Related<{
       grade_number: number | null;
-      curricula: Related<{ countries: Related<{ code: string }> }>;
+      curricula: Related<{ name_ar: string; countries: Related<{ code: string }> }>;
     }>;
   }>;
 };
@@ -30,18 +31,27 @@ function group(rows: Row[], edition: string) {
 export default async function GradeSevenSourceAudit() {
   const db = await createClient();
   const result = await db.from("lessons")
-    .select("id,title,lesson_number,source_pdf_url,source_page_start,units!inner(title,grades!inner(grade_number,curricula!inner(countries!inner(code))))")
+    .select("id,title,lesson_number,source_pdf_url,source_page_start,units!inner(title,grades!inner(grade_number,curricula!inner(name_ar,countries!inner(code))))")
     .eq("status", "published")
     .is("official_content_scope", null)
     .eq("units.grades.grade_number", 7)
     .eq("units.grades.curricula.countries.code", "BH")
     .order("lesson_number", { ascending: true })
     .limit(120);
-  const rows = ((result.data ?? []) as unknown as Row[]).filter(x => {
+  const matchingRows = ((result.data ?? []) as unknown as Row[]).filter(x => {
     const grade = first(first(x.units)?.grades ?? null);
     const country = first(first(grade?.curricula ?? null)?.countries ?? null);
     return grade?.grade_number === 7 && country?.code === "BH";
   });
+  // Supporting Dadyoom skill lessons are deliberately unclassified by the
+  // national-plan field. Never count them as missing Bahraini textbook work.
+  const isSupporting = (x: Row) => {
+    const grade = first(first(x.units)?.grades ?? null);
+    const curriculum = first(grade?.curricula ?? null);
+    return isDadyoomCoreCurriculum(curriculum?.name_ar ?? "");
+  };
+  const supportingCount = matchingRows.filter(isSupporting).length;
+  const rows = matchingRows.filter(x => !isSupporting(x));
   const now = group(rows, "2026-2027");
   const historic = group(rows, "2025-2026");
   const unknown = rows.filter(x => !extractBahrainPlanYear("BH", x.source_pdf_url));
@@ -64,9 +74,10 @@ export default async function GradeSevenSourceAudit() {
           {result.error
             ? <p role="alert" className="mt-4 rounded-xl bg-amber-50 p-4 font-bold text-amber-900">تعذر تحميل السجلات. لا يعني ذلك خلو المنهج من النواقص.</p>
             : <div className="mt-5 flex flex-wrap gap-3 text-sm font-black">
-                <span className="rounded-xl bg-[#edf4ef] px-4 py-2">غير مصنفة: {rows.length}</span>
+                <span className="rounded-xl bg-[#edf4ef] px-4 py-2">دروس المناهج الرسمية غير المصنفة: {rows.length}</span>
                 <span className="rounded-xl bg-[#edf4ef] px-4 py-2">خطة 2026–2027: {now.length}</span>
                 <span className="rounded-xl bg-[#fff1dc] px-4 py-2">خطة 2025–2026: {historic.length}</span>
+                <span className="rounded-xl bg-[#edf4ef] px-4 py-2">دروس ضاديوم الداعمة المستبعدة: {supportingCount}</span>
               </div>}
           <p className="mt-3 text-xs text-[#6f665d]">النطاق: الصف السابع فقط، والحد الأقصى 120 سجلًا، مع المصدر وفق الرابط المحفوظ في قاعدة البيانات.</p>
         </header>
