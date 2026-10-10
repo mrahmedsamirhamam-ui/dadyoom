@@ -50,6 +50,11 @@ export default function BahrainAssessmentQualityPage() {
         </div>
       </header>
       <section className="rounded-3xl border border-[#d8c7a4] bg-white p-6">
+        <h2 className="text-xl font-black text-[#123f39]">مسودات تدريب حروف الصف الأول — الجزء الثاني</h2>
+        <p className="mt-2 text-sm leading-7">أعددنا 12 سؤال تمييز حروف أصليًا، محفوظة في قاعدة البيانات كمسودات غير منشورة تنتظر مراجعة معلم العربية. لا تُعد مطابقة معتمدة لكتاب الفصل الثاني 2026–2027.</p>
+        <Link href="/admin/curriculum/coverage/assessments/drafts" className="mt-3 inline-flex rounded-xl border border-[#cdbb96] bg-[#eef6ed] px-5 py-3 text-sm font-black text-[#123f39]">افتح المسودات وراجع الإجابات ←</Link>
+      </section>
+      <section className="rounded-3xl border border-[#d8c7a4] bg-white p-6">
         <h2 className="text-xl font-black text-[#123f39]">قائمة مهام المراجعة التربوية</h2>
         <p className="mt-2 text-sm leading-7">هناك {audit.reviewQueue.length} درسًا يحتوي على أنشطة موسومة بأنها تحتاج مراجعة، منها {audit.reviewQueue.filter(row => row.scope === "plan-scheduled").length} درسًا من الخطط الحالية. لا تعتمد الأنشطة تلقائيًا قبل فحصها.</p>
         <Link href="/admin/curriculum/coverage/assessments/review" className="mt-3 inline-flex rounded-xl bg-[#123f39] px-5 py-3 text-sm font-black text-white">افتح قائمة المراجعة وصفوفها ←</Link>
