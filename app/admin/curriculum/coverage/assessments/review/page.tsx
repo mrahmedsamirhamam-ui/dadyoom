@@ -91,6 +91,7 @@ export default async function BahrainAssessmentReviewQueue({
             صفحة المصدر: {row.sourcePageStart??"غير محددة"} — سنة الوثيقة لا تثبت خطة حالية.
           </p>
           <div className="mt-3 flex flex-wrap gap-4 text-sm font-bold text-[#15584e]">
+            <Link href={`/admin/curriculum/coverage/assessments/review/${row.lessonId}`} className="underline">فحص الأسئلة والإجابات</Link>
             <Link href={`/lessons/${row.lessonId}`} className="underline">فتح الدرس للتدقيق</Link>
             {row.sourcePdfUrl?.startsWith("https://") ?
               <a href={row.sourcePdfUrl} target="_blank" rel="noopener noreferrer" className="underline">الرجوع إلى المصدر الرسمي ↗</a> : null}
