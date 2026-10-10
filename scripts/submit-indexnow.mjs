@@ -5,9 +5,8 @@ const SITE = (
 
 const KEY = "2795fa2980f0437d9ad8df7c6d430a0a";
 const KEY_LOCATION = `${SITE}/${KEY}.txt`;
-const SITEMAP_URL = `${SITE}/sitemap.xml`;
 const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
-const MAX_URLS_PER_REQUEST = 10000;
+const MAX_URLS_PER_REQUEST = 50;
 
 async function sleep(ms) {
   await new Promise((resolve) => setTimeout(resolve, ms));
@@ -44,51 +43,34 @@ async function verifyKey() {
   return false;
 }
 
-async function getSitemapUrls() {
-  const response = await fetch(SITEMAP_URL, {
-    headers: { "user-agent": "Dadyoom-IndexNow/2.0" },
-  });
+// Deliberately notify ONLY explicit changed URLs; a routine CI run must never
+// resubmit thousands of unchanged sitemap entries to IndexNow.
+function getChangedUrls() {
+  const entries = (process.env.DADYOOM_INDEXNOW_PATHS || "")
+    .split(/[\\n,]+/u)
+    .map((value) => value.trim())
+    .filter(Boolean);
 
-  if (!response.ok) {
-    throw new Error(
-      `SITEMAP_HTTP_${response.status}`,
-    );
+  if (entries.length > 50) {
+    throw new Error("INDEXNOW_TOO_MANY_CHANGED_URLS");
   }
 
-  const xml = await response.text();
-  const matches = [
-    ...xml.matchAll(/<loc>([^<]+)<\/loc>/gu),
-  ];
-
-  const siteHost = new URL(SITE).host;
-  const urls = [];
+  const site = new URL(SITE);
   const seen = new Set();
-
-  for (const match of matches) {
-    const raw = match[1]?.trim();
-    if (!raw) continue;
-
-    const parsed = new URL(raw);
-
-    if (parsed.protocol !== "https:" || parsed.host !== siteHost) {
-      continue;
+  const urls = [];
+  for (const entry of entries) {
+    const parsed = new URL(entry, site);
+    if (parsed.origin !== site.origin || parsed.search || parsed.hash ||
+        !parsed.pathname.startsWith("/") ||
+        /^\\/(?:api|admin|student|teacher|school|parent|child|login|signup|onboarding|payments|profile)(?:\\/|$)/u.test(parsed.pathname)) {
+      throw new Error("INDEXNOW_NONPUBLIC_OR_OFFSITE_URL");
     }
-
-    const normalized = parsed.toString();
-
-    if (seen.has(normalized)) {
-      continue;
+    const canonical = parsed.toString();
+    if (!seen.has(canonical)) {
+      seen.add(canonical);
+      urls.push(canonical);
     }
-
-    seen.add(normalized);
-    urls.push(normalized);
   }
-
-  if (urls.length === 0) {
-    throw new Error("SITEMAP_EMPTY");
-  }
-
-  console.log(`INDEXNOW_SITEMAP_URLS=${urls.length}`);
   return urls;
 }
 
@@ -122,13 +104,17 @@ async function submitBatch(urlList) {
 }
 
 async function main() {
+  const urls = getChangedUrls();
+  if (urls.length === 0) {
+    console.log("INDEXNOW=SKIPPED_NO_CHANGED_URLS");
+    return;
+  }
+
   const keyReady = await verifyKey();
 
   if (!keyReady) {
     throw new Error("INDEXNOW_KEY_UNAVAILABLE");
   }
-
-  const urls = await getSitemapUrls();
 
   for (
     let start = 0;
