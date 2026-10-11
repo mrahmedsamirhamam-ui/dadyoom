@@ -9,17 +9,19 @@
       "other_source": 0,
       "without_source": 0,
       "historical_plan": 0,
-      "dadyoom_core_unsourced": 0
+      "dadyoom_core_unsourced": 0,
+      "ministry_digital_lesson": 0
     },
     {
       "total": 143,
       "current_plan": 86,
       "ebook_viewer": 18,
       "grade_number": 1,
-      "other_source": 5,
+      "other_source": 0,
       "without_source": 18,
       "historical_plan": 16,
-      "dadyoom_core_unsourced": 18
+      "dadyoom_core_unsourced": 18,
+      "ministry_digital_lesson": 5
     },
     {
       "total": 77,
@@ -29,7 +31,8 @@
       "other_source": 0,
       "without_source": 18,
       "historical_plan": 15,
-      "dadyoom_core_unsourced": 18
+      "dadyoom_core_unsourced": 18,
+      "ministry_digital_lesson": 0
     },
     {
       "total": 63,
@@ -39,7 +42,8 @@
       "other_source": 0,
       "without_source": 18,
       "historical_plan": 15,
-      "dadyoom_core_unsourced": 18
+      "dadyoom_core_unsourced": 18,
+      "ministry_digital_lesson": 0
     },
     {
       "total": 178,
@@ -49,7 +53,8 @@
       "other_source": 0,
       "without_source": 18,
       "historical_plan": 75,
-      "dadyoom_core_unsourced": 18
+      "dadyoom_core_unsourced": 18,
+      "ministry_digital_lesson": 0
     },
     {
       "total": 169,
@@ -59,7 +64,8 @@
       "other_source": 0,
       "without_source": 18,
       "historical_plan": 66,
-      "dadyoom_core_unsourced": 18
+      "dadyoom_core_unsourced": 18,
+      "ministry_digital_lesson": 0
     },
     {
       "total": 122,
@@ -69,7 +75,8 @@
       "other_source": 0,
       "without_source": 18,
       "historical_plan": 47,
-      "dadyoom_core_unsourced": 18
+      "dadyoom_core_unsourced": 18,
+      "ministry_digital_lesson": 0
     },
     {
       "total": 121,
@@ -79,7 +86,8 @@
       "other_source": 0,
       "without_source": 18,
       "historical_plan": 37,
-      "dadyoom_core_unsourced": 18
+      "dadyoom_core_unsourced": 18,
+      "ministry_digital_lesson": 0
     },
     {
       "total": 108,
@@ -89,7 +97,8 @@
       "other_source": 0,
       "without_source": 18,
       "historical_plan": 31,
-      "dadyoom_core_unsourced": 18
+      "dadyoom_core_unsourced": 18,
+      "ministry_digital_lesson": 0
     },
     {
       "total": 69,
@@ -99,7 +108,8 @@
       "other_source": 0,
       "without_source": 18,
       "historical_plan": 28,
-      "dadyoom_core_unsourced": 18
+      "dadyoom_core_unsourced": 18,
+      "ministry_digital_lesson": 0
     },
     {
       "total": 170,
@@ -109,7 +119,8 @@
       "other_source": 0,
       "without_source": 18,
       "historical_plan": 83,
-      "dadyoom_core_unsourced": 18
+      "dadyoom_core_unsourced": 18,
+      "ministry_digital_lesson": 0
     },
     {
       "total": 200,
@@ -119,7 +130,8 @@
       "other_source": 0,
       "without_source": 18,
       "historical_plan": 98,
-      "dadyoom_core_unsourced": 18
+      "dadyoom_core_unsourced": 18,
+      "ministry_digital_lesson": 0
     },
     {
       "total": 158,
@@ -129,13 +141,14 @@
       "other_source": 0,
       "without_source": 18,
       "historical_plan": 78,
-      "dadyoom_core_unsourced": 18
+      "dadyoom_core_unsourced": 18,
+      "ministry_digital_lesson": 0
     }
   ],
   "auditedAt": "2026-10-11",
   "countryCode": "BH",
   "academicYear": "2026-2027",
-  "sourceMethod": "Read-only joins to published lessons; edunet.bh HTTPS host and plan URL year",
+  "sourceMethod": "Read-only joins; ministry HTTPS/URL provenance: current-year plan, historical plan, ebook viewer, standalone ministry digital lesson, Dadyoom authored, other",
   "reviewExamples": [
     {
       "id": "0eb8f691-50e6-4329-bfc9-271a4822d283",
@@ -188,7 +201,7 @@
     {
       "id": "97ff78ad-d774-4a51-a860-8ca8c3d00ea2",
       "title": "الدرس الرابع: حرفا (ف) و(أ)",
-      "source_kind": "other_source",
+      "source_kind": "ministry_digital_lesson",
       "grade_number": 1,
       "source_pdf_url": "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_2/lessons/Ershadat-aktashef-f-a/Ershadat-aktashef-f-a.pdf",
       "curriculum_name": "اللغة العربية"
@@ -196,7 +209,7 @@
     {
       "id": "ad069dd9-052d-47fe-8c03-5c4ff9381cdb",
       "title": "الدرس الثامن: حرفا (خ) و(ذ)",
-      "source_kind": "other_source",
+      "source_kind": "ministry_digital_lesson",
       "grade_number": 1,
       "source_pdf_url": "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_2/lessons/Ershadat-Aktashef-5a2-wa-Thal/Ershadat-Aktashef-5a2-wa-Thal.pdf",
       "curriculum_name": "اللغة العربية"
@@ -204,7 +217,7 @@
     {
       "id": "c1771cdd-3a3a-4778-9084-6dde00051ddb",
       "title": "الدرس الرابع عشر: حرف (ظ)",
-      "source_kind": "other_source",
+      "source_kind": "ministry_digital_lesson",
       "grade_number": 1,
       "source_pdf_url": "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_2/lessons/G1-L14-Harf-Althaa-Aktashef-Alharf-W13%281%29/G1-L14-Harf-Althaa-Aktashef-Alharf-W13%281%29.pdf",
       "curriculum_name": "اللغة العربية"
@@ -664,5 +677,7 @@
       "curriculum_name": "المسار العربي الأساسي لضاديوم",
       "historical_plan": 0
     }
-  ]
+  ],
+  "reviewNote": "Five Edunet grade-one PDFs under /e_content/.../lessons/ are official digital lesson resources, NOT an annual plan, textbook TOC or proof of current-year scheduling. Grouped separately from uncategorized URLs.",
+  "snapshotRevision": "2026-10-11-ministry-digital-resource-classification"
 }

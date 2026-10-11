@@ -11,6 +11,7 @@ const totals = {
   current: grades.reduce((n,r)=>n+r.current_plan,0),
   historical: grades.reduce((n,r)=>n+r.historical_plan,0),
   dadyoomCore: grades.reduce((n,r)=>n+r.dadyoom_core_unsourced,0),
+  ministryResources: grades.reduce((n,r)=>n+r.ministry_digital_lesson,0),
   other: grades.reduce((n,r)=>n+r.ebook_viewer+r.other_source,0),
 };
 const label = (g: number) => g === 0 ? "التعليم المستمر" : `الصف ${g}`;
@@ -29,6 +30,7 @@ export default function BahrainPlanSourceAuditPage() {
           <h1 className="mt-3 text-3xl font-black text-[#123f39]">مصادر الدروس: الحالي والتاريخي</h1>
           <p className="mt-3 leading-8 text-[#5b625b]">
             تقرير قراءة موثق بتاريخ {audit.auditedAt} وليس استعلامًا حيًا.
+            ملفات الدروس الرقمية الخمسة للصف الأول وثائق تعليمية من الوزارة، لكنها ليست كتبًا كاملة ولا خطط توزيع السنة الحالية.
             تصنيف «خطة حالية» يعني أن الرابط يشير إلى وثيقة تحمل سنة 2026–2027،
             ولا يعني التحقق من فهرس الكتاب أو من صحة كل نشاط. وروابط 2025–2026 لا تثبت مقرر الفصل الثاني الحالي.
           </p>
@@ -38,7 +40,8 @@ export default function BahrainPlanSourceAuditPage() {
               ["روابط خطة 2026–2027",totals.current],
               ["روابط خطة 2025–2026",totals.historical],
               ["دروس ضاديوم الداعمة دون مصدر وزاري",totals.dadyoomCore],
-              ["رابط كتاب إلكتروني أو مصدر آخر",totals.other],
+              ["موارد دروس رقمية رسمية مستقلة",totals.ministryResources],
+              ["عارض كتاب إلكتروني / مصادر أخرى",totals.other],
             ].map(([name,count]) => (
               <div key={name} className="rounded-2xl bg-[#f7f1e6] p-4">
                 <p className="text-3xl font-black tabular-nums">{count}</p>
@@ -60,7 +63,7 @@ export default function BahrainPlanSourceAuditPage() {
           <div className="mt-4 overflow-x-auto">
             <table className="w-full min-w-[780px] text-right text-sm">
               <thead><tr className="border-b bg-[#f7f1e6]">
-                {["الصف أو المستوى","دروس منشورة","خطة 2026–2027","خطة 2025–2026","ضاديوم الداعم دون مصدر رسمي","كتاب إلكتروني/مصدر آخر","فتح الصف"].map(name=>(
+                {["الصف أو المستوى","دروس منشورة","خطة 2026–2027","خطة 2025–2026","ضاديوم الداعم دون مصدر رسمي","ملفات دروس رقمية من الوزارة","عارض كتاب/مصدر آخر","فتح الصف"].map(name=>(
                   <th key={name} className="px-3 py-3 font-black">{name}</th>
                 ))}
               </tr></thead>
@@ -71,6 +74,7 @@ export default function BahrainPlanSourceAuditPage() {
                   <td className="px-3 py-3 tabular-nums text-emerald-800">{row.current_plan}</td>
                   <td className="px-3 py-3 font-black tabular-nums text-amber-800">{row.historical_plan}</td>
                   <td className="px-3 py-3 tabular-nums">{row.dadyoom_core_unsourced}</td>
+                  <td className="px-3 py-3 tabular-nums">{row.ministry_digital_lesson}</td>
                   <td className="px-3 py-3 tabular-nums">{row.ebook_viewer+row.other_source}</td>
                   <td className="px-3 py-3">
                     <Link href={row.grade_number===0?"/courses":`/curriculum/bh/${row.grade_number}`}
@@ -123,7 +127,7 @@ export default function BahrainPlanSourceAuditPage() {
                 <p className="text-xs font-black text-[#865b16]">
                   {label(item.grade_number)} • {item.source_kind==="historical_plan"
                     ? "خطة 2025–2026 تاريخية"
-                    : item.source_kind==="ebook_viewer" ? "عارض كتاب" : "مصدر يحتاج تصنيفًا"}
+                    : item.source_kind==="ebook_viewer" ? "عارض كتاب" : item.source_kind==="ministry_digital_lesson" ? "ملف درس رقمي رسمي؛ السنة غير مثبتة" : "مصدر يحتاج تصنيفًا"}
                 </p>
                 <h3 className="mt-2 font-black leading-7">{item.title}</h3>
                 <p className="mt-2 text-xs leading-6 text-[#686055]">{item.curriculum_name}</p>

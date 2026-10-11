@@ -22,7 +22,11 @@ describe("Bahrain lesson source labels must not confuse plans with textbooks", (
   test("catalog, ebook viewer, and unrelated links are never called certified textbook page", () => {
     expect(describeLessonSourceReference("https://edunet.bh/manual/books2026/books1.pdf").kind).toBe("book-catalog");
     expect(describeLessonSourceReference("https://www.edunet.bh/e_content/a/b/e_books/Baraem/index.html").kind).toBe("ebook-viewer");
+    expect(describeLessonSourceReference("https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_2/lessons/Ershadat-aktashef-f-a/Ershadat-aktashef-f-a.pdf").kind).toBe("ministry-digital-lesson");
+    expect(describeLessonSourceReference("https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_2/lessons/Ershadat-aktashef-f-a/Ershadat-aktashef-f-a.pdf").caution).toBe(true);
+    expect(describeLessonSourceReference("https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_2/lessons/Ershadat-aktashef-f-a/Ershadat-aktashef-f-a.pdf").detail).toContain("ليس فهرس كتاب");
     expect(describeLessonSourceReference("https://other.example/manual/plans1-2026-2027/Arabic/Plan1.pdf").kind).toBe("other");
+    expect(describeLessonSourceReference("https://other.example/e_content/level_1/lessons/test.pdf").kind).toBe("other");
     expect(describeLessonSourceReference("javascript:alert(1)").kind).toBe("other");
   });
   test("rendered lesson links use source-specific label, external link safety, and provenance text", () => {

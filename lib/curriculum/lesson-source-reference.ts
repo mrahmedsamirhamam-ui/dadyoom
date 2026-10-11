@@ -5,7 +5,7 @@
  * This helper performs NO online verification or independent TOC audit.
  */
 export type SourceReference = {
-  kind: "current-plan" | "historical-plan" | "book-catalog" | "ebook-viewer" | "other";
+  kind: "current-plan" | "historical-plan" | "book-catalog" | "ebook-viewer" | "ministry-digital-lesson" | "other";
   linkLabel: string;
   detail: string;
   editionYear: string | null;
@@ -57,6 +57,17 @@ export function describeLessonSourceReference(rawUrl: string): SourceReference {
         kind: "ebook-viewer", linkLabel: "فتح عارض الكتاب الإلكتروني المسجل",
         detail: "رابط عارض الكتاب المسجل لا يعني وحده التحقق من الإصدار الدراسي أو مطابقة جميع بنود الفهرس بالدرس.",
         editionYear: null, caution: false,
+      };
+    }
+    // Some Bahrain G1 part-two records link to actual Ministry digital
+    // lesson-resource PDFs (not textbooks and not annual teaching plans).
+    // A Ministry resource is not evidence that the 2026–2027 plan assigns it.
+    if (/\/e_content\/[^?#]+\/lessons\/[^?#]+\.pdf$/iu.test(url.pathname)) {
+      return {
+        kind: "ministry-digital-lesson",
+        linkLabel: "فتح ملف الدرس الرقمي في موقع الوزارة",
+        detail: "هذا ملف درس رقمي تابع للوزارة، وليس فهرس كتاب أو خطة توزيع رسمية لعام 2026–2027؛ لا تثبت الإحالة وحدها اعتماد الدرس لهذا العام.",
+        editionYear: null, caution: true,
       };
     }
   }

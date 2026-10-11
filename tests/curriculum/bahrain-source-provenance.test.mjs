@@ -13,9 +13,11 @@ describe("Bahrain published-lesson source-year snapshot",()=>{
     expect(sum("historical_plan")).toBe(589);
     expect(sum("without_source")).toBe(216);
     expect(sum("ebook_viewer")).toBe(18);
-    expect(sum("other_source")).toBe(5);
+    expect(sum("other_source")).toBe(0);
+    expect(audit.grades.find(g=>g.grade_number===1)?.ministry_digital_lesson).toBe(5);
+    expect(sum("ministry_digital_lesson")).toBe(5);
     for(const row of audit.grades){
-      expect(row.total).toBe(row.current_plan+row.historical_plan+row.without_source+row.ebook_viewer+row.other_source);
+      expect(row.total).toBe(row.current_plan+row.historical_plan+row.without_source+row.ebook_viewer+row.ministry_digital_lesson+row.other_source);
       expect(row.dadyoom_core_unsourced).toBe(row.without_source);
     }
   });
@@ -31,6 +33,7 @@ describe("Bahrain published-lesson source-year snapshot",()=>{
   test("actionable review samples are unique published lesson IDs with real HTTPS sources",()=>{
     expect(audit.reviewExamples.length).toBeGreaterThanOrEqual(20);
     expect(new Set(audit.reviewExamples.map(x=>x.id)).size).toBe(audit.reviewExamples.length);
+    expect(audit.reviewExamples.filter(x=>x.source_kind==="ministry_digital_lesson").length).toBe(3);
     for(const sample of audit.reviewExamples){
       expect(sample.id).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i);
       expect(sample.title.trim().length).toBeGreaterThan(1);
