@@ -1,0 +1,668 @@
+{
+  "scope": "Published lessons only. A plan-source URL is NOT a validated textbook TOC.",
+  "grades": [
+    {
+      "total": 177,
+      "current_plan": 177,
+      "ebook_viewer": 0,
+      "grade_number": 0,
+      "other_source": 0,
+      "without_source": 0,
+      "historical_plan": 0,
+      "dadyoom_core_unsourced": 0
+    },
+    {
+      "total": 143,
+      "current_plan": 86,
+      "ebook_viewer": 18,
+      "grade_number": 1,
+      "other_source": 5,
+      "without_source": 18,
+      "historical_plan": 16,
+      "dadyoom_core_unsourced": 18
+    },
+    {
+      "total": 77,
+      "current_plan": 44,
+      "ebook_viewer": 0,
+      "grade_number": 2,
+      "other_source": 0,
+      "without_source": 18,
+      "historical_plan": 15,
+      "dadyoom_core_unsourced": 18
+    },
+    {
+      "total": 63,
+      "current_plan": 30,
+      "ebook_viewer": 0,
+      "grade_number": 3,
+      "other_source": 0,
+      "without_source": 18,
+      "historical_plan": 15,
+      "dadyoom_core_unsourced": 18
+    },
+    {
+      "total": 178,
+      "current_plan": 85,
+      "ebook_viewer": 0,
+      "grade_number": 4,
+      "other_source": 0,
+      "without_source": 18,
+      "historical_plan": 75,
+      "dadyoom_core_unsourced": 18
+    },
+    {
+      "total": 169,
+      "current_plan": 85,
+      "ebook_viewer": 0,
+      "grade_number": 5,
+      "other_source": 0,
+      "without_source": 18,
+      "historical_plan": 66,
+      "dadyoom_core_unsourced": 18
+    },
+    {
+      "total": 122,
+      "current_plan": 57,
+      "ebook_viewer": 0,
+      "grade_number": 6,
+      "other_source": 0,
+      "without_source": 18,
+      "historical_plan": 47,
+      "dadyoom_core_unsourced": 18
+    },
+    {
+      "total": 121,
+      "current_plan": 66,
+      "ebook_viewer": 0,
+      "grade_number": 7,
+      "other_source": 0,
+      "without_source": 18,
+      "historical_plan": 37,
+      "dadyoom_core_unsourced": 18
+    },
+    {
+      "total": 108,
+      "current_plan": 59,
+      "ebook_viewer": 0,
+      "grade_number": 8,
+      "other_source": 0,
+      "without_source": 18,
+      "historical_plan": 31,
+      "dadyoom_core_unsourced": 18
+    },
+    {
+      "total": 69,
+      "current_plan": 23,
+      "ebook_viewer": 0,
+      "grade_number": 9,
+      "other_source": 0,
+      "without_source": 18,
+      "historical_plan": 28,
+      "dadyoom_core_unsourced": 18
+    },
+    {
+      "total": 170,
+      "current_plan": 69,
+      "ebook_viewer": 0,
+      "grade_number": 10,
+      "other_source": 0,
+      "without_source": 18,
+      "historical_plan": 83,
+      "dadyoom_core_unsourced": 18
+    },
+    {
+      "total": 200,
+      "current_plan": 84,
+      "ebook_viewer": 0,
+      "grade_number": 11,
+      "other_source": 0,
+      "without_source": 18,
+      "historical_plan": 98,
+      "dadyoom_core_unsourced": 18
+    },
+    {
+      "total": 158,
+      "current_plan": 62,
+      "ebook_viewer": 0,
+      "grade_number": 12,
+      "other_source": 0,
+      "without_source": 18,
+      "historical_plan": 78,
+      "dadyoom_core_unsourced": 18
+    }
+  ],
+  "auditedAt": "2026-10-11",
+  "countryCode": "BH",
+  "academicYear": "2026-2027",
+  "sourceMethod": "Read-only joins to published lessons; edunet.bh HTTPS host and plan URL year",
+  "reviewExamples": [
+    {
+      "id": "0eb8f691-50e6-4329-bfc9-271a4822d283",
+      "title": "الدرس الرابع عشر: حرف (ت)",
+      "source_kind": "ebook_viewer",
+      "grade_number": 1,
+      "source_pdf_url": "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_1/e_books/Arabic-Baraem-G1-P1-2026/Arabic%20Baraem%20G1%20P1%202026/index.html",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "0f24e423-0fcb-4101-a278-f29d36076a07",
+      "title": "الدرس الرابع: حرف (د)",
+      "source_kind": "ebook_viewer",
+      "grade_number": 1,
+      "source_pdf_url": "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_1/e_books/Arabic-Baraem-G1-P1-2026/Arabic%20Baraem%20G1%20P1%202026/index.html",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "1145b186-c334-4ced-a98e-8a5bf1f28ddc",
+      "title": "الدرس الثاني عشر: حرف (ن)",
+      "source_kind": "ebook_viewer",
+      "grade_number": 1,
+      "source_pdf_url": "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_1/e_books/Arabic-Baraem-G1-P1-2026/Arabic%20Baraem%20G1%20P1%202026/index.html",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "0031c757-6e24-494e-aeb3-1ec318be271b",
+      "title": "أعزز مكتسباتي — الوحدة الأولى",
+      "source_kind": "historical_plan",
+      "grade_number": 1,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "0b2fadc8-2986-464e-a20f-4d80eb701464",
+      "title": "أنشودة الوحدة الثالثة: في حينا حديقة",
+      "source_kind": "historical_plan",
+      "grade_number": 1,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "1438079a-19fc-4fb3-b31b-7bb1f3134ad2",
+      "title": "قصة الوحدة الثالثة: كيف أحافظ على صحتي؟",
+      "source_kind": "historical_plan",
+      "grade_number": 1,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "97ff78ad-d774-4a51-a860-8ca8c3d00ea2",
+      "title": "الدرس الرابع: حرفا (ف) و(أ)",
+      "source_kind": "other_source",
+      "grade_number": 1,
+      "source_pdf_url": "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_2/lessons/Ershadat-aktashef-f-a/Ershadat-aktashef-f-a.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "ad069dd9-052d-47fe-8c03-5c4ff9381cdb",
+      "title": "الدرس الثامن: حرفا (خ) و(ذ)",
+      "source_kind": "other_source",
+      "grade_number": 1,
+      "source_pdf_url": "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_2/lessons/Ershadat-Aktashef-5a2-wa-Thal/Ershadat-Aktashef-5a2-wa-Thal.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "c1771cdd-3a3a-4778-9084-6dde00051ddb",
+      "title": "الدرس الرابع عشر: حرف (ظ)",
+      "source_kind": "other_source",
+      "grade_number": 1,
+      "source_pdf_url": "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_2/lessons/G1-L14-Harf-Althaa-Aktashef-Alharf-W13%281%29/G1-L14-Harf-Althaa-Aktashef-Alharf-W13%281%29.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "0b60b985-6eb9-4114-b899-7e516b57a828",
+      "title": "الاستماع: نعمة الماء",
+      "source_kind": "historical_plan",
+      "grade_number": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "0f5904ec-8aa7-46fa-894b-989c956bf8d9",
+      "title": "الدرس السادس: النخلة",
+      "source_kind": "historical_plan",
+      "grade_number": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "38594fae-4bf7-41c3-aa76-52590a1dbdda",
+      "title": "الدرس التاسع: الرجل الطائر",
+      "source_kind": "historical_plan",
+      "grade_number": 2,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "0ab3e6ba-c3ea-4460-a659-70ee473a9216",
+      "title": "الدرس العاشر: ذكريات من أيام الطفولة (2)",
+      "source_kind": "historical_plan",
+      "grade_number": 3,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "0affd0f0-5fa4-4a5a-9305-e97dbe94624b",
+      "title": "الدرس الثاني: نداء الواجب (2)",
+      "source_kind": "historical_plan",
+      "grade_number": 3,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "17b02cc0-99f8-4118-9783-f568a9f88133",
+      "title": "الاستماع: ما أجمل اللعب في ساحة الحي!",
+      "source_kind": "historical_plan",
+      "grade_number": 3,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "03edf202-e895-4c81-8eb8-927085116ffb",
+      "title": "حرف (هـ)",
+      "source_kind": "historical_plan",
+      "grade_number": 4,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "062d294d-2e89-4bc5-9d00-3b7b5a3a2b09",
+      "title": "التعبير الشفوي — الأسبوع الرابع",
+      "source_kind": "historical_plan",
+      "grade_number": 4,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "0816f5da-8759-497c-8899-fa9a6a79fad3",
+      "title": "إنتاج فقرة وصفية: وصف شخص (2)",
+      "source_kind": "historical_plan",
+      "grade_number": 4,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "009fdcaf-0208-4ede-86ac-0e5be216dc43",
+      "title": "حرف (ف)",
+      "source_kind": "historical_plan",
+      "grade_number": 5,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "0320d4d1-8762-4024-880d-16c6d14bb401",
+      "title": "تثرية النص السردي بالحوار — أنتج",
+      "source_kind": "historical_plan",
+      "grade_number": 5,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "08d31972-b2bf-41bc-892e-cd098f3ae4b0",
+      "title": "المذكرات اليومية — أكتشف",
+      "source_kind": "historical_plan",
+      "grade_number": 5,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "023d8670-b293-4a9d-b8f5-175989a5592a",
+      "title": "النكرة والمعرفة",
+      "source_kind": "historical_plan",
+      "grade_number": 6,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "069508e8-8702-4144-b52f-9a6b5eb899ff",
+      "title": "تسلسل الأحداث في النص السردي — أثري وأنتج جزئيًا",
+      "source_kind": "historical_plan",
+      "grade_number": 6,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "09179e20-7685-4a02-9154-3b31d2732f91",
+      "title": "زرقاء اليمامة",
+      "source_kind": "historical_plan",
+      "grade_number": 6,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "01d70448-034e-4135-a410-ee326fd62e4d",
+      "title": "الفاعل: مواضع إفراد الفعل وتأنيثه وجوبًا مع الفاعل",
+      "source_kind": "historical_plan",
+      "grade_number": 7,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "03b11621-bfc4-4c59-9f09-d91b1d54203a",
+      "title": "مراجعة عامة لدروس الفصل الثاني",
+      "source_kind": "historical_plan",
+      "grade_number": 7,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "04c8249e-fdf9-4a73-b1b1-5a27ece9ebf5",
+      "title": "علامات الترقيم: علامة الاستفهام والفاصلة المنقوطة",
+      "source_kind": "historical_plan",
+      "grade_number": 7,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "012a21c2-3102-41c8-8eff-7a3006299736",
+      "title": "المرأة البحرينية ودورها في صنع غد أفضل",
+      "source_kind": "historical_plan",
+      "grade_number": 8,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "0e5b61e8-c74d-4e78-97ba-574be28bf055",
+      "title": "النعت الحقيقي",
+      "source_kind": "historical_plan",
+      "grade_number": 8,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "126b3ed1-b4de-41ca-8153-674afba786fa",
+      "title": "مراجعة علامات الترقيم",
+      "source_kind": "historical_plan",
+      "grade_number": 8,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "079978a6-e9df-4b96-9b4a-76572980298a",
+      "title": "الجزر العربية في الخليج",
+      "source_kind": "historical_plan",
+      "grade_number": 9,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "234c5886-e071-45ac-8b91-97c8549ebe73",
+      "title": "الوطن",
+      "source_kind": "historical_plan",
+      "grade_number": 9,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "23e8d737-31c3-452b-a547-68945178f1f0",
+      "title": "تدريبات عامة على ما سبق دراسته",
+      "source_kind": "historical_plan",
+      "grade_number": 9,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+      "curriculum_name": "اللغة العربية"
+    },
+    {
+      "id": "007f8d7f-0fab-4999-befa-58ab9a10614c",
+      "title": "الإنتاج الكتابي: تعليمات السلامة في الورشة",
+      "source_kind": "historical_plan",
+      "grade_number": 10,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan1.pdf",
+      "curriculum_name": "اللغة العربية — المسار الإداري والتكنولوجي - الهندسي — الجزء الثاني (محتوى كتاب رسمي)"
+    },
+    {
+      "id": "02a4322a-b53b-48c1-be24-4202810016b6",
+      "title": "القضايا الصرفية: الميزان الصرفي",
+      "source_kind": "historical_plan",
+      "grade_number": 10,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan4.pdf",
+      "curriculum_name": "اللغة العربية — توحيد المسارات — الجزء الثاني (محتوى كتاب رسمي)"
+    },
+    {
+      "id": "0391a350-b81d-47c8-a428-491c7309b19a",
+      "title": "الظواهر اللغوية: المجرد والمزيد",
+      "source_kind": "historical_plan",
+      "grade_number": 10,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan1.pdf",
+      "curriculum_name": "اللغة العربية — المسار الإداري والتكنولوجي - الهندسي — الجزء الثاني (محتوى كتاب رسمي)"
+    },
+    {
+      "id": "00ff6e14-3e7d-4ba0-8f79-8795b53c4e52",
+      "title": "الطباق والمقابلة",
+      "source_kind": "historical_plan",
+      "grade_number": 11,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan4.pdf",
+      "curriculum_name": "اللغة العربية — توحيد المسارات — الجزء الثاني (محتوى كتاب رسمي)"
+    },
+    {
+      "id": "02a0af8f-8af4-4c6c-8b7b-59ecab37140f",
+      "title": "الظواهر البلاغية: التشبيه — أنواعه وأدواته ووظائفه",
+      "source_kind": "historical_plan",
+      "grade_number": 11,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan1.pdf",
+      "curriculum_name": "اللغة العربية — التعليم الفني والمهني — الجزء الثاني (محتوى كتاب رسمي)"
+    },
+    {
+      "id": "08507b3d-e6b5-4380-b52b-b55e754eac17",
+      "title": "الصرف: التصغير",
+      "source_kind": "historical_plan",
+      "grade_number": 11,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan2.pdf",
+      "curriculum_name": "اللغة العربية — التعليم الديني — الجزء الثاني (محتوى كتاب رسمي)"
+    },
+    {
+      "id": "037fab13-4208-4758-8e5d-9bc16de1c8bd",
+      "title": "البلاغة: الطباق",
+      "source_kind": "historical_plan",
+      "grade_number": 12,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan2.pdf",
+      "curriculum_name": "اللغة العربية — التعليم الديني — الجزء الثاني (محتوى كتاب رسمي)"
+    },
+    {
+      "id": "03f4e25c-6046-468f-bd2c-de4a6b312325",
+      "title": "البلاغة: تأكيد المدح بما يشبه الذم وعكسه",
+      "source_kind": "historical_plan",
+      "grade_number": 12,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan2.pdf",
+      "curriculum_name": "اللغة العربية — التعليم الديني — الجزء الثاني (محتوى كتاب رسمي)"
+    },
+    {
+      "id": "04b2146d-fefb-4cc9-9152-8a8c590284fc",
+      "title": "الإنتاج الكتابي: كتابة تعليق صحفي انطلاقًا من خبر أو مقال أو قضية",
+      "source_kind": "historical_plan",
+      "grade_number": 12,
+      "source_pdf_url": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan4.pdf",
+      "curriculum_name": "اللغة العربية — توحيد المسارات — الجزء الثاني (محتوى كتاب رسمي)"
+    }
+  ],
+  "secondaryTracks": [
+    {
+      "total": 14,
+      "current_plan": 14,
+      "grade_number": 10,
+      "curriculum_name": "اللغة العربية",
+      "historical_plan": 0
+    },
+    {
+      "total": 20,
+      "current_plan": 0,
+      "grade_number": 10,
+      "curriculum_name": "اللغة العربية — التعليم الديني — الجزء الثاني (محتوى كتاب رسمي)",
+      "historical_plan": 20
+    },
+    {
+      "total": 25,
+      "current_plan": 25,
+      "grade_number": 10,
+      "curriculum_name": "اللغة العربية — التعليم الديني — الفصل الأول",
+      "historical_plan": 0
+    },
+    {
+      "total": 30,
+      "current_plan": 0,
+      "grade_number": 10,
+      "curriculum_name": "اللغة العربية — التعليم الفني والمهني — الجزء الثاني (محتوى كتاب رسمي)",
+      "historical_plan": 30
+    },
+    {
+      "total": 12,
+      "current_plan": 12,
+      "grade_number": 10,
+      "curriculum_name": "اللغة العربية — التعليم الفني والمهني — الفصل الأول",
+      "historical_plan": 0
+    },
+    {
+      "total": 18,
+      "current_plan": 0,
+      "grade_number": 10,
+      "curriculum_name": "اللغة العربية — المسار الإداري والتكنولوجي - الهندسي — الجزء الثاني (محتوى كتاب رسمي)",
+      "historical_plan": 18
+    },
+    {
+      "total": 18,
+      "current_plan": 18,
+      "grade_number": 10,
+      "curriculum_name": "اللغة العربية — المسار الإداري والتكنولوجي - الهندسي — الفصل الأول",
+      "historical_plan": 0
+    },
+    {
+      "total": 15,
+      "current_plan": 0,
+      "grade_number": 10,
+      "curriculum_name": "اللغة العربية — توحيد المسارات — الجزء الثاني (محتوى كتاب رسمي)",
+      "historical_plan": 15
+    },
+    {
+      "total": 18,
+      "current_plan": 0,
+      "grade_number": 10,
+      "curriculum_name": "المسار العربي الأساسي لضاديوم",
+      "historical_plan": 0
+    },
+    {
+      "total": 22,
+      "current_plan": 22,
+      "grade_number": 11,
+      "curriculum_name": "اللغة العربية",
+      "historical_plan": 0
+    },
+    {
+      "total": 34,
+      "current_plan": 0,
+      "grade_number": 11,
+      "curriculum_name": "اللغة العربية — التعليم الديني — الجزء الثاني (محتوى كتاب رسمي)",
+      "historical_plan": 34
+    },
+    {
+      "total": 34,
+      "current_plan": 34,
+      "grade_number": 11,
+      "curriculum_name": "اللغة العربية — التعليم الديني — الفصل الأول",
+      "historical_plan": 0
+    },
+    {
+      "total": 23,
+      "current_plan": 0,
+      "grade_number": 11,
+      "curriculum_name": "اللغة العربية — التعليم الفني والمهني — الجزء الثاني (محتوى كتاب رسمي)",
+      "historical_plan": 23
+    },
+    {
+      "total": 12,
+      "current_plan": 12,
+      "grade_number": 11,
+      "curriculum_name": "اللغة العربية — التعليم الفني والمهني — الفصل الأول",
+      "historical_plan": 0
+    },
+    {
+      "total": 13,
+      "current_plan": 0,
+      "grade_number": 11,
+      "curriculum_name": "اللغة العربية — المسار الإداري والتكنولوجي - الهندسي — الجزء الثاني (محتوى كتاب رسمي)",
+      "historical_plan": 13
+    },
+    {
+      "total": 16,
+      "current_plan": 16,
+      "grade_number": 11,
+      "curriculum_name": "اللغة العربية — المسار الإداري والتكنولوجي - الهندسي — الفصل الأول",
+      "historical_plan": 0
+    },
+    {
+      "total": 28,
+      "current_plan": 0,
+      "grade_number": 11,
+      "curriculum_name": "اللغة العربية — توحيد المسارات — الجزء الثاني (محتوى كتاب رسمي)",
+      "historical_plan": 28
+    },
+    {
+      "total": 18,
+      "current_plan": 0,
+      "grade_number": 11,
+      "curriculum_name": "المسار العربي الأساسي لضاديوم",
+      "historical_plan": 0
+    },
+    {
+      "total": 19,
+      "current_plan": 19,
+      "grade_number": 12,
+      "curriculum_name": "اللغة العربية",
+      "historical_plan": 0
+    },
+    {
+      "total": 26,
+      "current_plan": 0,
+      "grade_number": 12,
+      "curriculum_name": "اللغة العربية — التعليم الديني — الجزء الثاني (محتوى كتاب رسمي)",
+      "historical_plan": 26
+    },
+    {
+      "total": 32,
+      "current_plan": 32,
+      "grade_number": 12,
+      "curriculum_name": "اللغة العربية — التعليم الديني — الفصل الأول",
+      "historical_plan": 0
+    },
+    {
+      "total": 13,
+      "current_plan": 0,
+      "grade_number": 12,
+      "curriculum_name": "اللغة العربية — التعليم الفني والمهني — الجزء الثاني (محتوى كتاب رسمي)",
+      "historical_plan": 13
+    },
+    {
+      "total": 5,
+      "current_plan": 5,
+      "grade_number": 12,
+      "curriculum_name": "اللغة العربية — التعليم الفني والمهني — الفصل الأول",
+      "historical_plan": 0
+    },
+    {
+      "total": 12,
+      "current_plan": 0,
+      "grade_number": 12,
+      "curriculum_name": "اللغة العربية — المسار الإداري والتكنولوجي - الهندسي — الجزء الثاني (محتوى كتاب رسمي)",
+      "historical_plan": 12
+    },
+    {
+      "total": 6,
+      "current_plan": 6,
+      "grade_number": 12,
+      "curriculum_name": "اللغة العربية — المسار الإداري والتكنولوجي - الهندسي — الفصل الأول",
+      "historical_plan": 0
+    },
+    {
+      "total": 27,
+      "current_plan": 0,
+      "grade_number": 12,
+      "curriculum_name": "اللغة العربية — توحيد المسارات — الجزء الثاني (محتوى كتاب رسمي)",
+      "historical_plan": 27
+    },
+    {
+      "total": 18,
+      "current_plan": 0,
+      "grade_number": 12,
+      "curriculum_name": "المسار العربي الأساسي لضاديوم",
+      "historical_plan": 0
+    }
+  ]
+}
