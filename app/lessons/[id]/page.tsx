@@ -8,6 +8,7 @@ import { isKnownBookReferenceId } from "@/lib/curriculum/verified-book-reference
 import { createClient } from "@/lib/supabase/server";
 import { SITE_DESCRIPTION } from "@/lib/site";
 import { normalizeArabicDisplayText } from "@/lib/seo/normalize-arabic-display";
+import { describeLessonSourceReference } from "@/lib/curriculum/lesson-source-reference";
 import {
   getLessonPageBundle,
 } from "@/features/lessons/queries/getLessonPageBundle";
@@ -246,6 +247,10 @@ export default async function LessonPage({
 
   const lesson =
     bundle.lesson;
+
+  const sourceReference = lesson.source_pdf_url
+    ? describeLessonSourceReference(lesson.source_pdf_url)
+    : null;
 
   const lessonDisplayTitle =
     normalizeArabicDisplayText(
@@ -741,24 +746,30 @@ export default async function LessonPage({
           </div>
         </section>
 
-        {lesson.source_pdf_url ? (
-          <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
-            <Link
+        {lesson.source_pdf_url && sourceReference ? (
+          <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm" aria-label="مصدر الدرس وحالة التوثيق">
+            <h2 className="mb-3 text-xl font-black text-[#173f38]">مصدر الدرس</h2>
+            <a
               href={lesson.source_pdf_url}
               target="_blank"
-              className="font-semibold text-emerald-700 hover:underline"
+              rel="noopener noreferrer"
+              className="font-semibold text-emerald-700 underline hover:text-emerald-900"
             >
-              فتح صفحات الدرس في الكتاب الأصلي
-            </Link>
+              {sourceReference.linkLabel} ↗
+            </a>
+
+            <p className={sourceReference.caution
+              ? "mt-3 rounded-xl bg-amber-50 p-3 text-sm font-bold leading-7 text-amber-900"
+              : "mt-3 text-sm leading-7 text-slate-600"}>
+              {sourceReference.detail}
+            </p>
 
             {lesson.source_page_start ? (
               <p className="mt-2 text-sm text-slate-500">
-                صفحات المصدر:{" "}
+                الصفحات المسجلة في مرجع المصدر:{" "}
                 {lesson.source_page_start}
-
                 {lesson.source_page_end &&
-                lesson.source_page_end !==
-                  lesson.source_page_start
+                 lesson.source_page_end !== lesson.source_page_start
                   ? `–${lesson.source_page_end}`
                   : ""}
               </p>
