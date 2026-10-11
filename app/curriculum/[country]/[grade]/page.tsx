@@ -10,6 +10,7 @@ import {
 } from "@/lib/countries";
 import { getSiteUrl } from "@/lib/site";
 import { normalizeArabicDisplayText } from "@/lib/seo/normalize-arabic-display";
+import { groupPublicDirectoryLessons } from "@/lib/curriculum/public-directory-grouping";
 import {
   SUPABASE_PUBLIC_KEY,
   SUPABASE_PUBLIC_URL,
@@ -37,6 +38,9 @@ type LessonRow = {
   unit_semester: number | null;
   grade_name: string;
   grade_number: number | null;
+  curriculum_id: string;
+  curriculum_name: string;
+  unit_id: string;
   country_code: string;
   country_name: string;
 };
@@ -92,9 +96,9 @@ export async function generateMetadata({
 
   return {
     title:
-      `منهج اللغة العربية للصف ${gradeValue} في ${info.name}`,
+      `مناهج اللغة العربية ومساراتها للصف ${gradeValue} في ${info.name}`,
     description:
-      `دروس اللغة العربية للصف ${gradeValue} في ${info.name} على ضاديوم، مرتبة حسب الوحدات مع روابط مباشرة للشرح والتدريب والأنشطة.`,
+      `دروس العربية للصف ${gradeValue} في ${info.name} على ضاديوم، مفصولة حسب المنهج والمسار والوحدة، مع روابط للشرح والتدريب.`,
     alternates: {
       canonical:
         `/curriculum/${info.code.toLowerCase()}/${gradeValue}`,
@@ -135,7 +139,7 @@ export default async function GradeCurriculumPage({
   const { data, error } = await db
     .from("seo_indexable_lessons_fast")
     .select(
-      "id,title,summary,lesson_number,sort_order,lesson_semester,unit_title,unit_number,unit_sort_order,unit_semester,grade_name,grade_number,country_code,country_name",
+      "id,title,summary,lesson_number,sort_order,lesson_semester,unit_id,unit_title,unit_number,unit_sort_order,unit_semester,grade_name,grade_number,curriculum_id,curriculum_name,country_code,country_name",
     )
     .eq("country_code", info.code)
     .eq("grade_number", gradeValue)
@@ -182,47 +186,11 @@ export default async function GradeCurriculumPage({
     (row) => row.semesterOrBookPart === 2 && row.currentPlanPublished,
   );
 
-  const units = new Map<
-    string,
-    {
-      title: string;
-      order: number;
-      semester: number | null;
-      lessons: LessonRow[];
-    }
-  >();
-
-  for (const lesson of lessons) {
-    const unitOrder = Number(
-      lesson.unit_sort_order ??
-        lesson.unit_number ??
-        999,
-    );
-
-    const key =
-      `${unitOrder}:${lesson.unit_title}`;
-
-    if (!units.has(key)) {
-      units.set(key, {
-        title: lesson.unit_title,
-        order: unitOrder,
-        semester:
-          lesson.unit_semester ??
-          lesson.lesson_semester ??
-          null,
-        lessons: [],
-      });
-    }
-
-    units.get(key)!.lessons.push(
-      lesson,
-    );
-  }
-
-  const orderedUnits =
-    [...units.values()].sort(
-      (a, b) => a.order - b.order,
-    );
+  const gradeDirectory = groupPublicDirectoryLessons(lessons).find(
+    (entry) => entry.gradeNumber === gradeValue,
+  );
+  const tracks = gradeDirectory?.tracks ?? [];
+  const unitCount = tracks.reduce((count, track) => count + track.units.length, 0);
 
   const site = getSiteUrl();
   const countryPath =
@@ -329,7 +297,10 @@ export default async function GradeCurriculumPage({
               {lessons.length} درسًا قابلًا للفهرسة
             </span>
             <span className="rounded-full bg-[#f7ecd5] px-4 py-2 text-[#8b6426]">
-              {orderedUnits.length} وحدة
+              {unitCount} وحدة
+            </span>
+            <span className="rounded-full bg-[#eaf4f0] px-4 py-2 text-[#174f47]">
+              {tracks.length} منهجًا أو مسارًا
             </span>
           </div>
         </header>
@@ -367,74 +338,53 @@ export default async function GradeCurriculumPage({
         ) : null}
 
         <div className="mt-8 space-y-7">
-          {orderedUnits.map(
-            (unit) => (
-              <section
-                key={`${unit.order}-${unit.title}`}
-                className="rounded-[2rem] border border-[#ddcfb4] bg-[#fffdf8] p-6 shadow-sm sm:p-8"
-              >
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <h2 className="text-2xl font-black text-[#123f39]">
-                    {unit.title}
-                  </h2>
-
-                  {unit.semester ? (
-                    <span className="rounded-full bg-[#f8f1e5] px-3 py-1.5 text-xs font-black text-[#8b6426]">
-                      الفصل {unit.semester}
-                    </span>
-                  ) : null}
-                </div>
-
-                <ul className="mt-5 grid gap-3 md:grid-cols-2">
-                  {unit.lessons
-                    .sort(
-                      (a, b) =>
-                        Number(
-                          a.sort_order ??
-                            a.lesson_number ??
-                            999,
-                        ) -
-                        Number(
-                          b.sort_order ??
-                            b.lesson_number ??
-                            999,
-                        ),
-                    )
-                    .map(
-                      (lesson) => (
-                        <li
-                          key={
-                            lesson.id
-                          }
-                        >
+          {tracks.map((track) => (
+            <section key={track.id} className="rounded-[2rem] border border-[#ddcfb4] bg-[#fffdf8] p-6 shadow-sm sm:p-8">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h2 className="text-2xl font-black text-[#123f39]">{track.name}</h2>
+                <span className="rounded-full bg-[#eaf4f0] px-4 py-2 text-sm font-bold text-[#174f47]">
+                  {track.lessonCount} درسًا
+                </span>
+              </div>
+              {info.code === "BH" && /الجزء الثاني/u.test(track.name) ? (
+                <p className="mt-3 text-sm font-bold leading-7 text-[#865b16]">
+                  هذا محتوى كتاب من الجزء الثاني، وليس إثباتًا بوجود خطة رسمية حالية للفصل الثاني 2026–2027.
+                </p>
+              ) : null}
+              <div className="mt-5 space-y-5">
+                {track.units.map((unit) => (
+                  <div key={unit.id} className="rounded-2xl border border-[#e8ddc8] bg-white p-4 sm:p-5">
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <h3 className="text-xl font-black text-[#123f39]">{unit.title}</h3>
+                      {unit.semester ? (
+                        <span className="rounded-full bg-[#f8f1e5] px-3 py-1.5 text-xs font-black text-[#8b6426]">
+                          الجزء الدراسي {unit.semester}
+                        </span>
+                      ) : null}
+                    </div>
+                    <ul className="mt-4 grid gap-3 md:grid-cols-2">
+                      {unit.lessons.map((lesson) => (
+                        <li key={lesson.id}>
                           <Link
                             href={`/lessons/${lesson.id}`}
                             prefetch={false}
-                            className="block h-full rounded-2xl border border-[#e5dac5] bg-white p-4 transition hover:-translate-y-0.5 hover:border-[#8ca99f] hover:shadow-sm"
+                            className="block h-full rounded-2xl border border-[#e5dac5] bg-[#fffdf8] p-4 transition hover:border-[#8ca99f] hover:shadow-sm"
                           >
-                            <h3 className="font-black leading-7 text-[#244841]">
-                              {
-                                normalizeArabicDisplayText(
-                                  lesson.title,
-                                )
-                              }
-                            </h3>
-
+                            <h4 className="font-black leading-7 text-[#244841]">
+                              {normalizeArabicDisplayText(lesson.title)}
+                            </h4>
                             {lesson.summary ? (
-                              <p className="mt-2 line-clamp-2 text-sm leading-6 text-[#6d665c]">
-                                {
-                                  lesson.summary
-                                }
-                              </p>
+                              <p className="mt-2 line-clamp-2 text-sm leading-6 text-[#6d665c]">{lesson.summary}</p>
                             ) : null}
                           </Link>
                         </li>
-                      ),
-                    )}
-                </ul>
-              </section>
-            ),
-          )}
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))}
         </div>
 
         <div className="mt-10 flex flex-wrap gap-3">

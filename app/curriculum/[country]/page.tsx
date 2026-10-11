@@ -8,6 +8,7 @@ import {
   getArabicCountryOptions,
 } from "@/lib/countries";
 import { normalizeArabicDisplayText } from "@/lib/seo/normalize-arabic-display";
+import { groupPublicDirectoryLessons } from "@/lib/curriculum/public-directory-grouping";
 import {
   SUPABASE_PUBLIC_KEY,
   SUPABASE_PUBLIC_URL,
@@ -70,9 +71,14 @@ type SeoLessonRow = {
   title: string;
   lesson_number: number | null;
   sort_order: number | null;
+  unit_id: string;
   unit_title: string;
   unit_number: number | null;
   unit_sort_order: number | null;
+  unit_semester: number | null;
+  lesson_semester: number | null;
+  curriculum_id: string;
+  curriculum_name: string;
   grade_name: string;
   grade_number: number | null;
 };
@@ -149,7 +155,7 @@ export default async function CountryCurriculumPage({
         const { data, error } = await db
           .from("seo_indexable_lessons_fast")
           .select(
-            "id,title,lesson_number,sort_order,unit_title,unit_number,unit_sort_order,grade_name,grade_number",
+            "id,title,lesson_number,sort_order,unit_id,unit_title,unit_number,unit_sort_order,unit_semester,lesson_semester,curriculum_id,curriculum_name,grade_name,grade_number",
           )
           .eq("country_code", info.code)
           .order("grade_number", {
@@ -264,87 +270,10 @@ export default async function CountryCurriculumPage({
 
   const rows = await lessonsPromise;
 
-  const groups = new Map<
-    string,
-    {
-      gradeName: string;
-      gradeNumber: number;
-      units: Map<
-        string,
-        {
-          title: string;
-          order: number;
-          lessons: SeoLessonRow[];
-        }
-      >;
-    }
-  >();
-
-  for (const lesson of rows) {
-    const gradeNumber =
-      Number(
-        lesson.grade_number ??
-        999,
-      );
-
-    const gradeKey =
-      `${gradeNumber}:${lesson.grade_name}`;
-
-    if (!groups.has(gradeKey)) {
-      groups.set(
-        gradeKey,
-        {
-          gradeName:
-            lesson.grade_name,
-          gradeNumber,
-          units: new Map(),
-        },
-      );
-    }
-
-    const unitOrder =
-      Number(
-        lesson.unit_sort_order ??
-        lesson.unit_number ??
-        999,
-      );
-
-    const unitKey =
-      `${unitOrder}:${lesson.unit_title}`;
-
-    const gradeGroup =
-      groups.get(gradeKey)!;
-
-    if (
-      !gradeGroup.units.has(
-        unitKey,
-      )
-    ) {
-      gradeGroup.units.set(
-        unitKey,
-        {
-          title:
-            lesson.unit_title,
-          order:
-            unitOrder,
-          lessons: [],
-        },
-      );
-    }
-
-    gradeGroup.units
-      .get(unitKey)!
-      .lessons.push(
-        lesson,
-      );
-  }
-
-  const gradeGroups =
-    [...groups.values()].sort(
-      (a, b) =>
-        a.gradeNumber -
-        b.gradeNumber,
-    );
+  // Secondary streams frequently reuse both grade names and unit names.
+  // Group by country -> numeric grade -> curriculum ID -> unit ID.
+  // A grade therefore exposes exactly one canonical destination.
+  const gradeGroups = groupPublicDirectoryLessons(rows);
 
   const orderedActiveGradeNumbers =
     [...activeGradeNumbers].sort(
@@ -363,7 +292,7 @@ export default async function CountryCurriculumPage({
     gradeGroups.reduce(
       (total, grade) =>
         total +
-        grade.units.size,
+        grade.tracks.reduce((sum, track) => sum + track.units.length, 0),
       0,
     );
 
@@ -656,93 +585,41 @@ export default async function CountryCurriculumPage({
                   </div>
 
                   <div className="mt-6 space-y-6">
-                    {[
-                      ...grade.units.values(),
-                    ]
-                      .sort(
-                        (
-                          a,
-                          b,
-                        ) =>
-                          a.order -
-                          b.order,
-                      )
-                      .map(
-                        (unit) => (
-                          <div
-                            key={
-                              `${unit.order}-${unit.title}`
-                            }
-                          >
-                            <h3 className="text-xl font-black text-[#8b6426]">
-                              {
-                                unit.title
-                              }
-                            </h3>
-
+                    {grade.tracks.map((track) => (
+                      <div key={track.id} className="rounded-2xl border border-[#e5dac5] bg-[#fffdf8] p-4 sm:p-5">
+                        <h3 className="text-lg font-black leading-8 text-[#123f39]">{track.name}</h3>
+                        {track.units.map((unit) => (
+                          <div key={unit.id} className="mt-4">
+                            <h4 className="font-black text-[#8b6426]">{unit.title}</h4>
                             <ul className="mt-3 grid gap-3 md:grid-cols-2">
-                              {unit.lessons
-                                .sort(
-                                  (
-                                    a,
-                                    b,
-                                  ) =>
-                                    Number(
-                                      a.sort_order ??
-                                      a.lesson_number ??
-                                      999,
-                                    ) -
-                                    Number(
-                                      b.sort_order ??
-                                      b.lesson_number ??
-                                      999,
-                                    ),
-                                )
-                                // This hub should preview lessons, not SSR every
-                                // lesson in every grade on a single page.
-                                // Every full grade listing stays one click away.
-                                .slice(0, 2)
-                                .map(
-                                  (
-                                    lesson,
-                                  ) => (
-                                    <li
-                                      key={
-                                        lesson.id
-                                      }
-                                    >
-                                      <Link
-                                        href={
-                                          `/lessons/${lesson.id}`
-                                        }
-                                        prefetch={false}
-                                        className="block rounded-2xl border border-[#e5dac5] bg-white px-4 py-3 font-bold text-[#244841] transition hover:border-[#8ca99f] hover:underline"
-                                      >
-                                        {
-                                          normalizeArabicDisplayText(
-                                            lesson.title,
-                                          )
-                                        }
-                                      </Link>
-                                    </li>
-                                  ),
-                                )}
+                              {unit.lessons.slice(0, 2).map((lesson) => (
+                                <li key={lesson.id}>
+                                  <Link
+                                    href={`/lessons/${lesson.id}`}
+                                    prefetch={false}
+                                    className="block rounded-2xl border border-[#e5dac5] bg-white px-4 py-3 font-bold text-[#244841] transition hover:border-[#8ca99f] hover:underline"
+                                  >
+                                    {normalizeArabicDisplayText(lesson.title)}
+                                  </Link>
+                                </li>
+                              ))}
                             </ul>
                             {unit.lessons.length > 2 ? (
                               <p className="mt-2 text-sm font-semibold text-[#6d665c]">
-                                عرض درسين من {unit.lessons.length} درسًا في هذه الوحدة.
+                                عرض درسين من {unit.lessons.length} درسًا.
                                 <Link
                                   href={`/curriculum/${info.code.toLowerCase()}/${grade.gradeNumber}`}
                                   prefetch={false}
                                   className="mr-2 text-[#174f47] hover:underline"
                                 >
-                                  عرض جميع دروس الصف ←
+                                  جميع دروس الصف والمسارات ←
                                 </Link>
                               </p>
                             ) : null}
                           </div>
-                        ),
-                      )}
+                        ))}
+                      </div>
+                    ))}
                   </div>
                 </section>
               ),
