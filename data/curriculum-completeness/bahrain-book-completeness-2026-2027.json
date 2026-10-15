@@ -53,7 +53,10 @@
       "MYP: Plan7 للفصل الأول مستورد، لكن لم يُثبت بعد كتاب/TOC رسمي مستقل في دليل الكتب الحالي."
     ],
     "catalogEvidenceUpdatedAt": "2026-10-07",
-    "catalogEvidenceScope": "basic-1-9 + secondary-physical-books + religious + continuing"
+    "catalogEvidenceScope": "basic-1-9 + secondary-physical-books + religious + continuing",
+    "secondaryLiveReconciledScopes": 24,
+    "secondaryLiveReconciledAt": "2026-10-15",
+    "secondaryLiveChangedCountScopes": 4
   },
   "books": [
     {
@@ -711,7 +714,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 14,
+        "planScheduledLessons": 14,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 14,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 10,
@@ -741,7 +757,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — توحيد المسارات — الجزء الثاني (محتوى كتاب رسمي)",
+        "currentPublishedOfficialScopeLessons": 15,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 15,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 15,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 11,
@@ -773,7 +802,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 22,
+        "planScheduledLessons": 22,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 22,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 11,
@@ -805,7 +847,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — توحيد المسارات — الجزء الثاني (محتوى كتاب رسمي)",
+        "currentPublishedOfficialScopeLessons": 28,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 28,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 28,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 12,
@@ -843,7 +898,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 19,
+        "planScheduledLessons": 19,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 19,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 12,
@@ -882,7 +950,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — توحيد المسارات — الجزء الثاني (محتوى كتاب رسمي)",
+        "currentPublishedOfficialScopeLessons": 27,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 27,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 27,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 10,
@@ -913,7 +994,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — المسار الإداري والتكنولوجي - الهندسي — الفصل الأول",
+        "currentPublishedOfficialScopeLessons": 18,
+        "planScheduledLessons": 18,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 18,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 10,
@@ -944,7 +1038,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — المسار الإداري والتكنولوجي - الهندسي — الجزء الثاني (محتوى كتاب رسمي)",
+        "currentPublishedOfficialScopeLessons": 18,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 18,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 18,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 11,
@@ -975,7 +1082,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — المسار الإداري والتكنولوجي - الهندسي — الفصل الأول",
+        "currentPublishedOfficialScopeLessons": 16,
+        "planScheduledLessons": 16,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 16,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 11,
@@ -1006,7 +1126,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — المسار الإداري والتكنولوجي - الهندسي — الجزء الثاني (محتوى كتاب رسمي)",
+        "currentPublishedOfficialScopeLessons": 13,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 13,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 13,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 12,
@@ -1037,7 +1170,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — المسار الإداري والتكنولوجي - الهندسي — الفصل الأول",
+        "currentPublishedOfficialScopeLessons": 6,
+        "planScheduledLessons": 6,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 6,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 12,
@@ -1068,7 +1214,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — المسار الإداري والتكنولوجي - الهندسي — الجزء الثاني (محتوى كتاب رسمي)",
+        "currentPublishedOfficialScopeLessons": 12,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 12,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 12,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 10,
@@ -1100,7 +1259,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — التعليم الفني والمهني — الفصل الأول",
+        "currentPublishedOfficialScopeLessons": 12,
+        "planScheduledLessons": 12,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 12,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 10,
@@ -1133,7 +1305,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — التعليم الفني والمهني — الجزء الثاني (محتوى كتاب رسمي)",
+        "currentPublishedOfficialScopeLessons": 30,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 30,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 30,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 11,
@@ -1165,7 +1350,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — التعليم الفني والمهني — الفصل الأول",
+        "currentPublishedOfficialScopeLessons": 12,
+        "planScheduledLessons": 12,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 12,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 11,
@@ -1198,7 +1396,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — التعليم الفني والمهني — الجزء الثاني (محتوى كتاب رسمي)",
+        "currentPublishedOfficialScopeLessons": 23,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 23,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 23,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 12,
@@ -1229,7 +1440,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — التعليم الفني والمهني — الفصل الأول",
+        "currentPublishedOfficialScopeLessons": 5,
+        "planScheduledLessons": 5,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 5,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 12,
@@ -1260,7 +1484,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books2.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — التعليم الفني والمهني — الجزء الثاني (محتوى كتاب رسمي)",
+        "currentPublishedOfficialScopeLessons": 13,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 13,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 13,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 10,
@@ -1296,7 +1533,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books3.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — التعليم الديني — الفصل الأول",
+        "currentPublishedOfficialScopeLessons": 25,
+        "planScheduledLessons": 25,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 39,
+        "deltaPublishedVsPreviousImported": -14,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 10,
@@ -1332,7 +1582,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books3.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — التعليم الديني — الجزء الثاني (محتوى كتاب رسمي)",
+        "currentPublishedOfficialScopeLessons": 20,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 20,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 35,
+        "deltaPublishedVsPreviousImported": -15,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 11,
@@ -1368,7 +1631,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books3.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — التعليم الديني — الفصل الأول",
+        "currentPublishedOfficialScopeLessons": 34,
+        "planScheduledLessons": 34,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 34,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 11,
@@ -1404,7 +1680,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books3.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — التعليم الديني — الجزء الثاني (محتوى كتاب رسمي)",
+        "currentPublishedOfficialScopeLessons": 34,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 34,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 34,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 12,
@@ -1440,7 +1729,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books3.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — التعليم الديني — الفصل الأول",
+        "currentPublishedOfficialScopeLessons": 32,
+        "planScheduledLessons": 32,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 43,
+        "deltaPublishedVsPreviousImported": -11,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": 12,
@@ -1475,7 +1777,20 @@
       ],
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books3.pdf",
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC."
+      "currentBookCatalogNote": "هذا حقل دليل الكتب المادي الحالي، مستقل عن bookTitles الذي يحفظ المقرر/المساق من خطة المحتوى. لا يُستخدم لإعلان COMPLETE_BOOK قبل مطابقة TOC.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-secondary-grade-track-semester",
+        "curriculumName": "اللغة العربية — التعليم الديني — الجزء الثاني (محتوى كتاب رسمي)",
+        "currentPublishedOfficialScopeLessons": 26,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 26,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 32,
+        "deltaPublishedVsPreviousImported": -6,
+        "tocValidated": false,
+        "sourceEditionValidated": false
+      }
     },
     {
       "grade": null,
