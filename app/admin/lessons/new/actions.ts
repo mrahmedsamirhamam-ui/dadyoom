@@ -335,6 +335,9 @@ export async function createLesson(
   const isPublished =
     formData.get("is_published") === "true";
 
+  // Publication is a distinct, intentional editorial decision.
+  const reviewedForPublication = formData.get("publish_review_ack") === "on";
+
   const rawGeneratedContent =
     formData.get("generated_content");
 
@@ -378,6 +381,14 @@ export async function createLesson(
   if (!generatedLesson) {
     redirect(
       "/admin/lessons/new?error=يجب توليد محتوى الدرس قبل الحفظ"
+    );
+  }
+
+  if (isPublished && !reviewedForPublication) {
+    redirect(
+      "/admin/lessons/new?error=" + encodeURIComponent(
+        "يجب إقرار مراجعة المصدر والمحتوى والأنشطة والتقييم قبل النشر."
+      )
     );
   }
 

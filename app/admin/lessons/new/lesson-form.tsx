@@ -156,6 +156,8 @@ export default function LessonForm({
   ] =
     useState("");
 
+  const [publishNow, setPublishNow] = useState(false);
+
   /*
    * SOURCE_REVIEW_FORM_V1
    */
@@ -1119,7 +1121,8 @@ setIsGenerating(
             <select
               id="is_published"
               name="is_published"
-              defaultValue="false"
+              value={publishNow ? "true" : "false"}
+              onChange={event => setPublishNow(event.target.value === "true")}
               className={
                 inputClassName
               }
@@ -1132,6 +1135,20 @@ setIsGenerating(
                 منشور
               </option>
             </select>
+            {publishNow ? (
+              <label className="mt-3 flex items-start gap-3 rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm leading-7 text-amber-950">
+                <input type="checkbox" name="publish_review_ack" required className="mt-2 accent-amber-800" />
+                <span>
+                  راجعت بنفسي المحتوى ومصدره وصحة الأنشطة والتقييم قبل النشر.
+                  أعرف أن توليد الدرس أو وجوده في الخطة لا يثبت وحده مطابقته
+                  لكتاب الوزارة، ولا أنسب إثراء ضاديوم إلى المصدر الرسمي.
+                </span>
+              </label>
+            ) : (
+              <p className="mt-2 text-xs text-slate-600">
+                سيُحفظ الدرس مسودة دون نشر؛ يمكنك مراجعته واعتماده لاحقًا.
+              </p>
+            )}
           </div>
         </div>
       </section>
