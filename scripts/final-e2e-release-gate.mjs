@@ -297,6 +297,8 @@ async function roleRouteSmoke(page, role, baseUrl) {
       "/teacher",
       "/teacher/classroom",
       "/teacher/live",
+      "/teacher/studio",
+      "/teacher/academy",
       "/teacher/marketplace",
       "/teacher/marketplace/earnings",
       ...(fixture.classId ? [`/teacher/classes/${fixture.classId}`] : []),
@@ -391,6 +393,14 @@ async function roleRouteSmoke(page, role, baseUrl) {
         bodyText.trim().length > 0,
       `E2E_ROUTE_${role.toUpperCase()}_${route.replace(/[^a-z0-9]+/giu, "_")}_FAILED:${status}:${finalPath}`,
     );
+    if (route === "/teacher/academy") {
+      gate(bodyText.includes("غرفة تدريب المعلم") && bodyText.includes("500"), "E2E_TEACHER_ACADEMY_CONTENT_FAILED");
+      console.log("E2E_TEACHER_ACADEMY=PASS");
+    }
+    if (route === "/teacher/studio") {
+      gate(bodyText.includes("حزمة الدرس") && bodyText.includes("ابحث عن درس"), "E2E_TEACHER_STUDIO_CONTENT_FAILED");
+      console.log("E2E_TEACHER_STUDIO=PASS");
+    }
   }
 
   // The Bahrain draft review must render for an authenticated admin.
