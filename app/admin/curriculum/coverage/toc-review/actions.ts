@@ -5,18 +5,10 @@ import audit from "@/data/curriculum-completeness/bahrain-book-completeness-2026
 import { getDashboardRequestViewer } from "@/lib/auth/request-viewer";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { bookTocScopeKey } from "@/lib/curriculum/book-toc-review";
+import { textbookSourceCandidate } from "@/lib/curriculum/textbook-source-candidate";
 
 const allowedScopes = new Set(audit.books.map(bookTocScopeKey));
 
-function officialSourceUrl(raw: string) {
-  let url: URL;
-  try { url = new URL(raw); } catch { return null; }
-  if (url.protocol !== "https:" || url.username || url.password) return null;
-  const host = url.hostname.toLowerCase();
-  if (!(host === "edunet.bh" || host === "www.edunet.bh" ||
-    host === "moe.gov.bh" || host === "www.moe.gov.bh")) return null;
-  return url.toString();
-}
 
 export async function submitBookTocEvidence(formData: FormData) {
   const { user, userError, profile, profileError } = await getDashboardRequestViewer();
@@ -25,7 +17,7 @@ export async function submitBookTocEvidence(formData: FormData) {
   }
   const scope_key = String(formData.get("scope_key") ?? "").trim();
   const sourceInput = String(formData.get("source_url") ?? "").trim();
-  const source_url = officialSourceUrl(sourceInput);
+  const source_url = textbookSourceCandidate(sourceInput);
   const toc_outline = String(formData.get("toc_outline") ?? "").trim();
   const reviewer_notes = String(formData.get("reviewer_notes") ?? "").trim();
   const tocTitles = toc_outline.split(/\r?\n/u).map(item => item.trim()).filter(Boolean);

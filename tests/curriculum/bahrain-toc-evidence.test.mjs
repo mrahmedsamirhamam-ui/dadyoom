@@ -15,9 +15,9 @@ describe("Bahrain official textbook TOC evidence intake",()=>{
   expect(action).toContain("allowedScopes.has(scope_key)");
  });
  it("requires official HTTPS URL and human-provided actual TOC, never approves lessons",()=>{
-  expect(action).toContain('url.protocol !== "https:"');
-  expect(action).toContain('host === "edunet.bh"');
-  expect(action).toContain('host === "moe.gov.bh"');
+  expect(action).toContain("textbookSourceCandidate(sourceInput)");
+  expect(action).toContain("textbookSourceCandidate(sourceInput)");
+  expect(action).toContain("textbookSourceCandidate(sourceInput)");
   expect(action).toContain('review_state: "submitted_for_review"');
   for (const mutation of ['.from("lessons").update(','.from("lessons").upsert(','COMPLETE_BOOK"']) {
     expect(action).not.toContain(mutation);

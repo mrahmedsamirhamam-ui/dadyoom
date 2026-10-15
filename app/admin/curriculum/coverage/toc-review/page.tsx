@@ -49,10 +49,14 @@ export default async function BahrainTocEvidenceIntakePage() {
         <p className="text-sm font-bold text-[#976a2c]">مراجعة مناهج البحرين • {audit.academicYear}</p>
         <h1 className="mt-2 text-3xl font-black text-[#123f39]">توثيق فهارس الكتب الرسمية</h1>
         <p className="mt-3 leading-8 text-[#655b4d]">
-          أدخل رابط كتاب الوزارة، وانقل عناوين عناصر الفهرس كما تظهر في الكتاب،
+          أدخل الرابط المباشر للكتاب نفسه من الوزارة، وانقل عناوين عناصر فهرسه كما تظهر في الكتاب،
           كل عنوان في سطر مستقل. هذه أدلة تحتاج تدقيقًا مستقلًا وربطًا 1:1 مع الدروس.
-          لا يُعتمد أي كتاب مكتملًا ولا يُنشر أي درس بمجرد حفظ هذه البيانات.
+          رابط خطة التدريس أو دليل أسماء الكتب لا يكفي وحده؛ لا يُعتمد أي كتاب مكتملًا ولا يُنشر أي درس بمجرد حفظ هذه البيانات.
         </p>
+        <Link href="/admin/curriculum/coverage/toc-review/grade-2"
+          className="mt-4 inline-flex rounded-xl border border-[#bed0c4] bg-[#edf6f1] px-5 py-3 text-sm font-black text-[#174f47]">
+          مطابقة فهرس الصف الثاني بالدروس — معاينة أولية ←
+        </Link>
         <div className="mt-4 flex flex-wrap gap-3 text-sm font-black">
           <span className="rounded-xl bg-[#edf6f1] px-4 py-3">نطاقات الكتب: {rows.length}</span>
           <span className="rounded-xl bg-amber-50 px-4 py-3 text-amber-950">
