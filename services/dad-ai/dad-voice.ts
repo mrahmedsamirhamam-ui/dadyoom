@@ -94,10 +94,14 @@ async function speakBrowserArabic(text: string): Promise<void> {
           .startsWith("ar"),
       );
 
-    if (arabicVoice) {
-      utterance.voice = arabicVoice;
-      utterance.lang = arabicVoice.lang;
+    // A browser without an Arabic voice may otherwise read Arabic with an
+    // English voice. Fail safely instead of producing misleading speech.
+    if (!arabicVoice) {
+      reject(new Error("DADYOOM_ARABIC_VOICE_UNAVAILABLE"));
+      return;
     }
+    utterance.voice = arabicVoice;
+    utterance.lang = arabicVoice.lang;
 
     utterance.onstart = voiceStart;
     utterance.onend = () => {
