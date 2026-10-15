@@ -27,6 +27,17 @@ type CloudReply = {
   error?: string;
 };
 
+// The native offline model is third-party and may ignore Arabic instructions.
+// Never display an English fallback as the response of the Arabic companion.
+const ARABIC_OFFLINE_UNAVAILABLE =
+  "عذرًا، ضاد لم يتمكن من تقديم إجابة عربية واضحة دون الاتصال بالخدمة. أعد المحاولة عند توفر الإنترنت.";
+
+function isReadableArabic(text: string): boolean {
+  const arabic = (text.match(/[\u0600-\u06FF]/gu) ?? []).length;
+  const letters = (text.match(/[A-Za-z\u0600-\u06FF]/gu) ?? []).length;
+  return letters > 0 && arabic / letters >= 0.42;
+}
+
 const FALLBACK_STATUSES = new Set([
   0,
   401,
@@ -258,7 +269,7 @@ export async function askDadyoomHybrid(
     }
 
     return {
-      text: localText,
+      text: isReadableArabic(localText) ? localText : ARABIC_OFFLINE_UNAVAILABLE,
       engine: "local",
       reason:
         cloud.status === 429
@@ -281,7 +292,7 @@ export async function askDadyoomHybrid(
   }
 
   return {
-    text: localText,
+    text: isReadableArabic(localText) ? localText : ARABIC_OFFLINE_UNAVAILABLE,
     engine: "local",
     reason: "offline-device",
   };
