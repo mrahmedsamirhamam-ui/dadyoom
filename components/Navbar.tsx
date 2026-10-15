@@ -16,6 +16,7 @@ const links = [
   { href: "/rewards", label: "الجوائز والشهادات", en: "Rewards" },
   { href: "/dictionary", label: "قاموس السياق", en: "Dictionary" },
   { href: "/ask", label: "اسأل ضاد", en: "Ask Dad" },
+  { href: "/contact", label: "الدعم والتواصل", en: "Help & contact" },
 ];
 
 function dashboardForRole(role?: string | null) {
