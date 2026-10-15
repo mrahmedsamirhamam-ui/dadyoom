@@ -8,7 +8,7 @@ const index = readFileSync("app/admin/curriculum/coverage/toc-review/page.tsx", 
 
 describe("Bahrain secondary TOC candidates", () => {
   it("tracks 24 unique grade/pathway/term scopes", () => {
-    const books = audit.books.filter(x => x.program === "الثانوي العام/النوعي");
+    const books = (audit.books as Array<{ program: string; grade: number | null; track: string | null; semesterOrBookPart: number; liveSnapshotReconciliation: { curriculumName: string } }>).filter(x => x.program === "الثانوي العام/النوعي");
     expect(books).toHaveLength(24);
     expect(Object.keys(BAHRAIN_SECONDARY_TRACKS)).toHaveLength(4);
     for (const b of books) {
