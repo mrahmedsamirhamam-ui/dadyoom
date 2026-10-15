@@ -7,6 +7,8 @@ import {
   SITE_NAME_ARABIC_ALT,
   SITE_NAME_ARABIC_ALT_DADYOOM,
   SITE_NAME_ARABIC_ALT_SHORT,
+  SITE_BRAND_ALIASES,
+  SITE_TAGLINE,
 } from "@/lib/site";
 import "./globals.css";
 import DadyoomClientRuntime from "@/components/runtime/DadyoomClientRuntime";
@@ -14,16 +16,17 @@ import { SiteLanguageProvider, LanguageSwitcher } from "@/components/i18n/Langua
 
 
 const siteUrl = getSiteUrl();
-const homeSeoTitle = `${SITE_NAME} | ${SITE_NAME_LATIN} — منصة تعليم اللغة العربية`;
+const homeSeoTitle = `${SITE_NAME} | ${SITE_NAME_LATIN} — ${SITE_TAGLINE}`;
 // Keep the canonical name stable. Explicitly associate common Arabic
 // spellings with the same official brand and URL, never duplicate pages.
-const brandAlternateNames = [
+const brandAlternateNames = [...new Set([
   SITE_NAME_LATIN,
   SITE_NAME_ARABIC_ALT,
   SITE_NAME_ARABIC_ALT_DADYOOM,
   SITE_NAME_ARABIC_ALT_SHORT,
+  ...SITE_BRAND_ALIASES,
   new URL(siteUrl).hostname,
-];
+])];
 
 const googleVerification =
   process.env.GOOGLE_SITE_VERIFICATION?.trim();
