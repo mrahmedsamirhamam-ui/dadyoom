@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import { runAgentJson } from "@/lib/ai/agents";
 import { createClient } from "@/lib/supabase/server";
+import { lessonNeedsSourceReview } from "@/lib/curriculum/lesson-source-review";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -87,6 +88,7 @@ export async function POST(request: Request) {
       lessonId?: string;
       durationMinutes?: number;
       classProfile?: "support" | "mixed" | "advanced";
+      acknowledgeUnverified?: boolean;
     };
 
     const lessonId = String(body.lessonId ?? "").trim();
@@ -123,8 +125,25 @@ export async function POST(request: Request) {
       );
     }
 
+    const requiresSourceReview = lessonNeedsSourceReview(lesson.content);
+    if (requiresSourceReview && body.acknowledgeUnverified !== true) {
+      return NextResponse.json(
+        {
+          requiresReview: true,
+          error: "هذا الدرس يحمل شرحًا عامًا أو علامة OCR غير محسومة. يجب مراجعة الكتاب الرسمي. يمكنك إعداد مادة إثرائية فقط بعد الإقرار بذلك.",
+        },
+        { status: 409, headers: { "Cache-Control": "no-store" } },
+      );
+    }
+
+    // Never promote imperfect source extracts to verified textbook material.
+    const sourceReviewNote = requiresSourceReview
+      ? "تنبيه مصدر: هذا النص غير مثبت التطابق مع الكتاب الرسمي. استخدمه لبناء أنشطة إثرائية قابلة للتصحيح فقط، ولا تنسبه للوزارة أو تخترع نصوصًا من الكتاب."
+      : "أنشطة ضاديوم إضافات تربوية، وليست اقتباسًا رسميًا إلا حيث يطابقها المعلم مع المصدر.";
+
     const context = [
       `عنوان الدرس: ${lesson.title}`,
+      sourceReviewNote,
       lesson.lesson_type ? `نوع الدرس: ${lesson.lesson_type}` : "",
       lesson.summary ? `الملخص: ${lesson.summary}` : "",
       lesson.content
@@ -210,6 +229,7 @@ export async function POST(request: Request) {
 - اجعل slides بين 10 و12 شريحة.
 - راع الفروق الفردية والتعلم النشط والتفكير الناقد.
 - لا تضف معلومات موضوعية غير موجودة في الدرس.
+- عند غياب توثيق فهرس الكتاب، لا تقدّم الحزمة على أنها نص رسمي؛ اترك مهمة المطابقة والاعتماد للمعلم.
 - اللغة عربية سليمة ومناسبة للمعلم.
       `.trim(),
     });

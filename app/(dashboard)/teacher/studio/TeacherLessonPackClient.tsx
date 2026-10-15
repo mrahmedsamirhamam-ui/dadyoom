@@ -60,6 +60,8 @@ export default function TeacherLessonPackClient({
   const [pack, setPack] = useState<LessonPack | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [sourceReviewNeeded, setSourceReviewNeeded] = useState(false);
+  const [sourceReviewAccepted, setSourceReviewAccepted] = useState(false);
   // Suggestions are proposed only. The teacher decides which are included
   // in the printable lesson plan; nothing modifies the official curriculum.
   const [approvedSuggestionIds, setApprovedSuggestionIds] = useState<string[]>([]);
@@ -100,12 +102,21 @@ export default function TeacherLessonPackClient({
           lessonId,
           durationMinutes,
           classProfile,
+          acknowledgeUnverified: sourceReviewNeeded && sourceReviewAccepted,
         }),
       });
 
       const data = (await response.json()) as
         | LessonPack
-        | { error?: string };
+        | { error?: string; requiresReview?: boolean };
+
+      if (response.status === 409 && "requiresReview" in data && data.requiresReview === true) {
+        setSourceReviewNeeded(true);
+        setSourceReviewAccepted(false);
+        setPack(null);
+        setError(data.error ?? "يجب مراجعة المصدر قبل إنشاء حزمة إثرائية.");
+        return;
+      }
 
       if (!response.ok) {
         throw new Error(
@@ -181,14 +192,26 @@ export default function TeacherLessonPackClient({
         <button
           type="button"
           onClick={generatePack}
-          disabled={loading}
+          disabled={loading || (sourceReviewNeeded && !sourceReviewAccepted)}
           className="mt-5 rounded-2xl bg-[#123f39] px-6 py-3 font-black text-white disabled:cursor-not-allowed disabled:opacity-60"
         >
           {loading
             ? "ضاديوم يبني الحزمة..."
-            : "✨ أنشئ حزمة الدرس بالذكاء الاصطناعي"}
+            : sourceReviewNeeded ? "✨ أنشئ حزمة إثرائية للمراجعة" : "✨ أنشئ حزمة الدرس بالذكاء الاصطناعي"}
         </button>
 
+        {sourceReviewNeeded ? (
+          <div className="mt-4 rounded-2xl border border-amber-300 bg-amber-50 p-4 text-sm leading-7 text-amber-950">
+            <p className="font-black">مراجعة مصدر الكتاب مطلوبة</p>
+            <p className="mt-2">قد يحتوي النص على عنوان مستخرج بصورة غير دقيقة أو شرح عام. لن تُعتمد هذه الحزمة كمحتوى رسمي. راجع الكتاب بنفسك قبل استخدامها مع الطلاب.</p>
+            <label className="mt-3 flex items-start gap-3 font-bold">
+              <input type="checkbox" className="mt-2 accent-amber-800"
+                checked={sourceReviewAccepted}
+                onChange={event => setSourceReviewAccepted(event.target.checked)} />
+              <span>أفهم أن الناتج مادة إثرائية غير موثقة، وأوافق على مراجعته بنفسي قبل الاستخدام.</span>
+            </label>
+          </div>
+        ) : null}
         {error ? (
           <p className="mt-4 rounded-xl bg-rose-50 p-3 font-bold text-rose-700">
             {error}
