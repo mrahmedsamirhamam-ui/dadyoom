@@ -51,6 +51,13 @@ export default function Header() {
           </Link>
 
           <Link
+            href="/contact"
+            className="touch-manipulation font-bold transition active:scale-95"
+          >
+            تواصل معنا
+          </Link>
+
+          <Link
             href="/login"
             className="touch-manipulation transition active:scale-95"
           >
