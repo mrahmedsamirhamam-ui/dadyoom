@@ -84,10 +84,10 @@ export default async function AdminPage() {
 
   return (
     <main
-      className="px-4 py-7 sm:px-6 lg:px-8"
+      className="px-3 py-5 sm:px-5 lg:px-8"
       dir="rtl"
     >
-      <div className="mx-auto max-w-7xl space-y-7">
+      <div className="mx-auto w-full max-w-[1600px] space-y-5">
         <section className="relative overflow-hidden rounded-[2.5rem] border border-[#cdb778] bg-[#123f39] p-7 text-white shadow-xl sm:p-10">
           <div
             aria-hidden="true"
