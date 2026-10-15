@@ -9,6 +9,7 @@ import { createClient } from "@/lib/supabase/server";
 import { SITE_DESCRIPTION } from "@/lib/site";
 import { normalizeArabicDisplayText } from "@/lib/seo/normalize-arabic-display";
 import { describeLessonSourceReference } from "@/lib/curriculum/lesson-source-reference";
+import { lessonNeedsSourceReview } from "@/lib/curriculum/lesson-source-review";
 import {
   getLessonPageBundle,
 } from "@/features/lessons/queries/getLessonPageBundle";
@@ -247,6 +248,8 @@ export default async function LessonPage({
 
   const lesson =
     bundle.lesson;
+
+  const sourceReviewRequired = lessonNeedsSourceReview(lesson.content);
 
   const sourceReference = lesson.source_pdf_url
     ? describeLessonSourceReference(lesson.source_pdf_url)
@@ -542,6 +545,14 @@ export default async function LessonPage({
           <h1 className="font-arabic-display text-3xl font-black text-[#173f38] sm:text-4xl">
             {lessonDisplayTitle}
           </h1>
+
+          {sourceReviewRequired ? (
+            <aside role="note" className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-7 text-amber-950">
+              <strong>تنبيه توثيق المحتوى:</strong> يتضمن هذا الدرس شرحًا إثرائيًا أو استخراجًا أوليًا
+              يحتاج إلى مطابقة بعنوان ونص الكتاب الرسمي. راجع معلمك أو مرجع الدرس
+              قبل الاعتماد عليه بوصفه نصًا من الكتاب المدرسي.
+            </aside>
+          ) : null}
 
           <LessonProgress
             progress={
