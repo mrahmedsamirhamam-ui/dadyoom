@@ -393,6 +393,28 @@ async function roleRouteSmoke(page, role, baseUrl) {
     );
   }
 
+  // The Bahrain draft review must render for an authenticated admin.
+  // It must fail closed rather than displaying a successful empty audit
+  // when RLS, source tables or queries are inaccessible.
+  if (role === "admin") {
+    const reviewPath = "/admin/curriculum/coverage/drafts";
+    const reviewResponse = await page.goto(`${baseUrl}${reviewPath}`, {
+      waitUntil: "domcontentloaded",
+      timeout: 60_000,
+    });
+    const reviewText = await page.locator("main").innerText({
+      timeout: 30_000,
+    });
+    gate(
+      reviewResponse?.status() === 200 &&
+        new URL(page.url()).pathname === reviewPath &&
+        reviewText.includes("قائمة مسودات الدروس غير المعتمدة") &&
+        !reviewText.includes("تعذر إكمال تدقيق البيانات"),
+      `E2E_BAHRAIN_DRAFT_REVIEW_FAILED:STATUS=${reviewResponse?.status() ?? "NONE"}:PATH=${new URL(page.url()).pathname}`,
+    );
+    console.log("E2E_BAHRAIN_DRAFT_REVIEW=PASS");
+  }
+
   // Owner finance pages are not regular admin pages. Verify that a
   // non-owner test admin receives an access-denied redirect.
   if (role === "admin") {
