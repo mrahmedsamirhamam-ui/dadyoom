@@ -170,7 +170,7 @@ export default function DadyoomInstallPrompt() {
           setOpen(true);
           setHelpMode(null);
         }}
-        className="fixed bottom-4 left-4 z-[80] rounded-2xl border border-[#d7bd78] bg-[#123f39] px-4 py-3 text-sm font-black text-white shadow-xl shadow-black/15 transition hover:-translate-y-0.5 hover:bg-[#174f47] active:translate-y-0"
+        className="fixed bottom-[4.75rem] left-4 z-[80] max-w-[calc(100vw-2rem)] rounded-2xl border border-[#d7bd78] bg-[#123f39] px-4 py-3 text-sm font-black text-white shadow-xl shadow-black/15 transition hover:-translate-y-0.5 hover:bg-[#174f47] active:translate-y-0"
         aria-haspopup="dialog"
         aria-expanded={open}
         aria-label="تطبيق ضاديوم للهاتف"
