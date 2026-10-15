@@ -4,13 +4,23 @@ export const SITE_NAME_ARABIC_ALT = "ضاضيوم";
 export const SITE_NAME_ARABIC_ALT_DADYOOM = "داديوم";
 export const SITE_NAME_ARABIC_ALT_SHORT = "ضاديو";
 export const SITE_TAGLINE = "بيت العربية الرقمي";
+// Editorial search spellings; never create duplicate landing pages for these.
+export const SITE_BRAND_ALIASES = [
+  "ضاضيوم",
+  "داديوم",
+  "ضاديو",
+  "Dadyoum",
+] as const;
 export const SITE_DESCRIPTION =
   "ضاديوم Dadyoom — بيت العربية الرقمي: منصة مجانية لتعلّم اللغة العربية للناطقين بها ولغير الناطقين بها، مع المناهج والأنشطة التفاعلية للطلاب والمعلمين.";
 
 export const PRODUCTION_FALLBACK_SITE_URL =
-  "https://dadyoom.dpdns.org";
+  "https://dadyoom.com";
 
+// Previously deployed subdomains must not win the canonical over the
+// newly owned, live .com domain, even when a stale env value remains.
 const LEGACY_SITE_HOSTS = new Set([
+  "dadyoom.dpdns.org",
   "dadyoom.pages.dev",
   "dadyoom.mrahmedsamirhamam.workers.dev",
 ]);
