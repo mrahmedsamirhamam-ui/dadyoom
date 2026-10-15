@@ -39,12 +39,14 @@ describe("Bahrain textbook title candidate review", () => {
     expect(textbookSourceCandidate("https://www.edunet.bh/e_books/Book.aspx?id=234"))
       .toBe("https://www.edunet.bh/e_books/Book.aspx?id=234");
   });
-  it("only previews grade two and never changes lesson or book status",()=>{
-    const p=readFileSync("app/admin/curriculum/coverage/toc-review/grade-2/page.tsx","utf8");
+  it("previews grade two through the generalized 1–9 page and never updates lessons",()=>{
+    const p=readFileSync("app/admin/curriculum/coverage/toc-review/basic/[grade]/page.tsx","utf8");
+    const redirect=readFileSync("app/admin/curriculum/coverage/toc-review/grade-2/page.tsx","utf8");
     const a=readFileSync("app/admin/curriculum/coverage/toc-review/actions.ts","utf8");
-    expect(p).toContain('grade_number", 2');
+    expect(p).toContain('.eq("grade_number", grade)');
     expect(p).toContain('inspectTocMatches(saved.toc_outline');
     expect(p).toContain("مرشح عنوان فقط — لا اعتماد تلقائي");
+    expect(redirect).toContain('redirect("/admin/curriculum/coverage/toc-review/basic/2")');
     expect(p).not.toContain('.update(');
     expect(a).not.toContain('.from("lessons").update(');
     expect(a).toContain("textbookSourceCandidate(sourceInput)");
