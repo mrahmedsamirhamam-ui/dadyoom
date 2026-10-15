@@ -74,13 +74,7 @@ export async function createLiveSessionAction(
     ? parseBahrainDateTimeLocal(endsAt)
     : null;
 
-  if (
-    ends &&
-    (
-      !ends ||
-      ends <= starts
-    )
-  ) {
+  if (endsAt && (!ends || ends <= starts)) {
     throw new Error("INVALID_END_TIME");
   }
 
@@ -160,11 +154,7 @@ export async function createSchoolMeetingAction(
   const starts = parseBahrainDateTimeLocal(startsAt);
   const ends = endsAt ? parseBahrainDateTimeLocal(endsAt) : null;
 
-  if (
-    !starts ||
-    (ends &&
-      (!ends || ends <= starts))
-  ) {
+  if (!starts || (endsAt && (!ends || ends <= starts))) {
     throw new Error("INVALID_MEETING_TIME");
   }
 
