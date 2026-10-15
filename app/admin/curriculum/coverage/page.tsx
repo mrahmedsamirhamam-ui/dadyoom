@@ -23,6 +23,14 @@ export default function BahrainCurriculumEvidence() {
   const absent = entries.filter(x => x.status === "OFFICIAL_BOOK_NOT_FOUND").length;
   const plans = entries.filter(x => x.currentPlanPublished).length;
   const programs = [...new Set(entries.map(x => x.program))];
+  // An import delta is a reconciliation queue, never proof that a
+  // textbook chapter or lesson is missing. Historic enrichment is excluded.
+  const changedScopes = entries
+    .filter(x => (x.liveSnapshotReconciliation?.deltaPublishedVsPreviousImported ?? 0) !== 0)
+    .sort((a,b) =>
+      Math.abs(b.liveSnapshotReconciliation.deltaPublishedVsPreviousImported) -
+      Math.abs(a.liveSnapshotReconciliation.deltaPublishedVsPreviousImported));
+
 
   return <main dir="rtl" className="min-h-screen bg-[#f7f1e6] px-4 py-8 text-[#203a34]">
     <div className="mx-auto max-w-7xl space-y-7">
@@ -64,6 +72,55 @@ export default function BahrainCurriculumEvidence() {
           </div>)}
         </div>
       </header>
+
+      <section aria-labelledby="bahrain-reconciliation-deltas" className="rounded-3xl border border-[#e2d5ba] bg-white p-6">
+        <h2 id="bahrain-reconciliation-deltas" className="text-xl font-black text-[#123f39]">
+          أولويات مراجعة فروق الاستيراد ({changedScopes.length} نطاقات)
+        </h2>
+        <p className="mt-2 text-sm leading-8 text-[#625b51]">
+          الفرق بين عدد الدروس المنشورة المصنفة ضمن نطاق كتاب رسمي حاليًا
+          وبين عدد عناصر لقطة الاستيراد السابقة. هذه الفروق
+          <strong> ليست عدد دروس مفقودة ولا شهادة اكتمال</strong>؛
+          قد تعكس تغير التصنيف أو تداخل المسارات أو إضافة مواد إثرائية.
+        </p>
+        <div className="mt-4 overflow-x-auto">
+          <table className="w-full min-w-[650px] border-collapse text-right text-sm">
+            <thead>
+              <tr className="border-b border-[#ded2bb] text-[#174f47]">
+                <th scope="col" className="p-3">النطاق</th>
+                <th scope="col" className="p-3">في اللقطة السابقة</th>
+                <th scope="col" className="p-3">منشور بالنطاق الرسمي الآن</th>
+                <th scope="col" className="p-3">الفرق</th>
+                <th scope="col" className="p-3">مراجعة المصدر</th>
+              </tr>
+            </thead>
+            <tbody>
+              {changedScopes.map((row,index) => {
+                const delta = row.liveSnapshotReconciliation.deltaPublishedVsPreviousImported;
+                const grade = row.grade;
+                const href = row.program === "التعليم الأساسي" && grade && grade <= 9
+                  ? "/admin/curriculum/coverage/toc-review/basic/" + grade
+                  : "/admin/curriculum/coverage/toc-review";
+                return <tr key={row.program + "-" + scopeName(row) + "-" + index}
+                  className="border-b border-[#f0e8da]">
+                  <td className="p-3 font-bold">{row.program} • {scopeName(row)}</td>
+                  <td className="p-3 tabular-nums">{row.liveSnapshotReconciliation.importedItemsAtPreviousAudit}</td>
+                  <td className="p-3 tabular-nums">{row.liveSnapshotReconciliation.currentPublishedOfficialScopeLessons}</td>
+                  <td className="p-3 font-bold tabular-nums">{delta > 0 ? "+" : ""}{delta}</td>
+                  <td className="p-3"><Link href={href} className="font-bold text-[#174f47] underline">
+                    فحص النطاق
+                  </Link></td>
+                </tr>;
+              })}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-3 text-xs leading-7 text-[#7a6250]">
+          حالة معروفة: فرق الصف السابع في الفصل الثاني (-37) ناتج عن وجود 37 درسًا إثرائيًا
+          غير مصنف ضمن محتوى الكتاب الرسمي الحالي، لا عن حذف هذه الدروس.
+          بقية الفروق تحتاج مطابقة حقيقية للأسماء والفهارس قبل أي تصحيح.
+        </p>
+      </section>
 
       <section className="rounded-3xl border border-teal-200 bg-white p-6">
         <h2 className="text-xl font-black text-[#123f39]">الصف الأول — مطابقة أولية لعناوين الكتاب</h2>

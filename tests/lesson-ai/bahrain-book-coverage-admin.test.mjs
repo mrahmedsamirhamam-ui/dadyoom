@@ -18,4 +18,20 @@ test("book coverage audit is visible to admins and has per-book evidence", () =>
   expect(route).toContain("row.bookTotalTOCItems");
   expect(route).toContain("row.currentPlanPublished");
   expect(route).toContain("row.currentBookCatalogSource");
+  expect(route).toContain("changedScopes.map");
+  expect(route).toContain("liveSnapshotReconciliation.deltaPublishedVsPreviousImported");
+  expect(route).toContain("ليست عدد دروس مفقودة");
+  expect(route).toContain("فرق الصف السابع في الفصل الثاني (-37)");
+
+});
+
+test("nine reconciliation differences are inspection priorities, not missing official chapters", () => {
+  const discrepancies = report.books.filter(book =>
+    (book.liveSnapshotReconciliation?.deltaPublishedVsPreviousImported ?? 0) !== 0);
+  expect(discrepancies).toHaveLength(9);
+  const gradeSevenTermTwo = discrepancies.find(book =>
+    book.program === "التعليم الأساسي" &&
+    book.grade === 7 && book.semesterOrBookPart === 2);
+  expect(gradeSevenTermTwo?.liveSnapshotReconciliation.deltaPublishedVsPreviousImported).toBe(-37);
+  expect(report.summary.completeBooks).toBe(0);
 });
