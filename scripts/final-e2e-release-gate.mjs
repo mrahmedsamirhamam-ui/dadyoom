@@ -402,13 +402,15 @@ async function roleRouteSmoke(page, role, baseUrl) {
       waitUntil: "domcontentloaded",
       timeout: 60_000,
     });
-    const reviewText = await page.locator("main").innerText({
-      timeout: 30_000,
-    });
+    const review = page.locator("[data-bahrain-draft-audit]");
+    const reviewText = await review.innerText({ timeout: 30_000 });
+    const reviewState = await review.getAttribute("data-bahrain-draft-audit");
     gate(
       reviewResponse?.status() === 200 &&
         new URL(page.url()).pathname === reviewPath &&
+        reviewState === "ready" &&
         reviewText.includes("قائمة مسودات الدروس غير المعتمدة") &&
+        reviewText.includes("مراجعة OCR للمحتوى المنشور") &&
         !reviewText.includes("تعذر إكمال تدقيق البيانات"),
       `E2E_BAHRAIN_DRAFT_REVIEW_FAILED:STATUS=${reviewResponse?.status() ?? "NONE"}:PATH=${new URL(page.url()).pathname}`,
     );
