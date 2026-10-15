@@ -60,6 +60,31 @@ export default function TeacherLessonPackClient({
   const [pack, setPack] = useState<LessonPack | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  // Suggestions are proposed only. The teacher decides which are included
+  // in the printable lesson plan; nothing modifies the official curriculum.
+  const [approvedSuggestionIds, setApprovedSuggestionIds] = useState<string[]>([]);
+  const [suggestionEdits, setSuggestionEdits] = useState<Record<string, string>>({});
+  const suggestions = [
+    {
+      id: "differentiation",
+      title: "تعزيز التمايز",
+      note: classProfile === "support"
+        ? "ابدأ بمثال نموذجي مبسط، ثم قدّم ممارسة موجهة وتحقق من الفهم فرديًا."
+        : classProfile === "advanced"
+          ? "قدّم سؤالًا مفتوحًا وتحديًا ممتدًا لمن أتقنوا الهدف قبل بقية زملائهم."
+          : "وفر مسارين للتعلم: نشاطًا مدعومًا وآخر مفتوحًا للاختيار وفق تقدم المتعلمين.",
+    },
+    {
+      id: "assessment",
+      title: "تحسين التقويم التكويني",
+      note: "أضف تذكرة خروج من سؤالين تقيس الهدف الأساسي للدرس؛ استخدم الإجابات لتعديل بداية الحصة التالية.",
+    },
+    {
+      id: "participation",
+      title: "زيادة مشاركة الطلاب",
+      note: "أضف دقيقة تفكير فردي ثم مناقشة ثنائية قبل الإجابة العلنية، مع إتاحة بدائل كتابية.",
+    },
+  ];
 
   async function generatePack() {
     setLoading(true);
@@ -91,6 +116,8 @@ export default function TeacherLessonPackClient({
       }
 
       setPack(data as LessonPack);
+      setApprovedSuggestionIds([]);
+      setSuggestionEdits({});
     } catch (cause) {
       setError(
         cause instanceof Error
@@ -213,6 +240,44 @@ export default function TeacherLessonPackClient({
 
       {pack ? (
         <div className="space-y-6 print:space-y-4">
+          <section className="rounded-3xl border border-teal-200 bg-white p-6 shadow-sm print:border-teal-300">
+            <h2 className="text-xl font-black text-[#123f39]">اقتراحات تحسين يراجعها المعلم</h2>
+            <p className="mt-2 text-sm leading-7 text-slate-600 print:hidden">
+              هذه تغييرات اختيارية. لا يُعتمد أي اقتراح إلا عندما تختاره أنت،
+              ولا يُعدّل ضاديوم الدرس الأصلي أو ينشر الاقتراحات تلقائيًا.
+            </p>
+            <div className="mt-4 space-y-4 print:hidden">
+              {suggestions.map(item => {
+                const accepted = approvedSuggestionIds.includes(item.id);
+                return <div key={item.id} className="rounded-2xl border border-slate-200 p-4">
+                  <h3 className="font-black text-slate-900">{item.title}</h3>
+                  <label className="mt-3 block text-xs font-bold text-slate-600">
+                    عدّل نص التحسين قبل اعتماده
+                    <textarea rows={3} maxLength={1200}
+                      value={suggestionEdits[item.id] ?? item.note}
+                      onChange={event => setSuggestionEdits(previous => ({ ...previous, [item.id]: event.target.value }))}
+                      className="mt-2 w-full rounded-xl border border-slate-200 p-3 text-sm leading-7" />
+                  </label>
+                  <button type="button" aria-pressed={accepted}
+                    onClick={() => setApprovedSuggestionIds(previous =>
+                      previous.includes(item.id) ? previous.filter(id => id !== item.id) : [...previous, item.id])}
+                    className="mt-3 rounded-xl border border-teal-500 px-4 py-2 text-sm font-black text-teal-900">
+                    {accepted ? "إلغاء الاعتماد" : "اعتماد التحسين"}
+                  </button>
+                </div>;
+              })}
+            </div>
+            {approvedSuggestionIds.length > 0 ? (
+              <div className="mt-5 rounded-2xl bg-teal-50 p-4">
+                <h3 className="font-black text-[#123f39]">التحسينات التي اعتمدها المعلم للحزمة المطبوعة</h3>
+                <ul className="mt-3 list-disc space-y-2 pr-5 text-sm leading-7 text-[#204d42]">
+                  {suggestions.filter(item => approvedSuggestionIds.includes(item.id)).map(item => (
+                    <li key={item.id}><strong>{item.title}: </strong>{suggestionEdits[item.id] ?? item.note}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : <p className="mt-4 text-sm text-slate-500">لم يُعتمد أي تحسين بعد.</p>}
+          </section>
           <header className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
             <p className="text-sm font-black text-teal-700">
               Dadyoom Teacher Studio
