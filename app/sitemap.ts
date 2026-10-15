@@ -27,15 +27,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = getSiteUrl();
 
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: base, lastModified: "2026-10-10", changeFrequency: "weekly", priority: 1 },
+    { url: base, alternates: { languages: { ar: base, en: `${base}/en` } }, changeFrequency: "weekly", priority: 1 },
     { url: `${base}/teachers`, changeFrequency: "weekly", priority: 0.95 },
     { url: `${base}/courses`, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${base}/curriculum`, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${base}/learn-arabic`, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${base}/en`, lastModified: "2026-10-10", changeFrequency: "weekly", priority: 0.9 },
-    { url: `${base}/en/learn-arabic`, changeFrequency: "monthly", priority: 0.85 },
-    { url: `${base}/en/curriculum`, changeFrequency: "weekly", priority: 0.85 },
-    { url: `${base}/about`, lastModified: "2026-10-10", changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/curriculum`, alternates: { languages: { ar: `${base}/curriculum`, en: `${base}/en/curriculum` } }, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${base}/learn-arabic`, alternates: { languages: { ar: `${base}/learn-arabic`, en: `${base}/en/learn-arabic` } }, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${base}/en`, alternates: { languages: { ar: base, en: `${base}/en` } }, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${base}/en/learn-arabic`, alternates: { languages: { ar: `${base}/learn-arabic`, en: `${base}/en/learn-arabic` } }, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${base}/en/curriculum`, alternates: { languages: { ar: `${base}/curriculum`, en: `${base}/en/curriculum` } }, changeFrequency: "weekly", priority: 0.85 },
+    { url: `${base}/about`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/contact`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/suggestions`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/courses/arabic-from-zero`, changeFrequency: "monthly", priority: 0.8 },
@@ -229,11 +229,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lessonRoutes.length,
   });
 
-  return [
+  // Canonical .com URLs only; do not leak staging, retired hosts,
+  // duplicates, auth pages or incomplete book reference cards into Google.
+  const entries = [
     ...staticRoutes,
     ...countryDirectoryRoutes,
     ...gradeDirectoryRoutes,
     ...marketplaceRoutes,
     ...lessonRoutes,
   ];
+  const unique = new Map(entries.map((entry) => [entry.url, entry]));
+  return [...unique.values()];
 }
