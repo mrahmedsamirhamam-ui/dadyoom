@@ -23,10 +23,11 @@ function isPublicSeoPath(
 ) {
   return (
     pathname === "/" ||
-    /^\/(?:courses|curriculum|learn-arabic|about|contact|pricing|privacy|terms|refund-policy|marketplace|lessons)(?:\/|$)/u.test(
+    /^\/(?:courses|curriculum|learn-arabic|about|contact|pricing|privacy|terms|refund-policy|marketplace|lessons|teachers|suggestions|en)(?:\/|$)/u.test(
       pathname,
     ) ||
     pathname === "/sitemap.xml" ||
+    pathname === "/sitemap-brand.xml" ||
     pathname === "/robots.txt"
   );
 }
@@ -393,6 +394,9 @@ export const config = {
   matcher: [
     "/",
     "/courses/:path*",
+    "/teachers",
+    "/suggestions",
+    "/en/:path*",
     "/curriculum/:path*",
     "/learn-arabic",
     "/about",
@@ -404,6 +408,7 @@ export const config = {
     "/marketplace/:path*",
     "/lessons/:path*",
     "/sitemap.xml",
+    "/sitemap-brand.xml",
     "/robots.txt",
     "/student/:path*",
     "/child/:path*",
