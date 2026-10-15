@@ -40,7 +40,9 @@ export default function robots(): MetadataRoute.Robots {
         "/signup",
       ],
     },
-    sitemap: [`${base}/sitemap.xml`, `${base}/sitemap-brand.xml`],
+    // Submit one authoritative, complete sitemap. The older brand-only XML
+    // is retained for previous links but is no longer a second submission.
+    sitemap: [`${base}/sitemap.xml`],
     host: base,
   };
 }
