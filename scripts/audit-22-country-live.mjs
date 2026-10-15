@@ -26,7 +26,7 @@ const referenceSource = fs.readFileSync(
   path.resolve(process.cwd(), "lib/curriculum/verified-book-reference.ts"), "utf8"
 );
 const referenceBlock = referenceSource.match(
-  /export const BOOK_REFERENCE_IDS:[\\s\\S]*?=\\s*(\\{[\\s\\S]*?\\})\\s*as const;/u
+  /export const BOOK_REFERENCE_IDS:[\s\S]*?=\s*(\{[\s\S]*?\})\s*as const;/u
 )?.[1];
 if (!referenceBlock) throw new Error("BOOK_REFERENCE_REGISTRY_UNREADABLE");
 const knownBookReferenceIds = new Set(
