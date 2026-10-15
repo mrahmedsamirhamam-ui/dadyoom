@@ -19,6 +19,10 @@ type Draft = {
   content: string | null;
 };
 
+function gradeMapHasGrade2(gradeId: string, grades: Grade[]): boolean {
+  return grades.some(grade => grade.id === gradeId && grade.grade_number === 2);
+}
+
 function warningReasons(
   draft: Draft,
   publishedActivities: number,
@@ -108,6 +112,23 @@ export default async function BahrainDraftReviewPage() {
   if (templateResult.error) return <Failed message="الشروح العامة المنشورة" />;
   const templates = templateResult.data ?? [];
 
+  // Original Dadyoom literacy enrichment is not part of the official
+  // textbook TOC; it must never be counted as missing ministry evidence.
+  const grade2UnitIds = units
+    .filter(unit => gradeMapHasGrade2(unit.grade_id, grades))
+    .map(unit => unit.id);
+  const originalResult = grade2UnitIds.length
+    ? await db.from("lessons")
+      .select("id,title,unit_id,official_content_scope")
+      .eq("status", "published")
+      .is("semester", null)
+      .is("official_content_scope", null)
+      .like("content", "درس ضاديوم الأصلي:%")
+      .in("unit_id", grade2UnitIds).order("title", { ascending: true }).limit(100)
+    : { data: [], error: null };
+  if (originalResult.error) return <Failed message="الإثراء الأصلي لضاديوم" />;
+  const originalEnrichment = originalResult.data ?? [];
+
   const draftIds = drafts.map(draft => draft.id);
 
   const [activitiesResult, questionsResult] = draftIds.length
@@ -176,6 +197,9 @@ export default async function BahrainDraftReviewPage() {
             </span>
             <span className="rounded-xl bg-rose-50 px-4 py-3 text-rose-900">
               محتوى منشور ينتظر تدقيق OCR: {ocrReviews.length}
+            </span>
+            <span className="rounded-xl bg-sky-50 px-4 py-3 text-sky-950">
+              دروس ضاديوم الأصلية المستقلة (الصف الثاني): {originalEnrichment.length}
             </span>
             <span className="rounded-xl bg-amber-50 px-4 py-3 text-amber-900">شروح منشورة تحتاج مراجعة المصدر: {templates.length}
             </span>
@@ -251,6 +275,29 @@ export default async function BahrainDraftReviewPage() {
                 <Link href={"/admin/lessons/" + item.id} prefetch={false} className="mt-2 inline-block text-sm font-bold text-[#174f47] underline">مراجعة الدرس</Link>
               </article>;
             })}
+          </div>
+        </section>
+        <section className="rounded-3xl border border-sky-200 bg-white p-5">
+          <h2 className="text-xl font-black text-[#123f39]">
+            دروس ضاديوم الأصلية — إثراء مستقل بالصف الثاني ({originalEnrichment.length})
+          </h2>
+          <p className="mt-2 text-sm leading-7 text-[#675c4c]">
+            هذه مواد مهارية أنشأها ضاديوم بصورة مستقلة. عدم إرفاق مصدر كتاب وزاري
+            ليس وحده نقصًا فيها، لكن لا يجوز نسبتها إلى المنهج الوزاري أو احتسابها
+            ضمن عناصر فهرس الكتاب المكتملة بالمطابقة 1:1. تُراجع تربويًا ضمن
+            مسار جودة الإثراء، بعيدًا عن مطابقة الكتب الرسمية.
+          </p>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            {originalEnrichment.map(lesson => (
+              <article key={lesson.id} className="rounded-xl border border-sky-100 p-4">
+                <h3 className="font-black text-[#123f39]">{lesson.title}</h3>
+                <p className="mt-1 text-xs font-bold text-sky-800">إثراء ضاديوم — ليس عنصرًا مثبتًا بفهرس الوزارة</p>
+                <Link href={"/admin/lessons/" + lesson.id} prefetch={false}
+                  className="mt-2 inline-block text-sm font-bold text-[#174f47] underline">
+                  مراجعة جودة الدرس
+                </Link>
+              </article>
+            ))}
           </div>
         </section>
         {gradeNumbers.map(number => {

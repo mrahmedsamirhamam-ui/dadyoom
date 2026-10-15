@@ -12,6 +12,10 @@ describe("Bahrain administrative draft review guard", () => {
     expect(page).toContain('.ilike("content", "%مدخل OCR غير محسوم%")');
     expect(page).toContain('.like("content", "يتناول هذا الدرس موضوع «%")');
     expect(page).toContain("الشروح العامة المنشورة");
+    expect(page).toContain('.like("content", "درس ضاديوم الأصلي:%")');
+    expect(page).toContain('.is("semester", null)');
+    expect(page).toContain("دروس ضاديوم الأصلية — إثراء مستقل بالصف الثاني");
+    expect(page).toContain("لا يجوز نسبتها إلى المنهج الوزاري");
     expect(page).toContain("/admin/lessons/");
     expect(coverage).toContain('/admin/curriculum/coverage/drafts');
     expect(page).toContain('data-bahrain-draft-audit="ready"');
