@@ -1,6 +1,6 @@
 // Verify that current auth HTML references client bundles that Cloudflare serves.
 // Do not treat a successful Worker API deployment as sufficient for browser login.
-const base = process.env.DADYOOM_BASE_URL || "https://dadyoom.dpdns.org";
+const base = process.env.DADYOOM_BASE_URL || "https://dadyoom.com";
 const expected = process.env.EXPECTED_SHA || "";
 
 async function get(url) {
