@@ -250,6 +250,10 @@ export default async function LessonPage({
     bundle.lesson;
 
   const sourceReviewRequired = lessonNeedsSourceReview(lesson.content);
+  // The shared Dadyoom core is enrichment, not a ministry textbook.
+  // All 22 countries have original lessons explicitly marked in the content.
+  const isOriginalDadyoomLesson =
+    (lesson.content ?? "").trimStart().startsWith("درس ضاديوم الأصلي:");
 
   const sourceReference = lesson.source_pdf_url
     ? describeLessonSourceReference(lesson.source_pdf_url)
@@ -545,6 +549,15 @@ export default async function LessonPage({
           <h1 className="font-arabic-display text-3xl font-black text-[#173f38] sm:text-4xl">
             {lessonDisplayTitle}
           </h1>
+
+          {isOriginalDadyoomLesson ? (
+            <aside role="note" data-lesson-source-kind="dadyoom-original"
+              className="mt-4 rounded-2xl border border-sky-200 bg-sky-50 p-4 text-sm leading-7 text-sky-950">
+              <strong>محتوى إثرائي أصلي من ضاديوم:</strong> هذا الدرس من المسار المهاري
+              الذي طورته ضاديوم، وليس نصًا منقولًا من كتاب وزارة التربية والتعليم.
+              لا يُعد ظهوره في دولة أو صف إثباتًا لمطابقته للمنهج الرسمي لذلك البلد.
+            </aside>
+          ) : null}
 
           {sourceReviewRequired ? (
             <aside role="note" className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-7 text-amber-950">
