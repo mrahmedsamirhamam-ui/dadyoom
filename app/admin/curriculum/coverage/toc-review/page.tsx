@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import audit from "@/data/curriculum-completeness/bahrain-book-completeness-2026-2027.json";
 import { bookTocScopeKey } from "@/lib/curriculum/book-toc-review";
 import { secondaryTrackSlug } from "@/lib/curriculum/bahrain-secondary-track-review";
+import { continuingSlug } from "@/lib/curriculum/bahrain-continuing-level-review";
 import { getDashboardRequestViewer } from "@/lib/auth/request-viewer";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { submitBookTocEvidence } from "./actions";
@@ -105,6 +106,13 @@ export default async function BahrainTocEvidenceIntakePage() {
                   className="inline-block text-sm font-bold text-[#174f47] underline">
                   معاينة مطابقة هذا المسار الثانوي ←
                 </Link>
+            ) : null}
+            {book.program === "التعليم المستمر" && continuingSlug(book.level) ? (
+              <Link href={"/admin/curriculum/coverage/toc-review/continuing/" +
+                continuingSlug(book.level) + "/" + book.semesterOrBookPart}
+                className="inline-block text-sm font-bold text-[#174f47] underline">
+                معاينة فهرس هذا المستوى من التعليم المستمر ←
+              </Link>
             ) : null}
             {catalog?.startsWith("https://") ? <a href={catalog} target="_blank"
               rel="noopener noreferrer" className="inline-block text-sm font-bold text-[#174f47] underline">
