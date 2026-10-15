@@ -98,6 +98,16 @@ export default async function BahrainDraftReviewPage() {
   if (ocrResult.error) return <Failed message="سجلات OCR المنشورة" />;
   const ocrReviews = ocrResult.data ?? [];
 
+  // Published boilerplate still requires comparison to the official book.
+  const templateResult = await db.from("lessons")
+    .select("id,title,unit_id,source_pdf_url,official_content_scope")
+    .eq("status", "published")
+    .like("content", "يتناول هذا الدرس موضوع «%")
+    .in("unit_id", units.map(unit => unit.id))
+    .order("title", { ascending: true }).limit(500);
+  if (templateResult.error) return <Failed message="الشروح العامة المنشورة" />;
+  const templates = templateResult.data ?? [];
+
   const draftIds = drafts.map(draft => draft.id);
 
   const [activitiesResult, questionsResult] = draftIds.length
@@ -167,6 +177,8 @@ export default async function BahrainDraftReviewPage() {
             <span className="rounded-xl bg-rose-50 px-4 py-3 text-rose-900">
               محتوى منشور ينتظر تدقيق OCR: {ocrReviews.length}
             </span>
+            <span className="rounded-xl bg-amber-50 px-4 py-3 text-amber-900">شروح منشورة تحتاج مراجعة المصدر: {templates.length}
+            </span>
           </div>
           {drafts.length === 500 ? (
             <p className="mt-3 text-sm font-bold text-red-700">
@@ -221,6 +233,23 @@ export default async function BahrainDraftReviewPage() {
                   ) : null}
                 </article>
               );
+            })}
+          </div>
+        </section>
+        <section className="rounded-3xl border border-amber-200 bg-white p-5">
+          <h2 className="text-xl font-black text-[#123f39]">الشروح العامة المنشورة — {templates.length} درسًا</h2>
+          <p className="mt-2 text-sm leading-7 text-[#675c4c]">تبدأ هذه الدروس بشرح عام متكرر. هذا مؤشر يستدعي المراجعة مع فهرس الكتاب، لا حكم نهائي على جودة الدرس. قد تتداخل مع سجلات OCR أعلاه، ولا يتغير نشر أي درس آليًا.</p>
+          {templates.length === 500 ? <p className="mt-2 text-sm text-red-700">وصل العرض إلى حد 500 سجل؛ القائمة قد تكون جزئية.</p> : null}
+          <div className="mt-4 grid gap-3 md:grid-cols-2">
+            {templates.map(item => {
+              const unit = unitMap.get(item.unit_id);
+              const grade = unit ? gradeMap.get(unit.grade_id) : null;
+              return <article key={item.id} className="rounded-xl border border-amber-100 p-4">
+                <h3 className="font-black text-[#123f39]">{item.title}</h3>
+                <p className="mt-1 text-xs text-[#756a5d]">{grade?.name_ar ?? "صف غير محدد"} • {unit?.title ?? "وحدة غير محددة"}</p>
+                <p className="mt-2 text-xs text-amber-900">{item.source_pdf_url ? "يوجد مرجع يحتاج مطابقة فهرس الكتاب" : "لا يوجد رابط مصدر موثق"} {" • "}{item.official_content_scope === "plan-scheduled" ? "الخطة الدراسية ليست فهرس الكتاب" : "تحقق من نطاق المصدر"}</p>
+                <Link href={"/admin/lessons/" + item.id} prefetch={false} className="mt-2 inline-block text-sm font-bold text-[#174f47] underline">مراجعة الدرس</Link>
+              </article>;
             })}
           </div>
         </section>

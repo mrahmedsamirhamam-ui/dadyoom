@@ -10,6 +10,8 @@ describe("Bahrain administrative draft review guard", () => {
     expect(page).toContain('.eq("status", "draft")');
     expect(page).toContain('.eq("status", "published")');
     expect(page).toContain('.ilike("content", "%مدخل OCR غير محسوم%")');
+    expect(page).toContain('.like("content", "يتناول هذا الدرس موضوع «%")');
+    expect(page).toContain("الشروح العامة المنشورة");
     expect(page).toContain("/admin/lessons/");
     expect(coverage).toContain('/admin/curriculum/coverage/drafts');
     expect(page).toContain('data-bahrain-draft-audit="ready"');

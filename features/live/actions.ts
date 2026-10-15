@@ -4,6 +4,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { revalidatePath } from "next/cache";
 
 import { createClient } from "@/lib/supabase/server";
+import { parseBahrainDateTimeLocal } from "@/lib/live/bahrain-datetime";
 
 function value(form: FormData, key: string) {
   return String(form.get(key) ?? "").trim();
@@ -63,20 +64,20 @@ export async function createLiveSessionAction(
     }
   }
 
-  const starts = new Date(startsAt);
+  const starts = parseBahrainDateTimeLocal(startsAt);
 
-  if (Number.isNaN(starts.getTime())) {
+  if (!starts) {
     throw new Error("INVALID_START_TIME");
   }
 
   const ends = endsAt
-    ? new Date(endsAt)
+    ? parseBahrainDateTimeLocal(endsAt)
     : null;
 
   if (
     ends &&
     (
-      Number.isNaN(ends.getTime()) ||
+      !ends ||
       ends <= starts
     )
   ) {
@@ -156,13 +157,13 @@ export async function createSchoolMeetingAction(
     throw new Error("SCHOOL_MEETING_FIELDS_REQUIRED");
   }
 
-  const starts = new Date(startsAt);
-  const ends = endsAt ? new Date(endsAt) : null;
+  const starts = parseBahrainDateTimeLocal(startsAt);
+  const ends = endsAt ? parseBahrainDateTimeLocal(endsAt) : null;
 
   if (
-    Number.isNaN(starts.getTime()) ||
+    !starts ||
     (ends &&
-      (Number.isNaN(ends.getTime()) || ends <= starts))
+      (!ends || ends <= starts))
   ) {
     throw new Error("INVALID_MEETING_TIME");
   }

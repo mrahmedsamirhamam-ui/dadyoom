@@ -91,6 +91,7 @@ export default async function TeacherLivePage() {
               className="min-h-24 w-full rounded-2xl border p-3"
             />
 
+            <p className="rounded-xl bg-teal-50 p-3 text-sm font-bold text-teal-900">المواعيد بتوقيت البحرين (UTC+3).</p>
             <label className="block font-bold">
               تبدأ
               <input

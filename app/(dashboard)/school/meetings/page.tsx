@@ -134,6 +134,7 @@ export default async function SchoolMeetingsPage() {
               اجتماع جديد
             </h2>
 
+            <p className="mt-3 text-sm font-bold text-violet-800">المواعيد بتوقيت البحرين (UTC+3).</p>
             <div className="mt-5 space-y-4">
               <input
                 name="title"
