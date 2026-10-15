@@ -41,6 +41,7 @@ export default function BahrainCurriculumEvidence() {
         <Link href="/admin/curriculum/coverage/sources" className="mt-4 ml-3 inline-flex rounded-xl border border-[#cdbb96] bg-[#fff6dc] px-5 py-3 text-sm font-black text-[#123f39]">سنوات مصادر الدروس ومسارات الثانوية ←</Link>
         <Link href="/admin/curriculum/coverage/assessments" className="mt-4 ml-3 inline-flex rounded-xl border border-[#cdbb96] bg-[#eff7ed] px-5 py-3 text-sm font-black text-[#123f39]">جودة أنشطة التقويم وأسئلته ←</Link>
         <Link href="/admin/curriculum/coverage/drafts" className="mt-4 ml-3 inline-flex rounded-xl border border-[#cdbb96] bg-[#fff6dc] px-5 py-3 text-sm font-black text-[#123f39]">مسودات البحرين وموانع النشر ←</Link>
+        <Link href="/admin/curriculum/coverage/toc-review" className="mt-4 ml-3 inline-flex rounded-xl border border-[#cdbb96] bg-[#eff7ed] px-5 py-3 text-sm font-black text-[#123f39]">إدخال فهارس الكتب لمراجعة المطابقة ←</Link>
         <Link href="/admin/curriculum/coverage/unclassified" className="mt-4 inline-flex rounded-xl border border-[#cdbb96] bg-[#fff6dc] px-5 py-3 text-sm font-black text-[#123f39]">مراجعة سجلات الصف السابع غير محددة التصنيف ←</Link>
         <p className="mt-3 text-sm font-bold text-[#8b6426]">
           آخر تدقيق موثق: {audit.auditedAt} — النتائج لا تشمل تغييرات المصادر بعد هذا التاريخ.
