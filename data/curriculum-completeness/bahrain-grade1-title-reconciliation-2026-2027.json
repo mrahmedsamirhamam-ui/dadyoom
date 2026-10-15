@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "country": "BH",
+  "academicYear": "2026-2027",
+  "grade": 1,
+  "semester": 1,
+  "sourceOfOutline": "data/bahrain-arabic/grade-01-sem1-curriculum.json",
+  "outlineSourceDescription": "Stored Dadyoom transcript of the Ministry Grade 1 book structure; the live official textbook PDF/HTML and page images were NOT re-inspected during this reconciliation.",
+  "bookTitle": "براعم العربية",
+  "bookEdition": "الطبعة الثانية",
+  "bookUrl": "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_1/e_books/Arabic-Baraem-G1-P1-2026/Arabic%20Baraem%20G1%20P1%202026/index.html",
+  "status": "PRELIMINARY_TITLE_CANDIDATES_ONLY",
+  "independentFullTocValidated": false,
+  "bookComplete": false,
+  "auditedOn": "2026-10-15",
+  "expectedOutlineTitles": 18,
+  "oneToOneStoredTitleCandidates": 18,
+  "contentMatchedPageByPage": false,
+  "chapterAndPageParityVerified": false,
+  "summary": "18 distinct names from the existing local Grade 1 source outline each have exactly one published BH G1 term-1 lesson with the same title and source URL. This does not verify the full edition/table of contents, text, pages or activities.",
+  "entries": [
+    {
+      "order": 1,
+      "unit": "الوحدة الأولى: عائلتنا",
+      "title": "الدرس الأول: حرف (ب) (1)",
+      "lessonId": "7edbc90b-db11-4a44-9639-09beb1ba430b",
+      "titleCandidate": true,
+      "bookLinkRecorded": true
+    },
+    {
+      "order": 2,
+      "unit": "الوحدة الأولى: عائلتنا",
+      "title": "الدرس الثاني: حرف (ب) (2)",
+      "lessonId": "60914ad2-b8a2-43ec-8d28-5bdbc5b6d6f4",
+      "titleCandidate": true,
+      "bookLinkRecorded": true
+    },
+    {
+      "order": 3,
+      "unit": "الوحدة الأولى: عائلتنا",
+      "title": "الدرس الثالث: حرف (م)",
+      "lessonId": "f3acba28-bd07-4127-8900-775a3deaa895",
+      "titleCandidate": true,
+      "bookLinkRecorded": true
+    },
+    {
+      "order": 4,
+      "unit": "الوحدة الأولى: عائلتنا",
+      "title": "الدرس الرابع: حرف (د)",
+      "lessonId": "0f24e423-0fcb-4101-a278-f29d36076a07",
+      "titleCandidate": true,
+      "bookLinkRecorded": true
+    },
+    {
+      "order": 5,
+      "unit": "الوحدة الأولى: عائلتنا",
+      "title": "الدرس الخامس: أعزز مكتسباتي",
+      "lessonId": "1a76e20a-2d73-483a-9345-5917080ed4e9",
+      "titleCandidate": true,
+      "bookLinkRecorded": true
+    },
+    {
+      "order": 6,
+      "unit": "الوحدة الأولى: عائلتنا",
+      "title": "أنشودة الوحدة: أسرتي",
+      "lessonId": "ca1c1956-df2d-4318-88d2-0c2c28ee088a",
+      "titleCandidate": true,
+      "bookLinkRecorded": true
+    },
+    {
+      "order": 7,
+      "unit": "الوحدة الثانية: مدرستنا",
+      "title": "الدرس السادس: حرف (ح)",
+      "lessonId": "c6a7628c-b04c-4af9-aa33-9e44e3b89854",
+      "titleCandidate": true,
+      "bookLinkRecorded": true
+    },
+    {
+      "order": 8,
+      "unit": "الوحدة الثانية: مدرستنا",
+      "title": "الدرس السابع: حرف (ر)",
+      "lessonId": "96466541-3009-4f29-a17d-6e77e71e6836",
+      "titleCandidate": true,
+      "bookLinkRecorded": true
+    },
+    {
+      "order": 9,
+      "unit": "الوحدة الثانية: مدرستنا",
+      "title": "الدرس الثامن: حرف (س)",
+      "lessonId": "b0b7f330-c833-44db-8625-3a790efce1f2",
+      "titleCandidate": true,
+      "bookLinkRecorded": true
+    },
+    {
+      "order": 10,
+      "unit": "الوحدة الثانية: مدرستنا",
+      "title": "الدرس التاسع: حرف (ل)",
+      "lessonId": "e57fb95e-0d5b-4a52-9e8d-f541216cc8d4",
+      "titleCandidate": true,
+      "bookLinkRecorded": true
+    },
+    {
+      "order": 11,
+      "unit": "الوحدة الثانية: مدرستنا",
+      "title": "الدرس العاشر: أعزز مكتسباتي",
+      "lessonId": "953f9005-5b4c-485a-8fc9-94e5d7a58db6",
+      "titleCandidate": true,
+      "bookLinkRecorded": true
+    },
+    {
+      "order": 12,
+      "unit": "الوحدة الثانية: مدرستنا",
+      "title": "أنشودة الوحدة: مدرستي",
+      "lessonId": "f36e0ccd-af09-465c-923c-1a8327aac3c8",
+      "titleCandidate": true,
+      "bookLinkRecorded": true
+    },
+    {
+      "order": 13,
+      "unit": "الوحدة الثالثة: حينا",
+      "title": "الدرس الحادي عشر: حرف (ج)",
+      "lessonId": "69c32ad8-e737-444a-92cc-044919e87540",
+      "titleCandidate": true,
+      "bookLinkRecorded": true
+    },
+    {
+      "order": 14,
+      "unit": "الوحدة الثالثة: حينا",
+      "title": "الدرس الثاني عشر: حرف (ن)",
+      "lessonId": "1145b186-c334-4ced-a98e-8a5bf1f28ddc",
+      "titleCandidate": true,
+      "bookLinkRecorded": true
+    },
+    {
+      "order": 15,
+      "unit": "الوحدة الثالثة: حينا",
+      "title": "الدرس الثالث عشر: حرف (ع)",
+      "lessonId": "f6419bab-fee6-4436-9f50-54a4da934999",
+      "titleCandidate": true,
+      "bookLinkRecorded": true
+    },
+    {
+      "order": 16,
+      "unit": "الوحدة الثالثة: حينا",
+      "title": "الدرس الرابع عشر: حرف (ت)",
+      "lessonId": "0eb8f691-50e6-4329-bfc9-271a4822d283",
+      "titleCandidate": true,
+      "bookLinkRecorded": true
+    },
+    {
+      "order": 17,
+      "unit": "الوحدة الثالثة: حينا",
+      "title": "الدرس الخامس عشر: أعزز مكتسباتي",
+      "lessonId": "fae1e5ea-b1cb-4ac7-898b-f7a0317c3e59",
+      "titleCandidate": true,
+      "bookLinkRecorded": true
+    },
+    {
+      "order": 18,
+      "unit": "الوحدة الثالثة: حينا",
+      "title": "أنشودة الوحدة: جاري",
+      "lessonId": "84df9520-a5ee-4a66-8c3c-f4b78332311c",
+      "titleCandidate": true,
+      "bookLinkRecorded": true
+    }
+  ]
+}

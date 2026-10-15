@@ -1,5 +1,6 @@
 import Link from "next/link";
 import audit from "@/data/curriculum-completeness/bahrain-book-completeness-2026-2027.json";
+import grade1Titles from "@/data/curriculum-completeness/bahrain-grade1-title-reconciliation-2026-2027.json";
 
 type Book = (typeof audit.books)[number];
 const labels: Record<string,string> = {
@@ -59,6 +60,21 @@ export default function BahrainCurriculumEvidence() {
           </div>)}
         </div>
       </header>
+
+      <section className="rounded-3xl border border-teal-200 bg-white p-6">
+        <h2 className="text-xl font-black text-[#123f39]">الصف الأول — مطابقة أولية لعناوين الكتاب</h2>
+        <p className="mt-3 text-sm leading-8 text-[#625b51]">
+          في الملف المرجعي المحفوظ للجزء الأول من براعم العربية، ثبت وجود
+          {grade1Titles.oneToOneStoredTitleCandidates} مرشح عنوان فريد مقابل
+          {grade1Titles.expectedOutlineTitles} عنوانًا مسجلًا، مع رابط الكتاب ذاته.
+          هذه مطابقة لأسماء السجلات وليست فحصًا مستقلًا لجميع صفحات الكتاب ومحتواه.
+          لذلك لم نعتمد اكتمال أي كتاب.
+        </p>
+        <Link href="/admin/curriculum/coverage/toc-review"
+          className="mt-3 inline-block text-sm font-black text-[#174f47] underline">
+          تدقيق فهرس الكتاب الأصلي ومراجعة المحتوى 1:1 ←
+        </Link>
+      </section>
 
       <section className="rounded-3xl border border-amber-200 bg-amber-50 p-6">
         <h2 className="text-xl font-black text-amber-950">فجوات تمنع إثبات اكتمال الكتاب</h2>
