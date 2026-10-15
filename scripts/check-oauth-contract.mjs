@@ -81,8 +81,8 @@ requireGate(
 requireGate(
   onboarding.includes("const hasRequiredProfileFields =") &&
     onboarding.includes("isCountryCode(countryCandidate(existing?.country))") &&
-    /existingRole\\s*&&\\s*!studentLike\\s*&&\\s*hasRequiredProfileFields/u.test(onboarding) &&
-    /existing\\?\\.onboarding_completed\\s*&&\\s*advancedGrade\\s*&&\\s*hasRequiredProfileFields/u.test(onboarding),
+    /existingRole\s*&&\s*!studentLike\s*&&\s*hasRequiredProfileFields/u.test(onboarding) &&
+    /existing\?\.onboarding_completed\s*&&\s*advancedGrade\s*&&\s*hasRequiredProfileFields/u.test(onboarding),
   "OAUTH_INCOMPLETE_PROFILE_REDIRECT_LOOP_GUARD"
 );
 
