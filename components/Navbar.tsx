@@ -1,8 +1,9 @@
-import { LocalizedText, LocalizedLink } from "@/components/i18n/LanguageProvider";
+import { LocalizedText } from "@/components/i18n/LanguageProvider";
 import NotificationBell from "@/components/notifications/NotificationBell";
 import Link from "next/link";
 import DadyoomLogo from "@/components/brand/DadyoomLogo";
 import LogoutButton from "@/components/auth/LogoutButton";
+import CompactNavigation from "@/components/navigation/CompactNavigation";
 import { createClient } from "@/lib/supabase/server";
 
 const links = [
@@ -62,25 +63,11 @@ export default async function Navbar() {
       dir="rtl"
       className="sticky top-0 z-40 border-b border-[#dfcfaf] bg-[#fffdf7]/95 shadow-[0_8px_30px_rgba(38,63,55,.06)] backdrop-blur"
     >
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-4 px-4 py-2.5 sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center gap-3 px-4 py-2.5 sm:px-6 lg:px-8">
         <DadyoomLogo className="ml-auto" />
 
-        <nav
-          aria-label="Main navigation / التنقل الرئيسي"
-          className="order-3 flex w-full gap-1 overflow-x-auto pb-1 text-sm font-black text-[#5c554d] lg:order-none lg:w-auto lg:flex-1 lg:justify-center lg:overflow-visible lg:pb-0"
-        >
-          {links.map((item) => (
-            <LocalizedLink
-              key={item.href}
-              href={item.href}
-              prefetch={false}
-              className="whitespace-nowrap rounded-full px-4 py-2.5 transition hover:bg-[#f3ead7] hover:text-[#123f39]"
-            >
-              <LocalizedText ar={item.label} en={item.en} />
-            </LocalizedLink>
-          ))}
-                <NotificationBell />
-    </nav>
+        <CompactNavigation items={links} label="القائمة" enLabel="Menu" id="dashboard-navigation" />
+        <NotificationBell />
 
         {user ? (
           <div className="flex items-center gap-2">
