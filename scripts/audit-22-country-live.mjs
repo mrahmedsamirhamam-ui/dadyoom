@@ -20,6 +20,21 @@ if (!url || !serviceKey) {
   );
 }
 
+// Single-source-of-truth: the TypeScript registry protects /lessons/ book cards.
+// Read that registry rather than maintaining a second, drifting list of IDs.
+const referenceSource = fs.readFileSync(
+  path.resolve(process.cwd(), "lib/curriculum/verified-book-reference.ts"), "utf8"
+);
+const referenceBlock = referenceSource.match(
+  /export const BOOK_REFERENCE_IDS:[\\s\\S]*?=\\s*(\\{[\\s\\S]*?\\})\\s*as const;/u
+)?.[1];
+if (!referenceBlock) throw new Error("BOOK_REFERENCE_REGISTRY_UNREADABLE");
+const knownBookReferenceIds = new Set(
+  [...referenceBlock.matchAll(/"([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"/giu)]
+    .map((match) => match[1].toLowerCase())
+);
+if (knownBookReferenceIds.size === 0) throw new Error("BOOK_REFERENCE_REGISTRY_EMPTY");
+
 const supabase = createClient(
   url,
   serviceKey,
@@ -205,6 +220,8 @@ const stats =
             new Set(),
           lessons:
             new Set(),
+          bookReferenceCards:
+            new Set(),
           questions:
             0,
           vocabulary:
@@ -324,11 +341,11 @@ for (const lesson of lessons) {
     continue;
   }
 
-  stats
-    .get(country.code)
-    ?.lessons.add(
-      lesson.id
-    );
+  const state = stats.get(country.code);
+  state?.lessons.add(lesson.id);
+  if (knownBookReferenceIds.has(lesson.id.toLowerCase())) {
+    state?.bookReferenceCards.add(lesson.id);
+  }
 }
 
 function countryForLesson(
@@ -409,12 +426,16 @@ const coverage =
           item.units.size,
         publishedLessons:
           item.lessons.size,
+        knownBookReferenceCards:
+          item.bookReferenceCards.size,
+        instructionalLessonCandidates:
+          item.lessons.size - item.bookReferenceCards.size,
         questions:
           item.questions,
         vocabulary:
           item.vocabulary,
         hasLiveContent:
-          item.lessons.size > 0,
+          item.lessons.size > item.bookReferenceCards.size,
       })
     )
     .sort(
@@ -453,6 +474,12 @@ const report = {
         item.publishedLessons,
       0
     ),
+  knownBookReferenceCards:
+    coverage.reduce((sum, item) => sum + item.knownBookReferenceCards, 0),
+  instructionalLessonCandidates:
+    coverage.reduce((sum, item) => sum + item.instructionalLessonCandidates, 0),
+  // A lesson candidate is NOT necessarily independently matched to a current ministry book.
+  officialBookLessonCompleteness: "NOT_VERIFIED",
   questions:
     coverage.reduce(
       (sum, item) =>
@@ -509,6 +536,8 @@ for (const item of coverage) {
       `grades=${item.grades}`,
       `units=${item.units}`,
       `lessons=${item.publishedLessons}`,
+      `bookReferences=${item.knownBookReferenceCards}`,
+      `instructionalCandidates=${item.instructionalLessonCandidates}`,
       `questions=${item.questions}`,
       `vocabulary=${item.vocabulary}`,
       `status=${item.hasLiveContent ? "LIVE" : "MISSING"}`,
@@ -531,6 +560,13 @@ console.log(
 console.log(
   `TOTAL_PUBLISHED_LESSONS=${report.publishedLessons}`
 );
+console.log(
+  `KNOWN_BOOK_REFERENCE_CARDS=${report.knownBookReferenceCards}`
+);
+console.log(
+  `INSTRUCTIONAL_LESSON_CANDIDATES=${report.instructionalLessonCandidates}`
+);
+console.log("OFFICIAL_BOOK_LESSON_COMPLETENESS=NOT_VERIFIED");
 console.log(
   `TOTAL_QUESTIONS=${report.questions}`
 );
