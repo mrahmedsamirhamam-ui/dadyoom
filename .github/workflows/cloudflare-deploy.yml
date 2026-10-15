@@ -54,7 +54,7 @@ jobs:
         shell: bash
         env:
           EXPECTED_SHA: ${{ github.sha }}
-          BASE: https://dadyoom.dpdns.org
+          BASE: https://dadyoom.com
         run: |
           set -euo pipefail
 
@@ -103,5 +103,5 @@ jobs:
       - name: Verify login and signup static chunks
         env:
           EXPECTED_SHA: ${{ github.sha }}
-          DADYOOM_BASE_URL: https://dadyoom.dpdns.org
+          DADYOOM_BASE_URL: https://dadyoom.com
         run: node scripts/verify-production-auth-assets.mjs
