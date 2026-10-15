@@ -152,7 +152,7 @@ export default function EmailPasswordAuthForm({
     const reason = new URLSearchParams(window.location.search).get("error");
     const messages: Record<string, string> = {
       oauth_callback: "لم يصل تأكيد Google للموقع. حاول مرة أخرى.",
-      oauth_exchange: "لم تكتمل جلسة Google في المتصفح. افتح ضاديوم من الرابط الأصلي وأعد المحاولة.",
+      oauth_exchange: "لم تكتمل جلسة Google. تأكد من إضافة رابط هذا الدومين في Supabase ← Authentication ← URL Configuration ثم حاول مرة أخرى.",
       oauth_user: "لم نتمكن من التحقق من حساب Google. حاول مرة أخرى.",
       profile_create: "تم الدخول، لكن تعذر إعداد الملف الشخصي. أعد المحاولة أو أكمل بياناتك.",
       profile_service: "خدمة إعداد الملف الشخصي غير متاحة الآن. حاول مجددًا.",
