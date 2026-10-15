@@ -1,6 +1,4 @@
-import fs from "node:fs";
-import path from "node:path";
-
+import academyCatalog from "@/data/teacher-academy/catalog.json";
 import TeacherAcademyClient from "@/components/teacher-academy/TeacherAcademyClient";
 
 type Catalog = {
@@ -24,36 +22,12 @@ export const metadata = {
 export const dynamic =
   "force-dynamic";
 
-function readCatalog():
-  Catalog {
-  const file =
-    path.resolve(
-      process.cwd(),
-      "data/teacher-academy/catalog.json"
-    );
-
-  if (
-    !fs.existsSync(
-      file
-    )
-  ) {
-    throw new Error(
-      "TEACHER_ACADEMY_CATALOG_MISSING: run scripts/fetch-teacher-academy-500.py first"
-    );
-  }
-
-  return JSON.parse(
-    fs.readFileSync(
-      file,
-      "utf8"
-    )
-  ) as Catalog;
-}
+// Bundle the verified local catalog at build time. Cloudflare Workers must
+// not depend on node:fs, process.cwd(), or a runtime filesystem.
+// The archive is static; lesson links and external videos retain their attribution.
+const catalog: Catalog = academyCatalog as unknown as Catalog;
 
 export default function TeacherAcademyPage() {
-  const catalog =
-    readCatalog();
-
   return (
     <main
       dir="rtl"
