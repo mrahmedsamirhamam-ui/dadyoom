@@ -67,9 +67,17 @@ export default async function OnboardingPage() {
     existingRole === "student" ||
     existingRole === "child";
 
+  // A role alone does not make the profile ready for a protected dashboard.
+  // Otherwise /onboarding -> /role -> /onboarding becomes an infinite loop
+  // for users with a missing name or country (including legacy Google users).
+  const hasRequiredProfileFields =
+    Boolean(existing?.full_name?.trim()) &&
+    isCountryCode(countryCandidate(existing?.country));
+
   if (
     existingRole &&
-    !studentLike
+    !studentLike &&
+    hasRequiredProfileFields
   ) {
     redirect(
       destinations[existingRole] ||
@@ -104,7 +112,8 @@ export default async function OnboardingPage() {
   if (
     studentLike &&
     existing?.onboarding_completed &&
-    advancedGrade
+    advancedGrade &&
+    hasRequiredProfileFields
   ) {
     redirect(
       existingRole === "child"
