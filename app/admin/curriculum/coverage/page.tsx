@@ -80,6 +80,20 @@ export default function BahrainCurriculumEvidence() {
         </Link>
       </section>
 
+      <section className="rounded-3xl border border-sky-200 bg-white p-6">
+        <h2 className="text-xl font-black text-[#123f39]">الصف السابع — الفصل الثاني: توضيح اختلاف التصنيف</h2>
+        <p className="mt-3 text-sm leading-8 text-[#625b51]">
+          يوجد 37 درسًا منشورًا للصف السابع بالفصل الثاني كمواد إثرائية أصلية من ضاديوم
+          مستندة إلى خطة تاريخية للعام 2025–2026. هذه الدروس موجودة بالفعل
+          ولم تُحذف؛ لكن لم تثبت مطابقتها لفهرس كتاب العام الدراسي 2026–2027،
+          ولا يجوز ضمها إلى أعداد المقررات الرسمية الحالية تلقائيًا.
+        </p>
+        <Link href="/admin/curriculum/coverage/unclassified"
+          className="mt-3 inline-block text-sm font-black text-[#174f47] underline">
+          تدقيق الدروس غير محددة التصنيف ←
+        </Link>
+      </section>
+
       <section className="rounded-3xl border border-amber-200 bg-amber-50 p-6">
         <h2 className="text-xl font-black text-amber-950">فجوات تمنع إثبات اكتمال الكتاب</h2>
         <ul className="mt-3 list-disc space-y-2 pr-6 text-sm leading-8 text-amber-950">

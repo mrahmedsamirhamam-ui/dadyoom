@@ -702,7 +702,7 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "المحتوى المستورد مصنف official-book-unscheduled. خطة الفصل الثاني 2026-2027 غير منشورة حتى آخر تدقيق؛ المرجع التاريخي لا يُعامل كخطة حالية. يلزم استخراج TOC الحالي ومطابقته 1:1 قبل COMPLETE_BOOK.",
+      "notes": "المحتوى المستورد مصنف official-book-unscheduled. خطة الفصل الثاني 2026-2027 غير منشورة حتى آخر تدقيق؛ المرجع التاريخي لا يُعامل كخطة حالية. يلزم استخراج TOC الحالي ومطابقته 1:1 قبل COMPLETE_BOOK. تدقيق 15 أكتوبر 2026: يوجد 37 درسًا منشورًا بالفعل في الفصل الثاني، مسجلة كمادة إثرائية أصلية من ضاديوم مستندة إلى خطة 2025–2026، وبنطاق رسمي غير مصنف (NULL). لا تحتسب دروسًا معتمدة في خطة 2026–2027؛ الرقم الرسمي صفر لا يعني فقد الدروس.",
       "currentBookCatalogSource": "https://edunet.bh/manual/books2026/books1.pdf",
       "currentBookCatalogTitles": [
         "كتاب اللغة العربية الجزء الأول",
@@ -722,7 +722,10 @@
         "deltaPublishedVsPreviousImported": -37,
         "tocValidated": false,
         "sourceEditionValidated": false,
-        "noCurrentTermPlan": true
+        "noCurrentTermPlan": true,
+        "publishedIndependentEnrichmentWithHistoricalPlan": 37,
+        "historicalPlanUrl": "https://edunet.bh/manual/plans2-2025-2026/Arabic/Plan5.pdf",
+        "note": "There are 37 published Grade 7 term-2 Dadyoom enrichment lessons referring to the prior-year 2025-2026 Ministry plan and marked official_content_scope=NULL. These ARE NOT missing lessons and must not be counted as approved official 2026-2027 book items."
       }
     },
     {
