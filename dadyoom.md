@@ -206,6 +206,15 @@
 - ✅ أُضيف `scripts/check-domain-migration-ready.mjs` كمدقق **قراءة فقط** لعقد الدومين الحالي وطرق تغيير متغيرات الموقع وrobots/sitemap وGoogle OAuth وIndexNow وCloudflare Workflow. يُخرج `CUTOVER=BLOCKED_PENDING_OWNERSHIP_AND_LIVE_QA`، ولا ينفذ DNS أو دفعًا أو نشرًا. أُضيف اختبار `tests/domain/domain-migration-readiness.test.mjs` وخطوات القطع في `README.md`.
 - ⏳ حدّ الإثبات: لا يمكن إعلان نشر آخر Commit أو اجتياز Vitest/TypeScript/Build أو عمل `dadyoom.com` فعليًا قبل ظهور سجلات GitHub Actions لذات SHA، واختبار رابط النطاق المملوك بعد التسجيل. لا إجراء مالي أو تعديل بيانات إنتاجية خلال هذه الدفعة.
 
+## تسجيل Google على dadyoom.com — توجيه Auth بعد ربط الدومين
+
+- **الدليل من اختبار المتصفح 2026-10-16**: `https://dadyoom.com` يفتح الصفحة الرئيسية، لكن محاولة تسجيل الدخول بجوجل أعادت المتصفح إلى `https://dadyoom.dpdns.org/?code=...` بدل `https://dadyoom.com/auth/callback?code=...`. لا تخزّن أو تنسخ رمز `code` الموقت إلى التقارير.
+- **فحص الكود**: `components/auth/GoogleAuthButton.tsx` يستخدم `redirectTo: ${window.location.origin}/auth/callback` في المتصفح، و`app/auth/callback/route.ts` يُجري `exchangeCodeForSession` ثم يوجّه وفق `url.origin`. لذا السبب الأرجح هو عدم وجود عنوان `.com` في Redirect URLs المسموح بها على Supabase، واستعمال Site URL القديم كبديل. لا تُعلن أن العطل أُصلح حتى يثبت اختبار الدخول.
+- **إعداد Supabase المطلوب ولا تدعمه صلاحيات موصل Supabase الحالية**: من `Authentication → URL Configuration` في مشروع `hvqsvtomhlxavmfqoxfz`: أضف `https://dadyoom.com/auth/callback` في **Redirect URLs** واحتفظ مؤقتًا بـ`https://dadyoom.dpdns.org/auth/callback`، واجعل **Site URL** `https://dadyoom.com` بعد ذلك. إذا كان `next` يضيف Query String، فتحقق من السماح بالمسار المطلوب دون فتح Wildcard عريض في الإنتاج.
+- **ممنوع تغيير Google Cloud provider callback** من `https://<supabase-project>.supabase.co/auth/v1/callback` إلى دومين الويب؛ التغيير المطلوب هو **Supabase Redirect URLs** وليس Google provider URI. لا تغير DNS أو canonical أو تكوين Clerk/Paddle لهذه الخطوة.
+- **اختبار الإغلاق**: افتح نافذة خاصة على `https://dadyoom.com/login`، اختر Google، ثم تأكد أن الاستجابة وصلت إلى `https://dadyoom.com/auth/callback` وأن جلسة المستخدم تعمل على الدور المناسب؛ عدم الرجوع إلى `.dpdns.org`. لا تُنشر رموز OAuth أو صور فيها `code`.
+- **تعديل المستودع**: صُحّحت رسالة خطأ `oauth_exchange` التي كانت تُوجّه المستخدم خطأً إلى «الرابط الأصلي»، وأُضيف `tests/auth/google-oauth-domain-routing.test.mjs` لثبات مسار Google على Origin المستخدم. تعديل الكود **لا يستطيع** تغيير إعداد Supabase Auth الخارجية؛ اكتمال الإصلاح ينتظر ضبطها واختبار الدخول.
+
 ## سياسة ثابتة لا تُخالف
 
 - الاسم الرسمي **ضاديوم**، بالإنجليزية **Dadyoom**؛ يقبل البحث أيضًا داديوم/ضاديو/ضاضيوم كمرادفات وليس كعلامات رئيسية.
