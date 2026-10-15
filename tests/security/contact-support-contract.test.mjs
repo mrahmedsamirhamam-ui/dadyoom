@@ -17,8 +17,12 @@ describe("Dadyoom public contact and private support", () => {
     expect(form).toContain('name="consent"');
     expect(form).toContain('name="website"');
     expect(form).toContain('name="pageUrl"');
-    expect(contact).toContain("DADYOOM_CONTACT_EMAIL");
-    expect(contact).toContain("DADYOOM_CONTACT_WHATSAPP");
+    expect(contact).toContain("mrahmedsamirhamam@gmail.com");
+    expect(contact).toContain('const whatsapp = "97338921189"');
+    expect(contact).toContain("https://wa.me/");
+    expect(contact).toContain("+973 38921189");
+    expect(contact).toContain("من 6:00 صباحًا إلى 6:00 مساءً بتوقيت البحرين");
+    expect(contact).toContain("يمكنك إرسال البلاغ من النموذج في أي وقت");
     expect(contact).not.toContain("example@gmail.com");
   });
   test("public backend validates origin, body, spam and rate limits without token leakage", () => {
