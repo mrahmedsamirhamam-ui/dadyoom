@@ -14,6 +14,7 @@ const adminLinks = [
   { href: "/admin/students", label: "الطلاب" },
   { href: "/admin/teachers", label: "المعلمون" },
   { href: "/admin/ai-lesson", label: "مساعد المحتوى" },
+  { href: "/admin/support", label: "التواصل والدعم" },
 ];
 
 export default async function AdminLayout({
