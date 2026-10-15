@@ -220,7 +220,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          BASE="https://dadyoom.dpdns.org"
+          BASE="https://dadyoom.com"
 
           check_200() {
             local path="$1"
@@ -406,7 +406,7 @@ jobs:
 
       - name: Notify IndexNow after deploy
         env:
-          DADYOOM_INDEXNOW_SITE: "https://dadyoom.dpdns.org"
+          DADYOOM_INDEXNOW_SITE: "https://dadyoom.com"
         run: node scripts/submit-indexnow.mjs
 
       - name: Authenticated product E2E
