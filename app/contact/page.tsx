@@ -1,88 +1,83 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ContactForm from "@/components/contact/ContactForm";
 
-export const dynamic = "force-static";
-export const revalidate = 86400;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "تواصل مع ضاديوم",
-  description:
-    "قنوات التواصل والدعم في ضاديوم للحسابات والتعلم والمدفوعات والخصوصية والمدارس.",
+  title: "تواصل معنا | ضاديوم",
+  description: "اتصل بفريق ضاديوم، وأرسل مشكلة تقنية أو ملاحظة منهجية أو استفسارًا أو اقتراحًا بسهولة.",
   alternates: { canonical: "/contact" },
 };
 
-const channels = [
-  {
-    title: "الحساب والتعلّم",
-    body: "إذا كانت المشكلة في الدخول أو الصف أو التقدم أو درس معين، استخدم قنوات الدعم المتاحة داخل حساب ضاديوم مع وصف واضح للمشكلة. لا ترسل كلمة المرور أو رموز التحقق لأي شخص.",
-  },
-  {
-    title: "المدارس والمعلمون",
-    body: "يمكن للمدارس والمعلمين استخدام مساحاتهم داخل ضاديوم لمتابعة الصفوف والدورات والاجتماعات والحصص المباشرة. عند طلب دعم مؤسسي، اذكر اسم المدرسة والدور ونوع المشكلة من دون مشاركة بيانات طلاب غير لازمة.",
-  },
-  {
-    title: "الفوترة وPlus",
-    body: "تتم معالجة اشتراك ضاديوم Plus عبر Paddle بصفتها Merchant of Record. استخدم أدوات إدارة الاشتراك داخل الحساب، ويمكن الرجوع إلى دعم Paddle في المسائل المرتبطة بالفاتورة أو وسيلة الدفع. ضاديوم لا يطلب بيانات البطاقة الكاملة عبر الرسائل.",
-  },
-  {
-    title: "الخصوصية والبيانات",
-    body: "لطلب الوصول إلى بيانات الحساب أو تصحيحها أو حذفها حيث يسمح القانون، استخدم قناة الدعم داخل ضاديوم وحدد أن الطلب متعلق بالخصوصية. قد نحتاج إلى التحقق من هوية صاحب الحساب قبل تنفيذ طلب حساس.",
-  },
+const help = [
+  { title: "تسجيل الدخول والحساب", text: "اختر «تسجيل الدخول والحساب» واذكر ما يحدث بعد تسجيل الدخول دون مشاركة كلمات المرور." },
+  { title: "مشكلة في الدرس أو المنهج", text: "اذكر الدولة والصف واسم الدرس ورابطه والخطأ الملحوظ لمساعدتنا على مراجعته." },
+  { title: "المعلم والمدرسة", text: "طلبات دعم المعلمين والفصول والتعاون المؤسسي تصل عبر النموذج نفسه." },
+  { title: "الخصوصية والاقتراحات", text: "يمكنك تقديم ملاحظات التطوير أو طلب متعلق بالبيانات؛ قد نتحقق من الهوية قبل أي إجراء حساس." },
 ];
 
 export default function ContactPage() {
+  // Business contact channels are intentionally optional. Do not invent details.
+  const candidateEmail = process.env.DADYOOM_CONTACT_EMAIL?.trim() ?? "";
+  const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/u.test(candidateEmail) ? candidateEmail : "";
+  const candidatePhone = (process.env.DADYOOM_CONTACT_WHATSAPP ?? "").replace(/[^\d]/gu, "");
+  const whatsapp = candidatePhone.length >= 9 && candidatePhone.length <= 15 ? candidatePhone : "";
+
   return (
     <main dir="rtl" className="min-h-screen bg-[#f7f1e6] text-[#202c29]">
-      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:py-16">
-        <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
-          <Link href="/" className="font-black text-[#123f39]">ضاديوم</Link>
-          <nav className="flex flex-wrap gap-3 text-sm font-bold">
-            <Link href="/about" className="text-[#174f47] hover:underline">عن ضاديوم</Link>
-            <Link href="/privacy" className="text-[#174f47] hover:underline">الخصوصية</Link>
-            <Link href="/refund-policy" className="text-[#174f47] hover:underline">الاسترداد</Link>
-          </nav>
-        </div>
-
-        <article className="rounded-[2rem] border border-[#ddcfb4] bg-[#fffdf8] p-6 shadow-sm sm:p-10">
-          <p className="text-sm font-black text-[#a7772f]">QAMORYX Technologies W.L.L</p>
-          <h1 className="mt-2 font-arabic-display text-4xl font-black text-[#123f39]">تواصل مع ضاديوم</h1>
-          <p className="mt-4 max-w-3xl font-arabic-reading text-lg leading-9 text-[#625b51]">
-            نريد أن يصل طلبك إلى المسار الصحيح من أول مرة. اختر نوع المساعدة أدناه،
-            ثم استخدم قنوات الدعم المتاحة داخل حساب ضاديوم. هذه الصفحة عامة حتى يعرف
-            الزائر قبل التسجيل كيف نتعامل مع الحسابات والتعلم والمدفوعات والخصوصية.
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:py-14">
+        <nav className="mb-6 flex flex-wrap items-center gap-4 text-sm font-bold text-[#174f47]">
+          <Link href="/" className="hover:underline">الرئيسية</Link>
+          <span>←</span>
+          <span>تواصل معنا</span>
+          <Link href="/privacy" className="mr-auto hover:underline">سياسة الخصوصية</Link>
+        </nav>
+        <header className="relative overflow-hidden rounded-[2rem] border border-[#d7c29c] bg-[#123f39] px-6 py-10 text-white sm:px-10">
+          <div aria-hidden="true" className="absolute -left-16 -top-24 h-64 w-64 rounded-full border-[36px] border-white/5" />
+          <p className="relative text-sm font-black text-[#f5d38b]">ضاديوم • بيت العربية الرقمي</p>
+          <h1 className="relative mt-3 font-arabic-display text-3xl font-black sm:text-5xl">تواصل معنا</h1>
+          <p className="relative mt-4 max-w-3xl font-arabic-reading text-lg leading-9 text-[#e4eee9]">
+            عندك سؤال، مشكلة، ملاحظة على أحد الدروس، أو فكرة تجعل ضاديوم أفضل؟
+            اكتب لنا مباشرة؛ نريد أن يسمع فريقنا صوت الطالب والمعلم وولي الأمر والمدرسة.
           </p>
+        </header>
 
-          <div className="mt-10 grid gap-4 md:grid-cols-2">
-            {channels.map((item) => (
-              <section key={item.title} className="rounded-2xl border border-[#e1d4ba] bg-[#f8f1e5] p-5">
-                <h2 className="text-xl font-black text-[#123f39]">{item.title}</h2>
-                <p className="mt-3 font-arabic-reading leading-8 text-[#625b51]">{item.body}</p>
+        <div className="mt-7 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
+          <aside className="space-y-5">
+            <section className="rounded-[2rem] border border-[#ddcfb4] bg-[#fffdf8] p-6">
+              <h2 className="font-arabic-display text-2xl font-black text-[#123f39]">كيف نقدر نساعدك؟</h2>
+              <div className="mt-5 space-y-5">
+                {help.map(item => (
+                  <div key={item.title}>
+                    <h3 className="font-black text-[#174f47]">{item.title}</h3>
+                    <p className="mt-1 text-sm leading-7 text-[#625b51]">{item.text}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+            {email || whatsapp ? (
+              <section className="rounded-2xl border border-[#ddcfb4] bg-white p-6">
+                <h2 className="text-xl font-black text-[#123f39]">قنوات التواصل الرسمية</h2>
+                <div className="mt-3 flex flex-col gap-3 text-sm font-bold text-[#174f47]">
+                  {email ? <a href={"mailto:" + email} className="break-all underline" dir="ltr">{email}</a> : null}
+                  {whatsapp ? <a href={"https://wa.me/" + whatsapp} target="_blank" rel="noopener noreferrer" className="underline">واتساب ضاديوم الرسمي</a> : null}
+                </div>
               </section>
-            ))}
-          </div>
-
-          <section className="mt-8 rounded-2xl border border-[#d8c7a4] bg-white p-6">
-            <h2 className="text-xl font-black text-[#123f39]">قبل إرسال طلب دعم</h2>
-            <ul className="mt-3 list-disc space-y-2 pr-6 font-arabic-reading leading-8 text-[#625b51]">
-              <li>اكتب وصفًا مختصرًا للمشكلة والخطوات التي أدت إليها.</li>
-              <li>اذكر الصفحة أو الميزة المتأثرة، والدولة والصف إذا كانت المشكلة تعليمية.</li>
-              <li>لا ترسل كلمة مرور أو مفتاح API أو رقم بطاقة أو رمز تحقق.</li>
-              <li>إذا كانت المشكلة في الدفع، يكفي رقم الطلب أو المرجع غير الحساس عند توفره.</li>
-            </ul>
-          </section>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/login" className="rounded-2xl bg-[#123f39] px-6 py-3 font-black text-white">
-              الدخول إلى الحساب
-            </Link>
-            <Link href="/terms" className="rounded-2xl border border-[#cdbb96] px-6 py-3 font-black text-[#123f39]">
-              الشروط والأحكام
-            </Link>
-            <Link href="/privacy" className="rounded-2xl px-6 py-3 font-black text-[#8b6426]">
-              سياسة الخصوصية
-            </Link>
-          </div>
-        </article>
+            ) : null}
+            <p className="px-2 text-xs leading-6 text-[#776d5f]">
+              في المرحلة الحالية تُستقبل الرسائل داخل المنصة لمراجعتها من الإدارة.
+              لا نَعِد بوقت رد ثابت قبل الإعلان عن ساعات الدعم الرسمية.
+            </p>
+          </aside>
+          <ContactForm />
+        </div>
+        <footer className="mt-9 flex flex-wrap gap-5 border-t border-[#d6c6a6] pt-6 text-sm font-bold text-[#174f47]">
+          <Link href="/about" className="hover:underline">عن ضاديوم</Link>
+          <Link href="/privacy" className="hover:underline">سياسة الخصوصية</Link>
+          <Link href="/terms" className="hover:underline">الشروط والأحكام</Link>
+          <Link href="/" className="mr-auto hover:underline">العودة إلى الرئيسية</Link>
+        </footer>
       </div>
     </main>
   );
