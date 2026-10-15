@@ -9,12 +9,14 @@ import {
 
 const LEGACY_PUBLIC_HOSTS =
   new Set([
+    "dadyoom.dpdns.org",
+    "www.dadyoom.com",
     "dadyoom.mrahmedsamirhamam.workers.dev",
     "dadyoom.pages.dev",
   ]);
 
 const CANONICAL_PUBLIC_HOST =
-  "dadyoom.dpdns.org";
+  "dadyoom.com";
 
 function isPublicSeoPath(
   pathname: string,
@@ -129,7 +131,11 @@ export async function proxy(
 
   if (
     LEGACY_PUBLIC_HOSTS.has(host) &&
-    isPublicSeoPath(pathname)
+    isPublicSeoPath(pathname) &&
+    // An OAuth code/state in a URL is private to its original origin;
+    // never forward it across domains via an SEO canonical redirect.
+    !["code", "state", "token", "access_token", "refresh_token",
+      "error", "error_description"].some((key) => request.nextUrl.searchParams.has(key))
   ) {
     const canonical =
       request.nextUrl.clone();
