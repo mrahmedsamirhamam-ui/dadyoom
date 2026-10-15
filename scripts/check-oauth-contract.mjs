@@ -20,6 +20,7 @@ const proxy = read("proxy.ts");
 const callback = read("app/auth/callback/route.ts");
 const googleButton = read("components/auth/GoogleAuthButton.tsx");
 const mobileBridge = read("components/mobile/MobileOAuthBridge.tsx");
+const onboarding = read("app/onboarding/page.tsx");
 
 requireGate(
   proxy.includes('"/student/:path*"') &&
@@ -72,6 +73,17 @@ requireGate(
     mobileBridge.includes("exchangeCodeForSession") &&
     mobileBridge.includes("App.getLaunchUrl()"),
   "OAUTH_NATIVE_CALLBACK_DEDUP"
+);
+
+// Regression guard: incomplete existing profiles must remain on onboarding.
+// Prior behavior bounced an incomplete student or staff user between
+// /onboarding and the protected role portal without offering repair.
+requireGate(
+  onboarding.includes("const hasRequiredProfileFields =") &&
+    onboarding.includes("isCountryCode(countryCandidate(existing?.country))") &&
+    /existingRole\\s*&&\\s*!studentLike\\s*&&\\s*hasRequiredProfileFields/u.test(onboarding) &&
+    /existing\\?\\.onboarding_completed\\s*&&\\s*advancedGrade\\s*&&\\s*hasRequiredProfileFields/u.test(onboarding),
+  "OAUTH_INCOMPLETE_PROFILE_REDIRECT_LOOP_GUARD"
 );
 
 if (process.exitCode) {
