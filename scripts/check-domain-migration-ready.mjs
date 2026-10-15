@@ -26,7 +26,7 @@ const checks = {
   singleRobotsSitemap: robots.includes('sitemap: [`${base}/sitemap.xml`]'),
   oauthOriginFromRequest: callback.includes("url.origin"),
   indexNowCanChangeDomain: indexNow.includes("DADYOOM_INDEXNOW_SITE"),
-  legacyDeployShaVerificationKnown: deployment.includes("https://dadyoom.dpdns.org") &&
+  canonicalDeployShaVerificationKnown: deployment.includes("https://dadyoom.com") &&
     deployment.includes("/api/deploy/version"),
   workerAlreadyConfigured: wrangler.includes('"name": "dadyoom"'),
 };
