@@ -5,6 +5,7 @@ import DadyoomLogo, {
   DadyoomMark,
 } from "@/components/brand/DadyoomLogo";
 import HomeInteractionPanel from "@/components/home/HomeInteractionPanel";
+import CompactNavigation from "@/components/navigation/CompactNavigation";
 
 export const dynamic = "force-static";
 export const revalidate = 86400;
@@ -12,6 +13,18 @@ export const revalidate = 86400;
 export const metadata: Metadata = {
   alternates: { canonical: "/", languages: { ar: "/", en: "/en" } },
 };
+
+const homeLinks = [
+  { href: "/#experience", label: "التجربة", en: "Experience" },
+  { href: "/#roles", label: "لمن ضاديوم؟", en: "For whom?" },
+  { href: "/curriculum", label: "مناهج الدول", en: "Curricula" },
+  { href: "/learn-arabic", label: "تعلم العربية", en: "Learn Arabic" },
+  { href: "/en", label: "English", en: "English" },
+  { href: "/teachers", label: "للمعلمين", en: "For teachers" },
+  { href: "/about", label: "عن ضاديوم", en: "About" },
+  { href: "/pricing", label: "Plus", en: "Plus" },
+  { href: "/contact", label: "تواصل معنا", en: "Contact" },
+] as const;
 
 const roles = [
   {
@@ -69,72 +82,12 @@ export default function HomePage() {
       className="min-h-screen overflow-hidden bg-[#f7f1e6] text-[#202c29]"
     >
       <header className="sticky top-0 z-50 border-b border-[#d9ccb2]/80 bg-[#fffdf8]/92 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
+        <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
           <DadyoomLogo className="ml-auto" />
 
-          <nav
-            aria-label="التنقل الرئيسي"
-            className="hidden items-center gap-1 rounded-full border border-[#ddd0b7] bg-white/80 p-1 text-sm font-black text-[#625a50] lg:flex"
-          >
-            <a
-              href="#experience"
-              className="rounded-full px-4 py-2 transition hover:bg-[#f1e7d4] hover:text-[#123f39]"
-            >
-              التجربة
-            </a>
-            <a
-              href="#roles"
-              className="rounded-full px-4 py-2 transition hover:bg-[#f1e7d4] hover:text-[#123f39]"
-            >
-              لمن ضاديوم؟
-            </a>
-            <Link
-              prefetch={false}
-              href="/curriculum"
-              className="rounded-full px-4 py-2 transition hover:bg-[#f1e7d4] hover:text-[#123f39]"
-            >
-              مناهج الدول
-            </Link>
-            <Link
-              prefetch={false}
-              href="/learn-arabic"
-              className="rounded-full px-4 py-2 transition hover:bg-[#f1e7d4] hover:text-[#123f39]"
-            >
-              تعلّم العربية
-            </Link>
-            <Link
-              prefetch={false}
-              href="/en"
-              lang="en"
-              dir="ltr"
-              className="rounded-full px-4 py-2 transition hover:bg-[#f1e7d4] hover:text-[#123f39]"
-            >
-              English
-            </Link>
-            <Link
-              prefetch={false}
-              href="/teachers"
-              className="rounded-full px-4 py-2 transition hover:bg-[#f1e7d4] hover:text-[#123f39]"
-            >
-              للمعلمين
-            </Link>
-            <Link
-              prefetch={false}
-              href="/about"
-              className="rounded-full px-4 py-2 transition hover:bg-[#f1e7d4] hover:text-[#123f39]"
-            >
-              عن ضاديوم
-            </Link>
-            <Link
-              prefetch={false}
-              href="/pricing"
-              className="rounded-full px-4 py-2 transition hover:bg-[#f1e7d4] hover:text-[#123f39]"
-            >
-              Plus
-            </Link>
-          </nav>
+          <CompactNavigation items={homeLinks} label="القائمة" id="home-navigation" />
 
-          <div className="flex items-center gap-2">
+          <div className="mr-auto flex items-center gap-2">
             <Link
               prefetch={false}
               href="/login"
