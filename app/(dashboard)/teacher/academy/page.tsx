@@ -23,7 +23,7 @@ export const dynamic =
   "force-dynamic";
 
 // Bundle the verified local catalog at build time. Cloudflare Workers must
-// not depend on node:fs, process.cwd(), or a runtime filesystem.
+// not depend on runtime disk access, unavailable in Cloudflare Workers.
 // The archive is static; lesson links and external videos retain their attribution.
 const catalog: Catalog = academyCatalog as unknown as Catalog;
 
