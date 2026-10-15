@@ -37,6 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/en/curriculum`, changeFrequency: "weekly", priority: 0.85 },
     { url: `${base}/about`, lastModified: "2026-10-10", changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/contact`, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/suggestions`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/courses/arabic-from-zero`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/courses/rooms`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/courses/video-library`, changeFrequency: "weekly", priority: 0.7 },

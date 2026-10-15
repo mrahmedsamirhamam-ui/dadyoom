@@ -24,7 +24,7 @@ const roles = [
 ];
 const inputStyle = "mt-2 w-full rounded-xl border border-[#d7c8a8] bg-white px-4 py-3 text-[#173b34] outline-none focus:border-[#174f47] focus:ring-2 focus:ring-[#174f47]/15";
 
-export default function ContactForm() {
+export default function ContactForm({ initialCategory = "technical" }: { initialCategory?: "technical" | "suggestion" }) {
   const { language } = useSiteLanguage();
   const en = language === "en";
   const t = (ar: string, english: string) => en ? english : ar;
@@ -98,7 +98,7 @@ export default function ContactForm() {
             </label>
             <label className="block text-sm font-bold text-[#32544b]">
               {t("نوع الطلب", "Request type")} *
-              <select name="category" required defaultValue="technical" className={inputStyle}>
+              <select name="category" required defaultValue={initialCategory} className={inputStyle}>
                 {categories.map(item => <option key={item.value} value={item.value}>{en ? item.en : item.ar}</option>)}
               </select>
             </label>

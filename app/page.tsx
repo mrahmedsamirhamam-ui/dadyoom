@@ -456,6 +456,7 @@ export default function HomePage() {
             <Link prefetch={false} href="/en" lang="en" dir="ltr" className="hover:text-white hover:underline">English — Learn Arabic</Link>
             <Link prefetch={false} href="/curriculum" className="hover:text-white hover:underline">دليل المناهج والدروس</Link>
             <Link prefetch={false} href="/contact" className="hover:text-white hover:underline">تواصل معنا</Link>
+            <Link prefetch={false} href="/suggestions" className="hover:text-white hover:underline">صندوق المقترحات</Link>
             <Link prefetch={false} href="/terms" className="hover:text-white hover:underline">الشروط والأحكام</Link>
             <Link prefetch={false} href="/privacy" className="hover:text-white hover:underline">سياسة الخصوصية</Link>
             <Link prefetch={false} href="/refund-policy" className="hover:text-white hover:underline">سياسة الاسترداد</Link>
