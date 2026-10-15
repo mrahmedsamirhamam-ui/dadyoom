@@ -192,7 +192,7 @@ export default async function BahrainDraftReviewPage() {
             {ocrReviews.map(lesson => {
               const unit = unitMap.get(lesson.unit_id);
               const grade = unit ? gradeMap.get(unit.grade_id) : null;
-              const referenceIsPlan = /\\/plans[12]-|\\/plans\\//i.test(lesson.source_pdf_url ?? "");
+              const referenceIsPlan = (lesson.source_pdf_url ?? "").includes("/plans");
               return (
                 <article key={lesson.id} className="rounded-2xl border border-rose-100 bg-[#fffdf8] p-4">
                   <div className="flex flex-wrap items-start justify-between gap-3">
