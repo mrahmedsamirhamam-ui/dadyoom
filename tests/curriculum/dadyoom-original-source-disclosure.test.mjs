@@ -13,6 +13,12 @@ describe("Original Dadyoom enrichment is never marketed as a ministry textbook",
     expect(lesson).toContain("وليس نصًا منقولًا من كتاب وزارة التربية والتعليم");
     expect(lesson).toContain("لا يُعد ظهوره في دولة أو صف إثباتًا لمطابقته");
   });
+  test("missing textbook links on non-original national lessons require an explicit warning", () => {
+    expect(lesson).toContain("!isOriginalDadyoomLesson && !lesson.source_pdf_url?.trim()");
+    expect(lesson).toContain('data-lesson-source-kind="pending-documentation"');
+    expect(lesson).toContain("المصدر الرسمي قيد التحقق");
+    expect(lesson).toContain("لا يوجد رابط مباشر لمرجع الكتاب");
+  });
   test("existing OCR and generic-lesson warning remains a separate safeguard", () => {
     expect(lesson).toContain("sourceReviewRequired ? (");
     expect(lesson).toContain("lessonNeedsSourceReview(lesson.content)");
