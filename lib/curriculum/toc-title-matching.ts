@@ -15,12 +15,14 @@ export type TitleMatch = {
 /**
  * Conservative candidate finder, NOT book certification or verification.
  * It excludes independent enrichment, other terms and duplicate titles.
+ *
+ * Arabic hamza and punctuation can distinguish official book headings.
+ * Do not erase them when building a preliminary title-only candidate:
+ * a false "match" is worse than flagging a heading for human review.
  */
 export function normalizeTocTitle(text: string): string {
   return text.normalize("NFKC")
     .replace(/[\u064B-\u065F\u0670\u0640]/gu, "")
-    .replace(/[أإآٱ]/gu, "ا")
-    .replace(/[،؛؟!.,:()[\]{}"“”«»_\-]/gu, " ")
     .replace(/\s+/gu, " ")
     .trim();
 }
