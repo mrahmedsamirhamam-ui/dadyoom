@@ -34,7 +34,7 @@ export default function CompactNavigation({
   const rootRef = useRef<HTMLDivElement>(null);
   const panelId = `${id}-panel`;
 
-  useEffect(() => { setOpen(false); }, [pathname]);
+  // Selecting a link closes the panel synchronously; no derived-state effect.
 
   useEffect(() => {
     if (!open) return;
