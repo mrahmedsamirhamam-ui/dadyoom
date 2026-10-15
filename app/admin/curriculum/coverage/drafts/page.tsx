@@ -42,12 +42,12 @@ function warningReasons(
 
 function Failed({ message }: { message: string }) {
   return (
-    <main dir="rtl" className="mx-auto max-w-5xl px-4 py-10">
+    <section data-bahrain-draft-audit="error" dir="rtl" className="mx-auto max-w-5xl px-4 py-10">
       <h1 className="text-2xl font-black text-[#123f39]">مراجعة مسودات البحرين</h1>
       <p className="mt-4 rounded-2xl border border-amber-300 bg-amber-50 p-5 text-amber-950">
         تعذر إكمال تدقيق البيانات: {message}. لم يتم نشر أو تعديل أي درس.
       </p>
-    </main>
+    </section>
   );
 }
 
@@ -141,7 +141,7 @@ export default async function BahrainDraftReviewPage() {
     .filter((n): n is number => typeof n === "number").sort((a, b) => a - b);
 
   return (
-    <main dir="rtl" className="min-h-screen bg-[#f7f1e6] px-4 py-8 text-[#203a34]">
+    <section data-bahrain-draft-audit="ready" dir="rtl" className="min-h-screen bg-[#f7f1e6] px-4 py-8 text-[#203a34]">
       <div className="mx-auto max-w-6xl space-y-6">
         <nav className="flex flex-wrap gap-2 text-sm font-bold text-[#174f47]">
           <Link href="/admin">الإدارة</Link><span>←</span>
@@ -260,6 +260,6 @@ export default async function BahrainDraftReviewPage() {
           </p>
         ) : null}
       </div>
-    </main>
+    </section>
   );
 }
