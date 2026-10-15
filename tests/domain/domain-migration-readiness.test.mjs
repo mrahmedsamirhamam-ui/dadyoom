@@ -11,14 +11,14 @@ describe("Dadyoom .com domain migration must be a prepared, non-mutating step", 
     });
     expect(r.status).toBe(0);
     expect(r.stdout).toContain("DOMAIN_PREPARATION=CODE_READY_ONLY");
-    expect(r.stdout).toContain("DOMAIN_AVAILABILITY=UNVERIFIED");
-    expect(r.stdout).toContain("CUTOVER=BLOCKED_PENDING_OWNERSHIP_AND_LIVE_QA");
+    expect(r.stdout).toContain("DOMAIN_OWNERSHIP=EXTERNAL_ACCOUNT_VERIFICATION_REQUIRED");
+    expect(r.stdout).toContain("CUTOVER=VERIFY_LIVE_SEO_AND_SEARCH_CONSOLE");
   });
   test("no registrar, DNS or payment mutation in readiness script", () => {
     expect(audit).not.toContain("wrangler deploy");
     expect(audit).not.toContain("fetch(");
     expect(audit).not.toContain("writeFile");
-    expect(audit).toContain("DOMAIN_PAYMENT=NOT_AUTHORIZED");
-    expect(audit).toContain("CANONICAL_DNS_REDIRECTS=UNCHANGED");
+    expect(audit).toContain("DOMAIN_PAYMENT=NEVER_EXECUTED_BY_SCRIPT");
+    expect(audit).toContain("CANONICAL_DNS_REDIRECTS=NOT_MODIFIED_BY_THIS_SCRIPT");
   });
 });
