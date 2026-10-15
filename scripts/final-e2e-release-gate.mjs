@@ -417,6 +417,88 @@ async function roleRouteSmoke(page, role, baseUrl) {
     console.log("E2E_BAHRAIN_DRAFT_REVIEW=PASS");
   }
 
+
+  // Verify live contact submission and its admin inbox receipt, cleaning up
+  // the synthetic QA request even when verification fails.
+  if (role === "admin") {
+    const contactResponse = await page.goto(`${baseUrl}/contact`, {
+      waitUntil: "domcontentloaded",
+      timeout: 60_000,
+    });
+    const contactCopy = await page.locator("body").innerText();
+    gate(
+      contactResponse?.status() === 200 &&
+        new URL(page.url()).pathname === "/contact" &&
+        contactCopy.includes("mrahmedsamirhamam@gmail.com") &&
+        contactCopy.includes("+973 38921189") &&
+        contactCopy.includes("6:00 صباحًا") &&
+        contactCopy.includes("6:00 مساءً"),
+      `E2E_CONTACT_PUBLIC_DETAILS_FAILED:${contactResponse?.status() ?? "NONE"}`,
+    );
+    console.log("E2E_CONTACT_PUBLIC_DETAILS=PASS");
+
+    const contactEmail = `dadyoom-qa-contact-${stamp}@example.invalid`;
+    const contactSubject = `Dadyoom QA support smoke ${stamp}`;
+    try {
+      const sent = await page.evaluate(async ({ email, subject }) => {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: "Dadyoom Test",
+            email,
+            category: "technical",
+            userRole: "visitor",
+            subject,
+            message: "Automated disposable QA request used to verify live contact delivery and admin inbox. No human reply is needed.",
+            pageUrl: "https://dadyoom.dpdns.org/contact",
+            website: "",
+            consent: true,
+          }),
+        });
+        const result = await response.json().catch(() => ({}));
+        return { status: response.status, result };
+      }, { email: contactEmail, subject: contactSubject });
+      gate(
+        sent.status === 201 &&
+          sent.result?.ok === true &&
+          /^[A-F0-9]{8}$/u.test(String(sent.result?.reference ?? "")),
+        `E2E_CONTACT_SUBMIT_FAILED:${sent.status}:${String(sent.result?.error ?? "unknown")}`,
+      );
+
+      const stored = await admin.from("support_tickets")
+        .select("id,status,email,subject")
+        .eq("email", contactEmail)
+        .eq("subject", contactSubject)
+        .single();
+      gate(
+        !stored.error &&
+          stored.data?.status === "new" &&
+          String(stored.data?.id ?? "").slice(0, 8).toUpperCase() === sent.result.reference,
+        "E2E_CONTACT_STORAGE_FAILED",
+      );
+
+      const inboxResponse = await page.goto(`${baseUrl}/admin/support`, {
+        waitUntil: "domcontentloaded",
+        timeout: 60_000,
+      });
+      const inboxBody = await page.locator("body").innerText();
+      gate(
+        inboxResponse?.status() === 200 &&
+          new URL(page.url()).pathname === "/admin/support" &&
+          inboxBody.includes(contactEmail) &&
+          inboxBody.includes(contactSubject),
+        `E2E_CONTACT_ADMIN_INBOX_FAILED:${inboxResponse?.status() ?? "NONE"}`,
+      );
+      console.log("E2E_CONTACT_SUBMIT_AND_ADMIN_INBOX=PASS");
+    } finally {
+      const removed = await admin.from("support_tickets")
+        .delete().eq("email", contactEmail).eq("subject", contactSubject);
+      gate(!removed.error, "E2E_CONTACT_CLEANUP_FAILED");
+      console.log("E2E_CONTACT_FIXTURE_CLEANUP=PASS");
+    }
+  }
+
   // Owner finance pages are not regular admin pages. Verify that a
   // non-owner test admin receives an access-denied redirect.
   if (role === "admin") {
