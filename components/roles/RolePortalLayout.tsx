@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import DadyoomLogo from "@/components/brand/DadyoomLogo";
+import CompactNavigation from "@/components/navigation/CompactNavigation";
 import { getDashboardRequestViewer } from "@/lib/auth/request-viewer";
 
 export type PortalRole =
@@ -114,7 +115,7 @@ export default async function RolePortalLayout({
             </div>
           </div>
 
-          <div className="mt-5 grid gap-4 rounded-[2rem] border border-[#d7c49d] bg-[#123f39] p-5 text-white shadow-sm lg:grid-cols-[1fr_auto] lg:items-center">
+          <div className="mt-3 grid gap-4 rounded-[2rem] border border-[#d7c49d] bg-[#123f39] p-5 text-white shadow-sm lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <div className="text-xs font-black text-[#f5cf7a]">
                 {roleLabels[role]}
@@ -138,24 +139,7 @@ export default async function RolePortalLayout({
             </Link>
           </div>
 
-          <nav
-            aria-label={roleLabels[role]}
-            className="mt-4 flex gap-2 overflow-x-auto pb-1"
-          >
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                prefetch={false}
-                className="flex shrink-0 items-center gap-2 rounded-full border border-[#ddcbaa] bg-[#fffdf8] px-4 py-2.5 text-sm font-black text-[#5c554c] transition hover:border-[#b68d46] hover:bg-[#fff7e5] hover:text-[#123f39]"
-              >
-                <span aria-hidden="true">
-                  {link.icon}
-                </span>
-                <span>{link.label}</span>
-              </Link>
-            ))}
-          </nav>
+          <CompactNavigation items={links} label="أقسام المساحة" enLabel="Portal menu" id={`role-${role}-navigation`} />
         </div>
       </section>
 
