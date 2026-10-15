@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://dadyoom.dpdns.org/</loc>
+    <loc>https://dadyoom.com/</loc>
     <lastmod>2026-10-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://dadyoom.dpdns.org/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dadyoom.dpdns.org/en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://dadyoom.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dadyoom.com/en"/>
   </url>
   <url>
-    <loc>https://dadyoom.dpdns.org/en</loc>
+    <loc>https://dadyoom.com/en</loc>
     <lastmod>2026-10-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://dadyoom.dpdns.org/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dadyoom.dpdns.org/en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://dadyoom.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dadyoom.com/en"/>
   </url>
   <url>
-    <loc>https://dadyoom.dpdns.org/about</loc>
+    <loc>https://dadyoom.com/about</loc>
     <lastmod>2026-10-10</lastmod>
   </url>
 </urlset>
