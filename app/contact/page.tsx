@@ -18,11 +18,10 @@ const help = [
 ];
 
 export default function ContactPage() {
-  // Business contact channels are intentionally optional. Do not invent details.
-  const candidateEmail = process.env.DADYOOM_CONTACT_EMAIL?.trim() ?? "";
-  const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/u.test(candidateEmail) ? candidateEmail : "";
-  const candidatePhone = (process.env.DADYOOM_CONTACT_WHATSAPP ?? "").replace(/[^\d]/gu, "");
-  const whatsapp = candidatePhone.length >= 9 && candidatePhone.length <= 15 ? candidatePhone : "";
+  // Contact details approved by Dadyoom founder on 15 October 2026.
+  // Country calling code +973 is Bahrain; wa.me requires digits without +.
+  const email = "mrahmedsamirhamam@gmail.com";
+  const whatsapp = "97338921189";
 
   return (
     <main dir="rtl" className="min-h-screen bg-[#f7f1e6] text-[#202c29]">
@@ -61,13 +60,24 @@ export default function ContactPage() {
                 <h2 className="text-xl font-black text-[#123f39]">قنوات التواصل الرسمية</h2>
                 <div className="mt-3 flex flex-col gap-3 text-sm font-bold text-[#174f47]">
                   {email ? <a href={"mailto:" + email} className="break-all underline" dir="ltr">{email}</a> : null}
-                  {whatsapp ? <a href={"https://wa.me/" + whatsapp} target="_blank" rel="noopener noreferrer" className="underline">واتساب ضاديوم الرسمي</a> : null}
+                  {whatsapp ? (
+                    <a href={"https://wa.me/" + whatsapp} target="_blank" rel="noopener noreferrer" className="underline">
+                      واتساب ضاديوم: <span dir="ltr" className="inline-block">+973 38921189</span>
+                    </a>
+                  ) : null}
+                </div>
+                <div className="mt-5 rounded-xl border border-[#e1d4ba] bg-[#f7f1e6] p-4 text-sm text-[#475c50]">
+                  <p className="font-black text-[#123f39]">ساعات التواصل</p>
+                  <p className="mt-1">من 6:00 صباحًا إلى 6:00 مساءً بتوقيت البحرين (UTC+3).</p>
+                  <p className="mt-2 text-xs leading-6 text-[#6a6256]">
+                    يمكنك إرسال البلاغ من النموذج في أي وقت، وستُراجع الرسائل وفق أوقات التواصل المتاحة.
+                  </p>
                 </div>
               </section>
             ) : null}
             <p className="px-2 text-xs leading-6 text-[#776d5f]">
-              في المرحلة الحالية تُستقبل الرسائل داخل المنصة لمراجعتها من الإدارة.
-              لا نَعِد بوقت رد ثابت قبل الإعلان عن ساعات الدعم الرسمية.
+              تُستقبل رسائل النموذج داخل المنصة للمراجعة من الإدارة. مواعيد التواصل
+              المعلنة لا تعني ضمان الرد فورًا، ويمكن تقديم البلاغ في أي وقت.
             </p>
           </aside>
           <ContactForm />
