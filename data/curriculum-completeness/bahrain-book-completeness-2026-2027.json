@@ -198,7 +198,21 @@
         "deltaPublishedVsPreviousImported": 0,
         "tocValidated": false,
         "sourceEditionValidated": false,
-        "noCurrentTermPlan": false
+        "noCurrentTermPlan": false,
+        "priorRecordedEvidence": {
+          "verifiedAt": "2026-10-10",
+          "previousSnapshotAt": "2026-10-07",
+          "previousPublishedLessonCount": 40,
+          "currentPublishedLessonCount": 44,
+          "addedLessonTitles": [
+            "الاستماع: السلحفاة والبطتان",
+            "الاستماع: عطلة نهاية الأسبوع",
+            "الاستماع: الوقاية خير من العلاج",
+            "أراجع الحروف (4)"
+          ],
+          "sourceScope": "live-supabase-bahrain-national-arabic-grade-semester1-plan-scheduled",
+          "tocValidated": false
+        }
       }
     },
     {
@@ -288,7 +302,23 @@
         "deltaPublishedVsPreviousImported": 0,
         "tocValidated": false,
         "sourceEditionValidated": false,
-        "noCurrentTermPlan": false
+        "noCurrentTermPlan": false,
+        "priorRecordedEvidence": {
+          "verifiedAt": "2026-10-10",
+          "previousSnapshotAt": "2026-10-07",
+          "previousPublishedLessonCount": 24,
+          "currentPublishedLessonCount": 30,
+          "addedLessonTitles": [
+            "الاستماع: أريد أن ألعب معكم",
+            "الاستماع: التصوير الفوتوغرافي",
+            "الاستماع: حقيقة الكنز",
+            "التحدث — الوحدة الأولى: قيم ومبادئ",
+            "التحدث — الوحدة الثانية: ألعاب وهوايات",
+            "التحدث — الوحدة الثالثة: مواقف وعبر"
+          ],
+          "sourceScope": "live-supabase-bahrain-national-arabic-grade-semester1-plan-scheduled",
+          "tocValidated": false
+        }
       }
     },
     {
