@@ -35,7 +35,11 @@ export default function BahrainCurriculumEvidence() {
         <p className="text-sm font-black text-[#9a712c]">مملكة البحرين • العربية • {audit.academicYear}</p>
         <h1 className="mt-3 text-3xl font-black text-[#123f39]">تدقيق اكتمال الكتب والمناهج</h1>
         <p className="mt-4 leading-8 text-[#5b625b]">
-          هذا تقرير مرجعي محفوظ في المستودع، وليس فحصًا حيًا لقاعدة البيانات.
+          هذا تقرير مرجعي محفوظ في المستودع، وليس فحصًا حيًا عند فتح الصفحة.
+          راجعنا أعداد جميع نطاقات الكتب {audit.summary.liveScopeReconciled} نطاقًا
+          مقابل قاعدة الإنتاج بتاريخ {audit.summary.liveScopeReconciledAt}؛
+          ويوجد {audit.summary.liveScopeDiscrepancies} نطاقًا تختلف أعداده عن لقطة الاستيراد القديمة.
+          هذه مراجعة أعداد فقط وليست مطابقة فهرس الكتاب أو اعتماده.
           اكتمال خطة التدريس لا يثبت وحده اكتمال فهرس الكتاب المدرسي.
           يلزم مصدر رسمي وفهرس مستقل ومطابقة عناصره 1:1 قبل اعتماد أي كتاب مكتملًا.
         </p>

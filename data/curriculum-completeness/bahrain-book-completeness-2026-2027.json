@@ -56,7 +56,10 @@
     "catalogEvidenceScope": "basic-1-9 + secondary-physical-books + religious + continuing",
     "secondaryLiveReconciledScopes": 24,
     "secondaryLiveReconciledAt": "2026-10-15",
-    "secondaryLiveChangedCountScopes": 4
+    "secondaryLiveChangedCountScopes": 4,
+    "liveScopeReconciled": 56,
+    "liveScopeReconciledAt": "2026-10-15",
+    "liveScopeDiscrepancies": 9
   },
   "books": [
     {
@@ -90,7 +93,21 @@
         "وحدة نتهيأ إلى المدرسة"
       ],
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 104,
+        "planScheduledLessons": 104,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 104,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": false
+      }
     },
     {
       "grade": 1,
@@ -122,7 +139,21 @@
         "وحدة نتهيأ إلى المدرسة"
       ],
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 21,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 21,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 21,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": true
+      }
     },
     {
       "grade": 2,
@@ -156,18 +187,18 @@
       "currentBookCatalogVerified": true,
       "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد.",
       "liveSnapshotReconciliation": {
-        "verifiedAt": "2026-10-10",
-        "previousSnapshotAt": "2026-10-07",
-        "previousPublishedLessonCount": 40,
-        "currentPublishedLessonCount": 44,
-        "addedLessonTitles": [
-          "الاستماع: السلحفاة والبطتان",
-          "الاستماع: عطلة نهاية الأسبوع",
-          "الاستماع: الوقاية خير من العلاج",
-          "أراجع الحروف (4)"
-        ],
-        "sourceScope": "live-supabase-bahrain-national-arabic-grade-semester1-plan-scheduled",
-        "tocValidated": false
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 44,
+        "planScheduledLessons": 44,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 12,
+        "importedItemsAtPreviousAudit": 44,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": false
       }
     },
     {
@@ -200,7 +231,21 @@
         "التدريبات اللغوية / اللغة العربية — وحدة المراجعة"
       ],
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 15,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 15,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 15,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": true
+      }
     },
     {
       "grade": 3,
@@ -232,20 +277,18 @@
       "currentBookCatalogVerified": true,
       "currentBookCatalogNote": "تم تسجيل العناوين العربية الواضحة فقط من books1.pdf؛ يوجد صف OCR ملتبس في دليل الكتب للصف الثالث ولم يُصحح بالافتراض.",
       "liveSnapshotReconciliation": {
-        "verifiedAt": "2026-10-10",
-        "previousSnapshotAt": "2026-10-07",
-        "previousPublishedLessonCount": 24,
-        "currentPublishedLessonCount": 30,
-        "addedLessonTitles": [
-          "الاستماع: أريد أن ألعب معكم",
-          "الاستماع: التصوير الفوتوغرافي",
-          "الاستماع: حقيقة الكنز",
-          "التحدث — الوحدة الأولى: قيم ومبادئ",
-          "التحدث — الوحدة الثانية: ألعاب وهوايات",
-          "التحدث — الوحدة الثالثة: مواقف وعبر"
-        ],
-        "sourceScope": "live-supabase-bahrain-national-arabic-grade-semester1-plan-scheduled",
-        "tocValidated": false
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 30,
+        "planScheduledLessons": 30,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 14,
+        "importedItemsAtPreviousAudit": 30,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": false
       }
     },
     {
@@ -276,7 +319,21 @@
         "التدريبات اللغوية الجزء الثاني لبراعم العربية"
       ],
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "تم تسجيل العناوين العربية الواضحة فقط من books1.pdf؛ يوجد صف OCR ملتبس في دليل الكتب للصف الثالث ولم يُصحح بالافتراض."
+      "currentBookCatalogNote": "تم تسجيل العناوين العربية الواضحة فقط من books1.pdf؛ يوجد صف OCR ملتبس في دليل الكتب للصف الثالث ولم يُصحح بالافتراض.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 15,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 15,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 15,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": true
+      }
     },
     {
       "grade": 4,
@@ -308,7 +365,21 @@
         "كراسة الإنتاج الكتابي / دروب الكتابة"
       ],
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 85,
+        "planScheduledLessons": 85,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 17,
+        "importedItemsAtPreviousAudit": 75,
+        "deltaPublishedVsPreviousImported": 10,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": false
+      }
     },
     {
       "grade": 4,
@@ -340,7 +411,21 @@
         "كراسة الإنتاج الكتابي / دروب الكتابة"
       ],
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 75,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 75,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 75,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": true
+      }
     },
     {
       "grade": 5,
@@ -372,7 +457,21 @@
         "كراسة الإنتاج الكتابي / دروب الكتابة"
       ],
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 85,
+        "planScheduledLessons": 85,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 8,
+        "importedItemsAtPreviousAudit": 70,
+        "deltaPublishedVsPreviousImported": 15,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": false
+      }
     },
     {
       "grade": 5,
@@ -404,7 +503,21 @@
         "كراسة الإنتاج الكتابي / دروب الكتابة"
       ],
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 66,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 66,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 66,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": true
+      }
     },
     {
       "grade": 6,
@@ -435,7 +548,21 @@
         "كراسة الإنتاج الكتابي / تعلم السرد"
       ],
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 57,
+        "planScheduledLessons": 57,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 7,
+        "importedItemsAtPreviousAudit": 54,
+        "deltaPublishedVsPreviousImported": 3,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": false
+      }
     },
     {
       "grade": 6,
@@ -466,7 +593,21 @@
         "كراسة الإنتاج الكتابي / تعلم السرد"
       ],
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 47,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 47,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 47,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": true
+      }
     },
     {
       "grade": 7,
@@ -495,7 +636,21 @@
         "كتاب اللغة العربية الجزء الثاني"
       ],
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 64,
+        "planScheduledLessons": 64,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 1,
+        "importedItemsAtPreviousAudit": 19,
+        "deltaPublishedVsPreviousImported": 45,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": false
+      }
     },
     {
       "grade": 7,
@@ -524,7 +679,21 @@
         "كتاب اللغة العربية الجزء الثاني"
       ],
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 0,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 37,
+        "deltaPublishedVsPreviousImported": -37,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": true
+      }
     },
     {
       "grade": 8,
@@ -553,7 +722,21 @@
         "كتاب اللغة العربية الجزء الثاني"
       ],
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 28,
+        "planScheduledLessons": 28,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 2,
+        "importedItemsAtPreviousAudit": 28,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": false
+      }
     },
     {
       "grade": 8,
@@ -582,7 +765,21 @@
         "كتاب اللغة العربية الجزء الثاني"
       ],
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 31,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 31,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 31,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": true
+      }
     },
     {
       "grade": 9,
@@ -611,7 +808,21 @@
         "كتاب اللغة العربية الجزء الثاني"
       ],
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 23,
+        "planScheduledLessons": 23,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 1,
+        "importedItemsAtPreviousAudit": 23,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": false
+      }
     },
     {
       "grade": 9,
@@ -640,7 +851,21 @@
         "كتاب اللغة العربية الجزء الثاني"
       ],
       "currentBookCatalogVerified": true,
-      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد."
+      "currentBookCatalogNote": "أسماء الكتب الحالية من دليل الكتب الرسمي 2026-2027؛ لا تعني وحدها اكتمال TOC أو أن كل كتاب يخص الفصل المحدد.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية",
+        "currentPublishedOfficialScopeLessons": 28,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 28,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 28,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": true
+      }
     },
     {
       "grade": 8,
@@ -662,7 +887,21 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "OFFICIAL_BOOK_NOT_FOUND",
-      "notes": "Plan7 الحالي مستورد كاملًا كخطة مقررة (31 عنصرًا ضمن 3 وحدات)، لكن هذا تدقيق كتب مستقل: لم يُثبت بعد مصدر كتاب/TOC رسمي مستقل للبرنامج."
+      "notes": "Plan7 الحالي مستورد كاملًا كخطة مقررة (31 عنصرًا ضمن 3 وحدات)، لكن هذا تدقيق كتب مستقل: لم يُثبت بعد مصدر كتاب/TOC رسمي مستقل للبرنامج.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية — اللغة والأدب — برنامج السنوات المتوسطة MYP",
+        "currentPublishedOfficialScopeLessons": 31,
+        "planScheduledLessons": 31,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 31,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": false
+      }
     },
     {
       "grade": 8,
@@ -684,7 +923,21 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "OFFICIAL_BOOK_NOT_FOUND",
-      "notes": "لم تُنشر خطة الفصل الثاني 2026-2027 للبرنامج حتى آخر تدقيق، ولم يُثبت كتاب/TOC رسمي مستقل لهذا الفصل."
+      "notes": "لم تُنشر خطة الفصل الثاني 2026-2027 للبرنامج حتى آخر تدقيق، ولم يُثبت كتاب/TOC رسمي مستقل لهذا الفصل.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية — اللغة والأدب — برنامج السنوات المتوسطة MYP",
+        "currentPublishedOfficialScopeLessons": 0,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 0,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": true
+      }
     },
     {
       "grade": 10,
@@ -1814,7 +2067,21 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "الكتب الحالية مثبتة في دليل الكتب 2026-2027، ودروس الفصل الأول مستوردة من Plan6 الحالي. اكتمال الكتاب 1:1 ينتظر استخراج TOC مستقل."
+      "notes": "الكتب الحالية مثبتة في دليل الكتب 2026-2027، ودروس الفصل الأول مستوردة من Plan6 الحالي. اكتمال الكتاب 1:1 ينتظر استخراج TOC مستقل.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية — التعليم المستمر",
+        "currentPublishedOfficialScopeLessons": 25,
+        "planScheduledLessons": 25,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 25,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": false
+      }
     },
     {
       "grade": null,
@@ -1838,7 +2105,21 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "الكتب الحالية للمستوى مثبتة في دليل الكتب 2026-2027، لكن خطة الفصل الثاني الحالية غير منشورة؛ لا تُنسب أي دروس للفصل الثاني قبل نشر الخطة."
+      "notes": "الكتب الحالية للمستوى مثبتة في دليل الكتب 2026-2027، لكن خطة الفصل الثاني الحالية غير منشورة؛ لا تُنسب أي دروس للفصل الثاني قبل نشر الخطة.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية — التعليم المستمر",
+        "currentPublishedOfficialScopeLessons": 0,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 0,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": true
+      }
     },
     {
       "grade": null,
@@ -1862,7 +2143,21 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "الكتب الحالية مثبتة في دليل الكتب 2026-2027، ودروس الفصل الأول مستوردة من Plan6 الحالي. اكتمال الكتاب 1:1 ينتظر استخراج TOC مستقل."
+      "notes": "الكتب الحالية مثبتة في دليل الكتب 2026-2027، ودروس الفصل الأول مستوردة من Plan6 الحالي. اكتمال الكتاب 1:1 ينتظر استخراج TOC مستقل.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية — التعليم المستمر",
+        "currentPublishedOfficialScopeLessons": 32,
+        "planScheduledLessons": 32,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 32,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": false
+      }
     },
     {
       "grade": null,
@@ -1886,7 +2181,21 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "الكتب الحالية للمستوى مثبتة في دليل الكتب 2026-2027، لكن خطة الفصل الثاني الحالية غير منشورة؛ لا تُنسب أي دروس للفصل الثاني قبل نشر الخطة."
+      "notes": "الكتب الحالية للمستوى مثبتة في دليل الكتب 2026-2027، لكن خطة الفصل الثاني الحالية غير منشورة؛ لا تُنسب أي دروس للفصل الثاني قبل نشر الخطة.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية — التعليم المستمر",
+        "currentPublishedOfficialScopeLessons": 0,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 0,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": true
+      }
     },
     {
       "grade": null,
@@ -1915,7 +2224,21 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "الكتب الحالية مثبتة في دليل الكتب 2026-2027، ودروس الفصل الأول مستوردة من Plan6 الحالي. اكتمال الكتاب 1:1 ينتظر استخراج TOC مستقل."
+      "notes": "الكتب الحالية مثبتة في دليل الكتب 2026-2027، ودروس الفصل الأول مستوردة من Plan6 الحالي. اكتمال الكتاب 1:1 ينتظر استخراج TOC مستقل.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية — التعليم المستمر",
+        "currentPublishedOfficialScopeLessons": 43,
+        "planScheduledLessons": 43,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 43,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": false
+      }
     },
     {
       "grade": null,
@@ -1944,7 +2267,21 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "الكتب الحالية للمستوى مثبتة في دليل الكتب 2026-2027، لكن خطة الفصل الثاني الحالية غير منشورة؛ لا تُنسب أي دروس للفصل الثاني قبل نشر الخطة."
+      "notes": "الكتب الحالية للمستوى مثبتة في دليل الكتب 2026-2027، لكن خطة الفصل الثاني الحالية غير منشورة؛ لا تُنسب أي دروس للفصل الثاني قبل نشر الخطة.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية — التعليم المستمر",
+        "currentPublishedOfficialScopeLessons": 0,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 0,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": true
+      }
     },
     {
       "grade": null,
@@ -1969,7 +2306,21 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "الكتب الحالية مثبتة في دليل الكتب 2026-2027، ودروس الفصل الأول مستوردة من Plan6 الحالي. اكتمال الكتاب 1:1 ينتظر استخراج TOC مستقل."
+      "notes": "الكتب الحالية مثبتة في دليل الكتب 2026-2027، ودروس الفصل الأول مستوردة من Plan6 الحالي. اكتمال الكتاب 1:1 ينتظر استخراج TOC مستقل.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية — التعليم المستمر",
+        "currentPublishedOfficialScopeLessons": 27,
+        "planScheduledLessons": 27,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 27,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": false
+      }
     },
     {
       "grade": null,
@@ -1994,7 +2345,21 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "الكتب الحالية للمستوى مثبتة في دليل الكتب 2026-2027، لكن خطة الفصل الثاني الحالية غير منشورة؛ لا تُنسب أي دروس للفصل الثاني قبل نشر الخطة."
+      "notes": "الكتب الحالية للمستوى مثبتة في دليل الكتب 2026-2027، لكن خطة الفصل الثاني الحالية غير منشورة؛ لا تُنسب أي دروس للفصل الثاني قبل نشر الخطة.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية — التعليم المستمر",
+        "currentPublishedOfficialScopeLessons": 0,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 0,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": true
+      }
     },
     {
       "grade": null,
@@ -2019,7 +2384,21 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "الكتب الحالية مثبتة في دليل الكتب 2026-2027، ودروس الفصل الأول مستوردة من Plan6 الحالي. اكتمال الكتاب 1:1 ينتظر استخراج TOC مستقل."
+      "notes": "الكتب الحالية مثبتة في دليل الكتب 2026-2027، ودروس الفصل الأول مستوردة من Plan6 الحالي. اكتمال الكتاب 1:1 ينتظر استخراج TOC مستقل.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية — التعليم المستمر",
+        "currentPublishedOfficialScopeLessons": 28,
+        "planScheduledLessons": 28,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 28,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": false
+      }
     },
     {
       "grade": null,
@@ -2044,7 +2423,21 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "الكتب الحالية للمستوى مثبتة في دليل الكتب 2026-2027، لكن خطة الفصل الثاني الحالية غير منشورة؛ لا تُنسب أي دروس للفصل الثاني قبل نشر الخطة."
+      "notes": "الكتب الحالية للمستوى مثبتة في دليل الكتب 2026-2027، لكن خطة الفصل الثاني الحالية غير منشورة؛ لا تُنسب أي دروس للفصل الثاني قبل نشر الخطة.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية — التعليم المستمر",
+        "currentPublishedOfficialScopeLessons": 0,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 0,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": true
+      }
     },
     {
       "grade": null,
@@ -2069,7 +2462,21 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "الكتب الحالية مثبتة في دليل الكتب 2026-2027، ودروس الفصل الأول مستوردة من Plan6 الحالي. اكتمال الكتاب 1:1 ينتظر استخراج TOC مستقل."
+      "notes": "الكتب الحالية مثبتة في دليل الكتب 2026-2027، ودروس الفصل الأول مستوردة من Plan6 الحالي. اكتمال الكتاب 1:1 ينتظر استخراج TOC مستقل.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية — التعليم المستمر",
+        "currentPublishedOfficialScopeLessons": 22,
+        "planScheduledLessons": 22,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 22,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": false
+      }
     },
     {
       "grade": null,
@@ -2094,7 +2501,21 @@
       "sourceVerified": true,
       "lastAuditedDate": "2026-10-07",
       "status": "BOOK_FOUND_PENDING_TOC",
-      "notes": "الكتب الحالية للمستوى مثبتة في دليل الكتب 2026-2027، لكن خطة الفصل الثاني الحالية غير منشورة؛ لا تُنسب أي دروس للفصل الثاني قبل نشر الخطة."
+      "notes": "الكتب الحالية للمستوى مثبتة في دليل الكتب 2026-2027، لكن خطة الفصل الثاني الحالية غير منشورة؛ لا تُنسب أي دروس للفصل الثاني قبل نشر الخطة.",
+      "liveSnapshotReconciliation": {
+        "verifiedAt": "2026-10-15",
+        "sourceScope": "read-only-live-supabase-BH-grade-program-term",
+        "curriculumName": "اللغة العربية — التعليم المستمر",
+        "currentPublishedOfficialScopeLessons": 0,
+        "planScheduledLessons": 0,
+        "bookUnscheduledLessons": 0,
+        "currentDrafts": 0,
+        "importedItemsAtPreviousAudit": 0,
+        "deltaPublishedVsPreviousImported": 0,
+        "tocValidated": false,
+        "sourceEditionValidated": false,
+        "noCurrentTermPlan": true
+      }
     }
   ]
 }
