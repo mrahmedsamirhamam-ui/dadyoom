@@ -85,6 +85,19 @@ export default async function BahrainDraftReviewPage() {
     .order("title", { ascending: true }).limit(500);
   if (draftsResult.error) return <Failed message="المسودات" />;
   const drafts = (draftsResult.data ?? []) as Draft[];
+
+  // Review published lessons whose original OCR extract remains unresolved.
+  // They remain published and must be matched against the *textbook* before
+  // claiming that a plan-page reference verifies the lesson content.
+  const ocrResult = await db.from("lessons")
+    .select("id,title,unit_id,source_pdf_url,source_page_start,source_page_end,official_content_scope")
+    .eq("status", "published")
+    .ilike("content", "%مدخل OCR غير محسوم%")
+    .in("unit_id", units.map(unit => unit.id))
+    .order("title", { ascending: true }).limit(200);
+  if (ocrResult.error) return <Failed message="سجلات OCR المنشورة" />;
+  const ocrReviews = ocrResult.data ?? [];
+
   const draftIds = drafts.map(draft => draft.id);
 
   const [activitiesResult, questionsResult] = draftIds.length
@@ -151,6 +164,9 @@ export default async function BahrainDraftReviewPage() {
             <span className="rounded-xl bg-[#f7f1e6] px-4 py-3">
               الصفوف: {gradeNumbers.length}
             </span>
+            <span className="rounded-xl bg-rose-50 px-4 py-3 text-rose-900">
+              محتوى منشور ينتظر تدقيق OCR: {ocrReviews.length}
+            </span>
           </div>
           {drafts.length === 500 ? (
             <p className="mt-3 text-sm font-bold text-red-700">
@@ -158,6 +174,56 @@ export default async function BahrainDraftReviewPage() {
             </p>
           ) : null}
         </header>
+        <section className="rounded-3xl border border-rose-200 bg-white p-5">
+          <h2 className="text-xl font-black text-[#123f39]">
+            مراجعة OCR للمحتوى المنشور — {ocrReviews.length} سجلًا
+          </h2>
+          <p className="mt-2 text-sm leading-7 text-[#675c4c]">
+            هذه دروس منشورة، وليست ضمن المسودات أدناه. وجود مصدر من خطة التدريس
+            لا يثبت تطابق عنوان الدرس مع فهرس كتاب الطالب؛ والمحتوى الإثرائي لا
+            يُنسب إلى الوزارة. لا تتغير حالة أي درس تلقائيًا.
+          </p>
+          {ocrReviews.length === 200 ? (
+            <p className="mt-3 text-sm font-bold text-red-700">
+              وصل العرض إلى حد 200 سجل؛ الأعداد جزئية ويجب فحص البقية.
+            </p>
+          ) : null}
+          <div className="mt-4 space-y-3">
+            {ocrReviews.map(lesson => {
+              const unit = unitMap.get(lesson.unit_id);
+              const grade = unit ? gradeMap.get(unit.grade_id) : null;
+              const referenceIsPlan = /\\/plans[12]-|\\/plans\\//i.test(lesson.source_pdf_url ?? "");
+              return (
+                <article key={lesson.id} className="rounded-2xl border border-rose-100 bg-[#fffdf8] p-4">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <h3 className="font-black">{lesson.title}</h3>
+                      <p className="mt-1 text-xs text-[#776e62]">
+                        {grade?.name_ar ?? "صف غير محدد"} • {unit?.title ?? "وحدة غير محددة"}
+                      </p>
+                    </div>
+                    <Link href={`/admin/lessons/${lesson.id}`} prefetch={false}
+                      className="rounded-xl border border-[#cdbb96] px-3 py-2 text-sm font-bold text-[#174f47]">
+                      فتح الدرس للمطابقة
+                    </Link>
+                  </div>
+                  <p className="mt-2 text-sm text-rose-900">
+                    {referenceIsPlan
+                      ? "المرجع الحالي خطة تدريس؛ صفحة الخطة ليست صفحة الكتاب."
+                      : "يلزم فحص المرجع وفهرس الكتاب الأصلي قبل اعتماد العنوان."}
+                    {" "}حالة OCR غير محسومة ويجب مراجعة العنوان والنص والتدريبات.
+                  </p>
+                  {lesson.source_pdf_url?.startsWith("https://") ? (
+                    <a href={lesson.source_pdf_url} target="_blank" rel="noopener noreferrer"
+                      className="mt-2 inline-block text-sm font-bold text-[#174f47] underline">
+                      فتح مرجع السجل ↗
+                    </a>
+                  ) : null}
+                </article>
+              );
+            })}
+          </div>
+        </section>
         {gradeNumbers.map(number => {
           const items = reviewed.filter(item => item.grade?.grade_number === number);
           return (
