@@ -12,6 +12,9 @@ describe("Bahrain administrative draft review guard", () => {
     expect(page).toContain('.ilike("content", "%مدخل OCR غير محسوم%")');
     expect(page).toContain("/admin/lessons/");
     expect(coverage).toContain('/admin/curriculum/coverage/drafts');
+    expect(page).toContain('data-bahrain-draft-audit="ready"');
+    expect(page).toContain('data-bahrain-draft-audit="error"');
+    expect(page).not.toContain("<main");
   });
   test("missing provenance, activities and assessments remain visible as blockers", () => {
     expect(page).toContain('لا يوجد رابط لمرجع الكتاب');
@@ -20,6 +23,13 @@ describe("Bahrain administrative draft review guard", () => {
     expect(page).toContain('شرح عام آلي يحتاج مطابقة ومراجعة');
     expect(page).toContain('المرجع الحالي خطة تدريس؛ صفحة الخطة ليست صفحة الكتاب.');
     expect(page).toContain('لا تتغير حالة أي درس تلقائيًا');
+  });
+  test("production role gate targets the explicit review state", () => {
+    const qa = readFileSync("scripts/final-e2e-release-gate.mjs", "utf8");
+    expect(qa).toContain('page.locator("[data-bahrain-draft-audit]")');
+    expect(qa).toContain('reviewState === "ready"');
+    expect(qa).toContain('reviewText.includes("مراجعة OCR للمحتوى المنشور")');
+    expect(qa).not.toContain('page.locator("main").innerText');
   });
   test("review never mutates, auto-approves or publishes lessons", () => {
     for (const mutation of ['.insert(', '.upsert(', '.update(', '.delete(', '.rpc(' ]) {
