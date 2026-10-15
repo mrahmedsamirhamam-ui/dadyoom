@@ -29,7 +29,7 @@ jobs:
         shell: bash
         env:
           EXPECTED_SHA: ${{ steps.source.outputs.sha }}
-          BASE: https://dadyoom.dpdns.org
+          BASE: https://dadyoom.com
         run: |
           set -euo pipefail
 
@@ -65,7 +65,7 @@ jobs:
       - name: Verify canonical homepage, robots and sitemap
         shell: bash
         env:
-          BASE: https://dadyoom.dpdns.org
+          BASE: https://dadyoom.com
         run: |
           set -euo pipefail
 
@@ -98,7 +98,7 @@ jobs:
           const websites = nodes.filter((n) => n["@type"] === "WebSite");
           if (websites.length !== 1 ||
               websites[0].name !== "ضاديوم" ||
-              websites[0].url !== "https://dadyoom.dpdns.org/" ||
+              websites[0].url !== "https://dadyoom.com/" ||
               !websites[0].alternateName?.includes("Dadyoom") ||
               !websites[0].alternateName?.includes("ضاضيوم")) {
             throw new Error("SEO_PREFERRED_SITE_NAME=FAIL_STRUCTURED_DATA");
@@ -116,14 +116,18 @@ jobs:
           # The public canonical homepage must visibly identify the common
           # Arabic search misspelling for human visitors and crawlers.
           # A JSON-LD alternateName alone must not be treated as sufficient.
-          if ! grep -Fq "إذا بحثت عن «ضاضيوم»" "$home" ||
-             ! grep -Fq "فأنت تقصد «ضاديوم»" "$home"; then
+          if ! grep -Fq "قد يبحث البعض عن «ضاضيوم»" "$home" ||
+             ! grep -Fq "«ضاد» هو اسم مساعدنا الذكي" "$home"; then
             echo "SEO_BRAND_ARABIC_SPELLING=FAIL"
             exit 1
           fi
           echo "SEO_BRAND_ARABIC_SPELLING=PASS"
           grep -Fq "Sitemap: $BASE/sitemap.xml" "$robots"
-          grep -Fq "Sitemap: $BASE/sitemap-brand.xml" "$robots"
+          # The single canonical sitemap is submitted; brand XML remains as a legacy URL.
+          if grep -Fq "Sitemap: $BASE/sitemap-brand.xml" "$robots"; then
+            echo "SEO_ROBOTS_DUPLICATE_SITEMAP=FAIL"
+            exit 1
+          fi
           grep -Fq "<loc>$BASE" "$sitemap"
           for url in "$BASE/" "$BASE/en" "$BASE/about"; do
             grep -Fq "<loc>$url</loc>" "$brand_sitemap" || {
@@ -135,7 +139,7 @@ jobs:
           grep -Fq 'hreflang="en"' "$brand_sitemap"
           echo "SEO_BRAND_SITEMAP=PASS count=3"
 
-          if grep -Eq 'dadyoom\.pages\.dev|dadyoom\.mrahmedsamirhamam\.workers\.dev' "$sitemap"; then
+          if grep -Eq 'dadyoom\.dpdns\.org|dadyoom\.pages\.dev|dadyoom\.mrahmedsamirhamam\.workers\.dev' "$sitemap"; then
             echo "SEO_SITEMAP_LEGACY_HOST=FAIL"
             exit 1
           fi
@@ -199,7 +203,7 @@ jobs:
       - name: Verify sitemap sample is crawlable
         shell: bash
         env:
-          BASE: https://dadyoom.dpdns.org
+          BASE: https://dadyoom.com
         run: |
           set -euo pipefail
 
@@ -242,7 +246,7 @@ jobs:
       - name: Verify Googlebot page metadata
         shell: bash
         env:
-          BASE: https://dadyoom.dpdns.org
+          BASE: https://dadyoom.com
         run: |
           set -euo pipefail
 
@@ -294,7 +298,7 @@ jobs:
       - name: Verify all country landing pages
         shell: bash
         env:
-          BASE: https://dadyoom.dpdns.org
+          BASE: https://dadyoom.com
         run: |
           set -euo pipefail
 
@@ -349,7 +353,7 @@ jobs:
       - name: Verify distributed grade and lesson metadata
         shell: bash
         env:
-          BASE: https://dadyoom.dpdns.org
+          BASE: https://dadyoom.com
         run: |
           set -euo pipefail
 
@@ -446,7 +450,7 @@ jobs:
       - name: Verify one indexable lesson metadata
         shell: bash
         env:
-          BASE: https://dadyoom.dpdns.org
+          BASE: https://dadyoom.com
         run: |
           set -euo pipefail
 
@@ -483,7 +487,7 @@ jobs:
       - name: Notify IndexNow of changed public landing pages only
         shell: bash
         env:
-          DADYOOM_INDEXNOW_SITE: https://dadyoom.dpdns.org
+          DADYOOM_INDEXNOW_SITE: https://dadyoom.com
         run: |
           set -euo pipefail
           if [[ "$GITHUB_EVENT_NAME" != "push" ]]; then
@@ -527,7 +531,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          for legacy in             "https://dadyoom.mrahmedsamirhamam.workers.dev/"             "https://dadyoom.pages.dev/"; do
+          for legacy in             "https://dadyoom.dpdns.org/"             "https://dadyoom.mrahmedsamirhamam.workers.dev/"             "https://dadyoom.pages.dev/"; do
 
             headers="$(mktemp)"
             code="$(curl --silent --show-error --max-time 30               --output /dev/null --dump-header "$headers"               --write-out "%{http_code}" "$legacy")"
@@ -541,7 +545,7 @@ jobs:
               exit 1
             fi
 
-            if [[ "$location" != "https://dadyoom.dpdns.org/" ]]; then
+            if [[ "$location" != "https://dadyoom.com/" ]]; then
               echo "SEO_LEGACY_REDIRECT=FAIL_LOCATION host=$legacy location=$location"
               exit 1
             fi
