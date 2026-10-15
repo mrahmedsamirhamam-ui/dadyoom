@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import DadyoomLogo from "@/components/brand/DadyoomLogo";
+import CompactNavigation from "@/components/navigation/CompactNavigation";
 
 export const dynamic = "force-static";
 export const revalidate = 86400;
@@ -23,13 +24,14 @@ export default function EnglishHome() {
     <header className="border-b border-[#d9ccb2] bg-[#fffdf8]">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-4">
         <DadyoomLogo />
-        <nav aria-label="Main navigation" className="flex flex-wrap items-center gap-4 text-sm font-bold text-[#174f47]">
-          <Link href="/en/curriculum">Curricula</Link>
-          <Link href="/en/learn-arabic">Learn Arabic</Link>
-          <Link href="/courses">Course explorer</Link>
-          <Link href="/login">Log in</Link>
-          <Link href="/signup" className="rounded-full bg-[#123f39] px-5 py-3 text-white">Start for free</Link>
-        </nav>
+        <CompactNavigation label="القائمة" enLabel="Menu" id="english-home-navigation" items={[
+          { href: "/en", label: "الرئيسية", en: "Home" },
+          { href: "/en/curriculum", label: "المناهج", en: "Curricula" },
+          { href: "/en/learn-arabic", label: "تعلّم العربية", en: "Learn Arabic" },
+          { href: "/teachers", label: "للمعلمين", en: "For teachers" },
+          { href: "/about", label: "عن ضاديوم", en: "About Dadyoom" },
+          { href: "/pricing", label: "Plus", en: "Plus" },
+        ]} />
       </div>
     </header>
     <section className="bg-[radial-gradient(circle_at_80%_20%,rgba(18,63,57,.15),transparent_28rem),linear-gradient(180deg,#fffdf8,#f3e8d5)]">
