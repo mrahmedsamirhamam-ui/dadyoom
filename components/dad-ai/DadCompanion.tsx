@@ -45,7 +45,8 @@ export default function DadCompanion({
   const dragBoundsRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [voiceEnabled, setVoiceEnabled] = useState(true);
+  // Avoid unrequested speech at page load. Arabic voice is opt-in.
+  const [voiceEnabled, setVoiceEnabled] = useState(false);
   const [input, setInput] = useState("");
   const [context, setContext] = useState<DadLessonContextPayload>({
     pageTitle,
@@ -185,7 +186,7 @@ export default function DadCompanion({
   return (
     <div
       ref={dragBoundsRef}
-      className="pointer-events-none fixed inset-2 z-[9999] sm:inset-4"
+      className="pointer-events-none fixed inset-x-3 bottom-3 top-16 z-[90] sm:inset-x-5 sm:bottom-5"
     >
       <motion.div
         dir="rtl"
@@ -195,7 +196,7 @@ export default function DadCompanion({
         dragConstraints={dragBoundsRef}
         dragMomentum={false}
         dragElastic={0.06}
-        className="pointer-events-auto absolute bottom-0 left-0"
+        className="pointer-events-auto absolute bottom-0 right-0"
       >
       <AnimatePresence>
         {isOpen ? (
@@ -335,7 +336,7 @@ export default function DadCompanion({
           <button
             type="button"
             onPointerDown={(event) => dragControls.start(event)}
-            className="absolute -top-8 left-0 z-20 cursor-grab touch-none select-none rounded-full border border-[#d7c391] bg-[#fffdf8] px-3 py-1 text-[10px] font-black text-[#6e572c] shadow-md active:cursor-grabbing"
+            className="absolute -top-7 right-0 z-20 cursor-grab touch-none select-none rounded-full border border-[#d7c391] bg-[#fffdf8] px-3 py-1 text-[10px] font-black text-[#6e572c] shadow-md active:cursor-grabbing"
             aria-label="اسحب لتحريك ضاد"
             title="اسحب لتحريك ضاد"
           >
@@ -348,7 +349,7 @@ export default function DadCompanion({
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0 }}
-              className="hidden rounded-2xl border border-[#decda9] bg-[#fffdf8] px-3 py-2 text-right shadow-lg sm:block"
+              className="hidden rounded-2xl border border-[#decda9] bg-[#fffdf8] px-3 py-2 text-right shadow-lg lg:block"
             >
               <div className="text-xs font-black text-[#123f39]">اسأل ضاد</div>
               <div className="mt-0.5 max-w-36 text-[10px] font-bold text-[#8b7c68]">{hasLessonContext ? "أنا معك في هذا الدرس" : "مساعد العربية الذكي"}</div>
@@ -361,11 +362,11 @@ export default function DadCompanion({
           onClick={() => setIsOpen((value) => !value)}
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.97 }}
-          className="relative grid h-[78px] w-[78px] place-items-center overflow-hidden rounded-[1.65rem] border border-[#d3ba7e] bg-gradient-to-br from-[#fffdf8] to-[#f6eddc] shadow-2xl shadow-[#123f39]/20"
+          className="relative grid h-[58px] w-[58px] place-items-center sm:h-[64px] sm:w-[64px] overflow-hidden rounded-[1.65rem] border border-[#d3ba7e] bg-gradient-to-br from-[#fffdf8] to-[#f6eddc] shadow-2xl shadow-[#123f39]/20"
           aria-label={isOpen ? "إغلاق ضاد" : "فتح ضاد"}
         >
           <span className="absolute -right-1 -top-1 h-3.5 w-3.5 rounded-full border-2 border-[#fffdf8] bg-[#2f9f72]" />
-          <DadMark state={dadState} size={64} />
+          <DadMark state={dadState} size={50} />
         </motion.button>
       </div>
       </motion.div>
