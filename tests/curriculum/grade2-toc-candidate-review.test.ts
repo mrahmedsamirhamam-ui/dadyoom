@@ -12,7 +12,10 @@ const lessons = [
 ];
 describe("Bahrain textbook title candidate review", () => {
   it("normalizes conservative Arabic orthographic variants, never invents grade equivalence",()=>{
-    expect(normalizeTocTitle("القِراءةُ: الوَطَن")).toBe(normalizeTocTitle("القراءة الوطن"));
+    expect(normalizeTocTitle("القِراءةُ: الوَطَن")).toBe(normalizeTocTitle("القراءة: الوطن"));
+    // Official book punctuation is meaningful. A candidate must not falsely
+    // certify two differently punctuated TOC headings as the same title.
+    expect(normalizeTocTitle("القِراءةُ: الوَطَن")).not.toBe(normalizeTocTitle("القراءة الوطن"));
   });
   it("treats unique lesson title as candidate only and cross-term titles as missing",()=>{
     const m=inspectTocMatches("قراءة: وطني\nحروف المد",lessons,1);
