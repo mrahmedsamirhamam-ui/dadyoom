@@ -31,9 +31,12 @@ type VoiceSettings = {
   pitch: string;
 };
 
-const VOICE =
-  process.env.EDGE_TTS_VOICE?.trim() ||
-  "ar-SA-ZariyahNeural";
+// Respect only Arabic voices. A stale English TTS environment setting must
+// not cause the Arabic learning companion to speak English.
+const candidateVoice = process.env.EDGE_TTS_VOICE?.trim() || "";
+const VOICE = /^ar[-_][A-Za-z-]+Neural$/u.test(candidateVoice)
+  ? candidateVoice
+  : "ar-SA-ZariyahNeural";
 
 const CACHE_DIRECTORY = path.join(
   os.tmpdir(),
