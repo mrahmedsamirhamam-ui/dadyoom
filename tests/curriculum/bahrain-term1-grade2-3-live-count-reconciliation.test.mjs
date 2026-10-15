@@ -12,9 +12,10 @@ test("Bahrain G2/G3 term-1 audit reflects later live content without claiming of
     expect(book).toBeDefined();
     expect(book.importedItems).toBe(current);
     expect(book.scheduledItems).toBe(current);
-    expect(book.liveSnapshotReconciliation.previousPublishedLessonCount).toBe(prior);
-    expect(book.liveSnapshotReconciliation.currentPublishedLessonCount).toBe(current);
-    expect(book.liveSnapshotReconciliation.addedLessonTitles).toHaveLength(added);
+    expect(book.liveSnapshotReconciliation.priorRecordedEvidence.previousPublishedLessonCount).toBe(prior);
+    expect(book.liveSnapshotReconciliation.priorRecordedEvidence.currentPublishedLessonCount).toBe(current);
+    expect(book.liveSnapshotReconciliation.priorRecordedEvidence.addedLessonTitles).toHaveLength(added);
+    expect(book.liveSnapshotReconciliation.currentPublishedOfficialScopeLessons).toBe(current);
     expect(book.liveSnapshotReconciliation.tocValidated).toBe(false);
     expect(book.status).toBe("BOOK_FOUND_PENDING_TOC");
     expect(book.bookTotalTOCItems).toBeNull();

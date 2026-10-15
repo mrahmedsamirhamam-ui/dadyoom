@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import audit from "@/data/curriculum-completeness/bahrain-book-completeness-2026-2027.json";
 import { bookTocScopeKey } from "@/lib/curriculum/book-toc-review";
+import { secondaryTrackSlug } from "@/lib/curriculum/bahrain-secondary-track-review";
 import { getDashboardRequestViewer } from "@/lib/auth/request-viewer";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { submitBookTocEvidence } from "./actions";
@@ -94,6 +95,15 @@ export default async function BahrainTocEvidenceIntakePage() {
                 <Link href={"/admin/curriculum/coverage/toc-review/basic/" + book.grade}
                   className="inline-block text-sm font-bold text-[#174f47] underline">
                   مطابقة عناوين هذا الصف بالفهرس المدخل ←
+                </Link>
+            ) : null}
+            {book.program === "الثانوي العام/النوعي" &&
+              book.grade !== null && book.grade >= 10 && book.grade <= 12 &&
+              secondaryTrackSlug(book.track) ? (
+                <Link href={"/admin/curriculum/coverage/toc-review/secondary/" +
+                  book.grade + "/" + secondaryTrackSlug(book.track) + "/" + book.semesterOrBookPart}
+                  className="inline-block text-sm font-bold text-[#174f47] underline">
+                  معاينة مطابقة هذا المسار الثانوي ←
                 </Link>
             ) : null}
             {catalog?.startsWith("https://") ? <a href={catalog} target="_blank"
