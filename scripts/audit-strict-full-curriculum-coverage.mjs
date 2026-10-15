@@ -25,7 +25,44 @@ const incompletePattern =
   /(partial|generic|awaiting|book-level|semester-1|mixed|national-exam|legacy)/iu;
 
 const explicitCompletePattern =
-  /(full-current-official|detailed-current-s1-plus-current-book-s2|verified-full-current|lesson-level-complete)/iu;
+  /^(full-current-official|verified-full-current|lesson-level-complete)$/iu;
+
+// Claims and imported counts cannot certify a country's books. Require
+// a separately reviewed, edition-specific source and 1:1 TOC evidence for
+// every scope listed by the reviewer, including objectives and assessment.
+function independentBookEvidenceValid(country) {
+  const evidence = country?.independentOfficialBookEvidence;
+  if (!evidence || evidence.academicYear !== registry.academicYear ||
+      evidence.reviewState !== "approved" ||
+      typeof evidence.reviewedBy !== "string" || !evidence.reviewedBy.trim() ||
+      !Number.isInteger(evidence.expectedBookScopes) || evidence.expectedBookScopes < 1 ||
+      !Array.isArray(evidence.books) ||
+      evidence.books.length !== evidence.expectedBookScopes) return false;
+
+  const scopeKeys = new Set();
+  for (const book of evidence.books) {
+    if (typeof book.scopeKey !== "string" || !book.scopeKey.trim() ||
+        scopeKeys.has(book.scopeKey) ||
+        !/^https:\/\//u.test(String(book.officialBookUrl ?? "")) ||
+        !/^[0-9a-f]{64}$/iu.test(String(book.sourceSha256 ?? "")) ||
+        typeof book.edition !== "string" || !book.edition.trim() ||
+        typeof book.reviewedBy !== "string" || !book.reviewedBy.trim() ||
+        !Array.isArray(book.items) || book.items.length === 0) return false;
+    scopeKeys.add(book.scopeKey);
+    const lessonIds = new Set();
+    for (const item of book.items) {
+      if (typeof item.title !== "string" || !item.title.trim() ||
+          !Number.isInteger(item.page) || item.page < 1 ||
+          !/^[0-9a-f]{8}-[0-9a-f-]{27,}$/iu.test(String(item.lessonId ?? "")) ||
+          lessonIds.has(item.lessonId) ||
+          item.textReviewed !== true || item.objectivesReviewed !== true ||
+          item.assessmentReviewed !== true ||
+          typeof item.reviewedBy !== "string" || !item.reviewedBy.trim()) return false;
+      lessonIds.add(item.lessonId);
+    }
+  }
+  return true;
+}
 
 const incomplete = [];
 const complete = [];
@@ -49,13 +86,16 @@ for (const country of countries) {
   const hasExplicitCompleteSignal =
     explicitCompletePattern.test(coverage);
 
+  const bookEvidenceValid = independentBookEvidenceValid(country);
   const isComplete =
     hasExplicitCompleteSignal &&
-    !hasIncompleteSignal;
+    !hasIncompleteSignal &&
+    bookEvidenceValid;
 
   const row = {
     code,
     coverage,
+    independentlyReviewedBooks: bookEvidenceValid,
   };
 
   if (isComplete) {
