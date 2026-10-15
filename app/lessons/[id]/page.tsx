@@ -254,6 +254,10 @@ export default async function LessonPage({
   // All 22 countries have original lessons explicitly marked in the content.
   const isOriginalDadyoomLesson =
     (lesson.content ?? "").trimStart().startsWith("درس ضاديوم الأصلي:");
+  // Lack of a recorded textbook link must never be presented as
+  // verified official content, even if the lesson title looks official.
+  const missingTextbookSource =
+    !isOriginalDadyoomLesson && !lesson.source_pdf_url?.trim();
 
   const sourceReference = lesson.source_pdf_url
     ? describeLessonSourceReference(lesson.source_pdf_url)
@@ -556,6 +560,15 @@ export default async function LessonPage({
               <strong>محتوى إثرائي أصلي من ضاديوم:</strong> هذا الدرس من المسار المهاري
               الذي طورته ضاديوم، وليس نصًا منقولًا من كتاب وزارة التربية والتعليم.
               لا يُعد ظهوره في دولة أو صف إثباتًا لمطابقته للمنهج الرسمي لذلك البلد.
+            </aside>
+          ) : null}
+
+          {missingTextbookSource ? (
+            <aside role="note" data-lesson-source-kind="pending-documentation"
+              className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-7 text-amber-950">
+              <strong>المصدر الرسمي قيد التحقق:</strong> لا يوجد رابط مباشر لمرجع الكتاب
+              في سجل هذا الدرس حاليًا. لا تعتبر عنوانه أو شرحه مطابقًا لنص
+              الكتاب الوزاري حتى تُراجع الطبعة والصفحات لدى مصدر رسمي.
             </aside>
           ) : null}
 
