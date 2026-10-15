@@ -204,8 +204,10 @@ export default async function CurriculumPage() {
     );
   }
 
+  // Partial detailed plans (including Bahrain semester 1) are NOT
+  // evidence of full current textbook coverage for every term.
   const weakCoveragePattern =
-    /(partial|generic|awaiting|book-level|national-exam|legacy)/iu;
+    /(partial|generic|awaiting|book-level|national-exam|legacy|mixed|current-s1|semester-1|nonstandard|grade-scoped|book-bundle)/iu;
 
   const coverageCards =
     [...coverageByCountry.entries()]
@@ -293,13 +295,14 @@ export default async function CurriculumPage() {
                 حالة التغطية التفصيلية حسب الدولة
               </h2>
               <p className="mt-2 max-w-3xl text-sm leading-7 text-[#73695d]">
-                «مدعوم» لا يعني «مكتمل». اللون الأخضر يظهر فقط عندما تكون
-                كل المسارات النشطة موسومة بتغطية تفصيلية وليست عامة أو جزئية.
+                «مدعوم» لا يعني «مكتمل». تغطية الفصل الأول أو وجود فهرس كتاب
+                دون مطابقة مستقلة لا تكفي لإثبات اكتمال المنهج؛
+                التصنيف هنا لمراجعة نطاقات المسارات وليس شهادة مطابقة للكتب.
               </p>
             </div>
 
             <div className="rounded-full bg-[#eef6f2] px-4 py-2 text-sm font-black text-[#1f6a50]">
-              تفصيلي: {detailedCountries}/{coverageCards.length}
+              نطاق تفصيلي غير جزئي: {detailedCountries}/{coverageCards.length}
             </div>
           </div>
 
@@ -331,8 +334,8 @@ export default async function CurriculumPage() {
                     }`}
                   >
                     {item.detailed
-                      ? "تفصيلي"
-                      : "جزئي/عام"}
+                      ? "تفصيلي — يحتاج إثبات الكتاب"
+                      : "جزئي أو غير مثبت"}
                   </span>
                 </div>
 
