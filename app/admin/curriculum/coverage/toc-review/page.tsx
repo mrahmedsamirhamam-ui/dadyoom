@@ -89,6 +89,13 @@ export default async function BahrainTocEvidenceIntakePage() {
                 book.bookTitle || "لم يثبت كتاب مستقل بعد"}.
               حالة المطابقة الأصلية: {book.status}؛ لا تتغير بمجرد الإدخال.
             </p>
+            {book.program === "التعليم الأساسي" &&
+              book.grade !== null && book.grade >= 1 && book.grade <= 9 ? (
+                <Link href={"/admin/curriculum/coverage/toc-review/basic/" + book.grade}
+                  className="inline-block text-sm font-bold text-[#174f47] underline">
+                  مطابقة عناوين هذا الصف بالفهرس المدخل ←
+                </Link>
+            ) : null}
             {catalog?.startsWith("https://") ? <a href={catalog} target="_blank"
               rel="noopener noreferrer" className="inline-block text-sm font-bold text-[#174f47] underline">
               دليل كتب الوزارة المسجل ↗
