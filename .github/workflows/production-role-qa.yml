@@ -77,7 +77,7 @@ jobs:
               fi
             fi
             set +e
-            body="$(curl --silent --show-error --max-time 20 https://dadyoom.dpdns.org/api/deploy/version)"
+            body="$(curl --silent --show-error --max-time 20 https://dadyoom.com/api/deploy/version)"
             rc=$?
             set -e
 
@@ -115,7 +115,7 @@ jobs:
 
       - name: Run autonomous role QA
         env:
-          DADYOOM_E2E_BASE_URL: "https://dadyoom.dpdns.org"
+          DADYOOM_E2E_BASE_URL: "https://dadyoom.com"
           DADYOOM_E2E_ARTIFACT_DIR: "artifacts/production-role-qa"
           DADYOOM_E2E_SKIP_EXTERNAL_AI: "false"
           NEXT_PUBLIC_SUPABASE_URL: "https://hvqsvtomhlxavmfqoxfz.supabase.co"
