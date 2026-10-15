@@ -79,12 +79,17 @@ jobs:
           sitemap_code="$(curl --silent --show-error --location --max-time 30             --output "$sitemap" --write-out "%{http_code}" "$BASE/sitemap.xml")"
           brand_code="$(curl --silent --show-error --location --max-time 30             --output "$brand_sitemap" --write-out "%{http_code}" "$BASE/sitemap-brand.xml")"
 
-          test "$home_code" = "200"
-          test "$robots_code" = "200"
-          test "$sitemap_code" = "200"
-          test "$brand_code" = "200"
+          echo "SEO_RESPONSE_CODES home=$home_code robots=$robots_code sitemap=$sitemap_code brand=$brand_code"
+          if [[ "$home_code" != "200" || "$robots_code" != "200" ||
+                "$sitemap_code" != "200" || "$brand_code" != "200" ]]; then
+            echo "SEO_PUBLIC_RESOURCES=FAIL"
+            exit 1
+          fi
 
-          grep -Fq "dadyoom.dpdns.org" "$home"
+          # Old-host check survived the .com migration and falsely failed a
+          # healthy deployment. Inspect HTTP status and avoid legacy assumptions.
+          echo "SEO_HOME_HTTP=$home_code SEO_ROBOTS_HTTP=$robots_code SEO_SITEMAP_HTTP=$sitemap_code SEO_BRAND_HTTP=$brand_code"
+          grep -Fq "https://dadyoom.com/" "$home"
           # Verify the actual crawlable HTML, not only source constants.
           node - "$home" <<'NODE'
           const fs = require("node:fs");
