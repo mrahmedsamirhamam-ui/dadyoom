@@ -57,7 +57,19 @@ export default function CompactNavigation({
   const name = language === "en" ? enLabel : label;
 
   return (
-    <div ref={rootRef} className="relative z-[60] shrink-0" dir={language === "en" ? "ltr" : "rtl"}>
+    <div ref={rootRef} className="relative z-[60] flex shrink-0 items-center gap-2" dir={language === "en" ? "ltr" : "rtl"}>
+      <Link
+        href="/search"
+        prefetch={false}
+        aria-label={language === "en" ? "Search Arabic lessons" : "ابحث عن درس"}
+        title={language === "en" ? "Search lessons" : "البحث في الدروس"}
+        className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#d7c49d] bg-[#fffaf0] text-[#123f39] shadow-sm transition hover:bg-[#f1e8d7] focus-visible:outline-2 focus-visible:outline-[#a88036]"
+      >
+        <svg aria-hidden="true" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <circle cx="11" cy="11" r="7" />
+          <path d="m16 16 5 5" />
+        </svg>
+      </Link>
       <button
         type="button"
         aria-controls={panelId}
