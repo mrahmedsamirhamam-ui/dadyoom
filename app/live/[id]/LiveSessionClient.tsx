@@ -91,6 +91,7 @@ export default function LiveSessionClient({
       token={payload.token}
       serverUrl={payload.serverUrl}
       title={payload.title}
+      sessionId={sessionId}
     />
   );
 }
