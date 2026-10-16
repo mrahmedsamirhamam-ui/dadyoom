@@ -36,7 +36,8 @@ describe("Compact global Dadyoom navigation", () => {
     expect(dashboard).toContain('{user && (role === "student" || role === "child") ? (');
   });
   test("companion, installer and language control no longer occupy same corner", () => {
-    expect(chatbot).toContain("pointer-events-auto absolute bottom-0 right-0");
+    expect(chatbot).toContain("pointer-events-none absolute bottom-0 left-0");
+    expect(chatbot).toContain("pointer-events-auto relative grid h-[58px]");
     expect(chatbot).toContain("h-[58px] w-[58px]");
     expect(chatbot).toContain("useState(false)");
     expect(install).toContain("bottom-[4.75rem] left-4");
