@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { ARAB_COUNTRY_CODES } from "@/lib/countries";
 import { createClient } from "@/lib/supabase/server";
 import { isBookReference } from "@/lib/curriculum/verified-book-reference";
+import { isCurriculumScopeRecord } from "@/lib/curriculum/lesson-content-kind";
 import { extractBahrainPlanYear } from "@/lib/curriculum/source-plan-year";
 
 type Country = {
@@ -844,7 +845,9 @@ export async function GET(
                       countryCode,
                       unitTitle: raw.title,
                       lessonTitle: lesson.title,
-                    }) ? "book-reference" : "lesson",
+                    }) ? "book-reference" : isCurriculumScopeRecord({
+                      summary: lesson.summary,
+                    }) ? "curriculum-scope" : "lesson",
                     estimatedMinutes:
                       Number(
                         lesson.estimated_minutes ??
