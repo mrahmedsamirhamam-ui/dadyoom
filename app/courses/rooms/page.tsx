@@ -1,4 +1,7 @@
 import CourseRoomCard from "@/components/courses/CourseRoomCard";
+import RoomCustomizer from "@/components/courses/RoomCustomizer";
+import { getArabicCountryOptions, ARAB_COUNTRY_CODES } from "@/lib/countries";
+import { maxGradeForCountry } from "@/lib/student/country-grade-limits";
 import {
   courseRooms,
 } from "@/data/course-rooms/rooms";
@@ -12,12 +15,20 @@ export const metadata = {
 };
 
 export default function CourseRoomsPage() {
+  const codes = new Set<string>(ARAB_COUNTRY_CODES);
+  const countries = getArabicCountryOptions()
+    .filter(item => codes.has(item.code))
+    .map(item => ({
+      code: item.code,
+      name: item.name,
+      maxGrade: maxGradeForCountry(item.code),
+    }));
   return (
     <main
       dir="rtl"
       className="min-h-screen bg-[#fbf6ea] px-4 py-8 sm:px-6 lg:px-8"
     >
-      <div className="mx-auto max-w-6xl space-y-8">
+      <div className="mx-auto w-full max-w-[1500px] space-y-6">
         <section className="relative overflow-hidden rounded-[2.5rem] border border-[#cdb778] bg-[#123f39] p-7 text-white shadow-xl sm:p-10">
           <div
             aria-hidden="true"
@@ -40,6 +51,8 @@ export default function CourseRoomsPage() {
             </p>
           </div>
         </section>
+
+        <RoomCustomizer countries={countries} />
 
         <section className="grid gap-6 lg:grid-cols-2">
           {courseRooms.map(
