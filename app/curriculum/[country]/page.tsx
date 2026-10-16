@@ -521,12 +521,14 @@ export default async function CountryCurriculumPage({
                         الصف {gradeNumber}
                       </Link>
                     ) : (
-                      <span
+                      <Link
                         key={gradeNumber}
-                        className="rounded-full border border-[#eadfc9] bg-[#f8f1e5] px-3 py-2 text-sm font-bold text-[#6d665c]"
+                        href={`/courses?country=${info.code}&grade=${gradeNumber}`}
+                        prefetch={false}
+                        className="inline-flex min-h-11 items-center rounded-full border border-[#eadfc9] bg-[#f8f1e5] px-4 py-2 text-sm font-black text-[#174f47] hover:border-[#8ca99f]"
                       >
-                        الصف {gradeNumber}
-                      </span>
+                        الصف {gradeNumber} • الدروس المتاحة
+                      </Link>
                     ),
                 )}
               </div>
