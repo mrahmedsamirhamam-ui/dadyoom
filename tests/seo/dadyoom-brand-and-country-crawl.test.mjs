@@ -31,11 +31,11 @@ test("brand and canonical stay consistent", () => {
   expect(description).not.toBeNull();
   expect(description[1].length).toBeLessThanOrEqual(160);
 });
-test("country directory gives a small lesson preview and keeps full grade links", () => {
+test("country directory exposes all indexed lessons and real grade catalog links", () => {
   const country = file("app/curriculum/[country]/page.tsx");
   expect(country).toContain("unit.lessons.map((lesson)");
   expect(country).not.toContain("unit.lessons.slice(0, 2)");
-  expect(country).toContain("جميع دروس الصف والمسارات");
+  expect(country).toContain("كل دروس هذا الصف والفصول في المستكشف");
   expect(country).toContain("seo_indexable_lessons_fast");
   expect(country).toContain("grade.tracks.map((track)");
   expect(country).toContain("track.units.map((unit)");
