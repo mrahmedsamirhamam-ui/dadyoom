@@ -33,7 +33,8 @@ test("brand and canonical stay consistent", () => {
 });
 test("country directory gives a small lesson preview and keeps full grade links", () => {
   const country = file("app/curriculum/[country]/page.tsx");
-  expect(country).toContain(".slice(0, 2)");
+  expect(country).toContain("unit.lessons.map((lesson)");
+  expect(country).not.toContain("unit.lessons.slice(0, 2)");
   expect(country).toContain("جميع دروس الصف والمسارات");
   expect(country).toContain("seo_indexable_lessons_fast");
   expect(country).toContain("grade.tracks.map((track)");
