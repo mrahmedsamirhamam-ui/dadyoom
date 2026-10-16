@@ -460,6 +460,12 @@ export default async function LessonPage({
         lessonContent={lesson.content ?? ""}
       />
       <div className="mx-auto max-w-5xl space-y-6">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <Link href="/courses" className="text-sm font-black text-[#174f47] underline">← مستكشف الدروس</Link>
+          <Link href="/search" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#d7c49d] bg-white px-4 py-2 text-sm font-black text-[#123f39]">
+            <span aria-hidden="true">🔍</span> ابحث عن درس آخر
+          </Link>
+        </div>
         <section className="lesson-arabic-card rounded-3xl border border-[#d7bd83] bg-[#fff7e3] p-5 shadow-sm">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
