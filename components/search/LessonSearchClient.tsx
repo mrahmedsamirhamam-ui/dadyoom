@@ -15,6 +15,7 @@ type SearchResult = {
   curriculum: string;
   unit: string;
   semester: number | null;
+  sourceReviewRequired?: boolean;
   href: string;
   resourceKind?: "lesson" | "curriculum-scope" | "book-reference";
 };
@@ -190,6 +191,11 @@ export default function LessonSearchClient({
                       {lesson.resourceKind === "curriculum-scope" ? "مجال دراسي — يحتاج تفصيل الدروس" : "مرجع كتاب — ليس درسًا مستقلًا"}
                     </span>
                   ) : null}
+                  {lesson.resourceKind === "lesson" && lesson.sourceReviewRequired ? (
+                    <span className="mb-2 inline-flex rounded-full bg-[#fff3d8] px-3 py-1 text-xs font-black text-[#8a6020]">
+                      تدريب ضاديوم — عنوان المصدر يحتاج مراجعة
+                    </span>
+                  ) : null}
                   <h3 className="text-lg font-black text-[#123f39]">{lesson.title}</h3>
                   <p className="mt-2 text-sm font-bold text-[#8c6425]">
                     {lesson.country} • {lesson.grade} • {lesson.curriculum} • {lesson.unit}
@@ -201,7 +207,9 @@ export default function LessonSearchClient({
                       ? "اعرف حالة المجال وابحث عن الدروس التفصيلية ←"
                       : lesson.resourceKind === "book-reference"
                         ? "اطّلع على مرجع الكتاب وحالة التوثيق ←"
-                        : "افتح الدرس ←"}
+                        : lesson.sourceReviewRequired
+                          ? "افتح التدريب مع تنبيه مراجعة المصدر ←"
+                          : "افتح الدرس ←"}
                   </p>
                 </Link>
               ))}

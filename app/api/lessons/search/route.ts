@@ -4,6 +4,7 @@ import { ARAB_COUNTRY_CODES } from "@/lib/countries";
 import { maxGradeForCountry } from "@/lib/student/country-grade-limits";
 import { isCurriculumScopeRecord, isEmptyLessonReference } from "@/lib/curriculum/lesson-content-kind";
 import { isBookReference, isKnownBookReferenceId } from "@/lib/curriculum/verified-book-reference";
+import { lessonNeedsSourceReview } from "@/lib/curriculum/lesson-source-review";
 import { SUPABASE_PUBLIC_KEY, SUPABASE_PUBLIC_URL } from "@/lib/supabase/public-config";
 
 // Search the actual published lesson table, not the SEO-only sitemap view.
@@ -94,6 +95,17 @@ export async function GET(request: Request) {
       !schoolGrade.is_active || !curriculum.is_active || !country.is_active ||
       (countryCode && country.code !== countryCode) ||
       (grade !== null && schoolGrade.grade_number !== grade)) return [];
+    // Keep source-quality warnings visible to students who find existing
+    // published enrichment; do not describe the material as ministry-verified.
+    const resourceKind = isKnownBookReferenceId(item.id) ||
+      isBookReference({
+        countryCode: country.code,
+        unitTitle: unit.title,
+        lessonTitle: item.title,
+      }) || isEmptyLessonReference(item.content)
+        ? "book-reference"
+        : isCurriculumScopeRecord({ summary: item.summary, content: item.content })
+          ? "curriculum-scope" : "lesson";
     return [{
       id: item.id,
       title: item.title,
@@ -108,15 +120,8 @@ export async function GET(request: Request) {
       // unscoped/unknown, not proof this lesson belongs to a given term.
       semester: item.semester ?? unit.semester ?? null,
       href: `/lessons/${item.id}`,
-      resourceKind: isKnownBookReferenceId(item.id) ||
-        isBookReference({
-          countryCode: country.code,
-          unitTitle: unit.title,
-          lessonTitle: item.title,
-        }) || isEmptyLessonReference(item.content)
-        ? "book-reference"
-        : isCurriculumScopeRecord({ summary: item.summary, content: item.content })
-          ? "curriculum-scope" : "lesson",
+      resourceKind,
+      sourceReviewRequired: resourceKind === "lesson" && lessonNeedsSourceReview(item.content),
     }];
   });
 
