@@ -198,3 +198,11 @@ Eight dimensions: learning outcomes; verified official curricula and lesson accu
 **Candidate metrics (targets to be set after baseline):** verified lesson coverage by country/grade/term, content error rate, successful student task completion, accessibility findings, platform reliability, teacher time saved, student learning gains, and satisfaction of students/teachers/parents. Maintain evidence and owner for each metric.
 
 **Execution policy:** speed through small verifiable increments, not shortcuts; zero-cost default and no payment/overages without approval; keep independent projects/repos and connect through explicit APIs; update existing README/AGENTS/project documentation after verified implementation. DXS does not supersede curriculum completion priorities.
+
+## Intellectual property documentation policy — Dadyoom
+
+Every original source-code change, curriculum asset, educational resource, design, manuscript, research deliverable and release must retain author/source attribution, dated Git history, applicable third-party licenses and supporting evidence. Document ownership and permissions before publication; do not publish private manuscripts, credentials, personal data or confidential IP evidence in public repositories.
+
+Use existing README.md, AGENTS.md and project documentation cumulatively; maintain a private IP register with asset, creator, creation date, repository commit/release, source material, license, third-party permissions and verification status. Back up evidence independently of GitHub. Separate the individual's current authorship/claims from any future corporate assignment, which requires appropriate documentation.
+
+Copyright in original expression may arise automatically under applicable law; Git history is supporting evidence, not official registration. Ideas alone are not copyright-protected; trademarks, patents and other rights may need separate jurisdiction-specific procedures. No claim of registered Dadyoom trademark or certified ownership is made here. Audit dependencies, fonts, media and external contributions before commercial distribution.
