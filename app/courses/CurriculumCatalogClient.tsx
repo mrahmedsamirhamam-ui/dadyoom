@@ -17,6 +17,8 @@ type CountryOption = {
 
 type Props = {
   countries: CountryOption[];
+  initialCountryCode?: string;
+  initialGradeNumber?: number;
 };
 
 type CurriculumTermStatus = {
@@ -268,17 +270,24 @@ function curriculumName(name: string): string {
 
 export default function CurriculumCatalogClient({
   countries,
+  initialCountryCode = "BH",
+  initialGradeNumber = 1,
 }: Props) {
   const { language } = useSiteLanguage();
   const englishNames = new Intl.DisplayNames(["en"], { type: "region" });
   const initialCountry =
+    countries.find((item) => item.code === initialCountryCode) ??
     countries.find((item) => item.code === "BH") ??
     countries[0];
+  const validInitialGrade = Number.isInteger(initialGradeNumber) &&
+    initialGradeNumber >= 1 &&
+    initialGradeNumber <= (initialCountry?.maxGrade ?? 12)
+    ? initialGradeNumber : 1;
 
   const [country, setCountry] = useState(
     initialCountry?.code ?? "BH",
   );
-  const [gradeNumber, setGradeNumber] = useState(1);
+  const [gradeNumber, setGradeNumber] = useState(validInitialGrade);
   const [continuingLevel, setContinuingLevel] = useState("");
 
   const activeCountry =
