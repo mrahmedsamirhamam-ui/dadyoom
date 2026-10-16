@@ -49,6 +49,17 @@ describe("National subject coverage is not automatically a completed lesson", ()
     expect(catalog).toContain("مجال يحتاج تفصيل الدروس");
   });
 
+  test("search results expose the national-domain classification without inventing a textbook lesson", () => {
+    const api = load("app/api/lessons/search/route.ts");
+    const widget = load("components/search/LessonSearchClient.tsx");
+    expect(api).toContain("isCurriculumScopeRecord({ summary: item.summary, content: item.content })");
+    expect(api).toContain("isEmptyLessonReference(item.content)");
+    expect(api).toContain('"id,title,summary,content,units!inner');
+    expect(widget).toContain('lesson.resourceKind === "curriculum-scope"');
+    expect(widget).toContain("مجال دراسي — يحتاج تفصيل الدروس");
+    expect(widget).toContain("اعرف حالة المجال وابحث عن الدروس التفصيلية");
+  });
+
   test("domain records cannot be counted as completed independent lessons", () => {
     const i = counts.indexOf('if (lesson.resourceKind === "curriculum-scope")');
     const j = counts.indexOf("lessonCount += 1;");
