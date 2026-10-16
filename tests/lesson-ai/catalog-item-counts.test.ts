@@ -23,8 +23,27 @@ describe("catalog counts distinguish lessons from source books", () => {
       officialLessonCount: 2,
       supportingLessonCount: 1,
       bookReferenceCount: 1,
+      curriculumScopeCount: 0,
     });
   });
+  it("separates curriculum areas from lessons and completion progress", () => {
+    const result = countCatalogItems([
+      {
+        curriculum: { name: "منهج وطني" },
+        lessons: [
+          { resourceKind: "curriculum-scope", completed: true },
+          { resourceKind: "lesson", completed: true },
+          { resourceKind: "book-reference", completed: false },
+        ],
+      },
+    ]);
+    expect(result.lessonCount).toBe(1);
+    expect(result.completedLessonCount).toBe(1);
+    expect(result.officialLessonCount).toBe(1);
+    expect(result.curriculumScopeCount).toBe(1);
+    expect(result.bookReferenceCount).toBe(1);
+  });
+
   it("counts null resource kinds as ordinary legacy lessons", () => {
     expect(countCatalogItems([{ curriculum: { name: "مسار رسمي" }, lessons: [{ completed: true }] }]).lessonCount).toBe(1);
   });
