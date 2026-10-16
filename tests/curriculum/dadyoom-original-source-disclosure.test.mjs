@@ -7,7 +7,9 @@ const national = readFileSync("app/admin/curriculum/page.tsx", "utf8");
 
 describe("Original Dadyoom enrichment is never marketed as a ministry textbook", () => {
   test("lesson page clearly distinguishes original content from textbook quotations", () => {
-    expect(lesson).toContain('startsWith("درس ضاديوم الأصلي:")');
+    expect(lesson).toContain('"درس ضاديوم الأصلي:"');
+    expect(lesson).toContain('"حزمة ضاديوم الموضوعية المتخصصة"');
+    expect(lesson).toContain('.some((prefix) => (lesson.content ?? "").trimStart().startsWith(prefix))');
     expect(lesson).toContain('data-lesson-source-kind="dadyoom-original"');
     expect(lesson).toContain("محتوى إثرائي أصلي من ضاديوم");
     expect(lesson).toContain("وليس نصًا منقولًا من كتاب وزارة التربية والتعليم");
