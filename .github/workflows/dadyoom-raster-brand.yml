@@ -1,0 +1,42 @@
+name: Generate raster Dadyoom brand
+on:
+  push:
+    branches: [fix/mobile-cloud-video-final-20260923]
+    paths:
+      - scripts/generate-dadyoom-raster.py
+      - .github/workflows/dadyoom-raster-brand.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  raster:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Prepare Arabic font and imaging library
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends fonts-noto-core fontconfig
+          python3 -m pip install --user 'Pillow==11.3.0'
+      - name: Render all raster branding assets
+        run: python3 scripts/generate-dadyoom-raster.py
+      - name: Commit generated images to the same branch
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add app/icon.png app/apple-icon.png app/favicon.ico \
+            public/brand/dadyoom-logo.png public/brand/dadyoom-logo.webp \
+            public/brand/dadyoom-logo-inverse.webp public/brand/dadyoom-icon.png \
+            public/pwa/icon-192.png public/pwa/icon-512.png
+          if git diff --cached --quiet; then
+            echo 'RASTER_BRAND_ALREADY_CURRENT=PASS'
+          else
+            git commit -m 'assets(brand): commit transparent PNG and WebP Dadyoom identity'
+            git push origin HEAD:refs/heads/fix/mobile-cloud-video-final-20260923
+          fi
