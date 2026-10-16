@@ -823,7 +823,16 @@ function CatalogScope({
       .then(([payload, termPayload]) => {
         if (controller.signal.aborted) return;
 
-        setUnits(payload.units ?? []);
+        const incomingUnits = payload.units ?? [];
+        // Defense in depth: never show a lesson from another country or
+        // grade if a backend join, stale response or track mapping regresses.
+        if (incomingUnits.some((unit) =>
+          unit.country.code !== country ||
+          Number(unit.grade.number) !== gradeNumber
+        )) {
+          throw new Error("تعذر التحقق من تطابق الدولة والصف مع الدروس المسترجعة. أعد التحميل.");
+        }
+        setUnits(incomingUnits);
         setTracks(payload.tracks ?? []);
         setCurriculumStatuses(termPayload.curricula ?? []);
         setError("");
