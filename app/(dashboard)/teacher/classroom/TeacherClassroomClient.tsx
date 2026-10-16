@@ -1,7 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createClient } from "@/lib/supabase/client";
 
 import {
   awardStudentAction,
@@ -52,7 +52,60 @@ type GeneratedQuestion = {
 };
 
 export default function TeacherClassroomClient(props: Props) {
-  const router = useRouter();
+  const [lessons, setLessons] = useState(props.lessons);
+  const [conversations, setConversations] = useState(props.conversations);
+  const [messages, setMessages] = useState(props.messages);
+  const [assignments, setAssignments] = useState(props.assignments);
+  const [loadingExtras, setLoadingExtras] = useState(Boolean(props.classes.length));
+  const [reloadVersion, setReloadVersion] = useState(0);
+
+  // Browser-side RLS reads keep heavy secondary data off Cloudflare SSR.
+  // Server actions still apply their authorization and mutation policies.
+  useEffect(() => {
+    let active = true;
+    if (!props.classes.length) {
+      setLoadingExtras(false);
+      return;
+    }
+    const supabase = createClient();
+    async function loadSupplemental() {
+      setLoadingExtras(true);
+      const [lessonResponse, conversationResponse, assignmentResponse] =
+        await Promise.all([
+          supabase.from("lessons").select("id,title")
+            .eq("status", "published").order("lesson_number").limit(120),
+          supabase.from("edu_conversations").select("id,class_id,student_id")
+            .eq("teacher_id", props.teacherId).limit(100),
+          supabase.from("edu_assignments")
+            .select("id,class_id,title,kind,target_mode,status,due_at,created_at")
+            .eq("teacher_id", props.teacherId).order("created_at", { ascending: false }).limit(50),
+        ]);
+      if (lessonResponse.error || conversationResponse.error || assignmentResponse.error) {
+        throw new Error("تعذر تحميل بعض أدوات الفصل. تحقق من الاتصال ثم حدّث الصفحة.");
+      }
+      const activeConversations = conversationResponse.data ?? [];
+      const ids = activeConversations.map(row => String(row.id));
+      const messagesResponse = ids.length
+        ? await supabase.from("edu_messages")
+            .select("id,conversation_id,sender_id,body,created_at")
+            .in("conversation_id", ids).order("created_at", { ascending: false }).limit(100)
+        : { data: [], error: null };
+      if (messagesResponse.error) throw new Error("تعذر تحميل المحادثات.");
+      if (active) {
+        setLessons(lessonResponse.data ?? []);
+        setConversations(activeConversations);
+        setMessages(messagesResponse.data ?? []);
+        setAssignments(assignmentResponse.data ?? []);
+        setLoadingExtras(false);
+      }
+    }
+    void loadSupplemental().catch(error => {
+      if (!active) return;
+      setLoadingExtras(false);
+      setStatus(error instanceof Error ? error.message : "تعذر تحميل إضافات الفصل.");
+    });
+    return () => { active = false; };
+  }, [props.teacherId, props.classes.length, reloadVersion]);
 
   const [classId, setClassId] = useState(props.classes[0]?.id ?? "");
   const classStudents = props.students.filter((item) => item.classId === classId);
@@ -70,13 +123,13 @@ export default function TeacherClassroomClient(props: Props) {
   const [instructions, setInstructions] = useState("");
   const [questions, setQuestions] = useState<GeneratedQuestion[]>([]);
 
-  const conversation = props.conversations.find(
+  const conversation = conversations.find(
     (item) =>
       item.class_id === classId && item.student_id === selectedStudentId,
   );
 
   const activeMessages = conversation
-    ? props.messages
+    ? messages
         .filter((item) => item.conversation_id === conversation.id)
         .slice()
         .reverse()
@@ -126,6 +179,12 @@ export default function TeacherClassroomClient(props: Props) {
             محادثة، جوائز ونقاط، وواجبات واختبارات بالذكاء الاصطناعي.
           </p>
         </section>
+
+        {loadingExtras ? (
+          <p role="status" className="rounded-2xl border bg-white p-4 text-sm font-bold text-[#174f47]">
+            جارٍ تحميل الرسائل والمهام والدروس المنشورة...
+          </p>
+        ) : null}
 
         <section className="grid gap-3 rounded-[2rem] border bg-white p-4 sm:grid-cols-2">
           <Select
@@ -182,7 +241,7 @@ export default function TeacherClassroomClient(props: Props) {
                 setStatus(result.message);
                 if (result.ok) {
                   event.currentTarget.reset();
-                  router.refresh();
+                  setReloadVersion(previous => previous + 1);
                 }
               }}
             >
@@ -288,7 +347,7 @@ export default function TeacherClassroomClient(props: Props) {
               onChange={setLessonId}
               options={[
                 ["", "بدون درس محدد"],
-                ...props.lessons.map((item) => [item.id, item.title]),
+                ...lessons.map((item) => [item.id, item.title]),
               ]}
             />
             <button
@@ -329,7 +388,7 @@ export default function TeacherClassroomClient(props: Props) {
 
               const result = await createAssignmentAction(formData);
               setStatus(result.message);
-              if (result.ok) router.refresh();
+              if (result.ok) setReloadVersion(previous => previous + 1);
             }}
           >
             <input type="hidden" name="classId" value={classId} />
@@ -363,7 +422,7 @@ export default function TeacherClassroomClient(props: Props) {
           </form>
 
           <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-            {props.assignments.map((item) => (
+            {assignments.map((item) => (
               <div key={item.id} className="rounded-2xl border p-4">
                 <b>{item.title}</b>
                 <div className="mt-2 text-xs">
