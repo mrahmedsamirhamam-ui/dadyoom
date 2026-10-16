@@ -18,7 +18,9 @@ describe("National subject coverage is not automatically a completed lesson", ()
       "حزمة أصلية من ضاديوم لتغطية معايير",
       "تغطية أصلية من ضاديوم لمجال",
     ]) expect(classification).toContain(start);
-    expect(classification).toContain("body.length >= 850");
+    expect(classification).toContain("originalLessonOpenings");
+    expect(classification).toContain("body.startsWith(opening)");
+    expect(classification).toContain("Length must not grant fake mastery");
     expect(classification).toContain("isEmptyLessonReference");
   });
 
