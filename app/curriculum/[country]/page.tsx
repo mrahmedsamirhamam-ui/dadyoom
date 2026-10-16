@@ -406,6 +406,10 @@ export default async function CountryCurriculumPage({
             {info.name}
           </h1>
           <div className="mt-5 flex flex-wrap gap-3">
+            <Link href={`/search?country=${info.code}`}
+              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#cdbb96] bg-white px-5 py-3 font-black text-[#123f39]">
+              <span aria-hidden="true">🔍</span> ابحث عن دروس {info.name}
+            </Link>
             <Link
               href={`/courses?country=${info.code}&grade=1`}
               prefetch={false}
