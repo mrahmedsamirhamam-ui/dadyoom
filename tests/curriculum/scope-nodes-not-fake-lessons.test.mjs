@@ -17,6 +17,9 @@ describe("National subject coverage is not automatically a completed lesson", ()
       "تمثل هذه العقدة مجال",
       "حزمة أصلية من ضاديوم لتغطية معايير",
       "تغطية أصلية من ضاديوم لمجال",
+      "حزمة وطنية أصلية لمواءمة العربية",
+      "حزمة وطنية أصلية من ضاديوم لمواءمة العربية",
+      "حزمة وطنية أصلية من ضاديوم لتغطية تعلم العربية",
     ]) expect(classification).toContain(start);
     expect(classification).toContain("originalLessonOpenings");
     expect(classification).toContain("body.startsWith(opening)");
