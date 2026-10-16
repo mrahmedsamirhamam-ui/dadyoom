@@ -11,6 +11,7 @@ import { SITE_DESCRIPTION } from "@/lib/site";
 import { normalizeArabicDisplayText } from "@/lib/seo/normalize-arabic-display";
 import { describeLessonSourceReference } from "@/lib/curriculum/lesson-source-reference";
 import { lessonNeedsSourceReview } from "@/lib/curriculum/lesson-source-review";
+import { isCurriculumScopeRecord, isEmptyLessonReference } from "@/lib/curriculum/lesson-content-kind";
 import {
   getLessonPageBundle,
 } from "@/features/lessons/queries/getLessonPageBundle";
@@ -249,6 +250,57 @@ export default async function LessonPage({
 
   const lesson =
     bundle.lesson;
+
+  // A national domain / outcome coverage node is not an assessable lesson.
+  // Show an honest navigation page, never mastery, XP or false lesson progress.
+  const curriculumScope = isCurriculumScopeRecord({
+    summary: lesson.summary,
+    content: lesson.content,
+  });
+  const emptyReference = isEmptyLessonReference(lesson.content);
+  if (curriculumScope || emptyReference) {
+    const title = normalizeArabicDisplayText(lesson.title);
+    return (
+      <main dir="rtl" className="min-h-screen bg-[#f8f4eb] px-4 py-10 text-[#173f38]">
+        <div className="mx-auto max-w-4xl space-y-6">
+          <nav aria-label="مسار العودة" className="flex flex-wrap gap-4 text-sm font-black">
+            <Link href="/curriculum" className="underline">دليل الدول والمناهج</Link>
+            <Link href="/courses" className="underline">كل دروس الصفوف</Link>
+          </nav>
+          <section className="rounded-[2rem] border border-[#dac8a6] bg-white p-6 sm:p-9">
+            <p className="font-black text-[#93661e]">
+              {curriculumScope ? "مجال من المنهج — ليس درسًا مستقلًا" : "مرجع تعليمي — النص غير متاح بعد"}
+            </p>
+            <h1 className="mt-3 text-3xl font-black leading-relaxed">{title}</h1>
+            <p className="mt-4 text-base leading-9">
+              {curriculumScope
+                ? "هذه صفحة لتنظيم مجال تعليمي أو مجموعة نواتج تعلم، وليست شرحًا كاملًا لدرس واحد من الكتاب الوزاري. لا تُحتسب درجة أو نقاط إتقان من مجرد فتحها."
+                : "السجل الحالي لا يتضمن نصًا تعليميًا يمكن شرحه أو التدرب عليه بأمان. يلزم استكمال مادته من مصدره الصحيح قبل عرضه كدرس."}
+            </p>
+            {lesson.summary ? (
+              <p className="mt-4 rounded-xl bg-[#f2ecdf] p-4 text-sm leading-8">{lesson.summary}</p>
+            ) : null}
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link href="/courses" className="inline-flex min-h-12 items-center rounded-full bg-[#173f38] px-6 py-3 font-black text-white">
+                اختر الدولة والصف لعرض الدروس المتاحة ←
+              </Link>
+              <Link href="/search" className="inline-flex min-h-12 items-center rounded-full border border-[#b9a276] px-5 py-3 font-black text-[#173f38]">
+                🔍 ابحث عن عنوان درس محدد
+              </Link>
+            </div>
+          </section>
+          {lesson.source_pdf_url ? (
+            <section className="rounded-2xl border border-[#dfd0b5] bg-white p-5 text-sm leading-8">
+              <h2 className="text-lg font-black">مرجع النطاق أو الكتاب</h2>
+              <p>وجود رابط المصدر لا يعني أن جميع دروس الكتاب قد استُخرجت أو طابقت فهرسه.</p>
+              <a href={lesson.source_pdf_url} target="_blank" rel="noopener noreferrer"
+                className="font-black text-[#176455] underline">افتح المرجع المسجل ↗</a>
+            </section>
+          ) : null}
+        </div>
+      </main>
+    );
+  }
 
   const sourceReviewRequired = lessonNeedsSourceReview(lesson.content);
   // An actual instructional body is required for guided practice.
