@@ -28,6 +28,17 @@ describe("22-country curriculum status must not claim complete from partial scop
   test("mixed statuses cannot be promoted when one track is incomplete", () => {
     expect(qualifies(["detailed", "partial-detailed-grade-scoped"])).toBe(false);
   });
+  test("shows live per-term source scopes for all countries without reporting empty queries as zero", () => {
+    expect(page).toContain('.from("secondary_track_terms")');
+    expect(page).toContain('.eq("academic_year", "2026-2027")');
+    expect(page).toContain('.eq("secondary_tracks.is_active", true)');
+    expect(page).toContain("const termReadFailed = Boolean(secondaryTermsResult.error)");
+    expect(page).toContain("تعذرت قراءة أدلة الفصول الحية");
+    expect(page).toContain("countriesWithTermRecords");
+    expect(page).toContain("لم يسجل نطاق فصلي مستقل بعد");
+    expect(page).toContain("غياب سجل فصل يعني أنه ينتظر توثيقًا منفصلًا");
+    expect(page).toContain("دون إعادة استخدام خطط قديمة");
+  });
   test("interface explicitly refuses to equate registered curricula with completed books", () => {
     expect(page).toContain("«مدعوم» لا يعني «مكتمل»");
     expect(page).toContain("ليس شهادة مطابقة للكتب");
