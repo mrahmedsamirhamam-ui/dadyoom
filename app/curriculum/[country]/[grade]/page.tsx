@@ -292,6 +292,10 @@ export default async function GradeCurriculumPage({
           </p>
 
           <div className="mt-6 flex flex-wrap gap-3">
+            <Link href={`/search?country=${info.code}&grade=${gradeValue}`}
+              className="inline-flex min-h-12 items-center gap-2 rounded-full border border-[#cdbb96] bg-white px-5 py-3 font-black text-[#123f39]">
+              <span aria-hidden="true">🔍</span> ابحث في دروس الصف
+            </Link>
             <Link
               href={`/courses?country=${info.code}&grade=${gradeValue}`}
               prefetch={false}
