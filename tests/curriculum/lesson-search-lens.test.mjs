@@ -38,6 +38,11 @@ describe("Lesson search queries real published content", () => {
     expect(search).toContain("lesson.href");
     expect(search).toContain("lesson.country");
     expect(search).toContain("lesson.unit");
+    expect(search).toContain("lesson.curriculum");
+    expect(search).toContain("lesson.semester === 1");
+    expect(search).toContain("lesson.semester === 2");
+    expect(search).toContain("lesson.semester === 3");
+    expect(api).toContain("semester: item.semester ?? unit.semester ?? null");
     expect(search).toContain("hasMore");
     expect(search).toContain("loadMore");
   });

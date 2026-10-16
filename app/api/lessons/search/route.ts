@@ -20,9 +20,10 @@ type Grade = {
   id: string; name_ar: string; grade_number: number | null; is_active: boolean;
   curricula: Relation<Curriculum>;
 };
-type Unit = { id: string; title: string; grades: Relation<Grade> };
+type Unit = { id: string; title: string; semester: number | null; grades: Relation<Grade> };
 type LessonSearchRow = {
   id: string; title: string; summary: string | null; content: string | null;
+  semester: number | null;
   units: Relation<Unit>;
 };
 
@@ -64,7 +65,7 @@ export async function GET(request: Request) {
 
   let query = db
     .from("lessons")
-    .select("id,title,summary,content,units!inner(id,title,grades!inner(id,name_ar,grade_number,is_active,curricula!inner(id,name_ar,is_active,countries!inner(code,name_ar,is_active))))")
+    .select("id,title,summary,content,semester,units!inner(id,title,semester,grades!inner(id,name_ar,grade_number,is_active,curricula!inner(id,name_ar,is_active,countries!inner(code,name_ar,is_active))))")
     .eq("status", "published")
     .eq("units.grades.is_active", true)
     .eq("units.grades.curricula.is_active", true)
@@ -103,6 +104,9 @@ export async function GET(request: Request) {
       gradeNumber: schoolGrade.grade_number,
       curriculum: curriculum.name_ar,
       unit: unit.title,
+      // Do not infer semesters from grades or textbook titles. A null is
+      // unscoped/unknown, not proof this lesson belongs to a given term.
+      semester: item.semester ?? unit.semester ?? null,
       href: `/lessons/${item.id}`,
       resourceKind: isKnownBookReferenceId(item.id) ||
         isBookReference({

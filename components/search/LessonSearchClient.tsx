@@ -14,6 +14,7 @@ type SearchResult = {
   gradeNumber: number | null;
   curriculum: string;
   unit: string;
+  semester: number | null;
   href: string;
   resourceKind?: "lesson" | "curriculum-scope" | "book-reference";
 };
@@ -191,7 +192,8 @@ export default function LessonSearchClient({
                   ) : null}
                   <h3 className="text-lg font-black text-[#123f39]">{lesson.title}</h3>
                   <p className="mt-2 text-sm font-bold text-[#8c6425]">
-                    {lesson.country} • {lesson.grade} • {lesson.unit}
+                    {lesson.country} • {lesson.grade} • {lesson.curriculum} • {lesson.unit}
+                    {lesson.semester === 1 ? " • الفصل الأول" : lesson.semester === 2 ? " • الفصل الثاني" : lesson.semester === 3 ? " • الفصل الثالث" : ""}
                   </p>
                   {lesson.summary ? <p className="mt-2 line-clamp-2 text-sm leading-7 text-[#666055]">{lesson.summary}</p> : null}
                   <p className="mt-2 text-sm font-black text-[#174f47]">
