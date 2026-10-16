@@ -369,7 +369,7 @@ export default async function CountryCurriculumPage({
             ),
         }}
       />
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto w-full max-w-[1500px]">
         <nav
           className="mb-8 text-sm font-bold text-[#6d665c]"
           aria-label="مسار التنقل"
@@ -607,34 +607,34 @@ export default async function CountryCurriculumPage({
                       <div key={track.id} className="rounded-2xl border border-[#e5dac5] bg-[#fffdf8] p-4 sm:p-5">
                         <h3 className="text-lg font-black leading-8 text-[#123f39]">{track.name}</h3>
                         {track.units.map((unit) => (
-                          <div key={unit.id} className="mt-4">
-                            <h4 className="font-black text-[#8b6426]">{unit.title}</h4>
-                            <ul className="mt-3 grid gap-3 md:grid-cols-2">
-                              {unit.lessons.map((lesson) => (
-                                <li key={lesson.id}>
-                                  <Link
-                                    href={`/lessons/${lesson.id}`}
-                                    prefetch={false}
-                                    className="block rounded-2xl border border-[#e5dac5] bg-white px-4 py-3 font-bold text-[#244841] transition hover:border-[#8ca99f] hover:underline"
-                                  >
-                                    {normalizeArabicDisplayText(lesson.title)}
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                            {unit.lessons.length > 2 ? (
-                              <p className="mt-2 text-sm font-semibold text-[#6d665c]">
-                                الروابط أعلاه تعرض كل دروس الوحدة المؤهلة للفهرسة ({unit.lessons.length}).
-                                <Link
-                                  href={`/curriculum/${info.code.toLowerCase()}/${grade.gradeNumber}`}
-                                  prefetch={false}
-                                  className="mr-2 text-[#174f47] hover:underline"
-                                >
-                                  جميع دروس الصف والمسارات ←
-                                </Link>
-                              </p>
-                            ) : null}
-                          </div>
+                          <details key={unit.id} className="group mt-3 overflow-hidden rounded-2xl border border-[#e4d7bf] bg-white">
+                            <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 font-black text-[#123f39] marker:hidden">
+                              <span className="min-w-0 break-words">{unit.title}</span>
+                              <span className="shrink-0 rounded-full bg-[#f1e9d8] px-3 py-1 text-xs text-[#765b32]">
+                                {unit.lessons.length} درس • اضغط للعرض
+                              </span>
+                            </summary>
+                            <div className="border-t border-[#eee5d3] p-4">
+                              <ul className="grid gap-3 md:grid-cols-2">
+                                {unit.lessons.map((lesson) => (
+                                  <li key={lesson.id}>
+                                    <Link
+                                      href={`/lessons/${lesson.id}`}
+                                      prefetch={false}
+                                      className="block min-h-12 rounded-2xl border border-[#e5dac5] bg-[#fffdf8] px-4 py-3 font-bold text-[#244841] transition hover:border-[#8ca99f] hover:underline"
+                                    >
+                                      {normalizeArabicDisplayText(lesson.title)}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                              <Link href={`/courses?country=${info.code}&grade=${grade.gradeNumber}`}
+                                prefetch={false}
+                                className="mt-4 inline-flex min-h-11 items-center rounded-full bg-[#123f39] px-4 py-2 text-sm font-black text-white">
+                                كل دروس هذا الصف والفصول في المستكشف ←
+                              </Link>
+                            </div>
+                          </details>
                         ))}
                       </div>
                     ))}
