@@ -504,6 +504,34 @@ jobs:
 
           echo "SEO_LESSON_METADATA=PASS url=$lesson_url"
 
+      - name: Verify published lesson search by actual country and grade
+        shell: bash
+        run: |
+          set -euo pipefail
+          payload="$(mktemp)"
+          code="$(curl --silent --show-error --location --max-time 40 \
+            --get --data-urlencode "q=القراءة" --data-urlencode "country=BH" \
+            --data-urlencode "grade=4" \
+            --output "$payload" --write-out "%{http_code}" \
+            "https://dadyoom.com/api/lessons/search")"
+          if [[ "$code" != "200" ]]; then
+            echo "LESSON_SEARCH=FAIL_HTTP code=$code"
+            head -c 300 "$payload"
+            exit 1
+          fi
+          node - "$payload" <<'NODE'
+          const fs = require("node:fs");
+          const data = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
+          const lessons = data.lessons;
+          if (!Array.isArray(lessons) || lessons.length === 0 ||
+              lessons.some(row => row.countryCode !== "BH" ||
+                row.gradeNumber !== 4 || !/^\/lessons\/[a-f0-9-]{36}$/u.test(row.href))) {
+            console.error("LESSON_SEARCH=FAIL_SCOPE_OR_RESULTS");
+            process.exit(1);
+          }
+          console.log("LESSON_SEARCH=PASS scoped_published_titles=" + lessons.length);
+          NODE
+
       # Never replay the full public sitemap on every CI run. IndexNow is a
       # change notification, not a bulk request for Google indexing.
       - name: Notify IndexNow of changed public landing pages only
