@@ -3,28 +3,32 @@ import { readFileSync } from "node:fs";
 
 const sql = readFileSync("data/curriculum-completeness/bahrain-extract-existing-original-objectives-20261016.sql", "utf8");
 
-describe("Bahrain original lesson objectives: bulk structured-data safety", () => {
-  test("only original, published, active Bahrain lessons with blank structured objectives qualify", () => {
-    expect(sql).toContain("co.code = 'BH'");
-    expect(sql).toContain("c.is_active IS TRUE");
-    expect(sql).toContain("l.status = 'published'");
-    expect(sql).toContain("l.learning_objectives IS NULL");
-    expect(sql).toContain("l.learning_objectives = '[]'::jsonb");
-    for (const heading of ["أهداف التعلم:", "أهداف التعليم:", "الأهداف التعليمية:"]) {
-      expect(sql).toContain(heading);
+describe("Bahrain: lossless extraction of original lesson goals", () => {
+  test("keeps the scope to active, published, original lessons with empty structured goals", () => {
+    for (const phrase of ["co.code='BH'", "c.is_active IS TRUE", "l.status='published'",
+      "l.learning_objectives IS NULL", "l.learning_objectives='[]'::jsonb",
+      "ضاديوم — إثراء مستقل أصلي", "ضاديوم — درس إثرائي أصلي"]) {
+      expect(sql).toContain(phrase);
     }
-    expect(sql).toContain("ضاديوم — إثراء مستقل أصلي");
+    expect(sql).not.toContain("l.content LIKE 'هذا عنصر من كتاب");
   });
 
-  test("only extracts existing content goals; never invents or publishes textbook records", () => {
-    for (const heading of ["أهداف التعلم:", "أهداف التعليم:", "الأهداف التعليمية:"]) {
-      expect(sql).toContain(`split_part(split_part(l.content, '${heading}'`);
-    }
-    expect(sql).toContain("length(e.objective) BETWEEN 20 AND 240");
-    expect(sql).toContain("SET learning_objectives = jsonb_build_array(e.objective)");
+  test("recognizes nine explicit original-content goal markers without inventing textbook objectives", () => {
+    for (const label of [
+      "أهداف التعلم:", "أهداف التعليم:", "الأهداف التعليمية:",
+      "أهداف تعلم قابلة للقياس:", "هدف تعلم واضح:", "هدف التعلم:",
+      "المهارة المستهدفة:", "الأهداف:", "الهدف الأول:", "الهدف الثاني:", "الهدف الثالث:"
+    ]) expect(sql).toContain(label);
+    expect(sql).toContain("jsonb_array_elements_text(e.objectives)");
+    expect(sql).toContain("length(btrim(item.goal)) NOT BETWEEN 20 AND 240");
+  });
+
+  test("a rerun cannot overwrite published content, statuses, book sources or student activity", () => {
+    expect(sql).toContain("SET learning_objectives=e.objectives");
     expect(sql).not.toMatch(/SET\s+content\s*=/);
     expect(sql).not.toMatch(/SET\s+status\s*=/);
-    expect(sql).not.toMatch(/INSERT\s+INTO\s+public\.lessons/i);
     expect(sql).not.toMatch(/source_pdf_url\s*=/);
+    expect(sql).not.toMatch(/INSERT\s+INTO\s+public\.lessons/i);
+    expect(sql).not.toContain("student_lesson_progress");
   });
 });
