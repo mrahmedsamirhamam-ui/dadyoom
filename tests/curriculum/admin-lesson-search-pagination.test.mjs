@@ -7,7 +7,8 @@ describe("all curriculum lessons available to reviewers via bounded filters and 
    expect(p).toContain(".range(from, from + PAGE_SIZE - 1)");
    expect(p).toContain('count: "exact"');
    expect(p).toContain("page < totalPages");
-   expect(p).not.toMatch(/from\("lessons"\)[\\s\\S]{0,1600}\\.limit\\(50\\)/u);
+   const lessonQuery = p.slice(p.indexOf('let query = supabase.from("lessons")'), p.indexOf("const from ="));
+   expect(lessonQuery).not.toContain(".limit(50)");
  });
  test("filters by country grade status and literal title search before paging",()=>{
    expect(p).toContain('units!inner(title,grades!inner(');
