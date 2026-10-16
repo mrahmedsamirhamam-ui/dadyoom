@@ -14,6 +14,18 @@ import {
 
 import AutoBuildLessonButton
   from "./auto-build-lesson-button";
+import { resolveBahrainGradeOneSource } from "@/lib/curriculum/bahrain-grade-one-source-map";
+
+type Relation<T> = T | T[] | null;
+
+function first<T>(value: Relation<T> | undefined): T | null {
+  return Array.isArray(value) ? value[0] ?? null : value ?? null;
+}
+
+type ScopeCountry = { code: string };
+type ScopeCurriculum = { countries: Relation<ScopeCountry> };
+type ScopeGrade = { grade_number: number | null; curricula: Relation<ScopeCurriculum> };
+type ScopeUnit = { grades: Relation<ScopeGrade> };
 
 type PageProps = {
   params: Promise<{
@@ -35,6 +47,7 @@ type LessonRow = {
   status: string;
   is_free: boolean | null;
   estimated_minutes: number | null;
+  units: Relation<ScopeUnit>;
 };
 
 export default async function LessonPage({
@@ -69,7 +82,8 @@ export default async function LessonPage({
         source_page_end,
         status,
         is_free,
-        estimated_minutes
+        estimated_minutes,
+        units!inner(grades!inner(grade_number,curricula!inner(countries!inner(code))))
       `)
       .eq(
         "id",
@@ -105,20 +119,19 @@ export default async function LessonPage({
   const lesson =
     data as LessonRow;
 
-  const paddedLessonNumber =
-    String(
-      lesson.lesson_number
-    ).padStart(
-      2,
-      "0"
-    );
+  const unit = first(lesson.units);
+  const grade = first(unit?.grades);
+  const curriculum = first(grade?.curricula);
+  const country = first(curriculum?.countries);
 
-  /*
-   * Current Bahrain Grade 1 curriculum path.
-   * Later this can come directly from curriculum metadata.
-   */
-  const imageBaseUrl =
-    `/curriculum/bahrain/grade-01/lesson-${paddedLessonNumber}`;
+  // The same lesson number repeats in different units. Only an *exact*
+  // supported textbook page span may resolve to a prepared image folder.
+  const imageBaseUrl = resolveBahrainGradeOneSource({
+    countryCode: country?.code,
+    gradeNumber: grade?.grade_number,
+    sourcePageStart: lesson.source_page_start,
+    sourcePageEnd: lesson.source_page_end,
+  });
 
   return (
     <main
@@ -201,20 +214,19 @@ export default async function LessonPage({
         </section>
       ) : null}
 
-      <AutoBuildLessonButton
-        lessonId={
-          lesson.id
-        }
-        imageBaseUrl={
-          imageBaseUrl
-        }
-        sourcePageStart={
-          lesson.source_page_start ?? 0
-        }
-        sourcePageEnd={
-          lesson.source_page_end ?? 0
-        }
-      />
+      {imageBaseUrl ? (
+        <AutoBuildLessonButton
+          lessonId={lesson.id}
+          imageBaseUrl={imageBaseUrl}
+          sourcePageStart={lesson.source_page_start ?? 0}
+          sourcePageEnd={lesson.source_page_end ?? 0}
+        />
+      ) : (
+        <section className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm leading-7 text-amber-950">
+          لا توجد صور صفحات موثقة ومطابقة لهذا الدرس. لا يمكن بناء أنشطة تلقائيًا
+          من صور درس آخر؛ راجع مصدر الكتاب وأرقام الصفحات أولًا.
+        </section>
+      )}
 
       <section className="rounded-2xl border bg-card p-5 text-sm shadow-sm">
         <h2 className="font-black">
@@ -250,7 +262,7 @@ export default async function LessonPage({
               className="break-all"
               dir="ltr"
             >
-              {imageBaseUrl}
+              {imageBaseUrl ?? "غير مثبت — لا يُسمح بالبناء الآلي"}
             </code>
           </div>
 

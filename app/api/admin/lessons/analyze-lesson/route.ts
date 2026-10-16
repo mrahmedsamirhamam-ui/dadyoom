@@ -5,6 +5,18 @@ import {
 import {
   createClient,
 } from "@/lib/supabase/server";
+import { resolveBahrainGradeOneSource } from "@/lib/curriculum/bahrain-grade-one-source-map";
+
+type Relation<T> = T | T[] | null;
+
+function first<T>(value: Relation<T> | undefined): T | null {
+  return Array.isArray(value) ? value[0] ?? null : value ?? null;
+}
+
+type ScopeCountry = { code: string };
+type ScopeCurriculum = { countries: Relation<ScopeCountry> };
+type ScopeGrade = { grade_number: number | null; curricula: Relation<ScopeCurriculum> };
+type ScopeUnit = { grades: Relation<ScopeGrade> };
 
 export const runtime =
   "nodejs";
@@ -265,8 +277,7 @@ export async function POST(
       cleanText(
         body.imageBaseUrl,
         1000
-      ) ||
-      "/curriculum/bahrain/grade-01/lesson-02";
+      );
 
     const {
       data: lesson,
@@ -279,7 +290,8 @@ export async function POST(
           id,
           title,
           source_page_start,
-          source_page_end
+          source_page_end,
+          units!inner(grades!inner(grade_number,curricula!inner(countries!inner(code))))
         `)
         .eq(
           "id",
@@ -303,6 +315,25 @@ export async function POST(
           status: 404,
         }
       );
+    }
+
+    // Reject a client-supplied folder from another lesson, unit, grade
+    // or country before preparing any AI batch or saving candidates.
+    const unitScope = first(lesson.units as Relation<ScopeUnit>);
+    const gradeScope = first(unitScope?.grades);
+    const curriculumScope = first(gradeScope?.curricula);
+    const countryScope = first(curriculumScope?.countries);
+    const matchingImageFolder = resolveBahrainGradeOneSource({
+      countryCode: countryScope?.code,
+      gradeNumber: gradeScope?.grade_number,
+      sourcePageStart: lesson.source_page_start,
+      sourcePageEnd: lesson.source_page_end,
+    });
+    if (!matchingImageFolder || imageBaseUrl !== matchingImageFolder) {
+      return NextResponse.json({
+        success: false,
+        error: "مسار الصور لا يطابق مصدر الدرس وصفحاته الموثقة.",
+      }, { status: 400 });
     }
 
     const pageStart =

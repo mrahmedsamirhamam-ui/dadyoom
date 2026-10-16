@@ -11,6 +11,8 @@ import path from "node:path";
 import {
   NextResponse,
 } from "next/server";
+import { getDashboardRequestViewer } from "@/lib/auth/request-viewer";
+import { resolveBahrainGradeOneSource } from "@/lib/curriculum/bahrain-grade-one-source-map";
 
 const BOOK_BASE =
   "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_1/e_books/Arabic-Baraem-G1-P1-2026/Arabic%20Baraem%20G1%20P1%202026";
@@ -55,6 +57,17 @@ export async function POST(
   request: Request
 ) {
   try {
+    // Local image downloads and filesystem writes are administrative effects.
+    // Authenticate and authorize *before* parsing or downloading any source.
+    const { user, userError, profile, profileError } =
+      await getDashboardRequestViewer();
+    if (userError || !user) {
+      return NextResponse.json({ success: false, error: "يجب تسجيل الدخول." }, { status: 401 });
+    }
+    if (profileError || profile?.role?.trim().toLowerCase() !== "admin") {
+      return NextResponse.json({ success: false, error: "للمدير فقط." }, { status: 403 });
+    }
+
     const body =
       (await request.json()) as RequestBody;
 
@@ -130,6 +143,18 @@ export async function POST(
           status: 400,
         }
       );
+    }
+
+    // Only a source-folder whose exact page range is committed is allowed.
+    // No free-form folder numbers or arbitrary page spans.
+    const matchingImageFolder = resolveBahrainGradeOneSource({
+      countryCode: "BH",
+      gradeNumber: 1,
+      sourcePageStart,
+      sourcePageEnd,
+    });
+    if (!matchingImageFolder || imageBaseUrl !== matchingImageFolder) {
+      return NextResponse.json({ success: false, error: "صور الصفحات غير مطابقة للمجلد المعتمد." }, { status: 400 });
     }
 
     const relativeDirectory =
