@@ -91,6 +91,16 @@ export default function CurriculumDirectoryPage() {
           </p>
         </header>
 
+        <Link
+          href="/search"
+          className="mt-5 inline-flex min-h-12 items-center gap-3 rounded-full bg-[#123f39] px-6 py-3 font-black text-white hover:bg-[#1b6154]"
+        >
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>
+          </svg>
+          ابحث باسم الدرس في الدول الـ22
+        </Link>
+
         <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {countries.map((country) => (
             <Link
