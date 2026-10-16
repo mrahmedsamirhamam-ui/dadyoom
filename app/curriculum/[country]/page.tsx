@@ -405,6 +405,15 @@ export default async function CountryCurriculumPage({
             دروس اللغة العربية في{" "}
             {info.name}
           </h1>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link
+              href={`/courses?country=${info.code}&grade=1`}
+              prefetch={false}
+              className="inline-flex min-h-11 items-center rounded-full bg-[#123f39] px-6 py-3 font-black text-white hover:bg-[#1b5c53]"
+            >
+              افتح جميع دروس {info.name} حسب الصف والفصل ←
+            </Link>
+          </div>
           <p className="mt-4 max-w-3xl font-arabic-reading text-lg leading-9 text-[#655e54]">
             دليل قابل للزحف يوضح
             المناهج والمسارات
@@ -575,13 +584,22 @@ export default async function CountryCurriculumPage({
                       }
                     </h2>
 
-                    <Link
-                      href={`/curriculum/${info.code.toLowerCase()}/${grade.gradeNumber}`}
-                      prefetch={false}
-                      className="rounded-full border border-[#d8c7a4] bg-white px-4 py-2 text-sm font-black text-[#174f47] transition hover:border-[#8ca99f]"
-                    >
-                      صفحة الصف كاملة ←
-                    </Link>
+                    <div className="flex flex-wrap gap-2">
+                      <Link
+                        href={`/courses?country=${info.code}&grade=${grade.gradeNumber}`}
+                        prefetch={false}
+                        className="rounded-full bg-[#123f39] px-5 py-3 text-sm font-black text-white hover:bg-[#1b5c53]"
+                      >
+                        جميع دروس الصف في المستكشف ←
+                      </Link>
+                      <Link
+                        href={`/curriculum/${info.code.toLowerCase()}/${grade.gradeNumber}`}
+                        prefetch={false}
+                        className="rounded-full border border-[#d8c7a4] bg-white px-4 py-3 text-sm font-black text-[#174f47] transition hover:border-[#8ca99f]"
+                      >
+                        دليل الدروس القابلة للفهرسة
+                      </Link>
+                    </div>
                   </div>
 
                   <div className="mt-6 space-y-6">
@@ -592,7 +610,7 @@ export default async function CountryCurriculumPage({
                           <div key={unit.id} className="mt-4">
                             <h4 className="font-black text-[#8b6426]">{unit.title}</h4>
                             <ul className="mt-3 grid gap-3 md:grid-cols-2">
-                              {unit.lessons.slice(0, 2).map((lesson) => (
+                              {unit.lessons.map((lesson) => (
                                 <li key={lesson.id}>
                                   <Link
                                     href={`/lessons/${lesson.id}`}
@@ -606,7 +624,7 @@ export default async function CountryCurriculumPage({
                             </ul>
                             {unit.lessons.length > 2 ? (
                               <p className="mt-2 text-sm font-semibold text-[#6d665c]">
-                                عرض درسين من {unit.lessons.length} درسًا.
+                                الروابط أعلاه تعرض كل دروس الوحدة المؤهلة للفهرسة ({unit.lessons.length}).
                                 <Link
                                   href={`/curriculum/${info.code.toLowerCase()}/${grade.gradeNumber}`}
                                   prefetch={false}
