@@ -10,12 +10,16 @@ describe("Bahrain original lesson objectives: bulk structured-data safety", () =
     expect(sql).toContain("l.status = 'published'");
     expect(sql).toContain("l.learning_objectives IS NULL");
     expect(sql).toContain("l.learning_objectives = '[]'::jsonb");
-    expect(sql).toContain("position('أهداف التعلم:' in l.content) > 0");
+    for (const heading of ["أهداف التعلم:", "أهداف التعليم:", "الأهداف التعليمية:"]) {
+      expect(sql).toContain(heading);
+    }
     expect(sql).toContain("ضاديوم — إثراء مستقل أصلي");
   });
 
   test("only extracts existing content goals; never invents or publishes textbook records", () => {
-    expect(sql).toContain("split_part(split_part(l.content, 'أهداف التعلم:'");
+    for (const heading of ["أهداف التعلم:", "أهداف التعليم:", "الأهداف التعليمية:"]) {
+      expect(sql).toContain(`split_part(split_part(l.content, '${heading}'`);
+    }
     expect(sql).toContain("length(e.objective) BETWEEN 20 AND 240");
     expect(sql).toContain("SET learning_objectives = jsonb_build_array(e.objective)");
     expect(sql).not.toMatch(/SET\s+content\s*=/);
