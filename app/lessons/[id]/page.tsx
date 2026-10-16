@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import InteractiveLessonActivities from "@/features/lessons/components/InteractiveLessonActivities";
+import LessonPracticeWorkspace from "@/features/lessons/components/LessonPracticeWorkspace";
 import LessonSemanticSearch from "@/features/semantic-search/components/LessonSemanticSearch";
 import LessonMasteryCard from "@/features/lesson-mastery/components/LessonMasteryCard";
 import { notFound, redirect } from "next/navigation";
@@ -250,6 +251,13 @@ export default async function LessonPage({
     bundle.lesson;
 
   const sourceReviewRequired = lessonNeedsSourceReview(lesson.content);
+  // An actual instructional body is required for guided practice.
+  // Book-identity cards and short reference placeholders are not complete
+  // lessons and must not be disguised as such by the shared worksheet.
+  const lessonBody = (lesson.content ?? "").trim();
+  const referenceOnly = /هذا عنصر من كتاب|هوية الدرس|بطاقة مرجعية|مرجع الكتاب فقط|book reference|لم تُرفع صفحة الكتاب/iu.test(lessonBody);
+  const practiceAvailable = lesson.status === "published" &&
+    lessonBody.length >= 250 && !referenceOnly;
   // The shared Dadyoom core is enrichment, not a ministry textbook.
   // All 22 countries have original lessons explicitly marked in the content.
   const isOriginalDadyoomLesson =
@@ -665,6 +673,21 @@ export default async function LessonPage({
           vocabulary={vocabulary}
           instructions={lesson.instructions}
         />
+        {practiceAvailable ? (
+          <LessonPracticeWorkspace
+            title={lessonDisplayTitle}
+            lessonType={lesson.lesson_type}
+            objective={objectives[0]}
+          />
+        ) : (
+          <section role="note" className="rounded-3xl border border-amber-200 bg-amber-50 p-5 text-sm leading-8 text-amber-950">
+            <h2 className="text-lg font-black">هذا الدرس يحتاج مادة تعليمية إضافية</h2>
+            <p className="mt-2">
+              المعروض حاليًا مرجع مختصر أو مادة لم يكتمل نصها. لا نعرض تدريبًا يوهم بأن
+              نص الكتاب الرسمي كامل. يمكنك الرجوع إلى المعلم أو مصدر الكتاب حتى يُستكمل الدرس.
+            </p>
+          </section>
+        )}
         <section className="rounded-3xl border border-amber-200 bg-white p-6 shadow-sm sm:p-8">
           <p className="text-sm font-black text-amber-700">
             بعد انتهاء العرض
