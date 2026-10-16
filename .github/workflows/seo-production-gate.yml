@@ -323,15 +323,32 @@ jobs:
 
           for url in "${country_urls[@]}"; do
             html="$(mktemp)"
-            code="$(curl --silent --show-error --max-time 30               --output "$html" --write-out "%{http_code}"               -H "User-Agent: Googlebot" "$url")"
+            # A streamed Cloudflare/Next response can return HTTP 200 before
+            # the canonical metadata is present. Re-read twice, but fail if
+            # the canonical remains absent; never mark a broken URL as PASS.
+            code=""
+            canonical_found=false
+            for attempt in 1 2 3; do
+              code="$(curl --silent --show-error --location --max-time 30 \
+                --output "$html" --write-out "%{http_code}" \
+                -H "User-Agent: Googlebot" "$url")"
+
+              if [[ "$code" == "200" ]] && grep -Fq "href=\"$url\"" "$html"; then
+                canonical_found=true
+                break
+              fi
+
+              echo "SEO_COUNTRY_CANONICAL_RETRY url=$url attempt=$attempt http=$code bytes=$(wc -c < "$html")"
+              if [[ "$attempt" -lt 3 ]]; then sleep 1; fi
+            done
 
             if [[ "$code" != "200" ]]; then
               echo "SEO_COUNTRY_PAGE=FAIL_HTTP url=$url http=$code"
               exit 1
             fi
 
-            if ! grep -Fq "href=\"$url\"" "$html"; then
-              echo "SEO_COUNTRY_PAGE=FAIL_CANONICAL url=$url"
+            if [[ "$canonical_found" != "true" ]]; then
+              echo "SEO_COUNTRY_PAGE=FAIL_CANONICAL url=$url bytes=$(wc -c < "$html")"
               exit 1
             fi
 
