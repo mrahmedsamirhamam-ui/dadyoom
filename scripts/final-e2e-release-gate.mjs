@@ -4977,6 +4977,14 @@ async function focusedSchoolMeetingFlow(
       );
 
     await createButton.click();
+    const receipt = schoolPage.locator('[data-school-meeting-result="success"]');
+    try {
+      await receipt.waitFor({ state: "visible", timeout: 30_000 });
+    } catch {
+      const errorText = await schoolPage.locator('[data-school-meeting-result="error"]')
+        .first().textContent().catch(() => null);
+      gate(false, "E2E_SCHOOL_MEETING_ACTION_RECEIPT_FAILED:" + (errorText ?? "no-server-receipt"));
+    }
 
     const meeting =
       await waitForDbRow(

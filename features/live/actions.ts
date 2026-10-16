@@ -183,3 +183,17 @@ export async function createSchoolMeetingAction(
   revalidatePath("/school");
   revalidatePath("/school/meetings");
 }
+
+export type SchoolMeetingActionState = { ok: boolean; message: string };
+export const initialSchoolMeetingActionState: SchoolMeetingActionState = { ok: false, message: "" };
+export async function createSchoolMeetingWithResult(
+  _previous: SchoolMeetingActionState, form: FormData,
+): Promise<SchoolMeetingActionState> {
+  try {
+    await createSchoolMeetingAction(form);
+    return { ok: true, message: "تم حفظ اجتماع المعلمين بنجاح." };
+  } catch (error) {
+    console.error("SCHOOL_MEETING_SAVE_FAILURE", error instanceof Error ? error.message : "unknown");
+    return { ok: false, message: "تعذر إنشاء الغرفة. تحقق من المدرسة والموعد ثم أعد المحاولة." };
+  }
+}

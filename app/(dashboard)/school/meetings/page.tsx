@@ -3,7 +3,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import CopyLiveLinkButton from "@/components/live/CopyLiveLinkButton";
-import { createSchoolMeetingAction } from "@/features/live/actions";
+import SchoolMeetingCreationForm from "./SchoolMeetingCreationForm";
 import { getDashboardRequestViewer } from "@/lib/auth/request-viewer";
 
 function formatBahrainDateTime(value: string | null) {
@@ -109,57 +109,7 @@ export default async function SchoolMeetingsPage() {
         </div>
 
         <section className="grid gap-6 lg:grid-cols-[420px_1fr]">
-          <form
-            action={createSchoolMeetingAction}
-            className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
-          >
-            <h2 className="text-xl font-black text-slate-900">
-              اجتماع جديد
-            </h2>
-
-            <p className="mt-3 text-sm font-bold text-violet-800">المواعيد بتوقيت البحرين (UTC+3).</p>
-            <div className="mt-5 space-y-4">
-              <input
-                name="title"
-                required
-                placeholder="مثال: اجتماع قسم اللغة العربية"
-                className="w-full rounded-xl border border-slate-300 p-3"
-              />
-
-              <textarea
-                name="description"
-                rows={3}
-                placeholder="موضوع الاجتماع أو جدول الأعمال"
-                className="w-full rounded-xl border border-slate-300 p-3"
-              />
-
-              <label className="block text-sm font-bold text-slate-700">
-                يبدأ
-                <input
-                  type="datetime-local"
-                  name="startsAt"
-                  required
-                  className="mt-2 w-full rounded-xl border border-slate-300 p-3"
-                />
-              </label>
-
-              <label className="block text-sm font-bold text-slate-700">
-                ينتهي
-                <input
-                  type="datetime-local"
-                  name="endsAt"
-                  className="mt-2 w-full rounded-xl border border-slate-300 p-3"
-                />
-              </label>
-
-              <button
-                type="submit"
-                className="w-full rounded-xl bg-violet-700 px-5 py-3 font-black text-white"
-              >
-                إنشاء غرفة الاجتماع
-              </button>
-            </div>
-          </form>
+          <SchoolMeetingCreationForm />
 
           <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
             <h2 className="text-xl font-black text-slate-900">
