@@ -261,7 +261,8 @@ export default async function LessonPage({
   // The shared Dadyoom core is enrichment, not a ministry textbook.
   // All 22 countries have original lessons explicitly marked in the content.
   const isOriginalDadyoomLesson =
-    (lesson.content ?? "").trimStart().startsWith("درس ضاديوم الأصلي:");
+    ["درس ضاديوم الأصلي:", "حزمة ضاديوم الموضوعية المتخصصة", "مسار الإتقان الأصلي — ضاديوم", "مسار القراءة والفهم الأصلي — ضاديوم"]
+      .some((prefix) => (lesson.content ?? "").trimStart().startsWith(prefix));
   // Lack of a recorded textbook link must never be presented as
   // verified official content, even if the lesson title looks official.
   const missingTextbookSource =
