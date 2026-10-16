@@ -25,6 +25,10 @@ type VideoItem = {
 };
 
 const PAGE_SIZE = 24;
+const focusKeywords: Record<string, string> = {
+  reading: "قراءة", grammar: "نحو",
+  listening: "استماع", writing: "كتابة",
+};
 
 function playerUrl(embedUrl: string) {
   try {
@@ -57,33 +61,27 @@ export default function VideoLibraryClient({
     useState(1);
 
   const [selected, setSelected] =
-    useState<VideoItem | null>(
-      videos[0] ?? null
-    );
+    useState<VideoItem | null>(null);
 
-  const playerRef =
+   const playerRef =
     useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    const requested =
-      new URLSearchParams(
-        window.location.search
-      ).get("room");
-
-    if (
-      requested === "native" ||
-      requested === "non-native"
-    ) {
-      const timer =
-        window.setTimeout(() => {
+    const search = new URLSearchParams(window.location.search);
+    const requested = search.get("room");
+    const requestedFocus = search.get("focus");
+    const selectedFocus = requestedFocus && Object.hasOwn(focusKeywords, requestedFocus)
+      ? focusKeywords[requestedFocus] : "";
+    if (requested === "native" || requested === "non-native" || selectedFocus) {
+      const timer = window.setTimeout(() => {
+        if (requested === "native" || requested === "non-native") {
           setRoom(requested);
-          setPage(1);
-        }, 0);
-
-      return () =>
-        window.clearTimeout(timer);
+        }
+        if (selectedFocus) setQuery(selectedFocus);
+        setPage(1);
+      }, 0);
+      return () => window.clearTimeout(timer);
     }
-
     return undefined;
   }, []);
 
@@ -147,6 +145,11 @@ export default function VideoLibraryClient({
       category,
       query,
     ]);
+
+  // The preview player must always belong to the active room and filter.
+  // Selecting the native room must never continue playing a non-native video.
+  const visibleSelected = selected && filtered.some(video => video.id === selected.id)
+    ? selected : filtered[0] ?? null;
 
   const totalPages =
     Math.max(
@@ -213,7 +216,7 @@ export default function VideoLibraryClient({
 
   return (
     <div className="space-y-6">
-      {selected ? (
+      {visibleSelected ? (
         <section
           ref={playerRef}
           className="scroll-mt-28 overflow-hidden rounded-[2rem] border border-[#d9c8a7] bg-[#fffdf8] shadow-lg"
@@ -221,12 +224,12 @@ export default function VideoLibraryClient({
           <div className="grid lg:grid-cols-[1.35fr_.65fr]">
             <div className="aspect-video bg-black">
               <iframe
-                key={selected.id}
+                key={visibleSelected.id}
                 className="h-full w-full"
                 src={playerUrl(
-                  selected.embedUrl
+                  visibleSelected.embedUrl
                 )}
-                title={selected.title}
+                title={visibleSelected.title}
                 loading="eager"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -237,11 +240,11 @@ export default function VideoLibraryClient({
             <div className="p-6">
               <div className="text-xs font-black text-[#a2732a]">
                 فيديو رقم{" "}
-                {selected.libraryIndex}
+                {visibleSelected.libraryIndex}
               </div>
 
               <h2 className="mt-2 font-arabic-display text-2xl font-black leading-10 text-[#123f39]">
-                {selected.title}
+                {visibleSelected.title}
               </h2>
 
               <div className="mt-4 rounded-2xl bg-[#f6efe2] p-4">
@@ -250,12 +253,12 @@ export default function VideoLibraryClient({
                 </div>
 
                 <div className="mt-1 font-black text-[#123f39]">
-                  {selected.channel ||
-                    selected.sourceName}
+                  {visibleSelected.channel ||
+                    visibleSelected.sourceName}
                 </div>
 
                 <a
-                  href={selected.url}
+                  href={visibleSelected.url}
                   target="_blank"
                   rel="noreferrer"
                   className="mt-3 inline-block text-sm font-black text-[#8d692b] underline"
@@ -271,14 +274,14 @@ export default function VideoLibraryClient({
 
               <div className="mt-4 flex flex-wrap gap-2">
                 <Chip>
-                  {selected.category}
+                  {visibleSelected.category}
                 </Chip>
 
                 <Chip>
-                  {selected.room ===
+                  {visibleSelected.room ===
                   "native"
                     ? "للعرب"
-                    : selected.room ===
+                    : visibleSelected.room ===
                         "non-native"
                       ? "لغير الناطقين"
                       : "للغرفتين"}
