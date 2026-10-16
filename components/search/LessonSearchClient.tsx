@@ -15,6 +15,7 @@ type SearchResult = {
   curriculum: string;
   unit: string;
   href: string;
+  resourceKind?: "lesson" | "curriculum-scope" | "book-reference";
 };
 type ResponsePayload = {
   lessons?: SearchResult[];
@@ -183,12 +184,23 @@ export default function LessonSearchClient({
               {results.map(lesson => (
                 <Link key={lesson.id} href={lesson.href} prefetch={false}
                   className="block min-h-16 rounded-2xl border border-[#dfcfad] bg-[#fffdf8] p-5 transition hover:border-[#96ada0] hover:shadow-md">
+                  {lesson.resourceKind && lesson.resourceKind !== "lesson" ? (
+                    <span className="mb-2 inline-flex rounded-full bg-[#f2e9d8] px-3 py-1 text-xs font-black text-[#805e2a]">
+                      {lesson.resourceKind === "curriculum-scope" ? "مجال دراسي — يحتاج تفصيل الدروس" : "مرجع بلا نص تعليمي"}
+                    </span>
+                  ) : null}
                   <h3 className="text-lg font-black text-[#123f39]">{lesson.title}</h3>
                   <p className="mt-2 text-sm font-bold text-[#8c6425]">
                     {lesson.country} • {lesson.grade} • {lesson.unit}
                   </p>
                   {lesson.summary ? <p className="mt-2 line-clamp-2 text-sm leading-7 text-[#666055]">{lesson.summary}</p> : null}
-                  <p className="mt-2 text-sm font-black text-[#174f47]">افتح الدرس ←</p>
+                  <p className="mt-2 text-sm font-black text-[#174f47]">
+                    {lesson.resourceKind === "curriculum-scope"
+                      ? "اعرف حالة المجال وابحث عن الدروس التفصيلية ←"
+                      : lesson.resourceKind === "book-reference"
+                        ? "اطّلع على حالة المرجع والمحتوى الناقص ←"
+                        : "افتح الدرس ←"}
+                  </p>
                 </Link>
               ))}
             </div>
