@@ -12,6 +12,8 @@ describe("School meeting submit is disabled before action hydration",()=>{
   test("production test checks actual hydration before submitting",()=>{
     expect(qa).toContain("E2E_SCHOOL_MEETING_JS_HYDRATION_FAILED");
     expect(qa).toContain('data-school-meeting-js-ready="yes"');
+    expect(qa).toContain('form:has(input[name="title"])');
+    expect(qa).not.toContain('const createButton = schoolPage');
     expect(qa).toContain('await readyButton.click()');
     expect(qa.indexOf('await readyButton.click()')).toBeLessThan(qa.indexOf("E2E_SCHOOL_MEETING_ACTION_RECEIPT_FAILED"));
   });

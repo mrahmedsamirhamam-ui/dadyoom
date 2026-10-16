@@ -4942,9 +4942,9 @@ async function focusedSchoolMeetingFlow(
     }
     gate(meetingFormReady, "E2E_SCHOOL_MEETING_FORM_UNAVAILABLE");
 
-    const createButton = schoolPage
-      .getByRole("button", { name: "إنشاء غرفة الاجتماع" }).first();
-    const form = createButton.locator("xpath=ancestor::form");
+    // Find the form by its actual input; the submit button is deliberately
+    // disabled and labeled "preparing" in SSR until hydration.
+    const form = schoolPage.locator('form:has(input[name="title"])').first();
 
     await form.locator('input[name="title"]').fill(meetingTitle);
 
