@@ -414,7 +414,17 @@ jobs:
               code="${code:-000}"
               cf_ray="$(awk 'tolower($1) == "cf-ray:" { gsub(/\r/, "", $2); print $2; exit }' "$headers")"
               cf_cache="$(awk 'tolower($1) == "cf-cache-status:" { gsub(/\r/, "", $2); print $2; exit }' "$headers")"
-              if [[ "$code" == "200" ]]; then break; fi
+              if [[ "$code" == "200" ]]; then
+                # Edge-streamed HTML may be 200 before the canonical metadata
+                # makes it into the body. A 200 alone is NOT a passing check.
+                if grep -Fq 'rel="canonical"' "$html" &&
+                   grep -Fq "href=\"$url\"" "$html"; then
+                  break
+                fi
+                echo "SEO_DISTRIBUTED=RETRY_MISSING_CANONICAL kind=$kind url=$url attempt=$attempt cf_ray=${cf_ray:-unavailable} bytes=$(wc -c < "$html")"
+                if (( attempt < 3 )); then sleep $((attempt * 2)); fi
+                continue
+              fi
               if [[ "$code" != "429" && "$code" != "502" && "$code" != "503" && "$code" != "504" ]]; then break; fi
               echo "SEO_DISTRIBUTED=RETRY_HTTP kind=$kind url=$url http=$code attempt=$attempt cf_ray=${cf_ray:-unavailable} cf_cache=${cf_cache:-unavailable} seconds=${seconds:-unknown}"
               if (( attempt < 3 )); then sleep $((attempt * 2)); fi
