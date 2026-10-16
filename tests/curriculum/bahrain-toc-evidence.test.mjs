@@ -24,6 +24,20 @@ describe("Bahrain official textbook TOC evidence intake",()=>{
   }
   expect(page).toContain("لا يُعتمد أي كتاب مكتملًا ولا يُنشر أي درس");
  });
+ it("prioritizes primary current-year book TOCs and distinguishes semester two",()=>{
+  const current = audit.books.filter(book=>book.currentPlanPublished);
+  const missingBook = audit.books.filter(book=>book.status==="OFFICIAL_BOOK_NOT_FOUND");
+  const pendingTerm2 = audit.books.filter(book=>book.semesterOrBookPart===2 && !book.currentPlanPublished);
+  expect(current.length).toBe(28);
+  expect(missingBook).toHaveLength(2);
+  expect(pendingTerm2).toHaveLength(28);
+  expect(page).toContain('Number(b.currentPlanPublished) - Number(a.currentPlanPublished)');
+  expect(page).toContain('a.program !== "التعليم الأساسي"');
+  expect(page).toContain('book.status !== "OFFICIAL_BOOK_NOT_FOUND"');
+  expect(page).toContain('bookTocScopeKey(book)');
+  expect(page).toContain('الفصل الثاني بلا خطة حالية مثبتة');
+  expect(page).toContain('الأعداد لا تثبت أن أي فهرس قد طابق كتابًا مستقلًا');
+ });
  it("blocks direct client reads/writes of review evidence",()=>{
   expect(sql).toContain("enable row level security");
   expect(sql).toContain("revoke all on table public.curriculum_toc_evidence from public, anon, authenticated");
