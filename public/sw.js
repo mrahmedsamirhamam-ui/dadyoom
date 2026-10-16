@@ -1,4 +1,5 @@
-const CACHE_NAME = "dadyoom-offline-v2";
+// Invalidate old PWA caches when updating the identity to PNG/WebP.
+const CACHE_NAME = "dadyoom-offline-v3-raster-brand";
 const OFFLINE_URL = "/offline.html";
 
 self.addEventListener("install", (event) => {

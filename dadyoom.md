@@ -432,3 +432,8 @@
 - ✅ `app/manifest.ts` و`app/layout.tsx`: لا رابط `/icon.svg`، اعتمدا صورة PNG وتنسيق ICO للأيقونات، وSchema.org logo صورة PNG فعلية؛ `app/icon.svg` محذوف حتى لا يصدر Next.js SVG metadata تلقائيًا.
 - ✅ اختبار `tests/brand/raster-dadyoom-identity.test.mjs` يفحص المكونات والمسارات **وتواقيع PNG/WebP/ICO الثنائية**، وليس مجرد وجود ملفات بأسماء صورية. يبقى أي SVG منفصل لرسوم تعبيرية/تحريك شخصية «ضاد» خارج نطاق شعار الموقع ولا يُستخدم كأيقونة التطبيق.
 - ⏳ اعتماد النشر مرتبط بنتائج Cloudflare Verify وDeploy وMobile Final Verify وSEO وProduction Role QA لنفس SHA. لا تكلفة مدفوعة ولا انتقال إلى Paddle Live.
+
+## 16 أكتوبر 2026 — تجديد كاش أيقونات ضاديوم المثبتة
+
+- ✅ تحديث `public/sw.js` من `dadyoom-offline-v2` إلى `dadyoom-offline-v3-raster-brand` ليحمل مثبتو PWA ملفات الأيقونات `PNG` الجديدة ويزال التخزين القديم في دورة التنشيط، دون المساس بفشل الاتصال أو بصفحات المستخدم.
+- ✅ يبقى `offline.html` و`cache: no-store` للصفحات كما كان؛ الاختبار الجديد `tests/brand/pwa-raster-cache-upgrade.test.mjs` يراجع مسارَي 192 و512 في الـManifest والـSW.
