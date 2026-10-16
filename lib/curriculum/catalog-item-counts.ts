@@ -6,7 +6,7 @@ export function isDadyoomCoreCurriculum(name: string): boolean {
 export type CatalogCountUnit = {
   curriculum: { name: string };
   lessons: readonly {
-    resourceKind?: "lesson" | "book-reference";
+    resourceKind?: "lesson" | "book-reference" | "curriculum-scope";
     completed: boolean;
   }[];
 };
@@ -17,6 +17,7 @@ export function countCatalogItems(units: readonly CatalogCountUnit[]) {
   let officialLessonCount = 0;
   let supportingLessonCount = 0;
   let bookReferenceCount = 0;
+  let curriculumScopeCount = 0;
 
   for (const unit of units) {
     const supporting = isDadyoomCoreCurriculum(unit.curriculum.name);
@@ -24,6 +25,10 @@ export function countCatalogItems(units: readonly CatalogCountUnit[]) {
       // A verified book title or contents reference is not an individual lesson.
       if (lesson.resourceKind === "book-reference") {
         bookReferenceCount += 1;
+        continue;
+      }
+      if (lesson.resourceKind === "curriculum-scope") {
+        curriculumScopeCount += 1;
         continue;
       }
       lessonCount += 1;
@@ -38,5 +43,6 @@ export function countCatalogItems(units: readonly CatalogCountUnit[]) {
     officialLessonCount,
     supportingLessonCount,
     bookReferenceCount,
+    curriculumScopeCount,
   };
 }
