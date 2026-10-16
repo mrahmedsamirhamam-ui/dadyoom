@@ -53,13 +53,20 @@ export default function SchoolMeetingCreationForm() {
         cache: "no-store",
         headers: { "X-Dadyoom-Meeting-Request": "1" },
       });
-      const body = (await response.json()) as Partial<MeetingResult>;
-      const succeeded = response.ok && body.ok === true;
+      // Cloudflare can return a non-JSON 5xx page before application code
+      // runs. Report HTTP failures accurately, not as a network outage.
+      const contentType = response.headers.get("content-type") ?? "";
+      const body: Partial<MeetingResult> | null = contentType.includes("application/json")
+        ? await response.json().catch(() => null) as Partial<MeetingResult> | null
+        : null;
+      const succeeded = response.ok && body?.ok === true;
       setResult({
         ok: succeeded,
-        message: typeof body.message === "string"
+        message: typeof body?.message === "string"
           ? body.message
-          : "تعذر حفظ الاجتماع الآن، حاول مرة أخرى.",
+          : response.status >= 500
+            ? `خادم الاجتماعات غير متاح مؤقتًا (HTTP ${response.status}). لم يتم تأكيد حفظ الاجتماع.`
+            : `تعذر حفظ الاجتماع (HTTP ${response.status}).`,
       });
       if (succeeded) {
         form.reset();

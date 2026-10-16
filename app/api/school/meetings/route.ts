@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { createSchoolMeetingAction } from "@/features/live/actions";
+import { createSchoolMeetingRecord } from "@/lib/live/create-school-meeting";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -17,7 +17,7 @@ export async function POST(request: Request) {
     );
   }
   try {
-    await createSchoolMeetingAction(await request.formData());
+    await createSchoolMeetingRecord(await request.formData());
     return NextResponse.json(
       { ok: true, message: "تم حفظ اجتماع المعلمين بنجاح." },
       { headers: NO_STORE },

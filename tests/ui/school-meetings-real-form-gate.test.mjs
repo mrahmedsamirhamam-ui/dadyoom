@@ -5,6 +5,7 @@ const meetings = readFileSync("app/(dashboard)/school/meetings/page.tsx", "utf8"
 const form = readFileSync("app/(dashboard)/school/meetings/SchoolMeetingCreationForm.tsx", "utf8");
 const route = readFileSync("app/api/school/meetings/route.ts", "utf8");
 const actions = readFileSync("features/live/actions.ts", "utf8");
+const secureMeeting = readFileSync("lib/live/create-school-meeting.ts", "utf8");
 const e2e = readFileSync("scripts/final-e2e-release-gate.mjs", "utf8");
 const flow = e2e.slice(
   e2e.indexOf("async function focusedSchoolMeetingFlow("),
@@ -43,11 +44,13 @@ describe("School meetings use authenticated SSR and a real save receipt", () => 
     expect(form).toContain('data-school-meeting-result={result.ok ? "success" : "error"}');
     expect(form).not.toContain("useActionState(");
     expect(route).toContain('request.headers.get("x-dadyoom-meeting-request")');
-    expect(route).toContain("await createSchoolMeetingAction(await request.formData())");
+    expect(route).toContain("await createSchoolMeetingRecord(await request.formData())");
     expect(route).toContain('"Cache-Control": "no-store"');
     expect(route).not.toContain("service_role");
-    expect(actions).toContain('role !== "school" && role !== "admin"');
-    expect(actions).toContain('.eq("owner_id", user.id)');
+    expect(route).not.toContain("@/features/live/actions");
+    expect(actions).toContain("await createSchoolMeetingRecord(form)");
+    expect(secureMeeting).toContain('role !== "school" && role !== "admin"');
+    expect(secureMeeting).toContain('.eq("owner_id", user.id)');
     expect(actions).toContain('await createSchoolMeetingAction(form)');
     expect(actions).toContain("SCHOOL_MEETING_SAVE_FAILURE");
   });
