@@ -108,6 +108,9 @@ export default function TeacherClassroomClient(props: Props) {
   const classStudents = props.students.filter((item) => item.classId === classId);
 
   const [studentId, setStudentId] = useState("");
+  const [assignmentStudentId, setAssignmentStudentId] = useState("");
+  const selectedAssignmentStudentId = classStudents.some(item => item.id === assignmentStudentId)
+    ? assignmentStudentId : "";
   const selectedStudentId = classStudents.some((item) => item.id === studentId)
     ? studentId
     : classStudents[0]?.id ?? "";
@@ -189,6 +192,7 @@ export default function TeacherClassroomClient(props: Props) {
             onChange={(v) => {
               setClassId(v);
               setStudentId("");
+              setAssignmentStudentId("");
             }}
             options={props.classes.map((item) => [item.id, item.name])}
           />
@@ -391,7 +395,8 @@ export default function TeacherClassroomClient(props: Props) {
             <Select
               label="التوجيه"
               name="studentId"
-              value=""
+              value={selectedAssignmentStudentId}
+              onChange={setAssignmentStudentId}
               options={[
                 ["", "كل الفصل"],
                 ...classStudents.map((item) => [

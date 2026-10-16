@@ -324,22 +324,57 @@ export async function createAssignmentAction(
     if (!classId || !title) {
       return { ok: false, message: "اختر الفصل واكتب عنوان المهمة." };
     }
+    if (title.length > 200) {
+      return { ok: false, message: "عنوان المهمة أطول من المسموح." };
+    }
+
+    // Verify the active class and selected pupil BEFORE any assignment insert.
+    // RLS remains the final authorization boundary for mutations.
+    const { data: ownedClass, error: ownedClassError } = await db
+      .from("teacher_classes")
+      .select("id")
+      .eq("id", classId)
+      .eq("teacher_id", user.id)
+      .eq("is_active", true)
+      .maybeSingle();
+    if (ownedClassError || !ownedClass) {
+      return { ok: false, message: "الفصل غير نشط أو لا يتبع حساب المعلم." };
+    }
+    if (studentId) {
+      const { data: member, error: memberError } = await db
+        .from("teacher_class_students")
+        .select("id")
+        .eq("class_id", classId)
+        .eq("student_id", studentId)
+        .eq("is_active", true)
+        .maybeSingle();
+      if (memberError || !member) {
+        return { ok: false, message: "الطالب المحدد غير مسجل في هذا الفصل." };
+      }
+    }
+    if (lessonId) {
+      const { data: publishedLesson, error: lessonError } = await db
+        .from("lessons").select("id").eq("id", lessonId)
+        .eq("status", "published").maybeSingle();
+      if (lessonError || !publishedLesson) {
+        return { ok: false, message: "لا يجوز إسناد درس غير منشور." };
+      }
+    }
 
     let questions: DraftQuestion[] = [];
     const raw = value(formData, "questionsJson");
 
     if (raw) {
       const parsed: unknown = JSON.parse(raw);
-      if (Array.isArray(parsed)) questions = parsed as DraftQuestion[];
+      if (Array.isArray(parsed)) questions = parsed.slice(0, 30) as DraftQuestion[];
     }
 
-    const maxPoints = Math.max(
-      1,
-      questions.reduce(
-        (sum, question) => sum + Math.max(0, Number(question.points ?? 1)),
-        0,
-      ) || 10,
-    );
+    const maxPoints = Math.max(1, Math.min(10000,
+      questions.reduce((sum, question) => {
+        const points = Number(question.points ?? 1);
+        return sum + (Number.isFinite(points) ? Math.max(0, Math.min(10000, points)) : 0);
+      }, 0) || 10,
+    ));
 
     const { data: assignment, error } = await db
       .from("edu_assignments")
@@ -354,7 +389,8 @@ export async function createAssignmentAction(
         due_at: dueAt || null,
         max_points: maxPoints,
         ai_generated: value(formData, "aiGenerated") === "true",
-        status: "published",
+        // Never expose incomplete target/question rows to students.
+        status: "draft",
       })
       .select("id")
       .single();
@@ -363,37 +399,52 @@ export async function createAssignmentAction(
       throw error ?? new Error("تعذر إنشاء المهمة.");
     }
 
-    if (studentId) {
-      const { error: targetError } = await db
-        .from("edu_assignment_targets")
-        .insert({
+    try {
+      if (studentId) {
+        const { error: targetError } = await db
+          .from("edu_assignment_targets")
+          .insert({ assignment_id: assignment.id, student_id: studentId });
+        if (targetError) throw targetError;
+      }
+
+      const rows = questions
+        .filter((question) => String(question.prompt ?? "").trim())
+        .map((question, index) => ({
           assignment_id: assignment.id,
-          student_id: studentId,
-        });
+          question_order: index + 1,
+          question_type: question.type ?? "short_answer",
+          prompt: String(question.prompt ?? "").trim(),
+          options: Array.isArray(question.options) ? question.options : [],
+          correct_answer:
+            question.correctAnswer === undefined ? null : question.correctAnswer,
+          explanation: question.explanation ?? null,
+          points: Number.isFinite(Number(question.points ?? 1))
+            ? Math.max(0, Math.min(10000, Number(question.points ?? 1))) : 1,
+        }));
+      if (rows.length) {
+        const { error: questionError } = await db
+          .from("edu_assignment_questions").insert(rows);
+        if (questionError) throw questionError;
+      }
 
-      if (targetError) throw targetError;
-    }
-
-    const rows = questions
-      .filter((question) => String(question.prompt ?? "").trim())
-      .map((question, index) => ({
-        assignment_id: assignment.id,
-        question_order: index + 1,
-        question_type: question.type ?? "short_answer",
-        prompt: String(question.prompt ?? "").trim(),
-        options: Array.isArray(question.options) ? question.options : [],
-        correct_answer:
-          question.correctAnswer === undefined ? null : question.correctAnswer,
-        explanation: question.explanation ?? null,
-        points: Math.max(0, Number(question.points ?? 1)),
-      }));
-
-    if (rows.length) {
-      const { error: questionError } = await db
-        .from("edu_assignment_questions")
-        .insert(rows);
-
-      if (questionError) throw questionError;
+      // Final publication occurs only once target and question inserts succeed.
+      const { data: published, error: publishError } = await db
+        .from("edu_assignments")
+        .update({ status: "published" })
+        .eq("id", assignment.id)
+        .eq("teacher_id", user.id)
+        .eq("status", "draft")
+        .select("id").maybeSingle();
+      if (publishError || !published) {
+        throw publishError ?? new Error("لم تكتمل عملية النشر.");
+      }
+    } catch (publicationError) {
+      // Best-effort compensation; even if cleanup fails, incomplete assignment
+      // remains a draft rather than student-visible published work.
+      const rollback = await db.from("edu_assignments")
+        .delete().eq("id", assignment.id).eq("teacher_id", user.id);
+      if (rollback.error) console.warn("CLASSROOM_DRAFT_ROLLBACK_FAILED", rollback.error.code);
+      throw publicationError;
     }
 
     revalidatePath("/teacher/classroom");
