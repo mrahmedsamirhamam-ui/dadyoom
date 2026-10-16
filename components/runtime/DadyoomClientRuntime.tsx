@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { usePathname } from "next/navigation";
 
 const DadyoomAds = dynamic(
   () => import("@/components/ads/DadyoomAds"),
@@ -38,6 +39,10 @@ const DadCompanion = dynamic(
 );
 
 export default function DadyoomClientRuntime() {
+  const pathname = usePathname() ?? "";
+  // The floating student companion must not cover teacher/admin/school form
+  // actions; those workspaces provide their own explicit AI/support tools.
+  const workflowWorkspace = /^\/(?:teacher|school|admin|parent|login|signup|register|onboarding|checkout|settings)(?:\/|$)/u.test(pathname);
   return (
     <>
       <DadyoomAds />
@@ -46,7 +51,7 @@ export default function DadyoomClientRuntime() {
       <NativeAppUpdater />
       <DadyoomInstallPrompt />
       <DadyoomAutoUpdate />
-      <DadCompanion />
+      {workflowWorkspace ? null : <DadCompanion />}
     </>
   );
 }
