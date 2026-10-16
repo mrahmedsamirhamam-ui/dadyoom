@@ -223,24 +223,61 @@ async function responsiveSmoke(page, role, baseUrl, expectedPath) {
     // navigating after a viewport change. Retry the same authenticated route
     // with short backoff, but NEVER pass a persistent server error.
     let response = null;
+    let finalNavigationError = null;
     for (let attempt = 1; attempt <= 3; attempt += 1) {
-      response = await page.goto(
-        `${baseUrl}${expectedPath}`,
-        {
-          waitUntil: "domcontentloaded",
-          timeout: 60_000,
-        },
-      );
-      const status = response?.status() ?? 0;
-      if (status === 200) break;
+      let navigationError = null;
+      try {
+        response = await page.goto(
+          `${baseUrl}${expectedPath}`,
+          {
+            waitUntil: "domcontentloaded",
+            timeout: 60_000,
+          },
+        );
+      } catch (error) {
+        navigationError = error;
+        response = null;
+      }
 
+      const status = response?.status() ?? 0;
+      if (!navigationError && status === 200) {
+        finalNavigationError = null;
+        break;
+      }
+
+      // Retry *only* transient edge responses or Chromium navigation aborts.
+      // Nontransient errors must surface immediately. Exhaustion still fails.
+      const transientNavigation =
+        navigationError instanceof Error &&
+        (navigationError.message.includes("net::ERR_ABORTED") ||
+          navigationError.name === "TimeoutError");
+      const transientHttp =
+        !navigationError && [429, 502, 503, 504].includes(status);
+      if (!transientNavigation && !transientHttp) {
+        if (navigationError) throw navigationError;
+        break;
+      }
+      finalNavigationError = navigationError;
       console.warn(
-        `E2E_RESPONSIVE_LOAD_RETRY role=${role} viewport=${viewport.name} attempt=${attempt} http=${status} cfRay=${response?.headers()["cf-ray"] ?? "unavailable"}`,
+        `E2E_RESPONSIVE_LOAD_RETRY role=${role} viewport=${viewport.name} attempt=${attempt} http=${status} cfRay=${response?.headers()["cf-ray"] ?? "unavailable"} error=${navigationError instanceof Error ? navigationError.message : "none"}`,
       );
+      recordDiagnostic("responsive-navigation-retry", role, {
+        viewport: viewport.name,
+        attempt,
+        status,
+        cfRay: response?.headers()["cf-ray"] ?? null,
+        error: navigationError instanceof Error ? navigationError.message : null,
+      });
       if (attempt < 3) {
         await page.waitForTimeout(attempt * 1200);
       }
     }
+
+    // A third aborted request never becomes a green test accidentally.
+    gate(
+      finalNavigationError === null,
+      `E2E_RESPONSIVE_NAV_EXHAUSTED role=${role} viewport=${viewport.name} error=${finalNavigationError instanceof Error ? finalNavigationError.message : "none"}`,
+    );
 
     gate(
       Boolean(response) && response.status() === 200,
