@@ -185,7 +185,7 @@ export async function createSchoolMeetingAction(
 }
 
 export type SchoolMeetingActionState = { ok: boolean; message: string };
-export const initialSchoolMeetingActionState: SchoolMeetingActionState = { ok: false, message: "" };
+
 export async function createSchoolMeetingWithResult(
   _previous: SchoolMeetingActionState, form: FormData,
 ): Promise<SchoolMeetingActionState> {

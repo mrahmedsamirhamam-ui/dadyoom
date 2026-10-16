@@ -2,7 +2,7 @@
 import { useActionState, useEffect, useRef } from "react";
 import { useFormStatus } from "react-dom";
 import { useRouter } from "next/navigation";
-import { createSchoolMeetingWithResult, initialSchoolMeetingActionState } from "@/features/live/actions";
+import { createSchoolMeetingWithResult } from "@/features/live/actions";
 function SubmitButton() {
   const { pending } = useFormStatus();
   return <button type="submit" disabled={pending}
@@ -11,7 +11,7 @@ function SubmitButton() {
   </button>;
 }
 export default function SchoolMeetingCreationForm() {
-  const [state, submit] = useActionState(createSchoolMeetingWithResult, initialSchoolMeetingActionState);
+  const [state, submit] = useActionState(createSchoolMeetingWithResult, { ok: false, message: "" });
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
   useEffect(() => {
