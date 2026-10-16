@@ -59,7 +59,7 @@ describe("National subject coverage is not automatically a completed lesson", ()
     const widget = load("components/search/LessonSearchClient.tsx");
     expect(api).toContain("isCurriculumScopeRecord({ summary: item.summary, content: item.content })");
     expect(api).toContain("isEmptyLessonReference(item.content)");
-    expect(api).toContain('"id,title,summary,content,units!inner');
+    expect(api).toContain('"id,title,summary,content,semester,units!inner');
     expect(widget).toContain('lesson.resourceKind === "curriculum-scope"');
     expect(widget).toContain("مجال دراسي — يحتاج تفصيل الدروس");
     expect(widget).toContain("اعرف حالة المجال وابحث عن الدروس التفصيلية");
