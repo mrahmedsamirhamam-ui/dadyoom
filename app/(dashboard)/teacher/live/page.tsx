@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 
 import CopyLiveLinkButton from "@/components/live/CopyLiveLinkButton";
 
-import { createLiveSessionAction } from "@/features/live/actions";
+import TeacherLiveCreationForm from "./TeacherLiveCreationForm";
 import { createClient } from "@/lib/supabase/server";
 
 function formatBahrainDateTime(value: string | null) {
@@ -51,11 +51,13 @@ export default async function TeacherLivePage() {
       .from("edu_marketplace_courses")
       .select("id,title")
       .in("status", ["draft", "published"])
+      .eq("teacher_id", user.id)
       .order("created_at", { ascending: false }),
     supabase
       .from("teacher_classes")
       .select("id,name")
       .eq("is_active", true)
+      .eq("teacher_id", user.id)
       .order("created_at", { ascending: false }),
   ]);
 
@@ -74,81 +76,7 @@ export default async function TeacherLivePage() {
             جدولة حصة مباشرة
           </h1>
 
-          <form
-            action={createLiveSessionAction}
-            className="mt-5 space-y-4"
-          >
-            <input
-              name="title"
-              required
-              placeholder="عنوان الحصة"
-              className="w-full rounded-2xl border p-3"
-            />
-
-            <textarea
-              name="description"
-              placeholder="وصف مختصر"
-              className="min-h-24 w-full rounded-2xl border p-3"
-            />
-
-            <p className="rounded-xl bg-teal-50 p-3 text-sm font-bold text-teal-900">المواعيد بتوقيت البحرين (UTC+3).</p>
-            <label className="block font-bold">
-              تبدأ
-              <input
-                type="datetime-local"
-                name="startsAt"
-                required
-                className="mt-2 w-full rounded-2xl border p-3"
-              />
-            </label>
-
-            <label className="block font-bold">
-              تنتهي
-              <input
-                type="datetime-local"
-                name="endsAt"
-                className="mt-2 w-full rounded-2xl border p-3"
-              />
-            </label>
-
-            <select
-              name="courseId"
-              className="w-full rounded-2xl border p-3"
-              defaultValue=""
-            >
-              <option value="">
-                اربط بكورس مدفوع (اختياري)
-              </option>
-              {(courses.data ?? []).map((course) => (
-                <option key={course.id} value={course.id}>
-                  {course.title}
-                </option>
-              ))}
-            </select>
-
-            <select
-              name="classId"
-              className="w-full rounded-2xl border p-3"
-              defaultValue=""
-            >
-              <option value="">
-                أو اربط بفصل (اختياري)
-              </option>
-              {(classes.data ?? []).map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item.name}
-                </option>
-              ))}
-            </select>
-
-            <button
-              type="submit"
-              className="dadyoom-arabic-button rounded-2xl px-5 py-3 font-black text-white"
-            >
-              أنشئ الحصة
-            </button>
-          </form>
-        </section>
+          <TeacherLiveCreationForm courses={courses.data ?? []} classes={classes.data ?? []} />        </section>
 
         <section className="rounded-[2rem] border border-[#dcc899] bg-white p-6">
           <h2 className="text-2xl font-black text-[#123f39]">
