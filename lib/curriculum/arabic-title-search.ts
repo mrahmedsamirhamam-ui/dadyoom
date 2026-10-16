@@ -22,7 +22,7 @@ export function lessonTitleSearchPattern(input: string): string | null {
   if (/[\\%_]/u.test(text)) return null;
 
   return Array.from(text, (character) => {
-    if (character === " ") return "[[:space:]]+";
+    if (character === " ") return "\\s+";
     const literal = REGEX_SPECIAL.test(character) ? "\\" + character : character;
     return literal + OPTIONAL_MARKS;
   }).join("");

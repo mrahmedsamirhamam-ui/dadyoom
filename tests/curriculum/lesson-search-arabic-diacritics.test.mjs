@@ -18,15 +18,15 @@ describe("The student search lens matches vowelled and unvowelled Arabic titles"
     const pattern = lessonTitleSearchPattern("  أَقْسَامُ  الكلام  ");
     expect(pattern).toBeTruthy();
     expect(new RegExp(pattern, "iu").test("أقسامُ الكلامِ")).toBe(true);
-    expect(new RegExp(lessonTitleSearchPattern("حرف (ب)")!, "iu").test("حرف (ب)")).toBe(true);
+    expect(new RegExp((lessonTitleSearchPattern("حرف (ب)") ?? ""), "iu").test("حرف (ب)")).toBe(true);
   });
 
   test("regex syntax is escaped, oversized and wildcard queries are rejected", () => {
     const metacharacters = lessonTitleSearchPattern("درس .+");
     expect(metacharacters).toContain("\\.");
     expect(metacharacters).toContain("\\+");
-    expect(new RegExp(metacharacters!, "iu").test("درس .+")).toBe(true);
-    expect(new RegExp(metacharacters!, "iu").test("درس عظيم")).toBe(false);
+    expect(new RegExp((metacharacters ?? ""), "iu").test("درس .+")).toBe(true);
+    expect(new RegExp((metacharacters ?? ""), "iu").test("درس عظيم")).toBe(false);
     expect(lessonTitleSearchPattern("َُ")).toBeNull();
     expect(lessonTitleSearchPattern("دروس%")).toBeNull();
     expect(lessonTitleSearchPattern("ت".repeat(81))).toBeNull();
