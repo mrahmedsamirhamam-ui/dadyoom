@@ -36,6 +36,18 @@ type SecondaryCoverageRow = {
   last_audited_date: string | null;
 };
 
+type SecondaryTermRow = {
+  secondary_track_id: string;
+  semester: number | null;
+  publication_status: string | null;
+  detail_status: string | null;
+  source_url: string | null;
+  secondary_tracks: {
+    country_code: string;
+    is_active: boolean;
+  } | Array<{ country_code: string; is_active: boolean }> | null;
+};
+
 function relationOne<T>(
   value: T | T[] | null
 ): T | null {
@@ -79,6 +91,7 @@ export default async function CurriculumPage() {
     lessonCount,
     publishedCount,
     secondaryCoverageResult,
+    secondaryTermsResult,
   ] = await Promise.all([
     supabase
       .from("countries")
@@ -137,6 +150,15 @@ export default async function CurriculumPage() {
       )
       .eq("is_active", true)
       .order("country_code"),
+
+    // Live, read-only term map. A registered track is not evidence that its
+    // first, second or third term has the official textbook content.
+    supabase
+      .from("secondary_track_terms")
+      .select("secondary_track_id,semester,publication_status,detail_status,source_url,secondary_tracks!inner(country_code,is_active)")
+      .eq("academic_year", "2026-2027")
+      .eq("secondary_tracks.is_active", true)
+      .limit(500),
   ]);
 
   if (countriesResult.error) {
@@ -159,6 +181,34 @@ export default async function CurriculumPage() {
 
   const countries =
     (countriesResult.data ?? []) as CountryRow[];
+
+  // Do not turn a database read failure into misleading zero coverage.
+  const termReadFailed = Boolean(secondaryTermsResult.error);
+  const termRows = termReadFailed
+    ? []
+    : (secondaryTermsResult.data ?? []) as unknown as SecondaryTermRow[];
+  const termsByCountry = new Map<string, {
+    term1: number; term2: number; term3: number;
+    publishedTerms: number; notPublishedTerms: number;
+  }>();
+  for (const row of termRows) {
+    const track = relationOne(row.secondary_tracks);
+    if (!track?.is_active) continue;
+    const current = termsByCountry.get(track.country_code) ?? {
+      term1: 0, term2: 0, term3: 0,
+      publishedTerms: 0, notPublishedTerms: 0,
+    };
+    if (row.semester === 1) current.term1 += 1;
+    if (row.semester === 2) current.term2 += 1;
+    if (row.semester === 3) current.term3 += 1;
+    if (row.publication_status === "published") {
+      current.publishedTerms += 1;
+    } else {
+      current.notPublishedTerms += 1;
+    }
+    termsByCountry.set(track.country_code, current);
+  }
+  const countriesWithTermRecords = termsByCountry.size;
 
   const curricula =
     (curriculaResult.data ?? []) as unknown as CurriculumRow[];
@@ -348,6 +398,58 @@ export default async function CurriculumPage() {
               </article>
             ))}
           </div>
+        </section>
+
+        <section aria-labelledby="term-scope-evidence" className="rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-6 shadow-sm">
+          <h2 id="term-scope-evidence" className="font-arabic-display text-2xl font-black text-[#123f39]">
+            فصول المسارات الرسمية 2026–2027 — تدقيق حي للدول الـ22
+          </h2>
+          <p className="mt-3 text-sm leading-8 text-[#73695d]">
+            بيانات وجود الفصل ومصدر خطته منفصلة عن المطابقة الفعلية لفهرس الكتاب.
+            وجود الفصل في قاعدة البيانات لا يثبت أن كل دروسه أو تقويماته مكتملة.
+            غياب سجل فصل يعني أنه ينتظر توثيقًا منفصلًا، لا أن الدولة بلا منهج.
+          </p>
+          {termReadFailed ? (
+            <p role="alert" className="mt-4 rounded-xl bg-amber-50 p-4 font-bold text-amber-950">
+              تعذرت قراءة أدلة الفصول الحية؛ أوقفنا عرض الإحصاءات بدل إظهار أصفار مضللة.
+            </p>
+          ) : (
+            <>
+              <p className="mt-4 text-sm font-black text-[#174f47]">
+                الدول ذات سجلات فصول مستقلة: {countriesWithTermRecords}/{activeCountries}
+                {" • "}إجمالي سجلات الفصول: {termRows.length}
+                {" • "}نطاقات تنتظر إعلان الخطة/التحقق: {termRows.filter(row => row.publication_status !== "published").length}
+              </p>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {coverageCards.map((item) => {
+                  const terms = termsByCountry.get(item.code);
+                  return (
+                    <article key={item.code} className="rounded-xl border border-[#e3d5b9] bg-white p-4">
+                      <p className="font-black text-[#123f39]">{item.name} — {item.code}</p>
+                      <p className="mt-2 text-xs font-bold leading-6 text-[#6f6556]">
+                        {terms
+                          ? `فصل أول: ${terms.term1} • ثانٍ: ${terms.term2} • ثالث: ${terms.term3}`
+                          : "لم يسجل نطاق فصلي مستقل بعد"}
+                      </p>
+                      {terms && terms.notPublishedTerms > 0 ? (
+                        <p className="mt-1 text-xs font-bold text-amber-800">
+                          {terms.notPublishedTerms} نطاق فصل لم تثبت خطة نشره الحالية
+                        </p>
+                      ) : null}
+                    </article>
+                  );
+                })}
+              </div>
+            </>
+          )}
+          <p className="mt-4 text-xs leading-7 text-[#73695d]">
+            الأولوية: مطابقة كتب البحرين صفحةً بصفحة، ثم استكمال الأدلة الحالية لبقية الدول،
+            دون إعادة استخدام خطط قديمة باعتبارها مناهج الفصل الحالي.
+          </p>
+          <Link href="/admin/curriculum/coverage/toc-review"
+            className="mt-3 inline-flex rounded-full bg-[#123f39] px-5 py-3 text-sm font-black text-white">
+            فتح فهارس الكتب الـ56 في البحرين ←
+          </Link>
         </section>
 
         <section className="grid gap-5 lg:grid-cols-[1fr_.85fr]">
