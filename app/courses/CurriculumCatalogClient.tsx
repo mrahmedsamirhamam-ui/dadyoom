@@ -1444,8 +1444,11 @@ function CatalogScope({
 
                 <span className="shrink-0 rounded-full bg-white px-4 py-2 text-sm font-black">
                   {item.lessons.filter(
-                    (lesson) => lesson.resourceKind !== "book-reference",
+                    (lesson) => lesson.resourceKind === "lesson" || !lesson.resourceKind,
                   ).length} درسًا
+                  {item.lessons.some((lesson) => lesson.resourceKind === "curriculum-scope")
+                    ? ` • ${item.lessons.filter((lesson) => lesson.resourceKind === "curriculum-scope").length} مجال يحتاج تفصيل الدروس`
+                    : ""}
                   {item.lessons.some((lesson) => lesson.resourceKind === "book-reference")
                     ? ` • ${item.lessons.filter((lesson) => lesson.resourceKind === "book-reference").length} مرجع كتاب`
                     : ""}
@@ -1474,6 +1477,24 @@ function CatalogScope({
                       <p className="mt-3 text-sm font-black text-[#174f47]">
                         عرض حالة الكتاب ومصدره ←
                       </p>
+                    </Link>
+                  ) : lesson.resourceKind === "curriculum-scope" ? (
+                    <Link
+                      key={lesson.id}
+                      href={`/lessons/${lesson.id}`}
+                      prefetch={false}
+                      className="min-w-0 rounded-2xl border border-[#d5c49e] bg-[#f5f0e4] p-4 transition hover:border-[#bba472]"
+                    >
+                      <span className="inline-flex rounded-full bg-[#eae3d3] px-3 py-1 text-xs font-black text-[#6c5b3b]">
+                        مجال دراسي — ليس درسًا مكتملًا
+                      </span>
+                      <h3 className="mt-3 break-words text-lg font-black leading-8 text-[#173f38]">
+                        {lesson.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-7 text-[#716859]">
+                        هذا محور أو مجال يعرض نطاق المنهج؛ تفاصيل الدروس تحتاج مطابقة المصدر المعتمد.
+                      </p>
+                      <p className="mt-3 font-black text-[#174f47]">عرض حالة المجال والدروس المتاحة ←</p>
                     </Link>
                   ) : (
                   <Link
