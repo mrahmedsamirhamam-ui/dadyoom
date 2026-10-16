@@ -283,15 +283,29 @@ export default async function GradeCurriculumPage({
           </h1>
 
           <p className="mt-4 max-w-3xl font-arabic-reading text-lg leading-9 text-[#655e54]">
-            دليل مباشر للدروس ذات
-            المحتوى الفريد المتاح
-            لهذا الصف في ضاديوم،
+            اختر المسار والفصل في المستكشف لعرض كل الدروس المنشورة لهذا الصف؛
+            أما الروابط في هذه الصفحة فخاصة بالدروس المؤهلة للفهرسة فقط،
             مرتب حسب الوحدات؛
             ويمكن فتح كل درس
             للشرح والتدريب والألعاب
             والـQR الذكي.
           </p>
 
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href={`/courses?country=${info.code}&grade=${gradeValue}`}
+              prefetch={false}
+              className="inline-flex min-h-12 items-center rounded-full bg-[#123f39] px-6 py-3 text-sm font-black text-white transition hover:bg-[#1b5c53]"
+            >
+              فتح جميع دروس الصف والمنهج والفصل ←
+            </Link>
+            <Link
+              href="/courses/rooms"
+              className="inline-flex min-h-12 items-center rounded-full border border-[#d5c29e] bg-white px-5 py-3 text-sm font-black text-[#123f39]"
+            >
+              تخصيص غرفة التعلم
+            </Link>
+          </div>
           <div className="mt-6 flex flex-wrap gap-3 text-sm font-black">
             <span className="rounded-full bg-[#eaf4f0] px-4 py-2 text-[#174f47]">
               {lessons.length} درسًا قابلًا للفهرسة
