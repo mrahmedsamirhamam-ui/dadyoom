@@ -36,11 +36,12 @@ export default function LessonSearchClient({
   const [results, setResults] = useState<SearchResult[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(initialQuery.trim().length >= 2);
   const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState("");
-  const activeCountry = countries.find(item => item.code === initialCountry);
-  const selectedGrade = Number(initialGrade);
+  const [selectedCountry, setSelectedCountry] = useState(initialCountry);
+  const [selectedGrade, setSelectedGrade] = useState(initialGrade);
+  const activeCountry = countries.find(item => item.code === selectedCountry);
   const query = initialQuery.trim();
 
   useEffect(() => {
@@ -131,7 +132,13 @@ export default function LessonSearchClient({
             </label>
             <label className="block font-black text-[#123f39]">
               الدولة
-              <select name="country" defaultValue={initialCountry}
+              <select name="country" value={selectedCountry}
+                onChange={(event) => {
+                  const nextCountry = event.target.value;
+                  setSelectedCountry(nextCountry);
+                  const maxGrade = countries.find(item => item.code === nextCountry)?.maxGrade ?? 13;
+                  if (selectedGrade && Number(selectedGrade) > maxGrade) setSelectedGrade("");
+                }}
                 className="mt-2 min-h-12 w-full rounded-xl border border-[#bda779] bg-white px-3 py-2 text-base">
                 <option value="">جميع الدول العربية</option>
                 {countries.map(item => (
@@ -141,7 +148,8 @@ export default function LessonSearchClient({
             </label>
             <label className="block font-black text-[#123f39]">
               الصف الدراسي
-              <select name="grade" defaultValue={initialGrade}
+              <select name="grade" value={selectedGrade}
+                onChange={(event) => setSelectedGrade(event.target.value)}
                 className="mt-2 min-h-12 w-full rounded-xl border border-[#bda779] bg-white px-3 py-2 text-base">
                 <option value="">كل الصفوف</option>
                 {Array.from({ length: activeCountry?.maxGrade ?? 13 }, (_, i) => i + 1)
