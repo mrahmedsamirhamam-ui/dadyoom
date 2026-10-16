@@ -260,6 +260,28 @@ export default async function LessonPage({
   const emptyReference = isEmptyLessonReference(lesson.content);
   if (curriculumScope || emptyReference) {
     const title = normalizeArabicDisplayText(lesson.title);
+    // Follow the real FK chain; never infer a grade from a title, OCR or user agent.
+    // If the relation cannot be resolved, the unfiltered catalog remains safe.
+    const supabase = await createClient();
+    const { data: scopeUnit } = await supabase
+      .from("units")
+      .select("grades!inner(grade_number,curricula!inner(countries!inner(code)))")
+      .eq("id", lesson.unit_id)
+      .maybeSingle();
+    type Linked<T> = T | T[] | null | undefined;
+    const first = <T,>(value: Linked<T>): T | null =>
+      Array.isArray(value) ? (value[0] ?? null) : (value ?? null);
+    type LinkedCountry = { code: string };
+    type LinkedCurriculum = { countries: Linked<LinkedCountry> };
+    type LinkedGrade = { grade_number: number | null; curricula: Linked<LinkedCurriculum> };
+    const linked = scopeUnit as unknown as { grades?: Linked<LinkedGrade> } | null;
+    const linkedGrade = first(linked?.grades);
+    const linkedCountry = first(first(linkedGrade?.curricula)?.countries);
+    const code = linkedCountry?.code?.toUpperCase() ?? "";
+    const grade = Number(linkedGrade?.grade_number ?? 0);
+    const scoped = /^[A-Z]{2}$/.test(code) && Number.isInteger(grade) && grade >= 1 && grade <= 13;
+    const catalogLink = scoped ? `/courses?country=${code}&grade=${grade}` : "/courses";
+    const searchLink = scoped ? `/search?country=${code}&grade=${grade}` : "/search";
     return (
       <main dir="rtl" className="min-h-screen bg-[#f8f4eb] px-4 py-10 text-[#173f38]">
         <div className="mx-auto max-w-4xl space-y-6">
@@ -281,10 +303,10 @@ export default async function LessonPage({
               <p className="mt-4 rounded-xl bg-[#f2ecdf] p-4 text-sm leading-8">{lesson.summary}</p>
             ) : null}
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/courses" className="inline-flex min-h-12 items-center rounded-full bg-[#173f38] px-6 py-3 font-black text-white">
+              <Link href={catalogLink} className="inline-flex min-h-12 items-center rounded-full bg-[#173f38] px-6 py-3 font-black text-white">
                 اختر الدولة والصف لعرض الدروس المتاحة ←
               </Link>
-              <Link href="/search" className="inline-flex min-h-12 items-center rounded-full border border-[#b9a276] px-5 py-3 font-black text-[#173f38]">
+              <Link href={searchLink} className="inline-flex min-h-12 items-center rounded-full border border-[#b9a276] px-5 py-3 font-black text-[#173f38]">
                 🔍 ابحث عن عنوان درس محدد
               </Link>
             </div>
