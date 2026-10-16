@@ -30,6 +30,10 @@ describe("Compact global Dadyoom navigation", () => {
     expect(admin).toContain('href: "/admin/payments"');
     expect(admin).toContain('href: "/admin/curriculum/coverage"');
     expect(dashboard).toContain("<NotificationBell />");
+    // /student/reminders belongs to the student layout. Do not show its
+    // navigation link on a teacher/admin/parent/school dashboard.
+    expect(dashboard).toContain('role === "student" || role === "child"');
+    expect(dashboard).toContain('{user && (role === "student" || role === "child") ? (');
   });
   test("companion, installer and language control no longer occupy same corner", () => {
     expect(chatbot).toContain("pointer-events-auto absolute bottom-0 right-0");
