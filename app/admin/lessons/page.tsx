@@ -32,12 +32,13 @@ type Search = {
   status?: string;
   country?: string;
   grade?: string;
+  review?: string;
 };
 type Props = { searchParams: Promise<Search> };
 
 function urlFor(search: Search, page: number) {
   const p = new URLSearchParams();
-  for (const key of ["q", "status", "country", "grade"] as const) {
+  for (const key of ["q", "status", "country", "grade", "review"] as const) {
     const value = search[key];
     if (value) p.set(key, value);
   }
@@ -51,9 +52,11 @@ function sanitizeSearch(raw: Search): Search {
   const country = /^[A-Za-z]{2}$/u.test(raw.country ?? "") ? raw.country!.toUpperCase() : "";
   const n = Number(raw.grade);
   const grade = raw.grade && Number.isInteger(n) && n >= 1 && n <= 12 ? String(n) : "";
+  const review = ["missing-pages", "generic-intro", "unresolved-ocr", "missing-link"].includes(raw.review ?? "")
+    ? raw.review : "";
   const p = Number(raw.page);
   const page = Number.isSafeInteger(p) && p > 0 ? Math.min(p, 10000) : 1;
-  return { q, status, country, grade, page: String(page) };
+  return { q, status, country, grade, review, page: String(page) };
 }
 function Alert({ message }: { message: string }) {
   return <p role="alert" className="rounded-2xl border border-rose-300 bg-rose-50 p-5 font-bold text-rose-900">{message}</p>;
@@ -80,6 +83,17 @@ export default async function AdminLessonsPage({ searchParams }: Props) {
   if (filters.status) query = query.eq("status", filters.status);
   if (filters.country) query = query.eq("units.grades.curricula.countries.code", filters.country);
   if (filters.grade) query = query.eq("units.grades.grade_number", Number(filters.grade));
+  // Evidence issue filters are applied in PostgREST, not sliced after
+  // pagination. These are *review queues*, not book-completeness verdicts.
+  if (filters.review === "missing-pages") {
+    query = query.or("source_page_start.is.null,source_page_end.is.null");
+  } else if (filters.review === "missing-link") {
+    query = query.is("source_pdf_url", null);
+  } else if (filters.review === "generic-intro") {
+    query = query.like("content", "يتناول هذا الدرس موضوع «%");
+  } else if (filters.review === "unresolved-ocr") {
+    query = query.ilike("content", "%مدخل OCR غير محسوم%");
+  }
   if (filters.q) {
     // Supabase "ilike" treats % and _ as wildcards. Escape them to keep
     // the search literal rather than expanding into an unbounded scan.
@@ -117,7 +131,7 @@ export default async function AdminLessonsPage({ searchParams }: Props) {
         <Link href="/admin/curriculum/coverage/toc-review" className="text-[#174f47] underline">مطابقة فهارس الكتب ←</Link>
       </div>
     </header>
-    <form method="GET" action="/admin/lessons" className="grid gap-3 rounded-3xl border border-[#dfcfad] bg-[#fffdf8] p-5 md:grid-cols-5">
+    <form method="GET" action="/admin/lessons" className="grid gap-3 rounded-3xl border border-[#dfcfad] bg-[#fffdf8] p-5 md:grid-cols-6">
       <label className="text-sm font-bold">ابحث بعنوان الدرس
         <input name="q" type="search" defaultValue={filters.q} maxLength={100} placeholder="مثلاً: حرف الباء"
           className="mt-2 w-full rounded-xl border border-[#d6c9b0] bg-white p-3" />
@@ -144,6 +158,16 @@ export default async function AdminLessonsPage({ searchParams }: Props) {
           <option value="published">منشور</option>
           <option value="draft">مسودة</option>
           <option value="archived">مؤرشف</option>
+        </select>
+      </label>
+      <label className="text-sm font-bold">نوع المشكلة للمراجعة
+        <select name="review" defaultValue={filters.review}
+          className="mt-2 w-full rounded-xl border border-[#d6c9b0] bg-white p-3">
+          <option value="">جميع الدروس</option>
+          <option value="missing-pages">صفحات المصدر غير محددة</option>
+          <option value="missing-link">بلا رابط مصدر مسجل</option>
+          <option value="generic-intro">شرح عام مستورد</option>
+          <option value="unresolved-ocr">استخراج OCR غير محسوم</option>
         </select>
       </label>
       <div className="flex items-end gap-2">

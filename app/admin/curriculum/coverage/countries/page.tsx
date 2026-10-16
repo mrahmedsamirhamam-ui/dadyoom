@@ -112,6 +112,24 @@ export default async function CountrySourceAuditPage() {
                     href={`/admin/lessons?country=${encodeURIComponent(row.country_code)}&status=published`}>
                     مراجعة المنشور
                   </Link>
+                  {row.published_missing_pages > 0 ? (
+                    <Link prefetch={false} className="font-bold text-amber-800 underline"
+                      href={`/admin/lessons?country=${encodeURIComponent(row.country_code)}&status=published&review=missing-pages`}>
+                      دروس بلا صفحات
+                    </Link>
+                  ) : null}
+                  {row.published_generic_intro > 0 ? (
+                    <Link prefetch={false} className="font-bold text-amber-800 underline"
+                      href={`/admin/lessons?country=${encodeURIComponent(row.country_code)}&status=published&review=generic-intro`}>
+                      الشروح المستوردة
+                    </Link>
+                  ) : null}
+                  {row.published_unresolved_ocr > 0 ? (
+                    <Link prefetch={false} className="font-bold text-amber-800 underline"
+                      href={`/admin/lessons?country=${encodeURIComponent(row.country_code)}&status=published&review=unresolved-ocr`}>
+                      سجلات OCR
+                    </Link>
+                  ) : null}
                   <Link prefetch={false} className="font-bold text-[#174f47] underline"
                     href={`/admin/lessons?country=${encodeURIComponent(row.country_code)}&status=draft`}>
                     مراجعة المسودات
