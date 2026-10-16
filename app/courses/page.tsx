@@ -9,8 +9,18 @@ import {
   getArabicCountryOptions,
 } from "@/lib/countries";
 
-export const dynamic = "force-static";
-export const revalidate = 86400;
+// Preselect country and grade from the direct lesson-directory links.
+// The curriculum itself still loads lazily for the requested grade.
+export const dynamic = "force-dynamic";
+
+type CourseSearchParams = {
+  country?: string | string[];
+  grade?: string | string[];
+};
+
+type CoursesPageProps = {
+  searchParams: Promise<CourseSearchParams>;
+};
 
 export const metadata: Metadata = {
   title: "مناهج اللغة العربية | ضاديوم",
@@ -19,7 +29,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/courses" },
 };
 
-export default function CoursesPage() {
+export default async function CoursesPage({ searchParams }: CoursesPageProps) {
   const arabCodes = new Set<string>(ARAB_COUNTRY_CODES);
 
   const countries = getArabicCountryOptions()
@@ -29,6 +39,17 @@ export default function CoursesPage() {
       name: item.name,
       maxGrade: maxGradeForCountry(item.code),
     }));
+
+  const query = await searchParams;
+  const rawCountry = Array.isArray(query.country) ? query.country[0] : query.country;
+  const country = countries.find(
+    (item) => item.code === (rawCountry ?? "").trim().toUpperCase(),
+  ) ?? countries.find((item) => item.code === "BH") ?? countries[0];
+  const rawGrade = Array.isArray(query.grade) ? query.grade[0] : query.grade;
+  const requestedGrade = Number(rawGrade);
+  const grade = Number.isInteger(requestedGrade) &&
+    requestedGrade >= 1 && requestedGrade <= (country?.maxGrade ?? 12)
+    ? requestedGrade : 1;
 
   return (
     <>
@@ -45,7 +66,7 @@ export default function CoursesPage() {
           </Link>
         </div>
       </section>
-      <CurriculumCatalogClient countries={countries} />
+      <CurriculumCatalogClient countries={countries} initialCountryCode={country?.code ?? "BH"} initialGradeNumber={grade} />
     </>
   );
 }
