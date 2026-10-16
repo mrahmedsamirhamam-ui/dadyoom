@@ -471,3 +471,9 @@
 - ✅ كانت الصفحة تجري 5 طلبات Supabase RLS متوازية للصفوف والدروس والمحادثات والمهام والجوائز، ثم 3 طلبات إضافية للأعضاء والملفات والرسائل **داخل Server Component** قبل إرسال HTML. أصبحت مرحلة SSR تقرأ فصول المعلم النشطة وروابط الطلاب وأسماءهم فقط مع فحص فشل قراءة الصفوف.
 - ✅ البيانات الثانوية (قائمة 120 درسًا، المحادثات، 100 رسالة، 50 مهمة) تقرأ في Client Component مباشرة من Supabase Browser Session المحمية بـRLS، وليس من Cloudflare Worker. يحدث إعادة التحميل عند نجاح إرسال الرسالة أو نشر المهمة؛ يبقى حق التعديل في Server Actions وRLS. تظهر حالة «جارٍ التحميل» مع رسالة عند الفشل.
 - 🧪 `tests/ui/teacher-classroom-lightweight-ssr.test.mjs` يحرس عدم عودة ست/ثماني قراءات إلى SSR. تحسن الأداء **فرضية اختبار** إلى أن تنجح Production Role QA على SHA الجديد؛ لا نزعم إصلاح 503 دون تجربة.
+
+## 16 أكتوبر 2026 — حسم أخطاء React Lint داخل الفصل الذكي
+
+- 🧪 فشل `Cloudflare Verify` على `ef17eeec` في مرحلة Lint لا في الإنتاج بسبب `react-hooks/set-state-in-effect` و`react-hooks/immutability`: كان `setLoadingExtras(false)` متزامنًا داخل effect، وكان `setStatus` معرفًا بعد effect.
+- ✅ نُقل تعريف `status` قبل effect؛ لا يستدعي effect `setState` مباشرًا في الفرع الفارغ، ولا يبدأ التحديث قبل الطلب غير المتزامن؛ يبقى ضبط الحالة بعد انتهاء قراءات Supabase أو فشلها محميًا بعلامة `active`.
+- ✅ اختبار `tests/ui/teacher-classroom-react-effect-lint.test.mjs` يثبت ترتيب Hooks وعدم إعادة إدخال الحالتين غير الصالحتيْن.

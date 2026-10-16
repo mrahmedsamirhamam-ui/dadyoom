@@ -58,18 +58,15 @@ export default function TeacherClassroomClient(props: Props) {
   const [assignments, setAssignments] = useState(props.assignments);
   const [loadingExtras, setLoadingExtras] = useState(Boolean(props.classes.length));
   const [reloadVersion, setReloadVersion] = useState(0);
+  const [status, setStatus] = useState("");
 
   // Browser-side RLS reads keep heavy secondary data off Cloudflare SSR.
   // Server actions still apply their authorization and mutation policies.
   useEffect(() => {
     let active = true;
-    if (!props.classes.length) {
-      setLoadingExtras(false);
-      return;
-    }
+    if (!props.classes.length) return;
     const supabase = createClient();
     async function loadSupplemental() {
-      setLoadingExtras(true);
       const [lessonResponse, conversationResponse, assignmentResponse] =
         await Promise.all([
           supabase.from("lessons").select("id,title")
@@ -115,7 +112,6 @@ export default function TeacherClassroomClient(props: Props) {
     ? studentId
     : classStudents[0]?.id ?? "";
 
-  const [status, setStatus] = useState("");
   const [title, setTitle] = useState("");
   const [kind, setKind] = useState("homework");
   const [lessonId, setLessonId] = useState("");
