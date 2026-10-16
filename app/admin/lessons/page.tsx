@@ -1,468 +1,203 @@
 import Link from "next/link";
+import { createClient } from "@/lib/supabase/server";
 
-import {
-  createClient,
-} from "@/lib/supabase/server";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
-import {
-  Button,
-} from "@/components/ui/button";
+const PAGE_SIZE = 30;
 
-import {
-  Badge,
-} from "@/components/ui/badge";
+type Relation<T> = T | T[] | null;
+function first<T>(input: Relation<T> | undefined): T | null {
+  return Array.isArray(input) ? input[0] ?? null : input ?? null;
+}
 
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-
+type Country = { code: string; name_ar: string };
+type Curriculum = { countries: Relation<Country> };
+type Grade = { name_ar: string; grade_number: number | null; curricula: Relation<Curriculum> };
+type Unit = { title: string; grades: Relation<Grade> };
 type Lesson = {
   id: string;
   title: string;
-  slug: string | null;
   lesson_number: number | null;
   lesson_type: string;
-  estimated_minutes: number | null;
   status: string;
   source_page_start: number | null;
   source_page_end: number | null;
-  unit_id: string;
+  estimated_minutes: number | null;
+  units: Relation<Unit>;
 };
-
-type UnitRow = {
-  id: string;
-  title: string;
-  grade_id: string;
+type Search = {
+  page?: string;
+  q?: string;
+  status?: string;
+  country?: string;
+  grade?: string;
 };
+type Props = { searchParams: Promise<Search> };
 
-type GradeRow = {
-  id: string;
-  name_ar: string;
-  grade_number: number | null;
-};
-
-function getLessonTypeName(
-  type: string
-) {
-  const names: Record<
-    string,
-    string
-  > = {
-    reading: "قراءة",
-    writing: "كتابة",
-    listening: "استماع",
-    speaking: "تحدث",
-    grammar: "قواعد",
-    vocabulary: "مفردات",
-  };
-
-  return names[type] ?? type;
+function urlFor(search: Search, page: number) {
+  const p = new URLSearchParams();
+  for (const key of ["q", "status", "country", "grade"] as const) {
+    const value = search[key];
+    if (value) p.set(key, value);
+  }
+  if (page > 1) p.set("page", String(page));
+  const qs = p.toString();
+  return "/admin/lessons" + (qs ? "?" + qs : "");
+}
+function sanitizeSearch(raw: Search): Search {
+  const q = typeof raw.q === "string" ? raw.q.trim().slice(0, 100) : "";
+  const status = ["published", "draft", "archived"].includes(raw.status ?? "") ? raw.status : "";
+  const country = /^[A-Za-z]{2}$/u.test(raw.country ?? "") ? raw.country!.toUpperCase() : "";
+  const n = Number(raw.grade);
+  const grade = raw.grade && Number.isInteger(n) && n >= 1 && n <= 12 ? String(n) : "";
+  const p = Number(raw.page);
+  const page = Number.isSafeInteger(p) && p > 0 ? Math.min(p, 10000) : 1;
+  return { q, status, country, grade, page: String(page) };
+}
+function Alert({ message }: { message: string }) {
+  return <p role="alert" className="rounded-2xl border border-rose-300 bg-rose-50 p-5 font-bold text-rose-900">{message}</p>;
 }
 
-function getStatusName(
-  status: string
-) {
-  const names: Record<
-    string,
-    string
-  > = {
-    draft: "مسودة",
-    published: "منشور",
-    archived: "مؤرشف",
-  };
+export default async function AdminLessonsPage({ searchParams }: Props) {
+  const filters = sanitizeSearch(await searchParams);
+  const page = Number(filters.page);
+  const supabase = await createClient();
 
-  return names[status] ?? status;
-}
+  // Bounded list of country names, not one request per lesson.
+  const countriesResult = await supabase
+    .from("countries").select("code,name_ar").order("name_ar").limit(50);
+  if (countriesResult.error) return <Alert message="تعذر تحميل قائمة الدول." />;
+  const countries = (countriesResult.data ?? []) as Country[];
 
-export default async function AdminLessonsPage() {
-  const supabase =
-    await createClient();
-
-  const [
-    lessonsResult,
-    publishedResult,
-    draftResult,
-  ] = await Promise.all([
-    supabase
-      .from("lessons")
-      .select(
-        "id,title,slug,lesson_number,lesson_type,estimated_minutes,status,source_page_start,source_page_end,unit_id",
-        { count: "estimated" },
-      )
-      .order("lesson_number", { ascending: true })
-      .limit(50),
-
-    supabase
-      .from("lessons")
-      .select("id", { count: "estimated", head: true })
-      .eq("status", "published"),
-
-    supabase
-      .from("lessons")
-      .select("id", { count: "estimated", head: true })
-      .eq("status", "draft"),
-  ]);
-
-  const {
-    data,
-    error,
-    count: totalLessonCount,
-  } = lessonsResult;
-
-  if (error) {
-    console.error(
-      "ADMIN_LESSONS_FETCH_ERROR:",
-      {
-        message:
-          error.message,
-        code:
-          error.code,
-        details:
-          error.details,
-      }
+  // All filters are applied in PostgREST BEFORE pagination and counting.
+  // Every lesson can be reached, not just the first 50 in arbitrary order.
+  let query = supabase.from("lessons")
+    .select(
+      "id,title,lesson_number,lesson_type,status,source_page_start,source_page_end,estimated_minutes,units!inner(title,grades!inner(name_ar,grade_number,curricula!inner(countries!inner(code,name_ar))))",
+      { count: "exact" },
     );
+  if (filters.status) query = query.eq("status", filters.status);
+  if (filters.country) query = query.eq("units.grades.curricula.countries.code", filters.country);
+  if (filters.grade) query = query.eq("units.grades.grade_number", Number(filters.grade));
+  if (filters.q) {
+    // Supabase "ilike" treats % and _ as wildcards. Escape them to keep
+    // the search literal rather than expanding into an unbounded scan.
+    const term = filters.q.replace(/[\\%_]/gu, "\\$&");
+    query = query.ilike("title", `%${term}%`);
+  }
+  const from = (page - 1) * PAGE_SIZE;
+  const result = await query
+    .order("title", { ascending: true })
+    .order("id", { ascending: true })
+    .range(from, from + PAGE_SIZE - 1);
+  if (result.error) {
+    console.error("ADMIN_LESSONS_FILTER_QUERY_FAILED", result.error.code);
+    return <Alert message="تعذر قراءة الدروس بهذه التصفية. لم تتغير أي بيانات." />;
+  }
+  const lessons = (result.data ?? []) as unknown as Lesson[];
+  const count = result.count ?? 0;
+  const totalPages = Math.max(1, Math.ceil(count / PAGE_SIZE));
+  const next = page < totalPages;
+  const prev = page > 1 && page <= totalPages;
+  const countryValid = !filters.country || countries.some(x => x.code === filters.country);
 
-    return (
-      <div className="rounded-xl border border-destructive/30 bg-destructive/5 p-6">
-        <h1 className="text-xl font-bold text-destructive">
-          تعذر تحميل الدروس
-        </h1>
-
-        <p className="mt-2 text-sm text-muted-foreground">
-          {error.message}
+  return <main dir="rtl" className="space-y-6 p-4 sm:p-7">
+    <header className="rounded-3xl border border-[#dfcfad] bg-white p-6">
+      <p className="text-sm font-black text-[#9a7028]">بوابة المناهج • مكتبة الدروس</p>
+      <h1 className="mt-2 text-3xl font-black text-[#123f39]">كل الدروس والمسودات</h1>
+      <p className="mt-3 text-sm leading-7 text-[#625b51]">
+        تصفح الدروس دولةً وصفًا وحالةً، ثم افتح كل درس لتصحيح المصدر والمحتوى.
+        «منشور» لا يعني «مطابق لفهرس الكتاب الرسمي».
+      </p>
+      <div className="mt-4 flex flex-wrap gap-3 text-sm font-black">
+        <Link href="/admin/curriculum/coverage" className="text-[#174f47] underline">تدقيق كتب البحرين ←</Link>
+        <Link href="/admin/curriculum/coverage/drafts" className="text-[#174f47] underline">قائمة المسودات ومشكلات OCR ←</Link>
+        <Link href="/admin/curriculum/coverage/toc-review" className="text-[#174f47] underline">مطابقة فهارس الكتب ←</Link>
+      </div>
+    </header>
+    <form method="GET" action="/admin/lessons" className="grid gap-3 rounded-3xl border border-[#dfcfad] bg-[#fffdf8] p-5 md:grid-cols-5">
+      <label className="text-sm font-bold">ابحث بعنوان الدرس
+        <input name="q" type="search" defaultValue={filters.q} maxLength={100} placeholder="مثلاً: حرف الباء"
+          className="mt-2 w-full rounded-xl border border-[#d6c9b0] bg-white p-3" />
+      </label>
+      <label className="text-sm font-bold">الدولة
+        <select name="country" defaultValue={countryValid ? filters.country : ""}
+          className="mt-2 w-full rounded-xl border border-[#d6c9b0] bg-white p-3">
+          <option value="">كل الدول</option>
+          {countries.map(x => <option key={x.code} value={x.code}>{x.name_ar}</option>)}
+        </select>
+      </label>
+      <label className="text-sm font-bold">الصف
+        <select name="grade" defaultValue={filters.grade}
+          className="mt-2 w-full rounded-xl border border-[#d6c9b0] bg-white p-3">
+          <option value="">كل الصفوف</option>
+          {Array.from({ length: 12 }, (_, index) => index + 1).map(n =>
+            <option key={n} value={n}>الصف {n}</option>)}
+        </select>
+      </label>
+      <label className="text-sm font-bold">الحالة
+        <select name="status" defaultValue={filters.status}
+          className="mt-2 w-full rounded-xl border border-[#d6c9b0] bg-white p-3">
+          <option value="">كل الحالات</option>
+          <option value="published">منشور</option>
+          <option value="draft">مسودة</option>
+          <option value="archived">مؤرشف</option>
+        </select>
+      </label>
+      <div className="flex items-end gap-2">
+        <button type="submit" className="rounded-xl bg-[#174f47] px-5 py-3 font-black text-white">بحث</button>
+        <Link href="/admin/lessons" className="rounded-xl border border-[#d6c9b0] px-4 py-3 text-sm font-black">إلغاء</Link>
+      </div>
+    </form>
+    <section className="rounded-3xl border border-[#dfcfad] bg-white p-5">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <p role="status" className="font-black text-[#123f39]">
+          {count.toLocaleString("ar-BH")} نتيجة مطابقة للبحث — صفحة {page} من {totalPages}
         </p>
+        <p className="text-xs text-[#685d4d]">30 درسًا كحد أقصى في الصفحة لحماية سرعة الموقع</p>
       </div>
-    );
-  }
-
-  if (publishedResult.error) {
-    console.error(
-      "ADMIN_LESSONS_PUBLISHED_COUNT_ERROR:",
-      publishedResult.error.message,
-    );
-  }
-
-  if (draftResult.error) {
-    console.error(
-      "ADMIN_LESSONS_DRAFT_COUNT_ERROR:",
-      draftResult.error.message,
-    );
-  }
-
-  const lessons =
-    (data ?? []) as Lesson[];
-
-  const publishedCount =
-    publishedResult.count ?? 0;
-
-  const draftCount =
-    draftResult.count ?? 0;
-
-  const unitIds =
-    Array.from(
-      new Set(
-        lessons
-          .map((lesson) => lesson.unit_id)
-          .filter(Boolean),
-      ),
-    );
-
-  const unitsResult =
-    unitIds.length > 0
-      ? await supabase
-          .from("units")
-          .select("id,title,grade_id")
-          .in("id", unitIds)
-      : { data: [] as UnitRow[], error: null };
-
-  if (unitsResult.error) {
-    console.error(
-      "ADMIN_LESSONS_UNITS_FETCH_ERROR:",
-      unitsResult.error.message,
-    );
-  }
-
-  const units =
-    (unitsResult.data ?? []) as UnitRow[];
-
-  const gradeIds =
-    Array.from(
-      new Set(
-        units
-          .map((unit) => unit.grade_id)
-          .filter(Boolean),
-      ),
-    );
-
-  const gradesResult =
-    gradeIds.length > 0
-      ? await supabase
-          .from("grades")
-          .select("id,name_ar,grade_number")
-          .in("id", gradeIds)
-      : { data: [] as GradeRow[], error: null };
-
-  if (gradesResult.error) {
-    console.error(
-      "ADMIN_LESSONS_GRADES_FETCH_ERROR:",
-      gradesResult.error.message,
-    );
-  }
-
-  const unitById =
-    new Map(
-      units.map((unit) => [unit.id, unit]),
-    );
-
-  const gradeById =
-    new Map(
-      ((gradesResult.data ?? []) as GradeRow[])
-        .map((grade) => [grade.id, grade]),
-    );
-
-  return (
-    <div
-      className="space-y-6"
-      dir="rtl"
-    >
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">
-            إدارة الدروس
-          </h1>
-
-          <p className="mt-1 text-muted-foreground">
-            راجع الدروس المنشورة وأثرِ محتواها؛ المنهج الأساسي يأتي من حزم المناهج الموثقة.
-          </p>
-        </div>
-
-        <div className="flex flex-wrap gap-2">
-          <Link
-            href="/admin/curriculum"
-            prefetch={false}
-            className="rounded-full border border-[#d3c099] bg-[#fffaf0] px-5 py-2.5 text-sm font-black text-[#6f572d]"
-          >
-            بوابة المناهج
-          </Link>
-
-          <Link
-            href="/courses"
-            prefetch={false}
-            className="rounded-full bg-[#123f39] px-5 py-2.5 text-sm font-black text-white"
-          >
-            معاينة المنشور
-          </Link>
-        </div>
+      {page > totalPages ? <Alert message="رقم الصفحة خارج نطاق النتائج. عد إلى الصفحة الأولى." /> : null}
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[840px] text-right text-sm">
+          <thead><tr className="border-b bg-[#f7f1e6] text-[#123f39]">
+            <th className="p-3">الدرس</th><th className="p-3">الدولة</th>
+            <th className="p-3">الصف / الوحدة</th><th className="p-3">الحالة</th>
+            <th className="p-3">صفحات المصدر</th><th className="p-3">المراجعة</th>
+          </tr></thead>
+          <tbody>
+            {lessons.map(lesson => {
+              const unit = first(lesson.units);
+              const grade = first(unit?.grades);
+              const curriculum = first(grade?.curricula);
+              const country = first(curriculum?.countries);
+              const pages = lesson.source_page_start && lesson.source_page_end
+                ? `${lesson.source_page_start}–${lesson.source_page_end}` : "غير محددة";
+              return <tr key={lesson.id} className="border-b last:border-b-0">
+                <td className="p-3 font-black text-[#174f47]">{lesson.title}</td>
+                <td className="p-3">{country?.name_ar ?? "—"}</td>
+                <td className="p-3">{grade?.name_ar ?? "—"} • {unit?.title ?? "—"}</td>
+                <td className="p-3 font-bold">{lesson.status === "published" ? "منشور" : lesson.status === "draft" ? "مسودة" : "مؤرشف"}</td>
+                <td className="p-3" dir="ltr">{pages}</td>
+                <td className="p-3"><Link prefetch={false}
+                  href={`/admin/lessons/${lesson.id}`}
+                  className="font-black text-[#174f47] underline">فتح الدرس ←</Link></td>
+              </tr>;
+            })}
+            {!lessons.length ? <tr><td colSpan={6} className="p-9 text-center font-bold text-[#766953]">
+              لا توجد دروس بهذه المعايير.
+            </td></tr> : null}
+          </tbody>
+        </table>
       </div>
-
-      <div className="grid gap-4 sm:grid-cols-3">
-        <div className="rounded-xl border bg-card p-5">
-          <p className="text-sm text-muted-foreground">
-            إجمالي الدروس
-          </p>
-
-          <p className="mt-2 text-3xl font-bold">
-            {totalLessonCount ?? lessons.length}
-          </p>
-        </div>
-
-        <div className="rounded-xl border bg-card p-5">
-          <p className="text-sm text-muted-foreground">
-            الدروس المنشورة
-          </p>
-
-          <p className="mt-2 text-3xl font-bold">
-            {publishedCount}
-          </p>
-        </div>
-
-        <div className="rounded-xl border bg-card p-5">
-          <p className="text-sm text-muted-foreground">
-            المسودات
-          </p>
-
-          <p className="mt-2 text-3xl font-bold">
-            {draftCount}
-          </p>
-        </div>
-      </div>
-
-      <div className="overflow-hidden rounded-xl border bg-card">
-        <div className="border-b px-4 py-3 text-xs font-bold text-muted-foreground">
-          عرض أول {lessons.length} درسًا فقط للحفاظ على سرعة لوحة الإدارة.
-        </div>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="text-right">
-                مسلسل
-              </TableHead>
-
-              <TableHead className="text-right">
-                رقم الدرس
-              </TableHead>
-
-              <TableHead className="text-right">
-                عنوان الدرس
-              </TableHead>
-
-              <TableHead className="text-right">
-                الوحدة
-              </TableHead>
-
-              <TableHead className="text-right">
-                الصف
-              </TableHead>
-
-              <TableHead className="text-right">
-                النوع
-              </TableHead>
-
-              <TableHead className="text-right">
-                الصفحات
-              </TableHead>
-
-              <TableHead className="text-right">
-                المدة
-              </TableHead>
-
-              <TableHead className="text-right">
-                الحالة
-              </TableHead>
-
-              <TableHead className="text-right">
-                الإدارة
-              </TableHead>
-            </TableRow>
-          </TableHeader>
-
-          <TableBody>
-            {lessons.length ===
-            0 ? (
-              <TableRow>
-                <TableCell
-                  colSpan={10}
-                  className="h-32 text-center text-muted-foreground"
-                >
-                  لا توجد دروس حتى الآن.
-                </TableCell>
-              </TableRow>
-            ) : (
-              lessons.map(
-                (
-                  lesson,
-                  index
-                ) => {
-                  const unit =
-                    unitById.get(
-                      lesson.unit_id,
-                    ) ?? null;
-
-                  const grade =
-                    unit
-                      ? gradeById.get(
-                          unit.grade_id,
-                        ) ?? null
-                      : null;
-
-                  const pages =
-                    lesson.source_page_start &&
-                    lesson.source_page_end
-                      ? `${lesson.source_page_start} — ${lesson.source_page_end}`
-                      : "—";
-
-                  return (
-                    <TableRow
-                      key={
-                        lesson.id
-                      }
-                    >
-                      <TableCell className="font-bold">
-                        {index + 1}
-                      </TableCell>
-
-                      <TableCell className="font-bold">
-                        {lesson.lesson_number}
-                      </TableCell>
-
-                      <TableCell className="font-medium">
-                        <Link
-                          href={`/admin/lessons/${lesson.id}`}
-                          prefetch={false}
-                          className="hover:underline"
-                        >
-                          {lesson.title}
-                        </Link>
-                      </TableCell>
-
-                      <TableCell>
-                        {unit?.title ??
-                          "غير محددة"}
-                      </TableCell>
-
-                      <TableCell>
-                        {grade?.name_ar ??
-                          "غير محدد"}
-                      </TableCell>
-
-                      <TableCell>
-                        {getLessonTypeName(
-                          lesson.lesson_type
-                        )}
-                      </TableCell>
-
-                      <TableCell>
-                        {pages}
-                      </TableCell>
-
-                      <TableCell>
-                        {lesson.estimated_minutes
-                          ? `${lesson.estimated_minutes} دقيقة`
-                          : "—"}
-                      </TableCell>
-
-                      <TableCell>
-                        {lesson.status ===
-                        "published" ? (
-                          <Badge>
-                            منشور
-                          </Badge>
-                        ) : (
-                          <Badge variant="secondary">
-                            {getStatusName(
-                              lesson.status
-                            )}
-                          </Badge>
-                        )}
-                      </TableCell>
-
-                      <TableCell>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          render={
-                            <Link
-                              href={`/admin/lessons/${lesson.id}`}
-                              prefetch={false}
-                            />
-                          }
-                        >
-                          فتح وإدارة
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  );
-                }
-              )
-            )}
-          </TableBody>
-        </Table>
-      </div>
-    </div>
-  );
+      <nav aria-label="تصفح صفحات الدروس" className="mt-5 flex flex-wrap items-center justify-between gap-4">
+        {prev ? <Link prefetch={false} href={urlFor(filters, page - 1)}
+          className="rounded-xl border border-[#c9b992] px-5 py-3 font-black text-[#174f47]">← الصفحة السابقة</Link>
+          : <span />}
+        {next ? <Link prefetch={false} href={urlFor(filters, page + 1)}
+          className="rounded-xl bg-[#174f47] px-5 py-3 font-black text-white">الصفحة التالية ←</Link>
+          : <span />}
+      </nav>
+    </section>
+  </main>;
 }
