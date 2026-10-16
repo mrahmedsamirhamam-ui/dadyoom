@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 
 import CopyLiveLinkButton from "@/components/live/CopyLiveLinkButton";
 import { createSchoolMeetingAction } from "@/features/live/actions";
-import { createClient } from "@/lib/supabase/server";
+import { getDashboardRequestViewer } from "@/lib/auth/request-viewer";
 
 function formatBahrainDateTime(value: string | null) {
   if (!value) return "الموعد غير محدد";
@@ -28,42 +28,18 @@ function formatBahrainDateTime(value: string | null) {
 }
 
 export default async function SchoolMeetingsPage() {
-  const supabase = await createClient();
-  const db = supabase as unknown as SupabaseClient;
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
+  // Reuse request-scoped authentication and profile across the dashboard.
+  // Avoid another independent getUser() + profile query during Cloudflare SSR.
+  const { supabase, user, userError, profile, profileError } =
+    await getDashboardRequestViewer();
+  if (userError || !user) {
     redirect("/login");
   }
-
-  const [
-    profileResult,
-    schoolResult,
-  ] = await Promise.all([
-    supabase
-      .from("profiles")
-      .select("role")
-      .eq("id", user.id)
-      .maybeSingle(),
-    supabase
-      .from("schools")
-      .select("id,name")
-      .eq("owner_id", user.id)
-      .eq("is_active", true)
-      .maybeSingle(),
-  ]);
-
-  if (profileResult.error) {
-    throw profileResult.error;
+  if (profileError || !profile) {
+    throw new Error("تعذر التحقق من صلاحيات المدرسة.");
   }
-
-  const role = String(
-    profileResult.data?.role ?? "",
-  )
-    .trim()
-    .toLowerCase();
+  const db = supabase as unknown as SupabaseClient;
+  const role = String(profile.role ?? "").trim().toLowerCase();
 
   if (
     role !== "school" &&
@@ -71,6 +47,13 @@ export default async function SchoolMeetingsPage() {
   ) {
     redirect("/student");
   }
+
+  const schoolResult = await supabase
+    .from("schools")
+    .select("id,name")
+    .eq("owner_id", user.id)
+    .eq("is_active", true)
+    .maybeSingle();
 
   if (schoolResult.error) {
     throw schoolResult.error;

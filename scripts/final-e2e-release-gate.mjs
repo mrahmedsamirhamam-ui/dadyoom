@@ -4913,41 +4913,40 @@ async function focusedSchoolMeetingFlow(
       baseUrl,
     );
 
-    await schoolPage.goto(
-      baseUrl +
-        "/school/meetings",
-      {
-        waitUntil:
-          "networkidle",
-        timeout:
-          60_000,
-      },
-    );
-
-    const createButton =
-      schoolPage
-        .getByRole(
-          "button",
-          {
-            name:
-              "إنشاء غرفة الاجتماع",
-          },
-        )
-        .first();
-
-    const form =
-      createButton
-        .locator(
-          "xpath=ancestor::form",
-        );
-
-    await form
-      .locator(
-        'input[name="title"]',
-      )
-      .fill(
-        meetingTitle,
+    // The previous flow ignored HTTP status: Cloudflare 503 can produce
+    // a loaded document without a meeting form, causing a 30s fill timeout.
+    // Require an exact school path and visible form on a real HTTP 200 page.
+    let meetingFormReady = false;
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      const response = await schoolPage.goto(
+        `${baseUrl}/school/meetings`,
+        { waitUntil: "domcontentloaded", timeout: 60_000 },
       );
+      const http = response?.status() ?? 0;
+      const path = new URL(schoolPage.url()).pathname;
+      const field = schoolPage.locator('form input[name="title"]').first();
+      if (http === 200 && path === "/school/meetings") {
+        try {
+          await field.waitFor({ state: "visible", timeout: 10_000 });
+          meetingFormReady = true;
+          break;
+        } catch {
+          // Do not treat a 200 response without the real form as a pass.
+        }
+      }
+      console.warn(
+        `E2E_SCHOOL_MEETING_FORM_RETRY attempt=${attempt} http=${http} path=${path} cfRay=${response?.headers()["cf-ray"] ?? "unavailable"} fields=${await schoolPage.locator('form input[name="title"]').count()}`,
+      );
+      if (http !== 200 && ![429, 502, 503, 504].includes(http)) break;
+      if (attempt < 3) await schoolPage.waitForTimeout(attempt * 1300);
+    }
+    gate(meetingFormReady, "E2E_SCHOOL_MEETING_FORM_UNAVAILABLE");
+
+    const createButton = schoolPage
+      .getByRole("button", { name: "إنشاء غرفة الاجتماع" }).first();
+    const form = createButton.locator("xpath=ancestor::form");
+
+    await form.locator('input[name="title"]').fill(meetingTitle);
 
     await form
       .locator(
