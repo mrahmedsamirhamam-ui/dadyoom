@@ -58,12 +58,20 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
           <p className="text-sm font-bold text-[#625b51]">
             <LocalizedText ar="تريد روابط مباشرة قابلة للتصفح لكل دولة؟" en="Want direct links to each country’s Arabic curricula?" />
           </p>
-          <Link
-            href="/curriculum"
-            className="rounded-xl border border-[#cdbb96] bg-white px-4 py-2 text-sm font-black text-[#174f47] hover:underline"
-          >
-            <LocalizedText ar="افتح دليل المناهج والدروس" en="Open the country directory" />
-          </Link>
+          <div className="flex flex-wrap gap-2">
+            <Link
+              href="/courses/rooms"
+              className="inline-flex min-h-11 items-center rounded-xl bg-[#123f39] px-5 py-2 text-sm font-black text-white hover:bg-[#1b5c53]"
+            >
+              <LocalizedText ar="خصّص غرفة التعلم" en="Personalize a learning room" />
+            </Link>
+            <Link
+              href="/curriculum"
+              className="inline-flex min-h-11 items-center rounded-xl border border-[#cdbb96] bg-white px-4 py-2 text-sm font-black text-[#174f47] hover:underline"
+            >
+              <LocalizedText ar="افتح دليل المناهج والدروس" en="Open the country directory" />
+            </Link>
+          </div>
         </div>
       </section>
       <CurriculumCatalogClient countries={countries} initialCountryCode={country?.code ?? "BH"} initialGradeNumber={grade} />
