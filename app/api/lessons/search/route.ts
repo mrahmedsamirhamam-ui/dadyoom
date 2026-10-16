@@ -5,6 +5,7 @@ import { maxGradeForCountry } from "@/lib/student/country-grade-limits";
 import { isCurriculumScopeRecord, isEmptyLessonReference } from "@/lib/curriculum/lesson-content-kind";
 import { isBookReference, isKnownBookReferenceId } from "@/lib/curriculum/verified-book-reference";
 import { lessonNeedsSourceReview } from "@/lib/curriculum/lesson-source-review";
+import { lessonTitleSearchPattern } from "@/lib/curriculum/arabic-title-search";
 import { SUPABASE_PUBLIC_KEY, SUPABASE_PUBLIC_URL } from "@/lib/supabase/public-config";
 
 // Search the actual published lesson table, not the SEO-only sitemap view.
@@ -40,7 +41,8 @@ export async function GET(request: Request) {
   const grade = gradeValue ? Number(gradeValue) : null;
   const pageValue = Number(url.searchParams.get("page") ?? "1");
 
-  if (term.length < 2 || term.length > 80 || /[\\%_]/u.test(term)) {
+  const titlePattern = lessonTitleSearchPattern(term);
+  if (!titlePattern) {
     return NextResponse.json(
       { error: "اكتب كلمتين على الأقل أو اسم درس واضح (من حرفين إلى 80 حرفًا، دون رموز البحث)." },
       { status: 400 },
@@ -71,7 +73,9 @@ export async function GET(request: Request) {
     .eq("units.grades.is_active", true)
     .eq("units.grades.curricula.is_active", true)
     .eq("units.grades.curricula.countries.is_active", true)
-    .ilike("title", `%${term}%`);
+    // POSIX regex keeps vowelled/unvowelled title searches equivalent.
+    // Pattern is generated only from escaped literal query characters.
+    .filter("title", "imatch", titlePattern);
   if (countryCode) query = query.eq("units.grades.curricula.countries.code", countryCode);
   if (grade !== null) query = query.eq("units.grades.grade_number", grade);
 

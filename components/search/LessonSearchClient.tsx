@@ -117,7 +117,7 @@ export default function LessonSearchClient({
           </h1>
           <p className="mt-2 text-sm leading-8 text-[#6c6255]">
             البحث يشمل عناوين الدروس المنشورة داخل ضاديوم، حتى إن لم تكن مؤهلة للفهرسة في Google.
-            اختر دولة وصفًا للتأكد من وصولك إلى منهجك.
+            اختر دولة وصفًا للتأكد من وصولك إلى منهجك. لا تحتاج إلى كتابة التشكيل؛ البحث يطابق العنوان المشكول وغير المشكول.
           </p>
           <form role="search" action="/search" method="get" className="mt-6 grid gap-3 sm:grid-cols-2">
             <label className="sm:col-span-2 block font-black text-[#123f39]">
