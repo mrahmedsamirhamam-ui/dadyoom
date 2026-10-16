@@ -549,3 +549,37 @@ html.dadyoom-native-app .dadyoom-native-nav-item {
   line-height:1.15; text-decoration:none; user-select:none;
 }
 html.dadyoom-native-app .dadyoom-native-nav-item:active { background:#f2e5c9; }
+
+
+/* DADYOOM_SHARED_INTERACTION_POLISH_V1
+   Applied across public, lesson, dashboard and live-room pages without
+   replacing the site's established colors, fonts or brand identity. */
+:where(a[href], button, select, input, textarea, [role="button"]):focus-visible {
+  outline: 3px solid #b8842e;
+  outline-offset: 3px;
+}
+
+:where(a[href], button, [role="button"]) {
+  touch-action: manipulation;
+}
+
+:where(main, section, article, aside) :where(h1, h2, h3, h4, p) {
+  overflow-wrap: break-word;
+}
+
+:where(main, section, article, aside) :where(img, video, iframe) {
+  max-width: 100%;
+}
+
+:where([dir="rtl"]) :where(input[type="url"], input[type="email"]) {
+  direction: ltr;
+  text-align: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(a, button, [role="button"]) {
+    scroll-behavior: auto;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
