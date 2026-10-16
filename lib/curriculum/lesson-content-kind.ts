@@ -22,6 +22,13 @@ const scopeContentBeginnings = [
 
 const scopeSummaryBeginnings = [
   "حزمة وطنية أصلية من ضاديوم لمجال",
+  // Explicit national/annual coverage nodes (Yemen, Tunisia, Djibouti,
+  // Comoros). Their summaries are the only field fetched by the catalog.
+  "حزمة وطنية أصلية لمواءمة العربية",
+  "حزمة وطنية أصلية من ضاديوم لمواءمة العربية",
+  "حزمة وطنية أصلية من ضاديوم للعربية",
+  "حزمة وطنية أصلية من ضاديوم لتغطية تعلم العربية",
+  "حزمة وطنية أصلية من ضاديوم لتغطية العربية",
   "تغطية وطنية أصلية من ضاديوم لمجال",
   "حزمة أصلية من ضاديوم لتغطية معايير",
   "حزمة مطابقة وطنية أصلية لمقرر",
