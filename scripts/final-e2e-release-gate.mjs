@@ -706,9 +706,13 @@ async function humanUiJourneySmoke(
                   ) ?? ""
                 ).trim();
 
+              // A raster logo has accessible aria-label/alt text rather than
+              // an inline SVG text node; include it in genuine UI journeys.
               const text =
                 (
-                  anchor.textContent ??
+                  anchor.textContent?.trim() ||
+                  anchor.getAttribute("aria-label") ||
+                  anchor.querySelector("img[alt]")?.getAttribute("alt") ||
                   ""
                 )
                   .replace(
