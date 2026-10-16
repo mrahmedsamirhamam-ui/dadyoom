@@ -186,3 +186,15 @@ P1: إثراء الدروس الحالية بأنشطة الاستقصاء بع�
 **دورة التحسين:** جمع الاحتياجات والمقترحات ← فرز حسب الأثر والتكلفة والمخاطر ← نموذج صغير ← اختبار تربوي وتقني وإتاحة ← اعتماد بشري ← إطلاق متدرج ← قياس مؤشرات (تعلم، رضا، استقرار، وصول) ← تحديث المنتج والوثائق وسجل الملكية الفكرية. لا يُعلن أي إنجاز دون تحقق.
 
 **الأولويات التنفيذية:** استقرار المنصة واستكمال المناهج والدروس الرسمية أولًا، ثم الجودة والبحث والوصول، ثم توسيع المنتجات المستقلة والحقائب والمدارس وفق جاهزيتها؛ لا تؤخر المقترحات الجديدة إنجاز الأساس.
+
+## Dadyoom Excellence Standard (DXS) — معيار ضاديوم للتميز التعليمي
+
+**Status: proposed internal framework, not independently validated or externally certified.** The ambition is to develop measurable educational practices that may become a reference after rigorous evaluation, not to claim current superiority over international standards.
+
+Eight dimensions: learning outcomes; verified official curricula and lesson accuracy; differentiation and accessibility; teacher empowerment; formative and summative assessment; safe and human-supervised AI; family-school-student partnership; measurable continuous improvement.
+
+**Release gates:** (1) reliable core platform and secure roles; (2) official curricula and complete lesson coverage, Bahrain first, with source provenance and content QA; (3) student search and usable learning journeys; (4) technical, accessibility, privacy and pedagogical testing; (5) limited pilot with baseline and follow-up measures; (6) independent review and staged release. Never report 100% without evidence.
+
+**Candidate metrics (targets to be set after baseline):** verified lesson coverage by country/grade/term, content error rate, successful student task completion, accessibility findings, platform reliability, teacher time saved, student learning gains, and satisfaction of students/teachers/parents. Maintain evidence and owner for each metric.
+
+**Execution policy:** speed through small verifiable increments, not shortcuts; zero-cost default and no payment/overages without approval; keep independent projects/repos and connect through explicit APIs; update existing README/AGENTS/project documentation after verified implementation. DXS does not supersede curriculum completion priorities.
