@@ -32,12 +32,24 @@ export default async function BahrainTocEvidenceIntakePage() {
   const failed = Boolean(result.error);
   const reviews = (result.data ?? []) as Review[];
   const map = new Map(reviews.map(review => [review.scope_key, review]));
+  // Review current term-one textbooks first, primary grades before
+  // secondary. Historic term-two plans are not current-year evidence.
   const rows = [...audit.books].sort((a, b) =>
-    (a.grade === 2 ? -1 : b.grade === 2 ? 1 : 0) ||
-    a.program.localeCompare(b.program, "ar") ||
+    Number(b.currentPlanPublished) - Number(a.currentPlanPublished) ||
+    Number(a.program !== "التعليم الأساسي") - Number(b.program !== "التعليم الأساسي") ||
     (a.grade ?? 100) - (b.grade ?? 100) ||
-    a.semesterOrBookPart - b.semesterOrBookPart
+    a.semesterOrBookPart - b.semesterOrBookPart ||
+    a.program.localeCompare(b.program, "ar")
   );
+  const hasBookSource = (book: (typeof rows)[number]) =>
+    book.status !== "OFFICIAL_BOOK_NOT_FOUND";
+  const waitingOriginalToc = rows.filter((book) =>
+    hasBookSource(book) && !map.has(bookTocScopeKey(book))).length;
+  const missingOfficialBook = rows.filter((book) =>
+    !hasBookSource(book)).length;
+  const pendingSemester2Plan = rows.filter((book) =>
+    book.semesterOrBookPart === 2 && !book.currentPlanPublished).length;
+  const submitted = rows.length - waitingOriginalToc - missingOfficialBook;
 
   return <section dir="rtl" data-toc-evidence-state={failed ? "error" : "ready"}
       className="min-h-screen bg-[#f7f1e6] px-4 py-8 text-[#203a34]">
@@ -68,6 +80,24 @@ export default async function BahrainTocEvidenceIntakePage() {
             فهارس مؤكدة بالمطابقة 1:1: {audit.summary.completeBooks}
           </span>
         </div>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-label="طابور التحقق من فهارس الكتب">
+          {[
+            ["كتاب معروف ينتظر إدخال الفهرس", waitingOriginalToc],
+            ["مصدر كتاب مستقل غير مثبت", missingOfficialBook],
+            ["فهرس قيد المراجعة وليس اعتمادًا", submitted],
+            ["الفصل الثاني بلا خطة حالية مثبتة", pendingSemester2Plan],
+          ].map(([label, value]) => (
+            <div key={label} className="rounded-xl border border-[#e6dac2] bg-[#fffaf0] p-4">
+              <div className="text-2xl font-black tabular-nums text-[#123f39]">{value}</div>
+              <div className="mt-2 text-xs font-bold leading-6 text-[#75674f]">{label}</div>
+            </div>
+          ))}
+        </div>
+        <p className="mt-3 text-sm font-bold leading-7 text-[#75674f]">
+          ترتيب التنفيذ: كتب التعليم الأساسي ذات خطة الفصل الأول الحالية، ثم مسارات الثانوية
+          والتعليم المستمر، ثم الفصل الثاني الذي لا تتوافر خطته الحالية.
+          الأعداد لا تثبت أن أي فهرس قد طابق كتابًا مستقلًا؛ الاعتماد بعد مراجعة النص والصفحات والتقييم فقط.
+        </p>
         {failed ? <p role="alert" className="mt-4 rounded-xl bg-red-50 p-4 text-red-800">
           تعذرت قراءة أدلة المراجعة من قاعدة البيانات. لا يظهر التقرير فارغًا باعتباره ناجحًا.
         </p> : null}
