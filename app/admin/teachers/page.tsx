@@ -1,5 +1,4 @@
-import type { SupabaseClient } from "@supabase/supabase-js";
-
+import AdminTeacherClassCounts, { TeacherClassCount } from "./AdminTeacherClassCounts";
 import { createClient } from "@/lib/supabase/server";
 
 type TeacherRow = {
@@ -10,76 +9,24 @@ type TeacherRow = {
   created_at: string | null;
 };
 
-type ClassRow = {
-  teacher_id: string;
-  is_active: boolean;
-};
-
 export default async function AdminTeachersPage() {
   const supabase = await createClient();
 
-  const classroomDb =
-    supabase as unknown as SupabaseClient;
-
-  const teachersResult =
-    await supabase
-      .from("profiles")
-      .select(
-        "id,full_name,email,country,created_at",
-        { count: "estimated" },
-      )
-      .eq("role", "teacher")
-      .order("created_at", { ascending: false })
-      .limit(100);
-
-  const teacherIds =
-    (teachersResult.data ?? []).map(
-      (teacher) => teacher.id,
-    );
-
-  const classesResult =
-    teacherIds.length > 0
-      ? await classroomDb
-          .from("teacher_classes")
-          .select("teacher_id,is_active")
-          .in("teacher_id", teacherIds)
-          .limit(2000)
-      : {
-          data: [] as ClassRow[],
-          error: null,
-        };
+  // The server returns only the first page of teacher profiles.
+  // Class-count queries are a separate browser-side, RLS-protected request:
+  // rendering the admin route must not wait for up to 2,000 class rows.
+  const teachersResult = await supabase
+    .from("profiles")
+    .select("id,full_name,email,country,created_at", { count: "estimated" })
+    .eq("role", "teacher")
+    .order("created_at", { ascending: false })
+    .limit(100);
 
   if (teachersResult.error) {
-    throw new Error(
-      teachersResult.error.message
-    );
+    throw new Error("تعذر قراءة بيانات المعلمين.");
   }
 
-  if (classesResult.error) {
-    throw new Error(
-      classesResult.error.message
-    );
-  }
-
-  const teachers =
-    (teachersResult.data ?? []) as TeacherRow[];
-
-  const classes =
-    (classesResult.data ?? []) as ClassRow[];
-
-  const classCount =
-    new Map<string, number>();
-
-  for (const row of classes) {
-    if (!row.is_active) {
-      continue;
-    }
-
-    classCount.set(
-      row.teacher_id,
-      (classCount.get(row.teacher_id) ?? 0) + 1
-    );
-  }
+  const teachers = (teachersResult.data ?? []) as TeacherRow[];
 
   return (
     <main
@@ -112,6 +59,7 @@ export default async function AdminTeachersPage() {
           </div>
         </section>
 
+        <AdminTeacherClassCounts teacherIds={teachers.map((teacher) => teacher.id)}>
         <div className="overflow-hidden rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] shadow-sm">
           <div className="border-b border-[#eee3cf] px-4 py-3 text-xs font-bold text-[#7b7164]">
             عرض أحدث {teachers.length} معلمًا؛ تُحمّل الفصول لهذا النطاق فقط.
@@ -143,7 +91,7 @@ export default async function AdminTeachersPage() {
                       {teacher.email}
                     </td>
                     <td className="p-4 font-black text-[#9a7028]">
-                      {classCount.get(teacher.id) ?? 0}
+                      <TeacherClassCount teacherId={teacher.id} />
                     </td>
                   </tr>
                 ))}
@@ -162,6 +110,7 @@ export default async function AdminTeachersPage() {
             </table>
           </div>
         </div>
+        </AdminTeacherClassCounts>
       </div>
     </main>
   );
