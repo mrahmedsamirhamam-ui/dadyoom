@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { ARAB_COUNTRY_CODES } from "@/lib/countries";
 import { maxGradeForCountry } from "@/lib/student/country-grade-limits";
+import { isCurriculumScopeRecord, isEmptyLessonReference } from "@/lib/curriculum/lesson-content-kind";
 import { SUPABASE_PUBLIC_KEY, SUPABASE_PUBLIC_URL } from "@/lib/supabase/public-config";
 
 // Search the actual published lesson table, not the SEO-only sitemap view.
@@ -20,7 +21,7 @@ type Grade = {
 };
 type Unit = { id: string; title: string; grades: Relation<Grade> };
 type LessonSearchRow = {
-  id: string; title: string; summary: string | null;
+  id: string; title: string; summary: string | null; content: string | null;
   units: Relation<Unit>;
 };
 
@@ -62,7 +63,7 @@ export async function GET(request: Request) {
 
   let query = db
     .from("lessons")
-    .select("id,title,summary,units!inner(id,title,grades!inner(id,name_ar,grade_number,is_active,curricula!inner(id,name_ar,is_active,countries!inner(code,name_ar,is_active))))")
+    .select("id,title,summary,content,units!inner(id,title,grades!inner(id,name_ar,grade_number,is_active,curricula!inner(id,name_ar,is_active,countries!inner(code,name_ar,is_active))))")
     .eq("status", "published")
     .eq("units.grades.is_active", true)
     .eq("units.grades.curricula.is_active", true)
@@ -102,6 +103,10 @@ export async function GET(request: Request) {
       curriculum: curriculum.name_ar,
       unit: unit.title,
       href: `/lessons/${item.id}`,
+      resourceKind: isEmptyLessonReference(item.content)
+        ? "book-reference"
+        : isCurriculumScopeRecord({ summary: item.summary, content: item.content })
+          ? "curriculum-scope" : "lesson",
     }];
   });
 
