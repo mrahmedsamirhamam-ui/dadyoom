@@ -49,7 +49,7 @@ export default async function BahrainTocEvidenceIntakePage() {
     !hasBookSource(book)).length;
   const pendingSemester2Plan = rows.filter((book) =>
     book.semesterOrBookPart === 2 && !book.currentPlanPublished).length;
-  const submitted = rows.length - waitingOriginalToc - missingOfficialBook;
+  const submitted = rows.filter((book) => map.has(bookTocScopeKey(book))).length;
 
   return <section dir="rtl" data-toc-evidence-state={failed ? "error" : "ready"}
       className="min-h-screen bg-[#f7f1e6] px-4 py-8 text-[#203a34]">
