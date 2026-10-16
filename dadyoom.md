@@ -424,3 +424,11 @@
 - 🐛 في `Production SEO Gate` على `c943df5a` نجحت صفحات الدول الـ22 ومعظم عينات الصفوف والدروس، ثم فشلت عينة درس `/lessons/90a7903e-882d-42a5-a032-e5770db1a2ca` في خطوة `Verify distributed grade and lesson metadata` بسبب غياب canonical في استجابة HTTP 200؛ فحص Supabase أظهر أن الدرس منشور وموجود في `seo_indexable_lessons_fast`، ولم يكن ضمن 265 المستبعدة لجودة المحتوى. لا نجزم بعد إن كان الخلل في الاستجابة اللحظية أو الرندر المستمر.
 - 🛠️ `seo-production-gate.yml` يعيد الآن التحقق من HTML عند HTTP 200 إذا لم يحتوي canonical ورابطه المطابق، ويعيد الطلب بحد أقصى 3 محاولات مع تسجيل CF-Ray وحجم الاستجابة؛ إذا ظل canonical مفقودًا يبقى `SEO_DISTRIBUTED=FAIL_CANONICAL`، وأخطاء الصفحات 5xx والـnoindex والوصف والعنوان والروابط القديمة تستمر بالفشل.
 - 🧪 اختبار `tests/seo/distributed-canonical-retry-strict.test.mjs` يمنع تحوّل إعادة المحاولة إلى نجاح زائف. التعديل في بوابة الاختبار وحدها؛ لا يلمس بيانات الدروس أو مدفوعات المستخدمين أو الترحيلات.
+
+## 16 أكتوبر 2026 — الهوية الصورية PNG/WebP بدل SVG بالكامل في الشعار وأيقونة التطبيق
+
+- 🖼️ **طلب معتمد ونُفذ:** لم يعد الشعار الذي يظهر للمستخدم أو علامة `DadyoomMark` عنصر `<svg>`؛ تحوّل `components/brand/DadyoomLogo.tsx` إلى `next/image` يتعامل مع `dadyoom-logo.webp` للشاشات الفاتحة و`dadyoom-logo-inverse.webp` للخلفية الداكنة، و`dadyoom-icon.png` كأيقونة صغيرة. لا تتغير نصوص الاسم الرسمية أو الأقسام.
+- ✅ تم توليد الأصول **الفعلية** وتثبيتها في GitHub Commit `e4c774a2a17d9cfa6a7408636de5fc247fd81706`: `public/brand/dadyoom-logo.webp`، `dadyoom-logo-inverse.webp`، `dadyoom-logo.png`، `dadyoom-icon.png`، `public/pwa/icon-192.png` و`icon-512.png`، `app/icon.png` و`app/apple-icon.png` و`app/favicon.ico`. الألوان الرسمية كحلي/أخضر داكن وذهبي، بخط عربي محلي أثناء التوليد من غير توزيع أي ملف خط.
+- ✅ `app/manifest.ts` و`app/layout.tsx`: لا رابط `/icon.svg`، اعتمدا صورة PNG وتنسيق ICO للأيقونات، وSchema.org logo صورة PNG فعلية؛ `app/icon.svg` محذوف حتى لا يصدر Next.js SVG metadata تلقائيًا.
+- ✅ اختبار `tests/brand/raster-dadyoom-identity.test.mjs` يفحص المكونات والمسارات **وتواقيع PNG/WebP/ICO الثنائية**، وليس مجرد وجود ملفات بأسماء صورية. يبقى أي SVG منفصل لرسوم تعبيرية/تحريك شخصية «ضاد» خارج نطاق شعار الموقع ولا يُستخدم كأيقونة التطبيق.
+- ⏳ اعتماد النشر مرتبط بنتائج Cloudflare Verify وDeploy وMobile Final Verify وSEO وProduction Role QA لنفس SHA. لا تكلفة مدفوعة ولا انتقال إلى Paddle Live.
