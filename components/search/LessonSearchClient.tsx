@@ -186,7 +186,7 @@ export default function LessonSearchClient({
                   className="block min-h-16 rounded-2xl border border-[#dfcfad] bg-[#fffdf8] p-5 transition hover:border-[#96ada0] hover:shadow-md">
                   {lesson.resourceKind && lesson.resourceKind !== "lesson" ? (
                     <span className="mb-2 inline-flex rounded-full bg-[#f2e9d8] px-3 py-1 text-xs font-black text-[#805e2a]">
-                      {lesson.resourceKind === "curriculum-scope" ? "مجال دراسي — يحتاج تفصيل الدروس" : "مرجع بلا نص تعليمي"}
+                      {lesson.resourceKind === "curriculum-scope" ? "مجال دراسي — يحتاج تفصيل الدروس" : "مرجع كتاب — ليس درسًا مستقلًا"}
                     </span>
                   ) : null}
                   <h3 className="text-lg font-black text-[#123f39]">{lesson.title}</h3>
@@ -198,7 +198,7 @@ export default function LessonSearchClient({
                     {lesson.resourceKind === "curriculum-scope"
                       ? "اعرف حالة المجال وابحث عن الدروس التفصيلية ←"
                       : lesson.resourceKind === "book-reference"
-                        ? "اطّلع على حالة المرجع والمحتوى الناقص ←"
+                        ? "اطّلع على مرجع الكتاب وحالة التوثيق ←"
                         : "افتح الدرس ←"}
                   </p>
                 </Link>

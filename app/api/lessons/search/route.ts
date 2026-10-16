@@ -3,6 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 import { ARAB_COUNTRY_CODES } from "@/lib/countries";
 import { maxGradeForCountry } from "@/lib/student/country-grade-limits";
 import { isCurriculumScopeRecord, isEmptyLessonReference } from "@/lib/curriculum/lesson-content-kind";
+import { isBookReference, isKnownBookReferenceId } from "@/lib/curriculum/verified-book-reference";
 import { SUPABASE_PUBLIC_KEY, SUPABASE_PUBLIC_URL } from "@/lib/supabase/public-config";
 
 // Search the actual published lesson table, not the SEO-only sitemap view.
@@ -103,7 +104,12 @@ export async function GET(request: Request) {
       curriculum: curriculum.name_ar,
       unit: unit.title,
       href: `/lessons/${item.id}`,
-      resourceKind: isEmptyLessonReference(item.content)
+      resourceKind: isKnownBookReferenceId(item.id) ||
+        isBookReference({
+          countryCode: country.code,
+          unitTitle: unit.title,
+          lessonTitle: item.title,
+        }) || isEmptyLessonReference(item.content)
         ? "book-reference"
         : isCurriculumScopeRecord({ summary: item.summary, content: item.content })
           ? "curriculum-scope" : "lesson",
