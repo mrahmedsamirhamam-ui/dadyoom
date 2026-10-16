@@ -167,9 +167,18 @@ function gradeName(
     }
   }
 
+  // Egyptian preparatory/secondary naming is not universal. Elsewhere
+  // prefer the source grade label or a neutral numeric grade.
+  if (countryCode && countryCode !== "EG" && value >= 7 && value <= 12) {
+    return fallback
+      ? fallback.replace(/\s*—\s*مسار ضاديوم$/u, "")
+      : `الصف ${value}`;
+  }
   return (
-    gradeNames[value] ??
-    (fallback || `المستوى ${number ?? ""}`)
+    (countryCode === "EG" ? gradeNames[value] : "") ||
+    fallback ||
+    gradeNames[value] ||
+    `المستوى ${number ?? ""}`
   );
 }
 
@@ -298,6 +307,9 @@ export default function CurriculumCatalogClient({
     { length: activeCountry?.maxGrade ?? 12 },
     (_, index) => index + 1,
   );
+  const selectedStage = stageName(gradeNumber, country);
+  const stageOptions = [...new Set(gradeOptions.map((value) => stageName(value, country)))];
+  const gradesInStage = gradeOptions.filter((value) => stageName(value, country) === selectedStage);
 
   return (
     <main
@@ -376,7 +388,7 @@ export default function CurriculumCatalogClient({
         </section>
 
         <section className="min-w-0 rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-4 sm:p-6">
-          <div className="grid min-w-0 gap-3 sm:grid-cols-2">
+          <div className="grid min-w-0 gap-3 sm:grid-cols-3">
             <SelectBox
               label={language === "en" ? "Country" : "الدولة"}
               value={country}
@@ -392,9 +404,21 @@ export default function CurriculumCatalogClient({
             />
 
             <SelectBox
+              label={language === "en" ? "School stage" : "المرحلة الدراسية"}
+              value={selectedStage}
+              options={stageOptions.map(value => [value, value])}
+              onChange={(value) => {
+                const firstGrade = gradeOptions.find(item => stageName(item, country) === value);
+                if (firstGrade) {
+                  setGradeNumber(firstGrade);
+                  setContinuingLevel("");
+                }
+              }}
+            />
+            <SelectBox
               label={language === "en" ? "Grade" : "الصف"}
               value={String(gradeNumber)}
-              options={gradeOptions.map((value) => [
+              options={gradesInStage.map((value) => [
                 String(value),
                 language === "en" ? `Grade ${value}` : gradeName(value, "", country),
               ])}
