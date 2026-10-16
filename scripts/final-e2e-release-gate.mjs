@@ -648,15 +648,25 @@ async function humanUiJourneySmoke(
     step <= 8;
     step += 1
   ) {
-    await page.goto(
-      `${baseUrl}${expectedPath}`,
-      {
-        waitUntil:
-          "domcontentloaded",
-        timeout:
-          60_000,
-      },
-    );
+    // An occasional edge 503 can yield a document with the right URL and
+    // no links. Require a real HTTP 200 before counting any user clicks.
+    let dashboardResponse = null;
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      dashboardResponse = await page.goto(
+        `${baseUrl}${expectedPath}`,
+        { waitUntil: "domcontentloaded", timeout: 60_000 },
+      );
+      const http = dashboardResponse?.status() ?? 0;
+      if (http === 200) break;
+      if (![429, 502, 503, 504].includes(http) || attempt === 3) {
+        gate(false,
+          `E2E_HUMAN_UI_${role.toUpperCase()}_DASHBOARD_HTTP_FAILED:STEP=${step}:HTTP=${http}`);
+      }
+      console.warn(
+        `E2E_HUMAN_DASHBOARD_EDGE_RETRY role=${role} step=${step} attempt=${attempt} http=${http} cfRay=${dashboardResponse?.headers()["cf-ray"] ?? "unavailable"}`,
+      );
+      await page.waitForTimeout(attempt * 1300);
+    }
 
     gate(
       new URL(page.url()).pathname === expectedPath,
@@ -790,7 +800,13 @@ async function humanUiJourneySmoke(
           },
           [...visited],
         );
-        break;
+        // SSR can stream the navigation before the portal links appear.
+        // Retry an empty candidate rather than misreport a missing link.
+        if (candidate || readAttempt === 3) break;
+        console.warn(
+          `E2E_HUMAN_LINK_RENDER_RETRY role=${role} step=${step} attempt=${readAttempt}`,
+        );
+        await page.waitForTimeout(readAttempt * 1200);
       } catch (error) {
         const navigationRace = String(error).includes("Execution context was destroyed");
         if (!navigationRace || readAttempt === 3) throw error;
