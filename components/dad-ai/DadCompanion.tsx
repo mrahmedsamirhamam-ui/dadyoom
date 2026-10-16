@@ -196,7 +196,7 @@ export default function DadCompanion({
         dragConstraints={dragBoundsRef}
         dragMomentum={false}
         dragElastic={0.06}
-        className="pointer-events-auto absolute bottom-0 right-0"
+        className="pointer-events-none absolute bottom-0 left-0"
       >
       <AnimatePresence>
         {isOpen ? (
@@ -206,7 +206,7 @@ export default function DadCompanion({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.94 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="mb-4 flex h-[min(600px,calc(100vh-7rem))] w-[calc(100vw-2rem)] max-w-[410px] flex-col overflow-hidden rounded-[2rem] border border-[#d7c391] bg-[#fffdf8] shadow-2xl shadow-[#123f39]/20"
+            className="pointer-events-auto mb-4 flex h-[min(600px,calc(100vh-7rem))] w-[calc(100vw-2rem)] max-w-[410px] flex-col overflow-hidden rounded-[2rem] border border-[#d7c391] bg-[#fffdf8] shadow-2xl shadow-[#123f39]/20"
           >
             <header className="relative overflow-hidden bg-gradient-to-l from-[#123f39] via-[#17564d] to-[#1f665c] px-5 py-4 text-white">
               <button
@@ -336,7 +336,7 @@ export default function DadCompanion({
           <button
             type="button"
             onPointerDown={(event) => dragControls.start(event)}
-            className="absolute -top-7 right-0 z-20 cursor-grab touch-none select-none rounded-full border border-[#d7c391] bg-[#fffdf8] px-3 py-1 text-[10px] font-black text-[#6e572c] shadow-md active:cursor-grabbing"
+            className="pointer-events-auto absolute -top-7 left-0 z-20 cursor-grab touch-none select-none rounded-full border border-[#d7c391] bg-[#fffdf8] px-3 py-1 text-[10px] font-black text-[#6e572c] shadow-md active:cursor-grabbing"
             aria-label="اسحب لتحريك ضاد"
             title="اسحب لتحريك ضاد"
           >
@@ -362,7 +362,7 @@ export default function DadCompanion({
           onClick={() => setIsOpen((value) => !value)}
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.97 }}
-          className="relative grid h-[58px] w-[58px] place-items-center sm:h-[64px] sm:w-[64px] overflow-hidden rounded-[1.65rem] border border-[#d3ba7e] bg-gradient-to-br from-[#fffdf8] to-[#f6eddc] shadow-2xl shadow-[#123f39]/20"
+          className="pointer-events-auto relative grid h-[58px] w-[58px] place-items-center sm:h-[64px] sm:w-[64px] overflow-hidden rounded-[1.65rem] border border-[#d3ba7e] bg-gradient-to-br from-[#fffdf8] to-[#f6eddc] shadow-2xl shadow-[#123f39]/20"
           aria-label={isOpen ? "إغلاق ضاد" : "فتح ضاد"}
         >
           <span className="absolute -right-1 -top-1 h-3.5 w-3.5 rounded-full border-2 border-[#fffdf8] bg-[#2f9f72]" />
