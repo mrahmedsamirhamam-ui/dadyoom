@@ -67,7 +67,12 @@ export default async function Navbar() {
         <DadyoomLogo className="ml-auto" />
 
         <CompactNavigation items={links} label="القائمة" enLabel="Menu" id="dashboard-navigation" />
-        <NotificationBell />
+        {/* Only learners have the /student/reminders route. Showing this
+            link to teachers or other roles sends them to /login because
+            the student-only layout protects it. */}
+        {user && (role === "student" || role === "child") ? (
+          <NotificationBell />
+        ) : null}
 
         {user ? (
           <div className="flex items-center gap-2">
