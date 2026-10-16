@@ -15,6 +15,7 @@ import {
 import AutoBuildLessonButton
   from "./auto-build-lesson-button";
 import { resolveBahrainGradeOneSource } from "@/lib/curriculum/bahrain-grade-one-source-map";
+import { saveBahrainDraftCorrection } from "./actions";
 
 type Relation<T> = T | T[] | null;
 
@@ -42,6 +43,8 @@ type LessonRow = {
   sort_order: number | null;
   lesson_type: string;
   summary: string | null;
+  content: string | null;
+  source_pdf_url: string | null;
   source_page_start: number | null;
   source_page_end: number | null;
   status: string;
@@ -78,6 +81,8 @@ export default async function LessonPage({
         sort_order,
         lesson_type,
         summary,
+        content,
+        source_pdf_url,
         source_page_start,
         source_page_end,
         status,
@@ -211,6 +216,58 @@ export default async function LessonPage({
           <p className="mt-2 leading-8 text-muted-foreground">
             {lesson.summary}
           </p>
+        </section>
+      ) : null}
+
+      {lesson.status === "draft" && country?.code === "BH" ? (
+        <section className="rounded-2xl border border-[#d8c9aa] bg-[#fffdf8] p-5 shadow-sm">
+          <h2 className="text-xl font-black text-[#123f39]">تحرير مسودة البحرين</h2>
+          <p className="mt-2 text-sm leading-7 text-[#7d5e2a]">
+            الحفظ يحدّث المسودة فقط، ولا ينشرها أو يثبت مطابقتها لفهرس الكتاب.
+            اكتب العنوان الصحيح من كتاب الوزارة، ومحتوى الشرح والتدريب مع مصدره.
+          </p>
+          <form action={saveBahrainDraftCorrection} className="mt-5 grid gap-4">
+            <input type="hidden" name="lesson_id" value={lesson.id} />
+            <label className="block text-sm font-bold">
+              عنوان الدرس
+              <input type="text" name="title" required minLength={3} maxLength={200}
+                defaultValue={lesson.title} className="mt-2 w-full rounded-xl border p-3" />
+            </label>
+            <label className="block text-sm font-bold">
+              ملخص تعليمي
+              <textarea name="summary" rows={3} maxLength={1000}
+                defaultValue={lesson.summary ?? ""} className="mt-2 w-full rounded-xl border p-3" />
+            </label>
+            <label className="block text-sm font-bold">
+              نص الدرس والأنشطة المقترحة
+              <textarea name="content" rows={12} maxLength={30000}
+                defaultValue={lesson.content ?? ""} className="mt-2 w-full rounded-xl border p-3" />
+            </label>
+            <label className="block text-sm font-bold">
+              رابط صفحات الكتاب الرسمي (إن توفر)
+              <input name="source_url" type="url" maxLength={600}
+                defaultValue={lesson.source_pdf_url ?? ""} dir="ltr"
+                placeholder="https://edunet.bh/..." className="mt-2 w-full rounded-xl border p-3" />
+            </label>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <label className="block text-sm font-bold">
+                الصفحة الأولى من الكتاب
+                <input name="source_page_start" type="number" min={1} max={5000}
+                  defaultValue={lesson.source_page_start ?? ""}
+                  className="mt-2 w-full rounded-xl border p-3" />
+              </label>
+              <label className="block text-sm font-bold">
+                الصفحة الأخيرة من الكتاب
+                <input name="source_page_end" type="number" min={1} max={5000}
+                  defaultValue={lesson.source_page_end ?? ""}
+                  className="mt-2 w-full rounded-xl border p-3" />
+              </label>
+            </div>
+            <button type="submit"
+              className="w-fit rounded-xl bg-[#174f47] px-6 py-3 font-black text-white">
+              حفظ التصحيحات كمسودة — بدون نشر
+            </button>
+          </form>
         </section>
       ) : null}
 
