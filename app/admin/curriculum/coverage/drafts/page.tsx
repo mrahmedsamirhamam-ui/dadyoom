@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { suspectImportedLessonTitleReason } from "@/lib/curriculum/imported-lesson-title-quality";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -41,6 +42,8 @@ function warningReasons(
   if (/^(?:الدّرس|الدرس)(?:\s|$)/u.test(draft.title.trim())) {
     reasons.push("عنوان عام يحتاج مطابقة بالكتاب");
   }
+  const brokenTitle = suspectImportedLessonTitleReason(draft.title);
+  if (brokenTitle) reasons.push(brokenTitle);
   return reasons;
 }
 
@@ -168,6 +171,9 @@ export default async function BahrainDraftReviewPage() {
   );
 
   const insufficient = reviewed.filter(item => item.reasons.length > 0).length;
+  const suspiciousOcrTitles = reviewed.filter(item =>
+    suspectImportedLessonTitleReason(item.draft.title) !== null,
+  ).length;
   const gradeNumbers = [...new Set(reviewed.map(item => item.grade?.grade_number))]
     .filter((n): n is number => typeof n === "number").sort((a, b) => a - b);
 
@@ -191,6 +197,9 @@ export default async function BahrainDraftReviewPage() {
             <span className="rounded-xl bg-[#edf5f1] px-4 py-3">المسودات: {reviewed.length}</span>
             <span className="rounded-xl bg-amber-50 px-4 py-3 text-amber-900">
               تحتاج استكمالًا: {insufficient}
+            </span>
+            <span className="rounded-xl bg-rose-50 px-4 py-3 text-rose-900">
+              عناوين OCR مشكوك فيها: {suspiciousOcrTitles}
             </span>
             <span className="rounded-xl bg-[#f7f1e6] px-4 py-3">
               الصفوف: {gradeNumbers.length}

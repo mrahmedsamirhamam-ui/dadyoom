@@ -5,6 +5,7 @@ import { logger } from "@/lib/logger";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { suspectImportedLessonTitleReason } from "@/lib/curriculum/imported-lesson-title-quality";
 
 type GeneratedLesson = {
   sourceText: string;
@@ -382,6 +383,14 @@ export async function createLesson(
     redirect(
       "/admin/lessons/new?error=يجب توليد محتوى الدرس قبل الحفظ"
     );
+  }
+
+  // Never publish OCR table labels as new lesson names. Editors can still
+  // save a draft and recover the real title from an independent book TOC.
+  if (isPublished && suspectImportedLessonTitleReason(title)) {
+    redirect("/admin/lessons/new?error=" + encodeURIComponent(
+      "العنوان يبدو مستخرجًا خطأً من جدول أو رقم صفحة. احفظ مسودة وصحّحه من فهرس الكتاب قبل النشر."
+    ));
   }
 
   if (isPublished && !reviewedForPublication) {
