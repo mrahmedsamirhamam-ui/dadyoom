@@ -14,7 +14,7 @@ describe("Public lesson lens explains genuine versus source-unverified resources
     expect(api).toContain('sourceReviewRequired: resourceKind === "lesson" && lessonNeedsSourceReview(item.content)');
   });
   test("does not give a scope, book reference, or review-pending enrichment a fake official lesson label",()=>{
-    expect(api).toContain("resourceKind: resourceKind");
+    expect(api).toContain("      resourceKind,");
     expect(api).toContain('isKnownBookReferenceId(item.id)');
     expect(api).toContain('isCurriculumScopeRecord({ summary: item.summary, content: item.content })');
     expect(widget).toContain('lesson.resourceKind === "lesson" && lesson.sourceReviewRequired');
