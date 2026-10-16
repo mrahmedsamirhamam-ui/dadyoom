@@ -9,6 +9,10 @@ const links = [
     label: "المناهج",
   },
   {
+    href: "/courses/rooms",
+    label: "تخصيص غرف التعلم",
+  },
+  {
     href: "/courses/rooms/non-native",
     label: "العربية لغير الناطقين",
   },
