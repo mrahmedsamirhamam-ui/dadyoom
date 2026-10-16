@@ -40,14 +40,24 @@ export function isCurriculumScopeRecord({
   const body = (content ?? "").trim();
   const abstract = (summary ?? "").trim();
 
-  // Long real explanatory texts take priority over a boilerplate heading.
-  // The observed scopes have 300-600 characters, not worked lessons.
-  if (body && body.length >= 850) return false;
+  // A genuine topic-specific original lesson takes precedence even when
+  // legacy national summaries use broad words such as "coverage".
+  const originalLessonOpenings = [
+    "درس ضاديوم الأصلي:",
+    "حزمة ضاديوم الموضوعية المتخصصة",
+    "مسار الإتقان الأصلي — ضاديوم",
+    "مسار القراءة والفهم الأصلي — ضاديوم",
+  ];
+  if (originalLessonOpenings.some((opening) => body.startsWith(opening))) {
+    return false;
+  }
 
+  // National framework nodes sometimes exceed 850 characters yet explicitly
+  // state they are NOT a textbook lesson. Length must not grant fake mastery.
   return scopeContentBeginnings.some((opening) => body.startsWith(opening)) ||
     scopeSummaryBeginnings.some((opening) => abstract.startsWith(opening)) ||
-    (body.length < 850 && body.startsWith("هذه حزمة تعليمية أصلية من ضاديوم")) ||
-    (body.length < 850 && body.startsWith("تستخدم ضاديوم اسم الكتاب والفصل المثبتين"));
+    body.startsWith("هذه حزمة تعليمية أصلية من ضاديوم") ||
+    body.startsWith("تستخدم ضاديوم اسم الكتاب والفصل المثبتين");
 }
 
 export function isEmptyLessonReference(content: string | null | undefined): boolean {
