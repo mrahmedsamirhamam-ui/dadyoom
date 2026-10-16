@@ -53,7 +53,7 @@ describe("Real learning room preferences instead of dummy buttons", () => {
     expect(room).toContain('type Activity = "lessons" | "videos"');
     expect(room).toContain("onClick={() => setRoom(item.value)}");
     expect(room).toContain("onClick={() => setActivity(item.value)}");
-    expect(room).toContain("onChange={(event) => setCountryCode");
+    expect(room).toContain("setCountryCode(event.target.value)");
     expect(room).toContain('"/courses/arabic-from-zero"');
     expect(room).toContain("/courses?country=");
     expect(room).toContain("/courses/video-library?room=");
