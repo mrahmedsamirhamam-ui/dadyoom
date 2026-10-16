@@ -112,6 +112,7 @@ export default async function AdminLessonsPage({ searchParams }: Props) {
       </p>
       <div className="mt-4 flex flex-wrap gap-3 text-sm font-black">
         <Link href="/admin/curriculum/coverage" className="text-[#174f47] underline">تدقيق كتب البحرين ←</Link>
+        <Link href="/admin/curriculum/coverage/countries" className="text-[#174f47] underline">فجوات مصادر جميع الدول ←</Link>
         <Link href="/admin/curriculum/coverage/drafts" className="text-[#174f47] underline">قائمة المسودات ومشكلات OCR ←</Link>
         <Link href="/admin/curriculum/coverage/toc-review" className="text-[#174f47] underline">مطابقة فهارس الكتب ←</Link>
       </div>

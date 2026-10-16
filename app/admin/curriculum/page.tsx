@@ -323,6 +323,17 @@ export default async function CurriculumPage() {
           </div>
         </section>
 
+        <div className="flex flex-wrap gap-3">
+          <Link href="/admin/curriculum/coverage/countries" prefetch={false}
+            className="rounded-2xl bg-[#174f47] px-6 py-3 font-black text-white">
+            فجوات مصادر المناهج للدول الـ22 ←
+          </Link>
+          <Link href="/admin/lessons" prefetch={false}
+            className="rounded-2xl border border-[#c7b486] px-6 py-3 font-black text-[#174f47]">
+            بحث وتحرير جميع الدروس ←
+          </Link>
+        </div>
+
         <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           <Metric label="الدول المسجلة" value={countries.length} />
           <Metric label="الدول النشطة" value={activeCountries} />
