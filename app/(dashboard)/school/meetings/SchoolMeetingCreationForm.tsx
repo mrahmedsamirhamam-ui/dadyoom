@@ -1,13 +1,24 @@
 "use client";
-import { useActionState, useEffect, useRef } from "react";
+import { useActionState, useEffect, useRef, useSyncExternalStore } from "react";
 import { useFormStatus } from "react-dom";
 import { useRouter } from "next/navigation";
 import { createSchoolMeetingWithResult } from "@/features/live/actions";
+function noopSubscribe() {
+  return () => {};
+}
+
+/**
+ * Vinext/SSR must not let a visitor submit before React connects the
+ * useActionState handler. SSR renders disabled, hydration enables it.
+ */
 function SubmitButton() {
   const { pending } = useFormStatus();
-  return <button type="submit" disabled={pending}
+  const hydrated = useSyncExternalStore(noopSubscribe, () => true, () => false);
+  return <button type="submit" disabled={!hydrated || pending}
+    data-school-meeting-js-ready={hydrated ? "yes" : "no"}
     className="w-full rounded-xl bg-violet-700 px-5 py-3 font-black text-white disabled:opacity-60">
-    {pending ? "جارٍ حفظ الاجتماع..." : "إنشاء غرفة الاجتماع"}
+    {!hydrated ? "جارٍ تجهيز نموذج الاجتماع..." :
+      pending ? "جارٍ حفظ الاجتماع..." : "إنشاء غرفة الاجتماع"}
   </button>;
 }
 export default function SchoolMeetingCreationForm() {

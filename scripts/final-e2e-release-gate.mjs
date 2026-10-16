@@ -4976,7 +4976,15 @@ async function focusedSchoolMeetingFlow(
         ),
       );
 
-    await createButton.click();
+    // A server-rendered form may be visible before React attaches the action
+    // callback. Wait for an actually hydrated button, not only a visible input.
+    const readyButton = schoolPage.locator('[data-school-meeting-js-ready="yes"]');
+    try {
+      await readyButton.waitFor({ state: "visible", timeout: 30_000 });
+    } catch {
+      gate(false, "E2E_SCHOOL_MEETING_JS_HYDRATION_FAILED");
+    }
+    await readyButton.click();
     const receipt = schoolPage.locator('[data-school-meeting-result="success"]');
     try {
       await receipt.waitFor({ state: "visible", timeout: 30_000 });
