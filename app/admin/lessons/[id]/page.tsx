@@ -15,7 +15,8 @@ import {
 import AutoBuildLessonButton
   from "./auto-build-lesson-button";
 import { resolveBahrainGradeOneSource } from "@/lib/curriculum/bahrain-grade-one-source-map";
-import { saveBahrainDraftCorrection } from "./actions";
+import { saveBahrainDraftCorrection, saveBahrainPublishedSourceCorrection } from "./actions";
+import { publishedLessonNeedsSourceCorrection } from "@/lib/curriculum/bahrain-published-source-correction";
 
 type Relation<T> = T | T[] | null;
 
@@ -266,6 +267,53 @@ export default async function LessonPage({
             <button type="submit"
               className="w-fit rounded-xl bg-[#174f47] px-6 py-3 font-black text-white">
               حفظ التصحيحات كمسودة — بدون نشر
+            </button>
+          </form>
+        </section>
+      ) : null}
+
+      {lesson.status === "published" && country?.code === "BH" &&
+        publishedLessonNeedsSourceCorrection(lesson) ? (
+        <section className="rounded-2xl border border-amber-300 bg-[#fffaf1] p-5">
+          <h2 className="text-xl font-black">تصحيح درس منشور يحتاج مراجعة المصدر</h2>
+          <p className="mt-2 text-sm leading-8">
+            هذا الدرس منشور لكن نصه أو عنوانه يحتاج مراجعة الكتاب.
+            احفظ بعد مراجعة بشرية فعلية فقط؛ التعديل لا يعني اعتماد فهرس الكتاب أو مطابقة الوزارة.
+          </p>
+          <form action={saveBahrainPublishedSourceCorrection} className="mt-4 grid gap-4">
+            <input type="hidden" name="lesson_id" value={lesson.id} />
+            <label className="grid gap-2 font-bold">عنوان الدرس
+              <input type="text" name="title" required minLength={3} maxLength={200}
+                defaultValue={lesson.title} className="w-full rounded-xl border p-3" />
+            </label>
+            <label className="grid gap-2 font-bold">ملخص تعليمي أصيل
+              <textarea name="summary" required rows={3} minLength={20} maxLength={1000}
+                defaultValue={lesson.summary ?? ""} className="w-full rounded-xl border p-3" />
+            </label>
+            <label className="grid gap-2 font-bold">شرح وتدريبات أصلية مصححة
+              <textarea name="content" required rows={12} minLength={180} maxLength={30000}
+                defaultValue={lesson.content ?? ""} className="w-full rounded-xl border p-3" />
+            </label>
+            <label className="grid gap-2 font-bold">رابط الكتاب الوزاري الأصلي — ليس خطة التدريس
+              <input type="url" name="source_url" required maxLength={600} dir="ltr"
+                defaultValue={lesson.source_pdf_url ?? ""} className="w-full rounded-xl border p-3" />
+            </label>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <label className="grid gap-2 font-bold">صفحة البداية
+                <input type="number" name="source_page_start" required min={1} max={5000}
+                  defaultValue={lesson.source_page_start ?? ""} className="w-full rounded-xl border p-3" />
+              </label>
+              <label className="grid gap-2 font-bold">صفحة النهاية
+                <input type="number" name="source_page_end" required min={1} max={5000}
+                  defaultValue={lesson.source_page_end ?? ""} className="w-full rounded-xl border p-3" />
+              </label>
+            </div>
+            <label className="flex items-start gap-3 text-sm font-bold leading-7">
+              <input type="checkbox" required name="textbook_checked" value="yes" className="mt-2" />
+              راجعت بنفسي نص الدرس وصفحاته من الكتاب الرسمي، وأوافق على تحديث نسخة الطالب المنشورة.
+            </label>
+            <button type="submit" className="w-fit rounded-xl bg-[#174f47] px-6 py-3 font-black text-white">
+              حفظ التصحيح بعد المراجعة — دون اعتماد الكتاب
             </button>
           </form>
         </section>

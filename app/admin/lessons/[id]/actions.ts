@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getDashboardRequestViewer } from "@/lib/auth/request-viewer";
 import { validateBahrainDraftCorrection } from "@/lib/curriculum/bahrain-draft-correction";
+import { publishedLessonNeedsSourceCorrection, validatePublishedBahrainSourceCorrection } from "@/lib/curriculum/bahrain-published-source-correction";
 
 type Relation<T> = T | T[] | null;
 const first = <T,>(value: Relation<T>): T | null =>
@@ -59,5 +60,58 @@ export async function saveBahrainDraftCorrection(formData: FormData) {
 
   // No update to status, no assessment publication and no automatic TOC claim.
   revalidatePath(`/admin/lessons/${id}`);
+  revalidatePath("/admin/curriculum/coverage/drafts");
+}
+
+/**
+ * Explicit human-reviewed content correction for a published BH lesson
+ * previously flagged as imported/generic; never certifies official TOC.
+ */
+export async function saveBahrainPublishedSourceCorrection(formData: FormData) {
+  const { user, userError, profile, profileError } = await getDashboardRequestViewer();
+  if (userError || profileError || !user || profile?.role?.trim().toLowerCase() !== "admin") {
+    throw new Error("تعديل الدرس المنشور مخصص لمدير المنصة.");
+  }
+  const id = String(formData.get("lesson_id") ?? "").trim();
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/iu.test(id)) {
+    throw new Error("معرّف الدرس غير صالح.");
+  }
+  const parsed = validatePublishedBahrainSourceCorrection({
+    title: String(formData.get("title") ?? ""),
+    summary: String(formData.get("summary") ?? ""),
+    content: String(formData.get("content") ?? ""),
+    sourceUrl: String(formData.get("source_url") ?? ""),
+    sourcePageStart: String(formData.get("source_page_start") ?? ""),
+    sourcePageEnd: String(formData.get("source_page_end") ?? ""),
+    reviewerConfirmed: String(formData.get("textbook_checked") ?? ""),
+  });
+  if (!parsed.ok) throw new Error(parsed.error);
+
+  const db = createAdminClient();
+  const { data: row, error } = await db.from("lessons")
+    .select("id,title,content,status,units!inner(grades!inner(curricula!inner(countries!inner(code))))")
+    .eq("id", id).maybeSingle();
+  if (error || !row || row.status !== "published") {
+    throw new Error("لا يمكن تعديل إلا درس منشور قائم.");
+  }
+  const unit = first(row.units as Relation<ScopeUnit>);
+  const grade = first(unit?.grades ?? null);
+  const curriculum = first(grade?.curricula ?? null);
+  const country = first(curriculum?.countries ?? null);
+  if (country?.code !== "BH" || !publishedLessonNeedsSourceCorrection(row)) {
+    throw new Error("الدرس ليس ضمن دروس البحرين المنشورة ذات مشاكل المصدر.");
+  }
+  if (row.content?.trim() === parsed.correction.content) {
+    throw new Error("لم يتغير الشرح؛ اكتب تصحيحًا فعليًا.");
+  }
+  // Update only approved textual fields: never mark a book verified,
+  // change official_content_scope or publish assessments automatically.
+  const { data: saved, error: saveError } = await db.from("lessons")
+    .update(parsed.correction)
+    .eq("id", id).eq("status", "published")
+    .select("id").maybeSingle();
+  if (saveError || !saved) throw new Error("تعذر حفظ التصحيح.");
+  revalidatePath(`/admin/lessons/${id}`);
+  revalidatePath(`/lessons/${id}`);
   revalidatePath("/admin/curriculum/coverage/drafts");
 }
