@@ -344,3 +344,10 @@
 - مسودات الفهم: `data/curriculum-completeness/bahrain-grade2-3-sem2-original-objective-drafts-20261010.json`
 - تدقيق آلي لا يغيّر البيانات: `node scripts/verify-dadyoom-completion.mjs`، مع `--strict` عند طلب الشهادة النهائية.
 - قضايا GitHub الأصلية: [المناهج #11](https://github.com/mrahmedsamirhamam-ui/dadyoom/issues/11)، [الفهرسة #12](https://github.com/mrahmedsamirhamam-ui/dadyoom/issues/12)، [Cloudflare #13](https://github.com/mrahmedsamirhamam-ui/dadyoom/issues/13)، [auth assets #14](https://github.com/mrahmedsamirhamam-ui/dadyoom/issues/14).
+
+## 16 أكتوبر 2026 — تسريع صفحة الفصل ومعالجة عطل QA دون تجاوز الصلاحيات
+
+- 🔎 فحص مباشر لأحدث دورة `Production Role QA` على `cd4826d9d3e7`: مرّت خطوات واجهة المعلم الثماني و`E2E_TEACHER_STUDIO=PASS` و`E2E_TEACHER_ACADEMY=PASS`؛ فشل مسار تفاصيل الفصل لاحقًا بعد ثلاث محاولات متتابعة أعادت `HTTP 503` عبر Cloudflare. هذا **ليس** تكرارًا لفشل النقر الذي سببه ضاد.
+- 🛠️ حسّنا صفحتي `/teacher/classes/[id]` وملف الطالب داخله لتجلب بيانات الفصل وقائمة الطلبة بالتوازي بعد التحقق من جلسة المستخدم؛ يقل ذلك عدد جولات الشبكة المتتابعة في SSR دون تعطيل RLS أو فحص الملكية الموجود في `get_teacher_class_roster`.
+- 🧪 أُضيف اختبار `tests/ui/teacher-class-parallel-fetch.test.mjs` للحفاظ على ترتيب المصادقة وتحقيق صلاحية البيانات وعدم استخدام مفتاح الخدمة.
+- ⏳ لا يجوز تفسير هذا التحسين على أنه إثبات لحل عطل 503؛ يجب متابعة تجربة Role QA بعد نشر نفس SHA وتقصي Cloudflare Worker إذا استمر 503. لا تغيير محتوى المناهج أو البيانات الطلابية أو إعدادات الدفع.

@@ -140,28 +140,29 @@ export default async function TeacherClassPage({
     supabase as unknown as
       SupabaseClient;
 
-  const {
-    data: classData,
-    error: classError,
-  } = await classroomDb
-    .from(
-      "teacher_classes"
-    )
-    .select(`
-      id,
-      teacher_id,
-      name,
-      description,
-      academic_year,
-      join_code,
-      is_active,
-      created_at
-    `)
-    .eq(
-      "id",
-      id
-    )
-    .maybeSingle();
+  // Fetch both protected class resources in parallel to reduce Worker SSR latency.
+  // RLS still governs teacher_classes and get_teacher_class_roster independently
+  // verifies auth.uid() and teacher/school/admin membership.
+  const [
+    { data: classData, error: classError },
+    { data: rosterData, error: rosterError },
+  ] = await Promise.all([
+    classroomDb
+      .from("teacher_classes")
+      .select(`
+        id,
+        teacher_id,
+        name,
+        description,
+        academic_year,
+        join_code,
+        is_active,
+        created_at
+      `)
+      .eq("id", id)
+      .maybeSingle(),
+    classroomDb.rpc("get_teacher_class_roster", { p_class_id: id }),
+  ]);
 
   if (classError) {
     throw classError;
@@ -171,20 +172,7 @@ export default async function TeacherClassPage({
     notFound();
   }
 
-  const teacherClass =
-    classData as TeacherClass;
-
-  const {
-    data: rosterData,
-    error: rosterError,
-  } =
-    await classroomDb.rpc(
-      "get_teacher_class_roster",
-      {
-        p_class_id:
-          teacherClass.id,
-      }
-    );
+  const teacherClass = classData as TeacherClass;
 
   if (rosterError) {
     throw rosterError;
