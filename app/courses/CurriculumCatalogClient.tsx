@@ -203,6 +203,17 @@ function stageName(
   return "الإعدادية";
 }
 
+// Search diacritic/hamza variants while keeping filtering strictly within
+// the selected country, grade, study track, semester and unit.
+function normalizeLessonSearch(value: string): string {
+  return value.normalize("NFKC")
+    .replace(/[\u064B-\u0652\u0640]/gu, "")
+    .replace(/[أإآ]/gu, "ا")
+    .replace(/\s+/gu, " ")
+    .trim()
+    .toLocaleLowerCase("ar");
+}
+
 function semesterName(value: number): string {
   if (value === 1) return "الفصل الدراسي الأول";
   if (value === 2) return "الفصل الدراسي الثاني";
@@ -762,6 +773,7 @@ function CatalogScope({
   const [curriculum, setCurriculum] = useState("");
   const [semester, setSemester] = useState("");
   const [unit, setUnit] = useState("");
+  const [lessonSearch, setLessonSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [reloadKey, setReloadKey] = useState(0);
@@ -1034,7 +1046,23 @@ function CatalogScope({
     ? gradeUnits.filter((item) => item.id === unit)
     : gradeUnits;
 
-  const selectedCounts = countCatalogItems(shown);
+  const searchedTitle = normalizeLessonSearch(lessonSearch);
+  const visibleUnits = searchedTitle
+    ? shown
+        .map((item) => ({
+          ...item,
+          lessons: normalizeLessonSearch(item.title).includes(searchedTitle)
+            ? item.lessons
+            : item.lessons.filter((lesson) =>
+                normalizeLessonSearch(
+                  `${lesson.title} ${lesson.objective ?? ""}`,
+                ).includes(searchedTitle),
+              ),
+        }))
+        .filter((item) => item.lessons.length > 0)
+    : shown;
+
+  const selectedCounts = countCatalogItems(visibleUnits);
   const completeCounts = countCatalogItems(gradeUnits);
   const total = selectedCounts.lessonCount;
   const done = selectedCounts.completedLessonCount;
@@ -1272,8 +1300,39 @@ function CatalogScope({
           ) : null}
         </div>
 
+        <div role="search" aria-label="البحث داخل دروس الصف" className="mt-5 rounded-2xl border border-[#d7c59f] bg-[#f8f3e9] p-3 sm:p-4">
+          <label htmlFor="selected-grade-lesson-search" className="block text-sm font-black text-[#123f39]">
+            ابحث بالعدسة داخل دروس {countryName} — الصف {gradeNumber}
+          </label>
+          <div className="mt-2 flex items-center gap-3 rounded-xl border border-[#bca778] bg-white px-4 focus-within:ring-2 focus-within:ring-[#a78032]">
+            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>
+            </svg>
+            <input
+              id="selected-grade-lesson-search"
+              type="search"
+              value={lessonSearch}
+              onChange={(event) => setLessonSearch(event.target.value)}
+              placeholder="اكتب اسم الدرس أو كلمة من محتواه..."
+              className="min-w-0 w-full bg-transparent py-3 text-base text-[#123f39] outline-none"
+            />
+            {lessonSearch ? (
+              <button type="button" onClick={() => setLessonSearch("")}
+                className="shrink-0 rounded-lg px-2 py-2 text-sm font-black text-[#805f27]">
+                مسح
+              </button>
+            ) : null}
+          </div>
+          <p className="mt-2 text-xs font-bold leading-6 text-[#6b665c]">
+            يظهر فقط ما يطابق الدولة والمرحلة والصف والمسار والفصل والوحدة المختارة.
+            <Link href="/search" className="mr-2 font-black text-[#123f39] underline">
+              بحث في جميع الدول ←
+            </Link>
+          </p>
+        </div>
+
         <div className="mt-4 grid grid-cols-3 gap-2 text-center sm:max-w-md">
-          <SmallMetric value={String(shown.length)} label="وحدات" />
+          <SmallMetric value={String(visibleUnits.length)} label="وحدات" />
           <SmallMetric value={String(total)} label="دروس" />
           <SmallMetric value={String(done)} label="مكتملة" />
         </div>
@@ -1306,7 +1365,7 @@ function CatalogScope({
             إعادة المحاولة
           </button>
         </section>
-      ) : shown.length === 0 ? (
+      ) : visibleUnits.length === 0 ? (
         <section className="rounded-[2rem] border border-[#dfcfad] bg-white p-8 text-center">
           <h2 className="text-xl font-black text-[#123f39]">
             {selectedTermStatus?.publicationStatus ===
@@ -1315,7 +1374,9 @@ function CatalogScope({
               : selectedTermStatus?.detailStatus ===
                   "published-pending-extraction"
                 ? "الخطة الرسمية منشورة — تفاصيل الدروس قيد الاستخراج الموثق"
-                : "لا توجد دروس منشورة لهذا الاختيار حاليًا"}
+                : searchedTitle
+                  ? "لا توجد دروس تطابق كلمات البحث ضمن اختيارك"
+                  : "لا توجد دروس منشورة لهذا الاختيار حاليًا"}
           </h2>
           <p className="mt-2 font-bold leading-7 text-[#766c60]">
             {selectedTermStatus?.detailStatus ===
@@ -1324,12 +1385,14 @@ function CatalogScope({
               : selectedTermStatus?.publicationStatus ===
                   "not-published-as-of-audit"
                 ? "سيظل هذا الفصل ظاهرًا بحالته الحقيقية، ولن ننسب إليه دروسًا على أنها مقررة قبل نشر المصدر الرسمي."
-                : "اختر صفًا أو منهجًا آخر من الأعلى."}
+                : searchedTitle
+                  ? "جرّب كلمة أقصر أو امسح البحث، أو اختر البحث في جميع الدول."
+                  : "اختر صفًا أو منهجًا آخر من الأعلى."}
           </p>
         </section>
       ) : (
         <section className="min-w-0 space-y-5">
-          {shown.map((item) => (
+          {visibleUnits.map((item) => (
             <article
               key={item.id}
               className="min-w-0 overflow-hidden rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8]"
