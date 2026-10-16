@@ -3,13 +3,14 @@
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { isBookReference } from "@/lib/curriculum/verified-book-reference";
+import { isCurriculumScopeRecord } from "@/lib/curriculum/lesson-content-kind";
 
 export type StudentCatalogLesson = {
   id: string; title: string; objective: string | null;
   semester: number | null;
   officialContentScope: "plan-scheduled" | "official-book-unscheduled" | null;
   sourcePlanYear?: string | null;
-  resourceKind?: "lesson" | "book-reference";
+  resourceKind?: "lesson" | "book-reference" | "curriculum-scope";
   estimatedMinutes: number; difficulty: "beginner" | "intermediate" | "advanced";
   points: number; order: number; completed: boolean; progressPercent: number;
 };
@@ -188,7 +189,9 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
             countryCode: country.code,
             unitTitle: raw.title,
             lessonTitle: lesson.title,
-          }) ? "book-reference" : "lesson",
+          }) ? "book-reference" : isCurriculumScopeRecord({
+              summary: lesson.summary,
+            }) ? "curriculum-scope" : "lesson",
           estimatedMinutes: Number(lesson.estimated_minutes ?? 20),
           difficulty: level(grade.grade_number),
           points: Math.max(10, Number(p?.xp ?? 0)),
