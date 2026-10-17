@@ -165,3 +165,20 @@ describe("provenance gate for automatically generated game questions", () => {
     expect(route).toContain("(v.data ?? []) as VocabularyRow[]");
   });
 });
+
+describe("lesson games write-endpoint resilience", () => {
+  test("game-pack approvals do not mistake database outages for a deleted lesson", () => {
+    const route = readFileSync("app/api/lessons/games/route.ts", "utf8");
+    expect(route).toContain("if (exists.error) {");
+    expect(route).toContain("GAME_PACK_APPROVAL_LESSON_LOOKUP_FAILED");
+    expect(route).toContain('status: 503, headers');
+  });
+
+  test("score recording distinguishes unavailable DB from truly missing lessons", () => {
+    const route = readFileSync("app/api/games/complete/route.ts", "utf8");
+    expect(route).toContain("if (exists.error) {");
+    expect(route).toContain("GAME_SCORE_LESSON_LOOKUP_FAILED");
+    expect(route).toContain('status: 503');
+    expect(route).toContain("if (!exists.data) {");
+  });
+});
