@@ -19,9 +19,9 @@ describe("country curriculum directory safety", () => {
     expect(page).toContain('throw new Error(`SEO_CURRICULUM_GRADES_FAILED:${info.code}`)');
   });
 
-  test("country directory renders bounded previews, preserving full grade and course navigation", () => {
-    expect(page).toContain("unit.lessons.slice(0, 3).map");
-    expect(page).toContain("unit.lessons.length - 3");
+  test("country directory preserves all searchable lesson URLs and full-grade navigation", () => {
+    expect(page).toContain("unit.lessons.map((lesson)");
+    expect(page).not.toContain("unit.lessons.slice(");
     expect(page).toContain("/curriculum/${info.code.toLowerCase()}/${grade.gradeNumber}");
     expect(page).toContain("/courses?country=${info.code}&grade=${grade.gradeNumber}");
   });
