@@ -182,3 +182,35 @@ describe("lesson games write-endpoint resilience", () => {
     expect(route).toContain("if (!exists.data) {");
   });
 });
+
+describe("accurate provenance for generated game prompts", () => {
+  test("duplicate saved questions cannot hide newly generated excerpt exercises", () => {
+    const repeated = Array.from({ length: 35 }, () => ({
+      question: "ما الفائدة المهمة التي تقدمها القراءة للإنسان؟",
+      options: ["تنمية الفهم", "إهمال المعرفة"],
+      correct_answer: "a",
+    }));
+    const lessonContent = [
+      "يقرأ الطلاب القصص الممتعة في المكتبة ويستخرجون معاني الكلمات الجميلة من النصوص.",
+      "تساعد القراءة المستمرة على تنمية الخيال والفهم والقدرة على التعبير والتواصل مع الآخرين.",
+      "يناقش المعلم مع المتعلمين الفكرة الرئيسة ويطلب منهم اختيار الأدلة الصحيحة من الفقرات.",
+    ].join("\n");
+    const result = buildLessonGamePack("مهارات القراءة", lessonContent, repeated, []);
+    expect(result.pack).not.toBeNull();
+    expect(result.bankSize).toBeGreaterThanOrEqual(5);
+    expect(result.generated).toBeGreaterThan(0);
+    expect(result.pack!.maze.some(item =>
+      item.prompt.startsWith("أكمل الكلمة الناقصة"))).toBe(true);
+  });
+
+  test("linked questions without text exercises do not trigger a generated-source warning", () => {
+    const questions = Array.from({ length: 5 }, (_, index) => ({
+      question: `ما السؤال الصحيح رقم ${index + 1} من الدرس؟`,
+      options: ["الاختيار الأول", "الاختيار الثاني"],
+      correct_answer: "a",
+    }));
+    const result = buildLessonGamePack("مهارات القراءة", "", questions, []);
+    expect(result.pack).not.toBeNull();
+    expect(result.generated).toBe(0);
+  });
+});
