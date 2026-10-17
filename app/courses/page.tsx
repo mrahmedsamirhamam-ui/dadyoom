@@ -16,6 +16,7 @@ export const dynamic = "force-dynamic";
 type CourseSearchParams = {
   country?: string | string[];
   grade?: string | string[];
+  level?: string | string[];
 };
 
 type CoursesPageProps = {
@@ -46,6 +47,7 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
     (item) => item.code === (rawCountry ?? "").trim().toUpperCase(),
   ) ?? countries.find((item) => item.code === "BH") ?? countries[0];
   const rawGrade = Array.isArray(query.grade) ? query.grade[0] : query.grade;
+  const rawLevel = Array.isArray(query.level) ? query.level[0] : query.level;
   const requestedGrade = Number(rawGrade);
   const grade = Number.isInteger(requestedGrade) &&
     requestedGrade >= 1 && requestedGrade <= (country?.maxGrade ?? 12)
@@ -75,7 +77,7 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
           </div>
         </div>
       </section>
-      <CurriculumCatalogClient countries={countries} initialCountryCode={country?.code ?? "BH"} initialGradeNumber={grade} />
+      <CurriculumCatalogClient countries={countries} initialCountryCode={country?.code ?? "BH"} initialGradeNumber={grade} initialContinuingLevel={country?.code === "BH" ? rawLevel?.slice(0, 60) : undefined} />
     </>
   );
 }
