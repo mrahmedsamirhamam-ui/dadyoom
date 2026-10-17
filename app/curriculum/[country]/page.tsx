@@ -662,15 +662,12 @@ export default async function CountryCurriculumPage({
                             <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 font-black text-[#123f39] marker:hidden">
                               <span className="min-w-0 break-words">{unit.title}</span>
                               <span className="shrink-0 rounded-full bg-[#f1e9d8] px-3 py-1 text-xs text-[#765b32]">
-                                {unit.lessons.length} درس • معاينة سريعة
+                                {unit.lessons.length} درس • اضغط للعرض
                               </span>
                             </summary>
                             <div className="border-t border-[#eee5d3] p-4">
                               <ul className="grid gap-3 md:grid-cols-2">
-                                {/* Full lesson lists remain on the grade route.
-                                    Previewing just three here avoids rendering hundreds
-                                    of links on one country page during ISR. */}
-                                {unit.lessons.slice(0, 3).map((lesson) => (
+                                {unit.lessons.map((lesson) => (
                                   <li key={lesson.id}>
                                     <Link
                                       href={`/lessons/${lesson.id}`}
@@ -682,11 +679,6 @@ export default async function CountryCurriculumPage({
                                   </li>
                                 ))}
                               </ul>
-                              {unit.lessons.length > 3 && (
-                                <p className="mt-3 text-sm font-bold text-[#655e54]">
-                                  هناك {unit.lessons.length - 3} دروس أخرى؛ افتح دليل الصف أو المستكشف لعرضها كلها.
-                                </p>
-                              )}
                               <Link href={`/courses?country=${info.code}&grade=${grade.gradeNumber}`}
                                 prefetch={false}
                                 className="mt-4 inline-flex min-h-11 items-center rounded-full bg-[#123f39] px-4 py-2 text-sm font-black text-white">
