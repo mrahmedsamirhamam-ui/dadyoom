@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import type { PointerEvent as ReactPointerEvent } from "react";
 import type { GameItem } from "@/lib/games/lesson-game-pack";
 
 type Outcome = { won: boolean; score: number };
@@ -230,7 +231,7 @@ export default function DadyoomAnswerShooter({
     // This is one self-owned canvas/animation loop. It does not rerun per wave.
   }, [items]);
 
-  function stickMove(e: React.PointerEvent<HTMLDivElement>) {
+  function stickMove(e: ReactPointerEvent<HTMLDivElement>) {
     const target = padRef.current;
     if (!target) return;
     const rect = target.getBoundingClientRect();
@@ -244,7 +245,7 @@ export default function DadyoomAnswerShooter({
     modelRef.current.joystick = 0;
     if (knobRef.current) knobRef.current.style.transform = "translateX(0px)";
   }
-  function tapCanvas(e: React.PointerEvent<HTMLCanvasElement>) {
+  function tapCanvas(e: ReactPointerEvent<HTMLCanvasElement>) {
     const canvas = canvasRef.current;
     if (!canvas || !modelRef.current.active) return;
     const rect = canvas.getBoundingClientRect();
@@ -290,7 +291,8 @@ export default function DadyoomAnswerShooter({
         }}}
         onKeyUp={stickEnd}
         className="relative h-20 w-20 shrink-0 touch-none rounded-full border-2 border-[#65b6ac] bg-[#0c2d40] sm:h-24 sm:w-24">
-        <div ref={knobRef} className="absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#9fe2d2]" />
+        <div ref={knobRef} style={{ marginLeft: "-20px", marginTop: "-20px" }}
+          className="absolute left-1/2 top-1/2 h-10 w-10 rounded-full bg-[#9fe2d2]" />
       </div>
       <div className="text-center text-xs leading-6 text-[#b9dacf]">
         <p className="font-black text-[#f5d080]">🕹️ حرّك ثم أطلق</p>

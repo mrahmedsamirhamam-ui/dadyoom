@@ -7,7 +7,7 @@ import { GAME_MODES } from "@/lib/games/lesson-game-pack";
 import type { GameMode, GamePack } from "@/lib/games/lesson-game-pack";
 
 const themes: Record<GameMode, { title: string; icon: string; instruction: string; scene: string }> = {
-  maze: { title: "متاهة الأبواب", icon: "🗝️", instruction: "اختر الباب الصحيح ليفتح الطريق أمام البطل.", scene: "from-amber-200 to-emerald-100" },
+  maze: { title: "حارس العربية — أكشن", icon: "🚀", instruction: "تحرك بالمقود وأطلق على المركبة التي تحمل الإجابة الصحيحة.", scene: "from-amber-200 to-emerald-100" },
   defender: { title: "حارس القلعة", icon: "🏰", instruction: "احمِ القلعة باختيار الدرع الذي يحمل الإجابة الصحيحة.", scene: "from-sky-200 to-blue-100" },
   catcher: { title: "صائد البالونات", icon: "🎈", instruction: "المس البالون الصحيح قبل أن يهرب.", scene: "from-violet-200 to-pink-100" },
   runner: { title: "سباق المسارات", icon: "🏃", instruction: "حدد مسارًا أولًا ثم انطلق عبر البوابة.", scene: "from-lime-200 to-teal-100" },
