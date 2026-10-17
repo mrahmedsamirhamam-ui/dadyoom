@@ -68,9 +68,9 @@ export default function PricingClient() {
             throw new Error(`BILLING_HTTP_${response.status}`);
           }
           const payload = (await response.json()) as BillingStatus;
-          if (payload.degraded === true) {
-            // An HTTP 200 fallback can still mean an unresolved Supabase error.
-            // Never mistake its anonymous identity for a signed-in user's role.
+          if (payload.degraded === true && !payload.authenticated) {
+            // An HTTP 200 anonymous fallback can hide a temporary auth outage.
+            // Retry it rather than displaying a signed-in user's wrong home.
             if (attempt < maxAttempts) {
               await wait(attempt * 700);
               continue;
@@ -83,6 +83,8 @@ export default function PricingClient() {
             throw new Error("BILLING_STATUS_INVALID");
           }
           if (!cancelled) {
+            // When only plan details failed, keep the server-verified dashboard
+            // link while clearly showing subscription information is degraded.
             setStatus(payload);
             setStatusLoadFailed(false);
           }
@@ -167,6 +169,12 @@ export default function PricingClient() {
             مكتبة الفيديوهات
           </Link>
         </nav>
+
+        {status.degraded && status.authenticated && (
+          <p role="status" className="rounded-2xl border border-amber-400 bg-amber-50 p-4 text-sm font-bold text-amber-900">
+            تعذّر التأكد من تفاصيل اشتراكك مؤقتًا. يمكنك الوصول إلى لوحتك دون إجراء أي دفع.
+          </p>
+        )}
 
         <section className="rounded-[2.4rem] border border-[#c8a65d] bg-[#123f39] p-7 text-white shadow-xl">
           <div className="text-sm font-black text-[#f4d58a]">
