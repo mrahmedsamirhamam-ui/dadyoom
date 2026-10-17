@@ -136,35 +136,34 @@ export default async function GradeCurriculumPage({
     },
   );
 
-  const { data, error } = await db
-    .from("seo_indexable_lessons_fast")
-    .select(
-      "id,title,summary,lesson_number,sort_order,lesson_semester,unit_id,unit_title,unit_number,unit_sort_order,unit_semester,grade_name,grade_number,curriculum_id,curriculum_name,country_code,country_name",
-    )
-    .eq("country_code", info.code)
-    .eq("grade_number", gradeValue)
-    .order("unit_sort_order", {
-      ascending: true,
-    })
-    .order("sort_order", {
-      ascending: true,
-    })
-    .limit(1000);
+  const lessons: LessonRow[] = [];
+  const pageSize = 500;
+  for (let from = 0; ; from += pageSize) {
+    const { data, error } = await db
+      .from("seo_indexable_lessons_fast")
+      .select(
+        "id,title,summary,lesson_number,sort_order,lesson_semester,unit_id,unit_title,unit_number,unit_sort_order,unit_semester,grade_name,grade_number,curriculum_id,curriculum_name,country_code,country_name",
+      )
+      .eq("country_code", info.code)
+      .eq("grade_number", gradeValue)
+      .order("unit_sort_order", { ascending: true })
+      .order("sort_order", { ascending: true })
+      .order("id", { ascending: true })
+      .range(from, from + pageSize - 1);
 
-  if (error) {
-    console.error(
-      "SEO_GRADE_DIRECTORY_FAILED",
-      {
+    if (error) {
+      console.error("SEO_GRADE_DIRECTORY_FAILED", {
         country: info.code,
         grade: gradeValue,
-        message: error.message,
-      },
-    );
-    notFound();
+        code: error.code,
+      });
+      // Database failure must not be represented as a nonexistent grade (404).
+      throw new Error(`SEO_GRADE_DIRECTORY_FAILED:${info.code}:${gradeValue}`);
+    }
+    const batch = (data ?? []) as LessonRow[];
+    lessons.push(...batch);
+    if (batch.length < pageSize) break;
   }
-
-  const lessons =
-    (data ?? []) as LessonRow[];
 
   if (lessons.length === 0) {
     notFound();
