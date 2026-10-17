@@ -1,0 +1,60 @@
+import { describe, expect, test } from "vitest";
+import {
+  GAME_MODES,
+  distributeGameAnswerPositions,
+  type GamePack,
+} from "../../lib/games/lesson-game-pack";
+
+function firstAnswerPack(): GamePack {
+  return Object.fromEntries(GAME_MODES.map(mode => [
+    mode,
+    Array.from({ length: 5 }, (_, index) => ({
+      prompt: `ما الإجابة الصحيحة للسؤال ${index + 1} في ${mode}؟`,
+      options: ["الإجابة الصحيحة", "مشتت أول", "مشتت ثانٍ", "مشتت ثالث"],
+      answer: "الإجابة الصحيحة",
+    })),
+  ])) as GamePack;
+}
+
+describe("HTML5 arcade option presentation", () => {
+  test("distributes the right choice across different lanes while preserving the answer", () => {
+    const source = firstAnswerPack();
+    const result = distributeGameAnswerPositions(source);
+
+    for (const mode of GAME_MODES) {
+      const answerPositions = result[mode].map(item => item.options.indexOf(item.answer));
+      expect(new Set(answerPositions).size).toBe(4);
+      for (let stage = 0; stage < 5; stage += 1) {
+        const before = source[mode][stage];
+        const after = result[mode][stage];
+        expect(after.answer).toBe(before.answer);
+        expect(after.prompt).toBe(before.prompt);
+        expect([...after.options].sort()).toEqual([...before.options].sort());
+        expect(after.options.filter(choice => choice === after.answer)).toHaveLength(1);
+      }
+    }
+  });
+
+  test("does not mutate approved question packs and is deterministic", () => {
+    const source = firstAnswerPack();
+    const snapshot = JSON.stringify(source);
+    const once = distributeGameAnswerPositions(source);
+    const twice = distributeGameAnswerPositions(source);
+    expect(once).toEqual(twice);
+    expect(JSON.stringify(source)).toBe(snapshot);
+  });
+
+  test("supports valid two-choice questions without dropping the correct choice", () => {
+    const source = firstAnswerPack();
+    for (const mode of GAME_MODES) {
+      source[mode] = source[mode].map(item => ({
+        ...item,
+        options: ["الإجابة الصحيحة", "الإجابة الخاطئة"],
+      }));
+    }
+    const result = distributeGameAnswerPositions(source);
+    for (const mode of GAME_MODES) {
+      expect(new Set(result[mode].map(item => item.options.indexOf(item.answer)).size).toBe(2);
+    }
+  });
+});
