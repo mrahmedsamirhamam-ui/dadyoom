@@ -40,6 +40,8 @@ export default function BahrainPage() {
   const [data, setData] =
     useState<Curriculum | null>(null);
 
+  const [loadError, setLoadError] = useState(false);
+
   const [student, setStudent] =
     useState("");
 
@@ -69,7 +71,8 @@ export default function BahrainPage() {
 
         return r.json();
       })
-      .then(setData);
+      .then(setData)
+      .catch(() => setLoadError(true));
 
     const q =
       new URLSearchParams(
@@ -154,7 +157,7 @@ export default function BahrainPage() {
         }}
       >
         <h1>ضاديوم البحرين</h1>
-        <p>جارٍ تحميل المنهج...</p>
+        <p role="status">{loadError ? "تعذّر تحميل الدروس حاليًا. يُرجى المحاولة لاحقًا." : "جارٍ تحميل المنهج..."}</p>
       </main>
     );
   }
@@ -312,6 +315,12 @@ export default function BahrainPage() {
             {" "}
             {lessons.length}
           </p>
+
+          {lessons.length === 0 && (
+            <p role="status" style={{ padding: 16, background: "#f3f5f7", borderRadius: 12 }}>
+              لا توجد دروس منشورة لهذا الصف في هذه الصفحة حاليًا. نعمل على استكمال المحتوى والتحقق منه قبل إتاحته. يمكنك اختيار صف آخر للاطلاع على الدروس المتوفرة.
+            </p>
+          )}
 
           {lessons.map(
             (lesson) => (
