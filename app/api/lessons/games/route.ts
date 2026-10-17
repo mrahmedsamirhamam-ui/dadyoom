@@ -133,7 +133,11 @@ export async function PUT(request: Request) {
   }
   const exists = await db.from("lessons").select("id").eq("id", id)
     .eq("status", "published").maybeSingle();
-  if (!exists.data || exists.error) return NextResponse.json({ error: "الدرس غير متاح." }, { status: 404, headers });
+  if (exists.error) {
+    console.error("GAME_PACK_APPROVAL_LESSON_LOOKUP_FAILED", { code: exists.error.code });
+    return NextResponse.json({ error: "تعذر التحقق من الدرس مؤقتًا." }, { status: 503, headers });
+  }
+  if (!exists.data) return NextResponse.json({ error: "الدرس غير متاح." }, { status: 404, headers });
   const admin = adminClient();
   if (!admin) return NextResponse.json({ error: "تخزين الألعاب المعتمدة غير مهيأ." }, { status: 503, headers });
 
