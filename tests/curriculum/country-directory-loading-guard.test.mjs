@@ -18,6 +18,13 @@ describe("country curriculum directory safety", () => {
     expect(page).toContain('throw new Error(`SEO_CURRICULUM_GRADES_FAILED:${info.code}`)');
   });
 
+  test("country directory renders bounded previews, preserving full grade and course navigation", () => {
+    expect(page).toContain("unit.lessons.slice(0, 3).map");
+    expect(page).toContain("unit.lessons.length - 3");
+    expect(page).toContain("/curriculum/${info.code.toLowerCase()}/${grade.gradeNumber}");
+    expect(page).toContain("/courses?country=${info.code}&grade=${grade.gradeNumber}");
+  });
+
   test("retains all Arab countries and a clearly bounded regeneration period", () => {
     expect(page).toContain("export const revalidate = 10800;");
     expect(page).toContain("ARAB_COUNTRY_CODES.map");
