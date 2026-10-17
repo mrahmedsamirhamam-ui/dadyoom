@@ -25,6 +25,8 @@ type BillingStatus = {
 
 const FALLBACK: BillingStatus = {
   authenticated: false,
+  // An unverified identity is not evidence that the Free plan is active.
+  degraded: true,
   role: null,
   dashboardHref: "/student",
   dashboardLabel: "لوحة الطالب",
