@@ -93,6 +93,28 @@ export function approvedPack(value: unknown): GamePack | null {
   return result;
 }
 
+/**
+ * Spread answer positions across all five games and five stages.
+ * Imported question banks may consistently store the right option first;
+ * game engines must not teach players that the first lane is always safe.
+ * Reordering affects presentation only: answer remains the original text.
+ */
+export function distributeGameAnswerPositions(pack: GamePack): GamePack {
+  return Object.fromEntries(GAME_MODES.map((mode, modeIndex) => [
+    mode,
+    pack[mode].map((item, stageIndex) => {
+      const shift = (modeIndex + stageIndex) % item.options.length;
+      return {
+        ...item,
+        options: [
+          ...item.options.slice(shift),
+          ...item.options.slice(0, shift),
+        ],
+      };
+    }),
+  ])) as GamePack;
+}
+
 const SKIP_WORDS = new Set([
   "ضاديوم", "الدرس", "الصف", "اللغة", "العربية", "الوزارة",
   "الرسمية", "المصدر", "المراجعة", "الكلمات", "التدريب",
