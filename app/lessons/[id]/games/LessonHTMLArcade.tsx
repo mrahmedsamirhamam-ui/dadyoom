@@ -24,23 +24,39 @@ export default function LessonHTMLArcade({ lesson }: { lesson: { id: string; tit
   const [message, setMessage] = useState("جارٍ تحميل ألعاب ضاديوم الحركية…");
   const [warning, setWarning] = useState("");
   const [canSave, setCanSave] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [retryable, setRetryable] = useState(false);
+  const [retryAttempt, setRetryAttempt] = useState(0);
   useEffect(() => {
     const controller = new AbortController();
+    let mayRetry = true;
+    setLoading(true);
+    setRetryable(false);
+    setMessage("جارٍ تحميل ألعاب ضاديوم الحركية…");
     void fetch("/api/lessons/games?lessonId=" + encodeURIComponent(lesson.id), {
       credentials: "same-origin", cache: "no-store", signal: controller.signal,
     }).then(async response => {
-      const json = await response.json() as { pack?: GamePack; error?: string; progressSaved?: boolean; warning?: string };
-      if (!response.ok || !json.pack) throw new Error(json.error ?? "بنك ألعاب الدرس غير جاهز.");
+      const json = await response.json().catch(() => ({})) as { pack?: GamePack; error?: string; progressSaved?: boolean; warning?: string };
+      if (!response.ok || !json.pack) {
+        mayRetry = response.status === 429 || response.status >= 500;
+        throw new Error(json.error ?? "بنك ألعاب الدرس غير جاهز.");
+      }
       if (controller.signal.aborted) return;
       setPack(json.pack); setCanSave(Boolean(json.progressSaved));
       setWarning(json.warning ?? ""); setMessage("");
+      setLoading(false);
     }).catch(error => {
-      if (!controller.signal.aborted) setMessage(error instanceof Error ? error.message : "تعذر تحميل ألعاب الدرس.");
+      if (!controller.signal.aborted) {
+        setLoading(false);
+        setRetryable(mayRetry);
+        setMessage(error instanceof Error ? error.message : "تعذر تحميل ألعاب الدرس.");
+      }
     });
     return () => controller.abort();
-  }, [lesson.id]);
+  }, [lesson.id, retryAttempt]);
 
   function choose(next: GameMode) {
+    if (!pack) return;
     setMode(next); setSerial(value => value + 1);
     setDone(null); setMessage("");
   }
@@ -88,7 +104,7 @@ export default function LessonHTMLArcade({ lesson }: { lesson: { id: string; tit
       </header>
       <nav aria-label="اختر اللعبة" className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
         {GAME_MODES.map(key =>
-          <button key={key} type="button" aria-pressed={mode === key} onClick={() => choose(key)}
+          <button key={key} type="button" disabled={!pack} aria-pressed={mode === key} onClick={() => choose(key)}
             className={"min-h-32 rounded-3xl border-2 p-3 text-center font-black shadow-sm transition-transform active:scale-95 " +
               (mode === key ? "border-amber-500 bg-[#123f39] text-white" :
                 "border-[#cbd9c9] bg-white hover:-translate-y-1")}>
@@ -100,13 +116,17 @@ export default function LessonHTMLArcade({ lesson }: { lesson: { id: string; tit
       </nav>
       {warning && <p role="note" className="rounded-2xl border border-amber-300 bg-amber-50 p-4 text-sm leading-7">{warning}</p>}
       {message && <p role="status" className="rounded-2xl bg-[#fff5df] p-4 text-sm font-bold leading-7">{message}</p>}
-      {!pack && message && <section className="rounded-3xl border border-[#cfbea0] bg-white p-6">
+      {!pack && !loading && message && <section className="rounded-3xl border border-[#cfbea0] bg-white p-6">
         <h2 className="text-xl font-black">استمر في التعلم حتى لو لم يكتمل بنك اللعبة</h2>
         <p className="mt-2 text-sm leading-8 text-[#647264]">
           بعض سجلات الكتب مراجع للمنهج وليست دروسًا كاملة بأسئلة قابلة للعب.
           لا نُنشئ إجابات عشوائية ولا نمنعك من متابعة تعلم العربية.
         </p>
         <div className="mt-4 flex flex-wrap gap-3">
+          {retryable && <button type="button" onClick={() => setRetryAttempt(n => n + 1)}
+            className="min-h-12 rounded-xl bg-[#123f39] px-5 py-3 font-black text-white">
+            🔄 حاول تحميل الألعاب مجددًا
+          </button>}
           <Link href="/study" className="min-h-12 rounded-xl bg-[#123f39] px-5 py-3 font-black text-white">
             اختر دروس مهارات صفك ←
           </Link>
