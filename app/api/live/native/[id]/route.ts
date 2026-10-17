@@ -30,7 +30,7 @@ function fail(error: string, status: number) {
 export async function GET(request: Request, ctx: Ctx) {
   try {
     const auth = await context(request, ctx);
-    if ("error" in auth) return fail(auth.error, auth.status);
+    if (typeof auth.error === "string" && typeof auth.status === "number") return fail(auth.error, auth.status);
     const { data, error } = await auth.db.from("edu_native_room_messages")
       .select("id,user_id,body,created_at")
       .eq("session_id", auth.id).order("created_at", { ascending: false }).limit(80);
@@ -60,7 +60,7 @@ export async function POST(request: Request, ctx: Ctx) {
   }
   try {
     const auth = await context(request, ctx);
-    if ("error" in auth) return fail(auth.error, auth.status);
+    if (typeof auth.error === "string" && typeof auth.status === "number") return fail(auth.error, auth.status);
     const content = (await request.json()) as { text?: unknown };
     if (typeof content.text !== "string") return fail("نص الرسالة مطلوب.", 400);
     const text = content.text.trim();
