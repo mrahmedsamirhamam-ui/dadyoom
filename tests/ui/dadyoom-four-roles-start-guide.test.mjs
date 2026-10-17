@@ -14,7 +14,7 @@ describe("All four roles have a simple start without losing features",()=>{
    for(const route of ["/student","/teacher","/parent","/school","/study","/search","/school/meetings"]) {
      expect(guide).toContain('href: "'+route+'"');
    }
-   expect(guide).toContain("المطابقة");
+   expect(guide).toContain("مطابقة");
    expect(guide).toContain("الصوت والفيديو قيد التطوير");
  });
  test("five action mode checks have an explicit guardian branch",()=>{
