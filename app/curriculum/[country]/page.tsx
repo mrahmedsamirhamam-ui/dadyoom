@@ -169,6 +169,8 @@ export default async function CountryCurriculumPage({
           .order("sort_order", {
             ascending: true,
           })
+          // Stable tie breaker prevents page-boundary duplication or loss.
+          .order("id", { ascending: true })
           .range(
             from,
             from + pageSize - 1,
@@ -198,7 +200,7 @@ export default async function CountryCurriculumPage({
     return rows;
   })();
 
-  const { data: gradeCatalogData } =
+  const { data: gradeCatalogData, error: gradeCatalogError } =
     await db
       .from("grades")
       .select(
@@ -271,6 +273,14 @@ export default async function CountryCurriculumPage({
     );
 
   const rows = await lessonsPromise;
+
+  if (gradeCatalogError) {
+    console.error("SEO_CURRICULUM_GRADES_FAILED", {
+      country: info.code,
+      code: gradeCatalogError.code,
+    });
+    throw new Error(`SEO_CURRICULUM_GRADES_FAILED:${info.code}`);
+  }
 
   // Secondary streams frequently reuse both grade names and unit names.
   // Group by country -> numeric grade -> curriculum ID -> unit ID.
