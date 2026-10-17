@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createClient as createSupabaseAdmin } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
 import { sourceForAutomaticGameQuestions } from "@/lib/games/lesson-question-source";
+import { questionsFromPublishedActivities, type PublishedMultipleChoiceActivity } from "@/lib/games/published-activity-questions";
 import {
   approvedPack, buildLessonGamePack, distributeGameAnswerPositions, GAME_MODES,
   type QuestionRow, type VocabularyRow,
@@ -52,13 +53,21 @@ export async function GET(request: Request) {
     }
   }
 
-  const [q, v] = await Promise.all([
+  const [q, v, activityResult] = await Promise.all([
     db.from("questions")
       .select("question,options,correct_answer")
       .eq("lesson_id", id).order("question_order", { ascending: true }).limit(35),
     db.from("lesson_vocabulary")
       .select("word,meaning")
       .eq("lesson_id", id).order("display_order", { ascending: true }).limit(35),
+    // Published original Dadyoom exercises may fill lesson game gaps.
+    // Never import unreviewed or unpublished activities into a game.
+    db.from("lesson_activities")
+      .select("prompt,content,answer")
+      .eq("lesson_id", id)
+      .eq("is_published", true)
+      .eq("activity_type", "multiple_choice")
+      .order("activity_order", { ascending: true }).limit(50),
   ]);
   if (q.error || v.error) {
     console.error("LESSON_GAME_BANK_LOOKUP_FAILED", {
@@ -70,6 +79,16 @@ export async function GET(request: Request) {
       { status: 503, headers },
     );
   }
+  if (activityResult.error) {
+    // Optional published activities must not break otherwise usable question
+    // banks; they are enrichment, not a dependency for existing games.
+    console.warn("LESSON_GAME_ACTIVITIES_UNAVAILABLE", {
+      code: activityResult.error.code,
+    });
+  }
+  const publishedActivityQuestions = questionsFromPublishedActivities(
+    (activityResult.data ?? []) as PublishedMultipleChoiceActivity[],
+  );
   // Reject unreviewed OCR and curriculum-scope text for auto-generated
   // prompts, while preserving human-authored questions and vocabulary.
   const contentForExercises = sourceForAutomaticGameQuestions({
@@ -79,7 +98,10 @@ export async function GET(request: Request) {
   const result = buildLessonGamePack(
     String(lessonResult.data.title ?? ""),
     contentForExercises,
-    (q.data ?? []) as QuestionRow[],
+    [
+      ...((q.data ?? []) as QuestionRow[]),
+      ...publishedActivityQuestions,
+    ],
     (v.data ?? []) as VocabularyRow[],
   );
   if (!result.pack) {
@@ -94,8 +116,8 @@ export async function GET(request: Request) {
     ok: true, pack: distributeGameAnswerPositions(result.pack), modes: GAME_MODES, source: "lesson-questions-and-excerpts",
     questionsPerGame: 5, bankSize: result.bankSize,
     progressSaved: Boolean(user),
-    warning: result.generated > 0
-      ? "بعض تدريبات إكمال النص مأخوذة من مادة ضاديوم المنشورة وليست أسئلة معتمدة من الكتاب الوزاري."
+    warning: publishedActivityQuestions.length > 0 || result.generated > 0
+      ? "تتضمن هذه الألعاب أنشطة تعليمية أصلية منشورة في ضاديوم أو تدريبات مستخرجة من نصوصها، ولا يُعد وجودها إثباتًا لمطابقة الكتاب الوزاري."
       : undefined,
   }, { headers });
 }
