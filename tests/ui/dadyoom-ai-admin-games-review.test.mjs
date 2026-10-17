@@ -14,7 +14,8 @@ describe("Human-reviewed Dadyoom AI question editing with live production smoke"
   expect(client).toContain('method: "PUT"');
  });
  test("requires five questions in each game on a real production lesson",()=>{
-  expect(smoke).toContain("modeNames");
+  expect(smoke).toContain("const modes =");
+  expect(smoke).toContain("for (const sample of samples)");
   expect(smoke).toContain("items.length !== 5");
   expect(smoke).toContain("item.options.includes(item.answer)");
   expect(gate).toContain("run: node scripts/smoke-games-5x5.mjs");
