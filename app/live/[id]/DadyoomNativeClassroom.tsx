@@ -5,13 +5,16 @@ import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 
 type Message = { id: string; text: string; createdAt: string; isMine: boolean; isTeacher: boolean };
-type Result = { ok: boolean; title?: string; isTeacher?: boolean; messages?: Message[]; error?: string };
+type Board = { text: string; updatedAt: string };
+type Result = { ok: boolean; title?: string; isTeacher?: boolean; messages?: Message[]; board?: Board | null; error?: string };
 
 export default function DadyoomNativeClassroom({ sessionId }: { sessionId: string }) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [title, setTitle] = useState("غرفة ضاديوم التعليمية");
   const [isTeacher, setIsTeacher] = useState(false);
   const [text, setText] = useState("");
+  const [board, setBoard] = useState<Board | null>(null);
+  const [boardDraft, setBoardDraft] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [ready, setReady] = useState(false);
@@ -30,6 +33,7 @@ export default function DadyoomNativeClassroom({ sessionId }: { sessionId: strin
           return;
         }
         setMessages(result.messages ?? []);
+        setBoard(result.board ?? null);
         setTitle(result.title ?? "غرفة ضاديوم التعليمية");
         setIsTeacher(Boolean(result.isTeacher));
         setError("");
@@ -65,10 +69,49 @@ export default function DadyoomNativeClassroom({ sessionId }: { sessionId: strin
       const current = await fetch("/api/live/native/" + sessionId, { cache: "no-store" });
       if (current.ok) {
         const fresh = (await current.json()) as Result;
-        if (fresh.ok) setMessages(fresh.messages ?? []);
+        if (fresh.ok) {
+          setMessages(fresh.messages ?? []);
+          setBoard(fresh.board ?? null);
+        }
       }
     } catch {
       setError("تعذر الاتصال بالخادم؛ لم نؤكد إرسال الرسالة.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+
+  async function publishBoard(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!isTeacher || !ready || busy || !boardDraft.trim()) return;
+    setBusy(true);
+    try {
+      const response = await fetch("/api/live/native/" + sessionId, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Dadyoom-Native-Classroom": "1" },
+        credentials: "same-origin",
+        body: JSON.stringify({ text: boardDraft, kind: "board" }),
+      });
+      const payload = (await response.json()) as { ok?: boolean; error?: string };
+      if (!response.ok || !payload.ok) {
+        setError(payload.error ?? "تعذر نشر السبورة.");
+        return;
+      }
+      const fresh = await fetch("/api/live/native/" + sessionId, {
+        credentials: "same-origin", cache: "no-store",
+      });
+      const result = (await fresh.json()) as Result;
+      if (!fresh.ok || !result.ok) {
+        setError("تم حفظ السبورة لكن تعذر تحديث عرضها.");
+        return;
+      }
+      setBoard(result.board ?? null);
+      setMessages(result.messages ?? []);
+      setBoardDraft("");
+      setError("");
+    } catch {
+      setError("تعذر الاتصال بالخادم؛ لم نؤكد حفظ السبورة.");
     } finally {
       setBusy(false);
     }
@@ -91,6 +134,25 @@ export default function DadyoomNativeClassroom({ sessionId }: { sessionId: strin
           </div>
         </header>
         {error && <p role="alert" className="rounded-xl bg-red-50 p-4 font-bold text-red-800">{error}</p>}
+        <section aria-label="سبورة ضاديوم" className="rounded-3xl border border-[#dccbad] bg-white p-5">
+          <h2 className="text-xl font-black">سبورة المعلم — موضوع الحصة</h2>
+          <p className="mt-2 text-sm text-[#706453]">المعلم وحده ينشر الشرح أو السؤال، ويظهر للمشاركين المصرح لهم عند التحديث. النص محفوظ ولا يستخدم LiveKit.</p>
+          <div className="mt-4 min-h-24 rounded-2xl border border-[#bfcbb6] bg-[#eaf3e9] p-5">
+            {board ? <p className="whitespace-pre-wrap break-words text-lg leading-9">{board.text}</p> :
+              <p className="text-sm text-[#6d6656]">لم ينشر المعلم محتوى السبورة بعد.</p>}
+          </div>
+          {isTeacher ? <form onSubmit={publishBoard} className="mt-4 space-y-3">
+            <label htmlFor="native-board-draft" className="font-black">نص السبورة الجديد</label>
+            <textarea id="native-board-draft" rows={4} maxLength={1200}
+              value={boardDraft} onChange={event => setBoardDraft(event.target.value)}
+              className="w-full rounded-xl border border-[#cab994] p-3"
+              placeholder="اكتب هدف الدرس أو سؤالًا أو خطوات النشاط…" />
+            <button type="submit" disabled={!ready || busy || !boardDraft.trim()}
+              className="rounded-xl bg-[#123f39] px-5 py-3 font-black text-white disabled:opacity-40">
+              {busy ? "جارٍ النشر…" : "انشر على سبورة الحصة"}
+            </button>
+          </form> : null}
+        </section>
         <section aria-label="رسائل الحصة" className="rounded-3xl border border-[#dccbad] bg-white p-5">
           <h2 className="text-lg font-black">المناقشة الصفية {isTeacher ? "— حساب المعلم" : ""}</h2>
           <p className="mt-2 text-sm text-[#6d6050]">تتجدد الرسائل كل عشر ثوانٍ عند فتح الصفحة. الغرفة للمشاركين المصرح لهم فقط.</p>

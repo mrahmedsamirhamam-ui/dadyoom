@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 const noStore = { "Cache-Control": "private, no-store" };
+const BOARD_MARKER = "DADYOOM_BOARD_V1:";
 type Ctx = { params: Promise<{ id: string }> };
 const UUID = /^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/iu;
 
@@ -38,13 +39,26 @@ export async function GET(request: Request, ctx: Ctx) {
       console.error("NATIVE_ROOM_READ_FAILED", error.code);
       return fail("تعذر قراءة رسائل الحصة.", 503);
     }
-    const messages = (data ?? []).reverse().map(msg => ({
-      id: msg.id, text: msg.body, createdAt: msg.created_at,
-      isMine: msg.user_id === auth.user.id,
-      isTeacher: msg.user_id === auth.meeting.teacher_id,
-    }));
+    const { data: board, error: boardError } = await auth.db.from("edu_native_room_messages")
+      .select("id,user_id,body,created_at")
+      .eq("session_id", auth.id)
+      .eq("user_id", auth.meeting.teacher_id)
+      .like("body", BOARD_MARKER + "%")
+      .order("created_at", { ascending: false }).limit(1).maybeSingle();
+    if (boardError) {
+      console.error("NATIVE_BOARD_READ_FAILED", boardError.code);
+      return fail("تعذر قراءة سبورة الحصة.", 503);
+    }
+    const messages = (data ?? []).filter(msg => !msg.body.startsWith(BOARD_MARKER))
+      .reverse().map(msg => ({
+        id: msg.id, text: msg.body, createdAt: msg.created_at,
+        isMine: msg.user_id === auth.user.id,
+        isTeacher: msg.user_id === auth.meeting.teacher_id,
+      }));
     return NextResponse.json({
-      ok: true, title: auth.meeting.title, isTeacher: auth.meeting.teacher_id === auth.user.id, messages,
+      ok: true, title: auth.meeting.title, isTeacher: auth.meeting.teacher_id === auth.user.id,
+      board: board ? { text: board.body.slice(BOARD_MARKER.length), updatedAt: board.created_at } : null,
+      messages,
     }, { headers: noStore });
   } catch {
     return fail("تعذر تحميل الغرفة مؤقتًا.", 503);
@@ -61,10 +75,24 @@ export async function POST(request: Request, ctx: Ctx) {
   try {
     const auth = await context(request, ctx);
     if (typeof auth.error === "string" && typeof auth.status === "number") return fail(auth.error, auth.status);
-    const content = (await request.json()) as { text?: unknown };
+    const content = (await request.json()) as { text?: unknown; kind?: unknown };
     if (typeof content.text !== "string") return fail("نص الرسالة مطلوب.", 400);
+    const isBoard = content.kind === "board";
+    if (content.kind !== undefined && content.kind !== "message" && content.kind !== "board") {
+      return fail("نوع المحتوى غير مدعوم.", 400);
+    }
+    // A board update belongs exclusively to the session's actual teacher,
+    // not to any attendee (including a school administrator viewing a room).
+    if (isBoard && auth.meeting.teacher_id !== auth.user.id) {
+      return fail("لا يمكن تعديل السبورة إلا بواسطة المعلم.", 403);
+    }
     const text = content.text.trim();
-    if (text.length < 1 || text.length > 1500) return fail("الرسالة بين حرف و1500 حرف.", 400);
+    const maxLength = isBoard ? 1200 : 1500;
+    if (text.length < 1 || text.length > maxLength ||
+      (!isBoard && text.startsWith(BOARD_MARKER))) {
+      return fail("النص غير صالح أو يتجاوز الحد المسموح.", 400);
+    }
+    const storedText = isBoard ? BOARD_MARKER + text : text;
     // Soft anti-flood guard; database RLS is the authoritative access rule.
     const last = await auth.db.from("edu_native_room_messages").select("created_at")
       .eq("session_id", auth.id).eq("user_id", auth.user.id)
@@ -74,7 +102,7 @@ export async function POST(request: Request, ctx: Ctx) {
       return fail("أرسل الرسالة التالية بعد ثوانٍ قليلة.", 429);
     }
     const saved = await auth.db.from("edu_native_room_messages")
-      .insert({ session_id: auth.id, user_id: auth.user.id, body: text })
+      .insert({ session_id: auth.id, user_id: auth.user.id, body: storedText })
       .select("id").single();
     if (saved.error || !saved.data) {
       console.error("NATIVE_ROOM_WRITE_FAILED", saved.error?.code);
