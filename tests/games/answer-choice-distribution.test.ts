@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, test } from "vitest";
+import { sourceForAutomaticGameQuestions } from "../../lib/games/lesson-question-source";
 import {
   GAME_MODES,
   buildLessonGamePack,
@@ -125,5 +126,42 @@ describe("real lesson question bank partition", () => {
     const result = buildLessonGamePack("درس عربي", "", questions, []);
     expect(result.pack).toBeNull();
     expect(result.bankSize).toBe(4);
+  });
+});
+
+describe("provenance gate for automatically generated game questions", () => {
+  test("unresolved OCR cannot become source-generated answers", () => {
+    expect(sourceForAutomaticGameQuestions({
+      content: "مدخل OCR غير محسوم: هذا المحتوى يحتاج مراجعة المصدر الرسمي.",
+      summary: "قراءة الصف الثاني",
+    })).toBe("");
+  });
+
+  test("general imported boilerplate and curriculum scope nodes are excluded", () => {
+    expect(sourceForAutomaticGameQuestions({
+      content: "يتناول هذا الدرس موضوع «القراءة» بمقدمة آلية.",
+    })).toBe("");
+    expect(sourceForAutomaticGameQuestions({
+      content: "هذا المحتوى من إنشاء ضاديوم لتغطية مجال القراءة فقط.",
+    })).toBe("");
+  });
+
+  test("authored lesson content is preserved without claiming ministry approval", () => {
+    const content = "درس ضاديوم الأصلي: تدريبات القراءة وتحديد الفكرة الرئيسة للنص.";
+    expect(sourceForAutomaticGameQuestions({
+      content, summary: "إثراء أصلي",
+    })).toBe(content);
+  });
+
+  test("empty lesson material cannot produce fake generated prompts", () => {
+    expect(sourceForAutomaticGameQuestions({ content: "   " })).toBe("");
+  });
+
+  test("endpoint preserves linked questions when source prose is restricted", () => {
+    const route = readFileSync("app/api/lessons/games/route.ts", "utf8");
+    expect(route).toContain("sourceForAutomaticGameQuestions({");
+    expect(route).toContain("contentForExercises,");
+    expect(route).toContain("(q.data ?? []) as QuestionRow[]");
+    expect(route).toContain("(v.data ?? []) as VocabularyRow[]");
   });
 });
