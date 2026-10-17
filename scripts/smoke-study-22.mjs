@@ -16,7 +16,7 @@ const checks = [
   })),
   ...["mr", "tn"].map(code => ({
     path: "/study/" + code + "/13",
-    required: ["ذاكر العربية", "أطبق بنفسي:"],
+    required: ["ذاكر العربية", "أطبق بنفسي", "مثال محلول"],
   })),
 ];
 let passed = 0;
