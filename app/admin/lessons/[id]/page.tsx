@@ -17,6 +17,7 @@ import AutoBuildLessonButton
 import { resolveBahrainGradeOneSource } from "@/lib/curriculum/bahrain-grade-one-source-map";
 import { saveBahrainDraftCorrection, saveBahrainPublishedSourceCorrection } from "./actions";
 import { publishedLessonNeedsSourceCorrection } from "@/lib/curriculum/bahrain-published-source-correction";
+import { questionsFromPublishedActivities } from "@/lib/games/published-activity-questions";
 
 type Relation<T> = T | T[] | null;
 
@@ -132,6 +133,24 @@ export default async function LessonPage({
 
   // The same lesson number repeats in different units. Only an *exact*
   // supported textbook page span may resolve to a prepared image folder.
+  // Live, read-only readiness signals for the lesson being reviewed.
+  // The legacy questions table is NOT the sole source of activities.
+  const [questionCountResult, activityResult] = await Promise.all([
+    supabase.from("questions").select("id", { count: "exact", head: true })
+      .eq("lesson_id", lesson.id),
+    supabase.from("lesson_activities")
+      .select("activity_type,is_published,prompt,content,answer", { count: "exact" })
+      .eq("lesson_id", lesson.id)
+      .order("activity_order", { ascending: true })
+      .limit(200),
+  ]);
+  const assessmentReadFailed = Boolean(questionCountResult.error || activityResult.error);
+  const activities = activityResult.data ?? [];
+  const publishedMcqRows = activities.filter(row =>
+    row.is_published && row.activity_type === "multiple_choice");
+  const safePublishedGameQuestions = questionsFromPublishedActivities(publishedMcqRows);
+  const activityPageTruncated = (activityResult.count ?? 0) > 200;
+
   const imageBaseUrl = resolveBahrainGradeOneSource({
     countryCode: country?.code,
     gradeNumber: grade?.grade_number,
@@ -207,6 +226,51 @@ export default async function LessonPage({
           </Button>
         </div>
       </div>
+
+      <section className="rounded-2xl border border-[#d8c9aa] bg-[#fffdf8] p-5 shadow-sm">
+        <h2 className="text-xl font-black text-[#123f39]">جاهزية أسئلة هذا الدرس وألعابه</h2>
+        <p className="mt-2 text-sm leading-7 text-[#645c4e]">
+          مؤشرات من قاعدة الإنتاج للدرس المحدد، وليست شهادة مطابقة للكتاب الرسمي.
+          الأنشطة المنشورة قد تحتاج مراجعة تربوية حتى لو لم تحمل وسم مراجعة.
+        </p>
+        {assessmentReadFailed ? (
+          <p role="alert" className="mt-3 rounded-xl border border-amber-400 bg-amber-50 p-4 font-bold">
+            تعذر قراءة الأسئلة أو الأنشطة؛ لا يمكن تقدير الجاهزية حاليًا.
+          </p>
+        ) : (
+          <>
+            <div className="mt-4 grid gap-3 sm:grid-cols-3">
+              <div className="rounded-xl border bg-white p-4">
+                <p className="text-2xl font-black tabular-nums">{questionCountResult.count ?? 0}</p>
+                <p className="text-sm font-bold">أسئلة تقليدية مرتبطة</p>
+              </div>
+              <div className="rounded-xl border bg-white p-4">
+                <p className="text-2xl font-black tabular-nums">{publishedMcqRows.length}</p>
+                <p className="text-sm font-bold">أنشطة اختيار من متعدد منشورة في عينة القراءة</p>
+              </div>
+              <div className="rounded-xl border bg-white p-4">
+                <p className="text-2xl font-black tabular-nums">{safePublishedGameQuestions.length}</p>
+                <p className="text-sm font-bold">أنشطة دون علامات مراجعة معلقة وصالحة شكليًا للألعاب</p>
+              </div>
+            </div>
+            {activityPageTruncated ? (
+              <p className="mt-3 text-sm font-bold text-amber-900">يوجد أكثر من 200 نشاط؛ أعداد الأنشطة أعلاه تخص أول 200 فقط.</p>
+            ) : null}
+            {safePublishedGameQuestions.length < 5 && (questionCountResult.count ?? 0) < 5 ? (
+              <p className="mt-3 text-sm font-bold text-amber-900">
+                هذا الدرس بحاجة إلى استكمال ومراجعة الأسئلة المختلفة قبل اعتماد ألعاب المراحل الخمس.
+                أنشطة الكتابة والقراءة المنشورة لا تُعد غائبة لمجرد عدم وجود سؤال تقليدي.
+              </p>
+            ) : null}
+          </>
+        )}
+        {lesson.status === "published" ? (
+          <Link href={`/lessons/${lesson.id}/games`} prefetch={false}
+            className="mt-4 inline-flex rounded-xl bg-[#174f47] px-5 py-3 text-sm font-black text-white">
+            معاينة الألعاب الفعلية للدرس ←
+          </Link>
+        ) : null}
+      </section>
 
       {lesson.summary ? (
         <section className="rounded-2xl border bg-card p-5 shadow-sm">
