@@ -248,3 +248,15 @@ Dadyoom aims to become an education innovation institution with a distinctive Ar
 **Success criteria to test:** character and word error rates on licensed Arabic samples, layout accuracy, reviewer time per page, accessibility, privacy/security, and cost per page. Human acceptance gate before publication.
 
 **Priority and IP:** do not delay current platform stability or verified official curricula/lessons; document original design and source licenses, third-party OCR model terms, contributions and evidence of authorship in the private IP dossier. Zero-cost default; no paid APIs without approval.
+
+### Dadyoom Ω — المراجع الأكاديمي الذكي
+
+**الحالة: فكرة معتمدة للتطوير المستقبلي، غير منفذة أو منشورة بعد.** خدمة مستقلة ضمن مشروع Dadyoom Ω Research & Author، ولا تُقدَّم باعتبارها مراجعة جامعية رسمية أو تحكيمًا علميًا معتمدًا.
+
+- **الخدمة المجانية الأولية:** رفع بحث يملك صاحبه حق مشاركته، وتلقي تقرير تشخيصي يشرح نقاط القوة ومجالات التحسين مع أولويات عملية واضحة.
+- **نطاق التحليل:** العنوان، المشكلة البحثية، الأهداف، الأسئلة والفرضيات، ملاءمة المنهج، تنظيم الفصول، المناقشة والنتائج، جودة الكتابة العربية، واتساق التوثيق.
+- **المراجع:** التحقق من الاتساق والتطابق والتنبيه للمصادر غير المتحقق منها؛ ممنوع اختلاق مراجع أو الادعاء بفحص قواعد بيانات لم يتم الوصول إليها.
+- **مخرجات قابلة للتتبع:** تقرير يتضمن المعيار والملاحظة والدليل من النص والاقتراح والأولوية؛ أي درجات تقييم هي مؤشرات داخلية تفسيرية وليست شهادة اعتماد.
+- **الخصوصية والنزاهة:** عدم استخدام الأبحاث لتدريب النماذج دون إذن صريح، تحديد سياسات الاحتفاظ والحذف، حماية البيانات، منع كتابة الرسائل نيابة عن أصحابها أو تلفيق نتائج أو نسب نصوص لغير أصحابها.
+- **مسار الجودة:** تحليل آلي مساعد، ثم مراجعة بشرية اختيارية لمختص مؤهل؛ إظهار حدود الثقة وعدم ضمان قبول البحث أو نشره.
+- **استقلال المنتج:** مستودع مستقل وواجهة تكامل محددة عند التنفيذ؛ لا تفعيل لخدمات مدفوعة دون موافقة. الأولوية التنفيذية تبقى إكمال الدروس الرسمية لمنصة ضاديوم للدول العربية الـ22 واستقرارها.
