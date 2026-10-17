@@ -30,7 +30,7 @@ const FALLBACK: BillingStatus = {
   dashboardLabel: "لوحة الطالب",
   plan: "free",
   plus: false,
-  showAds: true,
+  showAds: false,
   limits: {},
   price: 0,
   currency: "BHD",
@@ -43,6 +43,7 @@ export default function PricingClient() {
   const [status, setStatus] = useState<BillingStatus>(FALLBACK);
   const [statusLoadFailed, setStatusLoadFailed] = useState(false);
   const [statusRequestId, setStatusRequestId] = useState(0);
+  const [statusResolved, setStatusResolved] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -83,6 +84,7 @@ export default function PricingClient() {
             // link while clearly showing subscription information is degraded.
             setStatus(payload);
             setStatusLoadFailed(false);
+            setStatusResolved(true);
           }
           return;
         } catch (error) {
@@ -95,6 +97,7 @@ export default function PricingClient() {
           if (!cancelled) {
             setStatus(FALLBACK);
             setStatusLoadFailed(true);
+            setStatusResolved(true);
           }
           return;
         }
@@ -125,7 +128,11 @@ export default function PricingClient() {
             ← العودة
           </button>
 
-          {status.authenticated ? (
+          {!statusResolved ? (
+            <span role="status" className="px-4 py-2 text-sm font-bold text-[#6b5d45]">
+              جارٍ التحقق من حسابك…
+            </span>
+          ) : status.authenticated ? (
             <Link
               href={status.dashboardHref}
               prefetch={false}
@@ -148,6 +155,7 @@ export default function PricingClient() {
               type="button"
               onClick={() => {
                 setStatusLoadFailed(false);
+                setStatusResolved(false);
                 setStatusRequestId((previous) => previous + 1);
               }}
               className="rounded-full border border-amber-600 bg-amber-50 px-4 py-2.5 text-sm font-black text-amber-900"
@@ -188,7 +196,7 @@ export default function PricingClient() {
           <PlanCard
             title="ضاديوم العادي"
             subtitle="ابدأ مجانًا"
-            current={status.plan === "free"}
+            current={statusResolved && !status.degraded && status.plan === "free"}
             features={[
               "الدرس الكامل + ملخص الدرس + الشرائح الأساسية بلا حد يومي",
               "طباعة وتنزيل ملخص وشرائح الدرس بلا حد يومي",
@@ -196,7 +204,7 @@ export default function PricingClient() {
               "5 عروض PowerPoint مخصصة بالـAI يوميًا",
               "5 ملخصات مخصصة بالـAI يوميًا",
               "Notebook وأسئلة الدراسة بحد يومي مناسب",
-              "3 أنماط ألعاب أساسية",
+              "خمس ألعاب حركية مجانية عندما يتوفر بنك أسئلة مناسب للدرس",
               "إعلانات خفيفة خارج الدرس ومساحات التعلم الحساسة",
               "بعد إنشاء الحساب: تجربة ترحيبية Plus لمدة 24 ساعة",
             ]}
@@ -205,7 +213,7 @@ export default function PricingClient() {
           <PlanCard
             title="ضاديوم Plus"
             subtitle="الاشتراكات الجديدة متوقفة حاليًا"
-            current={status.plan === "plus"}
+            current={statusResolved && !status.degraded && status.plan === "plus"}
             accent
             features={[
               "بدون إعلانات نهائيًا",
