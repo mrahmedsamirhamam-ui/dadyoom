@@ -157,7 +157,7 @@ export default function LessonHTMLArcade({ lesson }: { lesson: { id: string; tit
                     mode === "catcher" ? "border-white bg-white/90 text-violet-900 sm:min-h-40" :
                     "border-[#d1a351] bg-white/95 text-[#123f39]")}>
                 <span aria-hidden="true" className="block text-4xl">
-                  {mode === "maze" ? "🚪" : mode === "defender" ? "🛡️" :
+                  {mode === "defender" ? "🛡️" :
                     mode === "catcher" ? "🎈" : flipped ? "💎" : "❓"}
                 </span>
                 {mode === "guardian" && !flipped ? "اكشف البطاقة" : opt}

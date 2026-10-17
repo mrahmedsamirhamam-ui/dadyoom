@@ -47,7 +47,7 @@ export default function DadyoomAnswerShooter({
   const knobRef = useRef<HTMLDivElement>(null);
   const padRef = useRef<HTMLDivElement>(null);
   const doneRef = useRef(onFinish);
-  doneRef.current = onFinish;
+  useEffect(() => { doneRef.current = onFinish; }, [onFinish]);
   const modelRef = useRef<Model>({
     active: false, wave: 0, score: 0, shields: 3, ship: W / 2,
     left: false, right: false, joystick: 0, fire: false,
