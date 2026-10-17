@@ -18,6 +18,7 @@ const homeLinks = [
   { href: "/#experience", label: "التجربة", en: "Experience" },
   { href: "/#roles", label: "لمن ضاديوم؟", en: "For whom?" },
   { href: "/curriculum", label: "مناهج الدول", en: "Curricula" },
+  { href: "/study", label: "ذاكر العربية الآن", en: "Practice Arabic now" },
   { href: "/learn-arabic", label: "تعلم العربية", en: "Learn Arabic" },
   { href: "/en", label: "English", en: "English" },
   { href: "/teachers", label: "للمعلمين", en: "For teachers" },
@@ -159,6 +160,13 @@ export default function HomePage() {
                 className="rounded-2xl bg-[#123f39] px-7 py-4 font-black text-white shadow-xl shadow-[#123f39]/15 transition hover:-translate-y-0.5 hover:bg-[#0b332e]"
               >
                 ابدأ رحلتك
+              </Link>
+              <Link
+                prefetch={false}
+                href="/study"
+                className="rounded-2xl border border-[#b7cdb3] bg-[#e4f1e6] px-7 py-4 font-black text-[#123f39] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#d0e7d1]"
+              >
+                ذاكر العربية الآن — دون تسجيل
               </Link>
               <Link
                 prefetch={false}
