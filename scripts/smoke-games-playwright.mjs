@@ -50,9 +50,11 @@ try {
         [px, py] = scaled(840 * (index + 1) / (count + 1), 385);
       } else if (key === "runner") {
         [px, py] = scaled(135, 115 + index / (count - 1) * 270);
-      } else {
+      } else if (key === "guardian") {
         const spots = [[130,135],[700,135],[130,330],[700,330],[430,140]];
         [px, py] = scaled(...spots[index]);
+      } else {
+        throw new Error("UNKNOWN_GAME_MODE " + key);
       }
       await page.mouse.click(px, py);
       if (step < 5) {

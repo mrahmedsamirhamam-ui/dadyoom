@@ -16,6 +16,7 @@ const links = [
   { href: "/skills", label: "المهارات الأربع", icon: "" },
   { href: "/reading-challenge", label: "القراءة", icon: "" },
   { href: "/dictionary", label: "قاموس السياق", icon: "" },
+  { href: "/guide", label: "ابدأ من هنا", icon: "❔" },
 ];
 
 export default function TeacherLayout({

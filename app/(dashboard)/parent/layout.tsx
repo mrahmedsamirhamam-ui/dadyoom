@@ -7,6 +7,7 @@ const links = [
   { href: "/skills", label: "المهارات", icon: "🧠" },
   { href: "/rewards", label: "الجوائز والشهادات", icon: "🏆" },
   { href: "/ask", label: "اسأل ضاد", icon: "🤖" },
+  { href: "/guide", label: "ابدأ من هنا", icon: "❔" },
 ];
 
 export default function ParentLayout({

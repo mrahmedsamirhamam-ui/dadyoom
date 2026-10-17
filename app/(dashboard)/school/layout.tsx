@@ -9,6 +9,7 @@ const links = [
   { href: "/courses", label: "المناهج", icon: "" },
   { href: "/skills", label: "المهارات", icon: "" },
   { href: "/ask", label: "ضاد", icon: "" },
+  { href: "/guide", label: "ابدأ من هنا", icon: "❔" },
 ];
 
 export default function SchoolLayout({

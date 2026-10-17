@@ -13,6 +13,7 @@ const links = [
   { href: "/dictionary", label: "قاموس السياق", icon: "📘" },
   { href: "/rewards", label: "جوائزي وشهاداتي", icon: "🏆" },
   { href: "/pricing", label: "Plus", icon: "✦" },
+  { href: "/guide", label: "ابدأ من هنا", icon: "❔" },
 ];
 
 export default function StudentLayout({
