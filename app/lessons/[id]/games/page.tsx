@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 
 import { createClient } from "@/lib/supabase/server";
 
-import LessonGamesClient from "./LessonGamesClient";
+import LessonHTMLArcade from "./LessonHTMLArcade";
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
@@ -30,7 +30,7 @@ export default async function LessonGamesPage({
   if (!lesson) notFound();
 
   return (
-    <LessonGamesClient
+    <LessonHTMLArcade
       lesson={{
         id: lesson.id,
         title: lesson.title,
