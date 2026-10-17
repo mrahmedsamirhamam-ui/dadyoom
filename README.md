@@ -206,3 +206,19 @@ Every original source-code change, curriculum asset, educational resource, desig
 Use existing README.md, AGENTS.md and project documentation cumulatively; maintain a private IP register with asset, creator, creation date, repository commit/release, source material, license, third-party permissions and verification status. Back up evidence independently of GitHub. Separate the individual's current authorship/claims from any future corporate assignment, which requires appropriate documentation.
 
 Copyright in original expression may arise automatically under applicable law; Git history is supporting evidence, not official registration. Ideas alone are not copyright-protected; trademarks, patents and other rights may need separate jurisdiction-specific procedures. No claim of registered Dadyoom trademark or certified ownership is made here. Audit dependencies, fonts, media and external contributions before commercial distribution.
+
+## Dadyoom Ω Research & Author — proposed independent service
+
+**Status:** concept documented only; no service or certification is claimed as launched. Inspired by demand for academic research assistance, without copying third-party branding, wording or materials.
+
+**Users:** researchers, graduate students, teachers, authors and educational institutions.
+
+**Service modules:** research-question and methodology coaching; literature review organization and source verification; Arabic academic language editing; reference management (APA etc.); statistical-method selection and interpretation support; original educational-book authoring and publishing workflows; school action research and learning-impact studies; supervised workshops and consultation.
+
+**Integrity safeguards:** users author and take responsibility for submitted academic work; no ghostwriting dissertations or fabrication of data/citations; label AI contributions, verify every citation and protect confidential manuscripts and research participants. Human review for consequential research guidance.
+
+**Product architecture:** separate repository and deployment if implementation begins; integrate with Dadyoom via documented interfaces only. Proposed user workspace includes source provenance, version history, consent/privacy controls, human reviewer feedback and exportable evidence. Use zero-cost tools by default; no payment/overages without approval.
+
+**Commercial and legal gate:** research assistance and training are proposed future activities, subject to checking activity classifications, local licensing, consumer contracts, IP and privacy obligations in Egypt and Bahrain before offering paid services. Any participation certificate must accurately state its status; do not claim accreditation.
+
+**Priority:** maintain platform stability and official curriculum/lesson completion first. Next milestone: scoped MVP requirements, independent repository, prototype and verified pedagogical/technical tests. No implementation completion claimed.
