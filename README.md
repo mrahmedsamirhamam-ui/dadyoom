@@ -232,3 +232,19 @@ Dadyoom aims to become an education innovation institution with a distinctive Ar
 **Governance:** one proposed legal umbrella subject to incorporation in Egypt or Bahrain, separate repos/roadmaps/deployments for products, documented APIs, documented IP provenance, privacy and safeguarding, applicable sector-specific licenses before offering regulated education or training, and the DXS quality framework with measurable impact and independent evaluation.
 
 **Delivery order:** finish stable core platform, verified official curricula and missing lessons (Bahrain first), then improve accessibility, search, pedagogy and quality; validate new standalone products with small pilots; expand only after evidence and regulatory readiness. Zero-cost default, no unauthorized spending. Update existing documentation with verified work; distinguish concepts from launched features.
+
+## Dadyoom Arabic Vision — Arabic OCR verification concept
+
+**Status:** proposed independent component, not implemented or released. Inspired by Arabic OCR proofreading workflows, without copying any third-party implementation or proprietary material.
+
+**Mission:** extract text from authorized Arabic documents, preserve page structure and right-to-left reading order, and verify extracted text against original page images with a human reviewer.
+
+**Core workflow:** authorized upload and rights declaration -> image cleanup -> OCR provider abstraction (prefer zero-cost/local where feasible) -> Arabic text/line segmentation -> side-by-side image and text review -> low-confidence highlights -> human corrections and audit trail -> searchable accessible exports (UTF-8 text, DOCX, PDF with text layer as supported).
+
+**Arabic QA:** hamza, ta marbuta/ha, alif maqsura/ya, diacritics, punctuation, numerals, ligatures, mixed Arabic-English lines, tables, headings, footnotes, page order and RTL layout. Never silently change source text or invent missing words. Record uncertainty and reviewer approval.
+
+**Integrations (proposed only):** official curriculum lesson indexing, teacher worksheet editor, school forms with strict access control, publishing manuscripts, research source archives. Keep product independent with documented API and repository; do not ingest copyrighted textbooks without permission or collect student data without a lawful basis and safeguards.
+
+**Success criteria to test:** character and word error rates on licensed Arabic samples, layout accuracy, reviewer time per page, accessibility, privacy/security, and cost per page. Human acceptance gate before publication.
+
+**Priority and IP:** do not delay current platform stability or verified official curricula/lessons; document original design and source licenses, third-party OCR model terms, contributions and evidence of authorship in the private IP dossier. Zero-cost default; no paid APIs without approval.
