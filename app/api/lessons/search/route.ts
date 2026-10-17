@@ -66,24 +66,35 @@ export async function GET(request: Request) {
   const pageSize = 24;
   const start = (pageValue - 1) * pageSize;
 
-  let query = db
-    .from("lessons")
-    .select("id,title,summary,content,semester,units!inner(id,title,semester,grades!inner(id,name_ar,grade_number,is_active,curricula!inner(id,name_ar,is_active,countries!inner(code,name_ar,is_active))))")
-    .eq("status", "published")
-    .eq("units.grades.is_active", true)
-    .eq("units.grades.curricula.is_active", true)
-    .eq("units.grades.curricula.countries.is_active", true)
-    // POSIX regex keeps vowelled/unvowelled title searches equivalent.
-    // Pattern is generated only from escaped literal query characters.
-    .filter("title", "imatch", titlePattern);
-  if (countryCode) query = query.eq("units.grades.curricula.countries.code", countryCode);
-  if (grade !== null) query = query.eq("units.grades.grade_number", grade);
+  // Preserve the exact same published-only and active-tree constraints in both
+  // search strategies. Some PostgREST/proxy builds reject Unicode POSIX regex;
+  // a student must get ordinary title search rather than a 503.
+  function searchQuery(preferRegex: boolean) {
+    let query = db
+      .from("lessons")
+      .select("id,title,summary,content,semester,units!inner(id,title,semester,grades!inner(id,name_ar,grade_number,is_active,curricula!inner(id,name_ar,is_active,countries!inner(code,name_ar,is_active))))")
+      .eq("status", "published")
+      .eq("units.grades.is_active", true)
+      .eq("units.grades.curricula.is_active", true)
+      .eq("units.grades.curricula.countries.is_active", true);
+    query = preferRegex
+      ? query.filter("title", "imatch", titlePattern)
+      : query.ilike("title", `%${term.replace(/[\u064B-\u065F\u0670\u06D6-\u06ED]/gu, "")}%`);
+    if (countryCode) query = query.eq("units.grades.curricula.countries.code", countryCode);
+    if (grade !== null) query = query.eq("units.grades.grade_number", grade);
+    return query.order("title", { ascending: true }).order("id", { ascending: true })
+      .range(start, start + pageSize);
+  }
 
-  const { data, error } = await query
-    .order("title", { ascending: true })
-    .order("id", { ascending: true })
-    .range(start, start + pageSize);
-
+  const regexResult = await searchQuery(true);
+  let data = regexResult.data;
+  let error = regexResult.error;
+  if (error) {
+    console.warn("DADYOOM_LESSON_REGEX_DEGRADED", { code: error.code });
+    const fallback = await searchQuery(false);
+    data = fallback.data;
+    error = fallback.error;
+  }
   if (error) {
     console.error("DADYOOM_LESSON_SEARCH_FAILED", { code: error.code, message: error.message });
     return NextResponse.json({ error: "تعذر البحث الآن. حاول مرة أخرى." }, { status: 503 });
