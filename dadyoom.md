@@ -882,3 +882,22 @@
 - **بوابة أحدث كود:** `936f5cabc44d2b2f59d209ef0fbe8df71925375c` اجتاز [Cloudflare Verify](https://github.com/mrahmedsamirhamam-ui/dadyoom/actions/runs/39061807996) مع **573/573 اختبارًا عبر 185/185 ملفًا**، Lint وبوابتي التغطية الرسمية/المسارات وبناء Vinext ومطابقة metadata. كما اجتاز [Mobile Final Verify](https://github.com/mrahmedsamirhamam-ui/dadyoom/actions/runs/39061807995). بقية فحوص نشر/SEO/Role QA على نفس SHA كانت ما زالت جارية عند كتابة هذا التحديث؛ يجب قراءتها من نتائج GitHub الحالية قبل اعتماد الإصدار الأحدث.
 - **الهوية البصرية المطلوبة:** `components/brand/DadyoomLogo.tsx` يستخدم `next/image` وصور `.png` و`.webp` فعلية، دون `<svg>` مضمّن؛ وهوية الرسم تحافظ على اختيار المستخدم.
 - **الحدود الموضوعية:** نجاح كل بوابات التقنية في إصدار واحد لا يعني 100% من كل كتاب رسمي في الدول الـ22 أو 5 ألعاب بمحتوى معتمد لكل درس؛ ما زال جدول `curriculum_toc_evidence` بلا إدخالات موثقة في آخر قياس، و`edu_lesson_game_packs` دون حزم معتمدة، و1,118 درسًا بحرينيًا منشورًا دون سؤال مرتبط. لا تغييرات مدفوعة أو SQL أو RLS في هذا التنفيذ.
+
+
+## 17 أكتوبر 2026 — إغلاق 503 البحث المقيّد بالصف بعد تحقق الإنتاج
+
+**العطل المسجل:** بوابة [SEO Production Gate الفاشلة للإصدار `96ed7f68`](https://github.com/mrahmedsamirhamam-ui/dadyoom/actions/runs/39063204353) وصلت إلى خطوة `Verify published lesson search by actual country and grade`، وأعاد `GET /api/lessons/search?q=القراءة&country=BH&grade=4` حالة HTTP 503 ورسالة «تعذر البحث الآن. حاول مرة أخرى.»، على الرغم من نجاح صفحات الدول الـ22 وفهرس الدروس وGooglebot. لم يكن سبب العطل اختفاء الدروس.
+
+**الإصلاح المنفذ في الكود:** Commit [`5dc8000f39ff56241e297d2c34e553651cbeab7f`](https://github.com/mrahmedsamirhamam-ui/dadyoom/commit/5dc8000f39ff56241e297d2c34e553651cbeab7f) غيّر فقط مسار البحث الذي اختار دولة وصفًا محددين. أصبح يستخرج شجرة `countries → curricula → grades → units` المفعّلة وبالمفاتيح الصحيحة، ثم يبحث عن العنوان داخل `lessons` المنشورة المرتبطة بوحدات الصف. لم يعد يطلب نص الدرس وعلاقات الصف والمنهج والدولة عبر أربع علاقات متداخلة في استعلام الدروس نفسه. احتفظ بدعم البحث التعبيري مع `ILIKE` احتياطيًا، وبالتصفح 24 نتيجة، وحجب المسودات وتفاصيل الأدوار الخاصة. الحالات غير المقيّدة تستمر مؤقتًا باستعلامها الأصلي؛ لا يُعمم الحل بلا اختبار.
+
+**اختبار الحماية:** Commit [`59a2cb50cc6cce7ccd327a58782fab0d8843cd4b`](https://github.com/mrahmedsamirhamam-ui/dadyoom/commit/59a2cb50cc6cce7ccd327a58782fab0d8843cd4b) أضاف `tests/curriculum/scoped-student-search.test.mjs` بخمس حالات تشترط نطاق الدولة/الصف النشط، وحظر المسودات، وترقيم النتائج، وفصل 503 الحقيقية عن نتائج البحث الفارغة. هذه اختبارات عقد الشيفرة (source-level)، ويجب استعمال اختبار HTTP الإنتاجي مستقلًا.
+
+**التحقق على النسخة المنتجة:** آخر إصدار الكود المختبر `59a2cb50cc6cce7ccd327a58782fab0d8843cd4b` اجتاز:
+- [Cloudflare Verify، التشغيل 39063960335](https://github.com/mrahmedsamirhamam-ui/dadyoom/actions/runs/39063960335): **584/584 اختبارًا في 187/187 ملفًا**، Lint، بوابتي المناهج والمسارات الثانوية، بناء Vinext، وسلامة حزمة المتصفح ومطابقة SHA.
+- [Cloudflare Deploy، التشغيل 39063960255](https://github.com/mrahmedsamirhamam-ui/dadyoom/actions/runs/39063960255): نجاح عملية النشر على Cloudflare ومطابقة SHA الإنتاج.
+- [Mobile Final Verify، التشغيل 39063960282](https://github.com/mrahmedsamirhamam-ui/dadyoom/actions/runs/39063960282): PASS.
+- [SEO Production Gate، التشغيل 39063960247](https://github.com/mrahmedsamirhamam-ui/dadyoom/actions/runs/39063960247): **PASS**. سجلات التشغيل تثبت `LESSON_SEARCH=PASS scoped_published_titles=18` في طلب البحرين، الصف الرابع، «القراءة»؛ كما نجحت جميع صفحات الدول الـ22 والمقتطفات من الصفوف والدروس والألعاب والاستجابة لـGooglebot.
+
+**أدلة بيانات مستقلة (قراءة فقط):** قاعدة Supabase الأساسية تحتوي **178 درسًا منشورًا في 14 وحدة** للنطاق `BH/4`، بينها **18 عنوانًا منشورًا** يطابق «القراءة». لم نغيّر سجل درس أو مسودة أو سياسة RLS أو خدمة مدفوعة.
+
+**حدود عدم الجزم بـ100%:** نجاح البحث يثبت الوظيفة والعينة المحددة، لا اكتمال الكتب الوزارية للدول الـ22، ولا اعتماد محتوى 8,307 دروس منشورة، ولا جاهزية خمس ألعاب تربويًا لكل درس، ولا اكتمال اختبار الأدوار بنفس SHA. يرجى قراءة [Production Role QA](https://github.com/mrahmedsamirhamam-ui/dadyoom/actions/runs/39063960367) لنفس SHA قبل إعلان نجاحها. النسب الرسمية بقيت تحت قواعد المطابقة الموثقة، لا متوسطات مصطنعة.
