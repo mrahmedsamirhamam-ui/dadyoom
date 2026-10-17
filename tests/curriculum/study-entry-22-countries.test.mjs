@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 const page=readFileSync("app/study/page.tsx","utf8");
 const country=readFileSync("app/study/[country]/[grade]/page.tsx","utf8");
 const index=readFileSync("app/curriculum/page.tsx","utf8");
+const interactive=readFileSync("app/study/[country]/[grade]/StudyPracticeCatalog.tsx","utf8");
 describe("Twenty-two country usable student entry points",()=>{
  test("real 22-country route links all grades with grade-specific limits",()=>{
   expect(page).toContain("getArabicCountryOptions().filter");
@@ -15,7 +16,9 @@ describe("Twenty-two country usable student entry points",()=>{
  test("study shows actual question and answer, never presents it as book verified",()=>{
   expect(country).toContain('.eq("status", "published")');
   expect(country).toContain("مفتاح المراجعة الذاتية:");
-  expect(country).toContain("<details");
+  expect(country).toContain("<StudyPracticeCatalog");
+  expect(interactive).toContain("<details");
+  expect(interactive).toContain("قارِن إجابتي بالمفتاح");
   expect(country).toContain("غير منقولة عن الكتاب الوزاري");
   expect(index).toContain('href="/study"');
  });

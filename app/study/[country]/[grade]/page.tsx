@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import StudyPracticeCatalog from "./StudyPracticeCatalog";
 import { notFound } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
 import { ARAB_COUNTRY_CODES, getArabicCountryOptions } from "@/lib/countries";
@@ -95,31 +96,15 @@ export default async function StudyPage({ params }: Props) {
         </p> : <p className="rounded-xl bg-white p-4 font-black">
           المتاح الآن: {skills.length} مهارة منشورة — غير منقولة عن الكتاب الوزاري.
         </p>}
-        <section aria-label="دروس المهارات" className="grid gap-5 md:grid-cols-2">
-          {skills.map((skill, i) => {
-            const example = part(skill.content, "أتعلم من مثال محلول:", "أفهم القاعدة أو الفكرة:");
-            const explanation = part(skill.content, "أفهم القاعدة أو الفكرة:", "أطبق بنفسي:");
-            const question = part(skill.content, "أطبق بنفسي:", "مفتاح المراجعة الذاتية:");
-            const answer = part(skill.content, "مفتاح المراجعة الذاتية:", "خطوة ");
-            return <article key={skill.id} className="rounded-3xl border border-[#ddcfb4] bg-white p-5">
-              <p className="text-xs font-black text-[#926c26]">المهارة {i + 1}</p>
-              <h2 className="mt-1 text-xl font-black">{skill.title}</h2>
-              <h3 className="mt-4 font-black">مثال محلول</h3>
-              <p className="mt-2 whitespace-pre-line leading-8">{example || "افتح الدرس لقراءة المثال."}</p>
-              {explanation && <p className="mt-3 rounded-xl bg-[#f6f0e4] p-3 leading-8">{explanation}</p>}
-              <h3 className="mt-4 font-black">أطبق بنفسي</h3>
-              <p className="mt-2 whitespace-pre-line leading-8">{question || "افتح الدرس للتدرب."}</p>
-              {answer && <details className="mt-4 rounded-xl border border-[#d8c7a4] bg-[#fff9ea] p-4">
-                <summary className="cursor-pointer font-black">أظهر الإجابة بعد المحاولة</summary>
-                <p className="mt-2 whitespace-pre-line leading-8">{answer}</p>
-              </details>}
-              <Link href={"/lessons/" + skill.id} prefetch={false}
-                className="mt-5 inline-flex min-h-11 items-center rounded-full bg-[#123f39] px-4 py-2 font-black text-white">
-                افتح الدرس وأنشطته ←
-              </Link>
-            </article>;
-          })}
-        </section>
+        <StudyPracticeCatalog items={skills.map(skill => ({
+          id: skill.id,
+          title: skill.title,
+          example: part(skill.content, "أتعلم من مثال محلول:", "أفهم القاعدة أو الفكرة:"),
+          explanation: part(skill.content, "أفهم القاعدة أو الفكرة:", "أطبق بنفسي:"),
+          question: part(skill.content, "أطبق بنفسي:", "مفتاح المراجعة الذاتية:"),
+          answer: part(skill.content, "مفتاح المراجعة الذاتية:", "خطوة "),
+        }))} />
+
       </div>
     </main>
   );
