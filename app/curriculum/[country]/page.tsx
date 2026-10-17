@@ -182,7 +182,7 @@ export default async function CountryCurriculumPage({
               message: error.message,
             },
           );
-          break;
+          throw new Error(`SEO_CURRICULUM_DIRECTORY_FAILED:${info.code}`);
         }
   
         const batch =
