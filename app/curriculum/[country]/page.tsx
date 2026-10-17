@@ -410,6 +410,7 @@ export default async function CountryCurriculumPage({
               className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#cdbb96] bg-white px-5 py-3 font-black text-[#123f39]">
               <span aria-hidden="true">🔍</span> ابحث عن دروس {info.name}
             </Link>
+            <Link href={"/study/" + info.code.toLowerCase() + "/1"} prefetch={false} className="inline-flex min-h-11 items-center rounded-full border border-[#afc5ab] bg-[#e8f5eb] px-5 py-3 font-black text-[#123f39]">تدريبات عربية جاهزة بالمثال والإجابة ←</Link>
             <Link
               href={`/courses?country=${info.code}&grade=1`}
               prefetch={false}

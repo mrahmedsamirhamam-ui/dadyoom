@@ -101,10 +101,13 @@ export default function CurriculumDirectoryPage() {
           ابحث باسم الدرس في الدول الـ22
         </Link>
 
+        <div className="mt-5 rounded-2xl border border-[#d7c49c] bg-white px-5 py-4 leading-8">
+          محتوى تدريبي جاهز لكل دولة من الدول الـ22، من الصف الأول إلى آخر صف متاح. اختر دولتك للمنهج، أو ابدأ المذاكرة الآن بالمثال والتدريب والإجابة.
+        </div>
         <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {countries.map((country) => (
+            <div key={country.code} className="space-y-2">
             <Link
-              key={country.code}
               href={`/curriculum/${country.code.toLowerCase()}`}
               prefetch={false}
               className="rounded-3xl border border-[#ddcfb4] bg-[#fffdf8] p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-[#a99161] hover:shadow-lg"
@@ -113,6 +116,8 @@ export default function CurriculumDirectoryPage() {
               <h2 className="mt-2 text-2xl font-black text-[#123f39]">{country.name}</h2>
               <div className="mt-4 text-sm font-black text-[#174f47]">افتح المناهج والدروس ←</div>
             </Link>
+            <Link href={"/study/" + country.code.toLowerCase() + "/1"} prefetch={false} className="inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-[#b0c7ab] bg-[#e6f2e7] px-4 py-2 font-black text-[#123f39]">ذاكر مهارات العربية الآن ←</Link>
+            </div>
           ))}
         </section>
 

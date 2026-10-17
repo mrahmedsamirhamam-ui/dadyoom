@@ -65,6 +65,7 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
             >
               <LocalizedText ar="خصّص غرفة التعلم" en="Personalize a learning room" />
             </Link>
+            <Link href={"/study/" + (country?.code ?? "BH").toLowerCase() + "/" + grade} className="inline-flex min-h-11 items-center rounded-xl border border-[#afc5ab] bg-[#e8f5eb] px-4 py-2 text-sm font-black text-[#123f39]"><LocalizedText ar="ذاكر الآن: مثال وتطبيق وإجابة" en="Practice now: examples and answers" /></Link>
             <Link
               href="/curriculum"
               className="inline-flex min-h-11 items-center rounded-xl border border-[#cdbb96] bg-white px-4 py-2 text-sm font-black text-[#174f47] hover:underline"
