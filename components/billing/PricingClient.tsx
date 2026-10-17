@@ -121,6 +121,7 @@ export default function PricingClient() {
             </Link>
           )}
 
+          <Link href="/payments/dadyoom" prefetch={false} className="rounded-full border border-[#a9bea9] bg-[#e7f4ec] px-4 py-2.5 text-sm font-black text-[#123f39]">ضاديوم حسابات — سجل الطلبات</Link>
           <Link
             href="/courses/video-library"
             prefetch={false}
