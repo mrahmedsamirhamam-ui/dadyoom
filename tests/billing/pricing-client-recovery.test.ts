@@ -65,5 +65,9 @@ describe("pricing page recovers without changing access privileges", () => {
     expect(ui).toContain("setStatusRequestId((previous) => previous + 1)");
     expect(ui).toContain("تعذّر التحقق من حسابك — حاول مجددًا");
     expect(ui).toContain("لا يوجد شراء أو اشتراك مدفوع حاليًا");
+    expect(ui).toContain("خمس ألعاب حركية مجانية عندما يتوفر بنك أسئلة مناسب للدرس");
+    expect(ui).toContain("جارٍ التحقق من حسابك…");
+    expect(ui).toContain('current={statusResolved && !status.degraded && status.plan === "free"}');
+    expect(ui).toContain('current={statusResolved && !status.degraded && status.plan === "plus"}');
   });
 });
