@@ -101,6 +101,8 @@ export default function CurriculumDirectoryPage() {
           ابحث باسم الدرس في الدول الـ22
         </Link>
 
+        <Link href="/study" className="mt-5 inline-flex min-h-12 items-center rounded-full border border-[#adbea0] bg-[#e8f3e7] px-6 py-3 font-black text-[#123f39]">ابدأ المذاكرة — اختر الدولة والصف ←</Link>
+
         <div className="mt-5 rounded-2xl border border-[#d7c49c] bg-white px-5 py-4 leading-8">
           محتوى تدريبي جاهز لكل دولة من الدول الـ22، من الصف الأول إلى آخر صف متاح. اختر دولتك للمنهج، أو ابدأ المذاكرة الآن بالمثال والتدريب والإجابة.
         </div>
