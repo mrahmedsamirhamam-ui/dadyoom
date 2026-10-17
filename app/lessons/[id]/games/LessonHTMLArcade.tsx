@@ -30,9 +30,6 @@ export default function LessonHTMLArcade({ lesson }: { lesson: { id: string; tit
   useEffect(() => {
     const controller = new AbortController();
     let mayRetry = true;
-    setLoading(true);
-    setRetryable(false);
-    setMessage("جارٍ تحميل ألعاب ضاديوم الحركية…");
     void fetch("/api/lessons/games?lessonId=" + encodeURIComponent(lesson.id), {
       credentials: "same-origin", cache: "no-store", signal: controller.signal,
     }).then(async response => {
@@ -123,7 +120,12 @@ export default function LessonHTMLArcade({ lesson }: { lesson: { id: string; tit
           لا نُنشئ إجابات عشوائية ولا نمنعك من متابعة تعلم العربية.
         </p>
         <div className="mt-4 flex flex-wrap gap-3">
-          {retryable && <button type="button" onClick={() => setRetryAttempt(n => n + 1)}
+          {retryable && <button type="button" onClick={() => {
+            setLoading(true);
+            setRetryable(false);
+            setMessage("جارٍ إعادة تحميل ألعاب الدرس…");
+            setRetryAttempt(n => n + 1);
+          }}
             className="min-h-12 rounded-xl bg-[#123f39] px-5 py-3 font-black text-white">
             🔄 حاول تحميل الألعاب مجددًا
           </button>}
