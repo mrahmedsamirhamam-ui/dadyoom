@@ -113,6 +113,11 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
+      - name: Browser verify all five rounds in each HTML game
+        env:
+          DADYOOM_E2E_BASE_URL: "https://dadyoom.com"
+        run: node scripts/smoke-games-playwright.mjs
+
       - name: Run autonomous role QA
         env:
           DADYOOM_E2E_BASE_URL: "https://dadyoom.com"
