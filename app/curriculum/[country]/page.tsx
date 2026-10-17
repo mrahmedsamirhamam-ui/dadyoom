@@ -15,7 +15,9 @@ import {
 } from "@/lib/supabase/public-config";
 import { getSiteUrl } from "@/lib/site";
 
-export const revalidate = 3600;
+// Public country directories are relatively stable; a longer ISR interval
+// reduces burst regeneration under SEO crawls while retaining periodic updates.
+export const revalidate = 10800;
 export const dynamicParams = false;
 
 export function generateStaticParams() {

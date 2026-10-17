@@ -343,22 +343,27 @@ jobs:
             # the canonical remains absent; never mark a broken URL as PASS.
             code=""
             canonical_found=false
-            for attempt in 1 2 3; do
-              code="$(curl --silent --show-error --location --max-time 30 \
-                --output "$html" --write-out "%{http_code}" \
-                -H "User-Agent: Googlebot" "$url")"
+            for attempt in 1 2 3 4 5; do
+              headers="$(mktemp)"
+              stats="$(curl --silent --show-error --location --max-time 30 --retry 0 \
+                --output "$html" --dump-header "$headers" \
+                --write-out "%{http_code} %{time_total}" \
+                -H "User-Agent: Googlebot" "$url" || true)"
+              read -r code seconds <<< "$stats"
+              code="${code:-000}"
+              cf_ray="$(awk 'tolower($1) == "cf-ray:" { gsub(/\r/, "", $2); print $2; exit }' "$headers")"
 
               if [[ "$code" == "200" ]] && grep -Fq "href=\"$url\"" "$html"; then
                 canonical_found=true
                 break
               fi
 
-              echo "SEO_COUNTRY_CANONICAL_RETRY url=$url attempt=$attempt http=$code bytes=$(wc -c < "$html")"
-              if [[ "$attempt" -lt 3 ]]; then sleep 1; fi
+              echo "SEO_COUNTRY_CANONICAL_RETRY url=$url attempt=$attempt http=$code bytes=$(wc -c < "$html") seconds=${seconds:-unknown} cf_ray=${cf_ray:-unavailable}"
+              if [[ "$attempt" -lt 5 ]]; then sleep $((attempt * 2)); fi
             done
 
             if [[ "$code" != "200" ]]; then
-              echo "SEO_COUNTRY_PAGE=FAIL_HTTP url=$url http=$code"
+              echo "SEO_COUNTRY_PAGE=FAIL_HTTP url=$url http=$code cf_ray=${cf_ray:-unavailable}"
               exit 1
             fi
 
@@ -383,6 +388,8 @@ jobs:
             fi
 
             echo "SEO_COUNTRY_PAGE=PASS url=$url"
+            # Throttle this 22-page sequential crawl to avoid unnecessary SSR bursts.
+            sleep 1
           done
 
           echo "SEO_COUNTRY_PAGES=PASS count=${#country_urls[@]}"
