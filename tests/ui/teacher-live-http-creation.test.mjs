@@ -8,7 +8,7 @@ const actions = readFileSync("features/live/actions.ts","utf8");
 describe("Teacher live session creation HTTP contract", () => {
   test("only current teacher's courses and classes are selectable", () => {
     expect(page).toContain("<TeacherLiveCreationForm");
-    expect((page.match(/\.eq\("teacher_id", user\.id\)/g) ?? []).length).toBe(2);
+    expect((page.match(/\.eq\("teacher_id", user\.id\)/g) ?? []).length).toBe(3); // sessions list, owned courses, owned classes
     expect(page).not.toContain("action={createLiveSessionAction}");
   });
   test("route preserves auth, class/course ownership and RLS", () => {
