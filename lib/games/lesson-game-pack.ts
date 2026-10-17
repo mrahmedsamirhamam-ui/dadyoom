@@ -212,10 +212,12 @@ export function buildLessonGamePack(
   }
   const pack = {} as GamePack;
   GAME_MODES.forEach((mode, modeIndex) => {
-    // Interleave 5 distinct questions for each game, maximizing variation
-    // between games when the lesson has >=25 question candidates.
-    pack[mode] = Array.from({ length: 5 }, (_, i) =>
-      unique[(i * 5 + modeIndex) % unique.length]);
+    // Consecutive windows guarantee five distinct prompts within each game
+    // for EVERY bank size >= 5. Stepping by five used to repeat prompts
+    // whenever the bank size was 5, 10, 15 or 20.
+    // A bank with >=25 candidates also has no cross-game repetitions.
+    pack[mode] = Array.from({ length: 5 }, (_, stageIndex) =>
+      unique[(modeIndex * 5 + stageIndex) % unique.length]);
   });
   return {
     pack,
