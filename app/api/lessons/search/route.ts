@@ -66,6 +66,104 @@ export async function GET(request: Request) {
   const pageSize = 24;
   const start = (pageValue - 1) * pageSize;
 
+  // A country+grade query is common in the student search and SEO gate.
+  // Resolve its small active curriculum tree *before* loading lesson text.
+  // This avoids the expensive four-level PostgREST embed on every lesson hit.
+  async function scopedCountryGradeSearch(): Promise<LessonSearchRow[]> {
+    const countryResult = await db.from("countries")
+      .select("id,code,name_ar,is_active")
+      .eq("code", countryCode).eq("is_active", true).maybeSingle();
+    if (countryResult.error) throw new Error("SEARCH_SCOPE_COUNTRY:" + countryResult.error.code);
+    const activeCountry = countryResult.data;
+    if (!activeCountry) return [];
+
+    const curriculaResult = await db.from("curricula")
+      .select("id,name_ar,is_active")
+      .eq("country_id", activeCountry.id).eq("is_active", true);
+    if (curriculaResult.error) throw new Error("SEARCH_SCOPE_CURRICULA:" + curriculaResult.error.code);
+    const activeCurricula = curriculaResult.data ?? [];
+    if (activeCurricula.length === 0) return [];
+    const curriculaById = new Map(activeCurricula.map(item => [item.id, item]));
+
+    const gradesResult = await db.from("grades")
+      .select("id,curriculum_id,name_ar,grade_number,is_active")
+      .in("curriculum_id", activeCurricula.map(item => item.id))
+      .eq("grade_number", grade)
+      .eq("is_active", true);
+    if (gradesResult.error) throw new Error("SEARCH_SCOPE_GRADES:" + gradesResult.error.code);
+    const activeGrades = gradesResult.data ?? [];
+    if (activeGrades.length === 0) return [];
+    const gradesById = new Map(activeGrades.map(item => [item.id, item]));
+
+    const unitsResult = await db.from("units")
+      .select("id,grade_id,title,semester")
+      .in("grade_id", activeGrades.map(item => item.id));
+    if (unitsResult.error) throw new Error("SEARCH_SCOPE_UNITS:" + unitsResult.error.code);
+    const activeUnits = unitsResult.data ?? [];
+    if (activeUnits.length === 0) return [];
+    const unitsById = new Map(activeUnits.map(item => [item.id, item]));
+
+    function scopedQuery(preferRegex: boolean) {
+      let query = db.from("lessons")
+        .select("id,title,summary,content,semester,unit_id")
+        .eq("status", "published")
+        .in("unit_id", activeUnits.map(item => item.id));
+      query = preferRegex
+        ? query.filter("title", "imatch", titlePattern)
+        : query.ilike("title", `%${term.replace(/[\\u064B-\\u065F\\u0670\\u06D6-\\u06ED]/gu, "")}%`);
+      return query.order("title", { ascending: true }).order("id", { ascending: true })
+        .range(start, start + pageSize);
+    }
+
+    const regexResult = await scopedQuery(true);
+    let matches = regexResult.data;
+    let matchError = regexResult.error;
+    if (matchError) {
+      console.warn("DADYOOM_LESSON_SCOPED_REGEX_DEGRADED", { code: matchError.code });
+      const fallback = await scopedQuery(false);
+      matches = fallback.data;
+      matchError = fallback.error;
+    }
+    if (matchError) throw new Error("SEARCH_SCOPED_LESSONS:" + matchError.code);
+
+    // The active tree was resolved with explicit ID ownership checks.
+    // Reassemble the existing response shape without extra joins.
+    return (matches ?? []).flatMap(lesson => {
+      const unit = unitsById.get(lesson.unit_id);
+      const schoolGrade = unit && gradesById.get(unit.grade_id);
+      const curriculum = schoolGrade && curriculaById.get(schoolGrade.curriculum_id);
+      if (!unit || !schoolGrade || !curriculum) return [];
+      return [{
+        id: lesson.id,
+        title: lesson.title,
+        summary: lesson.summary,
+        content: lesson.content,
+        semester: lesson.semester,
+        units: {
+          id: unit.id,
+          title: unit.title,
+          semester: unit.semester,
+          grades: {
+            id: schoolGrade.id,
+            name_ar: schoolGrade.name_ar,
+            grade_number: schoolGrade.grade_number,
+            is_active: schoolGrade.is_active,
+            curricula: {
+              id: curriculum.id,
+              name_ar: curriculum.name_ar,
+              is_active: curriculum.is_active,
+              countries: {
+                code: activeCountry.code,
+                name_ar: activeCountry.name_ar,
+                is_active: activeCountry.is_active,
+              },
+            },
+          },
+        },
+      }];
+    });
+  }
+
   // Preserve the exact same published-only and active-tree constraints in both
   // search strategies. Some PostgREST/proxy builds reject Unicode POSIX regex;
   // a student must get ordinary title search rather than a 503.
@@ -86,21 +184,34 @@ export async function GET(request: Request) {
       .range(start, start + pageSize);
   }
 
-  const regexResult = await searchQuery(true);
-  let data = regexResult.data;
-  let error = regexResult.error;
-  if (error) {
-    console.warn("DADYOOM_LESSON_REGEX_DEGRADED", { code: error.code });
-    const fallback = await searchQuery(false);
-    data = fallback.data;
-    error = fallback.error;
+  let rows: LessonSearchRow[];
+  if (countryCode && grade !== null) {
+    try {
+      rows = await scopedCountryGradeSearch();
+    } catch (cause) {
+      console.error("DADYOOM_LESSON_SCOPED_SEARCH_FAILED", {
+        code: cause instanceof Error ? cause.message : "unknown",
+        country: countryCode,
+        grade,
+      });
+      return NextResponse.json({ error: "تعذر البحث الآن. حاول مرة أخرى." }, { status: 503 });
+    }
+  } else {
+    const regexResult = await searchQuery(true);
+    let data = regexResult.data;
+    let error = regexResult.error;
+    if (error) {
+      console.warn("DADYOOM_LESSON_REGEX_DEGRADED", { code: error.code });
+      const fallback = await searchQuery(false);
+      data = fallback.data;
+      error = fallback.error;
+    }
+    if (error) {
+      console.error("DADYOOM_LESSON_SEARCH_FAILED", { code: error.code, message: error.message });
+      return NextResponse.json({ error: "تعذر البحث الآن. حاول مرة أخرى." }, { status: 503 });
+    }
+    rows = (data ?? []) as unknown as LessonSearchRow[];
   }
-  if (error) {
-    console.error("DADYOOM_LESSON_SEARCH_FAILED", { code: error.code, message: error.message });
-    return NextResponse.json({ error: "تعذر البحث الآن. حاول مرة أخرى." }, { status: 503 });
-  }
-
-  const rows = (data ?? []) as unknown as LessonSearchRow[];
   const lessons = rows.slice(0, pageSize).flatMap((item) => {
     const unit = one(item.units);
     const schoolGrade = one(unit?.grades ?? null);
