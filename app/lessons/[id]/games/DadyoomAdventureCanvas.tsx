@@ -14,7 +14,7 @@ type State = {
   x: number; y: number; vx: number; vy: number; aimX: number; aimY: number;
   up: boolean; down: boolean; left: boolean; right: boolean;
   fire: boolean; cooldown: number; last: number; elapsed: number;
-  units: Unit[]; shots: Shot[]; distance: number; lane: number;
+  units: Unit[]; shots: Shot[]; distance: number; lane: number; hasTapDestination: boolean;
 };
 const WIDTH = 840, HEIGHT = 480;
 const TITLES: Record<Adventure, { name: string; hint: string; action: string }> = {
@@ -28,7 +28,7 @@ function newState(): State {
     x: 420, y: 380, vx: 0, vy: 0, aimX: 420, aimY: 380,
     up: false, down: false, left: false, right: false,
     fire: false, cooldown: 0, last: 0, elapsed: 0, units: [], shots: [],
-    distance: 0, lane: 0 };
+    distance: 0, lane: 0, hasTapDestination: false };
 }
 function layout(mode: Adventure, options: string[]): Unit[] {
   const slots: Record<Adventure, Pos[]> = {
@@ -37,7 +37,12 @@ function layout(mode: Adventure, options: string[]): Unit[] {
     runner: [{ x: 725, y: 115 }, { x: 725, y: 205 }, { x: 725, y: 295 }, { x: 725, y: 385 }, { x: 725, y: 440 }],
     guardian: [{ x: 130, y: 135 }, { x: 700, y: 135 }, { x: 130, y: 330 }, { x: 700, y: 330 }, { x: 430, y: 140 }],
   };
-  return options.map((answer, index) => ({ ...slots[mode][index], answer, alive: true }));
+  return options.map((answer, index) => {
+    const ranged = options.length < 2 ? 0 : index / (options.length - 1);
+    const slot = mode === "defender" ? { x: 690, y: 115 + ranged * 270 } :
+      mode === "runner" ? { x: 725, y: 115 + ranged * 270 } : slots[mode][index];
+    return { ...slot, answer, alive: true };
+  });
 }
 
 export default function DadyoomAdventureCanvas({
@@ -86,7 +91,11 @@ export default function DadyoomAdventureCanvas({
     m.level++;
     m.units = layout(mode, items[m.level].options);
     m.shots = [];
-    m.elapsed = 0; m.distance = 0;
+    m.elapsed = 0; m.distance = 0; m.hasTapDestination = false;
+    m.vx = 0; m.vy = 0;
+    m.left = false; m.right = false; m.up = false; m.down = false;
+    if (mode === "guardian") { m.x = 415; m.y = 405; }
+    if (mode === "runner") m.y = 385;
     setLevel(m.level);
     setNotice("✅ ممتاز! انتقلت إلى المرحلة " + (m.level + 1) + ".");
   }
@@ -180,9 +189,16 @@ export default function DadyoomAdventureCanvas({
         if (m.running && m.units.every(bot => bot.x < m.x - 45)) resetAfterMiss();
       } else {
         // Treasure rescue: full X/Y navigation, each answer a world object.
-        const factor = Math.max(1, Math.hypot(dx, dy));
-        m.x = Math.max(35, Math.min(805, m.x + dx * 240 * dt / factor));
-        m.y = Math.max(95, Math.min(405, m.y + dy * 240 * dt / factor));
+        let moveX = dx, moveY = dy;
+        if (m.hasTapDestination && Math.abs(dx) < .01 && Math.abs(dy) < .01) {
+          moveX = (m.aimX - m.x) / 65;
+          moveY = (m.aimY - m.y) / 65;
+        }
+        const remain = Math.hypot(m.aimX - m.x, m.aimY - m.y);
+        if (m.hasTapDestination && remain < 10) m.hasTapDestination = false;
+        const factor = Math.max(1, Math.hypot(moveX, moveY));
+        m.x = Math.max(35, Math.min(805, m.x + moveX * 240 * dt / factor));
+        m.y = Math.max(95, Math.min(405, m.y + moveY * 240 * dt / factor));
         for (const box of m.units) {
           if (Math.hypot(box.x - m.x, box.y - m.y) < 47) {
             hit(box.answer); break;
@@ -327,8 +343,9 @@ export default function DadyoomAdventureCanvas({
       m.y = Math.max(105, Math.min(395, y)); fire();
     } else {
       // Touch travel moves toward location, rather than teleporting through boxes.
-      m.vx = Math.max(-1, Math.min(1, (x - m.x) / 120));
-      m.vy = Math.max(-1, Math.min(1, (y - m.y) / 120));
+      m.aimX = x; m.aimY = y;
+      m.hasTapDestination = true;
+      m.vx = 0; m.vy = 0;
     }
   }
   return <section dir="rtl" aria-label={TITLES[mode].name}
