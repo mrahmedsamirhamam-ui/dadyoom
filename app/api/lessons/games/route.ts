@@ -27,7 +27,11 @@ export async function GET(request: Request) {
   // Always verify a published lesson before accessing any cached game pack.
   const lessonResult = await db.from("lessons")
     .select("id,title,content,summary").eq("id", id).eq("status", "published").maybeSingle();
-  if (lessonResult.error || !lessonResult.data) {
+  if (lessonResult.error) {
+    console.error("LESSON_GAME_LESSON_LOOKUP_FAILED", { code: lessonResult.error.code });
+    return NextResponse.json({ error: "تعذر تحميل الدرس مؤقتًا." }, { status: 503, headers });
+  }
+  if (!lessonResult.data) {
     return NextResponse.json({ error: "الدرس غير متاح." }, { status: 404, headers });
   }
 
@@ -55,6 +59,16 @@ export async function GET(request: Request) {
       .select("word,meaning")
       .eq("lesson_id", id).order("display_order", { ascending: true }).limit(35),
   ]);
+  if (q.error || v.error) {
+    console.error("LESSON_GAME_BANK_LOOKUP_FAILED", {
+      questionsCode: q.error?.code ?? null,
+      vocabularyCode: v.error?.code ?? null,
+    });
+    return NextResponse.json(
+      { error: "تعذر تحميل بنك الألعاب الآن. حاول مرة أخرى." },
+      { status: 503, headers },
+    );
+  }
   const result = buildLessonGamePack(
     String(lessonResult.data.title ?? ""),
     String(lessonResult.data.content ?? lessonResult.data.summary ?? ""),
