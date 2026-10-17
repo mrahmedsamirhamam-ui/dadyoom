@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import PaddleManageSubscription from "@/components/billing/PaddleManageSubscription";
+import { isUsablePricingStatus } from "@/lib/billing/pricing-client-state";
 
 type BillingStatus = {
   authenticated: boolean;
@@ -68,19 +69,14 @@ export default function PricingClient() {
             throw new Error(`BILLING_HTTP_${response.status}`);
           }
           const payload = (await response.json()) as BillingStatus;
-          if (payload.degraded === true && !payload.authenticated) {
-            // An HTTP 200 anonymous fallback can hide a temporary auth outage.
-            // Retry it rather than displaying a signed-in user's wrong home.
+          if (!isUsablePricingStatus(payload)) {
+            // Retry degraded anonymous/invalid status, not verified
+            // authenticated navigation during a plan-only outage.
             if (attempt < maxAttempts) {
               await wait(attempt * 700);
               continue;
             }
-            throw new Error("BILLING_STATUS_DEGRADED");
-          }
-          if (typeof payload.authenticated !== "boolean" ||
-              typeof payload.dashboardHref !== "string" ||
-              typeof payload.dashboardLabel !== "string") {
-            throw new Error("BILLING_STATUS_INVALID");
+            throw new Error("BILLING_STATUS_UNAVAILABLE");
           }
           if (!cancelled) {
             // When only plan details failed, keep the server-verified dashboard
