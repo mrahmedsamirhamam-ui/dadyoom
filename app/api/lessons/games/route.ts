@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { createClient as createSupabaseAdmin } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
+import { lessonNeedsSourceReview } from "@/lib/curriculum/lesson-source-review";
+import { isCurriculumScopeRecord } from "@/lib/curriculum/lesson-content-kind";
 import {
   approvedPack, buildLessonGamePack, distributeGameAnswerPositions, GAME_MODES,
   type QuestionRow, type VocabularyRow,
@@ -69,9 +71,19 @@ export async function GET(request: Request) {
       { status: 503, headers },
     );
   }
+  const lessonBody = String(lessonResult.data.content ?? lessonResult.data.summary ?? "");
+  const requiresSourceReview = lessonNeedsSourceReview(lessonBody) ||
+    isCurriculumScopeRecord({
+      summary: lessonResult.data.summary,
+      content: lessonResult.data.content,
+    });
+  // Do not turn unresolved OCR, boilerplate or curriculum-scope records
+  // into automatically generated factual questions for children.
+  // Existing linked questions and vocabulary remain usable.
+  const contentForExercises = requiresSourceReview ? "" : lessonBody;
   const result = buildLessonGamePack(
     String(lessonResult.data.title ?? ""),
-    String(lessonResult.data.content ?? lessonResult.data.summary ?? ""),
+    contentForExercises,
     (q.data ?? []) as QuestionRow[],
     (v.data ?? []) as VocabularyRow[],
   );
@@ -87,7 +99,9 @@ export async function GET(request: Request) {
     ok: true, pack: distributeGameAnswerPositions(result.pack), modes: GAME_MODES, source: "lesson-questions-and-excerpts",
     questionsPerGame: 5, bankSize: result.bankSize,
     progressSaved: Boolean(user),
-    warning: "بعض تدريبات إكمال النص تُولّد من مادة ضاديوم المنشورة وليست أسئلة معتمدة من الكتاب الوزاري.",
+    warning: result.generated > 0
+      ? "بعض تدريبات إكمال النص مأخوذة من مادة ضاديوم المنشورة وليست أسئلة معتمدة من الكتاب الوزاري."
+      : undefined,
   }, { headers });
 }
 
