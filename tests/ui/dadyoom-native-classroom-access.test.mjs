@@ -22,7 +22,8 @@ describe("Dadyoom native classroom rollout", () => {
     expect(room).toContain("fetch(\"/api/live/native/\" + sessionId");
     expect(room).toContain("1500");
     expect(room).toContain("disabled={!ready || busy || !text.trim()}");
-    expect(room).toContain('"/live/" + sessionId + "/video"');
-    expect(legacy).toContain("<LiveSessionClient");
+    expect(room).not.toContain('"/live/" + sessionId + "/video"');
+    expect(room).toContain("الصوت والفيديو قيد تطوير ضاديوم");
+    expect(legacy).toContain('redirect("/live/" + encodeURIComponent(id))');
   });
 });

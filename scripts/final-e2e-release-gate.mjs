@@ -3206,69 +3206,29 @@ async function canonicalLearningFlow(
   );
 }
 
-async function liveTokenSmoke(
-  page,
-  role,
-) {
-  gate(
-    Boolean(
-      fixture.liveSessionId,
-    ),
-    "E2E_LIVE_SESSION_FIXTURE_MISSING",
-  );
+async function liveTokenSmoke(page, role) {
+  gate(Boolean(fixture.liveSessionId), "E2E_LIVE_SESSION_FIXTURE_MISSING");
+  const health = await browserFetch(page, "/api/live/health");
+  gate(health.status === 200 &&
+    health.data?.provider === "dadyoom-native" &&
+    health.data?.features?.classroomChat === true &&
+    health.data?.features?.teacherBoard === true &&
+    health.data?.features?.video === false,
+    "E2E_NATIVE_CLASSROOM_HEALTH_FAILED:" + role + ":" + health.status);
 
-  const health =
-    await browserFetch(
-      page,
-      "/api/live/health",
-    );
+  const token = await browserFetch(page, "/api/live/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ sessionId: fixture.liveSessionId }),
+  });
+  gate(token.status === 410 && token.data?.error === "EXTERNAL_LIVE_VIDEO_RETIRED" &&
+    !token.data?.token, "E2E_LIVE_EXTERNAL_TOKEN_NOT_RETIRED:" + role + ":" + token.status);
 
-  if (
-    health.status === 503 &&
-    health.data?.configured === false
-  ) {
-    console.log(
-      `E2E_LIVE_${role.toUpperCase()}=BLOCKED_EXTERNAL_CONFIG`,
-    );
-    return;
-  }
-
-  gate(
-    health.status === 200 &&
-      health.data?.configured === true,
-    `E2E_LIVE_HEALTH_FAILED:${role}:${health.status}`,
-  );
-
-  const token =
-    await browserFetch(
-      page,
-      "/api/live/token",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type":
-            "application/json",
-        },
-        body:
-          JSON.stringify({
-            sessionId:
-              fixture.liveSessionId,
-          }),
-      },
-    );
-
-  gate(
-    token.status === 200 &&
-      typeof token.data?.token === "string" &&
-      token.data.token.length > 40 &&
-      typeof token.data?.serverUrl === "string" &&
-      token.data.serverUrl.startsWith("wss://"),
-    `E2E_LIVE_TOKEN_FAILED:${role}:${token.status}`,
-  );
-
-  console.log(
-    `E2E_LIVE_${role.toUpperCase()}=PASS`,
-  );
+  const native = await browserFetch(page, "/api/live/native/" + fixture.liveSessionId);
+  gate(native.status === 200 && native.data?.ok === true &&
+    Array.isArray(native.data.messages),
+    "E2E_NATIVE_ROOM_ACCESS_FAILED:" + role + ":" + native.status);
+  console.log("E2E_LIVE_" + role.toUpperCase() + "=PASS NATIVE_ROOM=YES VIDEO=DISABLED");
 }
 
 async function browserFetch(
@@ -4542,37 +4502,10 @@ async function focusedMarketplaceLiveFlow(
     fixture.uiCourseLiveSessionId =
       liveSession.id;
 
-    const teacherLiveToken =
-      await browserFetch(
-        teacherPage,
-        "/api/live/token",
-        {
-          method:
-            "POST",
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
-          body:
-            JSON.stringify({
-              sessionId:
-                liveSession.id,
-            }),
-        },
-      );
+    const teacherLiveToken = await browserFetch(teacherPage, "/api/live/native/" + liveSession.id);
 
-    gate(
-      teacherLiveToken.status ===
-        200 &&
-        typeof teacherLiveToken
-          .data?.token ===
-          "string" &&
-        teacherLiveToken
-          .data.token.length >
-          40,
-      "E2E_COURSE_LIVE_TEACHER_FAILED:" +
-        teacherLiveToken.status,
-    );
+    gate(teacherLiveToken.status === 200 && teacherLiveToken.data?.ok === true &&
+      Array.isArray(teacherLiveToken.data?.messages), "E2E_COURSE_LIVE_TEACHER_FAILED:" + teacherLiveToken.status);
 
     console.log(
       "E2E_COURSE_LIVE_TEACHER=PASS",
@@ -4801,37 +4734,10 @@ async function focusedMarketplaceLiveFlow(
       "E2E_MARKETPLACE_STUDENT_ACCESS_FAILED",
     );
 
-    const studentLiveToken =
-      await browserFetch(
-        studentPage,
-        "/api/live/token",
-        {
-          method:
-            "POST",
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
-          body:
-            JSON.stringify({
-              sessionId:
-                liveSession.id,
-            }),
-        },
-      );
+    const studentLiveToken = await browserFetch(studentPage, "/api/live/native/" + liveSession.id);
 
-    gate(
-      studentLiveToken.status ===
-        200 &&
-        typeof studentLiveToken
-          .data?.token ===
-          "string" &&
-        studentLiveToken
-          .data.token.length >
-          40,
-      "E2E_COURSE_LIVE_STUDENT_FAILED:" +
-        studentLiveToken.status,
-    );
+    gate(studentLiveToken.status === 200 && studentLiveToken.data?.ok === true &&
+      Array.isArray(studentLiveToken.data?.messages), "E2E_COURSE_LIVE_STUDENT_FAILED:" + studentLiveToken.status);
 
     console.log(
       "E2E_COURSE_LIVE_STUDENT=PASS",
@@ -5027,34 +4933,10 @@ async function focusedSchoolMeetingFlow(
     fixture.schoolMeetingSessionId =
       meeting.id;
 
-    const schoolToken =
-      await browserFetch(
-        schoolPage,
-        "/api/live/token",
-        {
-          method:
-            "POST",
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
-          body:
-            JSON.stringify({
-              sessionId:
-                meeting.id,
-            }),
-        },
-      );
+    const schoolToken = await browserFetch(schoolPage, "/api/live/native/" + meeting.id);
 
-    gate(
-      schoolToken.status ===
-        200 &&
-        typeof schoolToken
-          .data?.token ===
-          "string",
-      "E2E_SCHOOL_MEETING_OWNER_FAILED:" +
-        schoolToken.status,
-    );
+    gate(schoolToken.status === 200 && schoolToken.data?.ok === true &&
+      Array.isArray(schoolToken.data?.messages), "E2E_SCHOOL_MEETING_OWNER_FAILED:" + schoolToken.status);
 
     console.log(
       "E2E_SCHOOL_MEETING_CREATE=PASS",
@@ -5067,37 +4949,10 @@ async function focusedSchoolMeetingFlow(
       baseUrl,
     );
 
-    const teacherToken =
-      await browserFetch(
-        teacherPage,
-        "/api/live/token",
-        {
-          method:
-            "POST",
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
-          body:
-            JSON.stringify({
-              sessionId:
-                meeting.id,
-            }),
-        },
-      );
+    const teacherToken = await browserFetch(teacherPage, "/api/live/native/" + meeting.id);
 
-    gate(
-      teacherToken.status ===
-        200 &&
-        typeof teacherToken
-          .data?.token ===
-          "string" &&
-        teacherToken
-          .data.token.length >
-          40,
-      "E2E_SCHOOL_MEETING_TEACHER_FAILED:" +
-        teacherToken.status,
-    );
+    gate(teacherToken.status === 200 && teacherToken.data?.ok === true &&
+      Array.isArray(teacherToken.data?.messages), "E2E_SCHOOL_MEETING_TEACHER_FAILED:" + teacherToken.status);
 
     console.log(
       "E2E_SCHOOL_MEETING_TEACHER=PASS",

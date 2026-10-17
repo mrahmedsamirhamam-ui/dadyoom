@@ -1,8 +1,10 @@
-import LiveSessionClient from "../LiveSessionClient";
+import { redirect } from "next/navigation";
 
-export default async function LegacyVideoPage({ params }: {
+// Preserve existing lesson/meeting links without connecting to LiveKit.
+// Authorized users can enter the independent Dadyoom Classroom at /live/:id.
+export default async function DeprecatedVideoPage({ params }: {
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  return <LiveSessionClient sessionId={id} />;
+  redirect("/live/" + encodeURIComponent(id));
 }

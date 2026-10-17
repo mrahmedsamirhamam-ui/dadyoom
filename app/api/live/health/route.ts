@@ -1,31 +1,23 @@
 import { NextResponse } from "next/server";
 
-import {
-  livekitConfigured,
-} from "@/lib/livekit/server";
-
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+// This is a capability declaration, not a database health probe.
+// Actual attendance and message permissions are tested via /api/live/native/:id.
 export async function GET() {
-  const configured =
-    livekitConfigured();
-
-  return NextResponse.json(
-    {
-      ok: configured,
-      provider: "livekit",
-      configured,
+  return NextResponse.json({
+    ok: true,
+    provider: "dadyoom-native",
+    mode: "teacher-board-and-chat",
+    configured: true,
+    features: {
+      teacherBoard: true,
+      classroomChat: true,
+      audio: false,
+      video: false,
+      screenShare: false,
     },
-    {
-      status:
-        configured
-          ? 200
-          : 503,
-      headers: {
-        "Cache-Control":
-          "no-store, max-age=0",
-      },
-    },
-  );
+    livekitDisabled: true,
+  }, { headers: { "Cache-Control": "no-store, max-age=0" } });
 }

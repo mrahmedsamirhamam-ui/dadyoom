@@ -124,19 +124,19 @@ export default function DadyoomNativeClassroom({ sessionId }: { sessionId: strin
           <p className="text-sm font-black text-[#f2d896]">ضاديوم Classroom — التواصل التعليمي الخاص بنا</p>
           <h1 className="mt-2 text-2xl font-black">{title}</h1>
           <p className="mt-2 leading-7">
-            نقاش وأسئلة حقيقية داخل الحصة دون LiveKit. للخصوصية، لا تشارك بياناتك الشخصية أو صور زملائك.
+            نقاش وأسئلة وسبورة مباشرة داخل غرفة ضاديوم الخاصة. للخصوصية، لا تشارك بياناتك الشخصية أو صور زملائك.
           </p>
           <div className="mt-4 flex flex-wrap gap-3 text-sm font-black">
             <Link href="/courses" className="rounded-full border border-white/40 px-4 py-2">الدروس ←</Link>
-            <Link href={"/live/" + sessionId + "/video"} className="rounded-full border border-white/40 px-4 py-2">
-              فيديو الحصة عبر الخدمة السابقة (اختياري)
-            </Link>
+            <span role="note" className="rounded-full border border-[#f3d896]/60 px-4 py-2 text-[#f3d896]">
+              الصوت والفيديو قيد تطوير ضاديوم — لا يتوفران داخل الغرفة الآن
+            </span>
           </div>
         </header>
         {error && <p role="alert" className="rounded-xl bg-red-50 p-4 font-bold text-red-800">{error}</p>}
         <section aria-label="سبورة ضاديوم" className="rounded-3xl border border-[#dccbad] bg-white p-5">
           <h2 className="text-xl font-black">سبورة المعلم — موضوع الحصة</h2>
-          <p className="mt-2 text-sm text-[#706453]">المعلم وحده ينشر الشرح أو السؤال، ويظهر للمشاركين المصرح لهم عند التحديث. النص محفوظ ولا يستخدم LiveKit.</p>
+          <p className="mt-2 text-sm text-[#706453]">المعلم وحده ينشر الشرح أو السؤال، ويظهر للمشاركين المصرح لهم عند التحديث. النص محفوظ ومقيدًا بصلاحيات الحصة.</p>
           <div className="mt-4 min-h-24 rounded-2xl border border-[#bfcbb6] bg-[#eaf3e9] p-5">
             {board ? <p className="whitespace-pre-wrap break-words text-lg leading-9">{board.text}</p> :
               <p className="text-sm text-[#6d6656]">لم ينشر المعلم محتوى السبورة بعد.</p>}
