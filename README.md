@@ -222,3 +222,13 @@ Copyright in original expression may arise automatically under applicable law; G
 **Commercial and legal gate:** research assistance and training are proposed future activities, subject to checking activity classifications, local licensing, consumer contracts, IP and privacy obligations in Egypt and Bahrain before offering paid services. Any participation certificate must accurately state its status; do not claim accreditation.
 
 **Priority:** maintain platform stability and official curriculum/lesson completion first. Next milestone: scoped MVP requirements, independent repository, prototype and verified pedagogical/technical tests. No implementation completion claimed.
+
+## Dadyoom Education Ecosystem — institutional vision
+
+Dadyoom aims to become an education innovation institution with a distinctive Arabic-language mission and globally competitive, independently verified outcomes. This is a long-term aspiration, not an assertion of global accreditation or proven superiority.
+
+**Independent but integrated divisions:** (1) official curricula, lessons and personalized Arabic learning; (2) EdTech software and Dadyoom OS; (3) international schools and school improvement; (4) AI Teaching Studio and professional teacher development; (5) assessment and learning analytics; (6) educational research and Dadyoom Omega Research & Author; (7) books, publishing and learning kits; (8) lifelong learning and inclusive education; (9) partnerships; (10) Mumawwil AI marketing and sustainable business operations.
+
+**Governance:** one proposed legal umbrella subject to incorporation in Egypt or Bahrain, separate repos/roadmaps/deployments for products, documented APIs, documented IP provenance, privacy and safeguarding, applicable sector-specific licenses before offering regulated education or training, and the DXS quality framework with measurable impact and independent evaluation.
+
+**Delivery order:** finish stable core platform, verified official curricula and missing lessons (Bahrain first), then improve accessibility, search, pedagogy and quality; validate new standalone products with small pilots; expand only after evidence and regulatory readiness. Zero-cost default, no unauthorized spending. Update existing documentation with verified work; distinguish concepts from launched features.
