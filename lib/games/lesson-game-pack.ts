@@ -200,11 +200,17 @@ export function buildLessonGamePack(
   }
   const unique: GameItem[] = [];
   const seen = new Set<string>();
-  for (const item of [...seed, ...sourceClozeItems(content)]) {
+  let generated = 0;
+  const sourceItems = sourceClozeItems(content);
+  for (const [item, generatedFromText] of [
+    ...seed.map((item) => [item, false] as const),
+    ...sourceItems.map((item) => [item, true] as const),
+  ]) {
     const key = item.prompt.replace(/\s+/gu, " ").trim();
     if (!validItem(item) || seen.has(key)) continue;
     unique.push(item);
     seen.add(key);
+    if (generatedFromText) generated += 1;
     if (unique.length >= 25) break;
   }
   if (unique.length < 5) {
@@ -222,6 +228,6 @@ export function buildLessonGamePack(
   return {
     pack,
     bankSize: unique.length,
-    generated: Math.max(0, unique.length - seed.length),
+    generated,
   };
 }
