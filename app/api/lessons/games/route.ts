@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient as createSupabaseAdmin } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
-import { lessonNeedsSourceReview } from "@/lib/curriculum/lesson-source-review";
-import { isCurriculumScopeRecord } from "@/lib/curriculum/lesson-content-kind";
+import { sourceForAutomaticGameQuestions } from "@/lib/games/lesson-question-source";
 import {
   approvedPack, buildLessonGamePack, distributeGameAnswerPositions, GAME_MODES,
   type QuestionRow, type VocabularyRow,
@@ -71,16 +70,12 @@ export async function GET(request: Request) {
       { status: 503, headers },
     );
   }
-  const lessonBody = String(lessonResult.data.content ?? lessonResult.data.summary ?? "");
-  const requiresSourceReview = lessonNeedsSourceReview(lessonBody) ||
-    isCurriculumScopeRecord({
-      summary: lessonResult.data.summary,
-      content: lessonResult.data.content,
-    });
-  // Do not turn unresolved OCR, boilerplate or curriculum-scope records
-  // into automatically generated factual questions for children.
-  // Existing linked questions and vocabulary remain usable.
-  const contentForExercises = requiresSourceReview ? "" : lessonBody;
+  // Reject unreviewed OCR and curriculum-scope text for auto-generated
+  // prompts, while preserving human-authored questions and vocabulary.
+  const contentForExercises = sourceForAutomaticGameQuestions({
+    content: lessonResult.data.content,
+    summary: lessonResult.data.summary,
+  });
   const result = buildLessonGamePack(
     String(lessonResult.data.title ?? ""),
     contentForExercises,
