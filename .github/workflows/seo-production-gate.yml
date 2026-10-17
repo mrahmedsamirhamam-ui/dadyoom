@@ -275,10 +275,29 @@ jobs:
             expected_title="$2"
             expected_canonical="$3"
 
-            html="$(curl --silent --show-error --location --max-time 30               -H "User-Agent: Googlebot" "$BASE$path")"
+            # Capture the real response code. A 503 error page can have a
+            # perfectly valid HTML shell but never be indexed as a lesson page.
+            # Retry only transient transport/edge failures, never accept a
+            # non-200 page or silently skip a missing canonical/title.
+            response_file="$(mktemp)"
+            header_file="$(mktemp)"
+            code="$(curl --silent --show-error --location --max-time 30 --retry 3 --retry-delay 2 \
+              --output "$response_file" --dump-header "$header_file" --write-out "%{http_code}" \
+              -H "User-Agent: Googlebot" "$BASE$path" || true)"
+            html="$(cat "$response_file")"
+            cf_ray="$(grep -i '^cf-ray:' "$header_file" | tail -n 1 | tr -d '\r' | cut -d' ' -f2 || true)"
+            rm -f "$response_file" "$header_file"
+            echo "SEO_PAGE_RESPONSE path=$path http=$code cf_ray=${cf_ray:-unavailable}"
+            if [[ "$code" != "200" ]]; then
+              echo "SEO_PAGE_HTTP=FAIL path=$path http=$code"
+              exit 1
+            fi
 
             if ! grep -Fq "<title>$expected_title" <<<"$html"; then
-              echo "SEO_PAGE_TITLE=FAIL path=$path expected=$expected_title"
+              # Print only the bounded page title for diagnosis; never include
+              # cookies, tokens, entire page HTML or student content.
+              actual_title="$(grep -o '<title>[^<]*' <<<"$html" | head -n 1 | cut -c1-200 || true)"
+              echo "SEO_PAGE_TITLE=FAIL path=$path expected=$expected_title actual=${actual_title:-missing}"
               exit 1
             fi
 
