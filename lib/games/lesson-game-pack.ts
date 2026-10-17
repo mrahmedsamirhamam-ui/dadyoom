@@ -33,9 +33,17 @@ export function optionStrings(value: unknown): string[] {
   }).filter((item): item is string => item.length > 0))).slice(0, 5);
 }
 
-export function answerText(raw: string, options: string[]): string | null {
+export function answerText(raw: string, options: string[], originalOptions?: unknown): string | null {
   const answer = String(raw ?? "").trim();
   if (options.includes(answer)) return answer;
+  if (Array.isArray(originalOptions)) {
+    const index = originalOptions.findIndex(option =>
+      option && typeof option === "object" &&
+      String((option as { id?: unknown }).id ?? "").trim() === answer);
+    if (index >= 0) return options[index] ?? null;
+  }
+  if (/^[a-e]$/iu.test(answer)) return options[answer.toLowerCase().charCodeAt(0) - 97] ?? null;
+  if (/^[0-4]$/.test(answer)) return options[Number(answer)] ?? null;
   // Question imports have various index conventions; ambiguous numeric formats
   // must not be assumed correct by default.
   const letters = ["أ", "ب", "ج", "د", "هـ"];
@@ -153,7 +161,7 @@ export function buildLessonGamePack(
   for (const row of questions) {
     const options = optionStrings(row.options);
     if (options.length < 2) continue;
-    const answer = answerText(row.correct_answer, options);
+    const answer = answerText(row.correct_answer, options, row.options);
     if (answer) seed.push({ prompt: row.question.trim(), options, answer });
   }
   const meanings = Array.from(new Set(vocabulary.map(x => x.meaning?.trim()).filter(Boolean)));
