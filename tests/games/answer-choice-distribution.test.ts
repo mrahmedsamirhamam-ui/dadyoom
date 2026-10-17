@@ -55,7 +55,8 @@ describe("HTML5 arcade option presentation", () => {
     }
     const result = distributeGameAnswerPositions(source);
     for (const mode of GAME_MODES) {
-      expect(new Set(result[mode].map(item => item.options.indexOf(item.answer)).size).toBe(2);
+      const answerPositions = result[mode].map(item => item.options.indexOf(item.answer));
+      expect(new Set(answerPositions).size).toBe(2);
     }
   });
 });
