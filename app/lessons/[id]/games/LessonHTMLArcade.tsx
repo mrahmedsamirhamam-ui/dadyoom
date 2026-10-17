@@ -100,6 +100,21 @@ export default function LessonHTMLArcade({ lesson }: { lesson: { id: string; tit
       </nav>
       {warning && <p role="note" className="rounded-2xl border border-amber-300 bg-amber-50 p-4 text-sm leading-7">{warning}</p>}
       {message && <p role="status" className="rounded-2xl bg-[#fff5df] p-4 text-sm font-bold leading-7">{message}</p>}
+      {!pack && message && <section className="rounded-3xl border border-[#cfbea0] bg-white p-6">
+        <h2 className="text-xl font-black">استمر في التعلم حتى لو لم يكتمل بنك اللعبة</h2>
+        <p className="mt-2 text-sm leading-8 text-[#647264]">
+          بعض سجلات الكتب مراجع للمنهج وليست دروسًا كاملة بأسئلة قابلة للعب.
+          لا نُنشئ إجابات عشوائية ولا نمنعك من متابعة تعلم العربية.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          <Link href="/study" className="min-h-12 rounded-xl bg-[#123f39] px-5 py-3 font-black text-white">
+            اختر دروس مهارات صفك ←
+          </Link>
+          <Link href="/guide" className="min-h-12 rounded-xl border border-[#c4b18a] px-5 py-3 font-black">
+            كيف أستخدم ضاديوم؟
+          </Link>
+        </div>
+      </section>}
       {pack && !done && (
         mode === "maze"
           ? <DadyoomAnswerShooter key={mode + "-" + serial} items={pack.maze} onFinish={finish}/>

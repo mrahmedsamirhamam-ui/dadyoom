@@ -67,6 +67,11 @@ jobs:
           DADYOOM_BASE_URL: https://dadyoom.com
         run: node scripts/smoke-games-5x5.mjs
 
+      - name: Verify five educational game modes in 22 Arab countries
+        env:
+          DADYOOM_BASE_URL: https://dadyoom.com
+        run: node scripts/smoke-games-22-countries.mjs
+
       - name: Verify 22-country student study pages in production
         env:
           DADYOOM_BASE_URL: https://dadyoom.com
