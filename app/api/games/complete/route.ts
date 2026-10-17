@@ -30,7 +30,11 @@ export async function POST(request: Request) {
   }
   const exists = await supabase.from("lessons")
     .select("id").eq("id", id).eq("status", "published").maybeSingle();
-  if (exists.error || !exists.data) {
+  if (exists.error) {
+    console.error("GAME_SCORE_LESSON_LOOKUP_FAILED", { code: exists.error.code });
+    return NextResponse.json({ error: "تعذر التحقق من الدرس مؤقتًا." }, { status: 503 });
+  }
+  if (!exists.data) {
     return NextResponse.json({ error: "الدرس غير متاح." }, { status: 404 });
   }
   // These are motivational points only, never official assessment results.
