@@ -75,3 +75,19 @@ describe("game HTTP delivery safety", () => {
     expect(api).toContain('code: "LESSON_GAME_BANK_NEEDS_CONTENT"');
   });
 });
+
+describe("game client recovery", () => {
+  const ui = readFileSync("app/lessons/[id]/games/LessonHTMLArcade.tsx", "utf8");
+  test("temporary HTTP or network failures offer an explicit retry", () => {
+    expect(ui).toContain("setRetryAttempt(n => n + 1)");
+    expect(ui).toContain("setRetryable(mayRetry)");
+    expect(ui).toContain("response.status === 429 || response.status >= 500");
+    expect(ui).toContain("[lesson.id, retryAttempt]");
+  });
+  test("does not encourage repeated retries when the lesson has no reviewed question bank", () => {
+    expect(ui).toContain("setRetryable(false)");
+    expect(ui).toContain("!pack && !loading && message");
+    expect(ui).toContain("disabled={!pack}");
+    expect(ui).toContain("if (!pack) return;");
+  });
+});
