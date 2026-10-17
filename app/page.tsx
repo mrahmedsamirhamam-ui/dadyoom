@@ -25,6 +25,7 @@ const homeLinks = [
   { href: "/about", label: "عن ضاديوم", en: "About" },
   { href: "/pricing", label: "Plus", en: "Plus" },
   { href: "/contact", label: "تواصل معنا", en: "Contact" },
+  { href: "/how-to-use", label: "كيف تستخدم ضاديوم؟", en: "How to use" },
 ] as const;
 
 const roles = [
@@ -174,6 +175,12 @@ export default function HomePage() {
                 className="rounded-2xl border border-[#cdbb96] bg-[#fffdf8] px-7 py-4 font-black text-[#3f493f] shadow-sm transition hover:-translate-y-0.5 hover:border-[#8ca99f]"
               >
                 استكشف مناهج الدول
+              </Link>
+              <Link
+                href="/how-to-use"
+                className="rounded-2xl border border-[#d6b569] bg-[#fff6df] px-7 py-4 font-black text-[#73551d] transition hover:-translate-y-0.5 hover:bg-[#fbeac3]"
+              >
+                كيف تستخدم ضاديوم؟
               </Link>
               <Link
                 prefetch={false}
