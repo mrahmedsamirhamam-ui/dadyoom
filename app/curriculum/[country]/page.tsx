@@ -580,8 +580,11 @@ export default async function CountryCurriculumPage({
               </p>
               <ul className="mt-3 flex flex-wrap gap-2">
                 {continuingGradeNames.map((name) => (
-                  <li key={name} className="rounded-full border border-[#d5cab4] bg-white px-4 py-2 text-sm font-bold">
-                    {name}
+                  <li key={name}>
+                    <Link href={`/courses?country=${info.code}&level=${encodeURIComponent(name)}`} prefetch={false}
+                      className="inline-flex min-h-11 items-center rounded-full border border-[#d5cab4] bg-white px-4 py-2 text-sm font-bold text-[#123f39] hover:border-[#8ca99f] hover:underline">
+                      {name} ←
+                    </Link>
                   </li>
                 ))}
               </ul>
