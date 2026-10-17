@@ -59,6 +59,17 @@ export default async function CountrySourceAuditPage() {
     ocr: s.ocr + row.published_unresolved_ocr,
   }), { published: 0, drafts: 0, missingPages: 0, missingSource: 0, generic: 0, ocr: 0 });
 
+  // Frozen pre-remediation count observed on 2026-10-17. This metric
+  // measures generic teaching introductions, NOT official book coverage.
+  const BH_GENERAL_INTRO_BASELINE = 265;
+  const bahrain = rows.find(row => row.country_code === "BH") ?? null;
+  const bhRemaining = bahrain?.published_generic_intro ?? null;
+  const bhRemediated = bhRemaining === null ? null :
+    Math.max(0, Math.min(BH_GENERAL_INTRO_BASELINE,
+      BH_GENERAL_INTRO_BASELINE - bhRemaining));
+  const bhProgress = bhRemediated === null ? null :
+    Math.round((bhRemediated / BH_GENERAL_INTRO_BASELINE) * 1000) / 10;
+
   return <main dir="rtl" className="min-h-screen bg-[#f7f1e6] px-4 py-8 text-[#203a34] sm:px-7">
     <div className="mx-auto max-w-7xl space-y-6">
       <header className="rounded-3xl bg-[#123f39] p-7 text-white">
@@ -74,6 +85,34 @@ export default async function CountrySourceAuditPage() {
           <Link href="/admin/curriculum/coverage/toc-review" className="text-[#ffe3a2] underline">فحص فهارس الكتب</Link>
         </nav>
       </header>
+      {bahrain && bhRemaining !== null && bhRemediated !== null && bhProgress !== null ? (
+        <section aria-label="تقدم معالجة شروح البحرين" className="rounded-3xl border border-[#dfcfad] bg-white p-6">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h2 className="text-xl font-black text-[#123f39]">
+              نسبة إصلاح الشروح العامة — البحرين
+            </h2>
+            <p className="text-2xl font-black tabular-nums text-[#123f39]">
+              {bhProgress.toLocaleString("ar-BH")}%
+            </p>
+          </div>
+          <p className="mt-2 text-sm leading-7 text-[#5f594e]">
+            تحسنت {fmt(bhRemediated)} مادة تعليمية من أصل {fmt(BH_GENERAL_INTRO_BASELINE)}
+            مادة ذات شرح عام عند بدء المعالجة في 17 أكتوبر 2026.
+            بقي {fmt(bhRemaining)} من هذه الفجوة وفق العد الحالي.
+          </p>
+          <progress className="mt-4 h-4 w-full accent-[#176455]" value={bhRemediated}
+            max={BH_GENERAL_INTRO_BASELINE}
+            aria-label="نسبة الشروح العامة في البحرين التي عُولجت منذ خط الأساس" />
+          <p className="mt-2 text-xs leading-6 text-[#706457]">
+            هذا مؤشر إصلاح الشروح على أساس خطّ أساس محفوظ، وليس نسبة اكتمال كتب الوزارة
+            أو المنهج الرسمي أو منصة ضاديوم كلها.
+          </p>
+          <Link href="/admin/lessons?country=BH&status=published&review=generic-intro"
+            className="mt-3 inline-flex font-black text-[#176455] underline">
+            اعرض الشروح التي ما زالت تحتاج إثراءً ←
+          </Link>
+        </section>
+      ) : null}
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         <Stat title="سجلات منشورة" value={totals.published} note="عدد سجلات قاعدة البيانات وليس الدروس الوزارية المكتملة"/>
         <Stat title="مسودات تنتظر العمل" value={totals.drafts}/>
