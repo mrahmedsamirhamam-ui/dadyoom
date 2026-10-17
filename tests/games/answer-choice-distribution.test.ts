@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, test } from "vitest";
 import {
   GAME_MODES,
@@ -56,5 +57,20 @@ describe("HTML5 arcade option presentation", () => {
     for (const mode of GAME_MODES) {
       expect(new Set(result[mode].map(item => item.options.indexOf(item.answer)).size).toBe(2);
     }
+  });
+});
+
+
+describe("game HTTP delivery safety", () => {
+  const api = readFileSync("app/api/lessons/games/route.ts", "utf8");
+  test("balances both approved and lesson-derived packs", () => {
+    expect(api).toContain("pack: distributeGameAnswerPositions(pack)");
+    expect(api).toContain("pack: distributeGameAnswerPositions(result.pack)");
+  });
+  test("transient lesson or question bank failures cannot become a false 404 or empty pack", () => {
+    expect(api).toContain("if (lessonResult.error) {");
+    expect(api).toContain("if (q.error || v.error) {");
+    expect(api).toContain('status: 503, headers');
+    expect(api).toContain('code: "LESSON_GAME_BANK_NEEDS_CONTENT"');
   });
 });
