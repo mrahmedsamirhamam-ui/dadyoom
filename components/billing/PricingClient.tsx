@@ -8,6 +8,7 @@ import PaddleManageSubscription from "@/components/billing/PaddleManageSubscript
 
 type BillingStatus = {
   authenticated: boolean;
+  degraded?: boolean;
   role: string | null;
   dashboardHref: string;
   dashboardLabel: string;
@@ -39,6 +40,8 @@ const FALLBACK: BillingStatus = {
 export default function PricingClient() {
   const router = useRouter();
   const [status, setStatus] = useState<BillingStatus>(FALLBACK);
+  const [statusLoadFailed, setStatusLoadFailed] = useState(false);
+  const [statusRequestId, setStatusRequestId] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -50,30 +53,51 @@ export default function PricingClient() {
     // Retry only transient HTTP/network errors and never infer an
     // authenticated role or enable payment from a fallback.
     const loadBillingStatus = async () => {
-      for (let attempt = 1; attempt <= 3 && !cancelled; attempt += 1) {
+      const maxAttempts = 5;
+      for (let attempt = 1; attempt <= maxAttempts && !cancelled; attempt += 1) {
         try {
           const response = await fetch("/api/billing/status", {
             cache: "no-store",
             credentials: "include",
           });
           if (!response.ok) {
-            if (transientStatuses.has(response.status) && attempt < 3) {
-              await wait(attempt * 800);
+            if (transientStatuses.has(response.status) && attempt < maxAttempts) {
+              await wait(attempt * 700);
               continue;
             }
             throw new Error(`BILLING_HTTP_${response.status}`);
           }
           const payload = (await response.json()) as BillingStatus;
-          if (!cancelled) setStatus(payload);
+          if (payload.degraded === true) {
+            // An HTTP 200 fallback can still mean an unresolved Supabase error.
+            // Never mistake its anonymous identity for a signed-in user's role.
+            if (attempt < maxAttempts) {
+              await wait(attempt * 700);
+              continue;
+            }
+            throw new Error("BILLING_STATUS_DEGRADED");
+          }
+          if (typeof payload.authenticated !== "boolean" ||
+              typeof payload.dashboardHref !== "string" ||
+              typeof payload.dashboardLabel !== "string") {
+            throw new Error("BILLING_STATUS_INVALID");
+          }
+          if (!cancelled) {
+            setStatus(payload);
+            setStatusLoadFailed(false);
+          }
           return;
         } catch (error) {
           // Network errors may also be transient. Permanent HTTP failures
           // do not retry, and no retry can grant a role or start checkout.
-          if (error instanceof TypeError && attempt < 3) {
-            await wait(attempt * 800);
+          if (error instanceof TypeError && attempt < maxAttempts) {
+            await wait(attempt * 700);
             continue;
           }
-          if (!cancelled) setStatus(FALLBACK);
+          if (!cancelled) {
+            setStatus(FALLBACK);
+            setStatusLoadFailed(true);
+          }
           return;
         }
       }
@@ -83,7 +107,7 @@ export default function PricingClient() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [statusRequestId]);
 
   return (
     <main
@@ -119,6 +143,19 @@ export default function PricingClient() {
             >
               الصفحة الرئيسية
             </Link>
+          )}
+
+          {statusLoadFailed && (
+            <button
+              type="button"
+              onClick={() => {
+                setStatusLoadFailed(false);
+                setStatusRequestId((previous) => previous + 1);
+              }}
+              className="rounded-full border border-amber-600 bg-amber-50 px-4 py-2.5 text-sm font-black text-amber-900"
+            >
+              تعذّر التحقق من حسابك — حاول مجددًا
+            </button>
           )}
 
           <Link href="/payments/dadyoom" prefetch={false} className="rounded-full border border-[#a9bea9] bg-[#e7f4ec] px-4 py-2.5 text-sm font-black text-[#123f39]">ضاديوم حسابات — سجل الطلبات</Link>
