@@ -1,11 +1,8 @@
-import LiveSessionClient from "./LiveSessionClient";
+import DadyoomNativeClassroom from "./DadyoomNativeClassroom";
 
-export default async function LiveSessionPage({
-  params,
-}: {
+export default async function LiveSessionPage({ params }: {
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-
-  return <LiveSessionClient sessionId={id} />;
+  return <DadyoomNativeClassroom sessionId={id} />;
 }
