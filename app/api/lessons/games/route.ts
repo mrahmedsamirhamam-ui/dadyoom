@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { createClient as createSupabaseAdmin } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
 import {
-  approvedPack, buildLessonGamePack, GAME_MODES,
+  approvedPack, buildLessonGamePack, distributeGameAnswerPositions, GAME_MODES,
   type QuestionRow, type VocabularyRow,
 } from "@/lib/games/lesson-game-pack";
 
@@ -41,7 +41,7 @@ export async function GET(request: Request) {
       ["human-approved-html-v2", "ai-reviewed-html-v2"].includes(cached.data.prompt_version)) {
       const pack = approvedPack(cached.data.content);
       if (pack) return NextResponse.json({
-        ok: true, pack, modes: GAME_MODES, source: "reviewed-question-bank",
+        ok: true, pack: distributeGameAnswerPositions(pack), modes: GAME_MODES, source: "reviewed-question-bank",
         questionsPerGame: 5, cached: true, progressSaved: true,
       }, { headers });
     }
@@ -70,7 +70,7 @@ export async function GET(request: Request) {
     }, { status: 422, headers });
   }
   return NextResponse.json({
-    ok: true, pack: result.pack, modes: GAME_MODES, source: "lesson-questions-and-excerpts",
+    ok: true, pack: distributeGameAnswerPositions(result.pack), modes: GAME_MODES, source: "lesson-questions-and-excerpts",
     questionsPerGame: 5, bankSize: result.bankSize,
     progressSaved: Boolean(user),
     warning: "بعض تدريبات إكمال النص تُولّد من مادة ضاديوم المنشورة وليست أسئلة معتمدة من الكتاب الوزاري.",
