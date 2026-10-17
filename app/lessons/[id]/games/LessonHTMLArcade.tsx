@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import DadyoomAnswerShooter from "./DadyoomAnswerShooter";
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 import { GAME_MODES } from "@/lib/games/lesson-game-pack";
@@ -26,6 +27,7 @@ export default function LessonHTMLArcade({ lesson }: { lesson: { id: string; tit
   const [canSave, setCanSave] = useState(false);
   const [completed, setCompleted] = useState<Partial<Record<GameMode, number>>>({});
   const [lane, setLane] = useState(0);
+  const [mazeWon, setMazeWon] = useState(true);
   const [revealed, setRevealed] = useState<string[]>([]);
   useEffect(() => {
     const controller = new AbortController();
@@ -50,7 +52,7 @@ export default function LessonHTMLArcade({ lesson }: { lesson: { id: string; tit
   const options = current ? [...current.options] : [];
   function restart(target: GameMode) {
     setMode(target); setIndex(0); setPoints(0); setChosen(null);
-    setStage("playing"); setLane(0); setRevealed([]); setMessage("");
+    setStage("playing"); setLane(0); setRevealed([]); setMessage(""); setMazeWon(true);
   }
   function select(answer: string) {
     if (stage !== "playing" || !current) return;
@@ -58,15 +60,15 @@ export default function LessonHTMLArcade({ lesson }: { lesson: { id: string; tit
     if (answer === current.answer) setPoints(value => value + 1);
     setStage("feedback");
   }
-  async function finish() {
+  async function finish(finalScore: number = points) {
     setStage("complete");
-    setCompleted(old => ({ ...old, [mode]: points }));
+    setCompleted(old => ({ ...old, [mode]: finalScore }));
     if (!canSave) { setMessage("اللعب مجاني؛ سجل الدخول إذا أردت حفظ نتائجك."); return; }
     try {
       const response = await fetch("/api/games/complete", {
         method: "POST", credentials: "same-origin",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ lessonId: lesson.id, gameKey: mode, score: points, maxScore: questions.length }),
+        body: JSON.stringify({ lessonId: lesson.id, gameKey: mode, score: finalScore, maxScore: questions.length }),
       });
       const body = await response.json() as { ok?: boolean; xp?: number };
       setMessage(response.ok && body.ok
@@ -105,7 +107,14 @@ export default function LessonHTMLArcade({ lesson }: { lesson: { id: string; tit
       </nav>
       {warning && <p role="note" className="rounded-2xl border border-amber-300 bg-amber-50 p-4 text-sm leading-7">{warning}</p>}
       {message && <p role="status" className="rounded-2xl bg-[#fff4d8] p-4 font-bold">{message}</p>}
-      {current && stage !== "complete" && <section
+      {pack && mode === "maze" && stage !== "complete" &&
+        <DadyoomAnswerShooter items={questions} onFinish={result => {
+          setMazeWon(result.won);
+          setPoints(result.score);
+          setMessage(result.won ? "أتممت المهمة الحركية بنجاح!" : "انتهت الجولة؛ يمكنك إعادة المحاولة.");
+          void finish(result.score);
+        }}/>}
+      {mode !== "maze" && current && stage !== "complete" && <section
         className={"rounded-[2rem] bg-gradient-to-b p-5 shadow-xl sm:p-8 " + themes[mode].scene +
           (mode === "guardian" ? " text-white" : "")}>
         <div className="flex flex-wrap items-center justify-between gap-3">
@@ -170,8 +179,8 @@ export default function LessonHTMLArcade({ lesson }: { lesson: { id: string; tit
       </section>}
       {pack && stage === "complete" && <section role="status"
         className="rounded-3xl bg-white p-8 text-center shadow-lg">
-        <span className="text-7xl">🏆</span>
-        <h2 className="mt-4 text-3xl font-black">أنهيت خمس مراحل!</h2>
+        <span className="text-7xl">{mode === "maze" && !mazeWon ? "🛑" : "🏆"}</span>
+        <h2 className="mt-4 text-3xl font-black">{mode === "maze" && !mazeWon ? "انتهت محاولة حارس العربية" : "أنهيت خمس مراحل!"}</h2>
         <p className="mt-3 text-xl font-black">{points} من {questions.length}</p>
         <p className="mt-2 text-sm">{message}</p>
         <button type="button" onClick={() => restart(mode)}
