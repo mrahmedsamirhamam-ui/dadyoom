@@ -19,7 +19,10 @@ describe("All 22 countries have a real game API and safe next action on missing 
   expect(gate).toContain("run: node scripts/smoke-games-22-countries.mjs");
  });
  test("book-only placeholder never traps student in an empty dead end",()=>{
-  expect(hub).toContain('!pack && message');
+  // The fallback is shown only after loading completes, preventing a
+  // misleading empty-bank warning during a normal slow network request.
+  expect(hub).toContain('!pack && !loading && message');
+  expect(hub).toContain("setRetryable(mayRetry)");
   expect(hub).toContain('href="/study"');
   expect(hub).toContain('href="/guide"');
  });
