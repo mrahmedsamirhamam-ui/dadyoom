@@ -70,3 +70,20 @@ describe("reuse existing published educational activities safely", () => {
     expect(api).toContain('LESSON_GAME_ACTIVITIES_UNAVAILABLE');
   });
 });
+
+describe("editor sees the real playable question sources", () => {
+  const editor = readFileSync("app/admin/lessons/[id]/page.tsx", "utf8");
+  test("counts legacy questions and published activities independently", () => {
+    expect(editor).toContain('supabase.from("questions")');
+    expect(editor).toContain('supabase.from("lesson_activities")');
+    expect(editor).toContain('row.is_published && row.activity_type === "multiple_choice"');
+    expect(editor).toContain("questionsFromPublishedActivities(publishedMcqRows)");
+    expect(editor).toContain("activityPageTruncated");
+  });
+  test("never pretends unreadable data or unreviewed exercises are approved", () => {
+    expect(editor).toContain("assessmentReadFailed");
+    expect(editor).toContain("لا يمكن تقدير الجاهزية حاليًا");
+    expect(editor).toContain("ليست شهادة مطابقة للكتاب الرسمي");
+    expect(editor).toContain("معاينة الألعاب الفعلية للدرس");
+  });
+});
