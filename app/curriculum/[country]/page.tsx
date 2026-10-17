@@ -292,6 +292,15 @@ export default async function CountryCurriculumPage({
       (a, b) => a - b,
     );
 
+  // Adult and continuing education can have named non-numeric levels.
+  // Do not silently hide these valid paths from the public country directory.
+  const continuingGradeNames = [...new Set(
+    gradeCatalog
+      .filter((grade) => grade.grade_number === null)
+      .map((grade) => grade.name_ar?.trim())
+      .filter((name): name is string => Boolean(name)),
+  )].sort((a, b) => a.localeCompare(b, "ar"));
+
   const indexableGradeNumbers =
     new Set(
       gradeGroups.map(
@@ -559,6 +568,29 @@ export default async function CountryCurriculumPage({
               </p>
             </div>
           ) : null}
+
+          {continuingGradeNames.length > 0 && (
+            <div className="mt-6 rounded-2xl border border-[#d5cab4] bg-[#f8f1e5] p-5">
+              <h3 className="text-xl font-black text-[#123f39]">
+                التعليم المستمر والمسارات غير المرتبطة برقم صف
+              </h3>
+              <p className="mt-2 text-sm leading-7 text-[#655e54]">
+                هذه مستويات معتمدة في دليل المنصة بأسماء خاصة، وليست صفوفًا رقمية.
+                تصفّح دروسها المنشورة من مستكشف المناهج.
+              </p>
+              <ul className="mt-3 flex flex-wrap gap-2">
+                {continuingGradeNames.map((name) => (
+                  <li key={name} className="rounded-full border border-[#d5cab4] bg-white px-4 py-2 text-sm font-bold">
+                    {name}
+                  </li>
+                ))}
+              </ul>
+              <Link href={`/courses?country=${info.code}`} prefetch={false}
+                className="mt-4 inline-flex min-h-11 items-center rounded-xl bg-[#123f39] px-5 py-3 font-black text-white">
+                افتح مسارات التعليم المستمر في مستكشف المناهج ←
+              </Link>
+            </div>
+          )}
         </section>
 
         {gradeGroups.length ===
