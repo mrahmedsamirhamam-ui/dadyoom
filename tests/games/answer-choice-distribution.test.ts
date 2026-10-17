@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { describe, expect, test } from "vitest";
 import {
   GAME_MODES,
+  buildLessonGamePack,
   distributeGameAnswerPositions,
   type GamePack,
 } from "../../lib/games/lesson-game-pack";
@@ -89,5 +90,40 @@ describe("game client recovery", () => {
     expect(ui).toContain("!pack && !loading && message");
     expect(ui).toContain("disabled={!pack}");
     expect(ui).toContain("if (!pack) return;");
+  });
+});
+
+describe("real lesson question bank partition", () => {
+  for (const size of [5, 6, 7, 10, 15, 20, 25]) {
+    test(`bank size ${size}: every mode gets five different actual questions`, () => {
+      const questions = Array.from({ length: size }, (_, i) => ({
+        question: `اختر الإجابة المناسبة للسؤال رقم ${i + 1} في الدرس`,
+        options: ["الإجابة المناسبة", "إجابة أخرى"],
+        correct_answer: "a",
+      }));
+      const result = buildLessonGamePack("درس عربي", "", questions, []);
+      expect(result.bankSize).toBe(size);
+      expect(result.pack).not.toBeNull();
+      const pack = result.pack!;
+      for (const mode of GAME_MODES) {
+        expect(pack[mode]).toHaveLength(5);
+        expect(new Set(pack[mode].map(item => item.prompt)).size).toBe(5);
+        expect(pack[mode].every(item => item.options.includes(item.answer))).toBe(true);
+      }
+      if (size === 25) {
+        expect(new Set(GAME_MODES.flatMap(mode => pack[mode].map(item => item.prompt))).size).toBe(25);
+      }
+    });
+  }
+
+  test("a lesson with fewer than five usable questions stays unavailable", () => {
+    const questions = Array.from({ length: 4 }, (_, i) => ({
+      question: `اختبار قصير لمعرفة السؤال رقم ${i + 1}`,
+      options: ["صحيح", "خطأ"],
+      correct_answer: "a",
+    }));
+    const result = buildLessonGamePack("درس عربي", "", questions, []);
+    expect(result.pack).toBeNull();
+    expect(result.bankSize).toBe(4);
   });
 });
