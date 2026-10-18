@@ -52,6 +52,24 @@ describe("Bahrain grade-4 original verb exercises", () => {
     expect(reviewer).toContain("question.explanation");
     expect(reviewer).toContain("مراجعة تربوية مطلوبة");
     expect(reviewer).not.toContain('action={');
+    expect(reviewer).toContain('<ApproveProposalButton lessonId={proposal.lessonId} pack={proposal.pack} />');
     expect(assessments).toContain("/admin/curriculum/coverage/assessments/proposals/bahrain-grade4-verbs");
   });
+  test("manual approval requires two confirmations, admin API check and source disclosure", () => {
+    const action = readFileSync(
+      "app/admin/curriculum/coverage/assessments/proposals/bahrain-grade4-verbs/ApproveProposalButton.tsx",
+      "utf8",
+    );
+    expect(action).toContain("if (!checkedAnswers || !acknowledgedSource || saving || published) return");
+    expect(action).toContain('disabled={!checkedAnswers || !acknowledgedSource || saving || published}');
+    expect(action).toContain('method: "PUT"');
+    expect(action).toContain('"x-dadyoom-approved-game-pack": "1"');
+    expect(action).toContain("approved: true");
+    expect(action).toContain("aiAssisted: true");
+    expect(action).toContain('credentials: "same-origin"');
+    expect(action).toContain("راجعت الأسئلة الخمسة والعشرين");
+    expect(action).toContain("ليست أسئلة معتمدة من كتاب وزارة التربية");
+    expect(action).toContain("لا يتم اعتماد أي شيء تلقائيًا");
+  });
+
 });
