@@ -26,6 +26,12 @@ export default function BahrainAssessmentQualityPage() {
       <header className="rounded-3xl border border-[#d8c7a4] bg-white p-6 sm:p-9">
         <p className="text-sm font-black text-[#9a712c]">البحرين — تدقيق وجود التقييمات</p>
         <h1 className="mt-2 text-3xl font-black">جودة أنشطة الدروس وأسئلتها</h1>
+        <Link
+          href="/admin/lessons?country=BH&status=published&review=no-questions"
+          className="mt-4 inline-flex rounded-xl bg-[#123f39] px-5 py-3 text-sm font-black text-white"
+        >
+          افتح دروس البحرين بلا أسئلة تقليدية — مراجعة مباشرة ←
+        </Link>
         <p className="mt-3 leading-8">
           يُظهر هذا التقرير الفرق بين الأسئلة المسجلة بجدول الأسئلة والأنشطة
           الموضوعية المنشورة داخل الدرس. عدد سجلات الأسئلة وحده لا يعكس

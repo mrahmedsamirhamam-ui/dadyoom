@@ -5,6 +5,8 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 const PAGE_SIZE = 30;
+const BASE_LESSON_FIELDS =
+  "id,title,lesson_number,lesson_type,status,source_page_start,source_page_end,estimated_minutes,units!inner(title,grades!inner(name_ar,grade_number,curricula!inner(countries!inner(code,name_ar))))";
 
 type Relation<T> = T | T[] | null;
 function first<T>(input: Relation<T> | undefined): T | null {
@@ -52,7 +54,7 @@ function sanitizeSearch(raw: Search): Search {
   const country = /^[A-Za-z]{2}$/u.test(raw.country ?? "") ? raw.country!.toUpperCase() : "";
   const n = Number(raw.grade);
   const grade = raw.grade && Number.isInteger(n) && n >= 1 && n <= 12 ? String(n) : "";
-  const review = ["missing-pages", "generic-intro", "unresolved-ocr", "missing-link"].includes(raw.review ?? "")
+  const review = ["missing-pages", "generic-intro", "unresolved-ocr", "missing-link", "no-questions"].includes(raw.review ?? "")
     ? raw.review : "";
   const p = Number(raw.page);
   const page = Number.isSafeInteger(p) && p > 0 ? Math.min(p, 10000) : 1;
@@ -77,7 +79,9 @@ export default async function AdminLessonsPage({ searchParams }: Props) {
   // Every lesson can be reached, not just the first 50 in arbitrary order.
   let query = supabase.from("lessons")
     .select(
-      "id,title,lesson_number,lesson_type,status,source_page_start,source_page_end,estimated_minutes,units!inner(title,grades!inner(name_ar,grade_number,curricula!inner(countries!inner(code,name_ar))))",
+      filters.review === "no-questions"
+        ? `${BASE_LESSON_FIELDS},missing_questions:questions!left()`
+        : BASE_LESSON_FIELDS,
       { count: "exact" },
     );
   if (filters.status) query = query.eq("status", filters.status);
@@ -85,7 +89,12 @@ export default async function AdminLessonsPage({ searchParams }: Props) {
   if (filters.grade) query = query.eq("units.grades.grade_number", Number(filters.grade));
   // Evidence issue filters are applied in PostgREST, not sliced after
   // pagination. These are *review queues*, not book-completeness verdicts.
-  if (filters.review === "missing-pages") {
+  if (filters.review === "no-questions") {
+    // PostgREST anti-join: lessons that have NO rows in questions. This is
+    // NOT a claim that lesson_activities or other exercises are missing.
+    // Run the exclusion in Postgres before LIMIT/OFFSET, never client-side.
+    query = query.is("missing_questions", null);
+  } else if (filters.review === "missing-pages") {
     query = query.or("source_page_start.is.null,source_page_end.is.null");
   } else if (filters.review === "missing-link") {
     query = query.is("source_pdf_url", null);
@@ -123,6 +132,7 @@ export default async function AdminLessonsPage({ searchParams }: Props) {
       <p className="mt-3 text-sm leading-7 text-[#625b51]">
         تصفح الدروس دولةً وصفًا وحالةً، ثم افتح كل درس لتصحيح المصدر والمحتوى.
         «منشور» لا يعني «مطابق لفهرس الكتاب الرسمي».
+        وفلتر «بلا سجلات في جدول الأسئلة التقليدي» لا يعني عدم وجود أنشطة منشورة بجدول آخر.
       </p>
       <div className="mt-4 flex flex-wrap gap-3 text-sm font-black">
         <Link href="/admin/curriculum/coverage" className="text-[#174f47] underline">تدقيق كتب البحرين ←</Link>
@@ -168,6 +178,7 @@ export default async function AdminLessonsPage({ searchParams }: Props) {
           <option value="missing-link">بلا رابط مصدر مسجل</option>
           <option value="generic-intro">شرح عام مستورد</option>
           <option value="unresolved-ocr">استخراج OCR غير محسوم</option>
+          <option value="no-questions">بلا سجلات في جدول الأسئلة التقليدي</option>
         </select>
       </label>
       <div className="flex items-end gap-2">
