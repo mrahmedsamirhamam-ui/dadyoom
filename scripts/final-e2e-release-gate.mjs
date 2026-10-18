@@ -5169,18 +5169,28 @@ async function schoolRewardFlow(
     "E2E_SCHOOL_REWARD_FIXTURE_MISSING",
   );
 
-  await page.goto(
+  // Network-idle is not a reliable readiness signal for App Router pages:
+  // background requests can remain open after the form is already usable.
+  // Require the correct authenticated page AND its interactive form instead.
+  const rewardResponse = await page.goto(
     `${baseUrl}/school/rewards`,
-    {
-      waitUntil:
-        "networkidle",
-    },
+    { waitUntil: "domcontentloaded", timeout: 45_000 },
+  );
+  const rewardStatus = rewardResponse?.status() ?? 0;
+  const rewardPath = new URL(page.url()).pathname;
+  console.log(
+    `E2E_SCHOOL_REWARD_PAGE status=${rewardStatus} path=${rewardPath}`,
+  );
+  gate(
+    rewardStatus === 200 && rewardPath === "/school/rewards",
+    "E2E_SCHOOL_REWARD_PAGE_LOAD_FAILED",
   );
 
   const classSelect =
     page.locator(
       'select[name="classId"]',
     );
+  await classSelect.waitFor({ state: "visible", timeout: 20_000 });
 
   gate(
     (await classSelect.count()) === 1,

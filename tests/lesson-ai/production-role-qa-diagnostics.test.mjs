@@ -62,3 +62,16 @@ test("pricing QA waits for the authenticated role and rejects persistent edge fa
   expect(pricing).toContain('E2E_PRICING_NAV_');
   expect(pricing).not.toContain("getUser");
 });
+
+test("school reward flow verifies HTTP and rendered form instead of waiting for network idle", () => {
+ const a=s.indexOf("async function schoolRewardFlow(");
+ const b=s.indexOf("async function roleDashboardGate(",a);
+ const flow=s.slice(a,b);
+ expect(flow).toContain('waitUntil: "domcontentloaded"');
+ expect(flow).toContain('timeout: 45_000');
+ expect(flow).toContain('rewardStatus === 200 && rewardPath === "/school/rewards"');
+ expect(flow).toContain('E2E_SCHOOL_REWARD_PAGE_LOAD_FAILED');
+ expect(flow).toContain('classSelect.waitFor({ state: "visible", timeout: 20_000 })');
+ expect(flow).toContain('E2E_SCHOOL_REWARD_DB_FAILED');
+ expect(flow).not.toContain('"networkidle"');
+});
