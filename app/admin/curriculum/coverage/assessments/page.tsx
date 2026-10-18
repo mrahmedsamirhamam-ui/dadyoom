@@ -50,6 +50,24 @@ export default function BahrainAssessmentQualityPage() {
         </div>
       </header>
       <section className="rounded-3xl border border-amber-300 bg-white p-6">
+        <h2 className="text-xl font-black text-[#123f39]">50 سؤال إملاء وخط جديدًا للصف الرابع — للمراجعة</h2>
+        <p className="mt-2 text-sm leading-7">
+          حُضرت حزمتان أصليتان: الهمزة المتطرفة بعد حرف مضموم، وحرف الضاد.
+          لكل درس خمس ألعاب، وفي كل لعبة خمسة أسئلة مع الحل والتفسير.
+          المحتوى إثراء ضاديوم، ولا يثبت المطابقة مع فهرس كتاب 2026–2027.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-3 text-sm font-black">
+          <Link href="/admin/curriculum/coverage/assessments/proposals/bh-grade4-final-hamza"
+            className="inline-flex rounded-xl bg-[#123f39] px-5 py-3 text-white">
+            مراجعة 25 سؤالًا عن الهمزة ←
+          </Link>
+          <Link href="/admin/curriculum/coverage/assessments/proposals/bh-grade4-letter-dad"
+            className="inline-flex rounded-xl border border-[#b3a47d] bg-[#eef6ed] px-5 py-3 text-[#123f39]">
+            مراجعة 25 سؤالًا عن الضاد ←
+          </Link>
+        </div>
+      </section>
+      <section className="rounded-3xl border border-amber-300 bg-white p-6">
         <h2 className="text-xl font-black text-[#123f39]">25 سؤالًا أصليًا في أنواع الفعل — الصف الرابع</h2>
         <p className="mt-2 text-sm leading-7">
           خمس ألعاب، لكل لعبة خمسة أسئلة مستقلة مع تفسير الإجابة.
