@@ -56,6 +56,33 @@ export default function BahrainAssessmentQualityPage() {
         </div>
       </header>
       <section className="rounded-3xl border border-[#c8d8c8] bg-white p-6">
+        <h2 className="text-xl font-black text-[#123f39]">100 سؤال استماع أصلي جديد — أربعة دروس للصف الرابع</h2>
+        <p className="mt-2 text-sm leading-7">
+          حزم فهم النصوص الأصلية «الحمامة البيضاء»، «حلم يتحقق»، «عبقرية عالم»،
+          و«شجرة الكنار»: خمس ألعاب وخمسة أسئلة لكل لعبة في كل درس، بإجابات وتفسيرات.
+          هذه مراجعات تعليمية من تأليف ضاديوم، لا أسئلة وزارية معتمدة.
+          يتطلب نشرها تدقيق معلم العربية وموافقة المدير الصريحة.
+        </p>
+        <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
+          <Link href="/admin/curriculum/coverage/assessments/proposals/bh-grade4-listening-white-dove"
+            className="rounded-xl border border-[#b3cbb9] bg-[#f4fbf6] px-4 py-3 font-black text-[#123f39]">
+            الاستماع: الحمامة البيضاء — 25 سؤالًا ←
+          </Link>
+          <Link href="/admin/curriculum/coverage/assessments/proposals/bh-grade4-listening-dream-achieved"
+            className="rounded-xl border border-[#b3cbb9] bg-[#f4fbf6] px-4 py-3 font-black text-[#123f39]">
+            الاستماع: حلم يتحقق — 25 سؤالًا ←
+          </Link>
+          <Link href="/admin/curriculum/coverage/assessments/proposals/bh-grade4-listening-scientist-mind"
+            className="rounded-xl border border-[#b3cbb9] bg-[#f4fbf6] px-4 py-3 font-black text-[#123f39]">
+            الاستماع: عبقرية عالم — 25 سؤالًا ←
+          </Link>
+          <Link href="/admin/curriculum/coverage/assessments/proposals/bh-grade4-listening-konar-tree"
+            className="rounded-xl border border-[#b3cbb9] bg-[#f4fbf6] px-4 py-3 font-black text-[#123f39]">
+            الاستماع: شجرة الكنار — 25 سؤالًا ←
+          </Link>
+        </div>
+      </section>
+      <section className="rounded-3xl border border-[#c8d8c8] bg-white p-6">
         <h2 className="text-xl font-black text-[#123f39]">50 سؤال فهم استماع جديدًا للصفين الرابع والخامس</h2>
         <p className="mt-2 text-sm leading-7">
           أُعدّت تدريبات فهم واستنتاج ومفردات مبنية على نصوص ضاديوم الداعمة

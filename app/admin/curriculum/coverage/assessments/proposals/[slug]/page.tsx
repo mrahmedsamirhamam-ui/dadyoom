@@ -4,6 +4,10 @@ import hamza from "@/data/lesson-game-proposals/bh-grade4-final-hamza-after-damm
 import dad from "@/data/lesson-game-proposals/bh-grade4-letter-dad-25-original-2026.json";
 import country from "@/data/lesson-game-proposals/bh-grade4-listening-love-of-country-25-original-2026.json";
 import friends from "@/data/lesson-game-proposals/bh-grade5-listening-three-friends-25-original-2026.json";
+import dove from "@/data/lesson-game-proposals/bh-grade4-listening-white-dove-25-original-2026.json";
+import dream from "@/data/lesson-game-proposals/bh-grade4-listening-dream-achieved-25-original-2026.json";
+import scientist from "@/data/lesson-game-proposals/bh-grade4-listening-scientist-mind-25-original-2026.json";
+import konar from "@/data/lesson-game-proposals/bh-grade4-listening-konar-tree-25-original-2026.json";
 import ApproveProposalButton from "../bahrain-grade4-verbs/ApproveProposalButton";
 
 const proposals = {
@@ -11,6 +15,10 @@ const proposals = {
   "bh-grade4-letter-dad": dad,
   "bh-grade4-listening-love-of-country": country,
   "bh-grade5-listening-three-friends": friends,
+  "bh-grade4-listening-white-dove": dove,
+  "bh-grade4-listening-dream-achieved": dream,
+  "bh-grade4-listening-scientist-mind": scientist,
+  "bh-grade4-listening-konar-tree": konar,
 } as const;
 
 const gameNames: Record<string, string> = {
