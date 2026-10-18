@@ -2,11 +2,15 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import hamza from "@/data/lesson-game-proposals/bh-grade4-final-hamza-after-damma-25-original-2026.json";
 import dad from "@/data/lesson-game-proposals/bh-grade4-letter-dad-25-original-2026.json";
+import country from "@/data/lesson-game-proposals/bh-grade4-listening-love-of-country-25-original-2026.json";
+import friends from "@/data/lesson-game-proposals/bh-grade5-listening-three-friends-25-original-2026.json";
 import ApproveProposalButton from "../bahrain-grade4-verbs/ApproveProposalButton";
 
 const proposals = {
   "bh-grade4-final-hamza": hamza,
   "bh-grade4-letter-dad": dad,
+  "bh-grade4-listening-love-of-country": country,
+  "bh-grade5-listening-three-friends": friends,
 } as const;
 
 const gameNames: Record<string, string> = {
@@ -36,9 +40,10 @@ export default async function BahrainOriginalGameProposal({
           <h1 className="mt-3 text-3xl font-black">{proposal.title} — 25 سؤالًا</h1>
           <p className="mt-4 leading-8">
             الصف {proposal.grade}، الفصل {proposal.semester}، البحرين.
-            هذه تدريبات إملاء وخط أصلية من ضاديوم، وليست من كتاب الوزارة.
-            عنوان المهارة مرتبط بخطة قديمة {proposal.importedPlanReferenceYear}،
-            ولا تثبت الحزمة مطابقة فهرس طبعة 2026–2027.
+            هذه تدريبات عربية أصلية من ضاديوم مرتبطة بسياق الدرس الداعم،
+            وليست من نص الكتاب أو التسجيل الصوتي الوزاري.
+            ورد عنوان الدرس في مرجع خطة {proposal.importedPlanReferenceYear}،
+            لكن ذلك لا يثبت مطابقة أسئلة هذه الحزمة لفهرس أو نص الكتاب الرسمي.
           </p>
           <p className="mt-2 text-sm font-bold text-amber-900">
             يجب مراجعة كل سؤال وإجابة وتفسير على حدة قبل الضغط على زر الاعتماد.

@@ -49,6 +49,24 @@ export default function BahrainAssessmentQualityPage() {
           )}
         </div>
       </header>
+      <section className="rounded-3xl border border-[#c8d8c8] bg-white p-6">
+        <h2 className="text-xl font-black text-[#123f39]">50 سؤال فهم استماع جديدًا للصفين الرابع والخامس</h2>
+        <p className="mt-2 text-sm leading-7">
+          أُعدّت تدريبات فهم واستنتاج ومفردات مبنية على نصوص ضاديوم الداعمة
+          لدرسي «حب الوطن» و«الأصدقاء الثلاثة»، بخمس ألعاب لكل درس وخمس مراحل لكل لعبة.
+          الأسئلة أصلية وليست نصوصًا أو تسجيلات من كتاب الوزارة، ولا تُنشر قبل المراجعة البشرية.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-3 text-sm font-black">
+          <Link href="/admin/curriculum/coverage/assessments/proposals/bh-grade4-listening-love-of-country"
+            className="inline-flex rounded-xl bg-[#123f39] px-5 py-3 text-white">
+            مراجعة الاستماع: حب الوطن (الرابع) ←
+          </Link>
+          <Link href="/admin/curriculum/coverage/assessments/proposals/bh-grade5-listening-three-friends"
+            className="inline-flex rounded-xl border border-[#b3a47d] bg-[#eef6ed] px-5 py-3 text-[#123f39]">
+            مراجعة الاستماع: الأصدقاء الثلاثة (الخامس) ←
+          </Link>
+        </div>
+      </section>
       <section className="rounded-3xl border border-amber-300 bg-white p-6">
         <h2 className="text-xl font-black text-[#123f39]">50 سؤال إملاء وخط جديدًا للصف الرابع — للمراجعة</h2>
         <p className="mt-2 text-sm leading-7">
