@@ -67,6 +67,23 @@ export default async function BahrainTocEvidenceIntakePage() {
           كل عنوان في سطر مستقل. هذه أدلة تحتاج تدقيقًا مستقلًا وربطًا 1:1 مع الدروس.
           رابط خطة التدريس أو دليل أسماء الكتب لا يكفي وحده؛ لا يُعتمد أي كتاب مكتملًا ولا يُنشر أي درس بمجرد حفظ هذه البيانات.
         </p>
+        <div className="mt-4 flex flex-wrap gap-3 text-sm font-black">
+          <a href="https://www.edunet.bh/Econtent/BooksGuide"
+            target="_blank" rel="noopener noreferrer"
+            className="inline-flex rounded-xl border border-[#bed0c4] bg-[#edf6f1] px-5 py-3 text-[#174f47]">
+            دليل الكتب المدرسية الرسمي 2026–2027 ↗
+          </a>
+          <a href="https://www.edunet.bh/Econtent/LessonsGuide"
+            target="_blank" rel="noopener noreferrer"
+            className="inline-flex rounded-xl border border-[#bed0c4] bg-[#edf6f1] px-5 py-3 text-[#174f47]">
+            خطط الدروس الرسمية 2026–2027 ↗
+          </a>
+        </div>
+        <p className="mt-3 text-sm leading-7 text-[#75674f]">
+          دليل الكتب يثبت أسماء الكتب عند التحقق منه، وخطة الدروس تحدد توزيع الموضوعات؛
+          لكنهما لا يثبتان نص الكتاب أو فهرسه تلقائيًا.
+          يجب الحصول على رابط الكتاب الأصلي وفحص عناوين فهرسه وصفحاته بنفسك قبل الاعتماد.
+        </p>
         <Link href="/admin/curriculum/coverage/toc-review/grade-2"
           className="mt-4 inline-flex rounded-xl border border-[#bed0c4] bg-[#edf6f1] px-5 py-3 text-sm font-black text-[#174f47]">
           مطابقة فهرس الصف الثاني بالدروس — معاينة أولية ←
