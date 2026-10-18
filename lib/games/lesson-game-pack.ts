@@ -77,6 +77,9 @@ export function approvedPack(value: unknown): GamePack | null {
       const item = raw as Record<string, unknown>;
       if (typeof item.prompt !== "string" || typeof item.answer !== "string") return null;
       const options = optionStrings(item.options);
+      // Never collapse duplicate/blank raw choices when an answer is
+      // supplied as an index or option ID: that silently changes its meaning.
+      if (!Array.isArray(item.options) || options.length !== item.options.length) return null;
       const candidate: GameItem = {
         prompt: item.prompt.trim(), options,
         answer: item.answer.trim(),
@@ -182,7 +185,13 @@ export function buildLessonGamePack(
   const seed: GameItem[] = [];
   for (const row of questions) {
     const options = optionStrings(row.options);
-    if (options.length < 2) continue;
+    // A/B/C answers refer to positions in the source array. Removing
+    // duplicate or blank choices before mapping a position can mark a
+    // different answer as correct, so reject ambiguous imports outright.
+    if (!Array.isArray(row.options) ||
+        options.length !== row.options.length ||
+        options.length < 2 || options.length > 5 ||
+        typeof row.question !== "string") continue;
     const answer = answerText(row.correct_answer, options, row.options);
     if (answer) seed.push({ prompt: row.question.trim(), options, answer });
   }
