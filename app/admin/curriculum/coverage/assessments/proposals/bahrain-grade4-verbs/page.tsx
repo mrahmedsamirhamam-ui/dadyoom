@@ -1,5 +1,6 @@
 import Link from "next/link";
 import proposal from "@/data/lesson-game-proposals/bh-grade4-types-of-verbs-25-original-2026.json";
+import ApproveProposalButton from "./ApproveProposalButton";
 
 const modeNames: Record<string, string> = {
   maze: "حارس العربية",
@@ -64,9 +65,11 @@ export default function BahrainGradeFourVerbsProposalPage() {
             </ol>
           </section>
         ))}
+        <ApproveProposalButton lessonId={proposal.lessonId} pack={proposal.pack} />
         <p className="rounded-2xl border border-amber-300 bg-amber-50 p-4 text-sm font-bold text-amber-950">
-          حالة المحتوى: مراجعة تربوية مطلوبة. لا يوجد زر موافقة أو نشر تلقائي في هذه الصفحة؛
-          الاعتماد النهائي يمر عبر صلاحيات الإدارة والتحقق من صحة كل إجابة.
+          حالة المقترح قبل الاعتماد: مراجعة تربوية مطلوبة.
+          لا يغيّر عرض الصفحة حالة الاعتماد. النشر لا يتم إلا بعد تأكيد بشري
+          والتحقق الخادمي من صلاحية مدير المنصة وصحة بنية 25 سؤالًا.
         </p>
       </div>
     </main>
