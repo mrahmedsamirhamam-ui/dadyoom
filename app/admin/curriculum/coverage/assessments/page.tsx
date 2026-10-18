@@ -49,6 +49,20 @@ export default function BahrainAssessmentQualityPage() {
           )}
         </div>
       </header>
+      <section className="rounded-3xl border border-amber-300 bg-white p-6">
+        <h2 className="text-xl font-black text-[#123f39]">25 سؤالًا أصليًا في أنواع الفعل — الصف الرابع</h2>
+        <p className="mt-2 text-sm leading-7">
+          خمس ألعاب، لكل لعبة خمسة أسئلة مستقلة مع تفسير الإجابة.
+          أُعدّت انطلاقًا من شرح ضاديوم الأصلي، وتحتاج تدقيق المعلم قبل النشر.
+          لا تُنسب إلى الكتاب الرسمي أو خطة 2026–2027 المعتمدة.
+        </p>
+        <Link
+          href="/admin/curriculum/coverage/assessments/proposals/bahrain-grade4-verbs"
+          className="mt-3 inline-flex rounded-xl bg-[#123f39] px-5 py-3 text-sm font-black text-white"
+        >
+          مراجعة المقترح سؤالًا سؤالًا ←
+        </Link>
+      </section>
       <section className="rounded-3xl border border-[#d8c7a4] bg-white p-6">
         <h2 className="text-xl font-black text-[#123f39]">مسودات تدريب حروف الصف الأول — الجزء الثاني</h2>
         <p className="mt-2 text-sm leading-7">أعددنا 12 سؤال تمييز حروف أصليًا، محفوظة في قاعدة البيانات كمسودات غير منشورة تنتظر مراجعة معلم العربية. لا تُعد مطابقة معتمدة لكتاب الفصل الثاني 2026–2027.</p>
