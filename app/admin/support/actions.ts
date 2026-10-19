@@ -12,14 +12,15 @@ export async function updateSupportTicket(formData: FormData) {
   const id = String(formData.get("id") ?? "").trim();
   const status = String(formData.get("status") ?? "").trim();
   const admin_note = String(formData.get("admin_note") ?? "").trim();
+  const public_reply = String(formData.get("public_reply") ?? "").trim();
   if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/iu.test(id)
     || !["new", "in_progress", "resolved"].includes(status)
-    || admin_note.length > 2000) {
+    || admin_note.length > 2000 || public_reply.length > 4000) {
     throw new Error("بيانات التحديث غير صالحة.");
   }
   const db = createAdminClient();
   const result = await db.from("support_tickets")
-    .update({ status, admin_note, updated_at: new Date().toISOString() })
+    .update({ status, admin_note, public_reply, updated_at: new Date().toISOString() })
     .eq("id", id).select("id").single();
   if (result.error || !result.data) {
     throw new Error("تعذر حفظ حالة الطلب. يرجى إعادة المحاولة.");

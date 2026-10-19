@@ -1,13 +1,14 @@
 import { createHmac } from "node:crypto";
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { createClient } from "@/lib/supabase/server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const categories = new Set([
   "general", "technical", "account", "curriculum", "teacher",
-  "school", "privacy", "suggestion", "other",
+  "school", "privacy", "suggestion", "complaint", "other",
 ]);
 const roles = new Set([
   "visitor", "student", "child", "teacher", "parent", "school", "admin", "other",
@@ -88,8 +89,13 @@ export async function POST(request: Request) {
     if ((recent.count ?? 0) >= 3) {
       return bad("تم استلام طلبات متعددة مؤخرًا. يُرجى المحاولة بعد ساعة.", 429);
     }
+    // Attach an authenticated sender using the verified session, never a client-supplied ID.
+    const client = await createClient();
+    const { data: { user } } = await client.auth.getUser();
+    const verifiedEmail = user?.email?.trim().toLowerCase() || email;
     const inserted = await admin.from("support_tickets").insert({
-      name, email, category, user_role, subject, message, page_url, submitter_hash,
+      user_id: user?.id ?? null,
+      name, email: verifiedEmail, category, user_role, subject, message, page_url, submitter_hash,
     }).select("id").single();
     if (inserted.error || !inserted.data?.id) throw inserted.error ?? new Error("Missing ticket id");
 

@@ -12,6 +12,7 @@ const categories = [
   { value: "school", ar: "المدارس والتعاون", en: "Schools and partnerships" },
   { value: "privacy", ar: "الخصوصية والبيانات", en: "Privacy and data" },
   { value: "suggestion", ar: "اقتراح لتطوير ضاديوم", en: "Suggestion" },
+  { value: "complaint", ar: "شكوى", en: "Complaint" },
   { value: "other", ar: "موضوع آخر", en: "Other" },
 ];
 const roles = [
@@ -67,11 +68,11 @@ export default function ContactForm({ initialCategory = "technical" }: { initial
   return (
     <section className="rounded-[2rem] border border-[#ddcfb4] bg-white p-5 shadow-sm sm:p-8" aria-labelledby="contact-form-heading">
       <h2 id="contact-form-heading" className="font-arabic-display text-2xl font-black text-[#123f39]">
-        {t("أرسل رسالتك إلى فريق ضاديوم", "Write to the Dadyoom team")}
+        {t("راسل ضاديوم معك", "Write to Dadyoom Care")}
       </h2>
       <p className="mt-2 text-sm leading-7 text-[#6a6256]">
         {t(
-          "يمكن إرسال مشكلة أو استفسار حتى من دون حساب. سجّل بريدًا يمكنك استقبال الرد عليه. لا ترسل كلمة مرور أو رموز تحقق أو بيانات طفل حساسة.",
+          "يمكن الإرسال دون حساب، لكن متابعة الحالة والرد من داخل المنصة تتطلب تسجيل الدخول قبل الإرسال. سجّل بريدًا صالحًا، ولا تشارك كلمات المرور أو بيانات الأطفال الحساسة.",
           "Send a question or problem without an account. Use an email where we can reply. Do not share passwords, verification codes or sensitive child data.",
         )}
       </p>

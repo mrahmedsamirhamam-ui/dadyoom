@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ContactForm from "@/components/contact/ContactForm";
+import MyCareRequests from "@/components/contact/MyCareRequests";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "تواصل معنا | ضاديوم",
+  title: "ضاديوم معك | صوتك يُسمَع، ورأيك يصنع الفرق",
   description: "اتصل بفريق ضاديوم، وأرسل مشكلة تقنية أو ملاحظة منهجية أو استفسارًا أو اقتراحًا بسهولة.",
   alternates: { canonical: "/contact" },
 };
@@ -35,7 +36,8 @@ export default function ContactPage() {
         <header className="relative overflow-hidden rounded-[2rem] border border-[#d7c29c] bg-[#123f39] px-6 py-10 text-white sm:px-10">
           <div aria-hidden="true" className="absolute -left-16 -top-24 h-64 w-64 rounded-full border-[36px] border-white/5" />
           <p className="relative text-sm font-black text-[#f5d38b]">ضاديوم • بيت العربية الرقمي</p>
-          <h1 className="relative mt-3 font-arabic-display text-3xl font-black sm:text-5xl">تواصل معنا</h1>
+          <h1 className="relative mt-3 font-arabic-display text-3xl font-black sm:text-5xl">ضاديوم معك</h1>
+          <p className="relative mt-3 font-arabic-reading text-lg font-black text-[#f4d48b]">صوتك يُسمَع، ورأيك يصنع الفرق</p>
           <p className="relative mt-4 max-w-3xl font-arabic-reading text-lg leading-9 text-[#e4eee9]">
             عندك سؤال، مشكلة، ملاحظة على أحد الدروس، أو فكرة تجعل ضاديوم أفضل؟
             اكتب لنا مباشرة؛ نريد أن يسمع فريقنا صوت الطالب والمعلم وولي الأمر والمدرسة.
@@ -82,6 +84,7 @@ export default function ContactPage() {
           </aside>
           <ContactForm />
         </div>
+        <MyCareRequests />
         <footer className="mt-9 flex flex-wrap gap-5 border-t border-[#d6c6a6] pt-6 text-sm font-bold text-[#174f47]">
           <Link href="/about" className="hover:underline">عن ضاديوم</Link>
           <Link href="/privacy" className="hover:underline">سياسة الخصوصية</Link>

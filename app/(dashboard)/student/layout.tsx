@@ -8,6 +8,8 @@ const links = [
   { href: "/student/live", label: "الحصص", icon: "🎥" },
   { href: "/shorts", label: "شورتس", icon: "▶" },
   { href: "/journey", label: "رحلتي", icon: "🧭" },
+  { href: "/interactive-lab", label: "المختبر التفاعلي", icon: "🧩" },
+  { href: "/care", label: "ضاديوم معك", icon: "💬" },
   { href: "/skills", label: "المهارات", icon: "🧠" },
   { href: "/reading-challenge", label: "القراءة", icon: "📖" },
   { href: "/dictionary", label: "قاموس السياق", icon: "📘" },
