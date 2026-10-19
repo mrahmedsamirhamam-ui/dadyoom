@@ -10,6 +10,8 @@ import { getArabicCountryOptions } from "@/lib/countries";
 
 type Mode = "login" | "signup";
 
+const signupRoles = new Set(["student", "child", "teacher", "parent", "school"]);
+
 const roleDestinations: Record<string, string> = {
   student: "/student",
   child: "/child",
@@ -90,14 +92,16 @@ async function dadyoomServerThrottledSignIn(
 }
 export default function EmailPasswordAuthForm({
   mode,
+  initialRole = "student",
 }: {
   mode: Mode;
+  initialRole?: string;
 }) {
   const router = useRouter();
   const countries = useMemo(() => getArabicCountryOptions(), []);
 
   const [fullName, setFullName] = useState("");
-  const [role, setRole] = useState("student");
+  const [role, setRole] = useState(signupRoles.has(initialRole) ? initialRole : "student");
   const [country, setCountry] = useState("BH");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -301,7 +305,7 @@ export default function EmailPasswordAuthForm({
       <section className="mx-auto w-full max-w-lg overflow-hidden rounded-[2rem] border border-[#e3d4b6] bg-white shadow-xl shadow-[#123f39]/10">
         <header className="bg-gradient-to-l from-[#123f39] to-[#1f665c] px-6 py-7 text-white">
           <p className="text-sm font-black text-[#f5cf7a]">
-            ضاديوم · بيت العربية الرقمي
+            ضاديوم · بيت اللغة العربية
           </p>
           <h1 className="mt-2 text-3xl font-black">
             {signup ? "إنشاء حساب" : "تسجيل الدخول"}
@@ -459,10 +463,15 @@ export default function EmailPasswordAuthForm({
           <p className="text-center text-sm font-bold text-[#685b47]">
             {signup ? "لديك حساب بالفعل؟ " : "ليس لديك حساب؟ "}
             <Link
-              href={signup ? "/login" : "/signup"}
+              href={signup ? "/login" : "/portal"}
               className="font-black text-[#123f39] underline"
             >
-              {signup ? "تسجيل الدخول" : "إنشاء حساب"}
+              {signup ? "تسجيل الدخول" : "اختر صفتك وأنشئ حسابًا"}
+            </Link>
+          </p>
+          <p className="text-center text-sm font-bold">
+            <Link href="/portal" className="text-[#174f47] underline underline-offset-4">
+              بوابة الوصول وأدلة الطالب والمعلم وولي الأمر والمدرسة
             </Link>
           </p>
         </div>
