@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 const CATEGORIES = new Set([
   "general", "technical", "account", "curriculum", "teacher",
-  "school", "privacy", "suggestion", "other",
+  "school", "privacy", "suggestion", "complaint", "other",
 ]);
 const ROLES = new Set([
   "visitor", "student", "child", "teacher", "parent", "school", "admin", "other",
@@ -48,7 +48,7 @@ export async function GET() {
 
     const admin = createAdminClient();
     const { data, error: dbError } = await admin.from("support_tickets")
-      .select("id,category,subject,status,created_at")
+      .select("id,category,subject,status,public_reply,created_at")
       .eq("user_id", user.id)
       .order("created_at", { ascending: false })
       .limit(30);
