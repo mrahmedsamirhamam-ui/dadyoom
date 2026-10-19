@@ -49,7 +49,8 @@ export async function PATCH(request: NextRequest) {
     const body = JSON.parse(raw) as Record<string, unknown>;
     const id = typeof body.id === "string" ? body.id.trim() : "";
     const status = typeof body.status === "string" ? body.status : "";
-    const note = typeof body.admin_note === "string" ? body.admin_note.trim() : "";\n    const publicReply = typeof body.public_reply === "string" ? body.public_reply.trim() : "";
+    const note = typeof body.admin_note === "string" ? body.admin_note.trim() : "";
+    const publicReply = typeof body.public_reply === "string" ? body.public_reply.trim() : "";
     if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id) ||
       !["new", "in_progress", "resolved"].includes(status) || note.length > 2000 || publicReply.length > 4000) {
       return reply({ error: "يرجى مراجعة بيانات التحديث." }, 400);
