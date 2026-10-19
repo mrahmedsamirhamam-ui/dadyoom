@@ -4,6 +4,7 @@ on:
     branches:
       - feature/care-pyramid-on-production-20261019
       - fix/care-pyramid-lint-20261019
+      - fix/dadyoom-care-reply-email-e2e-20261019
 
 permissions:
   contents: read
@@ -27,6 +28,8 @@ jobs:
         run: npx tsc --noEmit
       - name: ESLint
         run: npm run lint
+      - name: QA script syntax
+        run: node --check scripts/final-e2e-release-gate.mjs
       - name: Build current Cloudflare Vinext application (no deploy)
         run: npm run build:vinext
       - name: Verify browser chunks
