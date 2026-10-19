@@ -153,6 +153,20 @@ describe("provenance gate for automatically generated game questions", () => {
     })).toBe(content);
   });
 
+  test("Bahrain lesson games exclude editorial metadata and use the learning section", () => {
+    const content = [
+      "ضاديوم — درس إثرائي أصلي للصف الثامن، الفصل الدراسي الثاني.",
+      "حالة المصدر: غير مكتمل، الخطة 2025–2026 تاريخية.",
+      "مسار التعلم الذاتي — مراجعة علمية وتطبيق عملي من ضاديوم",
+      "التوكيد اللفظي تكرار اللفظ لأجل توضيح المعنى وتأكيده في الكلام.",
+      "جاء الطالبُ نفسُهُ: التوكيد معنوي والاسم تابع للمؤكَّد في الإعراب.",
+    ].join("\\n");
+    const safe = sourceForAutomaticGameQuestions({ content });
+    expect(safe).not.toContain("الفصل الدراسي الثاني");
+    expect(safe).not.toContain("حالة المصدر");
+    expect(safe).toContain("التوكيد اللفظي");
+  });
+
   test("empty lesson material cannot produce fake generated prompts", () => {
     expect(sourceForAutomaticGameQuestions({ content: "   " })).toBe("");
   });

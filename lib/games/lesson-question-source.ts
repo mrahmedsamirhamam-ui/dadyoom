@@ -18,5 +18,17 @@ export function sourceForAutomaticGameQuestions(input: {
       })) {
     return "";
   }
-  return body;
+  // The first header of an imported lesson is often administrative metadata.
+  // Restrict cloze prompts to the authored instructional section, not the
+  // country/grade, provenance, source attribution or release disclaimer.
+  const markers = [
+    "مسار التعلّم الذاتي الموسّع",
+    "مسار التعلم الذاتي —",
+    "الدرس التطبيقي الموسّع",
+  ];
+  const offsets = markers.map((marker) => body.lastIndexOf(marker)).filter((index) => index >= 0);
+  if (!offsets.length) return body;
+  const from = Math.max(...offsets);
+  const afterHeading = body.indexOf("\\n", from);
+  return afterHeading >= 0 ? body.slice(afterHeading + 1).trim() : "";
 }

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import OriginalLessonVisualExplainer from "@/components/lesson/OriginalLessonVisualExplainer";
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
@@ -51,7 +52,7 @@ export default async function LessonVideoPage({
     error: lessonError,
   } = await supabase
     .from("lessons")
-    .select("id,title,status")
+    .select("id,title,status,content")
     .eq("id", id)
     .eq("status", "published")
     .maybeSingle();
@@ -117,6 +118,8 @@ export default async function LessonVideoPage({
             مناسبًا عندما لا يتوفر الخياران السابقان.
           </p>
         </section>
+
+        <OriginalLessonVisualExplainer title={lesson.title} content={lesson.content ?? ""} />
 
         {lessonVideo ? (
           <>
