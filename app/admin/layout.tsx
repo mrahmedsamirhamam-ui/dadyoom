@@ -12,7 +12,7 @@ const adminLinks = [
   { href: "/admin/lessons", label: "الدروس" },
   { href: "/admin/students", label: "الطلاب" },
   { href: "/admin/teachers", label: "المعلمون" },
-  { href: "/admin/ai-lesson", label: "مساعد المحتوى" },
+  { href: "/admin/ai-lesson", label: "مساعد المحتوى" },\n  { href: "/admin/care", label: "ضاديوم معك" },
 ];
 
 export default async function AdminLayout({
