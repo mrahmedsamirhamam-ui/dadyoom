@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 
 export type StudentCatalogLesson = {
-  id: string; title: string; objective: string | null;
+  id: string; title: string; objective: string | null; semester: number | null;
   estimatedMinutes: number; difficulty: "beginner" | "intermediate" | "advanced";
   points: number; order: number; completed: boolean; progressPercent: number;
 };
@@ -20,7 +20,7 @@ export type StudentCatalogUnit = {
 type RawLesson = {
   id: string; title: string; summary: string | null;
   estimated_minutes: number | null; lesson_number: number | null;
-  sort_order: number | null; status: string;
+  sort_order: number | null; semester: number | null; status: string;
 };
 
 type Country = { id: string; code: string; name_ar: string; is_active: boolean };
@@ -87,7 +87,12 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
       ? createAdminClient()
       : supabase;
 
-  const { data, error } = await catalogDb.from("units").select(`
+  // Fetch every unit. PostgREST normally limits a single request to 1000 rows;
+  // silently truncating the catalog hides entire grades and semesters.
+  const rawUnits: RawUnit[] = [];
+  const pageSize = 250;
+  for (let offset = 0; offset < 10000; offset += pageSize) {
+    const { data: page, error } = await catalogDb.from("units").select(`
     id,title,description,sort_order,unit_number,
     grades!inner(
       id,name_ar,grade_number,
@@ -96,10 +101,14 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
         countries!inner(id,code,name_ar,is_active)
       )
     ),
-    lessons(id,title,summary,estimated_minutes,lesson_number,sort_order,status)
-  `);
+    lessons(id,title,summary,estimated_minutes,lesson_number,sort_order,status,semester)
+  `).order("id", { ascending: true }).range(offset, offset + pageSize - 1);
 
-  if (error) throw new Error(`تعذر تحميل المناهج: ${error.message}`);
+    if (error) throw new Error(`تعذر تحميل المناهج: ${error.message}`);
+    const batch = (page ?? []) as unknown as RawUnit[];
+    rawUnits.push(...batch);
+    if (batch.length < pageSize) break;
+  }
 
   let progress: Progress[] = [];
   if (user) {
@@ -112,7 +121,7 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
   const byLesson = new Map(progress.map((p) => [p.lesson_id, p]));
   const out: StudentCatalogUnit[] = [];
 
-  for (const raw of (data ?? []) as unknown as RawUnit[]) {
+  for (const raw of rawUnits) {
     const grade = one(raw.grades);
     const curriculum = one(grade?.curricula);
     const country = one(curriculum?.countries);
@@ -146,6 +155,7 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
           id: lesson.id,
           title: lesson.title,
           objective: lesson.summary,
+          semester: lesson.semester ?? null,
           estimatedMinutes: Number(lesson.estimated_minutes ?? 20),
           difficulty: level(grade.grade_number),
           points: Math.max(10, Number(p?.xp ?? 0)),
