@@ -60,6 +60,11 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
     user &&
     process.env.DADYOOM_BAHRAIN_PREVIEW === "true"
   ) {
+    // Drafts must NEVER be previewed by ordinary Bahrain students.
+    // Require an authenticated, server-verified platform administrator.
+    const { data: isAdministrator, error: adminError } =
+      await supabase.rpc("is_admin");
+    if (!adminError && isAdministrator === true) {
     const { data: previewProfile } =
       await supabase
         .from("profiles")
@@ -80,6 +85,7 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
       previewCountry === "BH" ||
       previewCountry === "BAHRAIN" ||
       previewCountry === "البحرين";
+    }
   }
 
   const catalogDb =
