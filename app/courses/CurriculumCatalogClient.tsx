@@ -927,7 +927,8 @@ function CatalogScope({
         ? curriculum
         : hasSecondaryComplete
           ? SECONDARY_COMPLETE_ID
-          : curricula[0]?.id ?? "";
+          : curricula.find((item) => item.name.trim() === "اللغة العربية")?.id ??
+            curricula[0]?.id ?? "";
 
   const curriculumScopedUnits = units.filter(
     (item) =>
@@ -1438,7 +1439,11 @@ function CatalogScope({
                                 lesson.resourceKind === "book-reference" ||
                                 lesson.officialContentScope === "plan-scheduled",
                             )
-                          ? "مقرر في الخطة الرسمية الحالية"
+                          ? country === "BH" && item.lessons.some(
+                              (lesson) => lesson.sourcePlanYear !== "2026-2027",
+                            )
+                            ? "مطابقة هذا المحتوى بخطة العام الحالي قيد التحقق"
+                            : "مقرر في الخطة الرسمية الحالية"
                           : "مصادر متنوعة — راجع حالة كل درس"}
                     </span>
                   </div>
@@ -1539,7 +1544,9 @@ function CatalogScope({
                     ) : lesson.officialContentScope ===
                       "plan-scheduled" ? (
                       <span className="mt-2 inline-flex rounded-full bg-[#e8f7ee] px-2.5 py-1 text-[10px] font-black text-[#245b3a]">
-                        مقرر في الخطة الرسمية الحالية
+                        {country === "BH" && lesson.sourcePlanYear !== "2026-2027"
+                          ? "إثراء تعليمي — المطابقة بخطة 2026–2027 غير مثبتة"
+                          : "مقرر في الخطة الرسمية الحالية"}
                       </span>
                     ) : !isDadyoomCoreCurriculum(item.curriculum.name) &&
                       !(lesson.sourcePlanYear && lesson.sourcePlanYear !== "2026-2027") ? (
@@ -1553,6 +1560,9 @@ function CatalogScope({
                         "درس عربي تفاعلي ضمن مسارك."}
                     </p>
 
+                    <p className="mt-3 text-xs font-black text-[#156652]">
+                      افتح الدرس ← الشرح ثم التعلّم الذاتي والأسئلة
+                    </p>
                     <div className="mt-3 flex justify-between border-t pt-3 text-xs font-black text-[#887d70]">
                       <span>
                         ⏱ {lesson.estimatedMinutes} دقيقة

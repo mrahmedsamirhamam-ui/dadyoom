@@ -89,9 +89,16 @@ export async function getStudentCurriculumCatalog(): Promise<StudentCatalogUnit[
         ? "BH"
         : profileCountry;
 
-    allowBahrainDraftPreview =
+    // A country match alone is NOT authorization to view unpublished,
+    // unreviewed book extracts. Only a server-verified admin may preview.
+    if (
       process.env.DADYOOM_BAHRAIN_PREVIEW === "true" &&
-      preferredCountryCode === "BH";
+      preferredCountryCode === "BH"
+    ) {
+      const { data: isAdministrator, error: adminError } =
+        await supabase.rpc("is_admin");
+      allowBahrainDraftPreview = !adminError && isAdministrator === true;
+    }
   }
 
   const catalogDb =

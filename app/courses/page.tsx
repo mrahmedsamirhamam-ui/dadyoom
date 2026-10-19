@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import CurriculumCatalogClient from "./CurriculumCatalogClient";
 import { maxGradeForCountry } from "@/lib/student/country-grade-limits";
+import { createClient } from "@/lib/supabase/server";
 import { LocalizedText } from "@/components/i18n/LanguageProvider";
 import {
   ARAB_COUNTRY_CODES,
@@ -43,12 +44,44 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
 
   const query = await searchParams;
   const rawCountry = Array.isArray(query.country) ? query.country[0] : query.country;
-  const country = countries.find(
-    (item) => item.code === (rawCountry ?? "").trim().toUpperCase(),
-  ) ?? countries.find((item) => item.code === "BH") ?? countries[0];
   const rawGrade = Array.isArray(query.grade) ? query.grade[0] : query.grade;
   const rawLevel = Array.isArray(query.level) ? query.level[0] : query.level;
-  const requestedGrade = Number(rawGrade);
+
+  // A student opening /courses without URL parameters should see their
+  // registered country's actual grade, not a misleading first-grade default.
+  // Explicit country/grade links always take precedence.
+  let profileCountryCode = "BH";
+  let profileGradeNumber = 1;
+  if (!rawCountry || !rawGrade) {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("country,grade_number")
+        .eq("id", user.id)
+        .maybeSingle();
+
+      const storedCountry = String(profile?.country ?? "").trim().toUpperCase();
+      const canonicalCountry =
+        storedCountry === "BAHRAIN" || storedCountry === "البحرين"
+          ? "BH"
+          : storedCountry;
+      if (arabCodes.has(canonicalCountry)) {
+        profileCountryCode = canonicalCountry;
+      }
+
+      const storedGrade = Number(profile?.grade_number);
+      if (Number.isInteger(storedGrade) && storedGrade >= 1 && storedGrade <= 12) {
+        profileGradeNumber = storedGrade;
+      }
+    }
+  }
+
+  const country = countries.find(
+    (item) => item.code === (rawCountry ?? profileCountryCode).trim().toUpperCase(),
+  ) ?? countries.find((item) => item.code === "BH") ?? countries[0];
+  const requestedGrade = rawGrade ? Number(rawGrade) : profileGradeNumber;
   const grade = Number.isInteger(requestedGrade) &&
     requestedGrade >= 1 && requestedGrade <= (country?.maxGrade ?? 12)
     ? requestedGrade : 1;
