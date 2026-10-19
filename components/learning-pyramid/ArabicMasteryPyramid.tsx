@@ -2,14 +2,15 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { LEVELS, PYRAMID_PACKS, type ChoiceTask, type CreativeTask } from "@/lib/learning-pyramid/packs";
+import { LEVELS, PYRAMID_PACKS, type ChoiceTask, type CreativeTask, type PyramidPack } from "@/lib/learning-pyramid/packs";
 
 type Feedback = { correct: boolean; message: string; explanation?: string } | null;
 
 const EMPTY_PROGRESS = [false, false, false, false, false, false];
 
-export default function ArabicMasteryPyramid() {
-  const [packSlug, setPackSlug] = useState(PYRAMID_PACKS[0].slug);
+export default function ArabicMasteryPyramid({ customPack }: { customPack?: PyramidPack }) {
+  const packs = useMemo(() => customPack ? [customPack] : PYRAMID_PACKS, [customPack]);
+  const [packSlug, setPackSlug] = useState(customPack?.slug ?? PYRAMID_PACKS[0].slug);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [completed, setCompleted] = useState<boolean[]>([...EMPTY_PROGRESS]);
   const [choice, setChoice] = useState<number | null>(null);
@@ -22,8 +23,8 @@ export default function ArabicMasteryPyramid() {
   const [teacherGuide, setTeacherGuide] = useState(false);
 
   const pack = useMemo(
-    () => PYRAMID_PACKS.find((item) => item.slug === packSlug) ?? PYRAMID_PACKS[0],
-    [packSlug],
+    () => packs.find((item) => item.slug === packSlug) ?? packs[0],
+    [packSlug, packs],
   );
   const step = pack.steps[currentIndex];
   const level = LEVELS[currentIndex];
@@ -98,7 +99,7 @@ export default function ArabicMasteryPyramid() {
       <div className="border-b border-[#e5d4b4] bg-white">
         <nav className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-4 sm:px-6">
           <Link href="/" className="font-arabic-display text-xl font-black text-[#174f47]">ضاديوم <span className="text-xs text-[#ac8032]">Dadyoom</span></Link>
-          <Link href="/interactive-lab" className="rounded-xl border border-[#cfc2a8] px-4 py-2 text-sm font-black text-[#174f47]">← مختبر ضاديوم</Link>
+          <Link href={customPack ? "/interactive-lab/pyramid/teacher" : "/interactive-lab"} className="rounded-xl border border-[#cfc2a8] px-4 py-2 text-sm font-black text-[#174f47]">← مختبر ضاديوم</Link>
         </nav>
       </div>
 
@@ -112,13 +113,13 @@ export default function ArabicMasteryPyramid() {
         <section className="rounded-2xl border border-[#e0d2b4] bg-white p-5" aria-labelledby="pack-title">
           <h2 id="pack-title" className="text-lg font-black">اختر رحلة لغوية</h2>
           <div className="mt-3 grid gap-3 sm:grid-cols-2">
-            {PYRAMID_PACKS.map((item) => (
+            {packs.map((item) => (
               <button key={item.slug} type="button" onClick={() => choosePack(item.slug)}
                 aria-pressed={packSlug === item.slug}
                 className={"rounded-xl border p-4 text-right transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47] " +
                   (packSlug === item.slug ? "border-[#174f47] bg-[#e8f4ed]" : "border-[#e2d6bd] bg-[#fffdf8] hover:border-[#a5bca9]")}>
                 <span className="font-black">{item.title}</span>
-                <span className="mt-1 block text-xs text-[#607469]">{item.stage} — تجربة تدريبية أصلية</span>
+                <span className="mt-1 block text-xs text-[#607469]">{item.stage} — {customPack ? "مسودة المعلم للتجربة" : "تجربة تدريبية أصلية"}</span>
               </button>
             ))}
           </div>
