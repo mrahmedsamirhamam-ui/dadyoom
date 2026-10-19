@@ -9,6 +9,7 @@ const links = [
   { href: "/teacher/classroom", label: "الفصل الذكي", icon: "" },
   { href: "/teacher", label: "لوحة المعلم", icon: "" },
   { href: "/teacher/academy", label: "غرفة تدريب المعلم", icon: "" },
+  { href: "/interactive-lab", label: "مختبر ضاديوم التفاعلي", icon: "" },
   { href: "/courses", label: "المناهج الجاهزة", icon: "" },
   { href: "/skills", label: "المهارات الأربع", icon: "" },
   { href: "/reading-challenge", label: "القراءة", icon: "" },
