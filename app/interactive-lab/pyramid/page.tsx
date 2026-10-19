@@ -7,6 +7,12 @@ export const metadata: Metadata = {
   alternates: { canonical: "/interactive-lab/pyramid" },
 };
 
-export default function MasteryPyramidPage() {
-  return <ArabicMasteryPyramid />;
+export default async function MasteryPyramidPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ pack?: string | string[] }>;
+}) {
+  const params = await searchParams;
+  const initialSlug = typeof params.pack === "string" ? params.pack : undefined;
+  return <ArabicMasteryPyramid initialSlug={initialSlug} />;
 }
