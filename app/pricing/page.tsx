@@ -1,5 +1,6 @@
 // DADYOOM_PLUS_UI_PRICE_10_USD
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import CheckoutButtons from "@/components/billing/CheckoutButtons";
 import { billingStatus } from "@/lib/billing/access";
@@ -12,6 +13,8 @@ export const metadata: Metadata = {
 
 export default async function PricingPage() {
   const status = await billingStatus();
+  // Never expose checkout during the zero-cost introductory phase unless explicitly enabled.
+  const liveBillingEnabled = process.env.DADYOOM_LIVE_BILLING_ENABLED === "true";
 
   return (
     <main
@@ -28,6 +31,29 @@ export default async function PricingPage() {
           </h1>
           <p className="mt-3 max-w-3xl leading-8 text-[#e8f1ed]">
             ملخص الدرس وشرائحه الأصلية وعرضهما وطباعتهما وتنزيلهما ليست ضمن الحدود اليومية. الحدود تخص فقط ما يطلب المستخدم من الذكاء الاصطناعي أن يصنعه من جديد.
+          </p>
+        </section>
+
+        <section className="rounded-[2rem] border border-[#9cddc0] bg-[#effaf5] p-6 text-[#123f39]">
+          <p className="text-sm font-black text-[#126f54]">مرحبًا بكم في ضاديوم</p>
+          <h2 className="mt-2 text-2xl font-black">ابدأ التعلم مجانًا — بلا بطاقة دفع أو اشتراك إلزامي</h2>
+          <p className="mt-3 max-w-3xl leading-8">
+            التسجيل الأساسي مجاني، ويتيح الدروس المنشورة والملخصات والشرائح الأساسية والتدريبات
+            دون رسوم اشتراك. بعض أدوات توليد المحتوى بالذكاء الاصطناعي لها حدود استخدام يومية.
+            المحتوى قيد الاستكمال والمراجعة؛ تحقق من صفك وفصلك قبل الاعتماد عليه بديلًا عن الكتاب المدرسي.
+            لا تتحول الخطة المجانية تلقائيًا إلى اشتراك مدفوع.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link href={status.authenticated ? "/courses" : "/signup"} className="rounded-xl bg-[#123f39] px-6 py-3 font-black text-white">
+              {status.authenticated ? "افتح مناهجك" : "أنشئ حسابًا مجانيًا"}
+            </Link>
+            <Link href="/courses" className="rounded-xl border border-[#7bbda2] bg-white px-6 py-3 font-black text-[#123f39]">
+              استكشف المناهج المنشورة
+            </Link>
+          </div>
+          <p className="mt-4 text-sm leading-7">
+            للطلاب وأولياء الأمور والمعلمين والمدارس: ابدأوا بحساب مجاني. عقود المدارس والخدمات المؤسسية
+            تُناقش على حدة، ولا تُنشأ أي مدفوعات تلقائيًا من صفحة التعريف.
           </p>
         </section>
 
@@ -50,7 +76,7 @@ export default async function PricingPage() {
 
           <PlanCard
             title="ضاديوم Plus"
-            subtitle="10.00 USD / شهريًا"
+            subtitle={liveBillingEnabled ? "10.00 USD / شهريًا" : "اشتراك اختياري — الشراء غير مفعّل حاليًا"}
             current={status.plan === "plus"}
             accent
             features={[
@@ -64,7 +90,14 @@ export default async function PricingPage() {
             ]}
           >
             {status.plan !== "plus" ? (
-              <CheckoutButtons kind="plus" />
+              liveBillingEnabled ? (
+                <CheckoutButtons kind="plus" />
+              ) : (
+                <div className="rounded-2xl border border-[#d9b777] bg-white p-4 text-sm font-bold leading-7 text-[#123f39]">
+                  الشراء والدفع غير مفعّلين خلال مرحلة التعريف. يمكنك متابعة الدراسة مجانًا،
+                  ولن يُخصم منك مبلغ أو يبدأ تجديد تلقائي.
+                </div>
+              )
             ) : (
               <div className="rounded-2xl bg-[#eaf6f0] p-4 font-black text-[#123f39]">
                 حسابك Plus الآن.
