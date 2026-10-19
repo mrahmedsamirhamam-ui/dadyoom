@@ -1,0 +1,28 @@
+name: Diagnose Dadyoom 503 Public Routes
+on:
+  push:
+    branches: [diagnose/study-503-20261019]
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Probe anonymous public pages with backoff
+        shell: bash
+        run: |
+          set -euo pipefail
+          for path in "/study" "/lessons/00a38595-0d25-438f-9aed-450b4ee7a2b0" "/interactive-lab/pyramid" "/contact"; do
+            echo "=== ROUTE $path ==="
+            for attempt in 1 2 3 4; do
+              status="$(curl --silent --show-error --location --max-time 20 --output /tmp/dadyoom-body --dump-header /tmp/dadyoom-headers --write-out "%{http_code}" --header 'User-Agent: DadyoomReleaseQA/1.0' "https://dadyoom.com$path" || true)"
+              printf "PROBE path=%s attempt=%s status=%s bytes=%s\n" "$path" "$attempt" "$status" "$(wc -c </tmp/dadyoom-body 2>/dev/null || echo 0)"
+              grep -i -E '^server:|^cf-ray:|^content-type:|^cache-control:|^x-robots-tag:' /tmp/dadyoom-headers || true
+              if [[ "$status" != "200" ]]; then
+                head -c 200 /tmp/dadyoom-body | tr '\n' ' ' || true
+                printf '\n'
+              fi
+              sleep 2
+            done
+          done
