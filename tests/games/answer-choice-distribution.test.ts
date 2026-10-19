@@ -126,7 +126,7 @@ describe("real lesson question bank partition", () => {
       "أما التوكيد المعنوي فمن ألفاظه نفس وعين وكل وجميع، إذا استعملت مع ضمير يعود على المؤكد",
       "حضرت المعلمة نفسها توكيد معنوي واضح، وجاء الطلاب جميعهم توكيد في الإعراب",
       "حين أكتب فقرة أتحقق من السياق، ثم أوضح الشاهد النحوي الصحيح",
-    ].join("\\n");
+    ].join("\n");
     const source = sourceForAutomaticGameQuestions({ content: original });
     const result = buildLessonGamePack("التوكيد", source, [
       { question: "ما التوكيد المعنوي هنا؟", options: ["نفسها", "حضر", "المعلمة"], correct_answer: "a" },
@@ -180,7 +180,7 @@ describe("provenance gate for automatically generated game questions", () => {
       "مسار التعلم الذاتي — مراجعة علمية وتطبيق عملي من ضاديوم",
       "التوكيد اللفظي تكرار اللفظ لأجل توضيح المعنى وتأكيده في الكلام.",
       "جاء الطالبُ نفسُهُ: التوكيد معنوي والاسم تابع للمؤكَّد في الإعراب.",
-    ].join("\\n");
+    ].join("\n");
     const safe = sourceForAutomaticGameQuestions({ content });
     expect(safe).not.toContain("الفصل الدراسي الثاني");
     expect(safe).not.toContain("حالة المصدر");

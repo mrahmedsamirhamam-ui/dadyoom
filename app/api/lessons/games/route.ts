@@ -105,20 +105,6 @@ export async function GET(request: Request) {
     (v.data ?? []) as VocabularyRow[],
   );
   if (!result.pack) {
-    // Public QA only exposes aggregate counts for an already-published lesson.
-    // Never expose question answers, source content, tokens, or user identity.
-    if (new URL(request.url).searchParams.get("audit") === "1") {
-      return NextResponse.json({
-        ok: false, code: "LESSON_GAME_BANK_NEEDS_CONTENT",
-        diagnostics: {
-          writtenQuestions: q.data?.length ?? 0,
-          publishedMCActivities: publishedActivityQuestions.length,
-          storedLessonLength: String(lessonResult.data.content ?? "").length,
-          generatedSourceLength: contentForExercises.length,
-          finalBankSize: result.bankSize,
-        },
-      }, { headers });
-    }
     return NextResponse.json({
       ok: false, error: "محتوى هذا الدرس لا يكفي لتقديم خمسة أسئلة مختلفة في كل لعبة بأمان.",
       code: "LESSON_GAME_BANK_NEEDS_CONTENT",

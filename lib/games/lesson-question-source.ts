@@ -29,6 +29,6 @@ export function sourceForAutomaticGameQuestions(input: {
   const offsets = markers.map((marker) => body.lastIndexOf(marker)).filter((index) => index >= 0);
   if (!offsets.length) return body;
   const from = Math.max(...offsets);
-  const afterHeading = body.indexOf("\\n", from);
+  const afterHeading = body.indexOf("\n", from);
   return afterHeading >= 0 ? body.slice(afterHeading + 1).trim() : "";
 }
