@@ -16,7 +16,8 @@ type Ticket = {
   subject: string;
   message: string;
   status: Status;
-  admin_note: string;\n  public_reply: string;
+  admin_note: string;
+  public_reply: string;
 };
 const labels: Record<Status, string> = {
   new: "جديد", in_progress: "قيد المتابعة", resolved: "تمت المعالجة",
@@ -137,7 +138,11 @@ export default function CareAdminPage() {
                   <textarea value={ticket.admin_note} onChange={(e) => change(ticket.id, { admin_note: e.target.value })}
                     maxLength={2000} rows={2} className="mt-2 w-full rounded-xl border border-[#d9ccb1] bg-white px-3 py-3" />
                 </label>
-                <label className="text-sm font-bold md:col-span-2">رد يظهر لصاحب الطلب عند تسجيل الدخول\n                  <textarea value={ticket.public_reply} onChange={(e) => change(ticket.id, { public_reply: e.target.value })}\n                    maxLength={4000} rows={3} className="mt-2 w-full rounded-xl border border-[#d9ccb1] bg-white px-3 py-3" />\n                </label>\n                <button type="button" disabled={busyId === ticket.id} onClick={() => void save(ticket)}
+                <label className="text-sm font-bold md:col-span-2">رد يظهر لصاحب الطلب عند تسجيل الدخول
+                  <textarea value={ticket.public_reply} onChange={(e) => change(ticket.id, { public_reply: e.target.value })}
+                    maxLength={4000} rows={3} className="mt-2 w-full rounded-xl border border-[#d9ccb1] bg-white px-3 py-3" />
+                </label>
+                <button type="button" disabled={busyId === ticket.id} onClick={() => void save(ticket)}
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#174f47] px-5 py-3.5 text-sm font-black text-white disabled:opacity-50"><CheckCircle2 size={18} /> {busyId === ticket.id ? "جارٍ الحفظ" : "حفظ التحديث"}</button>
               </div>
               <p className="mt-2 break-all text-[10px] text-[#897967]" dir="ltr">{ticket.id}</p>
