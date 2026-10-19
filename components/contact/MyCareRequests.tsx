@@ -37,7 +37,24 @@ export default function MyCareRequests() {
     }
   }
 
-  useEffect(() => { void refresh(); }, []);
+  useEffect(() => {
+    let cancelled = false;
+    async function loadInitially() {
+      try {
+        const response = await fetch("/api/care/my", { cache: "no-store" });
+        if (!response.ok) throw new Error("unavailable");
+        const data = await response.json();
+        if (cancelled) return;
+        setAuthenticated(data.authenticated === true);
+        setTickets(Array.isArray(data.tickets) ? data.tickets : []);
+        setState("ready");
+      } catch {
+        if (!cancelled) setState("error");
+      }
+    }
+    void loadInitially();
+    return () => { cancelled = true; };
+  }, []);
 
   return (
     <section aria-labelledby="my-care-title" className="mt-7 rounded-[2rem] border border-[#ddcfb4] bg-white p-5 shadow-sm sm:p-8">
