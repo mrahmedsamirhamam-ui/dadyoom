@@ -127,7 +127,7 @@ const SKIP_WORDS = new Set([
 
 function sourceClozeItems(source: string): GameItem[] {
   // Use exact excerpts from this lesson. Not AI-generated factual claims.
-  const paragraphs = source.replace(/\r/g, "\n").split(/[\n.!؟؛]+/u)
+  const paragraphs = source.replace(/\r/g, "\n").split(/[\n.!؟؛،:]+/u)
     .map(p => p.replace(/\s+/gu, " ").trim())
     .filter(p => p.length >= 28 && p.length <= 550 &&
       !/^(هذا شرح|حقوق المحتوى|حالة التوثيق|ملاحظة|المصدر الرسمي|مسار دعم|مسار التحدي|تقويم|توجيه تربوي)/u.test(p));
