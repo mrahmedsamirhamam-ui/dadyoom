@@ -12,7 +12,7 @@ type Ticket = {
   category: string;
   subject: string;
   status: "new" | "in_progress" | "resolved";
-  created_at: string;
+  created_at: string;\n  public_reply: string;
 };
 type Form = {
   name: string;
@@ -37,7 +37,7 @@ const categories = [
   { value: "teacher", label: "خدمات المعلمين" },
   { value: "school", label: "خدمات المدارس" },
   { value: "privacy", label: "الخصوصية وحماية البيانات" },
-  { value: "suggestion", label: "شكوى أو اقتراح" },
+  { value: "complaint", label: "شكوى" },\n  { value: "suggestion", label: "مقترح تطوير" },
   { value: "other", label: "أمر آخر" },
 ];
 
@@ -227,7 +227,7 @@ export default function DadyoomCarePage() {
                   {tickets.map((ticket) => (
                     <li key={ticket.id} className="rounded-xl border border-[#e3dac7] bg-white p-4">
                       <p className="break-words text-sm font-black">{ticket.subject}</p>
-                      <p className="mt-2 flex items-center gap-2 text-xs font-bold text-[#3e675e]"><Clock3 size={14} /> {statusText[ticket.status] ?? "قيد المتابعة"}</p>
+                      <p className="mt-2 flex items-center gap-2 text-xs font-bold text-[#3e675e]"><Clock3 size={14} /> {statusText[ticket.status] ?? "قيد المتابعة"}</p>\n                      {ticket.public_reply && <p className="mt-3 whitespace-pre-wrap break-words rounded-lg bg-[#edf7ef] p-3 text-sm leading-7 text-[#24534a]"><strong>رد فريق ضاديوم:</strong> {ticket.public_reply}</p>}
                       <p className="mt-2 text-xs text-[#827767]">{new Date(ticket.created_at).toLocaleDateString("ar-BH")}</p>
                       <p className="mt-1 break-all font-mono text-[10px] text-[#948777]">{ticket.id}</p>
                     </li>
