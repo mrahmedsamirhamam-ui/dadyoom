@@ -514,16 +514,42 @@ async function roleRouteSmoke(page, role, baseUrl) {
       );
 
       const stored = await admin.from("support_tickets")
-        .select("id,status,email,subject")
+        .select("id,status,email,subject,user_id,public_reply")
         .eq("email", contactEmail)
         .eq("subject", contactSubject)
         .single();
       gate(
         !stored.error &&
           stored.data?.status === "new" &&
+          stored.data?.email === contactEmail &&
+          stored.data?.user_id === users.get("admin")?.id &&
           String(stored.data?.id ?? "").slice(0, 8).toUpperCase() === sent.result.reference,
         "E2E_CONTACT_STORAGE_FAILED",
       );
+
+      // Both identities matter: email is an explicit reply destination,
+      // whereas ticket ownership comes from verified session auth.
+      const reply = "تم فحص الرد الخاص بواجهة ضاديوم معك.";
+      const updated = await admin.from("support_tickets")
+        .update({ public_reply: reply, admin_note: "Internal QA note: never send to customer." })
+        .eq("id", stored.data.id)
+        .select("id").single();
+      gate(!updated.error && updated.data?.id === stored.data.id, "E2E_CONTACT_REPLY_WRITE_FAILED");
+      const myRequests = await page.evaluate(async () => {
+        const response = await fetch("/api/care/my", { cache: "no-store" });
+        return { status: response.status, json: await response.json().catch(() => ({})) };
+      });
+      const ownTicket = Array.isArray(myRequests.json?.tickets)
+        ? myRequests.json.tickets.find(item => item.id === stored.data.id)
+        : null;
+      gate(
+        myRequests.status === 200 &&
+          myRequests.json?.authenticated === true &&
+          ownTicket?.public_reply === reply &&
+          !Object.prototype.hasOwnProperty.call(ownTicket, "admin_note"),
+        "E2E_CONTACT_PRIVATE_FOLLOWUP_FAILED",
+      );
+      console.log("E2E_CARE_PRIVATE_FOLLOWUP=PASS");
 
       const inboxResponse = await page.goto(`${baseUrl}/admin/support`, {
         waitUntil: "domcontentloaded",
