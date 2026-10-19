@@ -20,7 +20,8 @@ export default function SuggestionsPage() {
         </nav>
         <header className="rounded-[2rem] bg-[#123f39] px-6 py-8 text-white sm:p-10">
           <p className="text-sm font-black text-[#f5d38b]">ضاديوم • ننافس أنفسنا قبل الجميع</p>
-          <h1 className="mt-2 font-arabic-display text-3xl font-black sm:text-5xl">صوتك يطوّر ضاديوم</h1>
+          <h1 className="mt-2 font-arabic-display text-3xl font-black sm:text-5xl">ضاديوم معك — صندوق المقترحات</h1>
+          <p className="mt-3 text-lg font-bold text-[#f4d48b]">صوتك يُسمَع، ورأيك يصنع الفرق</p>
           <p className="mt-4 max-w-3xl font-arabic-reading text-lg leading-9 text-[#e4eee9]">
             شاركنا فكرة تجعل الدروس أو تجربة الطالب والمعلم وولي الأمر والمدرسة أفضل.
             كل اقتراح يُسجل في صندوق الإدارة لمراجعته؛ لا يعني إرساله اعتمادًا تلقائيًا.
