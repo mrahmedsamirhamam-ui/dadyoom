@@ -198,6 +198,7 @@ export default function InternationalArabicPage() {
           </div>
           <div className="relative z-10 mt-7 flex flex-wrap gap-3">
             <Link href="#programmes" className="inline-flex min-h-11 items-center rounded-xl bg-[#e4be74] px-5 py-3 text-sm font-black text-[#143a34]">استكشف البرامج</Link>
+            <Link href="/courses/international-arabic/practice" className="inline-flex min-h-11 items-center rounded-xl border border-white/55 px-5 py-3 text-sm font-black text-white">مختبر أنشطة العربية التفاعلي</Link>
             <Link href="#teacher-guide" className="inline-flex min-h-11 items-center rounded-xl border border-white/55 px-5 py-3 text-sm font-black text-white">إرشادات المعلمين</Link>
             <Link href="/courses/arabic-from-zero" className="inline-flex min-h-11 items-center rounded-xl border border-white/55 px-5 py-3 text-sm font-black text-white">العربية من الصفر</Link>
           </div>

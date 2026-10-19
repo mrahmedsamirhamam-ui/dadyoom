@@ -121,3 +121,26 @@ describe("International Arabic source directory and teacher pathways", () => {
     expect(directory).toContain("ليس جهة امتحانات أو جهة اعتماد");
   });
 });
+
+
+describe("Real interactive original Arabic practice for international pupils and teachers", () => {
+  const route = read("app/courses/international-arabic/practice/page.tsx");
+  const practice = read("app/courses/international-arabic/InternationalArabicPracticeClient.tsx");
+  const directory = read("app/courses/international-arabic/page.tsx");
+  test("international source directory leads to a complete usable practice route", () => {
+    expect(directory).toContain('href="/courses/international-arabic/practice"');
+    expect(route).toContain("<InternationalArabicPracticeClient />");
+    for (const id of ["pyp", "myp-literature", "myp-acquisition", "dp-language-a", "cambridge-0544", "cambridge-0508", "pearson-first"]) {
+      expect(practice).toContain('id: "' + id + '"');
+    }
+  });
+  test("practice includes actual teacher differentiation and instant learner feedback without fake exam grades", () => {
+    expect(practice).toContain("setChoices");
+    expect(practice).toContain("answerIndex");
+    expect(practice).toContain("question.explanation");
+    expect(practice).toContain("lesson.support");
+    expect(practice).toContain("lesson.core");
+    expect(practice).toContain("lesson.extension");
+    expect(practice).toContain("لا تُحفظ في حساب الطالب");
+  });
+});
