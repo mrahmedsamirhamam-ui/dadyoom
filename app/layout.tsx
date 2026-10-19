@@ -90,12 +90,7 @@ export default function RootLayout({
             __html: JSON.stringify(websiteStructuredData).replace(/</g, "\\u003c"),
           }}
         />
-        <DadyoomAds />
-        <MobileOAuthBridge />
-        <NativeMobileShell />
-        <DadyoomInstallPrompt />
-        <DadyoomAutoUpdate />
-        <DadCompanion />
+        <DadyoomClientRuntime />
         {children}
       </body>
     </html>

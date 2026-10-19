@@ -5,6 +5,7 @@ import LogoutButton from "@/components/auth/LogoutButton";
 import { createClient } from "@/lib/supabase/server";
 
 const links = [
+  { href: "/portal", label: "بوابة الوصول" },
   { href: "/courses", label: "المناهج" },
   { href: "/journey", label: "رحلتي" },
   { href: "/skills", label: "المهارات الأربع" },

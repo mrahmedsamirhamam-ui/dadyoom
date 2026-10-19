@@ -135,12 +135,20 @@ export default async function RolePortalLayout({
               </p>
             </div>
 
+            <div className="flex flex-wrap items-center gap-2">
+              <Link
+                href={"/how-to-use#" + role}
+                className="rounded-full border border-white/35 px-5 py-3 text-sm font-black text-white transition hover:bg-white/10"
+              >
+                دليل استخدام حسابي
+              </Link>
             <Link
               href="/ask"
               className="rounded-full bg-[#f5cf7a] px-5 py-3 text-sm font-black text-[#123f39] transition hover:brightness-95"
             >
               اسأل ضاد
             </Link>
+            </div>
           </div>
 
           <nav
