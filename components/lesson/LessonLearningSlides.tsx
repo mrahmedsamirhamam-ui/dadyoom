@@ -1,34 +1,27 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 
-type VocabularyItem = {
-  word: string;
-  meaning: string;
-};
+type VocabularyItem = { word: string; meaning: string };
+type Authored = { title?: string; body?: string };
+type SlideInstruction = { kind?: string; items?: Authored[] };
+type Quiz = { id: string; question: string; options: { id: string; text: string }[]; correct: string; explanation?: string };
+type Activity = { title: string; prompt: string; activityType: string };
 
-type TeachingSlideSource = {
-  slide?: number;
-  title?: string;
-  body?: string;
-};
-
-type InstructionEntry = {
-  kind?: string;
-  items?: TeachingSlideSource[];
-};
-
-type DeckSlide = {
-  key: string;
-  kicker: string;
+type Slide = {
+  id: string;
+  phase: "welcome" | "overview" | "goal" | "teach" | "do" | "check" | "close";
+  eyebrow: string;
   title: string;
-  subtitle?: string;
   body?: string;
+  goalNumber?: number;
   items?: string[];
+  quiz?: Quiz;
+  activity?: Activity;
   words?: VocabularyItem[];
-  emblem?: string;
 };
-
 type Props = {
   title?: string;
   summary?: string | null;
@@ -37,331 +30,291 @@ type Props = {
   vocabulary?: VocabularyItem[];
   instructions: unknown;
   questions?: unknown;
+  activities?: unknown;
+  lessonId?: string;
 };
 
-function extractTeachingSlides(instructions: unknown): TeachingSlideSource[] {
-  if (!Array.isArray(instructions)) return [];
-
-  const entry = instructions.find((item) => {
-    if (!item || typeof item !== "object") return false;
-    return (item as InstructionEntry).kind === "slides";
-  }) as InstructionEntry | undefined;
-
-  if (!entry || !Array.isArray(entry.items)) return [];
-
-  return entry.items.filter(
-    (item) =>
-      Boolean(
-        item &&
-          typeof item === "object" &&
-          (typeof item.title === "string" || typeof item.body === "string")
-      )
-  );
+function clean(value: unknown): string { return String(value ?? "").replace(/\s+/gu, " ").trim(); }
+function truncate(value: unknown, max: number): string {
+  const t = clean(value);
+  if (t.length <= max) return t;
+  const n = t.lastIndexOf(" ", max);
+  return t.slice(0, n > max * .7 ? n : max).trimEnd() + "…";
+}
+function lessonSummary(value: unknown) {
+  const s = clean(value);
+  return /^(القواعد|القراءة|الكتاب|النصوص)\s*ص\s*\d+/u.test(s) ? "" : truncate(s, 170);
 }
 
-function text(value: unknown) {
-  return String(value ?? "").trim();
-}
-
-function compact(value: string, max = 360) {
-  return value.replace(/\s+/g, " ").trim().slice(0, max);
-}
-
-function splitContent(content: string | null | undefined) {
-  const lines = text(content)
-    .split(/\n+/)
-    .map((line) => line.trim())
-    .filter(Boolean);
-
-  if (lines.length === 0) return [];
-
-  const chunks: string[] = [];
-  for (let i = 0; i < lines.length; i += 3) {
-    chunks.push(compact(lines.slice(i, i + 3).join("\n"), 380));
-  }
-  return chunks;
-}
-
-function buildDeck({
-  title,
-  summary,
-  content,
-  objectives = [],
-  vocabulary = [],
-  instructions,
-}: Props): DeckSlide[] {
-  const sourceSlides = extractTeachingSlides(instructions);
-  const contentChunks = splitContent(content);
-
-  const teachingBodies = sourceSlides
-    .map((slide) => ({
-      title: text(slide.title),
-      body: compact(text(slide.body), 380),
-    }))
-    .filter((slide) => slide.title || slide.body);
-
-  const fallbackBody =
-    contentChunks[0] ||
-    teachingBodies[0]?.body ||
-    text(summary) ||
-    "ابدأ الدرس خطوة بخطوة، واقرأ الأمثلة بهدوء.";
-
-  const secondBody =
-    teachingBodies[1]?.body ||
-    contentChunks[1] ||
-    teachingBodies[0]?.body ||
-    fallbackBody;
-
-  const thirdBody =
-    teachingBodies[2]?.body ||
-    contentChunks[2] ||
-    secondBody;
-
-  const practiceBody =
-    contentChunks.find((chunk) =>
-      /اقرأ|اكتب|تحد|تحدث|ردد|جرّب|صنّف|لاحظ/.test(chunk)
-    ) ||
-    "اقرأ المثال مرة أخرى، ثم طبّق الفكرة بنفسك.";
-
-  const lessonTitle = text(title) || "درس العربية";
-  const lessonSummary = text(summary) || fallbackBody;
-
-  return [
-    {
-      key: "cover",
-      kicker: "درس ضاديوم",
-      title: lessonTitle,
-      subtitle: lessonSummary,
-      emblem: "ض",
-    },
-    {
-      key: "objectives",
-      kicker: "هدفنا اليوم",
-      title: "ماذا سنتعلم؟",
-      items:
-        objectives.length > 0
-          ? objectives.slice(0, 4)
-          : ["نفهم فكرة الدرس.", "نقرأ الأمثلة.", "نطبّق ما تعلمناه."],
-      emblem: "✓",
-    },
-    {
-      key: "concept",
-      kicker: teachingBodies[0]?.title || "الفكرة الأساسية",
-      title: lessonTitle,
-      body: fallbackBody,
-      emblem: "ف",
-    },
-    {
-      key: "vocabulary",
-      kicker: "كلمات الدرس",
-      title: "نتعرّف الكلمات",
-      words: vocabulary.slice(0, 5),
-      body:
-        vocabulary.length === 0
-          ? secondBody
-          : undefined,
-      emblem: "ك",
-    },
-    {
-      key: "learn",
-      kicker: teachingBodies[1]?.title || "نتعلم معًا",
-      title: "ركّز معي",
-      body: secondBody,
-      emblem: "ض",
-    },
-    {
-      key: "example",
-      kicker: teachingBodies[2]?.title || "مثال واضح",
-      title: "اقرأ ولاحظ",
-      body: thirdBody,
-      emblem: "م",
-    },
-    {
-      key: "practice",
-      kicker: "تطبيق سريع",
-      title: "جرّب بنفسك",
-      body: practiceBody,
-      emblem: "✎",
-    },
-    {
-      key: "finish",
-      kicker: "أحسنت",
-      title: "أنت الآن جاهز",
-      subtitle: lessonSummary,
-      body: "بعد انتهاء العرض، أكمل أسئلة ضاديوم التفاعلية الأصلية الخاصة بالدرس.",
-      emblem: "★",
-    },
+function instructionalParagraphs(value: unknown): string[] {
+  const full = String(value ?? "").trim();
+  const markers = [
+    "مسار التعلّم الذاتي الموسّع", "مسار التعلم الذاتي —", "مسار التعلم الذاتي",
+    "الدرس التطبيقي الموسّع", "مسار القراءة والفهم الأصلي",
   ];
+  const indices = markers.map((m) => full.lastIndexOf(m)).filter((index) => index >= 0);
+  const teaching = indices.length ? full.slice(Math.max(...indices)) : full;
+  const pieces = teaching.split(/\n\s*\n|\n|[.!؟؛]+/gu)
+    .map(clean)
+    .filter((line) => line.length > 34 &&
+      !/^(ضاديوم — درس إثرائي|مصدر الدرس|حالة المصدر|حالة التوثيق|حقوق المحتوى|تنبيه التوثيق|هذا المحتوى من إنشاء|خطة 2025|هذا ليس نص الكتاب)/u.test(line));
+  const snippets: string[] = [];
+  for (const piece of pieces) {
+    let line = "";
+    for (const word of piece.split(" ")) {
+      if (line && line.length + word.length + 1 > 195) {
+        if (line.length >= 34) snippets.push(line);
+        line = "";
+      }
+      line += (line ? " " : "") + word;
+    }
+    if (line.length >= 34) snippets.push(line);
+  }
+  return snippets;
+}
+
+function authoredMaterial(instructions: unknown): string[] {
+  if (!Array.isArray(instructions)) return [];
+  const entry = instructions.find((e): e is SlideInstruction =>
+    Boolean(e && typeof e === "object" && (e as SlideInstruction).kind === "slides"));
+  return Array.isArray(entry?.items)
+    ? entry.items.map((slide) => truncate(slide.body, 185)).filter((t) => t.length > 36)
+    : [];
+}
+
+function validQuestions(value: unknown): Quiz[] {
+  if (!Array.isArray(value)) return [];
+  return value.flatMap((raw, index) => {
+    if (!raw || typeof raw !== "object") return [];
+    const q = raw as Record<string, unknown>;
+    if (!Array.isArray(q.options) || q.question_type !== "multiple_choice") return [];
+    const options = q.options.flatMap((item): { id: string; text: string }[] => {
+      if (!item || typeof item !== "object") return [];
+      const option = item as Record<string, unknown>;
+      const id = clean(option.id), word = clean(option.text);
+      return id && word ? [{ id, text: truncate(word, 145) }] : [];
+    });
+    const correct = clean(q.correct_answer);
+    if (options.length < 2 || options.length > 5 || !options.some((o) => o.id === correct)) return [];
+    const prompt = clean(q.question);
+    if (prompt.length < 12 || /ما عنوان الدرس|ما رقم الدرس|عنوان الدرس رقم/iu.test(prompt)) return [];
+    return [{ id: clean(q.id) || String(index), question: truncate(prompt, 250),
+      options, correct, explanation: truncate(q.explanation, 250) }];
+  });
+}
+
+function usableActivities(value: unknown): Activity[] {
+  if (!Array.isArray(value)) return [];
+  return value.flatMap((raw) => {
+    if (!raw || typeof raw !== "object") return [];
+    const a = raw as Record<string, unknown>;
+    const type = clean(a.activity_type);
+    const body = clean(a.prompt) || clean(a.instructions);
+    if ((type !== "writing" && type !== "speaking" && type !== "reading") || body.length < 25 || a.is_published === false) return [];
+    return [{ title: truncate(a.title, 65), prompt: truncate(body, 245), activityType: type }];
+  });
+}
+
+function plannedGoals(objectives: unknown, hasMaterial: boolean): string[] {
+  const originals = Array.isArray(objectives) ? objectives.map((o) => truncate(o, 135)).filter((o) => o.length > 12) : [];
+  // Unknown curricular objectives must not be fabricated as verified curriculum outcomes.
+  if (originals.length) return originals.slice(0, 3);
+  return hasMaterial ? [
+    "أفهم الفكرة الأساسية وأستخرج شاهدًا من الشرح.",
+    "أطبّق الفكرة في مثال جديد من إنشائي.",
+    "أراجع إجابتي وأفسّر سبب صحتها أو خطئها.",
+  ] : ["أتعرف فكرة الدرس وأطلب من معلمي توضيح ما ينقصني."];
+}
+
+function plan(props: Props): Slide[] {
+  const label = truncate(props.title, 95) || "درس اللغة العربية";
+  const pieces = instructionalParagraphs(props.content);
+  const authored = authoredMaterial(props.instructions);
+  const explanations = [...pieces, ...authored].filter((s, i, all) => all.indexOf(s) === i);
+  const questions = validQuestions(props.questions);
+  const activities = usableActivities(props.activities);
+  const goals = plannedGoals(props.objectives, explanations.length > 0);
+  const vocab = (props.vocabulary ?? []).filter((v) => clean(v.word) && clean(v.meaning)).slice(0, 3);
+  const slides: Slide[] = [
+    { id: "welcome", phase: "welcome", eyebrow: "ضاديوم | حصة العربية", title: label,
+      body: lessonSummary(props.summary) || "نفهم ونجرّب ونلعب ونتحقق من التعلم، خطوة خطوة." },
+    { id: "agenda", phase: "overview", eyebrow: "خطة حصتنا", title: "أهداف واضحة… وتعلّم نشط",
+      items: goals },
+  ];
+
+  goals.forEach((goal, index) => {
+    const number = index + 1;
+    const exercise = activities[index % (activities.length || 1)];
+    const storedQuestion = questions[index];
+    slides.push({ id: "goal-" + number, phase: "goal", eyebrow: "الهدف " + number,
+      title: "ماذا سأستطيع أن أفعل؟", body: goal, goalNumber: number });
+    slides.push({ id: "explain-" + number, phase: "teach", eyebrow: "أفهم الهدف " + number,
+      title: index === 0 ? "نقرأ ونفهم" : index === 1 ? "نلاحظ ونحلّل" : "نربط ونستنتج",
+      body: explanations[index] || "ارجع إلى الشرح الكامل الموجود أسفل العرض، واقرأ المثال من مصدره الصحيح.",
+      goalNumber: number, words: index === 0 ? vocab : undefined });
+    slides.push({ id: "activity-" + number, phase: "do", eyebrow: "تطبيق الهدف " + number,
+      title: exercise?.title || "أنشطتي لهذا الهدف",
+      body: exercise?.prompt || "طبّق الهدف في مثال جديد من إنشائك، ثم ناقش السبب مع معلمك.",
+      activity: exercise, goalNumber: number });
+    slides.push({ id: "assessment-" + number, phase: "check", eyebrow: "أتأكد من فهمي | الهدف " + number,
+      title: storedQuestion ? "تحدٍّ من أسئلة الدرس" : "أشرح وأبرهن",
+      body: storedQuestion
+        ? "سؤال تدريبي من بنك الدرس؛ لا يُعد إثباتًا منفردًا لإتقان الهدف، وتظهر تغذية راجعة بعد الإجابة."
+        : "اشرح الهدف بأسلوبك، واكتب مثالًا صحيحًا وحدد الشاهد. قارن عملك بالشرح واطلب تقييم معلمك.",
+      quiz: storedQuestion, goalNumber: number });
+  });
+  slides.push({ id: "close", phase: "close", eyebrow: "العربية أسهل في ضاديوم",
+    title: "أحسنت… تعلّمك يستمر!",
+    body: "أكمل الشرح المكتوب، ثم أنشطة الدرس والألعاب والتقويم الرسمي. هذه الشرائح للتدريب التكويني، ولا تسجّل درجات إتقان تلقائيًا." });
+  return slides;
 }
 
 export default function LessonLearningSlides(props: Props) {
-  const slides = useMemo(() => buildDeck(props), [props]);
-  const [current, setCurrent] = useState(0);
-  const touchStart = useRef<number | null>(null);
-
-  const goTo = (nextIndex: number) => {
-    setCurrent(Math.max(0, Math.min(slides.length - 1, nextIndex)));
+  const deck = useMemo(() => plan(props), [props]);
+  const [page, setPage] = useState(0);
+  const [chosen, setChosen] = useState<Record<string, string>>({});
+  const finger = useRef<number | null>(null);
+  const index = Math.min(page, deck.length - 1);
+  const slide = deck[index];
+  const progress = ((index + 1) / deck.length) * 100;
+  const dark = slide.phase === "welcome" || slide.phase === "close";
+  const surface = dark ? "bg-[#103d37] text-[#fffaf0]" : slide.phase === "do" || slide.phase === "check"
+    ? "bg-[#eaf5ef] text-[#183f38]" : "bg-[#fffdf6] text-[#183f38]";
+  const select = (id: string, value: string) => setChosen((prev) => ({ ...prev, [id]: value }));
+  const go = (n: number) => setPage(Math.max(0, Math.min(deck.length - 1, n)));
+  const keyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+    if (e.key === "ArrowLeft") { e.preventDefault(); go(index + 1); }
+    if (e.key === "ArrowRight") { e.preventDefault(); go(index - 1); }
+    if (e.key === "Home") { e.preventDefault(); go(0); }
+    if (e.key === "End") { e.preventDefault(); go(deck.length - 1); }
   };
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
-    if (event.key === "ArrowLeft") goTo(current + 1);
-    if (event.key === "ArrowRight") goTo(current - 1);
-  };
-
-  const slide = slides[current];
-  const progress = ((current + 1) / slides.length) * 100;
+  const gameHref = props.lessonId && /^[0-9a-f-]{36}$/i.test(props.lessonId)
+    ? "/lessons/" + props.lessonId + "/games" : null;
 
   return (
-    <section
-      dir="rtl"
-      tabIndex={0}
-      onKeyDown={handleKeyDown}
-      onTouchStart={(event) => {
-        touchStart.current = event.changedTouches[0]?.clientX ?? null;
+    <section dir="rtl" tabIndex={0} onKeyDown={keyDown}
+      onTouchStart={(e) => { finger.current = e.changedTouches[0]?.clientX ?? null; }}
+      onTouchEnd={(e) => {
+        if (finger.current === null) return;
+        const delta = (e.changedTouches[0]?.clientX ?? finger.current) - finger.current;
+        finger.current = null;
+        if (Math.abs(delta) > 50) go(index + (delta > 0 ? 1 : -1));
       }}
-      onTouchEnd={(event) => {
-        if (touchStart.current === null) return;
-        const end = event.changedTouches[0]?.clientX ?? touchStart.current;
-        const delta = end - touchStart.current;
-        touchStart.current = null;
-
-        if (Math.abs(delta) < 45) return;
-        if (delta > 0) goTo(current + 1);
-        if (delta < 0) goTo(current - 1);
-      }}
-      className="overflow-hidden rounded-[2rem] border border-[#d5bf86] bg-[#123f39] shadow-2xl shadow-[#123f39]/15 outline-none"
-      aria-label="عرض الدرس"
-    >
-      <div className="h-1.5 bg-[#0b2f2b]">
-        <div
-          className="h-full bg-gradient-to-l from-[#c99d35] to-[#f0d47d] transition-all duration-300"
-          style={{ width: `${progress}%` }}
-        />
+      aria-label="درس تفاعلي متدرج الأهداف من ضاديوم"
+      className="overflow-hidden rounded-[1.6rem] border border-[#dccba8] bg-white shadow-xl shadow-[#123f39]/10 outline-none focus-visible:ring-4 focus-visible:ring-[#d6ad57]">
+      <div role="progressbar" aria-label="تقدم شرائح الحصة" aria-valuemin={1}
+        aria-valuemax={deck.length} aria-valuenow={index + 1} className="h-1.5 bg-[#e9dfc9]">
+        <div className="h-full bg-[#bc9045] transition-[width] duration-200" style={{ width: progress + "%" }} />
       </div>
-
-      <div className="relative flex min-h-[34rem] items-center justify-center bg-[#efe8da] p-3 sm:p-5">
-        <article className="relative aspect-video w-full max-w-[1120px] overflow-hidden rounded-[1.5rem] border border-white/20 bg-[radial-gradient(circle_at_50%_36%,rgba(224,181,77,0.18),transparent_28%),linear-gradient(135deg,#0b2f2b_0%,#1f665c_52%,#123f39_100%)] text-[#fffdf8] shadow-2xl">
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 opacity-[0.13]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,253,248,.45) 1px,transparent 1px),linear-gradient(90deg,rgba(224,181,77,.5) 1px,transparent 1px)",
-              backgroundSize: "18px 18px",
-            }}
-          />
-
-          <div className="absolute inset-x-0 bottom-0 h-[22%] bg-gradient-to-b from-transparent to-[#062a27]/95" />
-
-          <div className="relative z-10 flex h-full flex-col p-8 sm:p-12 lg:p-14">
-            <div className="max-w-[78%]">
-              <p className="text-sm font-black text-[#f0d47d] sm:text-lg">
-                {slide.kicker}
-              </p>
-
-              <h2 className="mt-2 font-arabic-display text-3xl font-black leading-tight text-[#fffdf8] drop-shadow sm:text-5xl lg:text-6xl">
-                {slide.title}
-              </h2>
-
-              {slide.subtitle ? (
-                <p className="mt-4 max-w-3xl text-lg font-bold leading-8 text-[#e9f2ee] sm:text-2xl">
-                  {slide.subtitle}
-                </p>
-              ) : null}
-
-              <div className="mt-5 h-1.5 w-1/2 rounded-full bg-gradient-to-l from-[#f0d47d] via-[#c99d35] to-transparent" />
-            </div>
-
-            {slide.items ? (
-              <div className="mt-7 grid max-w-[82%] gap-3 sm:grid-cols-2">
-                {slide.items.map((item, index) => (
-                  <div
-                    key={`${item}-${index}`}
-                    className="border-t-2 border-[#e0b54d]/80 pt-3 text-lg font-bold leading-8 text-[#fffdf8] sm:text-2xl"
-                  >
-                    {index + 1}. {item}
-                  </div>
-                ))}
-              </div>
-            ) : null}
-
-            {slide.words && slide.words.length > 0 ? (
-              <div className="mt-7 max-w-[84%]">
-                <div className="flex flex-wrap gap-3">
-                  {slide.words.map((item, index) => (
-                    <span
-                      key={`${item.word}-${index}`}
-                      className="rounded-2xl border border-[#f0d47d]/60 bg-[#0b2f2b]/60 px-4 py-2 text-xl font-black sm:text-3xl"
-                    >
-                      {item.word}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-5 space-y-2 text-lg font-bold leading-8 text-[#eef5f1] sm:text-2xl">
-                  {slide.words.slice(0, 3).map((item, index) => (
-                    <p key={`${item.word}-meaning-${index}`}>
-                      {item.word} — {item.meaning}
-                    </p>
-                  ))}
-                </div>
-              </div>
-            ) : null}
-
-            {slide.body ? (
-              <p className="mt-7 max-w-[84%] whitespace-pre-line text-lg font-bold leading-9 text-[#f5fbf8] sm:text-2xl lg:text-3xl">
-                {slide.body}
-              </p>
-            ) : null}
-
-            <div className="absolute left-7 top-7 grid h-24 w-24 place-items-center rounded-full border-[6px] border-double border-[#f0d47d] bg-[radial-gradient(circle,#d9b24c_0_10%,#1f665c_11%_45%,#0b2f2b_46%_100%)] text-4xl font-black text-[#fffdf8] shadow-xl sm:h-36 sm:w-36 sm:text-6xl">
-              {slide.emblem}
-            </div>
-
-            <div className="absolute bottom-5 right-7 text-sm font-black text-[#f4df9b] sm:text-base">
-              ضاديوم • بيت العربية الرقمي
-            </div>
-
-            <div className="absolute bottom-5 left-7 text-sm font-black text-white">
-              {current + 1} / {slides.length}
-            </div>
+      <article aria-live="polite" aria-atomic="true"
+        className={"relative flex min-h-[34rem] flex-col p-5 sm:min-h-[37rem] sm:p-9 lg:p-12 " + surface}>
+        <div aria-hidden="true" className="pointer-events-none absolute -left-16 -bottom-16 h-52 w-52 rounded-full border-[30px] border-[#c59a4b]/10" />
+        <div aria-hidden="true" className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full border-[32px] border-[#53aa9e]/10" />
+        <header className="relative z-10 flex items-start justify-between gap-3 border-b border-current/15 pb-4">
+          <div className="min-w-0">
+            <p className={"text-xs font-black sm:text-sm " + (dark ? "text-[#f3d79d]" : "text-[#96691b]")}>
+              ضاديوم — بيت اللغة العربية
+            </p>
+            <p className="mt-1 text-xs font-semibold opacity-80">{slide.eyebrow}</p>
           </div>
-        </article>
-
-        <button
-          type="button"
-          onClick={() => goTo(current - 1)}
-          disabled={current === 0}
-          aria-label="الشريحة السابقة"
-          className="absolute right-3 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-[#123f39] text-3xl font-black text-white shadow-lg transition hover:scale-105 disabled:opacity-25 sm:right-5"
-        >
-          ›
+          <Image src={dark ? "/brand/dadyoom-logo-inverse.webp" : "/brand/dadyoom-logo.webp"}
+            alt="شعار ضاديوم" width={120} height={60} sizes="120px" className="h-auto w-24 shrink-0 object-contain sm:w-30" />
+        </header>
+        <div className="relative z-10 flex flex-1 flex-col justify-center py-6 sm:py-8">
+          <p className={"mb-3 text-sm font-bold " + (dark ? "text-[#f3d79d]" : "text-[#916722]")}>
+            {index + 1} من {deck.length}
+            {slide.goalNumber ? "  •  الهدف " + slide.goalNumber : ""}
+          </p>
+          <h2 className="font-arabic-display text-2xl font-black leading-[1.65] [overflow-wrap:anywhere] sm:text-3xl lg:text-4xl">
+            {slide.title}
+          </h2>
+          {slide.body ? (
+            <p className="mt-5 max-w-[58rem] font-arabic-reading text-xl font-semibold leading-[1.95] sm:text-2xl sm:leading-[1.9]">
+              {slide.body}
+            </p>
+          ) : null}
+          {slide.items ? (
+            <ol className="mt-6 grid gap-3">
+              {slide.items.map((item, n) => (
+                <li key={n} className="flex items-start gap-3 rounded-2xl border border-[#e3d6b8] bg-white/85 p-3 text-lg font-bold leading-8 text-[#123f39] sm:p-4">
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-[#e0bc72] font-black">{n + 1}</span>
+                  {item}
+                </li>
+              ))}
+            </ol>
+          ) : null}
+          {slide.words?.length ? (
+            <dl className="mt-5 grid gap-3 sm:grid-cols-3">
+              {slide.words.map((item, n) => (
+                <div key={n} className="rounded-xl border border-[#e0d0a9] bg-white p-3 text-[#123f39]">
+                  <dt className="text-xl font-black">{item.word}</dt>
+                  <dd className="mt-1 font-arabic-reading text-lg leading-8">{item.meaning}</dd>
+                </div>
+              ))}
+            </dl>
+          ) : null}
+          {slide.quiz ? (
+            <fieldset className="mt-5 space-y-3 rounded-2xl border border-[#b7d0c6] bg-white p-4 text-[#123f39] sm:p-5">
+              <legend className="px-1 text-lg font-black leading-8">{slide.quiz.question}</legend>
+              {slide.quiz.options.map((choice) => {
+                const selected = chosen[slide.quiz!.id] === choice.id;
+                const isAnswered = Boolean(chosen[slide.quiz!.id]);
+                return (
+                  <button key={choice.id} type="button"
+                    aria-pressed={selected} onClick={() => select(slide.quiz!.id, choice.id)}
+                    className={"block min-h-11 w-full rounded-xl border px-4 py-3 text-right text-base font-semibold leading-7 transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b88935] " +
+                      (selected ? "border-[#277564] bg-[#dcefe5]" : "border-[#d9dfd7] bg-[#fafdfb] hover:border-[#66a394]")}>
+                    {choice.text}
+                    {selected ? "  ✓" : ""}
+                  </button>
+                );
+              })}
+              {chosen[slide.quiz.id] ? (
+                <p role="status" className="rounded-xl border border-[#dfd2ae] bg-[#fff7df] p-3 text-sm font-bold leading-8">
+                  {chosen[slide.quiz.id] === slide.quiz.correct ? "إجابة صحيحة، أحسنت!" : "حاول مراجعة المثال، ثم أعد الاختيار."}
+                  {slide.quiz.explanation ? "  " + slide.quiz.explanation : ""}
+                </p>
+              ) : (
+                <p className="text-xs text-[#54685d]">تحدٍّ تدريبي داخل العرض، وليس اختبار إتقان رسميًا.</p>
+              )}
+            </fieldset>
+          ) : null}
+          {slide.phase === "do" || slide.phase === "check" ? (
+            <div className="mt-5 flex flex-wrap gap-3">
+              {gameHref ? (
+                <Link href={gameHref} className="inline-flex min-h-11 items-center rounded-xl bg-[#123f39] px-5 py-3 text-sm font-black text-white">
+                  <span aria-hidden="true" className="ml-2">🎮</span>ألعاب الدرس التفاعلية
+                </Link>
+              ) : null}
+              {slide.phase === "do" ? (
+                <span className="inline-flex items-center rounded-xl border border-[#9bb8a4] px-4 py-2 text-sm font-bold">
+                  {slide.activity ? "نشاط من بنك الدرس — راجعه مع معلمك" : "تطبيق مفتوح يُراجع مع المعلم"}
+                </span>
+              ) : null}
+            </div>
+          ) : null}
+        </div>
+        <footer className="relative z-10 flex items-center justify-between gap-3 border-t border-current/15 pt-4 text-xs font-bold sm:text-sm">
+          <span>العربية لقلب الطالب قبل عقله</span>
+          <span dir="ltr">Dadyoom.com</span>
+        </footer>
+      </article>
+      <nav aria-label="التنقل بين خطوات الحصة" className="flex items-center justify-between gap-3 bg-[#123f39] px-3 py-4 text-white sm:px-6">
+        <button type="button" onClick={() => go(index - 1)} disabled={index === 0}
+          aria-label="الشريحة السابقة" className="min-h-11 rounded-xl border border-white/35 px-4 py-2 font-bold disabled:opacity-30">
+          السابق
         </button>
-
-        <button
-          type="button"
-          onClick={() => goTo(current + 1)}
-          disabled={current === slides.length - 1}
-          aria-label="الشريحة التالية"
-          className="absolute left-3 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-[#123f39] text-3xl font-black text-white shadow-lg transition hover:scale-105 disabled:opacity-25 sm:left-5"
-        >
-          ‹
+        <span className="text-center text-sm font-bold">{index + 1} / {deck.length}</span>
+        <button type="button" onClick={() => go(index + 1)} disabled={index === deck.length - 1}
+          aria-label="الشريحة التالية" className="min-h-11 rounded-xl bg-[#d7b164] px-4 py-2 font-black text-[#103d37] disabled:opacity-30">
+          التالي
         </button>
-      </div>
-
-      <div className="flex flex-wrap items-center justify-center gap-2 bg-[#123f39] px-4 py-4">
-        {slides.map((item, index) => (
-          <button
-            key={item.key}
-            type="button"
-            aria-label={`الانتقال إلى الشريحة ${index + 1}`}
-            onClick={() => goTo(index)}
-            className={
-              index === current
-                ? "h-2.5 w-9 rounded-full bg-[#e0b54d] transition-all"
-                : "h-2.5 w-2.5 rounded-full bg-white/35 transition-all hover:bg-white/60"
-            }
-          />
+      </nav>
+      <div className="flex flex-wrap justify-center gap-2 bg-[#123f39] px-4 pb-4">
+        {deck.map((s, n) => (
+          <button key={s.id} type="button" aria-label={"انتقل إلى " + s.eyebrow} aria-current={n === index ? "step" : undefined}
+            onClick={() => go(n)} className={n === index
+              ? "h-2.5 w-8 rounded-full bg-[#d6ad57]" : "h-2.5 w-2.5 rounded-full bg-white/30 hover:bg-white/65"} />
         ))}
       </div>
     </section>
