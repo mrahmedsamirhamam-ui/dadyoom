@@ -13,12 +13,24 @@ function panelsFromLesson(content: string): string[] {
     "الدرس التطبيقي الموسّع",
   ].map((item) => body.lastIndexOf(item)).filter((x) => x >= 0);
   const relevant = mark.length ? body.slice(Math.max(...mark)) : body;
-  const parts = relevant.split(/\n\s*\n/g)
+  const segments = relevant.split(/\n\s*\n|[.!؟؛]+/gu)
     .map((x) => x.replace(/\s+/g, " ").trim())
-    .filter((x) => x.length > 65 &&
-      !/^(تحقق الجودة|مصدر الدرس|حقوق المحتوى|هذا ليس النص|حالة التوثيق)/u.test(x))
-    .map((x) => x.slice(0, 490));
-  return parts.slice(0, 6);
+    .filter((x) => x.length > 45 &&
+      !/^(تحقق الجودة|مصدر الدرس|حقوق المحتوى|هذا ليس النص|حالة التوثيق)/u.test(x));
+  const panels: string[] = [];
+  for (const segment of segments) {
+    let line = "";
+    for (const word of segment.split(" ")) {
+      if (line && (line.length + word.length + 1 > 225)) {
+        panels.push(line);
+        line = "";
+      }
+      line += (line ? " " : "") + word;
+    }
+    if (line.length > 45) panels.push(line);
+  }
+  // Short, legible scenes on mobile instead of 490-character paragraphs.
+  return panels.slice(0, 10);
 }
 
 export default function OriginalLessonVisualExplainer({ title, content }: Props) {
@@ -80,7 +92,7 @@ export default function OriginalLessonVisualExplainer({ title, content }: Props)
         <div aria-hidden="true" className="pointer-events-none absolute -right-24 -bottom-20 h-72 w-72 rounded-full bg-[#3cb6a0]/20" />
         <div className="relative z-10">
           <p className="mb-4 text-xs font-black text-[#f0d79d]">الشرح المرئي • المشهد {active + 1} من {slides.length}</p>
-          <p key={active} className="whitespace-pre-line text-lg font-bold leading-10 sm:text-2xl sm:leading-[2]">
+          <p key={active} className="whitespace-pre-line text-lg font-bold leading-9 sm:text-2xl sm:leading-[1.9]">
             {slides[active]}
           </p>
         </div>
