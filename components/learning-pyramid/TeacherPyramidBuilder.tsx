@@ -154,6 +154,12 @@ export default function TeacherPyramidBuilder() {
             return (
               <section key={step.level} className="rounded-2xl border border-[#e1d3b7] bg-white p-5 sm:p-7">
                 <h2 className="text-xl font-black text-[#174f47]">{LEVELS[index].icon} {index + 1}. {LEVELS[index].title}</h2>
+                <label className="mt-4 block text-sm font-bold">عنوان مهمة المستوى
+                  <input maxLength={500} value={step.title} onChange={(event) => updateStep(index, (current) => ({ ...current, title: event.target.value }))} className={inputClass} />
+                </label>
+                <label className="mt-4 block text-sm font-bold">الهدف السلوكي
+                  <input maxLength={500} value={step.purpose} onChange={(event) => updateStep(index, (current) => ({ ...current, purpose: event.target.value }))} className={inputClass} />
+                </label>
                 <label className="mt-4 block text-sm font-bold">السؤال
                   <textarea rows={2} maxLength={500} value={task.question} onChange={(event) => updateQuestion(index, "question", event.target.value)} className={inputClass} />
                 </label>
@@ -182,6 +188,12 @@ export default function TeacherPyramidBuilder() {
           {pack.steps[5].task.kind === "creative" && (
             <section className="rounded-2xl border border-[#e1d3b7] bg-white p-5 sm:p-7">
               <h2 className="text-xl font-black text-[#174f47]">⭐ 6. أبدع</h2>
+              <label className="mt-4 block text-sm font-bold">عنوان المهمة الإبداعية
+                <input maxLength={500} value={pack.steps[5].title} onChange={(event) => updateStep(5, (current) => ({ ...current, title: event.target.value }))} className={inputClass} />
+              </label>
+              <label className="mt-4 block text-sm font-bold">هدف المهمة الإبداعية
+                <input maxLength={500} value={pack.steps[5].purpose} onChange={(event) => updateStep(5, (current) => ({ ...current, purpose: event.target.value }))} className={inputClass} />
+              </label>
               {(() => {
                 const task = pack.steps[5].task as CreativeTask;
                 return (
