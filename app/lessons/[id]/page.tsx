@@ -26,6 +26,7 @@ import LessonProgress from "@/components/lesson/LessonProgress";
 import LessonPageJourneyNav from "@/components/lesson/LessonPageJourneyNav";
 import SmartQrCard from "@/components/lesson/SmartQrCard";
 import LessonLearningSlides from "@/components/lesson/LessonLearningSlides";
+import StructuredLessonText from "@/components/lesson/StructuredLessonText";
 import VocabularyCard from "@/components/lesson/VocabularyCard";
 import MultipleChoiceQuestion from "@/components/lesson/MultipleChoiceQuestion";
 import ScoreCard from "@/components/lesson/ScoreCard";
@@ -698,6 +699,11 @@ export default async function LessonPage({
           vocabulary={vocabulary}
           instructions={lesson.instructions}
         />
+        {practiceAvailable ? (
+          <div className="mt-5">
+            <StructuredLessonText content={lesson.content} />
+          </div>
+        ) : null}
         </section>
         <section id="lesson-practice" aria-label="تطبيق الدرس" className="scroll-mt-28 space-y-4">
           <div className="rounded-2xl border border-[#c8dccd] bg-[#eaf4ec] p-5">

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import StructuredLessonText from "@/components/lesson/StructuredLessonText";
 import {
   useEffect,
   useRef,
@@ -633,6 +634,16 @@ export default function LessonStudyStudio({
                 تحميل ملخص الدرس
               </Action>
             )}
+
+            {lesson.content?.trim() ? (
+              <div className="space-y-3">
+                <p className="text-sm font-bold leading-7 text-[#5a665d]">
+                  الملخص أداة للمراجعة، ولا يغني عن الشرح الكامل.
+                  يمكنك قراءة محتوى الدرس دون استهلاك محاولات الذكاء الاصطناعي.
+                </p>
+                <StructuredLessonText content={lesson.content} />
+              </div>
+            ) : null}
 
             {customSummary ? (
               <div className="rounded-2xl border border-[#d7bd83] bg-[#fff8e8] p-5">
