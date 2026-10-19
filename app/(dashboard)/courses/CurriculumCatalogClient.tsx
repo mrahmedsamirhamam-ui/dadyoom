@@ -9,6 +9,8 @@ import type {
 
 type Props = {
   units: StudentCatalogUnit[];
+  defaultCountryCode?: string;
+  defaultGradeNumber?: number | null;
 };
 
 const diff = {
@@ -89,6 +91,8 @@ function curriculumName(
 
 export default function CurriculumCatalogClient({
   units,
+  defaultCountryCode = "BH",
+  defaultGradeNumber = null,
 }: Props) {
   const [
     country,
@@ -115,6 +119,8 @@ export default function CurriculumCatalogClient({
     setUnit,
   ] = useState("");
 
+  const [semester, setSemester] = useState("");
+
   /*
    * Intentionally no useMemo here.
    * React Compiler in this project enforces preserve-manual-memoization;
@@ -135,6 +141,7 @@ export default function CurriculumCatalogClient({
 
   const countryId =
     country ||
+    countries.find((item) => item.code.toUpperCase() === defaultCountryCode.toUpperCase())?.id ||
     countries[0]?.id ||
     "";
 
@@ -184,6 +191,11 @@ export default function CurriculumCatalogClient({
         (item) =>
           item.grade,
       ),
+  ).filter(
+    (item, index, all) =>
+      all.findIndex(
+        (other) => Number(other.number) === Number(item.number),
+      ) === index,
   ).sort(
     (a, b) =>
       Number(
@@ -200,7 +212,8 @@ export default function CurriculumCatalogClient({
         item.id === grade,
     )
       ? grade
-      : grades[0]?.id ?? "";
+      : grades.find((item) => Number(item.number) === Number(defaultGradeNumber))?.id ??
+        grades[0]?.id ?? "";
 
   const activeGrade =
     grades.find(
@@ -249,7 +262,8 @@ export default function CurriculumCatalogClient({
         curriculum,
     )
       ? curriculum
-      : curricula[0]?.id ?? "";
+      : curricula.find((item) => item.name.trim() === "اللغة العربية")?.id ??
+        curricula[0]?.id ?? "";
 
   const gradeUnits = units
     .filter(
@@ -274,13 +288,21 @@ export default function CurriculumCatalogClient({
         a.order - b.order,
     );
 
-  const shown =
-    unit
-      ? gradeUnits.filter(
-          (item) =>
-            item.id === unit,
-        )
-      : gradeUnits;
+  // Keep both terms visible by default; filter to a semester only when requested.
+  const semesters = [...new Set(
+    gradeUnits.flatMap((item) =>
+      item.lessons.map((lesson) => lesson.semester).filter((value): value is number => value !== null),
+    ),
+  )].sort((a, b) => a - b);
+
+  const shown = (unit ? gradeUnits.filter((item) => item.id === unit) : gradeUnits)
+    .map((item) => ({
+      ...item,
+      lessons: semester
+        ? item.lessons.filter((lesson) => Number(lesson.semester) === Number(semester))
+        : item.lessons,
+    }))
+    .filter((item) => item.lessons.length > 0);
 
   const total =
     shown.reduce(
@@ -357,7 +379,7 @@ export default function CurriculumCatalogClient({
         </section>
 
         <section className="min-w-0 rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-4 sm:p-6">
-          <div className="grid min-w-0 gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="grid min-w-0 gap-3 sm:grid-cols-2 lg:grid-cols-6">
             <SelectBox
               label="الدولة"
               value={countryId}
@@ -372,6 +394,7 @@ export default function CurriculumCatalogClient({
                 setYear("");
                 setGrade("");
                 setCurriculum("");
+                setSemester("");
                 setUnit("");
               }}
             />
@@ -389,6 +412,7 @@ export default function CurriculumCatalogClient({
                 setYear(value);
                 setGrade("");
                 setCurriculum("");
+                setSemester("");
                 setUnit("");
               }}
             />
@@ -408,6 +432,7 @@ export default function CurriculumCatalogClient({
               onChange={(value) => {
                 setGrade(value);
                 setCurriculum("");
+                setSemester("");
                 setUnit("");
               }}
             />
@@ -433,6 +458,23 @@ export default function CurriculumCatalogClient({
                 setCurriculum(
                   value,
                 );
+                setSemester("");
+                setUnit("");
+              }}
+            />
+
+            <SelectBox
+              label="الفصل الدراسي"
+              value={semester}
+              options={[
+                ["", "كل الفصول"],
+                ...semesters.map((value) => [
+                  String(value),
+                  value === 1 ? "الفصل الأول" : value === 2 ? "الفصل الثاني" : `الفصل ${value}`,
+                ]),
+              ]}
+              onChange={(value) => {
+                setSemester(value);
                 setUnit("");
               }}
             />
