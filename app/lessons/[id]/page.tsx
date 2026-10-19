@@ -26,6 +26,7 @@ import LessonProgress from "@/components/lesson/LessonProgress";
 import LessonPageJourneyNav from "@/components/lesson/LessonPageJourneyNav";
 import SmartQrCard from "@/components/lesson/SmartQrCard";
 import LessonLearningSlides from "@/components/lesson/LessonLearningSlides";
+import OriginalListeningPractice from "@/components/lesson/OriginalListeningPractice";
 import StructuredLessonText from "@/components/lesson/StructuredLessonText";
 import VocabularyCard from "@/components/lesson/VocabularyCard";
 import MultipleChoiceQuestion from "@/components/lesson/MultipleChoiceQuestion";
@@ -691,6 +692,12 @@ export default async function LessonPage({
             <p className="text-xs font-bold text-[#ecd69e]">المرحلة الأولى</p>
             <h2 className="font-arabic-display text-2xl font-black">افهم الدرس</h2>
           </div>
+        {practiceAvailable && lesson.lesson_type === "listening" ? (
+          <OriginalListeningPractice
+            title={lessonDisplayTitle}
+            content={lesson.content ?? ""}
+          />
+        ) : null}
         <LessonLearningSlides
           title={lessonDisplayTitle}
           summary={lesson.summary}
