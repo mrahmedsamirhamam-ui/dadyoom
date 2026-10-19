@@ -58,7 +58,7 @@ export default function InteractiveLabPage() {
                 <p className="text-xs font-bold text-[#8c6d37]">{pack.stage}</p>
                 <h3 className="mt-2 text-lg font-black text-[#174f47]">{pack.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-[#746a5d]">{pack.goal}</p>
-                <Link href="/interactive-lab/pyramid" className="mt-3 inline-block text-sm font-black text-[#18604b] underline">ادخل الهرم</Link>
+                <Link href={"/interactive-lab/pyramid?pack=" + encodeURIComponent(pack.slug)} className="mt-3 inline-block text-sm font-black text-[#18604b] underline">ادخل الهرم</Link>
               </article>
             ))}
           </div>
