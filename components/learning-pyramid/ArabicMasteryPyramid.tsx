@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { LEVELS, PYRAMID_PACKS, type ChoiceTask, type CreativeTask, type PyramidPack } from "@/lib/learning-pyramid/packs";
 
 type Feedback = { correct: boolean; message: string; explanation?: string } | null;
@@ -21,6 +21,14 @@ export default function ArabicMasteryPyramid({ customPack }: { customPack?: Pyra
   const [checks, setChecks] = useState<boolean[]>([false, false, false]);
   const [creativeError, setCreativeError] = useState("");
   const [teacherGuide, setTeacherGuide] = useState(false);
+
+  useEffect(() => {
+    if (customPack) return;
+    const requested = new URLSearchParams(window.location.search).get("pack");
+    if (requested && PYRAMID_PACKS.some((item) => item.slug === requested)) {
+      setPackSlug(requested);
+    }
+  }, [customPack]);
 
   const pack = useMemo(
     () => packs.find((item) => item.slug === packSlug) ?? packs[0],
