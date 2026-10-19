@@ -45,6 +45,11 @@ export default function InteractiveLabPage() {
             ))}
           </div>
         </section>
+        <section className="rounded-[2rem] border border-[#d9c5a0] bg-[#f6ecda] p-6">
+          <h2 className="text-xl font-black text-[#174f47]">👩‍🏫 اصنع هرمًا لدرسك</h2>
+          <p className="mt-2 font-arabic-reading text-sm leading-8 text-[#645a4f]">للمعلم مساحة تجريبية لتحرير أسئلة المستويات الستة، وتحديد الإجابات والتلميحات، وتجربة النشاط قبل اعتماده. تُصدّر المسودة محليًا دون نشرها تلقائيًا للطلاب.</p>
+          <Link href="/interactive-lab/pyramid/teacher" className="mt-3 inline-flex rounded-xl bg-[#174f47] px-5 py-3 text-sm font-black text-white">افتح استوديو هرم المعلم ←</Link>
+        </section>
         <section className="rounded-[2rem] border border-[#e1d5bd] bg-white p-6">
           <h2 className="text-xl font-black">الموضوعات المتاحة للتدريب</h2>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
