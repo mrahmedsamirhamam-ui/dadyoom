@@ -18,7 +18,7 @@ export async function GET() {
   if (!auth.ok) return reply({ error: "غير مصرح." }, auth.status);
   try {
     const { data, error } = await createAdminClient().from("support_tickets")
-      .select("id,created_at,updated_at,name,email,user_role,category,subject,message,status,admin_note")
+      .select("id,created_at,updated_at,name,email,user_role,category,subject,message,status,admin_note,public_reply")
       .order("created_at", { ascending: false }).limit(100);
     if (error) throw error;
     return reply({ tickets: data ?? [] });
@@ -49,13 +49,13 @@ export async function PATCH(request: NextRequest) {
     const body = JSON.parse(raw) as Record<string, unknown>;
     const id = typeof body.id === "string" ? body.id.trim() : "";
     const status = typeof body.status === "string" ? body.status : "";
-    const note = typeof body.admin_note === "string" ? body.admin_note.trim() : "";
+    const note = typeof body.admin_note === "string" ? body.admin_note.trim() : "";\n    const publicReply = typeof body.public_reply === "string" ? body.public_reply.trim() : "";
     if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id) ||
-      !["new", "in_progress", "resolved"].includes(status) || note.length > 2000) {
+      !["new", "in_progress", "resolved"].includes(status) || note.length > 2000 || publicReply.length > 4000) {
       return reply({ error: "يرجى مراجعة بيانات التحديث." }, 400);
     }
     const { data, error } = await createAdminClient().from("support_tickets")
-      .update({ status, admin_note: note, updated_at: new Date().toISOString() })
+      .update({ status, admin_note: note, public_reply: publicReply, updated_at: new Date().toISOString() })
       .eq("id", id).select("id,status,updated_at").maybeSingle();
     if (error) throw error;
     if (!data) return reply({ error: "الطلب غير موجود." }, 404);
