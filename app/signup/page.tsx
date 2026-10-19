@@ -10,5 +10,5 @@ export default async function SignupPage({
   const params = await searchParams;
   const requested = typeof params.role === "string" ? params.role : "";
   const initialRole = publicRoles.has(requested) ? requested : "student";
-  return <EmailPasswordAuthForm mode="signup" initialRole={initialRole} />;
+  return <EmailPasswordAuthForm key={initialRole} mode="signup" initialRole={initialRole} />;
 }
