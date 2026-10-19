@@ -39,7 +39,7 @@ export default function TeacherPyramidBuilder() {
   function updateOption(index: number, optionIndex: number, value: string) {
     updateStep(index, (step) => {
       if (step.task.kind !== "choice") return step;
-      const options = step.task.options.map((option, i) => i === optionIndex ? value : option) as ChoiceTask["options"];
+      const options = step.task.options.map((option, i) => i === optionIndex ? value : option) as unknown as ChoiceTask["options"];
       return { ...step, task: { ...step.task, options } };
     });
   }
@@ -64,7 +64,7 @@ export default function TeacherPyramidBuilder() {
       if (step.task.kind !== "creative") return step;
       return {
         ...step,
-        task: { ...step.task, criteria: step.task.criteria.map((criterion, i) => i === index ? value : criterion) as CreativeTask["criteria"] },
+        task: { ...step.task, criteria: step.task.criteria.map((criterion, i) => i === index ? value : criterion) as unknown as CreativeTask["criteria"] },
       };
     });
   }
