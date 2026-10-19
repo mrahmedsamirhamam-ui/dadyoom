@@ -117,6 +117,26 @@ describe("real lesson question bank partition", () => {
     });
   }
 
+  test("real Bahrain-style explanations provide playable modes without metadata questions", () => {
+    const original = [
+      "ضاديوم — درس إثرائي أصلي للصف الثامن، الفصل الدراسي الثاني.",
+      "مسار التعلم الذاتي — مراجعة علمية وتطبيق عملي من ضاديوم",
+      "كيف أميّز التوكيد؟",
+      "التوكيد اللفظي تكرار اللفظ لأجل تقوية المعنى، مثل نجح نجح المتسابق",
+      "أما التوكيد المعنوي فمن ألفاظه نفس وعين وكل وجميع، إذا استعملت مع ضمير يعود على المؤكد",
+      "حضرت المعلمة نفسها توكيد معنوي واضح، وجاء الطلاب جميعهم توكيد في الإعراب",
+      "حين أكتب فقرة أتحقق من السياق، ثم أوضح الشاهد النحوي الصحيح",
+    ].join("\\n");
+    const source = sourceForAutomaticGameQuestions({ content: original });
+    const result = buildLessonGamePack("التوكيد", source, [
+      { question: "ما التوكيد المعنوي هنا؟", options: ["نفسها", "حضر", "المعلمة"], correct_answer: "a" },
+      { question: "أي حرف يدل على التشبيه؟", options: ["كأن", "في", "إلى"], correct_answer: "a" },
+    ], []);
+    expect(result.pack).not.toBeNull();
+    expect(result.pack?.maze).toHaveLength(5);
+    expect(result.pack?.maze.every((x) => !x.prompt.includes("درس إثرائي أصلي"))).toBe(true);
+  });
+
   test("a lesson with fewer than five usable questions stays unavailable", () => {
     const questions = Array.from({ length: 4 }, (_, i) => ({
       question: `اختبار قصير لمعرفة السؤال رقم ${i + 1}`,
