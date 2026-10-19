@@ -19,12 +19,13 @@ type Ticket = {
   page_url: string | null;
   status: string;
   admin_note: string;
+  public_reply: string;
 };
 
 const categories: Record<string, string> = {
   general: "استفسار عام", technical: "مشكلة تقنية", account: "الحساب والدخول",
   curriculum: "مناهج ودروس", teacher: "دعم معلم", school: "مدرسة",
-  privacy: "الخصوصية", suggestion: "مقترح", other: "أخرى",
+  privacy: "الخصوصية", suggestion: "مقترح", complaint: "شكوى", other: "أخرى",
 };
 const statuses: Record<string, string> = {
   new: "جديد", in_progress: "قيد المتابعة", resolved: "تم الحل",
@@ -51,7 +52,7 @@ export default async function AdminSupportPage() {
 
   const db = createAdminClient();
   const result = await db.from("support_tickets")
-    .select("id,created_at,name,email,category,user_role,subject,message,page_url,status,admin_note", { count: "exact" })
+    .select("id,created_at,name,email,category,user_role,subject,message,page_url,status,admin_note,public_reply", { count: "exact" })
     .order("created_at", { ascending: false }).limit(100);
   if (result.error) {
     console.error("SUPPORT_ADMIN_LIST_ERROR", result.error.code);
@@ -66,7 +67,7 @@ export default async function AdminSupportPage() {
       <div className="rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-6">
         <p className="text-xs font-black text-[#a7772f]">ضاديوم • دعم المستخدمين</p>
         <h1 className="mt-2 font-arabic-display text-3xl font-black text-[#123f39]">
-          صندوق وارد التواصل والمشكلات
+          ضاديوم معك — صندوق خدمة العملاء
         </h1>
         <p className="mt-3 text-sm leading-7 text-[#625b51]">
           هذه الرسائل خاصة بالإدارة، وتحتوي على معلومات اتصال شخصية. لا تُشاركها مع أطراف خارجية
@@ -138,6 +139,10 @@ export default async function AdminSupportPage() {
                       className="mt-2 w-full rounded-xl border border-[#d7c8a8] bg-white px-3 py-2.5" />
                   </label>
                 </div>
+                <label className="text-xs font-bold text-[#174f47]">رد للعميل يظهر في حسابه (لا تضع فيه ملاحظات داخلية)
+                  <textarea name="public_reply" defaultValue={ticket.public_reply ?? ""} maxLength={4000} rows={3}
+                    className="mt-2 w-full rounded-xl border border-[#d7c8a8] bg-white px-3 py-2.5" />
+                </label>
                 <button type="submit" className="self-start rounded-xl bg-[#174f47] px-5 py-2.5 text-sm font-black text-white">
                   حفظ المتابعة
                 </button>
