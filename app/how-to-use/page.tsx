@@ -92,7 +92,7 @@ export default function HowToUsePage() {
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6">
           <Link href="/" className="text-2xl font-black text-[#174f47]">ضاديوم <span className="text-sm text-[#a8782f]">Dadyoom</span></Link>
           <div className="flex items-center gap-2 text-sm font-bold">
-            <Link href="/courses" className="rounded-xl px-3 py-2 hover:bg-[#edf5f1]">الدروس</Link>
+            <Link href="/courses" className="rounded-xl px-3 py-2 hover:bg-[#edf5f1]">الدروس</Link>\n            <Link href="/care" className="rounded-xl px-3 py-2 hover:bg-[#edf5f1]">ضاديوم معك</Link>
             <Link href="/login" className="rounded-xl px-3 py-2 hover:bg-[#edf5f1]">تسجيل الدخول</Link>
             <Link href="/signup" className="rounded-xl bg-[#174f47] px-4 py-2 text-white hover:bg-[#103f39]">ابدأ مجانًا</Link>
           </div>
