@@ -16,7 +16,7 @@ type Ticket = {
   subject: string;
   message: string;
   status: Status;
-  admin_note: string;
+  admin_note: string;\n  public_reply: string;
 };
 const labels: Record<Status, string> = {
   new: "جديد", in_progress: "قيد المتابعة", resolved: "تمت المعالجة",
@@ -24,7 +24,7 @@ const labels: Record<Status, string> = {
 const categoryLabels: Record<string, string> = {
   general: "استفسار عام", technical: "دعم فني", account: "الحساب",
   curriculum: "المناهج", teacher: "المعلم", school: "المدرسة",
-  privacy: "الخصوصية", suggestion: "شكوى / اقتراح", other: "أخرى",
+  privacy: "الخصوصية", suggestion: "اقتراح", complaint: "شكوى", other: "أخرى",
 };
 
 export default function CareAdminPage() {
@@ -63,7 +63,7 @@ export default function CareAdminPage() {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          id: ticket.id, status: ticket.status, admin_note: ticket.admin_note,
+          id: ticket.id, status: ticket.status, admin_note: ticket.admin_note, public_reply: ticket.public_reply,
         }),
       });
       const data = await response.json();
@@ -126,7 +126,7 @@ export default function CareAdminPage() {
                 <span className="rounded-lg bg-[#edf3ef] px-3 py-2 text-xs font-black text-[#315e57]">{labels[ticket.status] ?? ticket.status}</span>
               </div>
               <p className="mt-4 whitespace-pre-wrap break-words rounded-xl bg-[#faf6ee] p-4 text-sm leading-8">{ticket.message}</p>
-              <div className="mt-5 grid gap-4 md:grid-cols-[200px_1fr_auto] md:items-end">
+              <div className="mt-5 grid gap-4 md:grid-cols-[200px_1fr]">
                 <label className="text-sm font-bold">حالة الطلب
                   <select value={ticket.status} onChange={(e) => change(ticket.id, { status: e.target.value as Status })}
                     className="mt-2 w-full rounded-xl border border-[#d9ccb1] bg-white px-3 py-3">
@@ -137,7 +137,7 @@ export default function CareAdminPage() {
                   <textarea value={ticket.admin_note} onChange={(e) => change(ticket.id, { admin_note: e.target.value })}
                     maxLength={2000} rows={2} className="mt-2 w-full rounded-xl border border-[#d9ccb1] bg-white px-3 py-3" />
                 </label>
-                <button type="button" disabled={busyId === ticket.id} onClick={() => void save(ticket)}
+                <label className="text-sm font-bold md:col-span-2">رد يظهر لصاحب الطلب عند تسجيل الدخول\n                  <textarea value={ticket.public_reply} onChange={(e) => change(ticket.id, { public_reply: e.target.value })}\n                    maxLength={4000} rows={3} className="mt-2 w-full rounded-xl border border-[#d9ccb1] bg-white px-3 py-3" />\n                </label>\n                <button type="button" disabled={busyId === ticket.id} onClick={() => void save(ticket)}
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#174f47] px-5 py-3.5 text-sm font-black text-white disabled:opacity-50"><CheckCircle2 size={18} /> {busyId === ticket.id ? "جارٍ الحفظ" : "حفظ التحديث"}</button>
               </div>
               <p className="mt-2 break-all text-[10px] text-[#897967]" dir="ltr">{ticket.id}</p>
