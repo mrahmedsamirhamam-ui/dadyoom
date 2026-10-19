@@ -92,10 +92,14 @@ export async function POST(request: Request) {
     // Attach an authenticated sender using the verified session, never a client-supplied ID.
     const client = await createClient();
     const { data: { user } } = await client.auth.getUser();
-    const verifiedEmail = user?.email?.trim().toLowerCase() || email;
+    // The contact email can intentionally differ from the account email.
+    // Keep the validated email the sender entered as the reply destination,
+    // while binding ownership exclusively to the verified session user ID.
+    // Replacing email with user.email silently misroutes replies and breaks
+    // authenticated users' ability to specify their preferred contact inbox.
     const inserted = await admin.from("support_tickets").insert({
       user_id: user?.id ?? null,
-      name, email: verifiedEmail, category, user_role, subject, message, page_url, submitter_hash,
+      name, email, category, user_role, subject, message, page_url, submitter_hash,
     }).select("id").single();
     if (inserted.error || !inserted.data?.id) throw inserted.error ?? new Error("Missing ticket id");
 
