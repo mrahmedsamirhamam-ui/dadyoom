@@ -13,13 +13,18 @@ const videos = read("components/courses/VideoLibraryClient.tsx");
 const live = read("components/live/DadyoomLiveRoom.tsx");
 const session = read("app/live/[id]/LiveSessionClient.tsx");
 const styles = read("app/globals.css");
+const lessonPage = read("app/lessons/[id]/page.tsx");
+const lessonStudy = read("app/lessons/[id]/study/LessonStudyStudio.tsx");
 
 describe("Actual country, stage, grade and lesson pathways", () => {
   test("all countries can open the full curriculum with their own selected grade", () => {
     expect(country).toContain("/courses?country=");
     expect(grade).toContain("/courses?country=");
     expect(coursePage).toContain("searchParams: Promise<CourseSearchParams>");
-    expect(coursePage).toContain('item.code === (rawCountry ?? "").trim().toUpperCase()');
+    expect(coursePage).toContain('rawCountry ?? profileCountryCode');
+    expect(coursePage).toContain("rawGrade ? Number(rawGrade) : profileGradeNumber");
+    expect(coursePage).toContain('.select("country,grade_number")');
+    expect(coursePage).toContain('createClient()');
     expect(coursePage).toContain("requestedGrade <= (country?.maxGrade ?? 12)");
     expect(coursePage).toContain("initialCountryCode={country?.code");
     expect(coursePage).toContain("initialGradeNumber={grade}");
@@ -43,6 +48,15 @@ describe("Actual country, stage, grade and lesson pathways", () => {
     expect(country).toContain("<details key={unit.id}");
     expect(country).toContain("كل دروس هذا الصف والفصول في المستكشف");
     expect(grade).toContain("فتح جميع دروس الصف والمنهج والفصل");
+  });
+});
+
+describe("Published Bahrain lessons show their complete educational explanations", () => {
+  test("lesson and study studio render the complete saved content alongside summaries", () => {
+    expect(lessonPage).toContain('import StructuredLessonText from "@/components/lesson/StructuredLessonText"');
+    expect(lessonPage).toContain('<StructuredLessonText content={lesson.content} />');
+    expect(lessonPage).toContain('{practiceAvailable ? (');
+    expect(lessonStudy).toContain('<StructuredLessonText content={lesson.content} />');
   });
 });
 
