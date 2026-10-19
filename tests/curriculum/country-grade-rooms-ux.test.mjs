@@ -92,3 +92,32 @@ describe("Real learning room preferences instead of dummy buttons", () => {
     expect(styles).toContain("DADYOOM_SHARED_INTERACTION_POLISH_V1");
   });
 });
+
+
+describe("International Arabic source directory and teacher pathways", () => {
+  const directory = read("app/courses/international-arabic/page.tsx");
+  const nav = read("app/courses/layout.tsx");
+
+  test("international Arabic curricula are discoverable for all students and teachers", () => {
+    expect(coursePage).toContain('href="/courses/international-arabic"');
+    expect(nav).toContain('href: "/courses/international-arabic"');
+    expect(directory).toContain("مناهج");
+    expect(directory).toContain('id="teacher-guide"');
+  });
+
+  test("IB programmes and distinct Cambridge/Pearson syllabuses remain separate", () => {
+    for (const key of ["ib-pyp", "ib-myp-literature", "ib-myp-acquisition", "ib-dp-a", "ib-dp-b", "cambridge-0508", "cambridge-0544", "cambridge-7180", "pearson-first"]) {
+      expect(directory).toContain('key: "' + key + '"');
+    }
+    expect(directory).toContain("31 درسًا منشورًا");
+    expect(directory).toContain("ليست مناهج امتحانية مكتملة");
+    expect(directory).toContain("المصدر الرسمي");
+  });
+
+  test("teacher resources are visibly tied to official sources and not false accreditation", () => {
+    expect(directory).toContain("teacherExample");
+    expect(directory).toContain("studentCheck");
+    expect(directory).toContain('target="_blank" rel="noopener noreferrer"');
+    expect(directory).toContain("ليس جهة امتحانات أو جهة اعتماد");
+  });
+});

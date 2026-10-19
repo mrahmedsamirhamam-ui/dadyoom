@@ -9,6 +9,10 @@ const links = [
     label: "المناهج",
   },
   {
+    href: "/courses/international-arabic",
+    label: "IB وIG وIGCSE",
+  },
+  {
     href: "/courses/rooms",
     label: "تخصيص غرف التعلم",
   },
