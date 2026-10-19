@@ -27,6 +27,8 @@ describe("Dadyoom official .com canonical and natural search spellings", () => {
   });
   test("one canonical sitemap with reciprocal Arabic/English language alternates", () => {
     expect(sitemap).toContain("seo_indexable_lessons_fast");
+    expect(sitemap).toContain("${base}/courses/international-arabic");
+    expect(sitemap).toContain("${base}/courses/international-arabic/practice");
     expect(sitemap).toContain("eq(\"status\", \"published\")");
     expect(sitemap).toContain("const unique = new Map(entries.map");
     expect(sitemap).toContain("alternates: { languages: { ar: base, en:");

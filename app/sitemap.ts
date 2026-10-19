@@ -30,6 +30,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: base, alternates: { languages: { ar: base, en: `${base}/en` } }, changeFrequency: "weekly", priority: 1 },
     { url: `${base}/teachers`, changeFrequency: "weekly", priority: 0.95 },
     { url: `${base}/courses`, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${base}/courses/international-arabic`, changeFrequency: "weekly", priority: 0.82 },
+    { url: `${base}/courses/international-arabic/practice`, changeFrequency: "monthly", priority: 0.78 },
     { url: `${base}/curriculum`, alternates: { languages: { ar: `${base}/curriculum`, en: `${base}/en/curriculum` } }, changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/learn-arabic`, alternates: { languages: { ar: `${base}/learn-arabic`, en: `${base}/en/learn-arabic` } }, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/en`, alternates: { languages: { ar: base, en: `${base}/en` } }, changeFrequency: "weekly", priority: 0.9 },
