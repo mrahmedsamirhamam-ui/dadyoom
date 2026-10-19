@@ -98,6 +98,11 @@ export default function HomeInteractionPanel() {
           )}
         </div>
 
+        <Link href="/interactive-lab/pyramid" className="mt-5 flex items-center justify-between rounded-2xl border border-[#85b5a3] bg-[#e8f4ed] px-5 py-4 text-sm font-black text-[#174f47] transition hover:bg-[#d5ebdf]">
+          <span>🧠 هرم ضاديوم: اكتشف ← افهم ← طبّق ← حلّل ← قوّم ← أبدع</span>
+          <span aria-hidden="true">←</span>
+        </Link>
+
         <div className="mt-5 rounded-2xl border border-[#d7c391] bg-white p-4">
           <div className="flex flex-wrap items-center gap-3">
             <button
