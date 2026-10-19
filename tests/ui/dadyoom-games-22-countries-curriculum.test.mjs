@@ -14,7 +14,8 @@ describe("All 22 countries have a real game API and safe next action on missing 
  test("all games need five distinct answerable lesson questions",()=>{
   expect(smoke).toContain('GAME_22_COUNTRIES_PRODUCTION=PASS count=22');
   expect(smoke).toContain('questions.length !== 5');
-  expect(smoke).toContain('new Set(questions.map(x => x.prompt)).size !== 5');
+  // Formatting of the arrow callback is irrelevant to the five-unique-prompts gate.
+  expect(smoke.replace(/\s+/g, "")).toMatch(/newSet\(questions\.map\(\(?x\)?=>x\.prompt\)\)\.size!==5/);
   expect(smoke).toContain('!q.options.includes(q.answer)');
   expect(gate).toContain("run: node scripts/smoke-games-22-countries.mjs");
  });
