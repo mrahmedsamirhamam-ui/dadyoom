@@ -25,7 +25,7 @@ export default function TeacherPyramidBuilder() {
   function updateStep(index: number, change: (step: PyramidStep) => PyramidStep) {
     setPack((previous) => ({
       ...previous,
-      steps: previous.steps.map((step, i) => i === index ? change(step) : step) as PyramidPack["steps"],
+      steps: previous.steps.map((step, i) => i === index ? change(step) : step) as unknown as PyramidPack["steps"],
     }));
   }
 
