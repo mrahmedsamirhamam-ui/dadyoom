@@ -32,7 +32,7 @@ export default function HomePage() {
             <a href="#skills" className="transition hover:text-[#174f47]">المهارات</a>
             <Link href="/courses" className="transition hover:text-[#174f47]">استكشف الدروس</Link>
             <Link href="/ask" className="transition hover:text-[#174f47]">اسأل ضاد</Link>
-            <Link href="/how-to-use" className="transition hover:text-[#174f47]">كيف تستخدم ضاديوم؟</Link>
+            <Link href="/how-to-use" className="transition hover:text-[#174f47]">كيف تستخدم ضاديوم؟</Link>\n            <Link href="/care" className="transition hover:text-[#174f47]">ضاديوم معك</Link>
           </nav>
           <div className="flex items-center gap-2">
             <Link href="/login" className="hidden rounded-xl px-4 py-2.5 text-sm font-black text-[#5d554c] hover:bg-[#f3ead7] sm:inline-flex">دخول</Link>
@@ -63,7 +63,7 @@ export default function HomePage() {
               <Link href="/signup" className="rounded-2xl bg-[#174f47] px-7 py-4 font-black text-white shadow-lg shadow-[#174f47]/15 transition hover:-translate-y-0.5 hover:bg-[#103f39]">أنشئ حسابك</Link>
               <Link href="/ask" className="rounded-2xl border border-[#d6b569] bg-[#fffef9] px-7 py-4 font-black text-[#72551c] transition hover:-translate-y-0.5 hover:bg-[#fff6df]">جرّب ضاد الآن</Link>
               <Link href="/courses" className="rounded-2xl border border-[#d9cdb7] bg-white px-7 py-4 font-black text-[#4d4438] transition hover:border-[#84a89f] hover:text-[#174f47]">تصفّح المنهج</Link>
-              <Link href="/how-to-use" className="rounded-2xl border border-[#d6b569] bg-[#fff6df] px-7 py-4 font-black text-[#72551c] transition hover:-translate-y-0.5 hover:bg-[#fcebc1]">كيف تستخدم ضاديوم؟</Link>
+              <Link href="/how-to-use" className="rounded-2xl border border-[#d6b569] bg-[#fff6df] px-7 py-4 font-black text-[#72551c] transition hover:-translate-y-0.5 hover:bg-[#fcebc1]">كيف تستخدم ضاديوم؟</Link>\n              <Link href="/care" className="rounded-2xl border border-[#8caf98] bg-[#ecf7f0] px-7 py-4 font-black text-[#174f47] transition hover:-translate-y-0.5 hover:bg-[#def0e6]">ضاديوم معك — تواصل معنا</Link>
             </div>
             <div className="mt-9 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
               <MiniStat value="22" label="دولة عربية في البنية" />
@@ -146,7 +146,7 @@ export default function HomePage() {
       <footer className="border-t border-[#315e57] bg-[#123f39] py-10 text-[#d9e8e3]">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
           <DadyoomLogo inverse />
-          <div className="text-sm">العربية تجمعنا، ولا تُذيب أحدًا.</div>
+          <div className="text-sm">العربية تجمعنا، ولا تُذيب أحدًا. <Link href="/care" className="mr-3 font-bold text-[#f5cf7a] underline">ضاديوم معك</Link></div>
           <div className="text-sm">© 2026 ضاديوم</div>
         </div>
       </footer>
