@@ -5,6 +5,7 @@ on:
       - feature/care-pyramid-on-production-20261019
       - fix/care-pyramid-lint-20261019
       - fix/dadyoom-care-reply-email-e2e-20261019
+      - feat/bahrain-g1-sem2-objectives-20261019
 
 permissions:
   contents: read
@@ -24,6 +25,10 @@ jobs:
         run: npm install --legacy-peer-deps --no-package-lock
       - name: Verify six-level lesson content
         run: npx vitest run lib/learning-pyramid/packs.test.ts
+      - name: Bahrain book audit remains truthful
+        run: npm run curriculum:audit:bahrain-books
+      - name: Curriculum control center
+        run: node scripts/check-finish-curriculum-ops.mjs
       - name: TypeScript
         run: npx tsc --noEmit
       - name: ESLint
