@@ -705,6 +705,9 @@ export default async function LessonPage({
           objectives={objectives}
           vocabulary={vocabulary}
           instructions={lesson.instructions}
+          questions={practiceAvailable ? multipleChoiceQuestions : []}
+          activities={practiceAvailable ? lessonActivities : []}
+          lessonId={practiceAvailable ? lesson.id : undefined}
         />
         {practiceAvailable ? (
           <div className="mt-5">
