@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   Baby,
@@ -37,7 +37,7 @@ const journeys: GuideJourney[] = [
   {
     id: "student", title: "الطالب", summary: "ابدأ من منهجك وواصل التعلّم خطوة بخطوة.", icon: GraduationCap,
     steps: [
-      { title: "أنشئ حساب الطالب", explanation: "اضغط «ابدأ مجانًا»، واكتب الاسم والبريد وكلمة المرور، واختر «طالب» ودولتك. قد يُطلب تأكيد البريد الإلكتروني.", preview: ["ابدأ مجانًا", "نوع الحساب: طالب", "اختر الدولة"], href: "/signup", cta: "أنشئ حسابًا" },
+      { title: "أنشئ حساب الطالب", explanation: "اضغط «ابدأ مجانًا»، واكتب الاسم والبريد وكلمة المرور، واختر «طالب» ودولتك. قد يُطلب تأكيد البريد الإلكتروني.", preview: ["ابدأ مجانًا", "نوع الحساب: طالب", "اختر الدولة"], href: "/signup?role=student", cta: "أنشئ حسابًا" },
       { title: "افتح بوابة المناهج", explanation: "انتقل إلى «استكشف الدروس». ستجد خيارات الدولة والسنة الدراسية والصف والمنهج أو المسار والوحدة.", preview: ["الدولة", "السنة الدراسية", "الصف", "المنهج"], href: "/courses", cta: "تصفح الدروس" },
       { title: "اختر الدرس المتاح", explanation: "حدّد صفك ومسارك ثم الوحدة والدرس المنشور، واقرأ الشرح وأكمل التدريب الموجود في الدرس.", preview: ["وحدات المنهج", "الدروس المنشورة", "افتح الدرس"], href: "/courses", cta: "اختر درسك" },
       { title: "تدرّب واسأل ضاد", explanation: "جرّب أنشطة القراءة والكتابة والاستماع والتحدث، واستخدم «اسأل ضاد» إذا احتجت إلى شرح أو تلميح.", preview: ["القراءة والكتابة", "الاستماع والتحدث", "اسأل ضاد"], href: "/ask", cta: "اسأل ضاد" },
@@ -46,7 +46,7 @@ const journeys: GuideJourney[] = [
   {
     id: "child", title: "الطفل", summary: "خطوات بسيطة تناسب المتعلم الصغير.", icon: Baby,
     steps: [
-      { title: "ابدأ بحساب الطفل", explanation: "اختر «طفل» عند إنشاء الحساب وأكمل البيانات المطلوبة بمساعدة ولي الأمر.", preview: ["حساب جديد", "نوع الحساب: طفل", "ابدأ رحلتي"], href: "/signup", cta: "ابدأ التسجيل" },
+      { title: "ابدأ بحساب الطفل", explanation: "اختر «طفل» عند إنشاء الحساب وأكمل البيانات المطلوبة بمساعدة ولي الأمر.", preview: ["حساب جديد", "نوع الحساب: طفل", "ابدأ رحلتي"], href: "/signup?role=child", cta: "ابدأ التسجيل" },
       { title: "ادخل إلى مساحة الطفل", explanation: "بعد تسجيل الدخول، افتح مساحة الطفل الخاصة بك واستكشف الأنشطة التي تظهر لك.", preview: ["مرحبًا بك", "مساحة الطفل", "أنشطة التعلم"], href: "/child", cta: "مساحة الطفل" },
       { title: "تعلّم مع شخص بالغ", explanation: "اختر نشاطًا مناسبًا لمستواك مع ولي أمرك أو معلمك. أعد التدريب عندما تحتاج، ولا تشارك معلوماتك الشخصية.", preview: ["اختر نشاطًا", "تعلّم", "جرّب مرة أخرى"], href: "/courses", cta: "استكشف الدروس" },
     ],
@@ -54,7 +54,7 @@ const journeys: GuideJourney[] = [
   {
     id: "teacher", title: "المعلم", summary: "نظّم فصولك وساعد طلابك على التقدّم.", icon: BookOpen,
     steps: [
-      { title: "سجّل حساب معلم", explanation: "أكمل التسجيل واختر «معلم»، ثم انتقل إلى لوحة المعلم بعد تسجيل الدخول.", preview: ["نوع الحساب: معلم", "لوحة المعلم"], href: "/signup", cta: "أنشئ حسابك" },
+      { title: "سجّل حساب معلم", explanation: "أكمل التسجيل واختر «معلم»، ثم انتقل إلى لوحة المعلم بعد تسجيل الدخول.", preview: ["نوع الحساب: معلم", "لوحة المعلم"], href: "/signup?role=teacher", cta: "أنشئ حسابك" },
       { title: "أنشئ فصلًا دراسيًا", explanation: "من لوحة المعلم، اكتب اسم الفصل والعام الدراسي، ويمكنك إضافة وصف اختياري ثم إنشاء الفصل.", preview: ["اسم الفصل", "العام الدراسي", "إنشاء الفصل"], href: "/teacher", cta: "لوحة المعلم" },
       { title: "شارك كود الانضمام", explanation: "بعد إنشاء الفصل، استخدم كود الفصل الذي تولّده المنصة، وشاركه مع طلاب الفصل فقط.", preview: ["فصولي", "كود الانضمام", "مشاركة الكود"], href: "/teacher", cta: "افتح فصولي" },
       { title: "تابع الطلاب والدروس", explanation: "يمكنك استعراض فصولك والطلاب المرتبطين والمحتوى المتاح من لوحة المعلم.", preview: ["الفصول", "الطلاب", "الدروس"], href: "/teacher", cta: "متابعة الفصول" },
@@ -63,7 +63,7 @@ const journeys: GuideJourney[] = [
   {
     id: "parent", title: "ولي الأمر", summary: "شارك أبناءك رحلة التعلّم وراقب تقدّمهم.", icon: HeartHandshake,
     steps: [
-      { title: "سجّل بصفة ولي أمر", explanation: "اختر «ولي أمر» عند إنشاء الحساب، ثم سجّل الدخول إلى لوحتك.", preview: ["نوع الحساب: ولي أمر", "لوحة ولي الأمر"], href: "/signup", cta: "سجّل الآن" },
+      { title: "سجّل بصفة ولي أمر", explanation: "اختر «ولي أمر» عند إنشاء الحساب، ثم سجّل الدخول إلى لوحتك.", preview: ["نوع الحساب: ولي أمر", "لوحة ولي الأمر"], href: "/signup?role=parent", cta: "سجّل الآن" },
       { title: "اربط حساب الطالب", explanation: "استخدم أداة ربط الأبناء في لوحة ولي الأمر، واتبع خطوات الربط الآمن الظاهرة أمامك.", preview: ["ربط حساب طالب", "رمز الربط", "تأكيد"], href: "/parent", cta: "اربط حساب ابنك" },
       { title: "تابع التقدم الدراسي", explanation: "بعد نجاح الربط، اطلع على الدروس المكتملة ومتوسط الدرجات ومستوى الإتقان والنقاط المتاحة.", preview: ["الدروس المكتملة", "مستوى الإتقان", "متوسط الدرجات"], href: "/parent", cta: "لوحة ولي الأمر" },
     ],
@@ -71,7 +71,7 @@ const journeys: GuideJourney[] = [
   {
     id: "school", title: "المدرسة", summary: "متابعة المعلمين والفصول ومؤشرات الأداء.", icon: School,
     steps: [
-      { title: "أنشئ حساب المدرسة", explanation: "اختر «مدرسة» أثناء التسجيل، وأكمل البيانات المطلوبة للانتقال إلى لوحة المدرسة.", preview: ["نوع الحساب: مدرسة", "لوحة المدرسة"], href: "/signup", cta: "إنشاء حساب" },
+      { title: "أنشئ حساب المدرسة", explanation: "اختر «مدرسة» أثناء التسجيل، وأكمل البيانات المطلوبة للانتقال إلى لوحة المدرسة.", preview: ["نوع الحساب: مدرسة", "لوحة المدرسة"], href: "/signup?role=school", cta: "إنشاء حساب" },
       { title: "اربط المعلمين", explanation: "استخدم أدوات ربط المدرسة بالمعلمين، واتبع خطوات التحقق المتاحة في لوحتك.", preview: ["المعلمون", "ربط المعلم", "الفصول"], href: "/school", cta: "لوحة المدرسة" },
       { title: "راجع مؤشرات الأداء", explanation: "تابع إحصاءات المعلمين والفصول والطلاب ومؤشرات التعلّم المتوفرة في الحساب.", preview: ["المعلمون والطلاب", "الفصول", "مؤشرات الأداء"], href: "/school", cta: "متابعة المدرسة" },
     ],
@@ -81,6 +81,19 @@ const journeys: GuideJourney[] = [
 export default function HowToUsePage() {
   const [roleId, setRoleId] = useState("student");
   const [stepIndex, setStepIndex] = useState(0);
+
+  useEffect(() => {
+    const selectRoleFromHash = () => {
+      const candidate = window.location.hash.slice(1).toLowerCase();
+      if (journeys.some((item) => item.id === candidate)) {
+        setRoleId(candidate);
+        setStepIndex(0);
+      }
+    };
+    selectRoleFromHash();
+    window.addEventListener("hashchange", selectRoleFromHash);
+    return () => window.removeEventListener("hashchange", selectRoleFromHash);
+  }, []);
   const journey = journeys.find((item) => item.id === roleId) ?? journeys[0];
   const step = journey.steps[stepIndex] ?? journey.steps[0];
   const JourneyIcon = journey.icon;
@@ -93,6 +106,7 @@ export default function HowToUsePage() {
           <Link href="/" className="text-2xl font-black text-[#174f47]">ضاديوم <span className="text-sm text-[#a8782f]">Dadyoom</span></Link>
           <div className="flex items-center gap-2 text-sm font-bold">
             <Link href="/courses" className="rounded-xl px-3 py-2 hover:bg-[#edf5f1]">الدروس</Link>
+            <Link href="/portal" className="rounded-xl px-3 py-2 hover:bg-[#edf5f1]">بوابة الوصول</Link>
             <Link href="/login" className="rounded-xl px-3 py-2 hover:bg-[#edf5f1]">تسجيل الدخول</Link>
             <Link href="/signup" className="rounded-xl bg-[#174f47] px-4 py-2 text-white hover:bg-[#103f39]">ابدأ مجانًا</Link>
           </div>
@@ -124,7 +138,7 @@ export default function HowToUsePage() {
                   id={`guide-tab-${item.id}`}
                   aria-selected={active}
                   aria-controls="guide-panel"
-                  onClick={() => { setRoleId(item.id); setStepIndex(0); }}
+                  onClick={() => { setRoleId(item.id); setStepIndex(0); window.history.replaceState(null, "", "#" + item.id); }}
                   className={`flex min-h-20 items-center justify-center gap-2 rounded-2xl border px-3 py-3 font-black transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a8782f] ${active ? "border-[#174f47] bg-[#174f47] text-white shadow-md" : "border-[#e1d7c6] bg-white text-[#31534c] hover:border-[#7fa79d]"}`}
                 >
                   <Icon size={23} aria-hidden="true" /> {item.title}
