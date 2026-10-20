@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import definiteness from "@/data/lesson-game-proposals/bh-grade7-definiteness-25-original-2026.json";
 import hamza from "@/data/lesson-game-proposals/bh-grade4-final-hamza-after-damma-25-original-2026.json";
 import dad from "@/data/lesson-game-proposals/bh-grade4-letter-dad-25-original-2026.json";
 import country from "@/data/lesson-game-proposals/bh-grade4-listening-love-of-country-25-original-2026.json";
@@ -11,6 +12,7 @@ import konar from "@/data/lesson-game-proposals/bh-grade4-listening-konar-tree-2
 import ApproveProposalButton from "../bahrain-grade4-verbs/ApproveProposalButton";
 
 const proposals = {
+  "bh-grade7-definiteness": definiteness,
   "bh-grade4-final-hamza": hamza,
   "bh-grade4-letter-dad": dad,
   "bh-grade4-listening-love-of-country": country,
