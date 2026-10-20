@@ -17,3 +17,9 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - Existing lesson status, textbook evidence, source PDF link, official_content_scope, text and quizzes MUST remain unchanged by this patch. The school-year semester-2 plan and independent TOC matching are not certified.
 - Protect 62 unreviewed draft rows for grades 2–9 (sem1), including OCR header placeholders: do not auto-promote draft lessons to published. Require real verified lesson titles, source evidence, original age-appropriate instruction, and manual review.
 - Keep the reconciliation recorded in existing README.md and Bahrain book audit, not new progress-report files. Curriculum completeness is measured by independent book TOC matching, not the number of rows.
+
+## Bahrain grade 7 original practice (2026-10-20)
+- The 25-item original pack for grade 7 definiteness is a teacher-review-only proposal, NOT student publication, a ministry text, or certification of complete book coverage.
+- For the registered slug `bh-grade7-definiteness`, preserve the existing admin-authenticated manual approval route. Do not auto-publish or change the official lesson source/status on its behalf.
+- The lesson reference is `9a0ddf12-c362-49f4-aab4-a5087672b854`, Bahrain semester 1 2026–2027. Verify on matching commit that tests, TypeScript, lint, build and role protection pass before production.
+- Keep unresolved OCR draft titles unpublished; distinguish curriculum/book scope records from complete lessons.
