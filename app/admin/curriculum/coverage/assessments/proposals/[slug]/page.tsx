@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import subjectPredicate from "@/data/lesson-game-proposals/bh-grade7-subject-predicate-25-original-2026.json";
+import presentBuilding from "@/data/lesson-game-proposals/bh-grade7-present-verb-building-25-original-2026.json";
 import listeningDream from "@/data/lesson-game-proposals/bh-grade6-listening-dream-25-original-2026.json";
 import pronouns from "@/data/lesson-game-proposals/bh-grade7-pronouns-25-original-2026.json";
 import demonstratives from "@/data/lesson-game-proposals/bh-grade7-demonstratives-25-original-2026.json";
@@ -16,6 +18,8 @@ import konar from "@/data/lesson-game-proposals/bh-grade4-listening-konar-tree-2
 import ApproveProposalButton from "../bahrain-grade4-verbs/ApproveProposalButton";
 
 const proposals = {
+  "bh-grade7-subject-predicate": subjectPredicate,
+  "bh-grade7-present-verb-building": presentBuilding,
   "bh-grade6-listening-dream": listeningDream,
   "bh-grade7-pronouns": pronouns,
   "bh-grade7-demonstratives": demonstratives,
