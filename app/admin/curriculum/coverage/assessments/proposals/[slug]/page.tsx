@@ -1,5 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import subjectPredicate from "@/data/lesson-game-proposals/bh-grade7-subject-predicate-25-original-2026.json";
+import presentBuilding from "@/data/lesson-game-proposals/bh-grade7-present-verb-building-25-original-2026.json";
+import listeningDream from "@/data/lesson-game-proposals/bh-grade6-listening-dream-25-original-2026.json";
+import pronouns from "@/data/lesson-game-proposals/bh-grade7-pronouns-25-original-2026.json";
+import demonstratives from "@/data/lesson-game-proposals/bh-grade7-demonstratives-25-original-2026.json";
+import pastTense from "@/data/lesson-game-proposals/bh-grade7-past-verb-building-25-original-2026.json";
 import definiteness from "@/data/lesson-game-proposals/bh-grade7-definiteness-25-original-2026.json";
 import hamza from "@/data/lesson-game-proposals/bh-grade4-final-hamza-after-damma-25-original-2026.json";
 import dad from "@/data/lesson-game-proposals/bh-grade4-letter-dad-25-original-2026.json";
@@ -12,6 +18,12 @@ import konar from "@/data/lesson-game-proposals/bh-grade4-listening-konar-tree-2
 import ApproveProposalButton from "../bahrain-grade4-verbs/ApproveProposalButton";
 
 const proposals = {
+  "bh-grade7-subject-predicate": subjectPredicate,
+  "bh-grade7-present-verb-building": presentBuilding,
+  "bh-grade6-listening-dream": listeningDream,
+  "bh-grade7-pronouns": pronouns,
+  "bh-grade7-demonstratives": demonstratives,
+  "bh-grade7-past-verb-building": pastTense,
   "bh-grade7-definiteness": definiteness,
   "bh-grade4-final-hamza": hamza,
   "bh-grade4-letter-dad": dad,
@@ -34,6 +46,7 @@ export default async function BahrainOriginalGameProposal({
   const { slug } = await params;
   const proposal = proposals[slug as keyof typeof proposals];
   if (!proposal) notFound();
+  const teachingPlan = "teachingPlan" in proposal ? proposal.teachingPlan : null;
 
   return (
     <main dir="rtl" className="min-h-screen bg-[#f7f1e6] px-4 py-8 text-[#203a34]">
@@ -64,6 +77,44 @@ export default async function BahrainOriginalGameProposal({
             افتح الدرس المصدر وسجلاته ←
           </Link>
         </header>
+        {teachingPlan && (
+          <section className="rounded-3xl border border-[#c8d8c8] bg-white p-6">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h2 className="text-xl font-black text-[#123f39]">سيناريو تدريس مقترح — لمراجعة المعلم</h2>
+              <span className="text-sm font-bold text-[#876b30]">{teachingPlan.durationMinutes} دقيقة</span>
+            </div>
+            <p className="mt-3 text-sm leading-8">{teachingPlan.miniLesson}</p>
+            <h3 className="mt-6 text-lg font-black">الأهداف والتقويم</h3>
+            <ol className="mt-3 list-inside list-decimal space-y-3 text-sm leading-7">
+              {teachingPlan.learningObjectives.map((item) => (
+                <li key={item.objective}>
+                  <span className="font-bold">{item.objective}</span>
+                  <span className="block pr-5 text-[#665b48]">مؤشر التقويم: {item.assessment}</span>
+                </li>
+              ))}
+            </ol>
+            <h3 className="mt-6 text-lg font-black">تسلسل الحصة</h3>
+            <ol className="mt-3 space-y-3">
+              {teachingPlan.lessonFlow.map((stage) => (
+                <li key={stage.name} className="rounded-xl bg-[#f7f1e6] px-4 py-3 text-sm leading-7">
+                  <strong>{stage.name} — {stage.minutes} دقائق</strong>
+                  <p>{stage.activity}</p>
+                </li>
+              ))}
+            </ol>
+            <h3 className="mt-6 text-lg font-black">الفروق الفردية</h3>
+            <div className="mt-3 grid gap-3 md:grid-cols-3 text-sm leading-7">
+              <p className="rounded-xl bg-[#f5f9f2] p-4"><strong>الدعم:</strong> {teachingPlan.differentiation.support}</p>
+              <p className="rounded-xl bg-[#f5f9f2] p-4"><strong>الأساس:</strong> {teachingPlan.differentiation.core}</p>
+              <p className="rounded-xl bg-[#f5f9f2] p-4"><strong>الإثراء:</strong> {teachingPlan.differentiation.challenge}</p>
+            </div>
+            <h3 className="mt-6 text-lg font-black">بطاقة الخروج</h3>
+            <p className="mt-2 leading-8">{teachingPlan.exitTicket.prompt}</p>
+            <p className="text-sm leading-7 text-[#645e50]">إجابة مقترحة: {teachingPlan.exitTicket.expected}</p>
+            <p className="text-sm leading-7 text-[#645e50]">معيار الإتقان: {teachingPlan.exitTicket.masteryRule}</p>
+            <p className="mt-4 text-sm font-bold text-[#8b5f24]">{teachingPlan.teacherReviewNote}</p>
+          </section>
+        )}
         {Object.entries(proposal.pack).map(([mode, questions]) => (
           <section key={mode} className="rounded-3xl border border-[#dfd0b1] bg-white p-6">
             <h2 className="text-xl font-black text-[#123f39]">

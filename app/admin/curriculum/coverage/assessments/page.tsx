@@ -56,6 +56,52 @@ export default function BahrainAssessmentQualityPage() {
         </div>
       </header>
       <section className="rounded-3xl border border-[#c8d8c8] bg-white p-6">
+        <h2 className="text-xl font-black text-[#123f39]">الصف السابع — المبتدأ والخبر وبناء المضارع (50 سؤالًا)</h2>
+        <p className="mt-2 text-sm leading-7">
+          حزمتان أصليتان مع خطتي تدريس مدة كل منهما خمسون دقيقة، وأهداف قابلة للقياس،
+          وأنشطة علاجية وتطبيقية وإثرائية. يُعرض كل سؤال مع تفسيره للمراجعة قبل النشر.
+          ورودهما في خطة البحرين لا يثبت النقل عن الكتاب أو التطابق مع فهرسه الكامل.
+        </p>
+        <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
+          <Link href="/admin/curriculum/coverage/assessments/proposals/bh-grade7-subject-predicate"
+            className="rounded-xl border border-[#b3cbb9] bg-[#f4fbf6] px-4 py-3 font-black text-[#123f39]">
+            المبتدأ والخبر — 25 سؤالًا ←
+          </Link>
+          <Link href="/admin/curriculum/coverage/assessments/proposals/bh-grade7-present-verb-building"
+            className="rounded-xl border border-[#b3cbb9] bg-[#f4fbf6] px-4 py-3 font-black text-[#123f39]">
+            بناء المضارع — 25 سؤالًا ←
+          </Link>
+        </div>
+      </section>
+      <section className="rounded-3xl border border-[#c8d8c8] bg-white p-6">
+        <h2 className="text-xl font-black text-[#123f39]">الصف السادس — حلم يتحقق: استماع أصلي و25 سؤالًا</h2>
+        <p className="mt-2 text-sm leading-7">
+          خطة 50 دقيقة تتضمن استماعًا أولًا للفكرة العامة ثم استماعًا ثانيًا لترتيب الأحداث واستخراج الأدلة،
+          وتدريبات متدرجة على الفهم والمفردات والاستنتاج. تعتمد نص ضاديوم الأصلي الموجود مسبقًا،
+          ولا تنقل تسجيلًا وزاريًا؛ تنتظر تدقيق المعلم.
+        </p>
+        <Link href="/admin/curriculum/coverage/assessments/proposals/bh-grade6-listening-dream"
+          className="mt-3 inline-flex rounded-xl bg-[#123f39] px-5 py-3 text-sm font-black text-white">
+          معاينة الدرس وأسئلته الخمسة والعشرين ←
+        </Link>
+      </section>
+      <section className="rounded-3xl border border-[#c8d8c8] bg-white p-6">
+        <h2 className="text-xl font-black text-[#123f39]">ثلاثة دروس إضافية للصف السابع — 75 سؤالًا وخطط تدريس</h2>
+        <p className="mt-2 text-sm leading-7">
+          الضمائر، وأسماء الإشارة، وأحوال بناء الفعل الماضي: لكل درس شرح داعم وأهداف قابلة
+          للقياس وخطة حصة متمايزة من 50 دقيقة وخمس ألعاب أصلية (25 سؤالًا).
+          هذه مسودات إثرائية لمراجعة المعلم، لا نشر آليًا ولا إثباتًا لمطابقة الكتب.
+        </p>
+        <div className="mt-4 grid gap-3 text-sm sm:grid-cols-3">
+          <Link href="/admin/curriculum/coverage/assessments/proposals/bh-grade7-pronouns"
+            className="rounded-xl border border-[#b3cbb9] bg-[#f4fbf6] px-4 py-3 font-black text-[#123f39]">الضمائر — 25 سؤالًا ←</Link>
+          <Link href="/admin/curriculum/coverage/assessments/proposals/bh-grade7-demonstratives"
+            className="rounded-xl border border-[#b3cbb9] bg-[#f4fbf6] px-4 py-3 font-black text-[#123f39]">أسماء الإشارة — 25 سؤالًا ←</Link>
+          <Link href="/admin/curriculum/coverage/assessments/proposals/bh-grade7-past-verb-building"
+            className="rounded-xl border border-[#b3cbb9] bg-[#f4fbf6] px-4 py-3 font-black text-[#123f39]">بناء الماضي — 25 سؤالًا ←</Link>
+        </div>
+      </section>
+      <section className="rounded-3xl border border-[#c8d8c8] bg-white p-6">
         <h2 className="text-xl font-black text-[#123f39]">25 سؤالًا جديدًا — النكرة والمعرفة (الصف السابع)</h2>
         <p className="mt-2 text-sm leading-7">
           إعداد أصلي لخمس ألعاب تغطي تصنيف النكرة والمعرفة وأنواع المعارف، مع تفسيرات لكل إجابة.
