@@ -3,6 +3,10 @@ import { describe, expect, test } from "vitest";
 import { approvedPack, GAME_MODES } from "../../lib/games/lesson-game-pack";
 
 const cases = [
+  { slug: "bh-grade7-subject-predicate", path: "data/lesson-game-proposals/bh-grade7-subject-predicate-25-original-2026.json",
+    id: "55ac803d-58f9-4b8d-8303-fc6252829111", grade: 7 },
+  { slug: "bh-grade7-present-verb-building", path: "data/lesson-game-proposals/bh-grade7-present-verb-building-25-original-2026.json",
+    id: "a8e42d33-ae77-4e30-a0e6-fe937a9270f7", grade: 7 },
   { slug: "bh-grade6-listening-dream", path: "data/lesson-game-proposals/bh-grade6-listening-dream-25-original-2026.json",
     id: "030d9679-248e-4d9a-98cd-450fae0e897d", grade: 6 },
   { slug: "bh-grade7-pronouns", path: "data/lesson-game-proposals/bh-grade7-pronouns-25-original-2026.json",
@@ -13,7 +17,7 @@ const cases = [
     id: "2cea693b-4e3a-4081-8c05-effa345f34bf", grade: 7 },
 ] as const;
 
-describe("four Bahrain curriculum-support lesson packages", () => {
+describe("six Bahrain curriculum-support lesson packages", () => {
   for (const candidate of cases) {
     test(candidate.slug + " has a review-only 25-item game pack", () => {
       const proposal = JSON.parse(readFileSync(candidate.path, "utf8"));
