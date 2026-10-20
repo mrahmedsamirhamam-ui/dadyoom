@@ -56,6 +56,18 @@ export default function BahrainAssessmentQualityPage() {
         </div>
       </header>
       <section className="rounded-3xl border border-[#c8d8c8] bg-white p-6">
+        <h2 className="text-xl font-black text-[#123f39]">25 سؤالًا جديدًا — النكرة والمعرفة (الصف السابع)</h2>
+        <p className="mt-2 text-sm leading-7">
+          إعداد أصلي لخمس ألعاب تغطي تصنيف النكرة والمعرفة وأنواع المعارف، مع تفسيرات لكل إجابة.
+          يرتبط بدرْس بحريني منشور في خطة الفصل الأول 2026–2027،
+          لكنه ليس نصًا وزاريًا أو شهادة مطابقة الكتاب، ويتطلب مراجعة معلم ثم اعتمادًا صريحًا.
+        </p>
+        <Link href="/admin/curriculum/coverage/assessments/proposals/bh-grade7-definiteness"
+          className="mt-3 inline-flex rounded-xl bg-[#123f39] px-5 py-3 text-sm font-black text-white">
+          مراجعة الأسئلة الخمسة والعشرين ←
+        </Link>
+      </section>
+      <section className="rounded-3xl border border-[#c8d8c8] bg-white p-6">
         <h2 className="text-xl font-black text-[#123f39]">100 سؤال استماع أصلي جديد — أربعة دروس للصف الرابع</h2>
         <p className="mt-2 text-sm leading-7">
           حزم فهم النصوص الأصلية «الحمامة البيضاء»، «حلم يتحقق»، «عبقرية عالم»،
