@@ -3,20 +3,22 @@ import { describe, expect, test } from "vitest";
 import { approvedPack, GAME_MODES } from "../../lib/games/lesson-game-pack";
 
 const cases = [
+  { slug: "bh-grade6-listening-dream", path: "data/lesson-game-proposals/bh-grade6-listening-dream-25-original-2026.json",
+    id: "030d9679-248e-4d9a-98cd-450fae0e897d", grade: 6 },
   { slug: "bh-grade7-pronouns", path: "data/lesson-game-proposals/bh-grade7-pronouns-25-original-2026.json",
-    id: "c6870718-d76a-4d5e-b5c1-4e1fb70eca88" },
+    id: "c6870718-d76a-4d5e-b5c1-4e1fb70eca88", grade: 7 },
   { slug: "bh-grade7-demonstratives", path: "data/lesson-game-proposals/bh-grade7-demonstratives-25-original-2026.json",
-    id: "8cf258f2-5a43-458f-bdf7-c0ba65b7f7ad" },
+    id: "8cf258f2-5a43-458f-bdf7-c0ba65b7f7ad", grade: 7 },
   { slug: "bh-grade7-past-verb-building", path: "data/lesson-game-proposals/bh-grade7-past-verb-building-25-original-2026.json",
-    id: "2cea693b-4e3a-4081-8c05-effa345f34bf" },
+    id: "2cea693b-4e3a-4081-8c05-effa345f34bf", grade: 7 },
 ] as const;
 
-describe("three Bahrain grade-seven curriculum-support lessons", () => {
+describe("four Bahrain curriculum-support lesson packages", () => {
   for (const candidate of cases) {
     test(candidate.slug + " has a review-only 25-item game pack", () => {
       const proposal = JSON.parse(readFileSync(candidate.path, "utf8"));
       expect(proposal.lessonId).toBe(candidate.id);
-      expect(proposal.grade).toBe(7);
+      expect(proposal.grade).toBe(candidate.grade);
       expect(proposal.country).toBe("BH");
       expect(proposal.semester).toBe(1);
       expect(proposal.importedPlanReferenceYear).toBe("2026-2027");
