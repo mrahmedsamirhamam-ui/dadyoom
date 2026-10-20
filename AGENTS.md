@@ -47,3 +47,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - Preserve the verified Supabase lesson IDs, curriculum reference URLs and `plan-scheduled` states. Do not publish review-only packets automatically or mistake lesson-plan evidence for verified full official textbook coverage.
 - Required gate on exact commit: Vitest, typecheck, lint, build, auth-role protection, independent linguistic review, and optional preview smoke before production.
 
+
+## BH grade 6 Tareeq Alkhair 2 (2026-10-21)
+- The 55-minute / 25-question original comprehension proposal is teacher-review-only. It builds on Dadyoom’s existing student-support passage, not the Ministry reading passage or GCC facts. No auto-publication, lesson source/status changes, or textbook completeness claims.
+- Review evidence and role QA precede deployment; maintain the zero-budget rule.
