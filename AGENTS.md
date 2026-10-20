@@ -39,3 +39,11 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - Together with the three grade-7 packs, this branch holds four 50-minute plans and 100 original MCQs. The grade-7 definiteness parent PR is separate and not merged.
 - Keep all packages teacher-review-only, without modifying student data or published lessons. Ensure CI checks before merge; never claim full official-book coverage based on these records.
 
+
+
+## BH grade 7 predicate & present tense building (2026-10-20)
+- Newly added `bh-grade7-subject-predicate` and `bh-grade7-present-verb-building` are teacher-review-only content proposals, 25 questions each plus 50-minute teaching scripts.
+- Entire feature branch now has SIX packets/150 original questions (five grade-7, one grade-6). The earlier `bh-grade7-definiteness` parent PR is separate and pending.
+- Preserve the verified Supabase lesson IDs, curriculum reference URLs and `plan-scheduled` states. Do not publish review-only packets automatically or mistake lesson-plan evidence for verified full official textbook coverage.
+- Required gate on exact commit: Vitest, typecheck, lint, build, auth-role protection, independent linguistic review, and optional preview smoke before production.
+
