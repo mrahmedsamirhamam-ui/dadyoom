@@ -56,6 +56,24 @@ export default function BahrainAssessmentQualityPage() {
         </div>
       </header>
       <section className="rounded-3xl border border-[#c8d8c8] bg-white p-6">
+        <h2 className="text-xl font-black text-[#123f39]">الصف السابع — المبتدأ والخبر وبناء المضارع (50 سؤالًا)</h2>
+        <p className="mt-2 text-sm leading-7">
+          حزمتان أصليتان مع خطتي تدريس مدة كل منهما خمسون دقيقة، وأهداف قابلة للقياس،
+          وأنشطة علاجية وتطبيقية وإثرائية. يُعرض كل سؤال مع تفسيره للمراجعة قبل النشر.
+          ورودهما في خطة البحرين لا يثبت النقل عن الكتاب أو التطابق مع فهرسه الكامل.
+        </p>
+        <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
+          <Link href="/admin/curriculum/coverage/assessments/proposals/bh-grade7-subject-predicate"
+            className="rounded-xl border border-[#b3cbb9] bg-[#f4fbf6] px-4 py-3 font-black text-[#123f39]">
+            المبتدأ والخبر — 25 سؤالًا ←
+          </Link>
+          <Link href="/admin/curriculum/coverage/assessments/proposals/bh-grade7-present-verb-building"
+            className="rounded-xl border border-[#b3cbb9] bg-[#f4fbf6] px-4 py-3 font-black text-[#123f39]">
+            بناء المضارع — 25 سؤالًا ←
+          </Link>
+        </div>
+      </section>
+      <section className="rounded-3xl border border-[#c8d8c8] bg-white p-6">
         <h2 className="text-xl font-black text-[#123f39]">الصف السادس — حلم يتحقق: استماع أصلي و25 سؤالًا</h2>
         <p className="mt-2 text-sm leading-7">
           خطة 50 دقيقة تتضمن استماعًا أولًا للفكرة العامة ثم استماعًا ثانيًا لترتيب الأحداث واستخراج الأدلة،
