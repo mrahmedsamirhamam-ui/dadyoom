@@ -23,3 +23,12 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - For the registered slug `bh-grade7-definiteness`, preserve the existing admin-authenticated manual approval route. Do not auto-publish or change the official lesson source/status on its behalf.
 - The lesson reference is `9a0ddf12-c362-49f4-aab4-a5087672b854`, Bahrain semester 1 2026–2027. Verify on matching commit that tests, TypeScript, lint, build and role protection pass before production.
 - Keep unresolved OCR draft titles unpublished; distinguish curriculum/book scope records from complete lessons.
+
+
+## BH grade 7 next three differentiated lessons — 2026-10-20
+- Preserve review-only semantics for `bh-grade7-pronouns`, `bh-grade7-demonstratives`, `bh-grade7-past-verb-building` (75 new original items, 25 each) and their `teachingPlan` teaching scripts.
+- Admin route displays preview and retains human acknowledgment/manual publish contract. Do not write to existing lessons, official source mappings, or student records without independent verification and approval.
+- Keep 2026-27 timetable alignment separate from independent TOC 1:1 evidence. Never call these official-textbook certified.
+- Run typecheck, lint, Vitest, build, role and production QA on the exact SHA before deployment; source checks are not CI.
+- Keep documented work in existing `README.md`, `dadyoom.md`, `AGENTS.md`; avoid spawning parallel reports.
+
