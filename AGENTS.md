@@ -32,3 +32,10 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - Run typecheck, lint, Vitest, build, role and production QA on the exact SHA before deployment; source checks are not CI.
 - Keep documented work in existing `README.md`, `dadyoom.md`, `AGENTS.md`; avoid spawning parallel reports.
 
+
+
+## BH grade6 listening original support (2026-10-20)
+- The review-only `bh-grade6-listening-dream` pack is grounded only in the published Dadyoom-authored listening text for BH grade 6 semester 1; it is NOT ministry teacher-guide text or audio.
+- Together with the three grade-7 packs, this branch holds four 50-minute plans and 100 original MCQs. The grade-7 definiteness parent PR is separate and not merged.
+- Keep all packages teacher-review-only, without modifying student data or published lessons. Ensure CI checks before merge; never claim full official-book coverage based on these records.
+
