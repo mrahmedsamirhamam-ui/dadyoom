@@ -56,6 +56,18 @@ export default function BahrainAssessmentQualityPage() {
         </div>
       </header>
       <section className="rounded-3xl border border-[#c8d8c8] bg-white p-6">
+        <h2 className="text-xl font-black text-[#123f39]">الصف السادس — حلم يتحقق: استماع أصلي و25 سؤالًا</h2>
+        <p className="mt-2 text-sm leading-7">
+          خطة 50 دقيقة تتضمن استماعًا أولًا للفكرة العامة ثم استماعًا ثانيًا لترتيب الأحداث واستخراج الأدلة،
+          وتدريبات متدرجة على الفهم والمفردات والاستنتاج. تعتمد نص ضاديوم الأصلي الموجود مسبقًا،
+          ولا تنقل تسجيلًا وزاريًا؛ تنتظر تدقيق المعلم.
+        </p>
+        <Link href="/admin/curriculum/coverage/assessments/proposals/bh-grade6-listening-dream"
+          className="mt-3 inline-flex rounded-xl bg-[#123f39] px-5 py-3 text-sm font-black text-white">
+          معاينة الدرس وأسئلته الخمسة والعشرين ←
+        </Link>
+      </section>
+      <section className="rounded-3xl border border-[#c8d8c8] bg-white p-6">
         <h2 className="text-xl font-black text-[#123f39]">ثلاثة دروس إضافية للصف السابع — 75 سؤالًا وخطط تدريس</h2>
         <p className="mt-2 text-sm leading-7">
           الضمائر، وأسماء الإشارة، وأحوال بناء الفعل الماضي: لكل درس شرح داعم وأهداف قابلة
