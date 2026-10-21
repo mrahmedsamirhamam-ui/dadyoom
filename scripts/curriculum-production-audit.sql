@@ -56,3 +56,66 @@ JOIN public.countries co ON co.id=c.country_id
 WHERE co.code='BH'
 GROUP BY COALESCE(l.official_content_scope,'unclassified'),l.status
 ORDER BY source_scope_label,l.status;
+
+-- 4. Multiple-choice structural integrity, separated from educational enrichment signals.
+-- 3-option AND 4-option MCQs can be valid. Do not demand 4 options across
+-- ages or curricula. Count answer keys independently from explanation quality.
+SELECT co.code AS country_code, g.grade_number,
+       COUNT(*) AS mcq_rows_checked,
+       COUNT(*) FILTER (
+         WHERE CASE WHEN jsonb_typeof(q.options)='array'
+           THEN jsonb_array_length(q.options) BETWEEN 2 AND 6
+             AND EXISTS (
+               SELECT 1 FROM jsonb_array_elements(q.options) a
+               WHERE a->>'id'=q.correct_answer
+             )
+           ELSE FALSE END
+       ) AS valid_option_shape_and_key,
+       COUNT(*) FILTER (
+         WHERE NOT (CASE WHEN jsonb_typeof(q.options)='array'
+           THEN jsonb_array_length(q.options) BETWEEN 2 AND 6
+             AND EXISTS (
+               SELECT 1 FROM jsonb_array_elements(q.options) a
+               WHERE a->>'id'=q.correct_answer
+             )
+           ELSE FALSE END)
+       ) AS invalid_shape_or_missing_key,
+       COUNT(*) FILTER (
+         WHERE jsonb_typeof(q.options)='array'
+           AND jsonb_array_length(q.options)=3
+       ) AS three_option_mcqs,
+       COUNT(*) FILTER (
+         WHERE jsonb_typeof(q.options)='array'
+           AND jsonb_array_length(q.options)=4
+       ) AS four_option_mcqs,
+       COUNT(*) FILTER (
+         WHERE LENGTH(COALESCE(q.explanation,''))<30
+       ) AS needs_explanation_review
+FROM public.questions q
+JOIN public.lessons l ON l.id=q.lesson_id
+JOIN public.units u ON u.id=l.unit_id
+JOIN public.grades g ON g.id=u.grade_id
+JOIN public.curricula c ON c.id=g.curriculum_id
+JOIN public.countries co ON co.id=c.country_id
+WHERE l.status='published' AND q.question_type='multiple_choice'
+GROUP BY co.code,g.grade_number
+ORDER BY co.code,g.grade_number NULLS LAST;
+
+-- 5. Read-only Bahrain Grade 10 Semester 1 next-lesson queue.
+-- A missing stored question in 'questions' does not rule out other activities.
+WITH question_counts AS (
+  SELECT lesson_id, COUNT(*) AS n FROM public.questions GROUP BY lesson_id
+)
+SELECT l.id AS lesson_id, l.title, l.lesson_type,
+       LENGTH(COALESCE(l.content,'')) AS content_chars,
+       l.official_content_scope,
+       COALESCE(q.n,0) AS stored_questions
+FROM public.lessons l
+JOIN public.units u ON u.id=l.unit_id
+JOIN public.grades g ON g.id=u.grade_id
+JOIN public.curricula c ON c.id=g.curriculum_id
+JOIN public.countries co ON co.id=c.country_id
+LEFT JOIN question_counts q ON q.lesson_id=l.id
+WHERE co.code='BH' AND g.grade_number=10 AND l.semester=1
+  AND l.status='published' AND COALESCE(q.n,0)=0
+ORDER BY l.lesson_type,l.title,l.id;
