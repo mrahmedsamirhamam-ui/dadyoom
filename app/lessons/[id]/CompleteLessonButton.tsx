@@ -1,71 +1,81 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { createClient } from "@/lib/supabase/client";
 
 type CompleteLessonButtonProps = {
   lessonId: string;
+  // Retained for compatibility with older imports; identity is resolved server-side.
   userId: string;
   initialCompleted: boolean;
 };
 
+/**
+ * Legacy lesson button: completion is not a toggle.
+ * Only the canonical server gate can mark a lesson complete after assessment.
+ */
 export default function CompleteLessonButton({
   lessonId,
-  userId,
   initialCompleted,
 }: CompleteLessonButtonProps) {
   const [completed, setCompleted] = useState(initialCompleted);
   const [loading, setLoading] = useState(false);
-  const supabase = createClient();
+  const [error, setError] = useState("");
+  const router = useRouter();
 
-  async function toggleLessonCompletion() {
+  async function complete() {
+    if (completed || loading) return;
     setLoading(true);
+    setError("");
 
-    const nextCompleted = !completed;
+    try {
+      const response = await fetch("/api/lessons/complete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ lessonId }),
+      });
 
-    const { error } = await supabase
-      .from("lesson_progress")
-      .upsert(
-        {
-          user_id: userId,
-          lesson_id: lessonId,
-          completed: nextCompleted,
-          completed_at: nextCompleted
-            ? new Date().toISOString()
-            : null,
-        },
-        {
-          onConflict: "user_id,lesson_id",
-        }
+      const result = (await response.json()) as {
+        success?: boolean;
+        error?: string;
+      };
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.error ?? "أكمل التقويم المطلوب أولًا.");
+      }
+
+      setCompleted(true);
+      router.refresh();
+    } catch (cause) {
+      setError(
+        cause instanceof Error
+          ? cause.message
+          : "تعذر إكمال الدرس. حاول مرة أخرى."
       );
-
-    if (error) {
-      console.error(error);
-      alert("تعذر حفظ تقدم الدرس.");
+    } finally {
       setLoading(false);
-      return;
     }
-
-    setCompleted(nextCompleted);
-    setLoading(false);
   }
 
   return (
-    <button
-      type="button"
-      onClick={toggleLessonCompletion}
-      disabled={loading}
-      className={`w-full rounded-2xl px-6 py-4 text-lg font-bold text-white transition ${
-        completed
-          ? "bg-slate-600 hover:bg-slate-700"
-          : "bg-emerald-600 hover:bg-emerald-700"
-      } disabled:cursor-not-allowed disabled:opacity-60`}
-    >
-      {loading
-        ? "جارٍ الحفظ..."
-        : completed
-          ? "إلغاء إكمال الدرس"
-          : "أنهيت هذا الدرس"}
-    </button>
+    <div className="space-y-2">
+      <button
+        type="button"
+        onClick={complete}
+        disabled={loading || completed}
+        className="w-full rounded-2xl bg-emerald-600 px-6 py-4 text-lg font-bold text-white disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {loading
+          ? "جارٍ التحقق من إتقان الدرس..."
+          : completed
+            ? "تم إكمال الدرس ✓"
+            : "تحقّق من إتمام الدرس"}
+      </button>
+      {error ? (
+        <p role="alert" className="text-sm font-bold text-red-700">
+          {error}
+        </p>
+      ) : null}
+    </div>
   );
 }
