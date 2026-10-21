@@ -69,3 +69,9 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - **ممنوع** إنشاء مسارات `POST` أو أزرار تعدّل `student_progress.completed` أو `lesson_progress.completed` أو `student_lesson_progress.status` لتعلن إكمال الدرس دون المرور ببوابة التقويم `app/api/lessons/complete/route.ts` و`completeLessonAction`.
 - احتفظ بالتوافق مع `lessonId` للمسارين `/api/progress` و`/api/progress/complete` عن طريق إعادة تصدير `POST` المعتمد. يتأكد `tests/security/lesson-completion-entrypoints.test.ts` من عدم عودة الالتفاف.
 - **P0 مفتوح:** ملكية الصف في RLS ليست تحققًا من صدق الدرجة؛ الكتابة المباشرة المسموحة إلى المحاولات والتقدم يجب إغلاقها بتدفق تصحيح خادمي موثق وطبقة DB آمنة، وليس بتجميل الواجهة فقط. لا تعد المستخدم بأن الأمن أو حفظ التقدم اجتاز اختبارًا حيًا.
+
+## بوابة «لا إكمال بلا دليل» — 2026-10-21
+- لا تبدأ حساب الإتقان بـ100% دون تقويم. نفذ `requirePositiveAssessmentPoints` في فرع الأنشطة المصححة، و`requireAssessedItems` قبل السماح بالإكمال، ولا تحتسب محاولات الأنشطة المطلوبة الفاشلة إتمامًا.
+- شغّل `tests/security/lesson-mastery-gates.test.ts` مع اختبار المسارات القديمة؛ لا تزل اختبارات CI عند تغيير كود تقدم الطالب.
+- صفر أسئلة في جدول `questions` لا يعني صفر أنشطة: جميع السجلات المنشورة الـ429 المعنية لديها نشاط مصحح بدرجة موجبة بحسب فحص `answer/points`، لكن هذا لا يثبت الجودة التربوية.
+- لا تعتمد الإتقان الآمن حتى تمنع قاعدة البيانات تغيير حالة الإكمال والدرجات والمحاولات مباشرة من هوية الطالب. لا تنفذ سحب منح production بلا ترحيل كامل وخطة رجوع.

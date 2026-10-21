@@ -13,6 +13,11 @@ import { completeLesson } from "../services/progress";
 import { calculateLevel } from "../services/level";
 import { calculateBadges } from "../services/badges";
 import { calculateAchievements } from "../services/achievements";
+import {
+  requireAssessedItems,
+  requirePositiveAssessmentPoints,
+} from "../services/completion-gates";
+
 
 type QuestionRow = {
   id: string;
@@ -243,8 +248,9 @@ export async function completeLessonAction(
       error: requiredAttemptsError,
     } = await supabase
       .from("lesson_activity_attempts")
-      .select("activity_id")
+      .select("activity_id,is_correct")
       .eq("user_id", user.id)
+      .eq("is_correct", true)
       .in("activity_id", requiredIds);
 
     if (requiredAttemptsError) {
@@ -271,7 +277,8 @@ export async function completeLessonAction(
     }
   }
 
-  let score = 100;
+  // DADYOOM_FAIL_CLOSED_MASTERY: never assume a perfect score without evidence.
+  let score = 0;
   let answeredQuestions = 0;
   let correctAnswers = 0;
   let totalQuestions = 0;
@@ -430,15 +437,11 @@ export async function completeLessonAction(
           attempt.correct
       ).length;
 
-    score =
-      totalPossible > 0
-        ? Math.round(
-            (
-              totalEarned /
-              totalPossible
-            ) * 100
-          )
-        : 100;
+    requirePositiveAssessmentPoints(totalPossible);
+
+    score = Math.round(
+      (totalEarned / totalPossible) * 100
+    );
 
   } else {
 
@@ -541,14 +544,15 @@ export async function completeLessonAction(
         );
     }
   }
+  // Neither completion-only activities nor an empty question bank can
+  // certify >=90% academic mastery. Do not convert "no evidence" into 100%.
+  requireAssessedItems(questionIds.length);
+
   await syncLessonMasteryAction(
     progress.lesson_id
   );
 
-  if (
-    questionIds.length > 0 &&
-    score < REQUIRED_MASTERY_SCORE
-  ) {
+  if (score < REQUIRED_MASTERY_SCORE) {
     const wrongAnswers =
       questionIds.length -
       correctAnswers;

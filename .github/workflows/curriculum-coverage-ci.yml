@@ -8,6 +8,8 @@ on:
       - 'app/lessons/**/CompleteLessonButton.tsx'
       - 'features/student-progress/actions/completeLesson.ts'
       - 'tests/security/lesson-completion-entrypoints.test.ts'
+      - 'tests/security/lesson-mastery-gates.test.ts'
+      - 'features/student-progress/services/completion-gates.ts'
       - 'scripts/curriculum-coverage.mjs'
       - 'scripts/curriculum-production-audit.sql'
       - 'scripts/verify-curriculum-packs.mjs'
@@ -41,7 +43,7 @@ jobs:
       - name: Test that missing packs never report full country coverage
         run: npx vitest run tests/curriculum-coverage.test.ts
       - name: Verify canonical lesson completion entry points
-        run: npx vitest run tests/security/lesson-completion-entrypoints.test.ts
+        run: npx vitest run tests/security/lesson-completion-entrypoints.test.ts tests/security/lesson-mastery-gates.test.ts
       - name: TypeScript
         run: npx tsc --noEmit
       - name: ESLint
