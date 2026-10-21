@@ -119,3 +119,31 @@ LEFT JOIN question_counts q ON q.lesson_id=l.id
 WHERE co.code='BH' AND g.grade_number=10 AND l.semester=1
   AND l.status='published' AND COALESCE(q.n,0)=0
 ORDER BY l.lesson_type,l.title,l.id;
+
+
+-- 6. Bahrain Grade 10, semester 1: measurable minimum stored-learning readiness.
+-- This counts existing RECORDS, not verified ministry book lessons.
+-- Having 3 questions, learning objectives and vocabulary does NOT certify
+-- the appropriateness or factual correctness of any exercise.
+WITH question_counts AS(
+  SELECT lesson_id,COUNT(*) AS n FROM public.questions GROUP BY lesson_id
+)
+SELECT COUNT(*) AS published_lesson_records,
+       COUNT(*) FILTER(WHERE COALESCE(q.n,0)=0) AS without_stored_questions,
+       COUNT(*) FILTER(WHERE COALESCE(q.n,0)>=3) AS with_three_plus_questions,
+       COUNT(*) FILTER(
+         WHERE jsonb_typeof(l.learning_objectives)='array'
+           AND jsonb_array_length(l.learning_objectives)>=3
+       ) AS with_three_plus_learning_objectives,
+       COUNT(*) FILTER(
+         WHERE jsonb_typeof(l.vocabulary)='array'
+           AND jsonb_array_length(l.vocabulary)>=3
+       ) AS with_three_plus_saved_vocabulary,
+       COUNT(*) FILTER(WHERE l.official_content_scope='plan-scheduled') AS marked_plan_scheduled_but_not_officially_verified
+FROM public.lessons l
+JOIN public.units u ON u.id=l.unit_id
+JOIN public.grades g ON g.id=u.grade_id
+JOIN public.curricula c ON c.id=g.curriculum_id
+JOIN public.countries co ON co.id=c.country_id
+LEFT JOIN question_counts q ON q.lesson_id=l.id
+WHERE co.code='BH' AND g.grade_number=10 AND l.semester=1 AND l.status='published';
