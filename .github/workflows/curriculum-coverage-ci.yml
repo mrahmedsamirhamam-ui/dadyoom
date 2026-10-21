@@ -1,0 +1,42 @@
+name: Curriculum coverage integrity
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/curriculum-coverage.mjs'
+      - 'scripts/verify-curriculum-packs.mjs'
+      - 'lib/curriculum-packs/**'
+      - 'data/curriculum-packs/**'
+      - 'tests/curriculum-coverage.test.ts'
+      - '.github/workflows/curriculum-coverage-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Install pinned dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify curriculum pack schemas
+        run: npm run curriculum:verify
+      - name: Verify country coverage report
+        run: npm run curriculum:coverage
+      - name: Test that missing packs never report full country coverage
+        run: npx vitest run tests/curriculum-coverage.test.ts
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: ESLint
+        run: npm run lint
+      - name: Production build
+        run: npm run build
