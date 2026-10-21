@@ -233,3 +233,35 @@ SELECT COUNT(*) AS published_lesson_records,
          AND jsonb_array_length(vocabulary)>=3) AS meets_minimum_stored_fields,
        COUNT(*) FILTER(WHERE official_content_scope='plan-scheduled') AS tagged_plan_scheduled_not_certified
 FROM eligible;
+
+
+-- 10. Bahrain Grade 12 first-semester stored learning readiness by lesson type.
+-- All counts describe existing rows; "plan-scheduled" is NOT proof of official
+-- 2026/27 ministry-book alignment or verification of the original source text.
+-- Distinct IDs are essential: the same lesson title may belong to different
+-- technical/professional and administrative/engineering tracks.
+WITH qc AS (
+  SELECT lesson_id,COUNT(*)::integer n FROM public.questions GROUP BY lesson_id
+)
+SELECT l.lesson_type,
+       COUNT(*) AS published_records,
+       COUNT(*) FILTER(WHERE COALESCE(qc.n,0)=0) AS without_stored_questions,
+       COUNT(*) FILTER(WHERE COALESCE(qc.n,0)>=3) AS with_three_plus_questions,
+       COUNT(*) FILTER(WHERE jsonb_typeof(l.learning_objectives)='array'
+         AND jsonb_array_length(l.learning_objectives)>=3) AS with_three_plus_objectives,
+       COUNT(*) FILTER(WHERE jsonb_typeof(l.vocabulary)='array'
+         AND jsonb_array_length(l.vocabulary)>=3) AS with_three_plus_vocabulary,
+       COUNT(*) FILTER(WHERE COALESCE(qc.n,0)>=3
+         AND jsonb_typeof(l.learning_objectives)='array'
+         AND jsonb_array_length(l.learning_objectives)>=3
+         AND jsonb_typeof(l.vocabulary)='array'
+         AND jsonb_array_length(l.vocabulary)>=3) AS meets_stored_record_minimum,
+       COUNT(*) FILTER(WHERE l.official_content_scope='plan-scheduled') AS tagged_plan_scheduled_not_ministry_certified
+FROM public.lessons l
+JOIN public.units u ON u.id=l.unit_id
+JOIN public.grades g ON g.id=u.grade_id
+JOIN public.curricula c ON c.id=g.curriculum_id
+JOIN public.countries co ON co.id=c.country_id
+LEFT JOIN qc ON qc.lesson_id=l.id
+WHERE co.code='BH' AND g.grade_number=12 AND l.semester=1 AND l.status='published'
+GROUP BY l.lesson_type ORDER BY l.lesson_type;
