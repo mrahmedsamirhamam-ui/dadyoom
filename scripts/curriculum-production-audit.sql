@@ -57,33 +57,40 @@ WHERE co.code='BH'
 GROUP BY COALESCE(l.official_content_scope,'unclassified'),l.status
 ORDER BY source_scope_label,l.status;
 
--- 4. Question integrity review by country and grade.
--- Detect invalid/missing answer keys and four-choice structure for MCQs.
--- This is a STRUCTURAL signal, NOT teacher validation of pedagogy or correctness.
+-- 4. Multiple-choice structural integrity, separated from educational enrichment signals.
+-- 3-option AND 4-option MCQs can be valid. Do not demand 4 options across
+-- ages or curricula. Count answer keys independently from explanation quality.
 SELECT co.code AS country_code, g.grade_number,
        COUNT(*) AS mcq_rows_checked,
        COUNT(*) FILTER (
          WHERE CASE WHEN jsonb_typeof(q.options)='array'
-           THEN jsonb_array_length(q.options)=4
+           THEN jsonb_array_length(q.options) BETWEEN 2 AND 6
              AND EXISTS (
                SELECT 1 FROM jsonb_array_elements(q.options) a
                WHERE a->>'id'=q.correct_answer
              )
            ELSE FALSE END
-         AND LENGTH(COALESCE(q.explanation,''))>=30
-       ) AS structurally_valid_with_explanation,
+       ) AS valid_option_shape_and_key,
        COUNT(*) FILTER (
-         WHERE NOT (
-           CASE WHEN jsonb_typeof(q.options)='array'
-             THEN jsonb_array_length(q.options)=4
-               AND EXISTS (
-                 SELECT 1 FROM jsonb_array_elements(q.options) a
-                 WHERE a->>'id'=q.correct_answer
-               )
-             ELSE FALSE END
-           AND LENGTH(COALESCE(q.explanation,''))>=30
-         )
-       ) AS requires_review
+         WHERE NOT (CASE WHEN jsonb_typeof(q.options)='array'
+           THEN jsonb_array_length(q.options) BETWEEN 2 AND 6
+             AND EXISTS (
+               SELECT 1 FROM jsonb_array_elements(q.options) a
+               WHERE a->>'id'=q.correct_answer
+             )
+           ELSE FALSE END)
+       ) AS invalid_shape_or_missing_key,
+       COUNT(*) FILTER (
+         WHERE jsonb_typeof(q.options)='array'
+           AND jsonb_array_length(q.options)=3
+       ) AS three_option_mcqs,
+       COUNT(*) FILTER (
+         WHERE jsonb_typeof(q.options)='array'
+           AND jsonb_array_length(q.options)=4
+       ) AS four_option_mcqs,
+       COUNT(*) FILTER (
+         WHERE LENGTH(COALESCE(q.explanation,''))<30
+       ) AS needs_explanation_review
 FROM public.questions q
 JOIN public.lessons l ON l.id=q.lesson_id
 JOIN public.units u ON u.id=l.unit_id
