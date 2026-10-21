@@ -201,6 +201,16 @@ console.log(
 console.log(
   `TOTAL_PACK_LESSONS=${totalLessons}`
 );
+const everyCountryHasPack = readyCountries === countries.length;
+
+console.log(`CURRICULUM_PACK_COUNTRY_COVERAGE=${readyCountries}/${countries.length}`);
+console.log("CURRICULUM_PACK_SCHEMA_GATE=PASS");
 console.log(
-  "CURRICULUM_COVERAGE_GATE=PASS"
+  `CURRICULUM_COUNTRY_PACK_STATUS=${everyCountryHasPack ? "ALL_COUNTRIES_HAVE_PACKS" : "PARTIAL"}`
 );
+console.log("OFFICIAL_SYLLABUS_MATCH=NOT_VERIFIED");
+
+if (process.argv.includes("--require-all-countries") && !everyCountryHasPack) {
+  console.error(`REQUIRED_COUNTRY_PACKS_MISSING=${countries.length - readyCountries}`);
+  process.exitCode = 1;
+}
