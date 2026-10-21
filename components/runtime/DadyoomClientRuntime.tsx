@@ -17,11 +17,6 @@ const NativeMobileShell = dynamic(
   { ssr: false },
 );
 
-const NativeAppUpdater = dynamic(
-  () => import("@/components/mobile/NativeAppUpdater"),
-  { ssr: false },
-);
-
 const DadyoomInstallPrompt = dynamic(
   () => import("@/components/pwa/DadyoomInstallPrompt"),
   { ssr: false },
@@ -43,7 +38,6 @@ export default function DadyoomClientRuntime() {
       <DadyoomAds />
       <MobileOAuthBridge />
       <NativeMobileShell />
-      <NativeAppUpdater />
       <DadyoomInstallPrompt />
       <DadyoomAutoUpdate />
       <DadCompanion />
