@@ -199,3 +199,37 @@ WHERE co.code='BH' AND g.grade_number=11 AND l.semester=1
   AND l.status='published'
 GROUP BY CASE WHEN COALESCE(l.summary,'') ~ '^(عرب|أدب|قرأ|نحو) [0-9]+ — ' THEN split_part(l.summary,' — ',1) ELSE 'unclassified-course-summary' END, l.lesson_type
 ORDER BY course_label, l.lesson_type;
+
+
+-- 9. Bahrain Grade 11 Semester 1: minimum stored learning-record completeness.
+-- IMPORTANT: This measures database RECORDS only, not official curriculum
+-- equivalence, copyright provenance, student mastery or live UI availability.
+-- Course labels are taken from recognizable summary prefixes; never infer
+-- an authoritative syllabus mapping from these strings.
+WITH qc AS (
+  SELECT lesson_id,COUNT(*)::integer n FROM public.questions GROUP BY lesson_id
+), eligible AS (
+  SELECT l.id,l.lesson_type,l.summary,l.learning_objectives,l.vocabulary,l.official_content_scope,
+         COALESCE(qc.n,0) AS question_count
+  FROM public.lessons l
+  JOIN public.units u ON u.id=l.unit_id
+  JOIN public.grades g ON g.id=u.grade_id
+  JOIN public.curricula c ON c.id=g.curriculum_id
+  JOIN public.countries co ON co.id=c.country_id
+  LEFT JOIN qc ON qc.lesson_id=l.id
+  WHERE co.code='BH' AND g.grade_number=11 AND l.semester=1 AND l.status='published'
+)
+SELECT COUNT(*) AS published_lesson_records,
+       COUNT(*) FILTER(WHERE question_count=0) AS without_stored_questions,
+       COUNT(*) FILTER(WHERE question_count>=3) AS with_three_plus_questions,
+       COUNT(*) FILTER(WHERE jsonb_typeof(learning_objectives)='array'
+         AND jsonb_array_length(learning_objectives)>=3) AS with_three_plus_objectives,
+       COUNT(*) FILTER(WHERE jsonb_typeof(vocabulary)='array'
+         AND jsonb_array_length(vocabulary)>=3) AS with_three_plus_vocabulary,
+       COUNT(*) FILTER(WHERE question_count>=3
+         AND jsonb_typeof(learning_objectives)='array'
+         AND jsonb_array_length(learning_objectives)>=3
+         AND jsonb_typeof(vocabulary)='array'
+         AND jsonb_array_length(vocabulary)>=3) AS meets_minimum_stored_fields,
+       COUNT(*) FILTER(WHERE official_content_scope='plan-scheduled') AS tagged_plan_scheduled_not_certified
+FROM eligible;
