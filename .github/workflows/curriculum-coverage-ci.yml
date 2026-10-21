@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'scripts/curriculum-coverage.mjs'
+      - 'scripts/curriculum-production-audit.sql'
       - 'scripts/verify-curriculum-packs.mjs'
       - 'lib/curriculum-packs/**'
       - 'data/curriculum-packs/**'
