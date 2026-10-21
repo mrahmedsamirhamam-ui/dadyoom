@@ -243,8 +243,9 @@ export async function completeLessonAction(
       error: requiredAttemptsError,
     } = await supabase
       .from("lesson_activity_attempts")
-      .select("activity_id")
+      .select("activity_id,is_correct")
       .eq("user_id", user.id)
+      .eq("is_correct", true)
       .in("activity_id", requiredIds);
 
     if (requiredAttemptsError) {
@@ -271,7 +272,8 @@ export async function completeLessonAction(
     }
   }
 
-  let score = 100;
+  // DADYOOM_FAIL_CLOSED_MASTERY: never assume a perfect score without evidence.
+  let score = 0;
   let answeredQuestions = 0;
   let correctAnswers = 0;
   let totalQuestions = 0;
@@ -430,15 +432,15 @@ export async function completeLessonAction(
           attempt.correct
       ).length;
 
-    score =
-      totalPossible > 0
-        ? Math.round(
-            (
-              totalEarned /
-              totalPossible
-            ) * 100
-          )
-        : 100;
+    if (totalPossible <= 0) {
+      throw new Error(
+        "لا يمكن إنهاء الدرس: الأنشطة القابلة للتصحيح لا تحمل درجات صالحة. تواصل مع المعلم."
+      );
+    }
+
+    score = Math.round(
+      (totalEarned / totalPossible) * 100
+    );
 
   } else {
 
@@ -541,14 +543,19 @@ export async function completeLessonAction(
         );
     }
   }
+  // Neither completion-only activities nor an empty question bank can
+  // certify >=90% academic mastery. Do not convert "no evidence" into 100%.
+  if (questionIds.length === 0) {
+    throw new Error(
+      "لا يمكن إنهاء الدرس قبل توفر تقويم قابل للتصحيح؛ أبلغ المعلم لاستكماله."
+    );
+  }
+
   await syncLessonMasteryAction(
     progress.lesson_id
   );
 
-  if (
-    questionIds.length > 0 &&
-    score < REQUIRED_MASTERY_SCORE
-  ) {
+  if (score < REQUIRED_MASTERY_SCORE) {
     const wrongAnswers =
       questionIds.length -
       correctAnswers;
