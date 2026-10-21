@@ -291,7 +291,7 @@ export default function LetterLabClient() {
         </div>
       )}
 
-      <style jsx>{String.raw`
+      <style jsx>{`
         .letter-lab-fall {
           animation: letter-lab-fall 3.3s ease-in infinite;
           transform-origin: center;
