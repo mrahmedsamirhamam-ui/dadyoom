@@ -14,7 +14,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 ## Experimental interactive letter world
 
-- The 28-letter enrichment experience is isolated at \`/labs/letters/world\`, with data in \`lib/letter-lab/alphabet.ts\`. Keep the alphabet complete, the hamza/alif distinction explicit, and Arabic examples reviewed.
+- The 28-letter enrichment experience is isolated at `/labs/letters/world`, with data in `lib/letter-lab/alphabet.ts`. Keep the alphabet complete, the hamza/alif distinction explicit, and Arabic examples reviewed.
 - Its CSS transform depth is not a full WebGL character mesh; do not claim a production 3D engine or deployment.
-- Maintain no-cost operation, session-only challenge metrics, on-demand optional speech, RTL, accessible controls, mobile smoke coverage, and \`prefers-reduced-motion\`.
+- Maintain no-cost operation, session-only challenge metrics, on-demand optional speech, RTL, accessible controls, mobile smoke coverage, and `prefers-reduced-motion`.
 - Formal curriculum mapping, persisted grades, and children's audio storage are out of scope without authorization, review, and secure design.
