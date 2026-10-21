@@ -22,6 +22,11 @@ export default function LettersLabPage() {
           </nav>
         </div>
       </header>
+      <div className="mx-auto mt-6 max-w-6xl px-4 sm:px-6">
+        <Link href="/labs/letters/world" className="inline-flex rounded-xl bg-[#174f47] px-6 py-4 text-sm font-black text-white hover:bg-[#236c60]">
+          ✨ جرّب عالم الحروف الحية ثلاثي الأبعاد (نسخة تجريبية)
+        </Link>
+      </div>
       <LetterLabClient />
     </main>
   );
