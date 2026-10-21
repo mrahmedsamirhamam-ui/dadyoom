@@ -7,6 +7,7 @@ on:
       - 'components/labs/letters/**'
       - 'lib/letter-lab/**'
       - 'tests/letter-lab.test.ts'
+      - 'scripts/smoke-letter-lab.mjs'
       - 'app/page.tsx'
       - '.github/workflows/letter-lab-ci.yml'
   workflow_dispatch:
@@ -28,3 +29,14 @@ jobs:
       - run: npm run lint
       - run: npm run test:run
       - run: npm run build
+      - name: Mobile browser smoke (Chrome)
+        shell: bash
+        run: |
+          npm run start -- -p 3033 >/tmp/dadyoom-letter-lab-next.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 25); do
+            if curl -fsS http://127.0.0.1:3033/labs/letters >/dev/null; then break; fi
+            sleep 2
+          done
+          node scripts/smoke-letter-lab.mjs
