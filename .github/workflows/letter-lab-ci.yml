@@ -7,6 +7,7 @@ on:
       - 'components/labs/letters/**'
       - 'lib/letter-lab/**'
       - 'tests/letter-lab.test.ts'
+      - 'tests/letter-world.test.ts'
       - 'scripts/smoke-letter-lab.mjs'
       - 'app/page.tsx'
       - '.github/workflows/letter-lab-ci.yml'
