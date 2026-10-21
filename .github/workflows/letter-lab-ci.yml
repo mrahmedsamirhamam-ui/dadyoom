@@ -1,0 +1,30 @@
+name: Letter Lab quality checks
+
+on:
+  pull_request:
+    paths:
+      - 'app/labs/letters/**'
+      - 'components/labs/letters/**'
+      - 'lib/letter-lab/**'
+      - 'tests/letter-lab.test.ts'
+      - 'app/page.tsx'
+      - '.github/workflows/letter-lab-ci.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci --no-audit --no-fund
+      - run: npx tsc --noEmit
+      - run: npm run lint
+      - run: npm run test:run
+      - run: npm run build
