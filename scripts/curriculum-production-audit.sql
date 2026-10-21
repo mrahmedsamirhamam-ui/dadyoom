@@ -265,3 +265,29 @@ JOIN public.countries co ON co.id=c.country_id
 LEFT JOIN qc ON qc.lesson_id=l.id
 WHERE co.code='BH' AND g.grade_number=12 AND l.semester=1 AND l.status='published'
 GROUP BY l.lesson_type ORDER BY l.lesson_type;
+
+
+-- 11. Bahrain Grade 12 Semester 1: three-field record completeness by course.
+-- Read-only. Imported summary course labels and plan-scheduled flags do NOT
+-- certify the actual Ministry textbook, syllabus year or classroom mastery.
+WITH counts AS (SELECT lesson_id,count(*)::integer n FROM public.questions GROUP BY lesson_id),
+scoped AS (
+ SELECT l.id,l.lesson_type,l.learning_objectives,l.vocabulary,
+ CASE WHEN coalesce(l.summary,'') ~ '^(أدب|قرأ|عرب|نحو) [0-9]+ — '
+      THEN split_part(l.summary,' — ',1)
+      ELSE 'unclassified-course-summary' END AS course_label,
+ coalesce(counts.n,0) AS question_count
+ FROM public.lessons l
+ JOIN public.units u ON u.id=l.unit_id JOIN public.grades g ON g.id=u.grade_id
+ JOIN public.curricula c ON c.id=g.curriculum_id JOIN public.countries co ON co.id=c.country_id
+ LEFT JOIN counts ON counts.lesson_id=l.id
+ WHERE co.code='BH' AND g.grade_number=12 AND l.semester=1
+ AND l.status='published'
+)
+SELECT course_label,lesson_type,count(*) published_records,
+ count(*) FILTER(WHERE question_count=0) without_saved_questions,
+ count(*) FILTER(WHERE question_count>=3) with_three_plus_questions,
+ count(*) FILTER(WHERE jsonb_typeof(learning_objectives)='array' AND jsonb_array_length(learning_objectives)>=3
+                    AND jsonb_typeof(vocabulary)='array' AND jsonb_array_length(vocabulary)>=3
+                    AND question_count>=3) with_full_minimum_fields
+FROM scoped GROUP BY course_label,lesson_type ORDER BY course_label,lesson_type;
