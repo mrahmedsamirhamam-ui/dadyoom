@@ -172,3 +172,30 @@ LEFT JOIN question_counts q ON q.lesson_id=l.id
 WHERE co.code='BH' AND g.grade_number=11 AND l.semester=1 AND l.status='published'
 GROUP BY l.lesson_type
 ORDER BY l.lesson_type;
+
+
+-- 8. Bahrain G11 Semester 1 per-course-track quality: prevent merging
+-- same-titled lessons from technical/professional/religious course tracks.
+-- Only summaries beginning with a recognizable course code are grouped as such.
+-- Other summaries are marked 'unclassified-course-summary' rather than invented
+-- course identifiers. None of these labels certify ministry-year mapping.
+WITH question_counts AS (
+  SELECT lesson_id, COUNT(*)::integer AS n FROM public.questions GROUP BY lesson_id
+)
+SELECT
+  CASE WHEN COALESCE(l.summary,'') ~ '^(عرب|أدب|قرأ|نحو) [0-9]+ — ' THEN split_part(l.summary,' — ',1) ELSE 'unclassified-course-summary' END AS course_label,
+  l.lesson_type,
+  COUNT(*) AS published_lesson_records,
+  COUNT(*) FILTER (WHERE COALESCE(q.n,0)=0) AS without_stored_questions,
+  COUNT(*) FILTER (WHERE COALESCE(q.n,0)>=3) AS with_three_plus_questions,
+  COUNT(*) FILTER (WHERE l.vocabulary IS NULL OR l.vocabulary='[]'::jsonb) AS without_saved_vocabulary
+FROM public.lessons l
+JOIN public.units u ON u.id=l.unit_id
+JOIN public.grades g ON g.id=u.grade_id
+JOIN public.curricula c ON c.id=g.curriculum_id
+JOIN public.countries co ON co.id=c.country_id
+LEFT JOIN question_counts q ON q.lesson_id=l.id
+WHERE co.code='BH' AND g.grade_number=11 AND l.semester=1
+  AND l.status='published'
+GROUP BY CASE WHEN COALESCE(l.summary,'') ~ '^(عرب|أدب|قرأ|نحو) [0-9]+ — ' THEN split_part(l.summary,' — ',1) ELSE 'unclassified-course-summary' END, l.lesson_type
+ORDER BY course_label, l.lesson_type;
