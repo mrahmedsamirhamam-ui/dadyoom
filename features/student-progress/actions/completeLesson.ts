@@ -13,6 +13,11 @@ import { completeLesson } from "../services/progress";
 import { calculateLevel } from "../services/level";
 import { calculateBadges } from "../services/badges";
 import { calculateAchievements } from "../services/achievements";
+import {
+  requireAssessedItems,
+  requirePositiveAssessmentPoints,
+} from "../services/completion-gates";
+
 
 type QuestionRow = {
   id: string;
@@ -432,11 +437,7 @@ export async function completeLessonAction(
           attempt.correct
       ).length;
 
-    if (totalPossible <= 0) {
-      throw new Error(
-        "لا يمكن إنهاء الدرس: الأنشطة القابلة للتصحيح لا تحمل درجات صالحة. تواصل مع المعلم."
-      );
-    }
+    requirePositiveAssessmentPoints(totalPossible);
 
     score = Math.round(
       (totalEarned / totalPossible) * 100
@@ -545,11 +546,7 @@ export async function completeLessonAction(
   }
   // Neither completion-only activities nor an empty question bank can
   // certify >=90% academic mastery. Do not convert "no evidence" into 100%.
-  if (questionIds.length === 0) {
-    throw new Error(
-      "لا يمكن إنهاء الدرس قبل توفر تقويم قابل للتصحيح؛ أبلغ المعلم لاستكماله."
-    );
-  }
+  requireAssessedItems(questionIds.length);
 
   await syncLessonMasteryAction(
     progress.lesson_id
