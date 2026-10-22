@@ -205,3 +205,8 @@
 - الاختبار الحقيقي لدور `anon` ودور `authenticated` أعاد 8 أسئلة تجريبية في الحزمة وصفر مفاتيح أو شروح حل ظاهرة؛ اختُبرت المعاملة أولًا مع ROLLBACK. أضيفت هجرة موثّقة واختبار أمن في CI.
 - **P0 ما زال مفتوحًا:** وصول مباشر إلى `public.questions.correct_answer` وكتابة درجات/محاولات عبر منح مستخدم الطالب. لا REVOKE قبل الجرد والانتقال الآمن والاختبار الحي. Cloudflare Builds issue #46 غير محسوم.
 - تبقى نسبة نضج ضاديوم الشاملة **حوالي 46% تقديريًا**؛ إغلاق RPC لا يثبت الاستقرار الحي أو اكتمال المناهج الرسمية.
+
+### 2026-10-22 — authorize student question before private grading
+- Verified on current main: the endpoint was reading the private answer key before RLS student visibility, and `getLessonQuestions` still used `questions.select("*")`. On the fresh security branch, question visibility and published lesson checks run with the learner session before any admin client is created. Privileged grading is restricted by matching question ID and lesson ID.
+- Public practice listing now selects only display fields from `dadyoom_student_questions`; source regression tests and CI path triggers cover both readers.
+- Production grants on `questions` and score tables remain unchanged pending full client inventory, signed-in student/teacher E2E, Workers Preview and rollback. This code hardening alone does not increase overall readiness from the provisional 46%.
