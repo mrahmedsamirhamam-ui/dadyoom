@@ -10,6 +10,9 @@ on:
       - 'app/lessons/**/page.tsx'
       - 'features/questions/services/grade-stored-mcq.ts'
       - 'features/questions/queries/getLessonQuestions.ts'
+      - 'features/teacher/queries/getLessonQuestions.ts'
+      - 'features/teacher/actions/manageLessonQuestions.ts'
+      - 'tests/security/teacher-private-question-access.test.ts'
       - 'tests/security/server-graded-mcq.test.ts'
       - 'tests/security/server-only-answer-key-read.test.ts'
       - 'tests/security/public-lesson-bundle-rpc.test.ts'
@@ -78,6 +81,8 @@ jobs:
         run: npx vitest run tests/security/weighted-activity-mastery.test.ts
       - name: Verify private answer-key lookup
         run: npx vitest run tests/security/server-only-answer-key-read.test.ts
+      - name: Verify teacher-only stored answer-key access
+        run: npx vitest run tests/security/teacher-private-question-access.test.ts
       - name: Verify public lesson bundle excludes answer keys
         run: npx vitest run tests/security/public-lesson-bundle-rpc.test.ts
       - name: TypeScript
