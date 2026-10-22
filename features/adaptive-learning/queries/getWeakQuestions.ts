@@ -8,8 +8,6 @@ export type WeakQuestion = {
     id: string;
     text: string;
   }[];
-  correct_answer: string;
-  explanation: string | null;
 };
 
 type ServerSupabaseClient =
@@ -41,14 +39,12 @@ export async function getWeakQuestions(
       data,
       error: questionsError,
     } = await supabase
-      .from("questions")
+      .from("dadyoom_student_questions")
       .select(`
         id,
         question,
         question_type,
-        options,
-        correct_answer,
-        explanation
+        options
       `)
       .eq(
         "lesson_id",
