@@ -36,6 +36,16 @@ describe("lesson activity answer key read is server-private", () => {
       complete.indexOf("if (!progress)")
     );
   });
+  it("the published lesson RPC omits the raw activity answer field", () => {
+    const sql = read("supabase/migrations/20261022195032_sanitize_public_get_lesson_page_bundle_answer_keys.sql");
+    const source = sql.indexOf("from public.lesson_activities a");
+    const projection = sql.slice(sql.lastIndexOf("jsonb_build_object(", source), source);
+    expect(source).toBeGreaterThan(-1);
+    expect(projection).toContain("'content', a.content");
+    expect(projection).not.toMatch(/a\\.answer\\b/);
+    expect(projection).not.toMatch(/['"]answer['"]/);
+  });
+
   it("does not change weighted scoring or identity-scoped attempt reads", () => {
     expect(complete).toContain("scoreGradedActivityAttempts(");
     expect(mastery).toContain("scoreGradedActivityAttempts(");
