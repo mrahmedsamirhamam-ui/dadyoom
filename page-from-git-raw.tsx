@@ -44,8 +44,6 @@ type LessonQuestion = {
   question: string;
   question_type: string;
   options: QuestionOption[];
-  correct_answer: string;
-  explanation: string | null;
   points: number;
 };
 
