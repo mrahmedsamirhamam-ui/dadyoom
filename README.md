@@ -528,3 +528,7 @@ Dadyoom aims to become an education innovation institution with a distinctive Ar
 - نقل قراءة مفاتيح `questions` في استعلام محرر المعلم إلى `createAdminClient` **بعد** التحقق من جلسة المستخدم ودور `teacher/admin` وملكية الدرس من اتصال المستخدم المقيد بـRLS. تسير قراءة/إضافة/تعديل الأسئلة بعد فحص الإذن؛ تظل RPC الخاصة بنقل السؤال وحذفه بجلسة المستخدم لأجل `auth.uid()`.
 - اجتياز CI ليس إذنًا بسحب الامتيازات من الإنتاج. يجب اختبار معلم مالك وغير مالك ومدير وطالب، ثم إعداد تراجع للصلاحيات. لا تُعرض مفاتيح الحل داخل واجهة الطالب.
 - **فجوة P0 مستقلة مؤكدة بالقراءة فقط:** `public.lesson_activities.answer` متاح لدوري `anon` و`authenticated`. عدد الأنشطة المنشورة ذات بيانات `answer` غير فارغة 21,807 من 23,779 منشورًا وقت الجرد؛ نجح استعلام `SET LOCAL ROLE anon` في إثبات قابلية القراءة دون استرجاع نص إجابة. لا يجوز إلغاء الامتيازات حتى استكمال قراءات تصحيح الأنشطة ومحررها وحفظ المحاولات واختبارات الدور وبيئة Preview.
+
+### 2026-10-22 — Server-only activity grading before grant migration
+- `completeLessonAction` requires an owned progress row and published lesson visible under student RLS; `syncLessonMasteryAction` authenticates and checks published lesson visibility. Both then use `createAdminClient` to access `lesson_activities.answer` exclusively on the trusted server.
+- Weighted best-attempt grading, user-scoped attempt reads, and progress data are unchanged. CI guards the authorization order. The legacy direct database `answer` grants remain P0 pending audited no-cost Preview E2E and rollback; a green Next.js build is not proof of production release.
