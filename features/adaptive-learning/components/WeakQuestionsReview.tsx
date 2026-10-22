@@ -144,12 +144,9 @@ export default function WeakQuestionsReview({
                       {question.question}
                     </p>
 
-                    {question.explanation ? (
-                      <p className="mt-3 rounded-xl bg-slate-50 p-3 text-sm leading-7 text-slate-600">
-                        💡 تلميح:{" "}
-                        {question.explanation}
-                      </p>
-                    ) : null}
+                    <p className="mt-3 rounded-xl bg-slate-50 p-3 text-sm leading-7 text-slate-600">
+                      💡 راجع شرح الدرس ثم حاول الإجابة من جديد.
+                    </p>
 
                     <button
                       type="button"
