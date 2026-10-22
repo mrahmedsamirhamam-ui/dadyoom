@@ -3,7 +3,10 @@ import "server-only";
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { gradeStoredMcq } from "@/features/questions/services/grade-stored-mcq";
+import {
+  feedbackForStudent,
+  gradeStoredMcq,
+} from "@/features/questions/services/grade-stored-mcq";
 
 type AnswerRequest = {
   questionId?: unknown;
@@ -98,11 +101,16 @@ export async function POST(request: Request) {
 
     if (saveError) throw saveError;
 
+    // Do not reveal the correct key or explanatory solution after an
+    // incorrect response. Review and retry are separate from answer disclosure.
+    const feedback = feedbackForStudent(
+      grade,
+      question.explanation ?? null
+    );
+
     return NextResponse.json({
       success: true,
-      isCorrect: grade.isCorrect,
-      correctAnswer: grade.correctAnswer,
-      explanation: question.explanation ?? null,
+      ...feedback,
     });
   } catch (error) {
     // Avoid leaking database details, service keys or internal queries.
