@@ -13,7 +13,7 @@ type Props = {
 };
 type CheckedAnswer = {
   isCorrect: boolean;
-  correctAnswer: string;
+  correctAnswer: string | null;
   explanation: string | null;
 };
 
@@ -54,7 +54,7 @@ export default function MultipleChoiceQuestion({
       const result = (await response.json()) as {
         success?: boolean;
         isCorrect?: boolean;
-        correctAnswer?: string;
+        correctAnswer?: string | null;
         explanation?: string | null;
         error?: string;
       };
@@ -63,14 +63,14 @@ export default function MultipleChoiceQuestion({
         !response.ok ||
         !result.success ||
         typeof result.isCorrect !== "boolean" ||
-        typeof result.correctAnswer !== "string"
+        (result.isCorrect && typeof result.correctAnswer !== "string")
       ) {
         throw new Error(result.error ?? "تعذر حفظ الإجابة.");
       }
 
       setChecked({
         isCorrect: result.isCorrect,
-        correctAnswer: result.correctAnswer,
+        correctAnswer: result.isCorrect ? result.correctAnswer ?? null : null,
         explanation: result.explanation ?? null,
       });
 
@@ -152,7 +152,9 @@ export default function MultipleChoiceQuestion({
               ? "bg-emerald-100 text-emerald-900"
               : "bg-red-100 text-red-900"
           }`}>
-            {checked.isCorrect ? "✅ إجابة صحيحة" : "❌ إجابة غير صحيحة"}
+            {checked.isCorrect
+              ? "✅ إجابة صحيحة"
+              : "❌ راجع الشرح ثم حاول مجددًا؛ لم تُعرض الإجابة الصحيحة."}
           </div>
 
           {checked.explanation ? (
