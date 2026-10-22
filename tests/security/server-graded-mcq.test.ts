@@ -114,6 +114,33 @@ describe("authoritative stored question grading", () => {
     expect(code).not.toContain("raw?.userId");
   });
 
+  it("checks student RLS visibility before privileged key access", () => {
+    const code = readFileSync(
+      resolve(process.cwd(), "app/api/questions/answer/route.ts"),
+      "utf8"
+    );
+    const safeQuery = code.indexOf('.from("dadyoom_student_questions")');
+    const adminCreation = code.indexOf("const admin = createAdminClient()");
+    const gradingKeyRead = code.indexOf('.from("questions")');
+    expect(safeQuery).toBeGreaterThan(-1);
+    expect(adminCreation).toBeGreaterThan(safeQuery);
+    expect(gradingKeyRead).toBeGreaterThan(adminCreation);
+    expect(code).toContain('.eq("id", visibleQuestion.id)');
+    expect(code).toContain('.eq("lesson_id", visibleQuestion.lesson_id)');
+    expect(code).not.toContain('supabase\n      .from("questions")');
+  });
+
+  it("practice query only requests student-visible fields", () => {
+    const code = readFileSync(
+      resolve(process.cwd(), "features/questions/queries/getLessonQuestions.ts"),
+      "utf8"
+    );
+    expect(code).toContain('.from("dadyoom_student_questions")');
+    expect(code).not.toContain('.from("questions")');
+    expect(code).not.toContain('.select("*")');
+    expect(code).not.toContain("correct_answer");
+  });
+
   it("client no longer sets is_correct or receives the answer key as a prop", () => {
     const component = readFileSync(
       resolve(process.cwd(), "components/lesson/MultipleChoiceQuestion.tsx"),

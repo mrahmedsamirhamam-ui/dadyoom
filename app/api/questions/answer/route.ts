@@ -37,15 +37,17 @@ export async function POST(request: Request) {
       );
     }
 
-    // Read using the caller's RLS, not an admin client.
-    const { data: question, error: questionError } = await supabase
-      .from("questions")
-      .select("id,lesson_id,question_type,options,correct_answer,explanation")
+    // First establish that this published question is visible to this
+    // authenticated learner under the existing invoker-RLS safe view.
+    // No answer key is fetched using the student's database privileges.
+    const { data: visibleQuestion, error: visibilityError } = await supabase
+      .from("dadyoom_student_questions")
+      .select("id,lesson_id")
       .eq("id", questionId)
       .maybeSingle();
 
-    if (questionError) throw questionError;
-    if (!question) {
+    if (visibilityError) throw visibilityError;
+    if (!visibleQuestion) {
       return NextResponse.json(
         { success: false, error: "السؤال غير متاح." },
         { status: 404 }
@@ -55,13 +57,31 @@ export async function POST(request: Request) {
     const { data: lesson, error: lessonError } = await supabase
       .from("lessons")
       .select("id,status")
-      .eq("id", question.lesson_id)
+      .eq("id", visibleQuestion.lesson_id)
       .maybeSingle();
 
     if (lessonError) throw lessonError;
     if (!lesson || lesson.status !== "published") {
       return NextResponse.json(
         { success: false, error: "الدرس غير متاح للتقويم." },
+        { status: 404 }
+      );
+    }
+
+    // Only after the student's visibility check may the server-only admin
+    // client retrieve the stored grading key. Never return this raw row.
+    const admin = createAdminClient();
+    const { data: question, error: questionError } = await admin
+      .from("questions")
+      .select("id,lesson_id,question_type,options,correct_answer,explanation")
+      .eq("id", visibleQuestion.id)
+      .eq("lesson_id", visibleQuestion.lesson_id)
+      .maybeSingle();
+
+    if (questionError) throw questionError;
+    if (!question) {
+      return NextResponse.json(
+        { success: false, error: "السؤال غير متاح." },
         { status: 404 }
       );
     }
@@ -85,7 +105,6 @@ export async function POST(request: Request) {
     // Privileged write happens ONLY after user verification and the server's
     // independently fetched, validated answer key. No client-supplied grade.
     // This existing server-only helper requires SUPABASE_SERVICE_ROLE_KEY.
-    const admin = createAdminClient();
     const { error: saveError } = await admin
       .from("question_attempts")
       .upsert(

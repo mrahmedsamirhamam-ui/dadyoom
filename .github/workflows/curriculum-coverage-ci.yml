@@ -9,6 +9,7 @@ on:
       - 'components/lesson/MultipleChoiceQuestion.tsx'
       - 'app/lessons/**/page.tsx'
       - 'features/questions/services/grade-stored-mcq.ts'
+      - 'features/questions/queries/getLessonQuestions.ts'
       - 'tests/security/server-graded-mcq.test.ts'
       - 'tests/security/student-question-payload.test.ts'
       - 'features/questions/services/public-lesson-questions.ts'
