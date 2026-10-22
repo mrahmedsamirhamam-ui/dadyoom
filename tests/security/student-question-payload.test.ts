@@ -9,7 +9,10 @@ const raw = {
   question_order: 1,
   question: "ما الجواب؟",
   question_type: "multiple_choice",
-  options: [{ id: "a", text: "نعم" }, { id: "b", text: "لا" }],
+  options: [
+    { id: "a", text: "نعم", is_correct: true, hidden_solution: "نعم" },
+    { id: "b", text: "لا", is_correct: false },
+  ],
   points: 2,
   correct_answer: "a",
   explanation: "سبب الإجابة الصحيحة",
@@ -25,7 +28,7 @@ describe("public student lesson question payload", () => {
       question_order: 1,
       question: "ما الجواب؟",
       question_type: "multiple_choice",
-      options: raw.options,
+      options: [{ id: "a", text: "نعم" }, { id: "b", text: "لا" }],
       points: 2,
     }]);
   });
@@ -36,6 +39,8 @@ describe("public student lesson question payload", () => {
     expect(serialized).not.toContain("explanation");
     expect(serialized).not.toContain("teacher_notes");
     expect(serialized).not.toContain("future_secret_field");
+    expect(serialized).not.toContain("is_correct");
+    expect(serialized).not.toContain("hidden_solution");
     expect(serialized).not.toContain("سبب الإجابة الصحيحة");
   });
 
