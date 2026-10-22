@@ -10,6 +10,11 @@ on:
       - 'app/lessons/**/page.tsx'
       - 'features/questions/services/grade-stored-mcq.ts'
       - 'tests/security/server-graded-mcq.test.ts'
+      - 'tests/security/student-question-payload.test.ts'
+      - 'features/questions/services/public-lesson-questions.ts'
+      - 'features/lessons/queries/getLessonPageBundle.ts'
+      - 'features/adaptive-learning/queries/getWeakQuestions.ts'
+      - 'features/adaptive-learning/components/WeakQuestionsReview.tsx'
       - 'app/lessons/**/CompleteLessonButton.tsx'
       - 'features/student-progress/actions/completeLesson.ts'
       - 'tests/security/lesson-completion-entrypoints.test.ts'
@@ -51,6 +56,8 @@ jobs:
         run: npx vitest run tests/security/lesson-completion-entrypoints.test.ts tests/security/lesson-mastery-gates.test.ts
       - name: Verify authoritative lesson question grading
         run: npx vitest run tests/security/server-graded-mcq.test.ts
+      - name: Verify student question payload sanitization
+        run: npx vitest run tests/security/student-question-payload.test.ts
       - name: TypeScript
         run: npx tsc --noEmit
       - name: ESLint
