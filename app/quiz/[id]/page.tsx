@@ -83,7 +83,8 @@ export default async function QuizPage({
     data,
     error,
   } = await supabase
-    .from("questions")
+    // Public SELECT-only, invoker-RLS view: never returns answer keys.
+    .from("dadyoom_student_questions")
     .select(`
       id,
       question,
