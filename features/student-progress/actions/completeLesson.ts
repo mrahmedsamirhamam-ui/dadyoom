@@ -7,6 +7,7 @@ import { getCorrectAnswerSpec } from "@/lib/lesson-activities/grading";
 import { invalidateStudentCaches } from "@/features/student-progress/services/invalidate-student-caches";
 import { syncLearningProfile } from "@/features/learning-profile/services/sync-profile";
 import { syncLessonMasteryAction } from "@/features/lesson-mastery/actions/syncLessonMastery";
+import { scoreGradedActivityAttempts } from "@/features/lesson-mastery/services/score-graded-activities";
 import { completeAdaptiveStep } from "@/features/learning-plan/services/adaptive-path-lifecycle";
 
 import { completeLesson } from "../services/progress";
@@ -331,61 +332,12 @@ export async function completeLessonAction(
       throw activityAttemptsError;
     }
 
-    const bestByActivity =
-      new Map<
-        string,
-        {
-          earned: number;
-          max: number;
-          correct: boolean;
-        }
-      >();
-
-    for (
-      const attempt of
+    const graded = scoreGradedActivityAttempts(
+      gradableActivities,
       activityAttempts ?? []
-    ) {
+    );
 
-      const earned =
-        Number(
-          attempt.earned_points ??
-          0
-        );
-
-      const max =
-        Number(
-          attempt.max_points ??
-          0
-        );
-
-      const previous =
-        bestByActivity.get(
-          attempt.activity_id
-        );
-
-      /*
-       * Keep the best attempt for every activity.
-       */
-      if (
-        !previous ||
-        earned > previous.earned
-      ) {
-        bestByActivity.set(
-          attempt.activity_id,
-          {
-            earned,
-            max,
-            correct:
-              Boolean(
-                attempt.is_correct
-              ),
-          }
-        );
-      }
-    }
-
-    answeredQuestions =
-      bestByActivity.size;
+    answeredQuestions = graded.answeredQuestions;
 
     if (
       answeredQuestions <
@@ -399,49 +351,9 @@ export async function completeLessonAction(
       );
     }
 
-    const totalPossible =
-      gradableActivities.reduce(
-        (
-          total,
-          activity
-        ) =>
-          total +
-          Number(
-            activity.points ??
-            0
-          ),
-        0
-      );
-
-    const totalEarned =
-      gradableActivities.reduce(
-        (
-          total,
-          activity
-        ) =>
-          total +
-          (
-            bestByActivity.get(
-              activity.id
-            )?.earned ??
-            0
-          ),
-        0
-      );
-
-    correctAnswers =
-      Array.from(
-        bestByActivity.values()
-      ).filter(
-        (attempt) =>
-          attempt.correct
-      ).length;
-
-    requirePositiveAssessmentPoints(totalPossible);
-
-    score = Math.round(
-      (totalEarned / totalPossible) * 100
-    );
+    correctAnswers = graded.correctAnswers;
+    requirePositiveAssessmentPoints(graded.totalPossible);
+    score = graded.score;
 
   } else {
 

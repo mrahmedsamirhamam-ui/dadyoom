@@ -98,3 +98,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - `requiredCompletionActivities` نشاط حضور/مشاركة واجب لكنه **ليس** إجابة صحيحة في `lesson_mastery`. يمنع احتساب نسبة 100% منه عند غياب تقويم قابل للتصحيح.
 - عند عدم وجود نشاط ذي مواصفات إجابة `getCorrectAnswerSpec`، استخدم `dadyoom_student_questions` ثم `question_attempts` لمعرفة الإتقان، وإلا أعد صفرًا.
 - اختبارات `tests/security/lesson-mastery-completion-only.test.ts` إلزامية مع تعديلات `syncLessonMasteryAction`. لا تخلط اجتياز CI مع صحة البيانات التاريخية أو نجاح الموقع الحي، ولا تعدل grants على الإنتاج بغير ترحيل مختبَر.
+
+## اتفاقية حساب الإتقان الموزون — 2026-10-22
+- استخدم `scoreGradedActivityAttempts` من `features/lesson-mastery/services/score-graded-activities.ts` في تدفق إكمال الدروس ومزامنة `lesson_mastery` على السواء؛ لا تستخدم عدد الأنشطة الصحيحة وحده إذا كانت `points` مختلفة.
+- احسب أفضل محاولة لكل نشاط قابل للتصحيح وتقيّد بدرجته القصوى من تعريف النشاط المخزن؛ الأنشطة غير المصححة ليست أساسًا لدرجات التحصيل.
+- شغّل `tests/security/weighted-activity-mastery.test.ts` وCI، واحفظ مسار `dadyoom_student_questions` لمعرفات الأسئلة. نتائج قاعدة البيانات لا تتحول إلى أمان كامل قبل منع الكتابة المباشرة ونجاح الاختبار الحي.

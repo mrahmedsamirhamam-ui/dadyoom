@@ -2,22 +2,18 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { getCorrectAnswerSpec } from "@/lib/lesson-activities/grading";
+import { scoreGradedActivityAttempts } from "@/features/lesson-mastery/services/score-graded-activities";
 
 type QuestionAttemptRow = {
   question_id: string;
   is_correct: boolean;
 };
 
-type ActivityAttemptRow = {
-  activity_id: string;
-  is_correct: boolean;
-  attempt_number: number;
-};
-
 type LessonActivityRow = {
   id: string;
   answer: unknown;
   is_required: boolean;
+  points: number;
 };
 
 function answerRecord(
@@ -56,7 +52,7 @@ export async function syncLessonMasteryAction(
     error: activitiesError,
   } = await supabase
     .from("lesson_activities")
-    .select("id,answer,is_required")
+    .select("id,answer,is_required,points")
     .eq("lesson_id", lessonId)
     .eq("is_published", true);
 
@@ -94,7 +90,7 @@ export async function syncLessonMasteryAction(
       error: activityAttemptsError,
     } = await supabase
       .from("lesson_activity_attempts")
-      .select("activity_id,is_correct,attempt_number")
+      .select("activity_id,earned_points,is_correct,attempt_number")
       .eq("user_id", user.id)
       .in("activity_id", activityIds);
 
@@ -102,52 +98,16 @@ export async function syncLessonMasteryAction(
       throw activityAttemptsError;
     }
 
-    const latestByActivity =
-      new Map<string, ActivityAttemptRow>();
-
-    for (
-      const row of
-      (activityAttemptsData ?? []) as unknown as ActivityAttemptRow[]
-    ) {
-      const previous =
-        latestByActivity.get(row.activity_id);
-
-      if (
-        !previous ||
-        Number(row.attempt_number) >
-          Number(previous.attempt_number)
-      ) {
-        latestByActivity.set(
-          row.activity_id,
-          row
-        );
-      }
-    }
-
-    askedQuestions =
-      gradableActivities.length;
-
-    correctAnswers =
-      gradableActivities.filter(
-        (activity) =>
-          latestByActivity.get(
-            activity.id
-          )?.is_correct === true
-      ).length;
-
-    wrongAnswers =
-      askedQuestions -
-      correctAnswers;
-
-    masteryScore =
-      askedQuestions > 0
-        ? Math.round(
-            (
-              correctAnswers /
-              askedQuestions
-            ) * 100
-          )
-        : 0;
+    // Use exactly the same weighted, best-attempt scoring as the
+    // canonical completion action. Completion-only tasks are excluded.
+    const result = scoreGradedActivityAttempts(
+      gradableActivities,
+      activityAttemptsData ?? []
+    );
+    askedQuestions = result.askedQuestions;
+    correctAnswers = result.correctAnswers;
+    wrongAnswers = result.wrongAnswers;
+    masteryScore = result.score;
   } else {
     const {
       data: questions,
