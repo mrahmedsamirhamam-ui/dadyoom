@@ -453,7 +453,8 @@ export async function completeLessonAction(
       data: questions,
       error: questionsError,
     } = await supabase
-      .from("questions")
+      // Read only the published student-safe question projection.
+      .from("dadyoom_student_questions")
       .select("id")
       .eq(
         "lesson_id",
