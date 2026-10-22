@@ -1,5 +1,9 @@
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import {
+  publicLessonQuestions,
+  type StudentQuestion,
+} from "@/features/questions/services/public-lesson-questions";
 
 type NeighborLesson = {
   id: string;
@@ -7,19 +11,7 @@ type NeighborLesson = {
   lesson_number: number;
 };
 
-export type BundledLessonQuestion = {
-  id: string;
-  lesson_id: string;
-  question_order: number;
-  question: string;
-  question_type: string;
-  options: unknown;
-  correct_answer: string;
-  explanation: string | null;
-  points: number;
-  created_at: string;
-  updated_at: string;
-};
+export type BundledLessonQuestion = StudentQuestion;
 
 export type BundledLessonActivity = {
   id: string;
@@ -148,6 +140,10 @@ export async function getLessonPageBundle(
         "activityAttempts"
       >;
 
+    // The database RPC currently returns raw stored question rows.
+    // Strip keys and solutions BEFORE any student-facing page receives them.
+    const safeQuestions = publicLessonQuestions(bundle.questions);
+
     if (
       !bundle.student ||
       !Array.isArray(bundle.activities) ||
@@ -155,6 +151,7 @@ export async function getLessonPageBundle(
     ) {
       return {
         ...bundle,
+        questions: safeQuestions,
         activityAttempts: [],
       };
     }
@@ -188,6 +185,7 @@ export async function getLessonPageBundle(
 
     return {
       ...bundle,
+      questions: safeQuestions,
 
       activityAttempts:
         (
@@ -696,8 +694,7 @@ export async function getLessonPageBundle(
     } as unknown as BundledLesson,
 
     questions:
-      questions as unknown as
-        BundledLessonQuestion[],
+      publicLessonQuestions(questions),
 
     activities:
       activities as unknown as
