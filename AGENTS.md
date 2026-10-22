@@ -80,3 +80,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - لا تكتب `question_attempts.is_correct` في React أو تقبل قيمته أو `user_id` من العميل؛ استخدم `POST /api/questions/answer` ثم `gradeStoredMcq` بعد `auth.getUser` وقراءة السؤال المنشور من DB.
 - `SUPABASE_SERVICE_ROLE_KEY` سر للخادم فقط؛ تأكد من توافره على بيئة النشر قبل نشر تجربة الأسئلة الجديدة. لا تعرضه ولا تسجله. لا تخلط بين نجاح CI وبين وجود إعدادات النشر.
 - `tests/security/server-graded-mcq.test.ts` + CI جزء إلزامي من فحوص السؤال. بقاء صلاحيات الكتابة المباشرة في جداول المحاولات والتقدم يعني أن نزاهة الإتقان **لم تكتمل بعد**. لا تنفذ ترحيل REVOKE مبكرًا دون إثبات كل مسارات الكتابة والحساب التجريبي.
+
+## منع كشف مفاتيح الاختيار من متعدد — 2026-10-22
+- ممنوع إعادة `correctAnswer` و`explanation` للإجابة الخاطئة من `/api/questions/answer`. استخدم `feedbackForStudent`؛ اختبر `null` عند الخطأ وظهور الشرح عند الصواب.
+- فحص `scripts/security-assessment-permissions-audit.sql` يظهر **P0 مفتوحًا:** دور `anon` يستطيع قراءة `questions.correct_answer`، ودور `authenticated` يستطيع تعديل بعض المحاولات ودرجات الإتقان. امتيازات قاعدة البيانات هي الحاجز الحقيقي لا مجرد إخفاء الحل في واجهة الطالب.
+- لا تطبق `REVOKE` على الإنتاج قبل تحويل واستيثاق جميع مستهلكي الأسئلة والدرجات ومسارات المعلم وبناء وإطلاق واختبار E2E وخطة rollback.
