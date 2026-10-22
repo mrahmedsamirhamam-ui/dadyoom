@@ -93,3 +93,9 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - `getWeakQuestions` لعرض الطالب يستعمل `dadyoom_student_questions` فقط، وليس `public.questions`. لا تكشف `question.explanation` في مراجعة الأخطاء.
 - اختبارا `server-graded-mcq.test.ts` و`student-question-payload.test.ts` إلزاميان. لا تُعلن حل قاعدة البيانات قبل إصلاح جدول `questions` وRPC وحفظ المحاولات.
 - Workers Builds الأحمر حالة نشر مستقلة Issue #46؛ اختبار Next.js الناجح ليس نشرًا حيًا.
+
+## تفويض آمن لتصحيح السؤال — 2026-10-22
+
+- قبل جلب مفتاح `questions.correct_answer` بالخادم، تأكد من إتاحة السؤال ضمن `dadyoom_student_questions` بدور المستخدم، وتحقق من نشر الدرس. لا ترفع صلاحيات القراءة قبل التحقق من رؤية المتعلم للسؤال.
+- اجعل `getLessonQuestions` يستخدم الواجهة الآمنة وأعمدة العرض فقط؛ لا تنقل `select("*")` أو المفاتيح إلى التطبيق. اختبارات `server-graded-mcq.test.ts` جزء من بوابة الدمج.
+- حماية عرض السؤال لا تلغي منفذ `questions` القديم أو RPC؛ لا تغيّر الامتيازات إلا مع استكمال الجرد والاختبار الحي وخطة rollback.
