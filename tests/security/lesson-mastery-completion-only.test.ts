@@ -41,7 +41,7 @@ describe("mastery evidence must be graded, not just completed", () => {
       "utf8"
     );
     expect(code).toContain("requireAssessedItems(questionIds.length)");
-    expect(code).toContain("requirePositiveAssessmentPoints(totalPossible)");
+    expect(code).toContain("requirePositiveAssessmentPoints(graded.totalPossible)");
     expect(code).toContain("requiredCompletionActivities.length");
     expect(code).toContain("REQUIRED_MASTERY_SCORE = 90");
   });
