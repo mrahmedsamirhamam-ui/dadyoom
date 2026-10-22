@@ -505,12 +505,6 @@ export default async function LessonPage({
                       userId={user?.id ?? null}
                       question={item.question}
                       choices={item.options}
-                      correctAnswer={
-                        item.correct_answer
-                      }
-                      explanation={
-                        item.explanation
-                      }
                     />
                   </div>
                 );
