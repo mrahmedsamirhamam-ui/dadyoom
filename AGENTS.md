@@ -80,3 +80,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - لا تكتب `question_attempts.is_correct` في React أو تقبل قيمته أو `user_id` من العميل؛ استخدم `POST /api/questions/answer` ثم `gradeStoredMcq` بعد `auth.getUser` وقراءة السؤال المنشور من DB.
 - `SUPABASE_SERVICE_ROLE_KEY` سر للخادم فقط؛ تأكد من توافره على بيئة النشر قبل نشر تجربة الأسئلة الجديدة. لا تعرضه ولا تسجله. لا تخلط بين نجاح CI وبين وجود إعدادات النشر.
 - `tests/security/server-graded-mcq.test.ts` + CI جزء إلزامي من فحوص السؤال. بقاء صلاحيات الكتابة المباشرة في جداول المحاولات والتقدم يعني أن نزاهة الإتقان **لم تكتمل بعد**. لا تنفذ ترحيل REVOKE مبكرًا دون إثبات كل مسارات الكتابة والحساب التجريبي.
+
+## سياسة فصل المشاركة عن الإتقان (2026-10-22)
+- `lesson_activity_attempts` لنشاط بلا `getCorrectAnswerSpec` قد يثبت إتمام خطوة؛ **لا تشتق منه `lesson_mastery.mastery_score` إطلاقًا**.
+- إذا لم توجد أنشطة ذات جواب مصحح، فابحث عن `questions` و`question_attempts`، وإلا يُحفظ `asked_questions=0` و`mastery_score=0`. تبقى أنشطة الإتمام المطلوبة شرطًا مستقلًا داخل `completeLessonAction`.
+- احفظ الاختبار `tests/security/lesson-mastery-completion-only.test.ts` في CI، ولا تعتبر نجاح الاختبار حماية من كتابة الدرجات مباشرة عبر Supabase أو إثباتًا لاختبار حسابات الطالب الحية.
