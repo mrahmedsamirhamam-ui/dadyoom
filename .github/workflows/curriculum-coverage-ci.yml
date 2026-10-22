@@ -10,6 +10,11 @@ on:
       - 'app/lessons/**/page.tsx'
       - 'features/questions/services/grade-stored-mcq.ts'
       - 'tests/security/server-graded-mcq.test.ts'
+      - 'tests/security/student-question-payload.test.ts'
+      - 'features/questions/services/public-lesson-questions.ts'
+      - 'features/lessons/queries/getLessonPageBundle.ts'
+      - 'features/adaptive-learning/queries/getWeakQuestions.ts'
+      - 'features/adaptive-learning/components/WeakQuestionsReview.tsx'
       - 'app/lessons/**/CompleteLessonButton.tsx'
       - 'features/student-progress/actions/completeLesson.ts'
       - 'tests/security/lesson-completion-entrypoints.test.ts'
@@ -57,6 +62,8 @@ jobs:
         run: npx vitest run tests/security/server-graded-mcq.test.ts
       - name: Verify student-safe question view migration and quiz cutover
         run: npx vitest run tests/security/safe-questions-view.test.ts
+      - name: Verify lesson question keys do not reach student payloads
+        run: npx vitest run tests/security/student-question-payload.test.ts
       - name: TypeScript
         run: npx tsc --noEmit
       - name: ESLint
