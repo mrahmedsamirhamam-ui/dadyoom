@@ -37,8 +37,12 @@ export async function POST(request: Request) {
       );
     }
 
-    // Read using the caller's RLS, not an admin client.
-    const { data: question, error: questionError } = await supabase
+    // Server-only access to the answer key: this continues to work after
+    // revoking browser SELECT privileges for questions.correct_answer.
+    // The authenticated caller MUST still pass the published lesson's RLS
+    // check below before any feedback or attempt is persisted.
+    const admin = createAdminClient();
+    const { data: question, error: questionError } = await admin
       .from("questions")
       .select("id,lesson_id,question_type,options,correct_answer,explanation")
       .eq("id", questionId)
@@ -85,7 +89,8 @@ export async function POST(request: Request) {
     // Privileged write happens ONLY after user verification and the server's
     // independently fetched, validated answer key. No client-supplied grade.
     // This existing server-only helper requires SUPABASE_SERVICE_ROLE_KEY.
-    const admin = createAdminClient();
+    // Reuse the same isolated privileged client after the caller's lesson
+    // visibility has been checked with the RLS-bound client above.
     const { error: saveError } = await admin
       .from("question_attempts")
       .upsert(

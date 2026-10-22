@@ -10,6 +10,9 @@ on:
       - 'app/lessons/**/page.tsx'
       - 'features/questions/services/grade-stored-mcq.ts'
       - 'tests/security/server-graded-mcq.test.ts'
+      - 'tests/security/server-only-answer-key-read.test.ts'
+      - 'tests/security/public-lesson-bundle-rpc.test.ts'
+      - 'supabase/migrations/20261022195032_sanitize_public_get_lesson_page_bundle_answer_keys.sql'
       - 'tests/security/student-question-payload.test.ts'
       - 'features/questions/services/public-lesson-questions.ts'
       - 'features/lessons/queries/getLessonPageBundle.ts'
@@ -17,6 +20,10 @@ on:
       - 'features/adaptive-learning/components/WeakQuestionsReview.tsx'
       - 'app/lessons/**/CompleteLessonButton.tsx'
       - 'features/student-progress/actions/completeLesson.ts'
+      - 'features/lesson-mastery/actions/syncLessonMastery.ts'
+      - 'tests/security/lesson-mastery-completion-only.test.ts'
+      - 'features/lesson-mastery/services/score-graded-activities.ts'
+      - 'tests/security/weighted-activity-mastery.test.ts'
       - 'tests/security/lesson-completion-entrypoints.test.ts'
       - 'tests/security/lesson-mastery-gates.test.ts'
       - 'features/student-progress/services/completion-gates.ts'
@@ -64,6 +71,14 @@ jobs:
         run: npx vitest run tests/security/safe-questions-view.test.ts
       - name: Verify lesson question keys do not reach student payloads
         run: npx vitest run tests/security/student-question-payload.test.ts
+      - name: Verify that participation alone never grants academic mastery
+        run: npx vitest run tests/security/lesson-mastery-completion-only.test.ts
+      - name: Verify weighted lesson mastery equals completion scoring
+        run: npx vitest run tests/security/weighted-activity-mastery.test.ts
+      - name: Verify private answer-key lookup
+        run: npx vitest run tests/security/server-only-answer-key-read.test.ts
+      - name: Verify public lesson bundle excludes answer keys
+        run: npx vitest run tests/security/public-lesson-bundle-rpc.test.ts
       - name: TypeScript
         run: npx tsc --noEmit
       - name: ESLint
