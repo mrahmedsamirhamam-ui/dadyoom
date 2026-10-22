@@ -27,7 +27,7 @@ describe("mastery evidence must be graded, not just completed", () => {
     );
     expect(code).toContain("if (gradableActivities.length > 0)");
     expect(code).toContain("gradableActivities.map(");
-    expect(code).toContain('.from("questions")');
+    expect(code).toContain('.from("dadyoom_student_questions")');
     expect(code).toContain('.from("question_attempts")');
     expect(code).not.toContain("requiredCompletionActivities");
     expect(code).not.toContain("latestByActivity.has(");
