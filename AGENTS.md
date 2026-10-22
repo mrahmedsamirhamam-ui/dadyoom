@@ -93,3 +93,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - `getWeakQuestions` لعرض الطالب يستعمل `dadyoom_student_questions` فقط، وليس `public.questions`. لا تكشف `question.explanation` في مراجعة الأخطاء.
 - اختبارا `server-graded-mcq.test.ts` و`student-question-payload.test.ts` إلزاميان. لا تُعلن حل قاعدة البيانات قبل إصلاح جدول `questions` وRPC وحفظ المحاولات.
 - Workers Builds الأحمر حالة نشر مستقلة Issue #46؛ اختبار Next.js الناجح ليس نشرًا حيًا.
+
+## قاعدة أمن الإتقان — 2026-10-22
+- `requiredCompletionActivities` نشاط حضور/مشاركة واجب لكنه **ليس** إجابة صحيحة في `lesson_mastery`. يمنع احتساب نسبة 100% منه عند غياب تقويم قابل للتصحيح.
+- عند عدم وجود نشاط ذي مواصفات إجابة `getCorrectAnswerSpec`، استخدم `dadyoom_student_questions` ثم `question_attempts` لمعرفة الإتقان، وإلا أعد صفرًا.
+- اختبارات `tests/security/lesson-mastery-completion-only.test.ts` إلزامية مع تعديلات `syncLessonMasteryAction`. لا تخلط اجتياز CI مع صحة البيانات التاريخية أو نجاح الموقع الحي، ولا تعدل grants على الإنتاج بغير ترحيل مختبَر.
