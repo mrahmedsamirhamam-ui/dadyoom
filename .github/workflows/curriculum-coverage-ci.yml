@@ -10,6 +10,7 @@ on:
       - 'app/lessons/**/page.tsx'
       - 'features/questions/services/grade-stored-mcq.ts'
       - 'tests/security/server-graded-mcq.test.ts'
+      - 'tests/security/server-only-answer-key-read.test.ts'
       - 'tests/security/student-question-payload.test.ts'
       - 'features/questions/services/public-lesson-questions.ts'
       - 'features/lessons/queries/getLessonPageBundle.ts'
@@ -72,6 +73,8 @@ jobs:
         run: npx vitest run tests/security/lesson-mastery-completion-only.test.ts
       - name: Verify weighted lesson mastery equals completion scoring
         run: npx vitest run tests/security/weighted-activity-mastery.test.ts
+      - name: Verify private answer-key lookup
+        run: npx vitest run tests/security/server-only-answer-key-read.test.ts
       - name: TypeScript
         run: npx tsc --noEmit
       - name: ESLint
