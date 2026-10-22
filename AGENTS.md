@@ -80,3 +80,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - لا تكتب `question_attempts.is_correct` في React أو تقبل قيمته أو `user_id` من العميل؛ استخدم `POST /api/questions/answer` ثم `gradeStoredMcq` بعد `auth.getUser` وقراءة السؤال المنشور من DB.
 - `SUPABASE_SERVICE_ROLE_KEY` سر للخادم فقط؛ تأكد من توافره على بيئة النشر قبل نشر تجربة الأسئلة الجديدة. لا تعرضه ولا تسجله. لا تخلط بين نجاح CI وبين وجود إعدادات النشر.
 - `tests/security/server-graded-mcq.test.ts` + CI جزء إلزامي من فحوص السؤال. بقاء صلاحيات الكتابة المباشرة في جداول المحاولات والتقدم يعني أن نزاهة الإتقان **لم تكتمل بعد**. لا تنفذ ترحيل REVOKE مبكرًا دون إثبات كل مسارات الكتابة والحساب التجريبي.
+
+## سؤال الطالب: قائمة سماح فقط (2026-10-22)
+- لا تُمرر `get_lesson_page_bundle.questions` خامًا إلى RSC أو مكوّنات الطالب. مرره عبر `publicLessonQuestions` في مسار الدرس المنشور ومعاينة المسودة.
+- لا ترسل `correct_answer` ولا `explanation` إلى `WeakQuestionsReview` قبل إعادة المحاولة. لا تغيّر اختبار `student-question-payload.test.ts` بهدف تمرير التسريب.
+- **المنع الحقيقي يتطلب تعديل صلاحيات قاعدة البيانات وRPC العامة** بعد اختبار كامل للبدائل. حماية المكوّن لا تمنع الطلبات المباشرة لـSupabase. لا تغيّر المنح على الإنتاج دون إثبات E2E وخطة استرجاع.
