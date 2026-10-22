@@ -115,3 +115,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - الدالة `public.get_lesson_page_bundle(uuid)` تستخدم الواجهة الآمنة `dadyoom_student_questions` في استعلام الأسئلة؛ لا تُعد إدخال `correct_answer` أو `explanation` أو حقول حساسة ضمن JSON الذي تُرجعه.
 - الهجرة `20261022195032` مطبقة فعليًا في Supabase الأساسي ومُسجلة في المستودع؛ تجنب إعادة تطبيقها يدويًا مرتين. شغّل `tests/security/public-lesson-bundle-rpc.test.ts` مع CI عند تعديل RPC.
 - تبقى صلاحيات القراءة المباشرة لـ`public.questions` ومحاولات الدرجات P0؛ لا تُعدّ سلامة RPC إثباتًا لسلامة القاعدة الشاملة أو نجاح نشر Cloudflare. لا تغييرات مدفوعة أو مساس بمشروع المدارس المستقل.
+
+### 2026-10-22 — authorize student question before private grading
+- Verified on current main: the endpoint was reading the private answer key before RLS student visibility, and `getLessonQuestions` still used `questions.select("*")`. On the fresh security branch, question visibility and published lesson checks run with the learner session before any admin client is created. Privileged grading is restricted by matching question ID and lesson ID.
+- Public practice listing now selects only display fields from `dadyoom_student_questions`; source regression tests and CI path triggers cover both readers.
+- Production grants on `questions` and score tables remain unchanged pending full client inventory, signed-in student/teacher E2E, Workers Preview and rollback. This code hardening alone does not increase overall readiness from the provisional 46%.
