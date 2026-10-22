@@ -98,3 +98,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - `requiredCompletionActivities` نشاط حضور/مشاركة واجب لكنه **ليس** إجابة صحيحة في `lesson_mastery`. يمنع احتساب نسبة 100% منه عند غياب تقويم قابل للتصحيح.
 - عند عدم وجود نشاط ذي مواصفات إجابة `getCorrectAnswerSpec`، استخدم `dadyoom_student_questions` ثم `question_attempts` لمعرفة الإتقان، وإلا أعد صفرًا.
 - اختبارات `tests/security/lesson-mastery-completion-only.test.ts` إلزامية مع تعديلات `syncLessonMasteryAction`. لا تخلط اجتياز CI مع صحة البيانات التاريخية أو نجاح الموقع الحي، ولا تعدل grants على الإنتاج بغير ترحيل مختبَر.
+
+## ترتيب فحص الوصول قبل التصحيح الإداري — 2026-10-22
+
+- يجب أن يرى الطالب السؤال في `dadyoom_student_questions` تحت RLS قبل أن يقرأ مسار `/api/questions/answer` مفتاح الإجابة بواسطة `createAdminClient`. تحقق أن `id` و`lesson_id` يطابقان بين الاستعلامين، ولا تسمح للمتصفح بتمرير الدرجة أو هوية طالب بديلة.
+- اقرأ `getLessonQuestions` من الواجهة الآمنة بحقول العرض فقط. اختبارات `server-graded-mcq.test.ts` إلزامية. تظل كتابة الجداول الأصلية متاحة حتى ترحيل صلاحيات متدرج ومختبر؛ لا تخلط بين أمان هذا المسار وأمان REST/RPC ككل.
