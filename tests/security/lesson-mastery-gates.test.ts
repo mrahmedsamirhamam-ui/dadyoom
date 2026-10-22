@@ -40,7 +40,7 @@ describe("lesson completion evidence gates", () => {
       resolve(process.cwd(), "features/student-progress/actions/completeLesson.ts"),
       "utf8"
     );
-    expect(code).toContain("requirePositiveAssessmentPoints(totalPossible)");
+    expect(code).toContain("requirePositiveAssessmentPoints(graded.totalPossible)");
     expect(code).toContain("requireAssessedItems(questionIds.length)");
     expect(code).toMatch(/REQUIRED_MASTERY_SCORE\s*=\s*90/);
     expect(code).toContain("score < REQUIRED_MASTERY_SCORE");
