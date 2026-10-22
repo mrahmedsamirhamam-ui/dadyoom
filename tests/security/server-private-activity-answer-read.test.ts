@@ -42,7 +42,7 @@ describe("lesson activity answer key read is server-private", () => {
     const projection = sql.slice(sql.lastIndexOf("jsonb_build_object(", source), source);
     expect(source).toBeGreaterThan(-1);
     expect(projection).toContain("'content', a.content");
-    expect(projection).not.toMatch(/a\\.answer\\b/);
+    expect(projection).not.toMatch(/a\.answer\b/);
     expect(projection).not.toMatch(/['"]answer['"]/);
   });
 
