@@ -10,6 +10,8 @@ on:
       - 'app/lessons/**/page.tsx'
       - 'features/questions/services/grade-stored-mcq.ts'
       - 'tests/security/server-graded-mcq.test.ts'
+      - 'features/lesson-mastery/actions/syncLessonMastery.ts'
+      - 'tests/security/lesson-mastery-completion-only.test.ts'
       - 'app/lessons/**/CompleteLessonButton.tsx'
       - 'features/student-progress/actions/completeLesson.ts'
       - 'tests/security/lesson-completion-entrypoints.test.ts'
@@ -51,6 +53,8 @@ jobs:
         run: npx vitest run tests/security/lesson-completion-entrypoints.test.ts tests/security/lesson-mastery-gates.test.ts
       - name: Verify authoritative lesson question grading
         run: npx vitest run tests/security/server-graded-mcq.test.ts
+      - name: Verify completion-only does not certify mastery
+        run: npx vitest run tests/security/lesson-mastery-completion-only.test.ts
       - name: TypeScript
         run: npx tsc --noEmit
       - name: ESLint
