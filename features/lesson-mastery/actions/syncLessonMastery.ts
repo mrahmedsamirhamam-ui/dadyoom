@@ -75,26 +75,17 @@ export async function syncLessonMasteryAction(
         ) !== null
     );
 
-  const requiredCompletionActivities =
-    activities.filter(
-      (activity) =>
-        activity.is_required === true &&
-        getCorrectAnswerSpec(
-          answerRecord(activity.answer)
-        ) === null
-    );
 
   let masteryScore = 0;
   let correctAnswers = 0;
   let wrongAnswers = 0;
   let askedQuestions = 0;
 
-  if (
-    gradableActivities.length > 0 ||
-    requiredCompletionActivities.length > 0
-  ) {
+  // Completion-only activities prove participation, not answer correctness.
+  // If none are gradable, use the saved assessment questions instead.
+  if (gradableActivities.length > 0) {
     const activityIds =
-      activities.map(
+      gradableActivities.map(
         (activity) => activity.id
       );
 
@@ -133,57 +124,30 @@ export async function syncLessonMasteryAction(
       }
     }
 
-    if (gradableActivities.length > 0) {
-      askedQuestions =
-        gradableActivities.length;
+    askedQuestions =
+      gradableActivities.length;
 
-      correctAnswers =
-        gradableActivities.filter(
-          (activity) =>
-            latestByActivity.get(
-              activity.id
-            )?.is_correct === true
-        ).length;
+    correctAnswers =
+      gradableActivities.filter(
+        (activity) =>
+          latestByActivity.get(
+            activity.id
+          )?.is_correct === true
+      ).length;
 
-      wrongAnswers =
-        askedQuestions -
-        correctAnswers;
+    wrongAnswers =
+      askedQuestions -
+      correctAnswers;
 
-      masteryScore =
-        askedQuestions > 0
-          ? Math.round(
-              (
-                correctAnswers /
-                askedQuestions
-              ) * 100
-            )
-          : 0;
-    } else {
-      askedQuestions =
-        requiredCompletionActivities.length;
-
-      correctAnswers =
-        requiredCompletionActivities.filter(
-          (activity) =>
-            latestByActivity.has(
-              activity.id
-            )
-        ).length;
-
-      wrongAnswers =
-        askedQuestions -
-        correctAnswers;
-
-      masteryScore =
-        askedQuestions > 0
-          ? Math.round(
-              (
-                correctAnswers /
-                askedQuestions
-              ) * 100
-            )
-          : 0;
-    }
+    masteryScore =
+      askedQuestions > 0
+        ? Math.round(
+            (
+              correctAnswers /
+              askedQuestions
+            ) * 100
+          )
+        : 0;
   } else {
     const {
       data: questions,
