@@ -11,6 +11,8 @@ on:
       - 'features/questions/services/grade-stored-mcq.ts'
       - 'tests/security/server-graded-mcq.test.ts'
       - 'tests/security/server-only-answer-key-read.test.ts'
+      - 'tests/security/public-lesson-bundle-rpc.test.ts'
+      - 'supabase/migrations/20261022195032_sanitize_public_get_lesson_page_bundle_answer_keys.sql'
       - 'tests/security/student-question-payload.test.ts'
       - 'features/questions/services/public-lesson-questions.ts'
       - 'features/lessons/queries/getLessonPageBundle.ts'
@@ -75,6 +77,8 @@ jobs:
         run: npx vitest run tests/security/weighted-activity-mastery.test.ts
       - name: Verify private answer-key lookup
         run: npx vitest run tests/security/server-only-answer-key-read.test.ts
+      - name: Verify public lesson bundle excludes answer keys
+        run: npx vitest run tests/security/public-lesson-bundle-rpc.test.ts
       - name: TypeScript
         run: npx tsc --noEmit
       - name: ESLint

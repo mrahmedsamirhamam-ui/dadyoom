@@ -109,3 +109,9 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - استخدم `createAdminClient()` في الخادم فقط لقراءة مفاتيح `questions.correct_answer`؛ لا تعتمد على SELECT بمستخدم الطالب كي لا تكسر التصحيح عندما تُسحب المنح.
 - لا تُنشئ العميل الإداري أو تقرأ المفتاح قبل نجاح `auth.getUser` والتحقق من المدخل، ولا تحفظ المحاولة قبل التأكد من إتاحة الدرس عبر عميل RLS والتحقق من تصحيح الإجابة.
 - يجب اجتياز `tests/security/server-only-answer-key-read.test.ts` قبل الدمج. **لم تُسحب منح الجدول أو RPC بعد**؛ الحماية الخارجية لا تزال P0.
+
+## أمن RPC حزمة الدرس — 2026-10-22
+
+- الدالة `public.get_lesson_page_bundle(uuid)` تستخدم الواجهة الآمنة `dadyoom_student_questions` في استعلام الأسئلة؛ لا تُعد إدخال `correct_answer` أو `explanation` أو حقول حساسة ضمن JSON الذي تُرجعه.
+- الهجرة `20261022195032` مطبقة فعليًا في Supabase الأساسي ومُسجلة في المستودع؛ تجنب إعادة تطبيقها يدويًا مرتين. شغّل `tests/security/public-lesson-bundle-rpc.test.ts` مع CI عند تعديل RPC.
+- تبقى صلاحيات القراءة المباشرة لـ`public.questions` ومحاولات الدرجات P0؛ لا تُعدّ سلامة RPC إثباتًا لسلامة القاعدة الشاملة أو نجاح نشر Cloudflare. لا تغييرات مدفوعة أو مساس بمشروع المدارس المستقل.
