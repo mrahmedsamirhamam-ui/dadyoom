@@ -87,3 +87,9 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - الهجرتان `20261022150911` و`20261022151106` **مطبقتان مسبقًا** في مشروع Supabase الأساسي ومُثبّتتان بالمستودع. لا تطبق أي واحدة مرتين يدويًا؛ اجعل إدارة الإصدارات متسقة مع سجل `supabase_migrations`.
 - لا تساوِ هذه الواجهة بانعدام التسريب من `questions` الأصلي أو من `get_lesson_page_bundle`، ولا تسحب أذون الجدول القديم حتى تفحص كل مستهلك وتنجح اختبارات الطالب والمعلم وخطة التراجع.
 - تقدير الجاهزية الشاملة حوالى **46%** الآن تقديري وليس قياسًا علميًا؛ نجاح اختبارات GitHub لا يثبت سلامة نشر Cloudflare أو رضا المعلمين.
+
+## 2026-10-22 — حراسة واجهات أسئلة الطالب
+- لا تُرجع `correctAnswer` أو `explanation` للإجابة غير الصحيحة، ولا تمرر صفوف RPC `get_lesson_page_bundle` الخام إلى RSC؛ طبّق `feedbackForStudent` و`publicLessonQuestions` مع تعقيم عناصر `options`.
+- `getWeakQuestions` لعرض الطالب يستعمل `dadyoom_student_questions` فقط، وليس `public.questions`. لا تكشف `question.explanation` في مراجعة الأخطاء.
+- اختبارا `server-graded-mcq.test.ts` و`student-question-payload.test.ts` إلزاميان. لا تُعلن حل قاعدة البيانات قبل إصلاح جدول `questions` وRPC وحفظ المحاولات.
+- Workers Builds الأحمر حالة نشر مستقلة Issue #46؛ اختبار Next.js الناجح ليس نشرًا حيًا.

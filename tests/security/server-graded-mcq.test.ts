@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
-import { gradeStoredMcq } from "../../features/questions/services/grade-stored-mcq";
+import { feedbackForStudent, gradeStoredMcq } from "../../features/questions/services/grade-stored-mcq";
 
 const options = [
   { id: "a", text: "اختيار أ" },
@@ -61,6 +61,40 @@ describe("authoritative stored question grading", () => {
       .toEqual({ valid: false, reason: "invalid-options" });
     expect(gradeStoredMcq({ ...question, options: [{ text: "missing id" }, options[0]] }, "a"))
       .toEqual({ valid: false, reason: "invalid-options" });
+  });
+
+  it("never reveals the correct key or explanation for an incorrect response", () => {
+    const grade = gradeStoredMcq(question, "a");
+    expect(grade.valid).toBe(true);
+    if (!grade.valid) throw new Error("Expected valid grading result");
+
+    expect(feedbackForStudent(grade, "الجواب الصحيح هو ب")).toEqual({
+      isCorrect: false,
+      correctAnswer: null,
+      explanation: null,
+    });
+  });
+
+  it("returns a helpful explanation once the answer is correct", () => {
+    const grade = gradeStoredMcq(question, "b");
+    expect(grade.valid).toBe(true);
+    if (!grade.valid) throw new Error("Expected valid grading result");
+
+    expect(feedbackForStudent(grade, "الجواب الصحيح هو ب")).toEqual({
+      isCorrect: true,
+      correctAnswer: "b",
+      explanation: "الجواب الصحيح هو ب",
+    });
+  });
+
+  it("route uses sanitized feedback rather than sending a raw answer key", () => {
+    const route = readFileSync(
+      resolve(process.cwd(), "app/api/questions/answer/route.ts"),
+      "utf8"
+    );
+    expect(route).toContain("feedbackForStudent(");
+    expect(route).not.toMatch(/correctAnswer:\s*grade\.correctAnswer/);
+    expect(route).not.toMatch(/explanation:\s*question\.explanation/);
   });
 
   it("keeps auth, score, ownership and saving on the server", () => {
