@@ -12,6 +12,30 @@ export type GradeResult =
   | { valid: true; isCorrect: boolean; correctAnswer: string }
   | { valid: false; reason: "unsupported" | "invalid-options" | "invalid-selection" };
 
+/**
+ * Correct-answer feedback is earned after a correct response, not
+ * disclosed in the payload for an incorrect selection.
+ * Note: the database question-table SELECT policy must still be hardened.
+ */
+export function feedbackForStudent(
+  grade: Extract<GradeResult, { valid: true }>,
+  explanation: string | null
+): {
+  isCorrect: boolean;
+  correctAnswer: string | null;
+  explanation: string | null;
+} {
+  if (!grade.isCorrect) {
+    return { isCorrect: false, correctAnswer: null, explanation: null };
+  }
+
+  return {
+    isCorrect: true,
+    correctAnswer: grade.correctAnswer,
+    explanation,
+  };
+}
+
 export function gradeStoredMcq(
   record: StoredMcq,
   selectedAnswer: unknown
