@@ -85,7 +85,7 @@ export async function syncLessonMasteryAction(
   // If none are gradable, use the saved assessment questions instead.
   if (gradableActivities.length > 0) {
     const activityIds =
-      activities.map(
+      gradableActivities.map(
         (activity) => activity.id
       );
 
@@ -124,32 +124,30 @@ export async function syncLessonMasteryAction(
       }
     }
 
-    if (gradableActivities.length > 0) {
-      askedQuestions =
-        gradableActivities.length;
+    askedQuestions =
+      gradableActivities.length;
 
-      correctAnswers =
-        gradableActivities.filter(
-          (activity) =>
-            latestByActivity.get(
-              activity.id
-            )?.is_correct === true
-        ).length;
+    correctAnswers =
+      gradableActivities.filter(
+        (activity) =>
+          latestByActivity.get(
+            activity.id
+          )?.is_correct === true
+      ).length;
 
-      wrongAnswers =
-        askedQuestions -
-        correctAnswers;
+    wrongAnswers =
+      askedQuestions -
+      correctAnswers;
 
-      masteryScore =
-        askedQuestions > 0
-          ? Math.round(
-              (
-                correctAnswers /
-                askedQuestions
-              ) * 100
-            )
-          : 0;
-    }
+    masteryScore =
+      askedQuestions > 0
+        ? Math.round(
+            (
+              correctAnswers /
+              askedQuestions
+            ) * 100
+          )
+        : 0;
   } else {
     const {
       data: questions,
