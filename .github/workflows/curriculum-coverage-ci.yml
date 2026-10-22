@@ -17,6 +17,10 @@ on:
       - 'features/student-progress/services/completion-gates.ts'
       - 'scripts/curriculum-coverage.mjs'
       - 'scripts/curriculum-production-audit.sql'
+      - 'app/quiz/**'
+      - 'tests/security/safe-questions-view.test.ts'
+      - 'supabase/migrations/20261022150911_create_dadyoom_student_safe_questions_view.sql'
+      - 'supabase/migrations/20261022151106_restrict_dadyoom_student_questions_view_to_select_only.sql'
       - 'scripts/verify-curriculum-packs.mjs'
       - 'lib/curriculum-packs/**'
       - 'data/curriculum-packs/**'
@@ -51,6 +55,8 @@ jobs:
         run: npx vitest run tests/security/lesson-completion-entrypoints.test.ts tests/security/lesson-mastery-gates.test.ts
       - name: Verify authoritative lesson question grading
         run: npx vitest run tests/security/server-graded-mcq.test.ts
+      - name: Verify student-safe question view migration and quiz cutover
+        run: npx vitest run tests/security/safe-questions-view.test.ts
       - name: TypeScript
         run: npx tsc --noEmit
       - name: ESLint
