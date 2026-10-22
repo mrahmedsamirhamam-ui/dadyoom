@@ -19,6 +19,8 @@ on:
       - 'features/student-progress/actions/completeLesson.ts'
       - 'features/lesson-mastery/actions/syncLessonMastery.ts'
       - 'tests/security/lesson-mastery-completion-only.test.ts'
+      - 'features/lesson-mastery/services/score-graded-activities.ts'
+      - 'tests/security/weighted-activity-mastery.test.ts'
       - 'tests/security/lesson-completion-entrypoints.test.ts'
       - 'tests/security/lesson-mastery-gates.test.ts'
       - 'features/student-progress/services/completion-gates.ts'
@@ -68,6 +70,8 @@ jobs:
         run: npx vitest run tests/security/student-question-payload.test.ts
       - name: Verify that participation alone never grants academic mastery
         run: npx vitest run tests/security/lesson-mastery-completion-only.test.ts
+      - name: Verify weighted lesson mastery equals completion scoring
+        run: npx vitest run tests/security/weighted-activity-mastery.test.ts
       - name: TypeScript
         run: npx tsc --noEmit
       - name: ESLint
