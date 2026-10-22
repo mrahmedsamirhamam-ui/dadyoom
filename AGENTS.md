@@ -103,3 +103,9 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - استخدم `scoreGradedActivityAttempts` من `features/lesson-mastery/services/score-graded-activities.ts` في تدفق إكمال الدروس ومزامنة `lesson_mastery` على السواء؛ لا تستخدم عدد الأنشطة الصحيحة وحده إذا كانت `points` مختلفة.
 - احسب أفضل محاولة لكل نشاط قابل للتصحيح وتقيّد بدرجته القصوى من تعريف النشاط المخزن؛ الأنشطة غير المصححة ليست أساسًا لدرجات التحصيل.
 - شغّل `tests/security/weighted-activity-mastery.test.ts` وCI، واحفظ مسار `dadyoom_student_questions` لمعرفات الأسئلة. نتائج قاعدة البيانات لا تتحول إلى أمان كامل قبل منع الكتابة المباشرة ونجاح الاختبار الحي.
+
+## شرط تصحيح الأسئلة قبل قفل منح Supabase (2026-10-22)
+
+- استخدم `createAdminClient()` في الخادم فقط لقراءة مفاتيح `questions.correct_answer`؛ لا تعتمد على SELECT بمستخدم الطالب كي لا تكسر التصحيح عندما تُسحب المنح.
+- لا تُنشئ العميل الإداري أو تقرأ المفتاح قبل نجاح `auth.getUser` والتحقق من المدخل، ولا تحفظ المحاولة قبل التأكد من إتاحة الدرس عبر عميل RLS والتحقق من تصحيح الإجابة.
+- يجب اجتياز `tests/security/server-only-answer-key-read.test.ts` قبل الدمج. **لم تُسحب منح الجدول أو RPC بعد**؛ الحماية الخارجية لا تزال P0.
