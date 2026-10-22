@@ -11,7 +11,7 @@ export type StudentQuestion = {
   question_order: number;
   question: string;
   question_type: string;
-  options: unknown;
+  options: { id: string; text: string }[];
   points: number;
 };
 
@@ -41,7 +41,17 @@ export function publicLessonQuestions(input: unknown): StudentQuestion[] {
           : 0,
       question: row.question,
       question_type: row.question_type,
-      options: Array.isArray(row.options) ? row.options : [],
+      // An option may contain grading flags in later schemas.
+      // Never return arbitrary nested fields to student clients.
+      options: Array.isArray(row.options)
+        ? row.options.flatMap((candidate: unknown) => {
+            const option = object(candidate);
+            if (!option ||
+                typeof option.id !== "string" ||
+                typeof option.text !== "string") return [];
+            return [{ id: option.id, text: option.text }];
+          })
+        : [],
       points: typeof row.points === "number" && Number.isFinite(row.points)
         ? row.points : 0,
     });
