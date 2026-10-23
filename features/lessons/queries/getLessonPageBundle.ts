@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { canReadBahrainDraftPreview } from "@/features/lessons/services/bahrain-draft-preview-access";
 import {
   publicLessonQuestions,
   type StudentQuestion,
@@ -202,7 +203,7 @@ export async function getLessonPageBundle(
   // Conditions:
   // - preview environment flag enabled
   // - authenticated user
-  // - user's account country = Bahrain
+  // - explicit verified app_metadata preview entitlement + Bahrain profile
   // - requested lesson belongs to Bahrain
   // - requested lesson status = draft
   //
@@ -239,21 +240,9 @@ export async function getLessonPageBundle(
     throw profileError;
   }
 
-  const accountCountry =
-    String(
-      profile?.country ??
-      user.user_metadata?.country ??
-      ""
-    )
-      .trim()
-      .toUpperCase();
-
-  const isBahrainAccount =
-    accountCountry === "BH" ||
-    accountCountry === "BAHRAIN" ||
-    accountCountry === "البحرين";
-
-  if (!isBahrainAccount) {
+  // Auth user_metadata and profiles.country can be edited by students.
+  // Neither may independently authorize a private unpublished lesson.
+  if (!canReadBahrainDraftPreview(user.app_metadata, profile?.country)) {
     return null;
   }
 
