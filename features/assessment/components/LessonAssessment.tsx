@@ -32,6 +32,7 @@ type AssessmentSession = {
   wrongAnswers: number;
   difficulty: string;
   finished: boolean;
+  pendingAnswer?: boolean;
   score?: number;
 };
 
@@ -236,13 +237,33 @@ export default function LessonAssessment({
           );
         }
 
-        setSession(data.session);
+        let activeSession = data.session;
+        setSession(activeSession);
 
-        if (!data.session.finished) {
+        if (!activeSession.finished && activeSession.pendingAnswer) {
+          // A saved answer is awaiting server-authoritative advancement.
+          // Do not generate another question or trust client-side grades.
+          const resumeResponse = await fetch("/api/ai/assessment/next", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ sessionId: activeSession.id }),
+          });
+          const resumeData = (await resumeResponse.json()) as SessionResponse;
+          if (!resumeResponse.ok || !resumeData.success || !resumeData.session) {
+            throw new Error(resumeData.error || "تعذر استئناف الاختبار بأمان.");
+          }
+          activeSession = resumeData.session;
+          setSession(activeSession);
+          if (resumeData.analytics) setAnalytics(resumeData.analytics);
+        }
+
+        if (!activeSession.finished) {
           await generateAssessment(
-            data.session.id,
-            data.session.difficulty
+            activeSession.id,
+            activeSession.difficulty
           );
+        } else {
+          setIsLoading(false);
         }
       } catch (cause) {
         setError(
