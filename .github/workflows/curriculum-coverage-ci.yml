@@ -333,6 +333,9 @@ jobs:
           set -euo pipefail
           test -n "$PG_CONTAINER_ID"
           docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_receipts
+          # Supabase defines service_role; disposable vanilla PG does not.
+          # Only synthetic test role, never a production credential.
+          docker exec "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_receipts -c "CREATE ROLE service_role NOLOGIN BYPASSRLS"
           if error_text=$( {
               echo "SET dadyoom.receipt_rehearsal = 'enabled';"
               cat scripts/security/proposed-assessment-completion-receipts.sql
