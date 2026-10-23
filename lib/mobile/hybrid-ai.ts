@@ -2,6 +2,7 @@
 
 import { Capacitor } from "@capacitor/core";
 import { ASSISTANT_MODE_GUIDANCE, normalizeAssistantMode } from "@/lib/ai/assistant-modes";
+import { hasBoundLesson, mayUseLocalAssistant } from "@/lib/mobile/assistant-fallback";
 
 import { askOfflineAI } from "@/lib/mobile/offline-ai";
 
@@ -27,20 +28,6 @@ type CloudReply = {
   reply?: string;
   error?: string;
 };
-
-const FALLBACK_STATUSES = new Set([
-  0,
-  401,
-  403,
-  408,
-  409,
-  425,
-  429,
-  500,
-  502,
-  503,
-  504,
-]);
 
 function localPrompt(
   message: string,
@@ -264,10 +251,7 @@ export async function askDadyoomHybrid(
       };
     }
 
-    if (
-      !native ||
-      !FALLBACK_STATUSES.has(cloud.status)
-    ) {
+    if (!mayUseLocalAssistant(native, context, cloud.status)) {
       throw new Error(cloud.error);
     }
 
@@ -292,6 +276,12 @@ export async function askDadyoomHybrid(
 
   if (!native) {
     throw new Error("لا يوجد اتصال بالإنترنت.");
+  }
+
+  // When bound to a specific published lesson, never invent an offline
+  // lesson-grounded answer without authenticated access to that lesson.
+  if (hasBoundLesson(context)) {
+    throw new Error("مساعدة ضاد المرتبطة بالدرس تحتاج اتصالًا للتحقق من محتواه. حاول عند عودة الإنترنت.");
   }
 
   const local = await askOfflineAI(
