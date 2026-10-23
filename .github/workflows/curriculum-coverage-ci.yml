@@ -9,6 +9,10 @@ on:
       - 'app/api/assessments/check/**'
       - 'app/api/ai/assessment/next/**'
       - 'tests/security/ai-assessment-next-adaptive-runtime.test.ts'
+      - 'features/assessment/services/verifyAssessmentCompletionReceipt.ts'
+      - 'tests/security/assessment-completion-receipt.test.ts'
+      - 'scripts/security/proposed-assessment-completion-receipts.sql'
+      - 'tests/security/shadow-assessment-receipts-verify.sql'
       - 'tests/security/formative-grading-no-persistence.test.ts'
       - 'tests/security/formative-runtime.vitest.config.mts'
       - 'app/api/lesson-activities/check/**'
@@ -174,6 +178,8 @@ jobs:
         run: npx vitest run tests/security/tutor-not-mastery.test.ts
       - name: Execute no-network formative grading spoofing and no-persistence tests
         run: npx vitest run --config tests/security/formative-runtime.vitest.config.mts tests/security/formative-grading-no-persistence.test.ts
+      - name: Verify immutable assessment completion receipts and safe retries
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/assessment-completion-receipt.test.ts
       - name: Execute real AI assessment-next authenticated step completion tests
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/ai-assessment-next-adaptive-runtime.test.ts
       - name: Verify AI assessment keys and authoritative session progression
@@ -319,6 +325,34 @@ jobs:
             cat tests/security/shadow-adaptive-grants-verify.sql
           } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_adaptive
           echo "SHADOW_ADAPTIVE_ROLE_LOCKDOWN_REHEARSAL=PASS"
+      - name: Rehearse immutable service-only assessment completion receipts in disposable Postgres
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_receipts
+          if error_text=$( {
+              echo "SET dadyoom.receipt_rehearsal = 'enabled';"
+              cat scripts/security/proposed-assessment-completion-receipts.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Receipt DDL unexpectedly accepted the wrong database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_RECEIPT_DDL_BLOCKED_DISPOSABLE_TEST_ONLY'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_receipts \
+              < scripts/security/proposed-assessment-completion-receipts.sql 2>&1); then
+            echo "Receipt DDL unexpectedly accepted a missing test flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_RECEIPT_DDL_BLOCKED_DISPOSABLE_TEST_ONLY'
+          {
+            echo "SET dadyoom.receipt_rehearsal = 'enabled';"
+            cat scripts/security/proposed-assessment-completion-receipts.sql
+            cat tests/security/shadow-assessment-receipts-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_receipts
+          echo "SHADOW_ASSESSMENT_RECEIPTS_REHEARSAL=PASS"
       - name: Rehearse direct lesson RPC nested grading-key redaction and rollback
         shell: bash
         env:
