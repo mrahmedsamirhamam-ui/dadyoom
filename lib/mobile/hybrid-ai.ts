@@ -1,6 +1,7 @@
 "use client";
 
 import { Capacitor } from "@capacitor/core";
+import { ASSISTANT_MODE_GUIDANCE, normalizeAssistantMode } from "@/lib/ai/assistant-modes";
 
 import { askOfflineAI } from "@/lib/mobile/offline-ai";
 
@@ -45,7 +46,10 @@ function localPrompt(
   message: string,
   context: HybridAIContext,
 ): string {
-  const parts: string[] = [];
+  const teachingMode = normalizeAssistantMode(context.mode);
+  const parts: string[] = [
+    "أسلوب التعلم المطلوب: " + ASSISTANT_MODE_GUIDANCE[teachingMode],
+  ];
 
   const pageTitle =
     typeof context.pageTitle === "string"
