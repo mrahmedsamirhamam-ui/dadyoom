@@ -233,6 +233,28 @@ jobs:
           docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_grading \
             < tests/security/shadow-grade-write-grants.sql
           echo "SHADOW_GRADE_WRITES_REHEARSAL=PASS"
+      - name: Ensure grade-write candidate refuses other databases and missing CI approval flag
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          if error_text=$( {
+              echo "SET dadyoom.grade_grant_rehearsal = 'enabled';"
+              cat scripts/security/proposed-grade-write-restrictions.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Candidate unexpectedly accepted a database other than shadow_grading" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_REVOKE_BLOCKED_DISPOSABLE_TEST_ONLY'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_grading \
+              < scripts/security/proposed-grade-write-restrictions.sql 2>&1); then
+            echo "Candidate unexpectedly ran without the disposable test flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_REVOKE_BLOCKED_DISPOSABLE_TEST_ONLY'
+          echo "SHADOW_GRADE_CANDIDATE_NONPRODUCTION_GUARD=PASS"
       - name: Rehearse exact six-table grade-write restriction candidate, trusted writes and rollback
         shell: bash
         env:
