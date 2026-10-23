@@ -5,6 +5,7 @@ on:
     paths:
       - 'app/(dashboard)/ask/**'
       - 'app/api/dad/chat/**'
+      - 'app/lessons/**/page.tsx'
       - 'lib/ai/assistant-modes.ts'
       - 'lib/ai/assistant-request.ts'
       - 'lib/mobile/hybrid-ai.ts'
