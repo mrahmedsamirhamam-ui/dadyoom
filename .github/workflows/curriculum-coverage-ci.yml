@@ -22,6 +22,11 @@ on:
       - 'tests/security/server-only-answer-key-read.test.ts'
       - 'tests/security/public-lesson-bundle-rpc.test.ts'
       - 'supabase/migrations/20261022195032_sanitize_public_get_lesson_page_bundle_answer_keys.sql'
+      - 'scripts/security/proposed-public-lesson-activity-rpc.sql'
+      - 'tests/security/shadow-public-activity-rpc-setup.sql'
+      - 'tests/security/shadow-public-activity-rpc-baseline.sql'
+      - 'tests/security/shadow-public-activity-rpc-verified.sql'
+      - 'tests/security/shadow-public-activity-rpc-rollback.sql'
       - 'tests/security/student-question-payload.test.ts'
       - 'features/questions/services/public-lesson-questions.ts'
       - 'features/lessons/queries/getLessonPageBundle.ts'
@@ -212,3 +217,21 @@ jobs:
           docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_grading \
             < tests/security/shadow-grade-write-grants.sql
           echo "SHADOW_GRADE_WRITES_REHEARSAL=PASS"
+      - name: Rehearse direct lesson RPC nested grading-key redaction and rollback
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_activity_rpc
+          cat \
+            tests/security/shadow-public-activity-rpc-setup.sql \
+            supabase/migrations/20261022195032_sanitize_public_get_lesson_page_bundle_answer_keys.sql \
+            tests/security/shadow-public-activity-rpc-baseline.sql \
+            scripts/security/proposed-public-lesson-activity-rpc.sql \
+            tests/security/shadow-public-activity-rpc-verified.sql \
+            supabase/migrations/20261022195032_sanitize_public_get_lesson_page_bundle_answer_keys.sql \
+            tests/security/shadow-public-activity-rpc-rollback.sql \
+            | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_rpc
+          echo "SHADOW_PUBLIC_ACTIVITY_RPC_REHEARSAL=PASS"
