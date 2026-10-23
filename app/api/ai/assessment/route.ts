@@ -403,6 +403,23 @@ export async function GET(
       );
     }
 
+    // Each generated question occupies exactly one session slot. An
+    // already-submitted answer must be advanced via /next before another
+    // provider call, including after a browser refresh.
+    const { count: savedAnswerCount, error: answersError } = await supabase
+      .from("assessment_session_answers")
+      .select("id", { count: "exact", head: true })
+      .eq("session_id", sessionId)
+      .eq("student_id", user.id)
+      .eq("lesson_id", lesson.id);
+    if (answersError) throw answersError;
+    if (savedAnswerCount !== gradedCount) {
+      return NextResponse.json(
+        { success: false, error: "لديك إجابة محفوظة. انتقل للسؤال التالي أولًا." },
+        { status: 409 }
+      );
+    }
+
     // Re-use an unanswered question instead of calling a paid or
     // quota-limited AI provider again after a refresh/retry. Projection
     // deliberately excludes correct_answer and explanation.
