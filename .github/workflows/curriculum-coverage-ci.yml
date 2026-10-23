@@ -6,6 +6,8 @@ on:
       - 'app/api/progress/**'
       - 'app/api/lessons/complete/**'
       - 'app/api/questions/answer/**'
+      - 'app/api/assessments/check/**'
+      - 'tests/security/formative-grading-no-persistence.test.ts'
       - 'app/api/lesson-activities/check/**'
       - 'lib/lesson-activities/progress-state.ts'
       - 'tests/security/activity-check-route.test.ts'
@@ -157,6 +159,8 @@ jobs:
         run: npx vitest run tests/security/owner-scoped-progress-repository.test.ts
       - name: Verify tutoring cannot award academic mastery
         run: npx vitest run tests/security/tutor-not-mastery.test.ts
+      - name: Execute no-network formative grading spoofing and no-persistence tests
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/formative-grading-no-persistence.test.ts
       - name: Verify AI assessment keys and authoritative session progression
         run: npx vitest run tests/security/ai-assessment-client-trust.test.ts
       - name: Verify AI assessment analytics with mocked trusted keys
