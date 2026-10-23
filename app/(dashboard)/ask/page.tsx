@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useState, useSyncExternalStore, type FormEvent } from "react";
 import Link from "next/link";
 import { ASSISTANT_MODES, type AssistantMode } from "@/lib/ai/assistant-modes";
 import { askDadyoomHybrid, type HybridAIResult } from "@/lib/mobile/hybrid-ai";
@@ -12,6 +12,16 @@ type Turn = {
   engine?: HybridAIResult["engine"];
 };
 
+function subscribeToLocation(callback: () => void): () => void {
+  window.addEventListener("popstate", callback);
+  return () => window.removeEventListener("popstate", callback);
+}
+
+function lessonIdFromLocation(): string | null {
+  const raw = new URLSearchParams(window.location.search).get("lessonId");
+  return raw && /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/iu.test(raw) ? raw : null;
+}
+
 export default function AskPage() {
   const [question, setQuestion] = useState("");
   const [mode, setMode] = useState<AssistantMode>("explain");
@@ -19,13 +29,11 @@ export default function AskPage() {
   const [error, setError] = useState("");
   const [isSending, setIsSending] = useState(false);
   const [nextId, setNextId] = useState(1);
-  const [lessonId, setLessonId] = useState<string | null>(null);
-
-  useEffect(() => {
-    const raw = new URLSearchParams(window.location.search).get("lessonId");
-    const valid = raw && /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/iu.test(raw);
-    setLessonId(valid ? raw : null);
-  }, []);
+  const lessonId = useSyncExternalStore(
+    subscribeToLocation,
+    lessonIdFromLocation,
+    () => null,
+  );
 
   const selectedMode = ASSISTANT_MODES.find((item) => item.id === mode) ?? ASSISTANT_MODES[0];
 
