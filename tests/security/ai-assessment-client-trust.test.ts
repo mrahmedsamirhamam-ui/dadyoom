@@ -85,7 +85,7 @@ describe("AI assessment answer-key confidentiality and authoritative progression
     const analytics = read("features/assessment/services/getAssessmentSessionAnalytics.ts");
     expect(analytics).toContain("assessment_id,");
     expect(analytics).toContain("selected_answer,");
-    expect(analytics).toContain('.select("id,correct_answer")');
+    expect(analytics).toContain('.select("id,correct_answer,skill")');
     expect(analytics).toContain('.eq("student_email", studentEmail)');
     expect(analytics).toContain('.eq("lesson_id", lessonId)');
     expect(analytics).toContain("answer.selected_answer === correctByAssessment.get(answer.assessment_id)");
