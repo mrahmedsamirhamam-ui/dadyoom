@@ -264,3 +264,9 @@
 - API GET `/api/ai/assessment/[id]` and POST `/api/ai/assessment` no longer serialize the correct choice or explanation before submitting; their student read/insert projections exclude the secret fields. POST `/api/ai/assessment/next` does not trust the browser's `correct` boolean: it verifies ownership, published lesson, exactly one new saved answer and server-private answer-key match, then advances using the server result.
 - `advanceAssessmentSession` uses optimistic predicates for question index and scored counts to prevent duplicate concurrent increments. New Vitest guards are added to CI and the read-only permissions audit includes session answer/session tables.
 - **Not yet end-to-end validated** on Preview: direct database grants to `ai_assessments.correct_answer`, `assessment_sessions`, and `assessment_session_answers` still require a proven non-breaking permissions migration. No production data changed.
+
+### 2026-10-23 — AI generated-question and session write authorization
+- `/api/ai/assessment`: validates the authenticated learner and a RLS-visible **published** lesson before opening the privileged server-only Supabase client; writes generated question keys through that trusted client, never the user's Data API session. Returned display payload remains redacted.
+- `/api/ai/assessment/session`: rejects unpublished lessons and creates/resumes a session through the server-only client after authenticating the student; session student ID is always derived from `auth.getUser()`.
+- `/api/ai/assessment/[id]`: checks parent lesson is still published before returning the student's safe question projection. New CI source guards cover all three.
+- Direct table-level grants on AI assessment/session tables remain exposed in production and require tested role/permission migration. No production SQL or real student submissions performed.

@@ -5,6 +5,7 @@ import {
 import {
   createClient,
 } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 import {
   startAssessmentSession,
@@ -70,6 +71,7 @@ export async function POST(
       .from("lessons")
       .select("id,title")
       .eq("id", lessonId)
+      .eq("status", "published")
       .maybeSingle();
 
     if (
@@ -88,11 +90,13 @@ export async function POST(
       );
     }
 
+    // Role/lesson checks above must run before the private session writer.
+    const admin = createAdminClient();
     const session =
       await startAssessmentSession({
-        supabase,
+        supabase: admin,
         studentId: user.id,
-        lessonId,
+        lessonId: lesson.id,
       });
 
     return NextResponse.json({

@@ -34,7 +34,7 @@ export async function GET(
 
   const { data, error } = await supabase
     .from("ai_assessments")
-    .select("id,title,passage,question,choices,skill,difficulty,completed,created_at")
+    .select("id,lesson_id,title,passage,question,choices,skill,difficulty,completed,created_at")
     .eq("id", id)
     .eq("student_email", user.email)
     .single();
@@ -48,6 +48,22 @@ export async function GET(
       {
         status: 404,
       }
+    );
+  }
+
+  // A question remains owned by the learner, but its parent lesson must
+  // still be published even if a teacher subsequently unpublished it.
+  const { data: visibleLesson, error: lessonError } = await supabase
+    .from("lessons")
+    .select("id")
+    .eq("id", data.lesson_id)
+    .eq("status", "published")
+    .maybeSingle();
+
+  if (lessonError || !visibleLesson) {
+    return NextResponse.json(
+      { success: false, error: "الدرس غير متاح." },
+      { status: 404 }
     );
   }
 

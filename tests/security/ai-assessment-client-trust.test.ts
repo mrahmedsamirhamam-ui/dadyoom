@@ -48,6 +48,39 @@ describe("AI assessment answer-key confidentiality and authoritative progression
     expect(view).toContain("راجع شرح الدرس");
   });
 
+  it("checks published lesson before creating or returning AI test data", () => {
+    const create = creator.indexOf('const lesson =');
+    const status = creator.indexOf('lesson.status !== "published"');
+    const admin = creator.indexOf("const admin = createAdminClient()");
+    const saved = creator.indexOf('.from("ai_assessments")\n      .insert({');
+    expect(create).toBeGreaterThan(-1);
+    expect(status).toBeGreaterThan(create);
+    expect(admin).toBeGreaterThan(status);
+    expect(saved).toBeGreaterThan(admin);
+    expect(creator).toMatch(/await admin\s*\.from\("ai_assessments"\)\s*\.insert/);
+
+    const start = read("app/api/ai/assessment/session/route.ts");
+    const user = start.indexOf("supabase.auth.getUser()");
+    const published = start.indexOf('.eq("status", "published")');
+    const privateWriter = start.indexOf("const admin = createAdminClient()");
+    expect(user).toBeGreaterThan(-1);
+    expect(published).toBeGreaterThan(user);
+    expect(privateWriter).toBeGreaterThan(published);
+    expect(start).toContain("supabase: admin,");
+  });
+
+  it("blocks display of an old question after its lesson is unpublished", () => {
+    const safeQuestion = detail.indexOf('.from("ai_assessments")');
+    const parent = detail.indexOf('.from("lessons")');
+    const published = detail.indexOf('.eq("status", "published")');
+    const response = detail.indexOf("return NextResponse.json({\n    success: true");
+    expect(safeQuestion).toBeGreaterThan(-1);
+    expect(parent).toBeGreaterThan(safeQuestion);
+    expect(published).toBeGreaterThan(parent);
+    expect(response).toBeGreaterThan(published);
+    expect(detail).toContain('id,lesson_id,title,passage');
+  });
+
   it("prevents races in the session update", () => {
     expect(advance).toContain('.eq("current_question", session.current_question)');
     expect(advance).toContain('.eq("correct_answers", session.correct_answers)');

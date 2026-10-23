@@ -10,6 +10,7 @@ import {
 import {
   createClient,
 } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 import {
   createQuestionHash,
@@ -354,6 +355,17 @@ export async function GET(
     const lesson =
       lessonData as LessonRow;
 
+    if (lesson.status !== "published") {
+      return NextResponse.json(
+        { success: false, error: "لا يمكن إنشاء اختبار لدرس غير منشور." },
+        { status: 404 }
+      );
+    }
+
+    // Server-only grading storage is opened only after the student has
+    // accessed this published lesson through their RLS-bound session.
+    const admin = createAdminClient();
+
     const lessonContent =
       lesson.content?.trim();
 
@@ -696,7 +708,7 @@ ${generationAttempt}
     const {
       data: savedAssessment,
       error: insertError,
-    } = await supabase
+    } = await admin
       .from("ai_assessments")
       .insert({
         student_email:
