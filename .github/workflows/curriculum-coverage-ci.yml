@@ -25,6 +25,8 @@ on:
       - 'tests/security/student-question-payload.test.ts'
       - 'features/questions/services/public-lesson-questions.ts'
       - 'features/lessons/queries/getLessonPageBundle.ts'
+      - 'features/lessons/services/bahrain-draft-preview-access.ts'
+      - 'tests/security/bahrain-draft-preview-access.test.ts'
       - 'features/adaptive-learning/queries/getWeakQuestions.ts'
       - 'features/adaptive-learning/services/evaluatePerformance.ts'
       - 'features/adaptive-learning/services/lesson-practice-snapshot.ts'
@@ -118,6 +120,8 @@ jobs:
         run: npx vitest run tests/security/server-graded-mcq.test.ts
       - name: Execute no-network grading API and student ownership runtime tests
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/question-answer-route-runtime.test.ts
+      - name: Verify private Bahrain draft preview requires server-owned entitlement
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/bahrain-draft-preview-access.test.ts
       - name: Verify student-safe question view migration and quiz cutover
         run: npx vitest run tests/security/safe-questions-view.test.ts
       - name: Verify lesson question keys do not reach student payloads
