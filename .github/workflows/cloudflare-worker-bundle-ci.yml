@@ -12,6 +12,7 @@ on:
       - 'types/**'
       - 'package.json'
       - 'package-lock.json'
+      - 'scripts/smoke-cloudflare-worker-runtime.mjs'
 
 permissions:
   contents: read
