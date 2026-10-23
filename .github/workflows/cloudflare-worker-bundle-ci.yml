@@ -106,7 +106,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          npx playwright install --with-deps chromium
+          # Hosted Ubuntu already has Chromium runtime libraries; download only the headless shell.
+          # Avoid flaky apt-get install/update from --with-deps on each CI run.
+          npx playwright install --only-shell chromium
       - name: Smoke-test generated Worker in local workerd via Vite preview
         shell: bash
         run: |
