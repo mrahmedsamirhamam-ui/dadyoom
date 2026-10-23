@@ -50,6 +50,56 @@ try {
   const xml=await sitemap.text();
   if(!xml.includes("<urlset"))throw new Error("WORKER_SITEMAP_MISSING_XML");
   console.log("WORKER_SITEMAP_GET=PASS");
+  // Public entry and installability on the *compiled* local Worker.
+  // No credentials, student data, signup writes, or external providers used.
+  const manifestResponse = await get("/manifest.webmanifest", 10000);
+  if (manifestResponse.status !== 200) {
+    throw new Error(`WORKER_MANIFEST_HTTP_${manifestResponse.status}`);
+  }
+  const manifest = await manifestResponse.json();
+  if (!manifest.name?.includes("ضاديوم") || manifest.lang !== "ar" ||
+      manifest.dir !== "rtl" || manifest.start_url !== "/") {
+    throw new Error("WORKER_MANIFEST_METADATA_INVALID");
+  }
+  console.log("WORKER_MANIFEST_GET=PASS");
+
+  const pwaIcon = await get("/pwa/icon-192.png", 10000);
+  if (pwaIcon.status !== 200 ||
+      !pwaIcon.headers.get("content-type")?.includes("image/png") ||
+      (await pwaIcon.arrayBuffer()).byteLength < 128) {
+    throw new Error(`WORKER_PWA_ICON_INVALID_${pwaIcon.status}`);
+  }
+  console.log("WORKER_PWA_ICON_GET=PASS");
+
+  for (const authPage of ["/login", "/signup"]) {
+    const authResponse = await get(authPage, 10000);
+    if (authResponse.status !== 200) {
+      throw new Error(`WORKER_AUTH_PAGE_${authPage.slice(1)}_HTTP_${authResponse.status}`);
+    }
+    const authHtml = await authResponse.text();
+    if (!authHtml.includes("<html") || !authHtml.includes("lang=\"ar\"") ||
+        !authHtml.includes('type="password"')) {
+      throw new Error(`WORKER_AUTH_PAGE_${authPage.slice(1)}_MISSING_FORM`);
+    }
+    console.log(`WORKER_AUTH_PAGE_${authPage.slice(1).toUpperCase()}=PASS`);
+  }
+
+  // The HTML alone is not enough: at least one actual linked client JS file
+  // must be served by the Worker static asset handler.
+  const jsAsset = [...body.matchAll(/(?:src|href)="([^"]+\\.js(?:\\?[^"]*)?)"/g)]
+    .map(match => match[1])
+    .find(path => path.startsWith("/_next/static/"));
+  if (!jsAsset) throw new Error("WORKER_HOME_MISSING_CLIENT_JS");
+  const jsResponse = await get(jsAsset, 10000);
+  if (jsResponse.status !== 200 ||
+      !/javascript/i.test(jsResponse.headers.get("content-type") || "")) {
+    throw new Error(`WORKER_CLIENT_JS_HTTP_${jsResponse.status}`);
+  }
+  if ((await jsResponse.text()).length < 64) {
+    throw new Error("WORKER_CLIENT_JS_EMPTY");
+  }
+  console.log("WORKER_CLIENT_JS_GET=PASS");
+
   // Live workerd/Cloudflare runtime denies access to private grading APIs
   // before reading the database or attempting any admin operation. Fake
   // public env is intentionally non-routable; all requests are anonymous.
