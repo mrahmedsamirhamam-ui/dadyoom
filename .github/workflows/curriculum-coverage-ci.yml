@@ -62,6 +62,8 @@ on:
       - 'tests/security/assessment-grants-audit.test.ts'
       - 'tests/security/shadow-question-grants.sql'
       - 'tests/security/shadow-grade-write-grants.sql'
+      - 'scripts/security/proposed-grade-write-restrictions.sql'
+      - 'tests/security/shadow-proposed-grade-grants-verify.sql'
       - 'tests/security/owner-scoped-progress-repository.test.ts'
       - 'features/lesson-mastery/actions/syncLessonMastery.ts'
       - 'tests/security/lesson-mastery-completion-only.test.ts'
@@ -231,6 +233,19 @@ jobs:
           docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_grading \
             < tests/security/shadow-grade-write-grants.sql
           echo "SHADOW_GRADE_WRITES_REHEARSAL=PASS"
+      - name: Rehearse exact six-table grade-write restriction candidate, trusted writes and rollback
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          {
+            echo "SET dadyoom.grade_grant_rehearsal = 'enabled';"
+            cat scripts/security/proposed-grade-write-restrictions.sql
+            cat tests/security/shadow-proposed-grade-grants-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_grading
+          echo "SHADOW_GRADE_RESTRICTION_CANDIDATE_REHEARSAL=PASS"
       - name: Rehearse direct lesson RPC nested grading-key redaction and rollback
         shell: bash
         env:
