@@ -19,6 +19,9 @@ import {
 import {
   completeAdaptiveStep,
 } from "@/features/learning-plan/services/adaptive-path-lifecycle";
+import {
+  verifyAssessmentCompletionReceipt,
+} from "@/features/assessment/services/verifyAssessmentCompletionReceipt";
 
 type NextQuestionBody = {
   sessionId?: string;
@@ -204,14 +207,37 @@ export async function POST(
      * لذلك إعادة الطلب بعد اكتمال الخطوة
      * لا تعيد إكمالها مرة أخرى.
      */
-    // A browser with stale database WRITE grants could have marked its own
-    // session finished. Never convert an *already finished* client-visible
-    // row into an authoritative adaptive-path completion. Only the
-    // fresh, server-graded transition in this request is eligible.
+    // This opt-in recovery is disabled until the protected receipts table
+    // exists AND browser DML grants for session/answers have been revoked.
+    // In the existing/default mode, retain the fresh-transition-only guard.
+    const receiptsEnabled =
+      process.env.DADYOOM_TRUSTED_ASSESSMENT_RECEIPTS === "enabled";
+
+    const verifiedReceipt =
+      receiptsEnabled && session.finished && session.lesson_id && analytics
+        ? await verifyAssessmentCompletionReceipt({
+            admin,
+            session,
+            studentId: user.id,
+            lessonId: publishedLesson.id,
+            analytics,
+            allowCreate: !authorizedSession.finished,
+          })
+        : false;
+
+    // Do not report successful completion when the strict recovery mode
+    // cannot prove it via a server-only receipt.
+    if (receiptsEnabled && session.finished && !verifiedReceipt) {
+      return NextResponse.json(
+        { success: false, error: "تعذر إثبات إكمال الاختبار بأمان." },
+        { status: 409 }
+      );
+    }
+
     const adaptiveAssessmentStep =
-      !authorizedSession.finished &&
       session.finished &&
-      session.lesson_id
+      session.lesson_id &&
+      (receiptsEnabled ? verifiedReceipt : !authorizedSession.finished)
         ? await completeAdaptiveStep({
             // Lesson publication, session ownership and scoring were
             // verified above. The adaptive write stays server-authoritative.
