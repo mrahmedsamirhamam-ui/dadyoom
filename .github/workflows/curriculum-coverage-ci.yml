@@ -47,6 +47,7 @@ on:
       - 'tests/security/tutor-not-mastery.test.ts'
       - 'scripts/security-assessment-permissions-audit.sql'
       - 'tests/security/assessment-grants-audit.test.ts'
+      - 'tests/security/shadow-question-grants.sql'
       - 'tests/security/owner-scoped-progress-repository.test.ts'
       - 'features/lesson-mastery/actions/syncLessonMastery.ts'
       - 'tests/security/lesson-mastery-completion-only.test.ts'
@@ -148,3 +149,32 @@ jobs:
         run: npm run build
       - name: Start compiled Next.js and smoke-test anonymous runtime
         run: node scripts/smoke-next-production-runtime.mjs
+
+  shadow-question-grants:
+    name: Disposable PostgreSQL question grants + rollback
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_PASSWORD: disposable-ci-only
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Exercise secure view cutover and rollback against disposable database
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres \
+            < tests/security/shadow-question-grants.sql
+          echo "SHADOW_QUESTION_GRANTS_REHEARSAL=PASS"
