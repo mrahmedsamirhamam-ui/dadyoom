@@ -51,7 +51,7 @@ jobs:
           fs.writeFileSync(path,JSON.stringify(pkg,null,2)+'\n');
           JS
           npm install --no-save --package-lock=false --no-audit --no-fund vinext@1.2.1
-          node -e 'const r=require("react/package.json"), v=require("vinext/package.json"); console.log("EPHEMERAL_REACT_VERSION="+r.version); console.log("EPHEMERAL_VINEXT_VERSION="+v.version);'
+          node -e 'const r=require("react/package.json"), v=require("./node_modules/vinext/package.json"); console.log("EPHEMERAL_REACT_VERSION="+r.version); console.log("EPHEMERAL_VINEXT_VERSION="+v.version);'
       - name: Prepare Cloudflare adapter inside temporary CI checkout only
         shell: bash
         run: |
