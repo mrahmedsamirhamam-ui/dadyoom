@@ -5,7 +5,7 @@ import { LEARNING_STORIES } from "@/lib/story-lab/stories";
 
 export const metadata: Metadata = {
   title: "حكايات ضاديوم | العربية أسهل بالقصة والتجربة",
-  description: "ثلاث حكايات عربية تفاعلية أصلية في الإملاء والنحو، مع أسئلة وتلميحات فورية دون حساب أو دفع.",
+  description: "أربع حكايات عربية تفاعلية أصلية في الإملاء والنحو، مع أسئلة وتلميحات فورية دون حساب أو دفع.",
   robots: { index: true, follow: true },
   alternates: { canonical: "/labs/stories" },
 };
@@ -37,7 +37,7 @@ export default function StoryLabIndexPage() {
           <div className="mt-6 grid gap-5 md:grid-cols-3">
             {LEARNING_STORIES.map((story, index) => (
               <article key={story.slug} className="flex flex-col rounded-[1.6rem] border border-[#ddcfb3] bg-[#fffef9] p-6 shadow-sm">
-                <span aria-hidden="true" className="text-5xl">{["✨", "🌷", "☀️"][index]}</span>
+                <span aria-hidden="true" className="text-5xl">{["✨", "🌷", "☀️", "📚"][index % 4]}</span>
                 <p className="mt-4 text-sm font-black text-[#a17128]">{story.badge} • {story.questions.length} أسئلة تطبيقية</p>
                 <h3 className="mt-2 text-2xl font-black leading-snug text-[#174f47]">{story.title}</h3>
                 <p className="mt-3 flex-1 text-sm leading-7 text-[#6b6155]">{story.goal}</p>
