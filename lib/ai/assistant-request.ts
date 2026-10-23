@@ -14,11 +14,12 @@ export type AssistantRequest = {
   lessonTitle: string;
   lessonContent: string;
   studentLevel: string;
+  lessonId: string | null;
 };
 
 export type ParsedAssistantRequest =
   | { ok: true; value: AssistantRequest }
-  | { ok: false; reason: "INVALID_BODY" | "INVALID_MESSAGE" | "MESSAGE_TOO_LONG" };
+  | { ok: false; reason: "INVALID_BODY" | "INVALID_MESSAGE" | "MESSAGE_TOO_LONG" | "INVALID_LESSON_ID" };
 
 function boundedText(value: unknown, max: number): string {
   return typeof value === "string" ? value.trim().slice(0, max) : "";
@@ -41,6 +42,12 @@ export function parseAssistantRequest(raw: unknown): ParsedAssistantRequest {
     return { ok: false, reason: "MESSAGE_TOO_LONG" };
   }
 
+  const lessonId = body.lessonId === undefined || body.lessonId === null ? null : body.lessonId;
+  if (lessonId !== null &&
+    (typeof lessonId !== "string" || !/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/iu.test(lessonId))) {
+    return { ok: false, reason: "INVALID_LESSON_ID" };
+  }
+
   const rows = Array.isArray(body.history) ? body.history.slice(-8) : [];
   const history = rows.flatMap((row): AssistantTurn[] => {
     if (!row || typeof row !== "object" || Array.isArray(row)) return [];
@@ -61,6 +68,7 @@ export function parseAssistantRequest(raw: unknown): ParsedAssistantRequest {
       lessonTitle: boundedText(body.lessonTitle, 200),
       lessonContent: boundedText(body.lessonContent, 12000),
       studentLevel: boundedText(body.studentLevel, 100),
+      lessonId: lessonId as string | null,
     },
   };
 }
