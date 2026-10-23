@@ -149,7 +149,7 @@ try {
   console.log("WORKER_LESSON_MASTERY_UNAUTH_401=PASS");
 
   // Browser-level, local-only smoke: exercise client-side form hydration
-  // at desktop and narrow mobile viewport, without ever submitting a form.
+  // at desktop and narrow mobile viewport, without sending any valid signup or login request.
   const browser = await chromium.launch({ headless: true, args: ["--no-sandbox"] });
   try {
     for (const device of [
@@ -192,6 +192,25 @@ try {
           }));
           if (width.scroll > width.viewport + 16) {
             throw new Error(`WORKER_BROWSER_${device.name}_${route.slice(1)}_OVERFLOW`);
+          }
+          if (route === "/signup") {
+            // Prove that the *hydrated React onSubmit handler* executes.
+            // Name is deliberately blank (not a native-required field), so
+            // the handler shows an inline validation error BEFORE auth/DB calls.
+            let authRequests = 0;
+            page.on("request", request => {
+              if (/\/auth\/v1\/signup|\/api\/auth\//.test(request.url())) {
+                authRequests += 1;
+              }
+            });
+            await page.locator('button[type="submit"]').click();
+            await page.getByText("أكمل الاسم ونوع الحساب والدولة.", {
+              exact: true
+            }).waitFor({ state: "visible", timeout: 10000 });
+            if (authRequests !== 0) {
+              throw new Error("WORKER_BROWSER_SIGNUP_VALIDATION_SENT_AUTH_REQUEST");
+            }
+            console.log(`WORKER_BROWSER_${device.name}_SIGNUP_REACT_HYDRATION=PASS`);
           }
           console.log(`WORKER_BROWSER_${device.name}_${route.slice(1).toUpperCase()}=PASS`);
         }
