@@ -11,6 +11,7 @@ on:
       - 'lib/mobile/hybrid-ai.ts'
       - 'tests/assistant-modes.test.ts'
       - 'tests/assistant-request.test.ts'
+      - 'tests/assistant-route.test.ts'
       - '.github/workflows/dad-assistant-ci.yml'
   workflow_dispatch:
 
@@ -36,7 +37,7 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
       - name: Validate assistant request and educational guidance
-        run: npm run test:run -- tests/assistant-modes.test.ts tests/assistant-request.test.ts
+        run: npm run test:run -- tests/assistant-modes.test.ts tests/assistant-request.test.ts tests/assistant-route.test.ts
       - name: Check TypeScript
         run: npx tsc --noEmit
       - name: Check ESLint
