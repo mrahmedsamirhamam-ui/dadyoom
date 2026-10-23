@@ -146,6 +146,7 @@ export default function LessonAssessment({
   const generateAssessment =
     useCallback(
       async (
+        sessionId: string,
         difficulty = "easy"
       ): Promise<void> => {
         setIsLoading(true);
@@ -158,6 +159,8 @@ export default function LessonAssessment({
             await fetch(
               `/api/ai/assessment?lessonId=${encodeURIComponent(
                 lessonId
+              )}&sessionId=${encodeURIComponent(
+                sessionId
               )}&difficulty=${encodeURIComponent(
                 difficulty
               )}&timestamp=${Date.now()}`,
@@ -237,6 +240,7 @@ export default function LessonAssessment({
 
         if (!data.session.finished) {
           await generateAssessment(
+            data.session.id,
             data.session.difficulty
           );
         }
@@ -413,8 +417,9 @@ export default function LessonAssessment({
       }
 
       await generateAssessment(
-        data.session.difficulty
-      );
+            data.session.id,
+            data.session.difficulty
+          );
     } catch (cause) {
       setError(
         cause instanceof Error
