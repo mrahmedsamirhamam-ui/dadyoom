@@ -1,0 +1,58 @@
+name: Cloudflare Workers adapter compatibility (diagnostic only)
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'package.json'
+      - 'package-lock.json'
+      - 'next.config.*'
+      - 'app/**'
+      - 'features/**'
+      - 'lib/**'
+      - 'proxy.ts'
+      - 'middleware.ts'
+      - '.github/workflows/cloudflare-adapter-preflight.yml'
+
+# Do not use deployment credentials, secret bindings, or production release actions.
+permissions:
+  contents: read
+
+jobs:
+  vinext-compatibility:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+      CI: 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Install the existing immutable Next.js dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Inspect local Cloudflare configuration by filename only
+        shell: bash
+        run: |
+          echo "Checking supported Cloudflare config paths (metadata only)"
+          for file in wrangler.toml wrangler.json wrangler.jsonc open-next.config.ts vite.config.ts cloudflare.config.ts; do
+            if test -f "$file"; then echo "FOUND $file"; else echo "ABSENT $file"; fi
+          done
+          node -e 'const p=require("./package.json"); console.log("Next.js:", p.dependencies?.next ?? "missing"); for (const s of ["build","start","deploy","preview","build:worker"]) console.log(s+":",p.scripts?.[s]??"missing");'
+      - name: Check Next.js compatibility with Cloudflare vinext
+        shell: bash
+        run: |
+          set -o pipefail
+          # Diagnostics only. Version pinned; npx installs into its cache.
+          # Does not run vinext init/build/deploy, wrangler, or touch production.
+          npm exec --yes --package=vinext@1.2.1 -- vinext check 2>&1 | tee vinext-check.txt
+      - name: Save compatibility report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dadyoom-vinext-compatibility
+          path: vinext-check.txt
+          retention-days: 7
+          if-no-files-found: warn
