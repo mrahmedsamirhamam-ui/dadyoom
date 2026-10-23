@@ -34,8 +34,24 @@ jobs:
           cache: 'npm'
       - name: Install unchanged application dependencies
         run: npm ci --no-audit --no-fund
-      - name: Install pinned vinext scanner in ephemeral CI checkout
-        run: npm install --no-save --package-lock=false --ignore-scripts vinext@1.2.1
+      - name: Test React runtime compatibility only in disposable CI checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Do not change tracked package.json or package-lock in GitHub.
+          # vinext@1.2.1 requires React >=19.3.1, whereas production uses 19.2.4.
+          # Temporarily validate the React 19.3.1 combination, NOT an endorsed upgrade.
+          node <<'JS'
+          const fs=require('node:fs');
+          const path='package.json';
+          const pkg=JSON.parse(fs.readFileSync(path,'utf8'));
+          pkg.dependencies.react='19.3.1';
+          pkg.dependencies['react-dom']='19.3.1';
+          pkg.dependencies['react-server-dom-webpack']='19.3.1';
+          fs.writeFileSync(path,JSON.stringify(pkg,null,2)+'\n');
+          JS
+          npm install --no-save --package-lock=false --no-audit --no-fund vinext@1.2.1
+          node -e 'const r=require("react/package.json"), v=require("vinext/package.json"); console.log("EPHEMERAL_REACT_VERSION="+r.version); console.log("EPHEMERAL_VINEXT_VERSION="+v.version);'
       - name: Prepare Cloudflare adapter inside temporary CI checkout only
         shell: bash
         run: |
