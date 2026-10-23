@@ -1,3 +1,4 @@
+import { chromium } from "playwright";
 import { spawn } from "node:child_process";
 import { resolve } from "node:path";
 
@@ -146,6 +147,61 @@ try {
     throw new Error(`WORKER_LESSON_MASTERY_EXPECTED_401_GOT_${mastery.status}`);
   }
   console.log("WORKER_LESSON_MASTERY_UNAUTH_401=PASS");
+
+  // Browser-level, local-only smoke: exercise client-side form hydration
+  // at desktop and narrow mobile viewport, without ever submitting a form.
+  const browser = await chromium.launch({ headless: true, args: ["--no-sandbox"] });
+  try {
+    for (const device of [
+      { name: "DESKTOP", width: 1365, height: 768 },
+      { name: "MOBILE", width: 390, height: 844 },
+    ]) {
+      const page = await browser.newPage({
+        viewport: { width: device.width, height: device.height },
+        locale: "ar",
+      });
+      try {
+        for (const route of ["/login", "/signup"]) {
+          const response = await page.goto(url + route, {
+            waitUntil: "domcontentloaded",
+            timeout: 25000,
+          });
+          if (response?.status() !== 200) {
+            throw new Error(`WORKER_BROWSER_${device.name}_${route.slice(1)}_HTTP_${response?.status()}`);
+          }
+          const email = page.locator('input[type="email"]');
+          const password = page.locator('input[type="password"]');
+          await email.waitFor({ state: "visible", timeout: 12000 });
+          await password.waitFor({ state: "visible", timeout: 12000 });
+          if (await page.locator("html").getAttribute("dir") !== "rtl" ||
+              await page.locator("html").getAttribute("lang") !== "ar") {
+            throw new Error(`WORKER_BROWSER_${device.name}_${route.slice(1)}_RTL_INVALID`);
+          }
+          // A real Chromium fill tests editability (not authentication).
+          await email.fill("browser-ci@example.invalid");
+          await password.fill("test-only-no-real-login");
+          if (await email.inputValue() !== "browser-ci@example.invalid") {
+            throw new Error("WORKER_BROWSER_FORM_NOT_EDITABLE");
+          }
+          if (route === "/signup" && await page.locator("select").count() < 2) {
+            throw new Error("WORKER_BROWSER_SIGNUP_MISSING_ROLE_COUNTRY");
+          }
+          const width = await page.evaluate(() => ({
+            scroll: document.documentElement.scrollWidth,
+            viewport: document.documentElement.clientWidth,
+          }));
+          if (width.scroll > width.viewport + 16) {
+            throw new Error(`WORKER_BROWSER_${device.name}_${route.slice(1)}_OVERFLOW`);
+          }
+          console.log(`WORKER_BROWSER_${device.name}_${route.slice(1).toUpperCase()}=PASS`);
+        }
+      } finally {
+        await page.close();
+      }
+    }
+  } finally {
+    await browser.close();
+  }
 
   console.log("WORKER_LOCAL_PREVIEW_RUNTIME=PASS");
 }catch(e){
