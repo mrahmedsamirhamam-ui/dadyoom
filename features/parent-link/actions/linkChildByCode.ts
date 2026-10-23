@@ -63,7 +63,7 @@ export async function linkChildByCodeAction(
     .eq("id", user.id)
     .maybeSingle();
   const role = profile?.role?.trim().toLowerCase();
-  if (profileError || (role !== "parent" && role !== "admin")) {
+  if (profileError || role !== "parent") {
     redirect("/student");
   }
 
