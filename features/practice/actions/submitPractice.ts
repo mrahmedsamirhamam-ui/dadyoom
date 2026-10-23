@@ -1,5 +1,7 @@
 "use server";
 
+import { createAdminClient } from "@/lib/supabase/admin";
+
 import {
   revalidatePath,
 } from "next/cache";
@@ -54,40 +56,59 @@ export async function submitPracticeAction(
     );
   }
 
-  const {
-    data,
-    error,
-  } = await supabase
-    .from("questions")
-    .select(`
-      id,
-      correct_answer
-    `)
-    .eq(
-      "lesson_id",
-      normalizedLessonId
-    )
-    .order(
-      "question_order",
-      {
-        ascending: true,
-      }
-    );
+  // Only a published, RLS-visible lesson can be practiced. Do not
+  // authorize a draft solely because an answer record happens to exist.
+  const { data: visibleLesson, error: lessonError } = await supabase
+    .from("lessons")
+    .select("id")
+    .eq("id", normalizedLessonId)
+    .eq("status", "published")
+    .maybeSingle();
 
-  if (error) {
-    throw error;
+  if (lessonError) throw lessonError;
+  if (!visibleLesson) {
+    throw new Error("هذا الدرس غير متاح للتدريب.");
   }
 
-  const questions =
-    (data ?? []) as
-      PracticeQuestionRow[];
+  // Build the exact student-visible question set *before* opening the
+  // privileged client. Never read correct_answer with the student's token.
+  const { data: visibleQuestions, error: visibilityError } = await supabase
+    .from("dadyoom_student_questions")
+    .select("id")
+    .eq("lesson_id", visibleLesson.id);
 
+  if (visibilityError) throw visibilityError;
+
+  const visibleIds = [...new Set(
+    (visibleQuestions ?? []).map((question) => question.id)
+  )];
+
+  if (visibleIds.length === 0) {
+    throw new Error("لا توجد أسئلة متاحة لهذا التدريب.");
+  }
+
+  const admin = createAdminClient();
+  const { data, error } = await admin
+    .from("questions")
+    .select("id,correct_answer")
+    .eq("lesson_id", visibleLesson.id)
+    .in("id", visibleIds);
+
+  if (error) throw error;
+  const questions = (data ?? []) as PracticeQuestionRow[];
+
+  // Fail closed when the private question set and the RLS-visible set
+  // disagree, including missing or unexpected/duplicate rows.
   if (
-    questions.length === 0
+    questions.length !== visibleIds.length ||
+    new Set(questions.map((question) => question.id)).size !== visibleIds.length ||
+    questions.some((question) =>
+      !visibleIds.includes(question.id) ||
+      typeof question.correct_answer !== "string" ||
+      !question.correct_answer.trim()
+    )
   ) {
-    throw new Error(
-      "لا توجد أسئلة متاحة لهذا التدريب."
-    );
+    throw new Error("تعذر التحقق من أسئلة التدريب.");
   }
 
   const answerMap =
