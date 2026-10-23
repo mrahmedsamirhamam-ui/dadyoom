@@ -1,3 +1,5 @@
+import "server-only";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { invalidateStudentCaches } from "@/features/student-progress/services/invalidate-student-caches";
 import {
   NextResponse,
@@ -100,8 +102,6 @@ export async function POST(
         student_email,
         question,
         choices,
-        correct_answer,
-        explanation,
         skill,
         completed
       `)
@@ -141,46 +141,9 @@ export async function POST(
       );
     }
 
-    /*
-     * حجز السؤال قبل منح XP.
-     * يمنع الضغط المتكرر من احتساب النتيجة أكثر من مرة.
-     */
-    const {
-      data: claimedAssessment,
-      error: claimError,
-    } = await supabase
-      .from("ai_assessments")
-      .update({
-        completed: true,
-      })
-      .eq("id", assessmentId)
-      .eq(
-        "student_email",
-        user.email
-      )
-      .eq("completed", false)
-      .select("id")
-      .maybeSingle();
 
-    if (
-      claimError ||
-      !claimedAssessment
-    ) {
-      return NextResponse.json(
-        {
-          success: false,
-          message:
-            "تم إرسال إجابة هذا السؤال سابقًا.",
-        },
-        {
-          status: 409,
-        }
-      );
-    }
-
-    claimedAssessmentId =
-      claimedAssessment.id;
-
+    // Validate the student's test-session ownership before any privileged
+    // read or claim. Reject draft/unpublished lesson submissions.
     const {
       data: assessmentSession,
       error: sessionError,
@@ -223,9 +186,90 @@ export async function POST(
       );
     }
 
+
+    const { data: publishedLesson, error: lessonError } = await supabase
+      .from("lessons")
+      .select("id")
+      .eq("id", assessment.lesson_id)
+      .eq("status", "published")
+      .maybeSingle();
+    if (lessonError) throw lessonError;
+    if (!publishedLesson) {
+      return NextResponse.json(
+        { success: false, message: "الدرس غير متاح للتقويم." },
+        { status: 404 }
+      );
+    }
+
+    if (!Array.isArray(assessment.choices) || answer >= assessment.choices.length) {
+      return NextResponse.json(
+        { success: false, message: "اختيار الإجابة غير صالح." },
+        { status: 400 }
+      );
+    }
+
+    // Private correction stays on the trusted server after both identity
+    // and published-lesson checks; never read keys via the student's client.
+    const admin = createAdminClient();
+    const { data: privateAssessment, error: privateError } = await admin
+      .from("ai_assessments")
+      .select("id,lesson_id,correct_answer,explanation")
+      .eq("id", assessment.id)
+      .eq("student_email", user.email)
+      .eq("lesson_id", publishedLesson.id)
+      .maybeSingle();
+
+    if (privateError) throw privateError;
+    if (!privateAssessment) {
+      return NextResponse.json(
+        { success: false, message: "مفتاح تصحيح الاختبار غير متاح." },
+        { status: 404 }
+      );
+    }
+
+    /*
+     * حجز السؤال قبل منح XP.
+     * يمنع الضغط المتكرر من احتساب النتيجة أكثر من مرة.
+     */
+    const {
+      data: claimedAssessment,
+      error: claimError,
+    } = await admin
+      .from("ai_assessments")
+      .update({
+        completed: true,
+      })
+      .eq("id", assessmentId)
+      .eq(
+        "student_email",
+        user.email
+      )
+      .eq("completed", false)
+      .select("id")
+      .maybeSingle();
+
+    if (
+      claimError ||
+      !claimedAssessment
+    ) {
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            "تم إرسال إجابة هذا السؤال سابقًا.",
+        },
+        {
+          status: 409,
+        }
+      );
+    }
+
+    claimedAssessmentId =
+      claimedAssessment.id;
+
     const correct =
       answer ===
-      assessment.correct_answer;
+      privateAssessment.correct_answer;
 
     const selectedChoice =
       Array.isArray(
@@ -239,7 +283,7 @@ export async function POST(
         : null;
 
     await saveAssessmentSessionAnswer({
-      supabase,
+      supabase: admin,
       sessionId,
       assessmentId,
       studentId:
@@ -251,10 +295,13 @@ export async function POST(
       selectedAnswer:
         answer,
       correctAnswer:
-        assessment.correct_answer,
+        privateAssessment.correct_answer,
       isCorrect:
         correct,
     });
+    // Never reopen a persisted question after a later memory/skill failure.
+    claimedAssessmentId = null;
+
 
     // The AI question result is stored in assessment_sessions and skill
     // progress. A single generated question must not overwrite canonical
@@ -315,10 +362,9 @@ return NextResponse.json({
       correct,
       score:
         correct ? 100 : 0,
-      correctAnswer:
-        assessment.correct_answer,
-      explanation:
-        assessment.explanation,
+      // Do not leak the right answer or explanation on wrong attempts.
+      correctAnswer: correct ? privateAssessment.correct_answer : null,
+      explanation: correct ? privateAssessment.explanation : null,
     });
   } catch (error) {
     /*
@@ -328,15 +374,13 @@ return NextResponse.json({
     if (claimedAssessmentId) {
       const {
         error: rollbackError,
-      } = await supabase
+      } = await createAdminClient()
         .from("ai_assessments")
         .update({
           completed: false,
         })
-        .eq(
-          "id",
-          claimedAssessmentId
-        );
+        .eq("id", claimedAssessmentId)
+        .eq("student_email", supabase.auth ? (await supabase.auth.getUser()).data.user?.email ?? "" : "");
 
       if (rollbackError) {
         console.error(
