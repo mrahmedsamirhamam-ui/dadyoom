@@ -72,9 +72,9 @@ describe("student-safe published and private-preview activity serialization", ()
       content: {
         text: "أي حرف صحيح؟",
         options: [
-          { id: "a", text: "الألف", score: 10 },
+          { id: "a", text: "الألف" },
           { id: "b", text: "الباء" },
-          { id: "c", text: "الجيم", score: 0 },
+          { id: "c", text: "الجيم" },
         ],
         nested: {
           prompt: "تعلم بالمرح",
@@ -84,7 +84,7 @@ describe("student-safe published and private-preview activity serialization", ()
     });
     expect(result[0]).not.toHaveProperty("answer");
     expect(result[0]).not.toHaveProperty("privateTeacherNotes");
-    expect(JSON.stringify(result)).not.toMatch(/isCorrect|correct_answer|correctAnswer|solution|answerKey|privateTeacherNotes/);
+    expect(JSON.stringify(result)).not.toMatch(/isCorrect|correct_answer|correctAnswer|solution|answerKey|privateTeacherNotes|score/);
     // Rendering projection must not mutate the trusted grading source row.
     expect(row.content.options[0]).toHaveProperty("isCorrect", true);
     expect(row).toHaveProperty("answer");
@@ -103,7 +103,7 @@ describe("student-safe published and private-preview activity serialization", ()
         "rightAnswer": "private",
         label: "اختيار مرئي",
       },
-    } as typeof row.content;
+    } as unknown as typeof row.content;
     expect(publicLessonActivities([row])[0].content).toEqual({
       question: "ما الصحيح؟",
       option: { label: "اختيار مرئي" },
@@ -166,7 +166,7 @@ describe("student-safe published and private-preview activity serialization", ()
       { activity_id: "activity-1", is_correct: true, attempt_number: 1 },
     ]);
     expect(actual?.activities[0].content.options).toEqual([
-      { id: "a", text: "الألف", score: 10 },
+      { id: "a", text: "الألف" },
       { id: "b", text: "الباء" },
     ]);
     expect(createAdminClient).not.toHaveBeenCalled();
