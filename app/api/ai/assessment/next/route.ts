@@ -204,7 +204,12 @@ export async function POST(
      * لذلك إعادة الطلب بعد اكتمال الخطوة
      * لا تعيد إكمالها مرة أخرى.
      */
+    // A browser with stale database WRITE grants could have marked its own
+    // session finished. Never convert an *already finished* client-visible
+    // row into an authoritative adaptive-path completion. Only the
+    // fresh, server-graded transition in this request is eligible.
     const adaptiveAssessmentStep =
+      !authorizedSession.finished &&
       session.finished &&
       session.lesson_id
         ? await completeAdaptiveStep({
