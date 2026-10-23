@@ -32,6 +32,9 @@ on:
       - 'features/student-progress/services/progress.ts'
       - 'app/api/semantic-search/stream/route.ts'
       - 'app/api/ai/assessment/submit/route.ts'
+      - 'app/api/ai/assessment/**'
+      - 'features/assessment/services/advanceAssessmentSession.ts'
+      - 'tests/security/ai-assessment-client-trust.test.ts'
       - 'features/semantic-search/components/LessonSemanticSearch.tsx'
       - 'features/semantic-search/services/updateLessonMastery.ts'
       - 'tests/security/tutor-not-mastery.test.ts'
@@ -105,6 +108,8 @@ jobs:
         run: npx vitest run tests/security/owner-scoped-progress-repository.test.ts
       - name: Verify tutoring cannot award academic mastery
         run: npx vitest run tests/security/tutor-not-mastery.test.ts
+      - name: Verify AI assessment keys and authoritative session progression
+        run: npx vitest run tests/security/ai-assessment-client-trust.test.ts
       - name: Verify read-only assessment grants audit
         run: npx vitest run tests/security/assessment-grants-audit.test.ts
       - name: Verify public lesson bundle excludes answer keys

@@ -259,3 +259,8 @@
 - `/api/ai/assessment/submit` كان يقرأ `ai_assessments.correct_answer` تحت جلسة الطالب ويحجز السؤال قبل التحقق من ملكية جلسة الاختبار. أصبح يجلب بيانات العرض دون المفتاح، ويثبت أن الاختبار يخص جلسة الطالب ودرسًا منشورًا قبل قراءة المفتاح الخادمي والحجز المشروط، ويرفض البديل خارج المدى.
 - حفظ جواب `assessment_session_answers` صار بصلاحية الخادم بعد التحقق، ولا يعاد كشف الحل أو الشرح للطالب عند الخطأ. بعد تسجيل محاولة مثبتة لا يعاد فتح السؤال تلقائيًا على فشل مرحلة لاحقة، تجنبًا للتكرار.
 - **مهم:** الجدول الأصلي `ai_assessments` نفسه ما زال يمنح `SELECT correct_answer` و`UPDATE` للحسابات في Supabase الإنتاج. أضيف إلى فحص الصلاحيات؛ حل الالتفاف المباشر مرتبط بترحيل آمن للمنفذ العام في Preview وليس بهذه تعديلات الكود فقط.
+
+### 2026-10-23 — AI Assessment client-leak and next-step grade forgery guards
+- API GET `/api/ai/assessment/[id]` and POST `/api/ai/assessment` no longer serialize the correct choice or explanation before submitting; their student read/insert projections exclude the secret fields. POST `/api/ai/assessment/next` does not trust the browser's `correct` boolean: it verifies ownership, published lesson, exactly one new saved answer and server-private answer-key match, then advances using the server result.
+- `advanceAssessmentSession` uses optimistic predicates for question index and scored counts to prevent duplicate concurrent increments. New Vitest guards are added to CI and the read-only permissions audit includes session answer/session tables.
+- **Not yet end-to-end validated** on Preview: direct database grants to `ai_assessments.correct_answer`, `assessment_sessions`, and `assessment_session_answers` still require a proven non-breaking permissions migration. No production data changed.

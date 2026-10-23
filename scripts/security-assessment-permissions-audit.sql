@@ -30,7 +30,9 @@ FROM (VALUES ('anon'), ('authenticated')) AS role_name(role)
 CROSS JOIN (VALUES ('question_attempts'),
                   ('lesson_activity_attempts'),
                   ('student_lesson_progress'),
-                  ('lesson_mastery')) AS item(table_name)
+                  ('lesson_mastery'),
+                  ('assessment_sessions'),
+                  ('assessment_session_answers')) AS item(table_name)
 ORDER BY role_name.role, item.table_name;
 
 -- 3. RLS is a row barrier, not column-key secrecy or graded-result authority.
@@ -38,7 +40,8 @@ SELECT p.tablename, p.policyname, p.cmd, p.roles, p.qual, p.with_check
 FROM pg_policies p
 WHERE p.schemaname = 'public'
   AND p.tablename IN ('questions','lesson_activities','question_attempts',
-                      'lesson_activity_attempts','student_lesson_progress','lesson_mastery')
+                      'lesson_activity_attempts','student_lesson_progress','lesson_mastery',
+                      'ai_assessments','assessment_sessions','assessment_session_answers')
 ORDER BY p.tablename, p.cmd, p.policyname;
 
 -- 4. Student projection: invoker, barrier, and its own SQL privileges.
