@@ -33,6 +33,9 @@ const privateFields = new Set([
   "iscorrect", "iscorrectoption", "correctoption", "solution", "solutions",
   "grading", "gradingkey", "expectedanswer", "expectedanswers",
   "privateanswer", "rightanswer", "markingkey",
+  "score", "earnedpoints", "gradingweight", "markscheme",
+  "isanswer", "correctchoice", "correctoptionid", "correctoptionids",
+  "answerindex", "correctindex", "pointsawarded",
 ]);
 
 function sanitizeContent(value: unknown): unknown {
