@@ -13,6 +13,7 @@ import {
 } from "@/lib/supabase/server";
 
 import ParentLinkChildCard from "@/features/parent-link/components/ParentLinkChildCard";
+import { buildParentLearningGuidance } from "@/features/parent-link/services/parent-learning-guidance";
 
 type ParentChildRow = {
   student_id: string;
@@ -300,6 +301,12 @@ export default async function ParentPage({ searchParams }: ParentPageProps) {
                       )
                     );
 
+                  const childGuidance = buildParentLearningGuidance({
+                    completedLessons: toNumber(child.completed_lessons),
+                    masteredLessons: toNumber(child.mastered_lessons),
+                    averageScore: childAverage,
+                  });
+
                   return (
                     <article
                       key={
@@ -388,6 +395,14 @@ export default async function ParentPage({ searchParams }: ParentPageProps) {
                             )
                           }
                         />
+                      </div>
+
+                      <div className="mt-4 rounded-xl bg-sky-50 p-4">
+                        <p className="text-sm font-black text-sky-900">خطوة منزلية مقترحة</p>
+                        <p className="mt-2 text-sm leading-6 text-slate-700">{childGuidance.nextAction}</p>
+                        <Link href={`/parent/children/${child.student_id}`} className="mt-2 inline-block text-sm font-bold text-sky-700 hover:underline">
+                          تفاصيل التقدم والتوصيات ←
+                        </Link>
                       </div>
 
                       <div className="mt-5">
