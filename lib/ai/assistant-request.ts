@@ -92,3 +92,63 @@ export function assistantContextMessage(input: AssistantRequest): string {
     input.message,
   ].join("\n\n") : input.message;
 }
+
+export const MAX_ASSISTANT_BODY_BYTES = 45000;
+
+export type ReadAssistantBody =
+  | { ok: true; value: unknown }
+  | { ok: false; reason: "TOO_LARGE" | "INVALID_JSON" };
+
+/**
+ * Reject excessively large JSON bodies even when Content-Length is missing or
+ * inaccurate. Decode UTF-8 once after a bounded streaming read. No student
+ * message or body is logged here.
+ */
+export async function readBoundedAssistantJson(request: Request): Promise<ReadAssistantBody> {
+  const header = request.headers.get("content-length");
+  if (header !== null) {
+    const claimedBytes = Number(header);
+    if (!Number.isSafeInteger(claimedBytes) || claimedBytes < 0) {
+      return { ok: false, reason: "INVALID_JSON" };
+    }
+    if (claimedBytes > MAX_ASSISTANT_BODY_BYTES) {
+      return { ok: false, reason: "TOO_LARGE" };
+    }
+  }
+
+  if (!request.body) return { ok: false, reason: "INVALID_JSON" };
+  const reader = request.body.getReader();
+  const parts: Uint8Array[] = [];
+  let bytes = 0;
+  try {
+    while (true) {
+      const result = await reader.read();
+      if (result.done) break;
+      const chunk = result.value;
+      bytes += chunk.byteLength;
+      if (bytes > MAX_ASSISTANT_BODY_BYTES) {
+        await reader.cancel().catch(() => undefined);
+        return { ok: false, reason: "TOO_LARGE" };
+      }
+      parts.push(chunk);
+    }
+  } catch {
+    return { ok: false, reason: "INVALID_JSON" };
+  } finally {
+    reader.releaseLock();
+  }
+
+  const buffer = new Uint8Array(bytes);
+  let offset = 0;
+  for (const chunk of parts) {
+    buffer.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+
+  try {
+    const source = new TextDecoder("utf-8", { fatal: true }).decode(buffer);
+    return { ok: true, value: JSON.parse(source) as unknown };
+  } catch {
+    return { ok: false, reason: "INVALID_JSON" };
+  }
+}
