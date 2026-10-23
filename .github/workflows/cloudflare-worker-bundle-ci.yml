@@ -71,6 +71,17 @@ jobs:
             @cloudflare/vite-plugin@beta cf@latest \
             @babel/plugin-transform-runtime@7.29.0 \
             react-server-dom-webpack@19.3.1
+      - name: Ignore Next standalone output in the disposable Workers build
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Next config is left unchanged in GitHub and production.
+          # The Cloudflare adapter creates its own Build Output; it must not
+          # attempt a second Node standalone emit from dist/.
+          sed -i 's/output: "standalone",/\/\/ output: "standalone",/' next.config.ts
+          if grep -q '^  output: "standalone",' next.config.ts; then
+            echo "EPHEMERAL_STANDALONE_DISABLE_FAILED"; exit 1
+          fi
       - name: Build actual Worker bundle (no deploy, no cloud credentials)
         shell: bash
         run: |
@@ -82,7 +93,9 @@ jobs:
           set -euo pipefail
           echo "Generated Worker files (filenames only):"
           find dist .cloudflare -maxdepth 4 -type f 2>/dev/null | head -60 || true
-          test -f dist/server/wrangler.json
+          test -d .cloudflare/output/v0/workers/default/bundle
+          test -f .cloudflare/output/v0/workers/default/bundle/ssr/index.js
+          test -f .cloudflare/output/v0/manifest.json
           echo "CLOUDFLARE_WORKER_BUNDLE_BUILD=PASS"
       - name: Save nonsecret diagnostic logs
         if: always()
