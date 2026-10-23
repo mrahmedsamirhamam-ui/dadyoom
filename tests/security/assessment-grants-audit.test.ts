@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 
 const sql = readFileSync(resolve(process.cwd(),
   "scripts/security-assessment-permissions-audit.sql"), "utf8");
-const queries = sql.replace(/--[^\n]*/g, "");
+const queries = sql.replace(/--[^\n]*/g, "").replace(/\x27(?:\x27\x27|[^\x27])*\x27/g, "\x27\x27");
 
 describe("assessment permissions audit is safe and complete", () => {
   it("cannot modify production state", () => {
