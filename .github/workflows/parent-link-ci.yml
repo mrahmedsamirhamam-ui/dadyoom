@@ -7,6 +7,7 @@ on:
       - 'app/(dashboard)/student/page.tsx'
       - 'features/parent-link/**'
       - 'tests/security/parent-link-flow.test.ts'
+      - 'tests/security/parent-learning-guidance.test.ts'
       - '.github/workflows/parent-link-ci.yml'
   workflow_dispatch:
 
@@ -28,7 +29,7 @@ jobs:
       - name: Install locked dependencies
         run: npm ci --no-audit --no-fund
       - name: Parent link regression tests
-        run: npx vitest run tests/security/parent-link-flow.test.ts
+        run: npx vitest run tests/security/parent-link-flow.test.ts tests/security/parent-learning-guidance.test.ts
       - name: TypeScript
         run: npx tsc --noEmit
       - name: ESLint
