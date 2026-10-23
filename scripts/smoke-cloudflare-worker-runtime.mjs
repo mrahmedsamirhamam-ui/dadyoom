@@ -86,7 +86,7 @@ try {
 
   // The HTML alone is not enough: at least one actual linked client JS file
   // must be served by the Worker static asset handler.
-  const jsAsset = [...body.matchAll(/(?:src|href)="([^"]+\\.js(?:\\?[^"]*)?)"/g)]
+  const jsAsset = [...body.matchAll(/(?:src|href)="([^"]+\.js(?:\?[^"]*)?)"/g)]
     .map(match => match[1])
     .find(path => path.startsWith("/_next/static/"));
   if (!jsAsset) throw new Error("WORKER_HOME_MISSING_CLIENT_JS");
