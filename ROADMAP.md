@@ -274,3 +274,7 @@
 ### 2026-10-23 — trusted final analytics for adaptive assessments
 - `getAssessmentSessionAnalytics` no longer trusts `assessment_session_answers.is_correct`, a column writable by the student's database role in the current production policy. After the already-authorized session completes, it reads selected choices with a trusted server client and matches each question to the private `ai_assessments.correct_answer` scoped by authenticated owner email and published lesson.
 - Fails closed if any stored question key is missing. Calculates strengths, weaknesses and totals from server-computed correctness, preserving existing return shape. Regression test added to AI assessment CI; no production SQL or student-record changes.
+
+### 2026-10-23 — behavioral unit tests of private-key-derived AI analytics
+- Added `tests/security/ai-session-analytics.test.ts` with mocked client behavior (no access to real student data). It verifies false positives are rejected even when stored `is_correct=true`, false negatives are corrected from the stored choice, a missing private key fails closed, and empty sessions make no private key query.
+- Wired it into the existing CI source filter and gate. This complements existing source-code assertions, but is not a substitute for an authenticated Preview end-to-end test or a real database permission migration.

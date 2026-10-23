@@ -36,6 +36,7 @@ on:
       - 'features/assessment/services/advanceAssessmentSession.ts'
       - 'features/assessment/services/getAssessmentSessionAnalytics.ts'
       - 'tests/security/ai-assessment-client-trust.test.ts'
+      - 'tests/security/ai-session-analytics.test.ts'
       - 'features/semantic-search/components/LessonSemanticSearch.tsx'
       - 'features/semantic-search/services/updateLessonMastery.ts'
       - 'tests/security/tutor-not-mastery.test.ts'
@@ -111,6 +112,8 @@ jobs:
         run: npx vitest run tests/security/tutor-not-mastery.test.ts
       - name: Verify AI assessment keys and authoritative session progression
         run: npx vitest run tests/security/ai-assessment-client-trust.test.ts
+      - name: Verify AI assessment analytics with mocked trusted keys
+        run: npx vitest run tests/security/ai-session-analytics.test.ts
       - name: Verify read-only assessment grants audit
         run: npx vitest run tests/security/assessment-grants-audit.test.ts
       - name: Verify public lesson bundle excludes answer keys
