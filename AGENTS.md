@@ -116,6 +116,14 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - الهجرة `20261022195032` مطبقة فعليًا في Supabase الأساسي ومُسجلة في المستودع؛ تجنب إعادة تطبيقها يدويًا مرتين. شغّل `tests/security/public-lesson-bundle-rpc.test.ts` مع CI عند تعديل RPC.
 - تبقى صلاحيات القراءة المباشرة لـ`public.questions` ومحاولات الدرجات P0؛ لا تُعدّ سلامة RPC إثباتًا لسلامة القاعدة الشاملة أو نجاح نشر Cloudflare. لا تغييرات مدفوعة أو مساس بمشروع المدارس المستقل.
 
+
+## إدخال إثراء للفصل الثاني البحريني — حارس الجودة (2026-10-22)
+
+- أعد فحص سجلات الإنتاج قبل كل دفعة؛ الفصل الأول من حادي عشر كان قد اكتمل بأسئلة قبل بدء دفعة الفصل الثاني، فلا تُعِد إدخالها.
+- حافظ على `official_content_scope='official-book-unscheduled'` في دروس الفصل الثاني حتى تثبت المطابقة والجدولة بدليل رسمي؛ لا تنسخ محتوى الوزارة أو تنسب تدريب ضاديوم إليها.
+- إدخال الأسئلة يرتبط بتحديث الدرس نفسه في SQL CTE، مع شرط عدم وجود أسئلة سابقة، وتطابق `id/title/grade/semester/lesson_type/status`، وعدم مساس بمسارات المدارس أو الطلاب أو الفوترة.
+- تحقق باستعلام جديد من 3 أهداف و3 مفردات و3 أسئلة على الأقل وصحة 4 بدائل ومفتاح الإجابة، واستعمل قسم 12 من `scripts/curriculum-production-audit.sql` لجرد الفجوات. الاختبار البنيوي لا يعادل تحقق E2E أو اعتماد المنهج.
+
 ### 2026-10-22 — authorize student question before private grading
 - Verified on current main: the endpoint was reading the private answer key before RLS student visibility, and `getLessonQuestions` still used `questions.select("*")`. On the fresh security branch, question visibility and published lesson checks run with the learner session before any admin client is created. Privileged grading is restricted by matching question ID and lesson ID.
 - Public practice listing now selects only display fields from `dadyoom_student_questions`; source regression tests and CI path triggers cover both readers.

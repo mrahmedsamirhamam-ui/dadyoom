@@ -206,6 +206,13 @@
 - **P0 ما زال مفتوحًا:** وصول مباشر إلى `public.questions.correct_answer` وكتابة درجات/محاولات عبر منح مستخدم الطالب. لا REVOKE قبل الجرد والانتقال الآمن والاختبار الحي. Cloudflare Builds issue #46 غير محسوم.
 - تبقى نسبة نضج ضاديوم الشاملة **حوالي 46% تقديريًا**؛ إغلاق RPC لا يثبت الاستقرار الحي أو اكتمال المناهج الرسمية.
 
+
+## 2026-10-22 — إثراء الصف الحادي عشر البحريني / الفصل الثاني (دفعة جديدة)
+
+- تم تنفيذ إثراء **12 درسًا منشورًا أصلًا** (8 بلاغة + 4 نحو) في Supabase الأساسي، مع **36 سؤال MCQ** مُفسّر و**36 مفردة** و**36 هدفًا**؛ فحص الإنتاج المستقل: 12/12 مستوفية الحد الأدنى و36/36 سؤالًا صحيح البنية.
+- انخفضت فجوة الأسئلة المحفوظة للفصل الثاني من **98 إلى 86/98**. توزيع المتبقي: 26 من 38 درسًا `grammar`، و46/46 قراءة، و14/14 كتابة. راجع قسم الفحص 12 في `scripts/curriculum-production-audit.sql`.
+- **القيد المؤكد:** كل سجلات الدفعة `official-book-unscheduled`؛ المحتوى إثراء ضاديوم أصيل لا يُعتمد بوصفه نص وزارة أو إثباتًا لجدولة 2026–2027. الأولوية تغطية بقية الفصل الثاني وتدقيق المصادر، ثم اختبارات E2E وإغلاق مشكلات الأمان والنشر في مساراتها المنفصلة. لا ترقية للجاهزية (~46%).
+
 ### 2026-10-22 — authorize student question before private grading
 - Verified on current main: the endpoint was reading the private answer key before RLS student visibility, and `getLessonQuestions` still used `questions.select("*")`. On the fresh security branch, question visibility and published lesson checks run with the learner session before any admin client is created. Privileged grading is restricted by matching question ID and lesson ID.
 - Public practice listing now selects only display fields from `dadyoom_student_questions`; source regression tests and CI path triggers cover both readers.
