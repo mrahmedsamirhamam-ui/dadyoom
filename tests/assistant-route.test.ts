@@ -96,8 +96,29 @@ describe("Dadyoom smart assistant HTTP route", () => {
   it("requires a signed-in learner before retrieving a published lesson", async () => {
     mocks.getUser.mockResolvedValueOnce({ data: { user: null }, error: null });
     const response = await POST(request({ message: "اشرح", lessonId }));
-    expect(response.status).toBe(404);
+    expect(response.status).toBe(401);
     expect(mocks.from).not.toHaveBeenCalled();
+    expect(mocks.consumeFeature).not.toHaveBeenCalled();
+    expect(mocks.routeAi).not.toHaveBeenCalled();
+  });
+
+  it("rejects unauthenticated direct API requests even without a lesson ID", async () => {
+    mocks.getUser.mockResolvedValueOnce({ data: { user: null }, error: null });
+    const response = await POST(request({ message: "اشرح لي الفعل الماضي" }));
+    expect(response.status).toBe(401);
+    expect(response.headers.get("Cache-Control")).toBe("no-store");
+    expect(mocks.consumeFeature).not.toHaveBeenCalled();
+    expect(mocks.from).not.toHaveBeenCalled();
+    expect(mocks.routeAi).not.toHaveBeenCalled();
+  });
+
+  it("rejects failed session verification before charging or running AI", async () => {
+    mocks.getUser.mockResolvedValueOnce({
+      data: { user: null }, error: { message: "invalid token" },
+    });
+    const response = await POST(request({ message: "أعطني مثالاً" }));
+    expect(response.status).toBe(401);
+    expect((await response.text())).not.toContain("invalid token");
     expect(mocks.consumeFeature).not.toHaveBeenCalled();
     expect(mocks.routeAi).not.toHaveBeenCalled();
   });
