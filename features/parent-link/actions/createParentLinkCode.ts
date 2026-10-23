@@ -32,35 +32,15 @@ export async function createParentLinkCodeAction() {
   const db =
     supabase as unknown as SupabaseClient;
 
-  const {
-    data,
-    error,
-  } = await db.rpc(
+  const { error } = await db.rpc(
     "create_parent_link_code"
   );
 
   if (error) {
-    redirect(
-      "/student?parentLinkError=" +
-        encodeURIComponent(
-          error.message
-        )
-    );
+    // Do not expose database details or the one-time code in the URL.
+    redirect("/student?parentLinkError=failed");
   }
 
-  const result =
-    Array.isArray(data)
-      ? data[0]
-      : data;
-
   revalidatePath("/student");
-
-  redirect(
-    "/student?parentLinkSuccess=" +
-      encodeURIComponent(
-        `تم إنشاء كود الربط: ${
-          result?.code ?? ""
-        }`
-      )
-  );
+  redirect("/student?parentLinkSuccess=created");
 }
