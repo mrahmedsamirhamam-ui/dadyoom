@@ -17,7 +17,7 @@ try {
 
   await page.goto(base + "/labs/stories", { waitUntil: "domcontentloaded" });
   await page.getByRole("heading", { name: "اختر حكايتك التعليمية" }).waitFor();
-  assert.equal(await page.getByRole("link", { name: /ابدأ الحكاية/ }).count(), 3);
+  assert.equal(await page.getByRole("link", { name: /ابدأ الحكاية/ }).count(), 4);
 
   await page.goto(base + "/labs/stories/final-hamza", { waitUntil: "domcontentloaded" });
   await page.getByRole("heading", { name: "رحلة الهمزة إلى كرسيها" }).waitFor();
@@ -41,7 +41,23 @@ try {
   await page.reload();
   await page.getByRole("button", { name: "المشهد التالي ←" }).waitFor();
   assert.doesNotMatch(await page.locator("body").innerText(), /3 من 4 إجابات صحيحة من المحاولة الأولى/);
-  console.log("Story lab: 3 narratives, graded practice, hints, ephemeral session and mobile layout: PASS");
+  await page.goto(base + "/labs/stories/matching-apposition", { waitUntil: "domcontentloaded" });
+  await page.getByRole("heading", { name: "الاسم الذي يوضح الاسم" }).waitFor();
+  for (let scene = 0; scene < 4; scene++) {
+    await page.getByRole("button", { name: /المشهد التالي|هيا نتدرّب/ }).click();
+  }
+  for (const answer of ["الطالبُ", "مريمَ", "مالكٍ", "قابلتُ المعلّمَ معتزًّا"]) {
+    await page.getByRole("button", { name: answer, exact: true }).click();
+    await page.getByRole("button", { name: /السؤال التالي|اعرض نتيجة التدريب/ }).click();
+  }
+  await page.getByRole("heading", { name: "أحسنت، أكملت الحكاية!" }).waitFor();
+  assert.match(await page.locator("body").innerText(), /4 من 4 إجابات صحيحة من المحاولة الأولى/);
+  assert.ok(
+    await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 2),
+    "Matching-apposition story must not overflow a 390px mobile viewport",
+  );
+
+  console.log("Story lab: 4 narratives, graded practice, hints, ephemeral session and mobile layout: PASS");
 } finally {
   await browser.close();
 }
