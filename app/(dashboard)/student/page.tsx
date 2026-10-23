@@ -101,6 +101,8 @@ type StudentPageProps = {
   searchParams: Promise<{
     classroomSuccess?: string;
     classroomError?: string;
+    parentLinkSuccess?: string;
+    parentLinkError?: string;
   }>;
 };
 
@@ -110,6 +112,8 @@ export default async function StudentPage({
   const {
     classroomSuccess,
     classroomError,
+    parentLinkSuccess,
+    parentLinkError,
   } = await searchParams;
   const supabase = await createClient();
 
@@ -470,7 +474,11 @@ if (masterySkillsError) {
           </div>
         </section>
 
-        <StudentParentLinkCard code={parentLinkCode} />
+        <StudentParentLinkCard
+          code={parentLinkCode}
+          successMessage={parentLinkSuccess === "created" ? "تم إنشاء الكود. شاركه مع ولي أمرك فقط." : undefined}
+          errorMessage={parentLinkError === "failed" ? "تعذر إنشاء كود الربط. حاول مجددًا." : undefined}
+        />
 
         <StudentClassroomCard
           classes={teacherClasses}
