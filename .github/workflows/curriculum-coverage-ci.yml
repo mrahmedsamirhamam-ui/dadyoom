@@ -27,6 +27,7 @@ on:
       - 'tests/security/shadow-public-activity-rpc-baseline.sql'
       - 'tests/security/shadow-public-activity-rpc-verified.sql'
       - 'tests/security/shadow-public-activity-rpc-rollback.sql'
+      - 'tests/security/shadow-question-column-grants.sql'
       - 'tests/security/activity-rpc-redaction-parity.test.ts'
       - 'tests/security/student-question-payload.test.ts'
       - 'features/questions/services/public-lesson-questions.ts'
@@ -209,6 +210,16 @@ jobs:
           docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres \
             < tests/security/shadow-question-grants.sql
           echo "SHADOW_QUESTION_GRANTS_REHEARSAL=PASS"
+      - name: Rehearse column grants without breaking invoker student question view
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres \
+            < tests/security/shadow-question-column-grants.sql
+          echo "SHADOW_QUESTION_COLUMN_GRANTS_REHEARSAL=PASS"
       - name: Prove forged own scores and rehearse six-table write-grant cutover
         shell: bash
         env:
