@@ -50,6 +50,53 @@ try {
   const xml=await sitemap.text();
   if(!xml.includes("<urlset"))throw new Error("WORKER_SITEMAP_MISSING_XML");
   console.log("WORKER_SITEMAP_GET=PASS");
+  // Live workerd/Cloudflare runtime denies access to private grading APIs
+  // before reading the database or attempting any admin operation. Fake
+  // public env is intentionally non-routable; all requests are anonymous.
+  const unauthenticated = [
+    { name:"QUESTION_GRADING", method:"POST", path:"/api/questions/answer", body:{
+      questionId:"00000000-0000-4000-8000-000000000001", selectedAnswer:"fake"
+    }},
+    { name:"ACTIVITY_GRADING", method:"POST", path:"/api/lesson-activities/check", body:{
+      activityId:"00000000-0000-4000-8000-000000000001", answer:["__completed__"]
+    }},
+    { name:"AI_TEST_SUBMIT", method:"POST", path:"/api/ai/assessment/submit", body:{
+      assessmentId:"00000000-0000-4000-8000-000000000001",
+      sessionId:"00000000-0000-4000-8000-000000000002",answer:0
+    }},
+    { name:"AI_TEST_NEXT", method:"POST", path:"/api/ai/assessment/next", body:{
+      sessionId:"00000000-0000-4000-8000-000000000002",correct:true
+    }},
+    { name:"AI_TEST_SESSION", method:"POST", path:"/api/ai/assessment/session", body:{
+      lessonId:"00000000-0000-4000-8000-000000000001"
+    }}
+  ];
+  for (const check of unauthenticated) {
+    const response = await fetch(url+check.path,{
+      method:check.method,
+      headers:{"content-type":"application/json"},
+      body:JSON.stringify(check.body),
+      redirect:"manual",
+      signal:AbortSignal.timeout(10000)
+    });
+    const body=await response.text();
+    if (response.status!==401) {
+      throw new Error(`WORKER_${check.name}_EXPECTED_401_GOT_${response.status}:${body.slice(0,180)}`);
+    }
+    if (!response.headers.get("content-type")?.includes("application/json")) {
+      throw new Error(`WORKER_${check.name}_NOT_JSON`);
+    }
+    if (/service.role|service_role|SUPABASE_SERVICE_ROLE_KEY|correct_answer/i.test(body)) {
+      throw new Error(`WORKER_${check.name}_LEAKED_PRIVATE_INTERNALS`);
+    }
+    console.log(`WORKER_${check.name}_UNAUTH_401=PASS`);
+  }
+  const mastery = await get("/api/lesson-mastery?lessonId=00000000-0000-4000-8000-000000000001",10000);
+  if(mastery.status!==401) {
+    throw new Error(`WORKER_LESSON_MASTERY_EXPECTED_401_GOT_${mastery.status}`);
+  }
+  console.log("WORKER_LESSON_MASTERY_UNAUTH_401=PASS");
+
   console.log("WORKER_LOCAL_PREVIEW_RUNTIME=PASS");
 }catch(e){
   console.error("WORKER_LOCAL_PREVIEW_RUNTIME=FAIL",String(e));

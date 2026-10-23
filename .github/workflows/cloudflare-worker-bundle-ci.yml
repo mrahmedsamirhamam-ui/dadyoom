@@ -23,6 +23,10 @@ jobs:
     env:
       CI: 'true'
       NEXT_TELEMETRY_DISABLED: '1'
+      # Fake, non-routable public client config only for anonymous local Worker tests.
+      # No actual Supabase project, tokens, student account or admin key used.
+      NEXT_PUBLIC_SUPABASE_URL: 'https://dadyoom-ci.invalid'
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: 'not-a-real-supabase-key-for-ci'
       # Intentionally no CLOUDFLARE_API_TOKEN, ACCOUNT_ID, database or app secrets.
     steps:
       - uses: actions/checkout@v4
