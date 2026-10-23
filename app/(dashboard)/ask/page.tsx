@@ -1,6 +1,7 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useEffect, useState, type FormEvent } from "react";
+import Link from "next/link";
 import { ASSISTANT_MODES, type AssistantMode } from "@/lib/ai/assistant-modes";
 import { askDadyoomHybrid, type HybridAIResult } from "@/lib/mobile/hybrid-ai";
 
@@ -18,6 +19,13 @@ export default function AskPage() {
   const [error, setError] = useState("");
   const [isSending, setIsSending] = useState(false);
   const [nextId, setNextId] = useState(1);
+  const [lessonId, setLessonId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const raw = new URLSearchParams(window.location.search).get("lessonId");
+    const valid = raw && /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/iu.test(raw);
+    setLessonId(valid ? raw : null);
+  }, []);
 
   const selectedMode = ASSISTANT_MODES.find((item) => item.id === mode) ?? ASSISTANT_MODES[0];
 
@@ -34,6 +42,7 @@ export default function AskPage() {
       // not a school role or permission requested by the browser.
       const result = await askDadyoomHybrid(cleanQuestion, {
         mode,
+        ...(lessonId ? { lessonId } : {}),
         history: turns.slice(-8).map((item) => ({
           role: item.role,
           content: item.content.slice(0, 2500),
@@ -86,6 +95,12 @@ export default function AskPage() {
         </header>
 
         <div className="p-5 sm:p-8">
+          {lessonId ? (
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#d2e6d8] bg-[#f0f8f2] p-4 text-sm leading-7 text-[#23473b]">
+              <p>أنت تسأل عن درس محدد. سيحاول ضاد قراءة المحتوى المنشور المسموح لحسابك فقط قبل الإجابة.</p>
+              <Link href={`/lessons/${lessonId}`} className="font-black underline underline-offset-4">العودة إلى الدرس</Link>
+            </div>
+          ) : null}
           <fieldset disabled={isSending}>
             <legend className="text-lg font-black text-[#123f39]">
               كيف تريد أن يساعدك ضاد؟
@@ -156,7 +171,7 @@ export default function AskPage() {
                       {turn.content}
                     </p>
                     {turn.role === "assistant" && turn.engine === "local" ? (
-                      <p className="mt-2 text-xs text-[#617166]">إجابة من الوضع المحلي على الجهاز؛ تحقّق من المعلومات المهمة.</p>
+                      <p className="mt-2 text-xs text-[#617166]">إجابة من الوضع المحلي على الجهاز؛ قد لا يتوفر فيه محتوى الدرس المنشور للتحقق، فراجعه عند الاتصال.</p>
                     ) : null}
                   </li>
                 ))}
