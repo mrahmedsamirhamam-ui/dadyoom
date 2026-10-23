@@ -1,9 +1,48 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
-import { assistantContextMessage, parseAssistantRequest } from "../lib/ai/assistant-request";
+import { MAX_ASSISTANT_BODY_BYTES, assistantContextMessage, parseAssistantRequest, readBoundedAssistantJson } from "../lib/ai/assistant-request";
 
 describe("Dadyoom smart assistant request boundary", () => {
+
+  it("enforces the actual byte limit even without Content-Length", async () => {
+    const oversized = JSON.stringify({ message: "اشرح", untrusted: "A".repeat(MAX_ASSISTANT_BODY_BYTES) });
+    const request = new Request("http://localhost/api/dad/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: oversized,
+    });
+    expect(await readBoundedAssistantJson(request)).toEqual({ ok: false, reason: "TOO_LARGE" });
+  });
+
+  it("rejects false small Content-Length and catches invalid UTF-8", async () => {
+    const request = new Request("http://localhost/api/dad/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "content-length": "25" },
+      body: JSON.stringify({ message: "اشرح", junk: "a".repeat(MAX_ASSISTANT_BODY_BYTES) }),
+    });
+    expect(await readBoundedAssistantJson(request)).toEqual({ ok: false, reason: "TOO_LARGE" });
+
+    const invalidBytes = new Request("http://localhost/api/dad/chat", {
+      method: "POST",
+      body: new Uint8Array([0xff, 0xff, 0xff]),
+    });
+    expect(await readBoundedAssistantJson(invalidBytes)).toEqual({ ok: false, reason: "INVALID_JSON" });
+  });
+
+  it("still accepts valid Arabic JSON within the byte limit", async () => {
+    const request = new Request("http://localhost/api/dad/chat", {
+      method: "POST",
+      body: JSON.stringify({ message: "ماذا يعني المبتدأ؟", mode: "explain" }),
+    });
+    const result = await readBoundedAssistantJson(request);
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(parseAssistantRequest(result.value).ok).toBe(true);
+    }
+  });
+
+
   it("rejects empty and malformed requests before model quota use", () => {
     expect(parseAssistantRequest(null)).toEqual({ ok: false, reason: "INVALID_BODY" });
     expect(parseAssistantRequest([])).toEqual({ ok: false, reason: "INVALID_BODY" });
