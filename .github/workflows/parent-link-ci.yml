@@ -1,0 +1,37 @@
+name: Parent-child linking integrity
+
+on:
+  pull_request:
+    paths:
+      - 'app/(dashboard)/parent/**'
+      - 'app/(dashboard)/student/page.tsx'
+      - 'features/parent-link/**'
+      - 'tests/security/parent-link-flow.test.ts'
+      - '.github/workflows/parent-link-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Parent link regression tests
+        run: npx vitest run tests/security/parent-link-flow.test.ts
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: ESLint
+        run: npm run lint
+      - name: Production compilation (not deployment)
+        run: npm run build
