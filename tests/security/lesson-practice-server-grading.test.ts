@@ -147,9 +147,10 @@ describe("stored-key lesson practice keeps the private grading boundary", () => 
     ]);
     expect(result).toMatchObject({ score: 100, passed: true, correctAnswers: 2 });
     expect(completeAdaptiveStep).toHaveBeenCalledExactlyOnceWith({
-      supabase: expect.any(Object),
+      supabase: createAdminClient.mock.results[0].value,
       studentId, lessonId, stepType: "practice",
     });
+    expect(createAdminClient).toHaveBeenCalledTimes(1);
     expect(revalidatePath).toHaveBeenCalledWith("/student");
   });
 });
