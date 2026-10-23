@@ -110,6 +110,14 @@ describe("AI assessment answer-key confidentiality and authoritative progression
     expect(latest).toContain("lessonId: session.lesson_id");
   });
 
+  it("trusts server question skill and handles empty analytics without NaN", () => {
+    const analytics = read("features/assessment/services/getAssessmentSessionAnalytics.ts");
+    const scoring = read("features/assessment/services/analyzeAssessment.ts");
+    expect(analytics).toContain('.select("id,correct_answer,skill")');
+    expect(analytics).not.toContain("answer.skill.trim()");
+    expect(scoring).toContain("Math.max(questions.length, 1)");
+  });
+
   it("prevents races in the session update", () => {
     expect(advance).toContain('.eq("current_question", session.current_question)');
     expect(advance).toContain('.eq("correct_answers", session.correct_answers)');

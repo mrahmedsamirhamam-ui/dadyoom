@@ -8,7 +8,7 @@ type Answer = {
   skill: string;
   is_correct?: boolean;
 };
-type Key = { id: string; correct_answer: number };
+type Key = { id: string; correct_answer: number; skill: string };
 
 function createFakeDatabase(answers: Answer[], keys: Key[]) {
   const queries: { table: string; filters: Record<string, unknown> }[] = [];
@@ -54,7 +54,7 @@ describe("AI assessment analytics uses trusted keys, not writable flags", () => 
   it("marks a forged true flag wrong when the chosen option is incorrect", async () => {
     const { supabase, queries } = createFakeDatabase(
       [{ assessment_id: "q1", selected_answer: 0, skill: "النحو", is_correct: true }],
-      [{ id: "q1", correct_answer: 2 }]
+      [{ id: "q1", correct_answer: 2, skill: "القراءة" }]
     );
     const result = await evaluate(supabase);
     expect(result.totalQuestions).toBe(1);
@@ -72,11 +72,30 @@ describe("AI assessment analytics uses trusted keys, not writable flags", () => 
   it("recognizes a correct choice even when a stored flag is false", async () => {
     const { supabase } = createFakeDatabase(
       [{ assessment_id: "q1", selected_answer: 2, skill: "القراءة", is_correct: false }],
-      [{ id: "q1", correct_answer: 2 }]
+      [{ id: "q1", correct_answer: 2, skill: "القراءة" }]
     );
     const result = await evaluate(supabase);
     expect(result.totalCorrect).toBe(1);
     expect(result.totalWrong).toBe(0);
+  });
+  it("uses trusted question skill rather than a forged answer-row skill", async () => {
+    const { supabase } = createFakeDatabase(
+      [{ assessment_id: "q1", selected_answer: 0, skill: "مهارة مزيفة", is_correct: true }],
+      [{ id: "q1", correct_answer: 2, skill: "النحو" }]
+    );
+    const result = await evaluate(supabase);
+    expect(result.skills["النحو"]).toMatchObject({ total: 1, correct: 0 });
+    expect(result.weaknesses).toContain("النحو");
+    expect(result.skills["مهارة مزيفة"]).toBeUndefined();
+  });
+  it("uses a fallback skill for a missing trusted skill label", async () => {
+    const { supabase } = createFakeDatabase(
+      [{ assessment_id: "q1", selected_answer: 2, skill: "مزيفة" }],
+      [{ id: "q1", correct_answer: 2, skill: "" }]
+    );
+    const result = await evaluate(supabase);
+    expect(result.skills["الاستيعاب"].correct).toBe(1);
+    expect(result.skills["مزيفة"]).toBeUndefined();
   });
   it("fails closed when one recorded question key is not authorized", async () => {
     const { supabase } = createFakeDatabase(
@@ -91,6 +110,7 @@ describe("AI assessment analytics uses trusted keys, not writable flags", () => 
     expect(result.totalQuestions).toBe(0);
     expect(result.totalCorrect).toBe(0);
     expect(result.totalWrong).toBe(0);
+    expect(result.overallPercentage).toBe(0);
     expect(queries.map(x => x.table)).toEqual(["assessment_session_answers"]);
   });
 });

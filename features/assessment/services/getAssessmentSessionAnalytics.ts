@@ -49,7 +49,7 @@ export async function getAssessmentSessionAnalytics({
   const { data: keys, error: keyError } = ids.length
     ? await supabase
         .from("ai_assessments")
-        .select("id,correct_answer")
+        .select("id,correct_answer,skill")
         .eq("student_email", studentEmail)
         .eq("lesson_id", lessonId)
         .in("id", ids)
@@ -58,7 +58,10 @@ export async function getAssessmentSessionAnalytics({
   if (keyError) throw keyError;
 
   const correctByAssessment = new Map(
-    (keys ?? []).map((row) => [row.id, row.correct_answer])
+    (keys ?? []).map((row) => [
+      row.id,
+      { correctAnswer: row.correct_answer, skill: row.skill },
+    ])
   );
   if (correctByAssessment.size !== ids.length) {
     throw new Error("تعذر التحقق من مفاتيح جميع أسئلة الجلسة.");
@@ -67,13 +70,13 @@ export async function getAssessmentSessionAnalytics({
   const normalizedAnswers =
     (answers ?? []).map((answer) => ({
       skill:
-        typeof answer.skill === "string" &&
-        answer.skill.trim()
-          ? answer.skill.trim()
+        typeof correctByAssessment.get(answer.assessment_id)?.skill === "string" &&
+        correctByAssessment.get(answer.assessment_id)?.skill.trim()
+          ? correctByAssessment.get(answer.assessment_id)!.skill.trim()
           : "الاستيعاب",
       isCorrect:
         correctByAssessment.has(answer.assessment_id) &&
-        answer.selected_answer === correctByAssessment.get(answer.assessment_id),
+        answer.selected_answer === correctByAssessment.get(answer.assessment_id)?.correctAnswer,
     }));
 
   const analytics =

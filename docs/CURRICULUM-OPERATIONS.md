@@ -651,3 +651,7 @@
 ### 2026-10-23 — latest assessment analytics now enforces ownership and private correction
 - Fixed the compile failure caused by `getLatestAssessmentAnalytics` calling the updated key-derived analytics method without authenticated email or lesson ID. It now checks `auth.getUser()` and `user.id===studentId`, retrieves only the caller's finished session under RLS, and invokes private-key-derived analytics with the server-only client and the validated lesson/student identity.
 - Dedicated source guard and CI path added; no real answer values returned or historic data edited.
+
+### 2026-10-23 — AI skill integrity and empty-session analytics
+- AI assessment analytics now reads **correct_answer and skill** from the original server-private question record, ignoring editable `assessment_session_answers.skill`; a forged skill name cannot manipulate strengths/weaknesses. A missing official skill label gets the existing `الاستيعاب` fallback.
+- Pure `analyzeAssessment` handles an empty session as `overallPercentage=0`, not `NaN`. Behavioral Vitest cases cover spoofed skill, missing skill and zero attempts. No SQL, RLS, production records, or payments changed.
