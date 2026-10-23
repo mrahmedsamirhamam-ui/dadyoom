@@ -655,3 +655,10 @@
 ### 2026-10-23 — AI skill integrity and empty-session analytics
 - AI assessment analytics now reads **correct_answer and skill** from the original server-private question record, ignoring editable `assessment_session_answers.skill`; a forged skill name cannot manipulate strengths/weaknesses. A missing official skill label gets the existing `الاستيعاب` fallback.
 - Pure `analyzeAssessment` handles an empty session as `overallPercentage=0`, not `NaN`. Behavioral Vitest cases cover spoofed skill, missing skill and zero attempts. No SQL, RLS, production records, or payments changed.
+
+### 2026-10-23 — verified curriculum assessment record coverage (read-only core Supabase)
+- **8,307/8,307 published lessons (100.00%) have at least one stored question or a `lesson_activities.is_published=true` activity**. Of those, **414** use published activities instead of the `questions` table. This closes the *stored-assessment-presence inventory* gate, not online grading E2E or pedagogical/official Ministry certification.
+- Of 72 `draft` rows, **62** are short Bahrain semester-1 imported-index candidates with no questions (titles resemble malformed book contents); **10** are Yemen/Oman whole-grade/subject package records with stored questions. Neither group should be auto-published as if these were validated ministry lessons.
+- Eight published zero-content records are explicit Tunisia *official book reference/catalog nodes* and must be displayed as such, not fabricated as teaching texts. Zero empty noncatalog published lessons found.
+- Updated existing `scripts/curriculum-production-audit.sql` to calculate the actual combined assessment coverage and separate those QA queues; CI checks query intent and that it remains read-only. Live SQL verified these counts without any production data mutation.
+- **Readiness limitation:** These facts may justify progress in the curriculum/data-inventory portion; they do not clear Cloudflare #46, unsafe direct Supabase grants #57, signed-in Preview or official annual syllabus mapping. No 100% platform readiness claim.

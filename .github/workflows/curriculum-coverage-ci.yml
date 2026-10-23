@@ -53,6 +53,7 @@ on:
       - 'features/student-progress/services/completion-gates.ts'
       - 'scripts/curriculum-coverage.mjs'
       - 'scripts/curriculum-production-audit.sql'
+      - 'tests/curriculum-readiness-live-gates.test.ts'
       - 'app/quiz/**'
       - 'tests/security/safe-questions-view.test.ts'
       - 'supabase/migrations/20261022150911_create_dadyoom_student_safe_questions_view.sql'
@@ -87,6 +88,8 @@ jobs:
         run: npm run curriculum:coverage
       - name: Test that missing packs never report full country coverage
         run: npx vitest run tests/curriculum-coverage.test.ts
+      - name: Verify published assessment and import-placeholder readiness audit
+        run: npx vitest run tests/curriculum-readiness-live-gates.test.ts
       - name: Verify canonical lesson completion entry points
         run: npx vitest run tests/security/lesson-completion-entrypoints.test.ts tests/security/lesson-mastery-gates.test.ts
       - name: Verify authoritative lesson question grading
