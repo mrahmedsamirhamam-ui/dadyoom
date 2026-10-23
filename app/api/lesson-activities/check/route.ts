@@ -1,5 +1,8 @@
+import "server-only";
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
+import { preserveGradedLessonProgress } from "@/lib/lesson-activities/progress-state";
 import {
   getCorrectAnswerSpec,
 } from "@/lib/lesson-activities/grading";
@@ -158,53 +161,53 @@ export async function POST(
     }
 
 
-    // ========================================================
-    // النشاط الحالي
-    // ========================================================
+    // Student RLS must authorize activity and the published parent lesson.
+    // Never obtain private answer-bearing rows through the caller's session.
+    const { data: visibleActivity, error: visibilityError } = await supabase
+      .from("lesson_activities")
+      .select("id,lesson_id")
+      .eq("id", activityId)
+      .eq("is_published", true)
+      .maybeSingle();
 
-    const {
-      data: activity,
-      error:
-        activityError,
-    } =
-      await supabase
-        .from(
-          "lesson_activities"
-        )
-        .select(
-          "id,lesson_id,activity_type,answer,points,is_published"
-        )
-        .eq(
-          "id",
-          activityId
-        )
-        .eq(
-          "is_published",
-          true
-        )
-        .maybeSingle();
-
-    if (
-      activityError
-    ) {
-      throw activityError;
-    }
-
-    if (
-      !activity
-    ) {
+    if (visibilityError) throw visibilityError;
+    if (!visibleActivity) {
       return NextResponse.json(
-        {
-          success: false,
-          message:
-            "النشاط غير موجود.",
-        },
-        {
-          status: 404,
-        }
+        { success: false, message: "النشاط غير موجود." },
+        { status: 404 }
       );
     }
 
+    const { data: visibleLesson, error: lessonError } = await supabase
+      .from("lessons")
+      .select("id,status")
+      .eq("id", visibleActivity.lesson_id)
+      .maybeSingle();
+
+    if (lessonError) throw lessonError;
+    if (!visibleLesson || visibleLesson.status !== "published") {
+      return NextResponse.json(
+        { success: false, message: "الدرس غير متاح للتقويم." },
+        { status: 404 }
+      );
+    }
+
+    const admin = createAdminClient();
+    const { data: activity, error: activityError } = await admin
+      .from("lesson_activities")
+      .select("id,lesson_id,activity_type,answer,points,is_published")
+      .eq("id", visibleActivity.id)
+      .eq("lesson_id", visibleActivity.lesson_id)
+      .eq("is_published", true)
+      .maybeSingle();
+
+    if (activityError) throw activityError;
+    if (!activity) {
+      return NextResponse.json(
+        { success: false, message: "النشاط غير موجود." },
+        { status: 404 }
+      );
+    }
 
     const answerData =
       getAnswerRecord(
@@ -425,7 +428,7 @@ export async function POST(
       error:
         lessonActivitiesError,
     } =
-      await supabase
+      await admin
         .from(
           "lesson_activities"
         )
@@ -661,7 +664,7 @@ export async function POST(
           "student_lesson_progress"
         )
         .select(
-          "id,best_score,attempts,status"
+          "id,best_score,attempts,status,progress_percent"
         )
         .eq(
           "student_id",
@@ -702,12 +705,15 @@ export async function POST(
      * - mastery
      * - XP
      */
-    const progressValues = {
-      status:
-        "in_progress",
+    const safeProgress = preserveGradedLessonProgress(
+      existingProgress,
+      progressPercent
+    );
 
-      progress_percent:
-        progressPercent,
+    const progressValues = {
+      status: safeProgress.status,
+
+      progress_percent: safeProgress.progress_percent,
 
       last_score:
         currentScore,
