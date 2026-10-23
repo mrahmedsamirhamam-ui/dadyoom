@@ -584,3 +584,7 @@ Dadyoom aims to become an education innovation institution with a distinctive Ar
 ### 2026-10-23 — behavioral unit tests of private-key-derived AI analytics
 - Added `tests/security/ai-session-analytics.test.ts` with mocked client behavior (no access to real student data). It verifies false positives are rejected even when stored `is_correct=true`, false negatives are corrected from the stored choice, a missing private key fails closed, and empty sessions make no private key query.
 - Wired it into the existing CI source filter and gate. This complements existing source-code assertions, but is not a substitute for an authenticated Preview end-to-end test or a real database permission migration.
+
+### 2026-10-23 — latest assessment analytics now enforces ownership and private correction
+- Fixed the compile failure caused by `getLatestAssessmentAnalytics` calling the updated key-derived analytics method without authenticated email or lesson ID. It now checks `auth.getUser()` and `user.id===studentId`, retrieves only the caller's finished session under RLS, and invokes private-key-derived analytics with the server-only client and the validated lesson/student identity.
+- Dedicated source guard and CI path added; no real answer values returned or historic data edited.

@@ -35,6 +35,7 @@ on:
       - 'app/api/ai/assessment/**'
       - 'features/assessment/services/advanceAssessmentSession.ts'
       - 'features/assessment/services/getAssessmentSessionAnalytics.ts'
+      - 'features/assessment/services/getLatestAssessmentAnalytics.ts'
       - 'tests/security/ai-assessment-client-trust.test.ts'
       - 'tests/security/ai-session-analytics.test.ts'
       - 'features/semantic-search/components/LessonSemanticSearch.tsx'

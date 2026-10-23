@@ -95,6 +95,21 @@ describe("AI assessment answer-key confidentiality and authoritative progression
     expect(next).toContain("lessonId: publishedLesson.id,");
   });
 
+  it("latest analytics verifies authenticated ownership before private keys", () => {
+    const latest=read("features/assessment/services/getLatestAssessmentAnalytics.ts");
+    const auth=latest.indexOf("supabase.auth.getUser()");
+    const ownership=latest.indexOf("user.id !== studentId");
+    const session=latest.indexOf('.from("assessment_sessions")');
+    const admin=latest.indexOf("supabase: createAdminClient()");
+    expect(latest).toContain('import "server-only"');
+    expect(auth).toBeGreaterThan(-1);
+    expect(ownership).toBeGreaterThan(auth);
+    expect(session).toBeGreaterThan(ownership);
+    expect(admin).toBeGreaterThan(session);
+    expect(latest).toContain("studentEmail: user.email");
+    expect(latest).toContain("lessonId: session.lesson_id");
+  });
+
   it("prevents races in the session update", () => {
     expect(advance).toContain('.eq("current_question", session.current_question)');
     expect(advance).toContain('.eq("correct_answers", session.correct_answers)');
