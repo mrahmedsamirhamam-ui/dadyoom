@@ -38,6 +38,16 @@ describe("AI assessment answer-key confidentiality and authoritative progression
     expect(next).not.toContain('answeredCorrectly:\n          body.correct');
     expect(next).toContain("supabase: admin,");
   });
+  it("student UI accepts redacted pre-submit fields and safe post-submit feedback", () => {
+    const assessmentType=read("types/assessment.ts");
+    const view=read("features/assessment/components/LessonAssessment.tsx");
+    expect(assessmentType).toContain("correctAnswer: number | null");
+    expect(assessmentType).toContain("explanation: string | null");
+    expect(view).toContain("correctAnswer: number | null");
+    expect(view).toContain("assessment.explanation ||");
+    expect(view).toContain("راجع شرح الدرس");
+  });
+
   it("prevents races in the session update", () => {
     expect(advance).toContain('.eq("current_question", session.current_question)');
     expect(advance).toContain('.eq("correct_answers", session.correct_answers)');

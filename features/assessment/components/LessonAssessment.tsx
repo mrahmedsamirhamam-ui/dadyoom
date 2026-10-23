@@ -15,8 +15,8 @@ type Assessment = {
   passage: string;
   question: string;
   choices: string[];
-  correctAnswer: number;
-  explanation: string;
+  correctAnswer: number | null;
+  explanation: string | null;
   skill: string;
   difficulty: string;
   completed: boolean;
@@ -71,8 +71,8 @@ type SubmitResponse = {
   success?: boolean;
   correct?: boolean;
   score?: number;
-  correctAnswer?: number;
-  explanation?: string;
+  correctAnswer?: number | null;
+  explanation?: string | null;
   message?: string;
 };
 
@@ -798,7 +798,10 @@ export default function LessonAssessment({
 
           <p className="mt-3 leading-8 text-slate-800">
             {result.explanation ||
-              assessment.explanation}
+              assessment.explanation ||
+              (result.correct
+                ? "أحسنت! تابِع السؤال التالي."
+                : "راجع شرح الدرس، ثم جرّب سؤالًا آخر.")}
           </p>
 
           <button
