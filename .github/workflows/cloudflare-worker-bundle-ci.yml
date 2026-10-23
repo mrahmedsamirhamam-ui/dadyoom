@@ -57,8 +57,8 @@ jobs:
         run: |
           set -euo pipefail
           # This init may edit ephemeral working-tree files but never commits or deploys.
-          # Memory cache / no image service keeps it free of storage provisioning.
-          npx vinext init --platform=cloudflare --skip-check --force --data-cache=memory --image-optimization=none
+          # No data cache / no image service keeps it free of storage provisioning.
+          npx vinext init --platform=cloudflare --skip-check --force --data-cache=none --image-optimization=none
       - name: Build actual Worker bundle (no deploy, no cloud credentials)
         shell: bash
         run: |
