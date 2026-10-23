@@ -312,3 +312,8 @@
 - Ran a **read-only isolated** `vinext@1.2.1 check` in GitHub Actions. Initial result **95% compatibility**: 19 supported, 0 partial, 1 unrecognized import. That import came only from `types/cache-life.d.ts`: an obsolete internal Next.js cache-tag runtime path used by an ambient TYPE declaration.
 - Replaced the type-only import with `export function cacheTag(...tags: string[]): void` inside the existing `next/cache` augmentation. It preserves the public API type names without changing cache implementation/runtime routes.
 - The preflight now **fails closed** unless the parsed CLI report says 100%, 0 partial, 0 known issues; version pinned and report saved as GitHub artifact. Added source tests. This is a static compatibility gate, NOT an actual Worker build, Preview, Supabase SSR test, or production deployment. No `vinext init`, configuration rewrite, wrangler deploy or billing change performed.
+
+### 2026-10-23 — compiled production Node runtime smoke test (no credentials)
+- Added `scripts/smoke-next-production-runtime.mjs`, run after `npm run build` in the existing CI job. It **starts the compiled Next production server locally** in the GitHub runner, issues GET-only anonymous requests to the homepage, `robots.txt`, `sitemap.xml`, and manifest, then always terminates the server.
+- It checks real HTTP 200 responses, Arabic brand + language and public discovery routes. No external accounts, user logins, Supabase secrets, production data, Worker deployment or paid resources.
+- This closes a distinct compiled-server runtime-smoke gate if CI passes, separate from static Next build and separate from Cloudflare Workers/Preview role acceptance.
