@@ -35,7 +35,7 @@ describe("assessment permissions audit is safe and complete", () => {
     expect(sql).toContain("p.prosecdef");
     expect(sql).toContain("has_function_privilege('anon', p.oid, 'EXECUTE')");
     expect(sql).toContain("has_function_privilege('authenticated', p.oid, 'EXECUTE')");
-    expect(queries).not.toMatch(/\\bpg_get_functiondef\\b|\\bprosrc\\b/i);
+    expect(queries).not.toMatch(/\bpg_get_functiondef\b|\bprosrc\b/i);
   });
 
 });
