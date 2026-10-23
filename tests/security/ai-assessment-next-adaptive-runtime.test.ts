@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const {
   createClient,
@@ -6,12 +6,14 @@ const {
   advanceAssessmentSession,
   getAssessmentSessionAnalytics,
   completeAdaptiveStep,
+  verifyAssessmentCompletionReceipt,
 } = vi.hoisted(() => ({
   createClient: vi.fn(),
   createAdminClient: vi.fn(),
   advanceAssessmentSession: vi.fn(),
   getAssessmentSessionAnalytics: vi.fn(),
   completeAdaptiveStep: vi.fn(),
+  verifyAssessmentCompletionReceipt: vi.fn(),
 }));
 
 vi.mock("@/lib/supabase/server", () => ({ createClient }));
@@ -24,6 +26,9 @@ vi.mock("@/features/assessment/services/getAssessmentSessionAnalytics", () => ({
 }));
 vi.mock("@/features/learning-plan/services/adaptive-path-lifecycle", () => ({
   completeAdaptiveStep,
+}));
+vi.mock("@/features/assessment/services/verifyAssessmentCompletionReceipt", () => ({
+  verifyAssessmentCompletionReceipt,
 }));
 
 import { POST } from "../../app/api/ai/assessment/next/route";
@@ -129,7 +134,12 @@ function stub(options: StubOptions = {}) {
   return { studentTables, privateTables, adminClient, authClient };
 }
 
-beforeEach(() => vi.clearAllMocks());
+beforeEach(() => {
+  vi.clearAllMocks();
+  vi.stubEnv("DADYOOM_TRUSTED_ASSESSMENT_RECEIPTS", "");
+  verifyAssessmentCompletionReceipt.mockResolvedValue(true);
+});
+afterEach(() => vi.unstubAllEnvs());
 
 describe("AI assessment next: authenticated and server-only adaptive advancement", () => {
   it("rejects unauthenticated clients without opening the private session writer", async () => {
@@ -182,6 +192,56 @@ describe("AI assessment next: authenticated and server-only adaptive advancement
     expect(response.status).toBe(409);
     expect(db.privateTables).toEqual([]);
     expect(advanceAssessmentSession).not.toHaveBeenCalled();
+    expect(completeAdaptiveStep).not.toHaveBeenCalled();
+  });
+
+  it("requires a server receipt for an opt-in fresh, verified finish", async () => {
+    vi.stubEnv("DADYOOM_TRUSTED_ASSESSMENT_RECEIPTS", "enabled");
+    const db = stub();
+    const response = await POST(request());
+    expect(response.status).toBe(200);
+    expect(verifyAssessmentCompletionReceipt).toHaveBeenCalledWith({
+      admin: db.adminClient,
+      session: expect.objectContaining({ id: sessionId, finished: true }),
+      studentId, lessonId,
+      analytics: expect.any(Object),
+      allowCreate: true,
+    });
+    expect(completeAdaptiveStep).toHaveBeenCalledWith({
+      supabase: db.adminClient,
+      studentId, lessonId, stepType: "assessment",
+    });
+  });
+
+  it("reconciles an interrupted already-finished session only with a trusted receipt", async () => {
+    vi.stubEnv("DADYOOM_TRUSTED_ASSESSMENT_RECEIPTS", "enabled");
+    const db = stub({ session: {
+      id: sessionId, lesson_id: lessonId, student_id: studentId,
+      current_question: 1, total_questions: 1,
+      correct_answers: 0, wrong_answers: 1, finished: true,
+    } });
+    const response = await POST(request());
+    expect(response.status).toBe(200);
+    expect((await response.json()).adaptivePath).toMatchObject({ updated: true });
+    expect(verifyAssessmentCompletionReceipt).toHaveBeenCalledWith(
+      expect.objectContaining({
+        admin: db.adminClient, allowCreate: false, studentId, lessonId,
+      })
+    );
+    expect(db.studentTables).not.toContain("assessment_session_answers");
+    expect(completeAdaptiveStep).toHaveBeenCalledTimes(1);
+  });
+
+  it("fails closed if a finished session has no matching immutable receipt", async () => {
+    vi.stubEnv("DADYOOM_TRUSTED_ASSESSMENT_RECEIPTS", "enabled");
+    verifyAssessmentCompletionReceipt.mockResolvedValue(false);
+    stub({ session: {
+      id: sessionId, lesson_id: lessonId, student_id: studentId,
+      current_question: 1, total_questions: 1,
+      correct_answers: 0, wrong_answers: 1, finished: true,
+    } });
+    const response = await POST(request());
+    expect(response.status).toBe(409);
     expect(completeAdaptiveStep).not.toHaveBeenCalled();
   });
 
