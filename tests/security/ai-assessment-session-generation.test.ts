@@ -31,6 +31,7 @@ type Fixtures = {
   lesson?: Row | null;
   session?: Row | null;
   pending?: Row | null;
+  savedAnswers?: number;
 };
 
 function database(opts: Fixtures = {}) {
@@ -65,6 +66,9 @@ function database(opts: Fixtures = {}) {
       eq(key: string, value: unknown) { record.filters[key] = value; return q; },
       order(_key: string, _options: object) { return q; },
       limit(_num: number) { return q; },
+      then(resolve: (value: { count: number; data: null; error: null }) => unknown) {
+        return Promise.resolve({ count: table === "assessment_session_answers" ? (opts.savedAnswers ?? 0) : 0, data: null, error: null }).then(resolve);
+      },
       async maybeSingle() {
         const row = rows[table] ?? null;
         const matches = row && Object.entries(record.filters)
@@ -146,6 +150,17 @@ describe("AI generation requires active student-owned session and never exposes 
     expect(generateContent).not.toHaveBeenCalled();
   });
 
+  it("refuses to generate again while one recorded answer awaits advancement", async () => {
+    const calls = database({ savedAnswers: 1 });
+    const response = await GET(request());
+    expect(response.status).toBe(409);
+    expect(calls.map(c => c.table)).toEqual([
+      "lessons", "assessment_sessions", "assessment_session_answers",
+    ]);
+    expect(createAdminClient).not.toHaveBeenCalled();
+    expect(generateContent).not.toHaveBeenCalled();
+  });
+
   it("reuses a safe unanswered question without exposing its stored correct key", async () => {
     const calls = database();
     const response = await GET(request());
@@ -158,7 +173,7 @@ describe("AI generation requires active student-owned session and never exposes 
     expect(JSON.stringify(body)).not.toContain("سِرّ");
     expect(JSON.stringify(body)).not.toContain("correct_answer");
     expect(calls.map(c => c.table)).toEqual([
-      "lessons", "assessment_sessions", "ai_assessments",
+      "lessons", "assessment_sessions", "assessment_session_answers", "ai_assessments",
     ]);
     expect(calls.find(c => c.table === "ai_assessments")?.selected)
       .not.toContain("correct_answer");
