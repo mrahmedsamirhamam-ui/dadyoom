@@ -25,6 +25,9 @@ on:
       - 'features/questions/services/public-lesson-questions.ts'
       - 'features/lessons/queries/getLessonPageBundle.ts'
       - 'features/adaptive-learning/queries/getWeakQuestions.ts'
+      - 'features/adaptive-learning/services/evaluatePerformance.ts'
+      - 'features/adaptive-learning/services/lesson-practice-snapshot.ts'
+      - 'tests/adaptive-lesson-practice.test.ts'
       - 'features/adaptive-learning/components/WeakQuestionsReview.tsx'
       - 'app/lessons/**/CompleteLessonButton.tsx'
       - 'features/student-progress/actions/completeLesson.ts'
@@ -95,6 +98,8 @@ jobs:
         run: npx vitest run tests/curriculum-readiness-live-gates.test.ts
       - name: Verify book index nodes cannot masquerade as graded lessons
         run: npx vitest run tests/curriculum-book-catalog-reference.test.ts
+      - name: Verify adaptive practice progress cannot falsely award mastery
+        run: npx vitest run tests/adaptive-lesson-practice.test.ts
       - name: Verify canonical lesson completion entry points
         run: npx vitest run tests/security/lesson-completion-entrypoints.test.ts tests/security/lesson-mastery-gates.test.ts
       - name: Verify authoritative lesson question grading

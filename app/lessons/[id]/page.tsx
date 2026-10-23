@@ -14,6 +14,7 @@ import {
 
 import type { WeakQuestion } from "@/features/adaptive-learning/queries/getWeakQuestions";
 import { evaluatePerformance } from "@/features/adaptive-learning/services/evaluatePerformance";
+import { buildLessonPracticeSnapshot } from "@/features/adaptive-learning/services/lesson-practice-snapshot";
 import AdaptiveRecommendationCard from "@/features/adaptive-learning/components/AdaptiveRecommendationCard";
 import WeakQuestionsReview from "@/features/adaptive-learning/components/WeakQuestionsReview";
 
@@ -189,92 +190,36 @@ export default async function LessonPage({
 
   let weakQuestions: WeakQuestion[] = [];
 
-  if (user) {
-    // DADYOOM_ACTIVITY_AWARE_ADAPTIVE_V2
-    const questionAttempts =
-      bundle.questionAttempts ?? [];
+  const practice = buildLessonPracticeSnapshot({
+    questionIds: lessonQuestions.map(q => q.id),
+    activityIds: lessonActivities.filter(a => a.is_published !== false).map(a => a.id),
+    questionAttempts: bundle.questionAttempts ?? [],
+    activityAttempts: bundle.activityAttempts ?? [],
+  });
 
-    const activityAttempts =
-      bundle.activityAttempts ?? [];
+  if (user && practice.totalItems > 0) {
+    // A 90% practice score does NOT itself certify course mastery.
+    // Only the persisted, server-evaluated mastery state can do that.
+    const verifiedMastery =
+      learningProgress?.status === "mastered" &&
+      Number(learningProgress.best_score ?? 0) >= 90;
 
-    const attemptedActivityIds =
-      new Set(
-        activityAttempts.map(
-          (attempt) =>
-            attempt.activity_id
-        )
-      );
+    adaptiveRecommendation = evaluatePerformance({
+      score: verifiedMastery
+        ? Math.max(practice.score, Number(learningProgress?.best_score ?? 0))
+        : practice.score,
+      attempts: practice.attempts,
+      masteryVerified: verifiedMastery,
+      currentLessonId: lesson.id,
+      nextLessonId: lesson.nextLesson?.id ?? null,
+    });
 
-    const attempts: Array<{
-      question_id: string;
-      is_correct: boolean;
-    }> =
-      questionAttempts.length > 0
-        ? questionAttempts
-        : lessonActivities.map(
-            (activity) => ({
-              question_id:
-                activity.id,
-              is_correct:
-                attemptedActivityIds.has(
-                  activity.id
-                ),
-            })
-          );
-
-    const totalQuestions =
-      attempts.length;
-
-    const correctAnswers =
-      attempts.filter(
-        (attempt) =>
-          attempt.is_correct
-      ).length;
-
-    const score =
-      totalQuestions > 0
-        ? Math.round(
-            (
-              correctAnswers /
-              totalQuestions
-            ) * 100
-          )
-        : 0;
-
-    adaptiveRecommendation =
-      evaluatePerformance({
-        score,
-        attempts,
-        currentLessonId:
-          lesson.id,
-        nextLessonId:
-          lesson.nextLesson?.id ??
-          null,
-      });
-
-    const weakQuestionIds =
-      new Set(
-        questionAttempts
-          .filter(
-            (attempt) =>
-              !attempt.is_correct
-          )
-          .map(
-            (attempt) =>
-              attempt.question_id
-          )
-      );
-
-    weakQuestions =
-      (
-        lessonQuestions as WeakQuestion[]
-      ).filter(
-        (question) =>
-          weakQuestionIds.has(
-            question.id
-          )
-      );
+    const weakQuestionIds = new Set(practice.wrongQuestionIds);
+    weakQuestions = (lessonQuestions as WeakQuestion[]).filter(
+      question => weakQuestionIds.has(question.id)
+    );
   }
+
   const objectives: string[] =
     Array.isArray(lesson.learning_objectives)
       ? lesson.learning_objectives.filter(
@@ -668,15 +613,10 @@ export default async function LessonPage({
 
         {multipleChoiceQuestions.length > 0 ? (
           <ScoreCard
-            score={
-              bundle.questionAttempts.filter(
-                (attempt) =>
-                  attempt.is_correct &&
-                  multipleChoiceQuestionIds.has(
-                    attempt.question_id
-                  )
-              ).length
-            }
+            score={practice.attempts.filter(
+              attempt => attempt.is_correct &&
+                multipleChoiceQuestionIds.has(attempt.question_id)
+            ).length}
             total={multipleChoiceQuestions.length}
           />
         ) : null}

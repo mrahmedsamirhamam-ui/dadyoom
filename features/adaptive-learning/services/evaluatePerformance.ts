@@ -13,12 +13,15 @@ type Input = {
   attempts: QuestionAttempt[];
   currentLessonId: string;
   nextLessonId: string | null;
+  /** True only when server-graded lesson completion is already recorded. */
+  masteryVerified?: boolean;
 };
 
 function getDecision(
-  score: number
+  score: number,
+  masteryVerified: boolean
 ): AdaptiveDecision {
-  if (score >= 90) {
+  if (masteryVerified && score >= 90) {
     return "mastered";
   }
 
@@ -38,8 +41,9 @@ export function evaluatePerformance({
   attempts,
   currentLessonId,
   nextLessonId,
+  masteryVerified = false,
 }: Input): AdaptiveRecommendation {
-  const decision = getDecision(score);
+  const decision = getDecision(score, masteryVerified);
 
   const weakQuestionIds = attempts
     .filter((attempt) => !attempt.is_correct)
@@ -61,8 +65,8 @@ export function evaluatePerformance({
       decision,
       score,
       message:
-        "أداء جيد. راجع إجاباتك الخاطئة ثم انتقل إلى الدرس التالي.",
-      recommendedLessonId: nextLessonId,
+        "أداء تدريبي جيد. راجع المحاولات غير الصحيحة واجتز تقييم الإتقان قبل الانتقال.",
+      recommendedLessonId: currentLessonId,
       weakQuestionIds,
     };
   }
