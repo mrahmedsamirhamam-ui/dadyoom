@@ -13,6 +13,7 @@ import {
 } from "@/lib/supabase/server";
 
 import ParentLinkChildCard from "@/features/parent-link/components/ParentLinkChildCard";
+import { buildParentLearningGuidance } from "@/features/parent-link/services/parent-learning-guidance";
 
 type ParentChildRow = {
   student_id: string;
@@ -56,7 +57,27 @@ function toNumber(
     : 0;
 }
 
-export default async function ParentPage() {
+type ParentPageProps = {
+  searchParams: Promise<{
+    linkSuccess?: string;
+    linkError?: string;
+  }>;
+};
+
+export default async function ParentPage({ searchParams }: ParentPageProps) {
+  const { linkSuccess, linkError } = await searchParams;
+  const successMessage =
+    linkSuccess === "linked"
+      ? "تم ربط الطالب بحسابك بنجاح."
+      : linkSuccess === "already-linked"
+        ? "هذا الطالب مرتبط بحسابك بالفعل."
+        : undefined;
+  const errorMessage = linkError === "invalid"
+    ? "تعذر ربط الطالب. تأكد من صلاحية الكود وحاول مجددًا."
+    : linkError === "code-required"
+      ? "أدخل كود الربط."
+      : undefined;
+
   const supabase =
     await createClient();
 
@@ -246,7 +267,10 @@ export default async function ParentPage() {
         </section>
 
 
-        <ParentLinkChildCard />
+        <ParentLinkChildCard
+          successMessage={successMessage}
+          errorMessage={errorMessage}
+        />
 
         <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
           <div>
@@ -276,6 +300,12 @@ export default async function ParentPage() {
                         child.average_score
                       )
                     );
+
+                  const childGuidance = buildParentLearningGuidance({
+                    completedLessons: toNumber(child.completed_lessons),
+                    masteredLessons: toNumber(child.mastered_lessons),
+                    averageScore: childAverage,
+                  });
 
                   return (
                     <article
@@ -367,6 +397,14 @@ export default async function ParentPage() {
                         />
                       </div>
 
+                      <div className="mt-4 rounded-xl bg-sky-50 p-4">
+                        <p className="text-sm font-black text-sky-900">خطوة منزلية مقترحة</p>
+                        <p className="mt-2 text-sm leading-6 text-slate-700">{childGuidance.nextAction}</p>
+                        <Link href={`/parent/children/${child.student_id}`} className="mt-2 inline-block text-sm font-bold text-sky-700 hover:underline">
+                          تفاصيل التقدم والتوصيات ←
+                        </Link>
+                      </div>
+
                       <div className="mt-5">
                         <div className="flex items-center justify-between text-sm font-bold text-slate-600">
                           <span>
@@ -410,7 +448,7 @@ export default async function ParentPage() {
               </h3>
 
               <p className="mt-2 text-slate-500">
-                سنضيف في الخطوة التالية طريقة آمنة لربط حساب ولي الأمر بحساب الطالب.
+                اطلب من الطالب إنشاء كود مؤقت من حسابه، ثم أدخله في نموذج الربط أعلاه.
               </p>
             </div>
           )}
@@ -430,7 +468,7 @@ export default async function ParentPage() {
 
               <p className="mt-2 leading-7 text-amber-800">
                 لن نسمح بإضافة أي طالب بمجرد معرفة بريده الإلكتروني.
-                سنضيف نظام ربط آمن باستخدام كود موافقة أو دعوة من حساب الطالب أو المدرسة.
+                يتم الربط باستخدام كود مؤقت ينشئه الطالب من حسابه. لا تشارك الكود مع غير ولي الأمر.
               </p>
             </div>
           </div>
