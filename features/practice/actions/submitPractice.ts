@@ -182,7 +182,9 @@ export async function submitPracticeAction(
   const adaptivePath =
     passed
       ? await completeAdaptiveStep({
-          supabase,
+          // Only a verified, server-computed practice score can unlock
+          // the path. Persist that transition using server-only credentials.
+          supabase: admin,
           studentId:
             user.id,
           lessonId:
