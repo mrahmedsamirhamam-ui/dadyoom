@@ -686,3 +686,7 @@
 - Added `scripts/smoke-next-production-runtime.mjs`, run after `npm run build` in the existing CI job. It **starts the compiled Next production server locally** in the GitHub runner, issues GET-only anonymous requests to the homepage, `robots.txt`, `sitemap.xml`, and manifest, then always terminates the server.
 - It checks real HTTP 200 responses, Arabic brand + language and public discovery routes. No external accounts, user logins, Supabase secrets, production data, Worker deployment or paid resources.
 - This closes a distinct compiled-server runtime-smoke gate if CI passes, separate from static Next build and separate from Cloudflare Workers/Preview role acceptance.
+
+### 2026-10-23 — local workerd smoke gate after a real Worker bundle
+- Isolated GitHub workflow successfully produced Cloudflare Build Output using temporary React 19.3.1, vinext 1.3.0 and Vite/Cloudflare adapters. This is **not** a deployment or proof that the production Cloudflare worker currently works.
+- Added `scripts/smoke-cloudflare-worker-runtime.mjs` to launch **Vite preview / local workerd** against the built Cloudflare assets in CI, and GET-check `/robots.txt`, `/`, and `/sitemap.xml`. It closes only the preview-runtime gate if the CI result is green. It does not log in as a student, touch remote Supabase, configure Cloudflare secrets or deploy production. A failed local request is diagnosed from the captured preview output rather than bypassed.

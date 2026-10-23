@@ -97,6 +97,11 @@ jobs:
           test -f .cloudflare/output/v0/workers/default/bundle/ssr/index.js
           test -f .cloudflare/output/v0/config.json
           echo "CLOUDFLARE_WORKER_BUNDLE_BUILD=PASS"
+      - name: Smoke-test generated Worker in local workerd via Vite preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/smoke-cloudflare-worker-runtime.mjs 2>&1 | tee worker-runtime-smoke.log
       - name: Save nonsecret diagnostic logs
         if: always()
         uses: actions/upload-artifact@v4
@@ -104,5 +109,6 @@ jobs:
           name: isolated-cloudflare-worker-build-report
           path: |
             worker-build.log
+            worker-runtime-smoke.log
           retention-days: 3
           if-no-files-found: ignore
