@@ -12,6 +12,7 @@ import type {
 import {
   createClient,
 } from "@/lib/supabase/server";
+import { buildParentLearningGuidance } from "@/features/parent-link/services/parent-learning-guidance";
 
 
 type ParentChildRow = {
@@ -199,42 +200,16 @@ export default async function ParentChildPage({
     );
 
 
-  const masteryRate =
-    completedLessons > 0
-      ? Math.round(
-          (
-            masteredLessons /
-            completedLessons
-          ) *
-            100
-        )
-      : 0;
-
-
-  const academicStatus =
-    completedLessons === 0
-      ? "بانتظار بيانات"
-      : averageScore >= 85 &&
-          masteryRate >= 70
-        ? "أداء متميز"
-        : averageScore >= 70
-          ? "أداء جيد"
-          : averageScore >= 50
-            ? "يحتاج متابعة"
-            : "يحتاج دعمًا إضافيًا";
-
-
-  const parentRecommendation =
-    completedLessons === 0
-      ? "لم يبدأ الطالب تسجيل تقدم كافٍ بعد. شجعه على بدء الدروس وإكمال أول تقييم."
-      : averageScore >= 85 &&
-          masteryRate >= 70
-        ? "تقدم ممتاز. استمر في تشجيعه والمحافظة على انتظامه في التعلم."
-        : averageScore >= 70
-          ? "مستواه جيد. التشجيع على المراجعة المنتظمة سيساعده على رفع نسبة الإتقان."
-          : averageScore >= 50
-            ? "يحتاج إلى مزيد من المراجعة والمتابعة. شجعه على العودة إلى الدروس والمهارات الأقل إتقانًا."
-            : "تظهر البيانات حاجة إلى دعم أكبر. من الأفضل متابعة تقدمه مع المعلم والتركيز على المهارات الأساسية.";
+  const {
+    masteryRate,
+    academicStatus,
+    recommendation: parentRecommendation,
+    nextAction,
+  } = buildParentLearningGuidance({
+    completedLessons,
+    masteredLessons,
+    averageScore,
+  });
 
 
   return (
@@ -408,6 +383,15 @@ export default async function ParentChildPage({
 
             <p className="mt-4 leading-8 text-slate-700">
               {parentRecommendation}
+            </p>
+
+            <div className="mt-5 rounded-2xl bg-white p-5 ring-1 ring-amber-100">
+              <p className="text-sm font-black text-amber-900">نشاط منزلي مقترح</p>
+              <p className="mt-2 leading-7 text-slate-700">{nextAction}</p>
+            </div>
+
+            <p className="mt-4 text-xs leading-6 text-amber-900">
+              هذه إرشادات أولية تعتمد على سجلات التقدم الحالية، وليست تشخيصًا تربويًا أو إثباتًا مستقلًا لصحة الدرجات.
             </p>
 
 
