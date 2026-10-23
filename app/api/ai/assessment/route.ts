@@ -274,6 +274,10 @@ export async function GET(
         .get("lessonId")
         ?.trim();
 
+    const sessionId = searchParams
+      .get("sessionId")
+      ?.trim();
+
     const requestedDifficulty =
       searchParams
         .get("difficulty")
@@ -287,7 +291,7 @@ export async function GET(
           ? "medium"
           : "easy";
 
-    if (!lessonId) {
+    if (!lessonId || !sessionId) {
       return NextResponse.json(
         {
           success: false,
@@ -360,6 +364,82 @@ export async function GET(
         { success: false, error: "لا يمكن إنشاء اختبار لدرس غير منشور." },
         { status: 404 }
       );
+    }
+
+    // A generating request must belong to the authenticated learner's
+    // current published-lesson assessment. No admin key or Gemini call
+    // should run for an absent, unrelated or finished session.
+    const { data: activeSession, error: sessionError } = await supabase
+      .from("assessment_sessions")
+      .select("id,lesson_id,student_id,current_question,total_questions,correct_answers,wrong_answers,finished")
+      .eq("id", sessionId)
+      .eq("student_id", user.id)
+      .eq("lesson_id", lesson.id)
+      .maybeSingle();
+
+    if (sessionError) throw sessionError;
+    if (!activeSession || activeSession.finished) {
+      return NextResponse.json(
+        { success: false, error: "جلسة التقييم غير متاحة أو منتهية." },
+        { status: 404 }
+      );
+    }
+
+    const questionNumberInSession = Number(activeSession.current_question);
+    const totalQuestionsInSession = Number(activeSession.total_questions);
+    const gradedCount = Number(activeSession.correct_answers) +
+      Number(activeSession.wrong_answers);
+    if (!Number.isInteger(questionNumberInSession) ||
+        !Number.isInteger(totalQuestionsInSession) ||
+        !Number.isInteger(gradedCount) ||
+        totalQuestionsInSession < 1 ||
+        totalQuestionsInSession > 50 ||
+        questionNumberInSession < 1 ||
+        questionNumberInSession > totalQuestionsInSession ||
+        gradedCount !== questionNumberInSession - 1) {
+      return NextResponse.json(
+        { success: false, error: "تقدم الجلسة غير متسق. أعد فتح التقييم." },
+        { status: 409 }
+      );
+    }
+
+    // Re-use an unanswered question instead of calling a paid or
+    // quota-limited AI provider again after a refresh/retry. Projection
+    // deliberately excludes correct_answer and explanation.
+    const { data: waitingQuestion, error: waitingError } = await supabase
+      .from("ai_assessments")
+      .select("id,title,passage,question,choices,skill,difficulty,completed,created_at")
+      .eq("student_email", user.email)
+      .eq("lesson_id", lesson.id)
+      .eq("difficulty", difficulty)
+      .eq("completed", false)
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    if (waitingError) throw waitingError;
+    if (waitingQuestion &&
+        typeof waitingQuestion.question === "string" &&
+        Array.isArray(waitingQuestion.choices) &&
+        waitingQuestion.choices.length >= 2) {
+      return NextResponse.json({
+        success: true,
+        assessment: {
+          id: waitingQuestion.id,
+          lessonId: lesson.id,
+          title: waitingQuestion.title,
+          passage: waitingQuestion.passage,
+          question: waitingQuestion.question,
+          choices: waitingQuestion.choices,
+          correctAnswer: null,
+          explanation: null,
+          skill: waitingQuestion.skill,
+          difficulty: waitingQuestion.difficulty,
+          completed: false,
+          createdAt: waitingQuestion.created_at,
+        },
+        provider: "stored",
+        model: null,
+      });
     }
 
     // Server-only grading storage is opened only after the student has
