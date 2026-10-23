@@ -68,6 +68,10 @@ on:
       - 'tests/security/shadow-question-grants.sql'
       - 'tests/security/shadow-grade-write-grants.sql'
       - 'scripts/security/proposed-grade-write-restrictions.sql'
+      - 'scripts/security/proposed-adaptive-progress-write-restrictions.sql'
+      - 'tests/security/shadow-adaptive-grants-setup.sql'
+      - 'tests/security/shadow-adaptive-grants-verify.sql'
+      - 'features/learning-plan/services/adaptive-path-lifecycle.ts'
       - 'tests/security/shadow-proposed-grade-grants-verify.sql'
       - 'tests/security/owner-scoped-progress-repository.test.ts'
       - 'features/lesson-mastery/actions/syncLessonMastery.ts'
@@ -277,6 +281,36 @@ jobs:
             cat tests/security/shadow-proposed-grade-grants-verify.sql
           } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_grading
           echo "SHADOW_GRADE_RESTRICTION_CANDIDATE_REHEARSAL=PASS"
+      - name: Reproduce adaptive grade forgery and rehearse guarded 3-table role lockdown
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_adaptive
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_adaptive \
+            < tests/security/shadow-adaptive-grants-setup.sql
+          if error_text=$( {
+              echo "SET dadyoom.adaptive_rehearsal = 'enabled';"
+              cat scripts/security/proposed-adaptive-progress-write-restrictions.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1); then
+            echo "Adaptive proposal unexpectedly accepted wrong database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_ADAPTIVE_REVOKE_BLOCKED_DISPOSABLE_TEST_ONLY'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_adaptive \
+              < scripts/security/proposed-adaptive-progress-write-restrictions.sql 2>&1); then
+            echo "Adaptive proposal unexpectedly accepted missing test flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_ADAPTIVE_REVOKE_BLOCKED_DISPOSABLE_TEST_ONLY'
+          {
+            echo "SET dadyoom.adaptive_rehearsal = 'enabled';"
+            cat scripts/security/proposed-adaptive-progress-write-restrictions.sql
+            cat tests/security/shadow-adaptive-grants-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_adaptive
+          echo "SHADOW_ADAPTIVE_ROLE_LOCKDOWN_REHEARSAL=PASS"
       - name: Rehearse direct lesson RPC nested grading-key redaction and rollback
         shell: bash
         env:
