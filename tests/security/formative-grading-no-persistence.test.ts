@@ -37,6 +37,9 @@ function request(items: unknown[] = [{
 
 beforeEach(() => {
   vi.clearAllMocks();
+  vi.stubGlobal("fetch", vi.fn(() => {
+    throw new Error("UNMOCKED_NETWORK_ACCESS_IN_FORMATIVE_TEST");
+  }));
   vi.stubEnv("GEMINI_API_KEY", "test-only-no-network");
   vi.stubEnv("GEMINI_API_KEY_BACKUP", "");
   vi.stubEnv("GOOGLE_GENERATIVE_AI_API_KEY", "");
@@ -120,11 +123,9 @@ describe("POST /api/assessments/check remains formative when answers come from b
       json: async () => ({ error: { code: 429, message: "Synthetic throttle" } }),
     });
     vi.stubGlobal("fetch", fetchMock);
-    vi.useFakeTimers();
     const pending = POST(request([{
       question: "أي حرف؟", modelAnswer: "", studentAnswer: "أي شيء",
     }]));
-    await vi.runAllTimersAsync();
     const response = await pending;
     const body = await response.json();
     expect(response.status).toBe(200);
@@ -135,7 +136,7 @@ describe("POST /api/assessments/check remains formative when answers come from b
       persisted: false,
       results: [{ correct: false, score: 40 }],
     });
-    expect(fetchMock).toHaveBeenCalledTimes(3);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(from).not.toHaveBeenCalled();
   });
 });
