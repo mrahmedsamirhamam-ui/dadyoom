@@ -99,6 +99,18 @@ export async function POST(
         lessonId: lesson.id,
       });
 
+    // Used only to resume safely when the learner closes the page after
+    // submitting an answer but before pressing "next". No keys are read.
+    const { count: savedAnswerCount, error: answersError } = await supabase
+      .from("assessment_session_answers")
+      .select("id", { count: "exact", head: true })
+      .eq("session_id", session.id)
+      .eq("student_id", user.id)
+      .eq("lesson_id", lesson.id);
+    if (answersError) throw answersError;
+    const advancedCount = Number(session.correct_answers) + Number(session.wrong_answers);
+    const pendingAnswer = !session.finished && savedAnswerCount === advancedCount + 1;
+
     return NextResponse.json({
       success: true,
       session: {
@@ -119,6 +131,7 @@ export async function POST(
           session.difficulty,
         finished:
           session.finished,
+        pendingAnswer,
       },
     });
   } catch (error) {
