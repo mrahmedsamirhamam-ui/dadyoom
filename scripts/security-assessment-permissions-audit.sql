@@ -62,3 +62,20 @@ WHERE ns.nspname = 'public'
   AND p.proname IN ('get_lesson_page_bundle','move_lesson_question_safe',
                    'delete_lesson_question_safe')
 ORDER BY p.proname;
+
+-- 6. Inventory every role-callable privileged routine, not only the three
+-- legacy lesson RPCs. This enumerates signatures/grants, NEVER function bodies,
+-- underlying sensitive rows, stored answer values, or service credentials.
+-- A callable routine is a REVIEW CANDIDATE, not proof of an exploit.
+SELECT ns.nspname AS schema_name, p.proname AS routine_name,
+       pg_get_function_identity_arguments(p.oid) AS input_signature,
+       p.prosecdef AS elevated_execution,
+       has_function_privilege('anon', p.oid, 'EXECUTE') AS anon_can_execute,
+       has_function_privilege('authenticated', p.oid, 'EXECUTE') AS authenticated_can_execute
+FROM pg_proc p
+JOIN pg_namespace ns ON ns.oid = p.pronamespace
+WHERE ns.nspname = 'public'
+  AND p.prosecdef
+  AND (has_function_privilege('anon', p.oid, 'EXECUTE')
+       OR has_function_privilege('authenticated', p.oid, 'EXECUTE'))
+ORDER BY ns.nspname, p.proname, input_signature;
