@@ -40,6 +40,37 @@ describe("tutoring must never certify lesson mastery", () => {
     expect(submit).toContain("correct,");
   });
 
+  it("AI assessment validates user-owned session and published lesson before private answer key", () => {
+    const submit = read("app/api/ai/assessment/submit/route.ts");
+    const session = submit.indexOf('.from("assessment_sessions")');
+    const lesson = submit.indexOf('.from("lessons")');
+    const publish = submit.indexOf('.eq("status", "published")');
+    const keyAdmin = submit.indexOf("const admin = createAdminClient()");
+    const privateKey = submit.indexOf('.select("id,lesson_id,correct_answer,explanation")');
+    const claim = submit.indexOf("completed: true");
+    const safeQuestionRead = submit.slice(0, session);
+    expect(safeQuestionRead).toContain('.from("ai_assessments")');
+    expect(safeQuestionRead).not.toContain("correct_answer,");
+    expect(session).toBeGreaterThan(0);
+    expect(lesson).toBeGreaterThan(session);
+    expect(publish).toBeGreaterThan(lesson);
+    expect(keyAdmin).toBeGreaterThan(publish);
+    expect(privateKey).toBeGreaterThan(keyAdmin);
+    expect(claim).toBeGreaterThan(privateKey);
+    expect(submit).toContain(".eq(\"student_id\", user.id)");
+    expect(submit).toContain(".eq(\"student_email\", user.email)");
+  });
+
+  it("keeps forged AI grades off the client and wrong-answer key hidden", () => {
+    const submit = read("app/api/ai/assessment/submit/route.ts");
+    expect(submit).toContain("supabase: admin,");
+    expect(submit).toContain("claimedAssessmentId = null;");
+    expect(submit).toContain("claimedStudentEmail = user.email");
+    expect(submit).toContain("correctAnswer: correct ? privateAssessment.correct_answer : null");
+    expect(submit).toContain("explanation: correct ? privateAssessment.explanation : null");
+    expect(submit).not.toMatch(/await supabase\s*\.from\("ai_assessments"\)\s*\.update\(/);
+  });
+
   it("does not broadcast academic mastery changes on mere chat completion", () => {
     expect(client).not.toContain("lesson-mastery-updated");
     expect(client).toContain('event.type === "done"');

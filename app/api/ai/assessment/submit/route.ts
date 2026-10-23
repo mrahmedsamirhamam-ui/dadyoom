@@ -35,6 +35,7 @@ export async function POST(
 
   let claimedAssessmentId:
     string | null = null;
+  let claimedStudentEmail: string | null = null;
 
   try {
     const {
@@ -264,6 +265,7 @@ export async function POST(
       );
     }
 
+    claimedStudentEmail = user.email;
     claimedAssessmentId =
       claimedAssessment.id;
 
@@ -371,7 +373,7 @@ return NextResponse.json({
      * إذا فشل تحديث الإتقان أو XP بعد حجز السؤال،
      * نعيده إلى غير مكتمل حتى يمكن المحاولة مجددًا.
      */
-    if (claimedAssessmentId) {
+    if (claimedAssessmentId && claimedStudentEmail) {
       const {
         error: rollbackError,
       } = await createAdminClient()
@@ -380,7 +382,7 @@ return NextResponse.json({
           completed: false,
         })
         .eq("id", claimedAssessmentId)
-        .eq("student_email", supabase.auth ? (await supabase.auth.getUser()).data.user?.email ?? "" : "");
+        .eq("student_email", claimedStudentEmail);
 
       if (rollbackError) {
         console.error(

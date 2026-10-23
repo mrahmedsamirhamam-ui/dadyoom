@@ -16,7 +16,7 @@ describe("assessment permissions audit is safe and complete", () => {
       "lesson_activity_attempts","student_lesson_progress","lesson_mastery"]) {
       expect(sql).toContain("'" + table + "'");
     }
-    for (const key of ["correct_answer","answer","options","dadyoom_student_questions"]) {
+    for (const key of ["correct_answer","answer","options","dadyoom_student_questions","ai_assessments"]) {
       expect(sql).toContain("'" + key + "'");
     }
     expect(queries).not.toMatch(/SELECT\s+\*\s+FROM\s+public\.(questions|lesson_activities)\b/i);

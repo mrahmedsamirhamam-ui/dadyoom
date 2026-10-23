@@ -15,7 +15,9 @@ WHERE c.table_schema = 'public'
   AND ((c.table_name = 'questions'
         AND c.column_name IN ('correct_answer','explanation','options','id','lesson_id'))
        OR (c.table_name = 'lesson_activities'
-           AND c.column_name IN ('answer','content','id','lesson_id')))
+           AND c.column_name IN ('answer','content','id','lesson_id'))
+       OR (c.table_name = 'ai_assessments'
+           AND c.column_name IN ('correct_answer','explanation','choices','completed','student_email')))
 ORDER BY c.table_name, c.column_name;
 
 -- 2. Server-graded storage: direct role privileges which permit forged outcomes.
