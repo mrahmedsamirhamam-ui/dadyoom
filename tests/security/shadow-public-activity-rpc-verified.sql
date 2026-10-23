@@ -21,7 +21,8 @@ BEGIN
   THEN RAISE EXCEPTION 'SAFE_RPC_PUBLIC_POINTS_LOST'; END IF;
   IF result->'questions'->0->'options'->0 ? 'isCorrect'
   THEN RAISE EXCEPTION 'SAFE_RPC_QUESTION_ANSWER_LEAK'; END IF;
-  IF result->'student' IS NOT NULL OR result->'learningProgress' IS NOT NULL
+  IF result->'student' IS DISTINCT FROM 'null'::jsonb
+    OR result->'learningProgress' IS DISTINCT FROM 'null'::jsonb
     OR result->'tutorMessages' <> '[]'::jsonb
   THEN RAISE EXCEPTION 'SAFE_RPC_ANON_OWNERSHIP_LEAK'; END IF;
   SELECT public.get_lesson_page_bundle('00000000-0000-4000-8000-000000000002'::uuid)
