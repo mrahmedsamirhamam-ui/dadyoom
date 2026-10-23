@@ -512,7 +512,9 @@ export async function completeLessonAction(
    */
   const adaptiveLessonStep =
     await completeAdaptiveStep({
-      supabase,
+      // This follows the authenticated lesson and the server's verified
+      // mastery gate. Browser tokens cannot authorize this state change.
+      supabase: admin,
       studentId:
         user.id,
       lessonId:
