@@ -90,6 +90,9 @@ export async function linkChildByCodeAction(
   }
 
   const result = Array.isArray(data) ? data[0] : data;
+  if (!result) {
+    redirect("/parent?linkError=invalid");
+  }
   revalidatePath("/parent");
   redirect(
     result?.already_linked
