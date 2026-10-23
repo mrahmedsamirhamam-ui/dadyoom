@@ -102,6 +102,11 @@ jobs:
           test -f .cloudflare/output/v0/workers/default/bundle/ssr/index.js
           test -f .cloudflare/output/v0/config.json
           echo "CLOUDFLARE_WORKER_BUNDLE_BUILD=PASS"
+      - name: Install Chromium for read-only mobile and desktop form smoke
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx playwright install --with-deps chromium
       - name: Smoke-test generated Worker in local workerd via Vite preview
         shell: bash
         run: |
