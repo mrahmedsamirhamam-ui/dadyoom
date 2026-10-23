@@ -31,6 +31,7 @@ on:
       - 'features/student-progress/repositories/progress.repository.ts'
       - 'features/student-progress/services/progress.ts'
       - 'app/api/semantic-search/stream/route.ts'
+      - 'app/api/ai/assessment/submit/route.ts'
       - 'features/semantic-search/components/LessonSemanticSearch.tsx'
       - 'features/semantic-search/services/updateLessonMastery.ts'
       - 'tests/security/tutor-not-mastery.test.ts'

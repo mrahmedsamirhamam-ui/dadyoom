@@ -12,10 +12,6 @@ import {
 } from "@/services/progress/progress-engine";
 
 import {
-  updateLessonMastery,
-} from "@/features/semantic-search/services/updateLessonMastery";
-
-import {
   saveAssessmentSessionAnswer,
 } from "@/features/assessment/services/saveAssessmentSessionAnswer";
 
@@ -260,23 +256,9 @@ export async function POST(
         correct,
     });
 
-    if (assessment.lesson_id) {
-      await updateLessonMastery({
-        supabase,
-        studentId: user.id,
-        lessonId:
-          assessment.lesson_id,
-        userQuestion:
-          assessment.question,
-        assistantAnswer:
-          typeof selectedChoice ===
-            "string"
-            ? selectedChoice
-            : String(answer),
-        answeredCorrectly:
-          correct,
-      });
-    }
+    // The AI question result is stored in assessment_sessions and skill
+    // progress. A single generated question must not overwrite canonical
+    // academic lesson_mastery, which requires the full lesson rubric.
 
     await updateProgress(
       supabase,

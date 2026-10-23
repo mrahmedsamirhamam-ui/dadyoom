@@ -30,6 +30,16 @@ describe("tutoring must never certify lesson mastery", () => {
     expect(history).toBeGreaterThan(deny);
   });
 
+  it("AI MCQ attempts stay in assessment sessions, not canonical lesson mastery", () => {
+    const submit = read("app/api/ai/assessment/submit/route.ts");
+    expect(submit).not.toContain("updateLessonMastery");
+    expect(submit).not.toContain('.from("lesson_mastery")');
+    expect(submit).toContain("await saveAssessmentSessionAnswer({");
+    expect(submit).toContain("await updateProgress(");
+    expect(submit).toContain("isCorrect:");
+    expect(submit).toContain("correct,");
+  });
+
   it("does not broadcast academic mastery changes on mere chat completion", () => {
     expect(client).not.toContain("lesson-mastery-updated");
     expect(client).toContain('event.type === "done"');

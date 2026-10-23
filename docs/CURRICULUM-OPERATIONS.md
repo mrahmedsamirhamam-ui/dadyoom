@@ -614,3 +614,7 @@
 - The semantic tutor previously called `updateLessonMastery` when its own answer contained no error text, adding a *correct student answer* and potentially a 100% mastery score even without a student assessment. Removed this grading call and obsolete helper, while retaining chat history, streamed feedback and suggested practice questions.
 - Stream endpoint now validates the user's visibility of the published lesson before reading chat/context, and client no longer broadcasts `lesson-mastery-updated` on completion of a tutor response. Only actual server-graded attempts may influence academic mastery.
 - No changes to historic student results were performed; source regression test added to CI. Supabase privilege remediation and Cloudflare Preview remain release blockers.
+
+### 2026-10-23 — AI practice result stays distinct from canonical lesson mastery
+- `POST /api/ai/assessment/submit` was the second caller of removed legacy `updateLessonMastery`. A single correct AI MCQ could have overwritten `lesson_mastery` with 100%. Removed the call; **retained** its server-graded session answer storage, progress-skill updates and cache invalidation.
+- `lesson_mastery` is reserved for full-lesson attempts and the 90% completion gate, not tutor answers or one-off generated practice questions. CI test now asserts both tutoring and AI submit preserve the distinction. This also fixes the TypeScript missing-module error observed on the preceding revision.
