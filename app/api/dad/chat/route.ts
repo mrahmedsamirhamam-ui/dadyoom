@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { ASSISTANT_MODE_GUIDANCE, normalizeAssistantMode } from "@/lib/ai/assistant-modes";
+import { ASSISTANT_MODE_GUIDANCE } from "@/lib/ai/assistant-modes";
+import { assistantContextMessage, parseAssistantRequest } from "@/lib/ai/assistant-request";
 
 import { consumeFeature } from "@/lib/billing/access";
 
@@ -10,19 +11,6 @@ import {
 
 export const runtime = "nodejs";
 
-type Body = {
-  message?: string;
-  history?: Array<{
-    role?: "user" | "assistant";
-    content?: string;
-  }>;
-  pageTitle?: string;
-  pageContext?: string;
-  lessonTitle?: string;
-  lessonContent?: string;
-  studentLevel?: string;
-  mode?: unknown;
-};
 
 function clean(value: string) {
   return stripThinking(value)
@@ -57,13 +45,28 @@ function leaked(value: string) {
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as Body;
-    const message = String(body?.message ?? "").trim().slice(0, 3000);
-    const teachingMode = normalizeAssistantMode(body?.mode);
-
-    if (!message) {
-      return NextResponse.json({ error: "اكتب سؤالك أولًا." }, { status: 400 });
+    const lengthHeader = request.headers.get("content-length");
+    const declaredLength = lengthHeader ? Number(lengthHeader) : null;
+    if (declaredLength !== null && Number.isFinite(declaredLength) && declaredLength > 45000) {
+      return NextResponse.json({ error: "الطلب أطول من الحد المسموح." }, { status: 413 });
     }
+
+    let raw: unknown;
+    try {
+      raw = await request.json();
+    } catch {
+      return NextResponse.json({ error: "تعذر قراءة السؤال. أرسله بصيغة صحيحة." }, { status: 400 });
+    }
+
+    const parsed = parseAssistantRequest(raw);
+    if (!parsed.ok) {
+      return NextResponse.json(
+        { error: parsed.reason === "MESSAGE_TOO_LONG" ? "اختصر سؤالك إلى 3000 حرف." : "اكتب سؤالًا نصيًا صالحًا." },
+        { status: 400 },
+      );
+    }
+    const { message, mode: teachingMode, history } = parsed.value;
+    const questionWithContext = assistantContextMessage(parsed.value);
 
     // DAD_CHAT_DAILY_GATE
     const dadAccess = await consumeFeature("dad_chat");
@@ -77,36 +80,6 @@ export async function POST(request: Request) {
         { status: 429 },
       );
     }
-
-    const lessonContext = [
-      typeof body.pageTitle === "string" && body.pageTitle.trim()
-        ? `الصفحة: ${body.pageTitle.trim().slice(0, 200)}` : "",
-      typeof body.lessonTitle === "string" && body.lessonTitle.trim()
-        ? `عنوان الدرس: ${body.lessonTitle.trim().slice(0, 200)}` : "",
-      typeof body.lessonContent === "string" && body.lessonContent.trim()
-        ? `محتوى الدرس:\n${body.lessonContent.slice(0, 12000)}`
-        : "",
-      typeof body.pageContext === "string" && body.pageContext.trim()
-        ? `سياق الصفحة:\n${body.pageContext.slice(0, 600)}`
-        : "",
-      typeof body.studentLevel === "string" && body.studentLevel.trim()
-        ? `مستوى الطالب: ${body.studentLevel.slice(0, 100)}` : "",
-    ]
-      .filter(Boolean)
-      .join("\n\n");
-
-    const history = (Array.isArray(body.history) ? body.history : [])
-      .slice(-8)
-      .filter(
-        (item) =>
-          item && typeof item === "object" &&
-          (item.role === "user" || item.role === "assistant") &&
-          String(item.content ?? "").trim(),
-      )
-      .map((item) => ({
-        role: item.role as "user" | "assistant",
-        content: String(item.content).trim().slice(0, 2500),
-      }));
 
     const first = await routeAi({
       profile: "economy",
@@ -128,16 +101,8 @@ export async function POST(request: Request) {
 إرشادات النمط التعليمي المحدد: ${ASSISTANT_MODE_GUIDANCE[teachingMode]}
 `.trim(),
         },
-        ...(lessonContext
-          ? [
-              {
-                role: "system" as const,
-                content: `سياق الدرس الحالي:\n${lessonContext}`,
-              },
-            ]
-          : []),
         ...history,
-        { role: "user", content: message },
+        { role: "user", content: questionWithContext },
       ],
     });
 
@@ -185,13 +150,11 @@ export async function POST(request: Request) {
       },
     );
   } catch (error) {
+    // Provider errors may contain internal URLs, configuration and upstream diagnostics.
+    // Do not return them to the browser or log sensitive raw prompts.
+    console.error("DAD_CHAT_UNAVAILABLE", error instanceof Error ? error.name : "unknown");
     return NextResponse.json(
-      {
-        error:
-          error instanceof Error
-            ? error.message
-            : "تعذر الحصول على رد من ضاد.",
-      },
+      { error: "تعذر الحصول على رد من ضاد حاليًا. حاول مرة أخرى لاحقًا." },
       { status: 503 },
     );
   }
