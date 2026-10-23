@@ -618,3 +618,8 @@
 ### 2026-10-23 — AI practice result stays distinct from canonical lesson mastery
 - `POST /api/ai/assessment/submit` was the second caller of removed legacy `updateLessonMastery`. A single correct AI MCQ could have overwritten `lesson_mastery` with 100%. Removed the call; **retained** its server-graded session answer storage, progress-skill updates and cache invalidation.
 - `lesson_mastery` is reserved for full-lesson attempts and the 90% completion gate, not tutor answers or one-off generated practice questions. CI test now asserts both tutoring and AI submit preserve the distinction. This also fixes the TypeScript missing-module error observed on the preceding revision.
+
+### 2026-10-23 — فحص متكرر آمن لصلاحيات أسئلة ضاديوم
+- أضيف `scripts/security-assessment-permissions-audit.sql` للاستعلام عن صلاحيات `questions.correct_answer` و`lesson_activities.answer` وجداول حفظ الدرجات، وعن RLS وصلاحيات RPC و`security_invoker` من **البيانات الوصفية فقط**؛ لا يُظهر نص أي إجابة أو معلومات شخصية، ولا يحتوي عمليات تغيير.
+- خطر معمارية ينبغي تجنبه: الإلغاء الشامل لقراءة `questions` سيكسر واجهة `dadyoom_student_questions` الحالية لاعتمادها على `security_invoker=true`، وإعادة منح قراءة `options` الخام قد تكشف مفاتيح مخفية داخل JSON. يجب تنفيذ بديل آمن في Preview قبل سحب صلاحيات الإنتاج.
+- اختبار Vitest يفرض أن ملف التدقيق للقراءة فقط. لا ترحيل إنتاجي ولا تعديل RLS أو بيانات.

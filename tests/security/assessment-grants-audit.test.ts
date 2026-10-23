@@ -1,0 +1,33 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { describe, expect, it } from "vitest";
+
+const sql = readFileSync(resolve(process.cwd(),
+  "scripts/security-assessment-permissions-audit.sql"), "utf8");
+const queries = sql.replace(/--[^\n]*/g, "");
+
+describe("assessment permissions audit is safe and complete", () => {
+  it("cannot modify production state", () => {
+    expect(queries).not.toMatch(/\b(REVOKE|GRANT|ALTER|DROP|CREATE|UPDATE|INSERT|DELETE|TRUNCATE|SET\s+ROLE|SECURITY\s+DEFINER)\b/i);
+    expect(queries).toMatch(/SELECT\s+c\.table_name/);
+  });
+  it("checks secrets and forged grading paths without extracting stored answers", () => {
+    for (const table of ["questions","lesson_activities","question_attempts",
+      "lesson_activity_attempts","student_lesson_progress","lesson_mastery"]) {
+      expect(sql).toContain("'" + table + "'");
+    }
+    for (const key of ["correct_answer","answer","options","dadyoom_student_questions"]) {
+      expect(sql).toContain("'" + key + "'");
+    }
+    expect(queries).not.toMatch(/SELECT\s+\*\s+FROM\s+public\.(questions|lesson_activities)\b/i);
+    expect(sql).toContain("has_column_privilege");
+    expect(sql).toContain("has_table_privilege");
+  });
+  it("surfaces security invoker dependency and RLS + RPC state", () => {
+    expect(sql).toContain("security_invoker=true");
+    expect(sql).toContain("pg_policies");
+    expect(sql).toContain("pg_proc");
+    expect(sql).toContain("pg_class");
+    expect(sql).toContain("get_lesson_page_bundle");
+  });
+});

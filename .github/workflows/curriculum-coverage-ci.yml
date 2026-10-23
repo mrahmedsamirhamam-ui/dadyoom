@@ -35,6 +35,8 @@ on:
       - 'features/semantic-search/components/LessonSemanticSearch.tsx'
       - 'features/semantic-search/services/updateLessonMastery.ts'
       - 'tests/security/tutor-not-mastery.test.ts'
+      - 'scripts/security-assessment-permissions-audit.sql'
+      - 'tests/security/assessment-grants-audit.test.ts'
       - 'tests/security/owner-scoped-progress-repository.test.ts'
       - 'features/lesson-mastery/actions/syncLessonMastery.ts'
       - 'tests/security/lesson-mastery-completion-only.test.ts'
@@ -103,6 +105,8 @@ jobs:
         run: npx vitest run tests/security/owner-scoped-progress-repository.test.ts
       - name: Verify tutoring cannot award academic mastery
         run: npx vitest run tests/security/tutor-not-mastery.test.ts
+      - name: Verify read-only assessment grants audit
+        run: npx vitest run tests/security/assessment-grants-audit.test.ts
       - name: Verify public lesson bundle excludes answer keys
         run: npx vitest run tests/security/public-lesson-bundle-rpc.test.ts
       - name: TypeScript
