@@ -89,8 +89,11 @@ export async function advanceAssessmentSession({
     })
     .eq("id", sessionId)
     .eq("student_id", studentId)
+    .eq("current_question", session.current_question)
+    .eq("correct_answers", session.correct_answers)
+    .eq("wrong_answers", session.wrong_answers)
     .select("*")
-    .single();
+    .maybeSingle();
 
   if (
     updateError ||
