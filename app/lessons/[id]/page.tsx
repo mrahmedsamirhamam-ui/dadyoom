@@ -611,7 +611,7 @@ export default async function LessonPage({
           />
         ) : null}
 
-        {multipleChoiceQuestions.length > 0 ? (
+        {user && multipleChoiceQuestions.length > 0 ? (
           <ScoreCard
             score={practice.attempts.filter(
               attempt => attempt.is_correct &&
@@ -635,9 +635,25 @@ export default async function LessonPage({
           />
         ) : null}
 
-        <LessonSemanticSearch lessonId={lesson.id} />
-
-        <LessonMasteryCard lessonId={lesson.id} />
+        {user ? (
+          <>
+            <LessonSemanticSearch lessonId={lesson.id} />
+            <LessonMasteryCard lessonId={lesson.id} />
+          </>
+        ) : (
+          <section className="lesson-arabic-card rounded-3xl border border-emerald-200 bg-emerald-50 p-6">
+            <h2 className="text-xl font-bold text-[#173f38]">
+              اسأل ضاد وتابع مستوى إتقانك
+            </h2>
+            <p className="mt-2 leading-8 text-slate-700">
+              الشرح والأنشطة المفتوحة متاحة للجميع. سجّل الدخول لتتحدث مع ضاد
+              وتحفظ تقدمك وتراجع درجاتك بصورة خاصة وآمنة.
+            </p>
+            <Link href="/login" className="mt-4 inline-flex rounded-xl bg-emerald-700 px-5 py-3 font-bold text-white">
+              تسجيل الدخول
+            </Link>
+          </section>
+        )}
 
         <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
           <div className="flex flex-wrap items-center justify-between gap-4">

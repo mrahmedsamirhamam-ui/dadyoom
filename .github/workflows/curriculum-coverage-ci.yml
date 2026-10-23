@@ -28,6 +28,7 @@ on:
       - 'features/adaptive-learning/services/evaluatePerformance.ts'
       - 'features/adaptive-learning/services/lesson-practice-snapshot.ts'
       - 'tests/adaptive-lesson-practice.test.ts'
+      - 'tests/public-lesson-auth-boundary.test.ts'
       - 'features/adaptive-learning/components/WeakQuestionsReview.tsx'
       - 'app/lessons/**/CompleteLessonButton.tsx'
       - 'features/student-progress/actions/completeLesson.ts'
@@ -100,6 +101,8 @@ jobs:
         run: npx vitest run tests/curriculum-book-catalog-reference.test.ts
       - name: Verify adaptive practice progress cannot falsely award mastery
         run: npx vitest run tests/adaptive-lesson-practice.test.ts
+      - name: Verify public lesson UI hides private grading widgets
+        run: npx vitest run tests/public-lesson-auth-boundary.test.ts
       - name: Verify canonical lesson completion entry points
         run: npx vitest run tests/security/lesson-completion-entrypoints.test.ts tests/security/lesson-mastery-gates.test.ts
       - name: Verify authoritative lesson question grading
