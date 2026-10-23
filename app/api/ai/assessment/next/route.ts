@@ -208,7 +208,9 @@ export async function POST(
       session.finished &&
       session.lesson_id
         ? await completeAdaptiveStep({
-            supabase,
+            // Lesson publication, session ownership and scoring were
+            // verified above. The adaptive write stays server-authoritative.
+            supabase: admin,
             studentId:
               user.id,
             lessonId:
