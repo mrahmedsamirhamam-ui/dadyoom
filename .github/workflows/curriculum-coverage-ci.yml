@@ -27,6 +27,7 @@ on:
       - 'tests/security/shadow-public-activity-rpc-baseline.sql'
       - 'tests/security/shadow-public-activity-rpc-verified.sql'
       - 'tests/security/shadow-public-activity-rpc-rollback.sql'
+      - 'tests/security/activity-rpc-redaction-parity.test.ts'
       - 'tests/security/student-question-payload.test.ts'
       - 'features/questions/services/public-lesson-questions.ts'
       - 'features/lessons/queries/getLessonPageBundle.ts'
@@ -131,6 +132,8 @@ jobs:
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/bahrain-draft-preview-access.test.ts
       - name: Execute lesson bundle / activity field redaction tests
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/student-safe-lesson-activities.test.ts
+      - name: Check PostgreSQL and TypeScript activity-key filtering parity
+        run: npx vitest run tests/security/activity-rpc-redaction-parity.test.ts
       - name: Verify student-safe question view migration and quiz cutover
         run: npx vitest run tests/security/safe-questions-view.test.ts
       - name: Verify lesson question keys do not reach student payloads
