@@ -34,6 +34,7 @@ on:
       - 'app/api/ai/assessment/submit/route.ts'
       - 'app/api/ai/assessment/**'
       - 'features/assessment/services/advanceAssessmentSession.ts'
+      - 'features/assessment/services/getAssessmentSessionAnalytics.ts'
       - 'tests/security/ai-assessment-client-trust.test.ts'
       - 'features/semantic-search/components/LessonSemanticSearch.tsx'
       - 'features/semantic-search/services/updateLessonMastery.ts'

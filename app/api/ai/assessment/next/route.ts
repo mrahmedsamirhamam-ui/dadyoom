@@ -186,11 +186,13 @@ export async function POST(
     const analytics =
       session.finished
         ? await getAssessmentSessionAnalytics({
-            supabase,
+            supabase: admin,
             sessionId:
               session.id,
             studentId:
               user.id,
+            studentEmail: user.email,
+            lessonId: publishedLesson.id,
           })
         : null;
 

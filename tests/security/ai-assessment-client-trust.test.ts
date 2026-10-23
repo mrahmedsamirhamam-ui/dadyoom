@@ -81,6 +81,20 @@ describe("AI assessment answer-key confidentiality and authoritative progression
     expect(detail).toContain('id,lesson_id,title,passage');
   });
 
+  it("recomputes session analytics from trusted keys rather than writable is_correct", () => {
+    const analytics = read("features/assessment/services/getAssessmentSessionAnalytics.ts");
+    expect(analytics).toContain("assessment_id,");
+    expect(analytics).toContain("selected_answer,");
+    expect(analytics).toContain('.select("id,correct_answer")');
+    expect(analytics).toContain('.eq("student_email", studentEmail)');
+    expect(analytics).toContain('.eq("lesson_id", lessonId)');
+    expect(analytics).toContain("answer.selected_answer === correctByAssessment.get(answer.assessment_id)");
+    expect(analytics).not.toContain("answer.is_correct === true");
+    expect(next).toContain("supabase: admin,");
+    expect(next).toContain("studentEmail: user.email,");
+    expect(next).toContain("lessonId: publishedLesson.id,");
+  });
+
   it("prevents races in the session update", () => {
     expect(advance).toContain('.eq("current_question", session.current_question)');
     expect(advance).toContain('.eq("correct_answers", session.correct_answers)');

@@ -270,3 +270,7 @@
 - `/api/ai/assessment/session`: rejects unpublished lessons and creates/resumes a session through the server-only client after authenticating the student; session student ID is always derived from `auth.getUser()`.
 - `/api/ai/assessment/[id]`: checks parent lesson is still published before returning the student's safe question projection. New CI source guards cover all three.
 - Direct table-level grants on AI assessment/session tables remain exposed in production and require tested role/permission migration. No production SQL or real student submissions performed.
+
+### 2026-10-23 — trusted final analytics for adaptive assessments
+- `getAssessmentSessionAnalytics` no longer trusts `assessment_session_answers.is_correct`, a column writable by the student's database role in the current production policy. After the already-authorized session completes, it reads selected choices with a trusted server client and matches each question to the private `ai_assessments.correct_answer` scoped by authenticated owner email and published lesson.
+- Fails closed if any stored question key is missing. Calculates strengths, weaknesses and totals from server-computed correctness, preserving existing return shape. Regression test added to AI assessment CI; no production SQL or student-record changes.
