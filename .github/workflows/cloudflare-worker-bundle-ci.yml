@@ -1,0 +1,67 @@
+name: Cloudflare Worker bundle build (isolated, no deploy)
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/cloudflare-worker-bundle-ci.yml'
+      - 'app/**'
+      - 'features/**'
+      - 'components/**'
+      - 'lib/**'
+      - 'types/**'
+      - 'package.json'
+      - 'package-lock.json'
+
+permissions:
+  contents: read
+
+jobs:
+  cloudflare-bundle-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    env:
+      CI: 'true'
+      NEXT_TELEMETRY_DISABLED: '1'
+      # Intentionally no CLOUDFLARE_API_TOKEN, ACCOUNT_ID, database or app secrets.
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+      - name: Install unchanged application dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Install pinned vinext scanner in ephemeral CI checkout
+        run: npm install --no-save --package-lock=false --ignore-scripts vinext@1.2.1
+      - name: Prepare Cloudflare adapter inside temporary CI checkout only
+        shell: bash
+        run: |
+          set -euo pipefail
+          # This init may edit ephemeral working-tree files but never commits or deploys.
+          # Memory cache / no image service keeps it free of storage provisioning.
+          npx vinext init --platform=cloudflare --skip-check --force --data-cache=memory --image-optimization=none
+      - name: Build actual Worker bundle (no deploy, no cloud credentials)
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx vinext build 2>&1 | tee worker-build.log
+      - name: Require a generated Cloudflare Worker bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Generated Worker files (filenames only):"
+          find dist .cloudflare -maxdepth 4 -type f 2>/dev/null | head -60 || true
+          test -f dist/server/wrangler.json
+          echo "CLOUDFLARE_WORKER_BUNDLE_BUILD=PASS"
+      - name: Save nonsecret diagnostic logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: isolated-cloudflare-worker-build-report
+          path: |
+            worker-build.log
+          retention-days: 3
+          if-no-files-found: ignore
