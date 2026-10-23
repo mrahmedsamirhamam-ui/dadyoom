@@ -48,6 +48,8 @@ jobs:
           # Diagnostics only. Version pinned; npx installs into its cache.
           # Does not run vinext init/build/deploy, wrangler, or touch production.
           npm exec --yes --package=vinext@1.2.1 -- vinext check 2>&1 | tee vinext-check.txt
+      - name: Require no recognized vinext import compatibility gaps
+        run: node scripts/assert-vinext-compatibility.mjs vinext-check.txt
       - name: Save compatibility report
         if: always()
         uses: actions/upload-artifact@v4

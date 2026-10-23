@@ -137,8 +137,9 @@ declare module 'next/cache' {
     }): void
 
 
-  import { cacheTag } from 'next/dist/server/use-cache/cache-tag'
-  export { cacheTag }
+  // Public Next.js API only: avoid importing internal Next runtime modules
+  // from an ambient declaration. vinext handles next/cache directly.
+  export function cacheTag(...tags: string[]): void
 
   export const unstable_cacheTag: typeof cacheTag
   export const unstable_cacheLife: typeof cacheLife

@@ -60,6 +60,8 @@ on:
       - 'lib/curriculum/book-catalog-reference.ts'
       - 'app/lessons/[id]/page.tsx'
       - 'tests/curriculum-book-catalog-reference.test.ts'
+      - 'types/cache-life.d.ts'
+      - 'tests/cloudflare-cache-compatibility.test.ts'
       - 'tests/curriculum-readiness-live-gates.test.ts'
       - 'app/quiz/**'
       - 'tests/security/safe-questions-view.test.ts'
@@ -99,6 +101,8 @@ jobs:
         run: npx vitest run tests/curriculum-readiness-live-gates.test.ts
       - name: Verify book index nodes cannot masquerade as graded lessons
         run: npx vitest run tests/curriculum-book-catalog-reference.test.ts
+      - name: Verify public Next cache type declarations are Worker-compatible
+        run: npx vitest run tests/cloudflare-cache-compatibility.test.ts
       - name: Verify adaptive practice progress cannot falsely award mastery
         run: npx vitest run tests/adaptive-lesson-practice.test.ts
       - name: Verify public lesson UI hides private grading widgets
