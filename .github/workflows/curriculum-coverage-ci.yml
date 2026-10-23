@@ -15,6 +15,8 @@ on:
       - 'components/lesson/MultipleChoiceQuestion.tsx'
       - 'app/lessons/**/page.tsx'
       - 'features/questions/services/grade-stored-mcq.ts'
+      - 'features/practice/actions/submitPractice.ts'
+      - 'tests/security/lesson-practice-server-grading.test.ts'
       - 'features/questions/queries/getLessonQuestions.ts'
       - 'features/teacher/queries/getLessonQuestions.ts'
       - 'features/teacher/actions/manageLessonQuestions.ts'
@@ -124,6 +126,8 @@ jobs:
         run: npx vitest run tests/curriculum-book-catalog-reference.test.ts
       - name: Verify public Next cache type declarations are Worker-compatible
         run: npx vitest run tests/cloudflare-cache-compatibility.test.ts
+      - name: Execute real lesson practice auth and trusted-key scoring tests
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/lesson-practice-server-grading.test.ts
       - name: Verify adaptive practice progress cannot falsely award mastery
         run: npx vitest run tests/adaptive-lesson-practice.test.ts
       - name: Verify public lesson UI hides private grading widgets
