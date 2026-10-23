@@ -46,6 +46,13 @@ describe("lesson activity answer key read is server-private", () => {
     expect(projection).not.toMatch(/['"]answer['"]/);
   });
 
+  it("saves authoritative lesson mastery with trusted server identity", () => {
+    expect(mastery).toMatch(/await admin\s*\.from\("lesson_mastery"\)\s*\.upsert/);
+    expect(mastery).not.toMatch(/await supabase\s*\.from\("lesson_mastery"\)\s*\.upsert/);
+    expect(mastery).toContain("student_id: user.id");
+    expect(mastery).toContain("mastery_score: masteryScore");
+  });
+
   it("does not change weighted scoring or identity-scoped attempt reads", () => {
     expect(complete).toContain("scoreGradedActivityAttempts(");
     expect(mastery).toContain("scoreGradedActivityAttempts(");

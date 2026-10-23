@@ -62,6 +62,23 @@ describe("student activity grading authorization", () => {
       .toEqual({ status: "in_progress", progress_percent: 0 });
   });
 
+  it("persists attempts and progress via trusted server after scoring", () => {
+    const admin = source.indexOf("const admin = createAdminClient()");
+    const attempts = source.indexOf('"lesson_activity_attempts"');
+    const attemptWrite = source.indexOf(".insert(", attempts);
+    const progressUpdate = source.indexOf(".update(", source.indexOf('"student_lesson_progress"'));
+    expect(admin).toBeGreaterThan(-1);
+    expect(attemptWrite).toBeGreaterThan(admin);
+    expect(progressUpdate).toBeGreaterThan(attemptWrite);
+    expect(source).toMatch(/await admin\s*\.from\(\s*"lesson_activity_attempts"\s*\)\s*\.insert/);
+    expect(source).toMatch(/await admin\s*\.from\(\s*"student_lesson_progress"\s*\)\s*\.update/);
+    expect(source).toMatch(/await admin\s*\.from\(\s*"student_lesson_progress"\s*\)\s*\.insert/);
+    expect(source).toContain('.eq("student_id", user.id)');
+    expect(source).toContain('.eq("lesson_id", activity.lesson_id)');
+    expect(source).toContain("user_id:");
+    expect(source).toContain("user.id");
+  });
+
   it("saves derived status and percent rather than resetting completed lessons", () => {
     expect(source).toContain("preserveGradedLessonProgress(");
     expect(source).toContain("status: safeProgress.status");

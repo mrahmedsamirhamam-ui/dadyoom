@@ -382,7 +382,7 @@ export async function POST(
       error:
         insertError,
     } =
-      await supabase
+      await admin
         .from(
           "lesson_activity_attempts"
         )
@@ -742,7 +742,7 @@ export async function POST(
         error:
           progressUpdateError,
       } =
-        await supabase
+        await admin
           .from(
             "student_lesson_progress"
           )
@@ -752,7 +752,9 @@ export async function POST(
           .eq(
             "id",
             existingProgress.id
-          );
+          )
+          .eq("student_id", user.id)
+          .eq("lesson_id", activity.lesson_id);
 
       if (
         progressUpdateError
@@ -766,7 +768,7 @@ export async function POST(
         error:
           progressInsertError,
       } =
-        await supabase
+        await admin
           .from(
             "student_lesson_progress"
           )

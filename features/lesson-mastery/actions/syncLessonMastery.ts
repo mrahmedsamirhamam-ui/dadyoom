@@ -196,7 +196,7 @@ export async function syncLessonMasteryAction(
 
   const {
     error: masteryError,
-  } = await supabase
+  } = await admin
     .from("lesson_mastery")
     .upsert(
       {
