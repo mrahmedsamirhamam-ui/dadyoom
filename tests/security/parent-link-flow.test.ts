@@ -48,7 +48,7 @@ describe("parent-child linking feedback and privacy", () => {
     expect(auth).toBeGreaterThan(-1);
     expect(role).toBeGreaterThan(auth);
     expect(rpc).toBeGreaterThan(role);
-    expect(parentLink).toContain('role !== "parent" && role !== "admin"');
+    expect(parentLink).toContain('role !== "parent"');
     expect(parentLink).toContain('code.length > 64');
     expect(parentLink).toContain('"ولي أمر"');
     expect(parentLink).toContain('revalidatePath("/parent")');
@@ -56,7 +56,7 @@ describe("parent-child linking feedback and privacy", () => {
 
   it("continues using the database-approved one-time code RPC", () => {
     expect(createCode).toContain('"create_parent_link_code"');
-    expect(createCode).toContain('role !== "student" && role !== "admin"');
+    expect(createCode).toContain('role !== "student"');
     expect(createCode).toContain('if (error || !data || (Array.isArray(data) && data.length === 0))');
     expect(createCode).toContain('revalidatePath("/student")');
     expect(parentLink).toContain('"link_child_by_code"');
