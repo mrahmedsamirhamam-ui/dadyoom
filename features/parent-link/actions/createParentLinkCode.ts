@@ -36,7 +36,7 @@ export async function createParentLinkCodeAction() {
     .eq("id", user.id)
     .maybeSingle();
   const role = profile?.role?.trim().toLowerCase();
-  if (profileError || (role !== "student" && role !== "admin")) {
+  if (profileError || role !== "student") {
     redirect("/login");
   }
 
