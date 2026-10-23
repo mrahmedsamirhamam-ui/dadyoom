@@ -67,7 +67,9 @@ jobs:
           # dependencies in the ephemeral runner, not in GitHub's source.
           npm install --no-save --package-lock=false --no-audit --no-fund \
             vinext@1.2.1 @vinext/cloudflare@1.2.1 \
-            vite@8.0.4 @vitejs/plugin-react@5.1.4 @vitejs/plugin-rsc@0.5.38 \
+            vite@8.3.0 @vitejs/plugin-react@6.1.2 @vitejs/plugin-rsc@0.5.38 \
+            @cloudflare/vite-plugin@beta cf@latest \
+            @babel/plugin-transform-runtime@7.29.0 \
             react-server-dom-webpack@19.3.1
       - name: Build actual Worker bundle (no deploy, no cloud credentials)
         shell: bash
