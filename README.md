@@ -541,3 +541,8 @@ Dadyoom aims to become an education innovation institution with a distinctive Ar
 ### 2026-10-23 — نقل كتابة الدرجات إلى الخادم الموثوق
 - بعد التحقق من الطالب والدرس المنشور وتصحيح الإجابات، يحفظ `POST /api/lesson-activities/check` المحاولة والتقدم بواسطة عميل الخادم الخاص، مع `user_id=user.id` الموثوق وتقييد تحديث التقدم بمالك الصف ودرسِه. `syncLessonMasteryAction` يحفظ نتيجة الإتقان المحسوبة خادميًا عبر عميل الخادم كذلك.
 - القراءة المسموحة للطالب ومحاولاته بقيت بجلسة RLS، ولم تُسحب أي صلاحية PostgreSQL بعد؛ ما زالت كتابات تاريخية إضافية تحتاج انتقالًا قبل قفل المنفذ المباشر. أضيفت اختبارات ضبط ترتيبي للكتابة الآمنة إلى اختبارات CI الموجودة، بلا تعديل بيانات إنتاجية.
+
+### 2026-10-23 — Owned progress repository hardening
+- `progress.repository.ts`: requires a verified session; never allows another student's progress to be read, created or updated; verifies published-lesson visibility under caller RLS *before* opening the server-only persistence client. UPDATE matches stored ID + authenticated owner + authorized lesson; identity/lesson fields cannot be passed in update payload.
+- `progress.ts`: rejects incomplete, nonfinite, and out-of-range assessment results below 90% at the internal completion boundary, in addition to the action's existing mastery gate. No existing production rows, migrations or grants changed.
+- New source regressions added to curriculum CI. This is staged server-code hardening, **not** confirmation of an operational end-to-end attempt until Preview and DB permission rollout pass.

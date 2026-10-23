@@ -28,6 +28,9 @@ on:
       - 'features/adaptive-learning/components/WeakQuestionsReview.tsx'
       - 'app/lessons/**/CompleteLessonButton.tsx'
       - 'features/student-progress/actions/completeLesson.ts'
+      - 'features/student-progress/repositories/progress.repository.ts'
+      - 'features/student-progress/services/progress.ts'
+      - 'tests/security/owner-scoped-progress-repository.test.ts'
       - 'features/lesson-mastery/actions/syncLessonMastery.ts'
       - 'tests/security/lesson-mastery-completion-only.test.ts'
       - 'features/lesson-mastery/services/score-graded-activities.ts'
@@ -91,6 +94,8 @@ jobs:
         run: npx vitest run tests/security/server-private-activity-answer-read.test.ts
       - name: Verify server grading and completed-progress preservation
         run: npx vitest run tests/security/activity-check-route.test.ts
+      - name: Verify owner-scoped trusted progress repository
+        run: npx vitest run tests/security/owner-scoped-progress-repository.test.ts
       - name: Verify public lesson bundle excludes answer keys
         run: npx vitest run tests/security/public-lesson-bundle-rpc.test.ts
       - name: TypeScript
