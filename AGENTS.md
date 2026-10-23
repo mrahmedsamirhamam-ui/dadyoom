@@ -137,3 +137,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 ### 2026-10-22 — Server-only activity grading before grant migration
 - `completeLessonAction` requires an owned progress row and published lesson visible under student RLS; `syncLessonMasteryAction` authenticates and checks published lesson visibility. Both then use `createAdminClient` to access `lesson_activities.answer` exclusively on the trusted server.
 - Weighted best-attempt grading, user-scoped attempt reads, and progress data are unchanged. CI guards the authorization order. The legacy direct database `answer` grants remain P0 pending audited no-cost Preview E2E and rollback; a green Next.js build is not proof of production release.
+
+### 2026-10-23 — حماية مسار تصحيح الأنشطة من كشف الإجابات وتراجع الإتقان
+- مسار `POST /api/lesson-activities/check` يفحص النشاط والدرس المنشور باستخدام جلسة الطالب وRLS **قبل** استدعاء `createAdminClient` لجلب مفتاح التصحيح، ويربط الاستعلام الإداري بمعرفي النشاط والدرس معًا؛ وكذلك قراءة مفاتيح جميع أنشطة الدرس للتقييم أصبحت خادمية بعد فحص النشر.
+- عند إعادة نشاط في درس حالته `completed` أو `mastered` تُحفظ الحالة ونسبة التقدم المكتسبة، ولا يعيد التصحيح عرض الحالة `in_progress` ولا يخفض نسبة التقدم السابقة. التعديل لا يغير معيار 90% أو طريقة احتساب الدرجات.
+- أضيف اختباران لمصدر مسار التصحيح ولدالة حفظ حالة التقدم إلى GitHub CI. لا تزال الصلاحيات المباشرة لمفاتيح الإجابات وكتابة المحاولات مفتوحة في Supabase إلى حين تجربة Preview والتراجع؛ لا إعلان نشر إنتاجي أو أمان كامل.

@@ -6,6 +6,9 @@ on:
       - 'app/api/progress/**'
       - 'app/api/lessons/complete/**'
       - 'app/api/questions/answer/**'
+      - 'app/api/lesson-activities/check/**'
+      - 'lib/lesson-activities/progress-state.ts'
+      - 'tests/security/activity-check-route.test.ts'
       - 'components/lesson/MultipleChoiceQuestion.tsx'
       - 'app/lessons/**/page.tsx'
       - 'features/questions/services/grade-stored-mcq.ts'
@@ -86,6 +89,8 @@ jobs:
         run: npx vitest run tests/security/teacher-private-question-access.test.ts
       - name: Verify private activity keys stay on server
         run: npx vitest run tests/security/server-private-activity-answer-read.test.ts
+      - name: Verify server grading and completed-progress preservation
+        run: npx vitest run tests/security/activity-check-route.test.ts
       - name: Verify public lesson bundle excludes answer keys
         run: npx vitest run tests/security/public-lesson-bundle-rpc.test.ts
       - name: TypeScript
