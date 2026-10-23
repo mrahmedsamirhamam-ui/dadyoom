@@ -397,6 +397,15 @@ export default async function LessonPage({
             {lesson.title}
           </h1>
 
+          {lesson.status === "published" ? (
+            <Link
+              href={`/ask?lessonId=${encodeURIComponent(lesson.id)}`}
+              className="mt-4 inline-flex rounded-2xl bg-[#174f47] px-5 py-3 text-sm font-black text-white transition hover:bg-[#123f39] focus-visible:outline-4 focus-visible:outline-[#a4d7c6]"
+            >
+              اسأل ضاد عن هذا الدرس
+            </Link>
+          ) : null}
+
           <LessonProgress
             progress={
               learningProgress?.progress_percent ??
