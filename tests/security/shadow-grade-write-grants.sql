@@ -5,12 +5,12 @@
 \set ON_ERROR_STOP on
 -- Roles are cluster-global; the preceding shadow-question test creates them
 -- on this disposable CI PostgreSQL service, even though its database differs.
-DO $
+DO $$
 BEGIN
  IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'authenticated') THEN
    RAISE EXCEPTION 'EXPECTED_DISPOSABLE_AUTHENTICATED_ROLE_FROM_PRECEDING_FIXTURE';
  END IF;
-END $;
+END $$;
 CREATE SCHEMA auth;
 CREATE FUNCTION auth.uid() RETURNS uuid LANGUAGE sql STABLE AS $$
   SELECT nullif(current_setting('request.jwt.claim.sub', true), '')::uuid
