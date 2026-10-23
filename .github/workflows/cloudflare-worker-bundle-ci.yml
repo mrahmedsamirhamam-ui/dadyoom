@@ -58,7 +58,17 @@ jobs:
           set -euo pipefail
           # This init may edit ephemeral working-tree files but never commits or deploys.
           # No data cache / no image service keeps it free of storage provisioning.
-          npx vinext init --platform=cloudflare --skip-check --force --data-cache=none --image-optimization=none
+          npx vinext init --platform=cloudflare --skip-check --force --data-cache=none --image-optimization=none --no-install
+      - name: Install Cloudflare-only build adapters using explicit versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          # No 'vinext init' package-manager side effects. Keep all
+          # dependencies in the ephemeral runner, not in GitHub's source.
+          npm install --no-save --package-lock=false --no-audit --no-fund \
+            vinext@1.2.1 @vinext/cloudflare@1.2.1 \
+            vite@8.0.4 @vitejs/plugin-react@5.1.4 @vitejs/plugin-rsc@0.5.38 \
+            react-server-dom-webpack@19.3.1
       - name: Build actual Worker bundle (no deploy, no cloud credentials)
         shell: bash
         run: |
