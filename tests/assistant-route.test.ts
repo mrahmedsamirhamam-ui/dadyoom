@@ -72,6 +72,19 @@ describe("Dadyoom smart assistant HTTP route", () => {
     expect(mocks.routeAi).not.toHaveBeenCalled();
   });
 
+  it("rejects a large chunked JSON body before quota and AI access", async () => {
+    const oversized = JSON.stringify({ message: "اشرح", padding: "x".repeat(46000) });
+    const response = await POST(new Request("http://localhost/api/dad/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Content-Length": "40" },
+      body: oversized,
+    }));
+    expect(response.status).toBe(413);
+    expect(mocks.consumeFeature).not.toHaveBeenCalled();
+    expect(mocks.getUser).not.toHaveBeenCalled();
+    expect(mocks.routeAi).not.toHaveBeenCalled();
+  });
+
   it("rejects oversized and empty questions before quota consumption", async () => {
     for (const payload of [{ message: "" }, { message: "a".repeat(3001) }]) {
       expect((await POST(request(payload))).status).toBe(400);
