@@ -30,4 +30,12 @@ describe("assessment permissions audit is safe and complete", () => {
     expect(sql).toContain("pg_class");
     expect(sql).toContain("get_lesson_page_bundle");
   });
+  it("inventories privileged public routine signatures and role grants without reading bodies", () => {
+    expect(sql).toContain("pg_get_function_identity_arguments");
+    expect(sql).toContain("p.prosecdef");
+    expect(sql).toContain("has_function_privilege('anon', p.oid, 'EXECUTE')");
+    expect(sql).toContain("has_function_privilege('authenticated', p.oid, 'EXECUTE')");
+    expect(queries).not.toMatch(/\\bpg_get_functiondef\\b|\\bprosrc\\b/i);
+  });
+
 });
