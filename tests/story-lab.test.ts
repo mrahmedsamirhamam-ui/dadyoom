@@ -3,9 +3,9 @@ import { describeStoryPractice, evaluateStoryChoice } from "@/lib/story-lab/eval
 import { getLearningStory, LEARNING_STORIES } from "@/lib/story-lab/stories";
 
 describe("Dadyoom original interactive story lab", () => {
-  it("has three complete independent enrichment lessons with scene text and questions", () => {
-    expect(LEARNING_STORIES).toHaveLength(3);
-    expect(new Set(LEARNING_STORIES.map((story) => story.slug)).size).toBe(3);
+  it("has four complete independent enrichment lessons with scene text and questions", () => {
+    expect(LEARNING_STORIES).toHaveLength(4);
+    expect(new Set(LEARNING_STORIES.map((story) => story.slug)).size).toBe(4);
     for (const story of LEARNING_STORIES) {
       expect(story.scenes.length).toBeGreaterThanOrEqual(4);
       expect(story.questions.length).toBeGreaterThanOrEqual(4);
@@ -46,6 +46,16 @@ describe("Dadyoom original interactive story lab", () => {
     const correct = story!.questions.map((q) => q.choices[q.correctIndex]);
     expect(correct).toEqual(["شاطِئ", "تباطُؤ", "ملجَأ", "دفْء"]);
     expect(getLearningStory("unknown")).toBeUndefined();
+  });
+
+  it("distinguishes matching apposition from partitive and inclusion and checks case agreement", () => {
+    const story = getLearningStory("matching-apposition");
+    expect(story).toBeDefined();
+    expect(story!.rule).toContain("رفعًا ونصبًا وجرًّا");
+    const correct = story!.questions.map((q) => q.choices[q.correctIndex]);
+    expect(correct).toEqual(["الطالبُ", "مريمَ", "مالكٍ", "قابلتُ المعلّمَ معتزًّا"]);
+    expect(story!.questions[3].explanation).toContain("بدل اشتمال");
+    expect(story!.questions[3].explanation).toContain("بدل بعض من كل");
   });
 
   it("describes first-attempt practice but never issues an academic grade", () => {
