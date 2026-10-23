@@ -30,6 +30,10 @@ on:
       - 'features/student-progress/actions/completeLesson.ts'
       - 'features/student-progress/repositories/progress.repository.ts'
       - 'features/student-progress/services/progress.ts'
+      - 'app/api/semantic-search/stream/route.ts'
+      - 'features/semantic-search/components/LessonSemanticSearch.tsx'
+      - 'features/semantic-search/services/updateLessonMastery.ts'
+      - 'tests/security/tutor-not-mastery.test.ts'
       - 'tests/security/owner-scoped-progress-repository.test.ts'
       - 'features/lesson-mastery/actions/syncLessonMastery.ts'
       - 'tests/security/lesson-mastery-completion-only.test.ts'
@@ -96,6 +100,8 @@ jobs:
         run: npx vitest run tests/security/activity-check-route.test.ts
       - name: Verify owner-scoped trusted progress repository
         run: npx vitest run tests/security/owner-scoped-progress-repository.test.ts
+      - name: Verify tutoring cannot award academic mastery
+        run: npx vitest run tests/security/tutor-not-mastery.test.ts
       - name: Verify public lesson bundle excludes answer keys
         run: npx vitest run tests/security/public-lesson-bundle-rpc.test.ts
       - name: TypeScript

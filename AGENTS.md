@@ -151,3 +151,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - `progress.repository.ts`: requires a verified session; never allows another student's progress to be read, created or updated; verifies published-lesson visibility under caller RLS *before* opening the server-only persistence client. UPDATE matches stored ID + authenticated owner + authorized lesson; identity/lesson fields cannot be passed in update payload.
 - `progress.ts`: rejects incomplete, nonfinite, and out-of-range assessment results below 90% at the internal completion boundary, in addition to the action's existing mastery gate. No existing production rows, migrations or grants changed.
 - New source regressions added to curriculum CI. This is staged server-code hardening, **not** confirmation of an operational end-to-end attempt until Preview and DB permission rollout pass.
+
+### 2026-10-23 — tutoring is not assessed mastery
+- The semantic tutor previously called `updateLessonMastery` when its own answer contained no error text, adding a *correct student answer* and potentially a 100% mastery score even without a student assessment. Removed this grading call and obsolete helper, while retaining chat history, streamed feedback and suggested practice questions.
+- Stream endpoint now validates the user's visibility of the published lesson before reading chat/context, and client no longer broadcasts `lesson-mastery-updated` on completion of a tutor response. Only actual server-graded attempts may influence academic mastery.
+- No changes to historic student results were performed; source regression test added to CI. Supabase privilege remediation and Cloudflare Preview remain release blockers.
