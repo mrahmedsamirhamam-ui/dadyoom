@@ -66,7 +66,7 @@ jobs:
           # No 'vinext init' package-manager side effects. Keep all
           # dependencies in the ephemeral runner, not in GitHub's source.
           npm install --no-save --package-lock=false --no-audit --no-fund \
-            vinext@1.2.1 @vinext/cloudflare@1.2.1 \
+            vinext@1.2.1 @vinext/cloudflare@latest \
             vite@8.3.0 @vitejs/plugin-react@6.1.2 @vitejs/plugin-rsc@0.5.38 \
             @cloudflare/vite-plugin@beta cf@latest \
             @babel/plugin-transform-runtime@7.29.0 \
