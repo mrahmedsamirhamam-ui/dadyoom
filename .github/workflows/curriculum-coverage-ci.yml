@@ -49,6 +49,7 @@ on:
       - 'scripts/audit-assessment-consumers.mjs'
       - 'tests/security/assessment-grants-audit.test.ts'
       - 'tests/security/shadow-question-grants.sql'
+      - 'tests/security/shadow-grade-write-grants.sql'
       - 'tests/security/owner-scoped-progress-repository.test.ts'
       - 'features/lesson-mastery/actions/syncLessonMastery.ts'
       - 'tests/security/lesson-mastery-completion-only.test.ts'
@@ -189,3 +190,14 @@ jobs:
           docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres \
             < tests/security/shadow-question-grants.sql
           echo "SHADOW_QUESTION_GRANTS_REHEARSAL=PASS"
+      - name: Prove forged own scores and rehearse six-table write-grant cutover
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_grading
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_grading \
+            < tests/security/shadow-grade-write-grants.sql
+          echo "SHADOW_GRADE_WRITES_REHEARSAL=PASS"
