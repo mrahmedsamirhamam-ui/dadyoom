@@ -53,6 +53,9 @@ on:
       - 'features/student-progress/services/completion-gates.ts'
       - 'scripts/curriculum-coverage.mjs'
       - 'scripts/curriculum-production-audit.sql'
+      - 'lib/curriculum/book-catalog-reference.ts'
+      - 'app/lessons/[id]/page.tsx'
+      - 'tests/curriculum-book-catalog-reference.test.ts'
       - 'tests/curriculum-readiness-live-gates.test.ts'
       - 'app/quiz/**'
       - 'tests/security/safe-questions-view.test.ts'
@@ -90,6 +93,8 @@ jobs:
         run: npx vitest run tests/curriculum-coverage.test.ts
       - name: Verify published assessment and import-placeholder readiness audit
         run: npx vitest run tests/curriculum-readiness-live-gates.test.ts
+      - name: Verify book index nodes cannot masquerade as graded lessons
+        run: npx vitest run tests/curriculum-book-catalog-reference.test.ts
       - name: Verify canonical lesson completion entry points
         run: npx vitest run tests/security/lesson-completion-entrypoints.test.ts tests/security/lesson-mastery-gates.test.ts
       - name: Verify authoritative lesson question grading

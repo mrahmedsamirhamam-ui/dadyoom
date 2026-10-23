@@ -6,6 +6,7 @@ import LessonMasteryCard from "@/features/lesson-mastery/components/LessonMaster
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { SITE_DESCRIPTION } from "@/lib/site";
+import { isBookCatalogReference } from "@/lib/curriculum/book-catalog-reference";
 import {
   getLessonPageBundle,
 } from "@/features/lessons/queries/getLessonPageBundle";
@@ -130,6 +131,36 @@ export default async function LessonPage({
 
   const lesson =
     bundle.lesson;
+
+  // Catalog nodes link to official book titles; they are not graded lessons.
+  // Render a meaningful reference page without any mastery/progress controls.
+  if (isBookCatalogReference(lesson)) {
+    return (
+      <main dir="rtl" className="min-h-screen bg-[#f5f4ed] px-4 py-12 text-[#173f38]">
+        <article className="mx-auto max-w-3xl space-y-5 rounded-3xl bg-white p-6 shadow-sm sm:p-10">
+          <p className="text-sm font-bold text-amber-700">مرجع كتاب رسمي — ليس درسًا تعليميًا</p>
+          <h1 className="text-3xl font-extrabold">{lesson.title}</h1>
+          <p className="leading-8 text-slate-700">{lesson.summary}</p>
+          <p className="rounded-xl bg-amber-50 p-4 leading-8 text-amber-900">
+            هذه الصفحة مرجع لفهرسة الكتاب ضمن المسار الدراسي. لا يوجد هنا شرح
+            للدرس أو نص مدرسي مرخص؛ لذلك لن نعرض اختبار إتقان أو درجة تقدّم
+            قبل إضافة درس تعليمي كامل مرتبط بالمصدر الصحيح.
+          </p>
+          {lesson.source_pdf_url ? (
+            <a className="inline-block font-bold text-emerald-800 underline"
+              href={lesson.source_pdf_url} target="_blank" rel="noopener noreferrer">
+              الاطلاع على المصدر المدرج للكتاب
+            </a>
+          ) : null}
+          <div>
+            <Link href="/student" className="font-bold text-emerald-800 underline">
+              العودة إلى مسار التعلم
+            </Link>
+          </div>
+        </article>
+      </main>
+    );
+  }
 
   const lessonQuestions =
     bundle.questions;

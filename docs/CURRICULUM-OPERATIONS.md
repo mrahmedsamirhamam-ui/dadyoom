@@ -662,3 +662,7 @@
 - Eight published zero-content records are explicit Tunisia *official book reference/catalog nodes* and must be displayed as such, not fabricated as teaching texts. Zero empty noncatalog published lessons found.
 - Updated existing `scripts/curriculum-production-audit.sql` to calculate the actual combined assessment coverage and separate those QA queues; CI checks query intent and that it remains read-only. Live SQL verified these counts without any production data mutation.
 - **Readiness limitation:** These facts may justify progress in the curriculum/data-inventory portion; they do not clear Cloudflare #46, unsafe direct Supabase grants #57, signed-in Preview or official annual syllabus mapping. No 100% platform readiness claim.
+
+### 2026-10-23 — published book references no longer masquerade as actual lessons
+- Added `isBookCatalogReference` and an early explicit reference-page UI in `app/lessons/[id]/page.tsx`. The eight Tunisia zero-content official-book catalog nodes display their titles, source metadata and a clear explanation that they are book references, **not lessons**; these pages no longer show mastery, progress, answer questions or simulated scoring.
+- Real lessons with authored content remain unchanged. Added functional/source Vitest tests and gate to CI. No stored lesson status, source text, grades, or database privileges changed.
