@@ -23,10 +23,10 @@ type PublishedLessonContext = {
  * Ground the answer in the exact published lesson visible to this signed-in
  * user through RLS. Never read questions, attempts, answer keys, or drafts.
  */
-async function getPublishedLessonContext(lessonId: string): Promise<PublishedLessonContext | null> {
-  const supabase = await createClient();
-  const { data: { user }, error: authError } = await supabase.auth.getUser();
-  if (authError || !user) return null;
+async function getPublishedLessonContext(
+  lessonId: string,
+  supabase: Awaited<ReturnType<typeof createClient>>,
+): Promise<PublishedLessonContext | null> {
 
   const { data: lesson, error } = await supabase
     .from("lessons")
@@ -105,8 +105,20 @@ export async function POST(request: Request) {
       );
     }
     const { message, mode: teachingMode, history, lessonId } = parsed.value;
+
+    // The dashboard requires a signed-in profile. Apply an independent
+    // authentication gate here too, since direct API calls bypass the UI.
+    const supabase = await createClient();
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    if (authError || !user) {
+      return NextResponse.json(
+        { error: "سجّل الدخول إلى ضاديوم حتى تتمكن من سؤال ضاد." },
+        { status: 401, headers: { "Cache-Control": "no-store" } },
+      );
+    }
+
     // An ID cannot grant access by itself: read only with the user's cookie and RLS.
-    const verifiedLesson = lessonId ? await getPublishedLessonContext(lessonId) : null;
+    const verifiedLesson = lessonId ? await getPublishedLessonContext(lessonId, supabase) : null;
     if (lessonId && !verifiedLesson) {
       return NextResponse.json(
         { error: "هذا الدرس غير متاح للمساعد. افتح درسًا منشورًا بحسابك." },
