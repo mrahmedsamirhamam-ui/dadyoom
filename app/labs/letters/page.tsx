@@ -18,6 +18,7 @@ export default function LettersLabPage() {
           <DadyoomLogo />
           <nav aria-label="التنقل" className="flex items-center gap-4 text-sm font-bold text-[#174f47]">
             <Link className="hover:underline" href="/">الرئيسية</Link>
+            <Link className="hover:underline" href="/labs/stories">حكايات ضاديوم</Link>
             <Link className="hover:underline" href="/courses">دروس المنهج</Link>
           </nav>
         </div>
