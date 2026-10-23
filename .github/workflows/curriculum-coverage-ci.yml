@@ -18,6 +18,7 @@ on:
       - 'tests/security/server-private-activity-answer-read.test.ts'
       - 'tests/security/teacher-private-question-access.test.ts'
       - 'tests/security/server-graded-mcq.test.ts'
+      - 'tests/security/question-answer-route-runtime.test.ts'
       - 'tests/security/server-only-answer-key-read.test.ts'
       - 'tests/security/public-lesson-bundle-rpc.test.ts'
       - 'supabase/migrations/20261022195032_sanitize_public_get_lesson_page_bundle_answer_keys.sql'
@@ -115,6 +116,8 @@ jobs:
         run: npx vitest run tests/security/lesson-completion-entrypoints.test.ts tests/security/lesson-mastery-gates.test.ts
       - name: Verify authoritative lesson question grading
         run: npx vitest run tests/security/server-graded-mcq.test.ts
+      - name: Execute no-network grading API and student ownership runtime tests
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/question-answer-route-runtime.test.ts
       - name: Verify student-safe question view migration and quiz cutover
         run: npx vitest run tests/security/safe-questions-view.test.ts
       - name: Verify lesson question keys do not reach student payloads
