@@ -64,6 +64,34 @@ describe("Dadyoom smart assistant request boundary", () => {
     expect(text).toContain("السؤال:\n\nحلّل الفكرة");
   });
 
+  it("accepts only a well-formed lesson ID for grounded answers", () => {
+    const uuid = "123e4567-e89b-12d3-a456-426614174000";
+    const good = parseAssistantRequest({ message: "فسّر هذا الدرس", lessonId: uuid });
+    expect(good.ok).toBe(true);
+    if (good.ok) expect(good.value.lessonId).toBe(uuid);
+
+    for (const bad of ["../../admin", "draft-123", {}, 1, "", "1".repeat(100)]) {
+      expect(parseAssistantRequest({ message: "فسّر", lessonId: bad })).toEqual({
+        ok: false,
+        reason: "INVALID_LESSON_ID",
+      });
+    }
+  });
+
+  it("reads only published lessons under the signed-in user's RLS session", () => {
+    const route = readFileSync(resolve(process.cwd(), "app/api/dad/chat/route.ts"), "utf8");
+    const lessonPage = readFileSync(resolve(process.cwd(), "app/lessons/[id]/page.tsx"), "utf8");
+    expect(route).toContain("supabase.auth.getUser()");
+    expect(route).toContain('.from("lessons")');
+    expect(route).toContain('.select("title,summary,content")');
+    expect(route).toContain('.eq("status", "published")');
+    expect(route).not.toContain('.from("questions")');
+    expect(route).not.toContain("createAdminClient");
+    expect(route).toContain("if (lessonId && !verifiedLesson)");
+    expect(lessonPage).toContain("اسأل ضاد عن هذا الدرس");
+    expect(lessonPage).toContain("/ask?lessonId=");
+  });
+
   it("keeps the sensitive client context outside system messages and masks failures", () => {
     const route = readFileSync(resolve(process.cwd(), "app/api/dad/chat/route.ts"), "utf8");
     expect(route).toContain("parseAssistantRequest(raw)");
