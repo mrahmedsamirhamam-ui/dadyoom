@@ -9,6 +9,8 @@ on:
       - 'lib/ai/assistant-modes.ts'
       - 'lib/ai/assistant-request.ts'
       - 'lib/mobile/hybrid-ai.ts'
+      - 'lib/mobile/assistant-fallback.ts'
+      - 'tests/assistant-fallback.test.ts'
       - 'tests/assistant-modes.test.ts'
       - 'tests/assistant-request.test.ts'
       - 'tests/assistant-route.test.ts'
@@ -37,7 +39,7 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
       - name: Validate assistant request and educational guidance
-        run: npm run test:run -- tests/assistant-modes.test.ts tests/assistant-request.test.ts tests/assistant-route.test.ts
+        run: npm run test:run -- tests/assistant-modes.test.ts tests/assistant-request.test.ts tests/assistant-route.test.ts tests/assistant-fallback.test.ts
       - name: Check TypeScript
         run: npx tsc --noEmit
       - name: Check ESLint
