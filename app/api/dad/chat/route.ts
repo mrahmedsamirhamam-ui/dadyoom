@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { ASSISTANT_MODE_GUIDANCE } from "@/lib/ai/assistant-modes";
-import { assistantContextMessage, parseAssistantRequest } from "@/lib/ai/assistant-request";
+import { assistantContextMessage, parseAssistantRequest, readBoundedAssistantJson } from "@/lib/ai/assistant-request";
 import { createClient } from "@/lib/supabase/server";
 
 import { consumeFeature } from "@/lib/billing/access";
@@ -88,18 +88,14 @@ function leaked(value: string) {
 
 export async function POST(request: Request) {
   try {
-    const lengthHeader = request.headers.get("content-length");
-    const declaredLength = lengthHeader ? Number(lengthHeader) : null;
-    if (declaredLength !== null && Number.isFinite(declaredLength) && declaredLength > 45000) {
-      return NextResponse.json({ error: "الطلب أطول من الحد المسموح." }, { status: 413 });
+    const received = await readBoundedAssistantJson(request);
+    if (!received.ok) {
+      return NextResponse.json(
+        { error: received.reason === "TOO_LARGE" ? "الطلب أطول من الحد المسموح." : "تعذر قراءة السؤال. أرسله بصيغة صحيحة." },
+        { status: received.reason === "TOO_LARGE" ? 413 : 400 },
+      );
     }
-
-    let raw: unknown;
-    try {
-      raw = await request.json();
-    } catch {
-      return NextResponse.json({ error: "تعذر قراءة السؤال. أرسله بصيغة صحيحة." }, { status: 400 });
-    }
+    const raw = received.value;
 
     const parsed = parseAssistantRequest(raw);
     if (!parsed.ok) {
