@@ -34,7 +34,7 @@ export async function GET(
 
   const { data, error } = await supabase
     .from("ai_assessments")
-    .select("*")
+    .select("id,title,passage,question,choices,skill,difficulty,completed,created_at")
     .eq("id", id)
     .eq("student_email", user.email)
     .single();
@@ -59,8 +59,8 @@ export async function GET(
       passage: data.passage,
       question: data.question,
       choices: data.choices,
-      correctAnswer: data.correct_answer,
-      explanation: data.explanation,
+      correctAnswer: null,
+      explanation: null,
       skill: data.skill,
       difficulty: data.difficulty,
       completed: data.completed,

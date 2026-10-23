@@ -721,7 +721,7 @@ ${generationAttempt}
           generated.difficulty,
         completed: false,
       })
-      .select("*")
+      .select("id,title,passage,question,choices,skill,difficulty,completed,created_at")
       .single();
 
     if (
@@ -751,12 +751,8 @@ ${generationAttempt}
           savedAssessment.question,
         choices:
           savedAssessment.choices,
-        correctAnswer:
-          savedAssessment
-            .correct_answer,
-        explanation:
-          savedAssessment
-            .explanation,
+        correctAnswer: null,
+        explanation: null,
         skill:
           savedAssessment.skill,
         difficulty:
