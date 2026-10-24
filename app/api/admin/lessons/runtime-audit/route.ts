@@ -795,7 +795,7 @@ export async function GET() {
       grouped,
 
       problematic,
-    });
+    }, { headers: { "Cache-Control": "private, no-store" } });
   }
   catch (error) {
     console.error(
