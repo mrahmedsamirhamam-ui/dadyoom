@@ -3,6 +3,13 @@ name: Curriculum coverage integrity
 on:
   pull_request:
     paths:
+      - 'app/api/admin/lessons/quality-audit/route.ts'
+      - 'app/api/admin/lessons/runtime-audit/route.ts'
+      - 'app/api/admin/lessons/runtime-mcq-dump/route.ts'
+      - 'app/api/admin/lessons/quality-repair/route.ts'
+      - 'lib/auth/require-curriculum-admin.ts'
+      - 'tests/security/curriculum-admin-authorization.test.ts'
+      - 'tests/security/admin-curriculum-http-authorization.test.ts'
       - 'app/api/progress/**'
       - 'app/api/lessons/complete/**'
       - 'app/api/questions/answer/**'
@@ -198,6 +205,8 @@ jobs:
         run: npx vitest run tests/security/server-private-activity-answer-read.test.ts
       - name: Verify server grading and completed-progress preservation
         run: npx vitest run tests/security/activity-check-route.test.ts
+      - name: Exercise curriculum admin HTTP gates before private answer reads or repair
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/curriculum-admin-authorization.test.ts tests/security/admin-curriculum-http-authorization.test.ts
       - name: Verify owner-scoped and concurrent-idempotent trusted lesson starts
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/owner-scoped-progress-repository.test.ts tests/security/lesson-progress-idempotent-start.test.ts
       - name: Verify tutoring cannot award academic mastery
