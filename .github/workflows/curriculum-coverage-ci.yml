@@ -70,6 +70,7 @@ on:
       - 'features/assessment/services/getLatestAssessmentAnalytics.ts'
       - 'tests/security/ai-assessment-client-trust.test.ts'
       - 'tests/security/ai-assessment-session-generation.test.ts'
+      - 'tests/security/ai-assessment-private-hash-runtime.test.ts'
       - 'features/assessment/components/LessonAssessment.tsx'
       - 'tests/security/ai-session-analytics.test.ts'
       - 'features/semantic-search/components/LessonSemanticSearch.tsx'
@@ -200,6 +201,8 @@ jobs:
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/ai-assessment-next-adaptive-runtime.test.ts
       - name: Verify legacy Gemini assessment generator cannot reach browser bundles
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/legacy-ai-generation-server-only.test.ts
+      - name: Confirm AI duplicate hashes stay private after safe column grants
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/ai-assessment-private-hash-runtime.test.ts
       - name: Verify AI assessment keys and authoritative session progression
         run: npx vitest run tests/security/ai-assessment-client-trust.test.ts
       - name: Execute no-network adaptive question session authorization and reuse tests
