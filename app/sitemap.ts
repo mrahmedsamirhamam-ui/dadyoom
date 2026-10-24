@@ -90,9 +90,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }),
     ];
   } catch {
-    // Do not publish a silently truncated sitemap when a page read fails;
-    // preserve public static discovery without exposing DB error details.
+    // Never return HTTP 200 with only nine links after a transient read error:
+    // crawlers would mistake missing published lessons for intentional removal.
+    // Let the metadata handler return an error so the crawler can retry.
+    // No backend error details or secrets enter the HTTP response.
     console.error("SITEMAP_DYNAMIC_PAGINATION_UNAVAILABLE");
-    return staticRoutes;
+    throw new Error("SITEMAP_PUBLISHED_URLS_UNAVAILABLE");
   }
 }
