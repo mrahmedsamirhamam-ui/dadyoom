@@ -33,7 +33,7 @@ vi.mock("@/lib/supabase/server", () => ({
           if (table === "student_lesson_progress") {
             state.read("progress-read");
             const count = state.read.mock.calls.filter(
-              ([name]: [string]) => name === "progress-read",
+              (call: unknown[]) => call[0] === "progress-read",
             ).length;
             return {
               data: selectedOwner !== state.progress.student_id
