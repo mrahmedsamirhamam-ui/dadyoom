@@ -35,6 +35,7 @@ on:
       - 'app/api/lesson-activities/check/**'
       - 'lib/lesson-activities/progress-state.ts'
       - 'tests/security/activity-check-route.test.ts'
+      - 'tests/security/activity-progress-concurrent-cas.test.ts'
       - 'components/lesson/MultipleChoiceQuestion.tsx'
       - 'app/lessons/**/page.tsx'
       - 'features/questions/services/grade-stored-mcq.ts'
@@ -211,6 +212,8 @@ jobs:
         run: npx vitest run tests/security/server-private-activity-answer-read.test.ts
       - name: Verify server grading and completed-progress preservation
         run: npx vitest run tests/security/activity-check-route.test.ts
+      - name: Simulate concurrent activity progress CAS and insert races
+        run: npx vitest run tests/security/activity-progress-concurrent-cas.test.ts
       - name: Exercise bounded student activity HTTP route with synthetic requests
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/activity-check-http-runtime.test.ts
       - name: Exercise curriculum admin HTTP gates before private answer reads or repair
