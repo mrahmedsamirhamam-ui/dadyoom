@@ -3,9 +3,9 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { preserveGradedLessonProgress } from "@/lib/lesson-activities/progress-state";
-import { parseStudentActivityAnswer } from "@/lib/lesson-activities/grading";
 import {
   getCorrectAnswerSpec,
+  parseStudentActivityAnswer,
 } from "@/lib/lesson-activities/grading";
 
 
