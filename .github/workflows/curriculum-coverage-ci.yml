@@ -211,6 +211,8 @@ jobs:
         run: npx vitest run tests/security/server-private-activity-answer-read.test.ts
       - name: Verify server grading and completed-progress preservation
         run: npx vitest run tests/security/activity-check-route.test.ts
+      - name: Exercise bounded student activity HTTP route with synthetic requests
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/activity-check-http-runtime.test.ts
       - name: Exercise curriculum admin HTTP gates before private answer reads or repair
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/curriculum-admin-authorization.test.ts tests/security/admin-curriculum-http-authorization.test.ts
       - name: Verify owner-scoped and concurrent-idempotent trusted lesson starts
