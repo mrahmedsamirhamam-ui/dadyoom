@@ -2,9 +2,9 @@ import {
   NextResponse,
 } from "next/server";
 
-import {
-  createClient,
-} from "@/lib/supabase/server";
+import { authorizeCurriculumAdmin } from "@/lib/auth/require-curriculum-admin";
+
+export const dynamic = "force-dynamic";
 
 import {
   normalizeActivity,
@@ -1225,15 +1225,17 @@ export async function POST(
   request: Request
 ) {
   try {
+
+    const access = await authorizeCurriculumAdmin();
+    if (!access.authorized) return access.response;
+    const { supabase } = access;
+
     const body =
       (await request.json()) as
         RepairBody;
 
     const apply =
       body.apply === true;
-
-    const supabase =
-      await createClient();
 
     const {
       data,
