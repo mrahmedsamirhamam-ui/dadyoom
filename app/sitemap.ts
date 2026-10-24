@@ -4,6 +4,11 @@ import type { MetadataRoute } from "next";
 import { getSiteUrl } from "@/lib/site";
 import { collectSitemapRows } from "@/lib/seo/sitemap-pagination";
 
+// Next.js metadata sitemaps are static by default. Database-backed lesson
+// URLs must be resolved at request time (e.g. build env may not contain the
+// server-only key); never freeze a nine-route placeholder into build output.
+export const dynamic = "force-dynamic";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Use the same canonical origin as the page metadata/structured data.
   const base = getSiteUrl();
