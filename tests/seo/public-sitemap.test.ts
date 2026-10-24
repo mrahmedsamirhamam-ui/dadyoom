@@ -75,12 +75,14 @@ describe("generated public sitemap", () => {
     expect(urls).toContain("https://dadyoom.example/marketplace/reading-course");
     expect(urls).not.toContain("https://dadyoom.example/lessons/draft-unpublished");
     expect(new Set(urls).size).toBe(urls.length);
-    expect(queries).toHaveLength(10); // 1 course page + 9 lesson pages.
-    expect(queries[0]).toEqual({
-      table: "edu_marketplace_courses", field: "status", value: "published", order: "slug",
-    });
-    expect(queries.slice(1)).toEqual(
-      Array.from({ length: 9 }, () => ({
+    expect(queries).toHaveLength(12); // 2 course pages + 10 lesson pages (empty terminal reads).
+    expect(queries.slice(0, 2)).toEqual(
+      Array.from({ length: 2 }, () => ({
+        table: "edu_marketplace_courses", field: "status", value: "published", order: "slug",
+      })),
+    );
+    expect(queries.slice(2)).toEqual(
+      Array.from({ length: 10 }, () => ({
         table: "lessons", field: "status", value: "published", order: "id",
       })),
     );
