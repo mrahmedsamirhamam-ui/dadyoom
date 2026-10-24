@@ -325,10 +325,13 @@ export async function POST(
 
 
     await updateStudentMemory({
-      // Memory derives from assessed results; keep the write privileged.
+      // Derive from trusted private keys + authenticated ownership.
+      // Student-supplied correctness, skill, email are never used.
       supabase: admin,
       studentId:
         user.id,
+      studentEmail:
+        user.email,
     });
 
     /*
