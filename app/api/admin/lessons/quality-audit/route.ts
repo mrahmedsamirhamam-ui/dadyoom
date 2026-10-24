@@ -281,7 +281,7 @@ export async function GET() {
       },
 
       problemActivities,
-    });
+    }, { headers: { "Cache-Control": "private, no-store" } });
   } catch (error) {
     console.error(
       "CURRICULUM_QUALITY_AUDIT_ERROR:",
