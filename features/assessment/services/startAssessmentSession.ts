@@ -47,27 +47,28 @@ export async function startAssessmentSession({
     throw new Error("يجب تحديد الطالب والدرس قبل بدء التقييم.");
   }
 
-  const { data: existing, error: lookupError } = await supabase
-    .from("assessment_sessions")
-    .select(SESSION_FIELDS)
-    .eq("student_id", studentId)
-    .eq("lesson_id", lessonId)
-    .eq("finished", false)
-    .maybeSingle();
+  const findOpenSession = async () => {
+    const { data, error } = await supabase
+      .from("assessment_sessions")
+      .select(SESSION_FIELDS)
+      .eq("student_id", studentId)
+      .eq("lesson_id", lessonId)
+      .eq("finished", false)
+      .maybeSingle();
 
-  if (lookupError) {
-    // In particular, PostgREST's multiple-rows response must not be treated
-    // like an empty lookup and followed by an additional INSERT.
-    throw lookupError;
-  }
-
-  if (existing) {
-    assertSessionOwnership(existing as Record<string, unknown>, studentId, lessonId);
-    if (existing.finished) {
-      throw new Error("جلسة الاختبار السابقة انتهت بالفعل.");
+    // A failed or ambiguous read is never an excuse to create another row.
+    if (error) throw error;
+    if (data) {
+      assertSessionOwnership(data as Record<string, unknown>, studentId, lessonId);
+      if (data.finished) {
+        throw new Error("جلسة الاختبار السابقة انتهت بالفعل.");
+      }
     }
-    return existing;
-  }
+    return data;
+  };
+
+  const existing = await findOpenSession();
+  if (existing) return existing;
 
   const { data: created, error: createError } = await supabase
     .from("assessment_sessions")
@@ -75,7 +76,20 @@ export async function startAssessmentSession({
     .select(SESSION_FIELDS)
     .single();
 
-  if (createError) throw createError;
+  if (createError) {
+    // Only the specifically named partial-unique index can indicate the
+    // concurrent server request successfully created this same open session.
+    // Do not swallow other uniqueness errors or invent a new session.
+    const uniqueIndex = "assessment_sessions_one_unfinished_per_student_lesson";
+    const raceConflict = createError.code === "23505" &&
+      (createError.message.includes(uniqueIndex) ||
+        (createError.details ?? "").includes(uniqueIndex));
+    if (raceConflict) {
+      const winner = await findOpenSession();
+      if (winner) return winner;
+    }
+    throw createError;
+  }
   if (!created) throw new Error("تعذر إنشاء جلسة الاختبار.");
 
   assertSessionOwnership(created as Record<string, unknown>, studentId, lessonId);
