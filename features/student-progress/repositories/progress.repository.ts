@@ -142,13 +142,56 @@ export async function updateLessonProgress(
     throw new Error("حقول تحديث تقدم الدرس غير مسموحة.");
   }
 
+  // Only the canonical >=90% mastery-completion path may write these
+  // trusted score/XP fields. Never allow a caller of this repository to
+  // supply arbitrary score, status or XP independently.
+  const score = values.last_score;
+  const best = values.best_score;
+  const xp = values.xp;
+  if (
+    values.status !== "mastered" ||
+    values.progress_percent !== 100 ||
+    !Number.isInteger(score) || !Number.isInteger(best) ||
+    typeof score !== "number" || typeof best !== "number" ||
+    score < 90 || score > 100 || best < score || best > 100 ||
+    (best >= 95 ? xp !== 30 : xp !== 20) ||
+    typeof values.completed_at !== "string" ||
+    !Number.isFinite(Date.parse(values.completed_at)) ||
+    typeof values.updated_at !== "string" ||
+    !Number.isFinite(Date.parse(values.updated_at))
+  ) {
+    throw new Error("تحديث الإتقان يجب أن يمر عبر التصحيح المعتمد.");
+  }
+
   const admin = createAdminClient();
-  return admin
+  // Compare-and-set inside PostgreSQL instead of an earlier RLS read.
+  // If a higher result was committed by a concurrent completion request,
+  // its score, mastered status and XP must NOT be overwritten by this one.
+  const { data: updated, error: updateError } = await admin
     .from("student_lesson_progress")
     .update(values)
     .eq("id", progress.id)
     .eq("student_id", user.id)
     .eq("lesson_id", lesson.id)
+    .lte("best_score", best)
     .select()
-    .single();
+    .maybeSingle();
+
+  if (updateError) throw updateError;
+  if (updated) return { data: updated, error: null };
+
+  // A later concurrent request already persisted a higher score. Return
+  // the winner's persisted record without mutating or awarding extra XP.
+  const { data: winner, error: winnerError } = await supabase
+    .from("student_lesson_progress")
+    .select("*")
+    .eq("id", progress.id)
+    .eq("student_id", user.id)
+    .eq("lesson_id", lesson.id)
+    .maybeSingle();
+  if (winnerError) throw winnerError;
+  if (!winner) {
+    throw new Error("تعذر التحقق من درجة الإتقان المحفوظة.");
+  }
+  return { data: winner, error: null };
 }
