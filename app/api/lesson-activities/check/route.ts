@@ -2,6 +2,7 @@ import "server-only";
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { readBoundedJsonObject } from "@/lib/http/read-bounded-json";
 import { preserveGradedLessonProgress } from "@/lib/lesson-activities/progress-state";
 import {
   getCorrectAnswerSpec,
@@ -83,59 +84,21 @@ export async function POST(
 ) {
   try {
 
-    // Bound incoming bytes, including chunked requests with no Content-Length.
-    // Do not parse arbitrary-sized JSON before authentication and grading.
-    const MAX_REQUEST_BYTES = 32768;
-    const declaredLength = Number(request.headers.get("content-length") ?? 0);
-    if (declaredLength > MAX_REQUEST_BYTES) {
+    // Share the fail-closed, bounded UTF-8 JSON parser with stored-question
+    // grading. Invalid UTF-8 must be 400, never a leaking 500 response.
+    const parsed = await readBoundedJsonObject(request);
+    if (!parsed.ok) {
       return NextResponse.json(
-        { success: false, message: "حجم الإجابة أكبر من الحد المسموح." },
-        { status: 413 }
+        {
+          success: false,
+          message: parsed.status === 413
+            ? "حجم الإجابة أكبر من الحد المسموح."
+            : "صيغة الطلب غير صحيحة.",
+        },
+        { status: parsed.status }
       );
     }
-
-    const reader = request.body?.getReader();
-    if (!reader) {
-      return NextResponse.json(
-        { success: false, message: "بيانات الطلب غير صحيحة." },
-        { status: 400 }
-      );
-    }
-
-    const decoder = new TextDecoder("utf-8", { fatal: true });
-    let bytesReceived = 0;
-    let rawBody = "";
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      bytesReceived += value.byteLength;
-      if (bytesReceived > MAX_REQUEST_BYTES) {
-        await reader.cancel();
-        return NextResponse.json(
-          { success: false, message: "حجم الإجابة أكبر من الحد المسموح." },
-          { status: 413 }
-        );
-      }
-      rawBody += decoder.decode(value, { stream: true });
-    }
-    rawBody += decoder.decode();
-
-    let parsedBody: unknown;
-    try {
-      parsedBody = JSON.parse(rawBody);
-    } catch {
-      return NextResponse.json(
-        { success: false, message: "صيغة الطلب غير صحيحة." },
-        { status: 400 }
-      );
-    }
-    if (!parsedBody || typeof parsedBody !== "object" || Array.isArray(parsedBody)) {
-      return NextResponse.json(
-        { success: false, message: "صيغة الطلب غير صحيحة." },
-        { status: 400 }
-      );
-    }
-    const body = parsedBody as RequestBody;
+    const body = parsed.value as RequestBody;
 
     const activityId =
       typeof body.activityId === "string"
