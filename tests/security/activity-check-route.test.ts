@@ -28,21 +28,17 @@ describe("student activity grading authorization", () => {
     }
   });
 
-  it("bounds chunked request bytes before parsing or database access", () => {
-    const limit = source.indexOf("bytesReceived > MAX_REQUEST_BYTES");
-    const cancel = source.indexOf("await reader.cancel()", limit);
-    const parse = source.indexOf("JSON.parse(rawBody)");
+  it("shares strict bounded JSON validation with question grading", () => {
+    expect(source).toContain('import { readBoundedJsonObject } from "@/lib/http/read-bounded-json"');
+    expect(source).toContain("await readBoundedJsonObject(request)");
+    const parsed = source.indexOf("await readBoundedJsonObject(request)");
     const auth = source.indexOf("supabase.auth.getUser()");
-    expect(source).toContain("MAX_REQUEST_BYTES = 32768");
-    expect(source).toContain('request.headers.get("content-length")');
-    expect(source).toContain('request.body?.getReader()');
-    expect(limit).toBeGreaterThan(-1);
-    expect(cancel).toBeGreaterThan(limit);
-    expect(parse).toBeGreaterThan(cancel);
-    expect(auth).toBeGreaterThan(parse);
+    expect(parsed).toBeGreaterThan(-1);
+    expect(auth).toBeGreaterThan(parsed);
     expect(source).toContain("parseStudentActivityAnswer(body.answer)");
-    expect(source).toContain("status: 413");
-    expect(source).toContain("status: 400");
+    expect(source).toContain("status: parsed.status");
+    expect(source).not.toContain("request.json()");
+    expect(source).not.toContain("JSON.parse(rawBody)");
   });
 
   it("checks RLS activity and published lesson before trusted answer access", () => {
