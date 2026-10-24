@@ -36,6 +36,7 @@ type Fixtures = {
   claim?: { id: string } | null;
   recordedAnswers?: number | null;
   recordedAnswersError?: boolean;
+  persistedAnswer?: Record<string, unknown> | null;
 };
 
 function setup(options: Fixtures = {}) {
@@ -96,9 +97,13 @@ function setup(options: Fixtures = {}) {
         select: vi.fn(() => q),
         eq: vi.fn(() => q),
         update: vi.fn(() => q),
-        upsert: vi.fn(async () => ({ error: null })),
+        upsert: vi.fn(() => q),
         maybeSingle: vi.fn(async () => ({
-          data: table !== "ai_assessments" ? null
+          data: table === "assessment_session_answers"
+            ? options.persistedAnswer === undefined
+              ? { id: "written-answer", session_id: sessionId,
+                  assessment_id: assessmentId, student_id: studentId, lesson_id: lessonId }
+              : options.persistedAnswer
             : q.update.mock.calls.length
               ? options.claim === undefined ? { id: assessmentId } : options.claim
               : options.key === undefined
@@ -223,6 +228,25 @@ describe("AI assessment submit: all canonical updates use a trusted client", () 
     expect(db.privateTables).toEqual(["ai_assessments", "ai_assessments"]);
     expect(updateProgress).not.toHaveBeenCalled();
     expect(updateStudentMemory).not.toHaveBeenCalled();
+  });
+
+  it("never awards XP if PostgREST ignores a duplicate answer insert", async () => {
+    const db = setup({ persistedAnswer: null });
+    const response = await POST(request());
+    expect(response.status).toBe(500);
+    expect(db.privateTables).toContain("assessment_session_answers");
+    expect(updateProgress).not.toHaveBeenCalled();
+    expect(updateStudentMemory).not.toHaveBeenCalled();
+  });
+
+  it("never awards XP when inserted assessment evidence belongs to a different student", async () => {
+    const db = setup({ persistedAnswer: {
+      id: "written-answer", session_id: sessionId, assessment_id: assessmentId,
+      student_id: "other-user", lesson_id: lessonId,
+    } });
+    expect((await POST(request())).status).toBe(500);
+    expect(db.privateTables).toContain("assessment_session_answers");
+    expect(updateProgress).not.toHaveBeenCalled();
   });
 
   it("saves verified question result then writes skill, XP and memory with trusted credentials", async () => {
