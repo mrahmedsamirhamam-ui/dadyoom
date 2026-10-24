@@ -38,10 +38,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   });
 
   try {
-    // The previous .limit(5000) silently omitted at least 3,307 of the
-    // 8,307 published lesson records last reported in the production audit.
-    // Stable ordering + explicit ranges prevent the PostgREST row ceiling
-    // from masking later published lessons. Drafts are never included.
+    // Use the existing, security-invoker, public-metadata-only
+    // seo_indexable_lessons view, NOT all published rows. Publication does
+    // not certify helpful, unique content: this view already excludes
+    // title/TOC boilerplate, duplicates, placeholder books, inactive scopes
+    // and other low-value pages. It currently exposes 2,154 eligible URLs
+    // from 8,307 published rows (read-only audit 2026-10-24).
+    // Stable pagination ensures all eligible URLs appear, even above 5,000.
     const [courses, lessons] = await Promise.all([
       collectSitemapRows(async (from, to) =>
         db
@@ -53,9 +56,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ),
       collectSitemapRows(async (from, to) =>
         db
-          .from("lessons")
+          .from("seo_indexable_lessons")
           .select("id,updated_at")
-          .eq("status", "published")
           .order("id", { ascending: true })
           .range(from, to),
       ),
