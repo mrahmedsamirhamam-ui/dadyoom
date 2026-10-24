@@ -8,9 +8,11 @@ const st = vi.hoisted(() => ({
   getUser: vi.fn(),
   rpc: vi.fn(),
   from: vi.fn(),
+  privilegedClient: vi.fn(),
 }));
 
 vi.mock("server-only", () => ({}));
+vi.mock("@/lib/supabase/admin", () => ({ createAdminClient: st.privilegedClient }));
 vi.mock("@/lib/supabase/server", () => ({
   createClient: async () => ({
     auth: { getUser: st.getUser },
@@ -27,6 +29,7 @@ beforeEach(() => {
   st.userError = null;
   st.role = false;
   st.roleError = null;
+  st.privilegedClient.mockReturnValue({ privileged: true });
   st.getUser.mockImplementation(async () => ({
     data: { user: st.user }, error: st.userError,
   }));
@@ -42,6 +45,7 @@ describe("HTTP curriculum admin authorization", () => {
     expect(access.response.headers.get("Cache-Control")).toBe("no-store");
     expect(st.rpc).not.toHaveBeenCalled();
     expect(st.from).not.toHaveBeenCalled();
+    expect(st.privilegedClient).not.toHaveBeenCalled();
   });
 
   it("rejects Supabase Auth errors before any role query", async () => {
@@ -50,6 +54,7 @@ describe("HTTP curriculum admin authorization", () => {
     expect(access.authorized).toBe(false);
     if (!access.authorized) expect(access.response.status).toBe(401);
     expect(st.rpc).not.toHaveBeenCalled();
+    expect(st.privilegedClient).not.toHaveBeenCalled();
   });
 
   it("rejects a logged-in student or forged user_metadata admin role", async () => {
@@ -59,7 +64,9 @@ describe("HTTP curriculum admin authorization", () => {
     if (!access.authorized) expect(access.response.status).toBe(403);
     expect(st.rpc).toHaveBeenCalledOnce();
     expect(st.rpc).toHaveBeenCalledWith("is_admin");
+    expect(st.privilegedClient).not.toHaveBeenCalled();
     expect(st.from).not.toHaveBeenCalled();
+    expect(st.privilegedClient).not.toHaveBeenCalled();
   });
 
   it("fails closed if the trusted permission routine is unavailable", async () => {
@@ -84,5 +91,7 @@ describe("HTTP curriculum admin authorization", () => {
     expect(access.authorized).toBe(true);
     expect(st.rpc).toHaveBeenCalledWith("is_admin");
     expect(st.from).not.toHaveBeenCalled();
+    expect(st.privilegedClient).toHaveBeenCalledOnce();
+    if (access.authorized) expect(access.supabase).toEqual({ privileged: true });
   });
 });
