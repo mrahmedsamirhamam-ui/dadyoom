@@ -13,7 +13,7 @@ import sitemap, { dynamic } from "@/app/sitemap";
 type PublishedLesson = { id: string; updated_at: string | null };
 type PublishedCourse = { slug: string; updated_at: string | null };
 
-function stubDatabase(lessons: PublishedLesson[], courses: PublishedCourse[]) {
+function stubDatabase(lessons: PublishedLesson[], courses: PublishedCourse[], fail = false) {
   const queries: Array<{ table: string; field: string; value: string; order: string }> = [];
 
   mocked.client = {
@@ -28,7 +28,7 @@ function stubDatabase(lessons: PublishedLesson[], courses: PublishedCourse[]) {
                   queries.push({ table, field, value, order: column });
                   return {
                     async range(from: number, to: number) {
-                      return { data: rows.slice(from, to + 1), error: null };
+                      return { data: fail ? null : rows.slice(from, to + 1), error: fail ? { message: "private-database-error" } : null };
                     },
                   };
                 },
@@ -45,6 +45,7 @@ function stubDatabase(lessons: PublishedLesson[], courses: PublishedCourse[]) {
 
 afterEach(() => {
   vi.unstubAllEnvs();
+  vi.restoreAllMocks();
   mocked.client = null;
 });
 
@@ -86,6 +87,17 @@ describe("generated public sitemap", () => {
         table: "lessons", field: "status", value: "published", order: "id",
       })),
     );
+  });
+
+  it("does not advertise a nine-URL sitemap when a configured database read fails", async () => {
+    vi.stubEnv("NEXT_PUBLIC_SITE_URL", "https://dadyoom.example");
+    vi.stubEnv("NEXT_PUBLIC_SUPABASE_URL", "https://fake-db.invalid");
+    vi.stubEnv("SUPABASE_SERVICE_ROLE_KEY", "fake-test-only");
+    stubDatabase([], [], true);
+    const errorLog = vi.spyOn(console, "error").mockImplementation(() => {});
+
+    await expect(sitemap()).rejects.toThrow("SITEMAP_PUBLISHED_URLS_UNAVAILABLE");
+    expect(errorLog).toHaveBeenCalledWith("SITEMAP_DYNAMIC_PAGINATION_UNAVAILABLE");
   });
 
   it("returns static public routes only when a server-only key is absent", async () => {
