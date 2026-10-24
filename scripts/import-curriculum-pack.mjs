@@ -4,6 +4,7 @@ import path from "node:path";
 import { createClient } from "@supabase/supabase-js";
 import { validateCurriculumPack } from "../lib/curriculum-packs/validate.mjs";
 import { readCompleteContentTable } from "../lib/curriculum-packs/content-backup.mjs";
+import { assertSafeExistingCurriculumLesson } from "../lib/curriculum-packs/import-guards.mjs";
 
 function loadEnv(file) {
   if (!fs.existsSync(file)) return;
@@ -201,16 +202,8 @@ for (const unitPack of pack.units) {
       lesson = data;
       insertedLessons++;
     } else {
-      // Never promote an existing OCR/unreviewed draft merely because
-      // an incoming pack uses the same unit and lesson number.
-      if (lesson.status !== "published") {
-        throw new Error("CURRICULUM_DRAFT_REQUIRES_SEPARATE_REVIEW");
-      }
-      // Reusing another published lesson's number must not silently change
-      // its curriculum identity or attach questions to the wrong topic.
-      if (String(lesson.title || "").trim() !== String(lessonPack.title).trim()) {
-        throw new Error("CURRICULUM_EXISTING_LESSON_TITLE_CONFLICT");
-      }
+      // These checks run before touching an existing lesson or its questions.
+      assertSafeExistingCurriculumLesson(lesson, lessonPack);
       const rich = String(lesson.content || "").trim().length >= 120;
       if (!rich) {
         const { data, error } = await supabase.from("lessons").update(payload).eq("id", lesson.id).select("*").single();
