@@ -777,7 +777,7 @@ export async function POST(
           .from(
             "student_lesson_progress"
           )
-          .insert({
+          .upsert({
             student_id:
               user.id,
 
@@ -795,6 +795,9 @@ export async function POST(
             started_at:
               new Date()
                 .toISOString(),
+          }, {
+            onConflict: "student_id,lesson_id",
+            ignoreDuplicates: true,
           });
 
       if (
@@ -804,6 +807,19 @@ export async function POST(
       }
     }
 
+
+    // The preceding compare-and-set may lose to a concurrent completion.
+    // Return the actual owner-visible row, not stale calculated fields.
+    const { data: storedProgress, error: storedProgressError } = await supabase
+      .from("student_lesson_progress")
+      .select("best_score,progress_percent")
+      .eq("student_id", user.id)
+      .eq("lesson_id", activity.lesson_id)
+      .maybeSingle();
+    if (storedProgressError) throw storedProgressError;
+    if (!storedProgress) {
+      throw new Error("تعذر تأكيد تقدم الدرس المحفوظ.");
+    }
 
     return NextResponse.json({
       success: true,
@@ -830,13 +846,13 @@ export async function POST(
         currentScore,
 
       bestLessonScore:
-        newBest,
+        Number(storedProgress.best_score ?? 0),
 
       completedActivities,
 
       totalActivities,
 
-      progressPercent,
+      progressPercent: Number(storedProgress.progress_percent ?? 0),
     });
 
   } catch (error) {
