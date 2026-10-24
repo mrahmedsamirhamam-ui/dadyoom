@@ -21,9 +21,13 @@ vi.mock("@/lib/supabase/server", () => ({
     auth: { getUser: async () => ({ data: { user: state.user }, error: null }) },
     from(table: string) {
       state.read(table);
+      let selectedOwner: string | null = null;
       const query = {
         select: () => query,
-        eq: () => query,
+        eq: (column: string, value: string) => {
+          if (column === "student_id") selectedOwner = value;
+          return query;
+        },
         maybeSingle: async () => {
           if (table === "lessons") return { data: state.lesson, error: null };
           if (table === "student_lesson_progress") {
@@ -31,7 +35,12 @@ vi.mock("@/lib/supabase/server", () => ({
             const count = state.read.mock.calls.filter(
               ([name]: [string]) => name === "progress-read",
             ).length;
-            return { data: count === 1 ? state.progress : state.winner, error: null };
+            return {
+              data: selectedOwner !== state.progress.student_id
+                ? null
+                : count === 1 ? state.progress : state.winner,
+              error: null,
+            };
           }
           throw new Error("Unexpected table: " + table);
         },
