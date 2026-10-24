@@ -63,8 +63,9 @@ END $columns$;
 -- including inherited/PUBLIC and individual-column privileges, rolls back
 -- this candidate instead of committing a partially secured database.
 DO $verify$
-DECLARE table_name text;
-DECLARE role_name text;
+DECLARE
+  table_name text;
+  role_name text;
 BEGIN
   FOR table_name IN SELECT unnest(ARRAY[
     'question_attempts', 'lesson_activity_attempts',
