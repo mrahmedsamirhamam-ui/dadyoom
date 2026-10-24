@@ -33,7 +33,7 @@ describe("assessment permissions audit is safe and complete", () => {
     // Both low-trust roles and all six grading-related tables must be checked.
     expect(sql).toContain("('anon'), ('authenticated')");
     expect(sql).toContain("assessment_session_answers");
-    expect(queries).not.toMatch(/\\b(?:REVOKE|GRANT|ALTER|DROP|CREATE|UPDATE|INSERT|DELETE|TRUNCATE)\\s+(?:TABLE|ON|INTO|FROM|public\\.)/i);
+    expect(queries).not.toMatch(/\b(?:REVOKE|GRANT|ALTER|DROP|CREATE|UPDATE|INSERT|DELETE|TRUNCATE)\s+(?:TABLE|ON|INTO|FROM|public\.)/i);
   });
   it("surfaces security invoker dependency and RLS + RPC state", () => {
     expect(sql).toContain("security_invoker=true");
