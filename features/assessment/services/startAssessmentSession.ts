@@ -12,8 +12,7 @@ type Params = {
 // This is the minimal session projection needed by the StartSession route.
 // Never return new schema columns just because the table grew.
 const SESSION_FIELDS =
-  "id,student_id,lesson_id,current_question,total_questions," +
-  "correct_answers,wrong_answers,difficulty,finished,updated_at";
+  "id,student_id,lesson_id,current_question,total_questions,correct_answers,wrong_answers,difficulty,finished,updated_at" as const;
 
 function assertSessionOwnership(
   row: Record<string, unknown>,
