@@ -71,7 +71,7 @@ export async function GET() {
         data?.length ?? 0,
       activities:
         data ?? [],
-    });
+    }, { headers: { "Cache-Control": "private, no-store" } });
   }
   catch (error) {
     console.error(
