@@ -146,7 +146,7 @@ describe("student safe AI generation after question_hash grants cutover", () => 
     const body = await response.json();
     expect(body).toMatchObject({
       success: true, provider: "gemini",
-      assessment: { question: "ما الحرف الأول?", correctAnswer: null, explanation: null },
+      assessment: { question: "ما الحرف الأول؟", correctAnswer: null, explanation: null },
     });
     expect(JSON.stringify(body)).not.toContain("مفتاح سري");
     expect(db.studentCalls.some(x => x.predicates.question_hash !== undefined)).toBe(false);
