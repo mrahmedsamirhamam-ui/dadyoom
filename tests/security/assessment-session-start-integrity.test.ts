@@ -27,10 +27,13 @@ type Fixture = {
   existing?: Session | null;
   lookupError?: Error;
   created?: Session | null;
-  insertError?: Error;
+  insertError?: Error & { code?: string; details?: string };
+  reread?: Session | null;
+  rereadError?: Error;
 };
 function database(f: Fixture = {}) {
   const calls: { operation: "read" | "insert"; columns: string[]; predicates: unknown[] }[] = [];
+  let reads = 0;
   const query = {
     select: vi.fn((columns: string) => {
       calls[calls.length - 1]?.columns.push(columns);
@@ -40,10 +43,14 @@ function database(f: Fixture = {}) {
       calls[calls.length - 1]?.predicates.push([field, value]);
       return query;
     }),
-    maybeSingle: vi.fn(async () => ({
-      data: f.existing === undefined ? validSession : f.existing,
-      error: f.lookupError ?? null,
-    })),
+    maybeSingle: vi.fn(async () => {
+      reads += 1;
+      return {
+        data: reads === 2 ? f.reread === undefined ? validSession : f.reread
+          : f.existing === undefined ? validSession : f.existing,
+        error: reads === 2 ? f.rereadError ?? null : f.lookupError ?? null,
+      };
+    }),
     insert: vi.fn((payload: unknown) => {
       calls.push({ operation: "insert", columns: [], predicates: [payload] });
       return query;
@@ -116,6 +123,55 @@ describe("secure reuse or creation of assessment sessions", () => {
     await expect(start(db)).rejects.toThrow(/جلسة الاختبار/);
     db = database({ existing: null, created: null });
     await expect(start(db)).rejects.toThrow(/إنشاء جلسة/);
+  });
+
+  it("recovers the winner of simultaneous starts only after the named partial-unique conflict", async () => {
+    const unique = Object.assign(
+      new Error("duplicate key value violates unique constraint \"assessment_sessions_one_unfinished_per_student_lesson\""),
+      { code: "23505" },
+    );
+    const db = database({ existing: null, insertError: unique });
+    expect(await start(db)).toMatchObject(validSession);
+    expect(db.query.insert).toHaveBeenCalledTimes(1);
+    expect(db.query.maybeSingle).toHaveBeenCalledTimes(2);
+    expect(db.calls.map(c => c.operation)).toEqual(["read", "read", "insert", "read"]);
+    expect(db.query.eq).toHaveBeenCalledWith("student_id", studentId);
+    expect(db.query.eq).toHaveBeenCalledWith("lesson_id", lessonId);
+    expect(db.query.eq).toHaveBeenCalledWith("finished", false);
+  });
+
+  it("fails closed when a conflicting winner is missing, foreign or unreadable", async () => {
+    const unique = Object.assign(
+      new Error("duplicate key value violates unique constraint \"assessment_sessions_one_unfinished_per_student_lesson\""),
+      { code: "23505" },
+    );
+    for (const cfg of [
+      { reread: null },
+      { reread: { ...validSession, student_id: "someone-else" } },
+      { reread: { ...validSession, finished: true } },
+    ]) {
+      const db = database({ existing: null, insertError: unique, ...cfg });
+      await expect(start(db)).rejects.toThrow();
+      expect(db.query.insert).toHaveBeenCalledTimes(1);
+    }
+    const db = database({
+      existing: null, insertError: unique,
+      rereadError: new Error("RLS lookup denied"),
+    });
+    await expect(start(db)).rejects.toThrow("RLS lookup denied");
+    expect(db.query.insert).toHaveBeenCalledTimes(1);
+  });
+
+  it("never disguises unrelated uniqueness violations as valid session reuse", async () => {
+    for (const error of [
+      Object.assign(new Error("assessment_sessions_pkey violated"), { code: "23505" }),
+      Object.assign(new Error("assessment_sessions_one_unfinished_per_student_lesson violated"),
+        { code: "42501" }),
+    ]) {
+      const db = database({ existing: null, insertError: error });
+      await expect(start(db)).rejects.toBe(error);
+      expect(db.query.maybeSingle).toHaveBeenCalledTimes(1);
+    }
   });
 
   it("rejects missing student or lesson IDs before touching the database", async () => {
