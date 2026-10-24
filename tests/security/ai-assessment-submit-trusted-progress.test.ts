@@ -34,6 +34,8 @@ type Fixtures = {
   lesson?: { id: string } | null;
   key?: Record<string, unknown> | null;
   claim?: { id: string } | null;
+  recordedAnswers?: number | null;
+  recordedAnswersError?: boolean;
 };
 
 function setup(options: Fixtures = {}) {
@@ -48,11 +50,19 @@ function setup(options: Fixtures = {}) {
     },
     from: vi.fn((table: string) => {
       studentTables.push(table);
-      if (!["ai_assessments", "assessment_sessions", "lessons", "learning_plans"].includes(table)) {
+      if (!["ai_assessments", "assessment_sessions", "assessment_session_answers", "lessons", "learning_plans"].includes(table)) {
         throw new Error("Student client touched a canonical grade table: " + table);
       }
       const q = {
-        select: vi.fn(() => q),
+        select: vi.fn((_columns: string, _options?: { count?: string; head?: boolean }) =>
+          table === "assessment_session_answers"
+            ? Promise.resolve({
+                count: options.recordedAnswers === undefined ? 0 : options.recordedAnswers,
+                error: options.recordedAnswersError
+                  ? { message: "private table access denied" } : null,
+              })
+            : q
+        ),
         eq: vi.fn(() => q),
         update: vi.fn(() => q),
         or: vi.fn(async () => ({ error: null })),
@@ -66,7 +76,8 @@ function setup(options: Fixtures = {}) {
                 } : options.assessment
             : table === "assessment_sessions"
               ? options.session === undefined
-                ? { id: sessionId, lesson_id: lessonId, student_id: studentId, finished: false }
+                ? { id: sessionId, lesson_id: lessonId, student_id: studentId, finished: false,
+                    current_question: 1, total_questions: 10, correct_answers: 0, wrong_answers: 0 }
                 : options.session
               : table === "lessons"
                 ? options.lesson === undefined ? { id: lessonId } : options.lesson
@@ -156,6 +167,56 @@ describe("AI assessment submit: all canonical updates use a trusted client", () 
     expect((await POST(request())).status).toBe(500);
     expect(createAdminClient).not.toHaveBeenCalled();
     expect(updateProgress).not.toHaveBeenCalled();
+  });
+
+  it("refuses a second submitted question while the previous answer awaits /next", async () => {
+    const db = setup({ recordedAnswers: 1 });
+    const response = await POST(request());
+    expect(response.status).toBe(409);
+    expect(await response.json()).toMatchObject({ success: false });
+    expect(db.privateTables).toEqual([]);
+    expect(updateProgress).not.toHaveBeenCalled();
+  });
+
+  it("refuses forged or malformed session counters before private key access", async () => {
+    const session = {
+      id: sessionId, lesson_id: lessonId, student_id: studentId, finished: false,
+      current_question: 2, total_questions: 10,
+      correct_answers: 0, wrong_answers: 0,
+    };
+    const db = setup({ session });
+    expect((await POST(request())).status).toBe(409);
+    expect(db.privateTables).toEqual([]);
+    expect(updateProgress).not.toHaveBeenCalled();
+  });
+
+  it("fails closed when the student's own saved-answer count cannot be verified", async () => {
+    let db = setup({ recordedAnswers: null });
+    expect((await POST(request())).status).toBe(409);
+    expect(db.privateTables).toEqual([]);
+    expect(updateProgress).not.toHaveBeenCalled();
+
+    vi.clearAllMocks();
+    db = setup({ recordedAnswersError: true });
+    expect((await POST(request())).status).toBe(500);
+    expect(db.privateTables).toEqual([]);
+    expect(updateProgress).not.toHaveBeenCalled();
+  });
+
+  it("accepts the next session slot only after the preceding answer was advanced", async () => {
+    const db = setup({
+      session: {
+        id: sessionId, lesson_id: lessonId, student_id: studentId, finished: false,
+        current_question: 2, total_questions: 10,
+        correct_answers: 1, wrong_answers: 0,
+      },
+      recordedAnswers: 1,
+    });
+    expect((await POST(request())).status).toBe(200);
+    expect(db.privateTables).toEqual([
+      "ai_assessments", "ai_assessments", "assessment_session_answers",
+    ]);
+    expect(updateProgress).toHaveBeenCalledOnce();
   });
 
   it("rejects a duplicate assessment claim without awarding skill or XP", async () => {
