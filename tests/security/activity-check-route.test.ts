@@ -2,12 +2,49 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { preserveGradedLessonProgress } from "../../lib/lesson-activities/progress-state";
+import { parseStudentActivityAnswer } from "../../lib/lesson-activities/grading";
 
 const source = readFileSync(
   resolve(process.cwd(), "app/api/lesson-activities/check/route.ts"), "utf8"
 );
 
 describe("student activity grading authorization", () => {
+  it("accepts and normalizes legitimate Arabic, ordered and matching answers", () => {
+    expect(parseStudentActivityAnswer(["  رمان  ", "طاووس", ""])).toEqual(["رمان", "طاووس"]);
+    expect(parseStudentActivityAnswer(["باب|||مفتاح", "قمر|||ليل"])).toEqual([
+      "باب|||مفتاح", "قمر|||ليل",
+    ]);
+    expect(parseStudentActivityAnswer(undefined)).toEqual([]);
+    expect(parseStudentActivityAnswer([])).toEqual([]);
+  });
+
+  it("rejects mixed JSON types, oversized arrays, huge text and NUL characters", () => {
+    for (const bad of [
+      null, {}, "رمان", [1, "رمان"], ["صحيح", false],
+      Array(65).fill("أ"), ["أ".repeat(4097)],
+      Array(5).fill("ب".repeat(4096)), ["صحيح\u0000مزيف"],
+    ]) {
+      expect(parseStudentActivityAnswer(bad)).toBeNull();
+    }
+  });
+
+  it("bounds chunked request bytes before parsing or database access", () => {
+    const limit = source.indexOf("bytesReceived > MAX_REQUEST_BYTES");
+    const cancel = source.indexOf("await reader.cancel()", limit);
+    const parse = source.indexOf("JSON.parse(rawBody)");
+    const auth = source.indexOf("supabase.auth.getUser()");
+    expect(source).toContain("MAX_REQUEST_BYTES = 32768");
+    expect(source).toContain('request.headers.get("content-length")');
+    expect(source).toContain('request.body?.getReader()');
+    expect(limit).toBeGreaterThan(-1);
+    expect(cancel).toBeGreaterThan(limit);
+    expect(parse).toBeGreaterThan(cancel);
+    expect(auth).toBeGreaterThan(parse);
+    expect(source).toContain("parseStudentActivityAnswer(body.answer)");
+    expect(source).toContain("status: 413");
+    expect(source).toContain("status: 400");
+  });
+
   it("checks RLS activity and published lesson before trusted answer access", () => {
     const auth = source.indexOf("supabase.auth.getUser()");
     const visibleActivity = source.indexOf('.from("lesson_activities")');
