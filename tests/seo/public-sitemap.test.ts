@@ -59,7 +59,7 @@ function stubDatabase(
 function enableFakeServer() {
   vi.stubEnv("NEXT_PUBLIC_SITE_URL", "https://dadyoom.example/");
   vi.stubEnv("NEXT_PUBLIC_SUPABASE_URL", "https://fake-db.invalid");
-  vi.stubEnv("SUPABASE_SERVICE_ROLE_KEY", "fake-test-only");
+  vi.stubEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY", "fake-test-only");
 }
 
 afterEach(() => {
@@ -131,7 +131,7 @@ describe("quality-aware generated public sitemap", () => {
 
   it("returns public static routes only if server secrets are not configured", async () => {
     enableFakeServer();
-    vi.stubEnv("SUPABASE_SERVICE_ROLE_KEY", "");
+    vi.stubEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY", "");
     const entries = await sitemap();
     expect(entries).toHaveLength(9);
     expect(entries[0]?.url).toBe("https://dadyoom.example");
