@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { readBoundedJsonObject } from "@/lib/http/read-bounded-json";
+import { insertSequencedActivityAttempt } from "@/lib/lesson-activities/attempt-sequencing";
 import { commitActivityProgressWithRetry } from "@/lib/lesson-activities/progress-state";
 import {
   getCorrectAnswerSpec,
@@ -315,102 +316,38 @@ export async function POST(
     // رقم المحاولة
     // ========================================================
 
-    const {
-      data:
-        previousAttempts,
-      error:
-        attemptsError,
-    } =
-      await supabase
-        .from(
-          "lesson_activity_attempts"
-        )
-        .select(
-          "attempt_number"
-        )
-        .eq(
-          "user_id",
-          user.id
-        )
-        .eq(
-          "activity_id",
-          activityId
-        )
-        .order(
-          "attempt_number",
-          {
-            ascending:
-              false,
-          }
-        )
-        .limit(1);
-
-    if (
-      attemptsError
-    ) {
-      throw attemptsError;
-    }
-
-    const lastAttempt =
-      Array.isArray(
-        previousAttempts
-      ) &&
-      previousAttempts.length > 0
-        ? Number(
-            previousAttempts[0]
-              .attempt_number ??
-            0
-          )
-        : 0;
-
-    const nextAttemptNumber =
-      lastAttempt + 1;
-
+    // A UNIQUE(user_id,activity_id,attempt_number) constraint (staged
+    // separately) is required for an actual concurrency guarantee. The
+    // read-max/insert conflict is retried only for that exact constraint.
+    const nextAttemptNumber = await insertSequencedActivityAttempt({
+      readLast: async () => {
+        const { data, error } = await supabase
+          .from("lesson_activity_attempts")
+          .select("attempt_number")
+          .eq("user_id", user.id)
+          .eq("activity_id", activityId)
+          .order("attempt_number", { ascending: false })
+          .limit(1);
+        if (error) throw error;
+        return Number(data?.[0]?.attempt_number ?? 0);
+      },
+      insert: async (attemptNumber) => {
+        const { error } = await admin
+          .from("lesson_activity_attempts")
+          .insert({
+            user_id: user.id,
+            activity_id: activityId,
+            selected_answer: studentAnswer,
+            is_correct: isCorrect,
+            earned_points: earnedPoints,
+            max_points: isGradable ? maxPoints : 0,
+            attempt_number: attemptNumber,
+          });
+        return { error };
+      },
+    });
 
     // ========================================================
-    // حفظ المحاولة
-    // ========================================================
-
-    const {
-      error:
-        insertError,
-    } =
-      await admin
-        .from(
-          "lesson_activity_attempts"
-        )
-        .insert({
-          user_id:
-            user.id,
-
-          activity_id:
-            activityId,
-
-          selected_answer:
-            studentAnswer,
-
-          is_correct:
-            isCorrect,
-
-          earned_points:
-            earnedPoints,
-
-          max_points:
-            isGradable
-              ? maxPoints
-              : 0,
-
-          attempt_number:
-            nextAttemptNumber,
-        });
-
-    if (
-      insertError
-    ) {
-      throw insertError;
-    }
-
-
     // ========================================================
     // كل أنشطة الدرس
     // ========================================================
