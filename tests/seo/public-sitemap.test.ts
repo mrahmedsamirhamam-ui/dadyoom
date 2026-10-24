@@ -71,10 +71,15 @@ describe("generated public sitemap", () => {
     expect(urls).toContain("https://dadyoom.example/marketplace/reading-course");
     expect(urls).not.toContain("https://dadyoom.example/lessons/draft-unpublished");
     expect(new Set(urls).size).toBe(urls.length);
-    expect(queries).toEqual([
-      { table: "edu_marketplace_courses", field: "status", value: "published", order: "slug" },
-      { table: "lessons", field: "status", value: "published", order: "id" },
-    ]);
+    expect(queries).toHaveLength(10); // 1 course page + 9 lesson pages.
+    expect(queries[0]).toEqual({
+      table: "edu_marketplace_courses", field: "status", value: "published", order: "slug",
+    });
+    expect(queries.slice(1)).toEqual(
+      Array.from({ length: 9 }, () => ({
+        table: "lessons", field: "status", value: "published", order: "id",
+      })),
+    );
   });
 
   it("returns static public routes only when a server-only key is absent", async () => {
