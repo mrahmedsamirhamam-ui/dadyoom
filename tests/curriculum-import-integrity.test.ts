@@ -146,6 +146,20 @@ describe("curriculum pack import integrity", () => {
     expect(validateCurriculumPack(sample).ok).toBe(true);
   });
 
+  it("keeps live placeholder quality audits strictly read-only and answer-key-free", () => {
+    const audit = readFileSync("scripts/curriculum-production-audit.sql", "utf8");
+    const section = audit.split("-- 13. DADYOOM_KNOWN_LESSON_PLACEHOLDER_AUDIT")[1];
+    expect(section).toBeTruthy();
+    const sql = section.replace(/--[^\\n]*/g, "").trim();
+    expect(sql).toMatch(/WITH questions_by_lesson AS/);
+    expect(sql).toContain("generic_boilerplate_no_stored_questions");
+    expect(sql).toContain("reported_content_scope");
+    expect(sql).not.toMatch(/\\b(?:INSERT|UPDATE|DELETE|TRUNCATE|REVOKE|GRANT|DROP|ALTER|CREATE)\\s+(?:TABLE|VIEW|INTO|public\\.)/i);
+    expect(sql).not.toMatch(/SELECT\\s+\\*/i);
+    expect(sql).not.toContain("correct_answer");
+    expect(sql).not.toContain("student_id");
+  });
+
   it("makes new slugs unit-scoped and rejects invalid identifiers", () => {
     const key = "BH:2026:arabic:primary:1:s1";
     expect(curriculumLessonSlug(key, 1, 1))
