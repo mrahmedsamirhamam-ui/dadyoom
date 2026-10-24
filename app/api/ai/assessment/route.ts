@@ -719,7 +719,11 @@ ${generationAttempt}
       const {
         data: duplicateQuestion,
         error: duplicateError,
-      } = await supabase
+      // question_hash intentionally is NOT a browser-readable column.
+      // After verifying the user's published lesson and owned open session,
+      // check duplicates through the server-only client, always scoped to
+      // the authenticated student's email and validated lesson.
+      } = await admin
         .from("ai_assessments")
         .select("id")
         .eq(
