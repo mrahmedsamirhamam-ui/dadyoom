@@ -1,9 +1,10 @@
 \set ON_ERROR_STOP on
 DO $meta$
 BEGIN
- IF NOT ('security_invoker=true'=ANY(
-    (SELECT reloptions FROM pg_class WHERE oid='public.dadyoom_student_questions'::regclass)
-   )) THEN RAISE EXCEPTION 'SAFE_VIEW_LOST_INVOKER_RLS'; END IF;
+ IF NOT COALESCE((
+   SELECT 'security_invoker=true' = ANY(c.reloptions)
+   FROM pg_class c WHERE c.oid='public.dadyoom_student_questions'::regclass
+  ),false) THEN RAISE EXCEPTION 'SAFE_VIEW_LOST_INVOKER_RLS'; END IF;
  IF has_column_privilege('anon','public.questions','correct_answer','SELECT')
  OR has_column_privilege('authenticated','public.questions','explanation','SELECT')
  OR has_table_privilege('anon','public.questions','INSERT')
