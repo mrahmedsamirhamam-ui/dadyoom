@@ -70,6 +70,8 @@ on:
       - 'features/assessment/services/getLatestAssessmentAnalytics.ts'
       - 'tests/security/ai-assessment-client-trust.test.ts'
       - 'tests/security/ai-assessment-session-generation.test.ts'
+      - 'features/assessment/services/startAssessmentSession.ts'
+      - 'tests/security/assessment-session-start-integrity.test.ts'
       - 'tests/security/ai-assessment-private-hash-runtime.test.ts'
       - 'features/assessment/components/LessonAssessment.tsx'
       - 'tests/security/ai-session-analytics.test.ts'
@@ -205,6 +207,8 @@ jobs:
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/ai-assessment-private-hash-runtime.test.ts
       - name: Verify AI assessment keys and authoritative session progression
         run: npx vitest run tests/security/ai-assessment-client-trust.test.ts
+      - name: Reject unreadable or foreign assessment session starts
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/assessment-session-start-integrity.test.ts
       - name: Execute no-network adaptive question session authorization and reuse tests
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/ai-assessment-session-generation.test.ts
       - name: Verify AI assessment analytics with mocked trusted keys
