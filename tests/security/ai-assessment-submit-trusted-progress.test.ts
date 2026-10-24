@@ -269,7 +269,7 @@ describe("AI assessment submit: all canonical updates use a trusted client", () 
       studentId, studentEmail: email, supabase: db.student,
     });
     expect(db.studentTables).toEqual([
-      "ai_assessments", "assessment_sessions", "lessons", "learning_plans",
+      "ai_assessments", "assessment_sessions", "lessons", "assessment_session_answers", "learning_plans",
     ]);
   });
 
