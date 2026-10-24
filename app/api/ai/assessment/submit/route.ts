@@ -154,6 +154,10 @@ export async function POST(
         id,
         lesson_id,
         student_id,
+        current_question,
+        total_questions,
+        correct_answers,
+        wrong_answers,
         finished
       `)
       .eq("id", sessionId)
@@ -199,6 +203,42 @@ export async function POST(
       return NextResponse.json(
         { success: false, message: "الدرس غير متاح للتقويم." },
         { status: 404 }
+      );
+    }
+
+    // /submit must not grade two questions into the same session slot.
+    // The /next endpoint already checks this invariant; enforce it BEFORE
+    // claiming a question, reading a private answer key, or awarding XP.
+    // Historical answers are read through the authenticated student's RLS.
+    const questionSlot = Number(assessmentSession.current_question);
+    const totalSlots = Number(assessmentSession.total_questions);
+    const gradedAnswers = Number(assessmentSession.correct_answers) +
+      Number(assessmentSession.wrong_answers);
+    if (!Number.isSafeInteger(questionSlot) ||
+        !Number.isSafeInteger(totalSlots) ||
+        !Number.isSafeInteger(gradedAnswers) ||
+        totalSlots < 1 || totalSlots > 50 ||
+        questionSlot < 1 || questionSlot > totalSlots ||
+        gradedAnswers !== questionSlot - 1) {
+      return NextResponse.json(
+        { success: false, message: "تقدم جلسة التقييم غير متسق." },
+        { status: 409 }
+      );
+    }
+
+    const { count: recordedAnswers, error: historyError } = await supabase
+      .from("assessment_session_answers")
+      .select("id", { count: "exact", head: true })
+      .eq("session_id", sessionId)
+      .eq("student_id", user.id)
+      .eq("lesson_id", publishedLesson.id);
+
+    if (historyError) throw historyError;
+    if (!Number.isSafeInteger(recordedAnswers) ||
+        recordedAnswers !== gradedAnswers) {
+      return NextResponse.json(
+        { success: false, message: "أكمل الانتقال للسؤال التالي قبل تسليم إجابة أخرى." },
+        { status: 409 }
       );
     }
 
