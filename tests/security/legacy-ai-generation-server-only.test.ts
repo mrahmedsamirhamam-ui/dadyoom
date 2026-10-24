@@ -24,6 +24,15 @@ describe("legacy assessment generator private-key boundary", () => {
     expect(generator.trimStart().startsWith('import "server-only";')).toBe(true);
     expect(generator).toContain("correct_answer:");
     expect(generator).toContain("correctAnswer: row.correct_answer");
+    for (const path of [
+      "features/assessment/services/getAssessmentSessionAnalytics.ts",
+      "features/assessment/services/saveAssessmentSessionAnswer.ts",
+    ]) {
+      expect(
+        readFileSync(resolve(root, path), "utf8").trimStart().startsWith('import "server-only";'),
+        path
+      ).toBe(true);
+    }
   });
 
   it("has no direct import from browser client components", () => {
@@ -32,7 +41,7 @@ describe("legacy assessment generator private-key boundary", () => {
       for (const file of walk(resolve(root, dir))) {
         const source = readFileSync(file, "utf8");
         if (!/^\s*["']use client["']\s*;/m.test(source.slice(0,256))) continue;
-        if (/services\/ai\/assessment\.service(?:\.[cm]?[jt]s)?["']/.test(source)) {
+        if (/(?:services\/ai\/assessment\.service|features\/assessment\/services\/(?:getAssessmentSessionAnalytics|saveAssessmentSessionAnswer))(?:\.[cm]?[jt]s)?["']/.test(source)) {
           offenders.push(file.slice(root.length + 1));
         }
       }
