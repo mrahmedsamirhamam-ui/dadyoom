@@ -15,7 +15,12 @@ export function preserveGradedLessonProgress(
       progress_percent: Math.max(percent(previous.progress_percent), updated),
     };
   }
-  return { status: "in_progress", progress_percent: updated };
+  // Activity completion is cumulative, including before formal mastery.
+  // A slower request must never roll back a higher stored completion percent.
+  return {
+    status: "in_progress",
+    progress_percent: Math.max(percent(previous?.progress_percent), updated),
+  };
 }
 
 export type ActivityProgressRow = {
