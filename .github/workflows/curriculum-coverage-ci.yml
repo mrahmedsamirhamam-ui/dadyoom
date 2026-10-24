@@ -44,6 +44,9 @@ on:
       - 'tests/security/shadow-public-activity-rpc-verified.sql'
       - 'tests/security/shadow-public-activity-rpc-rollback.sql'
       - 'tests/security/shadow-question-column-grants.sql'
+      - 'scripts/security/proposed-question-key-column-cutover.sql'
+      - 'tests/security/shadow-question-key-cutover-setup.sql'
+      - 'tests/security/shadow-question-key-cutover-verify.sql'
       - 'tests/security/activity-rpc-redaction-parity.test.ts'
       - 'tests/security/student-question-payload.test.ts'
       - 'features/questions/services/public-lesson-questions.ts'
@@ -281,6 +284,36 @@ jobs:
           docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres \
             < tests/security/shadow-question-column-grants.sql
           echo "SHADOW_QUESTION_COLUMN_GRANTS_REHEARSAL=PASS"
+      - name: Prove published question keys can be hidden from anon without breaking quiz
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_question_privacy
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_question_privacy \\
+            < tests/security/shadow-question-key-cutover-setup.sql
+          if error_text=$( {
+              echo "SET dadyoom.question_privacy_rehearsal = 'enabled';"
+              cat scripts/security/proposed-question-key-column-cutover.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Question-key proposal unexpectedly accepted the production-like database" >&2
+            exit 1
+          fi
+          printf '%s\\n' "$error_text" | grep -q 'PRODUCTION_QUESTION_KEY_CUTOVER_BLOCKED'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_question_privacy \\
+              < scripts/security/proposed-question-key-column-cutover.sql 2>&1); then
+            echo "Question-key proposal unexpectedly accepted missing rehearsal flag" >&2
+            exit 1
+          fi
+          printf '%s\\n' "$error_text" | grep -q 'PRODUCTION_QUESTION_KEY_CUTOVER_BLOCKED'
+          {
+            echo "SET dadyoom.question_privacy_rehearsal = 'enabled';"
+            cat scripts/security/proposed-question-key-column-cutover.sql
+            cat tests/security/shadow-question-key-cutover-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_question_privacy
+          echo "SHADOW_PUBLIC_QUESTION_PRIVATE_KEY_CUTOVER=PASS"
       - name: Prove forged own scores and rehearse six-table write-grant cutover
         shell: bash
         env:
