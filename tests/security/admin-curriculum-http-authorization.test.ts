@@ -16,6 +16,11 @@ import { GET as qualityAudit } from "@/app/api/admin/lessons/quality-audit/route
 import { GET as runtimeAudit } from "@/app/api/admin/lessons/runtime-audit/route";
 import { GET as rawMcqDump } from "@/app/api/admin/lessons/runtime-mcq-dump/route";
 import { POST as qualityRepair } from "@/app/api/admin/lessons/quality-repair/route";
+import { POST as activityCount } from "@/app/api/admin/lessons/activity-count/route";
+import { POST as finalEleven } from "@/app/api/admin/lessons/final-eleven-fix/route";
+import { POST as finalFour } from "@/app/api/admin/lessons/final-four-fix/route";
+import { POST as finalRecovery } from "@/app/api/admin/lessons/final-recovery/route";
+import { POST as preparePages } from "@/app/api/admin/lessons/prepare-source-pages/route";
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -77,6 +82,20 @@ describe("curriculum HTTP routes deny raw activity and answer access by default"
     const response = await run();
     expect(response.status).toBe(200);
     expect(st.dbReads).toHaveBeenCalled();
+  });
+
+  it.each([
+    { name: "activity counting", run: () => activityCount({ json: st.requestRead } as unknown as Request) },
+    { name: "eleven-activity bulk fixer", run: () => finalEleven() },
+    { name: "four-activity bulk fixer", run: () => finalFour() },
+    { name: "bulk final recovery", run: () => finalRecovery({ json: st.requestRead } as unknown as Request) },
+    { name: "source page preparation", run: () => preparePages({ json: st.requestRead } as unknown as Request) },
+  ])("denies $name before any input parsing, filesystem access or DB request", async ({ run }) => {
+    const response = await run();
+    expect(response.status).toBe(403);
+    expect(st.auth).toHaveBeenCalledOnce();
+    expect(st.dbReads).not.toHaveBeenCalled();
+    expect(st.requestRead).not.toHaveBeenCalled();
   });
 
   it("preserves an authorized preview-only repair without writing rows", async () => {
