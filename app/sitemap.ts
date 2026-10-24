@@ -26,7 +26,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
+  // Both SEO-eligible lessons (security-invoker view) and published
+  // marketplace courses have anonymous read policies. No privileged
+  // grading/service-role credential is required by this public route.
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.trim();
 
   if (!url || !key) return staticRoutes;
 
