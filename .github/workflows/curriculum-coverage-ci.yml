@@ -8,6 +8,7 @@ on:
       - 'app/api/questions/answer/**'
       - 'app/api/assessments/check/**'
       - 'app/api/ai/assessment/next/**'
+      - 'tests/security/ai-assessment-submit-trusted-progress.test.ts'
       - 'tests/security/ai-assessment-next-adaptive-runtime.test.ts'
       - 'features/assessment/services/verifyAssessmentCompletionReceipt.ts'
       - 'tests/security/assessment-completion-receipt.test.ts'
@@ -180,6 +181,8 @@ jobs:
         run: npx vitest run --config tests/security/formative-runtime.vitest.config.mts tests/security/formative-grading-no-persistence.test.ts
       - name: Verify immutable assessment completion receipts and safe retries
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/assessment-completion-receipt.test.ts
+      - name: Enforce server-only AI answer submission progress and memory writes
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/ai-assessment-submit-trusted-progress.test.ts
       - name: Execute real AI assessment-next authenticated step completion tests
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/ai-assessment-next-adaptive-runtime.test.ts
       - name: Verify AI assessment keys and authoritative session progression
