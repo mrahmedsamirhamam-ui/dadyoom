@@ -72,7 +72,7 @@ describe("student activity grading authorization", () => {
     expect(progressUpdate).toBeGreaterThan(attemptWrite);
     expect(source).toMatch(/await admin\s*\.from\(\s*"lesson_activity_attempts"\s*\)\s*\.insert/);
     expect(source).toMatch(/await admin\s*\.from\(\s*"student_lesson_progress"\s*\)\s*\.update/);
-    expect(source).toMatch(/await admin\s*\.from\(\s*"student_lesson_progress"\s*\)\s*\.insert/);
+    expect(source).toMatch(/await admin\s*\.from\(\s*"student_lesson_progress"\s*\)\s*\.upsert/);
     expect(source).toContain('.eq("student_id", user.id)');
     expect(source).toContain('.eq("lesson_id", activity.lesson_id)');
     expect(source).toContain("user_id:");
@@ -86,6 +86,10 @@ describe("student activity grading authorization", () => {
     expect(updateCode).toContain('.eq("status", existingProgress.status)');
     expect(updateCode).toContain('.lte("best_score", newBest)');
     expect(updateCode).toContain('.lte("progress_percent", safeProgress.progress_percent)');
+    expect(source).toContain('ignoreDuplicates: true');
+    expect(source).toContain('onConflict: "student_id,lesson_id"');
+    expect(source).toContain('Number(storedProgress.best_score ?? 0)');
+    expect(source).toContain('Number(storedProgress.progress_percent ?? 0)');
     expect(updateCode).toContain('.eq("student_id", user.id)');
     expect(updateCode).toContain('.eq("lesson_id", activity.lesson_id)');
   });
