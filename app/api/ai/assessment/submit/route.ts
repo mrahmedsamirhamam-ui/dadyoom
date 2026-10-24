@@ -309,8 +309,10 @@ export async function POST(
     // progress. A single generated question must not overwrite canonical
     // academic lesson_mastery, which requires the full lesson rubric.
 
+    // The answer was graded from the private server key, so canonical
+    // skill/XP writes must use server-only credentials, not browser grants.
     await updateProgress(
-      supabase,
+      admin,
       {
         studentEmail:
           user.email,
@@ -323,7 +325,8 @@ export async function POST(
 
 
     await updateStudentMemory({
-      supabase,
+      // Memory derives from assessed results; keep the write privileged.
+      supabase: admin,
       studentId:
         user.id,
     });
