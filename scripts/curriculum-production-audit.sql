@@ -322,3 +322,58 @@ SELECT lesson_type,official_content_scope,COUNT(*) published_records,
    AND question_count>=3) enriched_minimum,
  SUM(structural_mcq) structurally_valid_mcq
 FROM scope GROUP BY lesson_type,official_content_scope ORDER BY lesson_type,official_content_scope;
+
+
+-- 13. DADYOOM_KNOWN_LESSON_PLACEHOLDER_AUDIT — 2026-10-24.
+-- Read-only live baseline: 62 Bahrain draft + 59 Bahrain published rows
+-- contain the same 170–240 character generic lesson-introduction template.
+-- This content is a scraped title/TOC placeholder, NOT a verified lesson.
+-- A published flag or >=120 character threshold does not certify teachability.
+-- The counts are an observed baseline only: this query recomputes them.
+-- No learner records, private answer keys or sensitive option contents read.
+WITH questions_by_lesson AS (
+  SELECT lesson_id, COUNT(*)::integer AS n
+  FROM public.questions GROUP BY lesson_id
+)
+SELECT l.status,
+  COUNT(*)::integer AS stored_rows,
+  COUNT(*) FILTER (
+    WHERE COALESCE(l.content,'') LIKE 'يتناول هذا الدرس موضوع «%'
+      AND COALESCE(l.content,'') LIKE '%يبدأ التعلم بتهيئة قصيرة%'
+      AND COALESCE(l.content,'') LIKE '%واستخراج الفكرة الرئيسة%'
+  )::integer AS known_generic_boilerplate,
+  COUNT(*) FILTER (WHERE COALESCE(q.n,0)=0)::integer AS no_stored_questions,
+  COUNT(*) FILTER (WHERE COALESCE(q.n,0)>=3)::integer AS at_least_three_stored_questions,
+  COUNT(*) FILTER (
+    WHERE COALESCE(l.content,'') LIKE 'يتناول هذا الدرس موضوع «%'
+      AND COALESCE(l.content,'') LIKE '%يبدأ التعلم بتهيئة قصيرة%'
+      AND COALESCE(l.content,'') LIKE '%واستخراج الفكرة الرئيسة%'
+      AND COALESCE(q.n,0)=0
+  )::integer AS generic_boilerplate_no_stored_questions
+FROM public.lessons l LEFT JOIN questions_by_lesson q ON q.lesson_id=l.id
+GROUP BY l.status ORDER BY l.status;
+
+-- 14. Content-repair queue: current grade, term, publication state and
+-- minimal source signals. Title and ID are educational-publication metadata,
+-- NEVER a student record. No publishing, deleting or autofilling happens.
+WITH questions_by_lesson AS (
+  SELECT lesson_id, COUNT(*)::integer AS n
+  FROM public.questions GROUP BY lesson_id
+)
+SELECT co.code AS country_code,g.grade_number,l.semester,l.status,
+  l.id AS lesson_id,l.title,
+  LENGTH(COALESCE(l.content,''))::integer AS content_characters,
+  COALESCE(q.n,0)::integer AS saved_questions,
+  l.source_pdf_url IS NOT NULL
+    AND BTRIM(l.source_pdf_url)<>'' AS has_original_source_url,
+  COALESCE(l.official_content_scope,'unclassified') AS reported_content_scope
+FROM public.lessons l
+JOIN public.units u ON u.id=l.unit_id
+JOIN public.grades g ON g.id=u.grade_id
+JOIN public.curricula c ON c.id=g.curriculum_id
+JOIN public.countries co ON co.id=c.country_id
+LEFT JOIN questions_by_lesson q ON q.lesson_id=l.id
+WHERE COALESCE(l.content,'') LIKE 'يتناول هذا الدرس موضوع «%'
+  AND COALESCE(l.content,'') LIKE '%يبدأ التعلم بتهيئة قصيرة%'
+  AND COALESCE(l.content,'') LIKE '%واستخراج الفكرة الرئيسة%'
+ORDER BY l.status,co.code,g.grade_number,l.semester,l.id;
