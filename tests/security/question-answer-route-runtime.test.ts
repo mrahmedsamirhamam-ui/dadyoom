@@ -195,4 +195,70 @@ describe("real stored-question POST route: authorization and trusted grading", (
     expect(response.status).toBe(404);
     expect(db.writes).toEqual([]);
   });
+
+  it("rejects malformed JSON, invalid UTF-8 and empty bodies without private reads", async () => {
+    const db = stubDatabase();
+    const malformed = new Request("http://localhost/api/questions/answer", {
+      method: "POST", body: "{not valid JSON",
+    });
+    expect((await POST(malformed)).status).toBe(400);
+    expect((await POST(request(null))).status).toBe(400);
+    expect((await POST(new Request("http://localhost/api/questions/answer", {
+      method: "POST",
+    }))).status).toBe(400);
+    const brokenBytes = new Uint8Array([0xc3, 0x28]);
+    const invalidUtf8 = new Request("http://localhost/api/questions/answer", {
+      method: "POST", body: brokenBytes,
+    });
+    expect((await POST(invalidUtf8)).status).toBe(400);
+    expect(db.calls).toEqual([]);
+    expect(db.writes).toEqual([]);
+    expect(createAdminClient).not.toHaveBeenCalled();
+  });
+
+  it("rejects both advertised and chunked oversized JSON before grading", async () => {
+    const db = stubDatabase();
+    const advertised = new Request("http://localhost/api/questions/answer", {
+      method: "POST", headers: { "content-length": "32769" },
+      body: JSON.stringify({ questionId, selectedAnswer: "b" }),
+    });
+    expect((await POST(advertised)).status).toBe(413);
+
+    const stream = new ReadableStream<Uint8Array>({
+      start(controller) {
+        controller.enqueue(new Uint8Array(20000).fill(65));
+        controller.enqueue(new Uint8Array(20000).fill(66));
+        controller.close();
+      },
+    });
+    const chunked = new Request("http://localhost/api/questions/answer", {
+      method: "POST", body: stream, duplex: "half",
+    } as RequestInit & { duplex: "half" });
+    expect((await POST(chunked)).status).toBe(413);
+    expect(db.calls).toEqual([]);
+    expect(db.writes).toEqual([]);
+    expect(createAdminClient).not.toHaveBeenCalled();
+  });
+
+  it("accepts a valid Arabic JSON body split inside multibyte UTF-8", async () => {
+    const db = stubDatabase();
+    const bytes = new TextEncoder().encode(JSON.stringify({
+      questionId, selectedAnswer: "b", note: "رمان",
+    }));
+    const stream = new ReadableStream<Uint8Array>({
+      start(controller) {
+        for (const byte of bytes) controller.enqueue(new Uint8Array([byte]));
+        controller.close();
+      },
+    });
+    const streamed = new Request("http://localhost/api/questions/answer", {
+      method: "POST", body: stream, duplex: "half",
+    } as RequestInit & { duplex: "half" });
+    expect((await POST(streamed)).status).toBe(200);
+    expect(db.writes).toHaveLength(1);
+    expect(db.writes[0].value).toMatchObject({
+      user_id: userId, question_id: questionId, is_correct: true,
+    });
+  });
+
 });
