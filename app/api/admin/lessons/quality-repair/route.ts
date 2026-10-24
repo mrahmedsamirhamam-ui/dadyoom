@@ -1587,7 +1587,7 @@ export async function POST(
         updated,
       },
       results,
-    });
+    }, { headers: { "Cache-Control": "private, no-store" } });
   }
   catch (error) {
     console.error(
