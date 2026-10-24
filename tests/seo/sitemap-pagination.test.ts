@@ -19,9 +19,36 @@ describe("public sitemap pagination", () => {
     expect(result[0]?.id).toBe(1);
     expect(result.at(-1)?.id).toBe(8307);
     expect(new Set(result.map((row) => row.id)).size).toBe(8307);
-    expect(page).toHaveBeenCalledTimes(9);
-    expect(page).toHaveBeenLastCalledWith(8000, 8999);
+    expect(page).toHaveBeenCalledTimes(10);
+    expect(page).toHaveBeenLastCalledWith(8307, 9306);
     expect(SITEMAP_BATCH_SIZE).toBe(1000);
+  });
+
+  it("still fetches all rows when PostgREST caps each range at 350", async () => {
+    const expected = Array.from({ length: 8307 }, (_, id) => ({ id }));
+    const capped = vi.fn(async (from: number, to: number) => ({
+      data: expected.slice(from, Math.min(to + 1, from + 350)),
+      error: null,
+    }));
+
+    const rows = await collectSitemapRows(capped);
+    expect(rows).toEqual(expected);
+    expect(capped).toHaveBeenCalledTimes(25);
+    expect(capped).toHaveBeenLastCalledWith(8307, 9306);
+  });
+
+  it("accepts exactly 20,000 rows after an empty terminal page", async () => {
+    const page = vi.fn(async (from: number, to: number) => ({
+      data: Array.from(
+        { length: Math.max(0, Math.min(to + 1, SITEMAP_MAX_ROWS_PER_KIND) - from) },
+        (_, id) => ({ id: from + id }),
+      ),
+      error: null,
+    }));
+
+    const rows = await collectSitemapRows(page);
+    expect(rows).toHaveLength(SITEMAP_MAX_ROWS_PER_KIND);
+    expect(page).toHaveBeenCalledTimes(21);
   });
 
   it("returns empty rows for a valid empty published collection", async () => {
