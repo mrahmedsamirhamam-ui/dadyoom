@@ -6,6 +6,8 @@ import LessonMasteryCard from "@/features/lesson-mastery/components/LessonMaster
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { SITE_DESCRIPTION } from "@/lib/site";
+import { isLessonSearchEligible } from "@/lib/seo/lesson-search-eligibility";
+import { isKnownNonTeachingLessonPlaceholder } from "@/lib/lesson-content-integrity";
 import {
   getLessonPageBundle,
 } from "@/features/lessons/queries/getLessonPageBundle";
@@ -54,6 +56,11 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
     };
   }
 
+  // The curated SEO view is narrower than status='published': weak,
+  // duplicated and TOC-placeholder records must not enter search results.
+  // A failed view read defaults to noindex, but never blocks student access.
+  const eligibleForSearch = await isLessonSearchEligible(supabase, id);
+
   const title = data.title?.trim() || "درس العربية";
   const description =
     data.summary?.trim().slice(0, 170) ||
@@ -63,6 +70,7 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
     title,
     description,
     alternates: { canonical: `/lessons/${id}` },
+    robots: eligibleForSearch ? undefined : { index: false, follow: true },
     openGraph: {
       type: "article",
       url: `/lessons/${id}`,
@@ -130,6 +138,10 @@ export default async function LessonPage({
 
   const lesson =
     bundle.lesson;
+
+  // Only flag the known imported TOC placeholder, never arbitrary short
+  // but authentic lessons. This does not modify the published DB record.
+  const lessonNeedsSourceReview = isKnownNonTeachingLessonPlaceholder(lesson.content);
 
   const lessonQuestions =
     bundle.questions;
@@ -311,9 +323,26 @@ export default async function LessonPage({
       <DadLessonContext
         pageTitle={`درس: ${lesson.title}`}
         lessonTitle={lesson.title}
-        lessonContent={lesson.content ?? ""}
+        lessonContent={lessonNeedsSourceReview ? "" : lesson.content ?? ""}
       />
       <div className="mx-auto max-w-5xl space-y-6">
+        {lessonNeedsSourceReview ? (
+          <aside
+            role="status"
+            aria-label="مراجعة محتوى الدرس"
+            className="rounded-2xl border border-amber-300 bg-amber-50 p-5 text-amber-950"
+          >
+            <h2 className="text-lg font-black">محتوى هذا الدرس قيد المراجعة</h2>
+            <p className="mt-2 leading-8">
+              النص الحالي مقدمة عامة وليس شرحًا مكتملًا مطابقًا للمنهج.
+              لا تعتمد عليه وحده للتحضير أو الاختبار حتى نستكمل مراجعته.
+              يمكنك متابعة الدروس الأخرى والتدريبات المتاحة.
+            </p>
+            <Link href="/courses" className="mt-3 inline-block font-bold underline">
+              العودة إلى المناهج والدروس
+            </Link>
+          </aside>
+        ) : null}
         <section className="lesson-arabic-card rounded-3xl border border-[#d7bd83] bg-[#fff7e3] p-5 shadow-sm">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -468,14 +497,16 @@ export default async function LessonPage({
           </section>
         ) : null}
 
-        <LessonLearningSlides
-          title={lesson.title}
-          summary={lesson.summary}
-          content={lesson.content}
-          objectives={objectives}
-          vocabulary={vocabulary}
-          instructions={lesson.instructions}
-        />
+        {!lessonNeedsSourceReview ? (
+          <LessonLearningSlides
+            title={lesson.title}
+            summary={lesson.summary}
+            content={lesson.content}
+            objectives={objectives}
+            vocabulary={vocabulary}
+            instructions={lesson.instructions}
+          />
+        ) : null}
         <section className="rounded-3xl border border-amber-200 bg-white p-6 shadow-sm sm:p-8">
           <p className="text-sm font-black text-amber-700">
             بعد انتهاء العرض
@@ -651,7 +682,7 @@ export default async function LessonPage({
         ) : null}
 
 
-        {user ? (
+        {user && !lessonNeedsSourceReview ? (
           <LessonTutor
             lessonId={lesson.id}
             initialMessages={tutorMessages.map(

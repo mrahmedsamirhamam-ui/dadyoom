@@ -1,0 +1,46 @@
+name: Curated lesson SEO and sitemap completeness
+
+on:
+  pull_request:
+    paths:
+      - 'app/sitemap.ts'
+      - 'app/lessons/[id]/page.tsx'
+      - 'lib/seo/lesson-search-eligibility.ts'
+      - 'lib/lesson-content-integrity.ts'
+      - 'tests/seo/lesson-content-integrity.test.ts'
+      - 'tests/seo/lesson-search-eligibility.test.ts'
+      - 'app/robots.ts'
+      - 'lib/seo/sitemap-pagination.ts'
+      - 'tests/seo/sitemap-pagination.test.ts'
+      - 'tests/seo/public-sitemap.test.ts'
+      - 'tests/seo/robots.test.ts'
+      - 'scripts/verify-sitemap-build.mjs'
+      - '.github/workflows/sitemap-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci --no-audit --no-fund
+      - name: Verify vetted SEO eligibility and full sitemap pagination
+        run: npm run test:run -- tests/seo/sitemap-pagination.test.ts tests/seo/public-sitemap.test.ts tests/seo/robots.test.ts tests/seo/lesson-search-eligibility.test.ts tests/seo/lesson-content-integrity.test.ts
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: ESLint
+        run: npm run lint
+      - name: Next.js build
+        run: npm run build
+      - name: Verify sitemap stays dynamic in production build output
+        run: node scripts/verify-sitemap-build.mjs
