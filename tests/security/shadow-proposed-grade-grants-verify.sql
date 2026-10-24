@@ -11,10 +11,14 @@ BEGIN
     IF NOT has_table_privilege('authenticated',format('public.%I',name),'SELECT')
       OR has_table_privilege('authenticated',format('public.%I',name),'INSERT')
       OR has_table_privilege('authenticated',format('public.%I',name),'UPDATE')
+      OR has_any_column_privilege('authenticated',format('public.%I',name),'INSERT')
+      OR has_any_column_privilege('authenticated',format('public.%I',name),'UPDATE')
       OR has_table_privilege('authenticated',format('public.%I',name),'DELETE')
       OR has_table_privilege('authenticated',format('public.%I',name),'TRUNCATE')
       OR has_table_privilege('anon',format('public.%I',name),'INSERT')
       OR has_table_privilege('anon',format('public.%I',name),'UPDATE')
+      OR has_any_column_privilege('anon',format('public.%I',name),'INSERT')
+      OR has_any_column_privilege('anon',format('public.%I',name),'UPDATE')
       OR has_table_privilege('anon',format('public.%I',name),'DELETE')
       OR has_table_privilege('anon',format('public.%I',name),'TRUNCATE')
     THEN
@@ -22,6 +26,14 @@ BEGIN
     END IF;
   END LOOP;
 END $check$;
+-- Independent column-level grants seeded in the disposable fixture must
+-- not survive the candidate, even though RLS owner reads stay available.
+DO $specific_columns$
+BEGIN
+  IF has_column_privilege('authenticated','public.question_attempts','grade','UPDATE')
+     OR has_column_privilege('authenticated','public.lesson_mastery','grade','INSERT')
+  THEN RAISE EXCEPTION 'SHADOW_COLUMN_WRITE_GRANTS_SURVIVED'; END IF;
+END $specific_columns$;
 \echo SHADOW_CANDIDATE_ALL_SIX_DML_AND_TRUNCATE_DENIED_READ_PRESERVED=PASS
 
 SET ROLE authenticated;
@@ -98,4 +110,7 @@ BEGIN
  THEN RAISE EXCEPTION 'DISPOSABLE_GRADE_ROLLBACK_FAILED'; END IF;
 END $test$;
 RESET ROLE;
+-- Restore the seeded column grants explicitly in this disposable fixture.
+GRANT UPDATE (grade) ON TABLE public.question_attempts TO authenticated;
+GRANT INSERT (grade) ON TABLE public.lesson_mastery TO authenticated;
 \echo SHADOW_CANDIDATE_GRADE_GRANTS_ROLLBACK=PASS
