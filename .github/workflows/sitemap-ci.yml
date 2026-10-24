@@ -1,0 +1,35 @@
+name: Public sitemap completeness
+
+on:
+  pull_request:
+    paths:
+      - 'app/sitemap.ts'
+      - 'lib/seo/sitemap-pagination.ts'
+      - 'tests/seo/sitemap-pagination.test.ts'
+      - '.github/workflows/sitemap-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci --no-audit --no-fund
+      - name: Verify full published sitemap pagination
+        run: npm run test:run -- tests/seo/sitemap-pagination.test.ts
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: ESLint
+        run: npm run lint
+      - name: Next.js build
+        run: npm run build
