@@ -101,4 +101,20 @@ describe("real activity-check POST: malformed/oversized requests", () => {
     expect(createClient).toHaveBeenCalledTimes(1);
     expect(createAdminClient).not.toHaveBeenCalled();
   });
+  it("rejects corrupt UTF-8 and a malformed Content-Length without opening Supabase", async () => {
+    const invalid = new Request(url, {
+      method: "POST",
+      body: new Uint8Array([0xc3, 0x28]),
+    });
+    expect((await POST(invalid)).status).toBe(400);
+    const length = new Request(url, {
+      method: "POST",
+      headers: { "content-length": "not-a-number" },
+      body: JSON.stringify({ activityId: "activity-1", answer: ["رمان"] }),
+    });
+    expect((await POST(length)).status).toBe(400);
+    expect(createClient).not.toHaveBeenCalled();
+    expect(createAdminClient).not.toHaveBeenCalled();
+  });
+
 });
