@@ -112,27 +112,37 @@ describe("student activity grading authorization", () => {
     expect(source).toContain("user.id");
   });
 
-  it("guards stale activity writes against concurrent mastery completion", () => {
-    const updateAt = source.indexOf("existingProgress.id");
-    const updateCode = source.slice(source.lastIndexOf(".update(", updateAt), updateAt + 500);
-    expect(updateAt).toBeGreaterThan(-1);
-    expect(updateCode).toContain('.eq("status", existingProgress.status)');
-    expect(updateCode).toContain('.lte("best_score", newBest)');
-    expect(updateCode).toContain('.lte("progress_percent", safeProgress.progress_percent)');
-    expect(source).toContain('ignoreDuplicates: true');
+  it("checks owned CAS results instead of silently accepting zero updated rows", () => {
+    const from = source.indexOf("await commitActivityProgressWithRetry({");
+    const updateAt = source.indexOf("update: async (previous, values) => {", from);
+    const updateCode = source.slice(updateAt, source.indexOf("insert: async (values)", updateAt));
+    expect(from).toBeGreaterThan(-1);
+    expect(updateAt).toBeGreaterThan(from);
+    expect(updateCode).toContain('.eq("status", previous.status)');
+    expect(updateCode).toContain('.eq("attempts", previous.attempts)');
+    expect(updateCode).toContain('.lte("best_score", values.best_score)');
+    expect(updateCode).toContain('.lte("progress_percent", values.progress_percent)');
+    expect(updateCode).toContain('.eq("student_id", user.id)');
+    expect(updateCode).toContain('.eq("lesson_id", activity.lesson_id)');
+    expect(updateCode).toContain('.select("id")');
+    expect(updateCode).toContain(".maybeSingle()");
+    expect(updateCode).toContain("return data !== null");
+    expect(source).toContain("ignoreDuplicates: true");
     expect(source).toContain('onConflict: "student_id,lesson_id"');
     expect(source).toContain('Number(storedProgress.best_score ?? 0)');
     expect(source).toContain('Number(storedProgress.progress_percent ?? 0)');
-    expect(updateCode).toContain('.eq("student_id", user.id)');
-    expect(updateCode).toContain('.eq("lesson_id", activity.lesson_id)');
   });
 
-  it("saves derived status and percent rather than resetting completed lessons", () => {
-    expect(source).toContain("preserveGradedLessonProgress(");
-    expect(source).toContain("status: safeProgress.status");
-    expect(source).toContain("progress_percent: safeProgress.progress_percent");
-    expect(source).not.toMatch(/status:\s*"in_progress"/);
+  it("retries from fresh owner-scoped progress while preserving graded completion", () => {
+    expect(source).toContain("commitActivityProgressWithRetry({");
+    expect(source).toContain("initial: existingProgress");
+    expect(source).toContain("score: currentScore");
+    expect(source).toContain("activityPercent: progressPercent");
+    expect(source).toContain("read: async () =>");
+    expect(source).toContain('.select("id,status,attempts,best_score,progress_percent")');
+    expect(source).toContain('return data;');
+    expect(source).not.toMatch(/status:\\s*"in_progress"/);
     expect(source).toContain('"id,best_score,attempts,status,progress_percent"');
-    expect(source).toContain("user.id");
   });
+
 });
