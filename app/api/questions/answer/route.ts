@@ -3,6 +3,7 @@ import "server-only";
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { readBoundedJsonObject } from "@/lib/http/read-bounded-json";
 import {
   feedbackForStudent,
   gradeStoredMcq,
@@ -28,7 +29,19 @@ export async function POST(request: Request) {
       );
     }
 
-    const raw = (await request.json().catch(() => null)) as AnswerRequest | null;
+    const parsed = await readBoundedJsonObject(request);
+    if (!parsed.ok) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: parsed.status === 413
+            ? "حجم الإجابة أكبر من الحد المسموح."
+            : "صيغة الطلب غير صحيحة.",
+        },
+        { status: parsed.status }
+      );
+    }
+    const raw = parsed.value as AnswerRequest;
     const questionId = raw?.questionId;
     if (typeof questionId !== "string" || !UUID.test(questionId)) {
       return NextResponse.json(
