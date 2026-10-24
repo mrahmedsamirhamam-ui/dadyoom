@@ -292,7 +292,7 @@ jobs:
           set -euo pipefail
           test -n "$PG_CONTAINER_ID"
           docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_question_privacy
-          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_question_privacy \\
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_question_privacy \
             < tests/security/shadow-question-key-cutover-setup.sql
           if error_text=$( {
               echo "SET dadyoom.question_privacy_rehearsal = 'enabled';"
@@ -301,13 +301,13 @@ jobs:
             echo "Question-key proposal unexpectedly accepted the production-like database" >&2
             exit 1
           fi
-          printf '%s\\n' "$error_text" | grep -q 'PRODUCTION_QUESTION_KEY_CUTOVER_BLOCKED'
-          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_question_privacy \\
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_QUESTION_KEY_CUTOVER_BLOCKED'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_question_privacy \
               < scripts/security/proposed-question-key-column-cutover.sql 2>&1); then
             echo "Question-key proposal unexpectedly accepted missing rehearsal flag" >&2
             exit 1
           fi
-          printf '%s\\n' "$error_text" | grep -q 'PRODUCTION_QUESTION_KEY_CUTOVER_BLOCKED'
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_QUESTION_KEY_CUTOVER_BLOCKED'
           {
             echo "SET dadyoom.question_privacy_rehearsal = 'enabled';"
             cat scripts/security/proposed-question-key-column-cutover.sql
