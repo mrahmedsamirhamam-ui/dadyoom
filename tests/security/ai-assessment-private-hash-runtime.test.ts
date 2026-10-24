@@ -150,7 +150,7 @@ describe("student safe AI generation after question_hash grants cutover", () => 
     });
     expect(JSON.stringify(body)).not.toContain("مفتاح سري");
     expect(db.studentCalls.some(x => x.predicates.question_hash !== undefined)).toBe(false);
-    expect(db.studentCalls.some(x => x.selected.includes("correct_answer"))).toBe(false);
+    expect(db.studentCalls.filter(x => x.table === "ai_assessments").some(x => /\\b(correct_answer|explanation|question_hash)\\b/.test(x.selected))).toBe(false);
     const hash = db.adminCalls.find(x => x.predicates.question_hash !== undefined);
     expect(hash).toBeDefined();
     expect(hash?.predicates).toMatchObject({
