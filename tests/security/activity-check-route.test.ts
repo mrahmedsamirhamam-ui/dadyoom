@@ -93,6 +93,9 @@ describe("student activity grading authorization", () => {
       .toEqual({ status: "in_progress", progress_percent: 100 });
     expect(preserveGradedLessonProgress(null, -10))
       .toEqual({ status: "in_progress", progress_percent: 0 });
+    expect(preserveGradedLessonProgress(
+      { status: "in_progress", progress_percent: 85 }, 30
+    )).toEqual({ status: "in_progress", progress_percent: 85 });
   });
 
   it("persists attempts and progress via trusted server after scoring", () => {
