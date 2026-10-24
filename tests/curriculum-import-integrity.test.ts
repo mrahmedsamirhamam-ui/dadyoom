@@ -98,7 +98,7 @@ describe("curriculum pack import integrity", () => {
   it("exports all seven backed-up tables with no mutation methods", async () => {
     const objects = Object.fromEntries(BACKUP_TABLES.map(name => [name, [{ id: name }]]));
     const { db } = mockReadOnlyDatabase(objects);
-    const snapshot = await readVerifiedCurriculumBackup(db);
+    const snapshot = await readVerifiedCurriculumBackup(db) as Record<string, Row[]>;
     for (const name of BACKUP_TABLES) {
       expect(snapshot[name]).toEqual([{ id: name }]);
     }
