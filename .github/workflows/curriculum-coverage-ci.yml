@@ -101,6 +101,7 @@ on:
       - 'features/learning-plan/services/adaptive-path-lifecycle.ts'
       - 'tests/security/shadow-proposed-grade-grants-verify.sql'
       - 'tests/security/owner-scoped-progress-repository.test.ts'
+      - 'tests/security/lesson-progress-idempotent-start.test.ts'
       - 'features/lesson-mastery/actions/syncLessonMastery.ts'
       - 'tests/security/lesson-mastery-completion-only.test.ts'
       - 'features/lesson-mastery/services/score-graded-activities.ts'
@@ -191,8 +192,8 @@ jobs:
         run: npx vitest run tests/security/server-private-activity-answer-read.test.ts
       - name: Verify server grading and completed-progress preservation
         run: npx vitest run tests/security/activity-check-route.test.ts
-      - name: Verify owner-scoped trusted progress repository
-        run: npx vitest run tests/security/owner-scoped-progress-repository.test.ts
+      - name: Verify owner-scoped and concurrent-idempotent trusted lesson starts
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/owner-scoped-progress-repository.test.ts tests/security/lesson-progress-idempotent-start.test.ts
       - name: Verify tutoring cannot award academic mastery
         run: npx vitest run tests/security/tutor-not-mastery.test.ts
       - name: Execute no-network formative grading spoofing and no-persistence tests
