@@ -75,6 +75,9 @@ on:
       - 'scripts/security/proposed-assessment-session-active-unique-index.sql'
       - 'tests/security/shadow-assessment-session-race-setup.sql'
       - 'tests/security/shadow-assessment-session-race-verify.sql'
+      - 'scripts/security/proposed-assessment-answer-slot-lock.sql'
+      - 'tests/security/shadow-assessment-answer-slot-setup.sql'
+      - 'tests/security/shadow-assessment-answer-slot-verify.sql'
       - 'tests/security/ai-assessment-private-hash-runtime.test.ts'
       - 'features/assessment/components/LessonAssessment.tsx'
       - 'tests/security/ai-session-analytics.test.ts'
@@ -424,6 +427,48 @@ jobs:
             cat tests/security/shadow-assessment-session-race-verify.sql
           } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_session_start
           echo "SHADOW_ASSESSMENT_SESSION_UNIQUE_RACE_REHEARSAL=PASS"
+      - name: Rehearse transactional one-answer-per-question slots and rollback in disposable Postgres
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_assessment_slots
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_assessment_slots \
+            < tests/security/shadow-assessment-answer-slot-setup.sql
+          if error_text=$( {
+              echo "SET dadyoom.assessment_slot_rehearsal = 'enabled';"
+              cat scripts/security/proposed-assessment-answer-slot-lock.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Slot DDL unexpectedly accepted a non-disposable database" >&2
+            exit 1
+          fi
+          printf '%s\\n' "$error_text" | grep -q 'PRODUCTION_ASSESSMENT_SLOT_DDL_BLOCKED_DISPOSABLE_ONLY'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_assessment_slots \
+              < scripts/security/proposed-assessment-answer-slot-lock.sql 2>&1); then
+            echo "Slot DDL unexpectedly accepted a missing test flag" >&2
+            exit 1
+          fi
+          printf '%s\\n' "$error_text" | grep -q 'PRODUCTION_ASSESSMENT_SLOT_DDL_BLOCKED_DISPOSABLE_ONLY'
+          docker exec "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_assessment_slots \
+            -c "UPDATE public.assessment_sessions SET correct_answers=7 WHERE id='11111111-1111-4111-8111-111111111111'"
+          if error_text=$( {
+              echo "SET dadyoom.assessment_slot_rehearsal = 'enabled';"
+              cat scripts/security/proposed-assessment-answer-slot-lock.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_assessment_slots 2>&1 ); then
+            echo "Slot preflight unexpectedly accepted inconsistent historic grades" >&2
+            exit 1
+          fi
+          printf '%s\\n' "$error_text" | grep -q 'ASSESSMENT_SLOT_LEGACY_COUNTERS_MANUAL_REVIEW_REQUIRED'
+          docker exec "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_assessment_slots \
+            -c "UPDATE public.assessment_sessions SET correct_answers=1 WHERE id='11111111-1111-4111-8111-111111111111'"
+          {
+            echo "SET dadyoom.assessment_slot_rehearsal = 'enabled';"
+            cat scripts/security/proposed-assessment-answer-slot-lock.sql
+            cat tests/security/shadow-assessment-answer-slot-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_assessment_slots
+          echo "SHADOW_ASSESSMENT_ANSWER_SLOT_ATOMIC_RACE_REHEARSAL=PASS"
       - name: Rehearse AI assessment key confidentiality, owner-only read and direct-write cutover
         shell: bash
         env:
