@@ -126,9 +126,12 @@ async function getAdminClient() {
     };
   }
 
+  // Only after the authenticated administrator profile/role check:
+  // lesson_activities.answer and all authoring DML will be private to the
+  // trusted server role when the later ACL cutover is approved.
   return {
     error: null,
-    supabase,
+    supabase: createAdminClient(),
   };
 }
 
