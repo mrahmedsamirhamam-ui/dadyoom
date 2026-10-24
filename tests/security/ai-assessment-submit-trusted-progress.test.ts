@@ -54,16 +54,14 @@ function setup(options: Fixtures = {}) {
         throw new Error("Student client touched a canonical grade table: " + table);
       }
       const q = {
-        select: vi.fn((_columns: string, _options?: { count?: string; head?: boolean }) =>
-          table === "assessment_session_answers"
-            ? Promise.resolve({
-                count: options.recordedAnswers === undefined ? 0 : options.recordedAnswers,
-                error: options.recordedAnswersError
-                  ? { message: "private table access denied" } : null,
-              })
-            : q
-        ),
+        select: vi.fn(() => q),
         eq: vi.fn(() => q),
+        then: (resolve: (value: unknown) => unknown, reject?: (error: unknown) => unknown) =>
+          Promise.resolve({
+            count: options.recordedAnswers === undefined ? 0 : options.recordedAnswers,
+            error: options.recordedAnswersError
+              ? { message: "private table access denied" } : null,
+          }).then(resolve, reject),
         update: vi.fn(() => q),
         or: vi.fn(async () => ({ error: null })),
         maybeSingle: vi.fn(async () => ({
