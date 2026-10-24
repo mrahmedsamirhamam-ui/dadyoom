@@ -317,20 +317,7 @@ export default function LessonSemanticSearch({
             continue;
           }
 
-          if (
-            event.type === "done"
-          ) {
-            window.dispatchEvent(
-              new CustomEvent(
-                "lesson-mastery-updated",
-                {
-                  detail: {
-                    lessonId,
-                  },
-                }
-              )
-            );
-
+          if (event.type === "done") {
             continue;
           }
 

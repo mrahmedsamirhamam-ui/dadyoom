@@ -1,3 +1,5 @@
+import "server-only";
+import { createAdminClient } from "@/lib/supabase/admin";
 import type {
   SupabaseClient,
 } from "@supabase/supabase-js";
@@ -15,6 +17,13 @@ export async function getLatestAssessmentAnalytics({
   supabase,
   studentId,
 }: LatestAssessmentAnalyticsParams) {
+  // Derive ownership and email from the validated request's server session.
+  // Never trust a separately supplied student identity for private key lookup.
+  const { data: { user }, error: authError } = await supabase.auth.getUser();
+  if (authError || !user?.email || user.id !== studentId) {
+    throw new Error("غير مصرح بالاطلاع على تحليل اختبار طالب آخر.");
+  }
+
   const {
     data: session,
     error: sessionError,
@@ -43,9 +52,11 @@ export async function getLatestAssessmentAnalytics({
 
   const analytics =
     await getAssessmentSessionAnalytics({
-      supabase,
+      supabase: createAdminClient(),
       sessionId: session.id,
-      studentId,
+      studentId: user.id,
+      studentEmail: user.email,
+      lessonId: session.lesson_id,
     });
 
   return {

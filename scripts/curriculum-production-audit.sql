@@ -322,3 +322,43 @@ SELECT lesson_type,official_content_scope,COUNT(*) published_records,
    AND question_count>=3) enriched_minimum,
  SUM(structural_mcq) structurally_valid_mcq
 FROM scope GROUP BY lesson_type,official_content_scope ORDER BY lesson_type,official_content_scope;
+
+-- 14. Published assessment coverage: count BOTH stored questions and published activities.
+-- This gate validates RECORD PRESENCE only, not learner ability to answer it, pedagogy,
+-- exact official syllabus, privacy, or deployed API accessibility.
+WITH qc AS (
+ SELECT lesson_id,count(*) AS n FROM public.questions GROUP BY lesson_id
+), ac AS (
+ SELECT lesson_id,count(*) FILTER(WHERE is_published IS TRUE) AS n
+ FROM public.lesson_activities GROUP BY lesson_id
+)
+SELECT
+ COUNT(*) AS published_lesson_records,
+ COUNT(*) FILTER(WHERE coalesce(qc.n,0)>0 OR coalesce(ac.n,0)>0) AS with_stored_assessment,
+ COUNT(*) FILTER(WHERE coalesce(qc.n,0)=0 AND coalesce(ac.n,0)>0) AS assessed_by_activities_only,
+ COUNT(*) FILTER(WHERE coalesce(qc.n,0)=0 AND coalesce(ac.n,0)=0) AS missing_stored_assessment,
+ ROUND(100.0 * COUNT(*) FILTER(WHERE coalesce(qc.n,0)>0 OR coalesce(ac.n,0)>0)
+  / NULLIF(COUNT(*),0),2) AS published_assessment_coverage_pct
+FROM public.lessons l LEFT JOIN qc ON qc.lesson_id=l.id
+ LEFT JOIN ac ON ac.lesson_id=l.id
+WHERE l.status='published';
+
+-- 15. Distinguish imported draft index artifacts, authorable curriculum draft
+-- packages, and published BOOK CATALOG reference nodes (not actual lesson texts).
+-- Flags are heuristic QA queues; never automatically publish/delete/change a row.
+SELECT
+ count(*) FILTER(WHERE l.status='draft') AS total_draft_rows,
+ count(*) FILTER(WHERE l.status='draft' AND co.code='BH' AND
+   length(coalesce(l.content,''))<300 AND NOT EXISTS(
+    SELECT 1 FROM public.questions q WHERE q.lesson_id=l.id
+   )) AS bahrain_short_no_question_import_candidates,
+ count(*) FILTER(WHERE l.status='draft' AND co.code<>'BH') AS other_country_drafts_to_review,
+ count(*) FILTER(WHERE l.status='published' AND length(coalesce(l.content,''))=0
+   AND l.summary LIKE 'عقدة تغطية رسمية%') AS published_book_catalog_reference_nodes,
+ count(*) FILTER(WHERE l.status='published' AND length(coalesce(l.content,''))=0
+   AND coalesce(l.summary,'') NOT LIKE 'عقدة تغطية رسمية%') AS published_empty_non_catalog_lessons
+FROM public.lessons l
+JOIN public.units u ON u.id=l.unit_id
+JOIN public.grades g ON g.id=u.grade_id
+JOIN public.curricula c ON c.id=g.curriculum_id
+JOIN public.countries co ON co.id=c.country_id;

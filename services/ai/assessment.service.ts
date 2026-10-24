@@ -1,3 +1,7 @@
+import "server-only";
+
+// This service creates and returns private answer keys. It must never
+// become importable from a browser Client Component.
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 import type {

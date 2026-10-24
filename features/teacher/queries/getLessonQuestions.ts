@@ -1,4 +1,6 @@
+import "server-only";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 export type LessonQuestionOption = {
   id: string;
@@ -64,13 +66,48 @@ function normalizeOptions(
 export async function getLessonQuestions(
   lessonId: string
 ): Promise<LessonQuestionForEditor[]> {
-  const supabase =
-    await createClient();
+  const supabase = await createClient();
+  const { data: { user }, error: authError } = await supabase.auth.getUser();
+  if (authError || !user) {
+    throw new Error("يجب تسجيل الدخول لقراءة مفاتيح أسئلة المعلم.");
+  }
+
+  const { data: profile, error: profileError } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
+    .maybeSingle();
+
+  if (profileError || !profile) {
+    throw new Error("تعذر التحقق من صلاحية تحرير الأسئلة.");
+  }
+
+  const role = profile.role?.trim().toLowerCase() ?? "";
+  if (role !== "admin" && role !== "teacher") {
+    throw new Error("غير مصرح بعرض مفاتيح إجابات الأسئلة.");
+  }
+
+  // Use the authenticated/RLS-bound client to authorize the lesson BEFORE
+  // creating a privileged client; a teacher may read only owned lessons.
+  const { data: lesson, error: lessonError } = await supabase
+    .from("lessons")
+    .select("id,created_by")
+    .eq("id", lessonId)
+    .maybeSingle();
+
+  if (lessonError || !lesson ||
+      (role === "teacher" && lesson.created_by !== user.id)) {
+    throw new Error("الدرس غير متاح لهذا المعلم.");
+  }
+
+  // Server-only read preserves legitimate teacher editing after a staged
+  // migration removes browser SELECT on questions.correct_answer.
+  const admin = createAdminClient();
 
   const {
     data,
     error,
-  } = await supabase
+  } = await admin
     .from("questions")
     .select(
       "id, lesson_id, question_order, question, question_type, options, correct_answer, explanation, points"

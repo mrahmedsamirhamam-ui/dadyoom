@@ -1,3 +1,5 @@
+import "server-only";
+import { createAdminClient } from "@/lib/supabase/admin";
 import {
   NextResponse,
 } from "next/server";
@@ -17,6 +19,9 @@ import {
 import {
   completeAdaptiveStep,
 } from "@/features/learning-plan/services/adaptive-path-lifecycle";
+import {
+  verifyAssessmentCompletionReceipt,
+} from "@/features/assessment/services/verifyAssessmentCompletionReceipt";
 
 type NextQuestionBody = {
   sessionId?: string;
@@ -35,9 +40,7 @@ export async function POST(
       body.sessionId?.trim();
 
     if (
-      !sessionId ||
-      typeof body.correct !==
-        "boolean"
+      !sessionId
     ) {
       return NextResponse.json(
         {
@@ -62,7 +65,7 @@ export async function POST(
 
     if (
       userError ||
-      !user
+      !user?.email
     ) {
       return NextResponse.json(
         {
@@ -76,14 +79,97 @@ export async function POST(
       );
     }
 
-    const session =
-      await advanceAssessmentSession({
-        supabase,
-        sessionId,
-        studentId: user.id,
-        answeredCorrectly:
-          body.correct,
-      });
+    // Browser 'correct' is ignored. Only a recorded, server-graded
+    // answer can advance a student-owned published lesson session.
+    const { data: authorizedSession, error: sessionError } = await supabase
+      .from("assessment_sessions")
+      .select("id,lesson_id,student_id,current_question,total_questions,correct_answers,wrong_answers,finished")
+      .eq("id", sessionId)
+      .eq("student_id", user.id)
+      .maybeSingle();
+
+    if (sessionError) throw sessionError;
+    if (!authorizedSession) {
+      return NextResponse.json(
+        { success: false, error: "جلسة الاختبار غير متاحة." },
+        { status: 404 }
+      );
+    }
+
+    const { data: publishedLesson, error: lessonError } = await supabase
+      .from("lessons")
+      .select("id")
+      .eq("id", authorizedSession.lesson_id)
+      .eq("status", "published")
+      .maybeSingle();
+
+    if (lessonError) throw lessonError;
+    if (!publishedLesson) {
+      return NextResponse.json(
+        { success: false, error: "الدرس غير متاح للتقويم." },
+        { status: 404 }
+      );
+    }
+
+    const admin = createAdminClient();
+    let authoritativeCorrect = false;
+    if (!authorizedSession.finished) {
+      const { data: savedAnswers, error: answersError } = await supabase
+        .from("assessment_session_answers")
+        .select("id,assessment_id,selected_answer,created_at")
+        .eq("session_id", sessionId)
+        .eq("student_id", user.id)
+        .eq("lesson_id", publishedLesson.id)
+        .order("created_at", { ascending: true })
+        .order("id", { ascending: true });
+
+      if (answersError) throw answersError;
+
+      const previous = authorizedSession.correct_answers + authorizedSession.wrong_answers;
+      if (!savedAnswers ||
+          savedAnswers.length !== previous + 1 ||
+          savedAnswers.length !== authorizedSession.current_question) {
+        return NextResponse.json(
+          { success: false, error: "يجب تسليم إجابة مصححة قبل الانتقال." },
+          { status: 409 }
+        );
+      }
+
+      const latest = savedAnswers[savedAnswers.length - 1];
+      if (!latest) {
+        return NextResponse.json(
+          { success: false, error: "لا توجد إجابة جديدة." },
+          { status: 409 }
+        );
+      }
+
+      // Recalculate correctness from the trusted answer, not user-provided
+      // is_correct or the boolean in POST /next.
+      const { data: privateQuestion, error: keyError } = await admin
+        .from("ai_assessments")
+        .select("id,lesson_id,student_email,correct_answer,completed")
+        .eq("id", latest.assessment_id)
+        .eq("lesson_id", publishedLesson.id)
+        .eq("student_email", user.email)
+        .eq("completed", true)
+        .maybeSingle();
+      if (keyError) throw keyError;
+      if (!privateQuestion) {
+        return NextResponse.json(
+          { success: false, error: "السؤال المصحح غير متاح." },
+          { status: 404 }
+        );
+      }
+      authoritativeCorrect =
+        latest.selected_answer === privateQuestion.correct_answer;
+    }
+
+    const session = await advanceAssessmentSession({
+      supabase: admin,
+      sessionId,
+      studentId: user.id,
+      answeredCorrectly: authoritativeCorrect,
+    });
 
     const answeredQuestions =
       session.correct_answers +
@@ -103,11 +189,13 @@ export async function POST(
     const analytics =
       session.finished
         ? await getAssessmentSessionAnalytics({
-            supabase,
+            supabase: admin,
             sessionId:
               session.id,
             studentId:
               user.id,
+            studentEmail: user.email,
+            lessonId: publishedLesson.id,
           })
         : null;
 
@@ -119,11 +207,41 @@ export async function POST(
      * لذلك إعادة الطلب بعد اكتمال الخطوة
      * لا تعيد إكمالها مرة أخرى.
      */
+    // This opt-in recovery is disabled until the protected receipts table
+    // exists AND browser DML grants for session/answers have been revoked.
+    // In the existing/default mode, retain the fresh-transition-only guard.
+    const receiptsEnabled =
+      process.env.DADYOOM_TRUSTED_ASSESSMENT_RECEIPTS === "enabled";
+
+    const verifiedReceipt =
+      receiptsEnabled && session.finished && session.lesson_id && analytics
+        ? await verifyAssessmentCompletionReceipt({
+            admin,
+            session,
+            studentId: user.id,
+            lessonId: publishedLesson.id,
+            analytics,
+            allowCreate: !authorizedSession.finished,
+          })
+        : false;
+
+    // Do not report successful completion when the strict recovery mode
+    // cannot prove it via a server-only receipt.
+    if (receiptsEnabled && session.finished && !verifiedReceipt) {
+      return NextResponse.json(
+        { success: false, error: "تعذر إثبات إكمال الاختبار بأمان." },
+        { status: 409 }
+      );
+    }
+
     const adaptiveAssessmentStep =
       session.finished &&
-      session.lesson_id
+      session.lesson_id &&
+      (receiptsEnabled ? verifiedReceipt : !authorizedSession.finished)
         ? await completeAdaptiveStep({
-            supabase,
+            // Lesson publication, session ownership and scoring were
+            // verified above. The adaptive write stays server-authoritative.
+            supabase: admin,
             studentId:
               user.id,
             lessonId:

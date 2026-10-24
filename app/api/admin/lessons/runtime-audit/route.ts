@@ -10,9 +10,9 @@ import {
   join,
 } from "node:path";
 
-import {
-  createClient,
-} from "@/lib/supabase/server";
+import { authorizeCurriculumAdmin } from "@/lib/auth/require-curriculum-admin";
+
+export const dynamic = "force-dynamic";
 
 import {
   getCorrectAnswerSpec,
@@ -209,8 +209,9 @@ function imageOptionUrls(
 
 export async function GET() {
   try {
-    const supabase =
-      await createClient();
+    const access = await authorizeCurriculumAdmin();
+    if (!access.authorized) return access.response;
+    const { supabase } = access;
 
     const {
       data,
@@ -794,7 +795,7 @@ export async function GET() {
       grouped,
 
       problematic,
-    });
+    }, { headers: { "Cache-Control": "private, no-store" } });
   }
   catch (error) {
     console.error(

@@ -32,10 +32,6 @@ import {
 } from "@/features/semantic-search/services/saveLessonChat";
 
 import {
-  updateLessonMastery,
-} from "@/features/semantic-search/services/updateLessonMastery";
-
-import {
   resolveFollowUpQuery,
 } from "@/features/semantic-search/services/resolveFollowUpQuery";
 
@@ -230,6 +226,23 @@ export async function POST(
         }
       );
     }
+    // Tutor responses are learning assistance, NOT student graded answers.
+    // Check lesson published visibility under the student's RLS session.
+    const { data: publishedLesson, error: lessonError } = await supabase
+      .from("lessons")
+      .select("id")
+      .eq("id", lessonId)
+      .eq("status", "published")
+      .maybeSingle();
+
+    if (lessonError) throw lessonError;
+    if (!publishedLesson) {
+      return Response.json(
+        { error: "الدرس غير متاح للمحادثة." },
+        { status: 404 }
+      );
+    }
+
 
     const storedHistory =
       await loadLessonChat({
@@ -334,21 +347,7 @@ export async function POST(
                   normalizedAnswer,
               });
 
-              await updateLessonMastery({
-                supabase,
-                studentId: user.id,
-                lessonId,
-                userQuestion: query,
-                assistantAnswer:
-                  normalizedAnswer,
-                answeredCorrectly:
-                  !normalizedAnswer.includes(
-                    "لا توجد في نص الدرس معلومات كافية"
-                  ) &&
-                  !normalizedAnswer.includes(
-                    "تعذر الحصول على الإجابة"
-                  ),
-              });
+
             }
 
             const lessonSuggestions =

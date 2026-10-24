@@ -6,6 +6,7 @@ import LessonMasteryCard from "@/features/lesson-mastery/components/LessonMaster
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { SITE_DESCRIPTION } from "@/lib/site";
+import { isBookCatalogReference } from "@/lib/curriculum/book-catalog-reference";
 import {
   getLessonPageBundle,
 } from "@/features/lessons/queries/getLessonPageBundle";
@@ -13,6 +14,7 @@ import {
 
 import type { WeakQuestion } from "@/features/adaptive-learning/queries/getWeakQuestions";
 import { evaluatePerformance } from "@/features/adaptive-learning/services/evaluatePerformance";
+import { buildLessonPracticeSnapshot } from "@/features/adaptive-learning/services/lesson-practice-snapshot";
 import AdaptiveRecommendationCard from "@/features/adaptive-learning/components/AdaptiveRecommendationCard";
 import WeakQuestionsReview from "@/features/adaptive-learning/components/WeakQuestionsReview";
 
@@ -131,6 +133,36 @@ export default async function LessonPage({
   const lesson =
     bundle.lesson;
 
+  // Catalog nodes link to official book titles; they are not graded lessons.
+  // Render a meaningful reference page without any mastery/progress controls.
+  if (isBookCatalogReference(lesson)) {
+    return (
+      <main dir="rtl" className="min-h-screen bg-[#f5f4ed] px-4 py-12 text-[#173f38]">
+        <article className="mx-auto max-w-3xl space-y-5 rounded-3xl bg-white p-6 shadow-sm sm:p-10">
+          <p className="text-sm font-bold text-amber-700">مرجع كتاب رسمي — ليس درسًا تعليميًا</p>
+          <h1 className="text-3xl font-extrabold">{lesson.title}</h1>
+          <p className="leading-8 text-slate-700">{lesson.summary}</p>
+          <p className="rounded-xl bg-amber-50 p-4 leading-8 text-amber-900">
+            هذه الصفحة مرجع لفهرسة الكتاب ضمن المسار الدراسي. لا يوجد هنا شرح
+            للدرس أو نص مدرسي مرخص؛ لذلك لن نعرض اختبار إتقان أو درجة تقدّم
+            قبل إضافة درس تعليمي كامل مرتبط بالمصدر الصحيح.
+          </p>
+          {lesson.source_pdf_url ? (
+            <a className="inline-block font-bold text-emerald-800 underline"
+              href={lesson.source_pdf_url} target="_blank" rel="noopener noreferrer">
+              الاطلاع على المصدر المدرج للكتاب
+            </a>
+          ) : null}
+          <div>
+            <Link href="/student" className="font-bold text-emerald-800 underline">
+              العودة إلى مسار التعلم
+            </Link>
+          </div>
+        </article>
+      </main>
+    );
+  }
+
   const lessonQuestions =
     bundle.questions;
 
@@ -158,92 +190,36 @@ export default async function LessonPage({
 
   let weakQuestions: WeakQuestion[] = [];
 
-  if (user) {
-    // DADYOOM_ACTIVITY_AWARE_ADAPTIVE_V2
-    const questionAttempts =
-      bundle.questionAttempts ?? [];
+  const practice = buildLessonPracticeSnapshot({
+    questionIds: lessonQuestions.map(q => q.id),
+    activityIds: lessonActivities.filter(a => a.is_published !== false).map(a => a.id),
+    questionAttempts: bundle.questionAttempts ?? [],
+    activityAttempts: bundle.activityAttempts ?? [],
+  });
 
-    const activityAttempts =
-      bundle.activityAttempts ?? [];
+  if (user && practice.totalItems > 0) {
+    // A 90% practice score does NOT itself certify course mastery.
+    // Only the persisted, server-evaluated mastery state can do that.
+    const verifiedMastery =
+      learningProgress?.status === "mastered" &&
+      Number(learningProgress.best_score ?? 0) >= 90;
 
-    const attemptedActivityIds =
-      new Set(
-        activityAttempts.map(
-          (attempt) =>
-            attempt.activity_id
-        )
-      );
+    adaptiveRecommendation = evaluatePerformance({
+      score: verifiedMastery
+        ? Math.max(practice.score, Number(learningProgress?.best_score ?? 0))
+        : practice.score,
+      attempts: practice.attempts,
+      masteryVerified: verifiedMastery,
+      currentLessonId: lesson.id,
+      nextLessonId: lesson.nextLesson?.id ?? null,
+    });
 
-    const attempts: Array<{
-      question_id: string;
-      is_correct: boolean;
-    }> =
-      questionAttempts.length > 0
-        ? questionAttempts
-        : lessonActivities.map(
-            (activity) => ({
-              question_id:
-                activity.id,
-              is_correct:
-                attemptedActivityIds.has(
-                  activity.id
-                ),
-            })
-          );
-
-    const totalQuestions =
-      attempts.length;
-
-    const correctAnswers =
-      attempts.filter(
-        (attempt) =>
-          attempt.is_correct
-      ).length;
-
-    const score =
-      totalQuestions > 0
-        ? Math.round(
-            (
-              correctAnswers /
-              totalQuestions
-            ) * 100
-          )
-        : 0;
-
-    adaptiveRecommendation =
-      evaluatePerformance({
-        score,
-        attempts,
-        currentLessonId:
-          lesson.id,
-        nextLessonId:
-          lesson.nextLesson?.id ??
-          null,
-      });
-
-    const weakQuestionIds =
-      new Set(
-        questionAttempts
-          .filter(
-            (attempt) =>
-              !attempt.is_correct
-          )
-          .map(
-            (attempt) =>
-              attempt.question_id
-          )
-      );
-
-    weakQuestions =
-      (
-        lessonQuestions as WeakQuestion[]
-      ).filter(
-        (question) =>
-          weakQuestionIds.has(
-            question.id
-          )
-      );
+    const weakQuestionIds = new Set(practice.wrongQuestionIds);
+    weakQuestions = (lessonQuestions as WeakQuestion[]).filter(
+      question => weakQuestionIds.has(question.id)
+    );
   }
+
   const objectives: string[] =
     Array.isArray(lesson.learning_objectives)
       ? lesson.learning_objectives.filter(
@@ -635,17 +611,12 @@ export default async function LessonPage({
           />
         ) : null}
 
-        {multipleChoiceQuestions.length > 0 ? (
+        {user && multipleChoiceQuestions.length > 0 ? (
           <ScoreCard
-            score={
-              bundle.questionAttempts.filter(
-                (attempt) =>
-                  attempt.is_correct &&
-                  multipleChoiceQuestionIds.has(
-                    attempt.question_id
-                  )
-              ).length
-            }
+            score={practice.attempts.filter(
+              attempt => attempt.is_correct &&
+                multipleChoiceQuestionIds.has(attempt.question_id)
+            ).length}
             total={multipleChoiceQuestions.length}
           />
         ) : null}
@@ -664,9 +635,25 @@ export default async function LessonPage({
           />
         ) : null}
 
-        <LessonSemanticSearch lessonId={lesson.id} />
-
-        <LessonMasteryCard lessonId={lesson.id} />
+        {user ? (
+          <>
+            <LessonSemanticSearch lessonId={lesson.id} />
+            <LessonMasteryCard lessonId={lesson.id} />
+          </>
+        ) : (
+          <section className="lesson-arabic-card rounded-3xl border border-emerald-200 bg-emerald-50 p-6">
+            <h2 className="text-xl font-bold text-[#173f38]">
+              اسأل ضاد وتابع مستوى إتقانك
+            </h2>
+            <p className="mt-2 leading-8 text-slate-700">
+              الشرح والأنشطة المفتوحة متاحة للجميع. سجّل الدخول لتتحدث مع ضاد
+              وتحفظ تقدمك وتراجع درجاتك بصورة خاصة وآمنة.
+            </p>
+            <Link href="/login" className="mt-4 inline-flex rounded-xl bg-emerald-700 px-5 py-3 font-bold text-white">
+              تسجيل الدخول
+            </Link>
+          </section>
+        )}
 
         <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
           <div className="flex flex-wrap items-center justify-between gap-4">

@@ -6,8 +6,8 @@ export async function getLessonQuestions(
   const supabase = await createClient();
 
   const { data, error } = await supabase
-    .from("questions")
-    .select("*")
+    .from("dadyoom_student_questions")
+    .select("id,lesson_id,question_order,question,question_type,options,points")
     .eq("lesson_id", lessonId)
     .order("question_order");
 

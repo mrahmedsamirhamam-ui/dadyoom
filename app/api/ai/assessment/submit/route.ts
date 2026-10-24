@@ -1,3 +1,5 @@
+import "server-only";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { invalidateStudentCaches } from "@/features/student-progress/services/invalidate-student-caches";
 import {
   NextResponse,
@@ -10,10 +12,6 @@ import {
 import {
   updateProgress,
 } from "@/services/progress/progress-engine";
-
-import {
-  updateLessonMastery,
-} from "@/features/semantic-search/services/updateLessonMastery";
 
 import {
   saveAssessmentSessionAnswer,
@@ -37,6 +35,7 @@ export async function POST(
 
   let claimedAssessmentId:
     string | null = null;
+  let claimedStudentEmail: string | null = null;
 
   try {
     const {
@@ -104,8 +103,6 @@ export async function POST(
         student_email,
         question,
         choices,
-        correct_answer,
-        explanation,
         skill,
         completed
       `)
@@ -145,46 +142,9 @@ export async function POST(
       );
     }
 
-    /*
-     * حجز السؤال قبل منح XP.
-     * يمنع الضغط المتكرر من احتساب النتيجة أكثر من مرة.
-     */
-    const {
-      data: claimedAssessment,
-      error: claimError,
-    } = await supabase
-      .from("ai_assessments")
-      .update({
-        completed: true,
-      })
-      .eq("id", assessmentId)
-      .eq(
-        "student_email",
-        user.email
-      )
-      .eq("completed", false)
-      .select("id")
-      .maybeSingle();
 
-    if (
-      claimError ||
-      !claimedAssessment
-    ) {
-      return NextResponse.json(
-        {
-          success: false,
-          message:
-            "تم إرسال إجابة هذا السؤال سابقًا.",
-        },
-        {
-          status: 409,
-        }
-      );
-    }
-
-    claimedAssessmentId =
-      claimedAssessment.id;
-
+    // Validate the student's test-session ownership before any privileged
+    // read or claim. Reject draft/unpublished lesson submissions.
     const {
       data: assessmentSession,
       error: sessionError,
@@ -194,6 +154,10 @@ export async function POST(
         id,
         lesson_id,
         student_id,
+        current_question,
+        total_questions,
+        correct_answers,
+        wrong_answers,
         finished
       `)
       .eq("id", sessionId)
@@ -227,9 +191,127 @@ export async function POST(
       );
     }
 
+
+    const { data: publishedLesson, error: lessonError } = await supabase
+      .from("lessons")
+      .select("id")
+      .eq("id", assessment.lesson_id)
+      .eq("status", "published")
+      .maybeSingle();
+    if (lessonError) throw lessonError;
+    if (!publishedLesson) {
+      return NextResponse.json(
+        { success: false, message: "الدرس غير متاح للتقويم." },
+        { status: 404 }
+      );
+    }
+
+    // /submit must not grade two questions into the same session slot.
+    // The /next endpoint already checks this invariant; enforce it BEFORE
+    // claiming a question, reading a private answer key, or awarding XP.
+    // Historical answers are read through the authenticated student's RLS.
+    const questionSlot = Number(assessmentSession.current_question);
+    const totalSlots = Number(assessmentSession.total_questions);
+    const gradedAnswers = Number(assessmentSession.correct_answers) +
+      Number(assessmentSession.wrong_answers);
+    if (!Number.isSafeInteger(questionSlot) ||
+        !Number.isSafeInteger(totalSlots) ||
+        !Number.isSafeInteger(gradedAnswers) ||
+        totalSlots < 1 || totalSlots > 50 ||
+        questionSlot < 1 || questionSlot > totalSlots ||
+        gradedAnswers !== questionSlot - 1) {
+      return NextResponse.json(
+        { success: false, message: "تقدم جلسة التقييم غير متسق." },
+        { status: 409 }
+      );
+    }
+
+    const { count: recordedAnswers, error: historyError } = await supabase
+      .from("assessment_session_answers")
+      .select("id", { count: "exact", head: true })
+      .eq("session_id", sessionId)
+      .eq("student_id", user.id)
+      .eq("lesson_id", publishedLesson.id);
+
+    if (historyError) throw historyError;
+    if (!Number.isSafeInteger(recordedAnswers) ||
+        recordedAnswers !== gradedAnswers) {
+      return NextResponse.json(
+        { success: false, message: "أكمل الانتقال للسؤال التالي قبل تسليم إجابة أخرى." },
+        { status: 409 }
+      );
+    }
+
+    if (!Array.isArray(assessment.choices) || answer >= assessment.choices.length) {
+      return NextResponse.json(
+        { success: false, message: "اختيار الإجابة غير صالح." },
+        { status: 400 }
+      );
+    }
+
+    // Private correction stays on the trusted server after both identity
+    // and published-lesson checks; never read keys via the student's client.
+    const admin = createAdminClient();
+    const { data: privateAssessment, error: privateError } = await admin
+      .from("ai_assessments")
+      .select("id,lesson_id,correct_answer,explanation")
+      .eq("id", assessment.id)
+      .eq("student_email", user.email)
+      .eq("lesson_id", publishedLesson.id)
+      .maybeSingle();
+
+    if (privateError) throw privateError;
+    if (!privateAssessment) {
+      return NextResponse.json(
+        { success: false, message: "مفتاح تصحيح الاختبار غير متاح." },
+        { status: 404 }
+      );
+    }
+
+    /*
+     * حجز السؤال قبل منح XP.
+     * يمنع الضغط المتكرر من احتساب النتيجة أكثر من مرة.
+     */
+    const {
+      data: claimedAssessment,
+      error: claimError,
+    } = await admin
+      .from("ai_assessments")
+      .update({
+        completed: true,
+      })
+      .eq("id", assessmentId)
+      .eq(
+        "student_email",
+        user.email
+      )
+      .eq("completed", false)
+      .select("id")
+      .maybeSingle();
+
+    if (
+      claimError ||
+      !claimedAssessment
+    ) {
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            "تم إرسال إجابة هذا السؤال سابقًا.",
+        },
+        {
+          status: 409,
+        }
+      );
+    }
+
+    claimedStudentEmail = user.email;
+    claimedAssessmentId =
+      claimedAssessment.id;
+
     const correct =
       answer ===
-      assessment.correct_answer;
+      privateAssessment.correct_answer;
 
     const selectedChoice =
       Array.isArray(
@@ -243,7 +325,7 @@ export async function POST(
         : null;
 
     await saveAssessmentSessionAnswer({
-      supabase,
+      supabase: admin,
       sessionId,
       assessmentId,
       studentId:
@@ -255,31 +337,22 @@ export async function POST(
       selectedAnswer:
         answer,
       correctAnswer:
-        assessment.correct_answer,
+        privateAssessment.correct_answer,
       isCorrect:
         correct,
     });
+    // Never reopen a persisted question after a later memory/skill failure.
+    claimedAssessmentId = null;
 
-    if (assessment.lesson_id) {
-      await updateLessonMastery({
-        supabase,
-        studentId: user.id,
-        lessonId:
-          assessment.lesson_id,
-        userQuestion:
-          assessment.question,
-        assistantAnswer:
-          typeof selectedChoice ===
-            "string"
-            ? selectedChoice
-            : String(answer),
-        answeredCorrectly:
-          correct,
-      });
-    }
 
+    // The AI question result is stored in assessment_sessions and skill
+    // progress. A single generated question must not overwrite canonical
+    // academic lesson_mastery, which requires the full lesson rubric.
+
+    // The answer was graded from the private server key, so canonical
+    // skill/XP writes must use server-only credentials, not browser grants.
     await updateProgress(
-      supabase,
+      admin,
       {
         studentEmail:
           user.email,
@@ -291,11 +364,22 @@ export async function POST(
 
 
 
-    await updateStudentMemory({
-      supabase,
-      studentId:
-        user.id,
-    });
+    // Memory is secondary analytics: a legacy unverifiable answer must
+    // not turn an already saved, server-graded response into a false 500.
+    // Never suppress or change the trusted correctness itself.
+    let memorySynced = true;
+    try {
+      await updateStudentMemory({
+        // Derive from private keys + authenticated ownership.
+        // Student-provided correctness, skill and email are ignored.
+        supabase: admin,
+        studentId: user.id,
+        studentEmail: user.email,
+      });
+    } catch (memoryError) {
+      memorySynced = false;
+      console.error("STUDENT_MEMORY_RECOMPUTE_FAILED", memoryError);
+    }
 
     /*
      * بعد تسجيل نتيجة جديدة تصبح الخطة القديمة غير محدثة.
@@ -331,30 +415,28 @@ export async function POST(
 return NextResponse.json({
       success: true,
       correct,
+      memorySynced,
       score:
         correct ? 100 : 0,
-      correctAnswer:
-        assessment.correct_answer,
-      explanation:
-        assessment.explanation,
+      // Do not leak the right answer or explanation on wrong attempts.
+      correctAnswer: correct ? privateAssessment.correct_answer : null,
+      explanation: correct ? privateAssessment.explanation : null,
     });
   } catch (error) {
     /*
      * إذا فشل تحديث الإتقان أو XP بعد حجز السؤال،
      * نعيده إلى غير مكتمل حتى يمكن المحاولة مجددًا.
      */
-    if (claimedAssessmentId) {
+    if (claimedAssessmentId && claimedStudentEmail) {
       const {
         error: rollbackError,
-      } = await supabase
+      } = await createAdminClient()
         .from("ai_assessments")
         .update({
           completed: false,
         })
-        .eq(
-          "id",
-          claimedAssessmentId
-        );
+        .eq("id", claimedAssessmentId)
+        .eq("student_email", claimedStudentEmail);
 
       if (rollbackError) {
         console.error(

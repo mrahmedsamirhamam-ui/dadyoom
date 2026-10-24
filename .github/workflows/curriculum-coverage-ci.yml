@@ -3,23 +3,123 @@ name: Curriculum coverage integrity
 on:
   pull_request:
     paths:
+      - 'app/api/admin/lessons/quality-audit/route.ts'
+      - 'app/api/admin/lessons/runtime-audit/route.ts'
+      - 'app/api/admin/lessons/runtime-mcq-dump/route.ts'
+      - 'app/api/admin/lessons/quality-repair/route.ts'
+      - 'app/api/admin/lessons/activity-count/route.ts'
+      - 'app/api/admin/lessons/final-eleven-fix/route.ts'
+      - 'app/api/admin/lessons/final-four-fix/route.ts'
+      - 'app/api/admin/lessons/final-recovery/route.ts'
+      - 'app/api/admin/lessons/prepare-source-pages/route.ts'
+      - 'lib/auth/require-curriculum-admin.ts'
+      - 'tests/security/curriculum-admin-authorization.test.ts'
+      - 'tests/security/admin-curriculum-http-authorization.test.ts'
       - 'app/api/progress/**'
       - 'app/api/lessons/complete/**'
       - 'app/api/questions/answer/**'
+      - 'app/api/assessments/check/**'
+      - 'app/api/ai/assessment/next/**'
+      - 'tests/security/ai-assessment-submit-trusted-progress.test.ts'
+      - 'features/student-memory/services/updateStudentMemory.ts'
+      - 'tests/security/verified-student-memory.test.ts'
+      - 'services/progress/skills.service.ts'
+      - 'tests/security/trusted-skill-writes.test.ts'
+      - 'tests/security/ai-assessment-next-adaptive-runtime.test.ts'
+      - 'features/assessment/services/verifyAssessmentCompletionReceipt.ts'
+      - 'tests/security/assessment-completion-receipt.test.ts'
+      - 'scripts/security/proposed-assessment-completion-receipts.sql'
+      - 'tests/security/shadow-assessment-receipts-verify.sql'
+      - 'tests/security/formative-grading-no-persistence.test.ts'
+      - 'tests/security/formative-runtime.vitest.config.mts'
+      - 'app/api/lesson-activities/check/**'
+      - 'lib/lesson-activities/progress-state.ts'
+      - 'tests/security/activity-check-route.test.ts'
       - 'components/lesson/MultipleChoiceQuestion.tsx'
       - 'app/lessons/**/page.tsx'
       - 'features/questions/services/grade-stored-mcq.ts'
+      - 'features/practice/actions/submitPractice.ts'
+      - 'tests/security/lesson-practice-server-grading.test.ts'
+      - 'features/questions/queries/getLessonQuestions.ts'
+      - 'features/teacher/queries/getLessonQuestions.ts'
+      - 'features/teacher/actions/manageLessonQuestions.ts'
+      - 'tests/security/server-private-activity-answer-read.test.ts'
+      - 'tests/security/teacher-private-question-access.test.ts'
       - 'tests/security/server-graded-mcq.test.ts'
+      - 'tests/security/question-answer-route-runtime.test.ts'
       - 'tests/security/server-only-answer-key-read.test.ts'
       - 'tests/security/public-lesson-bundle-rpc.test.ts'
       - 'supabase/migrations/20261022195032_sanitize_public_get_lesson_page_bundle_answer_keys.sql'
+      - 'scripts/security/proposed-public-lesson-activity-rpc.sql'
+      - 'tests/security/shadow-public-activity-rpc-setup.sql'
+      - 'tests/security/shadow-public-activity-rpc-baseline.sql'
+      - 'tests/security/shadow-public-activity-rpc-verified.sql'
+      - 'tests/security/shadow-public-activity-rpc-rollback.sql'
+      - 'tests/security/shadow-question-column-grants.sql'
+      - 'scripts/security/proposed-question-key-column-cutover.sql'
+      - 'tests/security/shadow-question-key-cutover-setup.sql'
+      - 'tests/security/shadow-question-key-cutover-verify.sql'
+      - 'scripts/security/proposed-activity-answer-column-cutover.sql'
+      - 'tests/security/shadow-activity-answer-cutover-setup.sql'
+      - 'tests/security/shadow-activity-answer-cutover-verify.sql'
+      - 'tests/security/activity-rpc-redaction-parity.test.ts'
       - 'tests/security/student-question-payload.test.ts'
       - 'features/questions/services/public-lesson-questions.ts'
       - 'features/lessons/queries/getLessonPageBundle.ts'
+      - 'features/lesson-activities/services/public-lesson-activities.ts'
+      - 'tests/security/student-safe-lesson-activities.test.ts'
+      - 'features/lessons/services/bahrain-draft-preview-access.ts'
+      - 'tests/security/bahrain-draft-preview-access.test.ts'
       - 'features/adaptive-learning/queries/getWeakQuestions.ts'
+      - 'features/adaptive-learning/services/evaluatePerformance.ts'
+      - 'features/adaptive-learning/services/lesson-practice-snapshot.ts'
+      - 'tests/adaptive-lesson-practice.test.ts'
+      - 'tests/public-lesson-auth-boundary.test.ts'
       - 'features/adaptive-learning/components/WeakQuestionsReview.tsx'
       - 'app/lessons/**/CompleteLessonButton.tsx'
       - 'features/student-progress/actions/completeLesson.ts'
+      - 'features/student-progress/repositories/progress.repository.ts'
+      - 'features/student-progress/services/progress.ts'
+      - 'app/api/semantic-search/stream/route.ts'
+      - 'app/api/ai/assessment/submit/route.ts'
+      - 'app/api/ai/assessment/**'
+      - 'features/assessment/services/advanceAssessmentSession.ts'
+      - 'features/assessment/services/getAssessmentSessionAnalytics.ts'
+      - 'features/assessment/services/getLatestAssessmentAnalytics.ts'
+      - 'tests/security/ai-assessment-client-trust.test.ts'
+      - 'tests/security/ai-assessment-session-generation.test.ts'
+      - 'features/assessment/services/startAssessmentSession.ts'
+      - 'tests/security/assessment-session-start-integrity.test.ts'
+      - 'scripts/security/proposed-assessment-session-active-unique-index.sql'
+      - 'tests/security/shadow-assessment-session-race-setup.sql'
+      - 'tests/security/shadow-assessment-session-race-verify.sql'
+      - 'scripts/security/proposed-assessment-answer-slot-lock.sql'
+      - 'tests/security/shadow-assessment-answer-slot-setup.sql'
+      - 'tests/security/shadow-assessment-answer-slot-verify.sql'
+      - 'tests/security/ai-assessment-private-hash-runtime.test.ts'
+      - 'features/assessment/components/LessonAssessment.tsx'
+      - 'tests/security/ai-session-analytics.test.ts'
+      - 'features/semantic-search/components/LessonSemanticSearch.tsx'
+      - 'features/semantic-search/services/updateLessonMastery.ts'
+      - 'tests/security/tutor-not-mastery.test.ts'
+      - 'scripts/security-assessment-permissions-audit.sql'
+      - 'scripts/audit-assessment-consumers.mjs'
+      - 'tests/security/assessment-grants-audit.test.ts'
+      - 'tests/security/shadow-question-grants.sql'
+      - 'tests/security/shadow-grade-write-grants.sql'
+      - 'scripts/security/proposed-grade-write-restrictions.sql'
+      - 'scripts/security/proposed-ai-assessment-private-key-grants.sql'
+      - 'services/ai/assessment.service.ts'
+      - 'tests/security/legacy-ai-generation-server-only.test.ts'
+      - 'tests/security/shadow-ai-key-grants-setup.sql'
+      - 'tests/security/shadow-ai-key-grants-verify.sql'
+      - 'scripts/security/proposed-adaptive-progress-write-restrictions.sql'
+      - 'tests/security/shadow-adaptive-grants-setup.sql'
+      - 'tests/security/shadow-adaptive-grants-verify.sql'
+      - 'features/learning-plan/services/adaptive-path-lifecycle.ts'
+      - 'tests/security/shadow-proposed-grade-grants-verify.sql'
+      - 'tests/security/owner-scoped-progress-repository.test.ts'
+      - 'tests/security/lesson-progress-idempotent-start.test.ts'
       - 'features/lesson-mastery/actions/syncLessonMastery.ts'
       - 'tests/security/lesson-mastery-completion-only.test.ts'
       - 'features/lesson-mastery/services/score-graded-activities.ts'
@@ -29,6 +129,13 @@ on:
       - 'features/student-progress/services/completion-gates.ts'
       - 'scripts/curriculum-coverage.mjs'
       - 'scripts/curriculum-production-audit.sql'
+      - 'lib/curriculum/book-catalog-reference.ts'
+      - 'app/lessons/[id]/page.tsx'
+      - 'tests/curriculum-book-catalog-reference.test.ts'
+      - 'types/cache-life.d.ts'
+      - 'tests/cloudflare-cache-compatibility.test.ts'
+      - 'tests/curriculum-readiness-live-gates.test.ts'
+      - 'scripts/smoke-next-production-runtime.mjs'
       - 'app/quiz/**'
       - 'tests/security/safe-questions-view.test.ts'
       - 'supabase/migrations/20261022150911_create_dadyoom_student_safe_questions_view.sql'
@@ -63,10 +170,30 @@ jobs:
         run: npm run curriculum:coverage
       - name: Test that missing packs never report full country coverage
         run: npx vitest run tests/curriculum-coverage.test.ts
+      - name: Verify published assessment and import-placeholder readiness audit
+        run: npx vitest run tests/curriculum-readiness-live-gates.test.ts
+      - name: Verify book index nodes cannot masquerade as graded lessons
+        run: npx vitest run tests/curriculum-book-catalog-reference.test.ts
+      - name: Verify public Next cache type declarations are Worker-compatible
+        run: npx vitest run tests/cloudflare-cache-compatibility.test.ts
+      - name: Execute real lesson practice auth and trusted-key scoring tests
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/lesson-practice-server-grading.test.ts
+      - name: Verify adaptive practice progress cannot falsely award mastery
+        run: npx vitest run tests/adaptive-lesson-practice.test.ts
+      - name: Verify public lesson UI hides private grading widgets
+        run: npx vitest run tests/public-lesson-auth-boundary.test.ts
       - name: Verify canonical lesson completion entry points
         run: npx vitest run tests/security/lesson-completion-entrypoints.test.ts tests/security/lesson-mastery-gates.test.ts
       - name: Verify authoritative lesson question grading
         run: npx vitest run tests/security/server-graded-mcq.test.ts
+      - name: Execute no-network grading API and student ownership runtime tests
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/question-answer-route-runtime.test.ts
+      - name: Verify private Bahrain draft preview requires server-owned entitlement
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/bahrain-draft-preview-access.test.ts
+      - name: Execute lesson bundle / activity field redaction tests
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/student-safe-lesson-activities.test.ts
+      - name: Check PostgreSQL and TypeScript activity-key filtering parity
+        run: npx vitest run tests/security/activity-rpc-redaction-parity.test.ts
       - name: Verify student-safe question view migration and quiz cutover
         run: npx vitest run tests/security/safe-questions-view.test.ts
       - name: Verify lesson question keys do not reach student payloads
@@ -77,6 +204,54 @@ jobs:
         run: npx vitest run tests/security/weighted-activity-mastery.test.ts
       - name: Verify private answer-key lookup
         run: npx vitest run tests/security/server-only-answer-key-read.test.ts
+      - name: Verify teacher-only stored answer-key access
+        run: npx vitest run tests/security/teacher-private-question-access.test.ts
+      - name: Verify private activity keys stay on server
+        run: npx vitest run tests/security/server-private-activity-answer-read.test.ts
+      - name: Verify server grading and completed-progress preservation
+        run: npx vitest run tests/security/activity-check-route.test.ts
+      - name: Exercise curriculum admin HTTP gates before private answer reads or repair
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/curriculum-admin-authorization.test.ts tests/security/admin-curriculum-http-authorization.test.ts
+      - name: Verify owner-scoped and concurrent-idempotent trusted lesson starts
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/owner-scoped-progress-repository.test.ts tests/security/lesson-progress-idempotent-start.test.ts
+      - name: Verify tutoring cannot award academic mastery
+        run: npx vitest run tests/security/tutor-not-mastery.test.ts
+      - name: Execute no-network formative grading spoofing and no-persistence tests
+        run: npx vitest run --config tests/security/formative-runtime.vitest.config.mts tests/security/formative-grading-no-persistence.test.ts
+      - name: Verify immutable assessment completion receipts and safe retries
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/assessment-completion-receipt.test.ts
+      - name: Verify trusted skill first-attempt persistence and bounded scores
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/trusted-skill-writes.test.ts
+      - name: Recompute student memory only from owned trusted keys and scores
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/verified-student-memory.test.ts
+      - name: Enforce server-only AI answer submission progress and memory writes
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/ai-assessment-submit-trusted-progress.test.ts
+      - name: Execute real AI assessment-next authenticated step completion tests
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/ai-assessment-next-adaptive-runtime.test.ts
+      - name: Verify legacy Gemini assessment generator cannot reach browser bundles
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/legacy-ai-generation-server-only.test.ts
+      - name: Confirm AI duplicate hashes stay private after safe column grants
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/ai-assessment-private-hash-runtime.test.ts
+      - name: Verify AI assessment keys and authoritative session progression
+        run: npx vitest run tests/security/ai-assessment-client-trust.test.ts
+      - name: Reject unreadable or foreign assessment session starts
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/assessment-session-start-integrity.test.ts
+      - name: Execute no-network adaptive question session authorization and reuse tests
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/ai-assessment-session-generation.test.ts
+      - name: Verify AI assessment analytics with mocked trusted keys
+        run: npx vitest run tests/security/ai-session-analytics.test.ts
+      - name: Index all static assessment table / RPC consumers
+        run: node scripts/audit-assessment-consumers.mjs
+      - name: Save nonsecret consumer inventory
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: assessment-source-consumers
+          path: assessment-consumers-ci.json
+          retention-days: 3
+          if-no-files-found: ignore
+      - name: Verify read-only assessment grants audit
+        run: npx vitest run tests/security/assessment-grants-audit.test.ts
       - name: Verify public lesson bundle excludes answer keys
         run: npx vitest run tests/security/public-lesson-bundle-rpc.test.ts
       - name: TypeScript
@@ -85,3 +260,341 @@ jobs:
         run: npm run lint
       - name: Production build
         run: npm run build
+      - name: Start compiled Next.js and smoke-test anonymous runtime
+        run: node scripts/smoke-next-production-runtime.mjs
+
+  shadow-question-grants:
+    name: Disposable PostgreSQL question grants + rollback
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_PASSWORD: disposable-ci-only
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Exercise secure view cutover and rollback against disposable database
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres \
+            < tests/security/shadow-question-grants.sql
+          echo "SHADOW_QUESTION_GRANTS_REHEARSAL=PASS"
+      - name: Rehearse column grants without breaking invoker student question view
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres \
+            < tests/security/shadow-question-column-grants.sql
+          echo "SHADOW_QUESTION_COLUMN_GRANTS_REHEARSAL=PASS"
+      - name: Prove published question keys can be hidden from anon without breaking quiz
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_question_privacy
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_question_privacy \
+            < tests/security/shadow-question-key-cutover-setup.sql
+          if error_text=$( {
+              echo "SET dadyoom.question_privacy_rehearsal = 'enabled';"
+              cat scripts/security/proposed-question-key-column-cutover.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Question-key proposal unexpectedly accepted the production-like database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_QUESTION_KEY_CUTOVER_BLOCKED'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_question_privacy \
+              < scripts/security/proposed-question-key-column-cutover.sql 2>&1); then
+            echo "Question-key proposal unexpectedly accepted missing rehearsal flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_QUESTION_KEY_CUTOVER_BLOCKED'
+          {
+            echo "SET dadyoom.question_privacy_rehearsal = 'enabled';"
+            cat scripts/security/proposed-question-key-column-cutover.sql
+            cat tests/security/shadow-question-key-cutover-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_question_privacy
+          echo "SHADOW_PUBLIC_QUESTION_PRIVATE_KEY_CUTOVER=PASS"
+      - name: Rehearse hiding activity answer keys without breaking student content
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_activity_privacy
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_privacy \
+            < tests/security/shadow-activity-answer-cutover-setup.sql
+          if error_text=$( {
+              echo "SET dadyoom.activity_privacy_rehearsal='enabled';"
+              cat scripts/security/proposed-activity-answer-column-cutover.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Activity privacy proposal unexpectedly accepted a non-disposable database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_ACTIVITY_ANSWER_CUTOVER_BLOCKED'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_privacy \
+              < scripts/security/proposed-activity-answer-column-cutover.sql 2>&1); then
+            echo "Activity privacy proposal unexpectedly accepted a missing rehearsal flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_ACTIVITY_ANSWER_CUTOVER_BLOCKED'
+          {
+            echo "SET dadyoom.activity_privacy_rehearsal='enabled';"
+            cat scripts/security/proposed-activity-answer-column-cutover.sql
+            cat tests/security/shadow-activity-answer-cutover-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_privacy
+          echo "SHADOW_ACTIVITY_ANSWER_COLUMN_PRIVACY=PASS"
+      - name: Prove forged own scores and rehearse six-table write-grant cutover
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_grading
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_grading \
+            < tests/security/shadow-grade-write-grants.sql
+          echo "SHADOW_GRADE_WRITES_REHEARSAL=PASS"
+      - name: Ensure grade-write candidate refuses other databases and missing CI approval flag
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          if error_text=$( {
+              echo "SET dadyoom.grade_grant_rehearsal = 'enabled';"
+              cat scripts/security/proposed-grade-write-restrictions.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Candidate unexpectedly accepted a database other than shadow_grading" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_REVOKE_BLOCKED_DISPOSABLE_TEST_ONLY'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_grading \
+              < scripts/security/proposed-grade-write-restrictions.sql 2>&1); then
+            echo "Candidate unexpectedly ran without the disposable test flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_REVOKE_BLOCKED_DISPOSABLE_TEST_ONLY'
+          echo "SHADOW_GRADE_CANDIDATE_NONPRODUCTION_GUARD=PASS"
+      - name: Rehearse exact six-table grade-write restriction candidate, trusted writes and rollback
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          {
+            echo "SET dadyoom.grade_grant_rehearsal = 'enabled';"
+            cat scripts/security/proposed-grade-write-restrictions.sql
+            cat tests/security/shadow-proposed-grade-grants-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_grading
+          echo "SHADOW_GRADE_RESTRICTION_CANDIDATE_REHEARSAL=PASS"
+      - name: Reproduce adaptive grade forgery and rehearse guarded 3-table role lockdown
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_adaptive
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_adaptive \
+            < tests/security/shadow-adaptive-grants-setup.sql
+          if error_text=$( {
+              echo "SET dadyoom.adaptive_rehearsal = 'enabled';"
+              cat scripts/security/proposed-adaptive-progress-write-restrictions.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1); then
+            echo "Adaptive proposal unexpectedly accepted wrong database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_ADAPTIVE_REVOKE_BLOCKED_DISPOSABLE_TEST_ONLY'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_adaptive \
+              < scripts/security/proposed-adaptive-progress-write-restrictions.sql 2>&1); then
+            echo "Adaptive proposal unexpectedly accepted missing test flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_ADAPTIVE_REVOKE_BLOCKED_DISPOSABLE_TEST_ONLY'
+          {
+            echo "SET dadyoom.adaptive_rehearsal = 'enabled';"
+            cat scripts/security/proposed-adaptive-progress-write-restrictions.sql
+            cat tests/security/shadow-adaptive-grants-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_adaptive
+          echo "SHADOW_ADAPTIVE_ROLE_LOCKDOWN_REHEARSAL=PASS"
+      - name: Rehearse immutable service-only assessment completion receipts in disposable Postgres
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_receipts
+          # Supabase defines service_role; disposable vanilla PG does not.
+          # Only synthetic test role, never a production credential.
+          docker exec "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_receipts -c "CREATE ROLE service_role NOLOGIN BYPASSRLS"
+          if error_text=$( {
+              echo "SET dadyoom.receipt_rehearsal = 'enabled';"
+              cat scripts/security/proposed-assessment-completion-receipts.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Receipt DDL unexpectedly accepted the wrong database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_RECEIPT_DDL_BLOCKED_DISPOSABLE_TEST_ONLY'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_receipts \
+              < scripts/security/proposed-assessment-completion-receipts.sql 2>&1); then
+            echo "Receipt DDL unexpectedly accepted a missing test flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_RECEIPT_DDL_BLOCKED_DISPOSABLE_TEST_ONLY'
+          {
+            echo "SET dadyoom.receipt_rehearsal = 'enabled';"
+            cat scripts/security/proposed-assessment-completion-receipts.sql
+            cat tests/security/shadow-assessment-receipts-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_receipts
+          echo "SHADOW_ASSESSMENT_RECEIPTS_REHEARSAL=PASS"
+      - name: Rehearse unique active assessment sessions and exact conflict rollback
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_session_start
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_session_start \
+            < tests/security/shadow-assessment-session-race-setup.sql
+          if error_text=$( {
+              echo "SET dadyoom.session_start_rehearsal = 'enabled';"
+              cat scripts/security/proposed-assessment-session-active-unique-index.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Session unique proposal unexpectedly accepted production-like database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_SESSION_UNIQUE_INDEX_BLOCKED_DISPOSABLE_ONLY'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_session_start \
+              < scripts/security/proposed-assessment-session-active-unique-index.sql 2>&1); then
+            echo "Session unique proposal unexpectedly accepted missing rehearsal flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_SESSION_UNIQUE_INDEX_BLOCKED_DISPOSABLE_ONLY'
+          if error_text=$( {
+              echo "SET dadyoom.session_start_rehearsal = 'enabled';"
+              cat scripts/security/proposed-assessment-session-active-unique-index.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_session_start 2>&1 ); then
+            echo "Candidate unexpectedly accepted existing duplicate active sessions" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'DUPLICATE_ACTIVE_ASSESSMENT_SESSIONS_MANUAL_REVIEW_REQUIRED'
+          docker exec "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_session_start \
+            -c "DELETE FROM public.assessment_sessions WHERE id='22222222-2222-4222-8222-222222222222'"
+          {
+            echo "SET dadyoom.session_start_rehearsal = 'enabled';"
+            cat scripts/security/proposed-assessment-session-active-unique-index.sql
+            cat tests/security/shadow-assessment-session-race-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_session_start
+          echo "SHADOW_ASSESSMENT_SESSION_UNIQUE_RACE_REHEARSAL=PASS"
+      - name: Rehearse transactional one-answer-per-question slots and rollback in disposable Postgres
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_assessment_slots
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_assessment_slots \
+            < tests/security/shadow-assessment-answer-slot-setup.sql
+          if error_text=$( {
+              echo "SET dadyoom.assessment_slot_rehearsal = 'enabled';"
+              cat scripts/security/proposed-assessment-answer-slot-lock.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Slot DDL unexpectedly accepted a non-disposable database" >&2
+            exit 1
+          fi
+          printf '%s\\n' "$error_text" | grep -q 'PRODUCTION_ASSESSMENT_SLOT_DDL_BLOCKED_DISPOSABLE_ONLY'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_assessment_slots \
+              < scripts/security/proposed-assessment-answer-slot-lock.sql 2>&1); then
+            echo "Slot DDL unexpectedly accepted a missing test flag" >&2
+            exit 1
+          fi
+          printf '%s\\n' "$error_text" | grep -q 'PRODUCTION_ASSESSMENT_SLOT_DDL_BLOCKED_DISPOSABLE_ONLY'
+          docker exec "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_assessment_slots \
+            -c "UPDATE public.assessment_sessions SET correct_answers=7 WHERE id='11111111-1111-4111-8111-111111111111'"
+          if error_text=$( {
+              echo "SET dadyoom.assessment_slot_rehearsal = 'enabled';"
+              cat scripts/security/proposed-assessment-answer-slot-lock.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_assessment_slots 2>&1 ); then
+            echo "Slot preflight unexpectedly accepted inconsistent historic grades" >&2
+            exit 1
+          fi
+          printf '%s\\n' "$error_text" | grep -q 'ASSESSMENT_SLOT_LEGACY_COUNTERS_MANUAL_REVIEW_REQUIRED'
+          docker exec "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_assessment_slots \
+            -c "UPDATE public.assessment_sessions SET correct_answers=1 WHERE id='11111111-1111-4111-8111-111111111111'"
+          {
+            echo "SET dadyoom.assessment_slot_rehearsal = 'enabled';"
+            cat scripts/security/proposed-assessment-answer-slot-lock.sql
+            cat tests/security/shadow-assessment-answer-slot-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_assessment_slots
+          echo "SHADOW_ASSESSMENT_ANSWER_SLOT_ATOMIC_RACE_REHEARSAL=PASS"
+      - name: Rehearse AI assessment key confidentiality, owner-only read and direct-write cutover
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_ai_keys
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_ai_keys \
+            < tests/security/shadow-ai-key-grants-setup.sql
+          if error_text=$( {
+              echo "SET dadyoom.ai_keys_rehearsal = 'enabled';"
+              cat scripts/security/proposed-ai-assessment-private-key-grants.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "AI key proposal unexpectedly accepted non-disposable database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_AI_KEY_REVOKE_BLOCKED_DISPOSABLE_TEST_ONLY'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_ai_keys \
+              < scripts/security/proposed-ai-assessment-private-key-grants.sql 2>&1); then
+            echo "AI key proposal unexpectedly accepted missing test flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_AI_KEY_REVOKE_BLOCKED_DISPOSABLE_TEST_ONLY'
+          {
+            echo "SET dadyoom.ai_keys_rehearsal = 'enabled';"
+            cat scripts/security/proposed-ai-assessment-private-key-grants.sql
+            cat tests/security/shadow-ai-key-grants-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_ai_keys
+          echo "SHADOW_AI_PRIVATE_KEYS_GRANTS_REHEARSAL=PASS"
+      - name: Rehearse direct lesson RPC nested grading-key redaction and rollback
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_activity_rpc
+          cat \
+            tests/security/shadow-public-activity-rpc-setup.sql \
+            supabase/migrations/20261022195032_sanitize_public_get_lesson_page_bundle_answer_keys.sql \
+            tests/security/shadow-public-activity-rpc-baseline.sql \
+            scripts/security/proposed-public-lesson-activity-rpc.sql \
+            tests/security/shadow-public-activity-rpc-verified.sql \
+            supabase/migrations/20261022195032_sanitize_public_get_lesson_page_bundle_answer_keys.sql \
+            tests/security/shadow-public-activity-rpc-rollback.sql \
+            | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_rpc
+          echo "SHADOW_PUBLIC_ACTIVITY_RPC_REHEARSAL=PASS"

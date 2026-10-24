@@ -63,7 +63,7 @@ export function analyzeAssessment(
   return {
 
     overallPercentage: Math.round(
-      (totalCorrect / questions.length) * 100
+      (totalCorrect / Math.max(questions.length, 1)) * 100
     ),
 
     strengths,

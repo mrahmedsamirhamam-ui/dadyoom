@@ -1,4 +1,3 @@
-import { invalidateStudentCaches } from "@/features/student-progress/services/invalidate-student-caches";
 import { logger } from "@/lib/logger";
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse } from "next/server";
@@ -137,93 +136,6 @@ async function createSupabaseServerClient() {
       },
     }
   );
-}
-
-async function updateStudentSkill(
-  supabase: Awaited<ReturnType<typeof createSupabaseServerClient>>,
-  studentEmail: string,
-  skill: string,
-  score: number,
-  correct: boolean
-) {
-  const { data: existing, error: selectError } = await supabase
-    .from("student_skills")
-    .select("score, attempts, correct_attempts")
-    .eq("student_email", studentEmail)
-    .eq("skill", skill)
-    .maybeSingle();
-
-  if (selectError) {
-    throw selectError;
-  }
-
-  const previousAttempts = existing?.attempts ?? 0;
-  const previousScore = existing?.score ?? 0;
-  const nextAttempts = previousAttempts + 1;
-
-  const nextScore = Math.round(
-    (previousScore * previousAttempts + score) / nextAttempts
-  );
-
-  const { error: upsertError } = await supabase
-    .from("student_skills")
-    .upsert(
-      {
-        student_email: studentEmail,
-        skill,
-        score: nextScore,
-        attempts: nextAttempts,
-        correct_attempts:
-          (existing?.correct_attempts ?? 0) +
-          (correct ? 1 : 0),
-        updated_at: new Date().toISOString(),
-      },
-      {
-        onConflict: "student_email,skill",
-      }
-    );
-
-  if (upsertError) {
-    throw upsertError;
-  }
-}
-
-async function updateStudentMistake(
-  supabase: Awaited<ReturnType<typeof createSupabaseServerClient>>,
-  studentEmail: string,
-  category: string,
-  lessonId: string | null
-) {
-  const { data: existing, error: selectError } = await supabase
-    .from("student_mistakes")
-    .select("mistake_count")
-    .eq("student_email", studentEmail)
-    .eq("category", category)
-    .maybeSingle();
-
-  if (selectError) {
-    throw selectError;
-  }
-
-  const { error: upsertError } = await supabase
-    .from("student_mistakes")
-    .upsert(
-      {
-        student_email: studentEmail,
-        category,
-        mistake_count:
-          (existing?.mistake_count ?? 0) + 1,
-        last_lesson_id: lessonId,
-        updated_at: new Date().toISOString(),
-      },
-      {
-        onConflict: "student_email,category",
-      }
-    );
-
-  if (upsertError) {
-    throw upsertError;
-  }
 }
 
 type GeminiApiError = {
@@ -397,12 +309,6 @@ export async function POST(request: Request) {
     const body =
       (await request.json()) as AssessmentRequestBody;
 
-    const lessonId =
-      typeof body.lessonId === "string" &&
-      body.lessonId.trim()
-        ? body.lessonId.trim()
-        : null;
-
     const items = Array.isArray(body.items)
       ? body.items
       : [];
@@ -428,6 +334,9 @@ export async function POST(request: Request) {
       );
     }
 
+    // The request owns the model answers; they are not verifiable against a
+    // published question key. This endpoint must remain feedback-only.
+    // Academic progress is written exclusively by trusted grading routes.
     const safeItems = items.map((item, index) => ({
       number: index + 1,
       question: String(item.question ?? "").slice(
@@ -580,8 +489,9 @@ ${JSON.stringify(safeItems)}
           const answer = item.studentAnswer.trim().toLowerCase();
 
           const correct =
+            model.length > 0 &&
             answer.length > 0 &&
-            (answer === model || answer.includes(model));
+            (answer === model || (model.length >= 3 && answer.includes(model)));
 
           return {
             correct,
@@ -602,137 +512,16 @@ ${JSON.stringify(safeItems)}
             mistakes: correct ? [] : ["الإجابة غير مطابقة"],
           };
         });
-        /*
-         * FALLBACK_ASSESSMENT_PERSISTENCE
-         *
-         * عند تعذر Gemini بسبب 429 تمر النتيجة الاحتياطية
-         * بنفس مسار الحفظ والتقدم للنتيجة الطبيعية.
-         */
-        const fallbackAssessmentRows =
-          results.map(
-            (
-              result: GradingResult,
-              index: number
-            ) => ({
-              student_email:
-                user.email!,
-
-              lesson_id:
-                lessonId,
-
-              question:
-                safeItems[index].question,
-
-              student_answer:
-                safeItems[index].studentAnswer,
-
-              model_answer:
-                safeItems[index].modelAnswer,
-
-              score:
-                result.score,
-
-              correct:
-                result.correct,
-
-              feedback:
-                result.feedback,
-
-              teacher_comment:
-                result.teacherComment,
-
-              skill:
-                result.skill,
-
-              mistake_category:
-                result.mistakeCategory,
-
-              difficulty:
-                result.difficulty,
-
-              recommendation:
-                result.recommendation,
-
-              strengths:
-                result.strengths,
-
-              mistakes:
-                result.mistakes,
-            })
-          );
-
-        const {
-          error:
-            fallbackAssessmentError,
-        } =
-          await supabase
-            .from(
-              "student_assessments"
-            )
-            .insert(
-              fallbackAssessmentRows
-            );
-
-        if (
-          fallbackAssessmentError
-        ) {
-          console.error(
-            "FALLBACK_ASSESSMENT_SAVE_ERROR:",
-            fallbackAssessmentError
-          );
-
-          return NextResponse.json(
-            {
-              success: false,
-              message:
-                "تم التصحيح الاحتياطي، لكن تعذر حفظ النتائج.",
-              error:
-                fallbackAssessmentError.message,
-            },
-            {
-              status: 500,
-            }
-          );
-        }
-
-        for (
-          const result
-          of results
-        ) {
-          await updateStudentSkill(
-            supabase,
-            user.email,
-            result.skill,
-            result.score,
-            result.correct
-          );
-
-          if (
-            !result.correct &&
-            result.mistakeCategory
-          ) {
-            await updateStudentMistake(
-              supabase,
-              user.email,
-              result.mistakeCategory,
-              lessonId
-            );
-          }
-        }
-
-        await invalidateStudentCaches({
-          studentId:
-            user.id,
-          studentEmail:
-            user.email,
-          supabase,
-        });
-
+        // Formative practice only: the caller supplied both modelAnswer and
+        // studentAnswer. Never persist a grade or award skill mastery.
         return NextResponse.json({
           success: true,
           fallback: true,
+          practiceOnly: true,
+          persisted: false,
           results,
-        });}
+        });
+      }
 
       console.error(
         "GEMINI_GRADING_ERROR:",
@@ -792,83 +581,13 @@ ${JSON.stringify(safeItems)}
       (item: unknown) => cleanResult(item)
     );
 
-    const assessmentRows = results.map(
-      (result: GradingResult, index: number) => ({
-        student_email: user.email!,
-        lesson_id: lessonId,
-        question: safeItems[index].question,
-        student_answer:
-          safeItems[index].studentAnswer,
-        model_answer:
-          safeItems[index].modelAnswer,
-        score: result.score,
-        correct: result.correct,
-        feedback: result.feedback,
-        teacher_comment:
-          result.teacherComment,
-        skill: result.skill,
-        mistake_category:
-          result.mistakeCategory,
-        difficulty: result.difficulty,
-        recommendation:
-          result.recommendation,
-        strengths: result.strengths,
-        mistakes: result.mistakes,
-      })
-    );
-
-    const { error: assessmentError } = await supabase
-      .from("student_assessments")
-      .insert(assessmentRows);
-
-    if (assessmentError) {
-      console.error(
-        "ASSESSMENT_SAVE_ERROR:",
-        assessmentError
-      );
-
-      return NextResponse.json(
-        {
-          success: false,
-          message:
-            "تم التصحيح، لكن تعذر حفظ النتائج.",
-          error: assessmentError.message,
-        },
-        { status: 500 }
-      );
-    }
-
-    for (const result of results) {
-      await updateStudentSkill(
-        supabase,
-        user.email,
-        result.skill,
-        result.score,
-        result.correct
-      );
-
-      if (
-        !result.correct &&
-        result.mistakeCategory
-      ) {
-        await updateStudentMistake(
-          supabase,
-          user.email,
-          result.mistakeCategory,
-          lessonId
-        );
-      }
-    }
-    // STUDENT_CACHE_INVALIDATION_POINT
-    await invalidateStudentCaches({
-      studentId: user.id,
-      studentEmail: user.email,
-      supabase,
-    });
-
-
+    // Unverified caller-supplied reference answers are not academic evidence.
+    // These AI comments may assist practice, but only the separately
+    // server-authorized assessment routes can persist graded attempts.
     return NextResponse.json({
       success: true,
+      practiceOnly: true,
+      persisted: false,
       results,
     });
   } catch (error) {

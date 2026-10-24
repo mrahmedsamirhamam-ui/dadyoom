@@ -1,5 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { canReadBahrainDraftPreview } from "@/features/lessons/services/bahrain-draft-preview-access";
+import { publicLessonActivities, type StudentLessonActivity } from "@/features/lesson-activities/services/public-lesson-activities";
 import {
   publicLessonQuestions,
   type StudentQuestion,
@@ -13,28 +15,7 @@ type NeighborLesson = {
 
 export type BundledLessonQuestion = StudentQuestion;
 
-export type BundledLessonActivity = {
-  id: string;
-  lesson_id: string;
-  title: string;
-  activity_type:
-    | "listening"
-    | "speaking"
-    | "reading"
-    | "multiple_choice"
-    | "matching"
-    | "writing"
-    | "fill_blank"
-    | string;
-  instructions: string | null;
-  content: Record<string, unknown>;
-  activity_order: number;
-  points: number;
-  is_published: boolean;
-  section: string;
-  created_at: string;
-  updated_at: string;
-};
+export type BundledLessonActivity = StudentLessonActivity;
 
 export type BundledLesson = {
   id: string;
@@ -143,21 +124,22 @@ export async function getLessonPageBundle(
     // The database RPC currently returns raw stored question rows.
     // Strip keys and solutions BEFORE any student-facing page receives them.
     const safeQuestions = publicLessonQuestions(bundle.questions);
+    const safeActivities = publicLessonActivities(bundle.activities);
 
     if (
       !bundle.student ||
-      !Array.isArray(bundle.activities) ||
-      bundle.activities.length === 0
+      safeActivities.length === 0
     ) {
       return {
         ...bundle,
         questions: safeQuestions,
+        activities: safeActivities,
         activityAttempts: [],
       };
     }
 
     const activityIds =
-      bundle.activities.map(
+      safeActivities.map(
         (activity) => activity.id
       );
 
@@ -186,6 +168,7 @@ export async function getLessonPageBundle(
     return {
       ...bundle,
       questions: safeQuestions,
+      activities: safeActivities,
 
       activityAttempts:
         (
@@ -202,7 +185,7 @@ export async function getLessonPageBundle(
   // Conditions:
   // - preview environment flag enabled
   // - authenticated user
-  // - user's account country = Bahrain
+  // - explicit verified app_metadata preview entitlement + Bahrain profile
   // - requested lesson belongs to Bahrain
   // - requested lesson status = draft
   //
@@ -239,21 +222,9 @@ export async function getLessonPageBundle(
     throw profileError;
   }
 
-  const accountCountry =
-    String(
-      profile?.country ??
-      user.user_metadata?.country ??
-      ""
-    )
-      .trim()
-      .toUpperCase();
-
-  const isBahrainAccount =
-    accountCountry === "BH" ||
-    accountCountry === "BAHRAIN" ||
-    accountCountry === "البحرين";
-
-  if (!isBahrainAccount) {
+  // Auth user_metadata and profiles.country can be edited by students.
+  // Neither may independently authorize a private unpublished lesson.
+  if (!canReadBahrainDraftPreview(user.app_metadata, profile?.country)) {
     return null;
   }
 
@@ -551,7 +522,7 @@ export async function getLessonPageBundle(
     questionsResult.data ?? [];
 
   const activities =
-    activitiesResult.data ?? [];
+    publicLessonActivities(activitiesResult.data);
 
   // ==========================================================
   // Question attempts.
@@ -696,9 +667,7 @@ export async function getLessonPageBundle(
     questions:
       publicLessonQuestions(questions),
 
-    activities:
-      activities as unknown as
-        BundledLessonActivity[],
+    activities,
 
     student: {
       id: user.id,

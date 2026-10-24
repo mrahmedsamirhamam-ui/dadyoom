@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { getCorrectAnswerSpec } from "@/lib/lesson-activities/grading";
 import { invalidateStudentCaches } from "@/features/student-progress/services/invalidate-student-caches";
 import { syncLearningProfile } from "@/features/learning-profile/services/sync-profile";
@@ -132,6 +133,21 @@ export async function completeLessonAction(
     );
   }
 
+  // The student-owned progress record is not permission to read draft
+  // answers. First check their RLS-visible published lesson.
+  const { data: visibleLesson, error: lessonVisibilityError } = await supabase
+    .from("lessons")
+    .select("id")
+    .eq("id", progress.lesson_id)
+    .eq("status", "published")
+    .maybeSingle();
+
+  if (lessonVisibilityError || !visibleLesson) {
+    throw new Error("هذا الدرس غير متاح للإكمال.");
+  }
+
+  const admin = createAdminClient();
+
 
   /*
    * The current lessons table does not require a skill column.
@@ -184,7 +200,7 @@ export async function completeLessonAction(
   const {
     data: activityRows,
     error: activitiesError,
-  } = await supabase
+  } = await admin
     .from("lesson_activities")
     .select(`
       id,
@@ -496,7 +512,9 @@ export async function completeLessonAction(
    */
   const adaptiveLessonStep =
     await completeAdaptiveStep({
-      supabase,
+      // This follows the authenticated lesson and the server's verified
+      // mastery gate. Browser tokens cannot authorize this state change.
+      supabase: admin,
       studentId:
         user.id,
       lessonId:

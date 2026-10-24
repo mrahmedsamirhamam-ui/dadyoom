@@ -1,6 +1,7 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { getCorrectAnswerSpec } from "@/lib/lesson-activities/grading";
 import { scoreGradedActivityAttempts } from "@/features/lesson-mastery/services/score-graded-activities";
 
@@ -46,11 +47,26 @@ export async function syncLessonMasteryAction(
     );
   }
 
+  // Validate published lesson visibility with caller RLS before reading
+  // the private grading schema using server-only credentials.
+  const { data: visibleLesson, error: lessonVisibilityError } = await supabase
+    .from("lessons")
+    .select("id")
+    .eq("id", lessonId)
+    .eq("status", "published")
+    .maybeSingle();
+
+  if (lessonVisibilityError || !visibleLesson) {
+    throw new Error("هذا الدرس غير متاح لحساب الإتقان.");
+  }
+
+  const admin = createAdminClient();
+
   // DADYOOM_ACTIVITY_AWARE_MASTERY_V2
   const {
     data: activitiesData,
     error: activitiesError,
-  } = await supabase
+  } = await admin
     .from("lesson_activities")
     .select("id,answer,is_required,points")
     .eq("lesson_id", lessonId)
@@ -180,7 +196,7 @@ export async function syncLessonMasteryAction(
 
   const {
     error: masteryError,
-  } = await supabase
+  } = await admin
     .from("lesson_mastery")
     .upsert(
       {
