@@ -1,11 +1,13 @@
 /**
- * Read every eligible published URL row without relying on PostgREST's
- * default row limit or silently losing everything after the first 5,000.
+ * Collect every published sitemap row from PostgREST.
  *
- * The per-kind hard bound keeps a single sitemap under the 50,000-URL XML
- * protocol ceiling (two dynamic kinds, <=20k each, plus static routes).
- * When content grows past that limit, introduce a sitemap index/shards
- * rather than returning a misleading partial sitemap.
+ * An API may cap `.range(from, to)` below our requested window size.
+ * Therefore advance by the ACTUAL returned row count, not the requested
+ * batch size, and only stop after a verified empty page. Otherwise even a
+ * successful HTTP 206 could make thousands of lessons disappear.
+ *
+ * This is bounded to <50k URLs per sitemap (two kinds, 20k each);
+ * future growth requires a proper sitemap index/shards, not truncation.
  */
 export const SITEMAP_BATCH_SIZE = 1000;
 export const SITEMAP_MAX_ROWS_PER_KIND = 20_000;
@@ -19,30 +21,27 @@ export async function collectSitemapRows<T>(
   loadPage: (from: number, to: number) => PromiseLike<PageResult<T>>,
 ): Promise<T[]> {
   const rows: T[] = [];
+  let offset = 0;
 
-  for (
-    let from = 0;
-    from <= SITEMAP_MAX_ROWS_PER_KIND;
-    from += SITEMAP_BATCH_SIZE
-  ) {
-    const result = await loadPage(from, from + SITEMAP_BATCH_SIZE - 1);
+  while (offset <= SITEMAP_MAX_ROWS_PER_KIND) {
+    const result = await loadPage(offset, offset + SITEMAP_BATCH_SIZE - 1);
 
-    // Fail closed on an interrupted database read: a silently partial
-    // sitemap is harder to detect than a static-only fallback.
     if (result.error || !Array.isArray(result.data)) {
       throw new Error("SITEMAP_PUBLISHED_PAGE_READ_FAILED");
     }
 
-    if (from === SITEMAP_MAX_ROWS_PER_KIND && result.data.length > 0) {
+    // A full count is not a signal of completion. Read one empty page
+    // after the last data page to verify that nothing was skipped.
+    if (result.data.length === 0) return rows;
+
+    if (offset + result.data.length > SITEMAP_MAX_ROWS_PER_KIND) {
       throw new Error("SITEMAP_INDEX_SHARDING_REQUIRED");
     }
 
     rows.push(...result.data);
-
-    if (result.data.length < SITEMAP_BATCH_SIZE) {
-      return rows;
-    }
+    offset += result.data.length;
   }
 
-  return rows;
+  // Even exactly 20k rows need one empty confirmation page.
+  throw new Error("SITEMAP_INDEX_SHARDING_REQUIRED");
 }
