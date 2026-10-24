@@ -2,6 +2,7 @@ import "server-only";
 
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 /**
  * Protect curriculum administration at each HTTP handler boundary.
@@ -39,5 +40,9 @@ export async function authorizeCurriculumAdmin() {
     };
   }
 
-  return { authorized: true as const, supabase };
+  // Admin diagnostics must keep reading private answer keys after a later
+  // database cutover revokes those columns from all browser-issued tokens.
+  // Create service-role client strictly AFTER identity and is_admin() checks.
+  // Never return this client or its credentials to the HTTP caller.
+  return { authorized: true as const, supabase: createAdminClient() };
 }
