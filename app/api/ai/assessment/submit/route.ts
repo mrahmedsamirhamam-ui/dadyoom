@@ -324,15 +324,22 @@ export async function POST(
 
 
 
-    await updateStudentMemory({
-      // Derive from trusted private keys + authenticated ownership.
-      // Student-supplied correctness, skill, email are never used.
-      supabase: admin,
-      studentId:
-        user.id,
-      studentEmail:
-        user.email,
-    });
+    // Memory is secondary analytics: a legacy unverifiable answer must
+    // not turn an already saved, server-graded response into a false 500.
+    // Never suppress or change the trusted correctness itself.
+    let memorySynced = true;
+    try {
+      await updateStudentMemory({
+        // Derive from private keys + authenticated ownership.
+        // Student-provided correctness, skill and email are ignored.
+        supabase: admin,
+        studentId: user.id,
+        studentEmail: user.email,
+      });
+    } catch (memoryError) {
+      memorySynced = false;
+      console.error("STUDENT_MEMORY_RECOMPUTE_FAILED", memoryError);
+    }
 
     /*
      * بعد تسجيل نتيجة جديدة تصبح الخطة القديمة غير محدثة.
@@ -368,6 +375,7 @@ export async function POST(
 return NextResponse.json({
       success: true,
       correct,
+      memorySynced,
       score:
         correct ? 100 : 0,
       // Do not leak the right answer or explanation on wrong attempts.
