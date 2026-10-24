@@ -81,6 +81,9 @@ on:
       - 'tests/security/shadow-question-grants.sql'
       - 'tests/security/shadow-grade-write-grants.sql'
       - 'scripts/security/proposed-grade-write-restrictions.sql'
+      - 'scripts/security/proposed-ai-assessment-private-key-grants.sql'
+      - 'tests/security/shadow-ai-key-grants-setup.sql'
+      - 'tests/security/shadow-ai-key-grants-verify.sql'
       - 'scripts/security/proposed-adaptive-progress-write-restrictions.sql'
       - 'tests/security/shadow-adaptive-grants-setup.sql'
       - 'tests/security/shadow-adaptive-grants-verify.sql'
@@ -367,6 +370,36 @@ jobs:
             cat tests/security/shadow-assessment-receipts-verify.sql
           } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_receipts
           echo "SHADOW_ASSESSMENT_RECEIPTS_REHEARSAL=PASS"
+      - name: Rehearse AI assessment key confidentiality, owner-only read and direct-write cutover
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_ai_keys
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_ai_keys \
+            < tests/security/shadow-ai-key-grants-setup.sql
+          if error_text=$( {
+              echo "SET dadyoom.ai_keys_rehearsal = 'enabled';"
+              cat scripts/security/proposed-ai-assessment-private-key-grants.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "AI key proposal unexpectedly accepted non-disposable database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_AI_KEY_REVOKE_BLOCKED_DISPOSABLE_TEST_ONLY'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_ai_keys \
+              < scripts/security/proposed-ai-assessment-private-key-grants.sql 2>&1); then
+            echo "AI key proposal unexpectedly accepted missing test flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_AI_KEY_REVOKE_BLOCKED_DISPOSABLE_TEST_ONLY'
+          {
+            echo "SET dadyoom.ai_keys_rehearsal = 'enabled';"
+            cat scripts/security/proposed-ai-assessment-private-key-grants.sql
+            cat tests/security/shadow-ai-key-grants-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_ai_keys
+          echo "SHADOW_AI_PRIVATE_KEYS_GRANTS_REHEARSAL=PASS"
       - name: Rehearse direct lesson RPC nested grading-key redaction and rollback
         shell: bash
         env:
