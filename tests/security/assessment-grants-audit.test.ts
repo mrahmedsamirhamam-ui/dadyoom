@@ -22,6 +22,18 @@ describe("assessment permissions audit is safe and complete", () => {
     expect(queries).not.toMatch(/SELECT\s+\*\s+FROM\s+public\.(questions|lesson_activities)\b/i);
     expect(sql).toContain("has_column_privilege");
     expect(sql).toContain("has_table_privilege");
+    expect(sql).toContain("has_any_column_privilege");
+  });
+  it("detects residual INSERT/UPDATE column grants after any table-level REVOKE", () => {
+    expect(sql).toContain("has_any_column_privilege(roles.role_name");
+    expect(sql).toContain("may_insert_some_column");
+    expect(sql).toContain("may_update_some_column");
+    expect(sql).toContain("may_insert_table");
+    expect(sql).toContain("may_update_table");
+    // Both low-trust roles and all six grading-related tables must be checked.
+    expect(sql).toContain("('anon'), ('authenticated')");
+    expect(sql).toContain("assessment_session_answers");
+    expect(queries).not.toMatch(/\\b(?:REVOKE|GRANT|ALTER|DROP|CREATE|UPDATE|INSERT|DELETE|TRUNCATE)\\s+(?:TABLE|ON|INTO|FROM|public\\.)/i);
   });
   it("surfaces security invoker dependency and RLS + RPC state", () => {
     expect(sql).toContain("security_invoker=true");
