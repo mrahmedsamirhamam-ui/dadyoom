@@ -4,9 +4,11 @@ on:
   pull_request:
     paths:
       - 'app/sitemap.ts'
+      - 'app/robots.ts'
       - 'lib/seo/sitemap-pagination.ts'
       - 'tests/seo/sitemap-pagination.test.ts'
       - 'tests/seo/public-sitemap.test.ts'
+      - 'tests/seo/robots.test.ts'
       - '.github/workflows/sitemap-ci.yml'
   workflow_dispatch:
 
@@ -27,7 +29,7 @@ jobs:
           cache: 'npm'
       - run: npm ci --no-audit --no-fund
       - name: Verify full published sitemap pagination
-        run: npm run test:run -- tests/seo/sitemap-pagination.test.ts tests/seo/public-sitemap.test.ts
+        run: npm run test:run -- tests/seo/sitemap-pagination.test.ts tests/seo/public-sitemap.test.ts tests/seo/robots.test.ts
       - name: TypeScript
         run: npx tsc --noEmit
       - name: ESLint
