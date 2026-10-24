@@ -9,6 +9,7 @@ on:
       - 'tests/seo/sitemap-pagination.test.ts'
       - 'tests/seo/public-sitemap.test.ts'
       - 'tests/seo/robots.test.ts'
+      - 'scripts/verify-sitemap-build.mjs'
       - '.github/workflows/sitemap-ci.yml'
   workflow_dispatch:
 
@@ -36,3 +37,5 @@ jobs:
         run: npm run lint
       - name: Next.js build
         run: npm run build
+      - name: Verify sitemap stays dynamic in production build output
+        run: node scripts/verify-sitemap-build.mjs
