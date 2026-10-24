@@ -201,7 +201,17 @@ for (const unitPack of pack.units) {
       lesson = data;
       insertedLessons++;
     } else {
-      const rich = String(lesson.content || "").trim().length >= 120 && lesson.status === "published";
+      // Never promote an existing OCR/unreviewed draft merely because
+      // an incoming pack uses the same unit and lesson number.
+      if (lesson.status !== "published") {
+        throw new Error("CURRICULUM_DRAFT_REQUIRES_SEPARATE_REVIEW");
+      }
+      // Reusing another published lesson's number must not silently change
+      // its curriculum identity or attach questions to the wrong topic.
+      if (String(lesson.title || "").trim() !== String(lessonPack.title).trim()) {
+        throw new Error("CURRICULUM_EXISTING_LESSON_TITLE_CONFLICT");
+      }
+      const rich = String(lesson.content || "").trim().length >= 120;
       if (!rich) {
         const { data, error } = await supabase.from("lessons").update(payload).eq("id", lesson.id).select("*").single();
         if (error) throw error;
