@@ -176,3 +176,18 @@ BEGIN
 END $$;
 RESET ROLE;
 \echo SHADOW_GRADE_WRITE_GRANTS_ROLLBACK=PASS
+
+-- Seed independent column-level grants specifically for the *next* proposed
+-- cutover. Table-level REVOKE alone would leave these permissions effective.
+GRANT UPDATE (grade) ON TABLE public.question_attempts TO authenticated;
+GRANT INSERT (grade) ON TABLE public.lesson_mastery TO authenticated;
+DO $column_fixture$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_attribute a
+    JOIN pg_class c ON c.oid = a.attrelid
+    WHERE c.oid='public.question_attempts'::regclass
+      AND a.attname='grade' AND a.attacl IS NOT NULL
+  ) THEN RAISE EXCEPTION 'SHADOW_COLUMN_GRANT_NOT_SEEDED'; END IF;
+END $column_fixture$;
+\echo SHADOW_COLUMN_GRANTS_SEEDED=PASS
