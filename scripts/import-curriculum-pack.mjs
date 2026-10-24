@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { createClient } from "@supabase/supabase-js";
 import { validateCurriculumPack } from "../lib/curriculum-packs/validate.mjs";
+import { readCompleteContentTable } from "../lib/curriculum-packs/content-backup.mjs";
 
 function loadEnv(file) {
   if (!fs.existsSync(file)) return;
@@ -73,16 +74,37 @@ for (const [table, columns] of [
 }
 console.log("PACK_SCHEMA_PREFLIGHT=PASS");
 
-fs.mkdirSync(path.resolve(process.cwd(), "_backups"), { recursive: true });
+// A one-page SELECT * is NOT a backup: Supabase/PostgREST commonly caps
+// results at 1,000 rows, while the live platform has >32,000 questions.
+// Complete every table scan or ABORT before writing any curriculum content.
+// This is a nontransactional content export; for a rollback-critical live
+// migration an operator must also obtain a consistent PostgreSQL backup.
+const backupDir = path.resolve(process.cwd(), "_backups");
+fs.mkdirSync(backupDir, { recursive: true, mode: 0o700 });
 const stamp = new Date().toISOString().replace(/[:.]/g, "-");
-const backupFile = path.resolve(process.cwd(), "_backups", `curriculum-pack-before-${pack.country.code}-${stamp}.json`);
+const backupFile = path.join(backupDir, `curriculum-pack-before-${pack.country.code}-${stamp}.json`);
 const snapshot = {};
-for (const table of ["countries", "curricula", "grades", "units", "lessons", "questions", "lesson_vocabulary"]) {
-  const { data, error } = await supabase.from(table).select("*");
-  snapshot[table] = error ? { error: error.message } : data;
+const contentTables = ["countries", "curricula", "grades", "units", "lessons", "questions", "lesson_vocabulary"];
+for (const table of contentTables) {
+  try {
+    snapshot[table] = await readCompleteContentTable(
+      (from, to) => supabase.from(table).select("*").order("id", { ascending: true }).range(from, to),
+    );
+  } catch {
+    // Do not place backend error details or answer keys in logs.
+    throw new Error(`CURRICULUM_IMPORT_ABORTED_INCOMPLETE_EXPORT:${table}`);
+  }
+  console.log(`CONTENT_EXPORT_TABLE=${table} ROWS=${snapshot[table].length}`);
 }
-fs.writeFileSync(backupFile, JSON.stringify(snapshot, null, 2), "utf8");
-console.log(`DB_BACKUP=${backupFile}`);
+fs.writeFileSync(backupFile, JSON.stringify({
+  exportedAt: new Date().toISOString(),
+  targetCountryCode: pack.country.code,
+  consistentDatabaseBackup: false,
+  tables: snapshot,
+}), { encoding: "utf8", mode: 0o600, flag: "wx" });
+console.log(`CONTENT_EXPORT_FILE=${backupFile}`);
+console.log("CONTENT_EXPORT_COMPLETE=PASS");
+console.log("CONTENT_EXPORT_IS_NOT_TRANSACTIONAL_DB_BACKUP=TRUE");
 
 let country = await one("countries", (q) => q.eq("code", pack.country.code));
 if (!country) {
