@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
-import { validateCurriculumPack } from "@/lib/curriculum-packs/validate.mjs";
+import { isGenericLessonPlaceholder, validateCurriculumPack } from "@/lib/curriculum-packs/validate.mjs";
 import {
   BACKUP_TABLES,
   readVerifiedTableBackup,
@@ -117,6 +117,33 @@ describe("curriculum pack import integrity", () => {
     expect(invalid.ok).toBe(false);
     expect(invalid.errors.some((message: string) =>
       message.includes("duplicate lesson number within unit"))).toBe(true);
+  });
+
+  it("blocks known TOC-scrape placeholders even when longer than the minimum", () => {
+    const sample = JSON.parse(readFileSync(
+      "data/curriculum-packs/bh-2026-arabic-primary-g1-s1.json", "utf8",
+    ));
+    const boilerplate = "يتناول هذا الدرس موضوع «الدّرس الثالث». " +
+      "يبدأ التعلم بتهيئة قصيرة، ثم قراءة أو مناقشة الموضوع، " +
+      "واستخراج الفكرة الرئيسة، ثم تطبيقها في نشاط شفهي وكتابي مناسب لمستوى الطالب.";
+    expect(boilerplate.length).toBeGreaterThan(120);
+    expect(isGenericLessonPlaceholder(boilerplate)).toBe(true);
+    sample.units[0].lessons[0].content = boilerplate;
+    const result = validateCurriculumPack(sample);
+    expect(result.ok).toBe(false);
+    expect(result.errors).toContain(
+      "unit 1 lesson 1: generic source placeholder is not a teachable lesson",
+    );
+  });
+
+  it("does not treat a real teaching text or mere page heading as the known boilerplate", () => {
+    const sample = JSON.parse(readFileSync(
+      "data/curriculum-packs/bh-2026-arabic-primary-g1-s1.json", "utf8",
+    ));
+    expect(isGenericLessonPlaceholder(sample.units[0].lessons[0].content)).toBe(false);
+    expect(isGenericLessonPlaceholder("الدّرس الثالث")).toBe(false);
+    expect(isGenericLessonPlaceholder(null)).toBe(false);
+    expect(validateCurriculumPack(sample).ok).toBe(true);
   });
 
   it("makes new slugs unit-scoped and rejects invalid identifiers", () => {
