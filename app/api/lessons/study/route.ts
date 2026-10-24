@@ -12,6 +12,7 @@ import {
 import {
   createClient,
 } from "@/lib/supabase/server";
+import { isKnownNonTeachingLessonPlaceholder } from "@/lib/lesson-content-integrity";
 import {
   runAgent,
   runAgentJson,
@@ -671,6 +672,19 @@ export async function POST(
             )
           : null,
     };
+
+    // Do not charge a feature token, serve a cached AI artifact, build
+    // a slide deck, or trigger deferred AI work for the known imported
+    // title/TOC-only placeholder. The lesson remains readable and reviewable.
+    if (isKnownNonTeachingLessonPlaceholder(lesson.content)) {
+      return NextResponse.json(
+        {
+          error: "محتوى هذا الدرس قيد المراجعة؛ أدوات الدراسة الذكية تتطلب شرحًا مكتملًا.",
+          code: "LESSON_CONTENT_REVIEW_REQUIRED",
+        },
+        { status: 409, headers: { "Cache-Control": "no-store" } },
+      );
+    }
 
     if (
       task === "summary" &&
