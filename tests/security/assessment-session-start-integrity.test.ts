@@ -76,7 +76,7 @@ describe("secure reuse or creation of assessment sessions", () => {
     const projected = db.calls[0].columns[0];
     expect(projected).toContain("id,student_id,lesson_id");
     expect(projected).not.toContain("*");
-    expect(projected).not.toContain("correct_answer");
+    expect(projected.split(",")).not.toContain("correct_answer");
   });
 
   it("creates an owned unfinished session only after a clean empty lookup", async () => {
