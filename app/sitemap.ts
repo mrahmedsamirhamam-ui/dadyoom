@@ -1,10 +1,12 @@
 import { createClient } from "@supabase/supabase-js";
 import type { MetadataRoute } from "next";
 
+import { getSiteUrl } from "@/lib/site";
+import { collectSitemapRows } from "@/lib/seo/sitemap-pagination";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base =
-    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/u, "") ||
-    "http://localhost:3000";
+  // Use the same canonical origin as the page metadata/structured data.
+  const base = getSiteUrl();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: base, changeFrequency: "weekly", priority: 1 },
@@ -30,38 +32,62 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   });
 
-  const [{ data: courses }, { data: lessons }] = await Promise.all([
-    db
-      .from("edu_marketplace_courses")
-      .select("slug,updated_at")
-      .eq("status", "published")
-      .limit(5000),
-    db
-      .from("lessons")
-      .select("id,updated_at")
-      .eq("status", "published")
-      .limit(5000),
-  ]);
+  try {
+    // The previous .limit(5000) silently omitted at least 3,307 of the
+    // 8,307 published lesson records last reported in the production audit.
+    // Stable ordering + explicit ranges prevent the PostgREST row ceiling
+    // from masking later published lessons. Drafts are never included.
+    const [courses, lessons] = await Promise.all([
+      collectSitemapRows(async (from, to) =>
+        db
+          .from("edu_marketplace_courses")
+          .select("slug,updated_at")
+          .eq("status", "published")
+          .order("slug", { ascending: true })
+          .range(from, to),
+      ),
+      collectSitemapRows(async (from, to) =>
+        db
+          .from("lessons")
+          .select("id,updated_at")
+          .eq("status", "published")
+          .order("id", { ascending: true })
+          .range(from, to),
+      ),
+    ]);
 
-  return [
-    ...staticRoutes,
-    ...(courses ?? []).map((course) => ({
-      url: `${base}/marketplace/${course.slug}`,
-      lastModified:
-        course.updated_at
+    const dynamicRoutes: MetadataRoute.Sitemap = [
+      ...courses.map((course) => ({
+        url: `${base}/marketplace/${course.slug}`,
+        lastModified: course.updated_at
           ? new Date(course.updated_at)
           : undefined,
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    })),
-    ...(lessons ?? []).map((lesson) => ({
-      url: `${base}/lessons/${lesson.id}`,
-      lastModified:
-        lesson.updated_at
+        changeFrequency: "weekly" as const,
+        priority: 0.8,
+      })),
+      ...lessons.map((lesson) => ({
+        url: `${base}/lessons/${lesson.id}`,
+        lastModified: lesson.updated_at
           ? new Date(lesson.updated_at)
           : undefined,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    })),
-  ];
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      })),
+    ];
+
+    const seen = new Set(staticRoutes.map((route) => route.url));
+    return [
+      ...staticRoutes,
+      ...dynamicRoutes.filter((route) => {
+        if (seen.has(route.url)) return false;
+        seen.add(route.url);
+        return true;
+      }),
+    ];
+  } catch {
+    // Do not publish a silently truncated sitemap when a page read fails;
+    // preserve public static discovery without exposing DB error details.
+    console.error("SITEMAP_DYNAMIC_PAGINATION_UNAVAILABLE");
+    return staticRoutes;
+  }
 }
