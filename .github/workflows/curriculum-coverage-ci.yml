@@ -36,6 +36,7 @@ on:
       - 'lib/lesson-activities/progress-state.ts'
       - 'tests/security/activity-check-route.test.ts'
       - 'tests/security/activity-progress-concurrent-cas.test.ts'
+      - 'tests/security/shadow-activity-progress-cas.sql'
       - 'components/lesson/MultipleChoiceQuestion.tsx'
       - 'app/lessons/**/page.tsx'
       - 'features/questions/services/grade-stored-mcq.ts'
@@ -287,6 +288,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+      - name: Verify activity-progress CAS against disposable PostgreSQL
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_activity_cas
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_cas \
+            < tests/security/shadow-activity-progress-cas.sql
       - name: Exercise secure view cutover and rollback against disposable database
         shell: bash
         env:
