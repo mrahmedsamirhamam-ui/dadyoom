@@ -754,7 +754,12 @@ export async function POST(
             existingProgress.id
           )
           .eq("student_id", user.id)
-          .eq("lesson_id", activity.lesson_id);
+          .eq("lesson_id", activity.lesson_id)
+          // Compare against the current database row, not the stale pre-grading
+          // read. A concurrent mastery completion must not be downgraded.
+          .eq("status", existingProgress.status)
+          .lte("best_score", newBest)
+          .lte("progress_percent", safeProgress.progress_percent);
 
       if (
         progressUpdateError
