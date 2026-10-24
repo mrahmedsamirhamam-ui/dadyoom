@@ -30,6 +30,12 @@ type Task =
   | "notebook_answer"
   | "custom_summary"
   | "custom_slides";
+  
+// JSON request fields need runtime validation even when TypeScript says Task.
+const ALLOWED_STUDY_TASKS: ReadonlySet<string> = new Set<Task>([
+  "summary", "slides", "flashcards", "study_guide", "concept_map",
+  "video_storyboard", "notebook_answer", "custom_summary", "custom_slides",
+]);
 
 type RichSlide = {
   kind?:
@@ -601,7 +607,7 @@ export async function POST(
     const question =
       String(
         body.question ?? "",
-      ).trim();
+      ).trim().slice(0, 2000);
 
     if (
       !lessonId ||
@@ -615,6 +621,15 @@ export async function POST(
         {
           status: 400,
         },
+      );
+    }
+
+    // Reject client-invented tool names instead of silently running the
+    // default LLM agent without a known feature/billing classification.
+    if (typeof task !== "string" || !ALLOWED_STUDY_TASKS.has(task)) {
+      return NextResponse.json(
+        { error: "أداة الدراسة المطلوبة غير مدعومة." },
+        { status: 400, headers: { "Cache-Control": "no-store" } },
       );
     }
 
