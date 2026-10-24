@@ -47,6 +47,9 @@ on:
       - 'scripts/security/proposed-question-key-column-cutover.sql'
       - 'tests/security/shadow-question-key-cutover-setup.sql'
       - 'tests/security/shadow-question-key-cutover-verify.sql'
+      - 'scripts/security/proposed-activity-answer-column-cutover.sql'
+      - 'tests/security/shadow-activity-answer-cutover-setup.sql'
+      - 'tests/security/shadow-activity-answer-cutover-verify.sql'
       - 'tests/security/activity-rpc-redaction-parity.test.ts'
       - 'tests/security/student-question-payload.test.ts'
       - 'features/questions/services/public-lesson-questions.ts'
@@ -314,6 +317,36 @@ jobs:
             cat tests/security/shadow-question-key-cutover-verify.sql
           } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_question_privacy
           echo "SHADOW_PUBLIC_QUESTION_PRIVATE_KEY_CUTOVER=PASS"
+      - name: Rehearse hiding activity answer keys without breaking student content
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_activity_privacy
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_privacy \
+            < tests/security/shadow-activity-answer-cutover-setup.sql
+          if error_text=$( {
+              echo "SET dadyoom.activity_privacy_rehearsal='enabled';"
+              cat scripts/security/proposed-activity-answer-column-cutover.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Activity privacy proposal unexpectedly accepted a non-disposable database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_ACTIVITY_ANSWER_CUTOVER_BLOCKED'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_privacy \
+              < scripts/security/proposed-activity-answer-column-cutover.sql 2>&1); then
+            echo "Activity privacy proposal unexpectedly accepted a missing rehearsal flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_ACTIVITY_ANSWER_CUTOVER_BLOCKED'
+          {
+            echo "SET dadyoom.activity_privacy_rehearsal='enabled';"
+            cat scripts/security/proposed-activity-answer-column-cutover.sql
+            cat tests/security/shadow-activity-answer-cutover-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_privacy
+          echo "SHADOW_ACTIVITY_ANSWER_COLUMN_PRIVACY=PASS"
       - name: Prove forged own scores and rehearse six-table write-grant cutover
         shell: bash
         env:
