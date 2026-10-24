@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { preserveGradedLessonProgress } from "@/lib/lesson-activities/progress-state";
+import { parseStudentActivityAnswer } from "@/lib/lesson-activities/grading";
 import {
   getCorrectAnswerSpec,
 } from "@/lib/lesson-activities/grading";
@@ -33,28 +34,6 @@ type RequestBody = {
 };
 
 type JsonRecord = Record<string, unknown>;
-
-function stringArray(
-  value: unknown
-): string[] {
-  return Array.isArray(value)
-    ? value.filter(
-        (item): item is string =>
-          typeof item === "string"
-      )
-    : [];
-}
-
-function normalize(
-  values: string[]
-): string[] {
-  return values
-    .map(
-      (item) =>
-        item.trim()
-    )
-    .filter(Boolean);
-}
 
 function sameOrdered(
   a: string[],
@@ -104,21 +83,72 @@ export async function POST(
 ) {
   try {
 
-    const body =
-      (await request.json()) as RequestBody;
+    // Bound incoming bytes, including chunked requests with no Content-Length.
+    // Do not parse arbitrary-sized JSON before authentication and grading.
+    const MAX_REQUEST_BYTES = 32768;
+    const declaredLength = Number(request.headers.get("content-length") ?? 0);
+    if (declaredLength > MAX_REQUEST_BYTES) {
+      return NextResponse.json(
+        { success: false, message: "حجم الإجابة أكبر من الحد المسموح." },
+        { status: 413 }
+      );
+    }
+
+    const reader = request.body?.getReader();
+    if (!reader) {
+      return NextResponse.json(
+        { success: false, message: "بيانات الطلب غير صحيحة." },
+        { status: 400 }
+      );
+    }
+
+    const decoder = new TextDecoder("utf-8", { fatal: true });
+    let bytesReceived = 0;
+    let rawBody = "";
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      bytesReceived += value.byteLength;
+      if (bytesReceived > MAX_REQUEST_BYTES) {
+        await reader.cancel();
+        return NextResponse.json(
+          { success: false, message: "حجم الإجابة أكبر من الحد المسموح." },
+          { status: 413 }
+        );
+      }
+      rawBody += decoder.decode(value, { stream: true });
+    }
+    rawBody += decoder.decode();
+
+    let parsedBody: unknown;
+    try {
+      parsedBody = JSON.parse(rawBody);
+    } catch {
+      return NextResponse.json(
+        { success: false, message: "صيغة الطلب غير صحيحة." },
+        { status: 400 }
+      );
+    }
+    if (!parsedBody || typeof parsedBody !== "object" || Array.isArray(parsedBody)) {
+      return NextResponse.json(
+        { success: false, message: "صيغة الطلب غير صحيحة." },
+        { status: 400 }
+      );
+    }
+    const body = parsedBody as RequestBody;
 
     const activityId =
-      typeof body.activityId ===
-      "string"
+      typeof body.activityId === "string"
         ? body.activityId.trim()
         : "";
 
-    const studentAnswer =
-      normalize(
-        stringArray(
-          body.answer
-        )
+    const studentAnswer = parseStudentActivityAnswer(body.answer);
+    if (studentAnswer === null) {
+      return NextResponse.json(
+        { success: false, message: "الإجابة غير صالحة." },
+        { status: 400 }
       );
+    }
 
     if (
       !activityId
