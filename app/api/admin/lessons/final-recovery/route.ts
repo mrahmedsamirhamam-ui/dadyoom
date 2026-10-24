@@ -1,3 +1,4 @@
+import { authorizeCurriculumAdmin } from "@/lib/auth/require-curriculum-admin";
 import {
   NextResponse,
 } from "next/server";
@@ -11,9 +12,6 @@ import {
   join,
 } from "node:path";
 
-import {
-  createClient,
-} from "@/lib/supabase/server";
 
 import {
   normalizeActivity,
@@ -721,10 +719,14 @@ async function analyzeBatch(
 }
 
 
+export const dynamic = "force-dynamic";
+
 export async function POST(
   request: Request
 ) {
   try {
+    const access = await authorizeCurriculumAdmin();
+    if (!access.authorized) return access.response;
     const body =
       (await request.json()) as
         RequestBody;
@@ -732,8 +734,7 @@ export async function POST(
     const apply =
       body.apply === true;
 
-    const supabase =
-      await createClient();
+    const supabase = access.supabase;
 
     const {
       data:
