@@ -87,6 +87,18 @@ describe("real HTTP study route refuses generic non-teaching lesson content", ()
     expect(st.billing).not.toHaveBeenCalled();
   });
 
+  it.each(["unknown_free_ai", "admin_tool", "video_storyboard_free", "123"])(
+    "rejects unexpected task %s before even accessing the published lesson",
+    async (name) => {
+      const response = await POST(request(name));
+      expect(response.status).toBe(400);
+      expect(st.dbReads).not.toHaveBeenCalled();
+      expect(st.billing).not.toHaveBeenCalled();
+      expect(st.agent).not.toHaveBeenCalled();
+      expect(st.adminFactory).not.toHaveBeenCalled();
+    },
+  );
+
   it("keeps a real published teaching summary available without AI charges", async () => {
     st.lesson = {
       id: "11111111-1111-4111-8111-111111111111",
