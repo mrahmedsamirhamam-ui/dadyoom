@@ -2,9 +2,9 @@ import {
   NextResponse,
 } from "next/server";
 
-import {
-  createClient,
-} from "@/lib/supabase/server";
+import { authorizeCurriculumAdmin } from "@/lib/auth/require-curriculum-admin";
+
+export const dynamic = "force-dynamic";
 
 import {
   validateActivity,
@@ -31,8 +31,9 @@ type LessonRow = {
 
 export async function GET() {
   try {
-    const supabase =
-      await createClient();
+    const access = await authorizeCurriculumAdmin();
+    if (!access.authorized) return access.response;
+    const { supabase } = access;
 
     const {
       data: lessonsData,
