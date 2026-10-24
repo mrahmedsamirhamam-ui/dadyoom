@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { validateCurriculumPack } from "@/lib/curriculum-packs/validate.mjs";
 import {
