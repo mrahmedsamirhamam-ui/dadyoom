@@ -1,19 +1,21 @@
+import { authorizeCurriculumAdmin } from "@/lib/auth/require-curriculum-admin";
 ﻿import {
   NextResponse,
 } from "next/server";
 
-import {
-  createClient,
-} from "@/lib/supabase/server";
 
 type Body = {
   lessonId?: unknown;
 };
 
+export const dynamic = "force-dynamic";
+
 export async function POST(
   request: Request
 ) {
   try {
+    const access = await authorizeCurriculumAdmin();
+    if (!access.authorized) return access.response;
     const body =
       (await request.json()) as Body;
 
@@ -36,8 +38,7 @@ export async function POST(
       );
     }
 
-    const supabase =
-      await createClient();
+    const supabase = access.supabase;
 
     const {
       count,
