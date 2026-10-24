@@ -82,6 +82,8 @@ on:
       - 'tests/security/shadow-grade-write-grants.sql'
       - 'scripts/security/proposed-grade-write-restrictions.sql'
       - 'scripts/security/proposed-ai-assessment-private-key-grants.sql'
+      - 'services/ai/assessment.service.ts'
+      - 'tests/security/legacy-ai-generation-server-only.test.ts'
       - 'tests/security/shadow-ai-key-grants-setup.sql'
       - 'tests/security/shadow-ai-key-grants-verify.sql'
       - 'scripts/security/proposed-adaptive-progress-write-restrictions.sql'
@@ -196,6 +198,8 @@ jobs:
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/ai-assessment-submit-trusted-progress.test.ts
       - name: Execute real AI assessment-next authenticated step completion tests
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/ai-assessment-next-adaptive-runtime.test.ts
+      - name: Verify legacy Gemini assessment generator cannot reach browser bundles
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/legacy-ai-generation-server-only.test.ts
       - name: Verify AI assessment keys and authoritative session progression
         run: npx vitest run tests/security/ai-assessment-client-trust.test.ts
       - name: Execute no-network adaptive question session authorization and reuse tests
