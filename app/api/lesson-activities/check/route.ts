@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { readBoundedJsonObject } from "@/lib/http/read-bounded-json";
-import { preserveGradedLessonProgress } from "@/lib/lesson-activities/progress-state";
+import { commitActivityProgressWithRetry } from "@/lib/lesson-activities/progress-state";
 import {
   getCorrectAnswerSpec,
   parseStudentActivityAnswer,
@@ -676,130 +676,59 @@ export async function POST(
     }
 
 
-    const previousBest =
-      Number(
-        existingProgress
-          ?.best_score ??
-        0
-      );
-
-    const newBest =
-      Math.max(
-        previousBest,
-        currentScore
-      );
-
-
-    /*
-     * لا نغيّر status إلى completed/mastered هنا.
-     *
-     * CompleteLesson الحالي هو المسؤول عن:
-     * - completion
-     * - mastery
-     * - XP
-     */
-    const safeProgress = preserveGradedLessonProgress(
-      existingProgress,
-      progressPercent
-    );
-
-    const progressValues = {
-      status: safeProgress.status,
-
-      progress_percent: safeProgress.progress_percent,
-
-      last_score:
-        currentScore,
-
-      best_score:
-        newBest,
-
-      attempts:
-        Number(
-          existingProgress
-            ?.attempts ??
-          0
-        ) + 1,
-
-      updated_at:
-        new Date()
-          .toISOString(),
-    };
-
-
-    if (
-      existingProgress
-    ) {
-
-      const {
-        error:
-          progressUpdateError,
-      } =
-        await admin
-          .from(
-            "student_lesson_progress"
-          )
-          .update(
-            progressValues
-          )
-          .eq(
-            "id",
-            existingProgress.id
-          )
+    // A concurrent assessment may have changed the same row after our read.
+    // Require a database CAS match, retry on conflicts, and count each saved
+    // activity without ever resetting completed/mastered status or XP.
+    await commitActivityProgressWithRetry({
+      initial: existingProgress,
+      score: currentScore,
+      activityPercent: progressPercent,
+      read: async () => {
+        const { data, error } = await supabase
+          .from("student_lesson_progress")
+          .select("id,status,attempts,best_score,progress_percent")
           .eq("student_id", user.id)
           .eq("lesson_id", activity.lesson_id)
-          // Compare against the current database row, not the stale pre-grading
-          // read. A concurrent mastery completion must not be downgraded.
-          .eq("status", existingProgress.status)
-          .lte("best_score", newBest)
-          .lte("progress_percent", safeProgress.progress_percent);
-
-      if (
-        progressUpdateError
-      ) {
-        throw progressUpdateError;
-      }
-
-    } else {
-
-      const {
-        error:
-          progressInsertError,
-      } =
-        await admin
-          .from(
-            "student_lesson_progress"
-          )
+          .maybeSingle();
+        if (error) throw error;
+        return data;
+      },
+      update: async (previous, values) => {
+        const { data, error } = await admin
+          .from("student_lesson_progress")
+          .update(values)
+          .eq("id", previous.id)
+          .eq("student_id", user.id)
+          .eq("lesson_id", activity.lesson_id)
+          .eq("status", previous.status)
+          .eq("attempts", previous.attempts)
+          .lte("best_score", values.best_score)
+          .lte("progress_percent", values.progress_percent)
+          .select("id")
+          .maybeSingle();
+        if (error) throw error;
+        return data !== null;
+      },
+      insert: async (values) => {
+        const { data, error } = await admin
+          .from("student_lesson_progress")
           .upsert({
-            student_id:
-              user.id,
-
-            lesson_id:
-              activity.lesson_id,
-
-            ...progressValues,
-
-            xp:
-              0,
-
-            time_spent_seconds:
-              0,
-
-            started_at:
-              new Date()
-                .toISOString(),
+            student_id: user.id,
+            lesson_id: activity.lesson_id,
+            ...values,
+            xp: 0,
+            time_spent_seconds: 0,
+            started_at: new Date().toISOString(),
           }, {
             onConflict: "student_id,lesson_id",
             ignoreDuplicates: true,
-          });
-
-      if (
-        progressInsertError
-      ) {
-        throw progressInsertError;
-      }
-    }
-
+          })
+          .select("id")
+          .maybeSingle();
+        if (error) throw error;
+        return data !== null;
+      },
+    });
 
     // The preceding compare-and-set may lose to a concurrent completion.
     // Return the actual owner-visible row, not stale calculated fields.
