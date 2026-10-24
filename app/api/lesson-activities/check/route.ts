@@ -5,6 +5,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { readBoundedJsonObject } from "@/lib/http/read-bounded-json";
 import { insertSequencedActivityAttempt } from "@/lib/lesson-activities/attempt-sequencing";
 import { commitActivityProgressWithRetry } from "@/lib/lesson-activities/progress-state";
+import { scoreGradedActivityAttempts } from "@/features/lesson-mastery/services/score-graded-activities";
 import {
   getCorrectAnswerSpec,
   parseStudentActivityAnswer,
@@ -501,84 +502,18 @@ export async function POST(
         );
 
 
-    const bestEarnedByActivity =
-      new Map<
-        string,
-        number
-      >();
+    // Use the same published-weight scoring rule as canonical mastery.
+    // Historical attempts can carry older/higher point weights; those must
+    // not push a learner above 100% after an activity is edited.
+    const currentScore = scoreGradedActivityAttempts(
+      gradableActivities.map((item) => ({
+        id: item.id,
+        points: item.points,
+      })),
+      attempts,
+    ).score;
 
-    for (
-      const attempt
-      of attempts
-    ) {
-
-      const previous =
-        bestEarnedByActivity.get(
-          attempt.activity_id
-        ) ??
-        0;
-
-      const current =
-        Number(
-          attempt.earned_points ??
-          0
-        );
-
-      if (
-        current >
-        previous
-      ) {
-        bestEarnedByActivity.set(
-          attempt.activity_id,
-          current
-        );
-      }
-    }
-
-
-    const totalPossible =
-      gradableActivities.reduce(
-        (
-          total,
-          item
-        ) =>
-          total +
-          Number(
-            item.points ??
-            0
-          ),
-        0
-      );
-
-    const totalEarned =
-      gradableActivities.reduce(
-        (
-          total,
-          item
-        ) =>
-          total +
-          (
-            bestEarnedByActivity.get(
-              item.id
-            ) ??
-            0
-          ),
-        0
-      );
-
-
-    const currentScore =
-      totalPossible > 0
-        ? Math.round(
-            (
-              totalEarned /
-              totalPossible
-            ) *
-              100
-          )
-        : 0;
-
-
+    // ========================================================
     // ========================================================
     // Student Lesson Progress
     // ========================================================
