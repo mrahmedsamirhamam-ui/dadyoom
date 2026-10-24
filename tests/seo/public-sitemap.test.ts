@@ -8,7 +8,7 @@ vi.mock("@supabase/supabase-js", () => ({
   createClient: () => mocked.client,
 }));
 
-import sitemap from "@/app/sitemap";
+import sitemap, { dynamic } from "@/app/sitemap";
 
 type PublishedLesson = { id: string; updated_at: string | null };
 type PublishedCourse = { slug: string; updated_at: string | null };
@@ -49,6 +49,10 @@ afterEach(() => {
 });
 
 describe("generated public sitemap", () => {
+  it("must run at request time rather than freeze URLs during Next build", () => {
+    expect(dynamic).toBe("force-dynamic");
+  });
+
   it("includes every published lesson URL and no draft URLs", async () => {
     vi.stubEnv("NEXT_PUBLIC_SITE_URL", "https://dadyoom.example/");
     vi.stubEnv("NEXT_PUBLIC_SUPABASE_URL", "https://fake-db.invalid");
