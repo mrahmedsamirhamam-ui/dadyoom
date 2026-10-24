@@ -79,3 +79,19 @@ WHERE ns.nspname = 'public'
   AND (has_function_privilege('anon', p.oid, 'EXECUTE')
        OR has_function_privilege('authenticated', p.oid, 'EXECUTE'))
 ORDER BY ns.nspname, p.proname, input_signature;
+
+-- 7. Effective per-column DML grants, including privileges inherited from
+-- PUBLIC / membership. PostgreSQL table-level REVOKE does NOT erase a
+-- separately granted INSERT/UPDATE(column). A release check must inspect
+-- both table-level AND any-column access for anon/authenticated. Metadata
+-- only: this query does not read grading rows or modify grants.
+SELECT roles.role_name, tables.table_name,
+       has_table_privilege(roles.role_name, 'public.' || tables.table_name, 'INSERT') AS may_insert_table,
+       has_any_column_privilege(roles.role_name, 'public.' || tables.table_name, 'INSERT') AS may_insert_some_column,
+       has_table_privilege(roles.role_name, 'public.' || tables.table_name, 'UPDATE') AS may_update_table,
+       has_any_column_privilege(roles.role_name, 'public.' || tables.table_name, 'UPDATE') AS may_update_some_column
+FROM (VALUES ('anon'), ('authenticated')) AS roles(role_name)
+CROSS JOIN (VALUES ('question_attempts'), ('lesson_activity_attempts'),
+                   ('student_lesson_progress'), ('lesson_mastery'),
+                   ('assessment_sessions'), ('assessment_session_answers')) AS tables(table_name)
+ORDER BY roles.role_name, tables.table_name;
