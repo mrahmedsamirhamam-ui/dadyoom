@@ -6,6 +6,7 @@ import LessonMasteryCard from "@/features/lesson-mastery/components/LessonMaster
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { SITE_DESCRIPTION } from "@/lib/site";
+import { isLessonSearchEligible } from "@/lib/seo/lesson-search-eligibility";
 import {
   getLessonPageBundle,
 } from "@/features/lessons/queries/getLessonPageBundle";
@@ -54,6 +55,11 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
     };
   }
 
+  // The curated SEO view is narrower than status='published': weak,
+  // duplicated and TOC-placeholder records must not enter search results.
+  // A failed view read defaults to noindex, but never blocks student access.
+  const eligibleForSearch = await isLessonSearchEligible(supabase, id);
+
   const title = data.title?.trim() || "درس العربية";
   const description =
     data.summary?.trim().slice(0, 170) ||
@@ -63,6 +69,7 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
     title,
     description,
     alternates: { canonical: `/lessons/${id}` },
+    robots: eligibleForSearch ? undefined : { index: false, follow: true },
     openGraph: {
       type: "article",
       url: `/lessons/${id}`,
