@@ -170,7 +170,9 @@ describe("AI assessment submit: all canonical updates use a trusted client", () 
     const db = setup();
     const res = await POST(request());
     expect(res.status).toBe(200);
-    expect(await res.json()).toMatchObject({ success: true, correct: true, score: 100 });
+    expect(await res.json()).toMatchObject({
+      success: true, correct: true, score: 100, memorySynced: true,
+    });
     expect(db.privateTables).toEqual([
       "ai_assessments", "ai_assessments", "assessment_session_answers",
     ]);
@@ -185,6 +187,26 @@ describe("AI assessment submit: all canonical updates use a trusted client", () 
     });
     expect(db.studentTables).toEqual([
       "ai_assessments", "assessment_sessions", "lessons", "learning_plans",
+    ]);
+  });
+
+  it("does not discard a committed correct answer when historical memory cannot be verified", async () => {
+    const db = setup();
+    updateStudentMemory.mockRejectedValueOnce(
+      new Error("Synthetic unverifiable prior answer")
+    );
+    const res = await POST(request());
+    expect(res.status).toBe(200);
+    expect(await res.json()).toMatchObject({
+      success: true, correct: true, score: 100, memorySynced: false,
+    });
+    expect(updateProgress).toHaveBeenCalledOnce();
+    expect(updateStudentMemory).toHaveBeenCalledWith({
+      supabase: db.admin, studentId, studentEmail: email,
+    });
+    expect(invalidateStudentCaches).toHaveBeenCalled();
+    expect(db.privateTables).toEqual([
+      "ai_assessments", "ai_assessments", "assessment_session_answers",
     ]);
   });
 
