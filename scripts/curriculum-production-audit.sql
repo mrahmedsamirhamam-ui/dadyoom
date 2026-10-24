@@ -322,3 +322,71 @@ SELECT lesson_type,official_content_scope,COUNT(*) published_records,
    AND question_count>=3) enriched_minimum,
  SUM(structural_mcq) structurally_valid_mcq
 FROM scope GROUP BY lesson_type,official_content_scope ORDER BY lesson_type,official_content_scope;
+
+-- 13. All-country inventory for prioritizing Bahrain and the other Arab
+-- countries. Read-only, record-based, NOT ministry or academic-year coverage.
+-- A zero row is truly zero recorded lessons; registered country != complete.
+WITH question_counts AS (
+  SELECT lesson_id, COUNT(*)::integer AS n
+  FROM public.questions
+  GROUP BY lesson_id
+)
+SELECT
+  co.code AS country_code,
+  co.name_ar AS country_name,
+  COUNT(l.id) FILTER (WHERE l.status = 'published') AS published_records,
+  COUNT(l.id) FILTER (WHERE l.status = 'draft') AS unpublished_drafts,
+  COUNT(l.id) FILTER (WHERE l.status = 'published' AND COALESCE(q.n, 0) = 0)
+    AS published_without_stored_questions,
+  COUNT(l.id) FILTER (WHERE l.status = 'published' AND COALESCE(q.n, 0) >= 3)
+    AS published_with_three_plus_questions,
+  COUNT(l.id) FILTER (WHERE l.status = 'published' AND (
+    l.vocabulary IS NULL OR l.vocabulary = '[]'::jsonb
+  )) AS published_without_saved_vocabulary,
+  COUNT(l.id) FILTER (WHERE l.status = 'published'
+    AND l.official_content_scope IS NULL) AS published_source_unclassified
+FROM public.countries co
+LEFT JOIN public.curricula c ON c.country_id = co.id
+LEFT JOIN public.grades g ON g.curriculum_id = c.id
+LEFT JOIN public.units u ON u.grade_id = g.id
+LEFT JOIN public.lessons l ON l.unit_id = u.id
+LEFT JOIN question_counts q ON q.lesson_id = l.id
+GROUP BY co.code, co.name_ar
+ORDER BY CASE WHEN co.code = 'BH' THEN 0 ELSE 1 END,
+         published_records DESC, country_code;
+
+-- 14. Work queue by country, academic year, grade, semester and lesson type.
+-- Do not infer missing ministry lessons from absent DB rows without checking
+-- official textbook indices for each academic year and curriculum track.
+WITH question_counts AS (
+  SELECT lesson_id, COUNT(*)::integer AS n
+  FROM public.questions GROUP BY lesson_id
+)
+SELECT
+  co.code AS country_code,
+  c.academic_year,
+  c.name_ar AS curriculum_track,
+  g.grade_number,
+  l.semester,
+  l.lesson_type,
+  COUNT(*) AS published_records,
+  COUNT(*) FILTER (WHERE COALESCE(q.n, 0) = 0) AS no_saved_questions,
+  COUNT(*) FILTER (WHERE COALESCE(q.n, 0) BETWEEN 1 AND 2) AS one_or_two_questions,
+  COUNT(*) FILTER (WHERE l.vocabulary IS NULL OR l.vocabulary = '[]'::jsonb)
+    AS no_saved_vocabulary,
+  COUNT(*) FILTER (WHERE l.official_content_scope IS NULL)
+    AS unclassified_source,
+  COUNT(*) FILTER (WHERE LENGTH(COALESCE(l.content, '')) < 1200)
+    AS short_body_review_queue
+FROM public.lessons l
+JOIN public.units u ON u.id = l.unit_id
+JOIN public.grades g ON g.id = u.grade_id
+JOIN public.curricula c ON c.id = g.curriculum_id
+JOIN public.countries co ON co.id = c.country_id
+LEFT JOIN question_counts q ON q.lesson_id = l.id
+WHERE l.status = 'published'
+GROUP BY co.code, c.academic_year, c.name_ar, g.grade_number,
+         l.semester, l.lesson_type
+ORDER BY CASE WHEN co.code = 'BH' THEN 0 ELSE 1 END,
+         no_saved_questions DESC, short_body_review_queue DESC,
+         country_code, grade_number NULLS LAST, semester NULLS LAST;
