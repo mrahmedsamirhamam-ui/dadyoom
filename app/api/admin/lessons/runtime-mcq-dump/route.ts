@@ -2,9 +2,9 @@
   NextResponse,
 } from "next/server";
 
-import {
-  createClient,
-} from "@/lib/supabase/server";
+import { authorizeCurriculumAdmin } from "@/lib/auth/require-curriculum-admin";
+
+export const dynamic = "force-dynamic";
 
 const ids = [
   "a899f6f1-5527-4ec2-a453-59514cdae646",
@@ -22,8 +22,9 @@ const ids = [
 
 export async function GET() {
   try {
-    const supabase =
-      await createClient();
+    const access = await authorizeCurriculumAdmin();
+    if (!access.authorized) return access.response;
+    const { supabase } = access;
 
     const {
       data,
