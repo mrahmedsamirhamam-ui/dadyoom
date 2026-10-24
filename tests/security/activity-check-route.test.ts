@@ -79,6 +79,17 @@ describe("student activity grading authorization", () => {
     expect(source).toContain("user.id");
   });
 
+  it("guards stale activity writes against concurrent mastery completion", () => {
+    const updateAt = source.indexOf("existingProgress.id");
+    const updateCode = source.slice(source.lastIndexOf(".update(", updateAt), updateAt + 500);
+    expect(updateAt).toBeGreaterThan(-1);
+    expect(updateCode).toContain('.eq("status", existingProgress.status)');
+    expect(updateCode).toContain('.lte("best_score", newBest)');
+    expect(updateCode).toContain('.lte("progress_percent", safeProgress.progress_percent)');
+    expect(updateCode).toContain('.eq("student_id", user.id)');
+    expect(updateCode).toContain('.eq("lesson_id", activity.lesson_id)');
+  });
+
   it("saves derived status and percent rather than resetting completed lessons", () => {
     expect(source).toContain("preserveGradedLessonProgress(");
     expect(source).toContain("status: safeProgress.status");
