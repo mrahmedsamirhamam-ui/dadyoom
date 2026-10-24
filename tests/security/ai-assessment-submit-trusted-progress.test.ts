@@ -178,7 +178,7 @@ describe("AI assessment submit: all canonical updates use a trusted client", () 
       studentEmail: email, skill: "القراءة", correct: true,
     });
     expect(updateStudentMemory).toHaveBeenCalledExactlyOnceWith({
-      supabase: db.admin, studentId,
+      supabase: db.admin, studentId, studentEmail: email,
     });
     expect(invalidateStudentCaches).toHaveBeenCalledWith({
       studentId, studentEmail: email, supabase: db.student,
@@ -200,7 +200,7 @@ describe("AI assessment submit: all canonical updates use a trusted client", () 
       studentEmail: email, skill: "القراءة", correct: false,
     });
     expect(updateStudentMemory).toHaveBeenCalledWith({
-      supabase: db.admin, studentId,
+      supabase: db.admin, studentId, studentEmail: email,
     });
   });
 });
