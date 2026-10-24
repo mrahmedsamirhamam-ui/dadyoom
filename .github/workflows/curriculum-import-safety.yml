@@ -1,0 +1,41 @@
+name: Curriculum import safety
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/import-curriculum-pack.mjs'
+      - 'lib/curriculum-packs/content-backup.mjs'
+      - 'lib/curriculum-packs/import-guards.mjs'
+      - 'tests/curriculum-backup-pagination.test.ts'
+      - 'tests/curriculum-import-guards.test.ts'
+      - 'scripts/curriculum-production-audit.sql'
+      - '.github/workflows/curriculum-import-safety.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify pack schemas
+        run: npm run curriculum:verify
+      - name: Verify backup pagination and draft-safety guards
+        run: npm run test:run -- tests/curriculum-backup-pagination.test.ts tests/curriculum-import-guards.test.ts
+      - name: Confirm Bahrain pack dry run performs no database writes
+        run: node scripts/import-curriculum-pack.mjs --pack data/curriculum-packs/bh-2026-arabic-primary-g1-s1.json
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: ESLint
+        run: npm run lint
