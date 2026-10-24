@@ -112,8 +112,8 @@ describe("admin route coverage and approved authoring", () => {
     for (const file of routes) {
       const source = readFileSync(file, "utf8");
       const useTrustedGuard = source.includes("authorizeCurriculumAdmin()");
-      const oldGuard = /\\.getUser\\(\\)/.test(source) &&
-        /\\.from\\(\\s*["']profiles["']\\s*\\)/.test(source) &&
+      const oldGuard = /\.getUser\(\)/.test(source) &&
+        /\.from\(\s*["']profiles["']\s*\)/.test(source) &&
         /["']admin["']/.test(source);
       expect(useTrustedGuard || oldGuard, file + " has no manager auth guard")
         .toBe(true);
