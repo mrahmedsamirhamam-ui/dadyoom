@@ -53,9 +53,13 @@ export async function createLessonProgress(
   }
 
   const admin = createAdminClient();
-  return admin
+  // Two simultaneous "start lesson" requests may both pass the earlier
+  // owner-scoped existence check. PostgreSQL enforces UNIQUE(student_id,
+  // lesson_id): DO NOTHING on conflict instead of resetting a saved score,
+  // earned XP, or completion status. Never use mergeDuplicates=true here.
+  const { data: inserted, error: insertError } = await admin
     .from("student_lesson_progress")
-    .insert({
+    .upsert({
       student_id: user.id,
       lesson_id: lesson.id,
       status: "in_progress",
@@ -66,9 +70,35 @@ export async function createLessonProgress(
       xp: 0,
       time_spent_seconds: 0,
       started_at: new Date().toISOString(),
+    }, {
+      onConflict: "student_id,lesson_id",
+      ignoreDuplicates: true,
     })
     .select()
-    .single();
+    .maybeSingle();
+
+  if (insertError) {
+    throw insertError;
+  }
+  if (inserted) {
+    return { data: inserted, error: null };
+  }
+
+  // DO NOTHING indicates the trusted row already exists. Re-read through
+  // the student's RLS; do not manufacture a fresh zero-progress response.
+  const { data: existing, error: readError } = await supabase
+    .from("student_lesson_progress")
+    .select("*")
+    .eq("student_id", user.id)
+    .eq("lesson_id", lesson.id)
+    .maybeSingle();
+  if (readError) {
+    throw readError;
+  }
+  if (!existing) {
+    throw new Error("تعذر التحقق من سجل تقدم الدرس الحالي.");
+  }
+  return { data: existing, error: null };
 }
 
 export async function updateLessonProgress(
