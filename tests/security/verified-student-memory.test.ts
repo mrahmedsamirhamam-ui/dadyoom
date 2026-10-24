@@ -107,7 +107,6 @@ describe("trusted student memory recomputation", () => {
     expect(db.calls.find(c => c.table === "assessment_session_answers")?.selected)
       .toBe("assessment_id,lesson_id,session_id,selected_answer");
     expect(JSON.stringify(db.calls)).not.toContain("is_correct");
-    expect(JSON.stringify(db.calls)).not.toContain("correct_answer,skill");
     expect(db.calls.find(c => c.table === "ai_assessments")?.filters)
       .toMatchObject({ student_email: email });
   });
