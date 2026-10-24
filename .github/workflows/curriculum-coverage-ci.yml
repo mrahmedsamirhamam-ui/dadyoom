@@ -72,6 +72,9 @@ on:
       - 'tests/security/ai-assessment-session-generation.test.ts'
       - 'features/assessment/services/startAssessmentSession.ts'
       - 'tests/security/assessment-session-start-integrity.test.ts'
+      - 'scripts/security/proposed-assessment-session-active-unique-index.sql'
+      - 'tests/security/shadow-assessment-session-race-setup.sql'
+      - 'tests/security/shadow-assessment-session-race-verify.sql'
       - 'tests/security/ai-assessment-private-hash-runtime.test.ts'
       - 'features/assessment/components/LessonAssessment.tsx'
       - 'tests/security/ai-session-analytics.test.ts'
@@ -381,6 +384,46 @@ jobs:
             cat tests/security/shadow-assessment-receipts-verify.sql
           } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_receipts
           echo "SHADOW_ASSESSMENT_RECEIPTS_REHEARSAL=PASS"
+      - name: Rehearse unique active assessment sessions and exact conflict rollback
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_session_start
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_session_start \
+            < tests/security/shadow-assessment-session-race-setup.sql
+          if error_text=$( {
+              echo "SET dadyoom.session_start_rehearsal = 'enabled';"
+              cat scripts/security/proposed-assessment-session-active-unique-index.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Session unique proposal unexpectedly accepted production-like database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_SESSION_UNIQUE_INDEX_BLOCKED_DISPOSABLE_ONLY'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_session_start \
+              < scripts/security/proposed-assessment-session-active-unique-index.sql 2>&1); then
+            echo "Session unique proposal unexpectedly accepted missing rehearsal flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_SESSION_UNIQUE_INDEX_BLOCKED_DISPOSABLE_ONLY'
+          if error_text=$( {
+              echo "SET dadyoom.session_start_rehearsal = 'enabled';"
+              cat scripts/security/proposed-assessment-session-active-unique-index.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_session_start 2>&1 ); then
+            echo "Candidate unexpectedly accepted existing duplicate active sessions" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'DUPLICATE_ACTIVE_ASSESSMENT_SESSIONS_MANUAL_REVIEW_REQUIRED'
+          docker exec "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_session_start \
+            -c "DELETE FROM public.assessment_sessions WHERE id='22222222-2222-4222-8222-222222222222'"
+          {
+            echo "SET dadyoom.session_start_rehearsal = 'enabled';"
+            cat scripts/security/proposed-assessment-session-active-unique-index.sql
+            cat tests/security/shadow-assessment-session-race-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_session_start
+          echo "SHADOW_ASSESSMENT_SESSION_UNIQUE_RACE_REHEARSAL=PASS"
       - name: Rehearse AI assessment key confidentiality, owner-only read and direct-write cutover
         shell: bash
         env:
