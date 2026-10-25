@@ -10,6 +10,7 @@ import {
   getBahrainDate,
 } from "@/features/gamification/daily-challenge-server";
 import { resolveTrustedDailyChallenge } from "@/features/gamification/resolve-trusted-daily-challenge";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 export async function GET() {
   try {
@@ -212,11 +213,16 @@ export async function POST(
     }
     const { skill, title, targetScore } = verifiedChallenge;
 
+    // After session auth + owner-scoped existing-record check + server
+    // recomputation of target, only a trusted server client may INSERT.
+    // This keeps daily challenge acceptance working after browser grants
+    // are revoked at a separately reviewed database cutover.
+    const admin = createAdminClient();
     const {
       data,
       error,
     } =
-      await supabase
+      await admin
         .from(
           "student_daily_challenges"
         )
