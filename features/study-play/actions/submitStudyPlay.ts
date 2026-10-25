@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 import { readCompleteGradingPages } from "@/lib/lesson-activities/read-complete-pages";
-import { gradeStudyPlay, type StudyPlayAnswer, type StudyPlayRow } from "../services/grade-study-play";
+import { gradeStudyPlay, validateStudyPlaySubmission, type StudyPlayAnswer, type StudyPlayRow } from "../services/grade-study-play";
 
 const UUID = /^[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}$/i;
 
@@ -17,6 +17,8 @@ export async function submitStudyPlay(
       (mode !== "review" && mode !== "challenge")) {
     throw new Error("بيانات التدريب غير صحيحة.");
   }
+  // Fail closed on arbitrary Server Action arguments before any DB calls.
+  const validatedAnswers = validateStudyPlaySubmission(answers);
   const supabase = await createClient();
   const { data: { user }, error: authError } = await supabase.auth.getUser();
   if (authError || !user) {
@@ -74,7 +76,7 @@ export async function submitStudyPlay(
       storedRows.some((item) => !visibleIds.includes(item.id))) {
     throw new Error("أسئلة الدرس المرئية لا تطابق بنك التصحيح.");
   }
-  const result = gradeStudyPlay(storedRows, answers);
+  const result = gradeStudyPlay(storedRows, validatedAnswers);
 
   // Do not issue cumulative XP until a database-enforced once-per-lesson
   // award ledger exists. Otherwise repeated correct replays can farm XP.
