@@ -154,6 +154,9 @@ on:
       - 'features/study-play/**'
       - 'features/games/build-vocabulary-game-pack.ts'
       - 'tests/security/legacy-game-rewards.test.ts'
+      - 'scripts/security/proposed-game-attempt-write-cutover.sql'
+      - 'tests/security/shadow-study-play-game-grants-setup.sql'
+      - 'tests/security/shadow-study-play-game-grants-verify.sql'
       - 'tests/security/safe-questions-view.test.ts'
       - 'supabase/migrations/20261022150911_create_dadyoom_student_safe_questions_view.sql'
       - 'supabase/migrations/20261022151106_restrict_dadyoom_student_questions_view_to_select_only.sql'
@@ -680,3 +683,34 @@ jobs:
             tests/security/shadow-public-activity-rpc-rollback.sql \
             | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_rpc
           echo "SHADOW_PUBLIC_ACTIVITY_RPC_REHEARSAL=PASS"
+
+      - name: Rehearse study-play game XP write denial and rollback in disposable PostgreSQL
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_game_rewards
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_game_rewards \
+            < tests/security/shadow-study-play-game-grants-setup.sql
+          if error_text=$( {
+              echo "SET dadyoom.game_grant_rehearsal = 'enabled';"
+              cat scripts/security/proposed-game-attempt-write-cutover.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Study-play grant proposal unexpectedly accepted a real/non-shadow database" >&2
+            exit 1
+          fi
+          printf '%s\\n' "$error_text" | grep -q 'PRODUCTION_GAME_GRANT_CUTOVER_BLOCKED_SHADOW_ONLY'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_game_rewards \
+              < scripts/security/proposed-game-attempt-write-cutover.sql 2>&1); then
+            echo "Study-play grant proposal unexpectedly accepted missing test flag" >&2
+            exit 1
+          fi
+          printf '%s\\n' "$error_text" | grep -q 'PRODUCTION_GAME_GRANT_CUTOVER_BLOCKED_SHADOW_ONLY'
+          {
+            echo "SET dadyoom.game_grant_rehearsal = 'enabled';"
+            cat scripts/security/proposed-game-attempt-write-cutover.sql
+            cat tests/security/shadow-study-play-game-grants-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_game_rewards
+          echo "SHADOW_STUDY_PLAY_GAME_XP_GRANTS_AND_ROLLBACK=PASS"
