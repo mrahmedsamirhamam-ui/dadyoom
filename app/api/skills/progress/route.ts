@@ -101,7 +101,9 @@ export async function GET() {
   }
 }
 
-export async function POST() {
+export async function POST(_request: Request) {
+  // A forged JSON score is deliberately not read or trusted.
+  void _request;
   const supabase = await createClient();
   const {
     data: { user },
