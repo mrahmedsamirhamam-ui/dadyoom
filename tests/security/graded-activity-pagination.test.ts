@@ -98,7 +98,7 @@ describe("lesson activity grading reads with PostgREST caps", () => {
       source.indexOf("const allActivityIds ="),
     );
     const attempts = source.slice(
-      source.indexOf("const attempts = await readCompleteGradingPages("),
+      source.indexOf("const savedAttempts = await readCompleteGradingPages("),
       source.indexOf("// إنجاز الأنشطة"),
     );
     expect(activities).toContain('.eq("lesson_id", activity.lesson_id)');
