@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
-import { gradeStudyPlay, type StudyPlayRow } from "./grade-study-play";
+import { gradeStudyPlay, validateStudyPlaySubmission, type StudyPlayRow } from "./grade-study-play";
 import { readCompleteGradingPages } from "@/lib/lesson-activities/read-complete-pages";
 
 const ids = [
@@ -17,6 +17,47 @@ const questions: StudyPlayRow[] = ids.map((id) => ({
   ],
   correct_answer: "b",
 }));
+
+describe("study-play untrusted Server Action payload boundary", () => {
+  it("accepts a complete bounded answer set", () => {
+    expect(validateStudyPlaySubmission(ids.map((questionId) => ({
+      questionId, optionId: "b",
+    })))).toHaveLength(2);
+  });
+
+  it("rejects empty, oversized, malformed, duplicated and fake submissions", () => {
+    const valid = { questionId: ids[0], optionId: "b" };
+    for (const invalid of [
+      null,
+      {},
+      "string",
+      [],
+      Array.from({ length: 101 }, () => valid),
+      [{ questionId: ids[0], optionId: "a" }, valid],
+      [{ questionId: "forged", optionId: "a" }],
+      [{ questionId: ids[0], optionId: "" }],
+      [{ questionId: ids[0], optionId: " ".repeat(30) }],
+      [{ questionId: ids[0], optionId: "a".repeat(257) }],
+      [{ questionId: ids[0], optionId: { nested: true } }],
+      [{ questionId: ids[0], optionId: "a" }, { questionId: ids[0], optionId: "b" }],
+    ]) {
+      expect(() => validateStudyPlaySubmission(invalid)).toThrow(
+        "بيانات إجابات غير صالحة أو مكررة.",
+      );
+    }
+  });
+
+  it("checks submitted data before creating a student or privileged DB client", () => {
+    const code = readFileSync(
+      resolve(process.cwd(), "features/study-play/actions/submitStudyPlay.ts"), "utf8",
+    );
+    const validationPosition = code.indexOf("validateStudyPlaySubmission(answers)");
+    expect(validationPosition).toBeGreaterThan(0);
+    expect(validationPosition).toBeLessThan(code.indexOf("await createClient()"));
+    expect(validationPosition).toBeLessThan(code.indexOf("createAdminClient()"));
+    expect(code).toContain("gradeStudyPlay(storedRows, validatedAnswers)");
+  });
+});
 
 describe("gradeStudyPlay", () => {
   it("grades only server-stored keys and computes percentage", () => {
@@ -117,7 +158,7 @@ describe("complete study-play question banks under API row caps", () => {
     expect(action).toContain('.from("questions")');
     expect(action).toContain('.eq("lesson_id", lessonId)');
     expect(action).toContain("storedRows.length !== visibleIds.length");
-    expect(action).toContain("gradeStudyPlay(storedRows, answers)");
+    expect(action).toContain("gradeStudyPlay(storedRows, validatedAnswers)");
     expect(action).not.toContain(".limit(101)");
   });
 });
