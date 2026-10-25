@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 
 import { createClient } from "@/lib/supabase/server";
+import { readCompleteGradingPages } from "@/lib/lesson-activities/read-complete-pages";
 import StudyPlayClient, { type PlayQuestion } from "./StudyPlayClient";
 
 type RawQuestion = {
@@ -76,17 +77,31 @@ export default async function StudyPlayPage({
 
   // Invoker-RLS view exposes only student-safe question text and options.
   // Never send correct_answer, explanations, or grading logic to the browser.
-  const { data, error } = await supabase
-    .from("dadyoom_student_questions")
-    .select("id,question,question_type,question_order,options")
-    .eq("lesson_id", id)
-    .order("question_order", { ascending: true });
+  // Read all visible rows, not an arbitrary PostgREST first page.
+  // Keep the verified 100-question study-play bound; never show a partial
+  // set that the server-side grade action could disagree with.
+  const visibleRows = await readCompleteGradingPages({
+    pageSize: 75,
+    maxRows: 100,
+    readPage: async (offset, limit) => {
+      const { data, count, error } = await supabase
+        .from("dadyoom_student_questions")
+        .select("id,question,question_type,question_order,options", {
+          count: "exact",
+        })
+        .eq("lesson_id", id)
+        .order("id", { ascending: true })
+        .range(offset, offset + limit - 1);
+      return { data, count, error };
+    },
+  });
 
-  if (error) throw error;
-
-  // The existing submitPracticeAction grades the complete stored question set.
-  // Do not show a partial game with a misleading score when a record is invalid.
-  const questions = normalizeQuestions((data ?? []) as RawQuestion[]);
+  // Restore pedagogical ordering only after verifying the complete bank.
+  const rows = [...visibleRows].sort(
+    (a, b) => (a.question_order ?? 0) - (b.question_order ?? 0) ||
+      a.id.localeCompare(b.id),
+  );
+  const questions = normalizeQuestions(rows as RawQuestion[]);
 
   return (
     <main dir="rtl" className="min-h-screen bg-[#fbf6ea] px-4 py-8">
