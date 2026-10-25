@@ -4,8 +4,10 @@ import { readBoundedMultipart } from "../../lib/http/read-bounded-multipart";
 const { createClient, generateContent } = vi.hoisted(() => ({
   createClient: vi.fn(),
   generateContent: vi.fn(),
+  consumeSkillEvaluationQuota: vi.fn(),
 }));
 vi.mock("@/lib/supabase/server", () => ({ createClient }));
+vi.mock("@/lib/ai/consume-skill-evaluation-quota", () => ({ consumeSkillEvaluationQuota }));
 vi.mock("@google/genai", () => ({
   GoogleGenAI: class {
     models = { generateContent };
@@ -65,6 +67,7 @@ function setup(signedIn: boolean) {
 beforeEach(() => {
   vi.clearAllMocks();
   vi.stubEnv("GEMINI_API_KEY_BACKUP", "TEST_ONLY_PLACEHOLDER");
+  consumeSkillEvaluationQuota.mockResolvedValue({ enforced: false, allowed: true });
   generateContent.mockResolvedValue({
     text: JSON.stringify({
       transcript: "أحب القراءة",
@@ -145,6 +148,28 @@ describe("speaking evaluator protects paid AI and microphone data", () => {
     setup(true);
     const result = await POST(audioRequest({ expectedText: "ض".repeat(601) }));
     expect(result.status).toBe(400);
+    expect(generateContent).not.toHaveBeenCalled();
+  });
+
+  it("does not call paid AI when per-student quota is exhausted or RPC unavailable", async () => {
+    setup(true);
+    const request = () => audioRequest();
+    consumeSkillEvaluationQuota.mockResolvedValueOnce({
+      enforced: true, allowed: false, unavailable: false,
+    });
+    const exhausted = await POST(request());
+    expect(exhausted.status).toBe(429);
+    expect(exhausted.headers.get("Cache-Control")).toBe("no-store");
+
+    consumeSkillEvaluationQuota.mockResolvedValueOnce({
+      enforced: true, allowed: false, unavailable: true,
+    });
+    const offline = await POST(request());
+    expect(offline.status).toBe(503);
+    expect(consumeSkillEvaluationQuota).toHaveBeenCalledWith(
+      "test-learner",
+      "ai_speaking_evaluate",
+    );
     expect(generateContent).not.toHaveBeenCalled();
   });
 
