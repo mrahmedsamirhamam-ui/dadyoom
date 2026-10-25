@@ -207,6 +207,7 @@ on:
       - 'data/curriculum-drafts/**'
       - 'data/curriculum-sources/bahrain-2026-s1-ministry-plan-index.json'
       - 'data/curriculum-sources/bahrain-2026-s1-reading-title-audit.json'
+      - 'data/curriculum-sources/bahrain-2026-s1-listening-quality-queue.json'
       - 'tests/bahrain-official-plan-index.test.ts'
       - 'scripts/validate-original-curriculum-drafts.mjs'
       - 'tests/original-curriculum-drafts.test.ts'
