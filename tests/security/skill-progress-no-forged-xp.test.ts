@@ -84,7 +84,7 @@ describe("unverified browser skill scores cannot create XP or daily challenge re
         process.cwd(), "app/api/skills/progress/route.ts"
       ), "utf8",
     );
-    const post = source.slice(source.indexOf("export async function POST()"));
+    const post = source.slice(source.indexOf("export async function POST(_request: Request)"));
     expect(post).toContain("UNVERIFIED_SKILL_SCORE");
     expect(post).not.toContain("request.json()");
     expect(post).not.toContain(".upsert(");
