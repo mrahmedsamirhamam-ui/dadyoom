@@ -114,7 +114,9 @@ describe("uploaded Bahrain 2026-27 Ministry Arabic study plan provenance", () =>
   it("records page ranges for all core basic education grades without assuming full subject alignment", () => {
     expect(index.primaryGradePageRanges.map((p: {grade:number})=>p.grade))
       .toEqual([1,2,3,4,5,6,7,8,9]);
-    expect(index.scope).toContain("reading titles only");
+    expect(index.scope).toContain("reading topics");
+    expect(index.scope).toContain("listening topics");
+    expect(index.scope).toContain("pending index review");
     expect(index.warning).toContain("independent review");
   });
 });
