@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const forbiddenTitle = /(?:عنوان\\s+الدرس|اسم\\s+الكتاب|الدرس\\s+ورقمه|الصفحات|\\b(?:PAGE|PLACEHOLDER)\\b)/i;
+const forbiddenTitle = /(?:عنوان\s+الدرس|اسم\s+الكتاب|الدرس\s+ورقمه|الصفحات|\b(?:PAGE|PLACEHOLDER)\b)/i;
 const isText = (v) => typeof v === "string" && v.trim().length > 0;
 
 export function validateOriginalCurriculumDrafts(input) {
