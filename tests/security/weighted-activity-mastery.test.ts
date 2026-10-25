@@ -81,8 +81,8 @@ describe("consistent, graded, weighted mastery", () => {
     expect(complete).toContain("scoreGradedActivityAttempts(");
     expect(mastery).toContain("scoreGradedActivityAttempts(");
     expect(complete).toContain("requirePositiveAssessmentPoints(graded.totalPossible)");
-    expect(mastery).toContain('select("id,answer,is_required,points")');
-    expect(mastery).toContain('select("activity_id,earned_points,is_correct,attempt_number")');
+    expect(mastery).toContain('select("id,answer,is_required,points", { count: "exact" })');
+    expect(mastery).toContain('select("id,activity_id,earned_points,is_correct,attempt_number"');
     expect(complete).toContain('.from("dadyoom_student_questions")');
     expect(mastery).toContain('.from("dadyoom_student_questions")');
   });
