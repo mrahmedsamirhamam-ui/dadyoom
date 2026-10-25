@@ -50,7 +50,7 @@
     "**/*.backup",
     "**/*.old",
     "supabase/.temp",
-    "vite.config.mts",
+    "vite.config.ts",
     "cloudflare.config.ts",
     ".cloudflare",
     "dist"
