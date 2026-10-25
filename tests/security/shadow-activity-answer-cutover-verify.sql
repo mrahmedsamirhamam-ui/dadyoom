@@ -52,6 +52,14 @@ BEGIN
  IF public.dadyoom_rehearsal_public_activity_content(
   '{"items":[{"id":"a","text":"شيء","grading":{"isCorrect":true}}]}'::jsonb
  ) THEN RAISE EXCEPTION 'NESTED_ANSWER_KEY_WAS_ALLOWED'; END IF;
+ -- correctWord appeared in actual unlinked/unpublished source data and must
+ -- not become a published answer leak after a future content import.
+ IF public.dadyoom_rehearsal_public_activity_content(
+  '{"puzzles":[{"correctWord":"private"}]}'::jsonb
+ ) THEN RAISE EXCEPTION 'CORRECT_WORD_NESTED_KEY_WAS_ALLOWED'; END IF;
+ IF public.dadyoom_rehearsal_public_activity_content(
+  '{"puzzles":[{"Correct-Word":"private"}]}'::jsonb
+ ) THEN RAISE EXCEPTION 'CORRECT_WORD_VARIANT_KEY_WAS_ALLOWED'; END IF;
  BEGIN
   UPDATE public.lesson_activities
   SET content='{"exercise":{"correctAnswer":"a"}}'::jsonb
