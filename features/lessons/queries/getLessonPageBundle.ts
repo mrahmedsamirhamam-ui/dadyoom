@@ -139,6 +139,8 @@ export async function getLessonPageBundle(
       };
     }
 
+    // Narrow the authenticated bundle's owner before entering async page callbacks.
+    const studentId = bundle.student.id;
     const activityIds =
       safeActivities.map(
         (activity) => activity.id
@@ -153,7 +155,7 @@ export async function getLessonPageBundle(
           .select("id,activity_id,is_correct,attempt_number", {
             count: "exact",
           })
-          .eq("user_id", bundle.student.id)
+          .eq("user_id", studentId)
           .in("activity_id", activityIds)
           .order("id", { ascending: true })
           .range(offset, offset + limit - 1);
