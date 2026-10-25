@@ -9,6 +9,7 @@ import { invalidateStudentCaches } from "@/features/student-progress/services/in
 import { syncLearningProfile } from "@/features/learning-profile/services/sync-profile";
 import { syncLessonMasteryAction } from "@/features/lesson-mastery/actions/syncLessonMastery";
 import { scoreGradedActivityAttempts } from "@/features/lesson-mastery/services/score-graded-activities";
+import { readCompleteGradingPages } from "@/lib/lesson-activities/read-complete-pages";
 import { completeAdaptiveStep } from "@/features/learning-plan/services/adaptive-path-lifecycle";
 
 import { completeLesson } from "../services/progress";
@@ -197,29 +198,19 @@ export async function completeLessonAction(
    * Older lessons without activities keep using questions.
    */
 
-  const {
-    data: activityRows,
-    error: activitiesError,
-  } = await admin
-    .from("lesson_activities")
-    .select(`
-      id,
-      answer,
-      points,
-      is_required
-    `)
-    .eq(
-      "lesson_id",
-      progress.lesson_id
-    )
-    .eq(
-      "is_published",
-      true
-    );
-
-  if (activitiesError) {
-    throw activitiesError;
-  }
+  // Read the whole published activity bank, never only PostgREST's first page.
+  const activityRows = await readCompleteGradingPages({
+    readPage: async (offset, limit) => {
+      const { data, count, error } = await admin
+        .from("lesson_activities")
+        .select("id,answer,points,is_required", { count: "exact" })
+        .eq("lesson_id", progress.lesson_id)
+        .eq("is_published", true)
+        .order("id", { ascending: true })
+        .range(offset, offset + limit - 1);
+      return { data, count, error };
+    },
+  });
 
   // DADYOOM_CANONICAL_ACTIVITY_GRADING_V2
   const answerRecord = (
@@ -260,19 +251,19 @@ export async function completeLessonAction(
         (activity) => activity.id
       );
 
-    const {
-      data: requiredAttempts,
-      error: requiredAttemptsError,
-    } = await supabase
-      .from("lesson_activity_attempts")
-      .select("activity_id,is_correct")
-      .eq("user_id", user.id)
-      .eq("is_correct", true)
-      .in("activity_id", requiredIds);
-
-    if (requiredAttemptsError) {
-      throw requiredAttemptsError;
-    }
+    const requiredAttempts = await readCompleteGradingPages({
+      readPage: async (offset, limit) => {
+        const { data, count, error } = await supabase
+          .from("lesson_activity_attempts")
+          .select("id,activity_id,is_correct", { count: "exact" })
+          .eq("user_id", user.id)
+          .eq("is_correct", true)
+          .in("activity_id", requiredIds)
+          .order("id", { ascending: true })
+          .range(offset, offset + limit - 1);
+        return { data, count, error };
+      },
+    });
 
     const completedRequired =
       new Set(
@@ -323,30 +314,20 @@ export async function completeLessonAction(
     totalQuestions =
       gradableActivities.length;
 
-    const {
-      data: activityAttempts,
-      error: activityAttemptsError,
-    } = await supabase
-      .from("lesson_activity_attempts")
-      .select(`
-        activity_id,
-        earned_points,
-        max_points,
-        is_correct,
-        attempt_number
-      `)
-      .eq(
-        "user_id",
-        user.id
-      )
-      .in(
-        "activity_id",
-        activityIds
-      );
-
-    if (activityAttemptsError) {
-      throw activityAttemptsError;
-    }
+    const activityAttempts = await readCompleteGradingPages({
+      readPage: async (offset, limit) => {
+        const { data, count, error } = await supabase
+          .from("lesson_activity_attempts")
+          .select("id,activity_id,earned_points,max_points,is_correct,attempt_number", {
+            count: "exact",
+          })
+          .eq("user_id", user.id)
+          .in("activity_id", activityIds)
+          .order("id", { ascending: true })
+          .range(offset, offset + limit - 1);
+        return { data, count, error };
+      },
+    });
 
     const graded = scoreGradedActivityAttempts(
       gradableActivities,
@@ -377,24 +358,17 @@ export async function completeLessonAction(
      * Legacy questions fallback.
      */
 
-    const {
-      data: questions,
-      error: questionsError,
-    } = await supabase
-      // Read only the published student-safe question projection.
-      .from("dadyoom_student_questions")
-      .select("id")
-      .eq(
-        "lesson_id",
-        progress.lesson_id
-      );
-
-    if (questionsError) {
-      throw questionsError;
-    }
-
-    const questionRows =
-      (questions ?? []) as QuestionRow[];
+    const questionRows = await readCompleteGradingPages({
+      readPage: async (offset, limit) => {
+        const { data, count, error } = await supabase
+          .from("dadyoom_student_questions")
+          .select("id", { count: "exact" })
+          .eq("lesson_id", progress.lesson_id)
+          .order("id", { ascending: true })
+          .range(offset, offset + limit - 1);
+        return { data, count, error };
+      },
+    });
 
     questionIds =
       questionRows.map(
@@ -409,30 +383,18 @@ export async function completeLessonAction(
       questionIds.length > 0
     ) {
 
-      const {
-        data: attempts,
-        error: attemptsError,
-      } = await supabase
-        .from("question_attempts")
-        .select(`
-          question_id,
-          is_correct
-        `)
-        .eq(
-          "user_id",
-          user.id
-        )
-        .in(
-          "question_id",
-          questionIds
-        );
-
-      if (attemptsError) {
-        throw attemptsError;
-      }
-
-      const attemptRows =
-        (attempts ?? []) as AttemptRow[];
+      const attemptRows = await readCompleteGradingPages({
+        readPage: async (offset, limit) => {
+          const { data, count, error } = await supabase
+            .from("question_attempts")
+            .select("id,question_id,is_correct", { count: "exact" })
+            .eq("user_id", user.id)
+            .in("question_id", questionIds)
+            .order("id", { ascending: true })
+            .range(offset, offset + limit - 1);
+          return { data, count, error };
+        },
+      });
 
       const latestAttempts =
         new Map<string, boolean>();
