@@ -5,6 +5,8 @@
 import {
   GoogleGenAI,
 } from "@google/genai";
+import { createClient } from "@/lib/supabase/server";
+import { readBoundedMultipart } from "@/lib/http/read-bounded-multipart";
 
 type AudioEvaluation = {
   transcript: string;
@@ -107,75 +109,69 @@ export async function POST(
   request: Request
 ) {
   try {
-    const formData =
-      await request.formData();
+    // Authenticate before reading microphone data or opening a paid model.
+    const supabase = await createClient();
+    const { data: { user }, error: authError } =
+      await supabase.auth.getUser();
+    if (authError || !user) {
+      return NextResponse.json(
+        { ok: false, error: "يجب تسجيل الدخول أولًا." },
+        { status: 401, headers: { "Cache-Control": "no-store" } },
+      );
+    }
 
-    const audio =
-      formData.get("audio");
-
+    const upload = await readBoundedMultipart(request);
+    if (!upload.ok) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: upload.status === 413
+            ? "حجم التسجيل أكبر من الحد المسموح."
+            : "صيغة طلب التسجيل غير صالحة.",
+        },
+        {
+          status: upload.status,
+          headers: { "Cache-Control": "no-store" },
+        },
+      );
+    }
+    const formData = upload.value;
+    const audio = formData.get("audio");
+    const originalText = formData.get("expectedText");
     const expectedText =
-      String(
-        formData.get(
-          "expectedText"
-        ) ?? ""
-      ).trim();
+      typeof originalText === "string" ? originalText.trim() : "";
 
-    if (
-      !(audio instanceof File)
-    ) {
+    if (!(audio instanceof File)) {
       return NextResponse.json(
-        {
-          ok: false,
-          error:
-            "لم يصل التسجيل الصوتي.",
-        },
-        {
-          status: 400,
-        }
+        { ok: false, error: "لم يصل التسجيل الصوتي." },
+        { status: 400 },
       );
     }
 
-    if (!expectedText) {
+    // Current speaking client uploads a converted WAV. Reject script, JSON,
+    // MP4 and other files disguised as audio before any model invocation.
+    if (!/^(audio\/(wav|wave|x-wav))$/i.test(audio.type) ||
+      audio.size < 44 || audio.size > 8 * 1024 * 1024) {
       return NextResponse.json(
-        {
-          ok: false,
-          error:
-            "الجملة النموذجية غير موجودة.",
-        },
-        {
-          status: 400,
-        }
+        { ok: false, error: "صيغة أو حجم التسجيل غير صالحين." },
+        { status: 400 },
+      );
+    }
+    if (expectedText.length < 2 || expectedText.length > 600 ||
+      /[\u0000-\u001f\u007f]/u.test(expectedText)) {
+      return NextResponse.json(
+        { ok: false, error: "الجملة النموذجية غير صالحة." },
+        { status: 400 },
       );
     }
 
-    if (
-      audio.size === 0
-    ) {
+    const header = new Uint8Array(await audio.slice(0, 12).arrayBuffer());
+    const tag = (offset: number) =>
+      String.fromCharCode(...header.slice(offset, offset + 4));
+    if (tag(0) !== "RIFF" || tag(8) !== "WAVE") {
       return NextResponse.json(
-        {
-          ok: false,
-          error:
-            "التسجيل الصوتي فارغ.",
-        },
-        {
-          status: 400,
-        }
-      );
-    }
-
-    if (
-      audio.size >
-      8 * 1024 * 1024
-    ) {
-      return NextResponse.json(
-        {
-          ok: false,
-          error:
-            "التسجيل طويل جدًا.",
-        },
-        {
-          status: 400,
-        }
+        { ok: false, error: "التسجيل لا يحتوي على ملف WAV صالح." },
+        { status: 400 },
       );
     }
 
@@ -375,19 +371,16 @@ export async function POST(
     });
   }
   catch (error) {
+    // Provider errors can include request or infrastructure details.
     console.error(
       "SPEAKING_AUDIO_EVALUATION_FAILED:",
-      error
+      error instanceof Error ? error.name : "UnknownError",
     );
 
     return NextResponse.json(
       {
         ok: false,
-
-        error:
-          error instanceof Error
-            ? error.message
-            : "تعذر تقييم التسجيل.",
+        error: "تعذر تقييم التسجيل الآن. حاول مرة أخرى.",
       },
       {
         status: 500,
