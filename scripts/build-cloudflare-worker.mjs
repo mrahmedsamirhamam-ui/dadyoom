@@ -11,7 +11,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import process from "node:process";
 
-for (const file of ["vite.config.ts", "cloudflare.config.ts", "next.config.ts"]) {
+for (const file of ["vite.config.mts", "cloudflare.config.ts", "next.config.ts"]) {
   if (!existsSync(file)) {
     throw new Error("CLOUDFLARE_REQUIRED_SOURCE_CONFIG_MISSING: " + file);
   }
