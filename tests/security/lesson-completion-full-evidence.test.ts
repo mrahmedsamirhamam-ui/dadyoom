@@ -36,9 +36,9 @@ describe("canonical 90% lesson completion uses complete owner-scoped assessment 
   });
 
   it("prevents silent 1000-row truncation from manufacturing a passing activity score", async () => {
-    // 1,002 genuine activities: a stale one-page read of 1,000 would
-    // misleadingly report 100% while two remain completely unanswered.
-    const activities = Array.from({ length: 1002 }, (_, i) => ({
+    // 1,012 genuine activities: a stale one-page read of 1,000 would
+    // misleadingly report 100% while twelve remain completely unanswered.
+    const activities = Array.from({ length: 1012 }, (_, i) => ({
       id: String(i + 1).padStart(8, "0"), points: 1,
     }));
     const attempts = activities.slice(0, 1000).map((item) => ({
@@ -62,7 +62,7 @@ describe("canonical 90% lesson completion uses complete owner-scoped assessment 
       await page(attempts),
     );
     expect(scored.answeredQuestions).toBe(1000);
-    expect(scored.totalPossible).toBe(1002);
+    expect(scored.totalPossible).toBe(1012);
     expect(scored.score).toBeLessThan(100);
     expect(scored.answeredQuestions).toBeLessThan(activities.length);
   });
