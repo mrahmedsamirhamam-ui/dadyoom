@@ -12,6 +12,7 @@ export const PRIVATE_ASSESSMENT_TABLES = new Set([
   "assessment_sessions",
   "assessment_session_answers",
   "edu_game_attempts",
+  "student_daily_challenges",
   "student_progress",
   "student_skill_progress",
   "lesson_progress",
