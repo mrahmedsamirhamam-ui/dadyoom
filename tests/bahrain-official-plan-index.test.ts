@@ -21,27 +21,33 @@ describe("uploaded Bahrain 2026-27 Ministry Arabic study plan provenance", () =>
   });
 
   it("anchors 12 named reading lessons per grade to real source PDF pages, without invented book pages", () => {
-    expect(lessons).toHaveLength(24);
+    expect(lessons).toHaveLength(38);
     expect(lessons.filter(l=>l.grade===2)).toHaveLength(12);
     expect(lessons.filter(l=>l.grade===3)).toHaveLength(12);
+    expect(lessons.filter(l=>l.grade===4)).toHaveLength(14);
     for(const grade of [2,3]){
       expect(lessons.filter(l=>l.grade===grade).map(l=>l.lessonNumber))
         .toEqual(Array.from({length:12},(_,i)=>i+1));
     }
+    expect(lessons.filter(l=>l.grade===4).map(l=>l.lessonNumber))
+      .toEqual(Array.from({length:14},(_,i)=>i+1));
     const firstPlan=index.sourceDocuments[0];
     for(const lesson of lessons) {
       expect(lesson.semester).toBe(1);
       expect(lesson.title.trim().length).toBeGreaterThan(3);
       expect(lesson.sourceFile).toBe("Plan1.pdf");
       expect(lesson.sourceSha256).toBe(firstPlan.sha256);
-      expect(lesson.sourcePdfPage).toBeGreaterThanOrEqual(lesson.grade===2?10:14);
-      expect(lesson.sourcePdfPage).toBeLessThanOrEqual(lesson.grade===2?13:16);
+      expect(lesson.sourcePdfPage).toBeGreaterThanOrEqual(lesson.grade===2?10:lesson.grade===3?14:18);
+      expect(lesson.sourcePdfPage).toBeLessThanOrEqual(lesson.grade===2?13:lesson.grade===3?16:21);
       expect(lesson.officialPageOfTextbook).toBeNull();
       expect(lesson.publicationStatus).toBe("index_only_not_a_lesson");
     }
   });
 
   it("recognizes the photographer lesson as officially scheduled without publishing prior supplemental fiction", () => {
+    expect(lessons.find(l=>l.grade===4&&l.title==="الملاك الأبيض")).toMatchObject({
+      sourcePdfPage:21,publicationStatus:"index_only_not_a_lesson",
+    });
     expect(lessons.find(l=>l.grade===2&&l.lessonNumber===5)).toMatchObject({
       title:"المصور الصغير",sourcePdfPage:12,
     });
@@ -58,8 +64,9 @@ describe("uploaded Bahrain 2026-27 Ministry Arabic study plan provenance", () =>
     const ids = new Set(lessons.map(l=>`${l.grade}:${l.lessonNumber}`));
     expect(new Set(snapshot.rows.map((r:{grade:number;lessonNumber:number})=>
       `${r.grade}:${r.lessonNumber}`))).toEqual(ids);
-    expect(snapshot.summary.itemsWithAtLeastOnePublishedTitle).toBe(24);
+    expect(snapshot.summary.itemsWithAtLeastOnePublishedTitle).toBe(38);
     expect(snapshot.summary.itemsWithNoPublishedTitle).toBe(0);
+    expect(snapshot.summary.officialReadingItems).toBe(38);
     expect(snapshot.summary.itemsWithMultiplePublishedTitleMatches).toBe(14);
     expect(snapshot.summary.qualityAndTextbookMatch).toBe("NOT_VERIFIED");
     expect(snapshot.summary.approvedToPublish).toBe(false);
