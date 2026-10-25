@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { createClient } from "@supabase/supabase-js";
 import { validateCurriculumPack } from "../lib/curriculum-packs/validate.mjs";
+import { curriculumLessonSlug, readVerifiedCurriculumBackup } from "../lib/curriculum-packs/import-safety.mjs";
 
 function loadEnv(file) {
   if (!fs.existsSync(file)) return;
@@ -76,13 +77,20 @@ console.log("PACK_SCHEMA_PREFLIGHT=PASS");
 fs.mkdirSync(path.resolve(process.cwd(), "_backups"), { recursive: true });
 const stamp = new Date().toISOString().replace(/[:.]/g, "-");
 const backupFile = path.resolve(process.cwd(), "_backups", `curriculum-pack-before-${pack.country.code}-${stamp}.json`);
-const snapshot = {};
-for (const table of ["countries", "curricula", "grades", "units", "lessons", "questions", "lesson_vocabulary"]) {
-  const { data, error } = await supabase.from(table).select("*");
-  snapshot[table] = error ? { error: error.message } : data;
+// Read ALL pages and verify each table's row count before any DB mutation.
+// If any page, count, or local disk write fails, the import aborts here.
+const snapshot = await readVerifiedCurriculumBackup(supabase);
+const backupJson = JSON.stringify(snapshot);
+fs.writeFileSync(backupFile, backupJson, {
+  encoding: "utf8",
+  flag: "wx",
+  mode: 0o600,
+});
+if (fs.readFileSync(backupFile, "utf8") !== backupJson) {
+  throw new Error("CURRICULUM_BACKUP_DISK_VERIFICATION_FAILED");
 }
-fs.writeFileSync(backupFile, JSON.stringify(snapshot, null, 2), "utf8");
 console.log(`DB_BACKUP=${backupFile}`);
+console.log("DB_BACKUP_ALL_PAGES_VERIFIED=PASS");
 
 let country = await one("countries", (q) => q.eq("code", pack.country.code));
 if (!country) {
@@ -156,7 +164,7 @@ for (const unitPack of pack.units) {
     const payload = {
       unit_id: unit.id,
       title: lessonPack.title,
-      slug: `${pack.packKey.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${String(lessonPack.number).padStart(2, "0")}`,
+      slug: curriculumLessonSlug(pack.packKey, unitPack.number, lessonPack.number),
       lesson_number: lessonPack.number,
       sort_order: lessonPack.number,
       lesson_type: lessonPack.type,
@@ -181,7 +189,11 @@ for (const unitPack of pack.units) {
     } else {
       const rich = String(lesson.content || "").trim().length >= 120 && lesson.status === "published";
       if (!rich) {
-        const { data, error } = await supabase.from("lessons").update(payload).eq("id", lesson.id).select("*").single();
+        // Preserve existing public identifiers; new unit-scoped slugs only
+        // apply on insert. Do not unexpectedly rename existing lesson URLs.
+        const updatePayload = { ...payload };
+        delete updatePayload.slug;
+        const { data, error } = await supabase.from("lessons").update(updatePayload).eq("id", lesson.id).select("*").single();
         if (error) throw error;
         lesson = data;
         enrichedLessons++;
