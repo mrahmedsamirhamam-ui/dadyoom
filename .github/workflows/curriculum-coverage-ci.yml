@@ -205,6 +205,9 @@ on:
       - 'lib/curriculum-packs/import-questions.mjs'
       - 'tests/curriculum-import-questions.test.ts'
       - 'data/curriculum-drafts/**'
+      - 'data/curriculum-sources/bahrain-2026-s1-ministry-plan-index.json'
+      - 'data/curriculum-sources/bahrain-2026-s1-reading-title-audit.json'
+      - 'tests/bahrain-official-plan-index.test.ts'
       - 'scripts/validate-original-curriculum-drafts.mjs'
       - 'tests/original-curriculum-drafts.test.ts'
       - 'package.json'
@@ -235,6 +238,8 @@ jobs:
         run: npx vitest run tests/curriculum-import-safety.test.ts
       - name: Verify complete lesson question-bank import and non-destructive deduplication
         run: npx vitest run tests/curriculum-import-questions.test.ts
+      - name: Verify seven uploaded official plan sources and 24 indexed grade-two/three readings
+        run: npx vitest run tests/bahrain-official-plan-index.test.ts
       - name: Validate unpublished original lesson drafts without writing
         run: npm run curriculum:drafts:verify
       - name: Exercise draft quality and no-publication safety gates
