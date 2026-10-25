@@ -161,10 +161,18 @@ export default function LessonGamesClient({
 
       const payload = (await response.json()) as {
         xp?: number;
+        error?: string;
       };
 
+      if (!response.ok) {
+        setMessage(
+          `أنهيت التدريب: ${nextScore}/${questions.length} • ${payload.error ?? "نتيجة اللعبة غير معتمدة."}`
+        );
+        return;
+      }
+
       setMessage(
-        `أنهيت اللعبة: ${nextScore}/${questions.length} • ${Number(
+        `أنهيت التدريب: ${nextScore}/${questions.length} • ${Number(
           payload.xp ?? 0
         )} XP`
       );
@@ -219,12 +227,23 @@ export default function LessonGamesClient({
           <h1 className="mt-2 text-3xl font-black">
             {lesson.title}
           </h1>
-          <Link
-            href={`/lessons/${lesson.id}`}
-            className="mt-4 inline-flex rounded-xl bg-white/10 px-4 py-2 font-black"
-          >
-            العودة للدرس
-          </Link>
+          <p className="mt-3 text-sm text-emerald-50">
+            هذه ألعاب مفردات للتدريب غير المعتمد. التصحيح ونقاط الخبرة المعتمدة متاحان في «ذاكر والعب».
+          </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Link
+              href={`/lessons/${lesson.id}`}
+              className="inline-flex rounded-xl bg-white/10 px-4 py-2 font-black"
+            >
+              العودة للدرس
+            </Link>
+            <Link
+              href={`/lessons/${lesson.id}/play`}
+              className="inline-flex rounded-xl bg-amber-300 px-4 py-2 font-black text-[#123f39]"
+            >
+              ذاكر والعب — نتيجة معتمدة
+            </Link>
+          </div>
         </section>
 
         <section className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
