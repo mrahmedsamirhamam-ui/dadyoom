@@ -1,0 +1,45 @@
+name: Arabic level check quality checks
+
+on:
+  pull_request:
+    paths:
+      - 'app/level-check/**'
+      - 'components/level-check/**'
+      - 'lib/level-check/**'
+      - 'tests/level-check.test.ts'
+      - 'scripts/smoke-level-check.mjs'
+      - 'app/page.tsx'
+      - '.github/workflows/level-check-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci --no-audit --no-fund
+      - run: npx vitest run tests/level-check.test.ts
+      - run: npx tsc --noEmit
+      - run: npm run lint
+      - run: npm run build
+      - name: Mobile browser smoke (Chrome)
+        shell: bash
+        run: |
+          npm run start -- -p 3033 >/tmp/dadyoom-level-check-next.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 25); do
+            if curl -fsS http://127.0.0.1:3033/level-check >/dev/null; then break; fi
+            sleep 2
+          done
+          node scripts/smoke-level-check.mjs

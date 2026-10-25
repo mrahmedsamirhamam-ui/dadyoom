@@ -65,6 +65,7 @@ export default function HomePage() {
               <Link href="/courses" className="rounded-2xl border border-[#d9cdb7] bg-white px-7 py-4 font-black text-[#4d4438] transition hover:border-[#84a89f] hover:text-[#174f47]">تصفّح المنهج</Link>
               <Link href="/how-to-use" className="rounded-2xl border border-[#d6b569] bg-[#fff6df] px-7 py-4 font-black text-[#72551c] transition hover:-translate-y-0.5 hover:bg-[#fcebc1]">كيف تستخدم ضاديوم؟</Link>
               <Link href="/labs/letters" className="rounded-2xl border border-[#84a89f] bg-[#e9f5ef] px-7 py-4 font-black text-[#174f47] transition hover:-translate-y-0.5 hover:bg-[#d8ece3]">✨ جرّب مختبر الحروف</Link>
+              <Link href="/level-check" className="rounded-2xl border border-[#d5b061] bg-[#fff4d9] px-7 py-4 font-black text-[#72551c] transition hover:-translate-y-0.5 hover:bg-[#ffe9b5]">🎯 اكتشف مستواك مجانًا</Link>
             </div>
             <div className="mt-9 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
               <MiniStat value="22" label="دولة عربية في البنية" />
