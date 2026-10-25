@@ -10,6 +10,8 @@ const draft = JSON.parse(readFileSync(resolve(process.cwd(), file), "utf8"));
 const deepCopy = () => JSON.parse(JSON.stringify(draft));
 const grade3Draft = JSON.parse(readFileSync(resolve(process.cwd(),
   "data/curriculum-drafts/bh-g3-s1-original-learning-drafts.json"), "utf8"));
+const grade4Draft = JSON.parse(readFileSync(resolve(process.cwd(),
+  "data/curriculum-drafts/bh-g4-s1-original-learning-drafts.json"), "utf8"));
 
 
 describe("Bahrain grade-two original curricular lesson content", () => {
@@ -28,14 +30,23 @@ describe("Bahrain grade-two original curricular lesson content", () => {
       l.alignment.officialTocVerified === false && l.publicationApproved === false)).toBe(true);
   });
 
-  it("checks both grade-two and grade-three packets without changing the database", () => {
+  it("validates six original grade-four lessons and blocks any official syllabus claim", () => {
+    expect(grade4Draft.grade).toBe(4);
+    expect(validateOriginalCurriculumDrafts(grade4Draft)).toEqual({
+      ok: true, errors: [], lessons: 6, questions: 24,
+    });
+    expect(grade4Draft.officialTocVerified).toBe(false);
+    expect(validateCurriculumPack(grade4Draft).ok).toBe(false);
+  });
+
+  it("checks grade-two through grade-four packets without changing the database", () => {
     const result = spawnSync(process.execPath, [
       resolve(process.cwd(), "scripts/validate-original-curriculum-drafts.mjs"),
     ], { cwd: process.cwd(), encoding: "utf8" });
     expect(result.status).toBe(0);
-    expect(result.stdout).toContain("ORIGINAL_DRAFT_PACKS=2");
-    expect(result.stdout).toContain("ORIGINAL_DRAFT_LESSONS=12");
-    expect(result.stdout).toContain("ORIGINAL_DRAFT_QUESTIONS=48");
+    expect(result.stdout).toContain("ORIGINAL_DRAFT_PACKS=3");
+    expect(result.stdout).toContain("ORIGINAL_DRAFT_LESSONS=18");
+    expect(result.stdout).toContain("ORIGINAL_DRAFT_QUESTIONS=72");
     expect(result.stdout).toContain("DATABASE_WRITES=NONE");
     expect(result.stdout).toContain("OFFICIAL_2026_TOC_MATCH=NOT_VERIFIED");
   });
@@ -80,7 +91,7 @@ describe("Bahrain grade-two original curricular lesson content", () => {
   });
 
   it("keeps both original draft packs balanced without disclosing answer keys to students", () => {
-    for (const pack of [draft, grade3Draft]) {
+    for (const pack of [draft, grade3Draft, grade4Draft]) {
       const positions = pack.lessons.flatMap((lesson: {questions: Array<{correctAnswer: string}>}) =>
         lesson.questions.map((q) => q.correctAnswer));
       const counts = ["a","b","c"].map((key) => positions.filter((v: string) => v === key).length);
