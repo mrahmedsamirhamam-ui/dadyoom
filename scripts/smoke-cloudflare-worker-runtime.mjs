@@ -142,6 +142,41 @@ try {
     }
     console.log(`WORKER_${check.name}_UNAUTH_401=PASS`);
   }
+  // Real compiled Worker must fail closed on legacy browser-forged XP.
+  // This endpoint is intentionally disabled, even for a forged score=100.
+  const forgedArcade = await fetch(url + "/api/games/complete", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      lessonId: "00000000-0000-4000-8000-000000000001",
+      gameKey: "vocabulary",
+      score: 100,
+      maxScore: 100,
+      xp: 999999,
+    }),
+    redirect: "manual",
+    signal: AbortSignal.timeout(10000),
+  });
+  const forgedBody = await forgedArcade.json();
+  if (forgedArcade.status !== 409 || forgedBody.ok !== false ||
+      forgedBody.xp !== 0 || forgedBody.code !== "UNVERIFIED_ARCADE_SCORE") {
+    throw new Error("WORKER_LEGACY_GAME_FORGED_XP_NOT_BLOCKED");
+  }
+  console.log("WORKER_LEGACY_GAME_UNVERIFIED_XP_DENIED=PASS");
+
+  // The real Worker must authenticate before any lesson vocabulary pack
+  // can be generated. In particular, no correct_answer leaks on 401.
+  const arcadePack = await get(
+    "/api/lessons/games?lessonId=00000000-0000-4000-8000-000000000001",10000
+  );
+  const arcadePackText = await arcadePack.text();
+  if (arcadePack.status !== 401 ||
+      !arcadePack.headers.get("content-type")?.includes("application/json") ||
+      /correct_answer|service_role|SUPABASE_SERVICE_ROLE_KEY/i.test(arcadePackText)) {
+    throw new Error(`WORKER_ARCADE_QUESTION_PACK_AUTH_DENIAL_FAILED_${arcadePack.status}`);
+  }
+  console.log("WORKER_ARCADE_PACK_UNAUTH_401_NO_KEYS=PASS");
+
   const mastery = await get("/api/lesson-mastery?lessonId=00000000-0000-4000-8000-000000000001",10000);
   if(mastery.status!==401) {
     throw new Error(`WORKER_LESSON_MASTERY_EXPECTED_401_GOT_${mastery.status}`);
