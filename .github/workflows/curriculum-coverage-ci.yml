@@ -38,6 +38,8 @@ on:
       - 'tests/security/activity-progress-concurrent-cas.test.ts'
       - 'tests/security/shadow-activity-progress-cas.sql'
       - 'lib/lesson-activities/attempt-sequencing.ts'
+      - 'lib/lesson-activities/read-complete-pages.ts'
+      - 'tests/security/graded-activity-pagination.test.ts'
       - 'tests/security/attempt-number-sequencing.test.ts'
       - 'scripts/security/proposed-activity-attempt-number-uniqueness.sql'
       - 'tests/security/shadow-activity-sequence-setup.sql'
@@ -210,6 +212,8 @@ jobs:
         run: npx vitest run tests/security/lesson-mastery-completion-only.test.ts
       - name: Verify weighted lesson mastery equals completion scoring
         run: npx vitest run tests/security/weighted-activity-mastery.test.ts
+      - name: Verify complete paged scoring under PostgREST row caps
+        run: npx vitest run tests/security/graded-activity-pagination.test.ts
       - name: Verify private answer-key lookup
         run: npx vitest run tests/security/server-only-answer-key-read.test.ts
       - name: Verify teacher-only stored answer-key access
