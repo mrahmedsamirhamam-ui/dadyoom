@@ -69,19 +69,38 @@ export function validateOriginalCurriculumDrafts(input) {
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(new URL(import.meta.url).pathname)) {
-  const file = path.resolve(process.cwd(), process.argv[2] ||
-    "data/curriculum-drafts/bh-g2-s1-original-learning-drafts.json");
   if (process.argv.includes("--apply") || process.argv.includes("--publish")) {
     console.error("CURRICULUM_DRAFT_PUBLICATION_BLOCKED=YES");
     process.exit(1);
   }
-  const source = JSON.parse(fs.readFileSync(file, "utf8"));
-  const result = validateOriginalCurriculumDrafts(source);
-  for (const err of result.errors) console.error("INVALID_DRAFT=" + err);
-  console.log("ORIGINAL_DRAFT_LESSONS=" + result.lessons);
-  console.log("ORIGINAL_DRAFT_QUESTIONS=" + result.questions);
+  const arg = process.argv.slice(2).find((value) => !value.startsWith("--"));
+  const draftDir = path.resolve(process.cwd(), "data/curriculum-drafts");
+  const files = arg
+    ? [path.resolve(process.cwd(), arg)]
+    : fs.readdirSync(draftDir)
+        .filter((file) => /^bh-g[0-9]+-s[0-9]+-original-learning-drafts\.json$/.test(file))
+        .sort()
+        .map((file) => path.join(draftDir, file));
+
+  if (!files.length) throw new Error("NO_ORIGINAL_CURRICULUM_DRAFT_PACKS_FOUND");
+  let valid = true;
+  let lessons = 0;
+  let questions = 0;
+  for (const file of files) {
+    const source = JSON.parse(fs.readFileSync(file, "utf8"));
+    const result = validateOriginalCurriculumDrafts(source);
+    for (const error of result.errors) console.error("INVALID_DRAFT=" + path.basename(file) + ":" + error);
+    console.log("DRAFT_PACK=" + path.basename(file) + " LESSONS=" + result.lessons + " QUESTIONS=" + result.questions +
+      " GATE=" + (result.ok ? "PASS" : "FAIL"));
+    valid &&= result.ok;
+    lessons += result.lessons;
+    questions += result.questions;
+  }
+  console.log("ORIGINAL_DRAFT_PACKS=" + files.length);
+  console.log("ORIGINAL_DRAFT_LESSONS=" + lessons);
+  console.log("ORIGINAL_DRAFT_QUESTIONS=" + questions);
   console.log("OFFICIAL_2026_TOC_MATCH=NOT_VERIFIED");
   console.log("DATABASE_WRITES=NONE");
-  console.log("DRAFT_QUALITY_GATE=" + (result.ok ? "PASS" : "FAIL"));
-  if (!result.ok) process.exitCode = 1;
+  console.log("DRAFT_QUALITY_GATE=" + (valid ? "PASS" : "FAIL"));
+  if (!valid) process.exitCode = 1;
 }
