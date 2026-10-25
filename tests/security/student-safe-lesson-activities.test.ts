@@ -110,6 +110,26 @@ describe("student-safe published and private-preview activity serialization", ()
     });
   });
 
+  it("removes answer-bearing correctWord variants found in imported activity content", () => {
+    const row = fixtureActivity();
+    row.content = {
+      instruction: "رتب الكلمات",
+      rounds: [
+        { text: "أكمل", correctWord: "secret", word: "اختيار عام" },
+        { "Correct-Word": "another secret", hint: "أفكر" },
+        { "correct_word": "private", examples: [{ "CORRECT WORD": "nested", text: "أقرأ" }] },
+      ],
+    } as unknown as typeof row.content;
+    expect(publicLessonActivities([row])[0].content).toEqual({
+      instruction: "رتب الكلمات",
+      rounds: [
+        { text: "أكمل", word: "اختيار عام" },
+        { hint: "أفكر" },
+        { examples: [{ text: "أقرأ" }] },
+      ],
+    });
+  });
+
   it("drops untrusted top-level fields and malformed rows", () => {
     expect(publicLessonActivities(null)).toEqual([]);
     expect(publicLessonActivities([null, { id: "missing" }, fixtureActivity()]))
