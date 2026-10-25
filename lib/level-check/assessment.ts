@@ -134,7 +134,7 @@ const SKILLS: readonly ArabicSkill[] = ["reading", "vocabulary", "grammar", "spe
 export function evaluateLevelCheck(
   answers: Readonly<Record<string, number | undefined>>
 ): LevelSummary {
-  const answered = LEVEL_QUESTIONS.filter((item) => Number.isInteger(answers[item.id])).length;
+  const answered = LEVEL_QUESTIONS.filter((item) => { const answer = answers[item.id]; return Number.isInteger(answer) && answer !== undefined && answer >= 0 && answer < 4; }).length;
   const correct = LEVEL_QUESTIONS.filter((item) => answers[item.id] === item.correctIndex).length;
   const percent = Math.round((correct / LEVEL_QUESTIONS.length) * 100);
   const breakdown = SKILLS.map((skill) => {
