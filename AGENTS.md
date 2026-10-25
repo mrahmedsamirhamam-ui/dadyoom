@@ -12,6 +12,13 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - Maintain the existing site identity; defer any further 3D engine, paid provider, formal-course coupling, or permanent analytics pending educational and performance review.
 - Do not claim production deployment without passing typecheck, lint, tests, build, and browser smoke checks.
 
+## أولوية تنفيذ المنهج قبل الوظائف الثانوية (25 أكتوبر 2026)
+
+- أكمل محتوى اللغة العربية أولًا: مصادر الوزارة 2026–2027، فهارس الصفوف والفصول، ثم درس أصلي مُدقق مع أهداف ومفردات وتمارين وأسئلة تصحيح موثوقة، وبعدها فقط تابع الوظائف الثانوية.
+- لا تخلط `data/curriculum-drafts/` المُؤَلَّفة داخليًا مع `data/curriculum-packs/` الجاهزة للاستيراد. الأولى محجوبة عن النشر حتى توثيق فهرس السنة وموافقة المراجعة التربوية، ويختبر هذا الفصل `npm run curriculum:drafts:verify`.
+- 12 درسًا و48 سؤالًا للصفين الثاني والثالث هي **محتوى أصلي غير منشور**، لا دليل على مطابقة الكتب الوزارية الحالية؛ السجلات الـ62 في البحرين التي تحمل عناوين فهارس OCR تحتاج تعيين درس صحيح ومصدر، لا إعادة تسمية تخمينية.
+- احفظ نتائج العمل في الملفات القائمة وREADME وAGENTS؛ لا تنشئ تقارير تقدم متكررة. لا تعتمد نشرًا آليًا ولا تغيّر بيانات الطالب أو السجلات المنشورة لإصلاح النسبة الظاهرية.
+
 ## قاعدة النزاهة في نسبة اكتمال المناهج
 
 - لا تساوِ وجود 22 دولة في جدول البلدان أو عدد السجلات `published` بإنجاز المناهج الرسمية أو اكتمال ضاديوم؛ احسب كل مؤشر مستقلًا.
