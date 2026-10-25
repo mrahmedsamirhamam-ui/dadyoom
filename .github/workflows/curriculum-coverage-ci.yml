@@ -53,6 +53,7 @@ on:
       - 'features/questions/services/grade-stored-mcq.ts'
       - 'features/practice/actions/submitPractice.ts'
       - 'tests/security/lesson-practice-server-grading.test.ts'
+      - 'tests/security/study-play-server-action-input.test.ts'
       - 'features/questions/queries/getLessonQuestions.ts'
       - 'features/teacher/queries/getLessonQuestions.ts'
       - 'features/teacher/actions/manageLessonQuestions.ts'
@@ -258,8 +259,8 @@ jobs:
         run: npx vitest run tests/security/lesson-completion-entrypoints.test.ts tests/security/lesson-mastery-gates.test.ts
       - name: Verify authoritative lesson question grading
         run: npx vitest run tests/security/server-graded-mcq.test.ts
-      - name: Verify study-play forged-answer rejection
-        run: npx vitest run features/study-play/services/grade-study-play.test.ts
+      - name: Verify study-play forged-answer rejection and Server Action boundary
+        run: npx vitest run --config tests/security/vitest.config.mts features/study-play/services/grade-study-play.test.ts tests/security/study-play-server-action-input.test.ts
       - name: Verify vocabulary arcade never trusts client XP
         run: npx vitest run tests/security/legacy-game-rewards.test.ts
       - name: Execute no-network grading API and student ownership runtime tests
