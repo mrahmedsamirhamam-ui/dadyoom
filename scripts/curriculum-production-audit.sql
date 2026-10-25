@@ -362,3 +362,46 @@ JOIN public.units u ON u.id=l.unit_id
 JOIN public.grades g ON g.id=u.grade_id
 JOIN public.curricula c ON c.id=g.curriculum_id
 JOIN public.countries co ON co.id=c.country_id;
+
+-- 16. Unpublished readiness: group draft lesson records by country/grade/term,
+-- preserving separate blockers for missing assessment and source provenance.
+-- Short content (<1200 chars) is an editorial signal, NOT a deterministic
+-- publication decision. A stored question is NOT evidence of official syllabus
+-- matching. No answers, learner records or personally identifying data are read.
+-- DO NOT auto-publish, auto-delete or invent source pages from this report.
+WITH draft_question_counts AS (
+ SELECT lesson_id,count(*) AS n
+ FROM public.questions GROUP BY lesson_id
+), draft_published_activity_counts AS (
+ SELECT lesson_id,count(*) AS n
+ FROM public.lesson_activities WHERE is_published IS TRUE GROUP BY lesson_id
+)
+SELECT
+ co.code AS country_code,
+ g.grade_number,
+ l.semester,
+ COUNT(*) AS draft_records,
+ COUNT(*) FILTER(WHERE coalesce(qc.n,0)=0 AND coalesce(ac.n,0)=0)
+   AS draft_missing_stored_assessment,
+ COUNT(*) FILTER(WHERE coalesce(qc.n,0)>0 OR coalesce(ac.n,0)>0)
+   AS draft_with_stored_assessment,
+ COUNT(*) FILTER(WHERE length(coalesce(l.content,''))<1200)
+   AS draft_short_content_under_1200,
+ COUNT(*) FILTER(WHERE nullif(btrim(coalesce(l.source_pdf_url,'')),'') IS NULL)
+   AS draft_without_source_url,
+ COUNT(*) FILTER(WHERE l.source_page_start IS NULL OR l.source_page_start<1)
+   AS draft_without_source_start_page,
+ COUNT(*) FILTER(WHERE l.semester IS NULL)
+   AS draft_without_semester,
+ COUNT(*) FILTER(WHERE nullif(btrim(coalesce(l.official_content_scope,'')),'') IS NULL)
+   AS draft_without_source_scope
+FROM public.lessons l
+JOIN public.units u ON u.id=l.unit_id
+JOIN public.grades g ON g.id=u.grade_id
+JOIN public.curricula c ON c.id=g.curriculum_id
+JOIN public.countries co ON co.id=c.country_id
+LEFT JOIN draft_question_counts qc ON qc.lesson_id=l.id
+LEFT JOIN draft_published_activity_counts ac ON ac.lesson_id=l.id
+WHERE l.status='draft'
+GROUP BY co.code,g.grade_number,l.semester
+ORDER BY draft_records DESC,co.code,g.grade_number,l.semester NULLS LAST;
