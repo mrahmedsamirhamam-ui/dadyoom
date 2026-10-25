@@ -110,6 +110,11 @@ on:
       - 'tests/security/speaking-upload-authorization.test.ts'
       - 'app/api/skills/writing/evaluate/route.ts'
       - 'tests/security/writing-evaluation-bounded-request.test.ts'
+      - 'lib/ai/consume-skill-evaluation-quota.ts'
+      - 'tests/security/ai-skill-evaluation-quota.test.ts'
+      - 'scripts/security/proposed-ai-skill-evaluation-quota.sql'
+      - 'tests/security/shadow-ai-skill-quota-setup.sql'
+      - 'tests/security/shadow-ai-skill-quota-verify.sql'
       - 'tests/security/lesson-completion-full-evidence.test.ts'
       - 'features/student-progress/repositories/progress.repository.ts'
       - 'features/student-progress/services/progress.ts'
@@ -239,6 +244,8 @@ jobs:
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/speaking-upload-authorization.test.ts
       - name: Verify bounded authenticated AI writing evaluations
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/writing-evaluation-bounded-request.test.ts
+      - name: Verify staged service-role AI quotas fail closed on RPC errors
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/ai-skill-evaluation-quota.test.ts
       - name: Reject partial lesson completion and XP snapshots
         run: npx vitest run tests/security/lesson-completion-full-evidence.test.ts
       - name: Verify fully paged student lesson history and safe private preview
@@ -823,3 +830,49 @@ jobs:
             cat tests/security/shadow-skill-daily-rewards-verify.sql
           } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_skill_rewards
           echo "SHADOW_SKILL_DAILY_XP_REVOKE_RLS_ROLLBACK=PASS"
+
+      - name: Rehearse fixed non-bypassable skill AI budgets in disposable PostgreSQL
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_ai_skill_quota
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_ai_skill_quota \
+            < tests/security/shadow-ai-skill-quota-setup.sql
+          if output=$({
+            echo "SET dadyoom.ai_skill_quota_rehearsal='enabled';"
+            cat scripts/security/proposed-ai-skill-evaluation-quota.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1); then
+            echo "Unsafe AI quota SQL accepted the wrong database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$output" | grep -q 'PRODUCTION_AI_SKILL_QUOTA_BLOCKED_SHADOW_ONLY'
+          if output=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_ai_skill_quota \
+            < scripts/security/proposed-ai-skill-evaluation-quota.sql 2>&1); then
+            echo "Unsafe AI quota SQL accepted a missing rehearsal flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$output" | grep -q 'PRODUCTION_AI_SKILL_QUOTA_BLOCKED_SHADOW_ONLY'
+          {
+            echo "SET dadyoom.ai_skill_quota_rehearsal='enabled';"
+            cat scripts/security/proposed-ai-skill-evaluation-quota.sql
+            cat tests/security/shadow-ai-skill-quota-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_ai_skill_quota
+
+          # Twelve independent concurrent role sessions must only consume
+          # three speaker credits on this separate disposable learner.
+          for n in $(seq 1 12); do
+            docker exec "$PG_CONTAINER_ID" psql -X -qAt -v ON_ERROR_STOP=1 -U postgres \
+              -d shadow_ai_skill_quota \
+              -c "SET ROLE service_role; SELECT allowed FROM public.dadyoom_consume_ai_skill_quota('22222222-2222-4222-8222-222222222222','ai_speaking_evaluate');" \
+              > "/tmp/skill_quota_${n}.out" &
+          done
+          wait
+          allowed=$(grep -hc '^t$' /tmp/skill_quota_*.out | awk '{sum+=$1} END {print sum+0}')
+          test "$allowed" -eq 3
+          used=$(docker exec "$PG_CONTAINER_ID" psql -X -qAt -v ON_ERROR_STOP=1 -U postgres \
+            -d shadow_ai_skill_quota -c "SELECT used_count FROM public.edu_feature_usage WHERE user_id='22222222-2222-4222-8222-222222222222' AND feature='ai_speaking_evaluate'")
+          test "$used" -eq 3
+          echo "SHADOW_AI_SKILL_ATOMIC_CONCURRENT_DAILY_CAP=PASS"
