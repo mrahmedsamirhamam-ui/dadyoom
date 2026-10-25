@@ -95,6 +95,9 @@ jobs:
           done
           curl -fsS http://127.0.0.1:3033/level-check | grep -q 'اكتشف من أين تبدأ'
           curl -fsS http://127.0.0.1:3033/ | grep -q 'ضاديوم'
+          # Browser-level validation: Arabic RTL at 390px, all 12 answers,
+          # results, mobile overflow guard and reset to first question.
+          node scripts/smoke-level-check.mjs
           echo "DADYOOM_COMBINED_LEVEL_CHECK_AND_HOMEPAGE_SMOKE=PASS"
 
       - name: Confirm rehearsal has no push permission or deployment command
