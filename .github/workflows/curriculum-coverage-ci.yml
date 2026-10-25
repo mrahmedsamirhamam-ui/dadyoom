@@ -105,6 +105,9 @@ on:
       - 'tests/security/daily-challenge-trusted-target.test.ts'
       - 'app/api/skills/progress/route.ts'
       - 'tests/security/skill-progress-no-forged-xp.test.ts'
+      - 'app/api/skills/speaking/evaluate/route.ts'
+      - 'lib/http/read-bounded-multipart.ts'
+      - 'tests/security/speaking-upload-authorization.test.ts'
       - 'tests/security/lesson-completion-full-evidence.test.ts'
       - 'features/student-progress/repositories/progress.repository.ts'
       - 'features/student-progress/services/progress.ts'
@@ -230,6 +233,8 @@ jobs:
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/daily-challenge-trusted-target.test.ts
       - name: Block unverified skill practice scores from awarding XP
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/skill-progress-no-forged-xp.test.ts
+      - name: Verify protected AI speaking audio and streamed upload limits
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/speaking-upload-authorization.test.ts
       - name: Reject partial lesson completion and XP snapshots
         run: npx vitest run tests/security/lesson-completion-full-evidence.test.ts
       - name: Verify fully paged student lesson history and safe private preview
