@@ -12,7 +12,9 @@ const tables = new Set([
   "question_attempts", "lesson_activity_attempts",
   "student_lesson_progress", "lesson_mastery",
   "assessment_sessions", "assessment_session_answers",
-  "edu_game_attempts"
+  "edu_game_attempts",
+  "student_progress", "student_skill_progress",
+  "lesson_progress", "edu_learner_progress", "quiz_attempts"
 ]);
 const rpcs = new Set([
   "get_lesson_page_bundle",
