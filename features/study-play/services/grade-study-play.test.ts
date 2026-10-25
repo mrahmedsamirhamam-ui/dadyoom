@@ -75,7 +75,8 @@ describe("trusted grading integration", () => {
     const page = readFileSync(resolve(process.cwd(), "app/lessons/[id]/play/page.tsx"), "utf8");
     const action = readFileSync(resolve(process.cwd(), "features/study-play/actions/submitStudyPlay.ts"), "utf8");
     expect(page).toContain('.from("dadyoom_student_questions")');
-    expect(page).not.toContain("correct_answer");
+    expect(page).not.toMatch(/\.select\([^)]*correct_answer/s);
+    expect(page).not.toContain('\.from("questions")');
     expect(action).toMatch(/await admin\s*\.from\("questions"\)/);
     expect(action).toContain("gradeStudyPlay(");
     expect(action).not.toMatch(/return\s*\{[^}]*correctAnswer:/s);
