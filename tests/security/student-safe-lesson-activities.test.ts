@@ -150,8 +150,16 @@ describe("student-safe published and private-preview activity serialization", ()
       const q = {
         select: vi.fn(() => q),
         eq: vi.fn(() => q),
-        in: vi.fn(async () => ({
-          data: [{ activity_id: "activity-1", is_correct: true, attempt_number: 1 }],
+        in: vi.fn(() => q),
+        order: vi.fn(() => q),
+        range: vi.fn(async (start: number, end: number) => ({
+          data: [{
+            id: "attempt-1",
+            activity_id: "activity-1",
+            is_correct: true,
+            attempt_number: 1,
+          }].slice(start, end + 1),
+          count: 1,
           error: null,
         })),
       };
