@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { gradeStudyPlay, type StudyPlayRow } from "./grade-study-play";
 
@@ -56,5 +58,26 @@ describe("gradeStudyPlay", () => {
       Array.from({ length: 101 }, () => questions[0]),
       Array.from({ length: 101 }, () => ({ questionId: ids[0], optionId: "b" })),
     )).toThrow();
+  });
+});
+
+describe("trusted grading integration", () => {
+  it("authenticates and checks published lesson before reading practice answer keys", () => {
+    const code = readFileSync(resolve(process.cwd(), "features/practice/actions/submitPractice.ts"), "utf8");
+    expect(code).toContain("supabase.auth.getUser()");
+    expect(code).toContain('.eq("status", "published")');
+    expect(code).toMatch(/await admin\s*\.from\("questions"\)/);
+    expect(code).not.toMatch(/await supabase\s*\.from\("questions"\)/);
+    expect(code).toContain("gradeStudyPlay(");
+    expect(code.indexOf("const admin = createAdminClient()")).toBeGreaterThan(code.indexOf('.eq("status", "published")'));
+  });
+  it("keeps answer keys off the study-play client and server action results", () => {
+    const page = readFileSync(resolve(process.cwd(), "app/lessons/[id]/play/page.tsx"), "utf8");
+    const action = readFileSync(resolve(process.cwd(), "features/study-play/actions/submitStudyPlay.ts"), "utf8");
+    expect(page).toContain('.from("dadyoom_student_questions")');
+    expect(page).not.toContain("correct_answer");
+    expect(action).toMatch(/await admin\s*\.from\("questions"\)/);
+    expect(action).toContain("gradeStudyPlay(");
+    expect(action).not.toMatch(/return\s*\{[^}]*correctAnswer:/s);
   });
 });
