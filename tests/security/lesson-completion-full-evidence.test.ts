@@ -40,16 +40,16 @@ describe("canonical 90% lesson completion uses complete owner-scoped assessment 
       resolve(process.cwd(), "features/lesson-mastery/actions/syncLessonMastery.ts"),
       "utf8",
     );
-    expect((sync.match(/readCompleteGradingPages\\(\\{/g) ?? [])).toHaveLength(4);
-    expect((sync.match(/\\.range\\(offset, offset \\+ limit - 1\\)/g) ?? [])).toHaveLength(4);
+    expect((sync.match(/readCompleteGradingPages\(\{/g) ?? [])).toHaveLength(4);
+    expect((sync.match(/\.range\(offset, offset \+ limit - 1\)/g) ?? [])).toHaveLength(4);
     expect((sync.match(/count: "exact"/g) ?? [])).toHaveLength(4);
-    expect((sync.match(/\\.order\\("id", \\{ ascending: true \\}\\)/g) ?? [])).toHaveLength(4);
+    expect((sync.match(/\.order\("id", \{ ascending: true \}\)/g) ?? [])).toHaveLength(4);
     for (const table of [
       "lesson_activities", "lesson_activity_attempts",
       "dadyoom_student_questions", "question_attempts",
     ]) expect(sync).toContain('.from("' + table + '")');
     expect(sync).toContain('.eq("is_published", true)');
-    expect((sync.match(/\\.eq\\("user_id", user\\.id\\)/g) ?? [])).toHaveLength(2);
+    expect((sync.match(/\.eq\("user_id", user\.id\)/g) ?? [])).toHaveLength(2);
     expect(sync).toContain('scoreGradedActivityAttempts(');
     expect(sync).toContain('if (gradableActivities.length > 0)');
   });
