@@ -87,6 +87,9 @@ on:
       - 'features/adaptive-learning/queries/getWeakQuestions.ts'
       - 'features/adaptive-learning/actions/resetWeakQuestion.ts'
       - 'tests/security/reset-weak-question-route.test.ts'
+      - 'scripts/security/browser-assessment-boundary.mjs'
+      - 'scripts/audit-assessment-consumers.mjs'
+      - 'tests/security/browser-grade-boundary.test.mjs'
       - 'features/adaptive-learning/services/evaluatePerformance.ts'
       - 'features/adaptive-learning/services/lesson-practice-snapshot.ts'
       - 'tests/adaptive-lesson-practice.test.ts'
@@ -214,6 +217,8 @@ jobs:
         run: npx vitest run tests/security/lesson-completion-full-evidence.test.ts
       - name: Verify fully paged student lesson history and safe private preview
         run: npx vitest run tests/security/lesson-bundle-attempt-pagination.test.ts
+      - name: Block private grading tables from browser-side Supabase access
+        run: npx vitest run tests/security/browser-grade-boundary.test.mjs
       - name: Verify weak-question reset authorizes student and avoids grade-race deletion
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/reset-weak-question-route.test.ts
       - name: Verify canonical lesson completion entry points
