@@ -102,6 +102,16 @@ jobs:
           test -f .cloudflare/output/v0/workers/default/bundle/ssr/index.js
           test -f .cloudflare/output/v0/config.json
           echo "CLOUDFLARE_WORKER_BUNDLE_BUILD=PASS"
+      - name: Validate Cloudflare prebuilt deployment completely offline
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Per Cloudflare's cf docs, --dry-run makes NO API requests
+          # and requires no Cloudflare credentials or paid services.
+          # --prebuilt validates the exact Worker build made above.
+          npx cf deploy --prebuilt --mode production --dry-run \
+            2>&1 | tee worker-deploy-dry-run.log
+          echo "CLOUDFLARE_PREBUILT_DEPLOY_DRY_RUN=PASS"
       - name: Install Chromium for read-only mobile and desktop form smoke
         shell: bash
         run: |
@@ -122,5 +132,6 @@ jobs:
           path: |
             worker-build.log
             worker-runtime-smoke.log
+            worker-deploy-dry-run.log
           retention-days: 3
           if-no-files-found: ignore
