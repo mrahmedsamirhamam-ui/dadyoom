@@ -11,6 +11,21 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import process from "node:process";
 
+// cf@1.0.0-beta.21 rejects older Node minor versions. Fail before changing
+// package.json or installing alternate React/vinext dependencies, so the
+// Cloudflare Builds log exposes a precise actionable error.
+const [nodeMajor, nodeMinor] = process.versions.node.split(".").map(Number);
+const minMinorByMajor = { 22: 23, 24: 22, 26: 12 };
+if (!(nodeMajor in minMinorByMajor) ||
+    nodeMinor < minMinorByMajor[nodeMajor]) {
+  throw new Error(
+    "CLOUDFLARE_UNSUPPORTED_NODE_RUNTIME: cf@1.0.0-beta.21 requires " +
+    "Node ^22.23.0 || ^24.22.0 || ^26.12.0; detected " +
+    process.versions.node + ". Set Cloudflare Builds Node version to a compatible release."
+  );
+}
+console.log("CLOUDFLARE_NODE_ENGINE_CHECK=PASS " + process.versions.node);
+
 for (const file of ["vite.config.ts", "cloudflare.config.ts", "next.config.ts"]) {
   if (!existsSync(file)) {
     throw new Error("CLOUDFLARE_REQUIRED_SOURCE_CONFIG_MISSING: " + file);
