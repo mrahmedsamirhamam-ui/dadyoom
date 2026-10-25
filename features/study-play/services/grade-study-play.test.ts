@@ -79,6 +79,12 @@ describe("trusted grading integration", () => {
     expect(page).not.toContain('\.from("questions")');
     expect(action).toMatch(/await admin\s*\.from\("questions"\)/);
     expect(action).toContain("gradeStudyPlay(");
+    expect(action).toContain('.from("dadyoom_student_questions")');
+    expect(action).toContain("visibleIds");
+    expect(action).toContain("storedRows.length !== visibleIds.length");
+    expect(action).toContain("const earnedXp = 0;");
+    expect(action).toContain('.gte("created_at", oneDayAgo)');
+    expect(action).toContain("if ((recent ?? []).length >= 10)");
     expect(action).not.toMatch(/return\s*\{[^}]*correctAnswer:/);
   });
 });
