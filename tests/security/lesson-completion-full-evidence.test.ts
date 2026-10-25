@@ -35,6 +35,25 @@ describe("canonical 90% lesson completion uses complete owner-scoped assessment 
     expect(source).toContain("REQUIRED_MASTERY_SCORE = 90");
   });
 
+  it("keeps mastery synchronization on the same fully paged student evidence", () => {
+    const sync = readFileSync(
+      resolve(process.cwd(), "features/lesson-mastery/actions/syncLessonMastery.ts"),
+      "utf8",
+    );
+    expect((sync.match(/readCompleteGradingPages\\(\\{/g) ?? [])).toHaveLength(4);
+    expect((sync.match(/\\.range\\(offset, offset \\+ limit - 1\\)/g) ?? [])).toHaveLength(4);
+    expect((sync.match(/count: "exact"/g) ?? [])).toHaveLength(4);
+    expect((sync.match(/\\.order\\("id", \\{ ascending: true \\}\\)/g) ?? [])).toHaveLength(4);
+    for (const table of [
+      "lesson_activities", "lesson_activity_attempts",
+      "dadyoom_student_questions", "question_attempts",
+    ]) expect(sync).toContain('.from("' + table + '")');
+    expect(sync).toContain('.eq("is_published", true)');
+    expect((sync.match(/\\.eq\\("user_id", user\\.id\\)/g) ?? [])).toHaveLength(2);
+    expect(sync).toContain('scoreGradedActivityAttempts(');
+    expect(sync).toContain('if (gradableActivities.length > 0)');
+  });
+
   it("prevents silent 1000-row truncation from manufacturing a passing activity score", async () => {
     // 1,012 genuine activities: a stale one-page read of 1,000 would
     // misleadingly report 100% while twelve remain completely unanswered.
