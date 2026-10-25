@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
+import { readCompleteGradingPages } from "@/lib/lesson-activities/read-complete-pages";
 import { gradeStudyPlay, type StudyPlayAnswer, type StudyPlayRow } from "../services/grade-study-play";
 
 const UUID = /^[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}$/i;
@@ -33,36 +34,43 @@ export async function submitStudyPlay(
 
   // Read the exact learner-visible, RLS-scoped question IDs before opening
   // the elevated client. Never score an unseen, hidden or draft question.
-  const { data: visibleQuestions, error: visibilityError } = await supabase
-    .from("dadyoom_student_questions")
-    .select("id")
-    .eq("lesson_id", lessonId)
-    .limit(101);
-
-  if (visibilityError) {
-    throw new Error("تعذر التحقق من أسئلة الدرس.");
-  }
-  const visibleIds = (visibleQuestions ?? []).map((question) => question.id);
-  if (visibleIds.length === 0 || visibleIds.length > 100 ||
-      new Set(visibleIds).size !== visibleIds.length) {
-    throw new Error("بيانات أسئلة الدرس غير مكتملة أو غير صالحة.");
+  // Request exactly the complete learner-visible question set. A low
+  // PostgREST max-rows cap must never quietly turn a full lesson into a
+  // smaller, falsely scored game.
+  const visibleQuestions = await readCompleteGradingPages({
+    pageSize: 75,
+    maxRows: 100,
+    readPage: async (offset, limit) => {
+      const { data, count, error } = await supabase
+        .from("dadyoom_student_questions")
+        .select("id", { count: "exact" })
+        .eq("lesson_id", lessonId)
+        .order("id", { ascending: true })
+        .range(offset, offset + limit - 1);
+      return { data, count, error };
+    },
+  });
+  const visibleIds = visibleQuestions.map((question) => question.id);
+  if (visibleIds.length === 0) {
+    throw new Error("لا توجد أسئلة مرئية كافية لهذا الدرس.");
   }
 
   // Never use browser-supplied correct answers, scores, XP or student IDs.
   const admin = createAdminClient();
-  const { data: rows, error: rowsError } = await admin
-    .from("questions")
-    .select("id,question_type,options,correct_answer")
-    .eq("lesson_id", lessonId)
-    .order("question_order", { ascending: true })
-    .limit(101);
-
-  if (rowsError) {
-    throw new Error("تعذر تحميل أسئلة الدرس للتصحيح.");
-  }
-  const storedRows = (rows ?? []) as StudyPlayRow[];
+  const storedRows = await readCompleteGradingPages({
+    pageSize: 75,
+    maxRows: 100,
+    readPage: async (offset, limit) => {
+      const { data, count, error } = await admin
+        .from("questions")
+        .select("id,question_type,options,correct_answer", { count: "exact" })
+        .eq("lesson_id", lessonId)
+        .order("id", { ascending: true })
+        .range(offset, offset + limit - 1);
+      return { data, count, error };
+    },
+  }) as StudyPlayRow[];
   if (storedRows.length !== visibleIds.length ||
-      new Set(storedRows.map((item) => item.id)).size !== visibleIds.length ||
       storedRows.some((item) => !visibleIds.includes(item.id))) {
     throw new Error("أسئلة الدرس المرئية لا تطابق بنك التصحيح.");
   }
