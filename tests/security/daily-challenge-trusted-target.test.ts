@@ -72,7 +72,7 @@ describe("daily challenge cannot accept a browser-forged XP target", () => {
   it("rejects a client-forged zero or 1-point target before any INSERT", async () => {
     for (const forgedScore of [0, 1, 100]) {
       const ctx = fixture();
-      const response = await submit({ ...allowed, targetScore: forgedScore });
+      const response = await submit({ challengeId: allowed.id, skill: allowed.skill, title: allowed.title, targetScore: forgedScore });
       expect(response.status).toBe(409);
       expect(ctx.inserted).toHaveLength(0);
       expect(resolveTrustedDailyChallenge).toHaveBeenCalled();
