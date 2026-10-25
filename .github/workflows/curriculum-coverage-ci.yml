@@ -15,6 +15,7 @@ on:
       - 'lib/auth/require-curriculum-admin.ts'
       - 'tests/security/curriculum-admin-authorization.test.ts'
       - 'tests/security/admin-curriculum-http-authorization.test.ts'
+      - 'tests/security/admin-audit-pagination.test.ts'
       - 'app/api/progress/**'
       - 'app/api/lessons/complete/**'
       - 'app/api/questions/answer/**'
@@ -298,7 +299,7 @@ jobs:
       - name: Exercise bounded student activity HTTP route with synthetic requests
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/activity-check-http-runtime.test.ts
       - name: Exercise curriculum admin HTTP gates before private answer reads or repair
-        run: npx vitest run --config tests/security/vitest.config.mts tests/security/curriculum-admin-authorization.test.ts tests/security/admin-curriculum-http-authorization.test.ts
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/curriculum-admin-authorization.test.ts tests/security/admin-curriculum-http-authorization.test.ts tests/security/admin-audit-pagination.test.ts
       - name: Verify owner-scoped and concurrent-idempotent trusted lesson starts
         run: npx vitest run --config tests/security/vitest.config.mts tests/security/owner-scoped-progress-repository.test.ts tests/security/lesson-progress-idempotent-start.test.ts tests/security/lesson-mastery-score-cas.test.ts
       - name: Verify tutoring cannot award academic mastery
