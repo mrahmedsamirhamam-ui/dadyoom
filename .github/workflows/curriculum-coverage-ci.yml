@@ -238,7 +238,7 @@ jobs:
         run: npx vitest run tests/curriculum-import-safety.test.ts
       - name: Verify complete lesson question-bank import and non-destructive deduplication
         run: npx vitest run tests/curriculum-import-questions.test.ts
-      - name: Verify seven uploaded official plan sources and 24 indexed grade-two/three readings
+      - name: Verify 7 official plan sources and 38 indexed grade-2-to-4 reading titles
         run: npx vitest run tests/bahrain-official-plan-index.test.ts
       - name: Validate unpublished original lesson drafts without writing
         run: npm run curriculum:drafts:verify
