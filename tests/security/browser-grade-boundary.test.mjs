@@ -57,6 +57,11 @@ const keys = await admin.from("questions").select("correct_answer");`;
       "assessment_sessions",
       "assessment_session_answers",
       "edu_game_attempts",
+      "student_progress",
+      "student_skill_progress",
+      "lesson_progress",
+      "edu_learner_progress",
+      "quiz_attempts",
     ]) {
       expect(PRIVATE_ASSESSMENT_TABLES.has(table)).toBe(true);
       expect(findDirectBrowserGradeAccess(
