@@ -26,6 +26,7 @@ export function validateOriginalCurriculumDrafts(input) {
   }
   const ids = new Set();
   let totalQuestions = 0;
+  const answerPositions = new Map();
   for (const lesson of lessons) {
     const prefix = isText(lesson?.id) ? lesson.id : "(missing-id)";
     if (!isText(lesson?.id) || ids.has(lesson.id)) errors.push(prefix + ":DUPLICATE_OR_MISSING_ID");
@@ -50,6 +51,11 @@ export function validateOriginalCurriculumDrafts(input) {
       continue;
     }
     totalQuestions += questions.length;
+    for (const q of questions) {
+      const key = q?.correctAnswer;
+      if (typeof key === "string")
+        answerPositions.set(key, (answerPositions.get(key) ?? 0) + 1);
+    }
     const qids = new Set();
     for (const question of questions) {
       const questionId = question?.id;
@@ -65,6 +71,13 @@ export function validateOriginalCurriculumDrafts(input) {
         errors.push(prefix + ":MCQ_NOT_SERVER_GRADABLE");
     }
   }
+  // A full pack with answer A on every question teaches guessing rather than
+  // comprehension. Require distributed positions without exposing an answer
+  // pattern or altering the teacher-owned grading key.
+  if (totalQuestions >= 12 &&
+      (answerPositions.size < 3 ||
+       Math.max(...answerPositions.values()) > Math.ceil(totalQuestions * 0.6)))
+    errors.push("DRAFT_MCQ_ANSWER_POSITIONS_PREDICTABLE");
   return { ok: errors.length === 0, errors, lessons: lessons.length, questions: totalQuestions };
 }
 
