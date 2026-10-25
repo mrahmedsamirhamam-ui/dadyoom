@@ -327,7 +327,7 @@ export async function POST(
       process.env.DADYOOM_ATOMIC_ACTIVITY_COMMIT === "enabled";
     let nextAttemptNumber = 0;
     if (!atomicReceiptReady) {
-      const nextAttemptNumber = await insertSequencedActivityAttempt({
+      nextAttemptNumber = await insertSequencedActivityAttempt({
         readLast: async () => {
           const { data, error } = await supabase
             .from("lesson_activity_attempts")
@@ -355,7 +355,6 @@ export async function POST(
         },
       });
 
-      // ========================================================
     }
 
     // ========================================================
