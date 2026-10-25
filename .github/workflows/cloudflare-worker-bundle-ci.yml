@@ -12,6 +12,7 @@ on:
       - 'types/**'
       - 'package.json'
       - 'package-lock.json'
+      - '.node-version'
       - 'vite.config.ts'
       - 'cloudflare.config.ts'
       - 'next.config.ts'
@@ -41,9 +42,9 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
-          # cf@1.0.0-beta.21 requires Node >=24.22.0 in the 24.x line.
-          # A previous green run used 24.21.0 and emitted EBADENGINE.
-          node-version: '24.22.1'
+          # Same version file Workers Builds reads for its checkout.
+          # Avoid drift between external Cloudflare and isolated CI Node.
+          node-version-file: '.node-version'
           cache: 'npm'
       - name: Install unchanged application dependencies
         run: npm ci --no-audit --no-fund
