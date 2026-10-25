@@ -293,6 +293,25 @@ export default async function LessonPage({
         <section className="lesson-arabic-card rounded-3xl border border-[#d7bd83] bg-[#fff7e3] p-5 shadow-sm">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
+              <div className="text-xs font-black text-[#9f7426]">ذاكر والعب مع ضاديوم</div>
+              <h2 className="mt-1 font-arabic-display text-xl font-black text-[#173f38]">
+                مراجعة ذكية وتحدي سرعة بتصحيح معتمد من الخادم
+              </h2>
+              <p className="mt-2 text-sm text-[#405952]">
+                أسئلة حقيقية من هذا الدرس، لا يحدد المتصفح نتيجتها.
+              </p>
+            </div>
+            <Link
+              href={`/lessons/${lesson.id}/play`}
+              className="dadyoom-arabic-button rounded-2xl px-5 py-3 text-center font-black text-white"
+            >
+              ابدأ المراجعة
+            </Link>
+          </div>
+        </section>
+        <section className="lesson-arabic-card rounded-3xl border border-[#d7bd83] bg-[#fff7e3] p-5 shadow-sm">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
               <div className="text-xs font-black text-[#9f7426]">العب وتعلّم</div>
               <h2 className="mt-1 font-arabic-display text-xl font-black text-[#173f38]">
                 ألعاب عربية من نفس الدرس
