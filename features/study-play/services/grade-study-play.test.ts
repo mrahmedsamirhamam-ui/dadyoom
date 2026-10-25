@@ -28,7 +28,7 @@ describe("gradeStudyPlay", () => {
   it("accepts a complete correct submission", () => {
     expect(gradeStudyPlay(questions, ids.map((questionId) => ({
       questionId, optionId: "b",
-    }))).toMatchObject({ score: 100, passed: true, totalQuestions: 2 });
+    })))).toMatchObject({ score: 100, passed: true, totalQuestions: 2 });
   });
   it("rejects omissions, forged ids and duplicate answers", () => {
     expect(() => gradeStudyPlay(questions, [{ questionId: ids[0], optionId: "b" }])).toThrow();
