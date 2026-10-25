@@ -202,6 +202,8 @@ on:
       - 'scripts/import-curriculum-pack.mjs'
       - 'lib/curriculum-packs/complete-backup.mjs'
       - 'tests/curriculum-import-safety.test.ts'
+      - 'lib/curriculum-packs/import-questions.mjs'
+      - 'tests/curriculum-import-questions.test.ts'
       - 'data/curriculum-drafts/**'
       - 'scripts/validate-original-curriculum-drafts.mjs'
       - 'tests/original-curriculum-drafts.test.ts'
@@ -231,6 +233,8 @@ jobs:
         run: npm run curriculum:verify
       - name: Verify safe import backups and reviewed-source publishing gate
         run: npx vitest run tests/curriculum-import-safety.test.ts
+      - name: Verify complete lesson question-bank import and non-destructive deduplication
+        run: npx vitest run tests/curriculum-import-questions.test.ts
       - name: Validate unpublished original lesson drafts without writing
         run: npm run curriculum:drafts:verify
       - name: Exercise draft quality and no-publication safety gates
