@@ -199,6 +199,10 @@ on:
       - 'scripts/verify-curriculum-packs.mjs'
       - 'lib/curriculum-packs/**'
       - 'data/curriculum-packs/**'
+      - 'data/curriculum-drafts/**'
+      - 'scripts/validate-original-curriculum-drafts.mjs'
+      - 'tests/original-curriculum-drafts.test.ts'
+      - 'package.json'
       - 'tests/curriculum-coverage.test.ts'
       - '.github/workflows/curriculum-coverage-ci.yml'
   workflow_dispatch:
@@ -222,6 +226,10 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Verify curriculum pack schemas
         run: npm run curriculum:verify
+      - name: Validate unpublished original lesson drafts without writing
+        run: npm run curriculum:drafts:verify
+      - name: Exercise draft quality and no-publication safety gates
+        run: npx vitest run tests/original-curriculum-drafts.test.ts
       - name: Verify country coverage report
         run: npm run curriculum:coverage
       - name: Test that missing packs never report full country coverage
