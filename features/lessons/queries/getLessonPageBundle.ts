@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { readCompleteGradingPages } from "@/lib/lesson-activities/read-complete-pages";
 import { canReadBahrainDraftPreview } from "@/features/lessons/services/bahrain-draft-preview-access";
 import { publicLessonActivities, type StudentLessonActivity } from "@/features/lesson-activities/services/public-lesson-activities";
 import {
@@ -143,39 +144,34 @@ export async function getLessonPageBundle(
         (activity) => activity.id
       );
 
-    const {
-      data: activityAttemptsData,
-      error: activityAttemptsError,
-    } =
-      await supabase
-        .from("lesson_activity_attempts")
-        .select(
-          "activity_id,is_correct,attempt_number"
-        )
-        .eq(
-          "user_id",
-          bundle.student.id
-        )
-        .in(
-          "activity_id",
-          activityIds
-        );
-
-    if (activityAttemptsError) {
-      throw activityAttemptsError;
-    }
+    // Do not truncate the student's activity history at PostgREST max_rows.
+    // RLS/owner scope and stable IDs are required on every page.
+    const activityAttemptsData = await readCompleteGradingPages({
+      readPage: async (offset, limit) => {
+        const { data, count, error } = await supabase
+          .from("lesson_activity_attempts")
+          .select("id,activity_id,is_correct,attempt_number", {
+            count: "exact",
+          })
+          .eq("user_id", bundle.student.id)
+          .in("activity_id", activityIds)
+          .order("id", { ascending: true })
+          .range(offset, offset + limit - 1);
+        return { data, count, error };
+      },
+    });
 
     return {
       ...bundle,
       questions: safeQuestions,
       activities: safeActivities,
 
-      activityAttempts:
-        (
-          activityAttemptsData ??
-          []
-        ) as unknown as
-          BundleActivityAttempt[],
+      // Public bundle includes only progress, not row IDs or answer keys.
+      activityAttempts: activityAttemptsData.map(
+        ({ activity_id, is_correct, attempt_number }) => ({
+          activity_id, is_correct, attempt_number,
+        })
+      ),
     };
   }
 
@@ -538,33 +534,18 @@ export async function getLessonPageBundle(
 
   if (questionIds.length > 0) {
 
-    const {
-      data: attempts,
-      error: attemptsError,
-    } =
-      await admin
-        .from("question_attempts")
-        .select(
-          "question_id,is_correct,answered_at"
-        )
-        .eq(
-          "user_id",
-          user.id
-        )
-        .in(
-          "question_id",
-          questionIds
-        )
-        .order(
-          "answered_at",
-          {
-            ascending: true,
-          }
-        );
-
-    if (attemptsError) {
-      throw attemptsError;
-    }
+    const attempts = await readCompleteGradingPages({
+      readPage: async (offset, limit) => {
+        const { data, count, error } = await admin
+          .from("question_attempts")
+          .select("id,question_id,is_correct", { count: "exact" })
+          .eq("user_id", user.id)
+          .in("question_id", questionIds)
+          .order("id", { ascending: true })
+          .range(offset, offset + limit - 1);
+        return { data, count, error };
+      },
+    });
 
     questionAttempts =
       (attempts ?? []).map(
@@ -594,34 +575,24 @@ export async function getLessonPageBundle(
 
   if (activityIds.length > 0) {
 
-    const {
-      data: attemptRows,
-      error: activityAttemptsError,
-    } =
-      await admin
-        .from("lesson_activity_attempts")
-        .select(
-          "activity_id,is_correct,attempt_number"
-        )
-        .eq(
-          "user_id",
-          user.id
-        )
-        .in(
-          "activity_id",
-          activityIds
-        );
+    const attemptRows = await readCompleteGradingPages({
+      readPage: async (offset, limit) => {
+        const { data, count, error } = await admin
+          .from("lesson_activity_attempts")
+          .select("id,activity_id,is_correct,attempt_number", { count: "exact" })
+          .eq("user_id", user.id)
+          .in("activity_id", activityIds)
+          .order("id", { ascending: true })
+          .range(offset, offset + limit - 1);
+        return { data, count, error };
+      },
+    });
 
-    if (activityAttemptsError) {
-      throw activityAttemptsError;
-    }
-
-    activityAttempts =
-      (
-        attemptRows ??
-        []
-      ) as unknown as
-        BundleActivityAttempt[];
+    activityAttempts = attemptRows.map(
+      ({ activity_id, is_correct, attempt_number }) => ({
+        activity_id, is_correct, attempt_number,
+      })
+    );
   }
 
   // ==========================================================
