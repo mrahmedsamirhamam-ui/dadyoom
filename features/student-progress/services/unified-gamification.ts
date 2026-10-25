@@ -5,6 +5,7 @@
 import {
   createClient,
 } from "@/lib/supabase/server";
+import { readCompleteGradingPages } from "@/lib/lesson-activities/read-complete-pages";
 
 export type UnifiedGamificationXP = {
   lessonXP: number;
@@ -38,75 +39,59 @@ export async function getUnifiedGamificationXP(
     supabaseClient ??
     (await createClient());
 
-  const [
-    lessonResult,
-    skillResult,
-    challengeResult,
-  ] =
-    await Promise.all([
-      supabase
-        .from(
-          "student_lesson_progress"
-        )
-        .select("xp")
-        .eq(
-          "student_id",
-          studentId
-        ),
 
-      supabase
-        .from(
-          "student_skill_progress"
-        )
-        .select("xp")
-        .eq(
-          "user_id",
-          studentId
-        ),
-
-      supabase
-        .from(
-          "student_daily_challenges"
-        )
-        .select(
-          "bonus_xp,bonus_awarded"
-        )
-        .eq(
-          "user_id",
-          studentId
-        )
-        .eq(
-          "bonus_awarded",
-          true
-        ),
-    ]);
-
-  if (
-    lessonResult.error
-  ) {
-    throw lessonResult.error;
-  }
-
-  if (
-    skillResult.error &&
-    skillResult.error.code !==
-      "42P01"
-  ) {
-    throw skillResult.error;
-  }
-
-  if (
-    challengeResult.error &&
-    challengeResult.error.code !==
-      "42P01"
-  ) {
-    throw challengeResult.error;
-  }
+  // Every collection is owner-scoped and read with a stable primary-key
+  // order. PostgREST may cap a query below its requested limit: using only
+  // its first page silently understates XP, achievements and current level.
+  // Use exact counts and refuse drifting or truncated snapshots.
+  const [lessonRows, skillRows, challengeRows] = await Promise.all([
+    readCompleteGradingPages({
+      readPage: async (offset, limit) => {
+        const { data, count, error } = await supabase
+          .from("student_lesson_progress")
+          .select("id,xp", { count: "exact" })
+          .eq("student_id", studentId)
+          .order("id", { ascending: true })
+          .range(offset, offset + limit - 1);
+        return { data, count, error };
+      },
+    }),
+    readCompleteGradingPages({
+      readPage: async (offset, limit) => {
+        const { data, count, error } = await supabase
+          .from("student_skill_progress")
+          .select("id,xp", { count: "exact" })
+          .eq("user_id", studentId)
+          .order("id", { ascending: true })
+          .range(offset, offset + limit - 1);
+        // Preserve existing legacy support when this optional table has
+        // not been migrated. Never suppress an RLS/permission failure.
+        if (error?.code === "42P01") {
+          return { data: [], count: 0, error: null };
+        }
+        return { data, count, error };
+      },
+    }),
+    readCompleteGradingPages({
+      readPage: async (offset, limit) => {
+        const { data, count, error } = await supabase
+          .from("student_daily_challenges")
+          .select("id,bonus_xp", { count: "exact" })
+          .eq("user_id", studentId)
+          .eq("bonus_awarded", true)
+          .order("id", { ascending: true })
+          .range(offset, offset + limit - 1);
+        if (error?.code === "42P01") {
+          return { data: [], count: 0, error: null };
+        }
+        return { data, count, error };
+      },
+    }),
+  ]);
 
   const lessonXP =
     (
-      lessonResult.data ??
-      []
+      lessonRows
     ).reduce(
       (
         total,
@@ -121,8 +106,7 @@ export async function getUnifiedGamificationXP(
 
   const skillXP =
     (
-      skillResult.data ??
-      []
+      skillRows
     ).reduce(
       (
         total,
@@ -137,8 +121,7 @@ export async function getUnifiedGamificationXP(
 
   const dailyChallengeXP =
     (
-      challengeResult.data ??
-      []
+      challengeRows
     ).reduce(
       (
         total,
