@@ -6,6 +6,7 @@ import { readBoundedJsonObject } from "@/lib/http/read-bounded-json";
 import { insertSequencedActivityAttempt } from "@/lib/lesson-activities/attempt-sequencing";
 import { commitActivityProgressWithRetry } from "@/lib/lesson-activities/progress-state";
 import { scoreGradedActivityAttempts } from "@/features/lesson-mastery/services/score-graded-activities";
+import { readCompleteGradingPages } from "@/lib/lesson-activities/read-complete-pages";
 import {
   getCorrectAnswerSpec,
   parseStudentActivityAnswer,
@@ -353,90 +354,43 @@ export async function POST(
     // كل أنشطة الدرس
     // ========================================================
 
-    const {
-      data:
-        lessonActivities,
-      error:
-        lessonActivitiesError,
-    } =
-      await admin
-        .from(
-          "lesson_activities"
-        )
-        .select(
-          "id,answer,points"
-        )
-        .eq(
-          "lesson_id",
-          activity.lesson_id
-        )
-        .eq(
-          "is_published",
-          true
-        )
-        .order(
-          "activity_order",
-          {
-            ascending:
-              true,
-          }
-        );
-
-    if (
-      lessonActivitiesError
-    ) {
-      throw lessonActivitiesError;
+    // Paging is essential: PostgREST may silently cap results to <1000.
+    // Count and id-order guards refuse partial or drifting scoring inputs.
+    const allActivities = await readCompleteGradingPages({
+      readPage: async (offset, limit) => {
+        const { data, count, error } = await admin
+          .from("lesson_activities")
+          .select("id,answer,points", { count: "exact" })
+          .eq("lesson_id", activity.lesson_id)
+          .eq("is_published", true)
+          .order("id", { ascending: true })
+          .range(offset, offset + limit - 1);
+        return { data, count, error };
+      },
+    });
+    const allActivityIds = allActivities.map((item) => item.id);
+    if (!allActivityIds.includes(activityId)) {
+      throw new Error("النشاط لم يعد ضمن الدرس المنشور.");
     }
 
-    const allActivities =
-      lessonActivities ??
-      [];
-
-    const allActivityIds =
-      allActivities.map(
-        (item) =>
-          item.id
-      );
-
+    // Include unique primary key for stable pages but never return it to
+    // the student. The student's own RLS client reads only this lesson.
+    const attempts = await readCompleteGradingPages({
+      readPage: async (offset, limit) => {
+        const { data, count, error } = await supabase
+          .from("lesson_activity_attempts")
+          .select("id,activity_id,is_correct,earned_points,max_points,answered_at", {
+            count: "exact",
+          })
+          .eq("user_id", user.id)
+          .in("activity_id", allActivityIds)
+          .order("id", { ascending: true })
+          .range(offset, offset + limit - 1);
+        return { data, count, error };
+      },
+    });
 
     // ========================================================
-    // جميع المحاولات
-    // ========================================================
-
-    const {
-      data:
-        allAttempts,
-      error:
-        allAttemptsError,
-    } =
-      await supabase
-        .from(
-          "lesson_activity_attempts"
-        )
-        .select(
-          "activity_id,is_correct,earned_points,max_points,answered_at"
-        )
-        .eq(
-          "user_id",
-          user.id
-        )
-        .in(
-          "activity_id",
-          allActivityIds
-        );
-
-    if (
-      allAttemptsError
-    ) {
-      throw allAttemptsError;
-    }
-
-
-    const attempts =
-      allAttempts ??
-      [];
-
-
     // ========================================================
     // إنجاز الأنشطة
     // ========================================================
