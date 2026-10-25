@@ -99,6 +99,10 @@ on:
       - 'features/student-progress/actions/completeLesson.ts'
       - 'features/student-progress/services/unified-gamification.ts'
       - 'tests/security/unified-xp-pagination.test.ts'
+      - 'app/api/journey/daily/challenge/route.ts'
+      - 'features/gamification/resolve-trusted-daily-challenge.ts'
+      - 'features/gamification/daily-challenge-server.ts'
+      - 'tests/security/daily-challenge-trusted-target.test.ts'
       - 'tests/security/lesson-completion-full-evidence.test.ts'
       - 'features/student-progress/repositories/progress.repository.ts'
       - 'features/student-progress/services/progress.ts'
@@ -217,6 +221,8 @@ jobs:
         run: npx vitest run tests/public-lesson-auth-boundary.test.ts
       - name: Verify unified XP totals across all paged lesson, skill and challenge rows
         run: npx vitest run tests/security/unified-xp-pagination.test.ts
+      - name: Reject forged daily challenge score and skill before XP award
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/daily-challenge-trusted-target.test.ts
       - name: Reject partial lesson completion and XP snapshots
         run: npx vitest run tests/security/lesson-completion-full-evidence.test.ts
       - name: Verify fully paged student lesson history and safe private preview
