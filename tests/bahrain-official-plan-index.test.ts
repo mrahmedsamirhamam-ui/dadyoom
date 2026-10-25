@@ -20,7 +20,7 @@ describe("uploaded Bahrain 2026-27 Ministry Arabic study plan provenance", () =>
       /^[a-f0-9]{64}$/.test(p.sha256) && Number.isInteger(p.pages) && p.pages>=3)).toBe(true);
   });
 
-  it("anchors 12 named reading lessons per grade to real source PDF pages, without invented book pages", () => {
+  it("anchors 38 named reading entries across grades 2–4 to source PDF pages, without invented book pages", () => {
     expect(lessons).toHaveLength(38);
     expect(lessons.filter(l=>l.grade===2)).toHaveLength(12);
     expect(lessons.filter(l=>l.grade===3)).toHaveLength(12);
@@ -78,6 +78,6 @@ describe("uploaded Bahrain 2026-27 Ministry Arabic study plan provenance", () =>
     expect(index.primaryGradePageRanges.map((p: {grade:number})=>p.grade))
       .toEqual([1,2,3,4,5,6,7,8,9]);
     expect(index.scope).toContain("reading titles only");
-    expect(index.warning).toContain("separate verifications");
+    expect(index.warning).toContain("independent review");
   });
 });
