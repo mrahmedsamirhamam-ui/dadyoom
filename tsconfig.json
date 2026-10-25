@@ -49,7 +49,10 @@
     "**/*.before-*",
     "**/*.backup",
     "**/*.old",
-    "supabase/.temp"
+    "supabase/.temp",
+    "vite.config.ts",
+    "cloudflare.config.ts",
+    ".cloudflare",
+    "dist"
   ]
 }
-
