@@ -30,6 +30,8 @@ on:
       - 'scripts/curriculum-coverage.mjs'
       - 'scripts/curriculum-production-audit.sql'
       - 'app/quiz/**'
+      - 'app/lessons/**/play/**'
+      - 'features/study-play/**'
       - 'tests/security/safe-questions-view.test.ts'
       - 'supabase/migrations/20261022150911_create_dadyoom_student_safe_questions_view.sql'
       - 'supabase/migrations/20261022151106_restrict_dadyoom_student_questions_view_to_select_only.sql'
@@ -67,6 +69,8 @@ jobs:
         run: npx vitest run tests/security/lesson-completion-entrypoints.test.ts tests/security/lesson-mastery-gates.test.ts
       - name: Verify authoritative lesson question grading
         run: npx vitest run tests/security/server-graded-mcq.test.ts
+      - name: Verify study-play anti-tamper grading
+        run: npx vitest run features/study-play/services/grade-study-play.test.ts
       - name: Verify student-safe question view migration and quiz cutover
         run: npx vitest run tests/security/safe-questions-view.test.ts
       - name: Verify lesson question keys do not reach student payloads
