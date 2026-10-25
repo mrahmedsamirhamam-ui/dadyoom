@@ -40,6 +40,7 @@ on:
       - 'scripts/security/proposed-atomic-activity-commit.sql'
       - 'tests/security/shadow-atomic-activity-setup.sql'
       - 'tests/security/shadow-atomic-activity-verify.sql'
+      - 'tests/security/atomic-activity-commit-routing.test.ts'
       - 'lib/lesson-activities/attempt-sequencing.ts'
       - 'lib/lesson-activities/read-complete-pages.ts'
       - 'tests/security/graded-activity-pagination.test.ts'
@@ -241,6 +242,8 @@ jobs:
         run: npx vitest run tests/security/activity-check-route.test.ts
       - name: Simulate concurrent activity progress CAS and insert races
         run: npx vitest run tests/security/activity-progress-concurrent-cas.test.ts
+      - name: Verify optional atomic activity receipt source and permission boundary
+        run: npx vitest run tests/security/atomic-activity-commit-routing.test.ts
       - name: Verify activity attempt numbering collision retries
         run: npx vitest run tests/security/attempt-number-sequencing.test.ts
       - name: Exercise bounded student activity HTTP route with synthetic requests
