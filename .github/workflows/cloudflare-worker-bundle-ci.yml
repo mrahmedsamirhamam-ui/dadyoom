@@ -12,6 +12,10 @@ on:
       - 'types/**'
       - 'package.json'
       - 'package-lock.json'
+      - 'vite.config.ts'
+      - 'cloudflare.config.ts'
+      - 'next.config.ts'
+      - 'tsconfig.json'
       - 'scripts/smoke-cloudflare-worker-runtime.mjs'
 
 permissions:
@@ -24,6 +28,7 @@ jobs:
     env:
       CI: 'true'
       NEXT_TELEMETRY_DISABLED: '1'
+      DADYOOM_WORKER_BUILD: '1'
       # Fake, non-routable public client config only for anonymous local Worker tests.
       # No actual Supabase project, tokens, student account or admin key used.
       NEXT_PUBLIC_SUPABASE_URL: 'https://dadyoom-ci.invalid'
@@ -57,25 +62,19 @@ jobs:
           JS
           npm install --no-save --package-lock=false --no-audit --no-fund vinext@1.3.0
           node -e 'const r=require("react/package.json"), v=require("./node_modules/vinext/package.json"); console.log("EPHEMERAL_REACT_VERSION="+r.version); console.log("EPHEMERAL_VINEXT_VERSION="+v.version);'
-      - name: Prepare Cloudflare adapter inside temporary CI checkout only
+      - name: Verify the exact tested Cloudflare configs are committed
         shell: bash
         run: |
           set -euo pipefail
-          # This init may edit ephemeral working-tree files but never commits or deploys.
-          # No data cache / no image service keeps it free of storage provisioning.
-          npx vinext init --platform=cloudflare --skip-check --force --data-cache=none --image-optimization=none --no-install
-      - name: Record reproducible generated Cloudflare source configuration
-        shell: bash
-        run: |
-          set -euo pipefail
-          # Only fake CI public credentials exist here. The generated files
-          # are source config, not deployment logs or real private bindings.
-          for cfg in vite.config.ts cloudflare.config.ts; do
-            test -f "$cfg"
-            echo "GENERATED_CLOUDFLARE_SOURCE_CONFIG=$cfg"
-            sed -n '1,180p' "$cfg"
-            echo "END_GENERATED_CLOUDFLARE_SOURCE_CONFIG=$cfg"
-          done
+          test -f vite.config.ts
+          test -f cloudflare.config.ts
+          test -f next.config.ts
+          grep -q 'import vinext from "vinext"' vite.config.ts
+          grep -q 'import { bindings, defineConfig, defineWorker } from "cf/config"' cloudflare.config.ts
+          grep -q 'DADYOOM_WORKER_BUILD' next.config.ts
+          # No production account/secret is read during this isolated build.
+          echo "CLOUDFLARE_COMMITTED_SOURCE_CONFIG=PASS"
+
       - name: Install Cloudflare-only build adapters using explicit versions
         shell: bash
         run: |
@@ -88,17 +87,6 @@ jobs:
             @cloudflare/vite-plugin@beta cf@latest \
             @babel/plugin-transform-runtime@7.29.0 \
             react-server-dom-webpack@19.3.1
-      - name: Ignore Next standalone output in the disposable Workers build
-        shell: bash
-        run: |
-          set -euo pipefail
-          # Next config is left unchanged in GitHub and production.
-          # The Cloudflare adapter creates its own Build Output; it must not
-          # attempt a second Node standalone emit from dist/.
-          sed -i 's/output: "standalone",/\/\/ output: "standalone",/' next.config.ts
-          if grep -q '^  output: "standalone",' next.config.ts; then
-            echo "EPHEMERAL_STANDALONE_DISABLE_FAILED"; exit 1
-          fi
       - name: Build actual Worker bundle (no deploy, no cloud credentials)
         shell: bash
         run: |
