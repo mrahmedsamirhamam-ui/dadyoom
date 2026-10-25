@@ -7,6 +7,7 @@ import {
 } from "@google/genai";
 import { createClient } from "@/lib/supabase/server";
 import { readBoundedMultipart } from "@/lib/http/read-bounded-multipart";
+import { consumeSkillEvaluationQuota } from "@/lib/ai/consume-skill-evaluation-quota";
 
 type AudioEvaluation = {
   transcript: string;
@@ -172,6 +173,24 @@ export async function POST(
       return NextResponse.json(
         { ok: false, error: "التسجيل لا يحتوي على ملف WAV صالح." },
         { status: 400 },
+      );
+    }
+
+    const budget = await consumeSkillEvaluationQuota(
+      user.id, "ai_speaking_evaluate",
+    );
+    if (budget.enforced && !budget.allowed) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: budget.unavailable
+            ? "تقييم الذكاء الاصطناعي غير متاح الآن."
+            : "استخدمت عدد محاولات التقييم المتاح اليوم.",
+        },
+        {
+          status: budget.unavailable ? 503 : 429,
+          headers: { "Cache-Control": "no-store" },
+        },
       );
     }
 
