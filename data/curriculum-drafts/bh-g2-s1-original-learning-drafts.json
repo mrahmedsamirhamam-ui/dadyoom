@@ -105,14 +105,14 @@
             },
             {
               "id": "b",
-              "text": "شاهدت ليلى أخاها يجمع الأوراق"
+              "text": "عادت الأسرة فورًا"
             },
             {
               "id": "c",
-              "text": "عادت الأسرة فورًا"
+              "text": "شاهدت ليلى أخاها يجمع الأوراق"
             }
           ],
-          "correctAnswer": "b",
+          "correctAnswer": "c",
           "explanation": "بعد الفراشة رأت ليلى أخاها وهو يجمع الأوراق.",
           "points": 1,
           "skill": "sequence_or_inference"
@@ -124,18 +124,18 @@
           "options": [
             {
               "id": "a",
-              "text": "الصور أهم من الناس"
+              "text": "الرحلة فرصة للتعلم والمحافظة على المكان"
             },
             {
               "id": "b",
-              "text": "الرحلة فرصة للتعلم والمحافظة على المكان"
+              "text": "الصور أهم من الناس"
             },
             {
               "id": "c",
               "text": "لا يجوز زيارة الحديقة"
             }
           ],
-          "correctAnswer": "b",
+          "correctAnswer": "a",
           "explanation": "جمعت القصة بين التصوير المسؤول والمحافظة على النظافة.",
           "points": 1,
           "skill": "transfer"
@@ -210,18 +210,18 @@
           "options": [
             {
               "id": "a",
-              "text": "ليعرف موضع توقفه"
-            },
-            {
-              "id": "b",
               "text": "ليغلق الكتاب للأبد"
             },
             {
-              "id": "c",
+              "id": "b",
               "text": "ليخفي الصفحة"
+            },
+            {
+              "id": "c",
+              "text": "ليعرف موضع توقفه"
             }
           ],
-          "correctAnswer": "a",
+          "correctAnswer": "c",
           "explanation": "الهدف تذكر مكان القراءة مع الحفاظ على الصفحات.",
           "points": 1,
           "skill": "language_application"
@@ -233,18 +233,18 @@
           "options": [
             {
               "id": "a",
-              "text": "أعاد الكتاب ثم قرأه"
+              "text": "اختار الكتاب ثم قرأه ثم أعاده"
             },
             {
               "id": "b",
-              "text": "اختار الكتاب ثم قرأه ثم أعاده"
+              "text": "أعاد الكتاب ثم قرأه"
             },
             {
               "id": "c",
               "text": "قرأ الكتاب قبل دخوله المكتبة"
             }
           ],
-          "correctAnswer": "b",
+          "correctAnswer": "a",
           "explanation": "النص يعرض اختيار الكتاب ثم قراءته ثم إعادته.",
           "points": 1,
           "skill": "sequence_or_inference"
@@ -256,18 +256,18 @@
           "options": [
             {
               "id": "a",
-              "text": "أن العناية بالكتب سلوك جيد"
+              "text": "أن الكتب لا تستخدم"
             },
             {
               "id": "b",
-              "text": "أن الكتب لا تستخدم"
+              "text": "أن العناية بالكتب سلوك جيد"
             },
             {
               "id": "c",
               "text": "أن الصور ممنوعة"
             }
           ],
-          "correctAnswer": "a",
+          "correctAnswer": "b",
           "explanation": "شكرته لأنه حافظ على الكتاب.",
           "points": 1,
           "skill": "transfer"
@@ -319,18 +319,18 @@
           "options": [
             {
               "id": "a",
-              "text": "ذهبت إلى المدرسة"
-            },
-            {
-              "id": "b",
               "text": "نامت"
             },
             {
-              "id": "c",
+              "id": "b",
               "text": "خرجت للعب"
+            },
+            {
+              "id": "c",
+              "text": "ذهبت إلى المدرسة"
             }
           ],
-          "correctAnswer": "a",
+          "correctAnswer": "c",
           "explanation": "تذكر القصة ذهابها إلى المدرسة بعد الفطور.",
           "points": 1,
           "skill": "literal_comprehension"
@@ -388,18 +388,18 @@
           "options": [
             {
               "id": "a",
-              "text": "لتستعد لليوم التالي"
-            },
-            {
-              "id": "b",
               "text": "لتبيعها"
             },
             {
-              "id": "c",
+              "id": "b",
               "text": "لتضعها خارج المنزل"
+            },
+            {
+              "id": "c",
+              "text": "لتستعد لليوم التالي"
             }
           ],
-          "correctAnswer": "a",
+          "correctAnswer": "c",
           "explanation": "إعداد الحقيبة يعين على الاستعداد للمدرسة.",
           "points": 1,
           "skill": "transfer"
@@ -474,18 +474,18 @@
           "options": [
             {
               "id": "a",
-              "text": "قلة الماء"
+              "text": "وجود مقعد"
             },
             {
               "id": "b",
-              "text": "وجود مقعد"
+              "text": "قلة الماء"
             },
             {
               "id": "c",
               "text": "كبر الساحة"
             }
           ],
-          "correctAnswer": "a",
+          "correctAnswer": "b",
           "explanation": "ذكرت أن الشجرة لم تحصل على ماء منذ أيام.",
           "points": 1,
           "skill": "language_application"
@@ -497,18 +497,18 @@
           "options": [
             {
               "id": "a",
-              "text": "لأن الرعاية تحتاج اعتدالًا"
-            },
-            {
-              "id": "b",
               "text": "لأن الماء لا يفيد النبات"
             },
             {
-              "id": "c",
+              "id": "b",
               "text": "لأن الأشجار لا تُسقى"
+            },
+            {
+              "id": "c",
+              "text": "لأن الرعاية تحتاج اعتدالًا"
             }
           ],
-          "correctAnswer": "a",
+          "correctAnswer": "c",
           "explanation": "الري الملائم يختلف بحسب النبات وحاجته.",
           "points": 1,
           "skill": "sequence_or_inference"
@@ -583,18 +583,18 @@
           "options": [
             {
               "id": "a",
-              "text": "أنا"
+              "text": "نحن"
             },
             {
               "id": "b",
-              "text": "نحن"
+              "text": "أنا"
             },
             {
               "id": "c",
               "text": "هما"
             }
           ],
-          "correctAnswer": "a",
+          "correctAnswer": "b",
           "explanation": "الفعل «أقرأ» هنا للمتكلم الواحد.",
           "points": 1,
           "skill": "literal_comprehension"
@@ -610,14 +610,14 @@
             },
             {
               "id": "b",
-              "text": "نحن نكتب الرسالة"
+              "text": "أنا نكتب الرسالة"
             },
             {
               "id": "c",
-              "text": "أنا نكتب الرسالة"
+              "text": "نحن نكتب الرسالة"
             }
           ],
-          "correctAnswer": "b",
+          "correctAnswer": "c",
           "explanation": "«نحن» يتوافق معها «نكتب».",
           "points": 1,
           "skill": "language_application"
@@ -652,18 +652,18 @@
           "options": [
             {
               "id": "a",
-              "text": "التعاون مع التعبير الصحيح عن الأفراد والجماعة"
+              "text": "العمل الفردي ممنوع"
             },
             {
               "id": "b",
-              "text": "العمل الفردي ممنوع"
+              "text": "التعاون مع التعبير الصحيح عن الأفراد والجماعة"
             },
             {
               "id": "c",
               "text": "النص عن السفر"
             }
           ],
-          "correctAnswer": "a",
+          "correctAnswer": "b",
           "explanation": "النص يوضح أعمال الفرد والجماعة وصيغ التعبير عنهما.",
           "points": 1,
           "skill": "transfer"
@@ -715,18 +715,18 @@
           "options": [
             {
               "id": "a",
-              "text": "مكتبة"
-            },
-            {
-              "id": "b",
               "text": "مكتبون"
             },
             {
-              "id": "c",
+              "id": "b",
               "text": "كتابان"
+            },
+            {
+              "id": "c",
+              "text": "مكتبة"
             }
           ],
-          "correctAnswer": "a",
+          "correctAnswer": "c",
           "explanation": "بعد تركيب الجزأين نقرأ «مكتبة».",
           "points": 1,
           "skill": "literal_comprehension"
@@ -761,18 +761,18 @@
           "options": [
             {
               "id": "a",
-              "text": "استعرت كتابًا من المكتبة"
+              "text": "شربت المكتبة"
             },
             {
               "id": "b",
-              "text": "شربت المكتبة"
+              "text": "استعرت كتابًا من المكتبة"
             },
             {
               "id": "c",
               "text": "ركضت المكتبة"
             }
           ],
-          "correctAnswer": "a",
+          "correctAnswer": "b",
           "explanation": "المكتبة مكان للكتب والقراءة.",
           "points": 1,
           "skill": "sequence_or_inference"
@@ -784,18 +784,18 @@
           "options": [
             {
               "id": "a",
-              "text": "نطق كل مقطع ثم جمعهما"
-            },
-            {
-              "id": "b",
               "text": "ترك القراءة دائمًا"
             },
             {
-              "id": "c",
+              "id": "b",
               "text": "تبديل الحروف بلا سبب"
+            },
+            {
+              "id": "c",
+              "text": "نطق كل مقطع ثم جمعهما"
             }
           ],
-          "correctAnswer": "a",
+          "correctAnswer": "c",
           "explanation": "النطق التدريجي يدعم تركيب الكلمة.",
           "points": 1,
           "skill": "transfer"
