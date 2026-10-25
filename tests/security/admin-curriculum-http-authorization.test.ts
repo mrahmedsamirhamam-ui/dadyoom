@@ -38,8 +38,9 @@ beforeEach(() => {
       order: () => query,
       in: () => query,
       eq: () => query,
+      range: () => query,
       then: (resolve: (v: unknown) => void) => {
-        resolve({ data: [], error: null });
+        resolve({ data: [], count: 0, error: null });
       },
     };
     return {
