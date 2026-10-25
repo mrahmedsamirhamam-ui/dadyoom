@@ -69,6 +69,27 @@ describe("Bahrain grade-two original curricular lesson content", () => {
     expect(result.errors.some((e: string) => e.includes("CONTENT_INCOMPLETE"))).toBe(true);
     expect(result.errors.some((e: string) => e.includes("MCQ_NOT_SERVER_GRADABLE"))).toBe(true);
   });
+  it("rejects answer keys biased to a single option position", () => {
+    const biased = deepCopy();
+    for (const lesson of biased.lessons) {
+      for (const question of lesson.questions) question.correctAnswer = "a";
+    }
+    const result = validateOriginalCurriculumDrafts(biased);
+    expect(result.ok).toBe(false);
+    expect(result.errors).toContain("DRAFT_MCQ_ANSWER_POSITIONS_PREDICTABLE");
+  });
+
+  it("keeps both original draft packs balanced without disclosing answer keys to students", () => {
+    for (const pack of [draft, grade3Draft]) {
+      const positions = pack.lessons.flatMap((lesson: {questions: Array<{correctAnswer: string}>}) =>
+        lesson.questions.map((q) => q.correctAnswer));
+      const counts = ["a","b","c"].map((key) => positions.filter((v: string) => v === key).length);
+      expect(counts).toEqual([8,8,8]);
+      expect(pack.lessons.every((lesson: { publicationApproved: boolean }) =>
+        lesson.publicationApproved === false)).toBe(true);
+    }
+  });
+
   it("does not support applying unpublished drafts through the validator", () => {
     const result = spawnSync(process.execPath, [
       resolve(process.cwd(), "scripts/validate-original-curriculum-drafts.mjs"),
