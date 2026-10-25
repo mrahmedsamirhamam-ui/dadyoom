@@ -44,6 +44,16 @@ describe("uploaded Bahrain 2026-27 Ministry Arabic study plan provenance", () =>
     }
   });
 
+  it("flags Plan5 conflicting cover and internal vocational stream labels", () => {
+    const flagged = index.sourceDocumentReviewFlags.find(
+      (r:{file:string}) => r.file === "Plan5.pdf",
+    );
+    expect(flagged.severity).toBe("REQUIRES_HUMAN_REVIEW");
+    expect(flagged.evidencePages).toEqual([1,2,3,4,5]);
+    expect(flagged.action).toContain("Ministry");
+    expect(flagged.impact).toContain("Do not automatically assign");
+  });
+
   it("recognizes the photographer lesson as officially scheduled without publishing prior supplemental fiction", () => {
     expect(lessons.find(l=>l.grade===4&&l.title==="الملاك الأبيض")).toMatchObject({
       sourcePdfPage:21,publicationStatus:"index_only_not_a_lesson",
