@@ -4,6 +4,7 @@ import path from "node:path";
 import { createClient } from "@supabase/supabase-js";
 import { validateCurriculumPack } from "../lib/curriculum-packs/validate.mjs";
 import { readCompleteCurriculumBackup } from "../lib/curriculum-packs/complete-backup.mjs";
+import { buildMissingCurriculumQuestions } from "../lib/curriculum-packs/import-questions.mjs";
 
 function loadEnv(file) {
   if (!fs.existsSync(file)) return;
@@ -214,20 +215,9 @@ for (const unitPack of pack.units) {
 
     const { data: qRows, error: qError } = await supabase.from("questions").select("id,question,question_order").eq("lesson_id", lesson.id).order("question_order", { ascending: true });
     if (qError) throw qError;
-    const existingQ = qRows || [];
-    const texts = new Set(existingQ.map((q) => String(q.question || "").trim()));
-    let nextOrder = existingQ.reduce((max, q) => Math.max(max, Number(q.question_order) || 0), 0) + 1;
-    const needed = Math.max(0, 3 - existingQ.length);
-    const rows = lessonPack.questions.filter((q) => !texts.has(q.question)).slice(0, needed).map((q) => ({
-      lesson_id: lesson.id,
-      question_order: nextOrder++,
-      question: q.question,
-      question_type: q.type,
-      options: q.options,
-      correct_answer: q.correctAnswer,
-      explanation: q.explanation ?? null,
-      points: q.points ?? 1,
-    }));
+    const rows = buildMissingCurriculumQuestions(
+      lesson.id, lessonPack.questions, qRows || [],
+    );
     if (rows.length) {
       const { error } = await supabase.from("questions").insert(rows);
       if (error) throw error;
