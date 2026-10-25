@@ -1,0 +1,139 @@
+{
+  "schema": "dadyoom.bahrain-2026-official-reading-title-match-audit.v1",
+  "observedOn": "2026-10-25",
+  "scope": "Bahrain Arabic S1 grades 2–3 official reading-title presence only",
+  "officialSourceIndex": "data/curriculum-sources/bahrain-2026-s1-ministry-plan-index.json",
+  "dataOrigin": "Supabase project hvqsvtomhlxavmfqoxfz; SELECT-only aggregate of published BH semester-1 grade-2 and grade-3 lesson titles",
+  "matchingRule": "Normalize Arabic alef variants, ye/maqsura, ta marbuta, tashkeel, tatweel, ASCII punctuation and whitespace, then find plan title as substring in published lesson title; this is not proof of source text/page or quality equivalence.",
+  "summary": {
+    "officialReadingItems": 24,
+    "itemsWithAtLeastOnePublishedTitle": 24,
+    "itemsWithNoPublishedTitle": 0,
+    "itemsWithMultiplePublishedTitleMatches": 14,
+    "qualityAndTextbookMatch": "NOT_VERIFIED",
+    "approvedToPublish": false,
+    "caution": "Multiple matching rows may be repeated reading content, variants or legitimate components; do not delete/merge without examining unit, source, student attempts and history."
+  },
+  "rows": [
+    {
+      "grade": 2,
+      "lessonNumber": 1,
+      "publishedTitleMatches": 2
+    },
+    {
+      "grade": 2,
+      "lessonNumber": 2,
+      "publishedTitleMatches": 2
+    },
+    {
+      "grade": 2,
+      "lessonNumber": 3,
+      "publishedTitleMatches": 2
+    },
+    {
+      "grade": 2,
+      "lessonNumber": 4,
+      "publishedTitleMatches": 2
+    },
+    {
+      "grade": 2,
+      "lessonNumber": 5,
+      "publishedTitleMatches": 2
+    },
+    {
+      "grade": 2,
+      "lessonNumber": 6,
+      "publishedTitleMatches": 2
+    },
+    {
+      "grade": 2,
+      "lessonNumber": 7,
+      "publishedTitleMatches": 1
+    },
+    {
+      "grade": 2,
+      "lessonNumber": 8,
+      "publishedTitleMatches": 1
+    },
+    {
+      "grade": 2,
+      "lessonNumber": 9,
+      "publishedTitleMatches": 2
+    },
+    {
+      "grade": 2,
+      "lessonNumber": 10,
+      "publishedTitleMatches": 2
+    },
+    {
+      "grade": 2,
+      "lessonNumber": 11,
+      "publishedTitleMatches": 2
+    },
+    {
+      "grade": 2,
+      "lessonNumber": 12,
+      "publishedTitleMatches": 2
+    },
+    {
+      "grade": 3,
+      "lessonNumber": 1,
+      "publishedTitleMatches": 1
+    },
+    {
+      "grade": 3,
+      "lessonNumber": 2,
+      "publishedTitleMatches": 1
+    },
+    {
+      "grade": 3,
+      "lessonNumber": 3,
+      "publishedTitleMatches": 1
+    },
+    {
+      "grade": 3,
+      "lessonNumber": 4,
+      "publishedTitleMatches": 2
+    },
+    {
+      "grade": 3,
+      "lessonNumber": 5,
+      "publishedTitleMatches": 2
+    },
+    {
+      "grade": 3,
+      "lessonNumber": 6,
+      "publishedTitleMatches": 2
+    },
+    {
+      "grade": 3,
+      "lessonNumber": 7,
+      "publishedTitleMatches": 1
+    },
+    {
+      "grade": 3,
+      "lessonNumber": 8,
+      "publishedTitleMatches": 1
+    },
+    {
+      "grade": 3,
+      "lessonNumber": 9,
+      "publishedTitleMatches": 1
+    },
+    {
+      "grade": 3,
+      "lessonNumber": 10,
+      "publishedTitleMatches": 1
+    },
+    {
+      "grade": 3,
+      "lessonNumber": 11,
+      "publishedTitleMatches": 1
+    },
+    {
+      "grade": 3,
+      "lessonNumber": 12,
+      "publishedTitleMatches": 2
+    }
+  ]
+}
