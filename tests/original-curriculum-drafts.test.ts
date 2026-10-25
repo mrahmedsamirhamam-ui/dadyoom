@@ -8,6 +8,9 @@ import { validateCurriculumPack } from "../lib/curriculum-packs/validate.mjs";
 const file = "data/curriculum-drafts/bh-g2-s1-original-learning-drafts.json";
 const draft = JSON.parse(readFileSync(resolve(process.cwd(), file), "utf8"));
 const deepCopy = () => JSON.parse(JSON.stringify(draft));
+const grade3Draft = JSON.parse(readFileSync(resolve(process.cwd(),
+  "data/curriculum-drafts/bh-g3-s1-original-learning-drafts.json"), "utf8"));
+
 
 describe("Bahrain grade-two original curricular lesson content", () => {
   it("has six substantial original lessons with four graded questions each", () => {
@@ -15,6 +18,28 @@ describe("Bahrain grade-two original curricular lesson content", () => {
     expect(result).toEqual({ ok: true, errors: [], lessons: 6, questions: 24 });
     expect(draft.lessons.every((l: {content: string}) => l.content.length >= 900)).toBe(true);
   });
+  it("validates six distinct grade-three lessons without ministry alignment claims", () => {
+    expect(grade3Draft.grade).toBe(3);
+    expect(validateOriginalCurriculumDrafts(grade3Draft)).toEqual({
+      ok: true, errors: [], lessons: 6, questions: 24,
+    });
+    expect(validateCurriculumPack(grade3Draft).ok).toBe(false);
+    expect(grade3Draft.lessons.every((l: { alignment: {officialTocVerified: boolean}; publicationApproved: boolean }) =>
+      l.alignment.officialTocVerified === false && l.publicationApproved === false)).toBe(true);
+  });
+
+  it("checks both grade-two and grade-three packets without changing the database", () => {
+    const result = spawnSync(process.execPath, [
+      resolve(process.cwd(), "scripts/validate-original-curriculum-drafts.mjs"),
+    ], { cwd: process.cwd(), encoding: "utf8" });
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("ORIGINAL_DRAFT_PACKS=2");
+    expect(result.stdout).toContain("ORIGINAL_DRAFT_LESSONS=12");
+    expect(result.stdout).toContain("ORIGINAL_DRAFT_QUESTIONS=48");
+    expect(result.stdout).toContain("DATABASE_WRITES=NONE");
+    expect(result.stdout).toContain("OFFICIAL_2026_TOC_MATCH=NOT_VERIFIED");
+  });
+
   it("cannot masquerade as a 2026-27 official or import-ready published pack", () => {
     expect(draft.status).toBe("draft");
     expect(draft.publicationApproved).toBe(false);
