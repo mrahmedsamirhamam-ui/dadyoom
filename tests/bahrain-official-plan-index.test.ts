@@ -5,6 +5,8 @@ import { describe, expect, it } from "vitest";
 const filename = resolve(process.cwd(), "data/curriculum-sources/bahrain-2026-s1-ministry-plan-index.json");
 const index = JSON.parse(readFileSync(filename,"utf8"));
 const lessons: Array<{grade:number;semester:number;lessonNumber:number;title:string;sourceFile:string;sourceSha256:string;sourcePdfPage:number;officialPageOfTextbook:null;publicationStatus:string}> = index.readingLessons;
+const titleMatchAudit = JSON.parse(readFileSync(resolve(process.cwd(),
+  "data/curriculum-sources/bahrain-2026-s1-reading-title-audit.json"),"utf8"));
 
 describe("uploaded Bahrain 2026-27 Ministry Arabic study plan provenance", () => {
   it("registers all seven distinct official PDF files with immutable SHA-256 identifiers", () => {
@@ -48,6 +50,21 @@ describe("uploaded Bahrain 2026-27 Ministry Arabic study plan provenance", () =>
     expect(supplement.officialTocVerified).toBe(false);
     expect(supplement.publicationApproved).toBe(false);
     expect(supplement.lessons.every((l:{publicationApproved:boolean})=>l.publicationApproved===false)).toBe(true);
+  });
+
+  it("keeps title-only production matches separate from textbook-content approval", () => {
+    const snapshot = titleMatchAudit;
+    expect(snapshot.rows).toHaveLength(lessons.length);
+    const ids = new Set(lessons.map(l=>`${l.grade}:${l.lessonNumber}`));
+    expect(new Set(snapshot.rows.map((r:{grade:number;lessonNumber:number})=>
+      `${r.grade}:${r.lessonNumber}`))).toEqual(ids);
+    expect(snapshot.summary.itemsWithAtLeastOnePublishedTitle).toBe(24);
+    expect(snapshot.summary.itemsWithNoPublishedTitle).toBe(0);
+    expect(snapshot.summary.itemsWithMultiplePublishedTitleMatches).toBe(14);
+    expect(snapshot.summary.qualityAndTextbookMatch).toBe("NOT_VERIFIED");
+    expect(snapshot.summary.approvedToPublish).toBe(false);
+    expect(snapshot.rows.every((r:{publishedTitleMatches:number})=>
+      r.publishedTitleMatches>=1)).toBe(true);
   });
 
   it("records page ranges for all core basic education grades without assuming full subject alignment", () => {
