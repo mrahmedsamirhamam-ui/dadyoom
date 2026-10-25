@@ -10,15 +10,12 @@ import {
 import {
   createClient,
 } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
+import { gradeStudyPlay, type StudyPlayRow } from "@/features/study-play/services/grade-study-play";
 
 type PracticeAnswer = {
   questionId: string;
   optionId: string;
-};
-
-type PracticeQuestionRow = {
-  id: string;
-  correct_answer: string;
 };
 
 const PRACTICE_PASS_SCORE = 70;
@@ -54,109 +51,40 @@ export async function submitPracticeAction(
     );
   }
 
-  const {
-    data,
-    error,
-  } = await supabase
+  // The student-safe authenticated client proves visibility of the published
+  // lesson before any elevated answer-key read. Browser roles must not require
+  // SELECT on questions.correct_answer.
+  const { data: lesson, error: lessonError } = await supabase
+    .from("lessons")
+    .select("id")
+    .eq("id", normalizedLessonId)
+    .eq("status", "published")
+    .maybeSingle();
+
+  if (lessonError || !lesson) {
+    throw new Error("الدرس غير متاح للتدريب.");
+  }
+
+  const admin = createAdminClient();
+  const { data, error } = await admin
     .from("questions")
-    .select(`
-      id,
-      correct_answer
-    `)
-    .eq(
-      "lesson_id",
-      normalizedLessonId
-    )
-    .order(
-      "question_order",
-      {
-        ascending: true,
-      }
-    );
+    .select("id,question_type,options,correct_answer")
+    .eq("lesson_id", normalizedLessonId)
+    .order("question_order", { ascending: true })
+    .limit(101);
 
   if (error) {
-    throw error;
+    throw new Error("تعذر قراءة الأسئلة للتصحيح.");
   }
 
-  const questions =
-    (data ?? []) as
-      PracticeQuestionRow[];
-
-  if (
-    questions.length === 0
-  ) {
-    throw new Error(
-      "لا توجد أسئلة متاحة لهذا التدريب."
-    );
-  }
-
-  const answerMap =
-    new Map<string, string>();
-
-  for (
-    const answer of
-    answers
-  ) {
-    const questionId =
-      answer.questionId?.trim();
-
-    const optionId =
-      answer.optionId?.trim();
-
-    if (
-      questionId &&
-      optionId
-    ) {
-      answerMap.set(
-        questionId,
-        optionId
-      );
-    }
-  }
-
-  const missingAnswers =
-    questions.filter(
-      (question) =>
-        !answerMap.has(
-          question.id
-        )
-    );
-
-  if (
-    missingAnswers.length > 0
-  ) {
-    throw new Error(
-      `أجب عن جميع أسئلة التدريب أولًا. المتبقي ${missingAnswers.length}.`
-    );
-  }
-
-  let correctAnswers = 0;
-
-  for (
-    const question of
-    questions
-  ) {
-    if (
-      answerMap.get(
-        question.id
-      ) ===
-      question.correct_answer
-    ) {
-      correctAnswers += 1;
-    }
-  }
-
-  const score =
-    Math.round(
-      (
-        correctAnswers /
-        questions.length
-      ) * 100
-    );
-
-  const passed =
-    score >=
-    PRACTICE_PASS_SCORE;
+  const result = gradeStudyPlay(
+    (data ?? []) as StudyPlayRow[],
+    answers.map((answer) => ({
+      questionId: answer.questionId,
+      optionId: answer.optionId,
+    }))
+  );
+  const { correctAnswers, totalQuestions, score, passed } = result;
 
   const adaptivePath =
     passed
@@ -213,7 +141,7 @@ export async function submitPracticeAction(
     correctAnswers,
 
     totalQuestions:
-      questions.length,
+      totalQuestions,
 
     adaptivePath,
   };
