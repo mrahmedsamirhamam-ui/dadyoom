@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { gradeStudyPlay, type StudyPlayRow } from "./grade-study-play";
+import { readCompleteGradingPages } from "@/lib/lesson-activities/read-complete-pages";
 
 const ids = [
   "11111111-1111-4111-8111-111111111111",
@@ -58,6 +59,66 @@ describe("gradeStudyPlay", () => {
       Array.from({ length: 101 }, () => questions[0]),
       Array.from({ length: 101 }, () => ({ questionId: ids[0], optionId: "b" })),
     )).toThrow();
+  });
+});
+
+describe("complete study-play question banks under API row caps", () => {
+  it("retrieves all 100 student-visible questions despite a 17-row PostgREST cap", async () => {
+    const ids = Array.from({ length: 100 }, (_, index) => ({
+      id: String(index + 1).padStart(8, "0"),
+    }));
+    const pages: number[] = [];
+    const visible = await readCompleteGradingPages({
+      maxRows: 100,
+      pageSize: 75,
+      readPage: async (offset, limit) => {
+        pages.push(offset);
+        return {
+          data: ids.slice(offset, offset + Math.min(17, limit)),
+          count: ids.length,
+          error: null,
+        };
+      },
+    });
+    expect(visible).toEqual(ids);
+    expect(pages).toEqual([0, 17, 34, 51, 68, 85]);
+  });
+
+  it("rejects 101 questions instead of displaying or grading a truncated quiz", async () => {
+    const ids = Array.from({ length: 101 }, (_, index) => ({
+      id: String(index + 1).padStart(8, "0"),
+    }));
+    await expect(readCompleteGradingPages({
+      maxRows: 100,
+      pageSize: 75,
+      readPage: async (offset, limit) => ({
+        data: ids.slice(offset, offset + limit),
+        count: ids.length,
+        error: null,
+      }),
+    })).rejects.toThrow("تجاوز عدد بيانات التقويم");
+  });
+
+  it("uses identical full-bank verification for the page and server action", () => {
+    const page = readFileSync(
+      resolve(process.cwd(), "app/lessons/[id]/play/page.tsx"), "utf8",
+    );
+    const action = readFileSync(
+      resolve(process.cwd(), "features/study-play/actions/submitStudyPlay.ts"), "utf8",
+    );
+    expect(page).toContain("readCompleteGradingPages({");
+    expect(page).toContain('count: "exact"');
+    expect(page).toContain('maxRows: 100');
+    expect(page).toContain('.order("id", { ascending: true })');
+    expect(page).toContain(".range(offset, offset + limit - 1)");
+    expect(page).toContain("normalizeQuestions(rows as RawQuestion[])");
+    expect(action.match(/readCompleteGradingPages\(\{/g)?.length).toBe(2);
+    expect(action).toContain('.from("dadyoom_student_questions")');
+    expect(action).toContain('.from("questions")');
+    expect(action).toContain('.eq("lesson_id", lessonId)');
+    expect(action).toContain("storedRows.length !== visibleIds.length");
+    expect(action).toContain("gradeStudyPlay(storedRows, answers)");
+    expect(action).not.toContain(".limit(101)");
   });
 });
 
