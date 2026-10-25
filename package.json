@@ -23,7 +23,10 @@
     "release:audit": "node scripts/release-audit.mjs",
     "curriculum:coverage": "node scripts/curriculum-coverage.mjs",
     "release:final-audit": "node scripts/final-mvp-audit.mjs",
-    "prebuild": "node scripts/write-app-version.mjs"
+    "prebuild": "node scripts/write-app-version.mjs",
+    "build:cloudflare": "node scripts/build-cloudflare-worker.mjs",
+    "check:cloudflare-deploy": "cf deploy --prebuilt --mode production --dry-run",
+    "deploy:cloudflare": "cf deploy --prebuilt --mode production"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
