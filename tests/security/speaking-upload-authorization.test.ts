@@ -29,10 +29,15 @@ function audioRequest(
   } = {},
 ) {
   const data = new FormData();
+  // File/Blob accepts ArrayBuffer, whereas Uint8Array<ArrayBufferLike>
+  // may include a SharedArrayBuffer and is rejected by newer DOM typings.
+  const audioBytes = options.bytes ?? wavBytes();
+  const audioBuffer = new ArrayBuffer(audioBytes.byteLength);
+  new Uint8Array(audioBuffer).set(audioBytes);
   data.set(
     "audio",
     new File(
-      [options.bytes ?? wavBytes()],
+      [audioBuffer],
       "student.wav",
       { type: options.type ?? "audio/wav" },
     ),
