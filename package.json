@@ -19,6 +19,7 @@
     "search:semantic": "tsx importer/embeddings/test-semantic-search.ts",
     "curriculum:export:bahrain": "node scripts/export-bahrain-curriculum-pack.mjs",
     "curriculum:verify": "node scripts/verify-curriculum-packs.mjs",
+    "curriculum:drafts:verify": "node scripts/validate-original-curriculum-drafts.mjs",
     "curriculum:import": "node scripts/import-curriculum-pack.mjs",
     "release:audit": "node scripts/release-audit.mjs",
     "curriculum:coverage": "node scripts/curriculum-coverage.mjs",
