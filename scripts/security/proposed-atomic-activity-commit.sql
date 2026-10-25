@@ -104,7 +104,8 @@ BEGIN
   RETURNING best_score, progress_percent INTO v_best_score, v_progress_percent;
 
   RETURN QUERY SELECT v_attempt_number, v_best_score, v_progress_percent;
-END $commit$;
+END;
+$commit$;
 
 -- PostgreSQL grants EXECUTE on new functions to PUBLIC by default.
 REVOKE ALL ON FUNCTION public.dadyoom_commit_activity_attempt(
