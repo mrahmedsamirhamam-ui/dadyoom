@@ -142,6 +142,9 @@ on:
       - 'tests/security/shadow-ai-key-grants-setup.sql'
       - 'tests/security/shadow-ai-key-grants-verify.sql'
       - 'scripts/security/proposed-adaptive-progress-write-restrictions.sql'
+      - 'scripts/security/proposed-skill-daily-reward-grants.sql'
+      - 'tests/security/shadow-skill-daily-rewards-setup.sql'
+      - 'tests/security/shadow-skill-daily-rewards-verify.sql'
       - 'tests/security/shadow-adaptive-grants-setup.sql'
       - 'tests/security/shadow-adaptive-grants-verify.sql'
       - 'features/learning-plan/services/adaptive-path-lifecycle.ts'
@@ -780,3 +783,34 @@ jobs:
             cat tests/security/shadow-atomic-activity-verify.sql
           } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_atomic
           echo "SHADOW_ATOMIC_ACTIVITY_BOTH_TABLES_OR_NONE=PASS"
+
+      - name: Rehearse browser skill and daily XP grant revocation with rollback in shadow PostgreSQL
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_skill_rewards
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_skill_rewards \
+            < tests/security/shadow-skill-daily-rewards-setup.sql
+          if output=$({
+            echo "SET dadyoom.skill_rewards_rehearsal = 'enabled';"
+            cat scripts/security/proposed-skill-daily-reward-grants.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1); then
+            echo "Skill reward cutover unexpectedly accepted a non-shadow database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$output" | grep -q 'PRODUCTION_SKILL_REWARD_REVOKE_BLOCKED_SHADOW_ONLY'
+          if output=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_skill_rewards \
+              < scripts/security/proposed-skill-daily-reward-grants.sql 2>&1); then
+            echo "Skill reward cutover unexpectedly accepted missing rehearsal flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$output" | grep -q 'PRODUCTION_SKILL_REWARD_REVOKE_BLOCKED_SHADOW_ONLY'
+          {
+            echo "SET dadyoom.skill_rewards_rehearsal = 'enabled';"
+            cat scripts/security/proposed-skill-daily-reward-grants.sql
+            cat tests/security/shadow-skill-daily-rewards-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_skill_rewards
+          echo "SHADOW_SKILL_DAILY_XP_REVOKE_RLS_ROLLBACK=PASS"
