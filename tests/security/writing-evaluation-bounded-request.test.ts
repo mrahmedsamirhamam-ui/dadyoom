@@ -3,8 +3,10 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 const { createClient, askAI } = vi.hoisted(() => ({
   createClient: vi.fn(),
   askAI: vi.fn(),
+  consumeSkillEvaluationQuota: vi.fn(),
 }));
 vi.mock("@/lib/supabase/server", () => ({ createClient }));
+vi.mock("@/lib/ai/consume-skill-evaluation-quota", () => ({ consumeSkillEvaluationQuota }));
 vi.mock("@/importer/ai/client", () => ({ askAI }));
 
 import { POST } from "../../app/api/skills/writing/evaluate/route";
@@ -26,6 +28,7 @@ function request(body: unknown, type = "application/json") {
 
 beforeEach(() => {
   vi.clearAllMocks();
+  consumeSkillEvaluationQuota.mockResolvedValue({ enforced: false, allowed: true });
   askAI.mockResolvedValue(JSON.stringify({
     overallScore: 76, spellingScore: 72, grammarScore: 73,
     coherenceScore: 80, styleScore: 79,
@@ -67,6 +70,28 @@ describe("writing evaluation requires identity and bounded trusted input", () =>
     expect((await POST(request({ text: "س", prompt: "عنوان" }))).status).toBe(400);
     expect((await POST(request({ text: "بداية قصة", prompt: "أ".repeat(601) }))).status).toBe(400);
     expect((await POST(request({ text: "بداية قصة", prompt: "سطر\nآخر" }))).status).toBe(400);
+    expect(askAI).not.toHaveBeenCalled();
+  });
+
+  it("does not call paid AI when per-student quota is exhausted or RPC unavailable", async () => {
+    setup(true);
+    const req = () => request({ text: "أحب تعلم اللغة العربية", prompt: "اكتب عن مدرستك" });
+    consumeSkillEvaluationQuota.mockResolvedValueOnce({
+      enforced: true, allowed: false, unavailable: false,
+    });
+    const exhausted = await POST(req());
+    expect(exhausted.status).toBe(429);
+    expect(exhausted.headers.get("Cache-Control")).toBe("no-store");
+
+    consumeSkillEvaluationQuota.mockResolvedValueOnce({
+      enforced: true, allowed: false, unavailable: true,
+    });
+    const offline = await POST(req());
+    expect(offline.status).toBe(503);
+    expect(consumeSkillEvaluationQuota).toHaveBeenCalledWith(
+      "student-verified",
+      "ai_writing_evaluate",
+    );
     expect(askAI).not.toHaveBeenCalled();
   });
 
