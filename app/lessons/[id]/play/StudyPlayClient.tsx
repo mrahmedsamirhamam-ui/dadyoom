@@ -126,7 +126,10 @@ export default function StudyPlayClient({
             نتيجتك {grade.score}% — {grade.correctAnswers} من {grade.totalQuestions} إجابة صحيحة
           </p>
           <p className="mt-2 text-slate-700">
-            تم حفظ نتيجتك وإضافة {grade.earnedXp} نقطة خبرة. درجة النجاح 70%.
+            تم حفظ نتيجتك. درجة النجاح 70%.
+            {grade.earnedXp > 0
+              ? ` أُضيفت ${grade.earnedXp} نقطة خبرة.`
+              : " مكافآت الخبرة متوقفة مؤقتًا لحين تفعيل ضوابط منع التكرار في قاعدة البيانات."}
           </p>
           {mode === "challenge" ? (
             <p className="mt-2 text-sm text-slate-600">مدة التحدي: {Math.floor(seconds / 60)} دقيقة و{seconds % 60} ثانية</p>
