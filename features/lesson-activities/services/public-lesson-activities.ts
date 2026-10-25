@@ -30,6 +30,9 @@ const isObject = (value: unknown): value is Record<string, unknown> =>
 // treated identically, including inside arbitrary arrays of options.
 const privateFields = new Set([
   "answer", "answers", "answerkey", "correctanswer", "correctanswers",
+  // Found in three existing unlinked, unpublished source activities.
+  // Never allow this literal solution key to reach student activity JSON.
+  "correctword",
   "iscorrect", "iscorrectoption", "correctoption", "solution", "solutions",
   "grading", "gradingkey", "expectedanswer", "expectedanswers",
   "privateanswer", "rightanswer", "markingkey",
