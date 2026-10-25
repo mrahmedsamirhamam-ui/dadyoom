@@ -7,6 +7,8 @@ BEGIN
  IF NOT EXISTS(SELECT FROM pg_roles WHERE rolname='authenticated') THEN CREATE ROLE authenticated NOLOGIN; END IF;
  IF NOT EXISTS(SELECT FROM pg_roles WHERE rolname='service_role') THEN CREATE ROLE service_role NOLOGIN; END IF;
 END $roles$;
+-- Supabase service_role bypasses owner RLS; model that explicitly.
+ALTER ROLE service_role BYPASSRLS;
 CREATE SCHEMA auth;
 CREATE FUNCTION auth.uid() RETURNS uuid
 LANGUAGE sql STABLE AS $uid$
