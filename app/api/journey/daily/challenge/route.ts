@@ -9,14 +9,7 @@ import {
 import {
   getBahrainDate,
 } from "@/features/gamification/daily-challenge-server";
-
-const validSkills =
-  new Set([
-    "reading",
-    "writing",
-    "listening",
-    "speaking",
-  ]);
+import { resolveTrustedDailyChallenge } from "@/features/gamification/resolve-trusted-daily-challenge";
 
 export async function GET() {
   try {
@@ -140,54 +133,21 @@ export async function POST(
       );
     }
 
-    const body =
+    const body: unknown =
       await request.json();
-
+    const submitted =
+      body && typeof body === "object" && !Array.isArray(body)
+        ? body as Record<string, unknown>
+        : {};
     const challengeId =
-      typeof body.challengeId ===
-        "string"
-        ? body.challengeId.trim()
+      typeof submitted.challengeId === "string"
+        ? submitted.challengeId.trim()
         : "";
 
-    const skill =
-      typeof body.skill ===
-        "string"
-        ? body.skill.trim()
-        : "";
-
-    const title =
-      typeof body.title ===
-        "string"
-        ? body.title.trim()
-        : "";
-
-    const targetScore =
-      Math.max(
-        0,
-        Math.min(
-          100,
-          Math.round(
-            Number(
-              body.targetScore
-            ) || 0
-          )
-        )
-      );
-
-    if (
-      !challengeId ||
-      !title ||
-      !validSkills.has(skill)
-    ) {
+    if (!challengeId) {
       return NextResponse.json(
-        {
-          ok: false,
-          error:
-            "بيانات التحدي غير صحيحة.",
-        },
-        {
-          status: 400,
-        }
+        { ok: false, error: "معرّف التحدي غير صالح." },
+        { status: 400 },
       );
     }
 
@@ -231,6 +191,26 @@ export async function POST(
           existing,
       });
     }
+
+    // The student does not get to set targetScore, skill, title or bonus.
+    // Recalculate the daily recommendation from owner-scoped server data.
+    const verifiedChallenge = await resolveTrustedDailyChallenge(
+      supabase,
+      user.id,
+    );
+    if (challengeId !== verifiedChallenge.id ||
+      (submitted.skill !== undefined &&
+        submitted.skill !== verifiedChallenge.skill) ||
+      (submitted.title !== undefined &&
+        submitted.title !== verifiedChallenge.title) ||
+      (submitted.targetScore !== undefined &&
+        submitted.targetScore !== verifiedChallenge.targetScore)) {
+      return NextResponse.json(
+        { ok: false, error: "تغيّر تحدي اليوم؛ حدّث الصفحة ثم حاول مجددًا." },
+        { status: 409 },
+      );
+    }
+    const { skill, title, targetScore } = verifiedChallenge;
 
     const {
       data,
