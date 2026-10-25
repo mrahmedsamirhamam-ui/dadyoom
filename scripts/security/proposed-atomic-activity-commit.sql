@@ -59,12 +59,17 @@ BEGIN
   WHERE a.id = p_activity_id AND a.lesson_id = p_lesson_id
     AND a.is_published IS TRUE AND l.status = 'published'
   FOR SHARE OF a,l;
-  IF NOT FOUND OR
-      p_max_points <> CASE WHEN p_is_gradable THEN v_activity_points ELSE 0 END
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'ACTIVITY_IS_NOT_PUBLISHED_OR_GRADE_WEIGHT_CHANGED';
+  END IF;
+  IF (p_is_gradable AND p_max_points <> v_activity_points)
+    OR (NOT p_is_gradable AND p_max_points <> 0)
     OR (NOT p_is_correct AND p_earned_points <> 0)
     OR (p_is_gradable AND p_is_correct AND p_earned_points <> p_max_points)
     OR (NOT p_is_gradable AND p_earned_points <> 0)
-  THEN RAISE EXCEPTION 'ACTIVITY_IS_NOT_PUBLISHED_OR_GRADE_WEIGHT_CHANGED'; END IF;
+  THEN
+    RAISE EXCEPTION 'ACTIVITY_IS_NOT_PUBLISHED_OR_GRADE_WEIGHT_CHANGED';
+  END IF;
 
   SELECT COALESCE(MAX(a.attempt_number), 0) + 1 INTO v_attempt_number
   FROM public.lesson_activity_attempts a
