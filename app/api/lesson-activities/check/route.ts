@@ -547,7 +547,8 @@ export async function POST(
       if (commitError || !receipt) {
         throw new Error("تعذر حفظ النشاط والتقدم في معاملة واحدة.");
       }
-      nextAttemptNumber = Number(receipt.saved_attempt_number);
+      const atomicReceipt = receipt as { saved_attempt_number?: unknown };
+      nextAttemptNumber = Number(atomicReceipt.saved_attempt_number);
       if (!Number.isSafeInteger(nextAttemptNumber) || nextAttemptNumber < 1) {
         throw new Error("رقم المحاولة الذرية غير صالح.");
       }
