@@ -3,6 +3,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { askAI } from "@/importer/ai/client";
 import { readBoundedJsonObject } from "@/lib/http/read-bounded-json";
+import { consumeSkillEvaluationQuota } from "@/lib/ai/consume-skill-evaluation-quota";
 
 type WritingEvaluation = {
   overallScore: number;
@@ -165,6 +166,24 @@ export async function POST(
       return NextResponse.json(
         { ok: false, error: "موضوع الكتابة غير صالح." },
         { status: 400 },
+      );
+    }
+
+    const budget = await consumeSkillEvaluationQuota(
+      user.id, "ai_writing_evaluate",
+    );
+    if (budget.enforced && !budget.allowed) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: budget.unavailable
+            ? "تقييم الذكاء الاصطناعي غير متاح الآن."
+            : "استخدمت عدد محاولات التقييم المتاح اليوم.",
+        },
+        {
+          status: budget.unavailable ? 503 : 429,
+          headers: { "Cache-Control": "no-store" },
+        },
       );
     }
 
