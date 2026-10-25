@@ -11,7 +11,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import process from "node:process";
 
-for (const file of ["vite.config.mts", "cloudflare.config.ts", "next.config.ts"]) {
+for (const file of ["vite.config.ts", "cloudflare.config.ts", "next.config.ts"]) {
   if (!existsSync(file)) {
     throw new Error("CLOUDFLARE_REQUIRED_SOURCE_CONFIG_MISSING: " + file);
   }
@@ -56,7 +56,7 @@ try {
   ]);
   // Explicit Vite config is ESM, compatible with the Cloudflare Vite plugin.
   // vinext documents vite build as the successor to the legacy vinext build.
-  command(npx, ["vite", "build", "--config", "vite.config.mts"]);
+  command(npx, ["vinext", "build"]);
   if (!existsSync(".cloudflare/output/v0/config.json") ||
       !existsSync(".cloudflare/output/v0/workers/default/bundle/ssr/index.js")) {
     throw new Error("CLOUDFLARE_BUILD_OUTPUT_NOT_GENERATED");
