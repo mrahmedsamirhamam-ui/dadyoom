@@ -701,5 +701,21 @@
       "publicationStatus": "index_only_not_a_lesson",
       "officialPageOfTextbook": null
     }
+  ],
+  "sourceDocumentReviewFlags": [
+    {
+      "file": "Plan5.pdf",
+      "severity": "REQUIRES_HUMAN_REVIEW",
+      "evidencePages": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "observation": "Cover describes administrative/technology/engineering stream. Pages 2–5 repeatedly label the internal curriculum as technical/vocational stream; course identifiers 811/813/815 appear beside book identifiers 801/803/303.",
+      "impact": "Do not automatically assign this file's lessons to either stream or claim ministry-approved equivalence before obtaining a corrected/confirmed source.",
+      "action": "Confirm with Ministry or official 2026–2027 stream distribution. Retain file as unverified for automated mapping."
+    }
   ]
 }
