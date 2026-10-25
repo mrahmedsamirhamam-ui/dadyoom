@@ -24,6 +24,23 @@ describe("operational curriculum assessment readiness gate", () => {
     expect(section).toContain("co.code='BH'");
     expect(section).toContain("عقدة تغطية رسمية%");
   });
+  it("breaks down unpublished drafts without treating records as approved ministry lessons", () => {
+    const drafts = section.slice(section.indexOf("-- 16. Unpublished readiness"));
+    expect(drafts).toContain("draft_missing_stored_assessment");
+    expect(drafts).toContain("draft_with_stored_assessment");
+    expect(drafts).toContain("draft_short_content_under_1200");
+    expect(drafts).toContain("draft_without_source_url");
+    expect(drafts).toContain("draft_without_source_start_page");
+    expect(drafts).toContain("draft_without_semester");
+    expect(drafts).toContain("draft_without_source_scope");
+    expect(drafts).toContain("co.code AS country_code");
+    expect(drafts).toContain("g.grade_number");
+    expect(drafts).toContain("l.semester");
+    expect(drafts).toContain("l.status='draft'");
+    expect(drafts).toContain("is_published IS TRUE");
+    expect(drafts).not.toMatch(/correct_answer|question_attempts|student_lesson_progress/i);
+    expect(drafts).toContain("DO NOT auto-publish");
+  });
   it("remains read only and never extracts personal rows, answers, or keys", () => {
     const plain=audit.replace(/--[^\n]*/g,"").replace(/'(?:''|[^'])*'/g,"''");
     expect(plain).not.toMatch(/\b(?:INSERT|DELETE|UPDATE|REVOKE|GRANT|CREATE|ALTER|DROP|TRUNCATE)\b/i);
