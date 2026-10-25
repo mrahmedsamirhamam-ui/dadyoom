@@ -44,7 +44,7 @@ describe("lesson page bundle never hides capped attempt history", () => {
     expect((source.match(/\.order\("id", \{ ascending: true \}\)/g) ?? [])).toHaveLength(3);
     expect(source).toContain('.eq("user_id", bundle.student.id)');
     expect((source.match(/\.eq\("user_id", user\.id\)/g) ?? [])).toHaveLength(2);
-    expect(source).toMatch(/if\\s*\\(\\s*!bundle\\.student\\s*\\|\\|/);
+    expect(source).toContain("!bundle.student ||");
     expect(source).toContain('canReadBahrainDraftPreview(user.app_metadata, profile?.country)');
     expect(source).toContain('.from("lesson_activity_attempts")');
     expect(source).toContain('.from("question_attempts")');
