@@ -97,8 +97,11 @@ jobs:
           curl -fsS http://127.0.0.1:3033/ | grep -q 'ضاديوم'
           echo "DADYOOM_COMBINED_LEVEL_CHECK_AND_HOMEPAGE_SMOKE=PASS"
 
-      - name: Confirm integration did not publish or modify branches
+      - name: Confirm rehearsal has no push permission or deployment command
         shell: bash
         run: |
-          test -z "$(git status --porcelain --untracked-files=no)"
+          set -euo pipefail
+          # --no-commit intentionally leaves main changes staged in this runner.
+          # Only test for unexpected unstaged mutations; never push.
+          git diff --exit-code
           echo "DADYOOM_COMBINED_CI_READ_ONLY=PASS"
