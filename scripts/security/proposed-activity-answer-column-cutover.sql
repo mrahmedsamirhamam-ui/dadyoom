@@ -24,6 +24,7 @@ BEGIN
    normalized:=pg_catalog.lower(pg_catalog.regexp_replace(k,'[^a-zA-Z0-9]','','g'));
    IF normalized=ANY(ARRAY[
      'answer','answers','answerkey','correctanswer','correctanswers',
+     'correctword',
      'iscorrect','iscorrectoption','correctoption','solution','solutions',
      'grading','gradingkey','expectedanswer','expectedanswers',
      'privateanswer','rightanswer','markingkey','score','earnedpoints',
