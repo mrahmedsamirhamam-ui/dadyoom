@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { readBoundedMultipart } from "../../lib/http/read-bounded-multipart";
 
-const { createClient, generateContent } = vi.hoisted(() => ({
+const { createClient, generateContent, consumeSkillEvaluationQuota } = vi.hoisted(() => ({
   createClient: vi.fn(),
   generateContent: vi.fn(),
   consumeSkillEvaluationQuota: vi.fn(),
