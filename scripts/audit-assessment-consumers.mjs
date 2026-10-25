@@ -11,7 +11,8 @@ const tables = new Set([
   "questions", "lesson_activities", "ai_assessments",
   "question_attempts", "lesson_activity_attempts",
   "student_lesson_progress", "lesson_mastery",
-  "assessment_sessions", "assessment_session_answers"
+  "assessment_sessions", "assessment_session_answers",
+  "edu_game_attempts"
 ]);
 const rpcs = new Set([
   "get_lesson_page_bundle",
