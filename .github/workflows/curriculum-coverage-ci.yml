@@ -79,6 +79,7 @@ on:
       - 'tests/security/student-question-payload.test.ts'
       - 'features/questions/services/public-lesson-questions.ts'
       - 'features/lessons/queries/getLessonPageBundle.ts'
+      - 'tests/security/lesson-bundle-attempt-pagination.test.ts'
       - 'features/lesson-activities/services/public-lesson-activities.ts'
       - 'tests/security/student-safe-lesson-activities.test.ts'
       - 'features/lessons/services/bahrain-draft-preview-access.ts'
@@ -209,6 +210,8 @@ jobs:
         run: npx vitest run tests/public-lesson-auth-boundary.test.ts
       - name: Reject partial lesson completion and XP snapshots
         run: npx vitest run tests/security/lesson-completion-full-evidence.test.ts
+      - name: Verify fully paged student lesson history and safe private preview
+        run: npx vitest run tests/security/lesson-bundle-attempt-pagination.test.ts
       - name: Verify canonical lesson completion entry points
         run: npx vitest run tests/security/lesson-completion-entrypoints.test.ts tests/security/lesson-mastery-gates.test.ts
       - name: Verify authoritative lesson question grading
