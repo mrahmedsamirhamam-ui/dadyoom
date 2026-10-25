@@ -48,9 +48,10 @@ export async function submitStudyPlay(
 
   const earnedXp = Math.min(30, 5 + Math.round((result.score * 25) / 100));
 
-  // Write with the user's own RLS-bound client. These rows are not credentials
-  // or authority over learning mastery; user-facing XP is a game reward.
-  const { error: saveError } = await supabase.from("edu_game_attempts").insert({
+  // Privileged write only after checking user session, published lesson and
+  // grading the complete trusted question bank. Direct student table INSERT
+  // must be revoked separately in the staged database security migration.
+  const { error: saveError } = await admin.from("edu_game_attempts").insert({
     student_id: user.id,
     lesson_id: lessonId,
     game_key: mode === "challenge" ? "study-play-challenge" : "study-play-review",
