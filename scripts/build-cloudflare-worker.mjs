@@ -54,7 +54,9 @@ try {
     "@babel/plugin-transform-runtime@7.29.0",
     "react-server-dom-webpack@19.3.1",
   ]);
-  command(npx, ["vinext", "build"]);
+  // Explicit Vite config is ESM, compatible with the Cloudflare Vite plugin.
+  // vinext documents vite build as the successor to the legacy vinext build.
+  command(npx, ["vite", "build", "--config", "vite.config.mts"]);
   if (!existsSync(".cloudflare/output/v0/config.json") ||
       !existsSync(".cloudflare/output/v0/workers/default/bundle/ssr/index.js")) {
     throw new Error("CLOUDFLARE_BUILD_OUTPUT_NOT_GENERATED");
