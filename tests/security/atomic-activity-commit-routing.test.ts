@@ -45,7 +45,7 @@ describe("opt-in atomic activity grade and progress receipt", () => {
     expect(route).toContain("p_earned_points: earnedPoints");
     expect(route).toContain("p_lesson_score: currentScore");
     expect(route).toContain("if (commitError || !receipt)");
-    expect(route).toContain("Number(receipt.saved_attempt_number)");
+    expect(route).toContain("Number(atomicReceipt.saved_attempt_number)");
     expect(candidate).toContain("PRODUCTION_ATOMIC_ACTIVITY_COMMIT_BLOCKED");
     expect(candidate).toContain("SECURITY INVOKER");
     expect(candidate).toContain("TO service_role");
