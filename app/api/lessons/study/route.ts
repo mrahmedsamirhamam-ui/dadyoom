@@ -12,6 +12,7 @@ import {
 import {
   createClient,
 } from "@/lib/supabase/server";
+import { isKnownNonTeachingLessonPlaceholder } from "@/lib/lesson-content-integrity";
 import {
   runAgent,
   runAgentJson,
@@ -29,6 +30,12 @@ type Task =
   | "notebook_answer"
   | "custom_summary"
   | "custom_slides";
+  
+// JSON request fields need runtime validation even when TypeScript says Task.
+const ALLOWED_STUDY_TASKS: ReadonlySet<string> = new Set<Task>([
+  "summary", "slides", "flashcards", "study_guide", "concept_map",
+  "video_storyboard", "notebook_answer", "custom_summary", "custom_slides",
+]);
 
 type RichSlide = {
   kind?:
@@ -600,7 +607,7 @@ export async function POST(
     const question =
       String(
         body.question ?? "",
-      ).trim();
+      ).trim().slice(0, 2000);
 
     if (
       !lessonId ||
@@ -614,6 +621,15 @@ export async function POST(
         {
           status: 400,
         },
+      );
+    }
+
+    // Reject client-invented tool names instead of silently running the
+    // default LLM agent without a known feature/billing classification.
+    if (typeof task !== "string" || !ALLOWED_STUDY_TASKS.has(task)) {
+      return NextResponse.json(
+        { error: "أداة الدراسة المطلوبة غير مدعومة." },
+        { status: 400, headers: { "Cache-Control": "no-store" } },
       );
     }
 
@@ -671,6 +687,19 @@ export async function POST(
             )
           : null,
     };
+
+    // Do not charge a feature token, serve a cached AI artifact, build
+    // a slide deck, or trigger deferred AI work for the known imported
+    // title/TOC-only placeholder. The lesson remains readable and reviewable.
+    if (isKnownNonTeachingLessonPlaceholder(lesson.content)) {
+      return NextResponse.json(
+        {
+          error: "محتوى هذا الدرس قيد المراجعة؛ أدوات الدراسة الذكية تتطلب شرحًا مكتملًا.",
+          code: "LESSON_CONTENT_REVIEW_REQUIRED",
+        },
+        { status: 409, headers: { "Cache-Control": "no-store" } },
+      );
+    }
 
     if (
       task === "summary" &&
