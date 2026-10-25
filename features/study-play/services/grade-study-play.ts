@@ -26,6 +26,32 @@ export type StudyPlayGrade = {
 
 const UUID = /^[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}$/i;
 
+/**
+ * Reject malformed/oversized Server Action payloads before auth/database reads.
+ * Static TypeScript types do not validate client-supplied arguments at runtime.
+ * Limit each selection to 256 code units and a complete quiz to 100 answers;
+ * this bounds the action's input complexity independently of PostgREST limits.
+ */
+export function validateStudyPlaySubmission(value: unknown): StudyPlayAnswer[] {
+  if (!Array.isArray(value) || value.length < 1 || value.length > 100) {
+    throw new Error("بيانات إجابات غير صالحة أو مكررة.");
+  }
+  const seen = new Set<string>();
+  for (const answer of value) {
+    if (!answer || typeof answer !== "object" || Array.isArray(answer) ||
+        typeof answer.questionId !== "string" ||
+        typeof answer.optionId !== "string" ||
+        !UUID.test(answer.questionId) ||
+        answer.optionId.length < 1 || answer.optionId.length > 256 ||
+        !answer.optionId.trim() ||
+        seen.has(answer.questionId)) {
+      throw new Error("بيانات إجابات غير صالحة أو مكررة.");
+    }
+    seen.add(answer.questionId);
+  }
+  return value as StudyPlayAnswer[];
+}
+
 export function gradeStudyPlay(
   questions: StudyPlayRow[],
   answers: unknown,
