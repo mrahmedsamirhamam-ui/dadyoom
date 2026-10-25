@@ -44,6 +44,33 @@ describe("uploaded Bahrain 2026-27 Ministry Arabic study plan provenance", () =>
     }
   });
 
+  it("indexes 16 authentic listening topics without pretending their transcripts were uploaded", () => {
+    const listening = index.listeningLessons;
+    expect(listening).toHaveLength(16);
+    expect(listening.filter((x:{grade:number})=>x.grade===2)).toHaveLength(3);
+    expect(listening.filter((x:{grade:number})=>x.grade===3)).toHaveLength(3);
+    expect(listening.filter((x:{grade:number})=>x.grade===4)).toHaveLength(10);
+    expect(listening.every((x:{
+      component:string;audioTranscriptVerified:boolean;
+      sourcePdfPage:number;publicationStatus:string;
+    })=>x.component==="listening" && !x.audioTranscriptVerified &&
+      x.sourcePdfPage>=11 && x.sourcePdfPage<=21 &&
+      x.publicationStatus==="index_only_not_a_lesson")).toBe(true);
+  });
+
+  it("keeps ten grade-four single-question listening warnings as an evidence-only repair queue", () => {
+    const pending = JSON.parse(readFileSync(resolve(process.cwd(),
+      "data/curriculum-sources/bahrain-2026-s1-listening-quality-queue.json"),"utf8"));
+    expect(pending.records).toHaveLength(10);
+    expect(pending.summary.noAutomaticEdits).toBe(true);
+    expect(pending.summary.withSingleQuestion).toBe(10);
+    expect(pending.records.every((x:{
+      grade:number;questionCount:number;vocabularyRows:number;
+      sourceAudioVerified:boolean;needsTeacherReview:boolean;
+    })=>x.grade===4 && x.questionCount===1 && x.vocabularyRows===0 &&
+      !x.sourceAudioVerified && x.needsTeacherReview)).toBe(true);
+  });
+
   it("flags Plan5 conflicting cover and internal vocational stream labels", () => {
     const flagged = index.sourceDocumentReviewFlags.find(
       (r:{file:string}) => r.file === "Plan5.pdf",
