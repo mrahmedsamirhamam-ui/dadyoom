@@ -64,6 +64,18 @@ jobs:
           # This init may edit ephemeral working-tree files but never commits or deploys.
           # No data cache / no image service keeps it free of storage provisioning.
           npx vinext init --platform=cloudflare --skip-check --force --data-cache=none --image-optimization=none --no-install
+      - name: Record reproducible generated Cloudflare source configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Only fake CI public credentials exist here. The generated files
+          # are source config, not deployment logs or real private bindings.
+          for cfg in vite.config.ts cloudflare.config.ts; do
+            test -f "$cfg"
+            echo "GENERATED_CLOUDFLARE_SOURCE_CONFIG=$cfg"
+            sed -n '1,180p' "$cfg"
+            echo "END_GENERATED_CLOUDFLARE_SOURCE_CONFIG=$cfg"
+          done
       - name: Install Cloudflare-only build adapters using explicit versions
         shell: bash
         run: |
