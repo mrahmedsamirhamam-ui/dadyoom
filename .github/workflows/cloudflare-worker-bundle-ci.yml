@@ -41,7 +41,9 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          # cf@1.0.0-beta.21 requires Node >=24.22.0 in the 24.x line.
+          # A previous green run used 24.21.0 and emitted EBADENGINE.
+          node-version: '24.22.1'
           cache: 'npm'
       - name: Install unchanged application dependencies
         run: npm ci --no-audit --no-fund
