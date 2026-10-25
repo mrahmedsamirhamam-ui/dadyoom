@@ -7,7 +7,7 @@ const port=31767;
 const url=`http://${host}:${port}`;
 const worker=spawn(process.execPath,[
   resolve("node_modules/vite/bin/vite.js"),
-  "preview", "--host", host, "--port", String(port), "--strictPort"
+  "preview", "--configLoader", "runner", "--host", host, "--port", String(port), "--strictPort"
 ],{
   cwd:process.cwd(),
   env:{...process.env,CI:"true",NEXT_TELEMETRY_DISABLED:"1"},
