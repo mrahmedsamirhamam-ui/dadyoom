@@ -57,6 +57,7 @@ const keys = await admin.from("questions").select("correct_answer");`;
       "assessment_sessions",
       "assessment_session_answers",
       "edu_game_attempts",
+  "student_daily_challenges",
       "student_progress",
       "student_skill_progress",
       "lesson_progress",
