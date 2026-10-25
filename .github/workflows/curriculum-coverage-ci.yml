@@ -37,6 +37,9 @@ on:
       - 'tests/security/activity-check-route.test.ts'
       - 'tests/security/activity-progress-concurrent-cas.test.ts'
       - 'tests/security/shadow-activity-progress-cas.sql'
+      - 'scripts/security/proposed-atomic-activity-commit.sql'
+      - 'tests/security/shadow-atomic-activity-setup.sql'
+      - 'tests/security/shadow-atomic-activity-verify.sql'
       - 'lib/lesson-activities/attempt-sequencing.ts'
       - 'lib/lesson-activities/read-complete-pages.ts'
       - 'tests/security/graded-activity-pagination.test.ts'
@@ -323,6 +326,36 @@ jobs:
           docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_activity_cas
           docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_cas \
             < tests/security/shadow-activity-progress-cas.sql
+      - name: Exercise atomic activity receipt and progress rollback in disposable PostgreSQL
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_activity_atomic
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_atomic \
+            < tests/security/shadow-atomic-activity-setup.sql
+          if output=$( {
+              echo "SET dadyoom.atomic_activity_rehearsal = 'enabled';"
+              cat scripts/security/proposed-atomic-activity-commit.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Atomic commit proposal unexpectedly accepted wrong database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$output" | grep -q "PRODUCTION_ATOMIC_ACTIVITY_COMMIT_BLOCKED"
+          if output=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_atomic \
+              < scripts/security/proposed-atomic-activity-commit.sql 2>&1); then
+            echo "Atomic commit proposal unexpectedly accepted missing rehearsal flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$output" | grep -q "PRODUCTION_ATOMIC_ACTIVITY_COMMIT_BLOCKED"
+          {
+            echo "SET dadyoom.atomic_activity_rehearsal = 'enabled';"
+            cat scripts/security/proposed-atomic-activity-commit.sql
+            cat tests/security/shadow-atomic-activity-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_atomic
+          echo "SHADOW_ATOMIC_ACTIVITY_BOTH_TABLES_OR_NONE=PASS"
       - name: Rehearse activity attempt unique-number rollout and rollback in shadow Postgres
         shell: bash
         env:
