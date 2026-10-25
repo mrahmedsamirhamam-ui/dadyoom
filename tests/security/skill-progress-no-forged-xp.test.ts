@@ -24,7 +24,10 @@ beforeEach(() => vi.clearAllMocks());
 describe("unverified browser skill scores cannot create XP or daily challenge rewards", () => {
   it("refuses unauthenticated score posts before touching grading tables", async () => {
     const db = setup(false);
-    const response = await POST();
+    const response = await POST(new Request("http://localhost/api/skills/progress", {
+      method: "POST",
+      body: JSON.stringify({ skill: "reading", score: 100 }),
+    }));
     expect(response.status).toBe(401);
     expect(response.headers.get("Cache-Control")).toBe("no-store");
     expect(db.from).not.toHaveBeenCalled();
@@ -32,7 +35,12 @@ describe("unverified browser skill scores cannot create XP or daily challenge re
 
   it("rejects signed-in arbitrary 100% results without persisting any record", async () => {
     const db = setup();
-    const response = await POST();
+    const forged = new Request("http://localhost/api/skills/progress", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ skill: "reading", score: 100, xp: 1000000, bonus_awarded: true }),
+    });
+    const response = await POST(forged);
     expect(response.status).toBe(409);
     const body = await response.json();
     expect(body).toMatchObject({ ok: false, code: "UNVERIFIED_SKILL_SCORE" });
@@ -81,7 +89,10 @@ describe("unverified browser skill scores cannot create XP or daily challenge re
     expect(post).not.toContain("request.json()");
     expect(post).not.toContain(".upsert(");
     expect(post).not.toContain("completeDailyChallengeFromSkillResult");
-    const response = await POST();
+    const response = await POST(new Request("http://localhost/api/skills/progress", {
+      method: "POST",
+      body: JSON.stringify({ skill: "speaking", score: 999999 }),
+    }));
     expect(response.status).toBe(409);
     expect(db.from).not.toHaveBeenCalled();
   });
