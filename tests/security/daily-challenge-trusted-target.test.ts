@@ -2,12 +2,14 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-const { createClient, resolveTrustedDailyChallenge, getBahrainDate } = vi.hoisted(() => ({
+const { createClient, createAdminClient, resolveTrustedDailyChallenge, getBahrainDate } = vi.hoisted(() => ({
   createClient: vi.fn(),
+  createAdminClient: vi.fn(),
   resolveTrustedDailyChallenge: vi.fn(),
   getBahrainDate: vi.fn(() => "2026-10-25"),
 }));
 vi.mock("@/lib/supabase/server", () => ({ createClient }));
+vi.mock("@/lib/supabase/admin", () => ({ createAdminClient }));
 vi.mock("@/features/gamification/resolve-trusted-daily-challenge", () => ({
   resolveTrustedDailyChallenge,
 }));
@@ -41,6 +43,11 @@ function fixture({ signedIn = true, existing = false }: {
     single: vi.fn(async () => ({ data: inserted[0] ?? null, error: null })),
   };
   const from = vi.fn(() => q);
+  const adminFrom = vi.fn((table: string) => {
+    if (table !== "student_daily_challenges") throw new Error("Unexpected admin table");
+    return q;
+  });
+  createAdminClient.mockReturnValue({ from: adminFrom });
   createClient.mockResolvedValue({
     auth: { getUser: vi.fn(async () => ({
       data: { user: signedIn ? { id: "student-1" } : null },
@@ -49,7 +56,7 @@ function fixture({ signedIn = true, existing = false }: {
     from,
   });
   resolveTrustedDailyChallenge.mockResolvedValue(allowed);
-  return { inserted, from, q };
+  return { inserted, from, adminFrom, q };
 }
 async function submit(body: unknown) {
   return POST(new Request("http://localhost/api/journey/daily/challenge", {
@@ -67,6 +74,7 @@ describe("daily challenge cannot accept a browser-forged XP target", () => {
     expect(response.status).toBe(401);
     expect(from).not.toHaveBeenCalled();
     expect(resolveTrustedDailyChallenge).not.toHaveBeenCalled();
+    expect(createAdminClient).not.toHaveBeenCalled();
   });
 
   it("rejects a client-forged zero or 1-point target before any INSERT", async () => {
@@ -76,6 +84,7 @@ describe("daily challenge cannot accept a browser-forged XP target", () => {
       expect(response.status).toBe(409);
       expect(ctx.inserted).toHaveLength(0);
       expect(resolveTrustedDailyChallenge).toHaveBeenCalled();
+      expect(createAdminClient).not.toHaveBeenCalled();
     }
   });
 
@@ -93,6 +102,7 @@ describe("daily challenge cannot accept a browser-forged XP target", () => {
       });
       expect(response.status).toBe(409);
       expect(ctx.inserted).toHaveLength(0);
+      expect(createAdminClient).not.toHaveBeenCalled();
     }
   });
 
@@ -106,6 +116,8 @@ describe("daily challenge cannot accept a browser-forged XP target", () => {
     });
     expect(response.status).toBe(200);
     expect(ctx.inserted).toHaveLength(1);
+    expect(createAdminClient).toHaveBeenCalledOnce();
+    expect(ctx.adminFrom).toHaveBeenCalledWith("student_daily_challenges");
     expect(ctx.inserted[0]).toMatchObject({
       user_id: "student-1",
       challenge_date: "2026-10-25",
@@ -124,6 +136,8 @@ describe("daily challenge cannot accept a browser-forged XP target", () => {
     const response = await submit({ challengeId: allowed.id });
     expect(response.status).toBe(200);
     expect(ctx.inserted).toEqual([]);
+    expect(ctx.adminFrom).not.toHaveBeenCalled();
+    expect(createAdminClient).not.toHaveBeenCalled();
     expect(resolveTrustedDailyChallenge).not.toHaveBeenCalled();
   });
 
