@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const { createClient, askAI } = vi.hoisted(() => ({
+const { createClient, askAI, consumeSkillEvaluationQuota } = vi.hoisted(() => ({
   createClient: vi.fn(),
   askAI: vi.fn(),
   consumeSkillEvaluationQuota: vi.fn(),
