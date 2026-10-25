@@ -199,6 +199,9 @@ on:
       - 'scripts/verify-curriculum-packs.mjs'
       - 'lib/curriculum-packs/**'
       - 'data/curriculum-packs/**'
+      - 'scripts/import-curriculum-pack.mjs'
+      - 'lib/curriculum-packs/complete-backup.mjs'
+      - 'tests/curriculum-import-safety.test.ts'
       - 'data/curriculum-drafts/**'
       - 'scripts/validate-original-curriculum-drafts.mjs'
       - 'tests/original-curriculum-drafts.test.ts'
@@ -226,6 +229,8 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Verify curriculum pack schemas
         run: npm run curriculum:verify
+      - name: Verify safe import backups and reviewed-source publishing gate
+        run: npx vitest run tests/curriculum-import-safety.test.ts
       - name: Validate unpublished original lesson drafts without writing
         run: npm run curriculum:drafts:verify
       - name: Exercise draft quality and no-publication safety gates
