@@ -6,9 +6,7 @@ import {
   access,
 } from "node:fs/promises";
 
-import {
-  join,
-} from "node:path";
+import { resolvePublicAssetPath } from "@/lib/curriculum/resolve-public-asset-path";
 
 import { authorizeCurriculumAdmin } from "@/lib/auth/require-curriculum-admin";
 import { readCompleteGradingPages } from "@/lib/lesson-activities/read-complete-pages";
@@ -110,32 +108,6 @@ function text(
 }
 
 
-function publicUrlToPath(
-  value: string
-): string | null {
-  const clean =
-    value.trim();
-
-  if (
-    !clean ||
-    !clean.startsWith("/")
-  ) {
-    return null;
-  }
-
-  return join(
-    process.cwd(),
-    "public",
-    ...clean
-      .replace(
-        /^\/+/,
-        ""
-      )
-      .split("/")
-  );
-}
-
-
 async function publicAssetExists(
   value: unknown
 ): Promise<boolean | null> {
@@ -159,12 +131,13 @@ async function publicAssetExists(
   }
 
   const path =
-    publicUrlToPath(
+    resolvePublicAssetPath(
       url
     );
 
   if (!path) {
-    return null;
+    // Invalid/traversal paths are broken assets, not skipped checks.
+    return false;
   }
 
   try {
