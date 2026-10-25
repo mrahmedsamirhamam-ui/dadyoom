@@ -321,35 +321,43 @@ export async function POST(
     // A UNIQUE(user_id,activity_id,attempt_number) constraint (staged
     // separately) is required for an actual concurrency guarantee. The
     // read-max/insert conflict is retried only for that exact constraint.
-    const nextAttemptNumber = await insertSequencedActivityAttempt({
-      readLast: async () => {
-        const { data, error } = await supabase
-          .from("lesson_activity_attempts")
-          .select("attempt_number")
-          .eq("user_id", user.id)
-          .eq("activity_id", activityId)
-          .order("attempt_number", { ascending: false })
-          .limit(1);
-        if (error) throw error;
-        return Number(data?.[0]?.attempt_number ?? 0);
-      },
-      insert: async (attemptNumber) => {
-        const { error } = await admin
-          .from("lesson_activity_attempts")
-          .insert({
-            user_id: user.id,
-            activity_id: activityId,
-            selected_answer: studentAnswer,
-            is_correct: isCorrect,
-            earned_points: earnedPoints,
-            max_points: isGradable ? maxPoints : 0,
-            attempt_number: attemptNumber,
-          });
-        return { error };
-      },
-    });
+    // Database RPC staging gate. OFF until a separate, reviewed staging
+    // migration and authenticated E2E acceptance. Default legacy path remains.
+    const atomicReceiptReady =
+      process.env.DADYOOM_ATOMIC_ACTIVITY_COMMIT === "enabled";
+    let nextAttemptNumber = 0;
+    if (!atomicReceiptReady) {
+      const nextAttemptNumber = await insertSequencedActivityAttempt({
+        readLast: async () => {
+          const { data, error } = await supabase
+            .from("lesson_activity_attempts")
+            .select("attempt_number")
+            .eq("user_id", user.id)
+            .eq("activity_id", activityId)
+            .order("attempt_number", { ascending: false })
+            .limit(1);
+          if (error) throw error;
+          return Number(data?.[0]?.attempt_number ?? 0);
+        },
+        insert: async (attemptNumber) => {
+          const { error } = await admin
+            .from("lesson_activity_attempts")
+            .insert({
+              user_id: user.id,
+              activity_id: activityId,
+              selected_answer: studentAnswer,
+              is_correct: isCorrect,
+              earned_points: earnedPoints,
+              max_points: isGradable ? maxPoints : 0,
+              attempt_number: attemptNumber,
+            });
+          return { error };
+        },
+      });
 
-    // ========================================================
+      // ========================================================
+    }
+
     // ========================================================
     // كل أنشطة الدرس
     // ========================================================
@@ -375,7 +383,7 @@ export async function POST(
 
     // Include unique primary key for stable pages but never return it to
     // the student. The student's own RLS client reads only this lesson.
-    const attempts = await readCompleteGradingPages({
+    const savedAttempts = await readCompleteGradingPages({
       readPage: async (offset, limit) => {
         const { data, count, error } = await supabase
           .from("lesson_activity_attempts")
@@ -391,6 +399,20 @@ export async function POST(
     });
 
     // ========================================================
+    // Before the atomic RPC runs, include this server-validated attempt in
+    // the score snapshot. The RPC then inserts it and increments progress
+    // within one PostgreSQL transaction; a failed RPC persists neither.
+    const attempts = atomicReceiptReady
+      ? [...savedAttempts, {
+          id: "pending-activity-attempt",
+          activity_id: activityId,
+          is_correct: isCorrect,
+          earned_points: earnedPoints,
+          max_points: isGradable ? maxPoints : 0,
+          answered_at: new Date().toISOString(),
+        }]
+      : savedAttempts;
+
     // ========================================================
     // إنجاز الأنشطة
     // ========================================================
@@ -505,56 +527,84 @@ export async function POST(
     // A concurrent assessment may have changed the same row after our read.
     // Require a database CAS match, retry on conflicts, and count each saved
     // activity without ever resetting completed/mastered status or XP.
-    await commitActivityProgressWithRetry({
-      initial: existingProgress,
-      score: currentScore,
-      activityPercent: progressPercent,
-      read: async () => {
-        const { data, error } = await supabase
-          .from("student_lesson_progress")
-          .select("id,status,attempts,best_score,progress_percent")
-          .eq("student_id", user.id)
-          .eq("lesson_id", activity.lesson_id)
-          .maybeSingle();
-        if (error) throw error;
-        return data;
-      },
-      update: async (previous, values) => {
-        const { data, error } = await admin
-          .from("student_lesson_progress")
-          .update(values)
-          .eq("id", previous.id)
-          .eq("student_id", user.id)
-          .eq("lesson_id", activity.lesson_id)
-          .eq("status", previous.status)
-          .eq("attempts", previous.attempts)
-          .lte("best_score", values.best_score)
-          .lte("progress_percent", values.progress_percent)
-          .select("id")
-          .maybeSingle();
-        if (error) throw error;
-        return data !== null;
-      },
-      insert: async (values) => {
-        const { data, error } = await admin
-          .from("student_lesson_progress")
-          .upsert({
-            student_id: user.id,
-            lesson_id: activity.lesson_id,
-            ...values,
-            xp: 0,
-            time_spent_seconds: 0,
-            started_at: new Date().toISOString(),
-          }, {
-            onConflict: "student_id,lesson_id",
-            ignoreDuplicates: true,
-          })
-          .select("id")
-          .maybeSingle();
-        if (error) throw error;
-        return data !== null;
-      },
-    });
+    if (atomicReceiptReady) {
+      // No browser role receives EXECUTE. The RPC is service-role-only and
+      // its INSERT + progress UPSERT either both commit or both roll back.
+      const { data: receipt, error: commitError } = await admin.rpc(
+        "dadyoom_commit_activity_attempt",
+        {
+          p_student_id: user.id,
+          p_lesson_id: activity.lesson_id,
+          p_activity_id: activityId,
+          p_selected_answer: studentAnswer,
+          p_is_correct: isCorrect,
+          p_is_gradable: isGradable,
+          p_earned_points: earnedPoints,
+          p_max_points: isGradable ? maxPoints : 0,
+          p_lesson_score: currentScore,
+          p_progress_percent: progressPercent,
+        },
+      ).single();
+      if (commitError || !receipt) {
+        throw new Error("تعذر حفظ النشاط والتقدم في معاملة واحدة.");
+      }
+      nextAttemptNumber = Number(receipt.saved_attempt_number);
+      if (!Number.isSafeInteger(nextAttemptNumber) || nextAttemptNumber < 1) {
+        throw new Error("رقم المحاولة الذرية غير صالح.");
+      }
+    } else {
+      await commitActivityProgressWithRetry({
+        initial: existingProgress,
+        score: currentScore,
+        activityPercent: progressPercent,
+        read: async () => {
+          const { data, error } = await supabase
+            .from("student_lesson_progress")
+            .select("id,status,attempts,best_score,progress_percent")
+            .eq("student_id", user.id)
+            .eq("lesson_id", activity.lesson_id)
+            .maybeSingle();
+          if (error) throw error;
+          return data;
+        },
+        update: async (previous, values) => {
+          const { data, error } = await admin
+            .from("student_lesson_progress")
+            .update(values)
+            .eq("id", previous.id)
+            .eq("student_id", user.id)
+            .eq("lesson_id", activity.lesson_id)
+            .eq("status", previous.status)
+            .eq("attempts", previous.attempts)
+            .lte("best_score", values.best_score)
+            .lte("progress_percent", values.progress_percent)
+            .select("id")
+            .maybeSingle();
+          if (error) throw error;
+          return data !== null;
+        },
+        insert: async (values) => {
+          const { data, error } = await admin
+            .from("student_lesson_progress")
+            .upsert({
+              student_id: user.id,
+              lesson_id: activity.lesson_id,
+              ...values,
+              xp: 0,
+              time_spent_seconds: 0,
+              started_at: new Date().toISOString(),
+            }, {
+              onConflict: "student_id,lesson_id",
+              ignoreDuplicates: true,
+            })
+            .select("id")
+            .maybeSingle();
+          if (error) throw error;
+          return data !== null;
+        },
+      });
+
+    }
 
     // The preceding compare-and-set may lose to a concurrent completion.
     // Return the actual owner-visible row, not stale calculated fields.
