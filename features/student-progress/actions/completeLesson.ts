@@ -163,24 +163,17 @@ export async function completeLessonAction(
    * نحفظ حالة Gamification قبل الإنهاء،
    * حتى نعرف ما الذي كسبه الطالب فعلًا الآن.
    */
-  const {
-    data: beforeProgressData,
-    error: beforeProgressError,
-  } = await supabase
-    .from("student_lesson_progress")
-    .select(`
-      id,
-      status,
-      xp
-    `)
-    .eq(
-      "student_id",
-      user.id
-    );
-
-  if (beforeProgressError) {
-    throw beforeProgressError;
-  }
+  const beforeProgressData = await readCompleteGradingPages({
+    readPage: async (offset, limit) => {
+      const { data, count, error } = await supabase
+        .from("student_lesson_progress")
+        .select("id,status,xp", { count: "exact" })
+        .eq("student_id", user.id)
+        .order("id", { ascending: true })
+        .range(offset, offset + limit - 1);
+      return { data, count, error };
+    },
+  });
 
   const beforeSnapshot =
     createGamificationSnapshot(
@@ -492,24 +485,17 @@ export async function completeLessonAction(
    * نقرأ الحالة بعد الإنهاء،
    * ثم نقارنها بما قبل الإنهاء.
    */
-  const {
-    data: afterProgressData,
-    error: afterProgressError,
-  } = await supabase
-    .from("student_lesson_progress")
-    .select(`
-      id,
-      status,
-      xp
-    `)
-    .eq(
-      "student_id",
-      user.id
-    );
-
-  if (afterProgressError) {
-    throw afterProgressError;
-  }
+  const afterProgressData = await readCompleteGradingPages({
+    readPage: async (offset, limit) => {
+      const { data, count, error } = await supabase
+        .from("student_lesson_progress")
+        .select("id,status,xp", { count: "exact" })
+        .eq("student_id", user.id)
+        .order("id", { ascending: true })
+        .range(offset, offset + limit - 1);
+      return { data, count, error };
+    },
+  });
 
   const afterSnapshot =
     createGamificationSnapshot(
