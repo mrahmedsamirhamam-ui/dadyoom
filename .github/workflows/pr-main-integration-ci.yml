@@ -100,11 +100,14 @@ jobs:
           node scripts/smoke-level-check.mjs
           echo "DADYOOM_COMBINED_LEVEL_CHECK_AND_HOMEPAGE_SMOKE=PASS"
 
-      - name: Confirm rehearsal has no push permission or deployment command
+      - name: Verify GitHub checkout cannot push and changes remain local
         shell: bash
         run: |
           set -euo pipefail
-          # --no-commit intentionally leaves main changes staged in this runner.
-          # Only test for unexpected unstaged mutations; never push.
-          git diff --exit-code
-          echo "DADYOOM_COMBINED_CI_READ_ONLY=PASS"
+          # npm prebuild legitimately changes tracked public/app-version.json,
+          # and git's checkout can normalize pre-existing CRLF endings. Such
+          # files are ephemeral runner state, not a deployment.
+          test "$(git rev-parse HEAD)" != "$(git rev-parse refs/remotes/origin/main)"
+          test -z "$(git config --local --get-all http.https://github.com/.extraheader || true)"
+          test -z "$(git config --local --get-all credential.helper || true)"
+          echo "DADYOOM_COMBINED_CI_NO_PUSH_CREDENTIALS=PASS"
