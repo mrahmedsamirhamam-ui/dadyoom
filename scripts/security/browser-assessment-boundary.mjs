@@ -12,6 +12,11 @@ export const PRIVATE_ASSESSMENT_TABLES = new Set([
   "assessment_sessions",
   "assessment_session_answers",
   "edu_game_attempts",
+  "student_progress",
+  "student_skill_progress",
+  "lesson_progress",
+  "edu_learner_progress",
+  "quiz_attempts",
 ]);
 
 export function isExplicitClientModule(source) {
