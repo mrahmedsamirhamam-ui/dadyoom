@@ -15,6 +15,7 @@
   "practices": [
     {
       "officialTopic": "بناء الفعل الماضي على الضم والسكون (1)",
+      "topicOrder": 3,
       "source": {
         "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
         "book": "التدريبات",
@@ -122,6 +123,7 @@
     },
     {
       "officialTopic": "بناء الفعل الماضي على الضم والسكون (2)",
+      "topicOrder": 4,
       "source": {
         "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
         "book": "التدريبات",
