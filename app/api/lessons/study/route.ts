@@ -621,8 +621,7 @@ export async function POST(
               "cache",
             cached: true,
             coreLessonAsset:
-              task === "summary" ||
-              task === "slides",
+              task === "summary",
           },
         );
       }
