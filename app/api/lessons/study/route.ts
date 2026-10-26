@@ -17,7 +17,7 @@ import {
   runAgentJson,
 } from "@/lib/ai/agents";
 
-import { buildEvidenceDeck } from "@/lib/lesson/evidence-slide-deck";
+import { buildDadyoomTeachingDeck } from "@/lib/lesson/dadyoom-teaching-journey";
 
 export const runtime = "nodejs";
 
@@ -89,7 +89,7 @@ function adminClient() {
 }
 
 function fallbackDeck(lesson: LessonRow): Deck | null {
-  return buildEvidenceDeck(lesson);
+  return buildDadyoomTeachingDeck(lesson);
 }
 
 function slidePrompt(
