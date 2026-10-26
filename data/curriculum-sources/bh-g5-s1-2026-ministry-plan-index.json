@@ -1,0 +1,386 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "BH",
+  "academicYear": "2026-2027",
+  "grade": 5,
+  "semester": 1,
+  "subject": "اللغة العربية",
+  "source": {
+    "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+    "sha256": "ec7191b7e450f356b2e59bcf676f81f42668be60f68637925d97b75c16cf1daf",
+    "planPdfPages": [
+      22,
+      23,
+      24,
+      25
+    ],
+    "retrievalMethod": "official_pdf_text_extraction",
+    "visualTableVerification": "pending",
+    "textbookPagesVersusPlanPages": "textbookPageStart/textbookPageEnd are textbook references; planPdfPage denotes ministry plan PDF page"
+  },
+  "review": {
+    "publicationApproved": false,
+    "originalBooksCompared": false,
+    "poetryAndReligiousPrimaryTextVerified": false,
+    "officialAudioImported": false,
+    "writingSkillsCoverage": "requires_additional_mapping",
+    "handwritingCoverage": "requires_additional_mapping"
+  },
+  "readingTopics": [
+    {
+      "number": 1,
+      "unit": "الأسرة",
+      "title": "وبالوالدين إحسانا",
+      "component": "reading_text_requires_sacred_source_verification",
+      "book": "القراءة",
+      "textbookPageStart": 8,
+      "textbookPageEnd": 10,
+      "planPdfPage": 22,
+      "sourceReview": "official_pdf_text_extracted_visual_verification_pending",
+      "publishedContentEquivalentVerified": false
+    },
+    {
+      "number": 2,
+      "unit": "الأسرة",
+      "title": "معلمنا الأول",
+      "component": "reading",
+      "book": "القراءة",
+      "textbookPageStart": 12,
+      "textbookPageEnd": 15,
+      "planPdfPage": 22,
+      "sourceReview": "official_pdf_text_extracted_visual_verification_pending",
+      "publishedContentEquivalentVerified": false
+    },
+    {
+      "number": 3,
+      "unit": "الأسرة",
+      "title": "كنا يدا واحدة",
+      "component": "reading",
+      "book": "القراءة",
+      "textbookPageStart": 16,
+      "textbookPageEnd": 19,
+      "planPdfPage": 22,
+      "sourceReview": "official_pdf_text_extracted_visual_verification_pending",
+      "publishedContentEquivalentVerified": false
+    },
+    {
+      "number": 4,
+      "unit": "الأسرة",
+      "title": "برايل في كنف أسرته",
+      "component": "reading",
+      "book": "القراءة",
+      "textbookPageStart": 20,
+      "textbookPageEnd": 23,
+      "planPdfPage": 22,
+      "sourceReview": "official_pdf_text_extracted_visual_verification_pending",
+      "publishedContentEquivalentVerified": false
+    },
+    {
+      "number": 5,
+      "unit": "الأسرة",
+      "title": "جدتي",
+      "component": "reading",
+      "book": "القراءة",
+      "textbookPageStart": 24,
+      "textbookPageEnd": 26,
+      "planPdfPage": 23,
+      "sourceReview": "official_pdf_text_extracted_visual_verification_pending",
+      "publishedContentEquivalentVerified": false
+    },
+    {
+      "number": 6,
+      "unit": "الصداقة والأخوة",
+      "title": "الصديق وقت الضيق",
+      "component": "reading",
+      "book": "القراءة",
+      "textbookPageStart": 28,
+      "textbookPageEnd": 31,
+      "planPdfPage": 23,
+      "sourceReview": "official_pdf_text_extracted_visual_verification_pending",
+      "publishedContentEquivalentVerified": false
+    },
+    {
+      "number": 7,
+      "unit": "الصداقة والأخوة",
+      "title": "اعتذار صديق",
+      "component": "reading",
+      "book": "القراءة",
+      "textbookPageStart": 32,
+      "textbookPageEnd": 35,
+      "planPdfPage": 23,
+      "sourceReview": "official_pdf_text_extracted_visual_verification_pending",
+      "publishedContentEquivalentVerified": false
+    },
+    {
+      "number": 8,
+      "unit": "الصداقة والأخوة",
+      "title": "كيف صرنا أصدقاء؟",
+      "component": "reading",
+      "book": "القراءة",
+      "textbookPageStart": 36,
+      "textbookPageEnd": 39,
+      "planPdfPage": 23,
+      "sourceReview": "official_pdf_text_extracted_visual_verification_pending",
+      "publishedContentEquivalentVerified": false
+    },
+    {
+      "number": 9,
+      "unit": "الصداقة والأخوة",
+      "title": "دعوة إلى الإخاء",
+      "component": "poem_primary_text_required",
+      "book": "القراءة",
+      "textbookPageStart": 40,
+      "textbookPageEnd": 42,
+      "planPdfPage": 23,
+      "sourceReview": "official_pdf_text_extracted_visual_verification_pending",
+      "publishedContentEquivalentVerified": false
+    },
+    {
+      "number": 10,
+      "unit": "وطني البحرين",
+      "title": "معا في حب وطننا البحرين",
+      "component": "reading",
+      "book": "القراءة",
+      "textbookPageStart": 44,
+      "textbookPageEnd": 47,
+      "planPdfPage": 24,
+      "sourceReview": "official_pdf_text_extracted_visual_verification_pending",
+      "publishedContentEquivalentVerified": false
+    },
+    {
+      "number": 11,
+      "unit": "وطني البحرين",
+      "title": "البحرين تتكلم",
+      "component": "poem_primary_text_required",
+      "book": "القراءة",
+      "textbookPageStart": 48,
+      "textbookPageEnd": 51,
+      "planPdfPage": 24,
+      "sourceReview": "official_pdf_text_extracted_visual_verification_pending",
+      "publishedContentEquivalentVerified": false
+    },
+    {
+      "number": 12,
+      "unit": "وطني البحرين",
+      "title": "هتاف العقول",
+      "component": "reading",
+      "book": "القراءة",
+      "textbookPageStart": 52,
+      "textbookPageEnd": 55,
+      "planPdfPage": 24,
+      "sourceReview": "official_pdf_text_extracted_visual_verification_pending",
+      "publishedContentEquivalentVerified": false
+    },
+    {
+      "number": 13,
+      "unit": "وطني البحرين",
+      "title": "رمز الحضارة",
+      "component": "poem_primary_text_required",
+      "book": "القراءة",
+      "textbookPageStart": 56,
+      "textbookPageEnd": 59,
+      "planPdfPage": 24,
+      "sourceReview": "official_pdf_text_extracted_visual_verification_pending",
+      "publishedContentEquivalentVerified": false
+    }
+  ],
+  "listeningTopics": [
+    {
+      "number": 1,
+      "title": "مسبحة جدّتي",
+      "book": "التدريبات",
+      "textbookPageStart": 7,
+      "textbookPageEnd": 8,
+      "planPdfPage": 22,
+      "officialAudioTranscriptVerified": false,
+      "sourceReview": "official_pdf_text_extracted_visual_verification_pending"
+    },
+    {
+      "number": 2,
+      "title": "الأصدقاء الثّلاثة",
+      "book": "التدريبات",
+      "textbookPageStart": 32,
+      "textbookPageEnd": 33,
+      "planPdfPage": 23,
+      "officialAudioTranscriptVerified": false,
+      "sourceReview": "official_pdf_text_extracted_visual_verification_pending"
+    },
+    {
+      "number": 3,
+      "title": "سائح عربيّ في البحرين",
+      "book": "التدريبات",
+      "textbookPageStart": 56,
+      "textbookPageEnd": 57,
+      "planPdfPage": 24,
+      "officialAudioTranscriptVerified": false,
+      "sourceReview": "official_pdf_text_extracted_visual_verification_pending"
+    }
+  ],
+  "grammarTopics": [
+    {
+      "number": 1,
+      "title": "إعراب الفعل الماضي",
+      "book": "التدريبات",
+      "textbookPageStart": 9,
+      "textbookPageEnd": 11,
+      "planPdfPage": 22,
+      "reviewRequired": true
+    },
+    {
+      "number": 2,
+      "title": "إعراب الفعل المضارع — رفع الفعل المضارع",
+      "book": "التدريبات",
+      "textbookPageStart": 19,
+      "textbookPageEnd": 22,
+      "planPdfPage": 22,
+      "reviewRequired": true
+    },
+    {
+      "number": 3,
+      "title": "إعراب الفعل المضارع — نصب الفعل المضارع",
+      "book": "التدريبات",
+      "textbookPageStart": 26,
+      "textbookPageEnd": 29,
+      "planPdfPage": 23,
+      "reviewRequired": true
+    },
+    {
+      "number": 4,
+      "title": "إعراب الفعل المضارع — جزم الفعل المضارع",
+      "book": "التدريبات",
+      "textbookPageStart": 34,
+      "textbookPageEnd": 38,
+      "planPdfPage": 23,
+      "reviewRequired": true
+    },
+    {
+      "number": 5,
+      "title": "إعراب فعل الأمر",
+      "book": "التدريبات",
+      "textbookPageStart": 42,
+      "textbookPageEnd": 45,
+      "planPdfPage": 23,
+      "reviewRequired": true
+    },
+    {
+      "number": 6,
+      "title": "الفاعل",
+      "book": "التدريبات",
+      "textbookPageStart": 48,
+      "textbookPageEnd": 52,
+      "planPdfPage": 24,
+      "reviewRequired": true
+    },
+    {
+      "number": 7,
+      "title": "المفعول به",
+      "book": "التدريبات",
+      "textbookPageStart": 58,
+      "textbookPageEnd": 62,
+      "planPdfPage": 24,
+      "reviewRequired": true
+    },
+    {
+      "number": 8,
+      "title": "المبتدأ والخبر",
+      "book": "التدريبات",
+      "textbookPageStart": 67,
+      "textbookPageEnd": 71,
+      "planPdfPage": 24,
+      "reviewRequired": true
+    },
+    {
+      "number": 9,
+      "title": "الأفعال الناسخة",
+      "book": "التدريبات",
+      "textbookPageStart": 76,
+      "textbookPageEnd": 81,
+      "planPdfPage": 24,
+      "reviewRequired": true
+    }
+  ],
+  "spellingTopics": [
+    {
+      "number": 1,
+      "title": "الألف اللينة",
+      "book": "التدريبات",
+      "textbookPageStart": 12,
+      "textbookPageEnd": 18,
+      "planPdfPage": 22,
+      "reviewRequired": true
+    },
+    {
+      "number": 2,
+      "title": "همزتا الوصل والقطع",
+      "book": "التدريبات",
+      "textbookPageStart": 22,
+      "textbookPageEnd": 25,
+      "planPdfPage": 22,
+      "reviewRequired": true
+    },
+    {
+      "number": 3,
+      "title": "الهمزة المتوسطة المفتوحة وما قبلها مفتوح",
+      "book": "التدريبات",
+      "textbookPageStart": 29,
+      "textbookPageEnd": 31,
+      "planPdfPage": 23,
+      "reviewRequired": true
+    },
+    {
+      "number": 4,
+      "title": "الهمزة المتوسطة الساكنة وما قبلها مفتوح",
+      "book": "التدريبات",
+      "textbookPageStart": 38,
+      "textbookPageEnd": 40,
+      "planPdfPage": 23,
+      "reviewRequired": true
+    },
+    {
+      "number": 5,
+      "title": "الهمزة المتوسطة المفتوحة وما قبلها مد بالألف أو الواو",
+      "book": "التدريبات",
+      "textbookPageStart": 46,
+      "textbookPageEnd": 46,
+      "planPdfPage": 23,
+      "reviewRequired": true
+    },
+    {
+      "number": 6,
+      "title": "الهمزة المتوسطة المفتوحة وما قبلها حرف ساكن غير المد",
+      "book": "التدريبات",
+      "textbookPageStart": 52,
+      "textbookPageEnd": 54,
+      "planPdfPage": 24,
+      "reviewRequired": true
+    },
+    {
+      "number": 7,
+      "title": "الهمزة المتوسطة المفتوحة وقبلها حرف مضموم",
+      "book": "التدريبات",
+      "textbookPageStart": 63,
+      "textbookPageEnd": 65,
+      "planPdfPage": 24,
+      "reviewRequired": true
+    },
+    {
+      "number": 8,
+      "title": "الهمزة المتوسطة الساكنة وقبلها مضموم",
+      "book": "التدريبات",
+      "textbookPageStart": 71,
+      "textbookPageEnd": 74,
+      "planPdfPage": 24,
+      "reviewRequired": true
+    },
+    {
+      "number": 9,
+      "title": "الهمزة المتوسطة المضمومة",
+      "book": "التدريبات",
+      "textbookPageStart": 81,
+      "textbookPageEnd": 83,
+      "planPdfPage": 24,
+      "reviewRequired": true
+    }
+  ],
+  "disclaimer": "فهرس مصادر فقط، استخراج من نص PDF رسمي مع انتظار التحقق البصري. لا يحتوي نصوص الكتب أو المسموع الوزاري، ولا يعد أي عنصر درسًا مؤلفًا أو منشورًا."
+}
