@@ -73,14 +73,19 @@ const coverage =
         {
           nameAr:
             country.nameAr,
-          packs: 0,
+          packs: 0, // publication-reviewed only
           lessons: 0,
+          authoredPacks: 0,
+          authoredLessons: 0,
         },
       ]
     )
   );
 
-let totalLessons = 0;
+let totalAuthoredLessons = 0;
+let totalReadyLessons = 0;
+let authoredPackCount = 0;
+let publicationReviewedPacks = 0;
 
 for (const fileName of packFiles) {
   const fullPath =
@@ -150,13 +155,22 @@ for (const fileName of packFiles) {
       pack.country.code
     );
 
-  item.packs += 1;
-  item.lessons += lessons;
-
-  totalLessons += lessons;
-
+  // Valid authored content is not equivalent to reviewed Ministry text,
+  // textbook page mapping or approval to publish.
+  item.authoredPacks += 1;
+  item.authoredLessons += lessons;
+  totalAuthoredLessons += lessons;
+  authoredPackCount += 1;
+  const reviewed = pack.rights?.officialTocVerified === true &&
+    pack.rights?.publicationReview === "approved";
+  if (reviewed) {
+    item.packs += 1;
+    item.lessons += lessons;
+    totalReadyLessons += lessons;
+    publicationReviewedPacks += 1;
+  }
   console.log(
-    `PACK_READY=${fileName} COUNTRY=${pack.country.code} LESSONS=${lessons}`
+    `${reviewed ? "PACK_READY" : "PACK_AUTHORING_VALID_PENDING_REVIEW"}=${fileName} COUNTRY=${pack.country.code} LESSONS=${lessons}`
   );
 }
 
@@ -180,6 +194,11 @@ for (const country of countries) {
     );
   }
   else {
+    if (item.authoredPacks > 0) {
+      console.log(
+        `COUNTRY_AUTHORING_PENDING_REVIEW=${country.code} PACKS=${item.authoredPacks} LESSONS=${item.authoredLessons}`
+      );
+    }
     console.log(
       `COUNTRY_SOURCE_REQUIRED=${country.code}`
     );
@@ -198,9 +217,13 @@ console.log(
 console.log(
   `PACK_FILES=${packFiles.length}`
 );
-console.log(
-  `TOTAL_PACK_LESSONS=${totalLessons}`
-);
+console.log(`AUTHORED_PACKS=${authoredPackCount}`);
+console.log(`PUBLICATION_REVIEWED_PACKS=${publicationReviewedPacks}`);
+console.log(`TOTAL_AUTHORED_PACK_LESSONS=${totalAuthoredLessons}`);
+console.log(`TOTAL_READY_PACK_LESSONS=${totalReadyLessons}`);
+// Historical output retained for parsers; explicitly denotes authored content,
+// NOT textbook approval or published student lessons.
+console.log(`TOTAL_PACK_LESSONS=${totalAuthoredLessons}`);
 const everyCountryHasPack = readyCountries === countries.length;
 
 console.log(`CURRICULUM_PACK_COUNTRY_COVERAGE=${readyCountries}/${countries.length}`);
