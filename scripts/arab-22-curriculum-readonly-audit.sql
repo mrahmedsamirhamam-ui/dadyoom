@@ -54,3 +54,76 @@ FROM public.lesson_activities a LEFT JOIN public.lessons l ON l.id=a.lesson_id W
 UNION ALL
 SELECT 'student_progress_without_lesson', COUNT(*)::bigint
 FROM public.student_progress s LEFT JOIN public.lessons l ON l.id=s.lesson_id WHERE l.id IS NULL;
+
+-- 4. Comprehensive read-only teaching readiness flags for ALL 22 Arab countries.
+-- A row count, source URL or lesson status is NOT proof of current official textbook coverage.
+-- Metadata in `lessons` may differ from the normalized editorial tables.
+WITH q AS (
+  SELECT lesson_id, count(*)::int AS n FROM public.questions GROUP BY lesson_id
+), a AS (
+  SELECT lesson_id, count(*) FILTER (WHERE is_published IS TRUE)::int AS n
+  FROM public.lesson_activities GROUP BY lesson_id
+), base AS (
+  SELECT co.code, l.status, l.content, l.summary, l.learning_objectives,
+         l.vocabulary, l.instructions, l.source_pdf_url,
+         l.source_page_start, l.semester, l.official_content_scope,
+         coalesce(q.n,0) AS question_count, coalesce(a.n,0) AS activity_count
+  FROM public.countries co
+  JOIN public.curricula cu ON cu.country_id = co.id
+  JOIN public.grades gr ON gr.curriculum_id = cu.id
+  JOIN public.units un ON un.grade_id = gr.id
+  JOIN public.lessons l ON l.unit_id = un.id
+  LEFT JOIN q ON q.lesson_id = l.id LEFT JOIN a ON a.lesson_id = l.id
+)
+SELECT code AS country_code, count(*) AS lesson_rows,
+  count(*) FILTER (WHERE status = 'published') AS published_rows,
+  count(*) FILTER (WHERE status IS DISTINCT FROM 'published') AS unpublished_rows,
+  count(*) FILTER (WHERE status='published' AND instructions @> '[{"kind":"dadyoom_source","source_content_status":"MVP_DRAFT"}]'::jsonb) AS published_mvp_draft,
+  count(*) FILTER (WHERE learning_objectives='[]'::jsonb OR learning_objectives='{}'::jsonb) AS missing_embedded_objectives,
+  count(*) FILTER (WHERE vocabulary='[]'::jsonb OR vocabulary='{}'::jsonb) AS missing_embedded_vocabulary,
+  count(*) FILTER (WHERE instructions='[]'::jsonb OR instructions='{}'::jsonb) AS missing_embedded_instructions,
+  count(*) FILTER (WHERE coalesce(length(btrim(summary)),0) < 30) AS missing_useful_summary,
+  count(*) FILTER (WHERE source_pdf_url IS NULL OR btrim(source_pdf_url)='') AS source_reference_review,
+  count(*) FILTER (WHERE source_page_start IS NULL) AS source_page_review,
+  count(*) FILTER (WHERE semester IS NULL) AS semester_review,
+  count(*) FILTER (WHERE official_content_scope IS NULL) AS official_scope_review,
+  count(*) FILTER (WHERE status='published' AND question_count+activity_count<3) AS needs_assessment_review
+FROM base GROUP BY code ORDER BY code;
+
+-- 5. Editor-scoped repair queue. Never rewrite published or attempted lesson IDs.
+-- Does not inspect private grading keys, learner rows, or student attempts.
+WITH q AS (
+  SELECT lesson_id, count(*)::int AS n FROM public.questions GROUP BY lesson_id
+), a AS (
+  SELECT lesson_id, count(*) FILTER (WHERE is_published IS TRUE)::int AS n
+  FROM public.lesson_activities GROUP BY lesson_id
+), queue AS (
+  SELECT co.code, cu.name_ar AS curriculum, gr.name_ar AS grade,
+    l.id AS lesson_id, l.title, l.status,
+    coalesce(q.n,0) AS questions, coalesce(a.n,0) AS activities,
+    l.instructions @> '[{"kind":"dadyoom_source","source_content_status":"MVP_DRAFT"}]'::jsonb AS unreviewed_mvp,
+    l.vocabulary='[]'::jsonb AS empty_vocabulary,
+    l.learning_objectives='[]'::jsonb AS empty_objectives,
+    coalesce(length(btrim(l.content)),0)<200 AS short_content,
+    l.source_pdf_url IS NULL AS missing_source_url,
+    l.semester IS NULL AS missing_semester,
+    l.official_content_scope IS NULL AS missing_scope
+  FROM public.countries co
+  JOIN public.curricula cu ON cu.country_id=co.id
+  JOIN public.grades gr ON gr.curriculum_id=cu.id
+  JOIN public.units un ON un.grade_id=gr.id
+  JOIN public.lessons l ON l.unit_id=un.id
+  LEFT JOIN q ON q.lesson_id=l.id
+  LEFT JOIN a ON a.lesson_id=l.id
+)
+SELECT code AS country_code,curriculum,grade,lesson_id,title,status,
+  questions,activities,unreviewed_mvp,empty_vocabulary,empty_objectives,
+  short_content,missing_source_url,missing_semester,missing_scope
+FROM queue
+WHERE (status='published' AND (questions+activities<3 OR unreviewed_mvp OR short_content))
+  OR (status IS DISTINCT FROM 'published')
+ORDER BY CASE WHEN status='published' AND questions+activities<3 THEN 0
+              WHEN status='published' AND unreviewed_mvp THEN 1
+              WHEN status='published' AND short_content THEN 2 ELSE 3 END,
+         code,grade,title
+LIMIT 500;

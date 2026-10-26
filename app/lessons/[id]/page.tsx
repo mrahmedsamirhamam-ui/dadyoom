@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { SITE_DESCRIPTION } from "@/lib/site";
 import { isBookCatalogReference } from "@/lib/curriculum/book-catalog-reference";
+import { publicLessonActivityPrompts, publicLessonSlideInstructions, hasUnreviewedCurriculumSource } from "@/lib/curriculum/public-lesson-instructions";
 import {
   getLessonPageBundle,
 } from "@/features/lessons/queries/getLessonPageBundle";
@@ -252,13 +253,11 @@ export default async function LessonPage({
         )
       : [];
 
-  const instructions: string[] =
-    Array.isArray(lesson.instructions)
-      ? lesson.instructions.filter(
-          (item: unknown): item is string =>
-            typeof item === "string"
-        )
-      : [];
+  // Imported records can carry structured learner activities alongside private
+  // assessment answer objects. Parse only safe teaching fields, never raw JSON.
+  const instructions = publicLessonActivityPrompts(lesson.instructions);
+  const publicSlideInstructions = publicLessonSlideInstructions(lesson.instructions);
+  const needsSourceReview = hasUnreviewedCurriculumSource(lesson.instructions);
 
   const questionsList: LessonQuestion[] =
     Array.isArray(lessonQuestions)
@@ -469,8 +468,31 @@ export default async function LessonPage({
           content={lesson.content}
           objectives={objectives}
           vocabulary={vocabulary}
-          instructions={lesson.instructions}
+          instructions={publicSlideInstructions}
         />
+        {/* The slide deck is intentionally short; do not hide the rest of the
+            published lesson text behind its first three 380-character chunks. */}
+        {lesson.content?.trim() ? (
+          <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
+            <details className="group" dir="rtl">
+              <summary className="cursor-pointer text-xl font-black text-[#173f38]">
+                اقرأ الشرح التعليمي كاملًا
+              </summary>
+              <p className="mt-2 text-sm text-slate-500">
+                النص التعليمي المسجل في ضاديوم؛ ليس بالضرورة نقلًا حرفيًا من الكتاب الوزاري.
+              </p>
+              <div className="mt-5 whitespace-pre-wrap break-words text-base leading-9 text-slate-800">
+                {lesson.content}
+              </div>
+            </details>
+          </section>
+        ) : null}
+        {needsSourceReview ? (
+          <p className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm leading-7 text-amber-900">
+            تنبيه: هذا المحتوى الإثرائي ما زال بانتظار المطابقة التحريرية مع الكتاب الوزاري.
+            لا يُعرض بوصفه النص الرسمي المعتمد.
+          </p>
+        ) : null}
         <section className="rounded-3xl border border-amber-200 bg-white p-6 shadow-sm sm:p-8">
           <p className="text-sm font-black text-amber-700">
             بعد انتهاء العرض
@@ -535,23 +557,18 @@ export default async function LessonPage({
             </h2>
 
             <ol className="space-y-3">
-              {instructions.map(
-                (
-                  instruction: string,
-                  index: number
-                ) => (
-                  <li
-                    key={`${instruction}-${index}`}
-                    className="rounded-2xl bg-amber-50 px-4 py-3 leading-7 text-slate-700"
-                  >
-                    <span className="ml-2 font-bold">
-                      {index + 1}.
-                    </span>
-
-                    {instruction}
-                  </li>
-                )
-              )}
+              {instructions.map((activity, index) => (
+                <li
+                  key={`${activity.title}-${index}`}
+                  className="rounded-2xl bg-amber-50 px-4 py-3 leading-7 text-slate-700"
+                >
+                  <div className="font-bold text-amber-900">
+                    {index + 1}. {activity.title}
+                    {activity.level ? <span className="mr-2 text-sm">({activity.level})</span> : null}
+                  </div>
+                  <p className="mt-1">{activity.instructions}</p>
+                </li>
+              ))}
             </ol>
           </section>
         ) : null}        {/* lesson-interactive-activities-marker */}
@@ -596,7 +613,7 @@ export default async function LessonPage({
               target="_blank"
               className="font-semibold text-emerald-700 hover:underline"
             >
-              فتح صفحات الدرس في الكتاب الأصلي
+              الاطلاع على المصدر المدرج للدرس
             </Link>
 
             {lesson.source_page_start ? (
