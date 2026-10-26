@@ -213,6 +213,7 @@ on:
       - 'tests/bahrain-g3-2026-original-pack.test.ts'
       - 'tests/bahrain-g4-2026-original-pack.test.ts'
       - 'tests/bahrain-g4-2026-original-listening.test.ts'
+      - 'tests/bahrain-g5-2026-source-inventory.test.ts'
       - 'scripts/validate-original-curriculum-drafts.mjs'
       - 'tests/original-curriculum-drafts.test.ts'
       - 'package.json'
@@ -253,6 +254,8 @@ jobs:
         run: npx vitest run tests/bahrain-g4-2026-original-pack.test.ts
       - name: Verify Grade 4 ten original listening scripts and forty balanced question keys
         run: npx vitest run tests/bahrain-g4-2026-original-listening.test.ts
+      - name: Verify source-only Grade 5 Ministry plan components and prevent false publication claims
+        run: npx vitest run tests/bahrain-g5-2026-source-inventory.test.ts
       - name: Validate unpublished original lesson drafts without writing
         run: npm run curriculum:drafts:verify
       - name: Exercise draft quality and no-publication safety gates
