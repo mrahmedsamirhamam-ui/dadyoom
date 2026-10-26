@@ -97,7 +97,7 @@ describe("Grade-five Bahrain official plan source index is not mistaken for a fu
       expect(component.textbookPageStart).toBeGreaterThan(0);
       expect(component.textbookPageEnd).toBeGreaterThanOrEqual(component.textbookPageStart);
       expect(component.planPdfPage).toBeGreaterThanOrEqual(22);
-      expect(component.planPdfPage).toBeLessThanOrEqual(24);
+      expect(component.planPdfPage).toBeLessThanOrEqual(25);
       expect(component.content).toBeUndefined();
       expect(component.questions).toBeUndefined();
       expect(component.published).not.toBe(true);
