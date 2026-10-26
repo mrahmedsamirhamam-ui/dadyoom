@@ -14,7 +14,7 @@ export type PublicLessonSlide = {
   body?: string;
 };
 
-const PRIVATE_HINT = /(?:correct[_\\s-]*answer|answer[_\\s-]*key|model[_\\s-]*answer|solution[_\\s-]*key|grading[_\\s-]*key|مفتاح\\s*(?:الإجابة|الحل)|الإجابة\\s*(?:الصحيحة|النموذجية)|الحل\\s*النموذجي)/iu;
+const PRIVATE_HINT = /(?:correct[_\s-]*answer|answer[_\s-]*key|model[_\s-]*answer|solution[_\s-]*key|grading[_\s-]*key|مفتاح\s*(?:الإجابة|الحل)|الإجابة\s*(?:الصحيحة|النموذجية)|الحل\s*النموذجي)/iu;
 
 function object(value: unknown): Record<string, unknown> | null {
   return typeof value === "object" && value !== null && !Array.isArray(value)
@@ -24,7 +24,7 @@ function object(value: unknown): Record<string, unknown> | null {
 
 function visible(value: unknown, max: number): string {
   if (typeof value !== "string") return "";
-  const cleaned = value.trim().replace(/\\s+/g, " ");
+  const cleaned = value.trim().replace(/\s+/g, " ");
   if (!cleaned || PRIVATE_HINT.test(cleaned)) return "";
   return cleaned.slice(0, max);
 }
