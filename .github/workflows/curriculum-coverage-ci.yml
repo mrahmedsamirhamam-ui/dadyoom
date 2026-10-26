@@ -229,6 +229,7 @@ on:
       - 'tests/bahrain-g7-2026-source-inventory.test.ts'
       - 'tests/bahrain-g7-2026-definiteness-practice.test.ts'
       - 'tests/bahrain-g7-2026-grammar-progress.test.ts'
+      - 'tests/bahrain-g7-2026-grammar-coverage.test.ts'
       - 'scripts/validate-original-curriculum-drafts.mjs'
       - 'tests/original-curriculum-drafts.test.ts'
       - 'package.json'
@@ -301,6 +302,8 @@ jobs:
         run: npx vitest run tests/bahrain-g7-2026-definiteness-practice.test.ts
       - name: Verify six original Grade-7 grammar topics and twenty-four answer keys
         run: npx vitest run tests/bahrain-g7-2026-grammar-progress.test.ts
+      - name: Verify all twelve original Grade-7 first-term grammar topics and 48 answer explanations
+        run: npx vitest run tests/bahrain-g7-2026-grammar-coverage.test.ts
       - name: Validate unpublished original lesson drafts without writing
         run: npm run curriculum:drafts:verify
       - name: Exercise draft quality and no-publication safety gates
