@@ -228,6 +228,7 @@ on:
       - 'tests/bahrain-g6-2026-original-listening.test.ts'
       - 'tests/bahrain-g7-2026-source-inventory.test.ts'
       - 'tests/bahrain-g7-2026-definiteness-practice.test.ts'
+      - 'tests/bahrain-g7-2026-grammar-progress.test.ts'
       - 'scripts/validate-original-curriculum-drafts.mjs'
       - 'tests/original-curriculum-drafts.test.ts'
       - 'package.json'
@@ -298,6 +299,8 @@ jobs:
         run: npx vitest run tests/bahrain-g7-2026-source-inventory.test.ts
       - name: Verify first three original Grade-7 definite and indefinite grammar workshops
         run: npx vitest run tests/bahrain-g7-2026-definiteness-practice.test.ts
+      - name: Verify six original Grade-7 grammar topics and twenty-four answer keys
+        run: npx vitest run tests/bahrain-g7-2026-grammar-progress.test.ts
       - name: Validate unpublished original lesson drafts without writing
         run: npm run curriculum:drafts:verify
       - name: Exercise draft quality and no-publication safety gates
