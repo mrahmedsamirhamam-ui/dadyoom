@@ -119,10 +119,10 @@ describe("operational curriculum assessment readiness gate", () => {
     expect(grade6).toContain("طريق الخير (1)");
     expect(grade6).toContain("طريق الخير (2)");
     expect(grade6).toContain("NOT certify official text quality");
-    expect((grade6.match(/\\(\\d+,'/g) || []).length).toBe(14);
+    expect((grade6.match(/\(\d+,'/g) || []).length).toBe(14);
     expect(grade6).not.toMatch(/student_lesson_progress|question_attempts|correct_answer/i);
-    expect(grade6.replace(/--[^\\n]*/g, "")).not.toMatch(
-      /\\b(?:INSERT|UPDATE|DELETE|ALTER|DROP|GRANT|REVOKE|TRUNCATE)\\b/i,
+    expect(grade6.replace(/--[^\n]*/g, "")).not.toMatch(
+      /\b(?:INSERT|UPDATE|DELETE|ALTER|DROP|GRANT|REVOKE|TRUNCATE)\b/i,
     );
   });
 
