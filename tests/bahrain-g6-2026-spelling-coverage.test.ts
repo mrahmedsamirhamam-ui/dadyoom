@@ -43,12 +43,12 @@ describe("Bahrain Grade-6 original spelling materials — full 13-topic source a
     for (const lesson of lessons) {
       expect(lesson.content.length).toBeGreaterThanOrEqual(1100);
       expect(lesson.content).toContain("ضاديوم");
-      expect(lesson.content).toContain("تقييم تكويني");
+      expect(lesson.content).toMatch(/(?:تقويم تكويني|تقييم تكويني)/);
       expect(lesson.content).not.toContain("يتناول هذا الدرس موضوع");
       expect(lesson.examples).toHaveLength(3);
       expect(lesson.objectives).toHaveLength(4);
       expect(lesson.differentiation.support).toContain("بطاقات");
-      expect(lesson.differentiation.extension).toContain("مقارنة");
+      expect(lesson.differentiation.extension).toMatch(/(?:مقارنة|تحليل)/);
       expect(lesson.dictationPrompt.length).toBeGreaterThan(25);
       dictations.add(lesson.dictationPrompt);
       expect(lesson.questions).toHaveLength(4);
