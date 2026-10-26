@@ -219,6 +219,7 @@ on:
       - 'tests/bahrain-g5-2026-writing-workshops.test.ts'
       - 'tests/bahrain-g5-2026-handwriting-practice.test.ts'
       - 'tests/bahrain-g6-2026-source-inventory.test.ts'
+      - 'tests/bahrain-g6-2026-original-past-tense.test.ts'
       - 'scripts/validate-original-curriculum-drafts.mjs'
       - 'tests/original-curriculum-drafts.test.ts'
       - 'package.json'
@@ -271,6 +272,8 @@ jobs:
         run: npx vitest run tests/bahrain-g5-2026-handwriting-practice.test.ts
       - name: Verify Grade-6 official Ministry source topics and no-invented-text gates
         run: npx vitest run tests/bahrain-g6-2026-source-inventory.test.ts
+      - name: Verify two original Grade-6 past-tense lessons and sound eight assessment keys
+        run: npx vitest run tests/bahrain-g6-2026-original-past-tense.test.ts
       - name: Validate unpublished original lesson drafts without writing
         run: npm run curriculum:drafts:verify
       - name: Exercise draft quality and no-publication safety gates
