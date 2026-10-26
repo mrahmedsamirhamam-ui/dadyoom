@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "academicYear": "2026-2027",
+  "countryCode": "BH",
+  "grade": 2,
+  "semester": 1,
+  "source": {
+    "kind": "ministry_curriculum_plan",
+    "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+    "filename": "Plan1.pdf",
+    "sourcePdfPages": [
+      10,
+      11
+    ],
+    "textbook": "التدريبات اللغوية — وحدة المراجعة",
+    "pageNumbersReferTo": "printed workbook pages, NOT PDF pages"
+  },
+  "status": "source_index_only_not_student_lessons",
+  "publicationApproved": false,
+  "teacherTextbookReview": "pending",
+  "disclaimer": "هذه عناوين وأنواع مراجعة مستخرجة من الخطة الوزارية فقط. لم يتم رفع نصوص الكتاب أو مفاتيح إجاباته، ولا يترتب عليها نشر أو تعديل للدروس.",
+  "topics": [
+    {
+      "number": 1,
+      "title": "أراجع القراءة (1) — الحمامة والنملة",
+      "skill": "reading",
+      "pageStart": 7,
+      "pageEnd": 10,
+      "officialPlanPdfPages": [
+        10,
+        11
+      ],
+      "status": "source_index_only_not_student_lesson",
+      "textbookTextVerified": false
+    },
+    {
+      "number": 2,
+      "title": "أراجع الحروف (1)",
+      "skill": "phonics",
+      "pageStart": 11,
+      "pageEnd": 16,
+      "officialPlanPdfPages": [
+        10,
+        11
+      ],
+      "status": "source_index_only_not_student_lesson",
+      "textbookTextVerified": false
+    },
+    {
+      "number": 3,
+      "title": "أراجع التراكيب اللغوية (1)",
+      "skill": "grammar",
+      "pageStart": 17,
+      "pageEnd": 21,
+      "officialPlanPdfPages": [
+        10,
+        11
+      ],
+      "status": "source_index_only_not_student_lesson",
+      "textbookTextVerified": false
+    },
+    {
+      "number": 4,
+      "title": "أراجع الحروف (2)",
+      "skill": "phonics",
+      "pageStart": 22,
+      "pageEnd": 28,
+      "officialPlanPdfPages": [
+        10,
+        11
+      ],
+      "status": "source_index_only_not_student_lesson",
+      "textbookTextVerified": false
+    },
+    {
+      "number": 5,
+      "title": "أراجع الإملاء والتعبير (1)",
+      "skill": "spelling_and_expression",
+      "pageStart": 29,
+      "pageEnd": 31,
+      "officialPlanPdfPages": [
+        10,
+        11
+      ],
+      "status": "source_index_only_not_student_lesson",
+      "textbookTextVerified": false
+    },
+    {
+      "number": 6,
+      "title": "أراجع القراءة (2) — البلبل البحريني",
+      "skill": "reading",
+      "pageStart": 32,
+      "pageEnd": 35,
+      "officialPlanPdfPages": [
+        10,
+        11
+      ],
+      "status": "source_index_only_not_student_lesson",
+      "textbookTextVerified": false
+    },
+    {
+      "number": 7,
+      "title": "أراجع الحروف (3)",
+      "skill": "phonics",
+      "pageStart": 36,
+      "pageEnd": 41,
+      "officialPlanPdfPages": [
+        10,
+        11
+      ],
+      "status": "source_index_only_not_student_lesson",
+      "textbookTextVerified": false
+    },
+    {
+      "number": 8,
+      "title": "أراجع التراكيب اللغوية (2)",
+      "skill": "grammar",
+      "pageStart": 42,
+      "pageEnd": 49,
+      "officialPlanPdfPages": [
+        10,
+        11
+      ],
+      "status": "source_index_only_not_student_lesson",
+      "textbookTextVerified": false
+    },
+    {
+      "number": 9,
+      "title": "أراجع الحروف (4)",
+      "skill": "phonics",
+      "pageStart": 50,
+      "pageEnd": 56,
+      "officialPlanPdfPages": [
+        10,
+        11
+      ],
+      "status": "source_index_only_not_student_lesson",
+      "textbookTextVerified": false
+    },
+    {
+      "number": 10,
+      "title": "أراجع الإملاء والتعبير (2)",
+      "skill": "spelling_and_expression",
+      "pageStart": 57,
+      "pageEnd": 60,
+      "officialPlanPdfPages": [
+        11
+      ],
+      "status": "source_index_only_not_student_lesson",
+      "textbookTextVerified": false
+    }
+  ]
+}
