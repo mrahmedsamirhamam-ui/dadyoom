@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import PptxGenJS from "@lofcz/pptxgenjs";
 
 import { createClient } from "@/lib/supabase/server";
-import { buildEvidenceDeck, type GroundedLesson } from "@/lib/lesson/evidence-slide-deck";
+import type { GroundedLesson } from "@/lib/lesson/evidence-slide-deck";
+import { buildDadyoomTeachingDeck } from "@/lib/lesson/dadyoom-teaching-journey";
 
 export const runtime = "nodejs";
 
@@ -111,7 +112,7 @@ export async function GET(
 
     // Build from stored lesson evidence on each request. Do not use old
     // cached AI decks that may contain generic or unsupported explanations.
-    const deck = buildEvidenceDeck(lesson);
+    const deck = buildDadyoomTeachingDeck(lesson);
     if (!deck) {
       return NextResponse.json(
         { error: "هذا الدرس لا يحتوي بعد على مادة تعليمية كافية لإنشاء عرض موثوق. يحتاج مراجعة واستكمالًا." },
