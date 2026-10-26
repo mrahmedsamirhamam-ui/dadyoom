@@ -4,10 +4,12 @@ on:
   pull_request:
     paths:
       - 'lib/lesson/evidence-slide-deck.ts'
+      - 'lib/lesson/dadyoom-teaching-journey.ts'
       - 'app/api/lessons/**/pptx/route.ts'
       - 'app/api/lessons/study/route.ts'
       - 'components/lesson/LessonLearningSlides.tsx'
       - 'tests/lesson-evidence-deck.test.ts'
+      - 'tests/dadyoom-teaching-journey.test.ts'
       - '.github/workflows/lesson-slide-quality.yml'
   workflow_dispatch:
 
@@ -27,7 +29,7 @@ jobs:
           node-version: '22'
           cache: 'npm'
       - run: npm ci --no-audit --no-fund
-      - run: npx vitest run tests/lesson-evidence-deck.test.ts
+      - run: npx vitest run tests/lesson-evidence-deck.test.ts tests/dadyoom-teaching-journey.test.ts
       - run: npx tsc --noEmit
       - run: npm run lint
       - run: npm run build
