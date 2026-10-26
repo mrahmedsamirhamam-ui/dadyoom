@@ -47,8 +47,9 @@ export function auditLearningObjective(input: string): ObjectiveAudit {
   const objective = input.trim();
   const n = normalize(objective);
   const words = n.split(/\s+/u);
-  const matches = words.filter((word) => BLOOM.some(({verbs}) => verbs.includes(word.replace(/[،؛.]/gu, ""))));
-  const classified = BLOOM.find(({verbs}) => matches.some((word) => verbs.includes(word.replace(/[،؛.]/gu, ""))));
+  const actionWords = words.map((word) => word.replace(/[،؛.]/gu, "").replace(/^و(?=[يت])/u, ""));
+  const matches = actionWords.filter((word) => BLOOM.some(({verbs}) => verbs.includes(word)));
+  const classified = BLOOM.find(({verbs}) => matches.some((word) => verbs.includes(word)));
   const measurable = Boolean(classified);
   const singleAction = matches.length === 1 &&
     !/\bثم\b/u.test(n) &&
