@@ -416,7 +416,7 @@ SELECT co.code AS country_code,g.grade_number,l.semester,
  COUNT(*) FILTER(WHERE l.content LIKE 'يتناول هذا الدرس موضوع%')
    AS generic_scaffold_bodies,
  COUNT(*) FILTER(WHERE l.title ~
-   '(عنوان الدرس|اسم الكتاب|الصف:|^القراءة|^الدّرس|ورقمه|^\\))')
+   '(عنوان الدرس|اسم الكتاب|الصف:|^القراءة|^الدّرس|ورقمه)')
    AS extracted_toc_or_header_titles,
  COUNT(*) FILTER(WHERE l.source_pdf_url IS NULL OR l.source_page_start IS NULL)
    AS missing_verifiable_page_provenance
