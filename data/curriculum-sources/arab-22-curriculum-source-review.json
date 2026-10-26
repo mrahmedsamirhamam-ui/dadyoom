@@ -16,7 +16,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": null,
+      "portalEvidenceScope": "official-ministry-curriculum-portal-not-yet-reviewed",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "SA",
@@ -29,7 +32,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": "https://www.moe.gov.sa/ar/education/generaleducation/StudyPlans/Pages/default.aspx",
+      "portalEvidenceScope": "official-ministry-study-plans-directory; not a current grade-specific Arabic textbook TOC",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "AE",
@@ -42,7 +48,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": "https://www.moe.gov.ae/ar/guides/Pages/Study-Plan-for-the-2026-2027-Academic-Year-Ministry-Curriculum.aspx",
+      "portalEvidenceScope": "official-2026-27-study-plan-landing-page; not lesson TOC",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "QA",
@@ -55,7 +64,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": "https://edu.gov.qa/ar/Content/LearningResources",
+      "portalEvidenceScope": "official-ministry-learning-resources-program-page; not grade-specific Arabic textbook",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "KW",
@@ -68,7 +80,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": "https://www.moe.edu.kw/news/910",
+      "portalEvidenceScope": "official-ministry-copyright-policy notice; not textbook TOC; no copying/republication of government textbooks",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "OM",
@@ -81,7 +96,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": "https://home.moe.gov.om/ar/govdalil/18/show/169",
+      "portalEvidenceScope": "ministry-page-describing-digital-library; grade-specific current Arabic contents not reviewed",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "EG",
@@ -94,7 +112,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": "https://studentbooks.moe.gov.eg/Books",
+      "portalEvidenceScope": "official-domain-textbook-selection-portal-referenced-by-2026-27 reporting; direct page not independently rendered",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "JO",
@@ -107,7 +128,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": "https://aqau.moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+      "portalEvidenceScope": "ministry-curriculum-and-textbooks-directory; textbook editions need verification",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "LB",
@@ -120,7 +144,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": null,
+      "portalEvidenceScope": "official-ministry-curriculum-portal-not-yet-reviewed",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "SY",
@@ -133,7 +160,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": null,
+      "portalEvidenceScope": "official-ministry-curriculum-portal-not-yet-reviewed",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "IQ",
@@ -146,7 +176,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": null,
+      "portalEvidenceScope": "official-ministry-curriculum-portal-not-yet-reviewed",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "PS",
@@ -159,7 +192,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": null,
+      "portalEvidenceScope": "official-ministry-curriculum-portal-not-yet-reviewed",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "YE",
@@ -172,7 +208,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": null,
+      "portalEvidenceScope": "official-ministry-curriculum-portal-not-yet-reviewed",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "MA",
@@ -185,7 +224,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": null,
+      "portalEvidenceScope": "official-ministry-curriculum-portal-not-yet-reviewed",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "DZ",
@@ -198,7 +240,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": null,
+      "portalEvidenceScope": "official-ministry-curriculum-portal-not-yet-reviewed",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "TN",
@@ -211,7 +256,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": null,
+      "portalEvidenceScope": "official-ministry-curriculum-portal-not-yet-reviewed",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "LY",
@@ -224,7 +272,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": null,
+      "portalEvidenceScope": "official-ministry-curriculum-portal-not-yet-reviewed",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "SD",
@@ -237,7 +288,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": null,
+      "portalEvidenceScope": "official-ministry-curriculum-portal-not-yet-reviewed",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "SO",
@@ -250,7 +304,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": null,
+      "portalEvidenceScope": "official-ministry-curriculum-portal-not-yet-reviewed",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "DJ",
@@ -263,7 +320,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": null,
+      "portalEvidenceScope": "official-ministry-curriculum-portal-not-yet-reviewed",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "KM",
@@ -276,7 +336,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": null,
+      "portalEvidenceScope": "official-ministry-curriculum-portal-not-yet-reviewed",
+      "gradeTermTextbookTocVerified": false
     },
     {
       "code": "MR",
@@ -289,7 +352,10 @@
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
-      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates."
+      "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
+      "officialMinistryResourcePortal": null,
+      "portalEvidenceScope": "official-ministry-curriculum-portal-not-yet-reviewed",
+      "gradeTermTextbookTocVerified": false
     }
   ],
   "safeguards": {
@@ -298,6 +364,7 @@
     "noProductionWrites": true,
     "noStudentProgressMutation": true,
     "noQuestionAnswerKeyClientExposure": true,
-    "noCopyingProtectedText": true
+    "noCopyingProtectedText": true,
+    "officialPortalNotEquivalentToTextbookApproval": true
   }
 }

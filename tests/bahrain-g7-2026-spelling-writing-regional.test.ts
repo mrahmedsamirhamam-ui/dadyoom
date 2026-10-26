@@ -23,7 +23,7 @@ type WritingLesson={
 };
 type RegionalReview={
   code:string;coverageReady:boolean;publicationApproved:boolean;teacherReview:string;
-  textbookContentsCompared:boolean;verifiedPlanUrl:string|null;
+  textbookContentsCompared:boolean;verifiedPlanUrl:string|null;officialMinistryResourcePortal:string|null;gradeTermTextbookTocVerified:boolean;
 };
 const read=(p:string)=>readFileSync(resolve(process.cwd(),p),"utf8");
 const get=(p:string):unknown=>JSON.parse(read(p)) as unknown;
@@ -113,6 +113,12 @@ describe("22 Arab-country official-source verification boundary",()=>{
   }
   expect(region.safeguards.noProductionWrites).toBe(true);
   expect(region.safeguards.noAutomaticTranslationOrCountryClone).toBe(true);
+  const withMinistryEntry=region.countrySourceReview.filter(c=>c.officialMinistryResourcePortal!==null);
+  expect(withMinistryEntry.map(c=>c.code).sort()).toEqual(["AE","EG","JO","KW","OM","QA","SA"]);
+  for(const c of region.countrySourceReview){
+   expect(c.gradeTermTextbookTocVerified).toBe(false);
+   if(c.officialMinistryResourcePortal)expect(c.officialMinistryResourcePortal).toMatch(/^https:\/\//);
+  }
  });
  it("global audit remains SELECT-only and never exposes student data or answer keys",()=>{
   const sql=read("scripts/arab-22-curriculum-readonly-audit.sql");
