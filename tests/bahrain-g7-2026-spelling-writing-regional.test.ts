@@ -90,7 +90,8 @@ describe("22 Arab-country official-source verification boundary",()=>{
   const sql=read("scripts/arab-22-curriculum-readonly-audit.sql");
   expect(sql).toMatch(/SELECT\s+country_code/i);
   expect(sql).toMatch(/student_progress_without_lesson/);
-  expect(sql).not.toMatch(/\b(?:UPDATE|INSERT|DELETE|ALTER|DROP|TRUNCATE|GRANT|REVOKE)\s+(?:TABLE\s+)?(?:public\.)?[a-z_]+/i);
+  const uncommentedSql=sql.replace(/--[^\n]*/g,"");
+  expect(uncommentedSql).not.toMatch(/\b(?:UPDATE|INSERT|DELETE|ALTER|DROP|TRUNCATE|GRANT|REVOKE)\s+(?:TABLE\s+)?(?:public\.)?[a-z_]+/i);
   expect(sql).not.toMatch(/correct_answer|student_id|user_id|selected_answer/i);
  });
 });
