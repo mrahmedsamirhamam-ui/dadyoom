@@ -66,6 +66,23 @@ describe("operational curriculum assessment readiness gate", () => {
     expect(part18).not.toContain("student_lesson_progress");
     expect(part18).not.toMatch(/\b(?:INSERT|UPDATE|DELETE|DROP|TRUNCATE|GRANT|REVOKE)\s+(?:INTO|ON|FROM|TABLE)\b/i);
   });
+  it("audits published Bahrain template-scaffold lessons without altering child progress", () => {
+    const published = audit.slice(audit.indexOf("-- 19. Bahrain PUBLISHED scaffold quality queue"));
+    expect(published).toContain("published_generic_scaffold_candidates");
+    expect(published).toContain("scaffold_with_three_plus_questions");
+    expect(published).toContain("scaffold_with_published_activities");
+    expect(published).toContain("scaffold_with_source_url_not_proof");
+    expect(published).toContain("scaffold_without_official_scope");
+    expect(published).toContain("scaffold_with_index_style_title");
+    expect(published).toContain("l.status='published'");
+    expect(published).toContain("l.content LIKE 'يتناول هذا الدرس موضوع%'");
+    expect(published).toContain("No automatic deletion");
+    expect(published).not.toMatch(/question_attempts|student_lesson_progress|student_id|correct_answer/i);
+    expect(published.replace(/--[^\n]*/g, "")).not.toMatch(
+      /\b(?:INSERT|UPDATE|DELETE|ALTER|DROP|GRANT|REVOKE|TRUNCATE)\b/i,
+    );
+  });
+
   it("remains read only and never extracts personal rows, answers, or keys", () => {
     const plain=audit.replace(/--[^\n]*/g,"").replace(/'(?:''|[^'])*'/g,"''");
     expect(plain).not.toMatch(/\b(?:INSERT|DELETE|UPDATE|REVOKE|GRANT|CREATE|ALTER|DROP|TRUNCATE)\b/i);
