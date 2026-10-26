@@ -1,9 +1,14 @@
-name: Letter Lab quality checks
+name: Arabic Learning Labs quality checks
 
 on:
   pull_request:
     paths:
       - 'app/labs/letters/**'
+      - 'app/labs/stories/**'
+      - 'components/labs/stories/**'
+      - 'lib/story-lab/**'
+      - 'tests/story-lab.test.ts'
+      - 'scripts/smoke-story-lab.mjs'
       - 'components/labs/letters/**'
       - 'lib/letter-lab/**'
       - 'tests/letter-lab.test.ts'
@@ -40,3 +45,4 @@ jobs:
             sleep 2
           done
           node scripts/smoke-letter-lab.mjs
+          node scripts/smoke-story-lab.mjs
