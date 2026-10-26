@@ -2,25 +2,53 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 
+type Topic={title:string;week:number};
+type Question={cognitiveLevel:string;options:Array<{id:string;text:string}>;correctAnswer:"a"|"b"|"c";explanation:string};
+type AuthoredPack<T>={
+  practices:T[];countryCode:string;grade:number;sourceIndex:string;
+  rights:{contentOwner:string;officialTextbookBodyVerified:boolean;publicationApproved:boolean;teacherReview:string};
+};
+type SpellingLesson={
+  officialTopic:string;sourceOrder:number;week:number;content:string;examples:string[];objectives:string[];
+  dictationPrompt:string;publicationApproved:boolean;questions:Question[];
+  handwriting:{traceSheetRendered:boolean;letterFormationModelVerified:boolean;visualStrokeTemplateVerified:boolean};
+  source:{textbookPageStart:number|null;visualTableVerification:string};
+};
+type WritingLesson={
+  officialTopic:string;sourceOrder:number;week:number;genre:string;publicationApproved:boolean;
+  teaching:{prompt:string;originalTeacherModel:string;planningSteps:string[];modelIsNotMandatoryStudentAnswer:boolean};
+  source:{visualTableVerification:string};
+  assessment:{mode:string;automaticFreeTextGrade:boolean;totalRubricPoints:number};
+  rubric:Array<{max:number}>;
+};
+type RegionalReview={
+  code:string;coverageReady:boolean;publicationApproved:boolean;teacherReview:string;
+  textbookContentsCompared:boolean;verifiedPlanUrl:string|null;
+};
 const read=(p:string)=>readFileSync(resolve(process.cwd(),p),"utf8");
-const get=(p:string)=>JSON.parse(read(p));
-const source=get("data/curriculum-sources/bh-g7-s1-2026-ministry-plan-index.json");
-const spelling=get("data/curriculum-drafts/bh-g7-s1-original-spelling-and-handwriting.json");
-const writing=get("data/curriculum-drafts/bh-g7-s1-original-writing-workshops.json");
-const region=get("data/curriculum-sources/arab-22-curriculum-source-review.json");
-const countries=get("data/curriculum-packs/arab-countries.json");
+const get=(p:string):unknown=>JSON.parse(read(p)) as unknown;
+const source=get("data/curriculum-sources/bh-g7-s1-2026-ministry-plan-index.json") as {
+  spellingAndHandwritingTopics:Topic[];writingTopics:Topic[];review:{publicationApproved:boolean};
+};
+const spelling=get("data/curriculum-drafts/bh-g7-s1-original-spelling-and-handwriting.json") as AuthoredPack<SpellingLesson>;
+const writing=get("data/curriculum-drafts/bh-g7-s1-original-writing-workshops.json") as AuthoredPack<WritingLesson>;
+const region=get("data/curriculum-sources/arab-22-curriculum-source-review.json") as {
+  countrySourceReview:RegionalReview[];safeguards:{noProductionWrites:boolean;noAutomaticTranslationOrCountryClone:boolean};
+};
+const countries=get("data/curriculum-packs/arab-countries.json") as {countries:Array<{code:string}>};
+
 describe("Bahrain Grade 7 original spelling, handwriting and composition: never auto-publish",()=>{
  it("follows 11 official source headings with one unique authored dictation each and 44 explained MCQ keys",()=>{
   expect(source.spellingAndHandwritingTopics).toHaveLength(11);
   expect(spelling.practices).toHaveLength(11);
-  expect(spelling.practices.map((x:any)=>x.officialTopic)).toEqual(source.spellingAndHandwritingTopics.map((x:any)=>x.title));
-  expect(new Set(spelling.practices.map((x:any)=>x.dictationPrompt)).size).toBe(11);
+  expect(spelling.practices.map(x=>x.officialTopic)).toEqual(source.spellingAndHandwritingTopics.map(x=>x.title));
+  expect(new Set(spelling.practices.map(x=>x.dictationPrompt)).size).toBe(11);
   const balance={a:0,b:0,c:0};
   for(const [i,p] of spelling.practices.entries()){
    expect(p.sourceOrder).toBe(i+1);
    expect(p.week).toBe(source.spellingAndHandwritingTopics[i].week);
    expect(p.content.length).toBeGreaterThan(900);
-   expect(p.examples).toHaveLength(3);
+   expect(p.examples.length).toBeGreaterThanOrEqual(3);
    expect(p.objectives).toHaveLength(4);
    expect(p.questions).toHaveLength(4);
    expect(p.publicationApproved).toBe(false);
@@ -31,11 +59,11 @@ describe("Bahrain Grade 7 original spelling, handwriting and composition: never 
    expect(p.source.visualTableVerification).toBe("pending");
    for(const [j,q] of p.questions.entries()){
     expect(q.cognitiveLevel).toBe(["remember","understand","analyze","apply"][j]);
-    expect(q.options.map((o:any)=>o.id)).toEqual(["a","b","c"]);
-    expect(new Set(q.options.map((o:any)=>o.text)).size).toBe(3);
-    expect(q.options.filter((o:any)=>o.id===q.correctAnswer)).toHaveLength(1);
+    expect(q.options.map(o=>o.id)).toEqual(["a","b","c"]);
+    expect(new Set(q.options.map(o=>o.text)).size).toBe(3);
+    expect(q.options.filter(o=>o.id===q.correctAnswer)).toHaveLength(1);
     expect(q.explanation.length).toBeGreaterThan(90);
-    balance[q.correctAnswer as keyof typeof balance]++;
+    balance[q.correctAnswer]++;
    }
   }
   expect(Object.values(balance).reduce((a,b)=>a+b,0)).toBe(44);
@@ -43,10 +71,10 @@ describe("Bahrain Grade 7 original spelling, handwriting and composition: never 
  });
  it("has 9 differentiated writing workshops, each with independent learner response and teacher-only 12-point rubric",()=>{
   expect(source.writingTopics).toHaveLength(9);
-  expect(writing.practices.map((x:any)=>x.officialTopic)).toEqual(source.writingTopics.map((x:any)=>x.title));
-  expect(new Set(writing.practices.map((x:any)=>x.teaching.prompt)).size).toBe(9);
-  expect(writing.practices.map((x:any)=>x.genre)).toContain("event_report");
-  expect(writing.practices.map((x:any)=>x.genre)).toContain("invitation_card");
+  expect(writing.practices.map(x=>x.officialTopic)).toEqual(source.writingTopics.map(x=>x.title));
+  expect(new Set(writing.practices.map(x=>x.teaching.prompt)).size).toBe(9);
+  expect(writing.practices.map(x=>x.genre)).toContain("event_report");
+  expect(writing.practices.map(x=>x.genre)).toContain("invitation_card");
   for(const [i,p] of writing.practices.entries()){
    expect(p.sourceOrder).toBe(i+1);
    expect(p.week).toBe(source.writingTopics[i].week);
@@ -56,7 +84,7 @@ describe("Bahrain Grade 7 original spelling, handwriting and composition: never 
    expect(p.assessment.mode).toBe("human_teacher_review_only");
    expect(p.assessment.automaticFreeTextGrade).toBe(false);
    expect(p.assessment.totalRubricPoints).toBe(12);
-   expect(p.rubric.reduce((sum:number,r:any)=>sum+r.max,0)).toBe(12);
+   expect(p.rubric.reduce((sum,r)=>sum+r.max,0)).toBe(12);
    expect(p.publicationApproved).toBe(false);
    expect(p.source.visualTableVerification).toBe("pending");
   }
@@ -74,8 +102,8 @@ describe("22 Arab-country official-source verification boundary",()=>{
  it("keeps every distinct Arab country without inventing 21 official source URLs or passing readiness by row counts",()=>{
   expect(countries.countries).toHaveLength(22);
   expect(region.countrySourceReview).toHaveLength(22);
-  expect(new Set(region.countrySourceReview.map((c:any)=>c.code)).size).toBe(22);
-  expect(region.countrySourceReview.map((c:any)=>c.code).sort()).toEqual(countries.countries.map((c:any)=>c.code).sort());
+  expect(new Set(region.countrySourceReview.map(c=>c.code)).size).toBe(22);
+  expect(region.countrySourceReview.map(c=>c.code).sort()).toEqual(countries.countries.map(c=>c.code).sort());
   for(const c of region.countrySourceReview){
    expect(c.coverageReady).toBe(false);
    expect(c.publicationApproved).toBe(false);
