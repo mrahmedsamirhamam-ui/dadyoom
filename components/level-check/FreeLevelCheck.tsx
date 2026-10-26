@@ -6,7 +6,7 @@ import Link from "next/link";
 import {
   LEVEL_QUESTIONS,
   evaluateLevelCheck,
-  getRecommendedPath,
+  getGuidedLearningPlan,
   type LevelSummary,
 } from "@/lib/level-check/assessment";
 
@@ -37,7 +37,7 @@ export default function FreeLevelCheck() {
   }
 
   if (summary) {
-    const recommendation = getRecommendedPath(summary.focus.skill);
+    const learningPlan = getGuidedLearningPlan(summary.focus.skill);
     return (
       <section aria-labelledby="result-heading" className="space-y-6">
         <div className="rounded-[2rem] border border-[#d5c190] bg-white p-6 shadow-sm sm:p-9">
@@ -63,17 +63,29 @@ export default function FreeLevelCheck() {
             ))}
           </div>
           <div className="mt-7 rounded-2xl bg-[#e9f5ef] p-5">
-            <h3 className="text-xl font-black text-[#174f47]">خطوتك التالية: {summary.focus.label}</h3>
+            <h3 className="text-xl font-black text-[#174f47]">خطة تعلم قصيرة: {summary.focus.label}</h3>
             <p className="mt-2 leading-8 text-[#3d5a53]">
-              اقترحنا هذه المهارة لأنها الأقل أداءً في هذه العينة الصغيرة. اختر تدريبًا قصيرًا،
-              ثم انتقل إلى دروس منهجك في ضاديوم. ويمكن إعادة هذا النشاط بعد التدريب للمقارنة الشخصية فقط.
+              هذه المهارة هي الأقل أداءً في عينة الأسئلة الصغيرة. اتبع الخطوات التالية بالترتيب،
+              واختر الصف والمنهج المناسبين لك بنفسك؛ الخطة استرشادية ولا تُحفظ تلقائيًا.
             </p>
-            <div className="mt-4 flex flex-wrap gap-3">
-              <Link href={recommendation.href} className="rounded-xl bg-[#174f47] px-5 py-3 font-black text-white hover:bg-[#103f39]">
-                {recommendation.label}
-              </Link>
-              <Link href="/signup" className="rounded-xl border border-[#b3c8b6] bg-white px-5 py-3 font-black text-[#174f47] hover:bg-[#f6faf7]">
-                أنشئ حسابًا لمتابعة رحلتك
+            <ol className="mt-4 space-y-3" aria-label="خطوات التدريب المقترحة">
+              {learningPlan.map((step, stepIndex) => (
+                <li key={step.id} className="flex items-start gap-3 rounded-xl border border-[#c4dcd2] bg-white p-4">
+                  <span aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#174f47] font-black text-white">
+                    {stepIndex + 1}
+                  </span>
+                  <div className="min-w-0">
+                    <Link href={step.href} className="font-black text-[#174f47] underline underline-offset-4 hover:text-[#103f39]">
+                      {step.title}
+                    </Link>
+                    <p className="mt-1 text-sm leading-7 text-[#3d5a53]">{step.detail}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <div className="mt-4">
+              <Link href="/signup" className="inline-flex rounded-xl border border-[#b3c8b6] bg-white px-5 py-3 font-black text-[#174f47] hover:bg-[#f6faf7]">
+                أنشئ حسابًا لاستكشاف أدوات المتابعة
               </Link>
             </div>
           </div>
