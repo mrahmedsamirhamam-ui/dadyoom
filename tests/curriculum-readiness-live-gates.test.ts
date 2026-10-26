@@ -41,6 +41,16 @@ describe("operational curriculum assessment readiness gate", () => {
     expect(drafts).not.toMatch(/correct_answer|question_attempts|student_lesson_progress/i);
     expect(drafts).toContain("DO NOT auto-publish");
   });
+  it("flags Bahrain imported table headers and generic body scaffolds as unverified", () => {
+    const section17 = audit.slice(audit.indexOf("-- 17. Bahrain imported-index quarantine"));
+    expect(section17).toContain("draft_index_candidates");
+    expect(section17).toContain("generic_scaffold_bodies");
+    expect(section17).toContain("extracted_toc_or_header_titles");
+    expect(section17).toContain("missing_verifiable_page_provenance");
+    expect(section17).toContain("l.status='draft' AND co.code='BH'");
+    expect(section17).toContain("Never auto-publish");
+    expect(section17).not.toMatch(/\b(?:INSERT|UPDATE|DELETE|ALTER|DROP|TRUNCATE|GRANT|REVOKE)\s+(?:INTO|ON|FROM|TABLE|public\.)/i);
+  });
   it("remains read only and never extracts personal rows, answers, or keys", () => {
     const plain=audit.replace(/--[^\n]*/g,"").replace(/'(?:''|[^'])*'/g,"''");
     expect(plain).not.toMatch(/\b(?:INSERT|DELETE|UPDATE|REVOKE|GRANT|CREATE|ALTER|DROP|TRUNCATE)\b/i);
