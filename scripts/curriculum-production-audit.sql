@@ -542,3 +542,62 @@ FROM titles LEFT JOIN records ON
  translate(regexp_replace(lower(titles.official_title),'[ًٌٍَُِّْـ]','','g'),
  'أإآى','اااي'),'[^ء-ي]','','g'),'ا+','ا','g')||'%'
 GROUP BY titles.number,titles.official_title ORDER BY titles.number;
+
+-- 21. Grade-6 Bahrain fourteen reading title candidates (2026-27 Plan1).
+-- SOURCE-ONLY candidate matching from the Ministry plan, NOT approved textbook
+-- text. Published lessons often have "القراءة", page numbers and poem notes
+-- in their title. Normalized exact equality can falsely flag ALL titles absent.
+-- Preserve grade, term, published status, digit 1/2 for طريق الخير and special
+-- short title أبي (must match title PREFIX, not arbitrary substring).
+-- Keep this strictly SELECT-only; no learner names, scores or answer keys.
+-- Reviewed with read-only live aggregate on 2026-10-26: all 14 titles have
+-- candidate rows; طريق الخير (1) has 2 candidates, one generic introductory
+-- scaffold. These counts DO NOT certify official text quality or give
+-- permission to add, delete, merge, modify or automatically publish lessons.
+WITH source_reading(n,title) AS (VALUES
+ (1,'من هدي القرآن الكريم'),(2,'أبي'),
+ (3,'طريق الخير (1)'),(4,'طريق الخير (2)'),
+ (5,'بنت الخليج'),(6,'وسام على صدر الوطن'),
+ (7,'إلى ولدي'),(8,'التنمية الصناعية في البحرين'),
+ (9,'بلد الشراع'),(10,'الثروة المائية في البحرين'),
+ (11,'أوال مهد العلا'),(12,'ليتني كنت معهم'),
+ (13,'على عرفات'),(14,'الأمن العام')
+), plan_keys AS (
+ SELECT n,title,
+ regexp_replace(regexp_replace(translate(
+  regexp_replace(lower(title),'[ًٌٍَُِّْـ]','','g'),
+  'أإآى','اااي'),'[^ء-ي0-9]','','g'),'ا+','ا','g') AS key
+ FROM source_reading
+), published AS (
+ SELECT l.id,l.title,
+  COALESCE(questions.n,0) AS qcount,
+  COALESCE(activities.n,0) AS activitycount,
+  (l.content LIKE 'يتناول هذا الدرس موضوع%') AS generic_intro,
+  regexp_replace(regexp_replace(translate(
+    regexp_replace(lower(l.title),'[ًٌٍَُِّْـ]','','g'),
+    'أإآى','اااي'),'[^ء-ي0-9]','','g'),'ا+','ا','g') AS key
+ FROM public.lessons l
+ JOIN public.units u ON u.id=l.unit_id
+ JOIN public.grades g ON g.id=u.grade_id
+ JOIN public.curricula cu ON cu.id=g.curriculum_id
+ JOIN public.countries c ON c.id=cu.country_id
+ LEFT JOIN (SELECT lesson_id,COUNT(*) n FROM public.questions GROUP BY lesson_id) questions
+   ON questions.lesson_id=l.id
+ LEFT JOIN (SELECT lesson_id,COUNT(*) FILTER(WHERE is_published) n
+   FROM public.lesson_activities GROUP BY lesson_id) activities
+   ON activities.lesson_id=l.id
+ WHERE c.code='BH' AND g.grade_number=6 AND l.semester=1
+   AND l.status='published'
+)
+SELECT k.n,k.title,
+ COUNT(r.id) AS published_title_candidates,
+ COUNT(r.id) FILTER(WHERE r.qcount>=3) AS with_three_plus_questions,
+ COUNT(r.id) FILTER(WHERE r.activitycount>0) AS with_published_activities,
+ COUNT(r.id) FILTER(WHERE r.generic_intro) AS with_generic_intro,
+ CASE WHEN COUNT(r.id)=0 THEN 'REQUIRES_MANUAL_TITLE_REVIEW'
+      WHEN COUNT(r.id)>1 THEN 'MULTIPLE_PUBLISHED_CANDIDATES_REVIEW'
+      ELSE 'ONE_PUBLISHED_CANDIDATE_REVIEW_TEXT' END AS review_status
+FROM plan_keys k LEFT JOIN published r ON
+ ((k.n=2 AND (r.title LIKE 'أبي:%' OR r.title LIKE 'أبي %'))
+  OR (k.n<>2 AND r.key LIKE '%'||k.key||'%'))
+GROUP BY k.n,k.title ORDER BY k.n;
