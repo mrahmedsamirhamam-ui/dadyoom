@@ -90,108 +90,91 @@ function buildDeck({
   vocabulary = [],
   instructions,
 }: Props): DeckSlide[] {
-  const sourceSlides = extractTeachingSlides(instructions);
+  const lessonTitle = text(title) || "درس العربية";
   const contentChunks = splitContent(content);
-
-  const teachingBodies = sourceSlides
+  const teachingBodies = extractTeachingSlides(instructions)
     .map((slide) => ({
       title: text(slide.title),
-      body: compact(text(slide.body), 380),
+      body: compact(text(slide.body), 240),
     }))
-    .filter((slide) => slide.title || slide.body);
+    .filter((slide) => slide.body.length > 0);
 
-  const fallbackBody =
-    contentChunks[0] ||
-    teachingBodies[0]?.body ||
-    text(summary) ||
-    "ابدأ الدرس خطوة بخطوة، واقرأ الأمثلة بهدوء.";
+  const slides: DeckSlide[] = [{
+    key: "cover",
+    kicker: "درس ضاديوم",
+    title: lessonTitle,
+    subtitle: text(summary) || "عرض لمحتوى الدرس المتاح في المنصة",
+    emblem: "ض",
+  }];
 
-  const secondBody =
-    teachingBodies[1]?.body ||
-    contentChunks[1] ||
-    teachingBodies[0]?.body ||
-    fallbackBody;
-
-  const thirdBody =
-    teachingBodies[2]?.body ||
-    contentChunks[2] ||
-    secondBody;
-
-  const practiceBody =
-    contentChunks.find((chunk) =>
-      /اقرأ|اكتب|تحد|تحدث|ردد|جرّب|صنّف|لاحظ/.test(chunk)
-    ) ||
-    "اقرأ المثال مرة أخرى، ثم طبّق الفكرة بنفسك.";
-
-  const lessonTitle = text(title) || "درس العربية";
-  const lessonSummary = text(summary) || fallbackBody;
-
-  return [
-    {
-      key: "cover",
-      kicker: "درس ضاديوم",
-      title: lessonTitle,
-      subtitle: lessonSummary,
-      emblem: "ض",
-    },
-    {
+  const actualObjectives = objectives.map(text).filter(Boolean).slice(0, 4);
+  if (actualObjectives.length > 0) {
+    slides.push({
       key: "objectives",
-      kicker: "هدفنا اليوم",
+      kicker: "أهداف مسجلة للدرس",
       title: "ماذا سنتعلم؟",
-      items:
-        objectives.length > 0
-          ? objectives.slice(0, 4)
-          : ["نفهم فكرة الدرس.", "نقرأ الأمثلة.", "نطبّق ما تعلمناه."],
+      items: actualObjectives,
       emblem: "✓",
-    },
-    {
-      key: "concept",
-      kicker: teachingBodies[0]?.title || "الفكرة الأساسية",
-      title: lessonTitle,
-      body: fallbackBody,
+    });
+  }
+
+  const sources = teachingBodies.length > 0
+    ? teachingBodies
+    : contentChunks.map((body, index) => ({
+        title: `جزء ${index + 1} من شرح الدرس`,
+        body: compact(body, 240),
+      }));
+  sources.slice(0, 10).forEach((source, index) => {
+    slides.push({
+      key: `explanation-${index}`,
+      kicker: source.title || "نقرأ ونفهم",
+      title: index === 0 ? "شرح الدرس" : `نتعلم خطوة بخطوة — ${index + 1}`,
+      body: source.body,
       emblem: "ف",
-    },
-    {
+    });
+  });
+
+  if (vocabulary.length > 0) {
+    slides.push({
       key: "vocabulary",
-      kicker: "كلمات الدرس",
-      title: "نتعرّف الكلمات",
-      words: vocabulary.slice(0, 5),
-      body:
-        vocabulary.length === 0
-          ? secondBody
-          : undefined,
+      kicker: "مفردات مسجلة",
+      title: "كلمات ومعانٍ",
+      words: vocabulary.filter((entry) => text(entry.word) && text(entry.meaning)).slice(0, 5),
       emblem: "ك",
-    },
-    {
-      key: "learn",
-      kicker: teachingBodies[1]?.title || "نتعلم معًا",
-      title: "ركّز معي",
-      body: secondBody,
-      emblem: "ض",
-    },
-    {
-      key: "example",
-      kicker: teachingBodies[2]?.title || "مثال واضح",
-      title: "اقرأ ولاحظ",
-      body: thirdBody,
-      emblem: "م",
-    },
-    {
+    });
+  }
+
+  const task = contentChunks.find((chunk) =>
+    /اقرأ|اكتب|حدّد|تحدث|ردّد|جرّب|صنّف|لاحظ/u.test(chunk)
+  );
+  if (task) {
+    slides.push({
       key: "practice",
-      kicker: "تطبيق سريع",
+      kicker: "تطبيق موجود في المحتوى",
       title: "جرّب بنفسك",
-      body: practiceBody,
+      body: compact(task, 240),
       emblem: "✎",
-    },
-    {
+    });
+  }
+
+  if (slides.length === 1) {
+    slides.push({
+      key: "needs-review",
+      kicker: "تنبيه جودة المحتوى",
+      title: "هذا الدرس يحتاج استكمالًا",
+      body: "لا تتوفر مادة شرح أو أهداف أو مفردات كافية لبناء عرض تعليمي متكامل. راجع محتوى الدرس مع المعلم.",
+      emblem: "!",
+    });
+  } else {
+    slides.push({
       key: "finish",
-      kicker: "أحسنت",
-      title: "أنت الآن جاهز",
-      subtitle: lessonSummary,
-      body: "بعد انتهاء العرض، أكمل أسئلة ضاديوم التفاعلية الأصلية الخاصة بالدرس.",
-      emblem: "★",
-    },
-  ];
+      kicker: "متابعة التعلّم",
+      title: "تحقق من فهمك",
+      body: "انتقل إلى أنشطة الدرس وأسئلته المتاحة. هذا العرض مساعد للتعلّم ولا يثبت وحده اكتمال المنهج أو إتقان المهارة.",
+      emblem: "✓",
+    });
+  }
+  return slides;
 }
 
 export default function LessonLearningSlides(props: Props) {
