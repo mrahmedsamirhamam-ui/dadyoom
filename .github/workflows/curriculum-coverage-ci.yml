@@ -225,6 +225,7 @@ on:
       - 'tests/bahrain-g6-2026-grammar-coverage.test.ts'
       - 'tests/bahrain-g6-2026-spelling-coverage.test.ts'
       - 'tests/bahrain-g6-2026-writing-workshops.test.ts'
+      - 'tests/bahrain-g6-2026-original-listening.test.ts'
       - 'scripts/validate-original-curriculum-drafts.mjs'
       - 'tests/original-curriculum-drafts.test.ts'
       - 'package.json'
@@ -289,6 +290,8 @@ jobs:
         run: npx vitest run tests/bahrain-g6-2026-spelling-coverage.test.ts
       - name: Verify six Grade-6 source-aligned writing workshops and human-only rubrics
         run: npx vitest run tests/bahrain-g6-2026-writing-workshops.test.ts
+      - name: Verify three Grade-6 original listening texts, twelve questions and official audio quarantine
+        run: npx vitest run tests/bahrain-g6-2026-original-listening.test.ts
       - name: Validate unpublished original lesson drafts without writing
         run: npm run curriculum:drafts:verify
       - name: Exercise draft quality and no-publication safety gates
