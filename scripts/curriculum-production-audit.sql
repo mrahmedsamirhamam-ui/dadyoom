@@ -509,3 +509,36 @@ WHERE co.code='BH' AND l.status='published'
  AND l.content LIKE 'يتناول هذا الدرس موضوع%'
 GROUP BY co.code,g.grade_number,l.semester
 ORDER BY g.grade_number,l.semester NULLS LAST;
+
+-- 20. Bahrain Grade-5 source-title reconciliation (source-only, read-only).
+-- Reference: Ministry Arabic first-term 2026/27, Plan1.pdf pages 22–24.
+-- IMPORTANT: PDF extracted titles such as "كُنَّا يداا واحدةا" and
+-- "معاا في حب وطننا البحرين" have repeated OCR alefs. Normalize Arabic
+-- vowel marks, tatweel, hamza-alef and runs of alef before a *candidate*
+-- lookup, rather than wrongly declaring an already published lesson missing.
+-- A matched published title is NOT proof of verified textbook content; multiple
+-- candidates require teacher/editor duplicate assessment before any mutation.
+WITH titles (number,official_title) AS (VALUES
+ (1,'وبالوالدين إحسانا'), (2,'معلمنا الأول'), (3,'كنا يدا واحدة'),
+ (4,'برايل في كنف أسرته'), (5,'جدتي'), (6,'الصديق وقت الضيق'),
+ (7,'اعتذار صديق'), (8,'كيف صرنا أصدقاء'), (9,'دعوة إلى الإخاء'),
+ (10,'معا في حب وطننا البحرين'), (11,'البحرين تتكلم'),
+ (12,'هتاف العقول'), (13,'رمز الحضارة')
+), records AS (
+ SELECT l.id, regexp_replace(regexp_replace(
+   translate(regexp_replace(lower(l.title),'[ًٌٍَُِّْـ]','','g'),
+   'أإآى','اااي'),'[^ء-ي]','','g'),'ا+','ا','g') AS key
+ FROM public.lessons l
+ JOIN public.units u ON u.id=l.unit_id
+ JOIN public.grades g ON g.id=u.grade_id
+ JOIN public.curricula c ON c.id=g.curriculum_id
+ JOIN public.countries co ON co.id=c.country_id
+ WHERE co.code='BH' AND g.grade_number=5 AND l.semester=1 AND l.status='published'
+)
+SELECT titles.number,titles.official_title,
+ COUNT(records.id) AS published_title_candidates
+FROM titles LEFT JOIN records ON
+ records.key LIKE '%'||regexp_replace(regexp_replace(
+ translate(regexp_replace(lower(titles.official_title),'[ًٌٍَُِّْـ]','','g'),
+ 'أإآى','اااي'),'[^ء-ي]','','g'),'ا+','ا','g')||'%'
+GROUP BY titles.number,titles.official_title ORDER BY titles.number;
