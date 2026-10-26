@@ -89,6 +89,22 @@ describe("Bahrain Grade 2 2026-27 semester-1 original reading curriculum pack", 
       t.textbookTextVerified === false)).toBe(true);
   });
 
+  it("rejects misleading OCR headers and padded generic import bodies before any publication", () => {
+    const copy = JSON.parse(JSON.stringify(pack));
+    copy.units[0].lessons[0].title = "(الوحدة) عنوان الدرس ورقمه الكتاب الصفحة";
+    copy.units[0].lessons[1].content = [
+      "يتناول هذا الدرس موضوع «الدرس الثاني».",
+      "اقرأ وناقش النص مع معلمك ثم أجب.",
+      "أهداف إضافية ومعلومات تكرارية ".repeat(60),
+    ].join(" ");
+    const result = validateCurriculumPack(copy);
+    expect(result.ok).toBe(false);
+    expect(result.errors.some((e: string) =>
+      e.includes("imported table-header title is not a verified lesson"))).toBe(true);
+    expect(result.errors.some((e: string) =>
+      e.includes("generic OCR lesson scaffold is not instructional content"))).toBe(true);
+  });
+
   it("cannot publish without a separate textbook-alignment and editorial signoff", () => {
     expect(pack.rights.contentOwner).toBe("dadyoom");
     expect(pack.rights.verified).toBe(true); // original authored material rights
