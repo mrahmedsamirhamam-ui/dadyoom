@@ -70,8 +70,8 @@ describe("All-22-country curriculum health report remains read-only",()=>{
     expect(sql).toContain("source_content_status");
     expect(sql).toContain("official_content_scope");
     expect(sql).toContain("co.code");
-    const executable = sql.replace(/--[^\\n]*/g,"");
-    expect(executable).not.toMatch(/\\b(?:INSERT|UPDATE|DELETE|ALTER|DROP|TRUNCATE|GRANT|REVOKE|CREATE)\\s+(?:INTO|FROM|ON|TABLE|VIEW|public\\.)/i);
+    const executable = sql.replace(/--[^\n]*/g,"");
+    expect(executable).not.toMatch(/\b(?:INSERT|UPDATE|DELETE|ALTER|DROP|TRUNCATE|GRANT|REVOKE|CREATE)\s+(?:INTO|FROM|ON|TABLE|VIEW|public\.)/i);
     expect(sql).not.toMatch(/correct_answer|lesson_activity_attempts|user_id|student_id/i);
   });
 });
