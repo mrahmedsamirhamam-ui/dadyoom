@@ -92,6 +92,23 @@ export async function GET(
       instructions: data.instructions,
     };
 
+    // Include only published activity instructions visible to the signed-in
+    // user. Never load answer keys into a student's exported presentation.
+    const { data: activityRows } = await supabase
+      .from("lesson_activities")
+      .select("instructions,title")
+      .eq("lesson_id", id)
+      .eq("is_published", true)
+      .limit(5);
+    const actualTasks = (activityRows ?? [])
+      .map((row) => typeof row.instructions === "string" && row.instructions.trim()
+        ? row.instructions : row.title)
+      .filter((value): value is string => typeof value === "string" && value.trim().length > 0);
+    lesson.instructions = [
+      ...(Array.isArray(lesson.instructions) ? lesson.instructions : []),
+      ...actualTasks,
+    ];
+
     // Build from stored lesson evidence on each request. Do not use old
     // cached AI decks that may contain generic or unsupported explanations.
     const deck = buildEvidenceDeck(lesson);
