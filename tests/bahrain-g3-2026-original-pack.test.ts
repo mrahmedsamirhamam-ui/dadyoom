@@ -80,6 +80,45 @@ describe("Bahrain 2026–27 grade-three original reading companion lessons", () 
     expect(keys).toEqual({ a: 16, b: 16, c: 16 });
   });
 
+  it("includes three teacher-read original listening supplements with source evidence but no claimed official audio", () => {
+    const draft = JSON.parse(readFileSync(resolve(process.cwd(),
+      "data/curriculum-drafts/bh-g3-s1-original-listening-practice.json"), "utf8"));
+    const officialListening = index.listeningLessons.filter((s: { grade: number }) => s.grade === 3);
+    expect(officialListening).toHaveLength(3);
+    expect(draft.academicYear).toBe("2026-2027");
+    expect(draft.grade).toBe(3);
+    expect(draft.semester).toBe(1);
+    expect(draft.source.url).toBe(pack.rights.sourceUrl);
+    expect(draft.source.sha256).toBe(index.sourceDocuments[0].sha256);
+    expect(draft.source.sourceTitleOnly).toBe(true);
+    expect(draft.rights.publicationApproved).toBe(false);
+    expect(draft.rights.officialAudioImported).toBe(false);
+    expect(draft.rights.officialTextbookTranscriptVerified).toBe(false);
+    expect(draft.activities).toHaveLength(3);
+    const positions = { a: 0, b: 0, c: 0 };
+    for (const [n, item] of draft.activities.entries()) {
+      expect(item.officialTopic).toBe(officialListening[n].title);
+      expect(item.sourcePlanPdfPage).toBe(officialListening[n].sourcePdfPage);
+      expect(item.status).toBe("original_teacher_read_aloud_draft_not_official_audio");
+      expect(item.recordingPresent).toBe(false);
+      expect(item.audioTranscriptVerified).toBe(false);
+      expect(item.publicationApproved).toBe(false);
+      expect(item.originalTeacherScript.length).toBeGreaterThanOrEqual(400);
+      expect(item.teachingNotes.firstListening).toContain("يقرأ المعلم");
+      expect(item.teachingNotes.differentiation).toContain("للمتقدم");
+      expect(item.questions).toHaveLength(4);
+      for (const question of item.questions) {
+        expect(question.options.map((o: { id: string }) => o.id))
+          .toEqual(["a","b","c"]);
+        expect(question.options.some((o: { id: string }) =>
+          o.id === question.correctAnswer)).toBe(true);
+        expect(question.explanation.length).toBeGreaterThan(60);
+        positions[question.correctAnswer as keyof typeof positions]++;
+      }
+    }
+    expect(positions).toEqual({ a: 4, b: 4, c: 4 });
+  });
+
   it("does not publish, auto-merge or modify the 12 matching existing published lessons", () => {
     expect(pack.rights.contentOwner).toBe("dadyoom");
     expect(pack.rights.verified).toBe(true); // authorial rights, not ministry text review
