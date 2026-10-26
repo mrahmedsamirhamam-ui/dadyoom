@@ -428,3 +428,47 @@ JOIN public.countries co ON co.id=c.country_id
 WHERE l.status='draft' AND co.code='BH'
 GROUP BY co.code,g.grade_number,l.semester
 ORDER BY g.grade_number,l.semester NULLS LAST;
+
+
+-- 18. Bahrain grade-two reconciliation: compare the 12 real reading titles
+-- from Ministry 2026-27 Plan1 with published lessons before any new import.
+-- This is conservative normalized-substring candidate matching, NOT proof
+-- of textbook text identity or permission to overwrite existing lessons.
+-- Count only metadata; never access student attempts or correct-answer keys.
+-- Arabic tatweel and vowel marks MUST be removed before matching: titles
+-- like "الـمصوّر الصّغير" otherwise look falsely absent.
+WITH official(lesson_number,official_title) AS (VALUES
+ (1,'صديقتي مريم'), (2,'بالروح أفديها'), (3,'سالم مريض'),
+ (4,'تعاون النمل'), (5,'المصور الصغير'), (6,'دراجتي'),
+ (7,'جولة في محمية محمد بن زايد الطبيعية'), (8,'الطائرة الورقية'),
+ (9,'في عيادة العيون'), (10,'نظافتي'),
+ (11,'الرياضة غيرت حياتي'), (12,'الغذاء الصحي')
+), records AS (
+ SELECT l.id,l.title,l.status, length(coalesce(l.content,'')) AS content_chars,
+        regexp_replace(regexp_replace(lower(l.title),
+          '[ًٌٍَُِّْـ]','','g'),'[^ء-ي]','','g') AS title_key,
+        coalesce(q.n,0) AS question_count, coalesce(a.n,0) AS activity_count
+ FROM public.lessons l
+ JOIN public.units u ON u.id=l.unit_id
+ JOIN public.grades g ON g.id=u.grade_id
+ JOIN public.curricula cur ON cur.id=g.curriculum_id
+ JOIN public.countries co ON co.id=cur.country_id
+ LEFT JOIN (SELECT lesson_id,count(*) n FROM public.questions GROUP BY lesson_id) q
+   ON q.lesson_id=l.id
+ LEFT JOIN (SELECT lesson_id,count(*) FILTER(WHERE is_published) n
+   FROM public.lesson_activities GROUP BY lesson_id) a ON a.lesson_id=l.id
+ WHERE co.code='BH' AND g.grade_number=2
+   AND l.semester=1 AND l.status='published'
+)
+SELECT o.lesson_number,o.official_title,
+ count(r.id) AS published_title_candidates,
+ count(r.id) FILTER(WHERE r.question_count>=3) AS with_three_plus_questions,
+ count(r.id) FILTER(WHERE r.activity_count>0) AS with_published_activities,
+ max(r.content_chars) AS longest_existing_body,
+ CASE WHEN count(r.id)=0 THEN 'NO_TITLE_CANDIDATE_REVIEW'
+      WHEN count(r.id)>1 THEN 'MULTIPLE_PUBLISHED_RECORDS_REVIEW_DUPLICATES'
+      ELSE 'ONE_TITLE_CANDIDATE_REVIEW_CONTENT' END AS reconciliation_status
+FROM official o LEFT JOIN records r ON r.title_key LIKE '%' ||
+ regexp_replace(regexp_replace(lower(o.official_title),
+   '[ًٌٍَُِّْـ]','','g'),'[^ء-ي]','','g') || '%'
+GROUP BY o.lesson_number,o.official_title ORDER BY o.lesson_number;
