@@ -74,7 +74,7 @@ function passages(value: string | null): string[] {
     }
     if (remaining.length >= 24) parts.push(remaining);
   }
-  return [...new Set(parts)].slice(0, 20);
+  return [...new Set(parts)].slice(0, 90);
 }
 
 function actualActivity(value: unknown): string | null {
@@ -109,7 +109,7 @@ export function buildEvidenceDeck(lesson: GroundedLesson): EvidenceDeck | null {
   if (summary) {
     slides.push({kind: "concept", title: "مدخل إلى الدرس", callout: summary.slice(0, 320)});
   }
-  for (let i = 0; i < Math.min(lines.length, 18); i += 3) {
+  for (let i = 0; i < lines.length; i += 3) {
     slides.push({
       kind: "concept",
       title: i === 0 ? "نقرأ الشرح ونفهمه" : `شرح الدرس — الجزء ${i / 3 + 1}`,
