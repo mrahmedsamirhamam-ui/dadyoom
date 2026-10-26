@@ -601,3 +601,75 @@ FROM plan_keys k LEFT JOIN published r ON
  ((k.n=2 AND (r.title LIKE 'أبي:%' OR r.title LIKE 'أبي %'))
   OR (k.n<>2 AND r.key LIKE '%'||k.key||'%'))
 GROUP BY k.n,k.title ORDER BY k.n;
+
+-- 22. Bahrain Grade-7 official reading reconciliation and assessment gaps.
+-- Reference: Ministry 2026/27 Plan1.pdf pages 30-32. Source titles ONLY.
+-- Exact official reading items may have descriptions after "القراءة:":
+-- e.g. "القراءة: المخترع (دراسة القصيدة كاملة)"; do not declare a
+-- falsely absent lesson. Restrict by the reading prefix BEFORE matching
+-- normalized official key, especially short "البحر" vs "البحرين".
+-- The string "القراءة" ends with taa marbuta ة, NOT haa ه: never
+-- hard-code a broken normalised prefix like "القراءه".
+-- Keep this report SELECT-only. One candidate and >=3 stored questions is
+-- structural evidence, NOT verified copyrighted Ministry text or quality.
+WITH official_reading(n,title) AS (VALUES
+ (1,'من الهدي القرآني'),(2,'لماذا نقرأ'),(3,'التربية المكتبية'),
+ (4,'أمير البحرين في عهد الرسول'),(5,'بلادي'),(6,'المخترع'),
+ (7,'القدس عربية'),(8,'الحرية'),(9,'ابن ماجد بحار الخليج الأكبر'),
+ (10,'البحر'),(11,'الأزهار')
+), official_keys AS (
+ SELECT n,title,regexp_replace(regexp_replace(translate(
+  regexp_replace(lower(title),'[ًٌٍَُِّْـ]','','g'),
+  'أإآى','اااي'),'[^ء-ي0-9]','','g'),'ا+','ا','g') AS key
+ FROM official_reading
+), reading_rows AS (
+ SELECT l.id,COALESCE(q.n,0) AS qcount,COALESCE(a.n,0) AS activities,
+ regexp_replace(regexp_replace(translate(
+  regexp_replace(lower(l.title),'[ًٌٍَُِّْـ]','','g'),
+  'أإآى','اااي'),'[^ء-ي0-9]','','g'),'ا+','ا','g') AS key
+ FROM public.lessons l
+ JOIN public.units u ON u.id=l.unit_id
+ JOIN public.grades g ON g.id=u.grade_id
+ JOIN public.curricula cu ON cu.id=g.curriculum_id
+ JOIN public.countries co ON co.id=cu.country_id
+ LEFT JOIN (SELECT lesson_id,COUNT(*) n FROM public.questions GROUP BY lesson_id) q
+   ON q.lesson_id=l.id
+ LEFT JOIN (SELECT lesson_id,COUNT(*) FILTER(WHERE is_published) n
+   FROM public.lesson_activities GROUP BY lesson_id) a ON a.lesson_id=l.id
+ WHERE co.code='BH' AND g.grade_number=7 AND l.semester=1
+   AND l.status='published' AND l.title LIKE 'القراءة:%'
+)
+SELECT k.n,k.title,
+ COUNT(r.id) AS published_title_candidates,
+ COUNT(r.id) FILTER(WHERE r.qcount>=3) AS with_three_plus_questions,
+ COUNT(r.id) FILTER(WHERE r.activities>0) AS with_published_activities,
+ CASE WHEN COUNT(r.id)=0 THEN 'REVIEW_TITLE_PREFIX_AND_OCR'
+      WHEN COUNT(r.id)>1 THEN 'MULTIPLE_PUBLISHED_CANDIDATES_REVIEW'
+      ELSE 'ONE_PUBLISHED_CANDIDATE_REVIEW_TEXT' END AS review_status
+FROM official_keys k LEFT JOIN reading_rows r
+ ON r.key LIKE 'القراءة'||k.key||'%'
+GROUP BY k.n,k.title ORDER BY k.n;
+
+-- 23. Bahrain Grade-7 first-term assessment coverage by status.
+-- A lesson with only one stored question must not be reported as having
+-- sufficient graded assessment. This aggregate does not inspect answers,
+-- students, notes, attempts, or teacher data.
+WITH q AS (SELECT lesson_id,COUNT(*) n FROM public.questions GROUP BY lesson_id),
+a AS (SELECT lesson_id,COUNT(*) FILTER(WHERE is_published) n
+      FROM public.lesson_activities GROUP BY lesson_id)
+SELECT l.status,COUNT(*) AS lesson_records,
+ COUNT(*) FILTER(WHERE COALESCE(l.content,'') LIKE 'يتناول هذا الدرس موضوع%')
+   AS generic_opening,
+ COUNT(*) FILTER(WHERE COALESCE(q.n,0)>=3) AS with_three_plus_questions,
+ COUNT(*) FILTER(WHERE COALESCE(q.n,0) BETWEEN 1 AND 2) AS with_one_or_two_questions,
+ COUNT(*) FILTER(WHERE COALESCE(q.n,0)=0) AS without_stored_questions,
+ COUNT(*) FILTER(WHERE COALESCE(a.n,0)>0) AS with_published_activities
+FROM public.lessons l
+JOIN public.units u ON u.id=l.unit_id
+JOIN public.grades g ON g.id=u.grade_id
+JOIN public.curricula cu ON cu.id=g.curriculum_id
+JOIN public.countries co ON co.id=cu.country_id
+LEFT JOIN q ON q.lesson_id=l.id
+LEFT JOIN a ON a.lesson_id=l.id
+WHERE co.code='BH' AND g.grade_number=7 AND l.semester=1
+GROUP BY l.status ORDER BY l.status;
