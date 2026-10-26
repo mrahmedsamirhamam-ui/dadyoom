@@ -83,6 +83,23 @@ describe("operational curriculum assessment readiness gate", () => {
     );
   });
 
+  it("reconciles all thirteen Grade-5 reading titles without false misses from duplicated OCR alefs", () => {
+    const g5 = audit.slice(audit.indexOf("-- 20. Bahrain Grade-5 source-title reconciliation"));
+    expect(g5).toContain("published_title_candidates");
+    expect(g5).toContain("g.grade_number=5");
+    expect(g5).toContain("l.status='published'");
+    expect(g5).toContain("كنا يدا واحدة");
+    expect(g5).toContain("معا في حب وطننا البحرين");
+    expect(g5).toContain("'ا+','ا','g'");
+    expect(g5).toContain("PDF extracted titles");
+    expect(g5).toContain("NOT proof of verified textbook content");
+    expect((g5.match(/\(\d+,'/g) || []).length).toBe(13);
+    expect(g5).not.toMatch(/student_lesson_progress|question_attempts|correct_answer/);
+    expect(g5.replace(/--[^\n]*/g, "")).not.toMatch(
+      /\b(?:INSERT|UPDATE|DELETE|ALTER|DROP|GRANT|REVOKE|TRUNCATE)\b/i,
+    );
+  });
+
   it("remains read only and never extracts personal rows, answers, or keys", () => {
     const plain=audit.replace(/--[^\n]*/g,"").replace(/'(?:''|[^'])*'/g,"''");
     expect(plain).not.toMatch(/\b(?:INSERT|DELETE|UPDATE|REVOKE|GRANT|CREATE|ALTER|DROP|TRUNCATE)\b/i);
