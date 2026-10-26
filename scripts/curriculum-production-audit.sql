@@ -472,3 +472,40 @@ FROM official o LEFT JOIN records r ON r.title_key LIKE '%' ||
  regexp_replace(regexp_replace(lower(o.official_title),
    '[ًٌٍَُِّْـ]','','g'),'[^ء-ي]','','g') || '%'
 GROUP BY o.lesson_number,o.official_title ORDER BY o.lesson_number;
+
+-- 19. Bahrain PUBLISHED scaffold quality queue — not just unpublished drafts.
+-- A published flag, source URL or stored exercise does NOT certify that a
+-- student-facing lesson contains authored instructional content or matches
+-- a current Ministry textbook. This identifies only one known boilerplate
+-- fingerprint and does not claim to detect every weak published lesson.
+-- Read-only aggregate: do not select private answers, students or attempt rows.
+-- No automatic deletion, hiding, grade modification or republishing.
+WITH stored_questions AS (
+ SELECT lesson_id, COUNT(*) AS n FROM public.questions GROUP BY lesson_id
+), published_activities AS (
+ SELECT lesson_id, COUNT(*) FILTER(WHERE is_published IS TRUE) AS n
+ FROM public.lesson_activities GROUP BY lesson_id
+)
+SELECT co.code AS country_code, g.grade_number, l.semester,
+ COUNT(*) AS published_generic_scaffold_candidates,
+ COUNT(*) FILTER(WHERE COALESCE(q.n,0)>=3) AS scaffold_with_three_plus_questions,
+ COUNT(*) FILTER(WHERE COALESCE(a.n,0)>0) AS scaffold_with_published_activities,
+ COUNT(*) FILTER(WHERE NULLIF(BTRIM(COALESCE(l.source_pdf_url,'')),'') IS NOT NULL)
+   AS scaffold_with_source_url_not_proof,
+ COUNT(*) FILTER(WHERE l.official_content_scope IS NULL)
+   AS scaffold_without_official_scope,
+ COUNT(*) FILTER(WHERE l.title ~
+  '(عنوان الدرس|اسم الكتاب|الصف:|^القراءة|^الدّرس|ورقمه)')
+   AS scaffold_with_index_style_title,
+ MAX(LENGTH(COALESCE(l.content,''))) AS longest_scaffold_body
+FROM public.lessons l
+JOIN public.units u ON u.id=l.unit_id
+JOIN public.grades g ON g.id=u.grade_id
+JOIN public.curricula cur ON cur.id=g.curriculum_id
+JOIN public.countries co ON co.id=cur.country_id
+LEFT JOIN stored_questions q ON q.lesson_id=l.id
+LEFT JOIN published_activities a ON a.lesson_id=l.id
+WHERE co.code='BH' AND l.status='published'
+ AND l.content LIKE 'يتناول هذا الدرس موضوع%'
+GROUP BY co.code,g.grade_number,l.semester
+ORDER BY g.grade_number,l.semester NULLS LAST;
