@@ -7,7 +7,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { SITE_DESCRIPTION } from "@/lib/site";
 import { isBookCatalogReference } from "@/lib/curriculum/book-catalog-reference";
-import { publicLessonActivityPrompts, publicLessonSlideInstructions, hasUnreviewedCurriculumSource } from "@/lib/curriculum/public-lesson-instructions";
+import { publicLessonActivityPrompts, publicLessonSlideInstructions, hasUnreviewedCurriculumSource, publicLessonVocabulary } from "@/lib/curriculum/public-lesson-instructions";
 import {
   getLessonPageBundle,
 } from "@/features/lessons/queries/getLessonPageBundle";
@@ -229,29 +229,34 @@ export default async function LessonPage({
         )
       : [];
 
-  const vocabulary: VocabularyItem[] =
+  const embeddedVocabulary: VocabularyItem[] =
     Array.isArray(lesson.vocabulary)
       ? lesson.vocabulary.filter(
-          (
-            item: unknown
-          ): item is VocabularyItem => {
-            if (
-              typeof item !== "object" ||
-              item === null
-            ) {
-              return false;
-            }
-
-            const value =
-              item as Partial<VocabularyItem>;
-
-            return (
-              typeof value.word === "string" &&
-              typeof value.meaning === "string"
-            );
-          }
+          (item: unknown): item is VocabularyItem =>
+            typeof item === "object" && item !== null &&
+            typeof (item as Partial<VocabularyItem>).word === "string" &&
+            typeof (item as Partial<VocabularyItem>).meaning === "string"
         )
       : [];
+
+  // The canonical `lessons.vocabulary` JSON and RLS-protected
+  // `lesson_vocabulary` table are two existing storage paths. A lesson
+  // may have no embedded words but already contain reviewed linked words.
+  // A learner's own RLS connection may read the latter without service-role.
+  let vocabulary = publicLessonVocabulary(embeddedVocabulary, []);
+  if (vocabulary.length === 0 && user) {
+    const reader = await createClient();
+    const { data: linkedWords, error: wordError } = await reader
+      .from("lesson_vocabulary")
+      .select("word,meaning")
+      .eq("lesson_id", lesson.id)
+      .order("display_order", { ascending: true })
+      .limit(50);
+    if (!wordError) {
+      vocabulary = publicLessonVocabulary([], linkedWords);
+    }
+    // No privilege escalation or dummy/generated dictionary if RLS denies.
+  }
 
   // Imported records can carry structured learner activities alongside private
   // assessment answer objects. Parse only safe teaching fields, never raw JSON.

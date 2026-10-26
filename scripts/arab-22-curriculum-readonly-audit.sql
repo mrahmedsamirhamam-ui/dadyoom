@@ -127,3 +127,23 @@ ORDER BY CASE WHEN status='published' AND questions+activities<3 THEN 0
               WHEN status='published' AND short_content THEN 2 ELSE 3 END,
          code,grade,title
 LIMIT 500;
+
+-- 6. Missing inline vocabulary vs. already-stored linked vocabulary.
+-- RLS-bound page reader may recover the linked words for signed-in learners,
+-- but it must NOT generate/deduplicate database rows or elevate privileges.
+SELECT co.code AS country_code,
+  count(*) FILTER (WHERE l.vocabulary='[]'::jsonb) AS embedded_vocabulary_missing,
+  count(*) FILTER (
+    WHERE l.vocabulary='[]'::jsonb
+      AND EXISTS (SELECT 1 FROM public.lesson_vocabulary v WHERE v.lesson_id=l.id)
+  ) AS existing_relational_vocabulary_recoverable,
+  count(*) FILTER (
+    WHERE l.vocabulary='[]'::jsonb
+      AND NOT EXISTS (SELECT 1 FROM public.lesson_vocabulary v WHERE v.lesson_id=l.id)
+  ) AS vocabulary_authoring_review_required
+FROM public.countries co
+JOIN public.curricula cu ON cu.country_id=co.id
+JOIN public.grades gr ON gr.curriculum_id=cu.id
+JOIN public.units un ON un.grade_id=gr.id
+JOIN public.lessons l ON l.unit_id=un.id
+GROUP BY co.code ORDER BY co.code;

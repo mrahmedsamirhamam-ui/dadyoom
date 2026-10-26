@@ -5,6 +5,7 @@ import {
   publicLessonActivityPrompts,
   publicLessonSlideInstructions,
   hasUnreviewedCurriculumSource,
+  publicLessonVocabulary,
 } from "../lib/curriculum/public-lesson-instructions";
 
 describe("Public original lesson activities for every Arab curriculum", () => {
@@ -50,6 +51,22 @@ describe("Public original lesson activities for every Arab curriculum", () => {
     expect(rows[0].level).toBe("");
     expect(JSON.stringify(rows)).not.toContain("hidden");
   });
+  it("recovers 295 already-stored RLS-visible vocabulary lists without exposing nested answer fields",()=>{
+    const restored=publicLessonVocabulary([],[
+      {word:"تعاون",meaning:"مساعدة الآخرين",correctAnswer:"private-key"},
+      {word:"تعاون",meaning:"duplicate"},
+      {word:"كتاب",meaning:"مجموعة أوراق نافعة",answer:{key:"private-key"}},
+      {word:"الإجابة الصحيحة: ب",meaning:"السر"},
+      {word:"فارغ",meaning:null},
+    ]);
+    expect(restored).toEqual([
+      {word:"تعاون",meaning:"مساعدة الآخرين"},
+      {word:"كتاب",meaning:"مجموعة أوراق نافعة"},
+    ]);
+    expect(JSON.stringify(restored)).not.toContain("private-key");
+    expect(publicLessonVocabulary([{word:"قلم",meaning:"أداة كتابة"}],[{word:"hidden",meaning:"wrong"}]))
+      .toEqual([{word:"قلم",meaning:"أداة كتابة"}]);
+  });
   it("shows full published lesson content in safe escaped React text and passes slide allowlist only", () => {
     const page=readFileSync(resolve(process.cwd(),"app/lessons/[id]/page.tsx"),"utf8");
     expect(page).toContain("publicLessonActivityPrompts(lesson.instructions)");
@@ -58,6 +75,10 @@ describe("Public original lesson activities for every Arab curriculum", () => {
     expect(page).not.toContain("instructions={lesson.instructions}");
     expect(page).toContain("whitespace-pre-wrap");
     expect(page).toContain("{lesson.content}");
+    expect(page).toContain('.from("lesson_vocabulary")');
+    expect(page).toContain('.eq("lesson_id", lesson.id)');
+    expect(page).toContain('if (vocabulary.length === 0 && user)');
+
     expect(page).not.toContain("dangerouslySetInnerHTML");
   });
 });

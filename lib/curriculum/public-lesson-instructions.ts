@@ -100,3 +100,27 @@ export function hasUnreviewedCurriculumSource(input: unknown): boolean {
         section.source_publication_ready === false);
   });
 }
+
+/** Compose only visible word+meaning fields, never nested private metadata. */
+export function publicLessonVocabulary(
+  embedded: unknown,
+  relational: unknown,
+): Array<{ word: string; meaning: string }> {
+  const preferred = Array.isArray(embedded) && embedded.length > 0 ? embedded : relational;
+  if (!Array.isArray(preferred)) return [];
+  const words: Array<{ word: string; meaning: string }> = [];
+  const seen = new Set<string>();
+  for (const raw of preferred) {
+    const entry = object(raw);
+    if (!entry) continue;
+    const word = visible(entry.word, 90);
+    const meaning = visible(entry.meaning, 300);
+    if (!word || !meaning) continue;
+    const key = word.replace(/\s+/g, " ").toLocaleLowerCase("ar");
+    if (seen.has(key)) continue;
+    seen.add(key);
+    words.push({ word, meaning });
+    if (words.length >= 50) break;
+  }
+  return words;
+}
