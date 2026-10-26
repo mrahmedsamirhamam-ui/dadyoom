@@ -632,7 +632,23 @@ export async function POST(
       task === "slides" &&
       !body.refresh
     ) {
-      const grounded = fallbackDeck(lesson);
+      const { data: activityRows } = await supabase
+        .from("lesson_activities")
+        .select("instructions,title")
+        .eq("lesson_id", lessonId)
+        .eq("is_published", true)
+        .limit(5);
+      const actualTasks = (activityRows ?? [])
+        .map((row) => typeof row.instructions === "string" && row.instructions.trim()
+          ? row.instructions : row.title)
+        .filter((value): value is string => typeof value === "string" && value.trim().length > 0);
+      const grounded = fallbackDeck({
+        ...lesson,
+        instructions: [
+          ...(Array.isArray(lesson.instructions) ? lesson.instructions : []),
+          ...actualTasks,
+        ],
+      });
       if (!grounded) {
         return NextResponse.json(
           { error: "الدرس يحتاج استكمال شرحه قبل إنشاء عرض تعليمي موثوق." },
