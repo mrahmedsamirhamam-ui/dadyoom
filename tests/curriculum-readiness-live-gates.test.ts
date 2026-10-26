@@ -51,6 +51,21 @@ describe("operational curriculum assessment readiness gate", () => {
     expect(section17).toContain("Never auto-publish");
     expect(section17).not.toMatch(/\b(?:INSERT|UPDATE|DELETE|ALTER|DROP|TRUNCATE|GRANT|REVOKE)\s+(?:INTO|ON|FROM|TABLE|public\.)/i);
   });
+  it("detects existing official grade-two titles before import without inspecting children", () => {
+    const part18 = audit.slice(audit.indexOf("-- 18. Bahrain grade-two reconciliation"));
+    expect(part18).toContain("MULTIPLE_PUBLISHED_RECORDS_REVIEW_DUPLICATES");
+    expect(part18).toContain("ONE_TITLE_CANDIDATE_REVIEW_CONTENT");
+    expect(part18).toContain("NO_TITLE_CANDIDATE_REVIEW");
+    expect(part18).toContain("published_title_candidates");
+    expect(part18).toContain("with_three_plus_questions");
+    expect(part18).toContain("with_published_activities");
+    expect(part18).toContain("g.grade_number=2");
+    expect(part18).toContain("l.status='published'");
+    expect(part18).toContain("Arabic tatweel and vowel marks MUST be removed");
+    expect(part18).not.toContain("question_attempts");
+    expect(part18).not.toContain("student_lesson_progress");
+    expect(part18).not.toMatch(/\b(?:INSERT|UPDATE|DELETE|DROP|TRUNCATE|GRANT|REVOKE)\s+(?:INTO|ON|FROM|TABLE)\b/i);
+  });
   it("remains read only and never extracts personal rows, answers, or keys", () => {
     const plain=audit.replace(/--[^\n]*/g,"").replace(/'(?:''|[^'])*'/g,"''");
     expect(plain).not.toMatch(/\b(?:INSERT|DELETE|UPDATE|REVOKE|GRANT|CREATE|ALTER|DROP|TRUNCATE)\b/i);
