@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
+import { buildDadyoomTeachingDeck } from "@/lib/lesson/dadyoom-teaching-journey";
 
 type VocabularyItem = {
   word: string;
@@ -91,90 +92,41 @@ function buildDeck({
   instructions,
 }: Props): DeckSlide[] {
   const lessonTitle = text(title) || "درس العربية";
-  const contentChunks = splitContent(content);
-  const teachingBodies = extractTeachingSlides(instructions)
-    .map((slide) => ({
-      title: text(slide.title),
-      body: compact(text(slide.body), 240),
-    }))
-    .filter((slide) => slide.body.length > 0);
-
-  const slides: DeckSlide[] = [{
-    key: "cover",
-    kicker: "درس ضاديوم",
+  const deck = buildDadyoomTeachingDeck({
+    id: "inline-preview",
     title: lessonTitle,
-    subtitle: text(summary) || "عرض لمحتوى الدرس المتاح في المنصة",
-    emblem: "ض",
-  }];
-
-  const actualObjectives = objectives.map(text).filter(Boolean).slice(0, 4);
-  if (actualObjectives.length > 0) {
-    slides.push({
-      key: "objectives",
-      kicker: "أهداف مسجلة للدرس",
-      title: "ماذا سنتعلم؟",
-      items: actualObjectives,
-      emblem: "✓",
-    });
-  }
-
-  const sources = teachingBodies.length > 0
-    ? teachingBodies
-    : contentChunks.map((body, index) => ({
-        title: `جزء ${index + 1} من شرح الدرس`,
-        body: compact(body, 240),
-      }));
-  sources.slice(0, 10).forEach((source, index) => {
-    slides.push({
-      key: `explanation-${index}`,
-      kicker: source.title || "نقرأ ونفهم",
-      title: index === 0 ? "شرح الدرس" : `نتعلم خطوة بخطوة — ${index + 1}`,
-      body: source.body,
-      emblem: "ف",
-    });
+    summary: summary ?? null,
+    content: content ?? null,
+    learning_objectives: objectives,
+    vocabulary,
+    instructions,
   });
-
-  if (vocabulary.length > 0) {
-    slides.push({
-      key: "vocabulary",
-      kicker: "مفردات مسجلة",
-      title: "كلمات ومعانٍ",
-      words: vocabulary.filter((entry) => text(entry.word) && text(entry.meaning)).slice(0, 5),
-      emblem: "ك",
-    });
-  }
-
-  const task = contentChunks.find((chunk) =>
-    /اقرأ|اكتب|حدّد|تحدث|ردّد|جرّب|صنّف|لاحظ/u.test(chunk)
-  );
-  if (task) {
-    slides.push({
-      key: "practice",
-      kicker: "تطبيق موجود في المحتوى",
-      title: "جرّب بنفسك",
-      body: compact(task, 240),
-      emblem: "✎",
-    });
-  }
-
-  if (slides.length === 1) {
-    slides.push({
+  if (!deck) {
+    return [{
       key: "needs-review",
       kicker: "تنبيه جودة المحتوى",
       title: "هذا الدرس يحتاج استكمالًا",
-      body: "لا تتوفر مادة شرح أو أهداف أو مفردات كافية لبناء عرض تعليمي متكامل. راجع محتوى الدرس مع المعلم.",
+      body: "لا تتوفر معلومات كافية لبناء عرض تعليمي موثوق من بيانات الدرس الحالية.",
       emblem: "!",
-    });
-  } else {
-    slides.push({
-      key: "finish",
-      kicker: "متابعة التعلّم",
-      title: "تحقق من فهمك",
-      body: "انتقل إلى أنشطة الدرس وأسئلته المتاحة. هذا العرض مساعد للتعلّم ولا يثبت وحده اكتمال المنهج أو إتقان المهارة.",
-      emblem: "✓",
-    });
+    }];
   }
-  return slides;
+  const symbols: Record<string, string> = {
+    cover: "ض",
+    objectives: "✓",
+    concept: "ف",
+    activity: "✎",
+    review: "★",
+    compare: "↔",
+  };
+  return deck.slides.map((item, index): DeckSlide => ({
+    key: `${item.kind ?? "step"}-${index}`,
+    kicker: item.kind === "activity" ? "تعلّم نشط" : item.kind === "objectives" ? "هدف وتعلّم" : item.kind === "review" ? "تأمل وتقويم" : "ضاديوم",
+    title: item.title,
+    subtitle: item.subtitle,
+    ...(item.bullets?.length ? { items: item.bullets.slice(0, 4) } : {}),
+    body: [item.callout, item.question].filter(Boolean).join("\n\n") || undefined,
+    emblem: symbols[item.kind ?? "concept"] ?? "ض",
+  }));
 }
 
 export default function LessonLearningSlides(props: Props) {
