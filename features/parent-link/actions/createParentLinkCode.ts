@@ -29,38 +29,29 @@ export async function createParentLinkCodeAction() {
     redirect("/login");
   }
 
+  // Enforce the same role boundary as the student dashboard.
+  const { data: profile, error: profileError } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
+    .maybeSingle();
+  const role = profile?.role?.trim().toLowerCase();
+  if (profileError || role !== "student") {
+    redirect("/login");
+  }
+
   const db =
     supabase as unknown as SupabaseClient;
 
-  const {
-    data,
-    error,
-  } = await db.rpc(
+  const { data, error } = await db.rpc(
     "create_parent_link_code"
   );
 
-  if (error) {
-    redirect(
-      "/student?parentLinkError=" +
-        encodeURIComponent(
-          error.message
-        )
-    );
+  if (error || !data || (Array.isArray(data) && data.length === 0)) {
+    // Do not expose database details or the one-time code in the URL.
+    redirect("/student?parentLinkError=failed");
   }
 
-  const result =
-    Array.isArray(data)
-      ? data[0]
-      : data;
-
   revalidatePath("/student");
-
-  redirect(
-    "/student?parentLinkSuccess=" +
-      encodeURIComponent(
-        `تم إنشاء كود الربط: ${
-          result?.code ?? ""
-        }`
-      )
-  );
+  redirect("/student?parentLinkSuccess=created");
 }
