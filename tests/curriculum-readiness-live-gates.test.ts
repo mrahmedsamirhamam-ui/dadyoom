@@ -104,7 +104,10 @@ describe("operational curriculum assessment readiness gate", () => {
   });
 
   it("reconciles all 14 existing Grade-6 reading titles without misclassifying prefix titles or changing lessons", () => {
-    const grade6 = audit.slice(audit.indexOf("-- 21. Grade-6 Bahrain fourteen reading title candidates"));
+    const grade6 = audit.slice(
+      audit.indexOf("-- 21. Grade-6 Bahrain fourteen reading title candidates"),
+      audit.indexOf("-- 22. Bahrain Grade-7 official reading reconciliation"),
+    );
     expect(grade6).toContain("published_title_candidates");
     expect(grade6).toContain("with_three_plus_questions");
     expect(grade6).toContain("with_published_activities");
@@ -122,6 +125,45 @@ describe("operational curriculum assessment readiness gate", () => {
     expect((grade6.match(/\(\d+,'/g) || []).length).toBe(14);
     expect(grade6).not.toMatch(/student_lesson_progress|question_attempts|correct_answer/i);
     expect(grade6.replace(/--[^\n]*/g, "")).not.toMatch(
+      /\b(?:INSERT|UPDATE|DELETE|ALTER|DROP|GRANT|REVOKE|TRUNCATE)\b/i,
+    );
+  });
+
+  it("reconciles eleven Grade-7 reading topics without naive substring collisions or invented learner work", () => {
+    const g7 = audit.slice(
+      audit.indexOf("-- 22. Bahrain Grade-7 official reading reconciliation"),
+      audit.indexOf("-- 23. Bahrain Grade-7 first-term assessment coverage"),
+    );
+    expect(g7).toContain("published_title_candidates");
+    expect(g7).toContain("with_three_plus_questions");
+    expect(g7).toContain("with_published_activities");
+    expect(g7).toContain("MULTIPLE_PUBLISHED_CANDIDATES_REVIEW");
+    expect(g7).toContain("ONE_PUBLISHED_CANDIDATE_REVIEW_TEXT");
+    expect(g7).toContain("g.grade_number=7");
+    expect(g7).toContain("l.semester=1");
+    expect(g7).toContain("l.title LIKE 'القراءة:%'");
+    expect(g7).toContain("r.key LIKE 'القراءة'||k.key||'%'");
+    expect(g7).toContain("taa marbuta");
+    expect(g7).toContain("NOT verified copyrighted Ministry text");
+    expect((g7.match(/\(\d+,'/g) || []).length).toBe(11);
+    expect(g7).not.toMatch(/student_lesson_progress|question_attempts|correct_answer/i);
+    expect(g7.replace(/--[^\n]*/g, "")).not.toMatch(
+      /\b(?:INSERT|UPDATE|DELETE|ALTER|DROP|GRANT|REVOKE|TRUNCATE)\b/i,
+    );
+  });
+
+  it("tracks all Grade-7 published question-depth gaps using only aggregate metadata", () => {
+    const g7 = audit.slice(audit.indexOf("-- 23. Bahrain Grade-7 first-term assessment coverage"));
+    expect(g7).toContain("lesson_records");
+    expect(g7).toContain("generic_opening");
+    expect(g7).toContain("with_three_plus_questions");
+    expect(g7).toContain("with_one_or_two_questions");
+    expect(g7).toContain("without_stored_questions");
+    expect(g7).toContain("with_published_activities");
+    expect(g7).toContain("g.grade_number=7");
+    expect(g7).toContain("l.semester=1");
+    expect(g7).not.toMatch(/student_id|student_lesson_progress|correct_answer|question_attempts/);
+    expect(g7.replace(/--[^\n]*/g, "")).not.toMatch(
       /\b(?:INSERT|UPDATE|DELETE|ALTER|DROP|GRANT|REVOKE|TRUNCATE)\b/i,
     );
   });
