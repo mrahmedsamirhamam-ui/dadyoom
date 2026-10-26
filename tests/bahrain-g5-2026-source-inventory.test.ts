@@ -24,8 +24,8 @@ describe("Grade-five Bahrain official plan source index is not mistaken for a fu
     expect(sourceIndex.review.publicationApproved).toBe(false);
     expect(sourceIndex.review.poetryAndReligiousPrimaryTextVerified).toBe(false);
     expect(sourceIndex.review.officialAudioImported).toBe(false);
-    expect(sourceIndex.review.writingSkillsCoverage).toBe("requires_additional_mapping");
-    expect(sourceIndex.review.handwritingCoverage).toBe("requires_additional_mapping");
+    expect(sourceIndex.review.writingSkillsCoverage).toBe("source_indexed_not_book_verified");
+    expect(sourceIndex.review.handwritingCoverage).toBe("source_indexed_not_book_verified");
   });
 
   it("captures 13 reading, 3 listening, 9 grammar, 9 spelling components separately", () => {
@@ -33,6 +33,8 @@ describe("Grade-five Bahrain official plan source index is not mistaken for a fu
     expect(sourceIndex.listeningTopics).toHaveLength(3);
     expect(sourceIndex.grammarTopics).toHaveLength(9);
     expect(sourceIndex.spellingTopics).toHaveLength(9);
+    expect(sourceIndex.writingTopics).toHaveLength(12);
+    expect(sourceIndex.handwritingTopics).toHaveLength(12);
     const reading = sourceIndex.readingTopics;
     expect(reading.map((l: { number: number }) => l.number))
       .toEqual(Array.from({ length: 13 }, (_, i) => i + 1));
@@ -54,12 +56,42 @@ describe("Grade-five Bahrain official plan source index is not mistaken for a fu
       .toContain("همزتا الوصل والقطع");
   });
 
+  it("preserves authentic grade-five writing and handwriting progressions as source-only entries", () => {
+    const writing = sourceIndex.writingTopics;
+    const handwriting = sourceIndex.handwritingTopics;
+    expect(writing.map((x: { title: string }) => x.title)).toEqual([
+      "المعطى والمطلوب في الموضوع الإنشائي (1)",
+      "المعطى والمطلوب في الموضوع الإنشائي (2)",
+      "البنية الثلاثية في النص السردي (1)",
+      "البنية الثلاثية في النص السردي (2)",
+      "البنية الثلاثية في النص السردي (3)",
+      "التقرير (1)", "التقرير (2)",
+      "الرسالة الشخصية (1)", "الرسالة الشخصية (2)",
+      "إثراء النص السردي بالوصف (1)", "إثراء النص السردي بالوصف (2)",
+      "إثراء النص السردي بالوصف (3)",
+    ]);
+    expect(handwriting.map((x: { title: string }) => x.title)).toEqual([
+      "حرف (أ)", "حرف (ب)", "حرف (ت)", "حرف (ث)", "حرف (ج)",
+      "حرفا (ح) و(خ)", "حرف (د)", "حرف (ذ)", "حرف (ر)", "حرف (ز)",
+      "حرفا (س) و(ش)", "حرف (ص)",
+    ]);
+    expect(writing[0].textbookPageStart).toBe(9);
+    expect(writing[11].textbookPageEnd).toBe(76);
+    expect(handwriting[0].textbookPageStart).toBe(6);
+    expect(handwriting[11].textbookPageEnd).toBe(33);
+    expect([...writing, ...handwriting].every((x: {
+      officialTextbookActivityVerified: boolean; sourceReview: string
+    }) => x.officialTextbookActivityVerified === false &&
+      x.sourceReview === "official_pdf_text_extracted_visual_verification_pending")).toBe(true);
+  });
+
   it("prohibits repackaging source-only titles as published lessons or official audio", () => {
     const components = [
       ...sourceIndex.readingTopics, ...sourceIndex.listeningTopics,
       ...sourceIndex.grammarTopics, ...sourceIndex.spellingTopics,
+      ...sourceIndex.writingTopics, ...sourceIndex.handwritingTopics,
     ];
-    expect(components).toHaveLength(34);
+    expect(components).toHaveLength(58);
     for (const component of components) {
       expect(component.title.length).toBeGreaterThan(3);
       expect(component.textbookPageStart).toBeGreaterThan(0);
