@@ -215,6 +215,9 @@ on:
       - 'tests/bahrain-g4-2026-original-listening.test.ts'
       - 'tests/bahrain-g5-2026-source-inventory.test.ts'
       - 'tests/bahrain-g5-2026-grammar-practice.test.ts'
+      - 'tests/bahrain-g5-2026-spelling-practice.test.ts'
+      - 'tests/bahrain-g5-2026-writing-workshops.test.ts'
+      - 'tests/bahrain-g5-2026-handwriting-practice.test.ts'
       - 'scripts/validate-original-curriculum-drafts.mjs'
       - 'tests/original-curriculum-drafts.test.ts'
       - 'package.json'
@@ -259,6 +262,12 @@ jobs:
         run: npx vitest run tests/bahrain-g5-2026-source-inventory.test.ts
       - name: Verify Grade-5 source-linked original grammar instruction and 36 keyed questions
         run: npx vitest run tests/bahrain-g5-2026-grammar-practice.test.ts
+      - name: Verify Grade-5 authored spelling explanations and 36 answer keys
+        run: npx vitest run tests/bahrain-g5-2026-spelling-practice.test.ts
+      - name: Verify Grade-5 original writing and human-only evaluation rubrics
+        run: npx vitest run tests/bahrain-g5-2026-writing-workshops.test.ts
+      - name: Verify Grade-5 original handwriting exercises and unverified stroke template gates
+        run: npx vitest run tests/bahrain-g5-2026-handwriting-practice.test.ts
       - name: Validate unpublished original lesson drafts without writing
         run: npm run curriculum:drafts:verify
       - name: Exercise draft quality and no-publication safety gates
