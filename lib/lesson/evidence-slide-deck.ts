@@ -80,7 +80,13 @@ function passages(value: string | null): string[] {
 function actualActivity(value: unknown): string | null {
   if (!Array.isArray(value)) return null;
   return value
-    .map((entry) => typeof entry === "string" ? clean(entry) : "")
+    .map((entry) => {
+      if (typeof entry === "string") return clean(entry);
+      if (!entry || typeof entry !== "object" || Array.isArray(entry)) return "";
+      const item = entry as Record<string, unknown>;
+      if (item.kind === "slides") return "";
+      return clean(item.instructions) || clean(item.prompt) || clean(item.body);
+    })
     .find((entry) => entry.length >= 18) ?? null;
 }
 
