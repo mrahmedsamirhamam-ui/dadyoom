@@ -70,6 +70,25 @@ describe("Bahrain Grade 2 2026-27 semester-1 original reading curriculum pack", 
     expect(Object.values(positions).every(n => n >= 10 && n <= 20)).toBe(true);
   });
 
+  it("separately inventories all ten official review-workbook topics without fabricating textbook lessons", () => {
+    const review = JSON.parse(readFileSync(resolve(process.cwd(),
+      "data/curriculum-sources/bh-g2-s1-2026-review-index.json"), "utf8"));
+    expect(review.academicYear).toBe("2026-2027");
+    expect(review.source.url).toBe(pack.rights.sourceUrl);
+    expect(review.source.textbook).toContain("وحدة المراجعة");
+    expect(review.source.pageNumbersReferTo).toContain("NOT PDF pages");
+    expect(review.status).toBe("source_index_only_not_student_lessons");
+    expect(review.publicationApproved).toBe(false);
+    expect(review.topics).toHaveLength(10);
+    expect(review.topics.map((t: { number: number }) => t.number))
+      .toEqual(Array.from({ length: 10 }, (_, i) => i + 1));
+    expect(review.topics[0].pageStart).toBe(7);
+    expect(review.topics[9].pageEnd).toBe(60);
+    expect(review.topics.every((t: { status: string; textbookTextVerified: boolean }) =>
+      t.status === "source_index_only_not_student_lesson" &&
+      t.textbookTextVerified === false)).toBe(true);
+  });
+
   it("cannot publish without a separate textbook-alignment and editorial signoff", () => {
     expect(pack.rights.contentOwner).toBe("dadyoom");
     expect(pack.rights.verified).toBe(true); // original authored material rights
