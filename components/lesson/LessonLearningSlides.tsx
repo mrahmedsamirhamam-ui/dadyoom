@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
+import { buildDadyoomTeachingDeck } from "@/lib/lesson/dadyoom-teaching-journey";
 
 type VocabularyItem = {
   word: string;
@@ -90,108 +91,42 @@ function buildDeck({
   vocabulary = [],
   instructions,
 }: Props): DeckSlide[] {
-  const sourceSlides = extractTeachingSlides(instructions);
-  const contentChunks = splitContent(content);
-
-  const teachingBodies = sourceSlides
-    .map((slide) => ({
-      title: text(slide.title),
-      body: compact(text(slide.body), 380),
-    }))
-    .filter((slide) => slide.title || slide.body);
-
-  const fallbackBody =
-    contentChunks[0] ||
-    teachingBodies[0]?.body ||
-    text(summary) ||
-    "ابدأ الدرس خطوة بخطوة، واقرأ الأمثلة بهدوء.";
-
-  const secondBody =
-    teachingBodies[1]?.body ||
-    contentChunks[1] ||
-    teachingBodies[0]?.body ||
-    fallbackBody;
-
-  const thirdBody =
-    teachingBodies[2]?.body ||
-    contentChunks[2] ||
-    secondBody;
-
-  const practiceBody =
-    contentChunks.find((chunk) =>
-      /اقرأ|اكتب|تحد|تحدث|ردد|جرّب|صنّف|لاحظ/.test(chunk)
-    ) ||
-    "اقرأ المثال مرة أخرى، ثم طبّق الفكرة بنفسك.";
-
   const lessonTitle = text(title) || "درس العربية";
-  const lessonSummary = text(summary) || fallbackBody;
-
-  return [
-    {
-      key: "cover",
-      kicker: "درس ضاديوم",
-      title: lessonTitle,
-      subtitle: lessonSummary,
-      emblem: "ض",
-    },
-    {
-      key: "objectives",
-      kicker: "هدفنا اليوم",
-      title: "ماذا سنتعلم؟",
-      items:
-        objectives.length > 0
-          ? objectives.slice(0, 4)
-          : ["نفهم فكرة الدرس.", "نقرأ الأمثلة.", "نطبّق ما تعلمناه."],
-      emblem: "✓",
-    },
-    {
-      key: "concept",
-      kicker: teachingBodies[0]?.title || "الفكرة الأساسية",
-      title: lessonTitle,
-      body: fallbackBody,
-      emblem: "ف",
-    },
-    {
-      key: "vocabulary",
-      kicker: "كلمات الدرس",
-      title: "نتعرّف الكلمات",
-      words: vocabulary.slice(0, 5),
-      body:
-        vocabulary.length === 0
-          ? secondBody
-          : undefined,
-      emblem: "ك",
-    },
-    {
-      key: "learn",
-      kicker: teachingBodies[1]?.title || "نتعلم معًا",
-      title: "ركّز معي",
-      body: secondBody,
-      emblem: "ض",
-    },
-    {
-      key: "example",
-      kicker: teachingBodies[2]?.title || "مثال واضح",
-      title: "اقرأ ولاحظ",
-      body: thirdBody,
-      emblem: "م",
-    },
-    {
-      key: "practice",
-      kicker: "تطبيق سريع",
-      title: "جرّب بنفسك",
-      body: practiceBody,
-      emblem: "✎",
-    },
-    {
-      key: "finish",
-      kicker: "أحسنت",
-      title: "أنت الآن جاهز",
-      subtitle: lessonSummary,
-      body: "بعد انتهاء العرض، أكمل أسئلة ضاديوم التفاعلية الأصلية الخاصة بالدرس.",
-      emblem: "★",
-    },
-  ];
+  const deck = buildDadyoomTeachingDeck({
+    id: "inline-preview",
+    title: lessonTitle,
+    summary: summary ?? null,
+    content: content ?? null,
+    learning_objectives: objectives,
+    vocabulary,
+    instructions,
+  });
+  if (!deck) {
+    return [{
+      key: "needs-review",
+      kicker: "تنبيه جودة المحتوى",
+      title: "هذا الدرس يحتاج استكمالًا",
+      body: "لا تتوفر معلومات كافية لبناء عرض تعليمي موثوق من بيانات الدرس الحالية.",
+      emblem: "!",
+    }];
+  }
+  const symbols: Record<string, string> = {
+    cover: "ض",
+    objectives: "✓",
+    concept: "ف",
+    activity: "✎",
+    review: "★",
+    compare: "↔",
+  };
+  return deck.slides.map((item, index): DeckSlide => ({
+    key: `${item.kind ?? "step"}-${index}`,
+    kicker: item.kind === "activity" ? "تعلّم نشط" : item.kind === "objectives" ? "هدف وتعلّم" : item.kind === "review" ? "تأمل وتقويم" : "ضاديوم",
+    title: item.title,
+    subtitle: item.subtitle,
+    ...(item.bullets?.length ? { items: item.bullets.slice(0, 4) } : {}),
+    body: [item.callout, item.question].filter(Boolean).join("\n\n") || undefined,
+    emblem: symbols[item.kind ?? "concept"] ?? "ض",
+  }));
 }
 
 export default function LessonLearningSlides(props: Props) {

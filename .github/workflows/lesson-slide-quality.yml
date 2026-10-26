@@ -1,0 +1,35 @@
+name: Evidence-based lesson slides
+
+on:
+  pull_request:
+    paths:
+      - 'lib/lesson/evidence-slide-deck.ts'
+      - 'lib/lesson/dadyoom-teaching-journey.ts'
+      - 'app/api/lessons/**/pptx/route.ts'
+      - 'app/api/lessons/study/route.ts'
+      - 'components/lesson/LessonLearningSlides.tsx'
+      - 'tests/lesson-evidence-deck.test.ts'
+      - 'tests/dadyoom-teaching-journey.test.ts'
+      - '.github/workflows/lesson-slide-quality.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci --no-audit --no-fund
+      - run: npx vitest run tests/lesson-evidence-deck.test.ts tests/dadyoom-teaching-journey.test.ts
+      - run: npx tsc --noEmit
+      - run: npm run lint
+      - run: npm run build

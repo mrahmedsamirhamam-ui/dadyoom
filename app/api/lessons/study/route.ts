@@ -17,6 +17,8 @@ import {
   runAgentJson,
 } from "@/lib/ai/agents";
 
+import { buildDadyoomTeachingDeck } from "@/lib/lesson/dadyoom-teaching-journey";
+
 export const runtime = "nodejs";
 
 type Task =
@@ -62,6 +64,9 @@ type LessonRow = {
   title: string;
   summary: string | null;
   content: string | null;
+  learning_objectives?: unknown;
+  vocabulary?: unknown;
+  instructions?: unknown;
 };
 
 const SLIDE_PROMPT_VERSION =
@@ -83,140 +88,8 @@ function adminClient() {
   });
 }
 
-function cleanText(value: unknown) {
-  return String(value ?? "")
-    .replace(/[\r\t]+/gu, " ")
-    .replace(/\s+/gu, " ")
-    .trim();
-}
-
-function sourceSentences(
-  lesson: LessonRow,
-) {
-  const rows = [
-    lesson.summary ?? "",
-    lesson.content ?? "",
-  ]
-    .join("\n")
-    .split(/[.!؟!\n؛]+/u)
-    .map(cleanText)
-    .filter(
-      (item) =>
-        item.length >= 18 &&
-        item.length <= 180,
-    );
-
-  return [
-    ...new Set(rows),
-  ].slice(0, 24);
-}
-
-function fallbackDeck(
-  lesson: LessonRow,
-): Deck {
-  const source =
-    sourceSentences(lesson);
-
-  const rows = source.length
-    ? source
-    : [
-        `هذا العرض يراجع أهم أفكار درس ${lesson.title}.`,
-        "اقرأ الفكرة ثم حاول شرحها بأسلوبك.",
-        "اربط بين المفردات والمعنى العام للدرس.",
-        "راجع الأسئلة في النهاية لتقيس فهمك.",
-      ];
-
-  const slides: RichSlide[] = [
-    {
-      kind: "cover",
-      title: lesson.title,
-      subtitle:
-        "عرض ضاديوم للدرس • مبني على محتوى الدرس",
-      bullets: [],
-    },
-    {
-      kind: "objectives",
-      title: "ماذا سنتعلم؟",
-      bullets: [
-        "فهم الفكرة الرئيسية للدرس.",
-        "تفسير الكلمات والمعاني في السياق.",
-        "ربط الأفكار بالأمثلة والأسئلة.",
-        "مراجعة الفهم بأسلوب مختصر وواضح.",
-      ],
-    },
-    {
-      kind: "concept",
-      title: "الفكرة الأساسية",
-      callout:
-        cleanText(
-          lesson.summary ??
-            rows[0] ??
-            "",
-        ),
-      bullets:
-        rows.slice(0, 4),
-    },
-  ];
-
-  if (rows.length > 4) {
-    slides.push({
-      kind: "concept",
-      title: "نفهم أكثر",
-      bullets:
-        rows.slice(4, 8),
-    });
-  }
-
-  if (rows.length > 8) {
-    slides.push({
-      kind: "concept",
-      title: "أفكار مهمة",
-      bullets:
-        rows.slice(8, 12),
-    });
-  }
-
-  if (rows.length >= 6) {
-    slides.push({
-      kind: "compare",
-      title: "نقارن ونفهم",
-      leftTitle: "الفكرة",
-      leftItems:
-        rows.slice(0, 3),
-      rightTitle:
-        "ما يرتبط بها",
-      rightItems:
-        rows.slice(3, 6),
-      bullets: [],
-    });
-  }
-
-  slides.push(
-    {
-      kind: "activity",
-      title: "فكر وأجب",
-      question:
-        "ما أهم فكرة فهمتها من الدرس؟",
-      answer:
-        "اكتب إجابتك بأسلوبك ثم ارجع إلى الدرس للمراجعة.",
-      bullets:
-        rows.slice(0, 3),
-    },
-    {
-      kind: "review",
-      title: "مراجعة سريعة",
-      bullets: [
-        ...rows.slice(-4),
-        "أستطيع الآن تلخيص الدرس بأسلوبي.",
-      ],
-    },
-  );
-
-  return {
-    title: lesson.title,
-    slides:
-      slides.slice(0, 10),
-  };
+function fallbackDeck(lesson: LessonRow): Deck | null {
+  return buildDadyoomTeachingDeck(lesson);
 }
 
 function slidePrompt(
@@ -624,7 +497,7 @@ export async function POST(
       await supabase
         .from("lessons")
         .select(
-          "id,title,summary,content",
+          "id,title,summary,content,learning_objectives,vocabulary,instructions",
         )
         .eq(
           "id",
@@ -666,10 +539,11 @@ export async function POST(
           : null,
       content:
         data.content
-          ? String(
-              data.content,
-            )
+          ? String(data.content)
           : null,
+      learning_objectives: data.learning_objectives,
+      vocabulary: data.vocabulary,
+      instructions: data.instructions,
     };
 
     if (
@@ -705,6 +579,7 @@ export async function POST(
     if (
       db &&
       kind &&
+      task !== "slides" &&
       !body.refresh
     ) {
       const {
@@ -746,8 +621,7 @@ export async function POST(
               "cache",
             cached: true,
             coreLessonAsset:
-              task === "summary" ||
-              task === "slides",
+              task === "summary",
           },
         );
       }
@@ -757,43 +631,51 @@ export async function POST(
       task === "slides" &&
       !body.refresh
     ) {
-      after(async () => {
-        try {
-          await generateAndCacheCoreSlides(
-            lesson,
-          );
-        } catch (error) {
-          console.error(
-            "CORE_SLIDES_BACKGROUND_ENRICH_FAILED",
-            {
-              lessonId,
-              error:
-                error instanceof Error
-                  ? error.message
-                  : String(
-                      error,
-                    ),
-            },
-          );
-        }
+      const { data: activityRows } = await supabase
+        .from("lesson_activities")
+        .select("instructions,title")
+        .eq("lesson_id", lessonId)
+        .eq("is_published", true)
+        .limit(5);
+      const actualTasks = (activityRows ?? [])
+        .map((row) => typeof row.instructions === "string" && row.instructions.trim()
+          ? row.instructions : row.title)
+        .filter((value): value is string => typeof value === "string" && value.trim().length > 0);
+      const grounded = fallbackDeck({
+        ...lesson,
+        instructions: [
+          ...(Array.isArray(lesson.instructions) ? lesson.instructions : []),
+          ...actualTasks,
+        ],
       });
-
-      return NextResponse.json(
-        {
-          data:
-            fallbackDeck(
-              lesson,
-            ),
-          provider:
-            "dadyoom-instant",
-          model:
-            "source-grounded-v1",
-          cached: false,
-          coreLessonAsset: true,
-          enrichingInBackground:
-            true,
-        },
-      );
+      if (!grounded) {
+        return NextResponse.json(
+          { error: "الدرس يحتاج استكمال شرحه قبل إنشاء عرض تعليمي موثوق." },
+          { status: 422 },
+        );
+      }
+      // Zero-cost default. Optional background AI remains disabled unless
+      // the owner enables it explicitly; its cache is not used for core slides.
+      if (process.env.DADYOOM_SLIDE_AI_ENRICH === "1") {
+        after(async () => {
+          try {
+            await generateAndCacheCoreSlides(lesson);
+          } catch (error) {
+            console.error("CORE_SLIDES_BACKGROUND_ENRICH_FAILED", {
+              lessonId,
+              error: error instanceof Error ? error.message : String(error),
+            });
+          }
+        });
+      }
+      return NextResponse.json({
+        data: grounded,
+        provider: "dadyoom-lesson-data",
+        model: "evidence-deck-v2",
+        cached: false,
+        coreLessonAsset: true,
+        enrichingInBackground: process.env.DADYOOM_SLIDE_AI_ENRICH === "1",
+      });
     }
 
     const feature =
