@@ -11,6 +11,7 @@ const links = [
   { href: "/reading-challenge", label: "تحدي القراءة" },
   { href: "/dictionary", label: "قاموس السياق" },
   { href: "/ask", label: "اسأل ضاد" },
+  { href: "/research-academy", label: "البحث الأكاديمي" },
 ];
 
 function dashboardForRole(role?: string | null) {
