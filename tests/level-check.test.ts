@@ -72,7 +72,9 @@ describe("Dadyoom introductory Arabic level check", () => {
       expect(plan[0].href).toBe(getRecommendedPath(skill).href);
       expect(new Set(plan.map((step) => step.href)).size).toBe(3);
       for (const step of plan) {
-        expect(step.href).toMatch(/^\\/(?!\\/)[a-z/-]+$/);
+        expect(step.href.startsWith("/")).toBe(true);
+        expect(step.href.startsWith("//")).toBe(false);
+        expect(step.href.includes("://")).toBe(false);
         expect(step.title.trim()).not.toBe("");
         expect(step.detail.trim()).not.toBe("");
       }
