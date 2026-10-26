@@ -209,6 +209,7 @@ on:
       - 'data/curriculum-sources/bahrain-2026-s1-reading-title-audit.json'
       - 'data/curriculum-sources/bahrain-2026-s1-listening-quality-queue.json'
       - 'tests/bahrain-official-plan-index.test.ts'
+      - 'tests/bahrain-g2-2026-original-pack.test.ts'
       - 'scripts/validate-original-curriculum-drafts.mjs'
       - 'tests/original-curriculum-drafts.test.ts'
       - 'package.json'
@@ -241,6 +242,8 @@ jobs:
         run: npx vitest run tests/curriculum-import-questions.test.ts
       - name: Verify 7 official plan sources and 38 indexed grade-2-to-4 reading titles
         run: npx vitest run tests/bahrain-official-plan-index.test.ts
+      - name: Verify 2026–27 Bahrain Grade 2 full original reading pack and safe review gate
+        run: npx vitest run tests/bahrain-g2-2026-original-pack.test.ts
       - name: Validate unpublished original lesson drafts without writing
         run: npm run curriculum:drafts:verify
       - name: Exercise draft quality and no-publication safety gates
