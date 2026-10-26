@@ -49,7 +49,7 @@ describe("Bahrain G6 2026-27 official plan source inventory not mistaken for aut
     ];
     expect(entries).toHaveLength(49);
     for (const item of entries) {
-      expect(item.title.trim().length).toBeGreaterThan(3);
+      expect(item.title.trim().length).toBeGreaterThanOrEqual(3); // «أبي» is a real three-letter title
       expect(item.textbookPageStart).toBeGreaterThan(0);
       expect(item.textbookPageEnd).toBeGreaterThanOrEqual(item.textbookPageStart);
       expect(item.planPdfPage).toBeGreaterThanOrEqual(26);
