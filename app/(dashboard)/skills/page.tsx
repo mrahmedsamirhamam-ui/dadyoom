@@ -138,6 +138,21 @@ export default function SkillsPage() {
           )}
         </section>
 
+        <section className="rounded-[2rem] border border-[#dfcfad] bg-[#fff7e8] p-6 shadow-sm">
+          <div className="flex flex-wrap items-center justify-between gap-5">
+            <div className="max-w-2xl">
+              <p className="text-xs font-black text-[#a17425]">نشاط إثرائي في مهارات الحياة</p>
+              <h2 className="mt-2 text-2xl font-black text-[#123f39]">هرم ماسلو: احتياجات الإنسان والتعلّم</h2>
+              <p className="mt-2 text-base leading-8 text-[#6e6252]">
+                استكشف الاحتياجات الخمسة في مواقف مدرسية، وتدرّب على التعبير الكتابي واحترام احتياجات الآخرين. ليس مقياسًا نفسيًا أو درسًا رسميًا.
+              </p>
+            </div>
+            <Link href="/labs/maslow" className="rounded-full bg-[#123f39] px-6 py-3 text-sm font-black text-white transition hover:bg-[#1b5c51]">
+              استكشف الهرم التفاعلي
+            </Link>
+          </div>
+        </section>
+
         <section className="arabic-panel flex flex-wrap items-center justify-between gap-4 rounded-[2rem] border border-[#dfcfad] p-6">
           <div>
             <p className="text-xs font-black text-[#a17425]">
