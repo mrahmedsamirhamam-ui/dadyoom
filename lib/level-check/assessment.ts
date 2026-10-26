@@ -169,3 +169,40 @@ export function getRecommendedPath(skill: ArabicSkill) {
     case "spelling": return { href: "/skills/writing/practice", label: "تدرّب على الإملاء والكتابة" };
   }
 }
+
+
+export type GuidedLearningStep = Readonly<{
+  id: "practice" | "curriculum" | "review";
+  title: string;
+  detail: string;
+  href: string;
+}>;
+
+/**
+ * A session-only follow-up to the free level check.
+ * Links point to existing Dadyoom learning experiences, not to an accredited
+ * grade placement or an automatically saved student plan.
+ */
+export function getGuidedLearningPlan(skill: ArabicSkill): readonly GuidedLearningStep[] {
+  const first = getRecommendedPath(skill);
+  const details: Record<ArabicSkill, string> = {
+    reading: "اقرأ نصًا قصيرًا وحدد فكرته العامة والدليل من النص.",
+    vocabulary: "اكتشف معاني الكلمات واستخدم كل كلمة في جملة من إنشائك.",
+    grammar: "اختر قاعدة تناسب صفك، ثم جرّب تطبيقها في ثلاث جمل.",
+    spelling: "تدرّب على كتابة الكلمات وراجع مواضع الخطأ.",
+  };
+  const next = skill === "grammar"
+    ? { title: "اسأل ضاد عن القاعدة", detail: "اطلب مثالًا وتلميحًا جديدًا قبل الانتقال إلى التدريب التالي.", href: "/ask" }
+    : { title: "اربط التدريب بمنهجك", detail: "اختر الدولة والصف والدرس الفعلي قبل متابعة التعلم.", href: "/courses" };
+
+  return [
+    { id: "practice", title: first.label, detail: details[skill], href: first.href },
+    { id: "curriculum", ...next },
+    {
+      id: "review",
+      title: "راجع ما تعلّمته",
+      detail: "ارجع إلى الاختبار الاسترشادي عند الحاجة؛ إعادة الأسئلة نفسها لا تثبت تحسنًا معتمدًا.",
+      href: "/level-check",
+    },
+  ];
+}
