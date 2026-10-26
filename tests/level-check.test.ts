@@ -5,6 +5,7 @@ import {
   SKILL_LABELS,
   evaluateLevelCheck,
   getRecommendedPath,
+  getGuidedLearningPlan,
 } from "../lib/level-check/assessment";
 
 describe("Dadyoom introductory Arabic level check", () => {
@@ -61,5 +62,30 @@ describe("Dadyoom introductory Arabic level check", () => {
     const question = LEVEL_QUESTIONS[0];
     const result = evaluateLevelCheck({ [question.id]: -1 });
     expect(result.correct).toBe(0);
+  });
+
+  it("builds three safe in-app learning steps for every assessed skill", () => {
+    for (const skill of Object.keys(SKILL_LABELS) as (keyof typeof SKILL_LABELS)[]) {
+      const plan = getGuidedLearningPlan(skill);
+      expect(plan).toHaveLength(3);
+      expect(plan.map((step) => step.id)).toEqual(["practice", "curriculum", "review"]);
+      expect(plan[0].href).toBe(getRecommendedPath(skill).href);
+      expect(new Set(plan.map((step) => step.href)).size).toBe(3);
+      for (const step of plan) {
+        expect(step.href.startsWith("/")).toBe(true);
+        expect(step.href.startsWith("//")).toBe(false);
+        expect(step.href.includes("://")).toBe(false);
+        expect(step.title.trim()).not.toBe("");
+        expect(step.detail.trim()).not.toBe("");
+      }
+    }
+  });
+
+  it("guides grammar learners to a real explanation route rather than duplicating the curriculum link", () => {
+    const plan = getGuidedLearningPlan("grammar");
+    expect(plan[0].href).toBe("/courses");
+    expect(plan[1].href).toBe("/ask");
+    expect(plan[2].href).toBe("/level-check");
+    expect(plan[2].detail).toContain("لا تثبت تحسنًا معتمدًا");
   });
 });
