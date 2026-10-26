@@ -405,3 +405,26 @@ LEFT JOIN draft_published_activity_counts ac ON ac.lesson_id=l.id
 WHERE l.status='draft'
 GROUP BY co.code,g.grade_number,l.semester
 ORDER BY draft_records DESC,co.code,g.grade_number,l.semester NULLS LAST;
+
+
+-- 17. Bahrain imported-index quarantine: these are NOT verified textbook lessons.
+-- List only structural metadata for authoring. Never auto-publish placeholder
+-- titles, copied table headers or short generic bodies. Source-matching to
+-- official 2026-27 plans + textbook page proof must precede any replacement.
+SELECT co.code AS country_code,g.grade_number,l.semester,
+ COUNT(*) AS draft_index_candidates,
+ COUNT(*) FILTER(WHERE l.content LIKE 'يتناول هذا الدرس موضوع%')
+   AS generic_scaffold_bodies,
+ COUNT(*) FILTER(WHERE l.title ~
+   '(عنوان الدرس|اسم الكتاب|الصف:|^القراءة|^الدّرس|ورقمه|^\\))')
+   AS extracted_toc_or_header_titles,
+ COUNT(*) FILTER(WHERE l.source_pdf_url IS NULL OR l.source_page_start IS NULL)
+   AS missing_verifiable_page_provenance
+FROM public.lessons l
+JOIN public.units u ON u.id=l.unit_id
+JOIN public.grades g ON g.id=u.grade_id
+JOIN public.curricula c ON c.id=g.curriculum_id
+JOIN public.countries co ON co.id=c.country_id
+WHERE l.status='draft' AND co.code='BH'
+GROUP BY co.code,g.grade_number,l.semester
+ORDER BY g.grade_number,l.semester NULLS LAST;
