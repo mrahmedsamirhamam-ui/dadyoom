@@ -84,7 +84,10 @@ describe("operational curriculum assessment readiness gate", () => {
   });
 
   it("reconciles all thirteen Grade-5 reading titles without false misses from duplicated OCR alefs", () => {
-    const g5 = audit.slice(audit.indexOf("-- 20. Bahrain Grade-5 source-title reconciliation"));
+    const g5 = audit.slice(
+      audit.indexOf("-- 20. Bahrain Grade-5 source-title reconciliation"),
+      audit.indexOf("-- 21. Grade-6 Bahrain fourteen reading title candidates"),
+    );
     expect(g5).toContain("published_title_candidates");
     expect(g5).toContain("g.grade_number=5");
     expect(g5).toContain("l.status='published'");
@@ -97,6 +100,29 @@ describe("operational curriculum assessment readiness gate", () => {
     expect(g5).not.toMatch(/student_lesson_progress|question_attempts|correct_answer/);
     expect(g5.replace(/--[^\n]*/g, "")).not.toMatch(
       /\b(?:INSERT|UPDATE|DELETE|ALTER|DROP|GRANT|REVOKE|TRUNCATE)\b/i,
+    );
+  });
+
+  it("reconciles all 14 existing Grade-6 reading titles without misclassifying prefix titles or changing lessons", () => {
+    const grade6 = audit.slice(audit.indexOf("-- 21. Grade-6 Bahrain fourteen reading title candidates"));
+    expect(grade6).toContain("published_title_candidates");
+    expect(grade6).toContain("with_three_plus_questions");
+    expect(grade6).toContain("with_published_activities");
+    expect(grade6).toContain("with_generic_intro");
+    expect(grade6).toContain("MULTIPLE_PUBLISHED_CANDIDATES_REVIEW");
+    expect(grade6).toContain("ONE_PUBLISHED_CANDIDATE_REVIEW_TEXT");
+    expect(grade6).toContain("REQUIRES_MANUAL_TITLE_REVIEW");
+    expect(grade6).toContain("g.grade_number=6");
+    expect(grade6).toContain("l.semester=1");
+    expect(grade6).toContain("l.status='published'");
+    expect(grade6).toContain("r.title LIKE 'أبي:%'");
+    expect(grade6).toContain("طريق الخير (1)");
+    expect(grade6).toContain("طريق الخير (2)");
+    expect(grade6).toContain("NOT certify official text quality");
+    expect((grade6.match(/\\(\\d+,'/g) || []).length).toBe(14);
+    expect(grade6).not.toMatch(/student_lesson_progress|question_attempts|correct_answer/i);
+    expect(grade6.replace(/--[^\\n]*/g, "")).not.toMatch(
+      /\\b(?:INSERT|UPDATE|DELETE|ALTER|DROP|GRANT|REVOKE|TRUNCATE)\\b/i,
     );
   });
 
