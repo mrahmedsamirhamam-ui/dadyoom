@@ -47,6 +47,19 @@ describe("12 Grade-3 source-grounded reading enhancements remain teacher-review 
    }
    expect(keys).toEqual({a:16,b:16,c:16});
  });
+ it("reconciles 12 proposed enhancements against existing rows using SELECT only",()=>{
+   const sql=readFileSync(resolve(process.cwd(),"scripts/arab-22-curriculum-readonly-audit.sql"),"utf8");
+   const s=sql.slice(sql.indexOf("-- 10. Existing Grade-3"));
+   expect(s).toContain("MATCHED_FOR_TEACHER_REVIEW_NOT_FOR_AUTO_IMPORT");
+   expect(s).toContain("VOCABULARY_ALREADY_EXISTS");
+   expect(s).toContain("CLASSIFICATION_CHANGED");
+   for(const l of pack.lessons){
+     expect(s).toContain(l.existingLessonId);
+     expect(s).toContain(l.existingTitle);
+   }
+   const executable=s.replace(/--[^\n]*/g,"");
+   expect(executable).not.toMatch(/\b(?:INSERT|UPDATE|DELETE|ALTER|DROP|TRUNCATE|GRANT|REVOKE)\s+(?:INTO|FROM|TABLE|ON)\b/i);
+ });
  it("never treats original supplementary paragraphs as certified ministry material",()=>{
    expect(pack.rights).toEqual({authoredBy:"Dadyoom",sourceYearTextbookAlignment:"unverified",officialTextbookQuoted:false,publicationApproved:false,teacherReview:"pending"});
    expect(pack.importSafety).toMatchObject({mode:"review_only",linkExistingIdsOnly:true,noNewLessonRecords:true,noProductionWrites:true,noLearnerProgressMutation:true,noAutomaticFreeTextGrading:true,requireTeacherSignoff:true});

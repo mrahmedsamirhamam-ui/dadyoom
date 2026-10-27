@@ -241,3 +241,39 @@ SELECT lesson_id,expected_title,
       ELSE 'MATCHED_FOR_HUMAN_REVIEW_NOT_APPROVED_FOR_IMPORT'
  END AS result_status
 FROM lesson_state ORDER BY expected_title;
+
+-- 10. Existing Grade-3 second-term enrichment preconditions.
+-- READ ONLY: no publication, no student record or score writes, no official matching claim.
+WITH proposed(lesson_id,expected_title) AS (VALUES
+  ('358d0287-668c-4d61-b731-b7e9ae6e13a9','الدرس الأول: نداء الواجب (1)'),
+  ('d547f1ae-432e-4148-80c9-daf24453c1ba','الدرس التاسع: ذكريات من أيام الطفولة (1)'),
+  ('3e2691de-dcf4-4d0a-87d6-863d47e50bc6','الدرس الثالث: صباح الخير يا وطني'),
+  ('81f6cec0-b739-43c5-bae5-aa9fbb9d9818','الدرس الثامن: البلاستيك والصحة'),
+  ('e1e62bee-7373-46b7-8aa9-53023dc9c7e7','الدرس الثاني عشر: طفولة مبدعة'),
+  ('0affd0f0-5fa4-4a5a-9305-e97dbe94624b','الدرس الثاني: نداء الواجب (2)'),
+  ('da526b1e-ec9c-47d0-9a12-787d93e0f1a4','الدرس الحادي عشر: مرح الطفولة'),
+  ('cb508e2a-0999-4462-8a15-f2ba53322b99','الدرس الخامس: معًا نحفظ بيئتنا (1)'),
+  ('72edeb7b-4506-4b17-902c-573e46f0a6e3','الدرس الرابع: حرف خالدة'),
+  ('ab745f1f-3314-4210-a0f0-c44b998b9c98','الدرس السابع: شكوى الفراشة'),
+  ('aace1299-589d-4f24-9cc6-1c1849242019','الدرس السادس: معًا نحفظ بيئتنا (2)'),
+  ('0ab3e6ba-c3ea-4460-a659-70ee473a9216','الدرس العاشر: ذكريات من أيام الطفولة (2)')
+), actual AS (
+ SELECT p.lesson_id,p.expected_title,l.id actual_id,l.title actual_title,l.status,l.lesson_type,
+        c.code country_code,g.grade_number,l.semester,cu.academic_year,l.vocabulary,
+        EXISTS (SELECT 1 FROM public.lesson_vocabulary v WHERE v.lesson_id=l.id) AS linked_words_present
+ FROM proposed p LEFT JOIN public.lessons l ON l.id::text=p.lesson_id
+ LEFT JOIN public.units u ON u.id=l.unit_id
+ LEFT JOIN public.grades g ON g.id=u.grade_id
+ LEFT JOIN public.curricula cu ON cu.id=g.curriculum_id
+ LEFT JOIN public.countries c ON c.id=cu.country_id
+)
+SELECT lesson_id,expected_title,
+ CASE WHEN actual_id IS NULL THEN 'MISSING_LESSON_ID'
+      WHEN actual_title IS DISTINCT FROM expected_title THEN 'TITLE_CHANGED'
+      WHEN country_code IS DISTINCT FROM 'BH' OR grade_number IS DISTINCT FROM 3 OR semester IS DISTINCT FROM 2 THEN 'CLASSIFICATION_CHANGED'
+      WHEN academic_year IS DISTINCT FROM '2026-2027' THEN 'ACADEMIC_YEAR_CHANGED'
+      WHEN status IS DISTINCT FROM 'published' OR lesson_type IS DISTINCT FROM 'reading' THEN 'TYPE_OR_STATUS_CHANGED'
+      WHEN vocabulary IS DISTINCT FROM '[]'::jsonb OR linked_words_present THEN 'VOCABULARY_ALREADY_EXISTS'
+      ELSE 'MATCHED_FOR_TEACHER_REVIEW_NOT_FOR_AUTO_IMPORT'
+ END AS candidate_status
+FROM actual ORDER BY expected_title;
