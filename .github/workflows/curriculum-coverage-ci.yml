@@ -246,6 +246,8 @@ on:
       - 'tests/curriculum-review-pack-cross-grade-integrity.test.ts'
       - 'data/curriculum-drafts/bh-g6-s2-original-existing-reading-enhancements.json'
       - 'tests/bahrain-g6-existing-reading-enhancements.test.ts'
+      - 'data/curriculum-drafts/bh-g7-s2-original-existing-reading-enhancements.json'
+      - 'tests/bahrain-g7-existing-reading-enhancements.test.ts'
       - 'data/curriculum-sources/arab-22-curriculum-source-review.json'
       - 'scripts/arab-22-curriculum-readonly-audit.sql'
       - 'scripts/validate-original-curriculum-drafts.mjs'
@@ -340,6 +342,8 @@ jobs:
         run: npx vitest run tests/curriculum-review-pack-cross-grade-integrity.test.ts
       - name: Original Grade-6 second term reading vocabulary and critical-thinking review
         run: npx vitest run tests/bahrain-g6-existing-reading-enhancements.test.ts
+      - name: Original Bahrain Grade-7 semester-two reading vocabulary and analysis checks
+        run: npx vitest run tests/bahrain-g7-existing-reading-enhancements.test.ts
       - name: Validate unpublished original lesson drafts without writing
         run: npm run curriculum:drafts:verify
       - name: Exercise draft quality and no-publication safety gates

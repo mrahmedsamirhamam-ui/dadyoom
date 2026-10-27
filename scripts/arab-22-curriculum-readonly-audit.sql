@@ -391,3 +391,36 @@ SELECT lesson_id,expected_title,
  WHEN NOT source_matches THEN 'SOURCE_TEXT_CHANGED_REVIEW_QUESTIONS'
  ELSE 'MATCHED_FOR_TEACHER_REVIEW_NOT_IMPORT_APPROVED' END AS review_status
 FROM actual ORDER BY expected_title;
+
+-- 14. Grade-seven existing Dadyoom-original reading review; READ ONLY.
+-- Require identity, source passage and term match; no automatic publishing.
+WITH proposed(lesson_id,expected_title,source_excerpt) AS (VALUES
+ ('8271d3a5-25a7-4d1b-8a89-51041ebfb6d0','الأم','التعاون بين أفراد الأسرة يخفف الأعباء'),
+ ('226d5b3b-8bcc-43f2-bb67-8d6f46fa8b81','الأيدي الماهرة','المهارة تتطور بالدقة والممارسة'),
+ ('3be86aec-35cf-4cdd-85eb-25eb329a13dc','الشباب أمل الغد','سألن المشاركين عن اهتماماتهم ثم عدلن البرنامج'),
+ ('23fafc3e-d2b4-43b1-bc6f-2b503fadf16e','الفردوس الأخضر','عدم قطع الأزهار أو إزعاج الحيوانات الصغيرة'),
+ ('778ffe3f-8ae4-42d6-8fbc-10622812e861','المسيرة','حددت مسارًا آمنًا ونقاطًا للراحة'),
+ ('533e5b38-0d21-4461-9a04-e1961aa8b4fe','انتبه... التلوث يغزو بيتك','اقترح السؤال عن نقاط الجمع الآمن وتهوية الغرف'),
+ ('d522cae4-f3e4-44bf-b167-79202c268300','قالت لي جدتي','عرضت على جدتها ما فهمته، وشكرتها على مشاركتها للذكريات'),
+ ('ed4ddd14-d1b6-4382-b3af-5ce9b0511d1f','هذه أمنيتي','ثم تجربة العرض أمام صديقة')
+), live AS (
+ SELECT p.lesson_id,p.expected_title,p.source_excerpt,l.id actual_id,l.title actual_title,l.status,l.lesson_type,
+ c.code country_code,g.grade_number,l.semester,cu.academic_year,l.vocabulary,
+ position(p.source_excerpt in coalesce(l.content,''))>0 source_matches,
+ EXISTS(SELECT 1 FROM public.lesson_vocabulary v WHERE v.lesson_id=l.id) AS linked_vocabulary
+ FROM proposed p LEFT JOIN public.lessons l ON l.id::text=p.lesson_id
+ LEFT JOIN public.units u ON u.id=l.unit_id
+ LEFT JOIN public.grades g ON g.id=u.grade_id
+ LEFT JOIN public.curricula cu ON cu.id=g.curriculum_id
+ LEFT JOIN public.countries c ON c.id=cu.country_id
+)
+SELECT lesson_id,expected_title,
+ CASE WHEN actual_id IS NULL THEN 'LESSON_MISSING'
+ WHEN actual_title IS DISTINCT FROM expected_title THEN 'TITLE_CHANGED'
+ WHEN country_code IS DISTINCT FROM 'BH' OR grade_number IS DISTINCT FROM 7 OR semester IS DISTINCT FROM 2 THEN 'CLASSIFICATION_CHANGED'
+ WHEN academic_year IS DISTINCT FROM '2026-2027' THEN 'YEAR_CHANGED'
+ WHEN status IS DISTINCT FROM 'published' OR lesson_type IS DISTINCT FROM 'reading' THEN 'STATUS_TYPE_CHANGED'
+ WHEN vocabulary IS DISTINCT FROM '[]'::jsonb OR linked_vocabulary THEN 'VOCABULARY_ALREADY_PRESENT'
+ WHEN NOT source_matches THEN 'SOURCE_CHANGED_QUESTION_REVIEW_REQUIRED'
+ ELSE 'MATCHED_ONLY_FOR_TEACHER_REVIEW_NOT_APPROVED_FOR_IMPORT' END AS review_status
+FROM live ORDER BY expected_title;
