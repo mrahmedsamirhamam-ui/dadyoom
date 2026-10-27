@@ -239,6 +239,8 @@ on:
       - 'tests/bahrain-g2-existing-reading-enhancements.test.ts'
       - 'data/curriculum-drafts/bh-g3-s2-original-existing-reading-enhancements.json'
       - 'tests/bahrain-g3-existing-reading-enhancements.test.ts'
+      - 'data/curriculum-drafts/bh-g4-s2-original-existing-reading-enhancements.json'
+      - 'tests/bahrain-g4-existing-reading-enhancements.test.ts'
       - 'data/curriculum-sources/arab-22-curriculum-source-review.json'
       - 'scripts/arab-22-curriculum-readonly-audit.sql'
       - 'scripts/validate-original-curriculum-drafts.mjs'
@@ -325,6 +327,8 @@ jobs:
         run: npx vitest run tests/bahrain-g2-existing-reading-enhancements.test.ts
       - name: Verify 12 real Grade-3 Bahrain reading lessons and original word/question depth
         run: npx vitest run tests/bahrain-g3-existing-reading-enhancements.test.ts
+      - name: Original grade-4 second-term reading enrichment audit
+        run: npx vitest run tests/bahrain-g4-existing-reading-enhancements.test.ts
       - name: Validate unpublished original lesson drafts without writing
         run: npm run curriculum:drafts:verify
       - name: Exercise draft quality and no-publication safety gates

@@ -283,3 +283,39 @@ SELECT lesson_id,expected_title,
       ELSE 'MATCHED_FOR_TEACHER_REVIEW_NOT_FOR_AUTO_IMPORT'
  END AS candidate_status
 FROM actual ORDER BY expected_title;
+
+-- 11. Bahrain grade-4 second term existing-reading enrichment identity/content gate.
+-- Read only: do not rewrite published lessons, answer keys, student progress or scores.
+WITH proposed(lesson_id,expected_title,source_excerpt) AS (VALUES
+ ('10ef0448-2a2f-4545-b4b4-4be6c7a53434','ألعابنا وألعابكم','اتفق الجميع على أن أفضل اللعب ما يجمع المرح واحترام القواعد'),
+ ('9d9f90da-dc2c-49c8-b0d4-fb6ccdd0ebd0','الحمامة والصياد','قرر أن يبتعد عن العش ويكتفي بملاحظة الطيور في الطبيعة'),
+ ('9373fa3a-5043-467a-bdfe-bee5f0486d3a','الراعي الكذاب','أسرعوا إليه مرتين ثم عرفوا أنه يمزح'),
+ ('1d1e2e9d-7c78-4cf5-8a0a-21724a55a86e','الزهرة والمطر','الإفراط في السقي ليس دائمًا مفيدًا'),
+ ('42285776-b4e3-4bf4-9c6e-073282d2a2df','القبرة وابنها','ثم نجح في التحليق مسافة قصيرة'),
+ ('b784419e-2f3d-4846-9213-4a96030e2067','المبدعون الصغار','ثم اختبر الفريق ثبات المجسم وعدله أكثر من مرة'),
+ ('9a939479-cc36-44cf-96d7-7cca4d9f86d7','ذكريات الموسم','احتفظت الأسرة بالقصة ضمن دفتر ذكريات'),
+ ('79ef0f6f-ea13-4805-9e4d-1fca7864ed3f','رائدات من بلدي','قيادة المبادرة تحتاج إلى تعاون وتخطيط واحترام آراء الآخرين'),
+ ('56f3fcd2-2683-4ee8-8d77-245b89680250','عين عذاري','بحثت مع المعلم عن معلومات موثوقة'),
+ ('cc870b2c-c423-4234-a4c4-37ad5969077a','لقاء كشفي','أعاد الجميع الأغراض إلى أماكنها'),
+ ('f843dec9-8aa7-4eec-be38-0b2f4b0906f9','هي البحرين','التعرف إلى الوطن يبدأ بمعرفة تاريخه واحترام جميع من يعيشون فيه')
+), live AS (
+ SELECT p.lesson_id,p.expected_title,p.source_excerpt,l.id actual_id,l.title actual_title,l.status,l.lesson_type,
+        c.code country_code,g.grade_number,l.semester,cu.academic_year,l.vocabulary,
+        position(p.source_excerpt in coalesce(l.content,''))>0 source_phrase_matches,
+        EXISTS(SELECT 1 FROM public.lesson_vocabulary v WHERE v.lesson_id=l.id) has_linked_vocab
+ FROM proposed p LEFT JOIN public.lessons l ON l.id::text=p.lesson_id
+ LEFT JOIN public.units u ON u.id=l.unit_id
+ LEFT JOIN public.grades g ON g.id=u.grade_id
+ LEFT JOIN public.curricula cu ON cu.id=g.curriculum_id
+ LEFT JOIN public.countries c ON c.id=cu.country_id
+)
+SELECT lesson_id,expected_title,
+ CASE WHEN actual_id IS NULL THEN 'MISSING_LESSON'
+ WHEN actual_title IS DISTINCT FROM expected_title THEN 'TITLE_CHANGED'
+ WHEN country_code IS DISTINCT FROM 'BH' OR grade_number IS DISTINCT FROM 4 OR semester IS DISTINCT FROM 2 THEN 'COUNTRY_GRADE_TERM_CHANGED'
+ WHEN academic_year IS DISTINCT FROM '2026-2027' THEN 'ACADEMIC_YEAR_CHANGED'
+ WHEN status IS DISTINCT FROM 'published' OR lesson_type IS DISTINCT FROM 'reading' THEN 'TYPE_OR_STATUS_CHANGED'
+ WHEN vocabulary IS DISTINCT FROM '[]'::jsonb OR has_linked_vocab THEN 'WORDS_ALREADY_PRESENT'
+ WHEN NOT source_phrase_matches THEN 'SOURCE_TEXT_CHANGED_REVIEW_ASSESSMENTS'
+ ELSE 'MATCHED_FOR_TEACHER_REVIEW_NOT_IMPORT_APPROVED' END AS match_status
+FROM live ORDER BY expected_title;
