@@ -235,6 +235,8 @@ on:
       - 'tests/curriculum-public-lesson-instructions.test.ts'
       - 'data/curriculum-drafts/bh-g1-s2-original-vocabulary-repairs.json'
       - 'tests/bahrain-g1-vocabulary-repair.test.ts'
+      - 'data/curriculum-drafts/bh-g2-s2-original-existing-reading-enhancements.json'
+      - 'tests/bahrain-g2-existing-reading-enhancements.test.ts'
       - 'data/curriculum-sources/arab-22-curriculum-source-review.json'
       - 'scripts/arab-22-curriculum-readonly-audit.sql'
       - 'scripts/validate-original-curriculum-drafts.mjs'
@@ -317,6 +319,8 @@ jobs:
         run: npx vitest run tests/curriculum-public-lesson-instructions.test.ts
       - name: Review-only original vocabulary fixes for 12 existing Bahrain Grade-1 lessons
         run: npx vitest run tests/bahrain-g1-vocabulary-repair.test.ts
+      - name: Original grade-2 lesson-linked reading, vocabulary and question quality
+        run: npx vitest run tests/bahrain-g2-existing-reading-enhancements.test.ts
       - name: Validate unpublished original lesson drafts without writing
         run: npm run curriculum:drafts:verify
       - name: Exercise draft quality and no-publication safety gates
