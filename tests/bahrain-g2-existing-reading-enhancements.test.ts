@@ -52,6 +52,19 @@ describe("Grade-2 original reading supplements enhance existing IDs only",()=>{
   }
   expect(answerPositions).toEqual({a:16,b:16,c:16});
  });
+ it("offers read-only exact ID/name/semester verification before any manual review import",()=>{
+  const sql=readFileSync(resolve(process.cwd(),"scripts/arab-22-curriculum-readonly-audit.sql"),"utf8");
+  const part=sql.slice(sql.indexOf("-- 9. Grade-two existing reading review"));
+  expect(part).toContain("MATCHED_FOR_HUMAN_REVIEW_NOT_APPROVED_FOR_IMPORT");
+  expect(part).toContain("WORDS_ALREADY_PRESENT");
+  expect(part).toContain("ACADEMIC_YEAR_MISMATCH");
+  for(const l of p.lessons){
+   expect(part).toContain(l.existingLessonId);
+   expect(part).toContain(l.existingTitle);
+  }
+  const executable=part.replace(/--[^\n]*/g,"");
+  expect(executable).not.toMatch(/\b(?:INSERT|UPDATE|DELETE|ALTER|DROP|TRUNCATE|GRANT|REVOKE)\s+(?:INTO|FROM|TABLE|ON)\b/i);
+ });
  it("always remains unpublished until external textbook, teacher, data and legal gates",()=>{
   expect(p.rights).toEqual({authoredBy:"Dadyoom",sourceYearTextbookAlignment:"unverified",officialTextbookQuoted:false,publicationApproved:false,teacherReview:"pending"});
   expect(p.importSafety).toMatchObject({mode:"review_only",noNewLessonRecords:true,noProductionWrites:true,noLearnerProgressMutation:true,noAutomaticFreeTextGrading:true});

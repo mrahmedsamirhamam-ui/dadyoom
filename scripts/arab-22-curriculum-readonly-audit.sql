@@ -205,3 +205,39 @@ JOIN public.units un ON un.grade_id=gr.id
 JOIN public.lessons l ON l.unit_id=un.id
 WHERE l.status='published'
 GROUP BY co.code ORDER BY co.code;
+
+-- 9. Grade-two existing reading review candidates, SELECT only.
+-- A match does not authorize publishing revised words or tests. No student rows.
+WITH proposed(lesson_id,expected_title) AS (VALUES
+ ('47ae629d-9ce9-4d18-89ab-1d25bc0a2874','الدرس الأول: فرحة القرقاعون'),
+ ('38594fae-4bf7-41c3-aa76-52590a1dbdda','الدرس التاسع: الرجل الطائر'),
+ ('f56f7e48-3753-4b5f-a26b-e5df6c416d67','الدرس الثالث: ما أجمل صناعة أجدادنا!'),
+ ('a18a07b1-5cf1-48e5-b22d-edac1cf553d1','الدرس الثامن: شجرة الحياة'),
+ ('f7ea6d0c-9381-4db6-987b-9b3a71ec1572','الدرس الثاني عشر: اختراع ينير الطريق'),
+ ('8feb7c6a-3a80-4aa2-8f2d-24ff8792878c','الدرس الثاني: وطني الغالي'),
+ ('854e3f92-2bbe-47c9-b790-abde711524c3','الدرس الحادي عشر: المطعم الذكي'),
+ ('ead90a2e-97c0-42d7-a11b-c4162cda7f21','الدرس الخامس: نادر في المزرعة'),
+ ('bb91b071-ed16-46b9-a4c3-144cd1fcabf8','الدرس الرابع: معالم من بلادي'),
+ ('ec7bff48-8d51-4404-a1c6-ed1efa394290','الدرس السابع: جاسم والببغاء'),
+ ('0f5904ec-8aa7-46fa-894b-989c956bf8d9','الدرس السادس: النخلة'),
+ ('3b6a6f10-36b6-44b7-8617-40ea2b583107','الدرس العاشر: سفينة الفضاء')
+), lesson_state AS (
+ SELECT p.lesson_id,p.expected_title,l.id AS actual_id,l.title AS actual_title,l.status,l.lesson_type,
+        c.code AS country_code,g.grade_number,l.semester,cu.academic_year,l.vocabulary,
+        EXISTS(SELECT 1 FROM public.lesson_vocabulary v WHERE v.lesson_id=l.id) AS has_related_words
+ FROM proposed p LEFT JOIN public.lessons l ON l.id::text=p.lesson_id
+ LEFT JOIN public.units un ON un.id=l.unit_id
+ LEFT JOIN public.grades g ON g.id=un.grade_id
+ LEFT JOIN public.curricula cu ON cu.id=g.curriculum_id
+ LEFT JOIN public.countries c ON c.id=cu.country_id
+)
+SELECT lesson_id,expected_title,
+ CASE WHEN actual_id IS NULL THEN 'MISSING_ID'
+      WHEN actual_title IS DISTINCT FROM expected_title THEN 'TITLE_MISMATCH'
+      WHEN country_code IS DISTINCT FROM 'BH' OR grade_number IS DISTINCT FROM 2 OR semester IS DISTINCT FROM 2 THEN 'CLASSIFICATION_MISMATCH'
+      WHEN academic_year IS DISTINCT FROM '2026-2027' THEN 'ACADEMIC_YEAR_MISMATCH'
+      WHEN status IS DISTINCT FROM 'published' OR lesson_type IS DISTINCT FROM 'reading' THEN 'TYPE_OR_STATUS_CHANGED'
+      WHEN vocabulary IS DISTINCT FROM '[]'::jsonb OR has_related_words THEN 'WORDS_ALREADY_PRESENT'
+      ELSE 'MATCHED_FOR_HUMAN_REVIEW_NOT_APPROVED_FOR_IMPORT'
+ END AS result_status
+FROM lesson_state ORDER BY expected_title;
