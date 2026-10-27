@@ -54,9 +54,12 @@ describe("12 Grade-3 source-grounded reading enhancements remain teacher-review 
    expect(s).toContain("VOCABULARY_ALREADY_EXISTS");
    expect(s).toContain("CLASSIFICATION_CHANGED");
    for(const l of pack.lessons){
+     expect(l.sourcePassageAnchor.length).toBeGreaterThan(20);
      expect(s).toContain(l.existingLessonId);
      expect(s).toContain(l.existingTitle);
+     expect(s).toContain(l.sourcePassageAnchor);
    }
+   expect(s).toContain("SOURCE_PASSAGE_CHANGED_REVIEW_QUESTIONS");
    const executable=s.replace(/--[^\n]*/g,"");
    expect(executable).not.toMatch(/\b(?:INSERT|UPDATE|DELETE|ALTER|DROP|TRUNCATE|GRANT|REVOKE)\s+(?:INTO|FROM|TABLE|ON)\b/i);
  });

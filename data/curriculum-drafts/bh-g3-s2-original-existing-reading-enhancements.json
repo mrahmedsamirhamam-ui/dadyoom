@@ -181,7 +181,8 @@
           "correctAnswer": "a",
           "explanation": "يستفيد المتعلم من مبادرة ناصر في خدمة نشاط المدرسة."
         }
-      ]
+      ],
+      "sourcePassageAnchor": "بدأ ناصر بترتيب الطاولات وتوزيع البطاقات"
     },
     {
       "existingLessonId": "d547f1ae-432e-4148-80c9-daf24453c1ba",
@@ -341,7 +342,8 @@
           "correctAnswer": "b",
           "explanation": "توثيق الخبرة يبدأ بالاستماع الدقيق واحترام الراوي."
         }
-      ]
+      ],
+      "sourcePassageAnchor": "كانت الألعاب بسيطة، لكنها علمتها الصبر والتعاون مع الجيران"
     },
     {
       "existingLessonId": "3e2691de-dcf4-4d0a-87d6-863d47e50bc6",
@@ -501,7 +503,8 @@
           "correctAnswer": "c",
           "explanation": "يساعد الجمع بين النظافة والتعلم على تطبيق الرسالة التربوية."
         }
-      ]
+      ],
+      "sourcePassageAnchor": "اقترحت فاطمة عدم رمي المخلفات في الساحة"
     },
     {
       "existingLessonId": "81f6cec0-b739-43c5-bae5-aa9fbb9d9818",
@@ -661,7 +664,8 @@
           "correctAnswer": "a",
           "explanation": "إعادة الاستخدام وسيلة بسيطة للتقليل من المخلفات."
         }
-      ]
+      ],
+      "sourcePassageAnchor": "حملا معهما حقيبة قابلة لإعادة الاستخدام"
     },
     {
       "existingLessonId": "e1e62bee-7373-46b7-8aa9-53023dc9c7e7",
@@ -821,7 +825,8 @@
           "correctAnswer": "b",
           "explanation": "التعديل المدروس جزء من مسار الإبداع والتعلم."
         }
-      ]
+      ],
+      "sourcePassageAnchor": "أحبت بسمة صناعة المجسمات من الورق المستعمل"
     },
     {
       "existingLessonId": "0affd0f0-5fa4-4a5a-9305-e97dbe94624b",
@@ -981,7 +986,8 @@
           "correctAnswer": "c",
           "explanation": "التصرف الأفضل يقتدي بما فعله ناصر."
         }
-      ]
+      ],
+      "sourcePassageAnchor": "اصطحبه إلى الرف الصحيح، ثم عاد ليعاون زملاءه"
     },
     {
       "existingLessonId": "da526b1e-ec9c-47d0-9a12-787d93e0f1a4",
@@ -1141,7 +1147,8 @@
           "correctAnswer": "a",
           "explanation": "العدالة والتعاون يجعلان اللعب ممتعًا للجميع."
         }
-      ]
+      ],
+      "sourcePassageAnchor": "اتفقوا على ألا يحتكر أحد الأدوات"
     },
     {
       "existingLessonId": "cb508e2a-0999-4462-8a15-f2ba53322b99",
@@ -1301,7 +1308,8 @@
           "correctAnswer": "b",
           "explanation": "إبلاغ المختص أولًا يحمي الطالب ويساعد في النظافة."
         }
-      ]
+      ],
+      "sourcePassageAnchor": "لم تلمسها مباشرة، بل أخبرت المسؤول عن نظافة المكان"
     },
     {
       "existingLessonId": "72edeb7b-4506-4b17-902c-573e46f0a6e3",
@@ -1461,7 +1469,8 @@
           "correctAnswer": "c",
           "explanation": "الرسالة المفيدة تقدم تجربة صادقة وتفسيرًا للقيمة المكتسبة."
         }
-      ]
+      ],
+      "sourcePassageAnchor": "كتبت خالدة رسالة إلى صديقتها"
     },
     {
       "existingLessonId": "ab745f1f-3314-4210-a0f0-c44b998b9c98",
@@ -1621,7 +1630,8 @@
           "correctAnswer": "a",
           "explanation": "حماية النباتات تحافظ على بيئة الفراشات وغيرها."
         }
-      ]
+      ],
+      "sourcePassageAnchor": "أحتاج إلى زهور سليمة كي أجد غذائي"
     },
     {
       "existingLessonId": "aace1299-589d-4f24-9cc6-1c1849242019",
@@ -1781,7 +1791,8 @@
           "correctAnswer": "b",
           "explanation": "يوضح النص أهمية تحويل الكلمات الإرشادية إلى سلوك."
         }
-      ]
+      ],
+      "sourcePassageAnchor": "كتب فريق عبارة «لا نهدر الماء»"
     },
     {
       "existingLessonId": "0ab3e6ba-c3ea-4460-a659-70ee473a9216",
@@ -1941,7 +1952,8 @@
           "correctAnswer": "c",
           "explanation": "المحافظة على الذكريات تحتاج الدقة واحترام صاحب الحكاية."
         }
-      ]
+      ],
+      "sourcePassageAnchor": "اقترحت تسجيل قصة قصيرة ترويها الجدة"
     }
   ]
 }
