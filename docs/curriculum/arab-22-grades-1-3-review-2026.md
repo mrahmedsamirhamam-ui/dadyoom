@@ -23,3 +23,7 @@ Other countries remain **official TOC not verified**, not 'no official curriculu
 ## Release gate
 
 None of the 66 country × grade rows has been verified as complete. No migration, server-assessed grading changes, PR merge, or Cloudflare production deployment occurred as part of this audit. Current Production #57 assessment-answer/grading permissions and #46 Cloudflare external build still require independent checks. Test via `npx vitest run tests/arab-22-grades-1-3-baseline.test.ts`.
+
+## Exact-title reconciliation gate
+
+Actual public lesson titles and UUIDs for all three grades are now indexed in grade-specific JSON under `data/curriculum-audits/arab-22-grade-{1,2,3}-lesson-review-2026-10-27.json` (total 1,746 records). They contain no student data or question answer keys. After verifying a current **official edition and source TOC pages**, use `node scripts/compare-official-arabic-toc.mjs --catalog=PATH.json --toc=MANUALLY_VERIFIED_OFFICIAL_TOC.json` to compare titles. The official TOC must state country, grade, semester, 2026–2027 school year, official issuer, edition, evidence URL, verified flags and each TOC page. Missing titles are flagged, existing titles require content/question review, untimed lessons remain unverified, and the 1,188 common skills are never counted as ministry-required titles. No import, redistribution of ministry book texts or production writes.
