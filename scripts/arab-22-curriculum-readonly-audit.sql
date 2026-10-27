@@ -198,6 +198,7 @@ SELECT co.code AS country_code,
        COUNT(l.id) FILTER (WHERE l.content LIKE 'دعم أصلي من ضاديوم للتدريب اللغوي%') AS original_grade_three_support_rows,
        COUNT(l.id) FILTER (WHERE l.content LIKE 'مادة إثرائية أصلية من ضاديوم%') AS original_grade_four_support_rows,
        COUNT(l.id) FILTER (WHERE l.content LIKE 'مادة تعليمية إثرائية أصلية من ضاديوم للصف الخامس%') AS original_grade_five_support_rows,
+       COUNT(l.id) FILTER (WHERE l.content LIKE 'مادة تعليمية إثرائية أصلية من ضاديوم للصف السادس%') AS original_grade_six_support_rows,
        COUNT(l.id) FILTER (WHERE l.content LIKE '%مفتاح المراجعة الذاتية:%') AS labelled_review_key_rows,
        COUNT(l.id) FILTER (WHERE l.semester IS NULL) AS term_unclassified_rows,
        COUNT(l.id) FILTER (WHERE l.official_content_scope IS NULL) AS official_content_scope_unspecified_rows

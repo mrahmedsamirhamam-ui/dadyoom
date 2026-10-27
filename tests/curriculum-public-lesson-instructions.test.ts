@@ -108,6 +108,7 @@ describe("Public original lesson activities for every Arab curriculum", () => {
     expect(isGenericSkillSupplement("دعم أصلي من ضاديوم للتدريب اللغوي، وليس نص الكتاب المدرسي.")).toBe(true);
     expect(isGenericSkillSupplement("مادة إثرائية أصلية من ضاديوم، وليست نصًا من الكتاب المدرسي الرسمي.")).toBe(true);
     expect(isGenericSkillSupplement("مادة تعليمية إثرائية أصلية من ضاديوم للصف الخامس، وليست نصًّا رسميًّا من الكتاب المدرسي.")).toBe(true);
+    expect(isGenericSkillSupplement("مادة تعليمية إثرائية أصلية من ضاديوم للصف السادس، وليست نصًّا رسميًّا من الكتاب المدرسي.")).toBe(true);
     expect(isGenericSkillSupplement("  مادة إثرائية أصلية من ضاديوم — إثراء الصف الرابع")).toBe(true);
     expect(isGenericSkillSupplement("نص أصلي خاص بمنهج موثّق")).toBe(false);
     expect(isGenericSkillSupplement(null)).toBe(false);
