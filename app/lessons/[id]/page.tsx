@@ -7,7 +7,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { SITE_DESCRIPTION } from "@/lib/site";
 import { isBookCatalogReference } from "@/lib/curriculum/book-catalog-reference";
-import { publicLessonActivityPrompts, publicLessonSlideInstructions, hasUnreviewedCurriculumSource, publicLessonVocabulary } from "@/lib/curriculum/public-lesson-instructions";
+import { publicLessonActivityPrompts, publicLessonSlideInstructions, hasUnreviewedCurriculumSource, publicLessonVocabulary, publicLessonTeachingText } from "@/lib/curriculum/public-lesson-instructions";
 import {
   getLessonPageBundle,
 } from "@/features/lessons/queries/getLessonPageBundle";
@@ -133,6 +133,7 @@ export default async function LessonPage({
 
   const lesson =
     bundle.lesson;
+  const teachingContent = publicLessonTeachingText(lesson.content);
 
   // Catalog nodes link to official book titles; they are not graded lessons.
   // Render a meaningful reference page without any mastery/progress controls.
@@ -291,7 +292,7 @@ export default async function LessonPage({
       <DadLessonContext
         pageTitle={`درس: ${lesson.title}`}
         lessonTitle={lesson.title}
-        lessonContent={lesson.content ?? ""}
+        lessonContent={teachingContent}
       />
       <div className="mx-auto max-w-5xl space-y-6">
         <section className="lesson-arabic-card rounded-3xl border border-[#d7bd83] bg-[#fff7e3] p-5 shadow-sm">
@@ -470,14 +471,14 @@ export default async function LessonPage({
         <LessonLearningSlides
           title={lesson.title}
           summary={lesson.summary}
-          content={lesson.content}
+          content={teachingContent}
           objectives={objectives}
           vocabulary={vocabulary}
           instructions={publicSlideInstructions}
         />
         {/* The slide deck is intentionally short; do not hide the rest of the
             published lesson text behind its first three 380-character chunks. */}
-        {lesson.content?.trim() ? (
+        {teachingContent.trim() ? (
           <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
             <details className="group" dir="rtl">
               <summary className="cursor-pointer text-xl font-black text-[#173f38]">
@@ -487,7 +488,7 @@ export default async function LessonPage({
                 النص التعليمي المسجل في ضاديوم؛ ليس بالضرورة نقلًا حرفيًا من الكتاب الوزاري.
               </p>
               <div className="mt-5 whitespace-pre-wrap break-words text-base leading-9 text-slate-800">
-                {lesson.content}
+                {teachingContent}
               </div>
             </details>
           </section>

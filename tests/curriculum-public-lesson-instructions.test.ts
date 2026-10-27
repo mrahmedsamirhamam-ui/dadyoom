@@ -6,6 +6,7 @@ import {
   publicLessonSlideInstructions,
   hasUnreviewedCurriculumSource,
   publicLessonVocabulary,
+  publicLessonTeachingText,
 } from "../lib/curriculum/public-lesson-instructions";
 
 describe("Public original lesson activities for every Arab curriculum", () => {
@@ -50,6 +51,35 @@ describe("Public original lesson activities for every Arab curriculum", () => {
     expect(rows).toHaveLength(18);
     expect(rows[0].level).toBe("");
     expect(JSON.stringify(rows)).not.toContain("hidden");
+  });
+  it("hides teacher answer keys from lesson text, slides, and AI-tutor context",()=>{
+    const source=[
+      "أقرأ النص وأستنتج الفكرة.",
+      "مفتاح الإجابة: أعادت الطفلةُ الكتابَ إلى المكتبة.",
+      "",
+      "تنبيه حقوق: القطعة من ضاديوم.",
+      "مفتاح المراجعة ومؤشرات الاستجابة الصحيحة:",
+      "عودة الكتاب إلى المكتبة.",
+      "تُقبل الجملة المكافئة.",
+      "",
+      "بعد القراءة: أصوغ فكرة مستقلة.",
+      "الإجابة النموذجية: سر آخر",
+      "",
+      "خاتمة الدرس.",
+    ].join("\n");
+    const learner=publicLessonTeachingText(source);
+    expect(learner).toContain("أقرأ النص");
+    expect(learner).toContain("تنبيه حقوق");
+    expect(learner).toContain("بعد القراءة");
+    expect(learner).toContain("خاتمة الدرس");
+    expect(learner).not.toMatch(/مفتاح الإجابة|أعادت الطفلة|مفتاح المراجعة|تُقبل الجملة المكافئة|الإجابة النموذجية|سر آخر/u);
+    expect(publicLessonTeachingText(null)).toBe("");
+    const page=readFileSync(resolve(process.cwd(),"app/lessons/[id]/page.tsx"),"utf8");
+    expect(page).toContain("lessonContent={teachingContent}");
+    expect(page).toContain("content={teachingContent}");
+    expect(page).toContain("{teachingContent}");
+    expect(page).not.toContain("lessonContent={lesson.content");
+    expect(page).not.toContain("content={lesson.content}");
   });
   it("recovers 295 already-stored RLS-visible vocabulary lists without exposing nested answer fields",()=>{
     const restored=publicLessonVocabulary([],[

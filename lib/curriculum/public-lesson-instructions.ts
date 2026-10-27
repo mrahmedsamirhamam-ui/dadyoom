@@ -124,3 +124,35 @@ export function publicLessonVocabulary(
   }
   return words;
 }
+
+/**
+ * Strip explicitly labelled teacher answer keys from student-facing text.
+ * All stored canonical lesson content remains unchanged.
+ */
+export function publicLessonTeachingText(input: unknown): string {
+  if (typeof input !== "string") return "";
+  const lines = input.split(/\r?\n/u);
+  const output: string[] = [];
+  let suppressAnswerBlock = false;
+  const teacherOnly = /(?:مفتاح\s*(?:الإجابة|المراجعة|الحل)|الإجابة\s*النموذجية|إجابة\s*نموذجية(?:\s*مستندة)?|مؤشرات\s*الاستجابة\s*الصحيحة|الحل\s*النموذجي)/iu;
+  const nextSection = /^(?:#{1,4}\s*)?(?:تنبيه|حالة\s*المصدر|ملاحظة|حدود\s*المطابقة|مسار\s*(?:دعم|متوسط|متقدم)|أنشطة\s*متمايزة|أتعلم\s*مفردة|أفكر|بعد\s*القراءة|حقوق\s*المحتوى|التغذية\s*الراجعة)/u;
+  for (const line of lines) {
+    const trimmed = line.trim().replace(/^\*\*|\*\*$/g, "");
+    if (teacherOnly.test(trimmed)) {
+      suppressAnswerBlock = true;
+      continue;
+    }
+    if (suppressAnswerBlock) {
+      if (!trimmed) {
+        suppressAnswerBlock = false;
+        output.push("");
+      } else if (nextSection.test(trimmed)) {
+        suppressAnswerBlock = false;
+        output.push(line);
+      }
+      continue;
+    }
+    output.push(line);
+  }
+  return output.join("\n").replace(/\n{3,}/g,"\n\n").trim();
+}
