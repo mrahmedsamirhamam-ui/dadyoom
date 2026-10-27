@@ -187,3 +187,21 @@ SELECT lesson_id,expected_title,
  WHEN vocabulary IS DISTINCT FROM '[]'::jsonb OR has_linked_vocabulary THEN 'VOCABULARY_ALREADY_PRESENT'
  ELSE 'MATCHED_FOR_HUMAN_REVIEW_NOT_APPROVED_FOR_IMPORT' END AS review_status
 FROM reconciliation ORDER BY expected_title;
+
+-- 8. All-country indexed-skill templates versus verified current-year textbooks.
+-- Reused thematic packs are optional Dadyoom enrichment, NOT proof that
+-- any country's grade/term/stream ministry curriculum has been completed.
+SELECT co.code AS country_code,
+       COUNT(l.id) AS published_lesson_rows,
+       COUNT(l.id) FILTER (WHERE l.content LIKE 'حزمة ضاديوم الموضوعية المتخصصة%') AS thematic_enrichment_template_rows,
+       COUNT(l.id) FILTER (WHERE l.content LIKE 'هذا المحتوى أصلي من ضاديوم ومصمم%') AS generic_framework_rows,
+       COUNT(l.id) FILTER (WHERE l.content LIKE '%مفتاح المراجعة الذاتية:%') AS labelled_review_key_rows,
+       COUNT(l.id) FILTER (WHERE l.semester IS NULL) AS term_unclassified_rows,
+       COUNT(l.id) FILTER (WHERE l.official_content_scope IS NULL) AS official_content_scope_unspecified_rows
+FROM public.countries co
+JOIN public.curricula cu ON cu.country_id=co.id
+JOIN public.grades gr ON gr.curriculum_id=cu.id
+JOIN public.units un ON un.grade_id=gr.id
+JOIN public.lessons l ON l.unit_id=un.id
+WHERE l.status='published'
+GROUP BY co.code ORDER BY co.code;

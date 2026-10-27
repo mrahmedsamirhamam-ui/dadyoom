@@ -81,6 +81,26 @@ describe("Public original lesson activities for every Arab curriculum", () => {
     expect(page).not.toContain("lessonContent={lesson.content");
     expect(page).not.toContain("content={lesson.content}");
   });
+  it("keeps analysis and independent practice in 22-country common-skill modules but hides model answers",()=>{
+    const model=[
+      "أفهم القاعدة أو الفكرة:",
+      "الحجّةُ تحتاج إلى دليلٍ.",
+      "أطبق بنفسي: اقترح دليلًا.",
+      "مفتاح المراجعة الذاتية:",
+      "الإجابة السرية هي استعمال الحجة الصحيحة.",
+      "خطوة التحليل: بيّن أثر الشاهد في المعنى.",
+      "مهمة الإتقان: أعد كتابة الفكرة مع تعليلها.",
+      "تنبيه المصدر: هذا إثراء مستقل.",
+    ].join("\n");
+    const learner=publicLessonTeachingText(model);
+    expect(learner).toContain("الحجّةُ تحتاج");
+    expect(learner).toContain("خطوة التحليل");
+    expect(learner).toContain("مهمة الإتقان");
+    expect(learner).toContain("أطبق بنفسي");
+    expect(learner).not.toContain("الإجابة السرية");
+    expect(learner).not.toContain("مفتاح المراجعة الذاتية");
+    expect(learner).toContain("تنبيه المصدر");
+  });
   it("recovers 295 already-stored RLS-visible vocabulary lists without exposing nested answer fields",()=>{
     const restored=publicLessonVocabulary([],[
       {word:"تعاون",meaning:"مساعدة الآخرين",correctAnswer:"private-key"},
@@ -121,6 +141,9 @@ describe("All-22-country curriculum health report remains read-only",()=>{
     expect(sql).toContain("missing_embedded_vocabulary");
     expect(sql).toContain("needs_assessment_review");
     expect(sql).toContain("source_content_status");
+    expect(sql).toContain("thematic_enrichment_template_rows");
+    expect(sql).toContain("labelled_review_key_rows");
+    expect(sql).toContain("official_content_scope_unspecified_rows");
     expect(sql).toContain("official_content_scope");
     expect(sql).toContain("co.code");
     const executable = sql.replace(/--[^\n]*/g,"");
