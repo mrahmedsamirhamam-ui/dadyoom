@@ -269,6 +269,8 @@ on:
       - 'tests/ps-grade2-3-original-missing-resource-lessons.test.ts'
       - 'data/curriculum-audits/ps-g2-existing-reading-question-specificity-repair-2026.json'
       - 'tests/ps-g2-existing-reading-question-specificity-repair.test.ts'
+      - 'data/curriculum-drafts/ps-grade2-3-five-missing-source-topics-2026.json'
+      - 'tests/ps-grade2-3-five-missing-source-topics.test.ts'
       - 'scripts/validate-original-curriculum-drafts.mjs'
       - 'tests/original-curriculum-drafts.test.ts'
       - 'package.json'
@@ -377,6 +379,8 @@ jobs:
         run: npx vitest run tests/ps-grade2-3-original-missing-resource-lessons.test.ts
       - name: Verify contextual questions replace generic first-semester grade-two reading quizzes
         run: npx vitest run tests/ps-g2-existing-reading-question-specificity-repair.test.ts
+      - name: Validate five more Palestinian grade 2-3 missing lesson titles and direct assessment questions
+        run: npx vitest run tests/ps-grade2-3-five-missing-source-topics.test.ts
       - name: Validate unpublished original lesson drafts without writing
         run: npm run curriculum:drafts:verify
       - name: Exercise draft quality and no-publication safety gates
