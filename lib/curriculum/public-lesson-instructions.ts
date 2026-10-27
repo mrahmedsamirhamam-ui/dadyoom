@@ -156,3 +156,15 @@ export function publicLessonTeachingText(input: unknown): string {
   }
   return output.join("\n").replace(/\n{3,}/g,"\n\n").trim();
 }
+
+/**
+ * A pedagogical supplement can be useful without proving that the ministry
+ * textbook's exact term/track/edition has been mapped. Detect ONLY known,
+ * explicitly declared Dadyoom authored prefixes; do not use a title match.
+ */
+export function isGenericSkillSupplement(input: unknown): boolean {
+  if (typeof input !== "string") return false;
+  const text = input.trimStart();
+  return text.startsWith("حزمة ضاديوم الموضوعية المتخصصة") ||
+    text.startsWith("هذا المحتوى أصلي من ضاديوم ومصمم");
+}

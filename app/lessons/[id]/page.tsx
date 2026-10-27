@@ -7,7 +7,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { SITE_DESCRIPTION } from "@/lib/site";
 import { isBookCatalogReference } from "@/lib/curriculum/book-catalog-reference";
-import { publicLessonActivityPrompts, publicLessonSlideInstructions, hasUnreviewedCurriculumSource, publicLessonVocabulary, publicLessonTeachingText } from "@/lib/curriculum/public-lesson-instructions";
+import { publicLessonActivityPrompts, publicLessonSlideInstructions, hasUnreviewedCurriculumSource, publicLessonVocabulary, publicLessonTeachingText, isGenericSkillSupplement } from "@/lib/curriculum/public-lesson-instructions";
 import {
   getLessonPageBundle,
 } from "@/features/lessons/queries/getLessonPageBundle";
@@ -263,7 +263,7 @@ export default async function LessonPage({
   // assessment answer objects. Parse only safe teaching fields, never raw JSON.
   const instructions = publicLessonActivityPrompts(lesson.instructions);
   const publicSlideInstructions = publicLessonSlideInstructions(lesson.instructions);
-  const needsSourceReview = hasUnreviewedCurriculumSource(lesson.instructions);
+  const needsSourceReview = hasUnreviewedCurriculumSource(lesson.instructions) || isGenericSkillSupplement(lesson.content);
 
   const questionsList: LessonQuestion[] =
     Array.isArray(lessonQuestions)
@@ -495,7 +495,7 @@ export default async function LessonPage({
         ) : null}
         {needsSourceReview ? (
           <p className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm leading-7 text-amber-900">
-            تنبيه: هذا المحتوى الإثرائي ما زال بانتظار المطابقة التحريرية مع الكتاب الوزاري.
+            تنبيه: هذا تدريب تعليمي من تأليف ضاديوم؛ لم يُثبت بعد مطابقته لفهرس كتاب الدولة والصف والفصل الدراسي.
             لا يُعرض بوصفه النص الرسمي المعتمد.
           </p>
         ) : null}

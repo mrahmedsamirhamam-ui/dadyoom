@@ -7,6 +7,7 @@ import {
   hasUnreviewedCurriculumSource,
   publicLessonVocabulary,
   publicLessonTeachingText,
+  isGenericSkillSupplement,
 } from "../lib/curriculum/public-lesson-instructions";
 
 describe("Public original lesson activities for every Arab curriculum", () => {
@@ -100,6 +101,15 @@ describe("Public original lesson activities for every Arab curriculum", () => {
     expect(learner).not.toContain("الإجابة السرية");
     expect(learner).not.toContain("مفتاح المراجعة الذاتية");
     expect(learner).toContain("تنبيه المصدر");
+  });
+  it("does not present common skill packs as verified official textbooks in any Arab country",()=>{
+    expect(isGenericSkillSupplement("حزمة ضاديوم الموضوعية المتخصصة — شرح أصلي")).toBe(true);
+    expect(isGenericSkillSupplement("هذا المحتوى أصلي من ضاديوم ومصمم لمواءمة مجال القراءة")).toBe(true);
+    expect(isGenericSkillSupplement("نص أصلي خاص بمنهج موثّق")).toBe(false);
+    expect(isGenericSkillSupplement(null)).toBe(false);
+    const page=readFileSync(resolve(process.cwd(),"app/lessons/[id]/page.tsx"),"utf8");
+    expect(page).toContain("isGenericSkillSupplement(lesson.content)");
+    expect(page).toContain("لم يُثبت بعد مطابقته لفهرس كتاب الدولة");
   });
   it("recovers 295 already-stored RLS-visible vocabulary lists without exposing nested answer fields",()=>{
     const restored=publicLessonVocabulary([],[
