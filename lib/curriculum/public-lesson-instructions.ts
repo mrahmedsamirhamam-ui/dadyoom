@@ -168,5 +168,6 @@ export function isGenericSkillSupplement(input: unknown): boolean {
   return text.startsWith("حزمة ضاديوم الموضوعية المتخصصة") ||
     text.startsWith("هذا المحتوى أصلي من ضاديوم ومصمم") ||
     text.startsWith("دعم أصلي من ضاديوم للتدريب اللغوي") ||
-    text.startsWith("مادة إثرائية أصلية من ضاديوم");
+    text.startsWith("مادة إثرائية أصلية من ضاديوم") ||
+    text.startsWith("مادة تعليمية إثرائية أصلية من ضاديوم للصف الخامس");
 }
