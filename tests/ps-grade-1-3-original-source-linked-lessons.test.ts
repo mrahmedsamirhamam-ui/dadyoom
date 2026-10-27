@@ -1,7 +1,10 @@
 import {readFileSync} from "node:fs";
 import {resolve} from "node:path";
 import {describe,expect,it} from "vitest";
-const pack=JSON.parse(readFileSync(resolve(process.cwd(),"data/curriculum-drafts/ps-grades-1-3-verified-portal-original-support-2026.json"),"utf8"));
+type Question={question:string;correct:string;wrong:string[];explanation:string};
+type Lesson={countryCode:string;grade:number;semester:number;unitId:string;title:string;content:string;questions:Question[];vocabulary:unknown[];objectives:unknown[];sourceTopicEvidence:{portalUrl:string;verifiedTopicOnMinistryLearningPortal:boolean;currentEditionTOCVerified:boolean}};
+type OriginalPack={officialCopyright:boolean;schoolYearTextbookEditionVerified:boolean;lessons:Lesson[];writeSafety:{notMigrateStudentGrades:boolean}};
+const pack=JSON.parse(readFileSync(resolve(process.cwd(),"data/curriculum-drafts/ps-grades-1-3-verified-portal-original-support-2026.json"),"utf8")) as OriginalPack;
 describe("Original Palestinian grade 1-3 lessons with source-backed topic names",()=>{
  it("authors independent reading and three distinct MCQs for 10 previously absent titles",()=>{
   expect(pack.lessons).toHaveLength(10);
