@@ -35,6 +35,19 @@ describe("assessment permissions audit is safe and complete", () => {
     expect(sql).toContain("assessment_session_answers");
     expect(queries).not.toMatch(/\b(?:REVOKE|GRANT|ALTER|DROP|CREATE|UPDATE|INSERT|DELETE|TRUNCATE)\s+(?:TABLE|ON|INTO|FROM|public\.)/i);
   });
+  it("covers legacy score/progress row and column permissions without reading a student's grade",()=>{
+    expect(sql).toContain("-- 8. Legacy and current learner progress");
+    for(const name of ["student_progress","lesson_progress","student_lesson_progress","lesson_mastery"]){
+      expect(sql).toContain("'"+name+"'");
+    }
+    for(const name of ["best_score","last_score","progress_percent","xp","completed"]){
+      expect(sql).toContain("'"+name+"'");
+    }
+    expect(sql).toContain("grade_column_update");
+    expect(sql).toContain("has_any_column_privilege(r.role_name");
+    expect(sql).toContain("c.relrowsecurity");
+    expect(queries).not.toMatch(/SELECT\s+.*\b(?:user_id|student_id|correct_answer)\b\s+FROM\s+public\./i);
+  });
   it("surfaces security invoker dependency and RLS + RPC state", () => {
     expect(sql).toContain("security_invoker=true");
     expect(sql).toContain("pg_policies");

@@ -95,3 +95,28 @@ CROSS JOIN (VALUES ('question_attempts'), ('lesson_activity_attempts'),
                    ('student_lesson_progress'), ('lesson_mastery'),
                    ('assessment_sessions'), ('assessment_session_answers')) AS tables(table_name)
 ORDER BY roles.role_name, tables.table_name;
+
+-- 8. Legacy and current learner progress authority / grade-bearing columns.
+-- These tables can have overlapping status/score representations; a browser
+-- permission is a review candidate, not evidence that RLS permits forgery.
+-- Never read grades/user IDs here, and never infer permissions from
+-- information_schema.role_table_grants alone.
+SELECT c.relname AS table_name, r.role_name,
+       c.relrowsecurity AS rls_enabled,
+       has_table_privilege(r.role_name,c.oid,'SELECT') AS table_select,
+       has_table_privilege(r.role_name,c.oid,'INSERT') AS table_insert,
+       has_table_privilege(r.role_name,c.oid,'UPDATE') AS table_update,
+       has_any_column_privilege(r.role_name,c.oid,'INSERT') AS any_column_insert,
+       has_any_column_privilege(r.role_name,c.oid,'UPDATE') AS any_column_update,
+       a.attname AS potential_grade_column,
+       CASE WHEN a.attname IS NULL THEN NULL
+            ELSE has_column_privilege(r.role_name,c.oid,a.attname,'UPDATE')
+       END AS grade_column_update
+FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
+CROSS JOIN (VALUES ('anon'),('authenticated')) r(role_name)
+LEFT JOIN pg_attribute a ON a.attrelid=c.oid
+  AND a.attnum>0 AND NOT a.attisdropped
+  AND a.attname IN ('best_score','last_score','progress_percent','xp','completed','status','points')
+WHERE n.nspname='public' AND c.relkind='r'
+ AND c.relname IN ('student_progress','lesson_progress','student_lesson_progress','lesson_mastery')
+ORDER BY c.relname,r.role_name,a.attname;
