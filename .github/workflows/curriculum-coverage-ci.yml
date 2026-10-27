@@ -252,6 +252,10 @@ on:
       - 'tests/bahrain-g8-existing-reading-enhancements.test.ts'
       - 'data/curriculum-sources/arab-22-curriculum-source-review.json'
       - 'scripts/arab-22-curriculum-readonly-audit.sql'
+      - 'scripts/arab-22-grades-1-3-readonly-audit.sql'
+      - 'data/curriculum-audits/arab-22-grades-1-3-baseline-2026-10-27.json'
+      - 'docs/curriculum/arab-22-grades-1-3-review-2026.md'
+      - 'tests/arab-22-grades-1-3-baseline.test.ts'
       - 'scripts/validate-original-curriculum-drafts.mjs'
       - 'tests/original-curriculum-drafts.test.ts'
       - 'package.json'
@@ -348,6 +352,8 @@ jobs:
         run: npx vitest run tests/bahrain-g7-existing-reading-enhancements.test.ts
       - name: Verify original Grade-8 BH reading, vocabulary and explained formative prompts
         run: npx vitest run tests/bahrain-g8-existing-reading-enhancements.test.ts
+      - name: Reconcile all 22 countries and Grades 1-3 without false textbook completion
+        run: npx vitest run tests/arab-22-grades-1-3-baseline.test.ts
       - name: Validate unpublished original lesson drafts without writing
         run: npm run curriculum:drafts:verify
       - name: Exercise draft quality and no-publication safety gates
