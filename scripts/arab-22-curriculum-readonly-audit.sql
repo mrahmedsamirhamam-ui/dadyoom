@@ -319,3 +319,38 @@ SELECT lesson_id,expected_title,
  WHEN NOT source_phrase_matches THEN 'SOURCE_TEXT_CHANGED_REVIEW_ASSESSMENTS'
  ELSE 'MATCHED_FOR_TEACHER_REVIEW_NOT_IMPORT_APPROVED' END AS match_status
 FROM live ORDER BY expected_title;
+
+-- 12. Bahrain grade-5 reading/word support identity and source-text audit.
+-- Read-only preconditions; candidates are NOT eligible for automatic publishing.
+WITH proposed(lesson_id,expected_title,source_excerpt) AS (VALUES
+ ('2fc5885a-f505-4db9-85ca-0cba7ed63653','إنها تحب التصميم','عندما لاحظت أن الخط صغير، عدلته بعد استشارة صديقتها'),
+ ('ea26dcdc-eea9-480d-b81c-51259425cdf8','الفارس العربي','القوة الحقيقية ترتبط بالمسؤولية والرحمة'),
+ ('19664102-cfce-4b31-a813-dd5b9960c36b','الكلب والحمامة','فأحضر الحارس مختصًا برعاية الطيور'),
+ ('509efd86-05b2-4548-b939-4a46b611736a','الكهرباء في وطني','أطفئ الأنوار غير الضرورية ولا ألمس الأسلاك المكشوفة'),
+ ('25763537-f0f3-46be-bbfc-1dc2847e42d1','الممثل البارع','تحسين الوقفات بين الجمل بدل الصراخ'),
+ ('9d4c894e-c021-4a37-a580-d376c99c0cac','بيئتنا حياتنا','قاس نجاح النشاط بملاحظة نظافة المكان بعد أسبوع'),
+ ('d6c72d84-f2b7-4a55-9248-1166617f7997','سابق الريح','فأبلغ فهد المشرف بدل أن يقترب منه بطريقة قد تضره'),
+ ('e049c6ac-05b1-47a2-8b4d-a710af279589','صدى الحياة','تفرق فيها بين الأصوات التي سمعتها فعلًا والأشياء التي تخيلتها'),
+ ('092db88a-1b11-449a-96ec-5daa0eea6f41','على شواطئ البحرين','حملت الأسرة مخلفاتها معها'),
+ ('39d67cf3-14de-44fd-9e62-916ed64ec9b2','نزهة في أحضان الطبيعة','نظموا ملاحظاتهم في جدول صغير')
+), live AS (
+ SELECT p.lesson_id,p.expected_title,p.source_excerpt,l.id actual_id,l.title actual_title,l.status,l.lesson_type,
+        c.code country_code,g.grade_number,l.semester,cu.academic_year,l.vocabulary,
+        position(p.source_excerpt in coalesce(l.content,''))>0 AS source_matches,
+        EXISTS(SELECT 1 FROM public.lesson_vocabulary v WHERE v.lesson_id=l.id) AS linked_words
+ FROM proposed p LEFT JOIN public.lessons l ON l.id::text=p.lesson_id
+ LEFT JOIN public.units u ON u.id=l.unit_id
+ LEFT JOIN public.grades g ON g.id=u.grade_id
+ LEFT JOIN public.curricula cu ON cu.id=g.curriculum_id
+ LEFT JOIN public.countries c ON c.id=cu.country_id
+)
+SELECT lesson_id,expected_title,CASE
+ WHEN actual_id IS NULL THEN 'MISSING_LESSON'
+ WHEN actual_title IS DISTINCT FROM expected_title THEN 'TITLE_CHANGED'
+ WHEN country_code IS DISTINCT FROM 'BH' OR grade_number IS DISTINCT FROM 5 OR semester IS DISTINCT FROM 2 THEN 'CLASSIFICATION_CHANGED'
+ WHEN academic_year IS DISTINCT FROM '2026-2027' THEN 'YEAR_CHANGED'
+ WHEN status IS DISTINCT FROM 'published' OR lesson_type IS DISTINCT FROM 'reading' THEN 'TYPE_OR_STATUS_CHANGED'
+ WHEN vocabulary IS DISTINCT FROM '[]'::jsonb OR linked_words THEN 'VOCABULARY_ALREADY_PRESENT'
+ WHEN NOT source_matches THEN 'SOURCE_CHANGED_REVIEW_QUESTIONS'
+ ELSE 'MATCHED_TEACHER_REVIEW_NOT_PUBLISH_READY' END AS review_status
+FROM live ORDER BY expected_title;
