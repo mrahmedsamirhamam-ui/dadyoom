@@ -105,6 +105,9 @@ describe("Public original lesson activities for every Arab curriculum", () => {
   it("does not present common skill packs as verified official textbooks in any Arab country",()=>{
     expect(isGenericSkillSupplement("حزمة ضاديوم الموضوعية المتخصصة — شرح أصلي")).toBe(true);
     expect(isGenericSkillSupplement("هذا المحتوى أصلي من ضاديوم ومصمم لمواءمة مجال القراءة")).toBe(true);
+    expect(isGenericSkillSupplement("دعم أصلي من ضاديوم للتدريب اللغوي، وليس نص الكتاب المدرسي.")).toBe(true);
+    expect(isGenericSkillSupplement("مادة إثرائية أصلية من ضاديوم، وليست نصًا من الكتاب المدرسي الرسمي.")).toBe(true);
+    expect(isGenericSkillSupplement("  مادة إثرائية أصلية من ضاديوم — إثراء الصف الرابع")).toBe(true);
     expect(isGenericSkillSupplement("نص أصلي خاص بمنهج موثّق")).toBe(false);
     expect(isGenericSkillSupplement(null)).toBe(false);
     const page=readFileSync(resolve(process.cwd(),"app/lessons/[id]/page.tsx"),"utf8");
