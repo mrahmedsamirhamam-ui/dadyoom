@@ -104,7 +104,9 @@ describe("Public original lesson activities for every Arab curriculum", () => {
     expect(page).toContain("instructions={publicSlideInstructions}");
     expect(page).not.toContain("instructions={lesson.instructions}");
     expect(page).toContain("whitespace-pre-wrap");
-    expect(page).toContain("{lesson.content}");
+    expect(page).toContain("{teachingContent}");
+    expect(page).toContain("publicLessonTeachingText(lesson.content)");
+    expect(page).not.toContain("\n                {lesson.content}\n");
     expect(page).toContain('.from("lesson_vocabulary")');
     expect(page).toContain('.eq("lesson_id", lesson.id)');
     expect(page).toContain('if (vocabulary.length === 0 && user)');
