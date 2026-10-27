@@ -1,0 +1,923 @@
+{
+  "schemaVersion": 1,
+  "documentType": "dadyoom.existing-lesson-vocabulary-repair.v1",
+  "countryCode": "BH",
+  "academicYear": "2026-2027",
+  "grade": 1,
+  "semester": 2,
+  "sourceNote": "Existing published Dadyoom Grade 1 lessons, original supplementary words; 2026-27 semester-two official textbook TOC not verified, some source links are prior-year.",
+  "rights": {
+    "contentOwner": "dadyoom",
+    "officialTextbookBodyVerified": false,
+    "officialTocVerified": false,
+    "teacherReview": "pending",
+    "publicationApproved": false,
+    "automaticPublishAllowed": false
+  },
+  "importSafety": {
+    "mode": "review_only",
+    "mustMatchExistingLessonId": true,
+    "mustMatchExactTitle": true,
+    "mustMatchGradeAndTerm": true,
+    "requireEmbeddedVocabularyEmpty": true,
+    "requireNoRelationalVocabulary": true,
+    "preventInsertLesson": true,
+    "preventDeleteOrOverwriteStudentProgress": true,
+    "requiresTeacherApproval": true
+  },
+  "lessons": [
+    {
+      "existingLessonId": "3c0b38ac-62d1-4855-90a9-c9ba95f37350",
+      "existingTitle": "الحرف (هـ)",
+      "expectedStatus": "published",
+      "expectedGrade": 1,
+      "expectedSemester": 2,
+      "targetLetters": [
+        "ه"
+      ],
+      "originalEnhancement": true,
+      "sourceAcademicYearVerified": false,
+      "publicationApproved": false,
+      "teacherReview": "pending",
+      "status": "vocabulary_repair_teacher_review_pending",
+      "vocabulary": [
+        {
+          "word": "هَدِيَّةٌ",
+          "meaning": "شيء نقدّمه لشخص تعبيرًا عن المحبة",
+          "example": "أَهْدَتْ مَرْيَمُ أُمَّها هَدِيَّةً.",
+          "order": 1
+        },
+        {
+          "word": "زَهْرٌ",
+          "meaning": "الجزء المزهر الجميل في نباتات كثيرة",
+          "example": "نَما الزَّهْرُ فِي الحَدِيقَةِ.",
+          "order": 2
+        },
+        {
+          "word": "وَجْهٌ",
+          "meaning": "مقدمة الرأس التي تظهر فيها العينان والفم",
+          "example": "ابْتَسَمَ الطِّفْلُ وَظَهَرَ الفَرَحُ عَلَى وَجْهِهِ.",
+          "order": 3
+        },
+        {
+          "word": "هِلَالٌ",
+          "meaning": "شكل رفيع للقمر نراه في بداية الشهر القمري",
+          "example": "رَأَيْنَا الهِلَالَ فِي السَّمَاءِ.",
+          "order": 4
+        }
+      ],
+      "objectives": [
+        "أن يميّز المتعلم حرف ه في الكلمات المسموعة أو المكتوبة بمساندة المعلم.",
+        "أن يربط المتعلم الكلمة بصورة أو تعريف مناسب ويستعملها في جملة شفهية من إنشائه.",
+        "أن يحدد المتعلم موضع الحرف المستهدف في كلمتين، ويشرح اختياره بالإشارة أو بالكلام."
+      ],
+      "learningExperience": {
+        "opening": "يعرض المعلم بطاقتين لكلمتَي «هَدِيَّةٌ» و«هَدِيَّةٌ»، ويطلب من الطفل تحديد الحرف المستهدف بالإشارة قبل القراءة الجهرية.",
+        "guidedDiscovery": "انطق «هَدِيَّةٌ» ببطء، وحدد موضع حرف ه. ثم قارنها بكلمة «هَدِيَّةٌ» وبيّن الاختلاف في الصوت والموضع. القراءة المطولة من مسؤولية المعلم عند وجود حروف لم يتعلمها الطفل.",
+        "cooperativePractice": "يتبادل طفلان دور القارئ والمستمع: يسمع أحدهما كلمة من البطاقات الأربع، ويختار الآخر البطاقة ثم يصف معناها بعبارة بسيطة.",
+        "support": "أعرض بطاقتين فقط مع تكرار بطيء للصوت، وأقبل الإشارة والرسم قبل الكتابة.",
+        "extension": "يذكر المتعلم كلمة خامسة مناسبة للحرف، ويحدد موضعه فيها دون حفظ الجملة النموذجية.",
+        "originalDictationTeacherRead": "هَدِيَّةٌ، زَهْرٌ، وَجْهٌ، هِلَالٌ.",
+        "independentPerformance": "يختار المتعلم كلمتين مختلفتين، ويرسم معناهما أو يضع كلًّا منهما في جملة قصيرة، ثم يوضح مكان الحرف المستهدف.",
+        "teacherRubric": [
+          {
+            "criterion": "تمييز صوت الحرف وشكله",
+            "max": 2
+          },
+          {
+            "criterion": "فهم معنى كلمة من السياق",
+            "max": 2
+          },
+          {
+            "criterion": "استخدام كلمة في جملة جديدة",
+            "max": 2
+          }
+        ],
+        "assessment": {
+          "mode": "teacher_observation_only",
+          "automaticFreeTextGrade": false,
+          "progressMutation": false
+        }
+      }
+    },
+    {
+      "existingLessonId": "6577a2a6-d5f5-49f9-a619-9acf81990b52",
+      "existingTitle": "الحرفان (ط-ز)",
+      "expectedStatus": "published",
+      "expectedGrade": 1,
+      "expectedSemester": 2,
+      "targetLetters": [
+        "ط",
+        "ز"
+      ],
+      "originalEnhancement": true,
+      "sourceAcademicYearVerified": false,
+      "publicationApproved": false,
+      "teacherReview": "pending",
+      "status": "vocabulary_repair_teacher_review_pending",
+      "vocabulary": [
+        {
+          "word": "طَائِرَةٌ",
+          "meaning": "وسيلة نقل تطير في السماء",
+          "example": "تَطِيرُ الطَّائِرَةُ فَوْقَ الْمَدِينَةِ.",
+          "order": 1
+        },
+        {
+          "word": "مَطَرٌ",
+          "meaning": "ماء ينزل من السحاب على الأرض",
+          "example": "نَزَلَ المَطَرُ عَلَى الْأَشْجَارِ.",
+          "order": 2
+        },
+        {
+          "word": "زَيْتٌ",
+          "meaning": "سائل يُستعمل في إعداد بعض الأطعمة",
+          "example": "أَضَافَ الْأَبُ قَلِيلًا مِنَ الزَّيْتِ لِلطَّعَامِ.",
+          "order": 3
+        },
+        {
+          "word": "مَوْزٌ",
+          "meaning": "ثمرة حلوة تؤكل بعد تقشيرها",
+          "example": "أَكَلَ الطِّفْلُ مَوْزًا بَعْدَ اللَّعِبِ.",
+          "order": 4
+        }
+      ],
+      "objectives": [
+        "أن يميّز المتعلم حرف ط وحرف ز في الكلمات المسموعة أو المكتوبة بمساندة المعلم.",
+        "أن يربط المتعلم الكلمة بصورة أو تعريف مناسب ويستعملها في جملة شفهية من إنشائه.",
+        "أن يحدد المتعلم موضع الحرف المستهدف في كلمتين، ويشرح اختياره بالإشارة أو بالكلام."
+      ],
+      "learningExperience": {
+        "opening": "يعرض المعلم بطاقتين لكلمتَي «طَائِرَةٌ» و«زَيْتٌ»، ويطلب من الطفل تحديد الحرف المستهدف بالإشارة قبل القراءة الجهرية.",
+        "guidedDiscovery": "انطق «طَائِرَةٌ» ببطء، وحدد موضع حرف ط. ثم قارنها بكلمة «زَيْتٌ» وبيّن الاختلاف في الصوت والموضع. القراءة المطولة من مسؤولية المعلم عند وجود حروف لم يتعلمها الطفل.",
+        "cooperativePractice": "يتبادل طفلان دور القارئ والمستمع: يسمع أحدهما كلمة من البطاقات الأربع، ويختار الآخر البطاقة ثم يصف معناها بعبارة بسيطة.",
+        "support": "أعرض بطاقتين فقط مع تكرار بطيء للصوت، وأقبل الإشارة والرسم قبل الكتابة.",
+        "extension": "يذكر المتعلم كلمة خامسة مناسبة للحرف، ويحدد موضعه فيها دون حفظ الجملة النموذجية.",
+        "originalDictationTeacherRead": "طَائِرَةٌ، مَطَرٌ، زَيْتٌ، مَوْزٌ.",
+        "independentPerformance": "يختار المتعلم كلمتين مختلفتين، ويرسم معناهما أو يضع كلًّا منهما في جملة قصيرة، ثم يوضح مكان الحرف المستهدف.",
+        "teacherRubric": [
+          {
+            "criterion": "تمييز صوت الحرف وشكله",
+            "max": 2
+          },
+          {
+            "criterion": "فهم معنى كلمة من السياق",
+            "max": 2
+          },
+          {
+            "criterion": "استخدام كلمة في جملة جديدة",
+            "max": 2
+          }
+        ],
+        "assessment": {
+          "mode": "teacher_observation_only",
+          "automaticFreeTextGrade": false,
+          "progressMutation": false
+        }
+      }
+    },
+    {
+      "existingLessonId": "ffb03161-fd9b-466b-bcf1-837efc0cdca3",
+      "existingTitle": "الحرفان (غ-ي)",
+      "expectedStatus": "published",
+      "expectedGrade": 1,
+      "expectedSemester": 2,
+      "targetLetters": [
+        "غ",
+        "ي"
+      ],
+      "originalEnhancement": true,
+      "sourceAcademicYearVerified": false,
+      "publicationApproved": false,
+      "teacherReview": "pending",
+      "status": "vocabulary_repair_teacher_review_pending",
+      "vocabulary": [
+        {
+          "word": "غَزَالٌ",
+          "meaning": "حيوان رشيق سريع الجري",
+          "example": "رَأَى الطِّفْلُ غَزَالًا يَرْكُضُ.",
+          "order": 1
+        },
+        {
+          "word": "مَغَارَةٌ",
+          "meaning": "تجويف طبيعي في صخر أو جبل",
+          "example": "شَاهَدَ الْأَطْفَالُ مَغَارَةً مِنْ بَعِيدٍ.",
+          "order": 2
+        },
+        {
+          "word": "يَدٌ",
+          "meaning": "عضو في الجسم نكتب ونمسك به الأشياء",
+          "example": "أَمْسَكَتْ لَيْلَى الْقَلَمَ بِيَدِهَا.",
+          "order": 3
+        },
+        {
+          "word": "بَيْتٌ",
+          "meaning": "مكان تعيش فيه الأسرة",
+          "example": "عَادَتِ الْأُسْرَةُ إِلَى الْبَيْتِ.",
+          "order": 4
+        }
+      ],
+      "objectives": [
+        "أن يميّز المتعلم حرف غ وحرف ي في الكلمات المسموعة أو المكتوبة بمساندة المعلم.",
+        "أن يربط المتعلم الكلمة بصورة أو تعريف مناسب ويستعملها في جملة شفهية من إنشائه.",
+        "أن يحدد المتعلم موضع الحرف المستهدف في كلمتين، ويشرح اختياره بالإشارة أو بالكلام."
+      ],
+      "learningExperience": {
+        "opening": "يعرض المعلم بطاقتين لكلمتَي «غَزَالٌ» و«يَدٌ»، ويطلب من الطفل تحديد الحرف المستهدف بالإشارة قبل القراءة الجهرية.",
+        "guidedDiscovery": "انطق «غَزَالٌ» ببطء، وحدد موضع حرف غ. ثم قارنها بكلمة «يَدٌ» وبيّن الاختلاف في الصوت والموضع. القراءة المطولة من مسؤولية المعلم عند وجود حروف لم يتعلمها الطفل.",
+        "cooperativePractice": "يتبادل طفلان دور القارئ والمستمع: يسمع أحدهما كلمة من البطاقات الأربع، ويختار الآخر البطاقة ثم يصف معناها بعبارة بسيطة.",
+        "support": "أعرض بطاقتين فقط مع تكرار بطيء للصوت، وأقبل الإشارة والرسم قبل الكتابة.",
+        "extension": "يذكر المتعلم كلمة خامسة مناسبة للحرف، ويحدد موضعه فيها دون حفظ الجملة النموذجية.",
+        "originalDictationTeacherRead": "غَزَالٌ، مَغَارَةٌ، يَدٌ، بَيْتٌ.",
+        "independentPerformance": "يختار المتعلم كلمتين مختلفتين، ويرسم معناهما أو يضع كلًّا منهما في جملة قصيرة، ثم يوضح مكان الحرف المستهدف.",
+        "teacherRubric": [
+          {
+            "criterion": "تمييز صوت الحرف وشكله",
+            "max": 2
+          },
+          {
+            "criterion": "فهم معنى كلمة من السياق",
+            "max": 2
+          },
+          {
+            "criterion": "استخدام كلمة في جملة جديدة",
+            "max": 2
+          }
+        ],
+        "assessment": {
+          "mode": "teacher_observation_only",
+          "automaticFreeTextGrade": false,
+          "progressMutation": false
+        }
+      }
+    },
+    {
+      "existingLessonId": "edd67793-647a-465f-b0c1-fb6402db3412",
+      "existingTitle": "الحرفان (و-ث)",
+      "expectedStatus": "published",
+      "expectedGrade": 1,
+      "expectedSemester": 2,
+      "targetLetters": [
+        "و",
+        "ث"
+      ],
+      "originalEnhancement": true,
+      "sourceAcademicYearVerified": false,
+      "publicationApproved": false,
+      "teacherReview": "pending",
+      "status": "vocabulary_repair_teacher_review_pending",
+      "vocabulary": [
+        {
+          "word": "وَرْدٌ",
+          "meaning": "أزهار جميلة ذات ألوان متعددة",
+          "example": "نَمَا الْوَرْدُ قُرْبَ النَّافِذَةِ.",
+          "order": 1
+        },
+        {
+          "word": "لَوْنٌ",
+          "meaning": "صفة نميّز بها مظهر الشيء",
+          "example": "اخْتَارَ سَامِي لَوْنًا أَخْضَرَ.",
+          "order": 2
+        },
+        {
+          "word": "ثَوْبٌ",
+          "meaning": "قطعة لباس نرتديها",
+          "example": "ارْتَدَى الْوَلَدُ ثَوْبًا نَظِيفًا.",
+          "order": 3
+        },
+        {
+          "word": "مُثَلَّثٌ",
+          "meaning": "شكل هندسي له ثلاثة أضلاع",
+          "example": "رَسَمَتْ هَنَاءُ مُثَلَّثًا.",
+          "order": 4
+        }
+      ],
+      "objectives": [
+        "أن يميّز المتعلم حرف و وحرف ث في الكلمات المسموعة أو المكتوبة بمساندة المعلم.",
+        "أن يربط المتعلم الكلمة بصورة أو تعريف مناسب ويستعملها في جملة شفهية من إنشائه.",
+        "أن يحدد المتعلم موضع الحرف المستهدف في كلمتين، ويشرح اختياره بالإشارة أو بالكلام."
+      ],
+      "learningExperience": {
+        "opening": "يعرض المعلم بطاقتين لكلمتَي «وَرْدٌ» و«ثَوْبٌ»، ويطلب من الطفل تحديد الحرف المستهدف بالإشارة قبل القراءة الجهرية.",
+        "guidedDiscovery": "انطق «وَرْدٌ» ببطء، وحدد موضع حرف و. ثم قارنها بكلمة «ثَوْبٌ» وبيّن الاختلاف في الصوت والموضع. القراءة المطولة من مسؤولية المعلم عند وجود حروف لم يتعلمها الطفل.",
+        "cooperativePractice": "يتبادل طفلان دور القارئ والمستمع: يسمع أحدهما كلمة من البطاقات الأربع، ويختار الآخر البطاقة ثم يصف معناها بعبارة بسيطة.",
+        "support": "أعرض بطاقتين فقط مع تكرار بطيء للصوت، وأقبل الإشارة والرسم قبل الكتابة.",
+        "extension": "يذكر المتعلم كلمة خامسة مناسبة للحرف، ويحدد موضعه فيها دون حفظ الجملة النموذجية.",
+        "originalDictationTeacherRead": "وَرْدٌ، لَوْنٌ، ثَوْبٌ، مُثَلَّثٌ.",
+        "independentPerformance": "يختار المتعلم كلمتين مختلفتين، ويرسم معناهما أو يضع كلًّا منهما في جملة قصيرة، ثم يوضح مكان الحرف المستهدف.",
+        "teacherRubric": [
+          {
+            "criterion": "تمييز صوت الحرف وشكله",
+            "max": 2
+          },
+          {
+            "criterion": "فهم معنى كلمة من السياق",
+            "max": 2
+          },
+          {
+            "criterion": "استخدام كلمة في جملة جديدة",
+            "max": 2
+          }
+        ],
+        "assessment": {
+          "mode": "teacher_observation_only",
+          "automaticFreeTextGrade": false,
+          "progressMutation": false
+        }
+      }
+    },
+    {
+      "existingLessonId": "f3bca471-c6e5-42f1-9fd9-74dd569439b8",
+      "existingTitle": "الدرس التاسع: حرف (ض)",
+      "expectedStatus": "published",
+      "expectedGrade": 1,
+      "expectedSemester": 2,
+      "targetLetters": [
+        "ض"
+      ],
+      "originalEnhancement": true,
+      "sourceAcademicYearVerified": false,
+      "publicationApproved": false,
+      "teacherReview": "pending",
+      "status": "vocabulary_repair_teacher_review_pending",
+      "vocabulary": [
+        {
+          "word": "ضَوْءٌ",
+          "meaning": "ما يُمكّن العين من رؤية الأشياء",
+          "example": "دَخَلَ الضَّوْءُ مِنَ النَّافِذَةِ.",
+          "order": 1
+        },
+        {
+          "word": "مَرَضٌ",
+          "meaning": "حالة يشعر فيها الإنسان بتعب أو اعتلال",
+          "example": "اسْتَرَاحَ الطِّفْلُ حَتَّى تَعَافَى مِنَ الْمَرَضِ.",
+          "order": 2
+        },
+        {
+          "word": "ضِفْدَعٌ",
+          "meaning": "حيوان صغير يعيش قرب الماء",
+          "example": "قَفَزَ الضِّفْدَعُ نَحْوَ الْبِرْكَةِ.",
+          "order": 3
+        },
+        {
+          "word": "أَرْضٌ",
+          "meaning": "سطح اليابسة الذي نمشي عليه",
+          "example": "لَعِبَ الْأَطْفَالُ عَلَى الْأَرْضِ.",
+          "order": 4
+        }
+      ],
+      "objectives": [
+        "أن يميّز المتعلم حرف ض في الكلمات المسموعة أو المكتوبة بمساندة المعلم.",
+        "أن يربط المتعلم الكلمة بصورة أو تعريف مناسب ويستعملها في جملة شفهية من إنشائه.",
+        "أن يحدد المتعلم موضع الحرف المستهدف في كلمتين، ويشرح اختياره بالإشارة أو بالكلام."
+      ],
+      "learningExperience": {
+        "opening": "يعرض المعلم بطاقتين لكلمتَي «ضَوْءٌ» و«ضَوْءٌ»، ويطلب من الطفل تحديد الحرف المستهدف بالإشارة قبل القراءة الجهرية.",
+        "guidedDiscovery": "انطق «ضَوْءٌ» ببطء، وحدد موضع حرف ض. ثم قارنها بكلمة «ضَوْءٌ» وبيّن الاختلاف في الصوت والموضع. القراءة المطولة من مسؤولية المعلم عند وجود حروف لم يتعلمها الطفل.",
+        "cooperativePractice": "يتبادل طفلان دور القارئ والمستمع: يسمع أحدهما كلمة من البطاقات الأربع، ويختار الآخر البطاقة ثم يصف معناها بعبارة بسيطة.",
+        "support": "أعرض بطاقتين فقط مع تكرار بطيء للصوت، وأقبل الإشارة والرسم قبل الكتابة.",
+        "extension": "يذكر المتعلم كلمة خامسة مناسبة للحرف، ويحدد موضعه فيها دون حفظ الجملة النموذجية.",
+        "originalDictationTeacherRead": "ضَوْءٌ، مَرَضٌ، ضِفْدَعٌ، أَرْضٌ.",
+        "independentPerformance": "يختار المتعلم كلمتين مختلفتين، ويرسم معناهما أو يضع كلًّا منهما في جملة قصيرة، ثم يوضح مكان الحرف المستهدف.",
+        "teacherRubric": [
+          {
+            "criterion": "تمييز صوت الحرف وشكله",
+            "max": 2
+          },
+          {
+            "criterion": "فهم معنى كلمة من السياق",
+            "max": 2
+          },
+          {
+            "criterion": "استخدام كلمة في جملة جديدة",
+            "max": 2
+          }
+        ],
+        "assessment": {
+          "mode": "teacher_observation_only",
+          "automaticFreeTextGrade": false,
+          "progressMutation": false
+        }
+      }
+    },
+    {
+      "existingLessonId": "e85c153c-3d69-471f-b93c-a4726b73485d",
+      "existingTitle": "الدرس الثالث: حرف (ك)",
+      "expectedStatus": "published",
+      "expectedGrade": 1,
+      "expectedSemester": 2,
+      "targetLetters": [
+        "ك"
+      ],
+      "originalEnhancement": true,
+      "sourceAcademicYearVerified": false,
+      "publicationApproved": false,
+      "teacherReview": "pending",
+      "status": "vocabulary_repair_teacher_review_pending",
+      "vocabulary": [
+        {
+          "word": "كِتَابٌ",
+          "meaning": "صفحات مجتمعة نقرأ ما كُتب فيها",
+          "example": "فَتَحَتْ مَرْيَمُ كِتَابًا مُصَوَّرًا.",
+          "order": 1
+        },
+        {
+          "word": "مَكْتَبٌ",
+          "meaning": "قطعة أثاث نضع عليها كتبنا وأدواتنا",
+          "example": "وَضَعَ الطَّالِبُ دَفْتَرَهُ عَلَى الْمَكْتَبِ.",
+          "order": 2
+        },
+        {
+          "word": "سَمَكٌ",
+          "meaning": "حيوانات تعيش في الماء وتتنفس بالخياشيم",
+          "example": "يَسْبَحُ السَّمَكُ فِي الْبَحْرِ.",
+          "order": 3
+        },
+        {
+          "word": "كَوْكَبٌ",
+          "meaning": "جسم سماوي يدور حول نجم",
+          "example": "الْأَرْضُ كَوْكَبٌ يَدُورُ حَوْلَ الشَّمْسِ.",
+          "order": 4
+        }
+      ],
+      "objectives": [
+        "أن يميّز المتعلم حرف ك في الكلمات المسموعة أو المكتوبة بمساندة المعلم.",
+        "أن يربط المتعلم الكلمة بصورة أو تعريف مناسب ويستعملها في جملة شفهية من إنشائه.",
+        "أن يحدد المتعلم موضع الحرف المستهدف في كلمتين، ويشرح اختياره بالإشارة أو بالكلام."
+      ],
+      "learningExperience": {
+        "opening": "يعرض المعلم بطاقتين لكلمتَي «كِتَابٌ» و«كِتَابٌ»، ويطلب من الطفل تحديد الحرف المستهدف بالإشارة قبل القراءة الجهرية.",
+        "guidedDiscovery": "انطق «كِتَابٌ» ببطء، وحدد موضع حرف ك. ثم قارنها بكلمة «كِتَابٌ» وبيّن الاختلاف في الصوت والموضع. القراءة المطولة من مسؤولية المعلم عند وجود حروف لم يتعلمها الطفل.",
+        "cooperativePractice": "يتبادل طفلان دور القارئ والمستمع: يسمع أحدهما كلمة من البطاقات الأربع، ويختار الآخر البطاقة ثم يصف معناها بعبارة بسيطة.",
+        "support": "أعرض بطاقتين فقط مع تكرار بطيء للصوت، وأقبل الإشارة والرسم قبل الكتابة.",
+        "extension": "يذكر المتعلم كلمة خامسة مناسبة للحرف، ويحدد موضعه فيها دون حفظ الجملة النموذجية.",
+        "originalDictationTeacherRead": "كِتَابٌ، مَكْتَبٌ، سَمَكٌ، كَوْكَبٌ.",
+        "independentPerformance": "يختار المتعلم كلمتين مختلفتين، ويرسم معناهما أو يضع كلًّا منهما في جملة قصيرة، ثم يوضح مكان الحرف المستهدف.",
+        "teacherRubric": [
+          {
+            "criterion": "تمييز صوت الحرف وشكله",
+            "max": 2
+          },
+          {
+            "criterion": "فهم معنى كلمة من السياق",
+            "max": 2
+          },
+          {
+            "criterion": "استخدام كلمة في جملة جديدة",
+            "max": 2
+          }
+        ],
+        "assessment": {
+          "mode": "teacher_observation_only",
+          "automaticFreeTextGrade": false,
+          "progressMutation": false
+        }
+      }
+    },
+    {
+      "existingLessonId": "ad069dd9-052d-47fe-8c03-5c4ff9381cdb",
+      "existingTitle": "الدرس الثامن: حرفا (خ) و(ذ)",
+      "expectedStatus": "published",
+      "expectedGrade": 1,
+      "expectedSemester": 2,
+      "targetLetters": [
+        "خ",
+        "ذ"
+      ],
+      "originalEnhancement": true,
+      "sourceAcademicYearVerified": false,
+      "publicationApproved": false,
+      "teacherReview": "pending",
+      "status": "vocabulary_repair_teacher_review_pending",
+      "vocabulary": [
+        {
+          "word": "خُبْزٌ",
+          "meaning": "طعام مصنوع من عجين مخبوز",
+          "example": "تَنَاوَلَتْ مَرْيَمُ خُبْزًا طَازَجًا.",
+          "order": 1
+        },
+        {
+          "word": "نَخْلَةٌ",
+          "meaning": "شجرة تنمو عليها ثمار التمر",
+          "example": "رَأَيْنَا نَخْلَةً فِي الْمَزْرَعَةِ.",
+          "order": 2
+        },
+        {
+          "word": "ذَهَبٌ",
+          "meaning": "معدن أصفر ثمين",
+          "example": "صُنِعَ الْخَاتَمُ مِنَ الذَّهَبِ.",
+          "order": 3
+        },
+        {
+          "word": "أُذُنٌ",
+          "meaning": "عضو نسمع به الأصوات",
+          "example": "نَسْمَعُ الْأَصْوَاتَ بِالْأُذُنِ.",
+          "order": 4
+        }
+      ],
+      "objectives": [
+        "أن يميّز المتعلم حرف خ وحرف ذ في الكلمات المسموعة أو المكتوبة بمساندة المعلم.",
+        "أن يربط المتعلم الكلمة بصورة أو تعريف مناسب ويستعملها في جملة شفهية من إنشائه.",
+        "أن يحدد المتعلم موضع الحرف المستهدف في كلمتين، ويشرح اختياره بالإشارة أو بالكلام."
+      ],
+      "learningExperience": {
+        "opening": "يعرض المعلم بطاقتين لكلمتَي «خُبْزٌ» و«ذَهَبٌ»، ويطلب من الطفل تحديد الحرف المستهدف بالإشارة قبل القراءة الجهرية.",
+        "guidedDiscovery": "انطق «خُبْزٌ» ببطء، وحدد موضع حرف خ. ثم قارنها بكلمة «ذَهَبٌ» وبيّن الاختلاف في الصوت والموضع. القراءة المطولة من مسؤولية المعلم عند وجود حروف لم يتعلمها الطفل.",
+        "cooperativePractice": "يتبادل طفلان دور القارئ والمستمع: يسمع أحدهما كلمة من البطاقات الأربع، ويختار الآخر البطاقة ثم يصف معناها بعبارة بسيطة.",
+        "support": "أعرض بطاقتين فقط مع تكرار بطيء للصوت، وأقبل الإشارة والرسم قبل الكتابة.",
+        "extension": "يذكر المتعلم كلمة خامسة مناسبة للحرف، ويحدد موضعه فيها دون حفظ الجملة النموذجية.",
+        "originalDictationTeacherRead": "خُبْزٌ، نَخْلَةٌ، ذَهَبٌ، أُذُنٌ.",
+        "independentPerformance": "يختار المتعلم كلمتين مختلفتين، ويرسم معناهما أو يضع كلًّا منهما في جملة قصيرة، ثم يوضح مكان الحرف المستهدف.",
+        "teacherRubric": [
+          {
+            "criterion": "تمييز صوت الحرف وشكله",
+            "max": 2
+          },
+          {
+            "criterion": "فهم معنى كلمة من السياق",
+            "max": 2
+          },
+          {
+            "criterion": "استخدام كلمة في جملة جديدة",
+            "max": 2
+          }
+        ],
+        "assessment": {
+          "mode": "teacher_observation_only",
+          "automaticFreeTextGrade": false,
+          "progressMutation": false
+        }
+      }
+    },
+    {
+      "existingLessonId": "c1771cdd-3a3a-4778-9084-6dde00051ddb",
+      "existingTitle": "الدرس الرابع عشر: حرف (ظ)",
+      "expectedStatus": "published",
+      "expectedGrade": 1,
+      "expectedSemester": 2,
+      "targetLetters": [
+        "ظ"
+      ],
+      "originalEnhancement": true,
+      "sourceAcademicYearVerified": false,
+      "publicationApproved": false,
+      "teacherReview": "pending",
+      "status": "vocabulary_repair_teacher_review_pending",
+      "vocabulary": [
+        {
+          "word": "ظَبْيٌ",
+          "meaning": "حيوان رشيق سريع الجري",
+          "example": "جَرَى الظَّبْيُ فِي الصَّحْرَاءِ.",
+          "order": 1
+        },
+        {
+          "word": "نَظَّارَةٌ",
+          "meaning": "أداة تساعد بعض الأشخاص على الرؤية بوضوح",
+          "example": "ارْتَدَى جَدِّي نَظَّارَتَهُ لِلْقِرَاءَةِ.",
+          "order": 2
+        },
+        {
+          "word": "حَظٌّ",
+          "meaning": "نصيب يقع للإنسان دون تخطيط منه",
+          "example": "قَالَتْ لَيْلَى: كَانَ لِي حَظٌّ جَيِّدٌ.",
+          "order": 3
+        },
+        {
+          "word": "مِظَلَّةٌ",
+          "meaning": "أداة تحمينا من الشمس أو المطر",
+          "example": "فَتَحَتِ الْأُمُّ مِظَلَّةً عِنْدَ الْمَطَرِ.",
+          "order": 4
+        }
+      ],
+      "objectives": [
+        "أن يميّز المتعلم حرف ظ في الكلمات المسموعة أو المكتوبة بمساندة المعلم.",
+        "أن يربط المتعلم الكلمة بصورة أو تعريف مناسب ويستعملها في جملة شفهية من إنشائه.",
+        "أن يحدد المتعلم موضع الحرف المستهدف في كلمتين، ويشرح اختياره بالإشارة أو بالكلام."
+      ],
+      "learningExperience": {
+        "opening": "يعرض المعلم بطاقتين لكلمتَي «ظَبْيٌ» و«ظَبْيٌ»، ويطلب من الطفل تحديد الحرف المستهدف بالإشارة قبل القراءة الجهرية.",
+        "guidedDiscovery": "انطق «ظَبْيٌ» ببطء، وحدد موضع حرف ظ. ثم قارنها بكلمة «ظَبْيٌ» وبيّن الاختلاف في الصوت والموضع. القراءة المطولة من مسؤولية المعلم عند وجود حروف لم يتعلمها الطفل.",
+        "cooperativePractice": "يتبادل طفلان دور القارئ والمستمع: يسمع أحدهما كلمة من البطاقات الأربع، ويختار الآخر البطاقة ثم يصف معناها بعبارة بسيطة.",
+        "support": "أعرض بطاقتين فقط مع تكرار بطيء للصوت، وأقبل الإشارة والرسم قبل الكتابة.",
+        "extension": "يذكر المتعلم كلمة خامسة مناسبة للحرف، ويحدد موضعه فيها دون حفظ الجملة النموذجية.",
+        "originalDictationTeacherRead": "ظَبْيٌ، نَظَّارَةٌ، حَظٌّ، مِظَلَّةٌ.",
+        "independentPerformance": "يختار المتعلم كلمتين مختلفتين، ويرسم معناهما أو يضع كلًّا منهما في جملة قصيرة، ثم يوضح مكان الحرف المستهدف.",
+        "teacherRubric": [
+          {
+            "criterion": "تمييز صوت الحرف وشكله",
+            "max": 2
+          },
+          {
+            "criterion": "فهم معنى كلمة من السياق",
+            "max": 2
+          },
+          {
+            "criterion": "استخدام كلمة في جملة جديدة",
+            "max": 2
+          }
+        ],
+        "assessment": {
+          "mode": "teacher_observation_only",
+          "automaticFreeTextGrade": false,
+          "progressMutation": false
+        }
+      }
+    },
+    {
+      "existingLessonId": "97ff78ad-d774-4a51-a860-8ca8c3d00ea2",
+      "existingTitle": "الدرس الرابع: حرفا (ف) و(أ)",
+      "expectedStatus": "published",
+      "expectedGrade": 1,
+      "expectedSemester": 2,
+      "targetLetters": [
+        "ف",
+        "أ"
+      ],
+      "originalEnhancement": true,
+      "sourceAcademicYearVerified": false,
+      "publicationApproved": false,
+      "teacherReview": "pending",
+      "status": "vocabulary_repair_teacher_review_pending",
+      "vocabulary": [
+        {
+          "word": "فَمٌ",
+          "meaning": "موضع في الوجه نأكل ونتحدث به",
+          "example": "فَتَحَ الطِّفْلُ فَمَهُ لِيَتَحَدَّثَ.",
+          "order": 1
+        },
+        {
+          "word": "سَقْفٌ",
+          "meaning": "الجزء الأعلى الذي يغطي الغرفة",
+          "example": "يَحْمِي السَّقْفُ الْغُرْفَةَ مِنَ الْمَطَرِ.",
+          "order": 2
+        },
+        {
+          "word": "أَسَدٌ",
+          "meaning": "حيوان مفترس من فصيلة القطط",
+          "example": "رَسَمَتْ مَرْيَمُ أَسَدًا.",
+          "order": 3
+        },
+        {
+          "word": "سَأَلَ",
+          "meaning": "طلب معرفة شيء من شخص آخر",
+          "example": "سَأَلَ سَامِي مُعَلِّمَهُ عَنْ مَعْنَى كَلِمَةٍ.",
+          "order": 4
+        }
+      ],
+      "objectives": [
+        "أن يميّز المتعلم حرف ف وحرف أ في الكلمات المسموعة أو المكتوبة بمساندة المعلم.",
+        "أن يربط المتعلم الكلمة بصورة أو تعريف مناسب ويستعملها في جملة شفهية من إنشائه.",
+        "أن يحدد المتعلم موضع الحرف المستهدف في كلمتين، ويشرح اختياره بالإشارة أو بالكلام."
+      ],
+      "learningExperience": {
+        "opening": "يعرض المعلم بطاقتين لكلمتَي «فَمٌ» و«أَسَدٌ»، ويطلب من الطفل تحديد الحرف المستهدف بالإشارة قبل القراءة الجهرية.",
+        "guidedDiscovery": "انطق «فَمٌ» ببطء، وحدد موضع حرف ف. ثم قارنها بكلمة «أَسَدٌ» وبيّن الاختلاف في الصوت والموضع. القراءة المطولة من مسؤولية المعلم عند وجود حروف لم يتعلمها الطفل.",
+        "cooperativePractice": "يتبادل طفلان دور القارئ والمستمع: يسمع أحدهما كلمة من البطاقات الأربع، ويختار الآخر البطاقة ثم يصف معناها بعبارة بسيطة.",
+        "support": "أعرض بطاقتين فقط مع تكرار بطيء للصوت، وأقبل الإشارة والرسم قبل الكتابة.",
+        "extension": "يذكر المتعلم كلمة خامسة مناسبة للحرف، ويحدد موضعه فيها دون حفظ الجملة النموذجية.",
+        "originalDictationTeacherRead": "فَمٌ، سَقْفٌ، أَسَدٌ، سَأَلَ.",
+        "independentPerformance": "يختار المتعلم كلمتين مختلفتين، ويرسم معناهما أو يضع كلًّا منهما في جملة قصيرة، ثم يوضح مكان الحرف المستهدف.",
+        "teacherRubric": [
+          {
+            "criterion": "تمييز صوت الحرف وشكله",
+            "max": 2
+          },
+          {
+            "criterion": "فهم معنى كلمة من السياق",
+            "max": 2
+          },
+          {
+            "criterion": "استخدام كلمة في جملة جديدة",
+            "max": 2
+          }
+        ],
+        "assessment": {
+          "mode": "teacher_observation_only",
+          "automaticFreeTextGrade": false,
+          "progressMutation": false
+        }
+      }
+    },
+    {
+      "existingLessonId": "2d526483-4166-4ba6-af27-d8684fa219b2",
+      "existingTitle": "حرف (ش)",
+      "expectedStatus": "published",
+      "expectedGrade": 1,
+      "expectedSemester": 2,
+      "targetLetters": [
+        "ش"
+      ],
+      "originalEnhancement": true,
+      "sourceAcademicYearVerified": false,
+      "publicationApproved": false,
+      "teacherReview": "pending",
+      "status": "vocabulary_repair_teacher_review_pending",
+      "vocabulary": [
+        {
+          "word": "شَمْسٌ",
+          "meaning": "النجم الذي ينير الأرض نهارًا",
+          "example": "أَشْرَقَتِ الشَّمْسُ صَبَاحًا.",
+          "order": 1
+        },
+        {
+          "word": "مُشْطٌ",
+          "meaning": "أداة نرتّب بها الشعر",
+          "example": "اسْتَعْمَلَ الْوَلَدُ الْمُشْطَ.",
+          "order": 2
+        },
+        {
+          "word": "عُشْبٌ",
+          "meaning": "نبات أخضر صغير ينمو قريبًا من الأرض",
+          "example": "نَمَا الْعُشْبُ بَعْدَ الْمَطَرِ.",
+          "order": 3
+        },
+        {
+          "word": "مِشْمِشٌ",
+          "meaning": "ثمرة غالبًا ما تكون صفراء أو برتقالية",
+          "example": "غَسَلْنَا الْمِشْمِشَ قَبْلَ أَكْلِهِ.",
+          "order": 4
+        }
+      ],
+      "objectives": [
+        "أن يميّز المتعلم حرف ش في الكلمات المسموعة أو المكتوبة بمساندة المعلم.",
+        "أن يربط المتعلم الكلمة بصورة أو تعريف مناسب ويستعملها في جملة شفهية من إنشائه.",
+        "أن يحدد المتعلم موضع الحرف المستهدف في كلمتين، ويشرح اختياره بالإشارة أو بالكلام."
+      ],
+      "learningExperience": {
+        "opening": "يعرض المعلم بطاقتين لكلمتَي «شَمْسٌ» و«شَمْسٌ»، ويطلب من الطفل تحديد الحرف المستهدف بالإشارة قبل القراءة الجهرية.",
+        "guidedDiscovery": "انطق «شَمْسٌ» ببطء، وحدد موضع حرف ش. ثم قارنها بكلمة «شَمْسٌ» وبيّن الاختلاف في الصوت والموضع. القراءة المطولة من مسؤولية المعلم عند وجود حروف لم يتعلمها الطفل.",
+        "cooperativePractice": "يتبادل طفلان دور القارئ والمستمع: يسمع أحدهما كلمة من البطاقات الأربع، ويختار الآخر البطاقة ثم يصف معناها بعبارة بسيطة.",
+        "support": "أعرض بطاقتين فقط مع تكرار بطيء للصوت، وأقبل الإشارة والرسم قبل الكتابة.",
+        "extension": "يذكر المتعلم كلمة خامسة مناسبة للحرف، ويحدد موضعه فيها دون حفظ الجملة النموذجية.",
+        "originalDictationTeacherRead": "شَمْسٌ، مُشْطٌ، عُشْبٌ، مِشْمِشٌ.",
+        "independentPerformance": "يختار المتعلم كلمتين مختلفتين، ويرسم معناهما أو يضع كلًّا منهما في جملة قصيرة، ثم يوضح مكان الحرف المستهدف.",
+        "teacherRubric": [
+          {
+            "criterion": "تمييز صوت الحرف وشكله",
+            "max": 2
+          },
+          {
+            "criterion": "فهم معنى كلمة من السياق",
+            "max": 2
+          },
+          {
+            "criterion": "استخدام كلمة في جملة جديدة",
+            "max": 2
+          }
+        ],
+        "assessment": {
+          "mode": "teacher_observation_only",
+          "automaticFreeTextGrade": false,
+          "progressMutation": false
+        }
+      }
+    },
+    {
+      "existingLessonId": "59e5c063-a3be-409d-a309-078aac5687f0",
+      "existingTitle": "حرف (ص)",
+      "expectedStatus": "published",
+      "expectedGrade": 1,
+      "expectedSemester": 2,
+      "targetLetters": [
+        "ص"
+      ],
+      "originalEnhancement": true,
+      "sourceAcademicYearVerified": false,
+      "publicationApproved": false,
+      "teacherReview": "pending",
+      "status": "vocabulary_repair_teacher_review_pending",
+      "vocabulary": [
+        {
+          "word": "صَقْرٌ",
+          "meaning": "طائر جارح قوي البصر",
+          "example": "حَلَّقَ الصَّقْرُ فِي السَّمَاءِ.",
+          "order": 1
+        },
+        {
+          "word": "عَصِيرٌ",
+          "meaning": "شراب يُستخرج من الفواكه وغيرها",
+          "example": "شَرِبَتْ مَرْيَمُ عَصِيرَ الْبُرْتُقَالِ.",
+          "order": 2
+        },
+        {
+          "word": "قَفَصٌ",
+          "meaning": "هيكل ذو قضبان تُحفظ فيه أشياء أو حيوانات",
+          "example": "كَانَ الْقَفَصُ فَارِغًا.",
+          "order": 3
+        },
+        {
+          "word": "صَيْفٌ",
+          "meaning": "أحد فصول السنة، ويكون حارًّا في البحرين",
+          "example": "نَسْبَحُ فِي الصَّيْفِ بِإِشْرَافِ الْكِبَارِ.",
+          "order": 4
+        }
+      ],
+      "objectives": [
+        "أن يميّز المتعلم حرف ص في الكلمات المسموعة أو المكتوبة بمساندة المعلم.",
+        "أن يربط المتعلم الكلمة بصورة أو تعريف مناسب ويستعملها في جملة شفهية من إنشائه.",
+        "أن يحدد المتعلم موضع الحرف المستهدف في كلمتين، ويشرح اختياره بالإشارة أو بالكلام."
+      ],
+      "learningExperience": {
+        "opening": "يعرض المعلم بطاقتين لكلمتَي «صَقْرٌ» و«صَقْرٌ»، ويطلب من الطفل تحديد الحرف المستهدف بالإشارة قبل القراءة الجهرية.",
+        "guidedDiscovery": "انطق «صَقْرٌ» ببطء، وحدد موضع حرف ص. ثم قارنها بكلمة «صَقْرٌ» وبيّن الاختلاف في الصوت والموضع. القراءة المطولة من مسؤولية المعلم عند وجود حروف لم يتعلمها الطفل.",
+        "cooperativePractice": "يتبادل طفلان دور القارئ والمستمع: يسمع أحدهما كلمة من البطاقات الأربع، ويختار الآخر البطاقة ثم يصف معناها بعبارة بسيطة.",
+        "support": "أعرض بطاقتين فقط مع تكرار بطيء للصوت، وأقبل الإشارة والرسم قبل الكتابة.",
+        "extension": "يذكر المتعلم كلمة خامسة مناسبة للحرف، ويحدد موضعه فيها دون حفظ الجملة النموذجية.",
+        "originalDictationTeacherRead": "صَقْرٌ، عَصِيرٌ، قَفَصٌ، صَيْفٌ.",
+        "independentPerformance": "يختار المتعلم كلمتين مختلفتين، ويرسم معناهما أو يضع كلًّا منهما في جملة قصيرة، ثم يوضح مكان الحرف المستهدف.",
+        "teacherRubric": [
+          {
+            "criterion": "تمييز صوت الحرف وشكله",
+            "max": 2
+          },
+          {
+            "criterion": "فهم معنى كلمة من السياق",
+            "max": 2
+          },
+          {
+            "criterion": "استخدام كلمة في جملة جديدة",
+            "max": 2
+          }
+        ],
+        "assessment": {
+          "mode": "teacher_observation_only",
+          "automaticFreeTextGrade": false,
+          "progressMutation": false
+        }
+      }
+    },
+    {
+      "existingLessonId": "cac8cbdd-c68e-42de-8e09-b0aa809c84a9",
+      "existingTitle": "حرف (ق)",
+      "expectedStatus": "published",
+      "expectedGrade": 1,
+      "expectedSemester": 2,
+      "targetLetters": [
+        "ق"
+      ],
+      "originalEnhancement": true,
+      "sourceAcademicYearVerified": false,
+      "publicationApproved": false,
+      "teacherReview": "pending",
+      "status": "vocabulary_repair_teacher_review_pending",
+      "vocabulary": [
+        {
+          "word": "قَلَمٌ",
+          "meaning": "أداة نستعملها للكتابة أو الرسم",
+          "example": "كَتَبَتْ نُورَةُ بِقَلَمٍ أَزْرَقَ.",
+          "order": 1
+        },
+        {
+          "word": "بَقَرَةٌ",
+          "meaning": "حيوان أليف ينتج الحليب",
+          "example": "تَأْكُلُ الْبَقَرَةُ الْعُشْبَ.",
+          "order": 2
+        },
+        {
+          "word": "سُوقٌ",
+          "meaning": "مكان نشتري منه السلع",
+          "example": "ذَهَبَ الْأَبُ إِلَى السُّوقِ.",
+          "order": 3
+        },
+        {
+          "word": "قَمَرٌ",
+          "meaning": "جرم سماوي نراه من الأرض ليلًا",
+          "example": "ظَهَرَ الْقَمَرُ فِي السَّمَاءِ.",
+          "order": 4
+        }
+      ],
+      "objectives": [
+        "أن يميّز المتعلم حرف ق في الكلمات المسموعة أو المكتوبة بمساندة المعلم.",
+        "أن يربط المتعلم الكلمة بصورة أو تعريف مناسب ويستعملها في جملة شفهية من إنشائه.",
+        "أن يحدد المتعلم موضع الحرف المستهدف في كلمتين، ويشرح اختياره بالإشارة أو بالكلام."
+      ],
+      "learningExperience": {
+        "opening": "يعرض المعلم بطاقتين لكلمتَي «قَلَمٌ» و«قَلَمٌ»، ويطلب من الطفل تحديد الحرف المستهدف بالإشارة قبل القراءة الجهرية.",
+        "guidedDiscovery": "انطق «قَلَمٌ» ببطء، وحدد موضع حرف ق. ثم قارنها بكلمة «قَلَمٌ» وبيّن الاختلاف في الصوت والموضع. القراءة المطولة من مسؤولية المعلم عند وجود حروف لم يتعلمها الطفل.",
+        "cooperativePractice": "يتبادل طفلان دور القارئ والمستمع: يسمع أحدهما كلمة من البطاقات الأربع، ويختار الآخر البطاقة ثم يصف معناها بعبارة بسيطة.",
+        "support": "أعرض بطاقتين فقط مع تكرار بطيء للصوت، وأقبل الإشارة والرسم قبل الكتابة.",
+        "extension": "يذكر المتعلم كلمة خامسة مناسبة للحرف، ويحدد موضعه فيها دون حفظ الجملة النموذجية.",
+        "originalDictationTeacherRead": "قَلَمٌ، بَقَرَةٌ، سُوقٌ، قَمَرٌ.",
+        "independentPerformance": "يختار المتعلم كلمتين مختلفتين، ويرسم معناهما أو يضع كلًّا منهما في جملة قصيرة، ثم يوضح مكان الحرف المستهدف.",
+        "teacherRubric": [
+          {
+            "criterion": "تمييز صوت الحرف وشكله",
+            "max": 2
+          },
+          {
+            "criterion": "فهم معنى كلمة من السياق",
+            "max": 2
+          },
+          {
+            "criterion": "استخدام كلمة في جملة جديدة",
+            "max": 2
+          }
+        ],
+        "assessment": {
+          "mode": "teacher_observation_only",
+          "automaticFreeTextGrade": false,
+          "progressMutation": false
+        }
+      }
+    }
+  ]
+}

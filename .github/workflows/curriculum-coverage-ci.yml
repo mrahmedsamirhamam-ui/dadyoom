@@ -233,6 +233,8 @@ on:
       - 'tests/bahrain-g7-2026-spelling-writing-regional.test.ts'
       - 'lib/curriculum/public-lesson-instructions.ts'
       - 'tests/curriculum-public-lesson-instructions.test.ts'
+      - 'data/curriculum-drafts/bh-g1-s2-original-vocabulary-repairs.json'
+      - 'tests/bahrain-g1-vocabulary-repair.test.ts'
       - 'data/curriculum-sources/arab-22-curriculum-source-review.json'
       - 'scripts/arab-22-curriculum-readonly-audit.sql'
       - 'scripts/validate-original-curriculum-drafts.mjs'
@@ -313,6 +315,8 @@ jobs:
         run: npx vitest run tests/bahrain-g7-2026-spelling-writing-regional.test.ts
       - name: Verify complete lesson content visibility and secret-free learning activities across 22 countries
         run: npx vitest run tests/curriculum-public-lesson-instructions.test.ts
+      - name: Review-only original vocabulary fixes for 12 existing Bahrain Grade-1 lessons
+        run: npx vitest run tests/bahrain-g1-vocabulary-repair.test.ts
       - name: Validate unpublished original lesson drafts without writing
         run: npm run curriculum:drafts:verify
       - name: Exercise draft quality and no-publication safety gates
