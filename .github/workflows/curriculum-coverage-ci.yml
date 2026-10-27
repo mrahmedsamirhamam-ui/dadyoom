@@ -261,7 +261,7 @@ on:
       - 'data/curriculum-audits/arab-22-grade-3-lesson-review-2026-10-27.json'
       - 'scripts/compare-official-arabic-toc.mjs'
       - 'tests/arab-22-grades-1-3-toc-comparison.test.mjs'
-      - 'data/curriculum-packs/ps-grades-1-3-verified-portal-original-support-2026.json'
+      - 'data/curriculum-drafts/ps-grades-1-3-verified-portal-original-support-2026.json'
       - 'tests/ps-grade-1-3-original-source-linked-lessons.test.ts'
       - 'scripts/validate-original-curriculum-drafts.mjs'
       - 'tests/original-curriculum-drafts.test.ts'

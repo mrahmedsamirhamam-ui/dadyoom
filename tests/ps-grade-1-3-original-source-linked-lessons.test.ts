@@ -1,7 +1,7 @@
 import {readFileSync} from "node:fs";
 import {resolve} from "node:path";
 import {describe,expect,it} from "vitest";
-const pack=JSON.parse(readFileSync(resolve(process.cwd(),"data/curriculum-packs/ps-grades-1-3-verified-portal-original-support-2026.json"),"utf8"));
+const pack=JSON.parse(readFileSync(resolve(process.cwd(),"data/curriculum-drafts/ps-grades-1-3-verified-portal-original-support-2026.json"),"utf8"));
 describe("Original Palestinian grade 1-3 lessons with source-backed topic names",()=>{
  it("authors independent reading and three distinct MCQs for 10 previously absent titles",()=>{
   expect(pack.lessons).toHaveLength(10);
