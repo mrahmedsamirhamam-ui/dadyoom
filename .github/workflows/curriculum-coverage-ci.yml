@@ -263,6 +263,8 @@ on:
       - 'tests/arab-22-grades-1-3-toc-comparison.test.mjs'
       - 'data/curriculum-drafts/ps-grades-1-3-verified-portal-original-support-2026.json'
       - 'tests/ps-grade-1-3-original-source-linked-lessons.test.ts'
+      - 'data/curriculum-drafts/ps-g1-complete-portal-topic-original-supplements-2026.json'
+      - 'tests/ps-g1-complete-portal-topic-original-supplements.test.ts'
       - 'scripts/validate-original-curriculum-drafts.mjs'
       - 'tests/original-curriculum-drafts.test.ts'
       - 'package.json'
@@ -365,6 +367,8 @@ jobs:
         run: npx vitest run tests/arab-22-grades-1-3-toc-comparison.test.mjs
       - name: Check original Palestinian Grade-1/2/3 texts and independent assessments
         run: npx vitest run tests/ps-grade-1-3-original-source-linked-lessons.test.ts
+      - name: Confirm additional 23 Palestinian Grade-1 phonics topics and two reading drafts
+        run: npx vitest run tests/ps-g1-complete-portal-topic-original-supplements.test.ts
       - name: Validate unpublished original lesson drafts without writing
         run: npm run curriculum:drafts:verify
       - name: Exercise draft quality and no-publication safety gates
