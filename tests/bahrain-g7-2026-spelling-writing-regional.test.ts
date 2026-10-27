@@ -99,7 +99,7 @@ describe("Bahrain Grade 7 original spelling, handwriting and composition: never 
  });
 });
 describe("22 Arab-country official-source verification boundary",()=>{
- it("keeps every distinct Arab country without inventing 21 official source URLs or passing readiness by row counts",()=>{
+ it("accepts verified source leads without turning an unchecked book TOC into curriculum readiness",()=>{
   expect(countries.countries).toHaveLength(22);
   expect(region.countrySourceReview).toHaveLength(22);
   expect(new Set(region.countrySourceReview.map(c=>c.code)).size).toBe(22);
@@ -114,7 +114,17 @@ describe("22 Arab-country official-source verification boundary",()=>{
   expect(region.safeguards.noProductionWrites).toBe(true);
   expect(region.safeguards.noAutomaticTranslationOrCountryClone).toBe(true);
   const withMinistryEntry=region.countrySourceReview.filter(c=>c.officialMinistryResourcePortal!==null);
-  expect(withMinistryEntry.map(c=>c.code).sort()).toEqual(["AE","EG","JO","KW","OM","QA","SA"]);
+  expect(withMinistryEntry.length).toBeGreaterThanOrEqual(7);
+  expect(new Set(withMinistryEntry.map(c=>c.code)).size).toBe(withMinistryEntry.length);
+  for(const c of withMinistryEntry){
+   const url=new URL(c.officialMinistryResourcePortal);
+   expect(url.protocol).toBe("https:");
+   expect(url.hostname).not.toMatch(/(?:^|\\.)(?:example|localhost|invalid)(?:\\.|$)/);
+   expect(c.portalEvidenceScope.length).toBeGreaterThan(18);
+   expect(c.textbookContentsCompared).toBe(false);
+   expect(c.coverageReady).toBe(false);
+   expect(c.publicationApproved).toBe(false);
+  }
   for(const c of region.countrySourceReview){
    expect(c.gradeTermTextbookTocVerified).toBe(false);
    if(c.officialMinistryResourcePortal)expect(c.officialMinistryResourcePortal).toMatch(/^https:\/\//);
