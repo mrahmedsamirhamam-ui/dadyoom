@@ -244,6 +244,8 @@ on:
       - 'data/curriculum-drafts/bh-g5-s2-original-existing-reading-enhancements.json'
       - 'tests/bahrain-g5-existing-reading-enhancements.test.ts'
       - 'tests/curriculum-review-pack-cross-grade-integrity.test.ts'
+      - 'data/curriculum-drafts/bh-g6-s2-original-existing-reading-enhancements.json'
+      - 'tests/bahrain-g6-existing-reading-enhancements.test.ts'
       - 'data/curriculum-sources/arab-22-curriculum-source-review.json'
       - 'scripts/arab-22-curriculum-readonly-audit.sql'
       - 'scripts/validate-original-curriculum-drafts.mjs'
@@ -336,6 +338,8 @@ jobs:
         run: npx vitest run tests/bahrain-g5-existing-reading-enhancements.test.ts
       - name: Cross-grade no-duplicate, source-anchor and teacher sign-off gate
         run: npx vitest run tests/curriculum-review-pack-cross-grade-integrity.test.ts
+      - name: Original Grade-6 second term reading vocabulary and critical-thinking review
+        run: npx vitest run tests/bahrain-g6-existing-reading-enhancements.test.ts
       - name: Validate unpublished original lesson drafts without writing
         run: npm run curriculum:drafts:verify
       - name: Exercise draft quality and no-publication safety gates

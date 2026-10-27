@@ -355,3 +355,38 @@ SELECT lesson_id,expected_title,CASE
  WHEN NOT source_matches THEN 'SOURCE_CHANGED_REVIEW_QUESTIONS'
  ELSE 'MATCHED_TEACHER_REVIEW_NOT_PUBLISH_READY' END AS review_status
 FROM live ORDER BY expected_title;
+
+-- 13. Grade-six existing reading and source-passage title/ID review; SELECT only.
+-- A match DOES NOT authorize textbook claims, publishing or student writes.
+WITH proposed(lesson_id,expected_title,source_excerpt) AS (VALUES
+ ('9ceab3ac-ff2c-4bf8-9323-5d92e817f74a','أخلاق كريمة','أرشدتها إلى رف القصص دون أن تختار بدلًا منها'),
+ ('8e0e21eb-0e51-44d0-b59d-b6cfb886251a','أمنية تتحقق','بدأت بقراءة فقرة قصيرة أمام أسرتها'),
+ ('46eb32be-b4fb-4b53-9092-a24a425049cf','الإحسان إلى الخلق','أخبر شخصًا بالغًا وطلب المساعدة من جهة مختصة'),
+ ('9fabed44-76f3-4ed9-9b1d-f55b1dd04b83','النخلة المعوجة','حسن النية لا يغني عن المعرفة'),
+ ('fa4e0073-bdd1-4cef-a75d-efda6818ad06','راعي الميثاق','أعاد ترتيب الوقت بدل تبادل الاتهامات'),
+ ('09179e20-7685-4a02-9154-3b31d2732f91','زرقاء اليمامة','مجرد ملاحظة تحتاج إلى تحقق'),
+ ('82a0b4b9-151b-430a-aab2-6bc76e0dd732','صفية بنت عبد المطلب','ألا تضع في البطاقة حدثًا أو قولًا ما لم تجد له سندًا معتبرًا'),
+ ('b1c95f57-d5a6-49fc-be35-d72c929650af','عالم المفاجآت','العلم يبدأ بالفضول لكنه يحتاج إلى فحص ومقارنة'),
+ ('b4a93064-b08b-4fa7-871c-031eee1e271b','قصة نجاح','النجاح نتيجة للتخطيط والتعاون والمراجعة'),
+ ('1ee7c119-64f5-4e13-bba9-6b4329855abc','مثل وقصة','الأمثال تختصر خبرات الناس لكنها لا تغني عن التفكير')
+), actual AS (
+ SELECT p.lesson_id,p.expected_title,p.source_excerpt,l.id AS actual_id,l.title AS actual_title,
+ l.status,l.lesson_type,c.code AS country_code,g.grade_number,l.semester,cu.academic_year,l.vocabulary,
+ position(p.source_excerpt in coalesce(l.content,''))>0 AS source_matches,
+ EXISTS(SELECT 1 FROM public.lesson_vocabulary v WHERE v.lesson_id=l.id) AS linked_words
+ FROM proposed p LEFT JOIN public.lessons l ON l.id::text=p.lesson_id
+ LEFT JOIN public.units u ON u.id=l.unit_id
+ LEFT JOIN public.grades g ON g.id=u.grade_id
+ LEFT JOIN public.curricula cu ON cu.id=g.curriculum_id
+ LEFT JOIN public.countries c ON c.id=cu.country_id
+)
+SELECT lesson_id,expected_title,
+ CASE WHEN actual_id IS NULL THEN 'LESSON_MISSING'
+ WHEN actual_title IS DISTINCT FROM expected_title THEN 'TITLE_CHANGED'
+ WHEN country_code IS DISTINCT FROM 'BH' OR grade_number IS DISTINCT FROM 6 OR semester IS DISTINCT FROM 2 THEN 'CLASSIFICATION_CHANGED'
+ WHEN academic_year IS DISTINCT FROM '2026-2027' THEN 'ACADEMIC_YEAR_CHANGED'
+ WHEN status IS DISTINCT FROM 'published' OR lesson_type IS DISTINCT FROM 'reading' THEN 'TYPE_STATUS_CHANGED'
+ WHEN vocabulary IS DISTINCT FROM '[]'::jsonb OR linked_words THEN 'VOCABULARY_ALREADY_EXISTS'
+ WHEN NOT source_matches THEN 'SOURCE_TEXT_CHANGED_REVIEW_QUESTIONS'
+ ELSE 'MATCHED_FOR_TEACHER_REVIEW_NOT_IMPORT_APPROVED' END AS review_status
+FROM actual ORDER BY expected_title;
