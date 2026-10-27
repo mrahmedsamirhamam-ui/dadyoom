@@ -27,3 +27,13 @@ None of the 66 country × grade rows has been verified as complete. No migration
 ## Exact-title reconciliation gate
 
 Actual public lesson titles and UUIDs for all three grades are now indexed in grade-specific JSON under `data/curriculum-audits/arab-22-grade-{1,2,3}-lesson-review-2026-10-27.json` (total 1,746 records). They contain no student data or question answer keys. After verifying a current **official edition and source TOC pages**, use `node scripts/compare-official-arabic-toc.mjs --catalog=PATH.json --toc=MANUALLY_VERIFIED_OFFICIAL_TOC.json` to compare titles. The official TOC must state country, grade, semester, 2026–2027 school year, official issuer, edition, evidence URL, verified flags and each TOC page. Missing titles are flagged, existing titles require content/question review, untimed lessons remain unverified, and the 1,188 common skills are never counted as ministry-required titles. No import, redistribution of ministry book texts or production writes.
+
+## Second source discovery batch (2026-10-27)
+
+- Tunisia, National Pedagogical Center: https://www.cnp.com.tn/ lists **2026–27 books**, without a reviewed Arabic grade-by-grade TOC.
+- Palestine, Ministry of Education: https://moe.edu.ps/pal-books explicitly lists **لغتنا الجميلة** for Grades 1–3, both semesters, though exact book editions and title pages were not checked (a large linked PDF could not be inspected here).
+- Libya, official educational curriculum center: https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-basic lists Grades 1 and 2 Arabic with **2025–26**, so these cannot establish 2026–27 lesson coverage.
+- Morocco, Ministry of Education: https://www.men.gov.ma/ points to TelmidTice. Grade-2 Arabic digital lessons are catalogued, but that is not the government textbook TOC.
+- Iraq, reported new first-grade **قراءتي** Unit 1 for 2026–27 at https://manahj.edu.iq/index.php?name=Pages&op=page&pid=164 (2026-10-09); only a secondary news report could be read; first-party page was inaccessible, so **not independently certified**. This needs special attention before reusing old Grade-1 Arabic chapter titles.
+
+No new evidence status certifies lesson-title equivalence. All 66 country-grade cases remain under official-TOC and pedagogy review. Other countries' searches found no sufficiently grounded lesson-level primary documents in this audit round; this is a retrieval gap, not evidence that the curricula do not exist.

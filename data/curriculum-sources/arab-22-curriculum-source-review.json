@@ -177,8 +177,8 @@
       "teacherReview": "pending",
       "publicationApproved": false,
       "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
-      "officialMinistryResourcePortal": null,
-      "portalEvidenceScope": "official-ministry-curriculum-portal-not-yet-reviewed",
+      "officialMinistryResourcePortal": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=164",
+      "portalEvidenceScope": "grade-one-2026-27-Qiraati-unit-one-link-reported-on-2026-10-09; source-host-not-directly-inspected",
       "gradeTermTextbookTocVerified": false
     },
     {
@@ -193,8 +193,8 @@
       "teacherReview": "pending",
       "publicationApproved": false,
       "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
-      "officialMinistryResourcePortal": null,
-      "portalEvidenceScope": "official-ministry-curriculum-portal-not-yet-reviewed",
+      "officialMinistryResourcePortal": "https://moe.edu.ps/pal-books",
+      "portalEvidenceScope": "official-ministry-Arabic-Lughatuna-Al-Jamila-books-for-grades-1-3-both-terms; current-edition-year-not-shown",
       "gradeTermTextbookTocVerified": false
     },
     {
@@ -225,8 +225,8 @@
       "teacherReview": "pending",
       "publicationApproved": false,
       "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
-      "officialMinistryResourcePortal": null,
-      "portalEvidenceScope": "official-ministry-curriculum-portal-not-yet-reviewed",
+      "officialMinistryResourcePortal": "https://www.men.gov.ma/",
+      "portalEvidenceScope": "official-TelmidTice-primary-digital-learning-platform; level-based-grade-two-Arabic-lessons-listed, not textbook TOC",
       "gradeTermTextbookTocVerified": false
     },
     {
@@ -250,15 +250,15 @@
       "nameAr": "تونس",
       "curriculumRecordsExpectedInExistingDatabase": true,
       "verifiedPlanUrl": null,
-      "officialSchoolYearIndexVerified": "not-verified",
+      "officialSchoolYearIndexVerified": "official-2026-27-books-index-identified",
       "textbookContentsCompared": false,
       "officialReadingTextsLicensedOrVerified": false,
       "coverageReady": false,
       "teacherReview": "pending",
       "publicationApproved": false,
       "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
-      "officialMinistryResourcePortal": null,
-      "portalEvidenceScope": "official-ministry-curriculum-portal-not-yet-reviewed",
+      "officialMinistryResourcePortal": "https://www.cnp.com.tn/",
+      "portalEvidenceScope": "2026-27-official-schoolbook-index-in-national-pedagogical-center; Arabic-grade-book-TOC-not-reviewed",
       "gradeTermTextbookTocVerified": false
     },
     {
@@ -273,8 +273,8 @@
       "teacherReview": "pending",
       "publicationApproved": false,
       "nextEvidence": "Find official public curriculum by academic year, grade, term, stream; inspect source page imagery; verify textbook TOC against existing lesson titles; map without insert duplicates.",
-      "officialMinistryResourcePortal": null,
-      "portalEvidenceScope": "official-ministry-curriculum-portal-not-yet-reviewed",
+      "officialMinistryResourcePortal": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-basic",
+      "portalEvidenceScope": "official-basic-education-Arabic-books-grades-1-2-2025-26-older-catalog; current-edition-not-verified",
       "gradeTermTextbookTocVerified": false
     },
     {

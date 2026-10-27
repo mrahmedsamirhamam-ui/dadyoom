@@ -17,30 +17,6 @@
   },
   "officialSourceEvidence": [
     {
-      "countryCode": "BH",
-      "url": "https://www.edunet.bh/Econtent/LessonsGuide",
-      "scope": "official-2026-27-semester-one-arabic-basic-education-plans-index",
-      "editionStatus": "grade-term-book-TOC-unchecked",
-      "textbookLessonTOCCompared": false,
-      "licenseForReproducingTextVerified": false
-    },
-    {
-      "countryCode": "JO",
-      "url": "https://nccd.gov.jo/Ar/Pages/Publications/?MaterialStudy=92",
-      "scope": "official-Arabic-student-and-exercise-books-listed-for-grades-1-3-and-two-terms",
-      "editionStatus": "individual-book-edition-and-TOC-unchecked",
-      "textbookLessonTOCCompared": false,
-      "licenseForReproducingTextVerified": false
-    },
-    {
-      "countryCode": "SA",
-      "url": "https://madrasatibeta.moe.gov.sa/books?Language=2",
-      "scope": "official-textbook-listing-with-primary-grades; year-edition-unverified",
-      "editionStatus": "2026-27-edition-and-TOC-unchecked",
-      "textbookLessonTOCCompared": false,
-      "licenseForReproducingTextVerified": false
-    },
-    {
       "countryCode": "AE",
       "url": "https://www.moe.gov.ae/ar/guides/Pages/Study-Plan-for-the-2026-2027-Academic-Year-Ministry-Curriculum.aspx",
       "scope": "official-2026-27-general-study-plan-not-lesson-list",
@@ -49,18 +25,18 @@
       "licenseForReproducingTextVerified": false
     },
     {
-      "countryCode": "QA",
-      "url": "https://edu.gov.qa/ar/Content/EarlyLearning",
-      "scope": "official-first-and-second-grade-foundation-teaching-and-assessment-guidance-not-book-TOC",
-      "editionStatus": "grade-3-and-2026-27-textbooks-unchecked",
+      "countryCode": "BH",
+      "url": "https://www.edunet.bh/Econtent/LessonsGuide",
+      "scope": "official-2026-27-semester-one-arabic-basic-education-plans-index",
+      "editionStatus": "grade-term-book-TOC-unchecked",
       "textbookLessonTOCCompared": false,
       "licenseForReproducingTextVerified": false
     },
     {
-      "countryCode": "OM",
-      "url": "https://home.moe.gov.om/ar/manaheg",
-      "scope": "official-ministry-digital-curriculum-library; visible grade-1-and-grade-2 book categories",
-      "editionStatus": "grade-3-index-and-year-edition-TOC-unchecked",
+      "countryCode": "DZ",
+      "url": "https://www.education.gov.dz/2026/07/30/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9-%D9%8A%D9%86%D8%B4%D9%91%D8%B7-%D9%86%D8%AF%D9%88%D8%A9-%D8%B5%D8%AD%D9%81%D9%8A%D8%A9/",
+      "scope": "official-2026-27-academic-arrangements-not-Arabic-textbook-contents",
+      "editionStatus": "grades-1-3-Arabic-books-and-TOC-unchecked",
       "textbookLessonTOCCompared": false,
       "licenseForReproducingTextVerified": false
     },
@@ -73,6 +49,22 @@
       "licenseForReproducingTextVerified": false
     },
     {
+      "countryCode": "IQ",
+      "url": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=164",
+      "scope": "grade-one-2026-27-Qiraati-unit-one-link-reported-on-2026-10-09; source-host-not-directly-inspected",
+      "editionStatus": "first-unit-publication-secondary-reported; official-link-resource-and-TOC-unverified",
+      "textbookLessonTOCCompared": false,
+      "licenseForReproducingTextVerified": false
+    },
+    {
+      "countryCode": "JO",
+      "url": "https://nccd.gov.jo/Ar/Pages/Publications/?MaterialStudy=92",
+      "scope": "official-Arabic-student-and-exercise-books-listed-for-grades-1-3-and-two-terms",
+      "editionStatus": "individual-book-edition-and-TOC-unchecked",
+      "textbookLessonTOCCompared": false,
+      "licenseForReproducingTextVerified": false
+    },
+    {
       "countryCode": "LB",
       "url": "https://www.crdp.org/curriculum/%D8%A7%D9%84%D9%85%D9%86%D9%87%D8%AC-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85%D9%8A-%D9%84%D9%84%D8%B9%D8%A7%D9%85-2026-2027%D8%8C-%D9%88%D8%B2%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%8A-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A-%D9%84%D9%84%D8%A8%D8%AD%D9%88%D8%AB-0",
       "scope": "official-2026-27-languages-objectives-and-competencies-release; new-national-curriculum-announced-2026-10-26",
@@ -81,10 +73,58 @@
       "licenseForReproducingTextVerified": false
     },
     {
-      "countryCode": "DZ",
-      "url": "https://www.education.gov.dz/2026/07/30/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9-%D9%8A%D9%86%D8%B4%D9%91%D8%B7-%D9%86%D8%AF%D9%88%D8%A9-%D8%B5%D8%AD%D9%81%D9%8A%D8%A9/",
-      "scope": "official-2026-27-academic-arrangements-not-Arabic-textbook-contents",
-      "editionStatus": "grades-1-3-Arabic-books-and-TOC-unchecked",
+      "countryCode": "LY",
+      "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-basic",
+      "scope": "official-basic-education-Arabic-books-grades-1-2-2025-26-older-catalog; current-edition-not-verified",
+      "editionStatus": "only-2025-26-listed-in-reviewed-results; 2026-27-book-TOC-unchecked",
+      "textbookLessonTOCCompared": false,
+      "licenseForReproducingTextVerified": false
+    },
+    {
+      "countryCode": "MA",
+      "url": "https://www.men.gov.ma/",
+      "scope": "official-TelmidTice-primary-digital-learning-platform; level-based-grade-two-Arabic-lessons-listed, not textbook TOC",
+      "editionStatus": "edition-specific-ministry-textbook-TOC-not-opened",
+      "textbookLessonTOCCompared": false,
+      "licenseForReproducingTextVerified": false
+    },
+    {
+      "countryCode": "OM",
+      "url": "https://home.moe.gov.om/ar/manaheg",
+      "scope": "official-ministry-digital-curriculum-library; visible grade-1-and-grade-2 book categories",
+      "editionStatus": "grade-3-index-and-year-edition-TOC-unchecked",
+      "textbookLessonTOCCompared": false,
+      "licenseForReproducingTextVerified": false
+    },
+    {
+      "countryCode": "PS",
+      "url": "https://moe.edu.ps/pal-books",
+      "scope": "official-ministry-Arabic-Lughatuna-Al-Jamila-books-for-grades-1-3-both-terms; current-edition-year-not-shown",
+      "editionStatus": "2026-27-edition-and-individual-TOCs-unchecked",
+      "textbookLessonTOCCompared": false,
+      "licenseForReproducingTextVerified": false
+    },
+    {
+      "countryCode": "QA",
+      "url": "https://edu.gov.qa/ar/Content/EarlyLearning",
+      "scope": "official-first-and-second-grade-foundation-teaching-and-assessment-guidance-not-book-TOC",
+      "editionStatus": "grade-3-and-2026-27-textbooks-unchecked",
+      "textbookLessonTOCCompared": false,
+      "licenseForReproducingTextVerified": false
+    },
+    {
+      "countryCode": "SA",
+      "url": "https://madrasatibeta.moe.gov.sa/books?Language=2",
+      "scope": "official-textbook-listing-with-primary-grades; year-edition-unverified",
+      "editionStatus": "2026-27-edition-and-TOC-unchecked",
+      "textbookLessonTOCCompared": false,
+      "licenseForReproducingTextVerified": false
+    },
+    {
+      "countryCode": "TN",
+      "url": "https://www.cnp.com.tn/",
+      "scope": "2026-27-official-schoolbook-index-in-national-pedagogical-center; Arabic-grade-book-TOC-not-reviewed",
+      "editionStatus": "book-listing-current-2026-27; lesson-title-TOCs-unchecked",
       "textbookLessonTOCCompared": false,
       "licenseForReproducingTextVerified": false
     }
