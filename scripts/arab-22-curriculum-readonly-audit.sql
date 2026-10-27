@@ -140,10 +140,50 @@ SELECT co.code AS country_code,
   count(*) FILTER (
     WHERE l.vocabulary='[]'::jsonb
       AND NOT EXISTS (SELECT 1 FROM public.lesson_vocabulary v WHERE v.lesson_id=l.id)
-  ) AS vocabulary_authoring_review_required
+      AND NOT (btrim(coalesce(l.content,''))='' AND btrim(coalesce(l.summary,'')) LIKE 'عقدة تغطية رسمية%')
+  ) AS vocabulary_authoring_review_required,
+  count(*) FILTER (
+    WHERE l.vocabulary='[]'::jsonb AND btrim(coalesce(l.content,''))=''
+      AND btrim(coalesce(l.summary,'')) LIKE 'عقدة تغطية رسمية%'
+  ) AS catalog_references_not_real_lessons
 FROM public.countries co
 JOIN public.curricula cu ON cu.country_id=co.id
 JOIN public.grades gr ON gr.curriculum_id=cu.id
 JOIN public.units un ON un.grade_id=gr.id
 JOIN public.lessons l ON l.unit_id=un.id
 GROUP BY co.code ORDER BY co.code;
+
+-- 7. Review-only grade-one vocabulary: exact-title/ID/term/year validation.
+-- NO mutations, no user rows. Match is NOT permission to publish.
+WITH proposed(lesson_id,expected_title) AS (VALUES
+  ('3c0b38ac-62d1-4855-90a9-c9ba95f37350','الحرف (هـ)'),
+  ('6577a2a6-d5f5-49f9-a619-9acf81990b52','الحرفان (ط-ز)'),
+  ('ffb03161-fd9b-466b-bcf1-837efc0cdca3','الحرفان (غ-ي)'),
+  ('edd67793-647a-465f-b0c1-fb6402db3412','الحرفان (و-ث)'),
+  ('f3bca471-c6e5-42f1-9fd9-74dd569439b8','الدرس التاسع: حرف (ض)'),
+  ('e85c153c-3d69-471f-b93c-a4726b73485d','الدرس الثالث: حرف (ك)'),
+  ('ad069dd9-052d-47fe-8c03-5c4ff9381cdb','الدرس الثامن: حرفا (خ) و(ذ)'),
+  ('c1771cdd-3a3a-4778-9084-6dde00051ddb','الدرس الرابع عشر: حرف (ظ)'),
+  ('97ff78ad-d774-4a51-a860-8ca8c3d00ea2','الدرس الرابع: حرفا (ف) و(أ)'),
+  ('2d526483-4166-4ba6-af27-d8684fa219b2','حرف (ش)'),
+  ('59e5c063-a3be-409d-a309-078aac5687f0','حرف (ص)'),
+  ('cac8cbdd-c68e-42de-8e09-b0aa809c84a9','حرف (ق)')
+), reconciliation AS (
+ SELECT p.lesson_id,p.expected_title,l.id actual_id,l.title actual_title,l.status,
+        co.code country_code,g.grade_number,l.semester,cu.academic_year,l.vocabulary,
+        EXISTS(SELECT 1 FROM public.lesson_vocabulary v WHERE v.lesson_id=l.id) has_linked_vocabulary
+ FROM proposed p LEFT JOIN public.lessons l ON l.id::text=p.lesson_id
+ LEFT JOIN public.units u ON u.id=l.unit_id
+ LEFT JOIN public.grades g ON g.id=u.grade_id
+ LEFT JOIN public.curricula cu ON cu.id=g.curriculum_id
+ LEFT JOIN public.countries co ON co.id=cu.country_id
+)
+SELECT lesson_id,expected_title,
+ CASE WHEN actual_id IS NULL THEN 'MISSING_ID'
+ WHEN actual_title IS DISTINCT FROM expected_title THEN 'TITLE_MISMATCH'
+ WHEN country_code IS DISTINCT FROM 'BH' OR grade_number IS DISTINCT FROM 1 OR semester IS DISTINCT FROM 2 THEN 'CLASSIFICATION_MISMATCH'
+ WHEN academic_year IS DISTINCT FROM '2026-2027' THEN 'YEAR_MISMATCH'
+ WHEN status IS DISTINCT FROM 'published' THEN 'STATUS_CHANGED'
+ WHEN vocabulary IS DISTINCT FROM '[]'::jsonb OR has_linked_vocabulary THEN 'VOCABULARY_ALREADY_PRESENT'
+ ELSE 'MATCHED_FOR_HUMAN_REVIEW_NOT_APPROVED_FOR_IMPORT' END AS review_status
+FROM reconciliation ORDER BY expected_title;

@@ -46,6 +46,20 @@ describe("Existing Bahrain grade-1 vocabulary repair stays linked and unpublishe
    expect(x.learningExperience.assessment).toEqual({mode:"teacher_observation_only",automaticFreeTextGrade:false,progressMutation:false});
   }
  });
+ it("tracks all original candidate IDs and titles in a read-only live reconciliation",()=>{
+  const sql=readFileSync(resolve(process.cwd(),"scripts/arab-22-curriculum-readonly-audit.sql"),"utf8");
+  const part=sql.slice(sql.indexOf("-- 7. Review-only grade-one vocabulary"));
+  expect(part).toContain("MATCHED_FOR_HUMAN_REVIEW_NOT_APPROVED_FOR_IMPORT");
+  expect(part).toContain("VOCABULARY_ALREADY_PRESENT");
+  expect(part).toContain("CLASSIFICATION_MISMATCH");
+  for(const x of data.lessons) {
+    expect(part).toContain(x.existingLessonId);
+    expect(part).toContain(x.existingTitle);
+  }
+  const executable=part.replace(/--[^\n]*/g,"");
+  expect(executable).not.toMatch(/\b(?:INSERT|UPDATE|DELETE|ALTER|DROP|TRUNCATE|GRANT|REVOKE)\s+(?:INTO|FROM|TABLE|ON)\b/i);
+  expect(sql).toContain("catalog_references_not_real_lessons");
+ });
  it("forbids textbook completion claims or one-click publishing",()=>{
   expect(data.countryCode).toBe("BH");
   expect(data.grade).toBe(1);expect(data.semester).toBe(2);
