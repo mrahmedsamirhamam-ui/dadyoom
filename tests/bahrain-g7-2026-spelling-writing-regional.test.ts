@@ -23,7 +23,7 @@ type WritingLesson={
 };
 type RegionalReview={
   code:string;coverageReady:boolean;publicationApproved:boolean;teacherReview:string;
-  textbookContentsCompared:boolean;verifiedPlanUrl:string|null;officialMinistryResourcePortal:string|null;gradeTermTextbookTocVerified:boolean;
+  textbookContentsCompared:boolean;verifiedPlanUrl:string|null;officialMinistryResourcePortal:string|null;portalEvidenceScope:string;gradeTermTextbookTocVerified:boolean;
 };
 const read=(p:string)=>readFileSync(resolve(process.cwd(),p),"utf8");
 const get=(p:string):unknown=>JSON.parse(read(p)) as unknown;
@@ -117,7 +117,7 @@ describe("22 Arab-country official-source verification boundary",()=>{
   expect(withMinistryEntry.length).toBeGreaterThanOrEqual(7);
   expect(new Set(withMinistryEntry.map(c=>c.code)).size).toBe(withMinistryEntry.length);
   for(const c of withMinistryEntry){
-   const url=new URL(c.officialMinistryResourcePortal);
+   const url=new URL(c.officialMinistryResourcePortal!);
    expect(url.protocol).toBe("https:");
    expect(url.hostname).not.toMatch(/(?:^|\\.)(?:example|localhost|invalid)(?:\\.|$)/);
    expect(c.portalEvidenceScope.length).toBeGreaterThan(18);
