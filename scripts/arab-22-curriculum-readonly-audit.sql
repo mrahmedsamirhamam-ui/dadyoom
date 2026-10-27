@@ -425,3 +425,38 @@ SELECT lesson_id,expected_title,
  WHEN NOT source_matches THEN 'SOURCE_CHANGED_QUESTION_REVIEW_REQUIRED'
  ELSE 'MATCHED_ONLY_FOR_TEACHER_REVIEW_NOT_APPROVED_FOR_IMPORT' END AS review_status
 FROM live ORDER BY expected_title;
+
+-- 15. Bahrain grade-eight source-linked reading review: no writes.
+-- Matching existing text and ID is NOT permission to import an assessment.
+WITH proposed(lesson_id,expected_title,source_excerpt) AS (VALUES
+ ('317a6aa9-4244-4c58-9826-083b4c412455','الربيع','تفرق فيه بين ما شاهدته بعينيها وما تخيلته'),
+ ('57ccb0a3-76c8-4353-9564-6457f0233a73','العامل','لا يجوز الاقتراب من أدوات صيانة خطرة أو استخدامها دون مختص'),
+ ('012a21c2-3102-41c8-8eff-7a3006299736','المرأة البحرينية ودورها في صنع غد أفضل','طلبت الاستشهاد بمصدر موثوق عند ذكر أسماء أو إنجازات تاريخية محددة'),
+ ('ddbe8ad0-bbab-476b-a596-826bcf5d9780','جوائز عالمية','قارنت بين خبر موثق ومنشور مجهول'),
+ ('be9d5e29-fd8c-415e-b6a6-e9278391c713','عروس الصحراء والحقول','دون افتراض أن كل الصحارى خالية من الحياة'),
+ ('958d519e-3fea-4a85-b795-a825d91539dc','في عيد الأم','أشكال الرعاية الأسرية قد تختلف بين العائلات'),
+ ('4e4133a3-6468-4c9f-a833-ae5f2d27f476','قصة الألعاب الأولمبية','تجنبوا اختلاق نتائج أو تواريخ دون مصادر'),
+ ('6dc085c2-54e1-454c-b7d2-e8a1ce33e343','مستقبل الطاقة','فرقت المعلمة بين حل ممكن اليوم وفكرة تحتاج إلى دراسة وتجربة'),
+ ('78a89265-5108-46a0-ada3-a7f935deaebd','من الهدي النبوي الشريف (1)','دون اختلاق أي حديث أو نسبة قول لم يثبت'),
+ ('7462da09-5788-4f07-89cb-44a001fa6584','موطن الخالدين','النص الأصلي الذي لم يقدم هنا')
+), actual AS (
+ SELECT p.lesson_id,p.expected_title,p.source_excerpt,l.id actual_id,l.title actual_title,l.status,l.lesson_type,
+ c.code country_code,g.grade_number,l.semester,cu.academic_year,l.vocabulary,
+ position(p.source_excerpt in coalesce(l.content,''))>0 source_matches,
+ EXISTS(SELECT 1 FROM public.lesson_vocabulary v WHERE v.lesson_id=l.id) related_vocab
+ FROM proposed p LEFT JOIN public.lessons l ON l.id::text=p.lesson_id
+ LEFT JOIN public.units u ON u.id=l.unit_id
+ LEFT JOIN public.grades g ON g.id=u.grade_id
+ LEFT JOIN public.curricula cu ON cu.id=g.curriculum_id
+ LEFT JOIN public.countries c ON c.id=cu.country_id
+)
+SELECT lesson_id,expected_title,CASE
+ WHEN actual_id IS NULL THEN 'MISSING_LESSON'
+ WHEN actual_title IS DISTINCT FROM expected_title THEN 'TITLE_CHANGED'
+ WHEN country_code IS DISTINCT FROM 'BH' OR grade_number IS DISTINCT FROM 8 OR semester IS DISTINCT FROM 2 THEN 'CLASSIFICATION_CHANGED'
+ WHEN academic_year IS DISTINCT FROM '2026-2027' THEN 'YEAR_CHANGED'
+ WHEN status IS DISTINCT FROM 'published' OR lesson_type IS DISTINCT FROM 'reading' THEN 'TYPE_OR_STATUS_CHANGED'
+ WHEN vocabulary IS DISTINCT FROM '[]'::jsonb OR related_vocab THEN 'VOCABULARY_ALREADY_PRESENT'
+ WHEN NOT source_matches THEN 'SOURCE_CHANGED_REVIEW_QUESTIONS'
+ ELSE 'MATCHED_FOR_TEACHER_REVIEW_NOT_IMPORT_APPROVED' END AS match_status
+FROM actual ORDER BY expected_title;
