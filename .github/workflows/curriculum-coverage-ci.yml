@@ -272,6 +272,9 @@ on:
       - 'data/curriculum-audits/bahrain-grade2-five-duplicate-review-ocr-quarantine-20261028.json'
       - 'scripts/curriculum-bahrain-grade2-review-repaired-and-ocr-quarantine-readonly.sql'
       - 'tests/curriculum-bahrain-grade2-review-nine-original-lessons-and-five-ocr-quarantine.test.ts'
+      - 'data/curriculum-drafts/arab22-grades1-3-short-vowels-66-original-lessons-20261028.json'
+      - 'tests/curriculum-22-countries-grade123-original-short-vowels.test.ts'
+      - 'scripts/curriculum-22-countries-grade123-short-vowels-quality-readonly.sql'
       - 'data/curriculum-drafts/arab22-grade1-3-original-singular-plural-66-lessons-20261028.json'
       - 'tests/curriculum-22-countries-grade1-3-original-singular-plural.test.ts'
       - 'data/curriculum-drafts/arab22-grades1-3-sun-moon-lam-66-original-lessons-20261028.json'
@@ -441,6 +444,8 @@ jobs:
         run: npx vitest run tests/curriculum-22-countries-grades1-3-story-sequence-original-linked-texts.test.ts
       - name: Verify nine original Bahrain Grade-2 reviews and five OCR duplicate quarantine records
         run: npx vitest run tests/curriculum-bahrain-grade2-review-nine-original-lessons-and-five-ocr-quarantine.test.ts
+      - name: Verify 66 original short-vowel lessons with 330 authentic questions in 22 countries
+        run: npx vitest run tests/curriculum-22-countries-grade123-original-short-vowels.test.ts
       - name: Verify 66 original sun/moon lam lessons in 22 countries and Grades 1-3
         run: npx vitest run tests/curriculum-22-countries-grades1-3-sun-moon-lam-original.test.ts
       - name: Validate 66 grade-differentiated singular-and-plural lessons for all 22 countries
