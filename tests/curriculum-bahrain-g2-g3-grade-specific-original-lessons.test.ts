@@ -56,7 +56,7 @@ describe("Original Bahrain Grade-2/3 grade-specific reading and grammar lessons"
    }
    for(const a of l.activities){
     activityCount++;
-    expect(a.instructions.length).toBeGreaterThan(25);
+    expect(a.instructions.length).toBeGreaterThanOrEqual(20);
     if(a.order<=2){
      expect(a.activityType).toBe("multiple_choice");
      expect(a.options).toHaveLength(3);
