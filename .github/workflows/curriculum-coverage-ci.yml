@@ -267,6 +267,8 @@ on:
       - 'tests/ps-g1-complete-portal-topic-original-supplements.test.ts'
       - 'data/curriculum-drafts/ps-grade2-3-original-missing-resource-lessons-2026.json'
       - 'tests/ps-grade2-3-original-missing-resource-lessons.test.ts'
+      - 'data/curriculum-drafts/ps-g3-eight-actual-portal-missing-original-readings-2026.json'
+      - 'tests/ps-g3-eight-actual-portal-missing-original-readings.test.ts'
       - 'data/curriculum-audits/ps-g2-existing-reading-question-specificity-repair-2026.json'
       - 'tests/ps-g2-existing-reading-question-specificity-repair.test.ts'
       - 'data/curriculum-drafts/ps-grade2-3-five-missing-source-topics-2026.json'
@@ -381,6 +383,8 @@ jobs:
         run: npx vitest run tests/ps-g2-existing-reading-question-specificity-repair.test.ts
       - name: Validate five more Palestinian grade 2-3 missing lesson titles and direct assessment questions
         run: npx vitest run tests/ps-grade2-3-five-missing-source-topics.test.ts
+      - name: Validate eight missing Grade-3 Palestinian ministry-portal topics with original authored passages
+        run: npx vitest run tests/ps-g3-eight-actual-portal-missing-original-readings.test.ts
       - name: Validate unpublished original lesson drafts without writing
         run: npm run curriculum:drafts:verify
       - name: Exercise draft quality and no-publication safety gates
