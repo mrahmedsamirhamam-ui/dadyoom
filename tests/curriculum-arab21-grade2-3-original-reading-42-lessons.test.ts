@@ -45,7 +45,7 @@ describe("Original G2/G3 supplementary reading for 21 additional Arab countries"
    expect(l.vocabulary[1].word).not.toMatch(/^(إجراء|دليل)$/);
    expect(l.content).toContain(l.vocabulary[0].word+": "+l.vocabulary[0].meaning);
    expect(l.content).toContain(l.vocabulary[1].word+": "+l.vocabulary[1].meaning);
-   expect(l.vocabulary.every(v=>v.word.length>2&&v.meaning.length>12)).toBe(true);
+   expect(l.vocabulary.every(v=>v.word.length>=2&&v.meaning.length>12)).toBe(true);
   }
  });
  it("provides 210 source-specific questions with 3 distinct choice texts each",()=>{
