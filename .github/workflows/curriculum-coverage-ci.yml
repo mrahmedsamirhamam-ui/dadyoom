@@ -255,6 +255,8 @@ on:
       - 'supabase/migrations/20261028145744_deny_postgres_default_public_table_truncate_web_roles.sql'
       - 'scripts/security-public-future-table-defaults-readonly.sql'
       - 'tests/security/public-future-table-truncate-defaults.test.ts'
+      - 'supabase/migrations/20261028153044_guard_published_activity_content_against_nested_answer_keys.sql'
+      - 'tests/security/published-activity-nested-answer-keys-constraint.test.ts'
       - 'data/curriculum-drafts/bh-g1-s2-original-vocabulary-repairs.json'
       - 'tests/bahrain-g1-vocabulary-repair.test.ts'
       - 'data/curriculum-drafts/bh-g2-s2-original-existing-reading-enhancements.json'
@@ -393,6 +395,8 @@ jobs:
         run: npx vitest run tests/curriculum-arab22-grade1-3-live-quality-matrix.test.ts
       - name: Verify secure default grants for future public tables
         run: npx vitest run tests/security/public-future-table-truncate-defaults.test.ts
+      - name: Ensure published activity JSON cannot contain nested grading keys
+        run: npx vitest run tests/security/published-activity-nested-answer-keys-constraint.test.ts
       - name: Review-only original vocabulary fixes for 12 existing Bahrain Grade-1 lessons
         run: npx vitest run tests/bahrain-g1-vocabulary-repair.test.ts
       - name: Original grade-2 lesson-linked reading, vocabulary and question quality
