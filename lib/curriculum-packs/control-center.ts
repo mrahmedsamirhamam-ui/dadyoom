@@ -29,7 +29,9 @@ export type CurriculumPackSummary = {
   curriculumName: string;
   unitCount: number;
   lessonCount: number;
-  verified: boolean;
+  verified: boolean; // author's content rights, not Ministry syllabus approval
+  officialTocVerified: boolean;
+  publicationReviewed: boolean;
   sourceLabel: string;
   sourceUrl: string | null;
   shapeOk: boolean;
@@ -52,8 +54,11 @@ export type CurriculumControlCenter = {
   totalCountries: number;
   readyCountries: number;
   sourceRequiredCountries: number;
-  totalPacks: number;
+  totalPacks: number; // reviewed + ready-to-publish packs only
   totalLessons: number;
+  authoredPacks: number; // structure valid, rights verified, may be pending review
+  authoredLessons: number;
+  pendingReviewPacks: number;
   invalidPacks: number;
 };
 
@@ -206,6 +211,11 @@ function summarizePack(
     lessonCount,
     verified:
       rights.verified === true,
+    officialTocVerified:
+      rights.officialTocVerified === true,
+    publicationReviewed:
+      rights.officialTocVerified === true &&
+      text(rights.publicationReview) === "approved",
     sourceLabel:
       text(rights.sourceLabel),
     sourceUrl:
@@ -285,6 +295,8 @@ export function getCurriculumControlCenter():
             unitCount: 0,
             lessonCount: 0,
             verified: false,
+            officialTocVerified: false,
+            publicationReviewed: false,
             sourceLabel: "",
             sourceUrl: null,
             shapeOk: false,
@@ -297,12 +309,15 @@ export function getCurriculumControlCenter():
       }
     );
 
-  const validReadyPacks =
-    packs.filter(
-      (pack) =>
-        pack.shapeOk &&
-        pack.verified
-    );
+  // A locally authored pack must never inflate the approved/ready count.
+  // rights.verified states content ownership only; it is NOT editorial
+  // textbook mapping or permission to publish.
+  const authoredPacks = packs.filter(
+    (pack) => pack.shapeOk && pack.verified
+  );
+  const validReadyPacks = authoredPacks.filter(
+    (pack) => pack.publicationReviewed
+  );
 
   const countries =
     registryCountries.map(
@@ -363,6 +378,11 @@ export function getCurriculumControlCenter():
     totalPacks:
       validReadyPacks.length,
     totalLessons,
+    authoredPacks: authoredPacks.length,
+    authoredLessons: authoredPacks.reduce(
+      (total, pack) => total + pack.lessonCount, 0
+    ),
+    pendingReviewPacks: authoredPacks.length - validReadyPacks.length,
     invalidPacks:
       packs.filter(
         (pack) =>

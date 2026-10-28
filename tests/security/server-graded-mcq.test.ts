@@ -114,6 +114,19 @@ describe("authoritative stored question grading", () => {
     expect(code).not.toContain("raw?.userId");
   });
 
+  it("reads public question listings from the published student-safe view", () => {
+    const reader = readFileSync(
+      resolve(process.cwd(), "features/questions/queries/getLessonQuestions.ts"),
+      "utf8"
+    );
+    expect(reader).toContain('.from("dadyoom_student_questions")');
+    expect(reader).toContain('.select("id,lesson_id,question_order,question,question_type,options,points")');
+    expect(reader).not.toContain('.from("questions")');
+    expect(reader).not.toContain('.select("*")');
+    expect(reader).not.toContain("correct_answer");
+    expect(reader).not.toContain("explanation");
+  });
+
   it("client no longer sets is_correct or receives the answer key as a prop", () => {
     const component = readFileSync(
       resolve(process.cwd(), "components/lesson/MultipleChoiceQuestion.tsx"),

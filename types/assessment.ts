@@ -14,9 +14,9 @@ export type Assessment = {
 
   choices: string[];
 
-  correctAnswer: number;
+  correctAnswer: number | null;
 
-  explanation: string;
+  explanation: string | null;
 
   skill: string;
 

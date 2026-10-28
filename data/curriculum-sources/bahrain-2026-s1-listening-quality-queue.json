@@ -1,0 +1,138 @@
+{
+  "schema": "dadyoom.bahrain-2026-s1-listening-quality-queue.v1",
+  "auditDate": "2026-10-25",
+  "scope": "BH grade 4 semester-1 PUBLISHED listening lessons with one stored question and zero vocabulary entries; human quality review only",
+  "officialPlan": "Plan1.pdf, pp. 18–21",
+  "liveData": "Read-only aggregate on Supabase project hvqsvtomhlxavmfqoxfz",
+  "summary": {
+    "lessonRecords": 10,
+    "withSingleQuestion": 10,
+    "withZeroVocabularyRows": 10,
+    "published": true,
+    "actionableStatus": "recorded for human/audio evidence review; no student records, questions or grade data were written",
+    "prerequisite": "Obtain corresponding official audio or accessible transcript; teacher reviews listen-and-understand outcomes before authoring additional questions",
+    "noAutomaticEdits": true
+  },
+  "records": [
+    {
+      "lessonId": "71602bdb-260a-4ecb-ae2a-cdfca2defae3",
+      "title": "الاستماع: أبو ذر الغفاري",
+      "grade": 4,
+      "semester": 1,
+      "planPdfPage": 18,
+      "questionCount": 1,
+      "vocabularyRows": 0,
+      "sourceAudioVerified": false,
+      "needsTeacherReview": true,
+      "suggestedNextAction": "Check official audio/transcript and learner skill targets; create graded listening items and feedback from actual source, then preview, test and approve before adding."
+    },
+    {
+      "lessonId": "6e98cec6-8e4e-4374-b4b0-1bdf1d85d82f",
+      "title": "الاستماع: أي الأعمال أحب إليك؟",
+      "grade": 4,
+      "semester": 1,
+      "planPdfPage": 20,
+      "questionCount": 1,
+      "vocabularyRows": 0,
+      "sourceAudioVerified": false,
+      "needsTeacherReview": true,
+      "suggestedNextAction": "Check official audio/transcript and learner skill targets; create graded listening items and feedback from actual source, then preview, test and approve before adding."
+    },
+    {
+      "lessonId": "37838a57-d122-43d2-9703-c2cee899bc0c",
+      "title": "الاستماع: الحمامة البيضاء",
+      "grade": 4,
+      "semester": 1,
+      "planPdfPage": 18,
+      "questionCount": 1,
+      "vocabularyRows": 0,
+      "sourceAudioVerified": false,
+      "needsTeacherReview": true,
+      "suggestedNextAction": "Check official audio/transcript and learner skill targets; create graded listening items and feedback from actual source, then preview, test and approve before adding."
+    },
+    {
+      "lessonId": "3031c5c8-0cb6-4383-a72e-21ed6d018e34",
+      "title": "الاستماع: الطائر الطبيب",
+      "grade": 4,
+      "semester": 1,
+      "planPdfPage": 21,
+      "questionCount": 1,
+      "vocabularyRows": 0,
+      "sourceAudioVerified": false,
+      "needsTeacherReview": true,
+      "suggestedNextAction": "Check official audio/transcript and learner skill targets; create graded listening items and feedback from actual source, then preview, test and approve before adding."
+    },
+    {
+      "lessonId": "c48a119a-f850-489a-97a3-7fc510bd8fa5",
+      "title": "الاستماع: جزاء المعروف",
+      "grade": 4,
+      "semester": 1,
+      "planPdfPage": 20,
+      "questionCount": 1,
+      "vocabularyRows": 0,
+      "sourceAudioVerified": false,
+      "needsTeacherReview": true,
+      "suggestedNextAction": "Check official audio/transcript and learner skill targets; create graded listening items and feedback from actual source, then preview, test and approve before adding."
+    },
+    {
+      "lessonId": "1fb6f61f-d33d-422c-8894-dd4bcee8378e",
+      "title": "الاستماع: حب الوطن",
+      "grade": 4,
+      "semester": 1,
+      "planPdfPage": 18,
+      "questionCount": 1,
+      "vocabularyRows": 0,
+      "sourceAudioVerified": false,
+      "needsTeacherReview": true,
+      "suggestedNextAction": "Check official audio/transcript and learner skill targets; create graded listening items and feedback from actual source, then preview, test and approve before adding."
+    },
+    {
+      "lessonId": "5c7dedde-588b-4b86-9789-dc0876817593",
+      "title": "الاستماع: حلم يتحقق",
+      "grade": 4,
+      "semester": 1,
+      "planPdfPage": 19,
+      "questionCount": 1,
+      "vocabularyRows": 0,
+      "sourceAudioVerified": false,
+      "needsTeacherReview": true,
+      "suggestedNextAction": "Check official audio/transcript and learner skill targets; create graded listening items and feedback from actual source, then preview, test and approve before adding."
+    },
+    {
+      "lessonId": "d5de3780-700a-47b4-bc27-d0ecfd837197",
+      "title": "الاستماع: شجرة الكنار",
+      "grade": 4,
+      "semester": 1,
+      "planPdfPage": 20,
+      "questionCount": 1,
+      "vocabularyRows": 0,
+      "sourceAudioVerified": false,
+      "needsTeacherReview": true,
+      "suggestedNextAction": "Check official audio/transcript and learner skill targets; create graded listening items and feedback from actual source, then preview, test and approve before adding."
+    },
+    {
+      "lessonId": "bdc9e885-5452-4671-a832-c6bbcadacc56",
+      "title": "الاستماع: صديق جديد",
+      "grade": 4,
+      "semester": 1,
+      "planPdfPage": 19,
+      "questionCount": 1,
+      "vocabularyRows": 0,
+      "sourceAudioVerified": false,
+      "needsTeacherReview": true,
+      "suggestedNextAction": "Check official audio/transcript and learner skill targets; create graded listening items and feedback from actual source, then preview, test and approve before adding."
+    },
+    {
+      "lessonId": "24696d82-67bb-4e70-a344-80ca566d54b9",
+      "title": "الاستماع: عبقرية عالم",
+      "grade": 4,
+      "semester": 1,
+      "planPdfPage": 19,
+      "questionCount": 1,
+      "vocabularyRows": 0,
+      "sourceAudioVerified": false,
+      "needsTeacherReview": true,
+      "suggestedNextAction": "Check official audio/transcript and learner skill targets; create graded listening items and feedback from actual source, then preview, test and approve before adding."
+    }
+  ]
+}

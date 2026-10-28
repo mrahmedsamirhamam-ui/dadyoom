@@ -3,23 +3,169 @@ name: Curriculum coverage integrity
 on:
   pull_request:
     paths:
+      - 'app/api/admin/lessons/quality-audit/route.ts'
+      - 'app/api/admin/lessons/runtime-audit/route.ts'
+      - 'lib/curriculum/resolve-public-asset-path.ts'
+      - 'app/api/admin/lessons/runtime-mcq-dump/route.ts'
+      - 'app/api/admin/lessons/quality-repair/route.ts'
+      - 'app/api/admin/lessons/activity-count/route.ts'
+      - 'app/api/admin/lessons/final-eleven-fix/route.ts'
+      - 'app/api/admin/lessons/final-four-fix/route.ts'
+      - 'app/api/admin/lessons/final-recovery/route.ts'
+      - 'app/api/admin/lessons/prepare-source-pages/route.ts'
+      - 'lib/auth/require-curriculum-admin.ts'
+      - 'tests/security/curriculum-admin-authorization.test.ts'
+      - 'tests/security/admin-curriculum-http-authorization.test.ts'
+      - 'tests/security/admin-audit-pagination.test.ts'
+      - 'tests/security/public-asset-url.test.ts'
       - 'app/api/progress/**'
       - 'app/api/lessons/complete/**'
       - 'app/api/questions/answer/**'
+      - 'app/api/assessments/check/**'
+      - 'app/api/ai/assessment/next/**'
+      - 'tests/security/ai-assessment-submit-trusted-progress.test.ts'
+      - 'features/student-memory/services/updateStudentMemory.ts'
+      - 'tests/security/verified-student-memory.test.ts'
+      - 'services/progress/skills.service.ts'
+      - 'tests/security/trusted-skill-writes.test.ts'
+      - 'tests/security/ai-assessment-next-adaptive-runtime.test.ts'
+      - 'features/assessment/services/verifyAssessmentCompletionReceipt.ts'
+      - 'tests/security/assessment-completion-receipt.test.ts'
+      - 'scripts/security/proposed-assessment-completion-receipts.sql'
+      - 'tests/security/shadow-assessment-receipts-verify.sql'
+      - 'tests/security/formative-grading-no-persistence.test.ts'
+      - 'tests/security/formative-runtime.vitest.config.mts'
+      - 'app/api/lesson-activities/check/**'
+      - 'lib/lesson-activities/progress-state.ts'
+      - 'tests/security/activity-check-route.test.ts'
+      - 'tests/security/activity-progress-concurrent-cas.test.ts'
+      - 'tests/security/shadow-activity-progress-cas.sql'
+      - 'scripts/security/proposed-atomic-activity-commit.sql'
+      - 'tests/security/shadow-atomic-activity-setup.sql'
+      - 'tests/security/shadow-atomic-activity-verify.sql'
+      - 'tests/security/atomic-activity-commit-routing.test.ts'
+      - 'lib/lesson-activities/attempt-sequencing.ts'
+      - 'lib/lesson-activities/read-complete-pages.ts'
+      - 'tests/security/graded-activity-pagination.test.ts'
+      - 'tests/security/attempt-number-sequencing.test.ts'
+      - 'scripts/security/proposed-activity-attempt-number-uniqueness.sql'
+      - 'tests/security/shadow-activity-sequence-setup.sql'
+      - 'tests/security/shadow-activity-sequence-verify.sql'
       - 'components/lesson/MultipleChoiceQuestion.tsx'
       - 'app/lessons/**/page.tsx'
       - 'features/questions/services/grade-stored-mcq.ts'
+      - 'features/practice/actions/submitPractice.ts'
+      - 'tests/security/lesson-practice-server-grading.test.ts'
+      - 'tests/security/study-play-server-action-input.test.ts'
+      - 'features/questions/queries/getLessonQuestions.ts'
+      - 'features/teacher/queries/getLessonQuestions.ts'
+      - 'features/teacher/actions/manageLessonQuestions.ts'
+      - 'tests/security/server-private-activity-answer-read.test.ts'
+      - 'tests/security/teacher-private-question-access.test.ts'
       - 'tests/security/server-graded-mcq.test.ts'
+      - 'tests/security/question-answer-route-runtime.test.ts'
       - 'tests/security/server-only-answer-key-read.test.ts'
       - 'tests/security/public-lesson-bundle-rpc.test.ts'
       - 'supabase/migrations/20261022195032_sanitize_public_get_lesson_page_bundle_answer_keys.sql'
+      - 'scripts/security/proposed-public-lesson-activity-rpc.sql'
+      - 'tests/security/shadow-public-activity-rpc-setup.sql'
+      - 'tests/security/shadow-public-activity-rpc-baseline.sql'
+      - 'tests/security/shadow-public-activity-rpc-verified.sql'
+      - 'tests/security/shadow-public-activity-rpc-rollback.sql'
+      - 'tests/security/shadow-question-column-grants.sql'
+      - 'scripts/security/proposed-question-key-column-cutover.sql'
+      - 'tests/security/shadow-question-key-cutover-setup.sql'
+      - 'tests/security/shadow-question-key-cutover-verify.sql'
+      - 'scripts/security/proposed-activity-answer-column-cutover.sql'
+      - 'tests/security/shadow-activity-answer-cutover-setup.sql'
+      - 'tests/security/shadow-activity-answer-cutover-verify.sql'
+      - 'tests/security/activity-rpc-redaction-parity.test.ts'
       - 'tests/security/student-question-payload.test.ts'
       - 'features/questions/services/public-lesson-questions.ts'
       - 'features/lessons/queries/getLessonPageBundle.ts'
+      - 'tests/security/lesson-bundle-attempt-pagination.test.ts'
+      - 'features/lesson-activities/services/public-lesson-activities.ts'
+      - 'tests/security/student-safe-lesson-activities.test.ts'
+      - 'features/lessons/services/bahrain-draft-preview-access.ts'
+      - 'tests/security/bahrain-draft-preview-access.test.ts'
       - 'features/adaptive-learning/queries/getWeakQuestions.ts'
+      - 'features/adaptive-learning/actions/resetWeakQuestion.ts'
+      - 'tests/security/reset-weak-question-route.test.ts'
+      - 'scripts/security/browser-assessment-boundary.mjs'
+      - 'scripts/audit-assessment-consumers.mjs'
+      - 'tests/security/browser-grade-boundary.test.mjs'
+      - 'features/adaptive-learning/services/evaluatePerformance.ts'
+      - 'features/adaptive-learning/services/lesson-practice-snapshot.ts'
+      - 'tests/adaptive-lesson-practice.test.ts'
+      - 'tests/public-lesson-auth-boundary.test.ts'
       - 'features/adaptive-learning/components/WeakQuestionsReview.tsx'
       - 'app/lessons/**/CompleteLessonButton.tsx'
       - 'features/student-progress/actions/completeLesson.ts'
+      - 'features/student-progress/services/unified-gamification.ts'
+      - 'tests/security/unified-xp-pagination.test.ts'
+      - 'app/api/journey/daily/challenge/route.ts'
+      - 'features/gamification/resolve-trusted-daily-challenge.ts'
+      - 'features/gamification/daily-challenge-server.ts'
+      - 'tests/security/daily-challenge-trusted-target.test.ts'
+      - 'app/api/skills/progress/route.ts'
+      - 'tests/security/skill-progress-no-forged-xp.test.ts'
+      - 'app/api/skills/speaking/evaluate/route.ts'
+      - 'lib/http/read-bounded-multipart.ts'
+      - 'tests/security/speaking-upload-authorization.test.ts'
+      - 'app/api/skills/writing/evaluate/route.ts'
+      - 'tests/security/writing-evaluation-bounded-request.test.ts'
+      - 'lib/ai/consume-skill-evaluation-quota.ts'
+      - 'tests/security/ai-skill-evaluation-quota.test.ts'
+      - 'scripts/security/proposed-ai-skill-evaluation-quota.sql'
+      - 'tests/security/shadow-ai-skill-quota-setup.sql'
+      - 'tests/security/shadow-ai-skill-quota-verify.sql'
+      - 'tests/security/lesson-completion-full-evidence.test.ts'
+      - 'features/student-progress/repositories/progress.repository.ts'
+      - 'features/student-progress/services/progress.ts'
+      - 'app/api/semantic-search/stream/route.ts'
+      - 'app/api/ai/assessment/submit/route.ts'
+      - 'app/api/ai/assessment/**'
+      - 'features/assessment/services/advanceAssessmentSession.ts'
+      - 'features/assessment/services/getAssessmentSessionAnalytics.ts'
+      - 'features/assessment/services/getLatestAssessmentAnalytics.ts'
+      - 'tests/security/ai-assessment-client-trust.test.ts'
+      - 'tests/security/ai-assessment-session-generation.test.ts'
+      - 'features/assessment/services/startAssessmentSession.ts'
+      - 'tests/security/assessment-session-start-integrity.test.ts'
+      - 'scripts/security/proposed-assessment-session-active-unique-index.sql'
+      - 'tests/security/shadow-assessment-session-race-setup.sql'
+      - 'tests/security/shadow-assessment-session-race-verify.sql'
+      - 'scripts/security/proposed-assessment-answer-slot-lock.sql'
+      - 'tests/security/shadow-assessment-answer-slot-setup.sql'
+      - 'tests/security/shadow-assessment-answer-slot-verify.sql'
+      - 'tests/security/ai-assessment-private-hash-runtime.test.ts'
+      - 'features/assessment/components/LessonAssessment.tsx'
+      - 'tests/security/ai-session-analytics.test.ts'
+      - 'features/semantic-search/components/LessonSemanticSearch.tsx'
+      - 'features/semantic-search/services/updateLessonMastery.ts'
+      - 'tests/security/tutor-not-mastery.test.ts'
+      - 'scripts/security-assessment-permissions-audit.sql'
+      - 'scripts/audit-assessment-consumers.mjs'
+      - 'tests/security/assessment-grants-audit.test.ts'
+      - 'tests/security/shadow-question-grants.sql'
+      - 'tests/security/shadow-grade-write-grants.sql'
+      - 'scripts/security/proposed-grade-write-restrictions.sql'
+      - 'scripts/security/proposed-ai-assessment-private-key-grants.sql'
+      - 'services/ai/assessment.service.ts'
+      - 'tests/security/legacy-ai-generation-server-only.test.ts'
+      - 'tests/security/shadow-ai-key-grants-setup.sql'
+      - 'tests/security/shadow-ai-key-grants-verify.sql'
+      - 'scripts/security/proposed-adaptive-progress-write-restrictions.sql'
+      - 'scripts/security/proposed-skill-daily-reward-grants.sql'
+      - 'tests/security/shadow-skill-daily-rewards-setup.sql'
+      - 'tests/security/shadow-skill-daily-rewards-verify.sql'
+      - 'tests/security/shadow-adaptive-grants-setup.sql'
+      - 'tests/security/shadow-adaptive-grants-verify.sql'
+      - 'features/learning-plan/services/adaptive-path-lifecycle.ts'
+      - 'tests/security/shadow-proposed-grade-grants-verify.sql'
+      - 'tests/security/owner-scoped-progress-repository.test.ts'
+      - 'tests/security/lesson-progress-idempotent-start.test.ts'
+      - 'tests/security/lesson-mastery-score-cas.test.ts'
       - 'features/lesson-mastery/actions/syncLessonMastery.ts'
       - 'tests/security/lesson-mastery-completion-only.test.ts'
       - 'features/lesson-mastery/services/score-graded-activities.ts'
@@ -29,13 +175,171 @@ on:
       - 'features/student-progress/services/completion-gates.ts'
       - 'scripts/curriculum-coverage.mjs'
       - 'scripts/curriculum-production-audit.sql'
+      - 'lib/curriculum/book-catalog-reference.ts'
+      - 'app/lessons/[id]/page.tsx'
+      - 'tests/curriculum-book-catalog-reference.test.ts'
+      - 'types/cache-life.d.ts'
+      - 'tests/cloudflare-cache-compatibility.test.ts'
+      - 'tests/curriculum-readiness-live-gates.test.ts'
+      - 'scripts/smoke-next-production-runtime.mjs'
       - 'app/quiz/**'
+      - 'app/lessons/**/play/**'
+      - 'app/lessons/[id]/games/LessonGamesClient.tsx'
+      - 'app/api/games/complete/route.ts'
+      - 'app/api/lessons/games/route.ts'
+      - 'features/study-play/**'
+      - 'features/games/build-vocabulary-game-pack.ts'
+      - 'tests/security/legacy-game-rewards.test.ts'
+      - 'scripts/security/proposed-game-attempt-write-cutover.sql'
+      - 'tests/security/shadow-study-play-game-grants-setup.sql'
+      - 'tests/security/shadow-study-play-game-grants-verify.sql'
       - 'tests/security/safe-questions-view.test.ts'
       - 'supabase/migrations/20261022150911_create_dadyoom_student_safe_questions_view.sql'
       - 'supabase/migrations/20261022151106_restrict_dadyoom_student_questions_view_to_select_only.sql'
       - 'scripts/verify-curriculum-packs.mjs'
       - 'lib/curriculum-packs/**'
       - 'data/curriculum-packs/**'
+      - 'scripts/import-curriculum-pack.mjs'
+      - 'lib/curriculum-packs/complete-backup.mjs'
+      - 'tests/curriculum-import-safety.test.ts'
+      - 'lib/curriculum-packs/import-questions.mjs'
+      - 'tests/curriculum-import-questions.test.ts'
+      - 'data/curriculum-drafts/**'
+      - 'data/curriculum-sources/bahrain-2026-s1-ministry-plan-index.json'
+      - 'data/curriculum-sources/bahrain-2026-s1-reading-title-audit.json'
+      - 'data/curriculum-sources/bahrain-2026-s1-listening-quality-queue.json'
+      - 'tests/bahrain-official-plan-index.test.ts'
+      - 'tests/bahrain-g2-2026-original-pack.test.ts'
+      - 'tests/bahrain-g3-2026-original-pack.test.ts'
+      - 'tests/bahrain-g4-2026-original-pack.test.ts'
+      - 'tests/bahrain-g4-2026-original-listening.test.ts'
+      - 'tests/bahrain-g5-2026-source-inventory.test.ts'
+      - 'tests/bahrain-g5-2026-grammar-practice.test.ts'
+      - 'tests/bahrain-g5-2026-spelling-practice.test.ts'
+      - 'tests/bahrain-g5-2026-writing-workshops.test.ts'
+      - 'tests/bahrain-g5-2026-handwriting-practice.test.ts'
+      - 'tests/bahrain-g6-2026-source-inventory.test.ts'
+      - 'tests/bahrain-g6-2026-original-past-tense.test.ts'
+      - 'tests/bahrain-g6-2026-verb-mood-practice.test.ts'
+      - 'tests/bahrain-g6-2026-nominal-grammar.test.ts'
+      - 'tests/bahrain-g6-2026-grammar-coverage.test.ts'
+      - 'tests/bahrain-g6-2026-spelling-coverage.test.ts'
+      - 'tests/bahrain-g6-2026-writing-workshops.test.ts'
+      - 'tests/bahrain-g6-2026-original-listening.test.ts'
+      - 'tests/bahrain-g7-2026-source-inventory.test.ts'
+      - 'tests/bahrain-g7-2026-definiteness-practice.test.ts'
+      - 'tests/bahrain-g7-2026-grammar-progress.test.ts'
+      - 'tests/bahrain-g7-2026-grammar-coverage.test.ts'
+      - 'tests/bahrain-g7-2026-spelling-writing-regional.test.ts'
+      - 'lib/curriculum/public-lesson-instructions.ts'
+      - 'tests/curriculum-public-lesson-instructions.test.ts'
+      - 'scripts/curriculum-bahrain-grade1-3-title-reconciliation-readonly.sql'
+      - 'tests/curriculum-bahrain-title-reconciliation.test.ts'
+      - 'data/curriculum-drafts/bh-grade2-3-s1-twenty-original-reading-sixty-question-repairs-2026.json'
+      - 'tests/bahrain-g2-g3-original-reading-sixty-question-specificity.test.ts'
+      - 'supabase/migrations/20261028134638_secure_lesson_teacher_notes_owner_only_read.sql'
+      - 'tests/security/lesson-teacher-notes-owner-only-read.test.ts'
+      - 'supabase/migrations/20261028135915_reject_labelled_answer_keys_in_published_lessons.sql'
+      - 'scripts/curriculum-private-answer-visibility-readonly.sql'
+      - 'tests/security/published-lesson-answer-key-constraint.test.ts'
+      - 'supabase/migrations/20261028144115_restrict_web_role_question_activity_privileges.sql'
+      - 'tests/security/lesson-question-activity-web-role-grants.test.ts'
+      - 'supabase/migrations/20261028144512_deny_public_schema_truncate_to_web_roles.sql'
+      - 'scripts/security-public-schema-web-role-privileges-readonly.sql'
+      - 'tests/security/public-schema-truncate-grants.test.ts'
+      - 'data/curriculum-drafts/bh-grade1-core-18-lessons-36-specific-question-repairs-2026.json'
+      - 'tests/bahrain-g1-18-specific-question-repairs.test.ts'
+      - 'scripts/curriculum-22-grades1-3-quality-readiness-readonly.sql'
+      - 'data/curriculum-audits/arab22-grades1-3-live-quality-matrix-2026-10-28.json'
+      - 'tests/curriculum-arab22-grade1-3-live-quality-matrix.test.ts'
+      - 'supabase/migrations/20261028145744_deny_postgres_default_public_table_truncate_web_roles.sql'
+      - 'scripts/security-public-future-table-defaults-readonly.sql'
+      - 'tests/security/public-future-table-truncate-defaults.test.ts'
+      - 'supabase/migrations/20261028153044_guard_published_activity_content_against_nested_answer_keys.sql'
+      - 'tests/security/published-activity-nested-answer-keys-constraint.test.ts'
+      - 'data/curriculum-drafts/bh-g2-g3-two-grade-specific-reading-grammar-original-replacements-2026.json'
+      - 'tests/curriculum-bahrain-g2-g3-grade-specific-original-lessons.test.ts'
+      - 'data/curriculum-drafts/grade1-21-arab-countries-original-short-reading-20261028.json'
+      - 'data/curriculum-drafts/bh-grade1-original-short-reading-20261028.json'
+      - 'tests/curriculum-22-countries-grade1-original-reading-specificity.test.ts'
+      - 'data/curriculum-drafts/arab21-grades2-3-original-reading-42-lessons-20261028.json'
+      - 'tests/curriculum-arab21-grade2-3-original-reading-42-lessons.test.ts'
+      - 'data/curriculum-drafts/arab22-grades1-3-main-idea-linked-reading-66-lessons-20261028.json'
+      - 'tests/curriculum-22-countries-grades1-3-main-idea-original-linked-texts.test.ts'
+      - 'data/curriculum-drafts/arab22-grades1-3-story-sequence-66-lessons-20261028.json'
+      - 'tests/curriculum-22-countries-grades1-3-story-sequence-original-linked-texts.test.ts'
+      - 'data/curriculum-drafts/bahrain-grade2-official-review-nine-original-repairs-20261028.json'
+      - 'data/curriculum-audits/bahrain-grade2-five-duplicate-review-ocr-quarantine-20261028.json'
+      - 'scripts/curriculum-bahrain-grade2-review-repaired-and-ocr-quarantine-readonly.sql'
+      - 'tests/curriculum-bahrain-grade2-review-nine-original-lessons-and-five-ocr-quarantine.test.ts'
+      - 'data/curriculum-drafts/arab22-grades1-3-short-vowels-66-original-lessons-20261028.json'
+      - 'tests/curriculum-22-countries-grade123-original-short-vowels.test.ts'
+      - 'data/curriculum-drafts/arab22-grades1-3-madd-letters-66-original-lessons-20261028.json'
+      - 'tests/curriculum-22-countries-grade123-original-madd-letters.test.ts'
+      - 'scripts/curriculum-22-countries-grade123-madd-letters-quality-readonly.sql'
+      - 'scripts/curriculum-22-countries-grade123-short-vowels-quality-readonly.sql'
+      - 'data/curriculum-drafts/arab22-grade1-3-original-singular-plural-66-lessons-20261028.json'
+      - 'tests/curriculum-22-countries-grade1-3-original-singular-plural.test.ts'
+      - 'data/curriculum-drafts/arab22-grades1-3-sun-moon-lam-66-original-lessons-20261028.json'
+      - 'tests/curriculum-22-countries-grades1-3-sun-moon-lam-original.test.ts'
+      - 'scripts/curriculum-22-countries-grades1-3-sun-moon-lam-quality-readonly.sql'
+      - 'data/curriculum-drafts/arab22-grades1-3-interrogative-tools-65-safe-lessons-20261028.json'
+      - 'tests/curriculum-22-countries-grade1-3-interrogatives-65-safe-lessons.test.ts'
+      - 'scripts/curriculum-22-countries-grade1-3-interrogatives-quality-readonly.sql'
+      - 'scripts/curriculum-22-countries-grade1-3-singular-plural-quality-readonly.sql'
+      - 'scripts/curriculum-22-countries-grades1-3-story-sequence-quality-readonly.sql'
+      - 'scripts/curriculum-22-countries-grades1-3-main-idea-quality-readonly.sql'
+      - 'data/curriculum-audits/bahrain-official-semester1-2026-2027-grades2-3-reading-index.json'
+      - 'data/curriculum-audits/bahrain-grade2-3-ocr-scaffolds-quarantine-20261028.json'
+      - 'scripts/curriculum-bh-grade2-3-ocr-quarantine-readonly.sql'
+      - 'tests/curriculum-bahrain-grade2-3-official-toc-and-ocr-quarantine.test.ts'
+      - 'scripts/curriculum-22-countries-grade2-3-original-reading-quality-readonly.sql'
+      - 'scripts/curriculum-22-countries-grade1-reading-quality-readonly.sql'
+      - 'data/curriculum-drafts/bh-g1-s2-original-vocabulary-repairs.json'
+      - 'tests/bahrain-g1-vocabulary-repair.test.ts'
+      - 'data/curriculum-drafts/bh-g2-s2-original-existing-reading-enhancements.json'
+      - 'tests/bahrain-g2-existing-reading-enhancements.test.ts'
+      - 'data/curriculum-drafts/bh-g3-s2-original-existing-reading-enhancements.json'
+      - 'tests/bahrain-g3-existing-reading-enhancements.test.ts'
+      - 'data/curriculum-drafts/bh-g4-s2-original-existing-reading-enhancements.json'
+      - 'tests/bahrain-g4-existing-reading-enhancements.test.ts'
+      - 'data/curriculum-drafts/bh-g5-s2-original-existing-reading-enhancements.json'
+      - 'tests/bahrain-g5-existing-reading-enhancements.test.ts'
+      - 'tests/curriculum-review-pack-cross-grade-integrity.test.ts'
+      - 'data/curriculum-drafts/bh-g6-s2-original-existing-reading-enhancements.json'
+      - 'tests/bahrain-g6-existing-reading-enhancements.test.ts'
+      - 'data/curriculum-drafts/bh-g7-s2-original-existing-reading-enhancements.json'
+      - 'tests/bahrain-g7-existing-reading-enhancements.test.ts'
+      - 'data/curriculum-drafts/bh-g8-s2-original-existing-reading-enhancements.json'
+      - 'tests/bahrain-g8-existing-reading-enhancements.test.ts'
+      - 'data/curriculum-sources/arab-22-curriculum-source-review.json'
+      - 'scripts/arab-22-curriculum-readonly-audit.sql'
+      - 'scripts/arab-22-grades-1-3-readonly-audit.sql'
+      - 'data/curriculum-audits/arab-22-grades-1-3-baseline-2026-10-27.json'
+      - 'docs/curriculum/arab-22-grades-1-3-review-2026.md'
+      - 'tests/arab-22-grades-1-3-baseline.test.ts'
+      - 'data/curriculum-audits/arab-22-grade-1-lesson-review-2026-10-27.json'
+      - 'data/curriculum-audits/arab-22-grade-2-lesson-review-2026-10-27.json'
+      - 'data/curriculum-audits/arab-22-grade-3-lesson-review-2026-10-27.json'
+      - 'scripts/compare-official-arabic-toc.mjs'
+      - 'tests/arab-22-grades-1-3-toc-comparison.test.mjs'
+      - 'data/curriculum-drafts/ps-grades-1-3-verified-portal-original-support-2026.json'
+      - 'tests/ps-grade-1-3-original-source-linked-lessons.test.ts'
+      - 'data/curriculum-drafts/ps-g1-complete-portal-topic-original-supplements-2026.json'
+      - 'tests/ps-g1-complete-portal-topic-original-supplements.test.ts'
+      - 'data/curriculum-drafts/ps-grade2-3-original-missing-resource-lessons-2026.json'
+      - 'tests/ps-grade2-3-original-missing-resource-lessons.test.ts'
+      - 'data/curriculum-drafts/ps-g3-eight-actual-portal-missing-original-readings-2026.json'
+      - 'tests/ps-g3-eight-actual-portal-missing-original-readings.test.ts'
+      - 'data/curriculum-drafts/ps-g2-seven-existing-reading-specific-question-fixes.json'
+      - 'tests/ps-g2-seven-existing-reading-specific-question-fixes.test.ts'
+      - 'data/curriculum-audits/ps-g2-existing-reading-question-specificity-repair-2026.json'
+      - 'tests/ps-g2-existing-reading-question-specificity-repair.test.ts'
+      - 'data/curriculum-drafts/ps-grade2-3-five-missing-source-topics-2026.json'
+      - 'tests/ps-grade2-3-five-missing-source-topics.test.ts'
+      - 'scripts/validate-original-curriculum-drafts.mjs'
+      - 'tests/original-curriculum-drafts.test.ts'
+      - 'package.json'
       - 'tests/curriculum-coverage.test.ts'
       - '.github/workflows/curriculum-coverage-ci.yml'
   workflow_dispatch:
@@ -59,14 +363,194 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Verify curriculum pack schemas
         run: npm run curriculum:verify
+      - name: Verify safe import backups and reviewed-source publishing gate
+        run: npx vitest run tests/curriculum-import-safety.test.ts
+      - name: Verify complete lesson question-bank import and non-destructive deduplication
+        run: npx vitest run tests/curriculum-import-questions.test.ts
+      - name: Verify 7 official plan sources and 38 indexed grade-2-to-4 reading titles
+        run: npx vitest run tests/bahrain-official-plan-index.test.ts
+      - name: Verify 2026–27 Bahrain Grade 2 full original reading pack and safe review gate
+        run: npx vitest run tests/bahrain-g2-2026-original-pack.test.ts
+      - name: Verify 2026–27 Bahrain Grade 3 original companion pack and no-publish gate
+        run: npx vitest run tests/bahrain-g3-2026-original-pack.test.ts
+      - name: Verify Bahrain Grade 4 sourced companion pack and sensitive-text no-substitution gate
+        run: npx vitest run tests/bahrain-g4-2026-original-pack.test.ts
+      - name: Verify Grade 4 ten original listening scripts and forty balanced question keys
+        run: npx vitest run tests/bahrain-g4-2026-original-listening.test.ts
+      - name: Verify source-only Grade 5 Ministry plan components and prevent false publication claims
+        run: npx vitest run tests/bahrain-g5-2026-source-inventory.test.ts
+      - name: Verify Grade-5 source-linked original grammar instruction and 36 keyed questions
+        run: npx vitest run tests/bahrain-g5-2026-grammar-practice.test.ts
+      - name: Verify Grade-5 authored spelling explanations and 36 answer keys
+        run: npx vitest run tests/bahrain-g5-2026-spelling-practice.test.ts
+      - name: Verify Grade-5 original writing and human-only evaluation rubrics
+        run: npx vitest run tests/bahrain-g5-2026-writing-workshops.test.ts
+      - name: Verify Grade-5 original handwriting exercises and unverified stroke template gates
+        run: npx vitest run tests/bahrain-g5-2026-handwriting-practice.test.ts
+      - name: Verify Grade-6 official Ministry source topics and no-invented-text gates
+        run: npx vitest run tests/bahrain-g6-2026-source-inventory.test.ts
+      - name: Verify two original Grade-6 past-tense lessons and sound eight assessment keys
+        run: npx vitest run tests/bahrain-g6-2026-original-past-tense.test.ts
+      - name: Verify Grade-6 weak-verb moods, imperative and five-verb forms
+        run: npx vitest run tests/bahrain-g6-2026-verb-mood-practice.test.ts
+      - name: Verify Grade-6 verbal agreement, passive, dual and plural original lessons
+        run: npx vitest run tests/bahrain-g6-2026-nominal-grammar.test.ts
+      - name: Verify all thirteen original Grade-6 grammar topics and independent no-publish gates
+        run: npx vitest run tests/bahrain-g6-2026-grammar-coverage.test.ts
+      - name: Verify all Grade-6 spelling rules, 13 original dictations and 52 assessment keys
+        run: npx vitest run tests/bahrain-g6-2026-spelling-coverage.test.ts
+      - name: Verify six Grade-6 source-aligned writing workshops and human-only rubrics
+        run: npx vitest run tests/bahrain-g6-2026-writing-workshops.test.ts
+      - name: Verify three Grade-6 original listening texts, twelve questions and official audio quarantine
+        run: npx vitest run tests/bahrain-g6-2026-original-listening.test.ts
+      - name: Verify Grade-7 official week-indexed 43-source-topic release boundaries
+        run: npx vitest run tests/bahrain-g7-2026-source-inventory.test.ts
+      - name: Verify first three original Grade-7 definite and indefinite grammar workshops
+        run: npx vitest run tests/bahrain-g7-2026-definiteness-practice.test.ts
+      - name: Verify six original Grade-7 grammar topics and twenty-four answer keys
+        run: npx vitest run tests/bahrain-g7-2026-grammar-progress.test.ts
+      - name: Verify all twelve original Grade-7 first-term grammar topics and 48 answer explanations
+        run: npx vitest run tests/bahrain-g7-2026-grammar-coverage.test.ts
+      - name: Verify all Grade-7 spelling, handwriting, writing and the 22-country source-review gate
+        run: npx vitest run tests/bahrain-g7-2026-spelling-writing-regional.test.ts
+      - name: Verify complete lesson content visibility and secret-free learning activities across 22 countries
+        run: npx vitest run tests/curriculum-public-lesson-instructions.test.ts
+      - name: Verify Bahrain 42-title OCR-aware, read-only curriculum reconciliation
+        run: npx vitest run tests/curriculum-bahrain-title-reconciliation.test.ts
+      - name: Validate 60 original reading comprehension questions for Bahrain Grades 2 and 3
+        run: npx vitest run tests/bahrain-g2-g3-original-reading-sixty-question-specificity.test.ts
+      - name: Assert confidential teacher notes RLS and least-privilege grants
+        run: npx vitest run tests/security/lesson-teacher-notes-owner-only-read.test.ts
+      - name: Verify published lessons reject labelled answer keys and read-only visibility audit
+        run: npx vitest run tests/security/published-lesson-answer-key-constraint.test.ts
+      - name: Verify students cannot TRUNCATE or mutate lesson questions and activities
+        run: npx vitest run tests/security/lesson-question-activity-web-role-grants.test.ts
+      - name: Assert no web-facing role can TRUNCATE any public table
+        run: npx vitest run tests/security/public-schema-truncate-grants.test.ts
+      - name: Verify 36 Grade-1 Bahrain source-linked core literacy questions
+        run: npx vitest run tests/bahrain-g1-18-specific-question-repairs.test.ts
+      - name: Verify 22-country grades 1-3 live quality inventory consistency
+        run: npx vitest run tests/curriculum-arab22-grade1-3-live-quality-matrix.test.ts
+      - name: Verify secure default grants for future public tables
+        run: npx vitest run tests/security/public-future-table-truncate-defaults.test.ts
+      - name: Ensure published activity JSON cannot contain nested grading keys
+        run: npx vitest run tests/security/published-activity-nested-answer-keys-constraint.test.ts
+      - name: Validate original grade-specific Bahrain Grade-2/3 text, objectives, 20 questions and 12 activities
+        run: npx vitest run tests/curriculum-bahrain-g2-g3-grade-specific-original-lessons.test.ts
+      - name: Validate 22 country original grade-1 reading lessons and 110 answer-key-free public questions
+        run: npx vitest run tests/curriculum-22-countries-grade1-original-reading-specificity.test.ts
+      - name: Validate 42 original grade-2/3 country-specific stories and 210 linked questions
+        run: npx vitest run tests/curriculum-arab21-grade2-3-original-reading-42-lessons.test.ts
+      - name: Validate 66 original main-idea lessons in Grades 1-3 for all 22 countries
+        run: npx vitest run tests/curriculum-22-countries-grades1-3-main-idea-original-linked-texts.test.ts
+      - name: Validate 66 original event-ordering lessons in Grades 1-3 for all 22 countries
+        run: npx vitest run tests/curriculum-22-countries-grades1-3-story-sequence-original-linked-texts.test.ts
+      - name: Verify nine original Bahrain Grade-2 reviews and five OCR duplicate quarantine records
+        run: npx vitest run tests/curriculum-bahrain-grade2-review-nine-original-lessons-and-five-ocr-quarantine.test.ts
+      - name: Verify 66 original short-vowel lessons with 330 authentic questions in 22 countries
+        run: npx vitest run tests/curriculum-22-countries-grade123-original-short-vowels.test.ts
+      - name: Verify 66 original madd-letter lessons with 330 authentic comprehension questions
+        run: npx vitest run tests/curriculum-22-countries-grade123-original-madd-letters.test.ts
+      - name: Verify 66 original sun/moon lam lessons in 22 countries and Grades 1-3
+        run: npx vitest run tests/curriculum-22-countries-grades1-3-sun-moon-lam-original.test.ts
+      - name: Validate 66 grade-differentiated singular-and-plural lessons for all 22 countries
+        run: npx vitest run tests/curriculum-22-countries-grade1-3-original-singular-plural.test.ts
+      - name: Validate 65 original interrogative lessons without rewriting Egyptian learner work
+        run: npx vitest run tests/curriculum-22-countries-grade1-3-interrogatives-65-safe-lessons.test.ts
+      - name: Verify Bahrain official Grade-2/3 term-one title index and reversible OCR quarantine snapshot
+        run: npx vitest run tests/curriculum-bahrain-grade2-3-official-toc-and-ocr-quarantine.test.ts
+      - name: Review-only original vocabulary fixes for 12 existing Bahrain Grade-1 lessons
+        run: npx vitest run tests/bahrain-g1-vocabulary-repair.test.ts
+      - name: Original grade-2 lesson-linked reading, vocabulary and question quality
+        run: npx vitest run tests/bahrain-g2-existing-reading-enhancements.test.ts
+      - name: Verify 12 real Grade-3 Bahrain reading lessons and original word/question depth
+        run: npx vitest run tests/bahrain-g3-existing-reading-enhancements.test.ts
+      - name: Original grade-4 second-term reading enrichment audit
+        run: npx vitest run tests/bahrain-g4-existing-reading-enhancements.test.ts
+      - name: Verify existing Grade-5 BH semester-two original reading enrichment
+        run: npx vitest run tests/bahrain-g5-existing-reading-enhancements.test.ts
+      - name: Cross-grade no-duplicate, source-anchor and teacher sign-off gate
+        run: npx vitest run tests/curriculum-review-pack-cross-grade-integrity.test.ts
+      - name: Original Grade-6 second term reading vocabulary and critical-thinking review
+        run: npx vitest run tests/bahrain-g6-existing-reading-enhancements.test.ts
+      - name: Original Bahrain Grade-7 semester-two reading vocabulary and analysis checks
+        run: npx vitest run tests/bahrain-g7-existing-reading-enhancements.test.ts
+      - name: Verify original Grade-8 BH reading, vocabulary and explained formative prompts
+        run: npx vitest run tests/bahrain-g8-existing-reading-enhancements.test.ts
+      - name: Reconcile all 22 countries and Grades 1-3 without false textbook completion
+        run: npx vitest run tests/arab-22-grades-1-3-baseline.test.ts
+      - name: Compare Grade 1-3 official TOCs safely without false curriculum completions
+        run: npx vitest run tests/arab-22-grades-1-3-toc-comparison.test.mjs
+      - name: Check original Palestinian Grade-1/2/3 texts and independent assessments
+        run: npx vitest run tests/ps-grade-1-3-original-source-linked-lessons.test.ts
+      - name: Confirm additional 23 Palestinian Grade-1 phonics topics and two reading drafts
+        run: npx vitest run tests/ps-g1-complete-portal-topic-original-supplements.test.ts
+      - name: Confirm nine independent Palestine Grade-2/3 missing title lessons
+        run: npx vitest run tests/ps-grade2-3-original-missing-resource-lessons.test.ts
+      - name: Verify contextual questions replace generic first-semester grade-two reading quizzes
+        run: npx vitest run tests/ps-g2-existing-reading-question-specificity-repair.test.ts
+      - name: Validate five more Palestinian grade 2-3 missing lesson titles and direct assessment questions
+        run: npx vitest run tests/ps-grade2-3-five-missing-source-topics.test.ts
+      - name: Validate eight missing Grade-3 Palestinian ministry-portal topics with original authored passages
+        run: npx vitest run tests/ps-g3-eight-actual-portal-missing-original-readings.test.ts
+      - name: Ensure 21 old generic Palestinian Grade-2 questions are passage-anchored
+        run: npx vitest run tests/ps-g2-seven-existing-reading-specific-question-fixes.test.ts
+      - name: Validate unpublished original lesson drafts without writing
+        run: npm run curriculum:drafts:verify
+      - name: Exercise draft quality and no-publication safety gates
+        run: npx vitest run tests/original-curriculum-drafts.test.ts
       - name: Verify country coverage report
         run: npm run curriculum:coverage
       - name: Test that missing packs never report full country coverage
         run: npx vitest run tests/curriculum-coverage.test.ts
+      - name: Verify published assessment and import-placeholder readiness audit
+        run: npx vitest run tests/curriculum-readiness-live-gates.test.ts
+      - name: Verify book index nodes cannot masquerade as graded lessons
+        run: npx vitest run tests/curriculum-book-catalog-reference.test.ts
+      - name: Verify public Next cache type declarations are Worker-compatible
+        run: npx vitest run tests/cloudflare-cache-compatibility.test.ts
+      - name: Execute real lesson practice auth and trusted-key scoring tests
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/lesson-practice-server-grading.test.ts
+      - name: Verify adaptive practice progress cannot falsely award mastery
+        run: npx vitest run tests/adaptive-lesson-practice.test.ts
+      - name: Verify public lesson UI hides private grading widgets
+        run: npx vitest run tests/public-lesson-auth-boundary.test.ts
+      - name: Verify unified XP totals across all paged lesson, skill and challenge rows
+        run: npx vitest run tests/security/unified-xp-pagination.test.ts
+      - name: Reject forged daily challenge score and skill before XP award
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/daily-challenge-trusted-target.test.ts
+      - name: Block unverified skill practice scores from awarding XP
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/skill-progress-no-forged-xp.test.ts
+      - name: Verify protected AI speaking audio and streamed upload limits
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/speaking-upload-authorization.test.ts
+      - name: Verify bounded authenticated AI writing evaluations
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/writing-evaluation-bounded-request.test.ts
+      - name: Verify staged service-role AI quotas fail closed on RPC errors
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/ai-skill-evaluation-quota.test.ts
+      - name: Reject partial lesson completion and XP snapshots
+        run: npx vitest run tests/security/lesson-completion-full-evidence.test.ts
+      - name: Verify fully paged student lesson history and safe private preview
+        run: npx vitest run tests/security/lesson-bundle-attempt-pagination.test.ts
+      - name: Block private grading tables from browser-side Supabase access
+        run: npx vitest run tests/security/browser-grade-boundary.test.mjs
+      - name: Verify weak-question reset authorizes student and avoids grade-race deletion
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/reset-weak-question-route.test.ts
       - name: Verify canonical lesson completion entry points
         run: npx vitest run tests/security/lesson-completion-entrypoints.test.ts tests/security/lesson-mastery-gates.test.ts
       - name: Verify authoritative lesson question grading
         run: npx vitest run tests/security/server-graded-mcq.test.ts
+      - name: Verify study-play forged-answer rejection and Server Action boundary
+        run: npx vitest run --config tests/security/vitest.config.mts features/study-play/services/grade-study-play.test.ts tests/security/study-play-server-action-input.test.ts
+      - name: Verify vocabulary arcade never trusts client XP
+        run: npx vitest run tests/security/legacy-game-rewards.test.ts
+      - name: Execute no-network grading API and student ownership runtime tests
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/question-answer-route-runtime.test.ts
+      - name: Verify private Bahrain draft preview requires server-owned entitlement
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/bahrain-draft-preview-access.test.ts
+      - name: Execute lesson bundle / activity field redaction tests
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/student-safe-lesson-activities.test.ts
+      - name: Check PostgreSQL and TypeScript activity-key filtering parity
+        run: npx vitest run tests/security/activity-rpc-redaction-parity.test.ts
       - name: Verify student-safe question view migration and quiz cutover
         run: npx vitest run tests/security/safe-questions-view.test.ts
       - name: Verify lesson question keys do not reach student payloads
@@ -75,8 +559,66 @@ jobs:
         run: npx vitest run tests/security/lesson-mastery-completion-only.test.ts
       - name: Verify weighted lesson mastery equals completion scoring
         run: npx vitest run tests/security/weighted-activity-mastery.test.ts
+      - name: Verify complete paged scoring under PostgREST row caps
+        run: npx vitest run tests/security/graded-activity-pagination.test.ts
       - name: Verify private answer-key lookup
         run: npx vitest run tests/security/server-only-answer-key-read.test.ts
+      - name: Verify teacher-only stored answer-key access
+        run: npx vitest run tests/security/teacher-private-question-access.test.ts
+      - name: Verify private activity keys stay on server
+        run: npx vitest run tests/security/server-private-activity-answer-read.test.ts
+      - name: Verify server grading and completed-progress preservation
+        run: npx vitest run tests/security/activity-check-route.test.ts
+      - name: Simulate concurrent activity progress CAS and insert races
+        run: npx vitest run tests/security/activity-progress-concurrent-cas.test.ts
+      - name: Verify optional atomic activity receipt source and permission boundary
+        run: npx vitest run tests/security/atomic-activity-commit-routing.test.ts
+      - name: Verify activity attempt numbering collision retries
+        run: npx vitest run tests/security/attempt-number-sequencing.test.ts
+      - name: Exercise bounded student activity HTTP route with synthetic requests
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/activity-check-http-runtime.test.ts
+      - name: Exercise curriculum admin HTTP gates before private answer reads or repair
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/curriculum-admin-authorization.test.ts tests/security/admin-curriculum-http-authorization.test.ts tests/security/admin-audit-pagination.test.ts tests/security/public-asset-url.test.ts
+      - name: Verify owner-scoped and concurrent-idempotent trusted lesson starts
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/owner-scoped-progress-repository.test.ts tests/security/lesson-progress-idempotent-start.test.ts tests/security/lesson-mastery-score-cas.test.ts
+      - name: Verify tutoring cannot award academic mastery
+        run: npx vitest run tests/security/tutor-not-mastery.test.ts
+      - name: Execute no-network formative grading spoofing and no-persistence tests
+        run: npx vitest run --config tests/security/formative-runtime.vitest.config.mts tests/security/formative-grading-no-persistence.test.ts
+      - name: Verify immutable assessment completion receipts and safe retries
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/assessment-completion-receipt.test.ts
+      - name: Verify trusted skill first-attempt persistence and bounded scores
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/trusted-skill-writes.test.ts
+      - name: Recompute student memory only from owned trusted keys and scores
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/verified-student-memory.test.ts
+      - name: Enforce server-only AI answer submission progress and memory writes
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/ai-assessment-submit-trusted-progress.test.ts
+      - name: Execute real AI assessment-next authenticated step completion tests
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/ai-assessment-next-adaptive-runtime.test.ts
+      - name: Verify legacy Gemini assessment generator cannot reach browser bundles
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/legacy-ai-generation-server-only.test.ts
+      - name: Confirm AI duplicate hashes stay private after safe column grants
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/ai-assessment-private-hash-runtime.test.ts
+      - name: Verify AI assessment keys and authoritative session progression
+        run: npx vitest run tests/security/ai-assessment-client-trust.test.ts
+      - name: Reject unreadable or foreign assessment session starts
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/assessment-session-start-integrity.test.ts
+      - name: Execute no-network adaptive question session authorization and reuse tests
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/ai-assessment-session-generation.test.ts
+      - name: Verify AI assessment analytics with mocked trusted keys
+        run: npx vitest run tests/security/ai-session-analytics.test.ts
+      - name: Index all static assessment table / RPC consumers
+        run: node scripts/audit-assessment-consumers.mjs
+      - name: Save nonsecret consumer inventory
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: assessment-source-consumers
+          path: assessment-consumers-ci.json
+          retention-days: 3
+          if-no-files-found: ignore
+      - name: Verify read-only assessment grants audit
+        run: npx vitest run tests/security/assessment-grants-audit.test.ts
       - name: Verify public lesson bundle excludes answer keys
         run: npx vitest run tests/security/public-lesson-bundle-rpc.test.ts
       - name: TypeScript
@@ -85,3 +627,533 @@ jobs:
         run: npm run lint
       - name: Production build
         run: npm run build
+      - name: Start compiled Next.js and smoke-test anonymous runtime
+        run: node scripts/smoke-next-production-runtime.mjs
+
+  shadow-question-grants:
+    name: Disposable PostgreSQL question grants + rollback
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_PASSWORD: disposable-ci-only
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify activity-progress CAS against disposable PostgreSQL
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_activity_cas
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_cas \
+            < tests/security/shadow-activity-progress-cas.sql
+      - name: Rehearse activity attempt unique-number rollout and rollback in shadow Postgres
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_activity_sequence
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_sequence \
+            < tests/security/shadow-activity-sequence-setup.sql
+          if output=$( {
+              echo "SET dadyoom.attempt_sequence_rehearsal='enabled';"
+              cat scripts/security/proposed-activity-attempt-number-uniqueness.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Attempt uniqueness proposal accepted wrong database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$output" | grep -q 'PRODUCTION_ACTIVITY_SEQUENCE_DDL_BLOCKED'
+          if output=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_sequence \
+              < scripts/security/proposed-activity-attempt-number-uniqueness.sql 2>&1); then
+            echo "Attempt uniqueness proposal accepted missing rehearsal flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$output" | grep -q 'PRODUCTION_ACTIVITY_SEQUENCE_DDL_BLOCKED'
+          # A genuine legacy duplicate must abort before the unique DDL.
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_sequence \
+            -c "INSERT INTO lesson_activity_attempts(user_id,activity_id,attempt_number) VALUES ('11111111-1111-4111-8111-111111111111','22222222-2222-4222-8222-222222222222',2)"
+          if output=$( {
+              echo "SET dadyoom.attempt_sequence_rehearsal='enabled';"
+              cat scripts/security/proposed-activity-attempt-number-uniqueness.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_sequence 2>&1 ); then
+            echo "Attempt uniqueness proposal ignored pre-existing duplicates" >&2
+            exit 1
+          fi
+          printf '%s\n' "$output" | grep -q 'ACTIVITY_SEQUENCE_PREEXISTING_DUPLICATES'
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_sequence \
+            -c "DELETE FROM lesson_activity_attempts WHERE id=3"
+          {
+            echo "SET dadyoom.attempt_sequence_rehearsal='enabled';"
+            cat scripts/security/proposed-activity-attempt-number-uniqueness.sql
+            cat tests/security/shadow-activity-sequence-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_sequence
+          echo "SHADOW_ACTIVITY_SEQUENCE_GUARD_DUPLICATE_ROLLBACK=PASS"
+      - name: Exercise secure view cutover and rollback against disposable database
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres \
+            < tests/security/shadow-question-grants.sql
+          echo "SHADOW_QUESTION_GRANTS_REHEARSAL=PASS"
+      - name: Rehearse column grants without breaking invoker student question view
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres \
+            < tests/security/shadow-question-column-grants.sql
+          echo "SHADOW_QUESTION_COLUMN_GRANTS_REHEARSAL=PASS"
+      - name: Prove published question keys can be hidden from anon without breaking quiz
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_question_privacy
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_question_privacy \
+            < tests/security/shadow-question-key-cutover-setup.sql
+          if error_text=$( {
+              echo "SET dadyoom.question_privacy_rehearsal = 'enabled';"
+              cat scripts/security/proposed-question-key-column-cutover.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Question-key proposal unexpectedly accepted the production-like database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_QUESTION_KEY_CUTOVER_BLOCKED'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_question_privacy \
+              < scripts/security/proposed-question-key-column-cutover.sql 2>&1); then
+            echo "Question-key proposal unexpectedly accepted missing rehearsal flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_QUESTION_KEY_CUTOVER_BLOCKED'
+          {
+            echo "SET dadyoom.question_privacy_rehearsal = 'enabled';"
+            cat scripts/security/proposed-question-key-column-cutover.sql
+            cat tests/security/shadow-question-key-cutover-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_question_privacy
+          echo "SHADOW_PUBLIC_QUESTION_PRIVATE_KEY_CUTOVER=PASS"
+      - name: Rehearse hiding activity answer keys without breaking student content
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_activity_privacy
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_privacy \
+            < tests/security/shadow-activity-answer-cutover-setup.sql
+          if error_text=$( {
+              echo "SET dadyoom.activity_privacy_rehearsal='enabled';"
+              cat scripts/security/proposed-activity-answer-column-cutover.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Activity privacy proposal unexpectedly accepted a non-disposable database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_ACTIVITY_ANSWER_CUTOVER_BLOCKED'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_privacy \
+              < scripts/security/proposed-activity-answer-column-cutover.sql 2>&1); then
+            echo "Activity privacy proposal unexpectedly accepted a missing rehearsal flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_ACTIVITY_ANSWER_CUTOVER_BLOCKED'
+          {
+            echo "SET dadyoom.activity_privacy_rehearsal='enabled';"
+            cat scripts/security/proposed-activity-answer-column-cutover.sql
+            cat tests/security/shadow-activity-answer-cutover-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_privacy
+          echo "SHADOW_ACTIVITY_ANSWER_COLUMN_PRIVACY=PASS"
+      - name: Prove forged own scores and rehearse six-table write-grant cutover
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_grading
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_grading \
+            < tests/security/shadow-grade-write-grants.sql
+          echo "SHADOW_GRADE_WRITES_REHEARSAL=PASS"
+      - name: Ensure grade-write candidate refuses other databases and missing CI approval flag
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          if error_text=$( {
+              echo "SET dadyoom.grade_grant_rehearsal = 'enabled';"
+              cat scripts/security/proposed-grade-write-restrictions.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Candidate unexpectedly accepted a database other than shadow_grading" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_REVOKE_BLOCKED_DISPOSABLE_TEST_ONLY'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_grading \
+              < scripts/security/proposed-grade-write-restrictions.sql 2>&1); then
+            echo "Candidate unexpectedly ran without the disposable test flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_REVOKE_BLOCKED_DISPOSABLE_TEST_ONLY'
+          echo "SHADOW_GRADE_CANDIDATE_NONPRODUCTION_GUARD=PASS"
+      - name: Rehearse exact six-table grade-write restriction candidate, trusted writes and rollback
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          {
+            echo "SET dadyoom.grade_grant_rehearsal = 'enabled';"
+            cat scripts/security/proposed-grade-write-restrictions.sql
+            cat tests/security/shadow-proposed-grade-grants-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_grading
+          echo "SHADOW_GRADE_RESTRICTION_CANDIDATE_REHEARSAL=PASS"
+      - name: Reproduce adaptive grade forgery and rehearse guarded 3-table role lockdown
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_adaptive
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_adaptive \
+            < tests/security/shadow-adaptive-grants-setup.sql
+          if error_text=$( {
+              echo "SET dadyoom.adaptive_rehearsal = 'enabled';"
+              cat scripts/security/proposed-adaptive-progress-write-restrictions.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1); then
+            echo "Adaptive proposal unexpectedly accepted wrong database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_ADAPTIVE_REVOKE_BLOCKED_DISPOSABLE_TEST_ONLY'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_adaptive \
+              < scripts/security/proposed-adaptive-progress-write-restrictions.sql 2>&1); then
+            echo "Adaptive proposal unexpectedly accepted missing test flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_ADAPTIVE_REVOKE_BLOCKED_DISPOSABLE_TEST_ONLY'
+          {
+            echo "SET dadyoom.adaptive_rehearsal = 'enabled';"
+            cat scripts/security/proposed-adaptive-progress-write-restrictions.sql
+            cat tests/security/shadow-adaptive-grants-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_adaptive
+          echo "SHADOW_ADAPTIVE_ROLE_LOCKDOWN_REHEARSAL=PASS"
+      - name: Rehearse immutable service-only assessment completion receipts in disposable Postgres
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_receipts
+          # Supabase defines service_role; disposable vanilla PG does not.
+          # Only synthetic test role, never a production credential.
+          docker exec "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_receipts -c "CREATE ROLE service_role NOLOGIN BYPASSRLS"
+          if error_text=$( {
+              echo "SET dadyoom.receipt_rehearsal = 'enabled';"
+              cat scripts/security/proposed-assessment-completion-receipts.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Receipt DDL unexpectedly accepted the wrong database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_RECEIPT_DDL_BLOCKED_DISPOSABLE_TEST_ONLY'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_receipts \
+              < scripts/security/proposed-assessment-completion-receipts.sql 2>&1); then
+            echo "Receipt DDL unexpectedly accepted a missing test flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_RECEIPT_DDL_BLOCKED_DISPOSABLE_TEST_ONLY'
+          {
+            echo "SET dadyoom.receipt_rehearsal = 'enabled';"
+            cat scripts/security/proposed-assessment-completion-receipts.sql
+            cat tests/security/shadow-assessment-receipts-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_receipts
+          echo "SHADOW_ASSESSMENT_RECEIPTS_REHEARSAL=PASS"
+      - name: Rehearse unique active assessment sessions and exact conflict rollback
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_session_start
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_session_start \
+            < tests/security/shadow-assessment-session-race-setup.sql
+          if error_text=$( {
+              echo "SET dadyoom.session_start_rehearsal = 'enabled';"
+              cat scripts/security/proposed-assessment-session-active-unique-index.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Session unique proposal unexpectedly accepted production-like database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_SESSION_UNIQUE_INDEX_BLOCKED_DISPOSABLE_ONLY'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_session_start \
+              < scripts/security/proposed-assessment-session-active-unique-index.sql 2>&1); then
+            echo "Session unique proposal unexpectedly accepted missing rehearsal flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_SESSION_UNIQUE_INDEX_BLOCKED_DISPOSABLE_ONLY'
+          if error_text=$( {
+              echo "SET dadyoom.session_start_rehearsal = 'enabled';"
+              cat scripts/security/proposed-assessment-session-active-unique-index.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_session_start 2>&1 ); then
+            echo "Candidate unexpectedly accepted existing duplicate active sessions" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'DUPLICATE_ACTIVE_ASSESSMENT_SESSIONS_MANUAL_REVIEW_REQUIRED'
+          docker exec "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_session_start \
+            -c "DELETE FROM public.assessment_sessions WHERE id='22222222-2222-4222-8222-222222222222'"
+          {
+            echo "SET dadyoom.session_start_rehearsal = 'enabled';"
+            cat scripts/security/proposed-assessment-session-active-unique-index.sql
+            cat tests/security/shadow-assessment-session-race-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_session_start
+          echo "SHADOW_ASSESSMENT_SESSION_UNIQUE_RACE_REHEARSAL=PASS"
+      - name: Rehearse transactional one-answer-per-question slots and rollback in disposable Postgres
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_assessment_slots
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_assessment_slots \
+            < tests/security/shadow-assessment-answer-slot-setup.sql
+          if error_text=$( {
+              echo "SET dadyoom.assessment_slot_rehearsal = 'enabled';"
+              cat scripts/security/proposed-assessment-answer-slot-lock.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Slot DDL unexpectedly accepted a non-disposable database" >&2
+            exit 1
+          fi
+          printf '%s\\n' "$error_text" | grep -q 'PRODUCTION_ASSESSMENT_SLOT_DDL_BLOCKED_DISPOSABLE_ONLY'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_assessment_slots \
+              < scripts/security/proposed-assessment-answer-slot-lock.sql 2>&1); then
+            echo "Slot DDL unexpectedly accepted a missing test flag" >&2
+            exit 1
+          fi
+          printf '%s\\n' "$error_text" | grep -q 'PRODUCTION_ASSESSMENT_SLOT_DDL_BLOCKED_DISPOSABLE_ONLY'
+          docker exec "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_assessment_slots \
+            -c "UPDATE public.assessment_sessions SET correct_answers=7 WHERE id='11111111-1111-4111-8111-111111111111'"
+          if error_text=$( {
+              echo "SET dadyoom.assessment_slot_rehearsal = 'enabled';"
+              cat scripts/security/proposed-assessment-answer-slot-lock.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_assessment_slots 2>&1 ); then
+            echo "Slot preflight unexpectedly accepted inconsistent historic grades" >&2
+            exit 1
+          fi
+          printf '%s\\n' "$error_text" | grep -q 'ASSESSMENT_SLOT_LEGACY_COUNTERS_MANUAL_REVIEW_REQUIRED'
+          docker exec "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_assessment_slots \
+            -c "UPDATE public.assessment_sessions SET correct_answers=1 WHERE id='11111111-1111-4111-8111-111111111111'"
+          {
+            echo "SET dadyoom.assessment_slot_rehearsal = 'enabled';"
+            cat scripts/security/proposed-assessment-answer-slot-lock.sql
+            cat tests/security/shadow-assessment-answer-slot-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_assessment_slots
+          echo "SHADOW_ASSESSMENT_ANSWER_SLOT_ATOMIC_RACE_REHEARSAL=PASS"
+      - name: Rehearse AI assessment key confidentiality, owner-only read and direct-write cutover
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_ai_keys
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_ai_keys \
+            < tests/security/shadow-ai-key-grants-setup.sql
+          if error_text=$( {
+              echo "SET dadyoom.ai_keys_rehearsal = 'enabled';"
+              cat scripts/security/proposed-ai-assessment-private-key-grants.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "AI key proposal unexpectedly accepted non-disposable database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_AI_KEY_REVOKE_BLOCKED_DISPOSABLE_TEST_ONLY'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_ai_keys \
+              < scripts/security/proposed-ai-assessment-private-key-grants.sql 2>&1); then
+            echo "AI key proposal unexpectedly accepted missing test flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$error_text" | grep -q 'PRODUCTION_AI_KEY_REVOKE_BLOCKED_DISPOSABLE_TEST_ONLY'
+          {
+            echo "SET dadyoom.ai_keys_rehearsal = 'enabled';"
+            cat scripts/security/proposed-ai-assessment-private-key-grants.sql
+            cat tests/security/shadow-ai-key-grants-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_ai_keys
+          echo "SHADOW_AI_PRIVATE_KEYS_GRANTS_REHEARSAL=PASS"
+      - name: Rehearse direct lesson RPC nested grading-key redaction and rollback
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_activity_rpc
+          cat \
+            tests/security/shadow-public-activity-rpc-setup.sql \
+            supabase/migrations/20261022195032_sanitize_public_get_lesson_page_bundle_answer_keys.sql \
+            tests/security/shadow-public-activity-rpc-baseline.sql \
+            scripts/security/proposed-public-lesson-activity-rpc.sql \
+            tests/security/shadow-public-activity-rpc-verified.sql \
+            supabase/migrations/20261022195032_sanitize_public_get_lesson_page_bundle_answer_keys.sql \
+            tests/security/shadow-public-activity-rpc-rollback.sql \
+            | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_rpc
+          echo "SHADOW_PUBLIC_ACTIVITY_RPC_REHEARSAL=PASS"
+
+      - name: Rehearse study-play game XP write denial and rollback in disposable PostgreSQL
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_game_rewards
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_game_rewards \
+            < tests/security/shadow-study-play-game-grants-setup.sql
+          if error_text=$( {
+              echo "SET dadyoom.game_grant_rehearsal = 'enabled';"
+              cat scripts/security/proposed-game-attempt-write-cutover.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Study-play grant proposal unexpectedly accepted a real/non-shadow database" >&2
+            exit 1
+          fi
+          printf '%s\\n' "$error_text" | grep -q 'PRODUCTION_GAME_GRANT_CUTOVER_BLOCKED_SHADOW_ONLY'
+          if error_text=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_game_rewards \
+              < scripts/security/proposed-game-attempt-write-cutover.sql 2>&1); then
+            echo "Study-play grant proposal unexpectedly accepted missing test flag" >&2
+            exit 1
+          fi
+          printf '%s\\n' "$error_text" | grep -q 'PRODUCTION_GAME_GRANT_CUTOVER_BLOCKED_SHADOW_ONLY'
+          {
+            echo "SET dadyoom.game_grant_rehearsal = 'enabled';"
+            cat scripts/security/proposed-game-attempt-write-cutover.sql
+            cat tests/security/shadow-study-play-game-grants-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_game_rewards
+          echo "SHADOW_STUDY_PLAY_GAME_XP_GRANTS_AND_ROLLBACK=PASS"
+
+      - name: Exercise atomic activity receipt and progress rollback in disposable PostgreSQL
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_activity_atomic
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_atomic \
+            < tests/security/shadow-atomic-activity-setup.sql
+          if output=$( {
+              echo "SET dadyoom.atomic_activity_rehearsal = 'enabled';"
+              cat scripts/security/proposed-atomic-activity-commit.sql
+            } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1 ); then
+            echo "Atomic commit proposal unexpectedly accepted wrong database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$output" | grep -q "PRODUCTION_ATOMIC_ACTIVITY_COMMIT_BLOCKED"
+          if output=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_atomic \
+              < scripts/security/proposed-atomic-activity-commit.sql 2>&1); then
+            echo "Atomic commit proposal unexpectedly accepted missing rehearsal flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$output" | grep -q "PRODUCTION_ATOMIC_ACTIVITY_COMMIT_BLOCKED"
+          {
+            echo "SET dadyoom.atomic_activity_rehearsal = 'enabled';"
+            cat scripts/security/proposed-atomic-activity-commit.sql
+            cat tests/security/shadow-atomic-activity-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_atomic
+          echo "SHADOW_ATOMIC_ACTIVITY_BOTH_TABLES_OR_NONE=PASS"
+
+      - name: Rehearse browser skill and daily XP grant revocation with rollback in shadow PostgreSQL
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_skill_rewards
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_skill_rewards \
+            < tests/security/shadow-skill-daily-rewards-setup.sql
+          if output=$({
+            echo "SET dadyoom.skill_rewards_rehearsal = 'enabled';"
+            cat scripts/security/proposed-skill-daily-reward-grants.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1); then
+            echo "Skill reward cutover unexpectedly accepted a non-shadow database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$output" | grep -q 'PRODUCTION_SKILL_REWARD_REVOKE_BLOCKED_SHADOW_ONLY'
+          if output=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_skill_rewards \
+              < scripts/security/proposed-skill-daily-reward-grants.sql 2>&1); then
+            echo "Skill reward cutover unexpectedly accepted missing rehearsal flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$output" | grep -q 'PRODUCTION_SKILL_REWARD_REVOKE_BLOCKED_SHADOW_ONLY'
+          {
+            echo "SET dadyoom.skill_rewards_rehearsal = 'enabled';"
+            cat scripts/security/proposed-skill-daily-reward-grants.sql
+            cat tests/security/shadow-skill-daily-rewards-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_skill_rewards
+          echo "SHADOW_SKILL_DAILY_XP_REVOKE_RLS_ROLLBACK=PASS"
+
+      - name: Rehearse fixed non-bypassable skill AI budgets in disposable PostgreSQL
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          test -n "$PG_CONTAINER_ID"
+          docker exec "$PG_CONTAINER_ID" createdb -U postgres shadow_ai_skill_quota
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_ai_skill_quota \
+            < tests/security/shadow-ai-skill-quota-setup.sql
+          if output=$({
+            echo "SET dadyoom.ai_skill_quota_rehearsal='enabled';"
+            cat scripts/security/proposed-ai-skill-evaluation-quota.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres 2>&1); then
+            echo "Unsafe AI quota SQL accepted the wrong database" >&2
+            exit 1
+          fi
+          printf '%s\n' "$output" | grep -q 'PRODUCTION_AI_SKILL_QUOTA_BLOCKED_SHADOW_ONLY'
+          if output=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_ai_skill_quota \
+            < scripts/security/proposed-ai-skill-evaluation-quota.sql 2>&1); then
+            echo "Unsafe AI quota SQL accepted a missing rehearsal flag" >&2
+            exit 1
+          fi
+          printf '%s\n' "$output" | grep -q 'PRODUCTION_AI_SKILL_QUOTA_BLOCKED_SHADOW_ONLY'
+          {
+            echo "SET dadyoom.ai_skill_quota_rehearsal='enabled';"
+            cat scripts/security/proposed-ai-skill-evaluation-quota.sql
+            cat tests/security/shadow-ai-skill-quota-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_ai_skill_quota
+
+          # Twelve independent concurrent role sessions must only consume
+          # three speaker credits on this separate disposable learner.
+          for n in $(seq 1 12); do
+            docker exec "$PG_CONTAINER_ID" psql -X -qAt -v ON_ERROR_STOP=1 -U postgres \
+              -d shadow_ai_skill_quota \
+              -c "SET ROLE service_role; SELECT allowed FROM public.dadyoom_consume_ai_skill_quota('22222222-2222-4222-8222-222222222222','ai_speaking_evaluate');" \
+              > "/tmp/skill_quota_${n}.out" &
+          done
+          wait
+          allowed=$(grep -hc '^t$' /tmp/skill_quota_*.out | awk '{sum+=$1} END {print sum+0}')
+          test "$allowed" -eq 3
+          used=$(docker exec "$PG_CONTAINER_ID" psql -X -qAt -v ON_ERROR_STOP=1 -U postgres \
+            -d shadow_ai_skill_quota -c "SELECT used_count FROM public.edu_feature_usage WHERE user_id='22222222-2222-4222-8222-222222222222' AND feature='ai_speaking_evaluate'")
+          test "$used" -eq 3
+          echo "SHADOW_AI_SKILL_ATOMIC_CONCURRENT_DAILY_CAP=PASS"

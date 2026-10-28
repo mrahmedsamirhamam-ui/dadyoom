@@ -6,6 +6,8 @@ import LessonMasteryCard from "@/features/lesson-mastery/components/LessonMaster
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { SITE_DESCRIPTION } from "@/lib/site";
+import { isBookCatalogReference } from "@/lib/curriculum/book-catalog-reference";
+import { publicLessonActivityPrompts, publicLessonSlideInstructions, hasUnreviewedCurriculumSource, publicLessonVocabulary, publicLessonTeachingText, isGenericSkillSupplement } from "@/lib/curriculum/public-lesson-instructions";
 import {
   getLessonPageBundle,
 } from "@/features/lessons/queries/getLessonPageBundle";
@@ -13,6 +15,7 @@ import {
 
 import type { WeakQuestion } from "@/features/adaptive-learning/queries/getWeakQuestions";
 import { evaluatePerformance } from "@/features/adaptive-learning/services/evaluatePerformance";
+import { buildLessonPracticeSnapshot } from "@/features/adaptive-learning/services/lesson-practice-snapshot";
 import AdaptiveRecommendationCard from "@/features/adaptive-learning/components/AdaptiveRecommendationCard";
 import WeakQuestionsReview from "@/features/adaptive-learning/components/WeakQuestionsReview";
 
@@ -130,6 +133,37 @@ export default async function LessonPage({
 
   const lesson =
     bundle.lesson;
+  const teachingContent = publicLessonTeachingText(lesson.content);
+
+  // Catalog nodes link to official book titles; they are not graded lessons.
+  // Render a meaningful reference page without any mastery/progress controls.
+  if (isBookCatalogReference(lesson)) {
+    return (
+      <main dir="rtl" className="min-h-screen bg-[#f5f4ed] px-4 py-12 text-[#173f38]">
+        <article className="mx-auto max-w-3xl space-y-5 rounded-3xl bg-white p-6 shadow-sm sm:p-10">
+          <p className="text-sm font-bold text-amber-700">مرجع كتاب رسمي — ليس درسًا تعليميًا</p>
+          <h1 className="text-3xl font-extrabold">{lesson.title}</h1>
+          <p className="leading-8 text-slate-700">{lesson.summary}</p>
+          <p className="rounded-xl bg-amber-50 p-4 leading-8 text-amber-900">
+            هذه الصفحة مرجع لفهرسة الكتاب ضمن المسار الدراسي. لا يوجد هنا شرح
+            للدرس أو نص مدرسي مرخص؛ لذلك لن نعرض اختبار إتقان أو درجة تقدّم
+            قبل إضافة درس تعليمي كامل مرتبط بالمصدر الصحيح.
+          </p>
+          {lesson.source_pdf_url ? (
+            <a className="inline-block font-bold text-emerald-800 underline"
+              href={lesson.source_pdf_url} target="_blank" rel="noopener noreferrer">
+              الاطلاع على المصدر المدرج للكتاب
+            </a>
+          ) : null}
+          <div>
+            <Link href="/student" className="font-bold text-emerald-800 underline">
+              العودة إلى مسار التعلم
+            </Link>
+          </div>
+        </article>
+      </main>
+    );
+  }
 
   const lessonQuestions =
     bundle.questions;
@@ -158,92 +192,36 @@ export default async function LessonPage({
 
   let weakQuestions: WeakQuestion[] = [];
 
-  if (user) {
-    // DADYOOM_ACTIVITY_AWARE_ADAPTIVE_V2
-    const questionAttempts =
-      bundle.questionAttempts ?? [];
+  const practice = buildLessonPracticeSnapshot({
+    questionIds: lessonQuestions.map(q => q.id),
+    activityIds: lessonActivities.filter(a => a.is_published !== false).map(a => a.id),
+    questionAttempts: bundle.questionAttempts ?? [],
+    activityAttempts: bundle.activityAttempts ?? [],
+  });
 
-    const activityAttempts =
-      bundle.activityAttempts ?? [];
+  if (user && practice.totalItems > 0) {
+    // A 90% practice score does NOT itself certify course mastery.
+    // Only the persisted, server-evaluated mastery state can do that.
+    const verifiedMastery =
+      learningProgress?.status === "mastered" &&
+      Number(learningProgress.best_score ?? 0) >= 90;
 
-    const attemptedActivityIds =
-      new Set(
-        activityAttempts.map(
-          (attempt) =>
-            attempt.activity_id
-        )
-      );
+    adaptiveRecommendation = evaluatePerformance({
+      score: verifiedMastery
+        ? Math.max(practice.score, Number(learningProgress?.best_score ?? 0))
+        : practice.score,
+      attempts: practice.attempts,
+      masteryVerified: verifiedMastery,
+      currentLessonId: lesson.id,
+      nextLessonId: lesson.nextLesson?.id ?? null,
+    });
 
-    const attempts: Array<{
-      question_id: string;
-      is_correct: boolean;
-    }> =
-      questionAttempts.length > 0
-        ? questionAttempts
-        : lessonActivities.map(
-            (activity) => ({
-              question_id:
-                activity.id,
-              is_correct:
-                attemptedActivityIds.has(
-                  activity.id
-                ),
-            })
-          );
-
-    const totalQuestions =
-      attempts.length;
-
-    const correctAnswers =
-      attempts.filter(
-        (attempt) =>
-          attempt.is_correct
-      ).length;
-
-    const score =
-      totalQuestions > 0
-        ? Math.round(
-            (
-              correctAnswers /
-              totalQuestions
-            ) * 100
-          )
-        : 0;
-
-    adaptiveRecommendation =
-      evaluatePerformance({
-        score,
-        attempts,
-        currentLessonId:
-          lesson.id,
-        nextLessonId:
-          lesson.nextLesson?.id ??
-          null,
-      });
-
-    const weakQuestionIds =
-      new Set(
-        questionAttempts
-          .filter(
-            (attempt) =>
-              !attempt.is_correct
-          )
-          .map(
-            (attempt) =>
-              attempt.question_id
-          )
-      );
-
-    weakQuestions =
-      (
-        lessonQuestions as WeakQuestion[]
-      ).filter(
-        (question) =>
-          weakQuestionIds.has(
-            question.id
-          )
-      );
+    const weakQuestionIds = new Set(practice.wrongQuestionIds);
+    weakQuestions = (lessonQuestions as WeakQuestion[]).filter(
+      question => weakQuestionIds.has(question.id)
+    );
   }
+
   const objectives: string[] =
     Array.isArray(lesson.learning_objectives)
       ? lesson.learning_objectives.filter(
@@ -252,37 +230,40 @@ export default async function LessonPage({
         )
       : [];
 
-  const vocabulary: VocabularyItem[] =
+  const embeddedVocabulary: VocabularyItem[] =
     Array.isArray(lesson.vocabulary)
       ? lesson.vocabulary.filter(
-          (
-            item: unknown
-          ): item is VocabularyItem => {
-            if (
-              typeof item !== "object" ||
-              item === null
-            ) {
-              return false;
-            }
-
-            const value =
-              item as Partial<VocabularyItem>;
-
-            return (
-              typeof value.word === "string" &&
-              typeof value.meaning === "string"
-            );
-          }
+          (item: unknown): item is VocabularyItem =>
+            typeof item === "object" && item !== null &&
+            typeof (item as Partial<VocabularyItem>).word === "string" &&
+            typeof (item as Partial<VocabularyItem>).meaning === "string"
         )
       : [];
 
-  const instructions: string[] =
-    Array.isArray(lesson.instructions)
-      ? lesson.instructions.filter(
-          (item: unknown): item is string =>
-            typeof item === "string"
-        )
-      : [];
+  // The canonical `lessons.vocabulary` JSON and RLS-protected
+  // `lesson_vocabulary` table are two existing storage paths. A lesson
+  // may have no embedded words but already contain reviewed linked words.
+  // A learner's own RLS connection may read the latter without service-role.
+  let vocabulary = publicLessonVocabulary(embeddedVocabulary, []);
+  if (vocabulary.length === 0 && user) {
+    const reader = await createClient();
+    const { data: linkedWords, error: wordError } = await reader
+      .from("lesson_vocabulary")
+      .select("word,meaning")
+      .eq("lesson_id", lesson.id)
+      .order("display_order", { ascending: true })
+      .limit(50);
+    if (!wordError) {
+      vocabulary = publicLessonVocabulary([], linkedWords);
+    }
+    // No privilege escalation or dummy/generated dictionary if RLS denies.
+  }
+
+  // Imported records can carry structured learner activities alongside private
+  // assessment answer objects. Parse only safe teaching fields, never raw JSON.
+  const instructions = publicLessonActivityPrompts(lesson.instructions);
+  const publicSlideInstructions = publicLessonSlideInstructions(lesson.instructions);
+  const needsSourceReview = hasUnreviewedCurriculumSource(lesson.instructions) || isGenericSkillSupplement(lesson.content);
 
   const questionsList: LessonQuestion[] =
     Array.isArray(lessonQuestions)
@@ -311,9 +292,28 @@ export default async function LessonPage({
       <DadLessonContext
         pageTitle={`درس: ${lesson.title}`}
         lessonTitle={lesson.title}
-        lessonContent={lesson.content ?? ""}
+        lessonContent={teachingContent}
       />
       <div className="mx-auto max-w-5xl space-y-6">
+        <section className="lesson-arabic-card rounded-3xl border border-[#d7bd83] bg-[#fff7e3] p-5 shadow-sm">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <div className="text-xs font-black text-[#9f7426]">ذاكر والعب مع ضاديوم</div>
+              <h2 className="mt-1 font-arabic-display text-xl font-black text-[#173f38]">
+                مراجعة ذكية وتحدي سرعة بتصحيح معتمد من الخادم
+              </h2>
+              <p className="mt-2 text-sm text-[#405952]">
+                أسئلة حقيقية من هذا الدرس، لا يحدد المتصفح نتيجتها.
+              </p>
+            </div>
+            <Link
+              href={`/lessons/${lesson.id}/play`}
+              className="dadyoom-arabic-button rounded-2xl px-5 py-3 text-center font-black text-white"
+            >
+              ابدأ المراجعة
+            </Link>
+          </div>
+        </section>
         <section className="lesson-arabic-card rounded-3xl border border-[#d7bd83] bg-[#fff7e3] p-5 shadow-sm">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -471,11 +471,34 @@ export default async function LessonPage({
         <LessonLearningSlides
           title={lesson.title}
           summary={lesson.summary}
-          content={lesson.content}
+          content={teachingContent}
           objectives={objectives}
           vocabulary={vocabulary}
-          instructions={lesson.instructions}
+          instructions={publicSlideInstructions}
         />
+        {/* The slide deck is intentionally short; do not hide the rest of the
+            published lesson text behind its first three 380-character chunks. */}
+        {teachingContent.trim() ? (
+          <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
+            <details className="group" dir="rtl">
+              <summary className="cursor-pointer text-xl font-black text-[#173f38]">
+                اقرأ الشرح التعليمي كاملًا
+              </summary>
+              <p className="mt-2 text-sm text-slate-500">
+                النص التعليمي المسجل في ضاديوم؛ ليس بالضرورة نقلًا حرفيًا من الكتاب الوزاري.
+              </p>
+              <div className="mt-5 whitespace-pre-wrap break-words text-base leading-9 text-slate-800">
+                {teachingContent}
+              </div>
+            </details>
+          </section>
+        ) : null}
+        {needsSourceReview ? (
+          <p className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm leading-7 text-amber-900">
+            تنبيه: هذا تدريب تعليمي من تأليف ضاديوم؛ لم يُثبت بعد مطابقته لفهرس كتاب الدولة والصف والفصل الدراسي.
+            لا يُعرض بوصفه النص الرسمي المعتمد.
+          </p>
+        ) : null}
         <section className="rounded-3xl border border-amber-200 bg-white p-6 shadow-sm sm:p-8">
           <p className="text-sm font-black text-amber-700">
             بعد انتهاء العرض
@@ -540,23 +563,18 @@ export default async function LessonPage({
             </h2>
 
             <ol className="space-y-3">
-              {instructions.map(
-                (
-                  instruction: string,
-                  index: number
-                ) => (
-                  <li
-                    key={`${instruction}-${index}`}
-                    className="rounded-2xl bg-amber-50 px-4 py-3 leading-7 text-slate-700"
-                  >
-                    <span className="ml-2 font-bold">
-                      {index + 1}.
-                    </span>
-
-                    {instruction}
-                  </li>
-                )
-              )}
+              {instructions.map((activity, index) => (
+                <li
+                  key={`${activity.title}-${index}`}
+                  className="rounded-2xl bg-amber-50 px-4 py-3 leading-7 text-slate-700"
+                >
+                  <div className="font-bold text-amber-900">
+                    {index + 1}. {activity.title}
+                    {activity.level ? <span className="mr-2 text-sm">({activity.level})</span> : null}
+                  </div>
+                  <p className="mt-1">{activity.instructions}</p>
+                </li>
+              ))}
             </ol>
           </section>
         ) : null}        {/* lesson-interactive-activities-marker */}
@@ -601,7 +619,7 @@ export default async function LessonPage({
               target="_blank"
               className="font-semibold text-emerald-700 hover:underline"
             >
-              فتح صفحات الدرس في الكتاب الأصلي
+              الاطلاع على المصدر المدرج للدرس
             </Link>
 
             {lesson.source_page_start ? (
@@ -635,17 +653,12 @@ export default async function LessonPage({
           />
         ) : null}
 
-        {multipleChoiceQuestions.length > 0 ? (
+        {user && multipleChoiceQuestions.length > 0 ? (
           <ScoreCard
-            score={
-              bundle.questionAttempts.filter(
-                (attempt) =>
-                  attempt.is_correct &&
-                  multipleChoiceQuestionIds.has(
-                    attempt.question_id
-                  )
-              ).length
-            }
+            score={practice.attempts.filter(
+              attempt => attempt.is_correct &&
+                multipleChoiceQuestionIds.has(attempt.question_id)
+            ).length}
             total={multipleChoiceQuestions.length}
           />
         ) : null}
@@ -664,9 +677,25 @@ export default async function LessonPage({
           />
         ) : null}
 
-        <LessonSemanticSearch lessonId={lesson.id} />
-
-        <LessonMasteryCard lessonId={lesson.id} />
+        {user ? (
+          <>
+            <LessonSemanticSearch lessonId={lesson.id} />
+            <LessonMasteryCard lessonId={lesson.id} />
+          </>
+        ) : (
+          <section className="lesson-arabic-card rounded-3xl border border-emerald-200 bg-emerald-50 p-6">
+            <h2 className="text-xl font-bold text-[#173f38]">
+              اسأل ضاد وتابع مستوى إتقانك
+            </h2>
+            <p className="mt-2 leading-8 text-slate-700">
+              الشرح والأنشطة المفتوحة متاحة للجميع. سجّل الدخول لتتحدث مع ضاد
+              وتحفظ تقدمك وتراجع درجاتك بصورة خاصة وآمنة.
+            </p>
+            <Link href="/login" className="mt-4 inline-flex rounded-xl bg-emerald-700 px-5 py-3 font-bold text-white">
+              تسجيل الدخول
+            </Link>
+          </section>
+        )}
 
         <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
           <div className="flex flex-wrap items-center justify-between gap-4">

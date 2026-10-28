@@ -460,6 +460,9 @@ export default function ReadingPracticePage() {
                 {score} من{" "}
                 {reading.questions.length}
               </p>
+              <p className="mt-3 text-sm leading-6 text-amber-200">
+                نتيجتك هنا تدريبية، ولا تُضاف إلى XP أو درجة الإتقان المعتمدة.
+              </p>
             </div>
 
             <div>

@@ -581,3 +581,117 @@
 **حارس سلامة الكتابة:** مطابقة معرف الدرس والعنوان، البلد BH والصف 11 والفصل 2 والنوع grammar والحالة published والنطاق `official-book-unscheduled`، مع شرط خلو قائمة المفردات والأسئلة؛ دخل إدراج الأسئلة في نفس عبارة CTE المرتبطة بصفوف الدروس المُحدّثة فقط. لم تتحول `official-book-unscheduled` إلى `plan-scheduled`؛ تدقيق المطابقة مع المنهج/الخطة الوزارية ما زال مفتوحًا، وكذلك اختبار رحلة الطالب الحية وأمان الصلاحيات وCloudflare issue #46.
 
 **فحص تكراري آمن:** القسم 12 في `scripts/curriculum-production-audit.sql` استعلام قراءة فقط يُظهر الفجوات حسب نوع الدرس والنطاق ومقاييس اكتمال الحقول والأسئلة الصحيحة بنيويًا. أرقام الإثراء لا تثبت إتقان المتعلم أو سلامة النشر الحي ولا تغيّر تقدير الجاهزية التقريبي البالغ نحو 46%.
+
+### 2026-10-22 — authorize student question before private grading
+- Verified on current main: the endpoint was reading the private answer key before RLS student visibility, and `getLessonQuestions` still used `questions.select("*")`. On the fresh security branch, question visibility and published lesson checks run with the learner session before any admin client is created. Privileged grading is restricted by matching question ID and lesson ID.
+- Public practice listing now selects only display fields from `dadyoom_student_questions`; source regression tests and CI path triggers cover both readers.
+- Production grants on `questions` and score tables remain unchanged pending full client inventory, signed-in student/teacher E2E, Workers Preview and rollback. This code hardening alone does not increase overall readiness from the provisional 46%.
+
+### 2026-10-22 — حصر ثغرات درجات الأنشطة واعتماد تصحيح محرر المعلم
+- نقل قراءة مفاتيح `questions` في استعلام محرر المعلم إلى `createAdminClient` **بعد** التحقق من جلسة المستخدم ودور `teacher/admin` وملكية الدرس من اتصال المستخدم المقيد بـRLS. تسير قراءة/إضافة/تعديل الأسئلة بعد فحص الإذن؛ تظل RPC الخاصة بنقل السؤال وحذفه بجلسة المستخدم لأجل `auth.uid()`.
+- اجتياز CI ليس إذنًا بسحب الامتيازات من الإنتاج. يجب اختبار معلم مالك وغير مالك ومدير وطالب، ثم إعداد تراجع للصلاحيات. لا تُعرض مفاتيح الحل داخل واجهة الطالب.
+- **فجوة P0 مستقلة مؤكدة بالقراءة فقط:** `public.lesson_activities.answer` متاح لدوري `anon` و`authenticated`. عدد الأنشطة المنشورة ذات بيانات `answer` غير فارغة 21,807 من 23,779 منشورًا وقت الجرد؛ نجح استعلام `SET LOCAL ROLE anon` في إثبات قابلية القراءة دون استرجاع نص إجابة. لا يجوز إلغاء الامتيازات حتى استكمال قراءات تصحيح الأنشطة ومحررها وحفظ المحاولات واختبارات الدور وبيئة Preview.
+
+### 2026-10-22 — Server-only activity grading before grant migration
+- `completeLessonAction` requires an owned progress row and published lesson visible under student RLS; `syncLessonMasteryAction` authenticates and checks published lesson visibility. Both then use `createAdminClient` to access `lesson_activities.answer` exclusively on the trusted server.
+- Weighted best-attempt grading, user-scoped attempt reads, and progress data are unchanged. CI guards the authorization order. The legacy direct database `answer` grants remain P0 pending audited no-cost Preview E2E and rollback; a green Next.js build is not proof of production release.
+
+### 2026-10-23 — حماية مسار تصحيح الأنشطة من كشف الإجابات وتراجع الإتقان
+- مسار `POST /api/lesson-activities/check` يفحص النشاط والدرس المنشور باستخدام جلسة الطالب وRLS **قبل** استدعاء `createAdminClient` لجلب مفتاح التصحيح، ويربط الاستعلام الإداري بمعرفي النشاط والدرس معًا؛ وكذلك قراءة مفاتيح جميع أنشطة الدرس للتقييم أصبحت خادمية بعد فحص النشر.
+- عند إعادة نشاط في درس حالته `completed` أو `mastered` تُحفظ الحالة ونسبة التقدم المكتسبة، ولا يعيد التصحيح عرض الحالة `in_progress` ولا يخفض نسبة التقدم السابقة. التعديل لا يغير معيار 90% أو طريقة احتساب الدرجات.
+- أضيف اختباران لمصدر مسار التصحيح ولدالة حفظ حالة التقدم إلى GitHub CI. لا تزال الصلاحيات المباشرة لمفاتيح الإجابات وكتابة المحاولات مفتوحة في Supabase إلى حين تجربة Preview والتراجع؛ لا إعلان نشر إنتاجي أو أمان كامل.
+
+### 2026-10-23 — نقل كتابة الدرجات إلى الخادم الموثوق
+- بعد التحقق من الطالب والدرس المنشور وتصحيح الإجابات، يحفظ `POST /api/lesson-activities/check` المحاولة والتقدم بواسطة عميل الخادم الخاص، مع `user_id=user.id` الموثوق وتقييد تحديث التقدم بمالك الصف ودرسِه. `syncLessonMasteryAction` يحفظ نتيجة الإتقان المحسوبة خادميًا عبر عميل الخادم كذلك.
+- القراءة المسموحة للطالب ومحاولاته بقيت بجلسة RLS، ولم تُسحب أي صلاحية PostgreSQL بعد؛ ما زالت كتابات تاريخية إضافية تحتاج انتقالًا قبل قفل المنفذ المباشر. أضيفت اختبارات ضبط ترتيبي للكتابة الآمنة إلى اختبارات CI الموجودة، بلا تعديل بيانات إنتاجية.
+
+### 2026-10-23 — Owned progress repository hardening
+- `progress.repository.ts`: requires a verified session; never allows another student's progress to be read, created or updated; verifies published-lesson visibility under caller RLS *before* opening the server-only persistence client. UPDATE matches stored ID + authenticated owner + authorized lesson; identity/lesson fields cannot be passed in update payload.
+- `progress.ts`: rejects incomplete, nonfinite, and out-of-range assessment results below 90% at the internal completion boundary, in addition to the action's existing mastery gate. No existing production rows, migrations or grants changed.
+- New source regressions added to curriculum CI. This is staged server-code hardening, **not** confirmation of an operational end-to-end attempt until Preview and DB permission rollout pass.
+
+### 2026-10-23 — tutoring is not assessed mastery
+- The semantic tutor previously called `updateLessonMastery` when its own answer contained no error text, adding a *correct student answer* and potentially a 100% mastery score even without a student assessment. Removed this grading call and obsolete helper, while retaining chat history, streamed feedback and suggested practice questions.
+- Stream endpoint now validates the user's visibility of the published lesson before reading chat/context, and client no longer broadcasts `lesson-mastery-updated` on completion of a tutor response. Only actual server-graded attempts may influence academic mastery.
+- No changes to historic student results were performed; source regression test added to CI. Supabase privilege remediation and Cloudflare Preview remain release blockers.
+
+### 2026-10-23 — AI practice result stays distinct from canonical lesson mastery
+- `POST /api/ai/assessment/submit` was the second caller of removed legacy `updateLessonMastery`. A single correct AI MCQ could have overwritten `lesson_mastery` with 100%. Removed the call; **retained** its server-graded session answer storage, progress-skill updates and cache invalidation.
+- `lesson_mastery` is reserved for full-lesson attempts and the 90% completion gate, not tutor answers or one-off generated practice questions. CI test now asserts both tutoring and AI submit preserve the distinction. This also fixes the TypeScript missing-module error observed on the preceding revision.
+
+### 2026-10-23 — فحص متكرر آمن لصلاحيات أسئلة ضاديوم
+- أضيف `scripts/security-assessment-permissions-audit.sql` للاستعلام عن صلاحيات `questions.correct_answer` و`lesson_activities.answer` وجداول حفظ الدرجات، وعن RLS وصلاحيات RPC و`security_invoker` من **البيانات الوصفية فقط**؛ لا يُظهر نص أي إجابة أو معلومات شخصية، ولا يحتوي عمليات تغيير.
+- خطر معمارية ينبغي تجنبه: الإلغاء الشامل لقراءة `questions` سيكسر واجهة `dadyoom_student_questions` الحالية لاعتمادها على `security_invoker=true`، وإعادة منح قراءة `options` الخام قد تكشف مفاتيح مخفية داخل JSON. يجب تنفيذ بديل آمن في Preview قبل سحب صلاحيات الإنتاج.
+- اختبار Vitest يفرض أن ملف التدقيق للقراءة فقط. لا ترحيل إنتاجي ولا تعديل RLS أو بيانات.
+
+### 2026-10-23 — حماية مفتاح أسئلة تقويم الذكاء الاصطناعي
+- `/api/ai/assessment/submit` كان يقرأ `ai_assessments.correct_answer` تحت جلسة الطالب ويحجز السؤال قبل التحقق من ملكية جلسة الاختبار. أصبح يجلب بيانات العرض دون المفتاح، ويثبت أن الاختبار يخص جلسة الطالب ودرسًا منشورًا قبل قراءة المفتاح الخادمي والحجز المشروط، ويرفض البديل خارج المدى.
+- حفظ جواب `assessment_session_answers` صار بصلاحية الخادم بعد التحقق، ولا يعاد كشف الحل أو الشرح للطالب عند الخطأ. بعد تسجيل محاولة مثبتة لا يعاد فتح السؤال تلقائيًا على فشل مرحلة لاحقة، تجنبًا للتكرار.
+- **مهم:** الجدول الأصلي `ai_assessments` نفسه ما زال يمنح `SELECT correct_answer` و`UPDATE` للحسابات في Supabase الإنتاج. أضيف إلى فحص الصلاحيات؛ حل الالتفاف المباشر مرتبط بترحيل آمن للمنفذ العام في Preview وليس بهذه تعديلات الكود فقط.
+
+### 2026-10-23 — AI Assessment client-leak and next-step grade forgery guards
+- API GET `/api/ai/assessment/[id]` and POST `/api/ai/assessment` no longer serialize the correct choice or explanation before submitting; their student read/insert projections exclude the secret fields. POST `/api/ai/assessment/next` does not trust the browser's `correct` boolean: it verifies ownership, published lesson, exactly one new saved answer and server-private answer-key match, then advances using the server result.
+- `advanceAssessmentSession` uses optimistic predicates for question index and scored counts to prevent duplicate concurrent increments. New Vitest guards are added to CI and the read-only permissions audit includes session answer/session tables.
+- **Not yet end-to-end validated** on Preview: direct database grants to `ai_assessments.correct_answer`, `assessment_sessions`, and `assessment_session_answers` still require a proven non-breaking permissions migration. No production data changed.
+
+### 2026-10-23 — AI generated-question and session write authorization
+- `/api/ai/assessment`: validates the authenticated learner and a RLS-visible **published** lesson before opening the privileged server-only Supabase client; writes generated question keys through that trusted client, never the user's Data API session. Returned display payload remains redacted.
+- `/api/ai/assessment/session`: rejects unpublished lessons and creates/resumes a session through the server-only client after authenticating the student; session student ID is always derived from `auth.getUser()`.
+- `/api/ai/assessment/[id]`: checks parent lesson is still published before returning the student's safe question projection. New CI source guards cover all three.
+- Direct table-level grants on AI assessment/session tables remain exposed in production and require tested role/permission migration. No production SQL or real student submissions performed.
+
+### 2026-10-23 — trusted final analytics for adaptive assessments
+- `getAssessmentSessionAnalytics` no longer trusts `assessment_session_answers.is_correct`, a column writable by the student's database role in the current production policy. After the already-authorized session completes, it reads selected choices with a trusted server client and matches each question to the private `ai_assessments.correct_answer` scoped by authenticated owner email and published lesson.
+- Fails closed if any stored question key is missing. Calculates strengths, weaknesses and totals from server-computed correctness, preserving existing return shape. Regression test added to AI assessment CI; no production SQL or student-record changes.
+
+### 2026-10-23 — behavioral unit tests of private-key-derived AI analytics
+- Added `tests/security/ai-session-analytics.test.ts` with mocked client behavior (no access to real student data). It verifies false positives are rejected even when stored `is_correct=true`, false negatives are corrected from the stored choice, a missing private key fails closed, and empty sessions make no private key query.
+- Wired it into the existing CI source filter and gate. This complements existing source-code assertions, but is not a substitute for an authenticated Preview end-to-end test or a real database permission migration.
+
+### 2026-10-23 — latest assessment analytics now enforces ownership and private correction
+- Fixed the compile failure caused by `getLatestAssessmentAnalytics` calling the updated key-derived analytics method without authenticated email or lesson ID. It now checks `auth.getUser()` and `user.id===studentId`, retrieves only the caller's finished session under RLS, and invokes private-key-derived analytics with the server-only client and the validated lesson/student identity.
+- Dedicated source guard and CI path added; no real answer values returned or historic data edited.
+
+### 2026-10-23 — AI skill integrity and empty-session analytics
+- AI assessment analytics now reads **correct_answer and skill** from the original server-private question record, ignoring editable `assessment_session_answers.skill`; a forged skill name cannot manipulate strengths/weaknesses. A missing official skill label gets the existing `الاستيعاب` fallback.
+- Pure `analyzeAssessment` handles an empty session as `overallPercentage=0`, not `NaN`. Behavioral Vitest cases cover spoofed skill, missing skill and zero attempts. No SQL, RLS, production records, or payments changed.
+
+### 2026-10-23 — verified curriculum assessment record coverage (read-only core Supabase)
+- **8,307/8,307 published lessons (100.00%) have at least one stored question or a `lesson_activities.is_published=true` activity**. Of those, **414** use published activities instead of the `questions` table. This closes the *stored-assessment-presence inventory* gate, not online grading E2E or pedagogical/official Ministry certification.
+- Of 72 `draft` rows, **62** are short Bahrain semester-1 imported-index candidates with no questions (titles resemble malformed book contents); **10** are Yemen/Oman whole-grade/subject package records with stored questions. Neither group should be auto-published as if these were validated ministry lessons.
+- Eight published zero-content records are explicit Tunisia *official book reference/catalog nodes* and must be displayed as such, not fabricated as teaching texts. Zero empty noncatalog published lessons found.
+- Updated existing `scripts/curriculum-production-audit.sql` to calculate the actual combined assessment coverage and separate those QA queues; CI checks query intent and that it remains read-only. Live SQL verified these counts without any production data mutation.
+- **Readiness limitation:** These facts may justify progress in the curriculum/data-inventory portion; they do not clear Cloudflare #46, unsafe direct Supabase grants #57, signed-in Preview or official annual syllabus mapping. No 100% platform readiness claim.
+
+### 2026-10-23 — published book references no longer masquerade as actual lessons
+- Added `isBookCatalogReference` and an early explicit reference-page UI in `app/lessons/[id]/page.tsx`. The eight Tunisia zero-content official-book catalog nodes display their titles, source metadata and a clear explanation that they are book references, **not lessons**; these pages no longer show mastery, progress, answer questions or simulated scoring.
+- Real lessons with authored content remain unchanged. Added functional/source Vitest tests and gate to CI. No stored lesson status, source text, grades, or database privileges changed.
+
+### 2026-10-23 — adaptive recommendations on real content lessons
+- Lesson recommendations now count unique lesson questions **and** published activities, including unanswered items. The former fallback treated **any participation** in a lesson activity as correct and could show 100% for one successful attempt. New pure `buildLessonPracticeSnapshot` de-duplicates retries, excludes stale IDs, tracks actual correct flags and review-worthy wrong questions.
+- An adaptive recommendation may only say **mastered** or link to the next lesson when the learner's server-evaluated persisted status is `mastered` with `best_score>=90`; 100% practice participation alone only recommends continuing the current lesson's formal assessment. The UI ScoreCard now counts unique correct MCQs rather than duplicate correct retries.
+- Focuses especially on the 414 published lessons whose practice is stored in activities, not `questions`. Regression tests cover incomplete answers, participation-only activities, retries, mixed question/activity types, false mastery and genuine mastery. No live score rows, RLS grants, question keys or publication statuses changed.
+
+### 2026-10-23 — Anonymous lesson access and authenticated widgets
+- Verified four real production lesson URLs (BH, EG, JO, SA) using read-only public requests, without logins or student state changes. Their public lessons/catalog/subject scope pages rendered. One Bahrain anonymous page displayed a literal "Unauthorized" from a private lesson widget; this is a reproducible public UX defect, not a failed core-page status.
+- Lesson page now mounts `LessonSemanticSearch` and `LessonMasteryCard` **only** when the user is authenticated; other visitors see a proper login invitation. Anonymous visitors no longer get a zeroed private `ScoreCard` that looks like an earned mark. The lesson reading and preview content remain open.
+- Added source regression CI to protect signed-out/signed-in UI gating. This is code staged in PR #58, not yet deployed to production; live correction awaits Cloudflare/preview gates.
+
+### 2026-10-23 — Cloudflare Workers vinext compatibility preflight
+- Ran a **read-only isolated** `vinext@1.2.1 check` in GitHub Actions. Initial result **95% compatibility**: 19 supported, 0 partial, 1 unrecognized import. That import came only from `types/cache-life.d.ts`: an obsolete internal Next.js cache-tag runtime path used by an ambient TYPE declaration.
+- Replaced the type-only import with `export function cacheTag(...tags: string[]): void` inside the existing `next/cache` augmentation. It preserves the public API type names without changing cache implementation/runtime routes.
+- The preflight now **fails closed** unless the parsed CLI report says 100%, 0 partial, 0 known issues; version pinned and report saved as GitHub artifact. Added source tests. This is a static compatibility gate, NOT an actual Worker build, Preview, Supabase SSR test, or production deployment. No `vinext init`, configuration rewrite, wrangler deploy or billing change performed.
+
+### 2026-10-23 — compiled production Node runtime smoke test (no credentials)
+- Added `scripts/smoke-next-production-runtime.mjs`, run after `npm run build` in the existing CI job. It **starts the compiled Next production server locally** in the GitHub runner, issues GET-only anonymous requests to the homepage, `robots.txt`, `sitemap.xml`, and manifest, then always terminates the server.
+- It checks real HTTP 200 responses, Arabic brand + language and public discovery routes. No external accounts, user logins, Supabase secrets, production data, Worker deployment or paid resources.
+- This closes a distinct compiled-server runtime-smoke gate if CI passes, separate from static Next build and separate from Cloudflare Workers/Preview role acceptance.
+
+### 2026-10-23 — local workerd smoke gate after a real Worker bundle
+- Isolated GitHub workflow successfully produced Cloudflare Build Output using temporary React 19.3.1, vinext 1.3.0 and Vite/Cloudflare adapters. This is **not** a deployment or proof that the production Cloudflare worker currently works.
+- Added `scripts/smoke-cloudflare-worker-runtime.mjs` to launch **Vite preview / local workerd** against the built Cloudflare assets in CI, and GET-check `/robots.txt`, `/`, and `/sitemap.xml`. It closes only the preview-runtime gate if the CI result is green. It does not log in as a student, touch remote Supabase, configure Cloudflare secrets or deploy production. A failed local request is diagnosed from the captured preview output rather than bypassed.
+
+### 2026-10-23 — Cloudflare workerd anonymous protected API HTTP acceptance gate
+- Extended the **real compiled Worker running in local workerd** smoke from homepage/robots/sitemap to POST-only unauthenticated checks against the stored-MCQ grading, activity grading, AI answer submit, AI next-step, AI session-start and GET lesson-mastery endpoints. Each must return HTTP 401 JSON without private answer keys or internal service-token names.
+- Uses only non-routable placeholder `NEXT_PUBLIC_SUPABASE_URL` and a fake public anon key in an isolated GitHub runner; no production Supabase instance, database mutation, student credentials, deployment or billing. The fake `correct=true` payload actively tests that unauthorized callers cannot spoof scores.
+- This is a meaningful **negative authorization runtime gate** if CI passes. It still does not demonstrate successful authenticated requests, storage writes, per-student row isolation with actual RLS, live Cloudflare production build, or an admin-grant migration.

@@ -1,0 +1,100 @@
+name: Cloudflare Worker bundle build (isolated, no deploy)
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/cloudflare-worker-bundle-ci.yml'
+      - 'app/**'
+      - 'features/**'
+      - 'components/**'
+      - 'lib/**'
+      - 'types/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.node-version'
+      - 'vite.config.ts'
+      - 'cloudflare.config.ts'
+      - 'next.config.ts'
+      - 'tsconfig.json'
+      - 'scripts/build-cloudflare-worker.mjs'
+      - 'scripts/smoke-cloudflare-worker-runtime.mjs'
+
+permissions:
+  contents: read
+
+jobs:
+  cloudflare-bundle-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    env:
+      CI: 'true'
+      NEXT_TELEMETRY_DISABLED: '1'
+      DADYOOM_WORKER_BUILD: '1'
+      # Fake, non-routable public client config only for anonymous local Worker tests.
+      # No actual Supabase project, tokens, student account or admin key used.
+      NEXT_PUBLIC_SUPABASE_URL: 'https://dadyoom-ci.invalid'
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: 'not-a-real-supabase-key-for-ci'
+      # Intentionally no CLOUDFLARE_API_TOKEN, ACCOUNT_ID, database or app secrets.
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          # Same version file Workers Builds reads for its checkout.
+          # Avoid drift between external Cloudflare and isolated CI Node.
+          node-version-file: '.node-version'
+          cache: 'npm'
+      - name: Install unchanged application dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build actual Worker from committed Cloudflare command (no deploy)
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run build:cloudflare 2>&1 | tee worker-build.log
+          test -f .cloudflare/output/v0/config.json
+          echo "CLOUDFLARE_COMMITTED_BUILD_SCRIPT=PASS"
+      - name: Require a generated Cloudflare Worker bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Generated Worker files (filenames only):"
+          find dist .cloudflare -maxdepth 4 -type f 2>/dev/null | head -60 || true
+          test -d .cloudflare/output/v0/workers/default/bundle
+          test -f .cloudflare/output/v0/workers/default/bundle/ssr/index.js
+          test -f .cloudflare/output/v0/config.json
+          echo "CLOUDFLARE_WORKER_BUNDLE_BUILD=PASS"
+      - name: Validate Cloudflare prebuilt deployment completely offline
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Per Cloudflare's cf docs, --dry-run makes NO API requests
+          # and requires no Cloudflare credentials or paid services.
+          # --prebuilt validates the exact Worker build made above.
+          npm run check:cloudflare-deploy \
+            2>&1 | tee worker-deploy-dry-run.log
+          echo "CLOUDFLARE_PREBUILT_DEPLOY_DRY_RUN=PASS"
+      - name: Install Chromium for read-only mobile and desktop form smoke
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Hosted Ubuntu already has Chromium runtime libraries; download only the headless shell.
+          # Avoid flaky apt-get install/update from --with-deps on each CI run.
+          npx playwright install --only-shell chromium
+      - name: Smoke-test generated Worker in local workerd via Vite preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/smoke-cloudflare-worker-runtime.mjs 2>&1 | tee worker-runtime-smoke.log
+      - name: Save nonsecret diagnostic logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: isolated-cloudflare-worker-build-report
+          path: |
+            worker-build.log
+            worker-runtime-smoke.log
+            worker-deploy-dry-run.log
+          retention-days: 3
+          if-no-files-found: ignore

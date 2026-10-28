@@ -273,3 +273,29 @@ export function getCorrectAnswerSpec(
 
   return null;
 }
+
+/**
+ * Validate untrusted activity answer arrays before grading or persistence.
+ * Unlike the legacy filter, mixed JSON types are rejected rather than silently
+ * discarding malformed choices. Blank strings retain the old normalize behavior.
+ */
+export function parseStudentActivityAnswer(value: unknown): string[] | null {
+  // Legacy clients may omit 'answer' when signalling an incomplete task.
+  if (value === undefined) return [];
+  if (!Array.isArray(value) || value.length > 64) return null;
+
+  const result: string[] = [];
+  let totalLength = 0;
+
+  for (const item of value) {
+    if (typeof item !== "string" || item.includes("\u0000") || item.length > 4096) {
+      return null;
+    }
+    totalLength += item.length;
+    if (totalLength > 16384) return null;
+
+    const clean = item.trim();
+    if (clean) result.push(clean);
+  }
+  return result;
+}

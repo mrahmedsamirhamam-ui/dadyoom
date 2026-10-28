@@ -3,6 +3,9 @@
 import { revalidatePath } from "next/cache";
 
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
+
+type AdminSupabaseClient = ReturnType<typeof createAdminClient>;
 
 type ServerSupabaseClient =
   Awaited<
@@ -325,8 +328,8 @@ function readQuestionPayload(
 }
 
 async function requireQuestionInLesson(
-  supabase:
-    ServerSupabaseClient,
+  admin:
+    AdminSupabaseClient,
   questionId: string,
   lessonId: string
 ) {
@@ -334,7 +337,7 @@ async function requireQuestionInLesson(
     data,
     error,
   } =
-    await supabase
+    await admin
       .from("questions")
       .select(
         "id, lesson_id"
@@ -387,11 +390,14 @@ export async function createLessonQuestion(
     lessonId
   );
 
+  // Elevated access follows the authenticated RLS/role/ownership guard.
+  const admin = createAdminClient();
+
   const {
     data: lastQuestion,
     error: orderError,
   } =
-    await supabase
+    await admin
       .from("questions")
       .select(
         "question_order"
@@ -421,7 +427,7 @@ export async function createLessonQuestion(
     ) + 1;
 
   const { error } =
-    await supabase
+    await admin
       .from("questions")
       .insert({
         lesson_id:
@@ -488,8 +494,11 @@ export async function updateLessonQuestion(
     lessonId
   );
 
+  // Elevated access follows the authenticated RLS/role/ownership guard.
+  const admin = createAdminClient();
+
   await requireQuestionInLesson(
-    supabase,
+    admin,
     questionId,
     lessonId
   );
@@ -499,7 +508,7 @@ export async function updateLessonQuestion(
    * are deliberately preserved.
    */
   const { error } =
-    await supabase
+    await admin
       .from("questions")
       .update({
         question:
@@ -585,8 +594,11 @@ export async function moveLessonQuestion(
     lessonId
   );
 
+  // Elevated access follows the authenticated RLS/role/ownership guard.
+  const admin = createAdminClient();
+
   await requireQuestionInLesson(
-    supabase,
+    admin,
     questionId,
     lessonId
   );
@@ -648,8 +660,11 @@ export async function deleteLessonQuestion(
     lessonId
   );
 
+  // Elevated access follows the authenticated RLS/role/ownership guard.
+  const admin = createAdminClient();
+
   await requireQuestionInLesson(
-    supabase,
+    admin,
     questionId,
     lessonId
   );

@@ -40,6 +40,24 @@ describe("consistent, graded, weighted mastery", () => {
     expect(x.answeredQuestions).toBe(1);
   });
 
+  it("clamps historical earned points after the teacher reduces an activity weight", () => {
+    const currentWeights = [{ id: "a", points: 5 }, { id: "b", points: 5 }];
+    const olderAttempts = [
+      { activity_id: "a", earned_points: 20, is_correct: true, attempt_number: 1 },
+      { activity_id: "b", earned_points: 0, is_correct: false, attempt_number: 1 },
+    ];
+    const score = scoreGradedActivityAttempts(currentWeights, olderAttempts);
+    expect(score).toMatchObject({ totalPossible: 10, totalEarned: 5, score: 50 });
+
+    const activityRoute = readFileSync(
+      resolve(process.cwd(), "app/api/lesson-activities/check/route.ts"), "utf8"
+    );
+    expect(activityRoute).toContain("scoreGradedActivityAttempts(");
+    expect(activityRoute).toContain("points: item.points");
+    expect(activityRoute).not.toContain("bestEarnedByActivity");
+    expect(activityRoute).not.toContain("totalEarned /");
+  });
+
   it("leaves unanswered activities unearned, and gives zero without scored points", () => {
     const x = scoreGradedActivityAttempts(activities, [
       { activity_id: "a", earned_points: 5, is_correct: true },
@@ -63,8 +81,8 @@ describe("consistent, graded, weighted mastery", () => {
     expect(complete).toContain("scoreGradedActivityAttempts(");
     expect(mastery).toContain("scoreGradedActivityAttempts(");
     expect(complete).toContain("requirePositiveAssessmentPoints(graded.totalPossible)");
-    expect(mastery).toContain('select("id,answer,is_required,points")');
-    expect(mastery).toContain('select("activity_id,earned_points,is_correct,attempt_number")');
+    expect(mastery).toContain('select("id,answer,is_required,points", { count: "exact" })');
+    expect(mastery).toContain('select("id,activity_id,earned_points,is_correct,attempt_number"');
     expect(complete).toContain('.from("dadyoom_student_questions")');
     expect(mastery).toContain('.from("dadyoom_student_questions")');
   });

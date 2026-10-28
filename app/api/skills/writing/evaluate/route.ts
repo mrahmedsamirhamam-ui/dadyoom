@@ -2,6 +2,8 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { askAI } from "@/importer/ai/client";
+import { readBoundedJsonObject } from "@/lib/http/read-bounded-json";
+import { consumeSkillEvaluationQuota } from "@/lib/ai/consume-skill-evaluation-quota";
 
 type WritingEvaluation = {
   overallScore: number;
@@ -104,11 +106,21 @@ export async function POST(
       );
     }
 
-    const body =
-      (await request.json()) as {
-        text?: unknown;
-        prompt?: unknown;
-      };
+    const contentType = request.headers.get("content-type") ?? "";
+    if (!/^application\/json(?:\s*;|$)/i.test(contentType)) {
+      return NextResponse.json(
+        { ok: false, error: "نوع بيانات الكتابة غير صالح." },
+        { status: 415 },
+      );
+    }
+    const parsedBody = await readBoundedJsonObject(request, 20000);
+    if (!parsedBody.ok) {
+      return NextResponse.json(
+        { ok: false, error: "حجم طلب الكتابة أو صيغته غير صالحين." },
+        { status: parsedBody.status },
+      );
+    }
+    const body = parsedBody.value;
 
     const text =
       typeof body.text ===
@@ -145,6 +157,33 @@ export async function POST(
         {
           status: 400,
         }
+      );
+    }
+
+    // A forged prompt from the browser must not become an unbounded
+    // model instruction or exceed the educational task's short title.
+    if (writingPrompt.length > 600 || /[\u0000-\u001f\u007f]/u.test(writingPrompt)) {
+      return NextResponse.json(
+        { ok: false, error: "موضوع الكتابة غير صالح." },
+        { status: 400 },
+      );
+    }
+
+    const budget = await consumeSkillEvaluationQuota(
+      user.id, "ai_writing_evaluate",
+    );
+    if (budget.enforced && !budget.allowed) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: budget.unavailable
+            ? "تقييم الذكاء الاصطناعي غير متاح الآن."
+            : "استخدمت عدد محاولات التقييم المتاح اليوم.",
+        },
+        {
+          status: budget.unavailable ? 503 : 429,
+          headers: { "Cache-Control": "no-store" },
+        },
       );
     }
 
@@ -267,7 +306,7 @@ ${text}
   } catch (error) {
     console.error(
       "WRITING_EVALUATION_FAILED",
-      error
+      error instanceof Error ? error.name : "UnknownError"
     );
 
     return NextResponse.json(

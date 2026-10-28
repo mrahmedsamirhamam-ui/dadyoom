@@ -1,0 +1,895 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "BH",
+  "grade": 5,
+  "semester": 1,
+  "academicYear": "2026-2027",
+  "purpose": "Original text-based handwriting activities aligned to Ministry letters; NOT printed stroke tracing worksheets",
+  "sourceIndex": "data/curriculum-sources/bh-g5-s1-2026-ministry-plan-index.json",
+  "rights": {
+    "contentOwner": "dadyoom",
+    "officialHandwritingExemplarVerified": false,
+    "publicationApproved": false,
+    "teacherReview": "pending"
+  },
+  "practices": [
+    {
+      "officialTopic": "حرف (أ)",
+      "topicOrder": 1,
+      "targetLetters": [
+        "أ"
+      ],
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "book": "كرّاسة الخطّ",
+        "textbookPageStart": 6,
+        "textbookPageEnd": 7,
+        "planPdfPage": 22,
+        "visualTableVerification": "pending"
+      },
+      "status": "original_handwriting_guidance_teacher_review_pending",
+      "publicationApproved": false,
+      "lesson": {
+        "objective": "أن يكتب المتعلم أ في كلمات وجملة من إنشائه كتابة مقروءة مع ضبط الشكل والاتصال.",
+        "warmup": "أحدد أ في أمثلة متنوعة وأقارن بين هيئته في أول الكلمة ووسطها وآخرها.",
+        "letterObservation": "حرف الألف لا يتصل بالحرف اللاحق؛ راقب موضع الهمزة في أعلى الألف.",
+        "words": [
+          "أمل",
+          "أمانة",
+          "قرأ",
+          "مبدأ"
+        ],
+        "sentenceToCopy": "أحب أن أتعلم شيئًا نافعًا كل يوم.",
+        "guidedSequence": [
+          "ألاحظ الحرف ونقاطه على نموذج يقدمه المعلم.",
+          "أمرر القلم في الهواء بحركة بطيئة ثم أكتب مثالًا بقلم رصاص.",
+          "أكتب الكلمات المختارة مرة ببطء ومرة باستقلال.",
+          "أنسخ الجملة مع مراعاة موضع الحروف على السطر والمسافات.",
+          "أقارن المحاولة الأخيرة بالأولى وأصحح نقطة أو اتصالًا غير دقيق."
+        ],
+        "differentiation": {
+          "support": "يستخدم المتعلم بطاقات حروف مكبرة وسطورا واسعة ويتدرب على كلمتين فقط.",
+          "extension": "يكتب الطالب جملة جديدة بأكثر من موضع للحرف ويعلل فروق اتصال أشكاله."
+        },
+        "teacherNote": "هذا نشاط نصي أصيل، ولا يمثل ورقة رسم لمسار القلم أو نموذجًا مصورًا للخط المعتمد؛ يلزم عرض نموذج بصري موثق من المعلم."
+      },
+      "rubric": [
+        {
+          "name": "شكل الحرف الصحيح",
+          "max": 3,
+          "description": "مطابقة الجسم والنقاط والهيئة النموذجية"
+        },
+        {
+          "name": "المواضع والاتصال",
+          "max": 3,
+          "description": "احترام الاتصال والانفصال في أول ووسط وآخر الكلمة"
+        },
+        {
+          "name": "السطر والمسافات",
+          "max": 3,
+          "description": "انتظام مستوى الحروف والهوامش والفراغات"
+        },
+        {
+          "name": "الإتقان والمراجعة",
+          "max": 3,
+          "description": "تصحيح المحاولة الثانية اعتمادًا على الملاحظة"
+        }
+      ],
+      "assessment": {
+        "mode": "human_teacher_observation_only",
+        "automaticPenStrokeRecognition": false,
+        "totalPoints": 12
+      },
+      "rendering": {
+        "traceSheetRendered": false,
+        "visualStrokeTemplateVerified": false,
+        "printedWorksheetsReady": false
+      }
+    },
+    {
+      "officialTopic": "حرف (ب)",
+      "topicOrder": 2,
+      "targetLetters": [
+        "ب"
+      ],
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "book": "كرّاسة الخطّ",
+        "textbookPageStart": 8,
+        "textbookPageEnd": 9,
+        "planPdfPage": 22,
+        "visualTableVerification": "pending"
+      },
+      "status": "original_handwriting_guidance_teacher_review_pending",
+      "publicationApproved": false,
+      "lesson": {
+        "objective": "أن يكتب المتعلم ب في كلمات وجملة من إنشائه كتابة مقروءة مع ضبط الشكل والاتصال.",
+        "warmup": "أحدد ب في أمثلة متنوعة وأقارن بين هيئته في أول الكلمة ووسطها وآخرها.",
+        "letterObservation": "تذكر النقطة الواحدة تحت الباء، وحدد هيئة الحرف في أول الكلمة ووسطها وآخرها.",
+        "words": [
+          "باب",
+          "كتاب",
+          "حبيب",
+          "بحر"
+        ],
+        "sentenceToCopy": "بدأ بلال ترتيب الكتب في مكتبته الصغيرة.",
+        "guidedSequence": [
+          "ألاحظ الحرف ونقاطه على نموذج يقدمه المعلم.",
+          "أمرر القلم في الهواء بحركة بطيئة ثم أكتب مثالًا بقلم رصاص.",
+          "أكتب الكلمات المختارة مرة ببطء ومرة باستقلال.",
+          "أنسخ الجملة مع مراعاة موضع الحروف على السطر والمسافات.",
+          "أقارن المحاولة الأخيرة بالأولى وأصحح نقطة أو اتصالًا غير دقيق."
+        ],
+        "differentiation": {
+          "support": "يستخدم المتعلم بطاقات حروف مكبرة وسطورا واسعة ويتدرب على كلمتين فقط.",
+          "extension": "يكتب الطالب جملة جديدة بأكثر من موضع للحرف ويعلل فروق اتصال أشكاله."
+        },
+        "teacherNote": "هذا نشاط نصي أصيل، ولا يمثل ورقة رسم لمسار القلم أو نموذجًا مصورًا للخط المعتمد؛ يلزم عرض نموذج بصري موثق من المعلم."
+      },
+      "rubric": [
+        {
+          "name": "شكل الحرف الصحيح",
+          "max": 3,
+          "description": "مطابقة الجسم والنقاط والهيئة النموذجية"
+        },
+        {
+          "name": "المواضع والاتصال",
+          "max": 3,
+          "description": "احترام الاتصال والانفصال في أول ووسط وآخر الكلمة"
+        },
+        {
+          "name": "السطر والمسافات",
+          "max": 3,
+          "description": "انتظام مستوى الحروف والهوامش والفراغات"
+        },
+        {
+          "name": "الإتقان والمراجعة",
+          "max": 3,
+          "description": "تصحيح المحاولة الثانية اعتمادًا على الملاحظة"
+        }
+      ],
+      "assessment": {
+        "mode": "human_teacher_observation_only",
+        "automaticPenStrokeRecognition": false,
+        "totalPoints": 12
+      },
+      "rendering": {
+        "traceSheetRendered": false,
+        "visualStrokeTemplateVerified": false,
+        "printedWorksheetsReady": false
+      }
+    },
+    {
+      "officialTopic": "حرف (ت)",
+      "topicOrder": 3,
+      "targetLetters": [
+        "ت"
+      ],
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "book": "كرّاسة الخطّ",
+        "textbookPageStart": 10,
+        "textbookPageEnd": 11,
+        "planPdfPage": 22,
+        "visualTableVerification": "pending"
+      },
+      "status": "original_handwriting_guidance_teacher_review_pending",
+      "publicationApproved": false,
+      "lesson": {
+        "objective": "أن يكتب المتعلم ت في كلمات وجملة من إنشائه كتابة مقروءة مع ضبط الشكل والاتصال.",
+        "warmup": "أحدد ت في أمثلة متنوعة وأقارن بين هيئته في أول الكلمة ووسطها وآخرها.",
+        "letterObservation": "تحافظ التاء على نقطتين فوقها، وتختلف التاء المربوطة في آخر الأسماء.",
+        "words": [
+          "تمر",
+          "تلميذ",
+          "بيت",
+          "صوت"
+        ],
+        "sentenceToCopy": "تعاون التلاميذ في تنظيم وقت القراءة.",
+        "guidedSequence": [
+          "ألاحظ الحرف ونقاطه على نموذج يقدمه المعلم.",
+          "أمرر القلم في الهواء بحركة بطيئة ثم أكتب مثالًا بقلم رصاص.",
+          "أكتب الكلمات المختارة مرة ببطء ومرة باستقلال.",
+          "أنسخ الجملة مع مراعاة موضع الحروف على السطر والمسافات.",
+          "أقارن المحاولة الأخيرة بالأولى وأصحح نقطة أو اتصالًا غير دقيق."
+        ],
+        "differentiation": {
+          "support": "يستخدم المتعلم بطاقات حروف مكبرة وسطورا واسعة ويتدرب على كلمتين فقط.",
+          "extension": "يكتب الطالب جملة جديدة بأكثر من موضع للحرف ويعلل فروق اتصال أشكاله."
+        },
+        "teacherNote": "هذا نشاط نصي أصيل، ولا يمثل ورقة رسم لمسار القلم أو نموذجًا مصورًا للخط المعتمد؛ يلزم عرض نموذج بصري موثق من المعلم."
+      },
+      "rubric": [
+        {
+          "name": "شكل الحرف الصحيح",
+          "max": 3,
+          "description": "مطابقة الجسم والنقاط والهيئة النموذجية"
+        },
+        {
+          "name": "المواضع والاتصال",
+          "max": 3,
+          "description": "احترام الاتصال والانفصال في أول ووسط وآخر الكلمة"
+        },
+        {
+          "name": "السطر والمسافات",
+          "max": 3,
+          "description": "انتظام مستوى الحروف والهوامش والفراغات"
+        },
+        {
+          "name": "الإتقان والمراجعة",
+          "max": 3,
+          "description": "تصحيح المحاولة الثانية اعتمادًا على الملاحظة"
+        }
+      ],
+      "assessment": {
+        "mode": "human_teacher_observation_only",
+        "automaticPenStrokeRecognition": false,
+        "totalPoints": 12
+      },
+      "rendering": {
+        "traceSheetRendered": false,
+        "visualStrokeTemplateVerified": false,
+        "printedWorksheetsReady": false
+      }
+    },
+    {
+      "officialTopic": "حرف (ث)",
+      "topicOrder": 4,
+      "targetLetters": [
+        "ث"
+      ],
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "book": "كرّاسة الخطّ",
+        "textbookPageStart": 12,
+        "textbookPageEnd": 13,
+        "planPdfPage": 23,
+        "visualTableVerification": "pending"
+      },
+      "status": "original_handwriting_guidance_teacher_review_pending",
+      "publicationApproved": false,
+      "lesson": {
+        "objective": "أن يكتب المتعلم ث في كلمات وجملة من إنشائه كتابة مقروءة مع ضبط الشكل والاتصال.",
+        "warmup": "أحدد ث في أمثلة متنوعة وأقارن بين هيئته في أول الكلمة ووسطها وآخرها.",
+        "letterObservation": "الثاء تشبه الباء في جسمها وتتفاوت بثلاث نقاط فوق الحرف.",
+        "words": [
+          "ثوب",
+          "ثابت",
+          "مثل",
+          "بحث"
+        ],
+        "sentenceToCopy": "ثبتَ ثلاثةُ طلابٍ بطاقاتِ القراءة.",
+        "guidedSequence": [
+          "ألاحظ الحرف ونقاطه على نموذج يقدمه المعلم.",
+          "أمرر القلم في الهواء بحركة بطيئة ثم أكتب مثالًا بقلم رصاص.",
+          "أكتب الكلمات المختارة مرة ببطء ومرة باستقلال.",
+          "أنسخ الجملة مع مراعاة موضع الحروف على السطر والمسافات.",
+          "أقارن المحاولة الأخيرة بالأولى وأصحح نقطة أو اتصالًا غير دقيق."
+        ],
+        "differentiation": {
+          "support": "يستخدم المتعلم بطاقات حروف مكبرة وسطورا واسعة ويتدرب على كلمتين فقط.",
+          "extension": "يكتب الطالب جملة جديدة بأكثر من موضع للحرف ويعلل فروق اتصال أشكاله."
+        },
+        "teacherNote": "هذا نشاط نصي أصيل، ولا يمثل ورقة رسم لمسار القلم أو نموذجًا مصورًا للخط المعتمد؛ يلزم عرض نموذج بصري موثق من المعلم."
+      },
+      "rubric": [
+        {
+          "name": "شكل الحرف الصحيح",
+          "max": 3,
+          "description": "مطابقة الجسم والنقاط والهيئة النموذجية"
+        },
+        {
+          "name": "المواضع والاتصال",
+          "max": 3,
+          "description": "احترام الاتصال والانفصال في أول ووسط وآخر الكلمة"
+        },
+        {
+          "name": "السطر والمسافات",
+          "max": 3,
+          "description": "انتظام مستوى الحروف والهوامش والفراغات"
+        },
+        {
+          "name": "الإتقان والمراجعة",
+          "max": 3,
+          "description": "تصحيح المحاولة الثانية اعتمادًا على الملاحظة"
+        }
+      ],
+      "assessment": {
+        "mode": "human_teacher_observation_only",
+        "automaticPenStrokeRecognition": false,
+        "totalPoints": 12
+      },
+      "rendering": {
+        "traceSheetRendered": false,
+        "visualStrokeTemplateVerified": false,
+        "printedWorksheetsReady": false
+      }
+    },
+    {
+      "officialTopic": "حرف (ج)",
+      "topicOrder": 5,
+      "targetLetters": [
+        "ج"
+      ],
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "book": "كرّاسة الخطّ",
+        "textbookPageStart": 14,
+        "textbookPageEnd": 15,
+        "planPdfPage": 23,
+        "visualTableVerification": "pending"
+      },
+      "status": "original_handwriting_guidance_teacher_review_pending",
+      "publicationApproved": false,
+      "lesson": {
+        "objective": "أن يكتب المتعلم ج في كلمات وجملة من إنشائه كتابة مقروءة مع ضبط الشكل والاتصال.",
+        "warmup": "أحدد ج في أمثلة متنوعة وأقارن بين هيئته في أول الكلمة ووسطها وآخرها.",
+        "letterObservation": "للجيم نقطة واحدة أسفل الجسم، ويظهر انحناؤها إلى أسفل السطر في بعض المواضع.",
+        "words": [
+          "جبل",
+          "جميل",
+          "نجم",
+          "ثلج"
+        ],
+        "sentenceToCopy": "جاء جاسم إلى الحديقة فرأى نجمًا مرسومًا.",
+        "guidedSequence": [
+          "ألاحظ الحرف ونقاطه على نموذج يقدمه المعلم.",
+          "أمرر القلم في الهواء بحركة بطيئة ثم أكتب مثالًا بقلم رصاص.",
+          "أكتب الكلمات المختارة مرة ببطء ومرة باستقلال.",
+          "أنسخ الجملة مع مراعاة موضع الحروف على السطر والمسافات.",
+          "أقارن المحاولة الأخيرة بالأولى وأصحح نقطة أو اتصالًا غير دقيق."
+        ],
+        "differentiation": {
+          "support": "يستخدم المتعلم بطاقات حروف مكبرة وسطورا واسعة ويتدرب على كلمتين فقط.",
+          "extension": "يكتب الطالب جملة جديدة بأكثر من موضع للحرف ويعلل فروق اتصال أشكاله."
+        },
+        "teacherNote": "هذا نشاط نصي أصيل، ولا يمثل ورقة رسم لمسار القلم أو نموذجًا مصورًا للخط المعتمد؛ يلزم عرض نموذج بصري موثق من المعلم."
+      },
+      "rubric": [
+        {
+          "name": "شكل الحرف الصحيح",
+          "max": 3,
+          "description": "مطابقة الجسم والنقاط والهيئة النموذجية"
+        },
+        {
+          "name": "المواضع والاتصال",
+          "max": 3,
+          "description": "احترام الاتصال والانفصال في أول ووسط وآخر الكلمة"
+        },
+        {
+          "name": "السطر والمسافات",
+          "max": 3,
+          "description": "انتظام مستوى الحروف والهوامش والفراغات"
+        },
+        {
+          "name": "الإتقان والمراجعة",
+          "max": 3,
+          "description": "تصحيح المحاولة الثانية اعتمادًا على الملاحظة"
+        }
+      ],
+      "assessment": {
+        "mode": "human_teacher_observation_only",
+        "automaticPenStrokeRecognition": false,
+        "totalPoints": 12
+      },
+      "rendering": {
+        "traceSheetRendered": false,
+        "visualStrokeTemplateVerified": false,
+        "printedWorksheetsReady": false
+      }
+    },
+    {
+      "officialTopic": "حرفا (ح) و(خ)",
+      "topicOrder": 6,
+      "targetLetters": [
+        "ح",
+        "خ"
+      ],
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "book": "كرّاسة الخطّ",
+        "textbookPageStart": 16,
+        "textbookPageEnd": 19,
+        "planPdfPage": 23,
+        "visualTableVerification": "pending"
+      },
+      "status": "original_handwriting_guidance_teacher_review_pending",
+      "publicationApproved": false,
+      "lesson": {
+        "objective": "أن يكتب المتعلم ح وخ في كلمات وجملة من إنشائه كتابة مقروءة مع ضبط الشكل والاتصال.",
+        "warmup": "أحدد ح وخ في أمثلة متنوعة وأقارن بين هيئته في أول الكلمة ووسطها وآخرها.",
+        "letterObservation": "قارن جسم الحاء الخالي من النقاط بالخاء ذات النقطة العليا؛ لا تغير موضع النقطة.",
+        "words": [
+          "حديقة",
+          "صباح",
+          "خيمة",
+          "نخلة"
+        ],
+        "sentenceToCopy": "خرج خالد إلى حديقة جميلة في الصباح.",
+        "guidedSequence": [
+          "ألاحظ الحرف ونقاطه على نموذج يقدمه المعلم.",
+          "أمرر القلم في الهواء بحركة بطيئة ثم أكتب مثالًا بقلم رصاص.",
+          "أكتب الكلمات المختارة مرة ببطء ومرة باستقلال.",
+          "أنسخ الجملة مع مراعاة موضع الحروف على السطر والمسافات.",
+          "أقارن المحاولة الأخيرة بالأولى وأصحح نقطة أو اتصالًا غير دقيق."
+        ],
+        "differentiation": {
+          "support": "يستخدم المتعلم بطاقات حروف مكبرة وسطورا واسعة ويتدرب على كلمتين فقط.",
+          "extension": "يكتب الطالب جملة جديدة بأكثر من موضع للحرف ويعلل فروق اتصال أشكاله."
+        },
+        "teacherNote": "هذا نشاط نصي أصيل، ولا يمثل ورقة رسم لمسار القلم أو نموذجًا مصورًا للخط المعتمد؛ يلزم عرض نموذج بصري موثق من المعلم."
+      },
+      "rubric": [
+        {
+          "name": "شكل الحرف الصحيح",
+          "max": 3,
+          "description": "مطابقة الجسم والنقاط والهيئة النموذجية"
+        },
+        {
+          "name": "المواضع والاتصال",
+          "max": 3,
+          "description": "احترام الاتصال والانفصال في أول ووسط وآخر الكلمة"
+        },
+        {
+          "name": "السطر والمسافات",
+          "max": 3,
+          "description": "انتظام مستوى الحروف والهوامش والفراغات"
+        },
+        {
+          "name": "الإتقان والمراجعة",
+          "max": 3,
+          "description": "تصحيح المحاولة الثانية اعتمادًا على الملاحظة"
+        }
+      ],
+      "assessment": {
+        "mode": "human_teacher_observation_only",
+        "automaticPenStrokeRecognition": false,
+        "totalPoints": 12
+      },
+      "rendering": {
+        "traceSheetRendered": false,
+        "visualStrokeTemplateVerified": false,
+        "printedWorksheetsReady": false
+      }
+    },
+    {
+      "officialTopic": "حرف (د)",
+      "topicOrder": 7,
+      "targetLetters": [
+        "د"
+      ],
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "book": "كرّاسة الخطّ",
+        "textbookPageStart": 20,
+        "textbookPageEnd": 21,
+        "planPdfPage": 23,
+        "visualTableVerification": "pending"
+      },
+      "status": "original_handwriting_guidance_teacher_review_pending",
+      "publicationApproved": false,
+      "lesson": {
+        "objective": "أن يكتب المتعلم د في كلمات وجملة من إنشائه كتابة مقروءة مع ضبط الشكل والاتصال.",
+        "warmup": "أحدد د في أمثلة متنوعة وأقارن بين هيئته في أول الكلمة ووسطها وآخرها.",
+        "letterObservation": "الدال لا يتصل بالحرف التالي في الكتابة المتصلة؛ افصل ما بعده بمسافة حرفية مناسبة.",
+        "words": [
+          "دار",
+          "ورد",
+          "يد",
+          "مدرسة"
+        ],
+        "sentenceToCopy": "دخل داود مدرسته وبدأ درسه بهدوء.",
+        "guidedSequence": [
+          "ألاحظ الحرف ونقاطه على نموذج يقدمه المعلم.",
+          "أمرر القلم في الهواء بحركة بطيئة ثم أكتب مثالًا بقلم رصاص.",
+          "أكتب الكلمات المختارة مرة ببطء ومرة باستقلال.",
+          "أنسخ الجملة مع مراعاة موضع الحروف على السطر والمسافات.",
+          "أقارن المحاولة الأخيرة بالأولى وأصحح نقطة أو اتصالًا غير دقيق."
+        ],
+        "differentiation": {
+          "support": "يستخدم المتعلم بطاقات حروف مكبرة وسطورا واسعة ويتدرب على كلمتين فقط.",
+          "extension": "يكتب الطالب جملة جديدة بأكثر من موضع للحرف ويعلل فروق اتصال أشكاله."
+        },
+        "teacherNote": "هذا نشاط نصي أصيل، ولا يمثل ورقة رسم لمسار القلم أو نموذجًا مصورًا للخط المعتمد؛ يلزم عرض نموذج بصري موثق من المعلم."
+      },
+      "rubric": [
+        {
+          "name": "شكل الحرف الصحيح",
+          "max": 3,
+          "description": "مطابقة الجسم والنقاط والهيئة النموذجية"
+        },
+        {
+          "name": "المواضع والاتصال",
+          "max": 3,
+          "description": "احترام الاتصال والانفصال في أول ووسط وآخر الكلمة"
+        },
+        {
+          "name": "السطر والمسافات",
+          "max": 3,
+          "description": "انتظام مستوى الحروف والهوامش والفراغات"
+        },
+        {
+          "name": "الإتقان والمراجعة",
+          "max": 3,
+          "description": "تصحيح المحاولة الثانية اعتمادًا على الملاحظة"
+        }
+      ],
+      "assessment": {
+        "mode": "human_teacher_observation_only",
+        "automaticPenStrokeRecognition": false,
+        "totalPoints": 12
+      },
+      "rendering": {
+        "traceSheetRendered": false,
+        "visualStrokeTemplateVerified": false,
+        "printedWorksheetsReady": false
+      }
+    },
+    {
+      "officialTopic": "حرف (ذ)",
+      "topicOrder": 8,
+      "targetLetters": [
+        "ذ"
+      ],
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "book": "كرّاسة الخطّ",
+        "textbookPageStart": 22,
+        "textbookPageEnd": 23,
+        "planPdfPage": 24,
+        "visualTableVerification": "pending"
+      },
+      "status": "original_handwriting_guidance_teacher_review_pending",
+      "publicationApproved": false,
+      "lesson": {
+        "objective": "أن يكتب المتعلم ذ في كلمات وجملة من إنشائه كتابة مقروءة مع ضبط الشكل والاتصال.",
+        "warmup": "أحدد ذ في أمثلة متنوعة وأقارن بين هيئته في أول الكلمة ووسطها وآخرها.",
+        "letterObservation": "الذال تشبه الدال وتتميز بنقطة فوقها، ولا تتصل بالحرف التالي.",
+        "words": [
+          "ذهب",
+          "لذيذ",
+          "أذن",
+          "ذكر"
+        ],
+        "sentenceToCopy": "ذهبَ ذكيٌّ إلى المكتبة ليقرأ قصة.",
+        "guidedSequence": [
+          "ألاحظ الحرف ونقاطه على نموذج يقدمه المعلم.",
+          "أمرر القلم في الهواء بحركة بطيئة ثم أكتب مثالًا بقلم رصاص.",
+          "أكتب الكلمات المختارة مرة ببطء ومرة باستقلال.",
+          "أنسخ الجملة مع مراعاة موضع الحروف على السطر والمسافات.",
+          "أقارن المحاولة الأخيرة بالأولى وأصحح نقطة أو اتصالًا غير دقيق."
+        ],
+        "differentiation": {
+          "support": "يستخدم المتعلم بطاقات حروف مكبرة وسطورا واسعة ويتدرب على كلمتين فقط.",
+          "extension": "يكتب الطالب جملة جديدة بأكثر من موضع للحرف ويعلل فروق اتصال أشكاله."
+        },
+        "teacherNote": "هذا نشاط نصي أصيل، ولا يمثل ورقة رسم لمسار القلم أو نموذجًا مصورًا للخط المعتمد؛ يلزم عرض نموذج بصري موثق من المعلم."
+      },
+      "rubric": [
+        {
+          "name": "شكل الحرف الصحيح",
+          "max": 3,
+          "description": "مطابقة الجسم والنقاط والهيئة النموذجية"
+        },
+        {
+          "name": "المواضع والاتصال",
+          "max": 3,
+          "description": "احترام الاتصال والانفصال في أول ووسط وآخر الكلمة"
+        },
+        {
+          "name": "السطر والمسافات",
+          "max": 3,
+          "description": "انتظام مستوى الحروف والهوامش والفراغات"
+        },
+        {
+          "name": "الإتقان والمراجعة",
+          "max": 3,
+          "description": "تصحيح المحاولة الثانية اعتمادًا على الملاحظة"
+        }
+      ],
+      "assessment": {
+        "mode": "human_teacher_observation_only",
+        "automaticPenStrokeRecognition": false,
+        "totalPoints": 12
+      },
+      "rendering": {
+        "traceSheetRendered": false,
+        "visualStrokeTemplateVerified": false,
+        "printedWorksheetsReady": false
+      }
+    },
+    {
+      "officialTopic": "حرف (ر)",
+      "topicOrder": 9,
+      "targetLetters": [
+        "ر"
+      ],
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "book": "كرّاسة الخطّ",
+        "textbookPageStart": 24,
+        "textbookPageEnd": 25,
+        "planPdfPage": 24,
+        "visualTableVerification": "pending"
+      },
+      "status": "original_handwriting_guidance_teacher_review_pending",
+      "publicationApproved": false,
+      "lesson": {
+        "objective": "أن يكتب المتعلم ر في كلمات وجملة من إنشائه كتابة مقروءة مع ضبط الشكل والاتصال.",
+        "warmup": "أحدد ر في أمثلة متنوعة وأقارن بين هيئته في أول الكلمة ووسطها وآخرها.",
+        "letterObservation": "الراء لا يتصل بالحرف التالي، ويمتد جزء منه في نهاية الكلمة أسفل السطر.",
+        "words": [
+          "رسم",
+          "بحر",
+          "نور",
+          "قرار"
+        ],
+        "sentenceToCopy": "رسم راشد زهرة قرب سور المدرسة.",
+        "guidedSequence": [
+          "ألاحظ الحرف ونقاطه على نموذج يقدمه المعلم.",
+          "أمرر القلم في الهواء بحركة بطيئة ثم أكتب مثالًا بقلم رصاص.",
+          "أكتب الكلمات المختارة مرة ببطء ومرة باستقلال.",
+          "أنسخ الجملة مع مراعاة موضع الحروف على السطر والمسافات.",
+          "أقارن المحاولة الأخيرة بالأولى وأصحح نقطة أو اتصالًا غير دقيق."
+        ],
+        "differentiation": {
+          "support": "يستخدم المتعلم بطاقات حروف مكبرة وسطورا واسعة ويتدرب على كلمتين فقط.",
+          "extension": "يكتب الطالب جملة جديدة بأكثر من موضع للحرف ويعلل فروق اتصال أشكاله."
+        },
+        "teacherNote": "هذا نشاط نصي أصيل، ولا يمثل ورقة رسم لمسار القلم أو نموذجًا مصورًا للخط المعتمد؛ يلزم عرض نموذج بصري موثق من المعلم."
+      },
+      "rubric": [
+        {
+          "name": "شكل الحرف الصحيح",
+          "max": 3,
+          "description": "مطابقة الجسم والنقاط والهيئة النموذجية"
+        },
+        {
+          "name": "المواضع والاتصال",
+          "max": 3,
+          "description": "احترام الاتصال والانفصال في أول ووسط وآخر الكلمة"
+        },
+        {
+          "name": "السطر والمسافات",
+          "max": 3,
+          "description": "انتظام مستوى الحروف والهوامش والفراغات"
+        },
+        {
+          "name": "الإتقان والمراجعة",
+          "max": 3,
+          "description": "تصحيح المحاولة الثانية اعتمادًا على الملاحظة"
+        }
+      ],
+      "assessment": {
+        "mode": "human_teacher_observation_only",
+        "automaticPenStrokeRecognition": false,
+        "totalPoints": 12
+      },
+      "rendering": {
+        "traceSheetRendered": false,
+        "visualStrokeTemplateVerified": false,
+        "printedWorksheetsReady": false
+      }
+    },
+    {
+      "officialTopic": "حرف (ز)",
+      "topicOrder": 10,
+      "targetLetters": [
+        "ز"
+      ],
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "book": "كرّاسة الخطّ",
+        "textbookPageStart": 26,
+        "textbookPageEnd": 27,
+        "planPdfPage": 24,
+        "visualTableVerification": "pending"
+      },
+      "status": "original_handwriting_guidance_teacher_review_pending",
+      "publicationApproved": false,
+      "lesson": {
+        "objective": "أن يكتب المتعلم ز في كلمات وجملة من إنشائه كتابة مقروءة مع ضبط الشكل والاتصال.",
+        "warmup": "أحدد ز في أمثلة متنوعة وأقارن بين هيئته في أول الكلمة ووسطها وآخرها.",
+        "letterObservation": "الزاي راء فوقها نقطة واحدة، ولا تتصل بالحرف التالي.",
+        "words": [
+          "زرع",
+          "فوز",
+          "حزن",
+          "زميل"
+        ],
+        "sentenceToCopy": "زرع زيد زهرة صغيرة واعتنى بها.",
+        "guidedSequence": [
+          "ألاحظ الحرف ونقاطه على نموذج يقدمه المعلم.",
+          "أمرر القلم في الهواء بحركة بطيئة ثم أكتب مثالًا بقلم رصاص.",
+          "أكتب الكلمات المختارة مرة ببطء ومرة باستقلال.",
+          "أنسخ الجملة مع مراعاة موضع الحروف على السطر والمسافات.",
+          "أقارن المحاولة الأخيرة بالأولى وأصحح نقطة أو اتصالًا غير دقيق."
+        ],
+        "differentiation": {
+          "support": "يستخدم المتعلم بطاقات حروف مكبرة وسطورا واسعة ويتدرب على كلمتين فقط.",
+          "extension": "يكتب الطالب جملة جديدة بأكثر من موضع للحرف ويعلل فروق اتصال أشكاله."
+        },
+        "teacherNote": "هذا نشاط نصي أصيل، ولا يمثل ورقة رسم لمسار القلم أو نموذجًا مصورًا للخط المعتمد؛ يلزم عرض نموذج بصري موثق من المعلم."
+      },
+      "rubric": [
+        {
+          "name": "شكل الحرف الصحيح",
+          "max": 3,
+          "description": "مطابقة الجسم والنقاط والهيئة النموذجية"
+        },
+        {
+          "name": "المواضع والاتصال",
+          "max": 3,
+          "description": "احترام الاتصال والانفصال في أول ووسط وآخر الكلمة"
+        },
+        {
+          "name": "السطر والمسافات",
+          "max": 3,
+          "description": "انتظام مستوى الحروف والهوامش والفراغات"
+        },
+        {
+          "name": "الإتقان والمراجعة",
+          "max": 3,
+          "description": "تصحيح المحاولة الثانية اعتمادًا على الملاحظة"
+        }
+      ],
+      "assessment": {
+        "mode": "human_teacher_observation_only",
+        "automaticPenStrokeRecognition": false,
+        "totalPoints": 12
+      },
+      "rendering": {
+        "traceSheetRendered": false,
+        "visualStrokeTemplateVerified": false,
+        "printedWorksheetsReady": false
+      }
+    },
+    {
+      "officialTopic": "حرفا (س) و(ش)",
+      "topicOrder": 11,
+      "targetLetters": [
+        "س",
+        "ش"
+      ],
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "book": "كرّاسة الخطّ",
+        "textbookPageStart": 28,
+        "textbookPageEnd": 31,
+        "planPdfPage": 24,
+        "visualTableVerification": "pending"
+      },
+      "status": "original_handwriting_guidance_teacher_review_pending",
+      "publicationApproved": false,
+      "lesson": {
+        "objective": "أن يكتب المتعلم س وش في كلمات وجملة من إنشائه كتابة مقروءة مع ضبط الشكل والاتصال.",
+        "warmup": "أحدد س وش في أمثلة متنوعة وأقارن بين هيئته في أول الكلمة ووسطها وآخرها.",
+        "letterObservation": "للشين ثلاث نقاط فوق الجسم المشابه للسين، وانتبه لأسنان الحرف ونسبها.",
+        "words": [
+          "سهل",
+          "مدرسة",
+          "شجرة",
+          "مشهد"
+        ],
+        "sentenceToCopy": "شاهد سالم شجرة في ساحة المدرسة.",
+        "guidedSequence": [
+          "ألاحظ الحرف ونقاطه على نموذج يقدمه المعلم.",
+          "أمرر القلم في الهواء بحركة بطيئة ثم أكتب مثالًا بقلم رصاص.",
+          "أكتب الكلمات المختارة مرة ببطء ومرة باستقلال.",
+          "أنسخ الجملة مع مراعاة موضع الحروف على السطر والمسافات.",
+          "أقارن المحاولة الأخيرة بالأولى وأصحح نقطة أو اتصالًا غير دقيق."
+        ],
+        "differentiation": {
+          "support": "يستخدم المتعلم بطاقات حروف مكبرة وسطورا واسعة ويتدرب على كلمتين فقط.",
+          "extension": "يكتب الطالب جملة جديدة بأكثر من موضع للحرف ويعلل فروق اتصال أشكاله."
+        },
+        "teacherNote": "هذا نشاط نصي أصيل، ولا يمثل ورقة رسم لمسار القلم أو نموذجًا مصورًا للخط المعتمد؛ يلزم عرض نموذج بصري موثق من المعلم."
+      },
+      "rubric": [
+        {
+          "name": "شكل الحرف الصحيح",
+          "max": 3,
+          "description": "مطابقة الجسم والنقاط والهيئة النموذجية"
+        },
+        {
+          "name": "المواضع والاتصال",
+          "max": 3,
+          "description": "احترام الاتصال والانفصال في أول ووسط وآخر الكلمة"
+        },
+        {
+          "name": "السطر والمسافات",
+          "max": 3,
+          "description": "انتظام مستوى الحروف والهوامش والفراغات"
+        },
+        {
+          "name": "الإتقان والمراجعة",
+          "max": 3,
+          "description": "تصحيح المحاولة الثانية اعتمادًا على الملاحظة"
+        }
+      ],
+      "assessment": {
+        "mode": "human_teacher_observation_only",
+        "automaticPenStrokeRecognition": false,
+        "totalPoints": 12
+      },
+      "rendering": {
+        "traceSheetRendered": false,
+        "visualStrokeTemplateVerified": false,
+        "printedWorksheetsReady": false
+      }
+    },
+    {
+      "officialTopic": "حرف (ص)",
+      "topicOrder": 12,
+      "targetLetters": [
+        "ص"
+      ],
+      "source": {
+        "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+        "book": "كرّاسة الخطّ",
+        "textbookPageStart": 32,
+        "textbookPageEnd": 33,
+        "planPdfPage": 25,
+        "visualTableVerification": "pending"
+      },
+      "status": "original_handwriting_guidance_teacher_review_pending",
+      "publicationApproved": false,
+      "lesson": {
+        "objective": "أن يكتب المتعلم ص في كلمات وجملة من إنشائه كتابة مقروءة مع ضبط الشكل والاتصال.",
+        "warmup": "أحدد ص في أمثلة متنوعة وأقارن بين هيئته في أول الكلمة ووسطها وآخرها.",
+        "letterObservation": "راعِ اتساع جسم الصاد واتصال الحرف بما قبله وبعده وفق موضعه.",
+        "words": [
+          "صديق",
+          "فصل",
+          "قصص",
+          "صباح"
+        ],
+        "sentenceToCopy": "صنع صادق بطاقة لصديقه في الفصل.",
+        "guidedSequence": [
+          "ألاحظ الحرف ونقاطه على نموذج يقدمه المعلم.",
+          "أمرر القلم في الهواء بحركة بطيئة ثم أكتب مثالًا بقلم رصاص.",
+          "أكتب الكلمات المختارة مرة ببطء ومرة باستقلال.",
+          "أنسخ الجملة مع مراعاة موضع الحروف على السطر والمسافات.",
+          "أقارن المحاولة الأخيرة بالأولى وأصحح نقطة أو اتصالًا غير دقيق."
+        ],
+        "differentiation": {
+          "support": "يستخدم المتعلم بطاقات حروف مكبرة وسطورا واسعة ويتدرب على كلمتين فقط.",
+          "extension": "يكتب الطالب جملة جديدة بأكثر من موضع للحرف ويعلل فروق اتصال أشكاله."
+        },
+        "teacherNote": "هذا نشاط نصي أصيل، ولا يمثل ورقة رسم لمسار القلم أو نموذجًا مصورًا للخط المعتمد؛ يلزم عرض نموذج بصري موثق من المعلم."
+      },
+      "rubric": [
+        {
+          "name": "شكل الحرف الصحيح",
+          "max": 3,
+          "description": "مطابقة الجسم والنقاط والهيئة النموذجية"
+        },
+        {
+          "name": "المواضع والاتصال",
+          "max": 3,
+          "description": "احترام الاتصال والانفصال في أول ووسط وآخر الكلمة"
+        },
+        {
+          "name": "السطر والمسافات",
+          "max": 3,
+          "description": "انتظام مستوى الحروف والهوامش والفراغات"
+        },
+        {
+          "name": "الإتقان والمراجعة",
+          "max": 3,
+          "description": "تصحيح المحاولة الثانية اعتمادًا على الملاحظة"
+        }
+      ],
+      "assessment": {
+        "mode": "human_teacher_observation_only",
+        "automaticPenStrokeRecognition": false,
+        "totalPoints": 12
+      },
+      "rendering": {
+        "traceSheetRendered": false,
+        "visualStrokeTemplateVerified": false,
+        "printedWorksheetsReady": false
+      }
+    }
+  ]
+}

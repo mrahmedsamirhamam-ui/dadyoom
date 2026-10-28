@@ -6,13 +6,12 @@ import {
   access,
 } from "node:fs/promises";
 
-import {
-  join,
-} from "node:path";
+import { resolvePublicAssetPath } from "@/lib/curriculum/resolve-public-asset-path";
 
-import {
-  createClient,
-} from "@/lib/supabase/server";
+import { authorizeCurriculumAdmin } from "@/lib/auth/require-curriculum-admin";
+import { readCompleteGradingPages } from "@/lib/lesson-activities/read-complete-pages";
+
+export const dynamic = "force-dynamic";
 
 import {
   getCorrectAnswerSpec,
@@ -109,32 +108,6 @@ function text(
 }
 
 
-function publicUrlToPath(
-  value: string
-): string | null {
-  const clean =
-    value.trim();
-
-  if (
-    !clean ||
-    !clean.startsWith("/")
-  ) {
-    return null;
-  }
-
-  return join(
-    process.cwd(),
-    "public",
-    ...clean
-      .replace(
-        /^\/+/,
-        ""
-      )
-      .split("/")
-  );
-}
-
-
 async function publicAssetExists(
   value: unknown
 ): Promise<boolean | null> {
@@ -158,12 +131,13 @@ async function publicAssetExists(
   }
 
   const path =
-    publicUrlToPath(
+    resolvePublicAssetPath(
       url
     );
 
   if (!path) {
-    return null;
+    // Invalid/traversal paths are broken assets, not skipped checks.
+    return false;
   }
 
   try {
@@ -209,48 +183,35 @@ function imageOptionUrls(
 
 export async function GET() {
   try {
-    const supabase =
-      await createClient();
+    const access = await authorizeCurriculumAdmin();
+    if (!access.authorized) return access.response;
+    const { supabase } = access;
 
-    const {
-      data,
-      error,
-    } =
-      await supabase
-        .from(
-          "lesson_activities"
-        )
-        .select(`
-          id,
-          lesson_id,
-          activity_order,
-          title,
-          activity_type,
-          content,
-          answer,
-          points,
-          is_published
-        `)
-        .order(
-          "lesson_id",
-          {
-            ascending: true,
-          }
-        )
-        .order(
-          "activity_order",
-          {
-            ascending: true,
-          }
-        );
+    // PostgREST caps unpaged reads. Scanning only the first page can make
+    // thousands of activities disappear from the reported runtime errors.
+    // Stable ID pagination + exact counts fail rather than report partial data.
+    const activities = await readCompleteGradingPages<ActivityRow>({
+      pageSize: 800,
+      maxRows: 50000,
+      readPage: async (offset, limit) => {
+        const { data, count, error } = await supabase
+          .from("lesson_activities")
+          .select(
+            "id,lesson_id,activity_order,title,activity_type,content,answer,points,is_published",
+            { count: "exact" },
+          )
+          .order("id", { ascending: true })
+          .range(offset, offset + limit - 1);
+        return { data: data as ActivityRow[] | null, count, error };
+      },
+    });
 
-    if (error) {
-      throw error;
-    }
-
-    const activities:
-      ActivityRow[] =
-        data ?? [];
+    // Keep the established lesson/order presentation after ID-stable paging.
+    activities.sort((a, b) =>
+      a.lesson_id.localeCompare(b.lesson_id) ||
+      (a.activity_order ?? 0) - (b.activity_order ?? 0) ||
+      a.id.localeCompare(b.id)
+    );
 
     const results = [];
 
@@ -794,7 +755,7 @@ export async function GET() {
       grouped,
 
       problematic,
-    });
+    }, { headers: { "Cache-Control": "private, no-store" } });
   }
   catch (error) {
     console.error(

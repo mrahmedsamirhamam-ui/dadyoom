@@ -1,3 +1,4 @@
+import { authorizeCurriculumAdmin } from "@/lib/auth/require-curriculum-admin";
 ﻿import {
   mkdir,
   readFile,
@@ -51,10 +52,14 @@ function normalizePage(
   return number;
 }
 
+export const dynamic = "force-dynamic";
+
 export async function POST(
   request: Request
 ) {
   try {
+    const access = await authorizeCurriculumAdmin();
+    if (!access.authorized) return access.response;
     const body =
       (await request.json()) as RequestBody;
 

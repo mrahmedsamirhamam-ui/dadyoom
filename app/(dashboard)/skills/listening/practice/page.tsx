@@ -580,7 +580,7 @@ export default function ListeningPracticePage() {
                   <p className="mt-3 leading-8 text-slate-300">
                     {saved
                       ? "تم حفظ نتيجتك، وسيستخدمها ضاد في اختيار التدريب القادم."
-                      : "ظهرت نتيجتك. إذا كنت مسجلًا فسيحاول ضاد حفظ تقدمك."}
+                      : "هذه نتيجة تدريبية للمراجعة، ولا تُضاف إلى درجات الإتقان أو XP حتى يتوفر تصحيح خادمي معتمد."}
                   </p>
 
                   <div className="mt-5 flex flex-wrap gap-3">

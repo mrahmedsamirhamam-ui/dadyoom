@@ -2,9 +2,10 @@ import {
   NextResponse,
 } from "next/server";
 
-import {
-  createClient,
-} from "@/lib/supabase/server";
+import { authorizeCurriculumAdmin } from "@/lib/auth/require-curriculum-admin";
+import { readCompleteGradingPages } from "@/lib/lesson-activities/read-complete-pages";
+
+export const dynamic = "force-dynamic";
 
 import {
   validateActivity,
@@ -31,67 +32,42 @@ type LessonRow = {
 
 export async function GET() {
   try {
-    const supabase =
-      await createClient();
+    const access = await authorizeCurriculumAdmin();
+    if (!access.authorized) return access.response;
+    const { supabase } = access;
 
-    const {
-      data: lessonsData,
-      error: lessonsError,
-    } =
-      await supabase
-        .from("lessons")
-        .select(`
-          id,
-          title,
-          lesson_number,
-          source_page_start,
-          source_page_end
-        `)
-        .order(
-          "lesson_number",
-          {
-            ascending: true,
-          }
-        );
+    // A naked PostgREST select is capped (commonly at 1,000 rows). This
+    // admin report must never call a partial 1,000/24,000 activity read clean.
+    // Reuse the complete, count-verified paging guard, ordered by stable ID.
+    // If rows change midway or exceed the explicit safety bound, fail closed.
+    const lessons = await readCompleteGradingPages<LessonRow>({
+      pageSize: 800,
+      maxRows: 50000,
+      readPage: async (offset, limit) => {
+        const { data, count, error } = await supabase
+          .from("lessons")
+          .select("id,title,lesson_number,source_page_start,source_page_end", { count: "exact" })
+          .order("id", { ascending: true })
+          .range(offset, offset + limit - 1);
+        return { data: data as LessonRow[] | null, count, error };
+      },
+    });
 
-    if (lessonsError) {
-      throw lessonsError;
-    }
-
-    const {
-      data: activitiesData,
-      error: activitiesError,
-    } =
-      await supabase
-        .from("lesson_activities")
-        .select(`
-          id,
-          lesson_id,
-          title,
-          activity_type,
-          activity_order,
-          content,
-          answer,
-          is_published
-        `)
-        .order(
-          "activity_order",
-          {
-            ascending: true,
-          }
-        );
-
-    if (activitiesError) {
-      throw activitiesError;
-    }
-
-    const lessons =
-      (lessonsData ??
-        []) as LessonRow[];
-
-    const activities =
-      (activitiesData ??
-        []) as ActivityRow[];
+    const activities = await readCompleteGradingPages<ActivityRow>({
+      pageSize: 800,
+      maxRows: 50000,
+      readPage: async (offset, limit) => {
+        const { data, count, error } = await supabase
+          .from("lesson_activities")
+          .select(
+            "id,lesson_id,title,activity_type,activity_order,content,answer,is_published",
+            { count: "exact" },
+          )
+          .order("id", { ascending: true })
+          .range(offset, offset + limit - 1);
+        return { data: data as ActivityRow[] | null, count, error };
+      },
+    });
 
     const lessonMap =
       new Map(
@@ -280,7 +256,7 @@ export async function GET() {
       },
 
       problemActivities,
-    });
+    }, { headers: { "Cache-Control": "private, no-store" } });
   } catch (error) {
     console.error(
       "CURRICULUM_QUALITY_AUDIT_ERROR:",

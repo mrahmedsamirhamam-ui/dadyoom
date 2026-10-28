@@ -1,3 +1,5 @@
+import "server-only";
+
 import type {
   SupabaseClient,
 } from "@supabase/supabase-js";
@@ -26,6 +28,7 @@ export async function saveAssessmentSessionAnswer({
   isCorrect,
 }: SaveAssessmentSessionAnswerParams): Promise<void> {
   const {
+    data: inserted,
     error,
   } = await supabase
     .from("assessment_session_answers")
@@ -54,9 +57,22 @@ export async function saveAssessmentSessionAnswer({
           "session_id,assessment_id",
         ignoreDuplicates: true,
       }
-    );
+    )
+    .select("id,session_id,assessment_id,student_id,lesson_id")
+    .maybeSingle();
 
   if (error) {
     throw error;
+  }
+
+  // ignoreDuplicates intentionally never mutates an existing answer.
+  // A conflict must also NEVER be mistaken for a successful scored write:
+  // the submit handler would otherwise credit XP for an ignored insert.
+  if (!inserted ||
+      inserted.session_id !== sessionId ||
+      inserted.assessment_id !== assessmentId ||
+      inserted.student_id !== studentId ||
+      inserted.lesson_id !== lessonId) {
+    throw new Error("ASSESSMENT_ANSWER_NOT_INSERTED");
   }
 }

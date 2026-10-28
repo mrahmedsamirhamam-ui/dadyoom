@@ -189,6 +189,14 @@ export async function completeDailyChallengeFromSkillResult(
       0
     );
 
+  // This is the floor of all real adaptive targets (55–100).
+  // A legacy/client-forged 0 target must never be redeemable for XP,
+  // even if it was accepted before the HTTP validation was fixed.
+  if (!Number.isSafeInteger(targetScore) ||
+    targetScore < 55 || targetScore > 100) {
+    throw new Error("هدف التحدي اليومي غير موثوق؛ لا يمكن منح XP.");
+  }
+
   if (
     challenge.status ===
       "completed" ||

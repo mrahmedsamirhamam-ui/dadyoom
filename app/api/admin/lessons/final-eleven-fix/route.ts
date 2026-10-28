@@ -1,10 +1,8 @@
+import { authorizeCurriculumAdmin } from "@/lib/auth/require-curriculum-admin";
 import {
   NextResponse,
 } from "next/server";
 
-import {
-  createClient,
-} from "@/lib/supabase/server";
 
 import {
   validateActivity,
@@ -370,10 +368,13 @@ const fixes: Fix[] = [
 ];
 
 
+export const dynamic = "force-dynamic";
+
 export async function POST() {
   try {
-    const supabase =
-      await createClient();
+    const access = await authorizeCurriculumAdmin();
+    if (!access.authorized) return access.response;
+    const supabase = access.supabase;
 
     const results = [];
 

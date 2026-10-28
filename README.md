@@ -17,6 +17,20 @@
 - بوابات ولي الأمر والمدرسة وتقارير المتابعة والربط الآمن بالحسابات.
 - لوحة إدارة للمناهج والدروس ومراجعة المحتوى المدعوم بالذكاء الاصطناعي.
 
+## أولوية المناهج — دروس ضاديوم الأصلية الجديدة (25 أكتوبر 2026)
+
+**تحديث 25 أكتوبر:** أُضيف `data/curriculum-drafts/bh-g4-s1-original-learning-drafts.json` بستة دروس جديدة للصف الرابع و24 سؤالًا، فأصبح الإجمالي **18 درسًا مؤلَّفًا أصلًا و72 سؤالًا** للصفوف الثاني إلى الرابع. كلها غير منشورة ولا تثبت مطابقة فهارس 2026–2027.
+
+- بدأ تأليف المادة التعليمية قبل التطويرات الثانوية: `data/curriculum-drafts/bh-g2-s1-original-learning-drafts.json` و`data/curriculum-drafts/bh-g3-s1-original-learning-drafts.json` يحتويان **12 درسًا أصليًا** (6 للصف الثاني و6 للثالث) و**48 سؤالًا مُفَسَّرًا**، مع أهداف ومفردات ونشاط قبل القراءة وأثناءها وبعدها وتمايز.
+- هذه الملفات **مسودات إثرائية غير منشورة، غير موصولة بقاعدة بيانات الطلاب، وغير مُثبتة التطابق مع فهرس وزارة التربية البحرينية 2026–2027**؛ لا تُضاف إلى عداد الدروس الوزارية أو عداد الدروس المنشورة.
+- - **تحذير مصدر مهم:** غلاف `Plan5.pdf` يصف المسار الإداري والتكنولوجي/الهندسي، بينما الصفحات 2–5 تصف التعليم الفني والمهني وتعرض رموز مقررات مختلفة. هذا الملف لا يُستخدم لتعيين مسار تلقائي حتى التحقق من الوزارة أو الحصول على نسخة مصححة. راجع `sourceDocumentReviewFlags` في فهرس الخطط.
+
+- **جودة الاستماع للصف الرابع:** فُهرست 16 مهمة استماع رسمية من الصفوف 2–4 (3+3+10)، وتحتوي `data/curriculum-sources/bahrain-2026-s1-listening-quality-queue.json` على 10 سجلات استماع منشورة للصف الرابع فيها سؤال واحد ومفردات مسجلة صفر؛ هذه **قائمة تدقيق تربوي وليست ترخيصًا بإضافة أسئلة من العنوان**. يلزم تسجيل الاستماع أو نصه المعتمد لصياغة أسئلة فهم سمعي موثوقة واختبار التصحيح.
+
+**مراجع رسمية موثقة من ملفات المستخدم (25 أكتوبر 2026):** استلمنا سبع خطط وزارة التربية والتعليم للبحرين للفصل الأول 2026–2027. سجل `data/curriculum-sources/bahrain-2026-s1-ministry-plan-index.json` يحفظ أسماء الملفات وبصماتها SHA-256 والصفوف وصفحات المصدر و**38 عنوان قراءة** من الصفوف الثاني والثالث والرابع. تقرير `data/curriculum-sources/bahrain-2026-s1-reading-title-audit.json` يسجل مطابقة عنوانية أولية 38/38 مع الدروس المنشورة في Supabase، و14 عنوانًا له أكثر من مطابقة اسمية؛ المطابقة لا تثبت جودة النص أو صحة الأسئلة أو اكتمال منهج الفصول الأخرى. الملفات السبعة لا تُنشر في المستودع، وبصماتها مرجع للتحقق من نسخها الأصلية.
+- فحصها: `npm run curriculum:drafts:verify` و`npx vitest run tests/original-curriculum-drafts.test.ts`. لا يدعمان `--publish` أو `--apply`.
+- أولوية الانطلاق إلى الاستخدام الحقيقي: إحضار فهرس 2026–2027 الموثق للصف/الفصل، مواءمة كل درس وعنوان ووحدة وصفحة، تدقيق جودة الشرح والأسئلة وحقوق الاستخدام، ثم استيراد آمن بعد اختبار المعلم والطالب؛ لا يُغيَّر وضع المسودات الـ62 المقتطعة من فهارس البحرين إلى `published` بغير إعادة تأليف والتحقق.
+
 ## تنبيه تدقيق الإنتاج — 21 أكتوبر 2026
 
 يحتوي Supabase على 22 دولة و8,307 سجلات درس منشور من أصل 8,379، لكن هذه الأرقام **لا تساوي اكتمال المناهج الرسمية**. فحص الجودة المباشر بعد إصلاح سجلين كشف 596 درسًا منشورًا بلا أسئلة في جدول `questions`، و514 درسًا بأقل من ثلاثة أهداف، و1,193 درسًا بلا مفردات مسجلة؛ وهذه مؤشرات فحص لا أحكام على صلاحية كل درس. يوجد في المستودع حاليًا ملف حزمة مناهج فعلية واحد للبحرين (الصف الأول/الفصل الأول)، بينما تتوافر محتويات إضافية في قاعدة البيانات ولم تُقارن جميعها بفهرس الوزارة. لم يُتحقق من الموقع الحي بهذه الجولة.  أُضيفت كذلك 9 أسئلة مشروحة لثلاثة دروس إثرائية بالصف الثامن في قاعدة الإنتاج مع تحقق بنيوي، دون ادعاء أنها أسئلة الكتاب المدرسي.تفاصيل التدقيق في `docs/CURRICULUM-OPERATIONS.md`؛ يميّز `npm run curriculum:coverage` بين فحص الحزم واكتمال الفهارس الرسمية، ويدعم `--require-all-countries` كشرط لوجود حزم لكل الدول، لا دليل مطابقة رسمية.
@@ -518,3 +532,77 @@ Dadyoom aims to become an education innovation institution with a distinctive Ar
 ## حصيلة الدفعات التعليمية ليوم 20 أكتوبر 2026
 
 استُكمل الإثراء الفعلي في قاعدة الإنتاج لستة دروس من مسارات تعليم الكبار (القراءة والكتابة والإملاء) مع 18 سؤالًا جديدًا. إجمالي الدفعات الثلاث لهذا اليوم: **28 درسًا منشورًا موجودًا أُثري، و84 سؤال اختيار من متعدد جديدًا**. من أصل 177 درسًا منشورًا في مسار التعليم المستمر، ما زال **149 درسًا بلا أسئلة محفوظة**. تحقق فحص بدائل إجابات الدفعة الثالثة من خلوها من أخطاء المفتاح البنيوية. هذه أعداد حقيقية من سجلات Supabase، لا إثباتًا باكتمال المنهج أو عرض الموقع لكل المستخدمين. التفاصيل والمهام المتبقية في `docs/CURRICULUM-OPERATIONS.md`.
+
+### 2026-10-22 — authorize student question before private grading
+- Verified on current main: the endpoint was reading the private answer key before RLS student visibility, and `getLessonQuestions` still used `questions.select("*")`. On the fresh security branch, question visibility and published lesson checks run with the learner session before any admin client is created. Privileged grading is restricted by matching question ID and lesson ID.
+- Public practice listing now selects only display fields from `dadyoom_student_questions`; source regression tests and CI path triggers cover both readers.
+- Production grants on `questions` and score tables remain unchanged pending full client inventory, signed-in student/teacher E2E, Workers Preview and rollback. This code hardening alone does not increase overall readiness from the provisional 46%.
+
+### 2026-10-22 — حصر ثغرات درجات الأنشطة واعتماد تصحيح محرر المعلم
+- نقل قراءة مفاتيح `questions` في استعلام محرر المعلم إلى `createAdminClient` **بعد** التحقق من جلسة المستخدم ودور `teacher/admin` وملكية الدرس من اتصال المستخدم المقيد بـRLS. تسير قراءة/إضافة/تعديل الأسئلة بعد فحص الإذن؛ تظل RPC الخاصة بنقل السؤال وحذفه بجلسة المستخدم لأجل `auth.uid()`.
+- اجتياز CI ليس إذنًا بسحب الامتيازات من الإنتاج. يجب اختبار معلم مالك وغير مالك ومدير وطالب، ثم إعداد تراجع للصلاحيات. لا تُعرض مفاتيح الحل داخل واجهة الطالب.
+- **فجوة P0 مستقلة مؤكدة بالقراءة فقط:** `public.lesson_activities.answer` متاح لدوري `anon` و`authenticated`. عدد الأنشطة المنشورة ذات بيانات `answer` غير فارغة 21,807 من 23,779 منشورًا وقت الجرد؛ نجح استعلام `SET LOCAL ROLE anon` في إثبات قابلية القراءة دون استرجاع نص إجابة. لا يجوز إلغاء الامتيازات حتى استكمال قراءات تصحيح الأنشطة ومحررها وحفظ المحاولات واختبارات الدور وبيئة Preview.
+
+### 2026-10-22 — Server-only activity grading before grant migration
+- `completeLessonAction` requires an owned progress row and published lesson visible under student RLS; `syncLessonMasteryAction` authenticates and checks published lesson visibility. Both then use `createAdminClient` to access `lesson_activities.answer` exclusively on the trusted server.
+- Weighted best-attempt grading, user-scoped attempt reads, and progress data are unchanged. CI guards the authorization order. The legacy direct database `answer` grants remain P0 pending audited no-cost Preview E2E and rollback; a green Next.js build is not proof of production release.
+
+### 2026-10-23 — حماية مسار تصحيح الأنشطة من كشف الإجابات وتراجع الإتقان
+- مسار `POST /api/lesson-activities/check` يفحص النشاط والدرس المنشور باستخدام جلسة الطالب وRLS **قبل** استدعاء `createAdminClient` لجلب مفتاح التصحيح، ويربط الاستعلام الإداري بمعرفي النشاط والدرس معًا؛ وكذلك قراءة مفاتيح جميع أنشطة الدرس للتقييم أصبحت خادمية بعد فحص النشر.
+- عند إعادة نشاط في درس حالته `completed` أو `mastered` تُحفظ الحالة ونسبة التقدم المكتسبة، ولا يعيد التصحيح عرض الحالة `in_progress` ولا يخفض نسبة التقدم السابقة. التعديل لا يغير معيار 90% أو طريقة احتساب الدرجات.
+- أضيف اختباران لمصدر مسار التصحيح ولدالة حفظ حالة التقدم إلى GitHub CI. لا تزال الصلاحيات المباشرة لمفاتيح الإجابات وكتابة المحاولات مفتوحة في Supabase إلى حين تجربة Preview والتراجع؛ لا إعلان نشر إنتاجي أو أمان كامل.
+
+### 2026-10-23 — نقل كتابة الدرجات إلى الخادم الموثوق
+- بعد التحقق من الطالب والدرس المنشور وتصحيح الإجابات، يحفظ `POST /api/lesson-activities/check` المحاولة والتقدم بواسطة عميل الخادم الخاص، مع `user_id=user.id` الموثوق وتقييد تحديث التقدم بمالك الصف ودرسِه. `syncLessonMasteryAction` يحفظ نتيجة الإتقان المحسوبة خادميًا عبر عميل الخادم كذلك.
+- القراءة المسموحة للطالب ومحاولاته بقيت بجلسة RLS، ولم تُسحب أي صلاحية PostgreSQL بعد؛ ما زالت كتابات تاريخية إضافية تحتاج انتقالًا قبل قفل المنفذ المباشر. أضيفت اختبارات ضبط ترتيبي للكتابة الآمنة إلى اختبارات CI الموجودة، بلا تعديل بيانات إنتاجية.
+
+### 2026-10-23 — Owned progress repository hardening
+- `progress.repository.ts`: requires a verified session; never allows another student's progress to be read, created or updated; verifies published-lesson visibility under caller RLS *before* opening the server-only persistence client. UPDATE matches stored ID + authenticated owner + authorized lesson; identity/lesson fields cannot be passed in update payload.
+- `progress.ts`: rejects incomplete, nonfinite, and out-of-range assessment results below 90% at the internal completion boundary, in addition to the action's existing mastery gate. No existing production rows, migrations or grants changed.
+- New source regressions added to curriculum CI. This is staged server-code hardening, **not** confirmation of an operational end-to-end attempt until Preview and DB permission rollout pass.
+
+### 2026-10-23 — tutoring is not assessed mastery
+- The semantic tutor previously called `updateLessonMastery` when its own answer contained no error text, adding a *correct student answer* and potentially a 100% mastery score even without a student assessment. Removed this grading call and obsolete helper, while retaining chat history, streamed feedback and suggested practice questions.
+- Stream endpoint now validates the user's visibility of the published lesson before reading chat/context, and client no longer broadcasts `lesson-mastery-updated` on completion of a tutor response. Only actual server-graded attempts may influence academic mastery.
+- No changes to historic student results were performed; source regression test added to CI. Supabase privilege remediation and Cloudflare Preview remain release blockers.
+
+### 2026-10-23 — AI practice result stays distinct from canonical lesson mastery
+- `POST /api/ai/assessment/submit` was the second caller of removed legacy `updateLessonMastery`. A single correct AI MCQ could have overwritten `lesson_mastery` with 100%. Removed the call; **retained** its server-graded session answer storage, progress-skill updates and cache invalidation.
+- `lesson_mastery` is reserved for full-lesson attempts and the 90% completion gate, not tutor answers or one-off generated practice questions. CI test now asserts both tutoring and AI submit preserve the distinction. This also fixes the TypeScript missing-module error observed on the preceding revision.
+
+### 2026-10-23 — فحص متكرر آمن لصلاحيات أسئلة ضاديوم
+- أضيف `scripts/security-assessment-permissions-audit.sql` للاستعلام عن صلاحيات `questions.correct_answer` و`lesson_activities.answer` وجداول حفظ الدرجات، وعن RLS وصلاحيات RPC و`security_invoker` من **البيانات الوصفية فقط**؛ لا يُظهر نص أي إجابة أو معلومات شخصية، ولا يحتوي عمليات تغيير.
+- خطر معمارية ينبغي تجنبه: الإلغاء الشامل لقراءة `questions` سيكسر واجهة `dadyoom_student_questions` الحالية لاعتمادها على `security_invoker=true`، وإعادة منح قراءة `options` الخام قد تكشف مفاتيح مخفية داخل JSON. يجب تنفيذ بديل آمن في Preview قبل سحب صلاحيات الإنتاج.
+- اختبار Vitest يفرض أن ملف التدقيق للقراءة فقط. لا ترحيل إنتاجي ولا تعديل RLS أو بيانات.
+
+### 2026-10-23 — حماية مفتاح أسئلة تقويم الذكاء الاصطناعي
+- `/api/ai/assessment/submit` كان يقرأ `ai_assessments.correct_answer` تحت جلسة الطالب ويحجز السؤال قبل التحقق من ملكية جلسة الاختبار. أصبح يجلب بيانات العرض دون المفتاح، ويثبت أن الاختبار يخص جلسة الطالب ودرسًا منشورًا قبل قراءة المفتاح الخادمي والحجز المشروط، ويرفض البديل خارج المدى.
+- حفظ جواب `assessment_session_answers` صار بصلاحية الخادم بعد التحقق، ولا يعاد كشف الحل أو الشرح للطالب عند الخطأ. بعد تسجيل محاولة مثبتة لا يعاد فتح السؤال تلقائيًا على فشل مرحلة لاحقة، تجنبًا للتكرار.
+- **مهم:** الجدول الأصلي `ai_assessments` نفسه ما زال يمنح `SELECT correct_answer` و`UPDATE` للحسابات في Supabase الإنتاج. أضيف إلى فحص الصلاحيات؛ حل الالتفاف المباشر مرتبط بترحيل آمن للمنفذ العام في Preview وليس بهذه تعديلات الكود فقط.
+
+### 2026-10-23 — AI Assessment client-leak and next-step grade forgery guards
+- API GET `/api/ai/assessment/[id]` and POST `/api/ai/assessment` no longer serialize the correct choice or explanation before submitting; their student read/insert projections exclude the secret fields. POST `/api/ai/assessment/next` does not trust the browser's `correct` boolean: it verifies ownership, published lesson, exactly one new saved answer and server-private answer-key match, then advances using the server result.
+- `advanceAssessmentSession` uses optimistic predicates for question index and scored counts to prevent duplicate concurrent increments. New Vitest guards are added to CI and the read-only permissions audit includes session answer/session tables.
+- **Not yet end-to-end validated** on Preview: direct database grants to `ai_assessments.correct_answer`, `assessment_sessions`, and `assessment_session_answers` still require a proven non-breaking permissions migration. No production data changed.
+
+### 2026-10-23 — AI generated-question and session write authorization
+- `/api/ai/assessment`: validates the authenticated learner and a RLS-visible **published** lesson before opening the privileged server-only Supabase client; writes generated question keys through that trusted client, never the user's Data API session. Returned display payload remains redacted.
+- `/api/ai/assessment/session`: rejects unpublished lessons and creates/resumes a session through the server-only client after authenticating the student; session student ID is always derived from `auth.getUser()`.
+- `/api/ai/assessment/[id]`: checks parent lesson is still published before returning the student's safe question projection. New CI source guards cover all three.
+- Direct table-level grants on AI assessment/session tables remain exposed in production and require tested role/permission migration. No production SQL or real student submissions performed.
+
+### 2026-10-23 — trusted final analytics for adaptive assessments
+- `getAssessmentSessionAnalytics` no longer trusts `assessment_session_answers.is_correct`, a column writable by the student's database role in the current production policy. After the already-authorized session completes, it reads selected choices with a trusted server client and matches each question to the private `ai_assessments.correct_answer` scoped by authenticated owner email and published lesson.
+- Fails closed if any stored question key is missing. Calculates strengths, weaknesses and totals from server-computed correctness, preserving existing return shape. Regression test added to AI assessment CI; no production SQL or student-record changes.
+
+### 2026-10-23 — behavioral unit tests of private-key-derived AI analytics
+- Added `tests/security/ai-session-analytics.test.ts` with mocked client behavior (no access to real student data). It verifies false positives are rejected even when stored `is_correct=true`, false negatives are corrected from the stored choice, a missing private key fails closed, and empty sessions make no private key query.
+- Wired it into the existing CI source filter and gate. This complements existing source-code assertions, but is not a substitute for an authenticated Preview end-to-end test or a real database permission migration.
+
+### 2026-10-23 — latest assessment analytics now enforces ownership and private correction
+- Fixed the compile failure caused by `getLatestAssessmentAnalytics` calling the updated key-derived analytics method without authenticated email or lesson ID. It now checks `auth.getUser()` and `user.id===studentId`, retrieves only the caller's finished session under RLS, and invokes private-key-derived analytics with the server-only client and the validated lesson/student identity.
+- Dedicated source guard and CI path added; no real answer values returned or historic data edited.
+
+### 2026-10-23 — AI skill integrity and empty-session analytics
+- AI assessment analytics now reads **correct_answer and skill** from the original server-private question record, ignoring editable `assessment_session_answers.skill`; a forged skill name cannot manipulate strengths/weaknesses. A missing official skill label gets the existing `الاستيعاب` fallback.
+- Pure `analyzeAssessment` handles an empty session as `overallPercentage=0`, not `NaN`. Behavioral Vitest cases cover spoofed skill, missing skill and zero attempts. No SQL, RLS, production records, or payments changed.

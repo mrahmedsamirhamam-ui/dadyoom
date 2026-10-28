@@ -322,3 +322,354 @@ SELECT lesson_type,official_content_scope,COUNT(*) published_records,
    AND question_count>=3) enriched_minimum,
  SUM(structural_mcq) structurally_valid_mcq
 FROM scope GROUP BY lesson_type,official_content_scope ORDER BY lesson_type,official_content_scope;
+
+-- 14. Published assessment coverage: count BOTH stored questions and published activities.
+-- This gate validates RECORD PRESENCE only, not learner ability to answer it, pedagogy,
+-- exact official syllabus, privacy, or deployed API accessibility.
+WITH qc AS (
+ SELECT lesson_id,count(*) AS n FROM public.questions GROUP BY lesson_id
+), ac AS (
+ SELECT lesson_id,count(*) FILTER(WHERE is_published IS TRUE) AS n
+ FROM public.lesson_activities GROUP BY lesson_id
+)
+SELECT
+ COUNT(*) AS published_lesson_records,
+ COUNT(*) FILTER(WHERE coalesce(qc.n,0)>0 OR coalesce(ac.n,0)>0) AS with_stored_assessment,
+ COUNT(*) FILTER(WHERE coalesce(qc.n,0)=0 AND coalesce(ac.n,0)>0) AS assessed_by_activities_only,
+ COUNT(*) FILTER(WHERE coalesce(qc.n,0)=0 AND coalesce(ac.n,0)=0) AS missing_stored_assessment,
+ ROUND(100.0 * COUNT(*) FILTER(WHERE coalesce(qc.n,0)>0 OR coalesce(ac.n,0)>0)
+  / NULLIF(COUNT(*),0),2) AS published_assessment_coverage_pct
+FROM public.lessons l LEFT JOIN qc ON qc.lesson_id=l.id
+ LEFT JOIN ac ON ac.lesson_id=l.id
+WHERE l.status='published';
+
+-- 15. Distinguish imported draft index artifacts, authorable curriculum draft
+-- packages, and published BOOK CATALOG reference nodes (not actual lesson texts).
+-- Flags are heuristic QA queues; never automatically publish/delete/change a row.
+SELECT
+ count(*) FILTER(WHERE l.status='draft') AS total_draft_rows,
+ count(*) FILTER(WHERE l.status='draft' AND co.code='BH' AND
+   length(coalesce(l.content,''))<300 AND NOT EXISTS(
+    SELECT 1 FROM public.questions q WHERE q.lesson_id=l.id
+   )) AS bahrain_short_no_question_import_candidates,
+ count(*) FILTER(WHERE l.status='draft' AND co.code<>'BH') AS other_country_drafts_to_review,
+ count(*) FILTER(WHERE l.status='published' AND length(coalesce(l.content,''))=0
+   AND l.summary LIKE 'عقدة تغطية رسمية%') AS published_book_catalog_reference_nodes,
+ count(*) FILTER(WHERE l.status='published' AND length(coalesce(l.content,''))=0
+   AND coalesce(l.summary,'') NOT LIKE 'عقدة تغطية رسمية%') AS published_empty_non_catalog_lessons
+FROM public.lessons l
+JOIN public.units u ON u.id=l.unit_id
+JOIN public.grades g ON g.id=u.grade_id
+JOIN public.curricula c ON c.id=g.curriculum_id
+JOIN public.countries co ON co.id=c.country_id;
+
+-- 16. Unpublished readiness: group draft lesson records by country/grade/term,
+-- preserving separate blockers for missing assessment and source provenance.
+-- Short content (<1200 chars) is an editorial signal, NOT a deterministic
+-- publication decision. A stored question is NOT evidence of official syllabus
+-- matching. No answers, learner records or personally identifying data are read.
+-- DO NOT auto-publish, auto-delete or invent source pages from this report.
+WITH draft_question_counts AS (
+ SELECT lesson_id,count(*) AS n
+ FROM public.questions GROUP BY lesson_id
+), draft_published_activity_counts AS (
+ SELECT lesson_id,count(*) AS n
+ FROM public.lesson_activities WHERE is_published IS TRUE GROUP BY lesson_id
+)
+SELECT
+ co.code AS country_code,
+ g.grade_number,
+ l.semester,
+ COUNT(*) AS draft_records,
+ COUNT(*) FILTER(WHERE coalesce(qc.n,0)=0 AND coalesce(ac.n,0)=0)
+   AS draft_missing_stored_assessment,
+ COUNT(*) FILTER(WHERE coalesce(qc.n,0)>0 OR coalesce(ac.n,0)>0)
+   AS draft_with_stored_assessment,
+ COUNT(*) FILTER(WHERE length(coalesce(l.content,''))<1200)
+   AS draft_short_content_under_1200,
+ COUNT(*) FILTER(WHERE nullif(btrim(coalesce(l.source_pdf_url,'')),'') IS NULL)
+   AS draft_without_source_url,
+ COUNT(*) FILTER(WHERE l.source_page_start IS NULL OR l.source_page_start<1)
+   AS draft_without_source_start_page,
+ COUNT(*) FILTER(WHERE l.semester IS NULL)
+   AS draft_without_semester,
+ COUNT(*) FILTER(WHERE nullif(btrim(coalesce(l.official_content_scope,'')),'') IS NULL)
+   AS draft_without_source_scope
+FROM public.lessons l
+JOIN public.units u ON u.id=l.unit_id
+JOIN public.grades g ON g.id=u.grade_id
+JOIN public.curricula c ON c.id=g.curriculum_id
+JOIN public.countries co ON co.id=c.country_id
+LEFT JOIN draft_question_counts qc ON qc.lesson_id=l.id
+LEFT JOIN draft_published_activity_counts ac ON ac.lesson_id=l.id
+WHERE l.status='draft'
+GROUP BY co.code,g.grade_number,l.semester
+ORDER BY draft_records DESC,co.code,g.grade_number,l.semester NULLS LAST;
+
+
+-- 17. Bahrain imported-index quarantine: these are NOT verified textbook lessons.
+-- List only structural metadata for authoring. Never auto-publish placeholder
+-- titles, copied table headers or short generic bodies. Source-matching to
+-- official 2026-27 plans + textbook page proof must precede any replacement.
+SELECT co.code AS country_code,g.grade_number,l.semester,
+ COUNT(*) AS draft_index_candidates,
+ COUNT(*) FILTER(WHERE l.content LIKE 'يتناول هذا الدرس موضوع%')
+   AS generic_scaffold_bodies,
+ COUNT(*) FILTER(WHERE l.title ~
+   '(عنوان الدرس|اسم الكتاب|الصف:|^القراءة|^الدّرس|ورقمه)')
+   AS extracted_toc_or_header_titles,
+ COUNT(*) FILTER(WHERE l.source_pdf_url IS NULL OR l.source_page_start IS NULL)
+   AS missing_verifiable_page_provenance
+FROM public.lessons l
+JOIN public.units u ON u.id=l.unit_id
+JOIN public.grades g ON g.id=u.grade_id
+JOIN public.curricula c ON c.id=g.curriculum_id
+JOIN public.countries co ON co.id=c.country_id
+WHERE l.status='draft' AND co.code='BH'
+GROUP BY co.code,g.grade_number,l.semester
+ORDER BY g.grade_number,l.semester NULLS LAST;
+
+
+-- 18. Bahrain grade-two reconciliation: compare the 12 real reading titles
+-- from Ministry 2026-27 Plan1 with published lessons before any new import.
+-- This is conservative normalized-substring candidate matching, NOT proof
+-- of textbook text identity or permission to overwrite existing lessons.
+-- Count only metadata; never access student attempts or correct-answer keys.
+-- Arabic tatweel and vowel marks MUST be removed before matching: titles
+-- like "الـمصوّر الصّغير" otherwise look falsely absent.
+WITH official(lesson_number,official_title) AS (VALUES
+ (1,'صديقتي مريم'), (2,'بالروح أفديها'), (3,'سالم مريض'),
+ (4,'تعاون النمل'), (5,'المصور الصغير'), (6,'دراجتي'),
+ (7,'جولة في محمية محمد بن زايد الطبيعية'), (8,'الطائرة الورقية'),
+ (9,'في عيادة العيون'), (10,'نظافتي'),
+ (11,'الرياضة غيرت حياتي'), (12,'الغذاء الصحي')
+), records AS (
+ SELECT l.id,l.title,l.status, length(coalesce(l.content,'')) AS content_chars,
+        regexp_replace(regexp_replace(lower(l.title),
+          '[ًٌٍَُِّْـ]','','g'),'[^ء-ي]','','g') AS title_key,
+        coalesce(q.n,0) AS question_count, coalesce(a.n,0) AS activity_count
+ FROM public.lessons l
+ JOIN public.units u ON u.id=l.unit_id
+ JOIN public.grades g ON g.id=u.grade_id
+ JOIN public.curricula cur ON cur.id=g.curriculum_id
+ JOIN public.countries co ON co.id=cur.country_id
+ LEFT JOIN (SELECT lesson_id,count(*) n FROM public.questions GROUP BY lesson_id) q
+   ON q.lesson_id=l.id
+ LEFT JOIN (SELECT lesson_id,count(*) FILTER(WHERE is_published) n
+   FROM public.lesson_activities GROUP BY lesson_id) a ON a.lesson_id=l.id
+ WHERE co.code='BH' AND g.grade_number=2
+   AND l.semester=1 AND l.status='published'
+)
+SELECT o.lesson_number,o.official_title,
+ count(r.id) AS published_title_candidates,
+ count(r.id) FILTER(WHERE r.question_count>=3) AS with_three_plus_questions,
+ count(r.id) FILTER(WHERE r.activity_count>0) AS with_published_activities,
+ max(r.content_chars) AS longest_existing_body,
+ CASE WHEN count(r.id)=0 THEN 'NO_TITLE_CANDIDATE_REVIEW'
+      WHEN count(r.id)>1 THEN 'MULTIPLE_PUBLISHED_RECORDS_REVIEW_DUPLICATES'
+      ELSE 'ONE_TITLE_CANDIDATE_REVIEW_CONTENT' END AS reconciliation_status
+FROM official o LEFT JOIN records r ON r.title_key LIKE '%' ||
+ regexp_replace(regexp_replace(lower(o.official_title),
+   '[ًٌٍَُِّْـ]','','g'),'[^ء-ي]','','g') || '%'
+GROUP BY o.lesson_number,o.official_title ORDER BY o.lesson_number;
+
+-- 19. Bahrain PUBLISHED scaffold quality queue — not just unpublished drafts.
+-- A published flag, source URL or stored exercise does NOT certify that a
+-- student-facing lesson contains authored instructional content or matches
+-- a current Ministry textbook. This identifies only one known boilerplate
+-- fingerprint and does not claim to detect every weak published lesson.
+-- Read-only aggregate: do not select private answers, students or attempt rows.
+-- No automatic deletion, hiding, grade modification or republishing.
+WITH stored_questions AS (
+ SELECT lesson_id, COUNT(*) AS n FROM public.questions GROUP BY lesson_id
+), published_activities AS (
+ SELECT lesson_id, COUNT(*) FILTER(WHERE is_published IS TRUE) AS n
+ FROM public.lesson_activities GROUP BY lesson_id
+)
+SELECT co.code AS country_code, g.grade_number, l.semester,
+ COUNT(*) AS published_generic_scaffold_candidates,
+ COUNT(*) FILTER(WHERE COALESCE(q.n,0)>=3) AS scaffold_with_three_plus_questions,
+ COUNT(*) FILTER(WHERE COALESCE(a.n,0)>0) AS scaffold_with_published_activities,
+ COUNT(*) FILTER(WHERE NULLIF(BTRIM(COALESCE(l.source_pdf_url,'')),'') IS NOT NULL)
+   AS scaffold_with_source_url_not_proof,
+ COUNT(*) FILTER(WHERE l.official_content_scope IS NULL)
+   AS scaffold_without_official_scope,
+ COUNT(*) FILTER(WHERE l.title ~
+  '(عنوان الدرس|اسم الكتاب|الصف:|^القراءة|^الدّرس|ورقمه)')
+   AS scaffold_with_index_style_title,
+ MAX(LENGTH(COALESCE(l.content,''))) AS longest_scaffold_body
+FROM public.lessons l
+JOIN public.units u ON u.id=l.unit_id
+JOIN public.grades g ON g.id=u.grade_id
+JOIN public.curricula cur ON cur.id=g.curriculum_id
+JOIN public.countries co ON co.id=cur.country_id
+LEFT JOIN stored_questions q ON q.lesson_id=l.id
+LEFT JOIN published_activities a ON a.lesson_id=l.id
+WHERE co.code='BH' AND l.status='published'
+ AND l.content LIKE 'يتناول هذا الدرس موضوع%'
+GROUP BY co.code,g.grade_number,l.semester
+ORDER BY g.grade_number,l.semester NULLS LAST;
+
+-- 20. Bahrain Grade-5 source-title reconciliation (source-only, read-only).
+-- Reference: Ministry Arabic first-term 2026/27, Plan1.pdf pages 22–24.
+-- IMPORTANT: PDF extracted titles such as "كُنَّا يداا واحدةا" and
+-- "معاا في حب وطننا البحرين" have repeated OCR alefs. Normalize Arabic
+-- vowel marks, tatweel, hamza-alef and runs of alef before a *candidate*
+-- lookup, rather than wrongly declaring an already published lesson missing.
+-- A matched published title is NOT proof of verified textbook content; multiple
+-- candidates require teacher/editor duplicate assessment before any mutation.
+WITH titles (number,official_title) AS (VALUES
+ (1,'وبالوالدين إحسانا'), (2,'معلمنا الأول'), (3,'كنا يدا واحدة'),
+ (4,'برايل في كنف أسرته'), (5,'جدتي'), (6,'الصديق وقت الضيق'),
+ (7,'اعتذار صديق'), (8,'كيف صرنا أصدقاء'), (9,'دعوة إلى الإخاء'),
+ (10,'معا في حب وطننا البحرين'), (11,'البحرين تتكلم'),
+ (12,'هتاف العقول'), (13,'رمز الحضارة')
+), records AS (
+ SELECT l.id, regexp_replace(regexp_replace(
+   translate(regexp_replace(lower(l.title),'[ًٌٍَُِّْـ]','','g'),
+   'أإآى','اااي'),'[^ء-ي]','','g'),'ا+','ا','g') AS key
+ FROM public.lessons l
+ JOIN public.units u ON u.id=l.unit_id
+ JOIN public.grades g ON g.id=u.grade_id
+ JOIN public.curricula c ON c.id=g.curriculum_id
+ JOIN public.countries co ON co.id=c.country_id
+ WHERE co.code='BH' AND g.grade_number=5 AND l.semester=1 AND l.status='published'
+)
+SELECT titles.number,titles.official_title,
+ COUNT(records.id) AS published_title_candidates
+FROM titles LEFT JOIN records ON
+ records.key LIKE '%'||regexp_replace(regexp_replace(
+ translate(regexp_replace(lower(titles.official_title),'[ًٌٍَُِّْـ]','','g'),
+ 'أإآى','اااي'),'[^ء-ي]','','g'),'ا+','ا','g')||'%'
+GROUP BY titles.number,titles.official_title ORDER BY titles.number;
+
+-- 21. Grade-6 Bahrain fourteen reading title candidates (2026-27 Plan1).
+-- SOURCE-ONLY candidate matching from the Ministry plan, NOT approved textbook
+-- text. Published lessons often have "القراءة", page numbers and poem notes
+-- in their title. Normalized exact equality can falsely flag ALL titles absent.
+-- Preserve grade, term, published status, digit 1/2 for طريق الخير and special
+-- short title أبي (must match title PREFIX, not arbitrary substring).
+-- Keep this strictly SELECT-only; no learner names, scores or answer keys.
+-- Reviewed with read-only live aggregate on 2026-10-26: all 14 titles have
+-- candidate rows; طريق الخير (1) has 2 candidates, one generic introductory
+-- scaffold. These counts DO NOT certify official text quality or give
+-- permission to add, delete, merge, modify or automatically publish lessons.
+WITH source_reading(n,title) AS (VALUES
+ (1,'من هدي القرآن الكريم'),(2,'أبي'),
+ (3,'طريق الخير (1)'),(4,'طريق الخير (2)'),
+ (5,'بنت الخليج'),(6,'وسام على صدر الوطن'),
+ (7,'إلى ولدي'),(8,'التنمية الصناعية في البحرين'),
+ (9,'بلد الشراع'),(10,'الثروة المائية في البحرين'),
+ (11,'أوال مهد العلا'),(12,'ليتني كنت معهم'),
+ (13,'على عرفات'),(14,'الأمن العام')
+), plan_keys AS (
+ SELECT n,title,
+ regexp_replace(regexp_replace(translate(
+  regexp_replace(lower(title),'[ًٌٍَُِّْـ]','','g'),
+  'أإآى','اااي'),'[^ء-ي0-9]','','g'),'ا+','ا','g') AS key
+ FROM source_reading
+), published AS (
+ SELECT l.id,l.title,
+  COALESCE(questions.n,0) AS qcount,
+  COALESCE(activities.n,0) AS activitycount,
+  (l.content LIKE 'يتناول هذا الدرس موضوع%') AS generic_intro,
+  regexp_replace(regexp_replace(translate(
+    regexp_replace(lower(l.title),'[ًٌٍَُِّْـ]','','g'),
+    'أإآى','اااي'),'[^ء-ي0-9]','','g'),'ا+','ا','g') AS key
+ FROM public.lessons l
+ JOIN public.units u ON u.id=l.unit_id
+ JOIN public.grades g ON g.id=u.grade_id
+ JOIN public.curricula cu ON cu.id=g.curriculum_id
+ JOIN public.countries c ON c.id=cu.country_id
+ LEFT JOIN (SELECT lesson_id,COUNT(*) n FROM public.questions GROUP BY lesson_id) questions
+   ON questions.lesson_id=l.id
+ LEFT JOIN (SELECT lesson_id,COUNT(*) FILTER(WHERE is_published) n
+   FROM public.lesson_activities GROUP BY lesson_id) activities
+   ON activities.lesson_id=l.id
+ WHERE c.code='BH' AND g.grade_number=6 AND l.semester=1
+   AND l.status='published'
+)
+SELECT k.n,k.title,
+ COUNT(r.id) AS published_title_candidates,
+ COUNT(r.id) FILTER(WHERE r.qcount>=3) AS with_three_plus_questions,
+ COUNT(r.id) FILTER(WHERE r.activitycount>0) AS with_published_activities,
+ COUNT(r.id) FILTER(WHERE r.generic_intro) AS with_generic_intro,
+ CASE WHEN COUNT(r.id)=0 THEN 'REQUIRES_MANUAL_TITLE_REVIEW'
+      WHEN COUNT(r.id)>1 THEN 'MULTIPLE_PUBLISHED_CANDIDATES_REVIEW'
+      ELSE 'ONE_PUBLISHED_CANDIDATE_REVIEW_TEXT' END AS review_status
+FROM plan_keys k LEFT JOIN published r ON
+ ((k.n=2 AND (r.title LIKE 'أبي:%' OR r.title LIKE 'أبي %'))
+  OR (k.n<>2 AND r.key LIKE '%'||k.key||'%'))
+GROUP BY k.n,k.title ORDER BY k.n;
+
+-- 22. Bahrain Grade-7 official reading reconciliation and assessment gaps.
+-- Reference: Ministry 2026/27 Plan1.pdf pages 30-32. Source titles ONLY.
+-- Exact official reading items may have descriptions after "القراءة:":
+-- e.g. "القراءة: المخترع (دراسة القصيدة كاملة)"; do not declare a
+-- falsely absent lesson. Restrict by the reading prefix BEFORE matching
+-- normalized official key, especially short "البحر" vs "البحرين".
+-- The string "القراءة" ends with taa marbuta ة, NOT haa ه: never
+-- hard-code a broken normalised prefix like "القراءه".
+-- Keep this report SELECT-only. One candidate and >=3 stored questions is
+-- structural evidence, NOT verified copyrighted Ministry text or quality.
+WITH official_reading(n,title) AS (VALUES
+ (1,'من الهدي القرآني'),(2,'لماذا نقرأ'),(3,'التربية المكتبية'),
+ (4,'أمير البحرين في عهد الرسول'),(5,'بلادي'),(6,'المخترع'),
+ (7,'القدس عربية'),(8,'الحرية'),(9,'ابن ماجد بحار الخليج الأكبر'),
+ (10,'البحر'),(11,'الأزهار')
+), official_keys AS (
+ SELECT n,title,regexp_replace(regexp_replace(translate(
+  regexp_replace(lower(title),'[ًٌٍَُِّْـ]','','g'),
+  'أإآى','اااي'),'[^ء-ي0-9]','','g'),'ا+','ا','g') AS key
+ FROM official_reading
+), reading_rows AS (
+ SELECT l.id,COALESCE(q.n,0) AS qcount,COALESCE(a.n,0) AS activities,
+ regexp_replace(regexp_replace(translate(
+  regexp_replace(lower(l.title),'[ًٌٍَُِّْـ]','','g'),
+  'أإآى','اااي'),'[^ء-ي0-9]','','g'),'ا+','ا','g') AS key
+ FROM public.lessons l
+ JOIN public.units u ON u.id=l.unit_id
+ JOIN public.grades g ON g.id=u.grade_id
+ JOIN public.curricula cu ON cu.id=g.curriculum_id
+ JOIN public.countries co ON co.id=cu.country_id
+ LEFT JOIN (SELECT lesson_id,COUNT(*) n FROM public.questions GROUP BY lesson_id) q
+   ON q.lesson_id=l.id
+ LEFT JOIN (SELECT lesson_id,COUNT(*) FILTER(WHERE is_published) n
+   FROM public.lesson_activities GROUP BY lesson_id) a ON a.lesson_id=l.id
+ WHERE co.code='BH' AND g.grade_number=7 AND l.semester=1
+   AND l.status='published' AND l.title LIKE 'القراءة:%'
+)
+SELECT k.n,k.title,
+ COUNT(r.id) AS published_title_candidates,
+ COUNT(r.id) FILTER(WHERE r.qcount>=3) AS with_three_plus_questions,
+ COUNT(r.id) FILTER(WHERE r.activities>0) AS with_published_activities,
+ CASE WHEN COUNT(r.id)=0 THEN 'REVIEW_TITLE_PREFIX_AND_OCR'
+      WHEN COUNT(r.id)>1 THEN 'MULTIPLE_PUBLISHED_CANDIDATES_REVIEW'
+      ELSE 'ONE_PUBLISHED_CANDIDATE_REVIEW_TEXT' END AS review_status
+FROM official_keys k LEFT JOIN reading_rows r
+ ON r.key LIKE 'القراءة'||k.key||'%'
+GROUP BY k.n,k.title ORDER BY k.n;
+
+-- 23. Bahrain Grade-7 first-term assessment coverage by status.
+-- A lesson with only one stored question must not be reported as having
+-- sufficient graded assessment. This aggregate does not inspect answers,
+-- students, notes, attempts, or teacher data.
+WITH q AS (SELECT lesson_id,COUNT(*) n FROM public.questions GROUP BY lesson_id),
+a AS (SELECT lesson_id,COUNT(*) FILTER(WHERE is_published) n
+      FROM public.lesson_activities GROUP BY lesson_id)
+SELECT l.status,COUNT(*) AS lesson_records,
+ COUNT(*) FILTER(WHERE COALESCE(l.content,'') LIKE 'يتناول هذا الدرس موضوع%')
+   AS generic_opening,
+ COUNT(*) FILTER(WHERE COALESCE(q.n,0)>=3) AS with_three_plus_questions,
+ COUNT(*) FILTER(WHERE COALESCE(q.n,0) BETWEEN 1 AND 2) AS with_one_or_two_questions,
+ COUNT(*) FILTER(WHERE COALESCE(q.n,0)=0) AS without_stored_questions,
+ COUNT(*) FILTER(WHERE COALESCE(a.n,0)>0) AS with_published_activities
+FROM public.lessons l
+JOIN public.units u ON u.id=l.unit_id
+JOIN public.grades g ON g.id=u.grade_id
+JOIN public.curricula cu ON cu.id=g.curriculum_id
+JOIN public.countries co ON co.id=cu.country_id
+LEFT JOIN q ON q.lesson_id=l.id
+LEFT JOIN a ON a.lesson_id=l.id
+WHERE co.code='BH' AND g.grade_number=7 AND l.semester=1
+GROUP BY l.status ORDER BY l.status;

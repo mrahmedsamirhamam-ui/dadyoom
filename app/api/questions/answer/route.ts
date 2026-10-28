@@ -3,6 +3,7 @@ import "server-only";
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { readBoundedJsonObject } from "@/lib/http/read-bounded-json";
 import {
   feedbackForStudent,
   gradeStoredMcq,
@@ -28,7 +29,19 @@ export async function POST(request: Request) {
       );
     }
 
-    const raw = (await request.json().catch(() => null)) as AnswerRequest | null;
+    const parsed = await readBoundedJsonObject(request);
+    if (!parsed.ok) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: parsed.status === 413
+            ? "حجم الإجابة أكبر من الحد المسموح."
+            : "صيغة الطلب غير صحيحة.",
+        },
+        { status: parsed.status }
+      );
+    }
+    const raw = parsed.value as AnswerRequest;
     const questionId = raw?.questionId;
     if (typeof questionId !== "string" || !UUID.test(questionId)) {
       return NextResponse.json(
@@ -37,19 +50,16 @@ export async function POST(request: Request) {
       );
     }
 
-    // Server-only access to the answer key: this continues to work after
-    // revoking browser SELECT privileges for questions.correct_answer.
-    // The authenticated caller MUST still pass the published lesson's RLS
-    // check below before any feedback or attempt is persisted.
-    const admin = createAdminClient();
-    const { data: question, error: questionError } = await admin
-      .from("questions")
-      .select("id,lesson_id,question_type,options,correct_answer,explanation")
+    // Authorize the question and published lesson using the student's RLS session
+    // before reading any private grading record on the server.
+    const { data: visibleQuestion, error: visibilityError } = await supabase
+      .from("dadyoom_student_questions")
+      .select("id,lesson_id")
       .eq("id", questionId)
       .maybeSingle();
 
-    if (questionError) throw questionError;
-    if (!question) {
+    if (visibilityError) throw visibilityError;
+    if (!visibleQuestion) {
       return NextResponse.json(
         { success: false, error: "السؤال غير متاح." },
         { status: 404 }
@@ -59,13 +69,30 @@ export async function POST(request: Request) {
     const { data: lesson, error: lessonError } = await supabase
       .from("lessons")
       .select("id,status")
-      .eq("id", question.lesson_id)
+      .eq("id", visibleQuestion.lesson_id)
       .maybeSingle();
 
     if (lessonError) throw lessonError;
     if (!lesson || lesson.status !== "published") {
       return NextResponse.json(
         { success: false, error: "الدرس غير متاح للتقويم." },
+        { status: 404 }
+      );
+    }
+
+    // Privileged access follows student authorization and stays server-only.
+    const admin = createAdminClient();
+    const { data: question, error: questionError } = await admin
+      .from("questions")
+      .select("id,lesson_id,question_type,options,correct_answer,explanation")
+      .eq("id", visibleQuestion.id)
+      .eq("lesson_id", visibleQuestion.lesson_id)
+      .maybeSingle();
+
+    if (questionError) throw questionError;
+    if (!question) {
+      return NextResponse.json(
+        { success: false, error: "السؤال غير متاح." },
         { status: 404 }
       );
     }

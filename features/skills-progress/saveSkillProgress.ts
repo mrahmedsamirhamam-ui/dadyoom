@@ -44,6 +44,15 @@ export async function saveSkillProgress(
         .json();
 
     if (
+      response.status === 409 &&
+      data.code === "UNVERIFIED_SKILL_SCORE"
+    ) {
+      // A formative, browser-graded exercise cannot mint academic XP.
+      // Keep the on-page feedback, without reporting a server failure.
+      return null;
+    }
+
+    if (
       !response.ok ||
       !data.ok
     ) {

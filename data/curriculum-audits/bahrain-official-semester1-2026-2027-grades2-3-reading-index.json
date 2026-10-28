@@ -1,0 +1,168 @@
+{
+  "type": "official_ministry_lesson_title_index_for_comparison_only",
+  "sourceAuthority": "Bahrain Ministry of Education / Edunet",
+  "sourceUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+  "sourceIndexUrl": "https://www.edunet.bh/Econtent/LessonsGuide",
+  "schoolYear": "2026-2027",
+  "term": "semester_1",
+  "stage": "basic_education_first_cycle",
+  "curriculumScope": "Arabic reading and poetry lesson headings only; not the full curriculum or copied textbook content",
+  "fidelityNote": "Titles are normalized from official extracted PDF (some diacritics, word spacing and OCR artifacts omitted), and page references refer to Braaim al-Arabiya reader pages.",
+  "rightsNote": "No ministry passage, poetry, textbook exercise or full PDF content is republished here.",
+  "topics": [
+    {
+      "grade": 2,
+      "ordinal": 1,
+      "title": "صديقتي مريم",
+      "bookPages": "11-14",
+      "genre": "reading"
+    },
+    {
+      "grade": 2,
+      "ordinal": 2,
+      "title": "بالروح أفديها",
+      "bookPages": "16-19",
+      "genre": "poem"
+    },
+    {
+      "grade": 2,
+      "ordinal": 3,
+      "title": "سالم مريض",
+      "bookPages": "21-25",
+      "genre": "reading"
+    },
+    {
+      "grade": 2,
+      "ordinal": 4,
+      "title": "تعاون النمل",
+      "bookPages": "27-30",
+      "genre": "reading"
+    },
+    {
+      "grade": 2,
+      "ordinal": 5,
+      "title": "المصور الصغير",
+      "bookPages": "33-36",
+      "genre": "reading"
+    },
+    {
+      "grade": 2,
+      "ordinal": 6,
+      "title": "دراجتي",
+      "bookPages": "38-41",
+      "genre": "poem"
+    },
+    {
+      "grade": 2,
+      "ordinal": 7,
+      "title": "جولة في محمية محمد بن زايد الطبيعية",
+      "bookPages": "43-48",
+      "genre": "reading"
+    },
+    {
+      "grade": 2,
+      "ordinal": 8,
+      "title": "الطائرة الورقية",
+      "bookPages": "50-56",
+      "genre": "reading"
+    },
+    {
+      "grade": 2,
+      "ordinal": 9,
+      "title": "في عيادة العيون",
+      "bookPages": "59-66",
+      "genre": "reading"
+    },
+    {
+      "grade": 2,
+      "ordinal": 10,
+      "title": "نظافتي",
+      "bookPages": "68-72",
+      "genre": "poem"
+    },
+    {
+      "grade": 3,
+      "ordinal": 1,
+      "title": "الأصدقاء الأربعة (1)",
+      "bookPages": "11-20",
+      "genre": "reading"
+    },
+    {
+      "grade": 3,
+      "ordinal": 2,
+      "title": "الأصدقاء الأربعة (2)",
+      "bookPages": "21-30",
+      "genre": "reading"
+    },
+    {
+      "grade": 3,
+      "ordinal": 3,
+      "title": "حكمة أب",
+      "bookPages": "31-37",
+      "genre": "poem"
+    },
+    {
+      "grade": 3,
+      "ordinal": 4,
+      "title": "وتعاونوا",
+      "bookPages": "38-47",
+      "genre": "reading"
+    },
+    {
+      "grade": 3,
+      "ordinal": 5,
+      "title": "الولع بالرسم (1)",
+      "bookPages": "51-62",
+      "genre": "reading"
+    },
+    {
+      "grade": 3,
+      "ordinal": 6,
+      "title": "الولع بالرسم (2)",
+      "bookPages": "63-75",
+      "genre": "reading"
+    },
+    {
+      "grade": 3,
+      "ordinal": 7,
+      "title": "وقت الراحات",
+      "bookPages": "76-84",
+      "genre": "poem"
+    },
+    {
+      "grade": 3,
+      "ordinal": 8,
+      "title": "لعبة يحبها الملايين",
+      "bookPages": "85-97",
+      "genre": "reading"
+    },
+    {
+      "grade": 3,
+      "ordinal": 9,
+      "title": "الأمانة (1)",
+      "bookPages": "101-112",
+      "genre": "reading"
+    },
+    {
+      "grade": 3,
+      "ordinal": 10,
+      "title": "الأمانة (2)",
+      "bookPages": "113-125",
+      "genre": "reading"
+    },
+    {
+      "grade": 3,
+      "ordinal": 11,
+      "title": "جزاء المعتدي",
+      "bookPages": "126-136",
+      "genre": "poem"
+    },
+    {
+      "grade": 3,
+      "ordinal": 12,
+      "title": "دروس من حياة توماس إديسون",
+      "bookPages": "137-150",
+      "genre": "reading"
+    }
+  ]
+}

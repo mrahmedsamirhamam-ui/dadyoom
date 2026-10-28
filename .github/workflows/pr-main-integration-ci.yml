@@ -1,0 +1,113 @@
+name: Dadyoom PR security plus latest main integration (no deploy)
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/pr-main-integration-ci.yml'
+      - 'app/api/**'
+      - 'app/lessons/**'
+      - 'features/student-progress/**'
+      - 'features/lesson-mastery/**'
+      - 'features/adaptive-learning/**'
+      - 'features/study-play/**'
+      - 'lib/lesson-activities/**'
+      - 'features/lessons/queries/getLessonPageBundle.ts'
+      - 'tests/security/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  combined-pr-main:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+      DADYOOM_ATOMIC_ACTIVITY_COMMIT: 'disabled'
+    steps:
+      - name: Checkout unmerged PR HEAD (not the platform-generated merge commit)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Rehearse merge with latest main only in this disposable checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin refs/heads/main:refs/remotes/origin/main
+          echo "PR_HEAD=$(git rev-parse HEAD)"
+          echo "LATEST_MAIN=$(git rev-parse refs/remotes/origin/main)"
+          git -c user.name=ci-integration -c user.email=ci@localhost \
+            merge --no-commit --no-ff refs/remotes/origin/main
+          test -f app/level-check/page.tsx
+          test -f features/adaptive-learning/actions/resetWeakQuestion.ts
+          test -f features/lessons/queries/getLessonPageBundle.ts
+          test -f tests/level-check.test.ts
+          echo "DADYOOM_PR_MAIN_SOURCE_INTEGRATION=PASS"
+
+      - name: Set up Node and npm cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install pinned dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Verify new Arabic level-check still works in the combined source
+        run: npx vitest run tests/level-check.test.ts
+
+      - name: Verify student lesson history, grading and mastery with latest main
+        run: npx vitest run tests/security/lesson-bundle-attempt-pagination.test.ts tests/security/lesson-completion-full-evidence.test.ts tests/security/graded-activity-pagination.test.ts
+
+      - name: Verify reset-weak-question action's real authorization boundary
+        run: npx vitest run --config tests/security/vitest.config.mts tests/security/reset-weak-question-route.test.ts
+
+      - name: TypeScript on combined PR and main
+        run: npx tsc --noEmit
+
+      - name: ESLint on combined PR and main
+        run: npm run lint
+
+      - name: Production build on combined PR and main
+        run: npm run build
+
+      - name: Level-check route and homepage compiled runtime smoke
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run start -- -p 3033 > /tmp/dadyoom-combined-next.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 35); do
+            if curl -fsS http://127.0.0.1:3033/level-check >/dev/null; then
+              break
+            fi
+            if ! kill -0 "$server_pid" 2>/dev/null; then
+              cat /tmp/dadyoom-combined-next.log
+              exit 1
+            fi
+            sleep 2
+          done
+          curl -fsS http://127.0.0.1:3033/level-check | grep -q 'اكتشف من أين تبدأ'
+          curl -fsS http://127.0.0.1:3033/ | grep -q 'ضاديوم'
+          # Browser-level validation: Arabic RTL at 390px, all 12 answers,
+          # results, mobile overflow guard and reset to first question.
+          node scripts/smoke-level-check.mjs
+          echo "DADYOOM_COMBINED_LEVEL_CHECK_AND_HOMEPAGE_SMOKE=PASS"
+
+      - name: Verify GitHub checkout cannot push and changes remain local
+        shell: bash
+        run: |
+          set -euo pipefail
+          # npm prebuild legitimately changes tracked public/app-version.json,
+          # and git's checkout can normalize pre-existing CRLF endings. Such
+          # files are ephemeral runner state, not a deployment.
+          test "$(git rev-parse HEAD)" != "$(git rev-parse refs/remotes/origin/main)"
+          test -z "$(git config --local --get-all http.https://github.com/.extraheader || true)"
+          test -z "$(git config --local --get-all credential.helper || true)"
+          echo "DADYOOM_COMBINED_CI_NO_PUSH_CREDENTIALS=PASS"

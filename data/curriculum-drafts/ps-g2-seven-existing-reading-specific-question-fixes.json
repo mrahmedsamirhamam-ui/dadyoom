@@ -1,0 +1,507 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "PS",
+  "grade": 2,
+  "semester": 1,
+  "source": "Actual Dadyoom-original lesson paragraphs currently in Supabase; not official textbook reproduction",
+  "ministry2026BookTOCVerified": false,
+  "safety": {
+    "requireNoExistingStudentAttempts": true,
+    "replaceOnlyThreeIdentifiedGenericQuestions": true,
+    "preserveQuestionIds": true,
+    "doNotChangeStudentScores": true,
+    "requireSourceAnchor": true
+  },
+  "lessons": [
+    {
+      "lessonId": "6500365a-d6a5-41ea-8c38-8127abd55c79",
+      "title": "الأرض",
+      "sourceAnchor": "ذهبت رُبا مع جدها إلى حقل زيتون في فلسطين",
+      "questions": [
+        {
+          "order": 1,
+          "question": "إلى أين ذهبت ربا مع جدها؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "إلى حقل زيتون"
+            },
+            {
+              "id": "b",
+              "text": "إلى مكتبة"
+            },
+            {
+              "id": "c",
+              "text": "إلى الشاطئ"
+            }
+          ],
+          "correctAnswer": "a",
+          "explanation": "زارت ربا حقل زيتون مع جدها."
+        },
+        {
+          "order": 2,
+          "question": "ماذا فعلت ربا بالورقة البلاستيكية؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "تركتها على الأرض"
+            },
+            {
+              "id": "b",
+              "text": "وضعتها في كيس النفايات"
+            },
+            {
+              "id": "c",
+              "text": "علقتها على الشجرة"
+            }
+          ],
+          "correctAnswer": "b",
+          "explanation": "جمعت الورقة للمحافظة على الحقل."
+        },
+        {
+          "order": 3,
+          "question": "كيف يظهر حب الأرض في سلوكنا؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "إلقاء المخلفات"
+            },
+            {
+              "id": "b",
+              "text": "كسر الأغصان"
+            },
+            {
+              "id": "c",
+              "text": "حماية الأشجار ونظافة المكان"
+            }
+          ],
+          "correctAnswer": "c",
+          "explanation": "العناية بالمكان عمل يعبّر عن المسؤولية."
+        }
+      ]
+    },
+    {
+      "lessonId": "4bec8800-5aca-43e4-966b-640160669bed",
+      "title": "الباحثات الصغيرات",
+      "sourceAnchor": "لاحظت دانا وصديقتها أن نبتتين في الصف تنموان بطريقة مختلفة",
+      "questions": [
+        {
+          "order": 1,
+          "question": "ما الذي لاحظته الباحثتان؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "اختلاف نمو نبتتين"
+            },
+            {
+              "id": "b",
+              "text": "تغير لون حقيبتين"
+            },
+            {
+              "id": "c",
+              "text": "اختفاء الكتب"
+            }
+          ],
+          "correctAnswer": "a",
+          "explanation": "قارنت الطالبتان نمو نبتتين."
+        },
+        {
+          "order": 2,
+          "question": "عمّ سألت دانا وصديقتها؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "طول الطريق"
+            },
+            {
+              "id": "b",
+              "text": "كمية الضوء التي تصل للنبتتين"
+            },
+            {
+              "id": "c",
+              "text": "عدد مقاعد الصف"
+            }
+          ],
+          "correctAnswer": "b",
+          "explanation": "سألتا عن الضوء الواصل إلى كل نبتة."
+        },
+        {
+          "order": 3,
+          "question": "لماذا لم تحكما فورًا بأن الضوء هو السبب؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "لأن التخمين كافٍ"
+            },
+            {
+              "id": "b",
+              "text": "لأن النباتات لا تحتاج ضوءًا"
+            },
+            {
+              "id": "c",
+              "text": "لأن الاستنتاج يحتاج إلى متابعة وأدلة"
+            }
+          ],
+          "correctAnswer": "c",
+          "explanation": "فصلتا الملاحظة الأولية عن إثبات السبب."
+        }
+      ]
+    },
+    {
+      "lessonId": "e2ccde53-21d3-4374-b62e-24ff66618ed1",
+      "title": "الحرية أجمل",
+      "sourceAnchor": "شاهدت هند عصفورًا يبني عشًا فوق شجرة في حديقة الحي",
+      "questions": [
+        {
+          "order": 1,
+          "question": "ماذا كان يفعل العصفور؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "يبني عشًا"
+            },
+            {
+              "id": "b",
+              "text": "يقرأ كتابًا"
+            },
+            {
+              "id": "c",
+              "text": "يلعب بكرة"
+            }
+          ],
+          "correctAnswer": "a",
+          "explanation": "كان يجمع أغصانًا لبناء العش."
+        },
+        {
+          "order": 2,
+          "question": "لماذا راقبته هند من بعيد؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "لكي تخيفه"
+            },
+            {
+              "id": "b",
+              "text": "حتى لا تزعجه"
+            },
+            {
+              "id": "c",
+              "text": "لتأخذ أغصانه"
+            }
+          ],
+          "correctAnswer": "b",
+          "explanation": "المراقبة الهادئة تحمي العصفور."
+        },
+        {
+          "order": 3,
+          "question": "ماذا تفعل عند العثور على طائر مصاب؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "أعالجه بدواء مجهول"
+            },
+            {
+              "id": "b",
+              "text": "أمسك به دون إذن"
+            },
+            {
+              "id": "c",
+              "text": "أبلغ بالغًا يطلب مساعدة مختص"
+            }
+          ],
+          "correctAnswer": "c",
+          "explanation": "المساعدة المتخصصة تحمي الطفل والطائر."
+        }
+      ]
+    },
+    {
+      "lessonId": "f00e8dd8-2fde-49ed-85da-1c6d3a94be9f",
+      "title": "الخروف والذئب",
+      "sourceAnchor": "أراد خروف صغير عبور حقل وحده",
+      "questions": [
+        {
+          "order": 1,
+          "question": "ماذا سمع الخروف قرب السياج؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "صوتًا غريبًا"
+            },
+            {
+              "id": "b",
+              "text": "جرس المدرسة"
+            },
+            {
+              "id": "c",
+              "text": "أمواج البحر"
+            }
+          ],
+          "correctAnswer": "a",
+          "explanation": "سمع الخروف صوتًا غير مألوف."
+        },
+        {
+          "order": 2,
+          "question": "كيف تصرف الخروف بعد سماع الصوت؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "تسلق السياج"
+            },
+            {
+              "id": "b",
+              "text": "عاد إلى الراعي"
+            },
+            {
+              "id": "c",
+              "text": "اقترب من المجهول"
+            }
+          ],
+          "correctAnswer": "b",
+          "explanation": "اختار الرجوع وطلب المساعدة."
+        },
+        {
+          "order": 3,
+          "question": "لماذا كانت العودة إلى الراعي آمنة؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "لأن كل صوت مخيف"
+            },
+            {
+              "id": "b",
+              "text": "لأن الحذر يعني عدم الحركة"
+            },
+            {
+              "id": "c",
+              "text": "لأن المسؤول يستطيع التحقق من الخطر"
+            }
+          ],
+          "correctAnswer": "c",
+          "explanation": "طلب مساعدة الراعي أبعد الخروف عن الخطر."
+        }
+      ]
+    },
+    {
+      "lessonId": "0ff35b05-a4cb-4c0d-907d-f17d75b40b78",
+      "title": "الرسامة الصغيرة",
+      "sourceAnchor": "جلست ريم أمام الورقة وقررت أن ترسم شجرة قرب بيتها",
+      "questions": [
+        {
+          "order": 1,
+          "question": "ما الجزء الذي رسمته ريم أولًا؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "جذع الشجرة"
+            },
+            {
+              "id": "b",
+              "text": "نافذة البيت"
+            },
+            {
+              "id": "c",
+              "text": "لوحة الإعلانات"
+            }
+          ],
+          "correctAnswer": "a",
+          "explanation": "بدأت ريم رسم الشجرة بالجذع."
+        },
+        {
+          "order": 2,
+          "question": "لماذا جربت لونًا آخر للورقة؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "لتمزق الدفتر"
+            },
+            {
+              "id": "b",
+              "text": "لتحسن اللوحة"
+            },
+            {
+              "id": "c",
+              "text": "لتهمل الرسم"
+            }
+          ],
+          "correctAnswer": "b",
+          "explanation": "غيرت ريم اللون بعد مراجعته."
+        },
+        {
+          "order": 3,
+          "question": "كيف تحترم عمل صديقك الفني؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "أسخر من ألوانه"
+            },
+            {
+              "id": "b",
+              "text": "أجبره على تقليدي"
+            },
+            {
+              "id": "c",
+              "text": "أقدّر اختلاف أسلوبه وأقدم رأيًا لطيفًا"
+            }
+          ],
+          "correctAnswer": "c",
+          "explanation": "قالت ريم إن لكل شخص طريقته في التعبير."
+        }
+      ]
+    },
+    {
+      "lessonId": "38043ce1-1b3e-41b0-8aa5-e15136835688",
+      "title": "الصياد",
+      "sourceAnchor": "خرج الصياد باسل بقاربه في صباح هادئ",
+      "questions": [
+        {
+          "order": 1,
+          "question": "ماذا فعل باسل قبل الخروج بالقارب؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "فحص حالة البحر وتعليمات السلامة"
+            },
+            {
+              "id": "b",
+              "text": "عدّ كراسي الصف"
+            },
+            {
+              "id": "c",
+              "text": "شاهد التلفاز فقط"
+            }
+          ],
+          "correctAnswer": "a",
+          "explanation": "تحقق من البحر وتعليمات السلامة."
+        },
+        {
+          "order": 2,
+          "question": "ماذا فعل باسل بعد عودته؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "ألقى المخلفات في البحر"
+            },
+            {
+              "id": "b",
+              "text": "فرز ما اصطاده ونظف مكانه"
+            },
+            {
+              "id": "c",
+              "text": "ترك أدواته مبعثرة"
+            }
+          ],
+          "correctAnswer": "b",
+          "explanation": "نظم الصياد حصيلته ونظف المكان."
+        },
+        {
+          "order": 3,
+          "question": "ما فائدة التخطيط في مهنة الصيد؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "إهمال السلامة"
+            },
+            {
+              "id": "b",
+              "text": "إلغاء الحاجة إلى الخبرة"
+            },
+            {
+              "id": "c",
+              "text": "تقليل المخاطر وتنظيم العمل"
+            }
+          ],
+          "correctAnswer": "c",
+          "explanation": "ربط باسل عمله بالصبر والتخطيط واحترام البحر."
+        }
+      ]
+    },
+    {
+      "lessonId": "fc398322-968c-44cb-b9fa-cbcf9bf81d2f",
+      "title": "عودة الطائر",
+      "sourceAnchor": "وجدت دلال عصفورًا صغيرًا يقف قرب شجرة بعد هبوب الريح",
+      "questions": [
+        {
+          "order": 1,
+          "question": "ماذا وجدت دلال قرب الشجرة؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "عصفورًا صغيرًا"
+            },
+            {
+              "id": "b",
+              "text": "سمكة"
+            },
+            {
+              "id": "c",
+              "text": "سلحفاة"
+            }
+          ],
+          "correctAnswer": "a",
+          "explanation": "لاحظت دلال عصفورًا بعد الريح."
+        },
+        {
+          "order": 2,
+          "question": "ممن طلبت دلال المساعدة؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "شخصًا مجهولًا"
+            },
+            {
+              "id": "b",
+              "text": "أمها التي اتصلت بمختص"
+            },
+            {
+              "id": "c",
+              "text": "طفلًا لا يعرف الطيور"
+            }
+          ],
+          "correctAnswer": "b",
+          "explanation": "أبلغت أمها فطلبت مساعدة مختص."
+        },
+        {
+          "order": 3,
+          "question": "لماذا لم تحمل دلال الطائر؟",
+          "questionType": "multiple_choice",
+          "options": [
+            {
+              "id": "a",
+              "text": "لأن الطيور لا تحتاج مساعدة"
+            },
+            {
+              "id": "b",
+              "text": "لتفصل الطائر عن عشه"
+            },
+            {
+              "id": "c",
+              "text": "حتى لا تؤذيه أو تعرض نفسها للخطر"
+            }
+          ],
+          "correctAnswer": "c",
+          "explanation": "المراقبة من بعيد مع طلب مختص أكثر أمانًا."
+        }
+      ]
+    }
+  ]
+}

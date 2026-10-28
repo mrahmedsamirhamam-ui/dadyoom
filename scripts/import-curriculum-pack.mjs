@@ -3,6 +3,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { createClient } from "@supabase/supabase-js";
 import { validateCurriculumPack } from "../lib/curriculum-packs/validate.mjs";
+import { readCompleteCurriculumBackup } from "../lib/curriculum-packs/complete-backup.mjs";
+import { buildMissingCurriculumQuestions } from "../lib/curriculum-packs/import-questions.mjs";
 
 function loadEnv(file) {
   if (!fs.existsSync(file)) return;
@@ -46,6 +48,24 @@ if (!apply) {
   process.exit(0);
 }
 
+/**
+ * Explicit publishing gate: this importer creates published lessons. Merely
+ * declaring rights.verified=true or passing --apply must not publish generic
+ * draft exercises or OCR headings as official ministry lessons.
+ */
+if (!process.argv.includes("--approve-reviewed-publish") ||
+    pack.rights?.officialTocVerified !== true ||
+    typeof pack.rights?.sourceUrl !== "string" ||
+    !/^https:\/\//.test(pack.rights.sourceUrl) ||
+    pack.units.some((u) => u.lessons.some((l) =>
+      typeof l.source?.url !== "string" ||
+      !/^https:\/\//.test(l.source.url) ||
+      !Number.isInteger(l.source.pageStart) || l.source.pageStart < 1 ||
+      !Number.isInteger(l.source.pageEnd) || l.source.pageEnd < l.source.pageStart
+    ))) {
+  throw new Error("CURRICULUM_PUBLISH_REVIEW_REQUIRED: verified official year/TOC, source URLs/pages and --approve-reviewed-publish are required");
+}
+
 loadEnv(path.resolve(process.cwd(), ".env.local"));
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
 const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
@@ -73,15 +93,18 @@ for (const [table, columns] of [
 }
 console.log("PACK_SCHEMA_PREFLIGHT=PASS");
 
-fs.mkdirSync(path.resolve(process.cwd(), "_backups"), { recursive: true });
+const backupDir = path.resolve(process.cwd(), "_backups");
+fs.mkdirSync(backupDir, { recursive: true, mode: 0o700 });
 const stamp = new Date().toISOString().replace(/[:.]/g, "-");
-const backupFile = path.resolve(process.cwd(), "_backups", `curriculum-pack-before-${pack.country.code}-${stamp}.json`);
+const backupFile = path.resolve(backupDir, `curriculum-pack-before-${pack.country.code}-${stamp}.json`);
 const snapshot = {};
 for (const table of ["countries", "curricula", "grades", "units", "lessons", "questions", "lesson_vocabulary"]) {
-  const { data, error } = await supabase.from(table).select("*");
-  snapshot[table] = error ? { error: error.message } : data;
+  // Incomplete backup is a hard stop BEFORE ANY curriculum DB mutation.
+  snapshot[table] = await readCompleteCurriculumBackup(supabase, table);
+  console.log(`BACKUP_VERIFIED:${table}:${snapshot[table].length}`);
 }
-fs.writeFileSync(backupFile, JSON.stringify(snapshot, null, 2), "utf8");
+// Protected snapshots may include private grading answers. Never commit them.
+fs.writeFileSync(backupFile, JSON.stringify(snapshot), { encoding: "utf8", flag: "wx", mode: 0o600 });
 console.log(`DB_BACKUP=${backupFile}`);
 
 let country = await one("countries", (q) => q.eq("code", pack.country.code));
@@ -192,20 +215,9 @@ for (const unitPack of pack.units) {
 
     const { data: qRows, error: qError } = await supabase.from("questions").select("id,question,question_order").eq("lesson_id", lesson.id).order("question_order", { ascending: true });
     if (qError) throw qError;
-    const existingQ = qRows || [];
-    const texts = new Set(existingQ.map((q) => String(q.question || "").trim()));
-    let nextOrder = existingQ.reduce((max, q) => Math.max(max, Number(q.question_order) || 0), 0) + 1;
-    const needed = Math.max(0, 3 - existingQ.length);
-    const rows = lessonPack.questions.filter((q) => !texts.has(q.question)).slice(0, needed).map((q) => ({
-      lesson_id: lesson.id,
-      question_order: nextOrder++,
-      question: q.question,
-      question_type: q.type,
-      options: q.options,
-      correct_answer: q.correctAnswer,
-      explanation: q.explanation ?? null,
-      points: q.points ?? 1,
-    }));
+    const rows = buildMissingCurriculumQuestions(
+      lesson.id, lessonPack.questions, qRows || [],
+    );
     if (rows.length) {
       const { error } = await supabase.from("questions").insert(rows);
       if (error) throw error;

@@ -9,7 +9,7 @@ import {
 } from "react";
 
 import ListenButton from "@/features/lesson-activities/components/ListenButton";
-import { saveSkillProgress } from "@/features/skills-progress/saveSkillProgress";
+
 
 type PracticeItem = {
   text: string;
@@ -600,10 +600,7 @@ export default function SpeakingPracticePage() {
         data.evaluation
       );
 
-      await saveSkillProgress(
-        "speaking",
-        data.evaluation.overallScore
-      );
+
     }
     catch (requestError) {
       setError(
@@ -1062,6 +1059,9 @@ export default function SpeakingPracticePage() {
 
             <p className="mt-2 text-6xl font-black text-orange-800">
               {evaluation.overallScore}%
+            </p>
+            <p className="mt-3 text-sm font-bold leading-6 text-amber-900">
+              هذه نتيجة تدريبية للنطق؛ لا تُضاف إلى XP أو درجة الإتقان المعتمدة.
             </p>
 
             <p className="mx-auto mt-4 max-w-3xl text-lg font-bold leading-8 text-orange-950">

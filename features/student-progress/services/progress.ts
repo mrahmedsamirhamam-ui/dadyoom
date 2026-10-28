@@ -41,6 +41,12 @@ export async function completeLesson(
   score: number,
   previousBestScore: number = 0
 ) {
+  // Defense in depth: a caller cannot turn an unassessed lesson into
+  // completed/mastered progress by reaching this internal helper.
+  if (!Number.isFinite(score) || score < 90 || score > 100) {
+    throw new Error("لا يمكن إكمال الدرس قبل إثبات إتقان 90%.");
+  }
+
   const bestScore = Math.max(
     score,
     previousBestScore

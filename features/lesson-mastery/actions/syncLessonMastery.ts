@@ -1,8 +1,10 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { getCorrectAnswerSpec } from "@/lib/lesson-activities/grading";
 import { scoreGradedActivityAttempts } from "@/features/lesson-mastery/services/score-graded-activities";
+import { readCompleteGradingPages } from "@/lib/lesson-activities/read-complete-pages";
 
 type QuestionAttemptRow = {
   question_id: string;
@@ -46,22 +48,35 @@ export async function syncLessonMasteryAction(
     );
   }
 
-  // DADYOOM_ACTIVITY_AWARE_MASTERY_V2
-  const {
-    data: activitiesData,
-    error: activitiesError,
-  } = await supabase
-    .from("lesson_activities")
-    .select("id,answer,is_required,points")
-    .eq("lesson_id", lessonId)
-    .eq("is_published", true);
+  // Validate published lesson visibility with caller RLS before reading
+  // the private grading schema using server-only credentials.
+  const { data: visibleLesson, error: lessonVisibilityError } = await supabase
+    .from("lessons")
+    .select("id")
+    .eq("id", lessonId)
+    .eq("status", "published")
+    .maybeSingle();
 
-  if (activitiesError) {
-    throw activitiesError;
+  if (lessonVisibilityError || !visibleLesson) {
+    throw new Error("هذا الدرس غير متاح لحساب الإتقان.");
   }
 
-  const activities =
-    (activitiesData ?? []) as unknown as LessonActivityRow[];
+  const admin = createAdminClient();
+
+  // DADYOOM_ACTIVITY_AWARE_MASTERY_V2
+  // The same full published bank must drive both sync and completion.
+  const activities = await readCompleteGradingPages({
+    readPage: async (offset, limit) => {
+      const { data, count, error } = await admin
+        .from("lesson_activities")
+        .select("id,answer,is_required,points", { count: "exact" })
+        .eq("lesson_id", lessonId)
+        .eq("is_published", true)
+        .order("id", { ascending: true })
+        .range(offset, offset + limit - 1);
+      return { data, count, error };
+    },
+  });
 
   const gradableActivities =
     activities.filter(
@@ -85,18 +100,20 @@ export async function syncLessonMasteryAction(
         (activity) => activity.id
       );
 
-    const {
-      data: activityAttemptsData,
-      error: activityAttemptsError,
-    } = await supabase
-      .from("lesson_activity_attempts")
-      .select("activity_id,earned_points,is_correct,attempt_number")
-      .eq("user_id", user.id)
-      .in("activity_id", activityIds);
-
-    if (activityAttemptsError) {
-      throw activityAttemptsError;
-    }
+    const activityAttemptsData = await readCompleteGradingPages({
+      readPage: async (offset, limit) => {
+        const { data, count, error } = await supabase
+          .from("lesson_activity_attempts")
+          .select("id,activity_id,earned_points,is_correct,attempt_number", {
+            count: "exact",
+          })
+          .eq("user_id", user.id)
+          .in("activity_id", activityIds)
+          .order("id", { ascending: true })
+          .range(offset, offset + limit - 1);
+        return { data, count, error };
+      },
+    });
 
     // Use exactly the same weighted, best-attempt scoring as the
     // canonical completion action. Completion-only tasks are excluded.
@@ -109,40 +126,35 @@ export async function syncLessonMasteryAction(
     wrongAnswers = result.wrongAnswers;
     masteryScore = result.score;
   } else {
-    const {
-      data: questions,
-      error: questionsError,
-    } = await supabase
-      // Read only the published student-safe question projection.
-      .from("dadyoom_student_questions")
-      .select("id")
-      .eq("lesson_id", lessonId);
-
-    if (questionsError) {
-      throw questionsError;
-    }
-
-    const questionIds =
-      (questions ?? []).map(
-        (question) => question.id
-      );
+    const questions = await readCompleteGradingPages({
+      readPage: async (offset, limit) => {
+        const { data, count, error } = await supabase
+          .from("dadyoom_student_questions")
+          .select("id", { count: "exact" })
+          .eq("lesson_id", lessonId)
+          .order("id", { ascending: true })
+          .range(offset, offset + limit - 1);
+        return { data, count, error };
+      },
+    });
+    const questionIds = questions.map((question) => question.id);
 
     askedQuestions =
       questionIds.length;
 
     if (questionIds.length > 0) {
-      const {
-        data: attemptsData,
-        error: attemptsError,
-      } = await supabase
-        .from("question_attempts")
-        .select("question_id,is_correct")
-        .eq("user_id", user.id)
-        .in("question_id", questionIds);
-
-      if (attemptsError) {
-        throw attemptsError;
-      }
+      const attemptsData = await readCompleteGradingPages({
+        readPage: async (offset, limit) => {
+          const { data, count, error } = await supabase
+            .from("question_attempts")
+            .select("id,question_id,is_correct", { count: "exact" })
+            .eq("user_id", user.id)
+            .in("question_id", questionIds)
+            .order("id", { ascending: true })
+            .range(offset, offset + limit - 1);
+          return { data, count, error };
+        },
+      });
 
       const latestByQuestion =
         new Map<string, boolean>();
@@ -180,7 +192,7 @@ export async function syncLessonMasteryAction(
 
   const {
     error: masteryError,
-  } = await supabase
+  } = await admin
     .from("lesson_mastery")
     .upsert(
       {
