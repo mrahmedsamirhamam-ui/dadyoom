@@ -235,6 +235,10 @@ on:
       - 'tests/curriculum-public-lesson-instructions.test.ts'
       - 'scripts/curriculum-bahrain-grade1-3-title-reconciliation-readonly.sql'
       - 'tests/curriculum-bahrain-title-reconciliation.test.ts'
+      - 'data/curriculum-drafts/bh-grade2-3-s1-twenty-original-reading-sixty-question-repairs-2026.json'
+      - 'tests/bahrain-g2-g3-original-reading-sixty-question-specificity.test.ts'
+      - 'supabase/migrations/20261028134638_secure_lesson_teacher_notes_owner_only_read.sql'
+      - 'tests/security/lesson-teacher-notes-owner-only-read.test.ts'
       - 'data/curriculum-drafts/bh-g1-s2-original-vocabulary-repairs.json'
       - 'tests/bahrain-g1-vocabulary-repair.test.ts'
       - 'data/curriculum-drafts/bh-g2-s2-original-existing-reading-enhancements.json'
@@ -357,6 +361,10 @@ jobs:
         run: npx vitest run tests/curriculum-public-lesson-instructions.test.ts
       - name: Verify Bahrain 42-title OCR-aware, read-only curriculum reconciliation
         run: npx vitest run tests/curriculum-bahrain-title-reconciliation.test.ts
+      - name: Validate 60 original reading comprehension questions for Bahrain Grades 2 and 3
+        run: npx vitest run tests/bahrain-g2-g3-original-reading-sixty-question-specificity.test.ts
+      - name: Assert confidential teacher notes RLS and least-privilege grants
+        run: npx vitest run tests/security/lesson-teacher-notes-owner-only-read.test.ts
       - name: Review-only original vocabulary fixes for 12 existing Bahrain Grade-1 lessons
         run: npx vitest run tests/bahrain-g1-vocabulary-repair.test.ts
       - name: Original grade-2 lesson-linked reading, vocabulary and question quality
