@@ -1,0 +1,248 @@
+{
+  "created": "2026-10-28",
+  "purpose": "Reversible publication quarantine of OCR-derived published generic lessons in Bahrain Grades 2/3 reading units. Do not delete lessons, questions or activities.",
+  "source": "public.lessons, public.questions and lesson_activities read-only inventory",
+  "criteria": "Country BH; grades 2/3; unit القراءة والنصوص; published; content begins يتناول هذا الدرس موضوع",
+  "published_before": 26,
+  "activities_before": 78,
+  "question_rows_retained": 78,
+  "official_reading_poetry_topics_verified": 22,
+  "official_topic_record_canvass": "All 22 official 2026-27 first-term titles have at least one other published original Dadyoom enrichment lesson",
+  "no_student_attempts_or_progress": true,
+  "rows": [
+    {
+      "id": "654718af-c44e-46fc-ba72-b5197db5c37d",
+      "grade": 2,
+      "code": "BH",
+      "title": "\"القراءة: \"صديقتي مريم",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "adfd0323-749f-4cf0-b750-3a302d638410",
+      "grade": 2,
+      "code": "BH",
+      "title": ")القراءة: بالرّوح أفديها (شعر/ : دراسة القصيدة كاملة",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "6e4d93d6-a643-4a6b-beee-13029bbc9c2e",
+      "grade": 2,
+      "code": "BH",
+      "title": ")القراءة: درّاجتي (شعر/ : دراسة القصيدة كاملة",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "d2ab86c4-0dcb-43c3-83b3-b6f37dfe1192",
+      "grade": 2,
+      "code": "BH",
+      "title": "الدّرس األوّل",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "ff429925-5b12-45fd-a70d-bcca4e44161b",
+      "grade": 2,
+      "code": "BH",
+      "title": "الدّرس الأول",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "3aef6a6f-07e1-441c-aa6b-cdafbc892e12",
+      "grade": 2,
+      "code": "BH",
+      "title": "الدّرس الحادي",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "d7d90bfc-6735-4af2-83bd-46531e156792",
+      "grade": 2,
+      "code": "BH",
+      "title": "القراءة: الرياضة غيّرت حياتي براعم العربيّة 73",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "a23ac0b0-dd0d-4d14-b409-016a1875e759",
+      "grade": 2,
+      "code": "BH",
+      "title": "ّالقراءة: الغذاء الصحي براعم العربيّة",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "95aeda04-ecfd-4a69-92f1-f04b69344486",
+      "grade": 2,
+      "code": "BH",
+      "title": "القراءة: الـمصوّر الصّغير براعم العربيّة 32",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "5dc5ce0d-4b13-4225-971a-a219d6b6623d",
+      "grade": 2,
+      "code": "BH",
+      "title": "القراءة: تعاون النّمل براعم العربيّة 26",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "a4daa277-e13e-4831-9f4f-83c375df4519",
+      "grade": 2,
+      "code": "BH",
+      "title": "القراءة: جولة في محميّة محمّد ب",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "4d8e8581-ad50-4104-87ac-9d8ea863d474",
+      "grade": 2,
+      "code": "BH",
+      "title": "القراءة: سالمٌ مريض براعم العربيّة 20",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "a56e2d49-0730-4761-b7c3-7bcca8657db3",
+      "grade": 2,
+      "code": "BH",
+      "title": "القراءة: في عيادة العيون براعم العربيّة 58",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "c6be603c-f937-42f7-b62b-b91ea0ca6ec2",
+      "grade": 2,
+      "code": "BH",
+      "title": "القراءة: نظافتي/ : دراسة القصيدة كاملة",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "71fe9d64-cf0e-4d8e-86cc-5ca300311025",
+      "grade": 3,
+      "code": "BH",
+      "title": ":القراءة",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "6655c117-38ba-4aa8-ba52-3344fb82bfe4",
+      "grade": 3,
+      "code": "BH",
+      "title": ":القراءة ..وتعاونوا براعم العربيّة",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "bcd56434-2259-446b-b304-3823b8a24599",
+      "grade": 3,
+      "code": "BH",
+      "title": ":القراءة دروس من حياة توماس إديسون براعم العربيّة",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "4b1e8f5f-db1e-4e97-b4ff-16e5c424dcaa",
+      "grade": 3,
+      "code": "BH",
+      "title": ":القراءة لعبة يحبّها املاليين براعم العربيّة",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "9aaa5eae-039a-42c9-b0e4-5faa0048c8b2",
+      "grade": 3,
+      "code": "BH",
+      "title": ":القراءة( األصدقاء األربعة1",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "a15fc47b-6efe-4f1e-984a-5f9889aa7b06",
+      "grade": 3,
+      "code": "BH",
+      "title": ":القراءة( األصدقاء األربعة2",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "3c3c5c85-6e74-45f3-9879-5b3dadd68342",
+      "grade": 3,
+      "code": "BH",
+      "title": ":القراءة( األمانة1",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "caafb159-0c8a-4d4d-9741-dacf7d68092f",
+      "grade": 3,
+      "code": "BH",
+      "title": ":القراءة( األمانة2",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "b04bc780-c60f-40f1-8026-4267cd3d4092",
+      "grade": 3,
+      "code": "BH",
+      "title": ":القراءة( الولع بالرّسم1",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "4004a382-1e7c-4de7-b2f9-5565e8bc44c2",
+      "grade": 3,
+      "code": "BH",
+      "title": ":القراءة( الولع بالرّسم2",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "2f9bb320-3348-4f3f-8b85-2030ae914b5e",
+      "grade": 3,
+      "code": "BH",
+      "title": "الدّرس األوّل",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    },
+    {
+      "id": "2b1d57ef-2e2b-4235-9bf6-fec7b72bdc0f",
+      "grade": 3,
+      "code": "BH",
+      "title": "الدّرس الحادي",
+      "status": "published",
+      "activityCount": 3,
+      "questionCount": 3
+    }
+  ]
+}
