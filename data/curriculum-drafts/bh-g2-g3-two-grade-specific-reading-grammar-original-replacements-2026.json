@@ -7,7 +7,7 @@
   "requiredNoProgress": true,
   "preserveExistingLessonAndQuestionIds": true,
   "preserveSourceInstructions": true,
-  "scope": "Replace 4 existing Grade-2/3 core reading and nominal sentence lessons' generic material with truly grade-specific original text and 5 linked questions each.",
+  "scope": "Replace 4 existing Grade-2/3 core reading and nominal sentence lessons' generic material with truly grade-specific original text and 5 linked questions each. Existing 3 published activities per lesson are updated in-place to match the original grade-specific content.",
   "lessons": [
     {
       "id": "79c573e1-c2ba-48fd-8805-d27d62c9bf88",
@@ -134,6 +134,39 @@
           ],
           "correctAnswer": "b",
           "explanation": "سألت دانة عن معنى الكلمة ثم أكملت القراءة."
+        }
+      ],
+      "activities": [
+        {
+          "order": 1,
+          "title": "أحدد زمن زيارة المكتبة",
+          "instructions": "متى زارت دانة مكتبة الحي؟",
+          "options": [
+            "صباح الجمعة",
+            "مساء الأحد",
+            "ليلة السبت"
+          ],
+          "correctAnswer": "صباح الجمعة",
+          "activityType": "multiple_choice"
+        },
+        {
+          "order": 2,
+          "title": "أستنتج أهمية إعادة الكتب",
+          "instructions": "لماذا وعدت دانة بإعادة القصة في موعدها؟",
+          "options": [
+            "ليستفيد منها قراء آخرون",
+            "لكي تتلف صفحاتها",
+            "لتحتفظ بها دون إذن"
+          ],
+          "correctAnswer": "ليستفيد منها قراء آخرون",
+          "activityType": "multiple_choice"
+        },
+        {
+          "order": 3,
+          "title": "أطبق وأبرّر",
+          "instructions": "اكتب جملتين عن زيارة دانة للمكتبة، ثم وضّح كيف تحافظ على كتاب تستعيره.",
+          "modelAnswer": "زارت دانة مكتبة الحي صباح الجمعة وتعلمت معنى فسيلة. أعيد الكتاب المستعار في موعده ليستخدمه غيري.",
+          "activityType": "reading"
         }
       ]
     },
@@ -263,6 +296,39 @@
           "correctAnswer": "a",
           "explanation": "ظهر أثر الخطوات عندما استقامت الشتلة وسجلوا النتيجة."
         }
+      ],
+      "activities": [
+        {
+          "order": 1,
+          "title": "أحدد المشكلة في القصة",
+          "instructions": "ما المشكلة التي لاحظتها آمنة في حديقة المدرسة؟",
+          "options": [
+            "اختفاء الدفتر",
+            "ميل شتلة بعد الرياح",
+            "غياب المعلمة"
+          ],
+          "correctAnswer": "ميل شتلة بعد الرياح",
+          "activityType": "multiple_choice"
+        },
+        {
+          "order": 2,
+          "title": "أرتب أحداث معالجة المشكلة",
+          "instructions": "أي ترتيب يوافق أحداث القصة؟",
+          "options": [
+            "استقامة الشتلة ثم ملاحظة ميلها ثم سؤال المعلمة",
+            "ملاحظة الميل ثم سؤال المعلمة ثم تثبيت الشتلة",
+            "كتابة النتيجة ثم حدوث الرياح ثم البحث"
+          ],
+          "correctAnswer": "ملاحظة الميل ثم سؤال المعلمة ثم تثبيت الشتلة",
+          "activityType": "multiple_choice"
+        },
+        {
+          "order": 3,
+          "title": "أطبق وأبرّر",
+          "instructions": "اكتب ثلاث جمل تذكر المشكلة التي واجهتها الشتلة، وخطوة آمنة لحلها، والنتيجة. استخدم دليلًا من النص.",
+          "modelAnswer": "مالت الشتلة بعد الرياح، فاستشار الطلاب المعلمة وثبتوها بدعامة خفيفة. بعد أسبوع استقامت وسجلوا النتيجة.",
+          "activityType": "reading"
+        }
       ]
     },
     {
@@ -391,6 +457,39 @@
           "correctAnswer": "a",
           "explanation": "«المكتبةُ واسعةٌ» جملة اسمية مفيدة."
         }
+      ],
+      "activities": [
+        {
+          "order": 1,
+          "title": "أتعرف المبتدأ في الجملة",
+          "instructions": "ما المبتدأ في جملة «الحديقةُ جميلةٌ»؟",
+          "options": [
+            "جميلةٌ",
+            "الحديقةُ",
+            "في"
+          ],
+          "correctAnswer": "الحديقةُ",
+          "activityType": "multiple_choice"
+        },
+        {
+          "order": 2,
+          "title": "أرتب المبتدأ والخبر",
+          "instructions": "ما الترتيب الصحيح لبطاقتي «مفيدٌ» و«الكتابُ»؟",
+          "options": [
+            "مفيدٌ الكتابُ",
+            "الكتابُ في",
+            "الكتابُ مفيدٌ"
+          ],
+          "correctAnswer": "الكتابُ مفيدٌ",
+          "activityType": "multiple_choice"
+        },
+        {
+          "order": 3,
+          "title": "أطبق وأبرّر",
+          "instructions": "كوّن جملتين اسميتين تامتين عن المكتبة والصف، ثم حدّد الخبر في كل جملة.",
+          "modelAnswer": "المكتبةُ واسعةٌ: الخبر واسعةٌ. الصفُّ نظيفٌ: الخبر نظيفٌ.",
+          "activityType": "writing"
+        }
       ]
     },
     {
@@ -518,6 +617,39 @@
           ],
           "correctAnswer": "a",
           "explanation": "تبدأ الجملة باسم «الطلابُ» ويأتي الخبر «متعاونونَ»."
+        }
+      ],
+      "activities": [
+        {
+          "order": 1,
+          "title": "أحدد خبر الجملة الاسمية",
+          "instructions": "ما الخبر في «اللوحاتُ واضحةٌ»؟",
+          "options": [
+            "اللوحاتُ",
+            "المعرضُ",
+            "واضحةٌ"
+          ],
+          "correctAnswer": "واضحةٌ",
+          "activityType": "multiple_choice"
+        },
+        {
+          "order": 2,
+          "title": "أعلل تصنيف الجملة الاسمية",
+          "instructions": "كيف نعلل كون «المعرضُ منظّمٌ» جملة اسمية؟",
+          "options": [
+            "لأنها تنتهي بعلامة",
+            "لأنها تبدأ بفعل",
+            "لأنها تبدأ باسم ولها خبر يتمم المعنى"
+          ],
+          "correctAnswer": "لأنها تبدأ باسم ولها خبر يتمم المعنى",
+          "activityType": "multiple_choice"
+        },
+        {
+          "order": 3,
+          "title": "أطبق وأبرّر",
+          "instructions": "حلّل جملتين عن المعرض إلى مبتدأ وخبر، ثم قارن إحداهما بجملة فعلية من إنشائك.",
+          "modelAnswer": "المعرضُ منظّمٌ: المبتدأ المعرضُ والخبر منظّمٌ. اللوحاتُ واضحةٌ: المبتدأ اللوحاتُ والخبر واضحةٌ. الجملة الفعلية تبدأ بفعل مثل: نظّمَ التلاميذُ المعرضَ.",
+          "activityType": "writing"
         }
       ]
     }
