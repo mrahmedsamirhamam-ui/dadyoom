@@ -264,6 +264,10 @@ on:
       - 'tests/curriculum-22-countries-grade1-original-reading-specificity.test.ts'
       - 'data/curriculum-drafts/arab21-grades2-3-original-reading-42-lessons-20261028.json'
       - 'tests/curriculum-arab21-grade2-3-original-reading-42-lessons.test.ts'
+      - 'data/curriculum-audits/bahrain-official-semester1-2026-2027-grades2-3-reading-index.json'
+      - 'data/curriculum-audits/bahrain-grade2-3-ocr-scaffolds-quarantine-20261028.json'
+      - 'scripts/curriculum-bh-grade2-3-ocr-quarantine-readonly.sql'
+      - 'tests/curriculum-bahrain-grade2-3-official-toc-and-ocr-quarantine.test.ts'
       - 'scripts/curriculum-22-countries-grade2-3-original-reading-quality-readonly.sql'
       - 'scripts/curriculum-22-countries-grade1-reading-quality-readonly.sql'
       - 'data/curriculum-drafts/bh-g1-s2-original-vocabulary-repairs.json'
@@ -412,6 +416,8 @@ jobs:
         run: npx vitest run tests/curriculum-22-countries-grade1-original-reading-specificity.test.ts
       - name: Validate 42 original grade-2/3 country-specific stories and 210 linked questions
         run: npx vitest run tests/curriculum-arab21-grade2-3-original-reading-42-lessons.test.ts
+      - name: Verify Bahrain official Grade-2/3 term-one title index and reversible OCR quarantine snapshot
+        run: npx vitest run tests/curriculum-bahrain-grade2-3-official-toc-and-ocr-quarantine.test.ts
       - name: Review-only original vocabulary fixes for 12 existing Bahrain Grade-1 lessons
         run: npx vitest run tests/bahrain-g1-vocabulary-repair.test.ts
       - name: Original grade-2 lesson-linked reading, vocabulary and question quality
