@@ -1,0 +1,140 @@
+{
+  "authority": "Bahrain Ministry of Education Edunet",
+  "schoolYear": "2026-2027",
+  "term": "first",
+  "subject": "Arabic",
+  "grade": 1,
+  "book": "براعم العربية الجزء الأول",
+  "sourceUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+  "scope": "15 numbered Grade-1 Braaim Arabic book lessons plus 3 unit songs; excludes separate نتهيأ للمدرسة preparatory workbook and all second-semester topics",
+  "titlesOnly": true,
+  "doesNotIncludeOfficialPoetryOrTextbookPassages": true,
+  "entries": [
+    {
+      "sequence": 1,
+      "unit": "عائلتنا",
+      "title": "الدرس الأول: حرف (ب) (1)",
+      "pages": "8-21",
+      "kind": "letter"
+    },
+    {
+      "sequence": 2,
+      "unit": "عائلتنا",
+      "title": "الدرس الثاني: حرف (ب) (2)",
+      "pages": "22-34",
+      "kind": "letter"
+    },
+    {
+      "sequence": 3,
+      "unit": "عائلتنا",
+      "title": "الدرس الثالث: حرف (م)",
+      "pages": "35-48",
+      "kind": "letter"
+    },
+    {
+      "sequence": 4,
+      "unit": "عائلتنا",
+      "title": "الدرس الرابع: حرف (د)",
+      "pages": "49-61",
+      "kind": "letter"
+    },
+    {
+      "sequence": 5,
+      "unit": "عائلتنا",
+      "title": "الدرس الخامس: أعزز مكتسباتي",
+      "pages": "62-65",
+      "kind": "review"
+    },
+    {
+      "sequence": 5.5,
+      "unit": "عائلتنا",
+      "title": "أنشودة الوحدة: أسرتي",
+      "pages": "66",
+      "kind": "song"
+    },
+    {
+      "sequence": 6,
+      "unit": "مدرستنا",
+      "title": "الدرس السادس: حرف (ح)",
+      "pages": "68-81",
+      "kind": "letter"
+    },
+    {
+      "sequence": 7,
+      "unit": "مدرستنا",
+      "title": "الدرس السابع: حرف (ر)",
+      "pages": "82-96",
+      "kind": "letter"
+    },
+    {
+      "sequence": 8,
+      "unit": "مدرستنا",
+      "title": "الدرس الثامن: حرف (س)",
+      "pages": "97-109",
+      "kind": "letter"
+    },
+    {
+      "sequence": 9,
+      "unit": "مدرستنا",
+      "title": "الدرس التاسع: حرف (ل)",
+      "pages": "110-123",
+      "kind": "letter"
+    },
+    {
+      "sequence": 10,
+      "unit": "مدرستنا",
+      "title": "الدرس العاشر: أعزز مكتسباتي",
+      "pages": "124-129",
+      "kind": "review"
+    },
+    {
+      "sequence": 10.5,
+      "unit": "مدرستنا",
+      "title": "أنشودة الوحدة: مدرستي",
+      "pages": "130",
+      "kind": "song"
+    },
+    {
+      "sequence": 11,
+      "unit": "حينا",
+      "title": "الدرس الحادي عشر: حرف (ج)",
+      "pages": "132-144",
+      "kind": "letter"
+    },
+    {
+      "sequence": 12,
+      "unit": "حينا",
+      "title": "الدرس الثاني عشر: حرف (ن)",
+      "pages": "145-156",
+      "kind": "letter"
+    },
+    {
+      "sequence": 13,
+      "unit": "حينا",
+      "title": "الدرس الثالث عشر: حرف (ع)",
+      "pages": "157-168",
+      "kind": "letter"
+    },
+    {
+      "sequence": 14,
+      "unit": "حينا",
+      "title": "الدرس الرابع عشر: حرف (ت)",
+      "pages": "169-181",
+      "kind": "letter"
+    },
+    {
+      "sequence": 15,
+      "unit": "حينا",
+      "title": "الدرس الخامس عشر: أعزز مكتسباتي",
+      "pages": "182-186",
+      "kind": "review"
+    },
+    {
+      "sequence": 15.5,
+      "unit": "حينا",
+      "title": "أنشودة الوحدة: جاري",
+      "pages": "187",
+      "kind": "song"
+    }
+  ]
+}
