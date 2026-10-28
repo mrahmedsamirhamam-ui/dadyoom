@@ -5,9 +5,9 @@ import { describe, expect, it } from "vitest";
 type Question = {order:number; question:string; options:{id:string;text:string}[]; correctAnswer:string; explanation:string};
 type Activity = {order:number; activityType:string; options?:string[]; correctAnswer?:string; instructions:string; modelAnswer?:string};
 type Lesson = {id:string;grade:number;title:string;content:string;summary:string;learningObjectives:string[];vocabulary:{word:string;meaning:string}[]; questions:Question[];activities:Activity[]};
-const pack=JSON.parse(readFileSync(resolve(process.cwd(),
- "data/curriculum-drafts/bh-g2-g3-two-grade-specific-reading-grammar-original-replacements-2026.json"),"utf8"))
- as {lessons:Lesson[];requiredNoRecordedAttempts:boolean;requiredNoProgress:boolean;preserveExistingLessonAndQuestionIds:boolean;preserveSourceInstructions:boolean};
+type Pack = {lessons:Lesson[];requiredNoRecordedAttempts:boolean;requiredNoProgress:boolean;preserveExistingLessonAndQuestionIds:boolean;preserveSourceInstructions:boolean};
+const pack: Pack = JSON.parse(readFileSync(resolve(process.cwd(),
+ "data/curriculum-drafts/bh-g2-g3-two-grade-specific-reading-grammar-original-replacements-2026.json"),"utf8")) as Pack;
 
 describe("Original Bahrain Grade-2/3 grade-specific reading and grammar lessons",()=>{
  it("upgrades the four existing records, not invented official textbook lessons",()=>{
