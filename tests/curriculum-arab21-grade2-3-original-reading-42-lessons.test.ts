@@ -11,13 +11,13 @@ type GradeReading = {
 };
 const file="data/curriculum-drafts/arab21-grades2-3-original-reading-42-lessons-20261028.json";
 const raw=readFileSync(resolve(process.cwd(),file),"utf8");
-const packet=JSON.parse(raw) as {countryCount:number;grades:number[];containsAnswerKeys:boolean;lessons:GradeReading[]};
+const packet=JSON.parse(raw) as {countryCount:number;gradeCoverage:number[];containsAnswerKeys:boolean;lessons:GradeReading[]};
 const lessons=packet.lessons;
 
 describe("Original G2/G3 supplementary reading for 21 additional Arab countries",()=>{
  it("covers every non-Bahrain country exactly once per grade, preserving record IDs",()=>{
   expect(packet.countryCount).toBe(21);
-  expect(packet.grades).toEqual([2,3]);
+  expect(packet.gradeCoverage).toEqual([2,3]);
   expect(lessons).toHaveLength(42);
   expect(new Set(lessons.map(l=>l.id)).size).toBe(42);
   const codes="AE DJ DZ EG IQ JO KM KW LB LY MA MR OM PS QA SA SD SO SY TN YE".split(" ");
