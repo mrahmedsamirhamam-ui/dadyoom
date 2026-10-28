@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-28",
+  "project": "Dadyoom",
+  "databaseProject": "hvqsvtomhlxavmfqoxfz",
+  "country": "BH",
+  "grade": 3,
+  "semester": 1,
+  "source": {
+    "githubIndex": "data/curriculum-sources/bahrain-2026-s1-ministry-plan-index.json",
+    "officialPlanUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+    "originalPdfNotReopenedDuringThisRun": true,
+    "sourcePdfPageIndexBasedOnEarlierHumanReview": true
+  },
+  "normalization": "Remove tatweel + diacritics + punctuation, normalize initial alef and retain numeric suffix (1)/(2) when comparing stored OCR-prefixed titles.",
+  "summary": {
+    "sourceReadingTitles": 12,
+    "titlesWithExistingCandidates": 12,
+    "totalCandidateRows": 16,
+    "topicsWithMultipleCandidates": 4,
+    "topicsWithAtLeastOneOriginalSupport": 12,
+    "repairedOriginalSupportTopics": [
+      "حكمة أب",
+      "جزاء المعتدي"
+    ],
+    "rewrittenGenericQuestions": 6,
+    "teacherReviewPending": true,
+    "officialTextNotReproduced": true,
+    "noNewLessons": true
+  },
+  "topics": [
+    {
+      "sequence": 1,
+      "sourceTitle": "الأصدقاء الأربعة (1)",
+      "sourceUnit": "قيم ومبادئ",
+      "sourcePdfPage": 14,
+      "existingCandidateCount": 1,
+      "candidates": [
+        {
+          "id": "c76caccf-b10c-4e96-830e-eac297305ee1",
+          "class": "original_study_support",
+          "status": "published",
+          "questions": 3,
+          "storedTitle": "القراءة: الأصدقاء الأربعة (1 ) براعم العربيّة 11-20"
+        }
+      ]
+    },
+    {
+      "sequence": 2,
+      "sourceTitle": "الأصدقاء الأربعة (2)",
+      "sourceUnit": "قيم ومبادئ",
+      "sourcePdfPage": 14,
+      "existingCandidateCount": 1,
+      "candidates": [
+        {
+          "id": "4509390f-419a-4944-8c52-c0fa6e0d9478",
+          "class": "original_study_support",
+          "status": "published",
+          "questions": 3,
+          "storedTitle": "القراءة: الأصدقاء الأربعة (2 ) براعم العربيّة 21-30"
+        }
+      ]
+    },
+    {
+      "sequence": 3,
+      "sourceTitle": "حكمة أب",
+      "sourceUnit": "قيم ومبادئ",
+      "sourcePdfPage": 14,
+      "existingCandidateCount": 1,
+      "candidates": [
+        {
+          "id": "4b1a9c90-6023-4d03-a739-b7e98139a936",
+          "class": "original_study_support",
+          "status": "published",
+          "questions": 3,
+          "storedTitle": "القراءة: حكمة أب: دراسة القصيدة كاملة / (حفظ من 1 إلى5 ) براعم العربيّة 31-37"
+        }
+      ]
+    },
+    {
+      "sequence": 4,
+      "sourceTitle": "وتعاونوا",
+      "sourceUnit": "قيم ومبادئ",
+      "sourcePdfPage": 14,
+      "existingCandidateCount": 2,
+      "candidates": [
+        {
+          "id": "3a754fd2-c6d1-4e81-ae69-95c9abf8c3de",
+          "class": "original_study_support",
+          "status": "published",
+          "questions": 3,
+          "storedTitle": "القراءة: وتعاونوا.. براعم العربيّة 38-47"
+        },
+        {
+          "id": "6655c117-38ba-4aa8-ba52-3344fb82bfe4",
+          "class": "generic_scaffold",
+          "status": "published",
+          "questions": 3,
+          "storedTitle": ":القراءة ..وتعاونوا براعم العربيّة"
+        }
+      ]
+    },
+    {
+      "sequence": 5,
+      "sourceTitle": "الولع بالرسم (1)",
+      "sourceUnit": "ألعاب وهوايات",
+      "sourcePdfPage": 15,
+      "existingCandidateCount": 2,
+      "candidates": [
+        {
+          "id": "b04bc780-c60f-40f1-8026-4267cd3d4092",
+          "class": "generic_scaffold",
+          "status": "published",
+          "questions": 3,
+          "storedTitle": ":القراءة( الولع بالرّسم1"
+        },
+        {
+          "id": "71c3fd3a-73c3-4fb6-8ccb-376f7e8d1c48",
+          "class": "original_study_support",
+          "status": "published",
+          "questions": 3,
+          "storedTitle": "القراءة: الولع بالرّسم (1 ) براعم العربيّة 51-62"
+        }
+      ]
+    },
+    {
+      "sequence": 6,
+      "sourceTitle": "الولع بالرسم (2)",
+      "sourceUnit": "ألعاب وهوايات",
+      "sourcePdfPage": 15,
+      "existingCandidateCount": 2,
+      "candidates": [
+        {
+          "id": "4004a382-1e7c-4de7-b2f9-5565e8bc44c2",
+          "class": "generic_scaffold",
+          "status": "published",
+          "questions": 3,
+          "storedTitle": ":القراءة( الولع بالرّسم2"
+        },
+        {
+          "id": "14d27121-7ec1-40d5-b705-d65271c89b0a",
+          "class": "original_study_support",
+          "status": "published",
+          "questions": 3,
+          "storedTitle": "القراءة: الولع بالرّسم (2 ) براعم العربيّة 63-75"
+        }
+      ]
+    },
+    {
+      "sequence": 7,
+      "sourceTitle": "وقت الراحات",
+      "sourceUnit": "ألعاب وهوايات",
+      "sourcePdfPage": 15,
+      "existingCandidateCount": 1,
+      "candidates": [
+        {
+          "id": "9954bcf1-2b6b-4e3d-8bd8-ad60e966f1f1",
+          "class": "original_study_support",
+          "status": "published",
+          "questions": 3,
+          "storedTitle": "القراءة: وقت الرّاحات: دراسة القصيدة كاملة / (حفظ من 1 إلى5 ) براعم العربيّة 76-84"
+        }
+      ]
+    },
+    {
+      "sequence": 8,
+      "sourceTitle": "لعبة يحبها الملايين",
+      "sourceUnit": "ألعاب وهوايات",
+      "sourcePdfPage": 15,
+      "existingCandidateCount": 1,
+      "candidates": [
+        {
+          "id": "28123a61-ef4f-457b-a848-c0b6f9a63517",
+          "class": "original_study_support",
+          "status": "published",
+          "questions": 3,
+          "storedTitle": "القراءة: لعبة يحبّها الملايين براعم العربيّة 85-97"
+        }
+      ]
+    },
+    {
+      "sequence": 9,
+      "sourceTitle": "الأمانة (1)",
+      "sourceUnit": "مواقف وعبر",
+      "sourcePdfPage": 15,
+      "existingCandidateCount": 1,
+      "candidates": [
+        {
+          "id": "acaaaeb9-3feb-4936-9117-6e58719d189d",
+          "class": "original_study_support",
+          "status": "published",
+          "questions": 3,
+          "storedTitle": "القراءة: الأمانة ( 1 ) براعم العربيّة 101-112"
+        }
+      ]
+    },
+    {
+      "sequence": 10,
+      "sourceTitle": "الأمانة (2)",
+      "sourceUnit": "مواقف وعبر",
+      "sourcePdfPage": 16,
+      "existingCandidateCount": 1,
+      "candidates": [
+        {
+          "id": "55cae677-e109-444d-a2f3-ad7e3bffc4c3",
+          "class": "original_study_support",
+          "status": "published",
+          "questions": 3,
+          "storedTitle": "القراءة: الأمانة ( 2 ) براعم العربيّة 113-125"
+        }
+      ]
+    },
+    {
+      "sequence": 11,
+      "sourceTitle": "جزاء المعتدي",
+      "sourceUnit": "مواقف وعبر",
+      "sourcePdfPage": 16,
+      "existingCandidateCount": 1,
+      "candidates": [
+        {
+          "id": "ef98f22d-b9ae-4a1f-9288-d9f5f81220a2",
+          "class": "original_study_support",
+          "status": "published",
+          "questions": 3,
+          "storedTitle": "القراءة: جزاء المعتدي : دراسة القصيدة كاملة براعم العربيّة 126-136"
+        }
+      ]
+    },
+    {
+      "sequence": 12,
+      "sourceTitle": "دروس من حياة توماس إديسون",
+      "sourceUnit": "مواقف وعبر",
+      "sourcePdfPage": 16,
+      "existingCandidateCount": 2,
+      "candidates": [
+        {
+          "id": "bcd56434-2259-446b-b304-3823b8a24599",
+          "class": "generic_scaffold",
+          "status": "published",
+          "questions": 3,
+          "storedTitle": ":القراءة دروس من حياة توماس إديسون براعم العربيّة"
+        },
+        {
+          "id": "4bc90e75-a293-4106-9b52-3b5d72c15311",
+          "class": "original_study_support",
+          "status": "published",
+          "questions": 3,
+          "storedTitle": "القراءة: دروس من حياة توماس إديسون براعم العربيّة 137-150"
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    "No topic is cleared for ministry textbook equivalence on title-match alone",
+    "Duplicate OCR title candidates must not be deleted automatically",
+    "Original Dadyoom reading texts are independent and cannot be presented as the official poems",
+    "Questions were updated in existing records without changing student attempts"
+  ]
+}
