@@ -1,0 +1,54 @@
+{
+  "created": "2026-10-28",
+  "country": "BH",
+  "grade": 2,
+  "unit": "المراجعة والمهارات",
+  "purpose": "Reversible quarantine only. These are five duplicate OCR scaffold rows; preserve all records.",
+  "originalOfficialPlan": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+  "officialReviewTopics": 10,
+  "originalSupplementaryReviewLessons": 9,
+  "existingApprovedFourthLettersLesson": 1,
+  "quarantineCount": 5,
+  "oldStatus": "published",
+  "newStatus": "draft",
+  "publishedActivitiesToDisable": 15,
+  "questionsRetained": 15,
+  "learnerWorkFound": false,
+  "rows": [
+    {
+      "id": "abf5e6fa-8e13-4668-85b3-ce7ef27b26e0",
+      "title": "( َأُراجِّعُ اإلِّمْالءَ وَالتَّعْبير1 ) التّدريبات اللّغويّة-",
+      "priorStatus": "published",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "a828dce7-aea3-4d61-b885-f26f249be942",
+      "title": "( َأُراجِّعُ اإلِّمْالءَ وَالتَّعْبير2 ) التّدريبات اللّغويّة-",
+      "priorStatus": "published",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "025822f8-ee2c-4ac5-aed9-2de5f4f4127b",
+      "title": "( َأُراجِّعُ القِّراءَة1",
+      "priorStatus": "published",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "dadb9978-8770-4071-b54f-a6eb91d77fe7",
+      "title": "( َأُراجِّعُ القِّراءَة2",
+      "priorStatus": "published",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "b6fc329a-39ba-435d-88be-46e7a2d31f1b",
+      "title": "أُراجِّعُ الإِّمْلاءَ وَالتَّعْبيرَ ( 2 ) التّدريبات اللّغويّة -",
+      "priorStatus": "published",
+      "questions": 3,
+      "activities": 3
+    }
+  ]
+}
