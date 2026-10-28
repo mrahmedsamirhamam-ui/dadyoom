@@ -272,6 +272,9 @@ on:
       - 'data/curriculum-audits/bahrain-grade2-five-duplicate-review-ocr-quarantine-20261028.json'
       - 'scripts/curriculum-bahrain-grade2-review-repaired-and-ocr-quarantine-readonly.sql'
       - 'tests/curriculum-bahrain-grade2-review-nine-original-lessons-and-five-ocr-quarantine.test.ts'
+      - 'data/curriculum-drafts/arab22-grade1-3-original-singular-plural-66-lessons-20261028.json'
+      - 'tests/curriculum-22-countries-grade1-3-original-singular-plural.test.ts'
+      - 'scripts/curriculum-22-countries-grade1-3-singular-plural-quality-readonly.sql'
       - 'scripts/curriculum-22-countries-grades1-3-story-sequence-quality-readonly.sql'
       - 'scripts/curriculum-22-countries-grades1-3-main-idea-quality-readonly.sql'
       - 'data/curriculum-audits/bahrain-official-semester1-2026-2027-grades2-3-reading-index.json'
@@ -432,6 +435,8 @@ jobs:
         run: npx vitest run tests/curriculum-22-countries-grades1-3-story-sequence-original-linked-texts.test.ts
       - name: Verify nine original Bahrain Grade-2 reviews and five OCR duplicate quarantine records
         run: npx vitest run tests/curriculum-bahrain-grade2-review-nine-original-lessons-and-five-ocr-quarantine.test.ts
+      - name: Validate 66 grade-differentiated singular-and-plural lessons for all 22 countries
+        run: npx vitest run tests/curriculum-22-countries-grade1-3-original-singular-plural.test.ts
       - name: Verify Bahrain official Grade-2/3 term-one title index and reversible OCR quarantine snapshot
         run: npx vitest run tests/curriculum-bahrain-grade2-3-official-toc-and-ocr-quarantine.test.ts
       - name: Review-only original vocabulary fixes for 12 existing Bahrain Grade-1 lessons
