@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "createdDate": "2026-10-28",
+  "verifiedFrom": "Live production SELECT against Supabase hvqsvtomhlxavmfqoxfz",
+  "subject": "Arabic",
+  "country": "BH",
+  "grade": 1,
+  "semester": 1,
+  "source": {
+    "type": "earlier locally archived ministry-plan/book index in GitHub",
+    "index": "data/bahrain-arabic/grade-01-sem1-curriculum.json",
+    "officialPlanIndex": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+    "sourcePdfNotReinspectedInThisRun": true,
+    "officialTextbookPagesNotRechecked": true
+  },
+  "conclusion": {
+    "sourceTitles": 18,
+    "uniqueExactUnitMatches": 18,
+    "missingTitles": 0,
+    "duplicates": 0,
+    "published": 18,
+    "threeOrMoreQuestions": 18,
+    "contentVerifiedAgainstOfficialBook": false,
+    "pedagogicalQualityApproved": false,
+    "secondSemesterReviewed": false
+  },
+  "lessons": [
+    {
+      "sequence": 1,
+      "title": "الدرس الأول: حرف (ب) (1)",
+      "unit": "الوحدة الأولى: عائلتنا",
+      "sourceBookPage": 8,
+      "matchingDatabaseRecordId": "7edbc90b-db11-4a44-9639-09beb1ba430b",
+      "published": true,
+      "storedQuestionCount": 3
+    },
+    {
+      "sequence": 2,
+      "title": "الدرس الثاني: حرف (ب) (2)",
+      "unit": "الوحدة الأولى: عائلتنا",
+      "sourceBookPage": 22,
+      "matchingDatabaseRecordId": "60914ad2-b8a2-43ec-8d28-5bdbc5b6d6f4",
+      "published": true,
+      "storedQuestionCount": 3
+    },
+    {
+      "sequence": 3,
+      "title": "الدرس الثالث: حرف (م)",
+      "unit": "الوحدة الأولى: عائلتنا",
+      "sourceBookPage": 35,
+      "matchingDatabaseRecordId": "f3acba28-bd07-4127-8900-775a3deaa895",
+      "published": true,
+      "storedQuestionCount": 3
+    },
+    {
+      "sequence": 4,
+      "title": "الدرس الرابع: حرف (د)",
+      "unit": "الوحدة الأولى: عائلتنا",
+      "sourceBookPage": 49,
+      "matchingDatabaseRecordId": "0f24e423-0fcb-4101-a278-f29d36076a07",
+      "published": true,
+      "storedQuestionCount": 3
+    },
+    {
+      "sequence": 5,
+      "title": "الدرس الخامس: أعزز مكتسباتي",
+      "unit": "الوحدة الأولى: عائلتنا",
+      "sourceBookPage": 62,
+      "matchingDatabaseRecordId": "1a76e20a-2d73-483a-9345-5917080ed4e9",
+      "published": true,
+      "storedQuestionCount": 3
+    },
+    {
+      "sequence": 6,
+      "title": "أنشودة الوحدة: أسرتي",
+      "unit": "الوحدة الأولى: عائلتنا",
+      "sourceBookPage": 66,
+      "matchingDatabaseRecordId": "ca1c1956-df2d-4318-88d2-0c2c28ee088a",
+      "published": true,
+      "storedQuestionCount": 3
+    },
+    {
+      "sequence": 7,
+      "title": "الدرس السادس: حرف (ح)",
+      "unit": "الوحدة الثانية: مدرستنا",
+      "sourceBookPage": 68,
+      "matchingDatabaseRecordId": "c6a7628c-b04c-4af9-aa33-9e44e3b89854",
+      "published": true,
+      "storedQuestionCount": 3
+    },
+    {
+      "sequence": 8,
+      "title": "الدرس السابع: حرف (ر)",
+      "unit": "الوحدة الثانية: مدرستنا",
+      "sourceBookPage": 82,
+      "matchingDatabaseRecordId": "96466541-3009-4f29-a17d-6e77e71e6836",
+      "published": true,
+      "storedQuestionCount": 3
+    },
+    {
+      "sequence": 9,
+      "title": "الدرس الثامن: حرف (س)",
+      "unit": "الوحدة الثانية: مدرستنا",
+      "sourceBookPage": 97,
+      "matchingDatabaseRecordId": "b0b7f330-c833-44db-8625-3a790efce1f2",
+      "published": true,
+      "storedQuestionCount": 3
+    },
+    {
+      "sequence": 10,
+      "title": "الدرس التاسع: حرف (ل)",
+      "unit": "الوحدة الثانية: مدرستنا",
+      "sourceBookPage": 110,
+      "matchingDatabaseRecordId": "e57fb95e-0d5b-4a52-9e8d-f541216cc8d4",
+      "published": true,
+      "storedQuestionCount": 3
+    },
+    {
+      "sequence": 11,
+      "title": "الدرس العاشر: أعزز مكتسباتي",
+      "unit": "الوحدة الثانية: مدرستنا",
+      "sourceBookPage": 124,
+      "matchingDatabaseRecordId": "953f9005-5b4c-485a-8fc9-94e5d7a58db6",
+      "published": true,
+      "storedQuestionCount": 3
+    },
+    {
+      "sequence": 12,
+      "title": "أنشودة الوحدة: مدرستي",
+      "unit": "الوحدة الثانية: مدرستنا",
+      "sourceBookPage": 130,
+      "matchingDatabaseRecordId": "f36e0ccd-af09-465c-923c-1a8327aac3c8",
+      "published": true,
+      "storedQuestionCount": 3
+    },
+    {
+      "sequence": 13,
+      "title": "الدرس الحادي عشر: حرف (ج)",
+      "unit": "الوحدة الثالثة: حينا",
+      "sourceBookPage": 132,
+      "matchingDatabaseRecordId": "69c32ad8-e737-444a-92cc-044919e87540",
+      "published": true,
+      "storedQuestionCount": 3
+    },
+    {
+      "sequence": 14,
+      "title": "الدرس الثاني عشر: حرف (ن)",
+      "unit": "الوحدة الثالثة: حينا",
+      "sourceBookPage": 145,
+      "matchingDatabaseRecordId": "1145b186-c334-4ced-a98e-8a5bf1f28ddc",
+      "published": true,
+      "storedQuestionCount": 3
+    },
+    {
+      "sequence": 15,
+      "title": "الدرس الثالث عشر: حرف (ع)",
+      "unit": "الوحدة الثالثة: حينا",
+      "sourceBookPage": 157,
+      "matchingDatabaseRecordId": "f6419bab-fee6-4436-9f50-54a4da934999",
+      "published": true,
+      "storedQuestionCount": 3
+    },
+    {
+      "sequence": 16,
+      "title": "الدرس الرابع عشر: حرف (ت)",
+      "unit": "الوحدة الثالثة: حينا",
+      "sourceBookPage": 169,
+      "matchingDatabaseRecordId": "0eb8f691-50e6-4329-bfc9-271a4822d283",
+      "published": true,
+      "storedQuestionCount": 3
+    },
+    {
+      "sequence": 17,
+      "title": "الدرس الخامس عشر: أعزز مكتسباتي",
+      "unit": "الوحدة الثالثة: حينا",
+      "sourceBookPage": 182,
+      "matchingDatabaseRecordId": "fae1e5ea-b1cb-4ac7-898b-f7a0317c3e59",
+      "published": true,
+      "storedQuestionCount": 3
+    },
+    {
+      "sequence": 18,
+      "title": "أنشودة الوحدة: جاري",
+      "unit": "الوحدة الثالثة: حينا",
+      "sourceBookPage": 187,
+      "matchingDatabaseRecordId": "84df9520-a5ee-4a66-8c3c-f4b78332311c",
+      "published": true,
+      "storedQuestionCount": 3
+    }
+  ],
+  "safeguards": [
+    "Do not use this title-only matching to certify ministry text edition, lesson equivalence, or student readiness",
+    "Source PDF is not stored in repo; ministry 2026–27 source URL currently inaccessible in public browsing",
+    "No database writes performed as part of title reconciliation"
+  ]
+}
