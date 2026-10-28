@@ -244,6 +244,9 @@ on:
       - 'tests/security/published-lesson-answer-key-constraint.test.ts'
       - 'supabase/migrations/20261028144115_restrict_web_role_question_activity_privileges.sql'
       - 'tests/security/lesson-question-activity-web-role-grants.test.ts'
+      - 'supabase/migrations/20261028144512_deny_public_schema_truncate_to_web_roles.sql'
+      - 'scripts/security-public-schema-web-role-privileges-readonly.sql'
+      - 'tests/security/public-schema-truncate-grants.test.ts'
       - 'data/curriculum-drafts/bh-g1-s2-original-vocabulary-repairs.json'
       - 'tests/bahrain-g1-vocabulary-repair.test.ts'
       - 'data/curriculum-drafts/bh-g2-s2-original-existing-reading-enhancements.json'
@@ -374,6 +377,8 @@ jobs:
         run: npx vitest run tests/security/published-lesson-answer-key-constraint.test.ts
       - name: Verify students cannot TRUNCATE or mutate lesson questions and activities
         run: npx vitest run tests/security/lesson-question-activity-web-role-grants.test.ts
+      - name: Assert no web-facing role can TRUNCATE any public table
+        run: npx vitest run tests/security/public-schema-truncate-grants.test.ts
       - name: Review-only original vocabulary fixes for 12 existing Bahrain Grade-1 lessons
         run: npx vitest run tests/bahrain-g1-vocabulary-repair.test.ts
       - name: Original grade-2 lesson-linked reading, vocabulary and question quality
