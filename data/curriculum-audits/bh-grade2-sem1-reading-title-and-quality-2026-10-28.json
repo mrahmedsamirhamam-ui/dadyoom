@@ -1,0 +1,313 @@
+{
+  "schemaVersion": 1,
+  "snapshot": "2026-10-28",
+  "databaseProject": "hvqsvtomhlxavmfqoxfz",
+  "scope": "Bahrain grade 2, semester 1, reading titles; source-title and quality reconnaissance only",
+  "source": {
+    "repositoryFile": "data/curriculum-sources/bahrain-2026-s1-ministry-plan-index.json",
+    "officialPlanUrl": "https://www.edunet.bh/Econtent/LessonsGuide",
+    "primaryPdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+    "sourcePdfSha256": "ec7191b7e450f356b2e59bcf676f81f42668be60f68637925d97b75c16cf1daf",
+    "limitation": "Original ministry PDF was reviewed in earlier uploaded-document work; unavailable for independent reopening in this run. Not full textbook content certification."
+  },
+  "normalization": "remove Arabic tatweel (U+0640), diacritics, whitespace, punctuation; normalize Alef forms; compare source title as contiguous substring of OCR-prefixed DB lesson title; check exact page, book and unit manually before publication",
+  "summary": {
+    "sourceTitles": 12,
+    "matchedTitles": 12,
+    "candidateDbRows": 22,
+    "topicsWithMultipleCandidates": 10,
+    "topicsWithOriginalReadingSupport": 12,
+    "firstRunFalseNegatives": 12,
+    "originalContentRepairedInProduction": [
+      "بالروح أفديها",
+      "نظافتي"
+    ],
+    "questionRowsRewritten": 6,
+    "noNewLessonRecords": true,
+    "teacherReviewComplete": false,
+    "officialTextbookContentsVerified": false,
+    "liveWebsiteTested": false
+  },
+  "topics": [
+    {
+      "index": 1,
+      "sourceTitle": "صديقتي مريم",
+      "sourceUnit": "الحياة الاجتماعية",
+      "sourcePdfPage": 11,
+      "existingCandidates": 2,
+      "recordCandidates": [
+        {
+          "id": "6d81a64d-7f25-4589-9f67-509285762788",
+          "status": "published",
+          "storedTitle": "القراءة: \"صديقتي مريم\"",
+          "qualityClass": "original_reading_support",
+          "questionCount": 3
+        },
+        {
+          "id": "654718af-c44e-46fc-ba72-b5197db5c37d",
+          "status": "published",
+          "storedTitle": "\"القراءة: \"صديقتي مريم",
+          "qualityClass": "generic_scaffold",
+          "questionCount": 3
+        }
+      ],
+      "qualityDecision": "original_study_support_present_pending_teacher_review"
+    },
+    {
+      "index": 2,
+      "sourceTitle": "بالروح أفديها",
+      "sourceUnit": "الحياة الاجتماعية",
+      "sourcePdfPage": 11,
+      "existingCandidates": 2,
+      "recordCandidates": [
+        {
+          "id": "adfd0323-749f-4cf0-b750-3a302d638410",
+          "status": "published",
+          "storedTitle": ")القراءة: بالرّوح أفديها (شعر/ : دراسة القصيدة كاملة",
+          "qualityClass": "generic_scaffold",
+          "questionCount": 3
+        },
+        {
+          "id": "d09e8b20-b4d4-4df7-bca7-808c41fac80d",
+          "status": "published",
+          "storedTitle": "القراءة: بالرّوح أفديها (شعر) : دراسة القصيدة كاملة / (حفظ من 1 إلى4)",
+          "qualityClass": "original_reading_support",
+          "questionCount": 3
+        }
+      ],
+      "qualityDecision": "original_study_support_present_pending_teacher_review"
+    },
+    {
+      "index": 3,
+      "sourceTitle": "سالم مريض",
+      "sourceUnit": "الحياة الاجتماعية",
+      "sourcePdfPage": 11,
+      "existingCandidates": 2,
+      "recordCandidates": [
+        {
+          "id": "4d8e8581-ad50-4104-87ac-9d8ea863d474",
+          "status": "published",
+          "storedTitle": "القراءة: سالمٌ مريض براعم العربيّة 20",
+          "qualityClass": "generic_scaffold",
+          "questionCount": 3
+        },
+        {
+          "id": "6c42d72e-4015-4319-98b8-ef06fb0b2d13",
+          "status": "published",
+          "storedTitle": "القراءة: سالمٌ مريض براعم العربيّة",
+          "qualityClass": "original_reading_support",
+          "questionCount": 3
+        }
+      ],
+      "qualityDecision": "original_study_support_present_pending_teacher_review"
+    },
+    {
+      "index": 4,
+      "sourceTitle": "تعاون النمل",
+      "sourceUnit": "الحياة الاجتماعية",
+      "sourcePdfPage": 11,
+      "existingCandidates": 2,
+      "recordCandidates": [
+        {
+          "id": "5dc5ce0d-4b13-4225-971a-a219d6b6623d",
+          "status": "published",
+          "storedTitle": "القراءة: تعاون النّمل براعم العربيّة 26",
+          "qualityClass": "generic_scaffold",
+          "questionCount": 3
+        },
+        {
+          "id": "cee27705-fa6c-46b3-9a4f-6a528be12bbf",
+          "status": "published",
+          "storedTitle": "القراءة: تعاون النّمل براعم العربيّة",
+          "qualityClass": "original_reading_support",
+          "questionCount": 3
+        }
+      ],
+      "qualityDecision": "original_study_support_present_pending_teacher_review"
+    },
+    {
+      "index": 5,
+      "sourceTitle": "المصور الصغير",
+      "sourceUnit": "تنظيم أوقات الفراغ",
+      "sourcePdfPage": 12,
+      "existingCandidates": 2,
+      "recordCandidates": [
+        {
+          "id": "c7e36129-4923-4443-8681-9fb3ffd8e249",
+          "status": "published",
+          "storedTitle": "القراءة: الـمصوّر الصّغير براعم العربيّة",
+          "qualityClass": "original_reading_support",
+          "questionCount": 3
+        },
+        {
+          "id": "95aeda04-ecfd-4a69-92f1-f04b69344486",
+          "status": "published",
+          "storedTitle": "القراءة: الـمصوّر الصّغير براعم العربيّة 32",
+          "qualityClass": "generic_scaffold",
+          "questionCount": 3
+        }
+      ],
+      "qualityDecision": "original_study_support_present_pending_teacher_review"
+    },
+    {
+      "index": 6,
+      "sourceTitle": "دراجتي",
+      "sourceUnit": "تنظيم أوقات الفراغ",
+      "sourcePdfPage": 12,
+      "existingCandidates": 2,
+      "recordCandidates": [
+        {
+          "id": "ae3dad23-bf37-4da6-97cf-8f02beb5c7ec",
+          "status": "published",
+          "storedTitle": "القراءة: درّاجتي (شعر): دراسة القصيدة كاملة / (حفظ من 1 إلى6) براعم العربيّة 37",
+          "qualityClass": "original_reading_support",
+          "questionCount": 3
+        },
+        {
+          "id": "6e4d93d6-a643-4a6b-beee-13029bbc9c2e",
+          "status": "published",
+          "storedTitle": ")القراءة: درّاجتي (شعر/ : دراسة القصيدة كاملة",
+          "qualityClass": "generic_scaffold",
+          "questionCount": 3
+        }
+      ],
+      "qualityDecision": "original_study_support_present_pending_teacher_review"
+    },
+    {
+      "index": 7,
+      "sourceTitle": "جولة في محمية محمد بن زايد الطبيعية",
+      "sourceUnit": "تنظيم أوقات الفراغ",
+      "sourcePdfPage": 12,
+      "existingCandidates": 1,
+      "recordCandidates": [
+        {
+          "id": "137e97ee-e49c-4f66-b649-ce147fe0a429",
+          "status": "published",
+          "storedTitle": "القراءة: جولة في محميّة محمّد ب ن زايد الطّبيعيّة براعم العربيّة 42",
+          "qualityClass": "original_reading_support",
+          "questionCount": 3
+        }
+      ],
+      "qualityDecision": "original_study_support_present_pending_teacher_review"
+    },
+    {
+      "index": 8,
+      "sourceTitle": "الطائرة الورقية",
+      "sourceUnit": "تنظيم أوقات الفراغ",
+      "sourcePdfPage": 12,
+      "existingCandidates": 1,
+      "recordCandidates": [
+        {
+          "id": "2b83d8bc-a3d7-4ddf-8dc8-3921fc47617a",
+          "status": "published",
+          "storedTitle": "القراءة: الطّائرةُ الورقيّة",
+          "qualityClass": "original_reading_support",
+          "questionCount": 3
+        }
+      ],
+      "qualityDecision": "original_study_support_present_pending_teacher_review"
+    },
+    {
+      "index": 9,
+      "sourceTitle": "في عيادة العيون",
+      "sourceUnit": "المحافظة على الصحة",
+      "sourcePdfPage": 13,
+      "existingCandidates": 2,
+      "recordCandidates": [
+        {
+          "id": "a7379987-d16a-4a09-b82e-ee33fc22bb22",
+          "status": "published",
+          "storedTitle": "القراءة: في عيادة العيون براعم العربيّة",
+          "qualityClass": "original_reading_support",
+          "questionCount": 3
+        },
+        {
+          "id": "a56e2d49-0730-4761-b7c3-7bcca8657db3",
+          "status": "published",
+          "storedTitle": "القراءة: في عيادة العيون براعم العربيّة 58",
+          "qualityClass": "generic_scaffold",
+          "questionCount": 3
+        }
+      ],
+      "qualityDecision": "original_study_support_present_pending_teacher_review"
+    },
+    {
+      "index": 10,
+      "sourceTitle": "نظافتي",
+      "sourceUnit": "المحافظة على الصحة",
+      "sourcePdfPage": 13,
+      "existingCandidates": 2,
+      "recordCandidates": [
+        {
+          "id": "327ee158-f501-4851-8405-819f64e990e1",
+          "status": "published",
+          "storedTitle": "القراءة: نظافتي : دراسة القصيدة كاملة / (حفظ من 1 إلى4 ) براعم العربيّة 67",
+          "qualityClass": "original_reading_support",
+          "questionCount": 3
+        },
+        {
+          "id": "c6be603c-f937-42f7-b62b-b91ea0ca6ec2",
+          "status": "published",
+          "storedTitle": "القراءة: نظافتي/ : دراسة القصيدة كاملة",
+          "qualityClass": "generic_scaffold",
+          "questionCount": 3
+        }
+      ],
+      "qualityDecision": "original_study_support_present_pending_teacher_review"
+    },
+    {
+      "index": 11,
+      "sourceTitle": "الرياضة غيّرت حياتي",
+      "sourceUnit": "المحافظة على الصحة",
+      "sourcePdfPage": 13,
+      "existingCandidates": 2,
+      "recordCandidates": [
+        {
+          "id": "d7d90bfc-6735-4af2-83bd-46531e156792",
+          "status": "published",
+          "storedTitle": "القراءة: الرياضة غيّرت حياتي براعم العربيّة 73",
+          "qualityClass": "generic_scaffold",
+          "questionCount": 3
+        },
+        {
+          "id": "c732bce6-877a-4da2-948a-0a3a8860862e",
+          "status": "published",
+          "storedTitle": "القراءة: الرياضة غيّرت حياتي براعم العربيّة",
+          "qualityClass": "original_reading_support",
+          "questionCount": 3
+        }
+      ],
+      "qualityDecision": "original_study_support_present_pending_teacher_review"
+    },
+    {
+      "index": 12,
+      "sourceTitle": "الغذاء الصحي",
+      "sourceUnit": "المحافظة على الصحة",
+      "sourcePdfPage": 13,
+      "existingCandidates": 2,
+      "recordCandidates": [
+        {
+          "id": "390c85d9-0a67-4296-b256-05687bc7bdaa",
+          "status": "published",
+          "storedTitle": "القراءة: الغذاء الصحيّ براعم العربيّة 80",
+          "qualityClass": "original_reading_support",
+          "questionCount": 3
+        },
+        {
+          "id": "a23ac0b0-dd0d-4d14-b409-016a1875e759",
+          "status": "published",
+          "storedTitle": "ّالقراءة: الغذاء الصحي براعم العربيّة",
+          "qualityClass": "generic_scaffold",
+          "questionCount": 3
+        }
+      ],
+      "qualityDecision": "original_study_support_present_pending_teacher_review"
+    }
+  ],
+  "warnings": [
+    "Do not confuse duplicated OCR titles with genuinely missing lessons",
+    "Generic scaffold records remain and require teacher review; do not delete/archive live lessons automatically",
+    "Existing original texts are Dadyoom authored and are not the ministry poems or licensed textbook text",
+    "No changes to student results, question ID linkage, or existing unit structure"
+  ]
+}
