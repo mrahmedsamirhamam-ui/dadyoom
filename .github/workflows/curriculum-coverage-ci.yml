@@ -259,6 +259,10 @@ on:
       - 'tests/security/published-activity-nested-answer-keys-constraint.test.ts'
       - 'data/curriculum-drafts/bh-g2-g3-two-grade-specific-reading-grammar-original-replacements-2026.json'
       - 'tests/curriculum-bahrain-g2-g3-grade-specific-original-lessons.test.ts'
+      - 'data/curriculum-drafts/grade1-21-arab-countries-original-short-reading-20261028.json'
+      - 'data/curriculum-drafts/bh-grade1-original-short-reading-20261028.json'
+      - 'tests/curriculum-22-countries-grade1-original-reading-specificity.test.ts'
+      - 'scripts/curriculum-22-countries-grade1-reading-quality-readonly.sql'
       - 'data/curriculum-drafts/bh-g1-s2-original-vocabulary-repairs.json'
       - 'tests/bahrain-g1-vocabulary-repair.test.ts'
       - 'data/curriculum-drafts/bh-g2-s2-original-existing-reading-enhancements.json'
@@ -401,6 +405,8 @@ jobs:
         run: npx vitest run tests/security/published-activity-nested-answer-keys-constraint.test.ts
       - name: Validate original grade-specific Bahrain Grade-2/3 text, objectives, 20 questions and 12 activities
         run: npx vitest run tests/curriculum-bahrain-g2-g3-grade-specific-original-lessons.test.ts
+      - name: Validate 22 country original grade-1 reading lessons and 110 answer-key-free public questions
+        run: npx vitest run tests/curriculum-22-countries-grade1-original-reading-specificity.test.ts
       - name: Review-only original vocabulary fixes for 12 existing Bahrain Grade-1 lessons
         run: npx vitest run tests/bahrain-g1-vocabulary-repair.test.ts
       - name: Original grade-2 lesson-linked reading, vocabulary and question quality
