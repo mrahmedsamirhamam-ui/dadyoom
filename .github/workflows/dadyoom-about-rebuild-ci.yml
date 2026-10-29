@@ -1,0 +1,33 @@
+name: Dadyoom About complete content and PNG identity gate
+
+on:
+  pull_request:
+    paths:
+      - "app/about/page.tsx"
+      - "tests/branding/dadyoom-about-rebuild.test.ts"
+      - ".github/workflows/dadyoom-about-rebuild-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-about:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install dependencies from lockfile
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Verify all About sections, founder and real PNG
+        run: npx vitest run tests/branding/dadyoom-about-rebuild.test.ts
+      - name: Check TypeScript
+        run: npx tsc --noEmit
+      - name: Build actual Next.js application, not a deploy
+        run: npm run build
