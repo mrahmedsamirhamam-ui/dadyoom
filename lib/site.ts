@@ -27,6 +27,6 @@ export function getSiteUrl(): string {
     normalizeOrigin(process.env.NEXT_PUBLIC_SITE_URL) ??
     normalizeOrigin(process.env.VERCEL_PROJECT_PRODUCTION_URL) ??
     normalizeOrigin(process.env.VERCEL_URL) ??
-    "http://localhost:3000"
+    "https://dadyoom.com"
   );
 }
