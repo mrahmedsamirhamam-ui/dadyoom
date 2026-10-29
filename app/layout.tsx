@@ -14,6 +14,16 @@ import DadyoomClientRuntime from "@/components/runtime/DadyoomClientRuntime";
 
 const siteUrl = getSiteUrl();
 
+const organizationStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
+  name: SITE_NAME,
+  alternateName: [SITE_NAME_LATIN, SITE_NAME_ARABIC_ALT],
+  url: siteUrl,
+  logo: `${siteUrl}/icon.svg`,
+};
+
 const websiteStructuredData = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -44,11 +54,13 @@ export const metadata: Metadata = {
     siteName: `${SITE_NAME} ${SITE_NAME_LATIN}`,
     title: `${SITE_NAME} ${SITE_NAME_LATIN} | ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Dadyoom — بيت العربية الرقمي" }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: `${SITE_NAME} ${SITE_NAME_LATIN} | ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
@@ -88,6 +100,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(websiteStructuredData).replace(/</g, "\\u003c"),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationStructuredData).replace(/</g, "\\u003c"),
           }}
         />
         <DadyoomClientRuntime />
