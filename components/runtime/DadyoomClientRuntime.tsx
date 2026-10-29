@@ -7,6 +7,11 @@ const DadyoomAds = dynamic(
   { ssr: false },
 );
 
+const AdConsentPrompt = dynamic(
+  () => import("@/components/privacy/AdConsentPrompt"),
+  { ssr: false },
+);
+
 const MobileOAuthBridge = dynamic(
   () => import("@/components/mobile/MobileOAuthBridge"),
   { ssr: false },
@@ -36,6 +41,7 @@ export default function DadyoomClientRuntime() {
   return (
     <>
       <DadyoomAds />
+      <AdConsentPrompt />
       <MobileOAuthBridge />
       <NativeMobileShell />
       <DadyoomInstallPrompt />
