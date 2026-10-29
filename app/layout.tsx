@@ -66,7 +66,7 @@ const structuredData = [
     alternateName: brandAlternateNames,
     url: `${siteUrl}/`,
     description: SITE_DESCRIPTION,
-    logo: `${siteUrl}/brand/dadyoom-logo.png`,
+    logo: `${siteUrl}/brand/dadyoom-mark-2026.png`,
     // The public, owner-maintained project profile links back to this
     // canonical domain and explains the same official brand spellings.
     sameAs: ["https://github.com/mrahmedsamirhamam-ui/dadyoom"],
