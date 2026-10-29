@@ -43,6 +43,10 @@ jobs:
         run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Verify 66 syllable lessons, six activities each and ten Arabic guides
         run: npx vitest run tests/curriculum-arab22-grades123-original-word-syllables-66-lessons.test.ts tests/learning-guides-original.test.ts
+      - name: Typecheck complete feature-branch source (independent of PR merge)
+        run: npx tsc --noEmit
+      - name: Lint new content, SEO, and ad consent source
+        run: npx eslint app/page.tsx app/layout.tsx app/guides/page.tsx 'app/guides/[slug]/page.tsx' app/faq/page.tsx app/opengraph-image.tsx app/sitemap.ts lib/site.ts lib/billing/access.ts components/ads/DadyoomAds.tsx components/privacy/AdConsentPrompt.tsx components/skills/ArabicVoiceCheck.tsx content/learning-guides.ts
       - name: Confirm no direct answer keys appear in public original syllabus source
         run: |
           node --input-type=module <<'NODE'
