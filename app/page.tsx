@@ -66,7 +66,7 @@ export default function HomePage() {
               <MiniStat value="22" label="دولة في دليل المسارات" />
               <MiniStat value="12" label="صفًا دراسيًا" />
               <MiniStat value="4" label="مهارات لغوية" />
-              <MiniStat value="0" label="شهادات اعتماد ندّعيها" />
+              <MiniStat value="Plus" label="ميزات إضافية اختيارية" />
             </div>
           </div>
 
@@ -143,7 +143,12 @@ export default function HomePage() {
       <footer className="border-t border-[#315e57] bg-[#123f39] py-10 text-[#d9e8e3]">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
           <DadyoomLogo inverse />
-          <div className="text-sm">العربية تجمعنا، ولا تُذيب أحدًا.</div>
+          <nav aria-label="روابط معلومات ضاديوم" className="flex flex-wrap gap-5 text-sm font-bold">
+            <Link href="/about" className="hover:underline">عن ضاديوم</Link>
+            <Link href="/guides" className="hover:underline">أدلة العربية</Link>
+            <Link href="/faq" className="hover:underline">الأسئلة الشائعة</Link>
+            <Link href="/pricing" className="hover:underline">المجاني وPlus</Link>
+          </nav>
           <div className="text-sm">© 2026 ضاديوم</div>
         </div>
       </footer>
