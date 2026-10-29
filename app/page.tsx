@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import DadyoomLogo, { DadyoomMark } from "@/components/brand/DadyoomLogo";
 
-import HomeInteractionPanel from "@/components/home/HomeInteractionPanel";
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
@@ -49,28 +48,25 @@ export default function HomePage() {
               <span>✦</span><span>العربية تجمعنا، ولا تُذيب أحدًا</span>
             </div>
             <h1 className="mt-7 max-w-3xl font-arabic-display text-4xl font-black leading-[1.45] text-[#213b36] sm:text-5xl lg:text-[3.65rem]">
-              ضاديوم — بيت عربي رقمي يجعل
-              <span className="block text-[#a8782f]">التعلّم رحلة مفهومة ومحبوبة</span>
+              تعلّم العربية من الصف الأول إلى الثاني عشر
+              <span className="block text-[#a8782f]">بما يناسب بلدك ومستواك</span>
             </h1>
             <p className="mt-6 max-w-2xl font-arabic-reading text-xl leading-10 text-[#655d53]">
-              ضاديوم (Dadyoom) يجمع منهجًا منظمًا، والمهارات الأربع، والتقييم والتقدم، و«ضاد» رفيقًا ذكيًا يساعد الطالب في اللحظة التي يحتاج فيها إلى شرح أو تدريب.
+              اكتشف مسارًا مهاريًا في القراءة والكتابة والاستماع والتحدث، وتدرّب بمساعدة «ضاد». بعض الدروس والمواءمات الوزارية ما زالت قيد المراجعة، ويمكنك استكشاف المحتوى قبل التسجيل.
             </p>
             <p className="mt-3 text-sm font-bold text-[#7b7165]">
               الاسم الرسمي: ضاديوم (Dadyoom)، ويُكتب أحيانًا في البحث «ضاضيوم».
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/signup" className="rounded-2xl bg-[#174f47] px-7 py-4 font-black text-white shadow-lg shadow-[#174f47]/15 transition hover:-translate-y-0.5 hover:bg-[#103f39]">أنشئ حسابك</Link>
-              <Link href="/ask" className="rounded-2xl border border-[#d6b569] bg-[#fffef9] px-7 py-4 font-black text-[#72551c] transition hover:-translate-y-0.5 hover:bg-[#fff6df]">جرّب ضاد الآن</Link>
-              <Link href="/courses" className="rounded-2xl border border-[#d9cdb7] bg-white px-7 py-4 font-black text-[#4d4438] transition hover:border-[#84a89f] hover:text-[#174f47]">تصفّح المنهج</Link>
-              <Link href="/how-to-use" className="rounded-2xl border border-[#d6b569] bg-[#fff6df] px-7 py-4 font-black text-[#72551c] transition hover:-translate-y-0.5 hover:bg-[#fcebc1]">كيف تستخدم ضاديوم؟</Link>
-              <Link href="/labs/letters" className="rounded-2xl border border-[#84a89f] bg-[#e9f5ef] px-7 py-4 font-black text-[#174f47] transition hover:-translate-y-0.5 hover:bg-[#d8ece3]">✨ جرّب مختبر الحروف</Link>
+              <Link href="/signup" className="rounded-2xl bg-[#174f47] px-7 py-4 font-black text-white shadow-lg shadow-[#174f47]/15 transition hover:-translate-y-0.5 hover:bg-[#103f39]">ابدأ مجانًا</Link>
+              <Link href="/courses" className="rounded-2xl border border-[#d9cdb7] bg-white px-7 py-4 font-black text-[#4d4438] transition hover:border-[#84a89f] hover:text-[#174f47]">ذاكر الآن دون تسجيل</Link>
             </div>
             <div className="mt-9 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
-              <MiniStat value="22" label="دولة عربية في البنية" />
-              <MiniStat value="1" label="حزمة منهج منشورة" />
-              <MiniStat value="4" label="مهارات" />
-              <MiniStat value="24/7" label="ضاد" />
+              <MiniStat value="22" label="دولة في دليل المسارات" />
+              <MiniStat value="12" label="صفًا دراسيًا" />
+              <MiniStat value="4" label="مهارات لغوية" />
+              <MiniStat value="0" label="شهادات اعتماد ندّعيها" />
             </div>
           </div>
 
@@ -103,7 +99,7 @@ export default function HomePage() {
 
       <section id="mvp" className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow="بوابة مناهج عربية" title="المنهج الأساسي جاهز، والمعلم يثريه بدل أن يبدأ من الصفر" text="البحرين هي أول حزمة منشورة، وليست حدود ضاديوم. بنية المنصة مصممة لتستقبل حزم الدول والصفوف والفصول الدراسية مع الحفاظ على مصدر وإصدار كل منهج." />
+          <SectionHeading eyebrow="بوابة مناهج عربية" title="تعلّم حسب الصف والمهارة، مع وضوح حالة المحتوى" text="دليل ضاديوم يعرض مسارات الدول والصفوف والوحدات والدروس. نعمل على مراجعة المطابقة الوزارية للمواد، وما لم يثبت مصدره الرسمي يُقدَّم باعتباره إثراءً مهاريًا عامًا." />
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {pillars.map((item) => (
               <article key={item.title} className="arabic-panel rounded-3xl border border-[#e2d4b8] p-6 shadow-sm transition hover:-translate-y-1 hover:border-[#c8ab68] hover:shadow-lg">
@@ -151,7 +147,6 @@ export default function HomePage() {
           <div className="text-sm">© 2026 ضاديوم</div>
         </div>
       </footer>
-          <HomeInteractionPanel />
 </main>
   );
 }
