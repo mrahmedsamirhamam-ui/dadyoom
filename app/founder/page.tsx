@@ -32,7 +32,7 @@ export default function FounderPage() {
         url: `${base}/founder`,
         jobTitle: ["مؤسس ضاديوم", "مدير ضاديوم", "Arabic Language Educator"],
         description: "مؤسس مشروع ضاديوم، وخبير في تعليم العربية والتطوير التربوي.",
-        sameAs: ["https://www.linkedin.com/in/ahmedsamirmohamedhafez", "https://www.instagram.com/mrahmedsamirhamam/", "https://www.facebook.com/share/1A2Uag89ay/"],
+        sameAs: ["https://www.linkedin.com/in/ahmedsamirmohamedhafez", "https://www.instagram.com/mrahmedsamirhamam/", "https://www.facebook.com/share/1A2Uag89ay/", "https://www.tiktok.com/@mr.ahmed.samir.ha6"],
       },
     },
     {
@@ -69,6 +69,7 @@ export default function FounderPage() {
             <a href="https://www.linkedin.com/in/ahmedsamirmohamedhafez" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#174f47] underline">لينكدإن</a>
             <a href="https://www.facebook.com/share/1A2Uag89ay/" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#174f47] underline">فيسبوك</a>
             <a href="https://www.instagram.com/mrahmedsamirhamam/" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#174f47] underline">إنستغرام</a>
+            <a href="https://www.tiktok.com/@mr.ahmed.samir.ha6" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#174f47] underline">تيك توك</a>
           </div>
           <p className="mt-4 text-sm text-[#655c51]">هذه الروابط للتعريف بالمؤسس ولا تُعد بمفردها إثباتًا قانونيًا للملكية.</p>
         </section>
