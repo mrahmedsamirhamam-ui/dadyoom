@@ -7,8 +7,13 @@ import { fileURLToPath } from "node:url";
 export function evaluateGrade123Audit(snapshot, qualitySnapshot) {
   const errors = [];
   const countries = snapshot?.countries ?? [];
-  if (countries.length !== 22 || new Set(countries.map(c => c.country_code)).size !== 22) {
-    errors.push("Expected exactly 22 distinct countries");
+  const expectedCodes = new Set(JSON.parse(readFileSync(
+    new URL("../data/curriculum-packs/arab-countries.json", import.meta.url), "utf8"
+  )).countries.map(country => country.code));
+  const actualCodes = new Set(countries.map(c => c.country_code));
+  if (countries.length !== 22 || actualCodes.size !== 22 || expectedCodes.size !== 22 ||
+      [...expectedCodes].some(code => !actualCodes.has(code))) {
+    errors.push("Expected the 22 registered Arab country codes, not arbitrary countries");
   }
   let lessons = 0, published = 0, sufficient = 0, drafts = 0;
   const cells = [];
