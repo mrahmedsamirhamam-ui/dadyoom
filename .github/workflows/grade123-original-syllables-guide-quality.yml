@@ -10,6 +10,11 @@ on:
       - 'tests/curriculum-arab22-grades123-original-word-syllables-66-lessons.test.ts'
       - 'content/learning-guides.ts'
       - 'tests/learning-guides-original.test.ts'
+      - 'app/**'
+      - 'components/privacy/**'
+      - 'components/ads/**'
+      - 'components/skills/**'
+      - 'lib/billing/**'
       - '.github/workflows/grade123-original-syllables-guide-quality.yml'
   pull_request:
     paths:
@@ -18,6 +23,11 @@ on:
       - 'tests/curriculum-arab22-grades123-original-word-syllables-66-lessons.test.ts'
       - 'content/learning-guides.ts'
       - 'tests/learning-guides-original.test.ts'
+      - 'app/**'
+      - 'components/privacy/**'
+      - 'components/ads/**'
+      - 'components/skills/**'
+      - 'lib/billing/**'
       - '.github/workflows/grade123-original-syllables-guide-quality.yml'
   workflow_dispatch:
 
