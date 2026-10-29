@@ -1,6 +1,15 @@
 name: Dadyoom PR security plus latest main integration (no deploy)
 
 on:
+  push:
+    branches:
+      - fix/student-authorize-before-server-grading-20261022
+    paths:
+      - '.github/workflows/pr-main-integration-ci.yml'
+      - 'app/**'
+      - 'features/**'
+      - 'lib/**'
+      - 'tests/security/**'
   pull_request:
     branches: [main]
     paths:
