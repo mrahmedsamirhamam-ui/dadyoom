@@ -130,7 +130,7 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   if (!source) throw Error("Missing --audit path");
   const qualityIndex = process.argv.indexOf("--quality-audit");
   const qualitySource = qualityIndex >= 0 ? process.argv[qualityIndex + 1] :
-    "data/audits/grades123-22countries-live-quality-snapshot-20261029.json";
+    "data/audits/grades123-22countries-after-390-real-mcq-repairs-20261029.json";
   if (!qualitySource || qualitySource.startsWith("--")) throw Error("Missing --quality-audit path");
   const result = evaluateGrade123Audit(
     JSON.parse(readFileSync(resolve(source), "utf8")),
