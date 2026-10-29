@@ -35,36 +35,28 @@ export async function advanceAssessmentSession({
     return session;
   }
 
-  // The browser cannot declare its answer correct. Only a verified, saved
-  // answer belonging to this student and session may advance the assessment.
-  const { data: savedAnswer, error: answerError } = await supabase
+  // The request supplies an assessment identity only; never a verdict.
+  // The newest persisted answer must be exactly the one being advanced.
+  const { data: savedAnswers, error: answersError } = await supabase
     .from("assessment_session_answers")
     .select("assessment_id, lesson_id, is_correct")
     .eq("session_id", sessionId)
     .eq("student_id", studentId)
-    .eq("assessment_id", assessmentId)
-    .maybeSingle();
+    .order("created_at", { ascending: true });
 
+  const previousCount = session.correct_answers + session.wrong_answers;
+  const savedAnswer = savedAnswers?.at(-1);
+
+  // Reject replays, skipping questions, unrelated answers, and ungraded work.
   if (
-    answerError ||
+    answersError ||
+    savedAnswers?.length !== previousCount + 1 ||
     !savedAnswer ||
+    savedAnswer.assessment_id !== assessmentId ||
     savedAnswer.lesson_id !== session.lesson_id ||
     typeof savedAnswer.is_correct !== "boolean"
   ) {
-    throw new Error("لا يمكن الانتقال قبل حفظ إجابة مصححة على الخادم.");
-  }
-
-  const { count: savedAnswerCount, error: countError } = await supabase
-    .from("assessment_session_answers")
-    .select("assessment_id", { count: "exact", head: true })
-    .eq("session_id", sessionId)
-    .eq("student_id", studentId);
-
-  const previousCount = session.correct_answers + session.wrong_answers;
-
-  // Prevent replay of the same answer and skipping ahead using other saved answers.
-  if (countError || savedAnswerCount !== previousCount + 1) {
-    throw new Error("حالة التقييم غير متزامنة. حدّث الصفحة ثم حاول مجددًا.");
+    throw new Error("لا يمكن الانتقال دون أحدث إجابة مصححة على الخادم.");
   }
 
   const answeredCorrectly = savedAnswer.is_correct;
