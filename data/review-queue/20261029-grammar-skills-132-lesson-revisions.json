@@ -1,0 +1,2129 @@
+{
+  "date": "2026-10-29",
+  "project": "hvqsvtomhlxavmfqoxfz",
+  "counts": {
+    "lessonEntries": 132,
+    "newActivities": 396,
+    "countries": 22,
+    "grades": [
+      1,
+      2,
+      3
+    ]
+  },
+  "snapshotType": "production-select-after-additive-writes",
+  "entries": [
+    {
+      "countryCode": "AE",
+      "countryName": "الإمارات العربية المتحدة",
+      "grade": 1,
+      "lessonId": "3863a053-f3d5-447e-ad8d-cdad8c71f357",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "AE",
+      "countryName": "الإمارات العربية المتحدة",
+      "grade": 1,
+      "lessonId": "f22c0d64-772e-47ea-b857-12aeebdfa0e7",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "AE",
+      "countryName": "الإمارات العربية المتحدة",
+      "grade": 2,
+      "lessonId": "d531e4b2-d478-4154-a593-15bb00419d5d",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "AE",
+      "countryName": "الإمارات العربية المتحدة",
+      "grade": 2,
+      "lessonId": "60cef426-4b78-438f-980f-21f1c1b8ac80",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "AE",
+      "countryName": "الإمارات العربية المتحدة",
+      "grade": 3,
+      "lessonId": "312248e4-ff29-45f5-98f6-720a6d1e2819",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "AE",
+      "countryName": "الإمارات العربية المتحدة",
+      "grade": 3,
+      "lessonId": "ec785c32-c2c3-451f-8bb2-a57c734cdaf7",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "BH",
+      "countryName": "مملكة البحرين",
+      "grade": 1,
+      "lessonId": "341e0c7a-dc33-4fc0-b81d-7b76e75741fc",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "BH",
+      "countryName": "مملكة البحرين",
+      "grade": 1,
+      "lessonId": "ce801fb7-780e-426b-b97f-54e7ebbb55e7",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "BH",
+      "countryName": "مملكة البحرين",
+      "grade": 2,
+      "lessonId": "5cef7e50-177b-4844-baf1-ec575613ffd2",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "BH",
+      "countryName": "مملكة البحرين",
+      "grade": 2,
+      "lessonId": "f6c3a769-2445-4bb4-b285-26fbaa574362",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "BH",
+      "countryName": "مملكة البحرين",
+      "grade": 3,
+      "lessonId": "25e26ad6-bc26-4f13-8b67-4b1860d584ef",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "BH",
+      "countryName": "مملكة البحرين",
+      "grade": 3,
+      "lessonId": "25b2ffbe-ead5-49a0-84c7-db8c0c53516a",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "DJ",
+      "countryName": "جيبوتي",
+      "grade": 1,
+      "lessonId": "8df85f72-794d-4abb-9986-c82b73cdba32",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "DJ",
+      "countryName": "جيبوتي",
+      "grade": 1,
+      "lessonId": "21754d10-65d0-437b-822d-2c32e01f9c74",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "DJ",
+      "countryName": "جيبوتي",
+      "grade": 2,
+      "lessonId": "a059ecdc-30f0-4341-a5e5-1a3bfb960577",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "DJ",
+      "countryName": "جيبوتي",
+      "grade": 2,
+      "lessonId": "31f3dcb7-67d5-4550-b44a-8637c744f81a",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "DJ",
+      "countryName": "جيبوتي",
+      "grade": 3,
+      "lessonId": "f989e43c-aa7e-4d7a-8562-39b58dcdf14f",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "DJ",
+      "countryName": "جيبوتي",
+      "grade": 3,
+      "lessonId": "0d55932d-7275-4097-8776-befa864f6d3b",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "DZ",
+      "countryName": "الجزائر",
+      "grade": 1,
+      "lessonId": "b9a986a0-2cc4-43ba-8bad-541b7267d754",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "DZ",
+      "countryName": "الجزائر",
+      "grade": 1,
+      "lessonId": "5b2a40e4-7a28-4f25-9fad-461b65ee56d7",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "DZ",
+      "countryName": "الجزائر",
+      "grade": 2,
+      "lessonId": "c5829602-6dd6-4331-919c-1c0893bd226c",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "DZ",
+      "countryName": "الجزائر",
+      "grade": 2,
+      "lessonId": "b8409f11-1969-4ac6-9347-837ca5d255d9",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "DZ",
+      "countryName": "الجزائر",
+      "grade": 3,
+      "lessonId": "b6278682-5670-4473-8e96-235b13475513",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "DZ",
+      "countryName": "الجزائر",
+      "grade": 3,
+      "lessonId": "a422e1e6-c418-47af-8a39-c21ee727240a",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "EG",
+      "countryName": "مصر",
+      "grade": 1,
+      "lessonId": "cd97ff4d-03fa-4b03-9436-6fb311fc506f",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "EG",
+      "countryName": "مصر",
+      "grade": 1,
+      "lessonId": "91a34f2b-6e8e-4dae-8fbe-2cac0faa3b09",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "EG",
+      "countryName": "مصر",
+      "grade": 2,
+      "lessonId": "4bfd63d9-c8ed-4a03-bad8-d5721a426378",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "EG",
+      "countryName": "مصر",
+      "grade": 2,
+      "lessonId": "2ac9db91-8046-4769-8385-6ea98cf44362",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "EG",
+      "countryName": "مصر",
+      "grade": 3,
+      "lessonId": "7a16a6af-43b5-4fb9-a8c0-ee7fe838b85a",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "EG",
+      "countryName": "مصر",
+      "grade": 3,
+      "lessonId": "617dc6f6-8245-4b60-8a81-d66e358131fc",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "IQ",
+      "countryName": "العراق",
+      "grade": 1,
+      "lessonId": "2ad638b3-5764-46a1-b467-cb433b892b4b",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "IQ",
+      "countryName": "العراق",
+      "grade": 1,
+      "lessonId": "e3b73fb2-1813-446a-aa99-0efe924f74ab",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "IQ",
+      "countryName": "العراق",
+      "grade": 2,
+      "lessonId": "ef644b7c-c60b-4fcf-a370-09c6f538c032",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "IQ",
+      "countryName": "العراق",
+      "grade": 2,
+      "lessonId": "e45cf488-eb07-4097-8000-a51f0f153a0e",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "IQ",
+      "countryName": "العراق",
+      "grade": 3,
+      "lessonId": "31636a3e-d1d3-437f-8695-cbdf6fb9921a",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "IQ",
+      "countryName": "العراق",
+      "grade": 3,
+      "lessonId": "1cf65ce2-0aa3-4496-837b-401a825a6935",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "JO",
+      "countryName": "الأردن",
+      "grade": 1,
+      "lessonId": "629d843e-2f26-41cf-821c-976cd48f2a92",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "JO",
+      "countryName": "الأردن",
+      "grade": 1,
+      "lessonId": "2fa9b1a2-5a28-4f2c-a433-a1550a0ed21b",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "JO",
+      "countryName": "الأردن",
+      "grade": 2,
+      "lessonId": "003f6869-dd96-43c4-b11b-54c13087cb1c",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "JO",
+      "countryName": "الأردن",
+      "grade": 2,
+      "lessonId": "89457e60-cd30-4a72-8ee8-47a80dcc71cd",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "JO",
+      "countryName": "الأردن",
+      "grade": 3,
+      "lessonId": "b8ae170e-c601-4b7f-977f-726e39d4346f",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "JO",
+      "countryName": "الأردن",
+      "grade": 3,
+      "lessonId": "441619d9-5819-451c-8b5d-91f989b2902b",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "KM",
+      "countryName": "جزر القمر",
+      "grade": 1,
+      "lessonId": "3a648201-f5ae-4785-b4fa-5efcb1d33ee4",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "KM",
+      "countryName": "جزر القمر",
+      "grade": 1,
+      "lessonId": "b67497c4-75f1-45cd-b877-a86466996738",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "KM",
+      "countryName": "جزر القمر",
+      "grade": 2,
+      "lessonId": "3d548a00-f714-4eab-a2a1-218b8ce92b51",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "KM",
+      "countryName": "جزر القمر",
+      "grade": 2,
+      "lessonId": "f3d7524e-953b-4454-8764-0d38b694b488",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "KM",
+      "countryName": "جزر القمر",
+      "grade": 3,
+      "lessonId": "62aaa429-b87f-407d-8a75-c362bae659dd",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "KM",
+      "countryName": "جزر القمر",
+      "grade": 3,
+      "lessonId": "ffe71d26-a5e7-44af-bd1b-c83cdaa1df18",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "KW",
+      "countryName": "الكويت",
+      "grade": 1,
+      "lessonId": "7dc33baf-d29e-4644-9b6e-4191b60e2d08",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "KW",
+      "countryName": "الكويت",
+      "grade": 1,
+      "lessonId": "3417e42e-d43a-49ce-b9bf-b6f3272f842c",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "KW",
+      "countryName": "الكويت",
+      "grade": 2,
+      "lessonId": "854320d1-0121-4a82-a47f-b5a442133f5e",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "KW",
+      "countryName": "الكويت",
+      "grade": 2,
+      "lessonId": "d504d7d4-e76f-4c48-8bd6-1d236ef439ad",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "KW",
+      "countryName": "الكويت",
+      "grade": 3,
+      "lessonId": "80040e97-6e70-4490-a330-84b0096294df",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "KW",
+      "countryName": "الكويت",
+      "grade": 3,
+      "lessonId": "d4b700dd-5186-4707-b025-bbe05c8cb5c5",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "LB",
+      "countryName": "لبنان",
+      "grade": 1,
+      "lessonId": "d3099afd-28ec-4f40-ba19-50da1ac3fe1f",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "LB",
+      "countryName": "لبنان",
+      "grade": 1,
+      "lessonId": "0fbc0184-5f63-47dc-8929-7400a4f79e02",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "LB",
+      "countryName": "لبنان",
+      "grade": 2,
+      "lessonId": "4aed0996-2b92-4391-b408-c2b54bbc4b41",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "LB",
+      "countryName": "لبنان",
+      "grade": 2,
+      "lessonId": "16df1233-94b6-4a52-b0b3-422c964fc655",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "LB",
+      "countryName": "لبنان",
+      "grade": 3,
+      "lessonId": "00f9e338-2fbe-43fd-92e4-97bc5220f954",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "LB",
+      "countryName": "لبنان",
+      "grade": 3,
+      "lessonId": "b5159da1-066c-4111-b81f-cd67b7df4e79",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "LY",
+      "countryName": "ليبيا",
+      "grade": 1,
+      "lessonId": "48b1c5a3-911b-4526-a2b7-10e20076ed99",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "LY",
+      "countryName": "ليبيا",
+      "grade": 1,
+      "lessonId": "e1b03ac1-e870-4296-8696-432db6fa21c4",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "LY",
+      "countryName": "ليبيا",
+      "grade": 2,
+      "lessonId": "abc3750c-5190-4007-89c3-ae65543b8684",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "LY",
+      "countryName": "ليبيا",
+      "grade": 2,
+      "lessonId": "9dcc8c36-2288-4641-84e2-6d157da5408b",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "LY",
+      "countryName": "ليبيا",
+      "grade": 3,
+      "lessonId": "4b29ab53-8a0c-4ef8-a650-ff4a3d154e2b",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "LY",
+      "countryName": "ليبيا",
+      "grade": 3,
+      "lessonId": "a5932ed9-e91f-4543-a54f-d0a736d7bf3c",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "MA",
+      "countryName": "المغرب",
+      "grade": 1,
+      "lessonId": "c6b863d5-ba21-4bb8-b5e3-05b05a562d60",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "MA",
+      "countryName": "المغرب",
+      "grade": 1,
+      "lessonId": "caa2ca61-ab11-4613-ac87-c807065a3ead",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "MA",
+      "countryName": "المغرب",
+      "grade": 2,
+      "lessonId": "0c2a271b-eea5-444a-b6de-f8c57b1a2171",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "MA",
+      "countryName": "المغرب",
+      "grade": 2,
+      "lessonId": "bca427c1-aed2-40ad-bc55-7a93fb9eea69",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "MA",
+      "countryName": "المغرب",
+      "grade": 3,
+      "lessonId": "ef7d8a3c-84e9-46a4-accd-3a078cbbf2e4",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "MA",
+      "countryName": "المغرب",
+      "grade": 3,
+      "lessonId": "d1ab9cb7-d4a7-424c-a01a-fd8ee8cbad1b",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "MR",
+      "countryName": "موريتانيا",
+      "grade": 1,
+      "lessonId": "c45f1b94-53b7-4301-ac37-2d93f6119606",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "MR",
+      "countryName": "موريتانيا",
+      "grade": 1,
+      "lessonId": "b72b5ef1-7e5f-4c99-858e-6197bc491d02",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "MR",
+      "countryName": "موريتانيا",
+      "grade": 2,
+      "lessonId": "a0ae9f35-bb76-40f8-859c-721840ea7443",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "MR",
+      "countryName": "موريتانيا",
+      "grade": 2,
+      "lessonId": "fc822691-ac33-4828-8a4a-9628b2cfe352",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "MR",
+      "countryName": "موريتانيا",
+      "grade": 3,
+      "lessonId": "f6eccc77-1abe-4679-b225-fc61935f2b84",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "MR",
+      "countryName": "موريتانيا",
+      "grade": 3,
+      "lessonId": "3ecd4570-e409-4e3e-81c4-463e1b245f23",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "OM",
+      "countryName": "عُمان",
+      "grade": 1,
+      "lessonId": "13e5bfde-c871-4032-98a6-9e4002cc92ec",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "OM",
+      "countryName": "عُمان",
+      "grade": 1,
+      "lessonId": "d87ad7d5-e250-4c02-9cc1-1f7ef4974896",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "OM",
+      "countryName": "عُمان",
+      "grade": 2,
+      "lessonId": "dc4d0830-7f60-465d-b86e-379305fb4354",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "OM",
+      "countryName": "عُمان",
+      "grade": 2,
+      "lessonId": "0d61b0dc-c5f4-4186-b790-7588960e5014",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "OM",
+      "countryName": "عُمان",
+      "grade": 3,
+      "lessonId": "ae1e9ee1-9c9f-4ca9-8e29-6f679f63b2cc",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "OM",
+      "countryName": "عُمان",
+      "grade": 3,
+      "lessonId": "98451039-72e5-4bf2-b797-a5a2651fefd9",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "PS",
+      "countryName": "فلسطين",
+      "grade": 1,
+      "lessonId": "fc1bc5ba-17e1-42b1-85da-4044e21c4d80",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "PS",
+      "countryName": "فلسطين",
+      "grade": 1,
+      "lessonId": "0360cde3-c9cc-49b9-a993-f7fbe06fb696",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "PS",
+      "countryName": "فلسطين",
+      "grade": 2,
+      "lessonId": "b136ba0b-9f18-4ea1-9456-bd08594354ff",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "PS",
+      "countryName": "فلسطين",
+      "grade": 2,
+      "lessonId": "de3bdcb5-6a31-4a60-be9a-1277510ffd52",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "PS",
+      "countryName": "فلسطين",
+      "grade": 3,
+      "lessonId": "3f5d0050-3992-4a8f-8fa4-03f012a30352",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "PS",
+      "countryName": "فلسطين",
+      "grade": 3,
+      "lessonId": "c04e8545-e284-4646-ab33-1cc081c9e0a3",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "QA",
+      "countryName": "قطر",
+      "grade": 1,
+      "lessonId": "19f37a83-f04d-47e6-a51d-72f876a774b4",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "QA",
+      "countryName": "قطر",
+      "grade": 1,
+      "lessonId": "ecb4d701-5356-4194-8ead-7fe3a50839f2",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "QA",
+      "countryName": "قطر",
+      "grade": 2,
+      "lessonId": "465798fb-2f93-40a0-b14d-070c6774b000",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "QA",
+      "countryName": "قطر",
+      "grade": 2,
+      "lessonId": "48c6f358-93d2-456e-bdeb-48a4f20659b6",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "QA",
+      "countryName": "قطر",
+      "grade": 3,
+      "lessonId": "151e42e6-15ad-49a8-ba4a-135ce92e8b72",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "QA",
+      "countryName": "قطر",
+      "grade": 3,
+      "lessonId": "795cb341-3559-4d3c-95fd-d7277b2d0ec5",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SA",
+      "countryName": "السعودية",
+      "grade": 1,
+      "lessonId": "c54f97ad-6c1b-448a-a7c5-1f0485ede60c",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SA",
+      "countryName": "السعودية",
+      "grade": 1,
+      "lessonId": "65d4236c-e58e-459c-bb17-d0c98bf8bdf8",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SA",
+      "countryName": "السعودية",
+      "grade": 2,
+      "lessonId": "c5994103-cb6f-4e93-b22f-eccd4d4caf46",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SA",
+      "countryName": "السعودية",
+      "grade": 2,
+      "lessonId": "7155a2c6-b62a-42d4-92cb-01c49399c099",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SA",
+      "countryName": "السعودية",
+      "grade": 3,
+      "lessonId": "72466d93-05da-47fb-a935-7baa2381276a",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SA",
+      "countryName": "السعودية",
+      "grade": 3,
+      "lessonId": "11d9a62c-c3d9-4748-b289-334d7026dfa2",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SD",
+      "countryName": "السودان",
+      "grade": 1,
+      "lessonId": "b297f690-2c72-428d-96a2-1f5eda586ea4",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SD",
+      "countryName": "السودان",
+      "grade": 1,
+      "lessonId": "7e0bbda1-6d37-4789-99c8-2428d041d3b4",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SD",
+      "countryName": "السودان",
+      "grade": 2,
+      "lessonId": "6f2055aa-6771-4ff2-aed9-401c26932c9c",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SD",
+      "countryName": "السودان",
+      "grade": 2,
+      "lessonId": "81c692c4-a4c3-422b-85a4-9e2f34478b9c",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SD",
+      "countryName": "السودان",
+      "grade": 3,
+      "lessonId": "0d6e313a-ac8f-479b-9fc9-dabaa132713e",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SD",
+      "countryName": "السودان",
+      "grade": 3,
+      "lessonId": "a4a5d8ca-7a87-413b-8b35-a59bc77c993d",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SO",
+      "countryName": "الصومال",
+      "grade": 1,
+      "lessonId": "288598a4-1cc1-4305-90da-73d388c8aa49",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SO",
+      "countryName": "الصومال",
+      "grade": 1,
+      "lessonId": "d214d22c-b849-4cba-ba13-3b39881e7da2",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SO",
+      "countryName": "الصومال",
+      "grade": 2,
+      "lessonId": "ad0b2903-4aa1-4a21-970a-8ec0cf883d86",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SO",
+      "countryName": "الصومال",
+      "grade": 2,
+      "lessonId": "6b6096bc-00aa-4f74-b9eb-675c9964c4ad",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SO",
+      "countryName": "الصومال",
+      "grade": 3,
+      "lessonId": "071a7d4d-c7da-4eab-a024-1551f4216c45",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SO",
+      "countryName": "الصومال",
+      "grade": 3,
+      "lessonId": "a342dba0-3cc1-4224-9664-61eec0eaf73a",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SY",
+      "countryName": "سوريا",
+      "grade": 1,
+      "lessonId": "d177f890-91df-4f94-9f2f-d8dbe89d06f4",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SY",
+      "countryName": "سوريا",
+      "grade": 1,
+      "lessonId": "1038ad4e-3663-4d57-a269-e4cdd91417aa",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SY",
+      "countryName": "سوريا",
+      "grade": 2,
+      "lessonId": "7df9bcb5-f808-4550-b29f-34c0c73cec4f",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SY",
+      "countryName": "سوريا",
+      "grade": 2,
+      "lessonId": "5929d839-709c-4948-b289-7c6de07e61af",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SY",
+      "countryName": "سوريا",
+      "grade": 3,
+      "lessonId": "c0eb8371-e380-4517-9f2b-9495ac73f813",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "SY",
+      "countryName": "سوريا",
+      "grade": 3,
+      "lessonId": "03dddc02-2b3c-435c-9869-ff19eee64ad8",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "TN",
+      "countryName": "تونس",
+      "grade": 1,
+      "lessonId": "20af2c21-46f2-48c3-ba32-a9a7aef0a7fb",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "TN",
+      "countryName": "تونس",
+      "grade": 1,
+      "lessonId": "d44843ee-9d2a-41ec-91ae-a84b20f77a89",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "TN",
+      "countryName": "تونس",
+      "grade": 2,
+      "lessonId": "9ea267fe-a989-4929-a687-dae6c8128ebb",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "TN",
+      "countryName": "تونس",
+      "grade": 2,
+      "lessonId": "48e6f133-f764-487b-aedd-9cd3373cdb35",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "TN",
+      "countryName": "تونس",
+      "grade": 3,
+      "lessonId": "d211ac93-b5a7-467e-850a-0fdc3abbcb7d",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "TN",
+      "countryName": "تونس",
+      "grade": 3,
+      "lessonId": "35609dd4-395d-42f3-95aa-2fe0ee6001e9",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "YE",
+      "countryName": "اليمن",
+      "grade": 1,
+      "lessonId": "a986e344-5541-4404-8af4-fc3a0e7d28d0",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "YE",
+      "countryName": "اليمن",
+      "grade": 1,
+      "lessonId": "3e6e22ec-1e5d-42ea-829f-2eacb6d45a6c",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "YE",
+      "countryName": "اليمن",
+      "grade": 2,
+      "lessonId": "85b2f6ab-8223-4c78-9216-cf9eef48a529",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "YE",
+      "countryName": "اليمن",
+      "grade": 2,
+      "lessonId": "c7fe24ee-5d6b-41f3-9a2b-e1faada96949",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "YE",
+      "countryName": "اليمن",
+      "grade": 3,
+      "lessonId": "6056bb68-f5fc-4fd1-87d5-276893fb96b0",
+      "title": "اللام الشمسية والقمرية",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    },
+    {
+      "countryCode": "YE",
+      "countryName": "اليمن",
+      "grade": 3,
+      "lessonId": "f7c4d059-f626-49b8-96a8-434aa62b60ec",
+      "title": "المفرد والجمع",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "humanReviewStatus": "pending_human_review",
+      "requires": [
+        "pedagogical Arabic review",
+        "ministry or transparent general scope classification",
+        "audio and browser E2E",
+        "grading privacy checks"
+      ]
+    }
+  ]
+}
