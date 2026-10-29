@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "تواصل معنا | ضاديوم",
-  description: "وسائل التواصل الرسمية مع فريق ضاديوم، بما في ذلك الهاتف في مصر وصفحات فيسبوك وإنستغرام ولينكدإن وتيك توك والبريد الإلكتروني.",
+  description: "وسائل التواصل الرسمية مع فريق ضاديوم، بما في ذلك الهاتف في مصر وصفحات فيسبوك وإنستغرام ولينكدإن وتيك توك ويوتيوب والبريد الإلكتروني.",
   alternates: { canonical: "/contact" },
 };
 
@@ -31,6 +31,7 @@ export default function ContactPage() {
             <a href="https://www.instagram.com/mrahmedsamirhamam/" target="_blank" rel="noopener noreferrer" className="rounded-xl bg-[#174f47] px-5 py-3 font-semibold text-white hover:opacity-90" aria-label="حساب التواصل عبر إنستغرام">إنستغرام</a>
             <a href="https://www.linkedin.com/in/ahmedsamirmohamedhafez" target="_blank" rel="noopener noreferrer" className="rounded-xl bg-[#174f47] px-5 py-3 font-semibold text-white hover:opacity-90" aria-label="الملف المهني على لينكدإن">لينكدإن</a>
             <a href="https://www.tiktok.com/@mr.ahmed.samir.ha6" target="_blank" rel="noopener noreferrer" className="rounded-xl bg-[#174f47] px-5 py-3 font-semibold text-white hover:opacity-90" aria-label="حساب تيك توك">تيك توك</a>
+            <a href="https://www.youtube.com/@mrahmedsamirhamam" target="_blank" rel="noopener noreferrer" className="rounded-xl bg-[#174f47] px-5 py-3 font-semibold text-white hover:opacity-90" aria-label="قناة يوتيوب">يوتيوب</a>
           </div>
         </section>
       </article>
