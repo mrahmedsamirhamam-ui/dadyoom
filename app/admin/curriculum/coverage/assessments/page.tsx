@@ -56,6 +56,17 @@ export default function BahrainAssessmentQualityPage() {
         </div>
       </header>
       <section className="rounded-3xl border border-[#c8d8c8] bg-white p-6">
+        <h2 className="text-xl font-black text-[#123f39]">الصف السادس — طريق الخير (2): قراءة أصلية وحصة 55 دقيقة</h2>
+        <p className="mt-2 text-sm leading-7">
+          25 سؤال فهم واستنتاج ومفردات وتطبيق، وخطة تدريس متمايزة مدتها 55 دقيقة ترتبط بنص ضاديوم
+          الأصلي الموجود في الدرس المنشور. لا تنقل نص كتاب الوزارة أو أحداثه، وتتطلب اعتماد المعلم.
+        </p>
+        <Link href="/admin/curriculum/coverage/assessments/proposals/bh-grade6-tareeq-alkhair2"
+          className="mt-3 inline-flex rounded-xl bg-[#123f39] px-5 py-3 text-sm font-black text-white">
+          راجع خطة الحصة وأسئلتها الـ25 ←
+        </Link>
+      </section>
+      <section className="rounded-3xl border border-[#c8d8c8] bg-white p-6">
         <h2 className="text-xl font-black text-[#123f39]">الصف السابع — المبتدأ والخبر وبناء المضارع (50 سؤالًا)</h2>
         <p className="mt-2 text-sm leading-7">
           حزمتان أصليتان مع خطتي تدريس مدة كل منهما خمسون دقيقة، وأهداف قابلة للقياس،
