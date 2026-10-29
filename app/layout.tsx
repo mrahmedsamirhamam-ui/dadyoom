@@ -70,6 +70,10 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+  // Only enable when a verified Search Console property issues the token.
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim() || undefined,
+  },
   manifest: "/manifest.webmanifest",
 };
 
