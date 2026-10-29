@@ -1,0 +1,3099 @@
+{
+  "generatedAt": "2026-10-29",
+  "purpose": "Published lessons pending educator review, not approved.",
+  "countryCode": "SD",
+  "code": "SD",
+  "count": 309,
+  "lessons": [
+    {
+      "id": "107394d2-f18e-4d73-857d-91ff43f91904",
+      "unit": "الوحدة الأولى: أصوات وحروف",
+      "grade": 1,
+      "scope": "general_unverified",
+      "title": "الأصوات والحروف",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "96024853-ffc2-4fe5-8609-7e5c89974a2a",
+      "unit": "اللغة العربية — حزمة المقرر الوطني",
+      "grade": 1,
+      "scope": "general_unverified",
+      "title": "اللغة العربية — الصف 1 الابتدائي — حزمة المقرر الوطني",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "6db95914-a1e3-4c18-af13-76a113240076",
+      "unit": "الوحدة الأولى: أصوات وحروف",
+      "grade": 1,
+      "scope": "general_unverified",
+      "title": "أشكال الحرف في الكلمة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "549ced93-9b8c-45e9-96be-c9b3c2f56c82",
+      "unit": "الوحدة الأولى: أصوات وحروف",
+      "grade": 1,
+      "scope": "general_unverified",
+      "title": "الحركات القصيرة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "a4843172-1459-4f42-aa88-d111de5c04a1",
+      "unit": "الوحدة الأولى: أصوات وحروف",
+      "grade": 1,
+      "scope": "general_unverified",
+      "title": "السكون والمقطع",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "f5912ac5-1e3f-4deb-a96c-cc39be17320c",
+      "unit": "الوحدة الأولى: أصوات وحروف",
+      "grade": 1,
+      "scope": "general_unverified",
+      "title": "حروف المد",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "4582f51c-5822-49aa-9d72-532d5f32f0c9",
+      "unit": "الوحدة الأولى: أصوات وحروف",
+      "grade": 1,
+      "scope": "general_unverified",
+      "title": "الشدة والتنوين",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "747c8578-fbae-4aa5-bf90-4b46e0e2f2fe",
+      "unit": "الوحدة الثانية: الكلمة والجملة",
+      "grade": 1,
+      "scope": "general_unverified",
+      "title": "بناء الكلمة من المقاطع",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "b297f690-2c72-428d-96a2-1f5eda586ea4",
+      "unit": "الوحدة الثانية: الكلمة والجملة",
+      "grade": 1,
+      "scope": "general_unverified",
+      "title": "اللام الشمسية والقمرية",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "7e0bbda1-6d37-4789-99c8-2428d041d3b4",
+      "unit": "الوحدة الثانية: الكلمة والجملة",
+      "grade": 1,
+      "scope": "general_unverified",
+      "title": "المفرد والجمع",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "3f624e7d-8c76-4048-9a33-36eaeb0158aa",
+      "unit": "الوحدة الثانية: الكلمة والجملة",
+      "grade": 1,
+      "scope": "general_unverified",
+      "title": "الجملة الاسمية البسيطة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "078992f0-640a-4542-869c-c51e25b6975a",
+      "unit": "الوحدة الثانية: الكلمة والجملة",
+      "grade": 1,
+      "scope": "general_unverified",
+      "title": "الجملة الفعلية البسيطة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "7f6675f2-5d0a-4677-862a-5a665fe032bf",
+      "unit": "الوحدة الثانية: الكلمة والجملة",
+      "grade": 1,
+      "scope": "general_unverified",
+      "title": "أدوات الاستفهام",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "6f026153-e988-453c-a3be-a69f80da18a5",
+      "unit": "الوحدة الثالثة: القراءة والتعبير",
+      "grade": 1,
+      "scope": "general_unverified",
+      "title": "قراءة نص قصير",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "18eef282-4f9e-4311-9507-496587b52eff",
+      "unit": "الوحدة الثالثة: القراءة والتعبير",
+      "grade": 1,
+      "scope": "general_unverified",
+      "title": "الفكرة الرئيسة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "9d4bfcc4-5a5d-4fb1-ba67-c54e2115b44e",
+      "unit": "الوحدة الثالثة: القراءة والتعبير",
+      "grade": 1,
+      "scope": "general_unverified",
+      "title": "ترتيب الأحداث",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "0e7bb170-4fe5-47f6-841e-536901df4077",
+      "unit": "الوحدة الثالثة: القراءة والتعبير",
+      "grade": 1,
+      "scope": "general_unverified",
+      "title": "الاستماع واتباع التعليمات",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "5398a49f-5443-49c7-8fbb-f7cb355818be",
+      "unit": "الوحدة الثالثة: القراءة والتعبير",
+      "grade": 1,
+      "scope": "general_unverified",
+      "title": "كتابة جملة واضحة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "8f08f680-c4ad-4f40-a927-441019af7672",
+      "unit": "الوحدة الثالثة: القراءة والتعبير",
+      "grade": 1,
+      "scope": "general_unverified",
+      "title": "مراجعة مهاراتي الأساسية",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "c0ad655e-f7f6-4d5f-808b-ec0f1ea14cb8",
+      "unit": "اللغة العربية — حزمة المقرر الوطني",
+      "grade": 2,
+      "scope": "general_unverified",
+      "title": "اللغة العربية — الصف 2 الابتدائي — حزمة المقرر الوطني",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "8d7aa8b4-42a4-42d8-80b6-d0135ca2b4eb",
+      "unit": "الوحدة الأولى: أصوات وحروف",
+      "grade": 2,
+      "scope": "general_unverified",
+      "title": "الأصوات والحروف",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "5c8ca0b7-b456-4269-8e2f-dcecc6367686",
+      "unit": "الوحدة الأولى: أصوات وحروف",
+      "grade": 2,
+      "scope": "general_unverified",
+      "title": "أشكال الحرف في الكلمة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "4e0317e0-c89f-4ca5-9fb1-f20610c34c7f",
+      "unit": "الوحدة الأولى: أصوات وحروف",
+      "grade": 2,
+      "scope": "general_unverified",
+      "title": "الحركات القصيرة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "8cfcac7c-fb7d-4acf-8d60-7be4c7d2ce23",
+      "unit": "الوحدة الأولى: أصوات وحروف",
+      "grade": 2,
+      "scope": "general_unverified",
+      "title": "السكون والمقطع",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "b4a96bb2-6a05-40de-87df-ef188fb2317f",
+      "unit": "الوحدة الأولى: أصوات وحروف",
+      "grade": 2,
+      "scope": "general_unverified",
+      "title": "حروف المد",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "f811b2fc-c1c4-4694-bb5d-cf16fe35b452",
+      "unit": "الوحدة الأولى: أصوات وحروف",
+      "grade": 2,
+      "scope": "general_unverified",
+      "title": "الشدة والتنوين",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "eb217e8a-20a9-4e13-9cc2-3a42cecd4ff9",
+      "unit": "الوحدة الثانية: الكلمة والجملة",
+      "grade": 2,
+      "scope": "general_unverified",
+      "title": "بناء الكلمة من المقاطع",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "6f2055aa-6771-4ff2-aed9-401c26932c9c",
+      "unit": "الوحدة الثانية: الكلمة والجملة",
+      "grade": 2,
+      "scope": "general_unverified",
+      "title": "اللام الشمسية والقمرية",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "81c692c4-a4c3-422b-85a4-9e2f34478b9c",
+      "unit": "الوحدة الثانية: الكلمة والجملة",
+      "grade": 2,
+      "scope": "general_unverified",
+      "title": "المفرد والجمع",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "11b5999a-5a42-4f30-a116-f808f3a43793",
+      "unit": "الوحدة الثانية: الكلمة والجملة",
+      "grade": 2,
+      "scope": "general_unverified",
+      "title": "الجملة الاسمية البسيطة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "14616968-d0bf-4ada-8f5e-200daf007191",
+      "unit": "الوحدة الثانية: الكلمة والجملة",
+      "grade": 2,
+      "scope": "general_unverified",
+      "title": "الجملة الفعلية البسيطة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "39c88673-0630-4a27-8627-59db2e55e721",
+      "unit": "الوحدة الثانية: الكلمة والجملة",
+      "grade": 2,
+      "scope": "general_unverified",
+      "title": "أدوات الاستفهام",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "463fb58f-9203-4cba-9885-bbc24fec5bfd",
+      "unit": "الوحدة الثالثة: القراءة والتعبير",
+      "grade": 2,
+      "scope": "general_unverified",
+      "title": "قراءة نص قصير",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "e34c942a-a7c1-4a86-a123-072915ffcc0e",
+      "unit": "الوحدة الثالثة: القراءة والتعبير",
+      "grade": 2,
+      "scope": "general_unverified",
+      "title": "الفكرة الرئيسة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "e4c5c705-e427-4dd6-8264-58782b294a7a",
+      "unit": "الوحدة الثالثة: القراءة والتعبير",
+      "grade": 2,
+      "scope": "general_unverified",
+      "title": "ترتيب الأحداث",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "2738e921-4b15-4867-9831-836b821b9a63",
+      "unit": "الوحدة الثالثة: القراءة والتعبير",
+      "grade": 2,
+      "scope": "general_unverified",
+      "title": "الاستماع واتباع التعليمات",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "acd99877-867f-438b-8341-30e2a732beb8",
+      "unit": "الوحدة الثالثة: القراءة والتعبير",
+      "grade": 2,
+      "scope": "general_unverified",
+      "title": "كتابة جملة واضحة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "9f7c017c-2277-4dc4-934b-4f8af94542f2",
+      "unit": "الوحدة الثالثة: القراءة والتعبير",
+      "grade": 2,
+      "scope": "general_unverified",
+      "title": "مراجعة مهاراتي الأساسية",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "84f48e0c-027c-442e-a1bb-675b05142ca9",
+      "unit": "اللغة العربية — حزمة المقرر الوطني",
+      "grade": 3,
+      "scope": "general_unverified",
+      "title": "اللغة العربية — الصف 3 الابتدائي — حزمة المقرر الوطني",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "aa716e74-55a6-4c98-8be8-d1d3103eeccc",
+      "unit": "الوحدة الأولى: أصوات وحروف",
+      "grade": 3,
+      "scope": "general_unverified",
+      "title": "الأصوات والحروف",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "c97ba2eb-397a-4d4f-a14d-83b7db6fad73",
+      "unit": "الوحدة الأولى: أصوات وحروف",
+      "grade": 3,
+      "scope": "general_unverified",
+      "title": "أشكال الحرف في الكلمة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "1c6aba23-ba80-4d92-9afa-652a1474eec1",
+      "unit": "الوحدة الأولى: أصوات وحروف",
+      "grade": 3,
+      "scope": "general_unverified",
+      "title": "الحركات القصيرة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "673f0b20-f1d0-4b56-bdfc-d7d8961289d9",
+      "unit": "الوحدة الأولى: أصوات وحروف",
+      "grade": 3,
+      "scope": "general_unverified",
+      "title": "السكون والمقطع",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "cf98effa-3efc-42fa-9161-7649c3f4346e",
+      "unit": "الوحدة الأولى: أصوات وحروف",
+      "grade": 3,
+      "scope": "general_unverified",
+      "title": "حروف المد",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "bc10fc97-0ee3-4b9b-a7ea-dee179517ccc",
+      "unit": "الوحدة الأولى: أصوات وحروف",
+      "grade": 3,
+      "scope": "general_unverified",
+      "title": "الشدة والتنوين",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "49b842a1-4bd3-45a7-b327-a81128f7a181",
+      "unit": "الوحدة الثانية: الكلمة والجملة",
+      "grade": 3,
+      "scope": "general_unverified",
+      "title": "بناء الكلمة من المقاطع",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "0d6e313a-ac8f-479b-9fc9-dabaa132713e",
+      "unit": "الوحدة الثانية: الكلمة والجملة",
+      "grade": 3,
+      "scope": "general_unverified",
+      "title": "اللام الشمسية والقمرية",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "a4a5d8ca-7a87-413b-8b35-a59bc77c993d",
+      "unit": "الوحدة الثانية: الكلمة والجملة",
+      "grade": 3,
+      "scope": "general_unverified",
+      "title": "المفرد والجمع",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "2a7d768c-c430-4734-9091-61b093c8c069",
+      "unit": "الوحدة الثانية: الكلمة والجملة",
+      "grade": 3,
+      "scope": "general_unverified",
+      "title": "الجملة الاسمية البسيطة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "3e68900e-2ae7-4b92-83d1-155e9bac9a73",
+      "unit": "الوحدة الثانية: الكلمة والجملة",
+      "grade": 3,
+      "scope": "general_unverified",
+      "title": "الجملة الفعلية البسيطة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "893b80a4-9601-4e58-bc3e-be12057f86ee",
+      "unit": "الوحدة الثانية: الكلمة والجملة",
+      "grade": 3,
+      "scope": "general_unverified",
+      "title": "أدوات الاستفهام",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "c6e48e89-fa69-45cb-8fb6-aa5fa05b3722",
+      "unit": "الوحدة الثالثة: القراءة والتعبير",
+      "grade": 3,
+      "scope": "general_unverified",
+      "title": "قراءة نص قصير",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "07a3ecb2-e7df-4125-9ee3-b3ac7ddabf42",
+      "unit": "الوحدة الثالثة: القراءة والتعبير",
+      "grade": 3,
+      "scope": "general_unverified",
+      "title": "الفكرة الرئيسة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "19a6b0c2-4606-433a-a9af-dc79be78dfc0",
+      "unit": "الوحدة الثالثة: القراءة والتعبير",
+      "grade": 3,
+      "scope": "general_unverified",
+      "title": "ترتيب الأحداث",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "b5a2f150-6b80-4edd-b50d-b54b4fbb770c",
+      "unit": "الوحدة الثالثة: القراءة والتعبير",
+      "grade": 3,
+      "scope": "general_unverified",
+      "title": "الاستماع واتباع التعليمات",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "250f05e1-d4ed-4743-aaf9-c9dc3ee6a06c",
+      "unit": "الوحدة الثالثة: القراءة والتعبير",
+      "grade": 3,
+      "scope": "general_unverified",
+      "title": "كتابة جملة واضحة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "629dd3be-2707-4f5e-a369-a0c167ca3428",
+      "unit": "الوحدة الثالثة: القراءة والتعبير",
+      "grade": 3,
+      "scope": "general_unverified",
+      "title": "مراجعة مهاراتي الأساسية",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "f3067f59-31e1-4107-ab32-761ff433560b",
+      "unit": "اللغة العربية — حزمة المقرر الوطني",
+      "grade": 4,
+      "scope": "general_unverified",
+      "title": "اللغة العربية — الصف 4 الابتدائي — حزمة المقرر الوطني",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "efcfde89-270c-419f-b174-f93e0bd0efbc",
+      "unit": "الوحدة الأولى: القراءة والفهم",
+      "grade": 4,
+      "scope": "general_unverified",
+      "title": "القراءة الجهرية المعبرة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "f38f0445-a67c-4410-b106-36da6c50da20",
+      "unit": "الوحدة الأولى: القراءة والفهم",
+      "grade": 4,
+      "scope": "general_unverified",
+      "title": "الفكرة الرئيسة والتفاصيل",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "5111e80a-6eb9-4024-8088-24dfaa5e55fd",
+      "unit": "الوحدة الأولى: القراءة والفهم",
+      "grade": 4,
+      "scope": "general_unverified",
+      "title": "معنى الكلمة من السياق",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "9295e934-9315-440e-9d97-5247e86d648e",
+      "unit": "الوحدة الأولى: القراءة والفهم",
+      "grade": 4,
+      "scope": "general_unverified",
+      "title": "السبب والنتيجة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "ffa52613-3b9e-43b3-86f0-b8da9e8f443b",
+      "unit": "الوحدة الأولى: القراءة والفهم",
+      "grade": 4,
+      "scope": "general_unverified",
+      "title": "تلخيص فقرة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "69e38b0c-c5ec-47a5-b512-deaf211060e8",
+      "unit": "الوحدة الأولى: القراءة والفهم",
+      "grade": 4,
+      "scope": "general_unverified",
+      "title": "الاستنتاج من النص",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "d80cd2d9-0998-4871-a431-2bddcb579305",
+      "unit": "الوحدة الثانية: القواعد والإملاء",
+      "grade": 4,
+      "scope": "general_unverified",
+      "title": "أقسام الكلام",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "92d39eca-aa7f-4492-bff7-5cabb9515b8b",
+      "unit": "الوحدة الثانية: القواعد والإملاء",
+      "grade": 4,
+      "scope": "general_unverified",
+      "title": "المبتدأ والخبر",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "d228206b-2f44-4bd0-a642-0190e8cd1a76",
+      "unit": "الوحدة الثانية: القواعد والإملاء",
+      "grade": 4,
+      "scope": "general_unverified",
+      "title": "الفعل والفاعل",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "4d6a8790-e1cb-41bb-a6a3-cead6c89ca72",
+      "unit": "الوحدة الثانية: القواعد والإملاء",
+      "grade": 4,
+      "scope": "general_unverified",
+      "title": "المفعول به",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "dfa1f48b-9c7e-4489-a30f-43034229a815",
+      "unit": "الوحدة الثانية: القواعد والإملاء",
+      "grade": 4,
+      "scope": "general_unverified",
+      "title": "حروف الجر",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "08bdede5-3d93-43b4-880f-33f4806d5256",
+      "unit": "الوحدة الثانية: القواعد والإملاء",
+      "grade": 4,
+      "scope": "general_unverified",
+      "title": "الهمزة والتاء في الكتابة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "8810df67-e6c2-4ecc-942d-08954cc3b759",
+      "unit": "الوحدة الثالثة: الكتابة والتواصل",
+      "grade": 4,
+      "scope": "general_unverified",
+      "title": "بناء الفقرة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "b34d7fcb-36b1-47ee-94fc-50eed8d60972",
+      "unit": "الوحدة الثالثة: الكتابة والتواصل",
+      "grade": 4,
+      "scope": "general_unverified",
+      "title": "الوصف الدقيق",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "f592df99-4a01-45ce-84eb-06a750d6c617",
+      "unit": "الوحدة الثالثة: الكتابة والتواصل",
+      "grade": 4,
+      "scope": "general_unverified",
+      "title": "الرسالة القصيرة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "5ee5a377-1e2c-49e4-9039-a414232d8cc1",
+      "unit": "الوحدة الثالثة: الكتابة والتواصل",
+      "grade": 4,
+      "scope": "general_unverified",
+      "title": "الحوار المنظم",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "22c70aed-6f55-4ede-8984-a6905d5a92de",
+      "unit": "الوحدة الثالثة: الكتابة والتواصل",
+      "grade": 4,
+      "scope": "general_unverified",
+      "title": "العرض الشفهي",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "0aa760ac-7b18-445c-a308-301ea834dfa5",
+      "unit": "الوحدة الثالثة: الكتابة والتواصل",
+      "grade": 4,
+      "scope": "general_unverified",
+      "title": "مراجعة القراءة واللغة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "8903f8ca-fe13-41c4-ad51-68bbb2b50d4d",
+      "unit": "الوحدة الأولى: القراءة والفهم",
+      "grade": 5,
+      "scope": "general_unverified",
+      "title": "القراءة الجهرية المعبرة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "126fe098-6837-494c-83c3-8f5095654931",
+      "unit": "اللغة العربية — حزمة المقرر الوطني",
+      "grade": 5,
+      "scope": "general_unverified",
+      "title": "اللغة العربية — الصف 5 الابتدائي — حزمة المقرر الوطني",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "a197fb51-c831-405f-a0bb-eb4553d74d4b",
+      "unit": "الوحدة الأولى: القراءة والفهم",
+      "grade": 5,
+      "scope": "general_unverified",
+      "title": "الفكرة الرئيسة والتفاصيل",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "6aec9719-7f8b-440c-a42a-007ffdd915c3",
+      "unit": "الوحدة الأولى: القراءة والفهم",
+      "grade": 5,
+      "scope": "general_unverified",
+      "title": "معنى الكلمة من السياق",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "c145e4ce-1861-4501-9678-48458a6bb5fc",
+      "unit": "الوحدة الأولى: القراءة والفهم",
+      "grade": 5,
+      "scope": "general_unverified",
+      "title": "السبب والنتيجة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "61d26016-1673-4781-8f78-dc02020f3ba0",
+      "unit": "الوحدة الأولى: القراءة والفهم",
+      "grade": 5,
+      "scope": "general_unverified",
+      "title": "تلخيص فقرة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "e9c7fa41-3ec4-4bf4-acb2-70cde472b92f",
+      "unit": "الوحدة الأولى: القراءة والفهم",
+      "grade": 5,
+      "scope": "general_unverified",
+      "title": "الاستنتاج من النص",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "f8e53b7f-ad48-49a5-839f-1a7a43f4dbcc",
+      "unit": "الوحدة الثانية: القواعد والإملاء",
+      "grade": 5,
+      "scope": "general_unverified",
+      "title": "أقسام الكلام",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "dbf2a16c-5efa-45e7-bcac-ec499e6e4d5d",
+      "unit": "الوحدة الثانية: القواعد والإملاء",
+      "grade": 5,
+      "scope": "general_unverified",
+      "title": "المبتدأ والخبر",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "5d3ef454-8eaa-4554-9ed4-39c3262ce3a7",
+      "unit": "الوحدة الثانية: القواعد والإملاء",
+      "grade": 5,
+      "scope": "general_unverified",
+      "title": "الفعل والفاعل",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "c8ab9b18-423b-40b9-be88-5d1d87f90c1a",
+      "unit": "الوحدة الثانية: القواعد والإملاء",
+      "grade": 5,
+      "scope": "general_unverified",
+      "title": "المفعول به",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "675fc389-76ce-44f7-aff9-6165687d3c21",
+      "unit": "الوحدة الثانية: القواعد والإملاء",
+      "grade": 5,
+      "scope": "general_unverified",
+      "title": "حروف الجر",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "823140b8-deca-4b9a-969a-d441439537ae",
+      "unit": "الوحدة الثانية: القواعد والإملاء",
+      "grade": 5,
+      "scope": "general_unverified",
+      "title": "الهمزة والتاء في الكتابة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "1b4b6275-5c5d-4e6f-ae06-0ef207d55b34",
+      "unit": "الوحدة الثالثة: الكتابة والتواصل",
+      "grade": 5,
+      "scope": "general_unverified",
+      "title": "بناء الفقرة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "147308af-0d38-4c17-963a-f177c6cc6558",
+      "unit": "الوحدة الثالثة: الكتابة والتواصل",
+      "grade": 5,
+      "scope": "general_unverified",
+      "title": "الوصف الدقيق",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "2bff9d40-e33b-45fc-b3bb-8e3a7800de71",
+      "unit": "الوحدة الثالثة: الكتابة والتواصل",
+      "grade": 5,
+      "scope": "general_unverified",
+      "title": "الرسالة القصيرة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "b89d1fd6-ab7c-4933-8fd8-ea905d18f5be",
+      "unit": "الوحدة الثالثة: الكتابة والتواصل",
+      "grade": 5,
+      "scope": "general_unverified",
+      "title": "الحوار المنظم",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "008da342-c6c4-4c63-8571-4996c698c6e9",
+      "unit": "الوحدة الثالثة: الكتابة والتواصل",
+      "grade": 5,
+      "scope": "general_unverified",
+      "title": "العرض الشفهي",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "6fae7e93-2895-49e9-802d-9d02acd24d3c",
+      "unit": "الوحدة الثالثة: الكتابة والتواصل",
+      "grade": 5,
+      "scope": "general_unverified",
+      "title": "مراجعة القراءة واللغة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "fd59529a-c565-4ead-82f2-5682772cbf07",
+      "unit": "اللغة العربية — حزمة المقرر الوطني",
+      "grade": 6,
+      "scope": "general_unverified",
+      "title": "اللغة العربية — الصف 6 الابتدائي — حزمة المقرر الوطني",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "97c9a47d-2eca-4dbd-83fd-d1a3699e947e",
+      "unit": "الوحدة الأولى: القراءة والفهم",
+      "grade": 6,
+      "scope": "general_unverified",
+      "title": "القراءة الجهرية المعبرة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "4a549375-1f4e-44f0-87c8-fd947b3cf0cf",
+      "unit": "الوحدة الأولى: القراءة والفهم",
+      "grade": 6,
+      "scope": "general_unverified",
+      "title": "الفكرة الرئيسة والتفاصيل",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "73d6d109-6be3-4a45-b63c-f0b00546ce2e",
+      "unit": "الوحدة الأولى: القراءة والفهم",
+      "grade": 6,
+      "scope": "general_unverified",
+      "title": "معنى الكلمة من السياق",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "6ae4a02e-4832-4bbd-9a9e-1e44ebb48f7f",
+      "unit": "الوحدة الأولى: القراءة والفهم",
+      "grade": 6,
+      "scope": "general_unverified",
+      "title": "السبب والنتيجة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "87624cee-c057-40dd-8524-f69304d8c4b3",
+      "unit": "الوحدة الأولى: القراءة والفهم",
+      "grade": 6,
+      "scope": "general_unverified",
+      "title": "تلخيص فقرة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "f6e4b781-1a19-426a-b6fc-0a6bc886324b",
+      "unit": "الوحدة الأولى: القراءة والفهم",
+      "grade": 6,
+      "scope": "general_unverified",
+      "title": "الاستنتاج من النص",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "64e7708a-02f2-44be-a783-a059374041e3",
+      "unit": "الوحدة الثانية: القواعد والإملاء",
+      "grade": 6,
+      "scope": "general_unverified",
+      "title": "أقسام الكلام",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "757cd0c3-a4bb-4054-8384-fe7dc931227b",
+      "unit": "الوحدة الثانية: القواعد والإملاء",
+      "grade": 6,
+      "scope": "general_unverified",
+      "title": "المبتدأ والخبر",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "e542e310-88e6-4e15-9a40-08a28696bd0c",
+      "unit": "الوحدة الثانية: القواعد والإملاء",
+      "grade": 6,
+      "scope": "general_unverified",
+      "title": "الفعل والفاعل",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "39dc8008-8e84-46f9-972a-fcd68e4c7c8a",
+      "unit": "الوحدة الثانية: القواعد والإملاء",
+      "grade": 6,
+      "scope": "general_unverified",
+      "title": "المفعول به",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "b5724139-c9fc-4d5d-8056-fb27812ce833",
+      "unit": "الوحدة الثانية: القواعد والإملاء",
+      "grade": 6,
+      "scope": "general_unverified",
+      "title": "حروف الجر",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "4339ada8-ac52-41a2-94f5-da55673822f8",
+      "unit": "الوحدة الثانية: القواعد والإملاء",
+      "grade": 6,
+      "scope": "general_unverified",
+      "title": "الهمزة والتاء في الكتابة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "ef516c01-abf0-4d20-8c47-e99bd836d8a3",
+      "unit": "الوحدة الثالثة: الكتابة والتواصل",
+      "grade": 6,
+      "scope": "general_unverified",
+      "title": "بناء الفقرة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "ad78e374-8a2c-4565-8c9b-2674d6c3e8d0",
+      "unit": "الوحدة الثالثة: الكتابة والتواصل",
+      "grade": 6,
+      "scope": "general_unverified",
+      "title": "الوصف الدقيق",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "1e37fc39-fc29-47db-a703-159407309b27",
+      "unit": "الوحدة الثالثة: الكتابة والتواصل",
+      "grade": 6,
+      "scope": "general_unverified",
+      "title": "الرسالة القصيرة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "613168cf-599d-42fb-bcb1-e2d1af0a3bb8",
+      "unit": "الوحدة الثالثة: الكتابة والتواصل",
+      "grade": 6,
+      "scope": "general_unverified",
+      "title": "الحوار المنظم",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "ec2a37cd-6968-4943-8cd3-7538a4a953e6",
+      "unit": "الوحدة الثالثة: الكتابة والتواصل",
+      "grade": 6,
+      "scope": "general_unverified",
+      "title": "العرض الشفهي",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "6c91a889-3107-429a-95c7-2db69396c09d",
+      "unit": "الوحدة الثالثة: الكتابة والتواصل",
+      "grade": 6,
+      "scope": "general_unverified",
+      "title": "مراجعة القراءة واللغة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "58839754-e754-442c-a86e-c2e0b5c999a4",
+      "unit": "اللغة العربية — حزمة المقرر الوطني",
+      "grade": 7,
+      "scope": "general_unverified",
+      "title": "اللغة العربية — الصف 1 المتوسط — حزمة المقرر الوطني",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "28100cac-e78d-479a-8b2b-f94589533c69",
+      "unit": "الوحدة الأولى: قراءة وتحليل",
+      "grade": 7,
+      "scope": "general_unverified",
+      "title": "تحليل نص أدبي",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "2d7c8b0b-9c19-485d-b004-f3577250809c",
+      "unit": "الوحدة الأولى: قراءة وتحليل",
+      "grade": 7,
+      "scope": "general_unverified",
+      "title": "قراءة نص معلوماتي",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "a98cd826-fb9c-42a5-8bb4-e3ab833402eb",
+      "unit": "الوحدة الأولى: قراءة وتحليل",
+      "grade": 7,
+      "scope": "general_unverified",
+      "title": "الدلالة والسياق",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "4498b47f-0059-4ea3-bba1-7b21310f7c66",
+      "unit": "الوحدة الأولى: قراءة وتحليل",
+      "grade": 7,
+      "scope": "general_unverified",
+      "title": "الاستنتاج وبناء الحجة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "eaf0f775-14ab-409d-a15a-14635eeac270",
+      "unit": "الوحدة الأولى: قراءة وتحليل",
+      "grade": 7,
+      "scope": "general_unverified",
+      "title": "بنية النص وترابطه",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "78b92c9a-bf74-4ed0-a327-325fb5f0e2cc",
+      "unit": "الوحدة الأولى: قراءة وتحليل",
+      "grade": 7,
+      "scope": "general_unverified",
+      "title": "المقارنة بين نصين",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "e88a2fa2-fbe8-43d2-aed4-b81a464c3265",
+      "unit": "الوحدة الثانية: نحو وإملاء",
+      "grade": 7,
+      "scope": "general_unverified",
+      "title": "كان وأخواتها",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "64d8f561-6a1a-4638-84d8-ca27d2e51f30",
+      "unit": "الوحدة الثانية: نحو وإملاء",
+      "grade": 7,
+      "scope": "general_unverified",
+      "title": "إن وأخواتها",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "ba41b8be-c483-4b98-9537-caf3b4f5d1ad",
+      "unit": "الوحدة الثانية: نحو وإملاء",
+      "grade": 7,
+      "scope": "general_unverified",
+      "title": "المبني للمعلوم والمجهول",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "13261a62-e0f8-48e7-a16f-ea93c99485d5",
+      "unit": "الوحدة الثانية: نحو وإملاء",
+      "grade": 7,
+      "scope": "general_unverified",
+      "title": "النعت والعطف",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "755af81a-cff0-4174-a25a-a866a445df4b",
+      "unit": "الوحدة الثانية: نحو وإملاء",
+      "grade": 7,
+      "scope": "general_unverified",
+      "title": "الحال والتمييز",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "e2ac5acc-350a-4285-921a-8d7ab6ddcba6",
+      "unit": "الوحدة الثانية: نحو وإملاء",
+      "grade": 7,
+      "scope": "general_unverified",
+      "title": "الإملاء وعلامات الترقيم",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "e0cebf02-37ab-4119-aeab-5de5e2887f30",
+      "unit": "الوحدة الثالثة: بلاغة وتعبير",
+      "grade": 7,
+      "scope": "general_unverified",
+      "title": "التشبيه وأثره",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "cacf5665-1c1b-409d-94f9-088b50d8eb03",
+      "unit": "الوحدة الثالثة: بلاغة وتعبير",
+      "grade": 7,
+      "scope": "general_unverified",
+      "title": "الاستعارة والصورة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "8893e98a-48b8-4a28-9fc6-5aedca1810b8",
+      "unit": "الوحدة الثالثة: بلاغة وتعبير",
+      "grade": 7,
+      "scope": "general_unverified",
+      "title": "كتابة مقال قصير",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "8dc806c3-d776-445a-a5cb-56da531b6e04",
+      "unit": "الوحدة الثالثة: بلاغة وتعبير",
+      "grade": 7,
+      "scope": "general_unverified",
+      "title": "كتابة تقرير",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "32dc2732-275f-4661-981f-6e56c55dd534",
+      "unit": "الوحدة الثالثة: بلاغة وتعبير",
+      "grade": 7,
+      "scope": "general_unverified",
+      "title": "الحجاج والمناظرة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "559a2a41-da84-48eb-8afa-a3558fc27c60",
+      "unit": "الوحدة الثالثة: بلاغة وتعبير",
+      "grade": 7,
+      "scope": "general_unverified",
+      "title": "مراجعة تحليلية شاملة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "56198606-b66e-4385-bff1-9be746c9741e",
+      "unit": "الوحدة الأولى: قراءة وتحليل",
+      "grade": 8,
+      "scope": "general_unverified",
+      "title": "تحليل نص أدبي",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "ac16646f-840e-4ea3-9978-5cad92b00879",
+      "unit": "اللغة العربية — حزمة المقرر الوطني",
+      "grade": 8,
+      "scope": "general_unverified",
+      "title": "اللغة العربية — الصف 2 المتوسط — حزمة المقرر الوطني",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "dbd3f152-7554-4778-83ab-948f741d390d",
+      "unit": "الوحدة الأولى: قراءة وتحليل",
+      "grade": 8,
+      "scope": "general_unverified",
+      "title": "قراءة نص معلوماتي",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "2c1a1727-2863-4ab9-a36f-3ce99fe16e07",
+      "unit": "الوحدة الأولى: قراءة وتحليل",
+      "grade": 8,
+      "scope": "general_unverified",
+      "title": "الدلالة والسياق",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "3f0d1ff0-0965-4c11-9faa-dc89a03411a8",
+      "unit": "الوحدة الأولى: قراءة وتحليل",
+      "grade": 8,
+      "scope": "general_unverified",
+      "title": "الاستنتاج وبناء الحجة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "1974376a-fa46-4bd7-bd0c-e96d6d52d033",
+      "unit": "الوحدة الأولى: قراءة وتحليل",
+      "grade": 8,
+      "scope": "general_unverified",
+      "title": "بنية النص وترابطه",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "aa07a97b-070c-4e6a-90e8-37766ffb631d",
+      "unit": "الوحدة الأولى: قراءة وتحليل",
+      "grade": 8,
+      "scope": "general_unverified",
+      "title": "المقارنة بين نصين",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "965a739f-71e0-4322-9c1a-c022a8c05190",
+      "unit": "الوحدة الثانية: نحو وإملاء",
+      "grade": 8,
+      "scope": "general_unverified",
+      "title": "كان وأخواتها",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "f47162b7-e8ec-4ac9-bd87-216c17921a56",
+      "unit": "الوحدة الثانية: نحو وإملاء",
+      "grade": 8,
+      "scope": "general_unverified",
+      "title": "إن وأخواتها",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "433cd1a1-7440-4884-b4cf-15d89a41fc1b",
+      "unit": "الوحدة الثانية: نحو وإملاء",
+      "grade": 8,
+      "scope": "general_unverified",
+      "title": "المبني للمعلوم والمجهول",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "f3e04683-5492-49a3-9cbf-466d5b980062",
+      "unit": "الوحدة الثانية: نحو وإملاء",
+      "grade": 8,
+      "scope": "general_unverified",
+      "title": "النعت والعطف",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "717bd8da-ca63-4101-b945-595957e811a1",
+      "unit": "الوحدة الثانية: نحو وإملاء",
+      "grade": 8,
+      "scope": "general_unverified",
+      "title": "الحال والتمييز",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "b25cd4de-dc46-4452-ace5-c76274e372bc",
+      "unit": "الوحدة الثانية: نحو وإملاء",
+      "grade": 8,
+      "scope": "general_unverified",
+      "title": "الإملاء وعلامات الترقيم",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "b3b0c3b0-125b-40cb-a84e-ddd045d2cd10",
+      "unit": "الوحدة الثالثة: بلاغة وتعبير",
+      "grade": 8,
+      "scope": "general_unverified",
+      "title": "التشبيه وأثره",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "bdfdd665-5cc6-4e71-bf2d-2b02a3048226",
+      "unit": "الوحدة الثالثة: بلاغة وتعبير",
+      "grade": 8,
+      "scope": "general_unverified",
+      "title": "الاستعارة والصورة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "f9f61b38-6e26-4aea-bb68-6777e4ee7159",
+      "unit": "الوحدة الثالثة: بلاغة وتعبير",
+      "grade": 8,
+      "scope": "general_unverified",
+      "title": "كتابة مقال قصير",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "c706e4b3-db2c-40ed-b785-578bbb245413",
+      "unit": "الوحدة الثالثة: بلاغة وتعبير",
+      "grade": 8,
+      "scope": "general_unverified",
+      "title": "كتابة تقرير",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "3e907a5b-8fb4-4264-a510-bb4db498d6b6",
+      "unit": "الوحدة الثالثة: بلاغة وتعبير",
+      "grade": 8,
+      "scope": "general_unverified",
+      "title": "الحجاج والمناظرة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "8e908535-b0ed-4115-8eb3-2e023231b685",
+      "unit": "الوحدة الثالثة: بلاغة وتعبير",
+      "grade": 8,
+      "scope": "general_unverified",
+      "title": "مراجعة تحليلية شاملة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "b29d9efd-9e5f-4019-82d5-699b9615512c",
+      "unit": "الوحدة الأولى: قراءة وتحليل",
+      "grade": 9,
+      "scope": "general_unverified",
+      "title": "تحليل نص أدبي",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "e46396d9-63c9-4be6-bf02-d346c8db281d",
+      "unit": "اللغة العربية — حزمة المقرر الوطني",
+      "grade": 9,
+      "scope": "general_unverified",
+      "title": "اللغة العربية — الصف 3 المتوسط — حزمة المقرر الوطني",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "bdda1b90-a912-4a33-a68b-b949e6a3a9ba",
+      "unit": "الوحدة الأولى: قراءة وتحليل",
+      "grade": 9,
+      "scope": "general_unverified",
+      "title": "قراءة نص معلوماتي",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "4a61eb46-483e-4d36-9cd6-952a409e7a69",
+      "unit": "الوحدة الأولى: قراءة وتحليل",
+      "grade": 9,
+      "scope": "general_unverified",
+      "title": "الدلالة والسياق",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "82d0ed10-979c-4c9c-8f79-99277eacb2b2",
+      "unit": "الوحدة الأولى: قراءة وتحليل",
+      "grade": 9,
+      "scope": "general_unverified",
+      "title": "الاستنتاج وبناء الحجة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "cd3e25ed-a84d-449c-9696-e0e50022831e",
+      "unit": "الوحدة الأولى: قراءة وتحليل",
+      "grade": 9,
+      "scope": "general_unverified",
+      "title": "بنية النص وترابطه",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "4180f3ef-17c7-4dde-ac6f-06d1d49505ff",
+      "unit": "الوحدة الأولى: قراءة وتحليل",
+      "grade": 9,
+      "scope": "general_unverified",
+      "title": "المقارنة بين نصين",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "54d1fced-e960-4eae-9d67-94b49cdb582a",
+      "unit": "الوحدة الثانية: نحو وإملاء",
+      "grade": 9,
+      "scope": "general_unverified",
+      "title": "كان وأخواتها",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "c19105eb-0b37-456d-a2c6-9f1d58af1ca0",
+      "unit": "الوحدة الثانية: نحو وإملاء",
+      "grade": 9,
+      "scope": "general_unverified",
+      "title": "إن وأخواتها",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "79be7fc0-544e-4f07-b0ac-0eb41d566e57",
+      "unit": "الوحدة الثانية: نحو وإملاء",
+      "grade": 9,
+      "scope": "general_unverified",
+      "title": "المبني للمعلوم والمجهول",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "d5af9837-eb8d-4bdc-91c4-a3b100e46805",
+      "unit": "الوحدة الثانية: نحو وإملاء",
+      "grade": 9,
+      "scope": "general_unverified",
+      "title": "النعت والعطف",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "d1a49b31-9e5c-48fe-bf16-9e355661c132",
+      "unit": "الوحدة الثانية: نحو وإملاء",
+      "grade": 9,
+      "scope": "general_unverified",
+      "title": "الحال والتمييز",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "3219aa3a-0711-4665-ad39-e99e4e255189",
+      "unit": "الوحدة الثانية: نحو وإملاء",
+      "grade": 9,
+      "scope": "general_unverified",
+      "title": "الإملاء وعلامات الترقيم",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "c59e9d64-1d83-42b8-82a3-e762f94659df",
+      "unit": "الوحدة الثالثة: بلاغة وتعبير",
+      "grade": 9,
+      "scope": "general_unverified",
+      "title": "التشبيه وأثره",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "b4f29e01-6aaf-49e8-9627-1d8c3ae165aa",
+      "unit": "الوحدة الثالثة: بلاغة وتعبير",
+      "grade": 9,
+      "scope": "general_unverified",
+      "title": "الاستعارة والصورة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "caa65360-4717-458f-bb6c-24d546350f4b",
+      "unit": "الوحدة الثالثة: بلاغة وتعبير",
+      "grade": 9,
+      "scope": "general_unverified",
+      "title": "كتابة مقال قصير",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "e0b37171-85c8-4515-97bb-1b21cf7c15a8",
+      "unit": "الوحدة الثالثة: بلاغة وتعبير",
+      "grade": 9,
+      "scope": "general_unverified",
+      "title": "كتابة تقرير",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "802d178a-0dcb-4d03-8594-01a803585305",
+      "unit": "الوحدة الثالثة: بلاغة وتعبير",
+      "grade": 9,
+      "scope": "general_unverified",
+      "title": "الحجاج والمناظرة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "75da2cd8-56bb-4451-a079-7e65adc1931d",
+      "unit": "الوحدة الثالثة: بلاغة وتعبير",
+      "grade": 9,
+      "scope": "general_unverified",
+      "title": "مراجعة تحليلية شاملة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "ee3d2017-fa59-4867-ae14-04ce14226c18",
+      "unit": "اللغة العربية — حزمة المقرر الوطني",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "اللغة العربية — الصف 1 الثانوي — حزمة المقرر الوطني",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "c8054440-6b32-454a-8711-1cd5110558b6",
+      "unit": "الوحدة الأولى: أدب وقراءة نقدية",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "تحليل الشعر",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "db6d8a7d-06bb-4715-988d-4940cde57c2b",
+      "unit": "الوحدة الأولى: أدب وقراءة نقدية",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "تحليل النثر",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "337f0993-5ef0-45b0-8479-b1054519fffb",
+      "unit": "الوحدة الأولى: أدب وقراءة نقدية",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "السياق الثقافي للنص",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "fcbf8453-e509-44c3-9bcc-1eab2339776d",
+      "unit": "الوحدة الأولى: أدب وقراءة نقدية",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "الصورة الفنية",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "88f10c98-7975-46fa-b3c2-fee42ebcd71a",
+      "unit": "الوحدة الأولى: أدب وقراءة نقدية",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "الحجة وتقويم الأدلة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "f8b78d4f-fb3c-441f-923e-e95b39b7344c",
+      "unit": "الوحدة الأولى: أدب وقراءة نقدية",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "القراءة النقدية",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "b39cc241-92d1-437c-a4f2-e96ebf24e252",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "أهمية القراءة في حياتنا",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "9bc35483-75df-403b-8b09-af2be232ef9a",
+      "unit": "الوحدة الثانية: نحو وبلاغة",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "النواسخ في السياق",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "f943f327-4a47-4c1e-9793-347ccac4ed27",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "معنى الإسلام",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "b68c5e8b-d3c8-41fa-a36a-f9987afa4ac5",
+      "unit": "الوحدة الثانية: نحو وبلاغة",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "المفاعيل ودلالاتها",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "10d9b1f8-044e-4773-8685-6078fee7d77c",
+      "unit": "الوحدة الثانية: نحو وبلاغة",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "الحال والتمييز المتقدم",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "7c40a4d7-3da1-41c3-964f-a99823cf4378",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "لمحة عن الأدب العربي",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "a2b5a162-9f76-494a-958c-6eb51dcf1b48",
+      "unit": "الوحدة الثانية: نحو وبلاغة",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "التوابع والاتساق",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "ec7a63f3-2c3b-47a5-90f7-016615a06799",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "السودان أمي وأبي (قصيدة)",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "837ab3e8-3bbd-492c-abc1-a0eb08ea5b5a",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "القراءة المفيدة",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "ece731e9-76f9-4a4b-a79a-65cf81397ea5",
+      "unit": "الوحدة الثانية: نحو وبلاغة",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "الشرط والاستثناء",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "16e28eec-39a8-41db-9da5-3a737b605e75",
+      "unit": "الوحدة الثانية: نحو وبلاغة",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "الإيجاز والإطناب",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "54facd1b-6f8f-43ed-88c0-4bcbce66955b",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "من مصادر المعرفة (المكتبة)",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "c3b9110d-1ef9-423a-936e-3993449b837c",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "قيم وأخلاق (قصيدة)",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "2c7bb0a1-4e5e-4708-888e-e8f5a7cb4ee7",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "الوقت هو الحياة",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "9f264a22-5e8b-431d-828b-c71fafee9e74",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "ما لم تنله زرقاء اليمامة (قصيدة)",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "330ec98e-9d49-49cf-97fc-5151dd65b94c",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "الذكاء الاصطناعي",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "5f06ff2c-ff45-4508-8ed4-f08048a7c7e8",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "الاعتماد على الذات",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "5dd025dd-a576-412a-a0a9-ebb3604e4b72",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "القصة ومراحل تطورها",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "33599c41-157b-4306-95f9-77f610162249",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "تبادلية (قصيدة)",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "2670be77-d9bb-4d97-a703-c738e5963fef",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "التعامل مع الناس فن",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "a798e59e-b753-4683-91f0-6c2978fd3b68",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "عنترة في ذاكرة التاريخ",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "880371bc-6ed0-44bc-88d8-be7f7d37b170",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "التمر",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "23a2c8b1-e848-4510-8539-3b64f4b16bf1",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "كيف يعود السودان أخضرًا",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "f0a82262-562f-4124-ba6f-4c0dc4e439b4",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "بطل من شرق بلادي (قصيدة)",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "2f498992-5690-407c-b719-615669958b86",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "حقوق الإنسان",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "f47f9796-47db-4006-9b4b-16838e3d8c81",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "الطلاب ومهارات المستقبل",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "8faeaa2d-a6c4-4ce9-8f9d-a66d7dc6bfcd",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "معنى البطولة (قصيدة)",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "f3e0b5a1-597a-4bae-b788-25c133c7384d",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "المسلمون وتحديات العصر",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "2a735e1a-49f5-43d6-a0bb-5a3b1932b646",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "تعليم المرأة",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "ffda4195-ceb8-4165-8f6a-e7f22f5c90c6",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "لمحة عن المسرح السوداني",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "096b925a-a7a5-4307-954d-459f6d0ae0f3",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "الحب الخالد قيس وليلى (قصيدة)",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "570c2fc0-5aa8-42d9-98a4-18a35350164a",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "التنمية المستدامة",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "0803b651-ef30-4c1d-94e0-8aae207fba23",
+      "unit": "المطالعة والأدب — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "المرأة السودانية أيقونة الحياة",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "3a941378-6b37-4ed9-ba53-d5c6d5a42326",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "الجمل وأشباه الجمل التي لها محل من الإعراب",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "f7529c49-88f1-4893-839e-ca7ce9d2f922",
+      "unit": "الوحدة الثالثة: كتابة وبحث وتواصل",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "المقال الحجاجي",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "9f39e0ae-509c-42d0-a3d4-4fbcac835f40",
+      "unit": "الوحدة الثالثة: كتابة وبحث وتواصل",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "البحث والتوثيق",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "29d9b121-4692-45c7-a997-bd73a7dde656",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "الإعراب التقديري للفعل المضارع",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "be2d3f5c-be56-474b-b706-d568a6e2b858",
+      "unit": "الوحدة الثالثة: كتابة وبحث وتواصل",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "التلخيص الأكاديمي",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "685cea68-0232-4190-b016-2f5e1cf3de7a",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "الجوازم",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "2fcd397c-2131-4c7b-abf1-6e0d29145b82",
+      "unit": "الوحدة الثالثة: كتابة وبحث وتواصل",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "العرض والمناقشة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "c2493d49-18ee-4efc-a644-08db91c41388",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "التوابع",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "52b183ce-ea08-42e1-bd0a-9d33c5d87e7c",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "المجرد والمزيد والبحث في المعاجم",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "a8858711-ee08-48c0-8589-ff64ca8ef0a9",
+      "unit": "الوحدة الثالثة: كتابة وبحث وتواصل",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "الكتابة الوظيفية",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "ab1d8745-3269-424f-b6b4-cfd50f74ff4d",
+      "unit": "الوحدة الثالثة: كتابة وبحث وتواصل",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "مراجعة الثانوية الشاملة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "bc77fc22-9b5d-486a-accf-f3ad3c22f858",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "الميزان الصرفي",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "be0b5af5-4a0d-4ba4-a01b-be71d692363b",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "صيغة النسب",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "23691522-149c-4d72-afdb-2f01682ca6e0",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "النسب إلى المختوم بتاء التأنيث",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "3959623d-77f8-4487-af5c-13e9be53e521",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "النسب إلى المقصور",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "1241e185-a788-4a46-80de-35ceaf71eb8d",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "النسب إلى المنقوص",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "9502d7e8-4901-4043-b586-efe691ed0d3b",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "النسب إلى الممدود",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "27c3f6b3-a5ba-4b9f-9798-1ed272037a0f",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "النسب إلى ما فيه ياء مشددة",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "19066e56-322d-42db-9d4b-c52842c9ff37",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "النسب إلى وزن فعيلة",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "8d4dc964-41b8-4d5f-8a6c-24f495a900f3",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "النسب إلى الاسم الثلاثي مكسور العين",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "dd391576-87c7-42a6-a440-a33d3cdaabec",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "النسب إلى المركب",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "168cb8d0-139f-4301-a381-8585e913e546",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "النسب إلى المثنى والجمع",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "eb76d5af-1aa7-4e60-98b2-aa931819e20a",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "لا التي تعمل عمل ليس",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "eb261de9-e35d-48d7-878e-e66ec4c9ffe5",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "لا النافية للجنس",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "e46bf258-c37f-431d-91f2-6dc8bc90c639",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "أنواع لا - مراجعة",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "2df6bcaa-af1a-4b4e-b4e7-17fe94726044",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "همزتا القطع والوصل",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "3669d27a-3925-4077-93bb-78d31f08dc46",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "اسم الفعل",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "49eca16b-cf40-447a-9e2d-64eb8aa1d698",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "العدد",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "e5c057e9-41a0-4d62-a833-c6a9c8bf528c",
+      "unit": "النحو والصرف — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "بعض الأخطاء الشائعة",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "4616ef00-7d63-41b5-bcec-73873ea63e4b",
+      "unit": "البلاغة والتعبير — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "مقدمة موجزة عن البلاغة",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "ddb97c82-29d9-4f37-9df0-1df0b4d3b2f9",
+      "unit": "البلاغة والتعبير — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "الفصاحة والبلاغة",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "9e4e05a3-4c6b-42bd-9bee-f83acc6fa905",
+      "unit": "البلاغة والتعبير — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "الحقيقة والمجاز",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "079f15d5-d4bc-4520-a847-b94589b57814",
+      "unit": "البلاغة والتعبير — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "الاستعارة",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "6d7f6195-7d24-4c54-a4a5-dd7ca07a7052",
+      "unit": "البلاغة والتعبير — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "المجاز المرسل",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "f16d2840-9418-43e4-b609-acbfaee4b898",
+      "unit": "البلاغة والتعبير — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "الكناية",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "f5a3d84d-21e4-44f8-81bd-39002994f8dc",
+      "unit": "البلاغة والتعبير — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "المحسنات اللفظية",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "8d99ebaf-c953-4010-8efe-0d0e3dc33cac",
+      "unit": "البلاغة والتعبير — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "الجناس",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "cf97c91e-4a40-4e73-a0dd-64825b248c7c",
+      "unit": "البلاغة والتعبير — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "السجع",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "a9124bd3-0316-45da-8435-f746ef6c2de2",
+      "unit": "البلاغة والتعبير — مفردات المقرر المطور 2026",
+      "grade": 10,
+      "scope": "general_unverified",
+      "title": "مختارات للاطلاع الذاتي",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "652a4e87-ccbe-417a-b995-95cec60096b5",
+      "unit": "الوحدة الأولى: أدب وقراءة نقدية",
+      "grade": 11,
+      "scope": "general_unverified",
+      "title": "تحليل الشعر",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "02f2a8b0-e2d2-4f74-b2d0-fcc4ad3ab9b4",
+      "unit": "اللغة العربية — حزمة المقرر الوطني",
+      "grade": 11,
+      "scope": "general_unverified",
+      "title": "اللغة العربية — الصف 2 الثانوي — حزمة المقرر الوطني",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "66555517-5da1-4412-aec8-7804b42258c6",
+      "unit": "الوحدة الأولى: أدب وقراءة نقدية",
+      "grade": 11,
+      "scope": "general_unverified",
+      "title": "تحليل النثر",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "e3c7b019-e3e4-485c-a85b-e9117adc23de",
+      "unit": "الوحدة الأولى: أدب وقراءة نقدية",
+      "grade": 11,
+      "scope": "general_unverified",
+      "title": "السياق الثقافي للنص",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "f310cc33-5683-4d3b-a9f1-b6fa8f851b29",
+      "unit": "الوحدة الأولى: أدب وقراءة نقدية",
+      "grade": 11,
+      "scope": "general_unverified",
+      "title": "الصورة الفنية",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "6726df23-7c23-4c8f-95c4-bb0f20f4f5c5",
+      "unit": "الوحدة الأولى: أدب وقراءة نقدية",
+      "grade": 11,
+      "scope": "general_unverified",
+      "title": "الحجة وتقويم الأدلة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "5cf0e9f8-7b12-4817-ae30-c0570a19a007",
+      "unit": "الوحدة الأولى: أدب وقراءة نقدية",
+      "grade": 11,
+      "scope": "general_unverified",
+      "title": "القراءة النقدية",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "93f21930-0002-4a5c-8e8a-d928451d7cb9",
+      "unit": "الوحدة الثانية: نحو وبلاغة",
+      "grade": 11,
+      "scope": "general_unverified",
+      "title": "النواسخ في السياق",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "1500dbf9-0279-44f7-8528-e401331450fe",
+      "unit": "الوحدة الثانية: نحو وبلاغة",
+      "grade": 11,
+      "scope": "general_unverified",
+      "title": "المفاعيل ودلالاتها",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "b6e048bb-62bb-47f8-87e3-c8edb24e17ce",
+      "unit": "الوحدة الثانية: نحو وبلاغة",
+      "grade": 11,
+      "scope": "general_unverified",
+      "title": "الحال والتمييز المتقدم",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "bd38ee5d-9301-453b-8293-c7daa388cc48",
+      "unit": "الوحدة الثانية: نحو وبلاغة",
+      "grade": 11,
+      "scope": "general_unverified",
+      "title": "التوابع والاتساق",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "c7ba7e94-33d7-40f9-8c5a-9de3adb2f566",
+      "unit": "الوحدة الثانية: نحو وبلاغة",
+      "grade": 11,
+      "scope": "general_unverified",
+      "title": "الشرط والاستثناء",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "76f0d05b-899b-4b49-8a9d-1fb29a7c0275",
+      "unit": "الوحدة الثانية: نحو وبلاغة",
+      "grade": 11,
+      "scope": "general_unverified",
+      "title": "الإيجاز والإطناب",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "8e08d100-0801-490a-af88-be7322a2d7a8",
+      "unit": "الوحدة الثالثة: كتابة وبحث وتواصل",
+      "grade": 11,
+      "scope": "general_unverified",
+      "title": "المقال الحجاجي",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "026ab971-3c0f-4f9a-bb2b-faec30c38c18",
+      "unit": "الوحدة الثالثة: كتابة وبحث وتواصل",
+      "grade": 11,
+      "scope": "general_unverified",
+      "title": "البحث والتوثيق",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "fa19dfd1-723b-4052-a5d5-d44f5ebd2fe9",
+      "unit": "الوحدة الثالثة: كتابة وبحث وتواصل",
+      "grade": 11,
+      "scope": "general_unverified",
+      "title": "التلخيص الأكاديمي",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "061c53b6-1964-46ef-b2ca-bf4cfced7f34",
+      "unit": "الوحدة الثالثة: كتابة وبحث وتواصل",
+      "grade": 11,
+      "scope": "general_unverified",
+      "title": "العرض والمناقشة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "9a1eccb5-056f-4f49-8bd1-12fba3d5f5a1",
+      "unit": "الوحدة الثالثة: كتابة وبحث وتواصل",
+      "grade": 11,
+      "scope": "general_unverified",
+      "title": "الكتابة الوظيفية",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "753dd633-c18d-4fd8-b304-1deb0110246a",
+      "unit": "الوحدة الثالثة: كتابة وبحث وتواصل",
+      "grade": 11,
+      "scope": "general_unverified",
+      "title": "مراجعة الثانوية الشاملة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "575e4ebf-4aad-438e-9a48-cd1d7d7097a7",
+      "unit": "اللغة العربية — حزمة المقرر الوطني",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "اللغة العربية — الصف 3 الثانوي — حزمة المقرر الوطني",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "8fecadc7-a089-4057-a96d-34f452f3b408",
+      "unit": "الوحدة الأولى: أدب وقراءة نقدية",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "تحليل الشعر",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "d88ebc9d-291f-47df-a3c1-31043b3adec1",
+      "unit": "الجمل وأشباه الجمل التي لها محل من الإعراب",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "الجمل وأشباه الجمل التي لها محل من الإعراب — مراجعة",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "bb408a63-e020-4cf9-ba47-5c4ab13e3093",
+      "unit": "الوحدة الأولى: أدب وقراءة نقدية",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "تحليل النثر",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "fe7f828e-6f34-466c-9696-70ac4ab45937",
+      "unit": "الوحدة الأولى: أدب وقراءة نقدية",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "السياق الثقافي للنص",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "ada3f2d5-8e20-49d4-9f74-6c27783aa097",
+      "unit": "الوحدة الأولى: أدب وقراءة نقدية",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "الصورة الفنية",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "194059ad-6e2c-4676-88c4-8c8ccd665fb1",
+      "unit": "الوحدة الأولى: أدب وقراءة نقدية",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "الحجة وتقويم الأدلة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "b66e17ee-787f-4013-8477-7429f93d1cde",
+      "unit": "الوحدة الأولى: أدب وقراءة نقدية",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "القراءة النقدية",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "898f7f9d-e8a7-490f-8e45-ca2056a1eaae",
+      "unit": "الوحدة الثانية: نحو وبلاغة",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "النواسخ في السياق",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "37cb5edb-bb2a-4492-b109-caff56493b00",
+      "unit": "أسلوب الشرط",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "أدوات الشرط الجازمة",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "5f12e48c-ebb8-4d2f-b9a3-912791798c57",
+      "unit": "الوحدة الثانية: نحو وبلاغة",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "المفاعيل ودلالاتها",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "388fa28a-2c87-476b-ada1-e1d89f2cbc62",
+      "unit": "أسلوب الشرط",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "أدوات الشرط غير الجازمة",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "093ceb3f-6a34-4635-8c35-f0e4ce873c81",
+      "unit": "أسلوب الشرط",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "اقتران جواب الشرط بالفاء",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "042c046b-9913-4e52-a5ef-30e78f9eb05d",
+      "unit": "الوحدة الثانية: نحو وبلاغة",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "الحال والتمييز المتقدم",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "c4a7959f-4ba3-45e6-bd2d-a998c8bd3ed3",
+      "unit": "الوحدة الثانية: نحو وبلاغة",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "التوابع والاتساق",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "5147caa0-c65b-417d-aea3-8c52556f0c3b",
+      "unit": "أسلوب الشرط",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "جزم المضارع في جواب الطلب",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "44e42ea0-82fa-4606-8360-3ef98bb3fbd4",
+      "unit": "الوحدة الثانية: نحو وبلاغة",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "الشرط والاستثناء",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "4d432e33-4334-4034-a19f-83c3af67f2a5",
+      "unit": "الوحدة الثانية: نحو وبلاغة",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "الإيجاز والإطناب",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "18f5f756-e6f8-4b56-a510-06ffd2ffbae1",
+      "unit": "الوحدة الثالثة: كتابة وبحث وتواصل",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "المقال الحجاجي",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "7f0d86b9-82e5-4a1d-bbca-70834e71d8ce",
+      "unit": "النسب",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "صيغة النسب",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "5c8bf2c1-fe70-45a6-ac20-10a1ce8f47f3",
+      "unit": "النسب",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "النسب إلى المقصور",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "2c9ac169-4fc7-4ac5-9911-70b515138c8f",
+      "unit": "الوحدة الثالثة: كتابة وبحث وتواصل",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "البحث والتوثيق",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "2650af5b-ae15-445c-b5be-5bffcdb6bd5c",
+      "unit": "النسب",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "النسب إلى المنقوص",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "701e1de5-04f5-4970-aff9-d45c644b16c1",
+      "unit": "الوحدة الثالثة: كتابة وبحث وتواصل",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "التلخيص الأكاديمي",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "2cdb2b13-6b33-4819-8736-c7fcceb4a859",
+      "unit": "الوحدة الثالثة: كتابة وبحث وتواصل",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "العرض والمناقشة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "8a405ad2-de44-40bb-996a-ccbb359097c4",
+      "unit": "النسب",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "النسب إلى الممدود",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "7ea80d0a-ff9a-4329-bcf6-5f02beda74df",
+      "unit": "الوحدة الثالثة: كتابة وبحث وتواصل",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "الكتابة الوظيفية",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "1496724b-6445-4c22-9f00-71640bcc313b",
+      "unit": "النسب",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "النسب إلى ما فيه ياء مشددة",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "d9a25c06-7120-49d0-bc56-a19585f0874f",
+      "unit": "الوحدة الثالثة: كتابة وبحث وتواصل",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "مراجعة الثانوية الشاملة",
+      "status": "pending_human_review",
+      "questions": 5,
+      "activities": 3
+    },
+    {
+      "id": "2aedb115-d917-4542-a568-418e06fbd9fb",
+      "unit": "النسب",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "النسب إلى الاسم الثلاثي مكسور العين",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "db6d38bf-ca40-4b06-8e59-f9cd4cc118cc",
+      "unit": "النسب",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "النسب إلى الاسم الثلاثي محذوف اللام",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "e286569c-4732-464f-ab0a-8dc0b67fac01",
+      "unit": "النسب",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "النسب إلى المركب",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "d8165d5e-ed2a-4aa0-b060-0591db7f9291",
+      "unit": "النسب",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "النسب إلى المثنى والجمع",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "5a8b1c57-30f4-4546-b098-34d436f60432",
+      "unit": "الجامد والمشتق",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "تقسيم الاسم إلى جامد ومشتق",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "cdda5ac0-2b6b-4246-8899-539941fde91e",
+      "unit": "الجامد والمشتق",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "أنواع الأسماء المشتقة",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "3ff689b2-15f6-46a7-ae33-96655e40489c",
+      "unit": "الجامد والمشتق",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "اسم الفاعل",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "4e9156a5-52d9-4b7a-8c57-c56d05ee7ecf",
+      "unit": "الجامد والمشتق",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "صيغ المبالغة",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "57301316-d535-41b6-82a5-77aeee8a8bed",
+      "unit": "الجامد والمشتق",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "صيغة اسم المفعول",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "2d13dc37-c6c7-48e2-b814-45f4544d8ae1",
+      "unit": "الجامد والمشتق",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "إعمال اسم الفاعل واسم المفعول",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    },
+    {
+      "id": "be6a3ea5-ff43-4ebb-a681-844c2d07754c",
+      "unit": "الجامد والمشتق",
+      "grade": 12,
+      "scope": "general_unverified",
+      "title": "صيغ الصفة المشبهة باسم الفاعل",
+      "status": "pending_human_review",
+      "questions": 3,
+      "activities": 3
+    }
+  ]
+}
