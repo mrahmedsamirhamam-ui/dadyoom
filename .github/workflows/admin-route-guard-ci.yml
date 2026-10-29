@@ -1,0 +1,28 @@
+name: Admin API fail-closed authorization checks
+on:
+  pull_request:
+    paths:
+      - "app/api/admin/**"
+      - "lib/auth/require-admin.ts"
+      - "tests/admin-route-guards.test.ts"
+      - ".github/workflows/admin-route-guard-ci.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  admin-auth-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+      - run: npm ci --no-audit --no-fund
+      - run: npx vitest run tests/admin-route-guards.test.ts
+      - run: npx tsc --noEmit
+      - run: npm run lint
+      - run: npm run build
