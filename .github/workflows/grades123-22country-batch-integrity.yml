@@ -7,6 +7,8 @@ on:
     paths:
       - 'data/audits/grades123-22countries-*'
       - 'data/review-queue/20261029-grammar-skills-*'
+      - 'data/review-queue/20261029-phonics-nominal-*'
+      - 'data/curriculum-drafts/grade123-short-vowels-nominal-*'
       - 'scripts/grade123-release-gate.mjs'
       - 'tests/curriculum-grades123-*'
       - '.github/workflows/grades123-22country-batch-integrity.yml'
@@ -14,6 +16,8 @@ on:
     paths:
       - 'data/audits/grades123-22countries-*'
       - 'data/review-queue/20261029-grammar-skills-*'
+      - 'data/review-queue/20261029-phonics-nominal-*'
+      - 'data/curriculum-drafts/grade123-short-vowels-nominal-*'
       - 'scripts/grade123-release-gate.mjs'
       - 'tests/curriculum-grades123-*'
       - '.github/workflows/grades123-22country-batch-integrity.yml'
@@ -36,7 +40,7 @@ jobs:
       - name: Install dependency lockfile
         run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Test immutable before-and-after snapshots
-        run: npx vitest run tests/curriculum-grades123-live-lam-audit.test.ts tests/curriculum-grades123-two-batch-audit.test.ts
+        run: npx vitest run tests/curriculum-grades123-live-lam-audit.test.ts tests/curriculum-grades123-two-batch-audit.test.ts tests/curriculum-grades123-four-batch-audit.test.ts
       - name: Grade 1-3 gate must fail closed while coverage is incomplete
         shell: bash
         run: |

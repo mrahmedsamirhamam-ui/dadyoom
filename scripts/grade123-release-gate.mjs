@@ -19,17 +19,17 @@ export function evaluateGrade123Audit(snapshot) {
     for (const g of grades) {
       lessons += g.total || 0;
       published += g.published || 0;
-      sufficient += g.after_6_to_10 || 0;
+      sufficient += g.after_four_6_to_10 ?? g.after_6_to_10 ?? 0;
       const location = country.country_code + "/G" + g.grade;
       if (g.published !== g.total || g.drafts !== 0) errors.push(location + ": unpublished lessons");
-      if (g.after_6_to_10 !== g.published) errors.push(location + ": incomplete exercises");
+      if ((g.after_four_6_to_10 ?? g.after_6_to_10) !== g.published) errors.push(location + ": incomplete exercises");
       if (g.two_assessments !== g.published) errors.push(location + ": missing assessments");
       if (g.skills !== g.published) errors.push(location + ": missing skill links");
       if (g.structural_candidates !== g.published) errors.push(location + ": structural checks fail");
     }
   }
   if (snapshot?.totals?.total !== lessons || snapshot?.totals?.published !== published ||
-      snapshot?.totals?.after_6_to_10 !== sufficient) errors.push("Aggregate and country counts disagree");
+      (snapshot?.totals?.after_four_6_to_10 ?? snapshot?.totals?.after_6_to_10) !== sufficient) errors.push("Aggregate and country counts disagree");
   if (snapshot?.curriculumScopeVerified !== true) errors.push("Verified official-or-general syllabus mapping missing");
   if (snapshot?.audioEndToEndVerified !== true) errors.push("Arabic audio browser tests pending");
   if (snapshot?.roleEndToEndVerified !== true) errors.push("Authenticated student and school roles E2E pending");
@@ -40,7 +40,7 @@ export function evaluateGrade123Audit(snapshot) {
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const i = process.argv.indexOf("--audit");
-  const source = i >= 0 ? process.argv[i + 1] : "data/audits/grades123-22countries-after-two-batches-20261029.json";
+  const source = i >= 0 ? process.argv[i + 1] : "data/audits/grades123-22countries-after-four-batches-20261029.json";
   if (!source) throw Error("Missing --audit path");
   const result = evaluateGrade123Audit(JSON.parse(readFileSync(resolve(source), "utf8")));
   console.log(JSON.stringify(result, null, 2));
