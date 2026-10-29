@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "تواصل معنا | ضاديوم",
-  description: "وسائل التواصل الرسمية مع فريق ضاديوم، بما في ذلك الهاتف في مصر وصفحات فيسبوك وإنستغرام.",
+  description: "وسائل التواصل الرسمية مع فريق ضاديوم، بما في ذلك الهاتف في مصر وصفحات فيسبوك وإنستغرام ولينكدإن.",
   alternates: { canonical: "/contact" },
 };
 
@@ -24,6 +24,7 @@ export default function ContactPage() {
           <div className="mt-5 flex flex-wrap gap-3">
             <a href="https://www.facebook.com/share/1A2Uag89ay/" target="_blank" rel="noopener noreferrer" className="rounded-xl bg-[#174f47] px-5 py-3 font-semibold text-white hover:opacity-90" aria-label="صفحة التواصل عبر فيسبوك">فيسبوك</a>
             <a href="https://www.instagram.com/mrahmedsamirhamam/" target="_blank" rel="noopener noreferrer" className="rounded-xl bg-[#174f47] px-5 py-3 font-semibold text-white hover:opacity-90" aria-label="حساب التواصل عبر إنستغرام">إنستغرام</a>
+            <a href="https://www.linkedin.com/in/ahmedsamirmohamedhafez" target="_blank" rel="noopener noreferrer" className="rounded-xl bg-[#174f47] px-5 py-3 font-semibold text-white hover:opacity-90" aria-label="الملف المهني على لينكدإن">لينكدإن</a>
           </div>
         </section>
       </article>
