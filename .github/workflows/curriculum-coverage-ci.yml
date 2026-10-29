@@ -289,6 +289,8 @@ on:
       - 'tests/curriculum-bahrain-grade23-original-sounds-letters-20261029.test.ts'
       - 'tests/curriculum-arab21-grades123-original-sounds-letters-63-lessons.test.ts'
       - 'tests/curriculum-arab21-grades123-original-letter-shapes-63-lessons.test.ts'
+      - 'tests/curriculum-bahrain-grade123-listening-original-20261029.test.ts'
+      - 'scripts/curriculum-bahrain-grade123-listening-original-readonly.sql'
       - 'scripts/curriculum-arab22-grades123-letter-shapes-quality-readonly.sql'
       - 'tests/curriculum-bahrain-grades123-letter-shapes-joining-original-20261029.test.ts'
       - 'scripts/curriculum-bahrain-grades123-letter-shapes-joining-readonly.sql'
@@ -483,6 +485,8 @@ jobs:
         run: npx vitest run tests/curriculum-arab21-grades123-original-sounds-letters-63-lessons.test.ts
       - name: Verify 63 original letter-shape lessons in remaining 21 countries
         run: npx vitest run tests/curriculum-arab21-grades123-original-letter-shapes-63-lessons.test.ts
+      - name: Verify original Grade1-3 Bahrain teacher-read listening lessons
+        run: npx vitest run tests/curriculum-bahrain-grade123-listening-original-20261029.test.ts
       - name: Verify original Bahrain letter shapes and joining
         run: npx vitest run tests/curriculum-bahrain-grades123-letter-shapes-joining-original-20261029.test.ts
       - name: Validate 66 grade-differentiated singular-and-plural lessons for all 22 countries
