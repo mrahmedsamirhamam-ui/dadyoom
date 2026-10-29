@@ -586,3 +586,21 @@ button, input, select, textarea { font: inherit; }
   .lesson-arabic-shell { background: white !important; }
   .lesson-arabic-shell .lesson-arabic-card { box-shadow: none !important; }
 }
+
+/* Consistent foundations across learner, teacher, parent and school portals. */
+.dadyoom-role-page {
+  background: linear-gradient(180deg, #f6faf7 0%, #fbfaf6 100%);
+  font-family: var(--font-arabic-kufi);
+  color: #263e32;
+}
+.dadyoom-role-page :is(h1,h2,h3) { line-height: 1.5; letter-spacing: 0; }
+.dadyoom-role-page :is(p,li) { overflow-wrap: anywhere; }
+.dadyoom-role-page :is(button,a) { text-underline-offset: 4px; }
+.dadyoom-role-page :is(input,select,textarea) {
+  font-family: var(--font-arabic-kufi);
+  min-height: 42px;
+}
+.dadyoom-role-page :is(section,article,aside) { min-width: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .dadyoom-role-page * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

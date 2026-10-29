@@ -239,7 +239,7 @@ export default function LessonLearningSlides(props: Props) {
         />
       </div>
 
-      <div className="relative flex min-h-[34rem] items-center justify-center bg-[#efe8da] p-3 sm:p-5">
+      <div className="relative flex min-h-[22rem] items-center justify-center sm:min-h-[30rem] lg:min-h-[34rem] bg-[#efe8da] p-3 sm:p-5">
         <article className="relative aspect-video w-full max-w-[1120px] overflow-hidden rounded-[1.5rem] border border-white/20 bg-[radial-gradient(circle_at_50%_36%,rgba(224,181,77,0.18),transparent_28%),linear-gradient(135deg,#0b2f2b_0%,#1f665c_52%,#123f39_100%)] text-[#fffdf8] shadow-2xl">
           <div
             aria-hidden="true"
@@ -253,13 +253,13 @@ export default function LessonLearningSlides(props: Props) {
 
           <div className="absolute inset-x-0 bottom-0 h-[22%] bg-gradient-to-b from-transparent to-[#062a27]/95" />
 
-          <div className="relative z-10 flex h-full flex-col p-8 sm:p-12 lg:p-14">
-            <div className="max-w-[78%]">
+          <div className="relative z-10 flex h-full flex-col p-5 sm:p-10 lg:p-14">
+            <div className="max-w-[88%] sm:max-w-[78%]">
               <p className="text-sm font-black text-[#f0d47d] sm:text-lg">
                 {slide.kicker}
               </p>
 
-              <h2 className="mt-2 font-arabic-display text-3xl font-black leading-tight text-[#fffdf8] drop-shadow sm:text-5xl lg:text-6xl">
+              <h2 className="mt-2 font-arabic-display text-2xl font-bold leading-snug text-[#fffdf8] drop-shadow sm:text-5xl lg:text-6xl">
                 {slide.title}
               </h2>
 
