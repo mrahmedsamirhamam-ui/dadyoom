@@ -112,3 +112,26 @@ test("invented country codes are never accepted as 22-country coverage", () => {
   q.cells.filter(c => c.country === registeredCodes[0]).forEach(c => { c.country = "ZZ"; });
   assert.equal(evaluateGrade123Audit(forged, q).ready, false);
 });
+
+test("every live generic-question and unpublished lesson has a unique review target", () => {
+  const queue = JSON.parse(readFileSync(
+    new URL("../data/review-queue/grades123-live-specific-lesson-gaps-20261029.json", import.meta.url), "utf8"));
+  assert.equal(queue.genericQuestionLessons.length, 196);
+  assert.equal(queue.draftLessons.length, 57);
+  assert.equal(queue.counts.genericQuestionLessonCount, liveQuality.genericQuestionLessons);
+  assert.equal(queue.counts.draftLessonCount, liveQuality.drafts);
+  for (const name of ["genericQuestionLessons", "draftLessons"]) {
+    const rows = queue[name];
+    assert.equal(new Set(rows.map(row => row.lessonId)).size, rows.length);
+    for (const row of rows) {
+      assert.match(row.lessonId, /^[0-9a-f-]{36}$/i);
+      assert.ok(registeredCodes.includes(row.country));
+      assert.ok([1, 2, 3].includes(row.grade));
+      assert.equal(typeof row.title, "string");
+      assert.ok(row.title.trim().length > 1);
+      assert.deepEqual(Object.keys(row).filter(k =>
+        /answer|student|attempt|token|secret/i.test(k)), []);
+    }
+  }
+  assert.ok(queue.draftLessons.every(row => row.country === "BH"));
+});
