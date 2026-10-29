@@ -14,6 +14,7 @@ type Lesson = {
  id: string; countryCode: string; country: string; grade: number;
  content: string; learningObjectives: string[];
  vocabulary: Array<{ word: string; meaning: string }>;
+ retainedQuestionOrder: number;
  questions: Array<{ order: number; question: string; options: Array<{ id: string; text: string }> }>;
  activities: Activity[];
 };
