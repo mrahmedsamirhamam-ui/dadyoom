@@ -239,8 +239,8 @@ export default function LessonLearningSlides(props: Props) {
         />
       </div>
 
-      <div className="relative flex min-h-[34rem] items-center justify-center bg-[#efe8da] p-3 sm:p-5">
-        <article className="relative aspect-video w-full max-w-[1120px] overflow-hidden rounded-[1.5rem] border border-white/20 bg-[radial-gradient(circle_at_50%_36%,rgba(224,181,77,0.18),transparent_28%),linear-gradient(135deg,#0b2f2b_0%,#1f665c_52%,#123f39_100%)] text-[#fffdf8] shadow-2xl">
+      <div className="relative flex min-h-[22rem] items-center justify-center sm:min-h-[30rem] lg:min-h-[34rem] bg-[#efe8da] p-3 sm:p-5">
+        <article className="relative min-h-[29rem] w-full max-w-[1120px] overflow-hidden sm:aspect-video sm:min-h-0 rounded-[1.5rem] border border-white/20 bg-[radial-gradient(circle_at_50%_36%,rgba(224,181,77,0.18),transparent_28%),linear-gradient(135deg,#0b2f2b_0%,#1f665c_52%,#123f39_100%)] text-[#fffdf8] shadow-2xl">
           <div
             aria-hidden="true"
             className="absolute inset-0 opacity-[0.13]"
@@ -253,18 +253,18 @@ export default function LessonLearningSlides(props: Props) {
 
           <div className="absolute inset-x-0 bottom-0 h-[22%] bg-gradient-to-b from-transparent to-[#062a27]/95" />
 
-          <div className="relative z-10 flex h-full flex-col p-8 sm:p-12 lg:p-14">
-            <div className="max-w-[78%]">
+          <div className="relative z-10 flex h-full flex-col p-5 sm:p-10 lg:p-14">
+            <div className="max-w-full sm:max-w-[78%]">
               <p className="text-sm font-black text-[#f0d47d] sm:text-lg">
                 {slide.kicker}
               </p>
 
-              <h2 className="mt-2 font-arabic-display text-3xl font-black leading-tight text-[#fffdf8] drop-shadow sm:text-5xl lg:text-6xl">
+              <h2 className="mt-2 font-arabic-display text-2xl font-bold leading-snug text-[#fffdf8] drop-shadow sm:text-5xl lg:text-6xl">
                 {slide.title}
               </h2>
 
               {slide.subtitle ? (
-                <p className="mt-4 max-w-3xl text-lg font-bold leading-8 text-[#e9f2ee] sm:text-2xl">
+                <p className="mt-3 max-w-3xl text-sm font-medium leading-7 text-[#e9f2ee] sm:mt-4 sm:text-2xl">
                   {slide.subtitle}
                 </p>
               ) : null}
@@ -273,11 +273,11 @@ export default function LessonLearningSlides(props: Props) {
             </div>
 
             {slide.items ? (
-              <div className="mt-7 grid max-w-[82%] gap-3 sm:grid-cols-2">
+              <div className="mt-4 grid max-w-full gap-2 sm:mt-7 sm:max-w-[82%] sm:grid-cols-2">
                 {slide.items.map((item, index) => (
                   <div
                     key={`${item}-${index}`}
-                    className="border-t-2 border-[#e0b54d]/80 pt-3 text-lg font-bold leading-8 text-[#fffdf8] sm:text-2xl"
+                    className="border-t-2 border-[#e0b54d]/80 pt-2 text-sm font-semibold leading-7 text-[#fffdf8] sm:pt-3 sm:text-2xl"
                   >
                     {index + 1}. {item}
                   </div>
@@ -286,7 +286,7 @@ export default function LessonLearningSlides(props: Props) {
             ) : null}
 
             {slide.words && slide.words.length > 0 ? (
-              <div className="mt-7 max-w-[84%]">
+              <div className="mt-4 max-w-full sm:mt-7 sm:max-w-[84%]">
                 <div className="flex flex-wrap gap-3">
                   {slide.words.map((item, index) => (
                     <span
@@ -298,7 +298,7 @@ export default function LessonLearningSlides(props: Props) {
                   ))}
                 </div>
 
-                <div className="mt-5 space-y-2 text-lg font-bold leading-8 text-[#eef5f1] sm:text-2xl">
+                <div className="mt-3 space-y-2 text-sm font-semibold leading-7 text-[#eef5f1] sm:mt-5 sm:text-2xl">
                   {slide.words.slice(0, 3).map((item, index) => (
                     <p key={`${item.word}-meaning-${index}`}>
                       {item.word} — {item.meaning}
@@ -309,20 +309,20 @@ export default function LessonLearningSlides(props: Props) {
             ) : null}
 
             {slide.body ? (
-              <p className="mt-7 max-w-[84%] whitespace-pre-line text-lg font-bold leading-9 text-[#f5fbf8] sm:text-2xl lg:text-3xl">
+              <p className="mt-4 max-w-full whitespace-pre-line text-sm font-medium leading-7 text-[#f5fbf8] sm:mt-7 sm:max-w-[84%] sm:text-2xl lg:text-3xl">
                 {slide.body}
               </p>
             ) : null}
 
-            <div className="absolute left-7 top-7 grid h-24 w-24 place-items-center rounded-full border-[6px] border-double border-[#f0d47d] bg-[radial-gradient(circle,#d9b24c_0_10%,#1f665c_11%_45%,#0b2f2b_46%_100%)] text-4xl font-black text-[#fffdf8] shadow-xl sm:h-36 sm:w-36 sm:text-6xl">
+            <div className="absolute left-3 top-3 hidden h-16 w-16 place-items-center rounded-full border-4 border-double border-[#f0d47d] sm:left-7 sm:top-7 sm:grid sm:h-36 sm:w-36 bg-[radial-gradient(circle,#d9b24c_0_10%,#1f665c_11%_45%,#0b2f2b_46%_100%)] text-4xl font-black text-[#fffdf8] shadow-xl sm:h-36 sm:w-36 sm:text-6xl">
               {slide.emblem}
             </div>
 
-            <div className="absolute bottom-5 right-7 text-sm font-black text-[#f4df9b] sm:text-base">
+            <div className="absolute bottom-4 right-4 text-xs font-semibold text-[#f4df9b] sm:bottom-5 sm:right-7 sm:text-base">
               ضاديوم • بيت العربية الرقمي
             </div>
 
-            <div className="absolute bottom-5 left-7 text-sm font-black text-white">
+            <div className="absolute bottom-4 left-4 text-xs font-semibold text-white sm:bottom-5 sm:left-7 sm:text-sm">
               {current + 1} / {slides.length}
             </div>
           </div>
@@ -333,7 +333,7 @@ export default function LessonLearningSlides(props: Props) {
           onClick={() => goTo(current - 1)}
           disabled={current === 0}
           aria-label="الشريحة السابقة"
-          className="absolute right-3 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-[#123f39] text-3xl font-black text-white shadow-lg transition hover:scale-105 disabled:opacity-25 sm:right-5"
+          className="absolute right-1 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-[#123f39] text-3xl font-black text-white shadow-lg transition hover:scale-105 disabled:opacity-25 sm:right-5"
         >
           ›
         </button>
@@ -343,7 +343,7 @@ export default function LessonLearningSlides(props: Props) {
           onClick={() => goTo(current + 1)}
           disabled={current === slides.length - 1}
           aria-label="الشريحة التالية"
-          className="absolute left-3 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-[#123f39] text-3xl font-black text-white shadow-lg transition hover:scale-105 disabled:opacity-25 sm:left-5"
+          className="absolute left-1 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-[#123f39] text-3xl font-black text-white shadow-lg transition hover:scale-105 disabled:opacity-25 sm:left-5"
         >
           ‹
         </button>

@@ -261,11 +261,11 @@ export default async function TeacherPage() {
   return (
     <main
       dir="rtl"
-      className="min-h-screen bg-slate-50 px-4 py-8 sm:px-6 lg:px-8"
+      className="dadyoom-role-page min-h-screen bg-[#f7faf8] px-4 py-8 sm:px-6 lg:px-8"
     >
       <div className="mx-auto max-w-7xl space-y-8">
 
-        <section className="rounded-3xl bg-gradient-to-l from-emerald-700 to-teal-600 p-7 text-white shadow-sm">
+        <section className="rounded-3xl bg-gradient-to-l from-[#123f39] to-[#2b7c6d] p-7 text-white shadow-sm">
           <p className="text-sm font-black text-emerald-100">
             لوحة المعلم
           </p>

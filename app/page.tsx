@@ -23,7 +23,7 @@ const skills = [
 
 export default function HomePage() {
   return (
-    <main dir="rtl" className="min-h-screen bg-[#fffaf0] text-[#27231f]">
+    <main dir="rtl" className="min-h-screen bg-[#f8faf6] text-[#24382f]">
       <header className="sticky top-0 z-50 border-b border-[#e5d8bf]/90 bg-[#fffef9]/94 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
           <DadyoomLogo />
@@ -43,18 +43,18 @@ export default function HomePage() {
         </div>
       </header>
 
-      <section className="relative overflow-hidden border-b border-[#eadfc9]">
+      <section className="relative overflow-hidden border-b border-[#e3ebe2] bg-[radial-gradient(circle_at_7%_15%,rgba(214,173,87,.14),transparent_32%),linear-gradient(180deg,#f8fbf7,#fffdf8)]">
         <div aria-hidden="true" className="absolute inset-0 opacity-70" style={{ backgroundImage: "radial-gradient(circle at 16% 20%, rgba(214,181,105,.18) 0 2px, transparent 2.5px), radial-gradient(circle at 86% 18%, rgba(23,79,71,.09) 0 1.5px, transparent 2px)", backgroundSize: "44px 44px, 32px 32px" }} />
-        <div className="relative mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 md:py-24 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:px-8">
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:py-20 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:px-8">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#d8c18a] bg-[#fffef9] px-4 py-2 text-sm font-black text-[#72551c] shadow-sm">
               <span>✦</span><span>العربية تجمعنا، ولا تُذيب أحدًا</span>
             </div>
-            <h1 className="mt-7 max-w-3xl font-arabic-display text-4xl font-black leading-[1.45] text-[#213b36] sm:text-5xl lg:text-[3.65rem]">
+            <h1 className="mt-7 max-w-3xl font-arabic-display text-4xl font-bold leading-[1.5] text-[#173f35] sm:text-5xl lg:text-[3.55rem]">
               ضاديوم — بيت عربي رقمي يجعل
               <span className="block text-[#a8782f]">التعلّم رحلة مفهومة ومحبوبة</span>
             </h1>
-            <p className="mt-6 max-w-2xl font-arabic-reading text-xl leading-10 text-[#655d53]">
+            <p className="mt-6 max-w-2xl text-lg leading-9 text-[#50685b] sm:text-xl">
               ضاديوم (Dadyoom) يجمع منهجًا منظمًا، والمهارات الأربع، والتقييم والتقدم، و«ضاد» رفيقًا ذكيًا يساعد الطالب في اللحظة التي يحتاج فيها إلى شرح أو تدريب.
             </p>
             <p className="mt-3 text-sm font-bold text-[#7b7165]">
@@ -62,13 +62,15 @@ export default function HomePage() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/signup" className="rounded-2xl bg-[#174f47] px-7 py-4 font-black text-white shadow-lg shadow-[#174f47]/15 transition hover:-translate-y-0.5 hover:bg-[#103f39]">أنشئ حسابك</Link>
-              <Link href="/ask" className="rounded-2xl border border-[#d6b569] bg-[#fffef9] px-7 py-4 font-black text-[#72551c] transition hover:-translate-y-0.5 hover:bg-[#fff6df]">جرّب ضاد الآن</Link>
-              <Link href="/courses" className="rounded-2xl border border-[#d9cdb7] bg-white px-7 py-4 font-black text-[#4d4438] transition hover:border-[#84a89f] hover:text-[#174f47]">تصفّح المنهج</Link>
-              <Link href="/how-to-use" className="rounded-2xl border border-[#d6b569] bg-[#fff6df] px-7 py-4 font-black text-[#72551c] transition hover:-translate-y-0.5 hover:bg-[#fcebc1]">كيف تستخدم ضاديوم؟</Link>
-              <Link href="/labs/letters" className="rounded-2xl border border-[#84a89f] bg-[#e9f5ef] px-7 py-4 font-black text-[#174f47] transition hover:-translate-y-0.5 hover:bg-[#d8ece3]">✨ جرّب مختبر الحروف</Link>
-              <Link href="/level-check" className="rounded-2xl border border-[#d5b061] bg-[#fff4d9] px-7 py-4 font-black text-[#72551c] transition hover:-translate-y-0.5 hover:bg-[#ffe9b5]">🎯 اكتشف مستواك مجانًا</Link>
+              <Link href="/signup" className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#174f47] px-7 py-3.5 font-bold text-white shadow-lg shadow-[#174f47]/15 transition-colors hover:bg-[#103f39] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47]">ابدأ رحلتك مجانًا</Link>
+              <Link href="/courses" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[#bdd7c6] bg-white px-7 py-3.5 font-bold text-[#174f47] transition-colors hover:bg-[#edf5f0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47]">استكشف المناهج</Link>
             </div>
+            <nav aria-label="تجارب تعليمية يمكنك تجربتها" className="mt-5 flex flex-wrap gap-x-5 gap-y-3 text-sm font-semibold text-[#41685a]">
+              <Link href="/ask" className="underline-offset-4 hover:underline">اسأل ضاد</Link>
+              <Link href="/labs/letters" className="underline-offset-4 hover:underline">مختبر الحروف</Link>
+              <Link href="/level-check" className="underline-offset-4 hover:underline">اكتشف مستواك</Link>
+              <Link href="/how-to-use" className="underline-offset-4 hover:underline">كيف تستخدم ضاديوم؟</Link>
+            </nav>
             <div className="mt-9 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
               <MiniStat value="22" label="دولة عربية في البنية" />
               <MiniStat value="1" label="حزمة منهج منشورة" />

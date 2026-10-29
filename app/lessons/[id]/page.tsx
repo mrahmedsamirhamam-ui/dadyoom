@@ -18,6 +18,7 @@ import WeakQuestionsReview from "@/features/adaptive-learning/components/WeakQue
 
 import LessonProgress from "@/components/lesson/LessonProgress";
 import LessonLearningSlides from "@/components/lesson/LessonLearningSlides";
+import StructuredLessonText from "@/components/lesson/StructuredLessonText";
 import VocabularyCard from "@/components/lesson/VocabularyCard";
 import MultipleChoiceQuestion from "@/components/lesson/MultipleChoiceQuestion";
 import ScoreCard from "@/components/lesson/ScoreCard";
@@ -313,64 +314,7 @@ export default async function LessonPage({
         lessonTitle={lesson.title}
         lessonContent={lesson.content ?? ""}
       />
-      <div className="mx-auto max-w-5xl space-y-6">
-        <section className="lesson-arabic-card rounded-3xl border border-[#d7bd83] bg-[#fff7e3] p-5 shadow-sm">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <div className="text-xs font-black text-[#9f7426]">العب وتعلّم</div>
-              <h2 className="mt-1 font-arabic-display text-xl font-black text-[#173f38]">
-                ألعاب عربية من نفس الدرس
-              </h2>
-            </div>
-            <Link
-              href={`/lessons/${lesson.id}/games`}
-              className="dadyoom-arabic-button rounded-2xl px-5 py-3 text-center font-black text-white"
-            >
-              افتح الألعاب
-            </Link>
-          </div>
-        </section>
-        <section className="lesson-arabic-card rounded-3xl border border-[#dcc899] bg-[#fffaf0] p-5 shadow-sm">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <div className="text-xs font-black text-[#a16f18]">
-                استوديو الدرس الذكي
-              </div>
-              <h2 className="mt-1 font-arabic-display text-xl font-black text-[#173f38]">
-                ملخص • PowerPoint • دفتري • فيديو AI
-              </h2>
-            </div>
-            <Link
-              href={`/lessons/${lesson.id}/study`}
-              className="rounded-2xl bg-[#173f38] px-5 py-3 text-center font-black text-white"
-            >
-              افتح استوديو الدرس
-            </Link>
-          </div>
-        </section>
-        {/* DADYOOM_LESSON_VIDEO_BUTTON_V1 */}
-        <section className="lesson-arabic-card rounded-3xl border border-[#d7bd83] bg-[#fff7e3] p-5 shadow-sm">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <div className="text-xs font-black text-[#9f7426]">
-                شاهد وتعلّم
-              </div>
-              <h2 className="mt-1 font-arabic-display text-xl font-black text-[#173f38]">
-                فيديو شرح الدرس
-              </h2>
-              <p className="mt-1 text-sm leading-6 text-slate-600">
-                مصدر رسمي من الدولة أولًا، ثم شرح من نفس الدولة أو المنهج، ثم فيديو كرتوني تعليمي مناسب.
-              </p>
-            </div>
-            <Link
-              href={`/lessons/${lesson.id}/video`}
-              className="rounded-2xl bg-[#b5842b] px-5 py-3 text-center font-black text-white"
-            >
-              شاهد الفيديو
-            </Link>
-          </div>
-        </section>
-
+      <div className="mx-auto max-w-6xl space-y-6 sm:space-y-8">
         <div>
           <Link
             href="/student"
@@ -380,7 +324,7 @@ export default async function LessonPage({
           </Link>
         </div>
 
-        <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
+        <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm sm:p-8">
           <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-slate-500">
             <span>
               الدرس {lesson.lesson_number}
@@ -409,6 +353,27 @@ export default async function LessonPage({
               {lesson.summary}
             </p>
           ) : null}
+        </section>
+
+        <section aria-label="طرق تعلم الدرس" className="lesson-learning-links grid gap-3 sm:grid-cols-3">
+          <Link href={`/lessons/${lesson.id}/study`} className="group flex flex-col rounded-2xl border border-[#dce9df] bg-white p-5 focus-visible:outline-2 focus-visible:outline-[#174f47]">
+            <span className="text-xs font-semibold text-[#719584]">01 · افهم</span>
+            <span className="mt-2 text-lg font-bold text-[#174f47]">استوديو الدرس</span>
+            <span className="mt-2 text-sm leading-7 text-[#647a6e]">اقرأ الملخص، واستعرض الشرح، واكتب ملاحظاتك.</span>
+            <span className="mt-auto pt-4 text-sm font-semibold text-[#276d56]">افتح الاستوديو ←</span>
+          </Link>
+          <Link href={`/lessons/${lesson.id}/games`} className="group flex flex-col rounded-2xl border border-[#dce9df] bg-white p-5 focus-visible:outline-2 focus-visible:outline-[#174f47]">
+            <span className="text-xs font-semibold text-[#719584]">02 · تدرب</span>
+            <span className="mt-2 text-lg font-bold text-[#174f47]">العب وتعلّم</span>
+            <span className="mt-2 text-sm leading-7 text-[#647a6e]">راجع الأفكار والمفردات في أنشطة مرتبطة بالدرس.</span>
+            <span className="mt-auto pt-4 text-sm font-semibold text-[#276d56]">افتح الألعاب ←</span>
+          </Link>
+          <Link href={`/lessons/${lesson.id}/video`} className="group flex flex-col rounded-2xl border border-[#dce9df] bg-white p-5 focus-visible:outline-2 focus-visible:outline-[#174f47]">
+            <span className="text-xs font-semibold text-[#719584]">03 · شاهد</span>
+            <span className="mt-2 text-lg font-bold text-[#174f47]">شرح بالفيديو</span>
+            <span className="mt-2 text-sm leading-7 text-[#647a6e]">استفد من الفيديو التعليمي المتاح لهذا الدرس.</span>
+            <span className="mt-auto pt-4 text-sm font-semibold text-[#276d56]">شاهد الشرح ←</span>
+          </Link>
         </section>
 
         {user ? (
@@ -468,6 +433,7 @@ export default async function LessonPage({
           </section>
         ) : null}
 
+        <div id="lesson-presentation">
         <LessonLearningSlides
           title={lesson.title}
           summary={lesson.summary}
@@ -476,6 +442,8 @@ export default async function LessonPage({
           vocabulary={vocabulary}
           instructions={lesson.instructions}
         />
+        </div>
+        <StructuredLessonText content={lesson.content} />
         <section className="rounded-3xl border border-amber-200 bg-white p-6 shadow-sm sm:p-8">
           <p className="text-sm font-black text-amber-700">
             بعد انتهاء العرض

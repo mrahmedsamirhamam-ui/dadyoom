@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -537,3 +538,69 @@ html.dadyoom-native-app .dadyoom-native-nav-item {
   line-height:1.15; text-decoration:none; user-select:none;
 }
 html.dadyoom-native-app .dadyoom-native-nav-item:active { background:#f2e5c9; }
+
+
+/* DADYOOM_DESIGN_SYSTEM_2026_10_29
+   Arabic-first, accessible typography. Network fonts use system fallbacks offline. */
+:root {
+  --font-arabic-kufi: "IBM Plex Sans Arabic", "Noto Kufi Arabic", Tahoma, Arial, sans-serif;
+  --font-arabic-naskh: "Noto Naskh Arabic", "Traditional Arabic", serif;
+  --dadyoom-ui-ink: #173f35;
+  --dadyoom-ui-muted: #5a7164;
+  --dadyoom-ui-border: #dfe9e2;
+}
+
+body {
+  font-family: var(--font-arabic-kufi);
+  line-height: 1.7;
+  text-rendering: optimizeLegibility;
+}
+button, input, select, textarea { font-family: inherit; }
+.font-arabic-display { font-family: var(--font-arabic-kufi); letter-spacing: 0; }
+.font-arabic-reading { font-family: var(--font-arabic-naskh); }
+:focus-visible { outline: 3px solid #3a9180; outline-offset: 3px; }
+.dadyoom-management, .lesson-arabic-shell { font-family: var(--font-arabic-kufi); }
+.dadyoom-management :is(h1,h2,h3), .lesson-arabic-shell :is(h1,h2,h3) { letter-spacing: 0; line-height: 1.55; }
+.dadyoom-management :is(a,button), .lesson-arabic-shell :is(a,button) { text-underline-offset: 4px; }
+.lesson-arabic-shell {
+  background: radial-gradient(circle at 94% 3%, rgba(58,145,128,.075), transparent 24rem),
+              linear-gradient(180deg,#f6faf7 0%,#fcfaf5 45%,#f8f7f2 100%);
+  color: #233b32;
+}
+.lesson-arabic-shell .lesson-arabic-card {
+  border: 1px solid #dce9df;
+  border-radius: 1.35rem;
+  background: #ffffff;
+  box-shadow: 0 6px 24px rgba(30,68,51,.048);
+}
+.lesson-arabic-shell .lesson-arabic-card :is(p,li) { line-height: 1.95; overflow-wrap: anywhere; }
+.lesson-arabic-shell :is(button,a) { min-height: 42px; }
+.lesson-arabic-shell .lesson-learning-links a { transition: background-color .16s ease, border-color .16s ease, box-shadow .16s ease; }
+.lesson-arabic-shell .lesson-learning-links a:hover { border-color: #8bbb9e; box-shadow: 0 6px 18px rgba(18,63,57,.07); }
+.dadyoom-learning-content { max-width: 77ch; margin-inline: auto; line-height: 2.1; }
+.dadyoom-management .tabular-nums, .lesson-arabic-shell .tabular-nums { font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) {
+  .dadyoom-management *, .lesson-arabic-shell * { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+@media print {
+  .lesson-arabic-shell { background: white !important; }
+  .lesson-arabic-shell .lesson-arabic-card { box-shadow: none !important; }
+}
+
+/* Consistent foundations across learner, teacher, parent and school portals. */
+.dadyoom-role-page {
+  background: linear-gradient(180deg, #f6faf7 0%, #fbfaf6 100%);
+  font-family: var(--font-arabic-kufi);
+  color: #263e32;
+}
+.dadyoom-role-page :is(h1,h2,h3) { line-height: 1.5; letter-spacing: 0; }
+.dadyoom-role-page :is(p,li) { overflow-wrap: anywhere; }
+.dadyoom-role-page :is(button,a) { text-underline-offset: 4px; }
+.dadyoom-role-page :is(input,select,textarea) {
+  font-family: var(--font-arabic-kufi);
+  min-height: 42px;
+}
+.dadyoom-role-page :is(section,article,aside) { min-width: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .dadyoom-role-page * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
