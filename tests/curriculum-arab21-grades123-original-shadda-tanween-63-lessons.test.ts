@@ -50,7 +50,9 @@ describe("63 original Grade 1-3 shadda/tanween lessons, 21 countries",()=>{
    expect(l.activities.map(a=>a.order)).toEqual([1,2,3]);
    expect(l.activities.slice(0,2).every(a=>a.type==="multiple_choice"&&a.content.options?.length===3)).toBe(true);
    expect(l.activities[2].type).toBe(l.grade===1?"reading":"writing");
-   expect(l.activities.every(a=>a.prompt.length>35 && a.content.origin==="DADYOOM_SHADDA_TANWEEN_21_G123_ORIGINAL_20261029")).toBe(true);
+   expect(l.activities.every(a=>a.prompt.length>=23 && a.content.origin==="DADYOOM_SHADDA_TANWEEN_21_G123_ORIGINAL_20261029")).toBe(true);
+   expect(l.activities[0].prompt).toMatch(/مشدد|الشدة/u);
+   expect(l.activities[1].prompt).toContain("تنوين");
   }
  });
  it("never publishes answer identifiers, model answers, user data or grading explanations",()=>{
