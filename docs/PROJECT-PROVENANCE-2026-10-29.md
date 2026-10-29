@@ -21,3 +21,7 @@
 لا يتضمن هذا الملف معلومات هوية حكومية أو أرقام دفع أو بيانات تسجيل دخول. الأدلة الكاملة، بما في ذلك بيانات المستودعات الخاصة، محفوظة في مستودع خاص منفصل ضمن حساب مالك المشروع.
 
 **Relevant documents:** `/founder`, `/about` (source pages proposed), and `docs/LEGAL-ATTRIBUTION-AUDIT-2026-10-29.md`.
+
+## Verification addendum — 2026-10-29 (UTC)
+
+A fresh read of the live public [about](https://dadyoom.com/about), [terms](https://dadyoom.com/terms), and [privacy](https://dadyoom.com/privacy) pages on 2026-10-29 confirmed the continuing display of `QAMORYX Technologies W.L.L`. The terms page expressly attributes operation of Dadyoom to that company. The page's displayed revision date (2026-09-30) is not independently verified deployment history. This does **not** establish a legal transfer of rights, company registration, or wrongdoing. See [the dated public attribution audit](./LEGAL-ATTRIBUTION-AUDIT-2026-10-29.md) for source URLs and limitations.
