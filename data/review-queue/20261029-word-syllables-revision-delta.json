@@ -1,0 +1,1194 @@
+{
+  "date": "2026-10-29",
+  "scope": "post-inventory revisions to already listed published lessons; no new lesson IDs",
+  "status": "pending_human_review",
+  "total": 66,
+  "changeSummary": "63 rewritten original lessons, 252 non-specific questions replaced, 189 legacy activities replaced, 198 actual new activities added across 66 lessons",
+  "items": [
+    {
+      "lessonId": "46c11cdb-013a-49e8-be0b-036c1bc7e696",
+      "countryCode": "AE",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "95d2b193-10b3-478e-a670-cae103a07012",
+      "countryCode": "AE",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "4daac49a-f04e-486a-8645-5dadeb38e0bd",
+      "countryCode": "AE",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "283b1bdb-dd15-42ed-a8c0-86e00b8d51bc",
+      "countryCode": "DJ",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "b44c7903-a851-457e-b6cc-6d88054c4010",
+      "countryCode": "DJ",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "56c0cf67-41aa-4565-9ad4-127b2600b3a8",
+      "countryCode": "DJ",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "db53be42-461a-486f-bd13-0ccb4506a576",
+      "countryCode": "DZ",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "b555358b-2abd-4beb-a147-6b4c551f0873",
+      "countryCode": "DZ",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "4a0ff87e-704b-43d7-a72b-690a823db531",
+      "countryCode": "DZ",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "f882ad6c-03f2-4bad-a127-936da2b9d009",
+      "countryCode": "EG",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "0fd893ce-6344-4802-ba4c-2457f8ec0c4c",
+      "countryCode": "EG",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "c3598b51-1a6d-4d99-840c-45750ada9810",
+      "countryCode": "EG",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "77a10553-a204-4cef-8710-5161047fa3d4",
+      "countryCode": "IQ",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "0c2a546a-bc59-46e2-9d7b-6f0ae53abf3d",
+      "countryCode": "IQ",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "76ceaecd-580b-4b85-8157-56efd31f9242",
+      "countryCode": "IQ",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "96d87e72-5ae4-40be-8e29-fd534da9895a",
+      "countryCode": "JO",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "5533590b-6823-4c26-88d8-80d7084bfe5b",
+      "countryCode": "JO",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "3f8c68c8-5434-41da-a350-b390d0d1724b",
+      "countryCode": "JO",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "cc87a7ec-6f30-461d-868c-ded101577582",
+      "countryCode": "KM",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "857277e9-f25f-4b73-a96e-d74b72a99227",
+      "countryCode": "KM",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "056190ae-b542-4faa-b71b-b0726244a702",
+      "countryCode": "KM",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "cf5d7e9c-0bbb-438d-95fa-445412b49a74",
+      "countryCode": "KW",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "d106f50e-6675-4a94-89bc-c1a7fe1011ff",
+      "countryCode": "KW",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "379c661f-630c-4c91-9bca-b2844f904db1",
+      "countryCode": "KW",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "e7c5eabb-16bd-4cf0-9114-176b61345f74",
+      "countryCode": "LB",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "247fb671-1e95-4044-b719-932b4aaa08ed",
+      "countryCode": "LB",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "9eaaecb4-ae9c-416c-93ee-9bfc409b4dd0",
+      "countryCode": "LB",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "20733692-40a6-4353-82a8-5c542471ec4c",
+      "countryCode": "LY",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "27966768-0655-4d07-8dec-cd9d0c7b42ac",
+      "countryCode": "LY",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "44f300e0-608b-44d1-a881-cf17647fe8d1",
+      "countryCode": "LY",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "adac87d8-f71a-4dd9-aeb7-22cd69c57f06",
+      "countryCode": "MA",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "156fe085-8f50-4ff6-b30b-799e78696bbd",
+      "countryCode": "MA",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "16d50dc4-f642-4c62-a452-a676489bae80",
+      "countryCode": "MA",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "ab9f0bd7-df0a-4fca-aa3e-c3f062ea4701",
+      "countryCode": "MR",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "520ad0e1-9faa-478e-962d-b40056a1a7e2",
+      "countryCode": "MR",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "d2c5b134-6bed-4d6e-ac99-4ec2629a0346",
+      "countryCode": "MR",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "fc7c2898-1528-4626-a84e-4da37b148401",
+      "countryCode": "OM",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "aaba40f7-a6f7-4581-8386-9b875fe52ac6",
+      "countryCode": "OM",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "fa27f0e1-475c-43bd-9146-3f7602fef49d",
+      "countryCode": "OM",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "c0a64763-cdea-48be-b7a7-2b3427312d77",
+      "countryCode": "PS",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "1024513e-9f7d-4c51-8af4-d02e020fdfaa",
+      "countryCode": "PS",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "723ff2d4-be8f-4c1e-9a4c-2d30a53ce8e1",
+      "countryCode": "PS",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "93ed4f5c-65a7-4399-9094-b78a45ec82b2",
+      "countryCode": "QA",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "41cb8bd0-fdfe-4e49-8871-6cb17b6b5a96",
+      "countryCode": "QA",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "c6d584af-8304-4018-9f1f-1c7fa2c36cce",
+      "countryCode": "QA",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "511bb1df-1c07-4777-81f4-a2fec38f4b37",
+      "countryCode": "SA",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "34756f33-87c0-46ab-af0c-37f15ec60051",
+      "countryCode": "SA",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "0bf020b4-5b90-4b46-ad2b-a3c7e0d72c3b",
+      "countryCode": "SA",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "747c8578-fbae-4aa5-bf90-4b46e0e2f2fe",
+      "countryCode": "SD",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "eb217e8a-20a9-4e13-9cc2-3a42cecd4ff9",
+      "countryCode": "SD",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "49b842a1-4bd3-45a7-b327-a81128f7a181",
+      "countryCode": "SD",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "2a3a662b-35d1-4244-baff-0faa82e80a5a",
+      "countryCode": "SO",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "90878dd9-78cd-403f-a9cd-93c5f6bbb643",
+      "countryCode": "SO",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "b9b588f6-2245-4c81-82d4-2ccc37c69ccd",
+      "countryCode": "SO",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "c6bd263d-be5b-4e73-a197-e7680fe7b1cc",
+      "countryCode": "SY",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "adcc6c6d-6bab-4e67-8569-442006be59b1",
+      "countryCode": "SY",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "66805938-ca11-42cd-b885-d838ef0b1be0",
+      "countryCode": "SY",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "fa52cc1d-f89c-4594-b0c8-d6ec72b0a2d5",
+      "countryCode": "TN",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "aa95fef7-f419-4807-9e67-2e113b85ac44",
+      "countryCode": "TN",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "346b93c9-6757-49c6-a86d-cc63ff681f35",
+      "countryCode": "TN",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "3f332120-64a7-4c7b-a575-a1fb4d9555e7",
+      "countryCode": "YE",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "362f7dfb-420f-4115-b7d7-320ee78273af",
+      "countryCode": "YE",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "d00b757a-cdd0-4ad9-afdb-eeee77d0085e",
+      "countryCode": "YE",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 3,
+      "questionRevisedCount": 4,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Arabic phonics/orthographic accuracy",
+        "6 tasks test in student renderer",
+        "answer-key privacy and server grading",
+        "source and ministry alignment",
+        "speech fallback and accessibility"
+      ]
+    },
+    {
+      "lessonId": "c4b21875-effe-4a47-bf42-29843790b21c",
+      "countryCode": "BH",
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 0,
+      "questionRevisedCount": 0,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Three new matching/fill/reading tasks",
+        "student progress and historic grading",
+        "phonics correctness",
+        "ministry source and real audio"
+      ]
+    },
+    {
+      "lessonId": "7c3cf296-ddf2-4e87-a57b-b60b5264cfd2",
+      "countryCode": "BH",
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 0,
+      "questionRevisedCount": 0,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Three new matching/fill/reading tasks",
+        "student progress and historic grading",
+        "phonics correctness",
+        "ministry source and real audio"
+      ]
+    },
+    {
+      "lessonId": "b620830c-a081-4095-99b4-45f27d6551ad",
+      "countryCode": "BH",
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "newActivityCount": 3,
+      "oldActivitiesRevised": 0,
+      "questionRevisedCount": 0,
+      "totalActivities": 6,
+      "reviewStatus": "pending_human_review",
+      "reviewRequired": [
+        "Three new matching/fill/reading tasks",
+        "student progress and historic grading",
+        "phonics correctness",
+        "ministry source and real audio"
+      ]
+    }
+  ]
+}
