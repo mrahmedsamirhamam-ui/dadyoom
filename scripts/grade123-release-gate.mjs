@@ -30,7 +30,7 @@ export function evaluateGrade123Audit(snapshot) {
   }
   if (snapshot?.totals?.total !== lessons || snapshot?.totals?.published !== published ||
       snapshot?.totals?.after_6_to_10 !== sufficient) errors.push("Aggregate and country counts disagree");
-  if (snapshot?.officialCurriculumVerified !== true) errors.push("Official or transparently general syllabus mapping not verified");
+  if (snapshot?.curriculumScopeVerified !== true) errors.push("Verified official-or-general syllabus mapping missing");
   if (snapshot?.audioEndToEndVerified !== true) errors.push("Arabic audio browser tests pending");
   if (snapshot?.roleEndToEndVerified !== true) errors.push("Authenticated student and school roles E2E pending");
   if (snapshot?.gradingSecurityVerified !== true) errors.push("Grading keys/security gate pending");
