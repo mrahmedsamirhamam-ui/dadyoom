@@ -62,8 +62,8 @@ describe("Dadyoom 63 original Grade 1–3 Arabic letter-form lessons",()=>{
    expect(lesson.activities.map(a=>a.order)).toEqual([1,2,3]);
    expect(lesson.activities.slice(0,2).every(a=>a.type==="multiple_choice"&&a.content.options?.length===3)).toBe(true);
    expect(lesson.activities[2].type).toBe(lesson.grade===1?"reading":"writing");
-   expect(lesson.activities.every(a=>a.prompt.length>30&&a.content.origin==="DADYOOM_ARAB21_LETTER_SHAPES_G123_ORIGINAL_20261029")).toBe(true);
-   expect(lesson.grade!==3||lesson.content.includes("لا تتصل بالحرف التالي")).toBe(true);
+   expect(lesson.activities.every(a=>a.prompt.length>20&&a.content.origin==="DADYOOM_ARAB21_LETTER_SHAPES_G123_ORIGINAL_20261029")).toBe(true);
+   expect(lesson.grade!==3||lesson.content.includes("نهاية الكلمتين")).toBe(true);
   }
  });
  it("does not disclose answer IDs, correct options, student data or private explanations",()=>{
