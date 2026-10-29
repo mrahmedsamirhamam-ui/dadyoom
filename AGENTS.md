@@ -208,3 +208,10 @@ This version has breaking changes — APIs, conventions, and file structure may 
 ### 2026-10-23 — AI skill integrity and empty-session analytics
 - AI assessment analytics now reads **correct_answer and skill** from the original server-private question record, ignoring editable `assessment_session_answers.skill`; a forged skill name cannot manipulate strengths/weaknesses. A missing official skill label gets the existing `الاستيعاب` fallback.
 - Pure `analyzeAssessment` handles an empty session as `overallPercentage=0`, not `NaN`. Behavioral Vitest cases cover spoofed skill, missing skill and zero attempts. No SQL, RLS, production records, or payments changed.
+
+
+## 2026-10-29 — Strict three-grade curriculum release sequence
+
+Continue from the existing lesson IDs and repository history. Current curriculum batch = **Grades 1, 2, 3 in all 22 countries**, not per-country rollout. Do NOT start new Grades 4–6 content until 100% of the full 66 country-grade cells has demonstrably passed the dedicated gate, with 6–10 authentic exercises per lesson, valid assessments, linked evidence-based skills, actually tested Arabic audio, student browser E2E, and honest official/general scope classifications. Follow with Grades 4–6, then 7–9, then 10–12, each as a separate fully tested batch.
+
+Run `npm run curriculum:grades123:gate` against refreshed database audit evidence; it fails closed by design on the current incomplete snapshot. The original curriculum-syllabus mapping cannot be inferred from 22 country labels or generic lesson titles. Never overwrite historic learner attempts or expose private answer keys. See `data/audits/grades123-22countries-lam-after-20261029.json` and `PROGRESS.md`.
