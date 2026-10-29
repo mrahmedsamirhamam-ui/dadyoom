@@ -91,8 +91,8 @@ export default async function AdminLayout({
           </nav>
 
           <div className="flex items-center gap-2">
-            <div className="hidden text-left sm:block">
-              <div className="max-w-36 truncate text-xs font-black text-[#315f57]">
+            <div className="hidden min-w-0 max-w-[19rem] text-left sm:block" dir="auto">
+              <div className="break-words text-xs font-black leading-5 text-[#315f57]" title={displayName}>
                 {displayName}
               </div>
               <div className="text-[10px] font-bold text-[#8a7c69]">
