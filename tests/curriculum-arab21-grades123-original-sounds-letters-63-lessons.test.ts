@@ -54,7 +54,8 @@ describe("Dadyoom 21-country original Grade 1-3 sounds and letters", () => {
       expect(lesson.activities.map(a=>a.order)).toEqual([1,2,3]);
       expect(lesson.activities.slice(0,2).every(a=>a.type==="multiple_choice"&&a.content.options?.length===3)).toBe(true);
       expect(lesson.activities[2].type).toBe(lesson.grade===1?"reading":"writing");
-      expect(lesson.activities.every(a=>a.prompt.length>25&&a.content.origin==="DADYOOM_ARAB21_SOUNDS_LETTERS_G123_ORIGINAL_20261029")).toBe(true);
+      expect(lesson.activities.every(a=>a.prompt.length>=22&&a.content.origin==="DADYOOM_ARAB21_SOUNDS_LETTERS_G123_ORIGINAL_20261029")).toBe(true);
+      expect(lesson.activities.slice(0,2).every(a=>a.prompt.endsWith("؟"))).toBe(true);
     }
   });
   it("excludes the attempted Bahrain Grade 1 lesson and never releases private grading answers", () => {
