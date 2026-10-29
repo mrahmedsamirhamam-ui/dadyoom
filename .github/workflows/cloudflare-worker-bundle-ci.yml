@@ -2,6 +2,22 @@ name: Cloudflare Worker bundle build (isolated, no deploy)
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - fix/student-authorize-before-server-grading-20261022
+    paths:
+      - '.github/workflows/cloudflare-worker-bundle-ci.yml'
+      - 'app/**'
+      - 'components/**'
+      - 'lib/**'
+      - 'content/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'scripts/build-cloudflare-worker.mjs'
+      - 'vite.config.ts'
+      - 'cloudflare.config.ts'
+      - 'next.config.ts'
+      - 'tsconfig.json'
   pull_request:
     paths:
       - '.github/workflows/cloudflare-worker-bundle-ci.yml'
