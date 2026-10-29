@@ -1,10 +1,11 @@
 import { createClient } from "@supabase/supabase-js";
 import type { MetadataRoute } from "next";
+import { getSiteUrl } from "@/lib/site";
+
+export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base =
-    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/u, "") ||
-    "http://localhost:3000";
+  const base = getSiteUrl();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: base, changeFrequency: "weekly", priority: 1 },
@@ -15,6 +16,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/courses/rooms/non-native`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/courses/video-library`, changeFrequency: "weekly", priority: 0.7 },
     { url: `${base}/pricing`, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/guides`, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${base}/faq`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/marketplace`, changeFrequency: "daily", priority: 0.9 },
   ];
 
@@ -30,18 +33,32 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   });
 
-  const [{ data: courses }, { data: lessons }] = await Promise.all([
-    db
-      .from("edu_marketplace_courses")
-      .select("slug,updated_at")
-      .eq("status", "published")
-      .limit(5000),
-    db
+  const { data: courses } = await db
+    .from("edu_marketplace_courses")
+    .select("slug,updated_at")
+    .eq("status", "published")
+    .limit(5000);
+
+  // No silent first-5000 truncation: production currently exceeds 8000 published lessons.
+  // Bound the fetch to 50 pages (50,000 rows) and use only public ID/timestamp fields.
+  type LessonSitemapRow = { id: string; updated_at: string | null };
+  const lessons: LessonSitemapRow[] = [];
+  for (let page = 0; page < 50; page += 1) {
+    const { data, error } = await db
       .from("lessons")
       .select("id,updated_at")
       .eq("status", "published")
-      .limit(5000),
-  ]);
+      .order("id", { ascending: true })
+      .range(page * 1000, page * 1000 + 999);
+    if (error) {
+      // Sitemap remains usable for already retrieved routes, but CI must flag DB errors.
+      console.error("DADYOOM_SITEMAP_LESSONS_FETCH_FAILED", error.code);
+      break;
+    }
+    if (!data?.length) break;
+    lessons.push(...data);
+    if (data.length < 1000) break;
+  }
 
   return [
     ...staticRoutes,
