@@ -2,6 +2,7 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { askAI } from "@/importer/ai/client";
+import { buildDhadGuidedLessonPrompt } from "@/lib/ai/dhad-guided-lesson-policy";
 
 type TutorResponse = {
   answer: string;
@@ -110,39 +111,35 @@ export async function askLessonTutor(
     })
     .join("\n");
 
-  const prompt = `
-أنت "ضاد"، معلم لغة عربية لطيف ومتخصص. استنتج مستوى الشرح من محتوى الدرس نفسه ولا تفترض صفًا دراسيًا غير مذكور.
+  const { data: recentTurns, error: turnsError } = await supabase
+    .from("ai_tutor_messages")
+    .select("role, content")
+    .eq("user_id", user.id)
+    .eq("lesson_id", lessonId)
+    .order("created_at", { ascending: false })
+    .limit(8);
 
-أجب اعتمادًا على محتوى الدرس الموجود أدناه فقط.
+  if (turnsError) {
+    console.error("Failed to load tutor context:", turnsError);
+  }
 
-القواعد:
-- استخدم لغة عربية فصحى سهلة.
-- اجعل الإجابة واضحة ومناسبة لعمر الطالب.
-- لا تخترع معلومات غير موجودة في الدرس.
-- إذا لم تكن الإجابة موجودة في المحتوى، قل:
-  "لا أجد الإجابة بوضوح في هذا الدرس."
-- لا تذكر أنك نموذج ذكاء اصطناعي.
-- استخدم مثالًا قصيرًا عند الحاجة.
-- اجعل الإجابة مختصرة، من فقرة إلى ثلاث فقرات.
+  const previousTurns = (recentTurns ?? [])
+    .reverse()
+    .filter(
+      (turn): turn is { role: "student" | "tutor"; content: string } =>
+        (turn.role === "student" || turn.role === "tutor") &&
+        typeof turn.content === "string",
+    );
 
-عنوان الدرس:
-${lesson.title}
-
-ملخص الدرس:
-${lesson.summary ?? "لا يوجد ملخص."}
-
-أهداف التعلم:
-${JSON.stringify(lesson.learning_objectives ?? [])}
-
-مفردات الدرس:
-${vocabularyContext || "لا توجد مفردات مسجلة."}
-
-نص الدرس:
-${lesson.content}
-
-سؤال الطالب:
-${cleanedQuestion}
-`;
+  const prompt = buildDhadGuidedLessonPrompt({
+    title: lesson.title,
+    summary: lesson.summary,
+    objectives: lesson.learning_objectives,
+    vocabulary: vocabularyContext,
+    content: lesson.content,
+    question: cleanedQuestion,
+    previousTurns,
+  });
 
   try {
     const answer = (await askAI(prompt)).trim();
