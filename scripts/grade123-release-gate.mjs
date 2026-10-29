@@ -40,7 +40,7 @@ export function evaluateGrade123Audit(snapshot) {
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const i = process.argv.indexOf("--audit");
-  const source = i >= 0 ? process.argv[i + 1] : "data/audits/grades123-22countries-lam-after-20261029.json";
+  const source = i >= 0 ? process.argv[i + 1] : "data/audits/grades123-22countries-after-two-batches-20261029.json";
   if (!source) throw Error("Missing --audit path");
   const result = evaluateGrade123Audit(JSON.parse(readFileSync(resolve(source), "utf8")));
   console.log(JSON.stringify(result, null, 2));
