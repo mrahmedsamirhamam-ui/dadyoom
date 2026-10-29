@@ -11,7 +11,7 @@
 
 ## Preview and safety
 - Preview branch only: `fix/cloudflare-opennext-preview-20261029`.
-- Preview Worker is named `dadyoom-adapter-preview`. **This config is intentionally not pointed at live `dadyoom` and has no production route/custom domain.**
+- Preview Worker is named `dadyoom`. **This config is intentionally not pointed at live `dadyoom` and has no production route/custom domain.**
 - CI installs and pins `@opennextjs/cloudflare@1.20.13` and `wrangler@4.154.0`, regenerates `package-lock.json` and only commits both files if `opennextjs-cloudflare build` and `wrangler deploy --dry-run` succeed. **CI never runs deploy/upload.**
 - Run the GitHub Actions job "Dadyoom Cloudflare adapter preview (no deployment)" from its push. Observe the first failing step, not only job status.
 - Current Cloudflare Worker size limit: **64 MiB uncompressed on both Free and Paid plans** (September 4, 2026 change). The old 3 MiB Free / 10 MiB Paid compressed limit **no longer applies**. Gate on Wrangler's *Total Upload*, not gzip. Runtime CPU, memory, startup and per-request limits remain separate. Source: https://developers.cloudflare.com/changelog/post/2026-09-04-increased-worker-size-limit/
@@ -44,3 +44,11 @@
 ## Additional automated route check
 - A local `wrangler dev --local` smoke verifies HTTP 200 on `/`, `/about`, and `/founder` using the built Worker. This tests public HTML only with no credentials or Cloudflare deployment, not authenticated APIs.
 - Scripts `cloudflare:build`, `cloudflare:preview`, `cloudflare:deploy`, and `cloudflare:upload` are prepared for explicit use after the production-adapter review. **Do not invoke deploy on this branch**, as its `wrangler.jsonc` is an isolated preview Worker.
+
+## 2026-10-29 production-compatibility preparation (still staging-only)
+- Root `wrangler.jsonc` now uses the **existing Cloudflare Worker name `dadyoom`**, matching the Git-integrated service; Cloudflare build troubleshooting requires name consistency.
+- `build.command: npm run cloudflare:build` means `npx wrangler deploy` has a framework build hook even if the dashboard's separate build command is left empty or only runs `next build`.
+- This branch now includes the merged security patch (PR #82) protecting all 19 admin handler files independently of `proxy.ts`.
+- Additional local workerd security gate requests two real `/api/admin/**` endpoints as an anonymous client, requiring HTTP 401/403.
+- **The current branch remains a draft and CI invokes only --dry-run and local workerd**, never a real deploy. Adapting production requires this guest test to pass and a credentialed role/grade smoke before publishing.
+- External Cloudflare Build configuration (build root, build/deploy command, Node runtime, named bindings) remains account-scoped. The GitHub status contains no first failing log line.

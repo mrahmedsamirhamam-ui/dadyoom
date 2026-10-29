@@ -1,3 +1,4 @@
+import { requireAdminResponse } from "@/lib/auth/require-admin";
 import { NextResponse } from "next/server";
 import { GoogleGenAI } from "@google/genai";
 import { PDFDocument } from "pdf-lib";
@@ -1667,6 +1668,9 @@ function normalizeGeneratedLesson(
 }
 
 export async function POST(request: Request) {
+  const rejectedAdminRequest = await requireAdminResponse();
+  if (rejectedAdminRequest) return rejectedAdminRequest;
+
   try {
     const apiKey =
       process.env.GEMINI_API_KEY?.trim();

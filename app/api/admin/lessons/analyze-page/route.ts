@@ -1,3 +1,4 @@
+import { requireAdminResponse } from "@/lib/auth/require-admin";
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 
@@ -486,6 +487,9 @@ async function fetchWithGeminiRetry(
 export async function POST(
   request: Request
 ) {
+  const rejectedAdminRequest = await requireAdminResponse();
+  if (rejectedAdminRequest) return rejectedAdminRequest;
+
   try {
     const apiKey =
       process.env

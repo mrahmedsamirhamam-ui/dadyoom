@@ -71,10 +71,10 @@ jobs:
           print("PASS: Worker bundle is within the published size limit. Runtime, bindings and Cloudflare deployment remain unverified.")
           PY
 
-      - name: Verify public HTML routes in local Cloudflare workerd (no external secrets)
+      - name: Verify public routes and anonymous API authorization in local Cloudflare workerd
         shell: bash
         run: |
-          npx wrangler dev --local --port 8787 --log-level error >/tmp/dadyoom-local-worker.log 2>&1 &
+          npx wrangler dev --local --port 8787 --log-level error --var NEXT_PUBLIC_SUPABASE_URL:https://example.supabase.co --var NEXT_PUBLIC_SUPABASE_ANON_KEY:preview-fake-anon-key >/tmp/dadyoom-local-worker.log 2>&1 &
           SERVER_PID=$!
           trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
           ready=0
@@ -95,6 +95,20 @@ jobs:
             status=$(curl -sS -L --max-time 20 -o /tmp/dadyoom-page.html -w '%{http_code}' "http://127.0.0.1:8787$route")
             echo "status=$status"
             if [ "$status" != "200" ]; then
+              tail -n 40 /tmp/dadyoom-local-worker.log
+              exit 1
+            fi
+          done
+
+          # The app must refuse privileged data even if Cloudflare drops Next.js proxy.
+          # These are read-only GET requests with no cookies and no production secrets.
+          for route in "/api/admin/lessons/quality-audit" "/api/admin/lessons/runtime-mcq-dump"; do
+            echo "Anonymous GET $route"
+            status=$(curl -sS --max-time 20 -o /tmp/dadyoom-admin-response.json -w '%{http_code}' "http://127.0.0.1:8787$route")
+            echo "admin status=$status"
+            if [ "$status" != "401" ] && [ "$status" != "403" ]; then
+              echo "SECURITY GATE FAILED: privileged API did not explicitly reject an anonymous user."
+              cat /tmp/dadyoom-admin-response.json
               tail -n 40 /tmp/dadyoom-local-worker.log
               exit 1
             fi

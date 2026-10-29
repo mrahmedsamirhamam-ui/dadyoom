@@ -1,7 +1,8 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "dadyoom-adapter-preview",
+  "name": "dadyoom",
   "main": ".open-next/worker.js",
+  "build": { "command": "npm run cloudflare:build" },
   "compatibility_date": "2026-10-29",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {

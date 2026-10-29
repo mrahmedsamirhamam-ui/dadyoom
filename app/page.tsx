@@ -58,7 +58,8 @@ export default function HomePage() {
               ضاديوم (Dadyoom) يجمع منهجًا منظمًا، والمهارات الأربع، والتقييم والتقدم، و«ضاد» رفيقًا ذكيًا يساعد الطالب في اللحظة التي يحتاج فيها إلى شرح أو تدريب.
             </p>
             <p className="mt-3 text-sm font-bold text-[#7b7165]">
-              الاسم الرسمي: ضاديوم (Dadyoom)، ويُكتب أحيانًا في البحث «ضاضيوم».
+              الاسم الرسمي هو «ضاديوم» (Dadyoom). وإذا وصلت إلينا بالبحث عن «ضاضيوم» أو «داديوم» أو «ضاديو» أو Dadyoum، فأنت تبحث عن المنصة نفسها.
+              <Link href="/about" className="mr-1 underline underline-offset-4 hover:text-[#174f47]">تعرّف على ضاديوم</Link>
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
