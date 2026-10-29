@@ -59,3 +59,35 @@ describe("22-country original lam shamsiyya / qamariyya lesson pack, Grades 1-3"
   expect(raw).not.toMatch(/"correctAnswer"\s*:|"correct_answer"\s*:|"modelAnswer"\s*:|"explanation"\s*:/);
  });
 });
+
+
+describe("production repair guards for existing 66 lam lessons",()=>{
+ const sql=readFileSync(resolve(process.cwd(),"scripts/curriculum-22-countries-grades1-3-sun-moon-lam-prompts-feedback-repair-20261029.sql"),"utf8");
+ const nextSql=readFileSync(resolve(process.cwd(),"scripts/curriculum-22-countries-grades1-3-short-vowels-and-singular-plural-prompts-20261029.sql"),"utf8");
+ it("refuses concurrent learner attempts and unexpected row counts",()=>{
+  for(const file of [sql,nextSql]){
+   expect(file).toContain("student_lesson_progress");
+   expect(file).toContain("lesson_activity_attempts");
+   expect(file).toContain("question_attempts");
+   expect(file).toContain("student_answers");
+   expect(file).toContain("lesson_mastery");
+   expect(file).toContain("RAISE EXCEPTION");
+   expect(file).toContain("GET DIAGNOSTICS");
+   expect(file).toContain("SET LOCAL lock_timeout");
+   expect(file).not.toMatch(/\bDELETE\s+FROM\b/i);
+  }
+  expect(sql).toContain("target_count <> 66");
+  expect(sql).toContain("n<>198");
+  expect(sql).toContain("n<>330");
+  expect(nextSql).toContain("<> 132");
+  expect(nextSql).toContain("n<>396");
+ });
+ it("does not replace question IDs, options, or private scoring keys",()=>{
+  expect(sql).toContain("UPDATE public.questions q");
+  expect(sql).toMatch(/SET explanation=CASE/u);
+  expect(sql).not.toMatch(/SET\s+correct_answer\s*=/iu);
+  expect(sql).not.toMatch(/SET\s+options\s*=/iu);
+  expect(nextSql).not.toContain("UPDATE public.questions");
+  expect(nextSql).toMatch(/SET prompt=a.instructions, updated_at=now\(\)/u);
+ });
+});
