@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import type { MetadataRoute } from "next";
 import { getSiteUrl } from "@/lib/site";
+import { learningGuides } from "@/content/learning-guides";
 
 export const revalidate = 3600;
 
@@ -24,7 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
 
-  if (!url || !key) return staticRoutes;
+  if (!url || !key) return [...staticRoutes, ...learningGuides.map((guide) => ({ url: `${base}/guides/${guide.slug}`, changeFrequency: "monthly" as const, priority: 0.6 }))];
 
   const db = createClient(url, key, {
     auth: {
@@ -62,6 +63,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     ...staticRoutes,
+    ...learningGuides.map((guide) => ({ url: `${base}/guides/${guide.slug}`, changeFrequency: "monthly" as const, priority: 0.6 })),
     ...(courses ?? []).map((course) => ({
       url: `${base}/marketplace/${course.slug}`,
       lastModified:
