@@ -9,6 +9,7 @@ import {
 } from "react";
 
 import ListenButton from "@/features/lesson-activities/components/ListenButton";
+import ArabicVoiceCheck from "@/components/skills/ArabicVoiceCheck";
 
 import {
   saveSkillProgress,
@@ -343,6 +344,8 @@ export default function ListeningPracticePage() {
           التدريب يتغير حسب مستواك ونتائجك، وليس تمرينًا ثابتًا للجميع.
         </p>
       </section>
+
+      <ArabicVoiceCheck />
 
       {loading ? (
         <section className="mt-6 rounded-3xl bg-white p-10 text-center shadow-sm">
