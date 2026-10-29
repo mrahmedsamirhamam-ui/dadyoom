@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "تواصل معنا | ضاديوم",
-  description: "وسائل التواصل الرسمية مع فريق ضاديوم، بما في ذلك رقم التواصل في مصر.",
+  description: "وسائل التواصل الرسمية مع فريق ضاديوم، بما في ذلك الهاتف في مصر وصفحات فيسبوك وإنستغرام.",
   alternates: { canonical: "/contact" },
 };
 
@@ -18,6 +18,13 @@ export default function ContactPage() {
           <h2 id="egypt-contact" className="text-xl font-bold text-[#174f47]">التواصل الهاتفي — مصر 🇪🇬</h2>
           <a dir="ltr" href="tel:+201503113009" className="mt-4 inline-block text-xl font-bold text-[#174f47] underline underline-offset-4" aria-label="اتصل بضاديوم على الرقم المصري">+20 150 311 3009</a>
           <p className="mt-3 text-sm leading-7 text-[#655c51]">تُحسب تكلفة المكالمة وفق تعرفة شركة الاتصالات. لا يُفترض توفر واتساب على الرقم إلا بعد تأكيد ذلك.</p>
+        </section>
+        <section aria-labelledby="social-contact" className="mt-6 rounded-2xl border border-[#d7e5dc] bg-[#f8faf6] p-6">
+          <h2 id="social-contact" className="text-xl font-bold text-[#174f47]">التواصل عبر مواقع التواصل الاجتماعي</h2>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <a href="https://www.facebook.com/share/1A2Uag89ay/" target="_blank" rel="noopener noreferrer" className="rounded-xl bg-[#174f47] px-5 py-3 font-semibold text-white hover:opacity-90" aria-label="صفحة التواصل عبر فيسبوك">فيسبوك</a>
+            <a href="https://www.instagram.com/mrahmedsamirhamam/" target="_blank" rel="noopener noreferrer" className="rounded-xl bg-[#174f47] px-5 py-3 font-semibold text-white hover:opacity-90" aria-label="حساب التواصل عبر إنستغرام">إنستغرام</a>
+          </div>
         </section>
       </article>
     </main>
