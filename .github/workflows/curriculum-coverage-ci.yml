@@ -285,6 +285,8 @@ on:
       - 'tests/curriculum-bahrain-grade1-3-sukun-original-20261029.test.ts'
       - 'tests/curriculum-arab21-grades1-3-original-sukun-63-lessons.test.ts'
       - 'tests/curriculum-bahrain-grades123-original-shadda-tanween-20261029.test.ts'
+      - 'tests/curriculum-arab21-grades123-original-shadda-tanween-63-lessons.test.ts'
+      - 'scripts/curriculum-arab22-grades123-shadda-tanween-quality-readonly.sql'
       - 'scripts/curriculum-bahrain-grades123-shadda-tanween-quality-readonly.sql'
       - 'scripts/curriculum-arab22-grades1-3-sukun-66-quality-readonly.sql'
       - 'scripts/curriculum-bahrain-grade1-3-sukun-20261029-readonly.sql'
@@ -465,6 +467,8 @@ jobs:
         run: npx vitest run tests/curriculum-arab21-grades1-3-original-sukun-63-lessons.test.ts
       - name: Verify three original Bahrain shadda-tanween lessons
         run: npx vitest run tests/curriculum-bahrain-grades123-original-shadda-tanween-20261029.test.ts
+      - name: Verify 63 original shadda-tanween lessons in remaining 21 countries
+        run: npx vitest run tests/curriculum-arab21-grades123-original-shadda-tanween-63-lessons.test.ts
       - name: Validate 66 grade-differentiated singular-and-plural lessons for all 22 countries
         run: npx vitest run tests/curriculum-22-countries-grade1-3-original-singular-plural.test.ts
       - name: Validate 65 original interrogative lessons without rewriting Egyptian learner work
