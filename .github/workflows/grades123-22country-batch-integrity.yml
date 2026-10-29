@@ -9,6 +9,7 @@ on:
       - 'data/review-queue/20261029-grammar-skills-*'
       - 'data/review-queue/20261029-phonics-nominal-*'
       - 'data/curriculum-drafts/grade123-short-vowels-nominal-*'
+      - 'data/curriculum-drafts/grades123-original-nominal-*'
       - 'scripts/grade123-release-gate.mjs'
       - 'tests/curriculum-grades123-*'
       - '.github/workflows/grades123-22country-batch-integrity.yml'
@@ -18,6 +19,7 @@ on:
       - 'data/review-queue/20261029-grammar-skills-*'
       - 'data/review-queue/20261029-phonics-nominal-*'
       - 'data/curriculum-drafts/grade123-short-vowels-nominal-*'
+      - 'data/curriculum-drafts/grades123-original-nominal-*'
       - 'scripts/grade123-release-gate.mjs'
       - 'tests/curriculum-grades123-*'
       - '.github/workflows/grades123-22country-batch-integrity.yml'
@@ -40,7 +42,7 @@ jobs:
       - name: Install dependency lockfile
         run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Test immutable before-and-after snapshots
-        run: npx vitest run tests/curriculum-grades123-live-lam-audit.test.ts tests/curriculum-grades123-two-batch-audit.test.ts tests/curriculum-grades123-four-batch-audit.test.ts
+        run: npx vitest run tests/curriculum-grades123-live-lam-audit.test.ts tests/curriculum-grades123-two-batch-audit.test.ts tests/curriculum-grades123-four-batch-audit.test.ts tests/curriculum-grade123-nominal-questions-audit.test.ts tests/brand-dadyoom-about-identity.test.ts
       - name: Grade 1-3 gate must fail closed while coverage is incomplete
         shell: bash
         run: |
