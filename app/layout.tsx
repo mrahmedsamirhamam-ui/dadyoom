@@ -3,7 +3,7 @@ import {
   getSiteUrl,
   SITE_DESCRIPTION,
   SITE_NAME,
-  SITE_NAME_ARABIC_ALT,
+  SITE_NAME_ALTERNATES,
   SITE_NAME_LATIN,
   SITE_TAGLINE,
 } from "@/lib/site";
@@ -20,10 +20,7 @@ const websiteStructuredData = {
   "@id": `${siteUrl}/#website`,
   url: siteUrl,
   name: SITE_NAME,
-  alternateName: [
-      SITE_NAME_LATIN,
-      SITE_NAME_ARABIC_ALT,
-    ],
+  alternateName: [...SITE_NAME_ALTERNATES],
   description: SITE_DESCRIPTION,
   inLanguage: "ar",
   creator: {
