@@ -9,9 +9,13 @@ const existingSnapshot = JSON.parse(readFileSync(
 const liveQuality = JSON.parse(readFileSync(
   new URL("../data/audits/grades123-22countries-live-quality-snapshot-20261029.json", import.meta.url), "utf8"));
 
+const registeredCodes = JSON.parse(readFileSync(
+  new URL("../data/curriculum-packs/arab-countries.json", import.meta.url), "utf8"
+)).countries.map(country => country.code);
+
 const fixture = () => {
-  const countries = Array.from({ length: 22 }, (_, index) => ({
-    country_code: String.fromCharCode(65 + Math.floor(index / 26), 65 + index % 26),
+  const countries = registeredCodes.map(code => ({
+    country_code: code,
     grades: [1, 2, 3].map(grade => ({
       grade, total: 1, published: 1, drafts: 0, after_four_6_to_10: 1,
       two_assessments: 1, skills: 1, structural_candidates: 1,
@@ -99,4 +103,12 @@ test("generic questions, generic scaffolds and stale live checks block false 100
   stale.auditDate = "2025-01-01";
   assert.equal(evaluateGrade123Audit(fixture(), stale).ready, false);
   assert.equal(evaluateGrade123Audit(fixture()).ready, false);
+});
+
+test("invented country codes are never accepted as 22-country coverage", () => {
+  const forged = fixture();
+  forged.countries[0].country_code = "ZZ";
+  const q = qualityFixture();
+  q.cells.filter(c => c.country === registeredCodes[0]).forEach(c => { c.country = "ZZ"; });
+  assert.equal(evaluateGrade123Audit(forged, q).ready, false);
 });
