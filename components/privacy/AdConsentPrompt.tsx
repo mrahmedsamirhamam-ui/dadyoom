@@ -10,14 +10,15 @@ export const AD_CONSENT_CHANGED = "dadyoom-ad-consent-change";
 export default function AdConsentPrompt() {
   const [visible, setVisible] = useState(false);
   const pathname = usePathname();
+  const blockedRoutes = [
+    "/student/", "/lessons/", "/skills/", "/admin/", "/teacher/", "/school/",
+    "/payments/", "/ask", "/dad", "/campaign", "/landing", "/login", "/signup",
+  ];
+  const excluded = blockedRoutes.some((prefix) => pathname.startsWith(prefix));
 
   useEffect(() => {
     let active = true;
-    setVisible(false);
-    if (pathname.startsWith("/student/") ||
-        pathname.startsWith("/lessons/") ||
-        pathname.startsWith("/skills/") ||
-        pathname.startsWith("/admin/")) return;
+    if (excluded) return;
     const load = async () => {
       try {
         const response = await fetch("/api/billing/status", {
@@ -35,7 +36,7 @@ export default function AdConsentPrompt() {
     };
     void load();
     return () => { active = false; };
-  }, [pathname]);
+  }, [excluded]);
 
   function choose(value: "allow" | "deny") {
     try {
@@ -49,7 +50,7 @@ export default function AdConsentPrompt() {
     setVisible(false);
   }
 
-  if (!visible) return null;
+  if (!visible || excluded) return null;
   return (
     <section
       dir="rtl"
