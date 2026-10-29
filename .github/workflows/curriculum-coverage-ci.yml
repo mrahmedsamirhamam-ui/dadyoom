@@ -282,6 +282,8 @@ on:
       - 'tests/curriculum-22-countries-grade1-3-original-singular-plural.test.ts'
       - 'data/curriculum-drafts/arab22-grades1-3-sun-moon-lam-66-original-lessons-20261028.json'
       - 'tests/curriculum-22-countries-grades1-3-sun-moon-lam-original.test.ts'
+      - 'tests/curriculum-bahrain-grade1-3-sukun-original-20261029.test.ts'
+      - 'scripts/curriculum-bahrain-grade1-3-sukun-20261029-readonly.sql'
       - 'scripts/curriculum-22-countries-grades1-3-sun-moon-lam-quality-readonly.sql'
       - 'data/curriculum-drafts/arab22-grades1-3-interrogative-tools-65-safe-lessons-20261028.json'
       - 'tests/curriculum-22-countries-grade1-3-interrogatives-65-safe-lessons.test.ts'
@@ -453,6 +455,8 @@ jobs:
         run: npx vitest run tests/curriculum-22-countries-grade123-original-madd-letters.test.ts
       - name: Verify 66 original sun/moon lam lessons in 22 countries and Grades 1-3
         run: npx vitest run tests/curriculum-22-countries-grades1-3-sun-moon-lam-original.test.ts
+      - name: Verify three original Grade 1-3 Bahrain sukun syllable lessons
+        run: npx vitest run tests/curriculum-bahrain-grade1-3-sukun-original-20261029.test.ts
       - name: Validate 66 grade-differentiated singular-and-plural lessons for all 22 countries
         run: npx vitest run tests/curriculum-22-countries-grade1-3-original-singular-plural.test.ts
       - name: Validate 65 original interrogative lessons without rewriting Egyptian learner work
