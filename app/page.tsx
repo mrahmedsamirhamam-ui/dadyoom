@@ -33,6 +33,8 @@ export default function HomePage() {
             <Link href="/courses" className="transition hover:text-[#174f47]">استكشف الدروس</Link>
             <Link href="/ask" className="transition hover:text-[#174f47]">اسأل ضاد</Link>
             <Link href="/how-to-use" className="transition hover:text-[#174f47]">كيف تستخدم ضاديوم؟</Link>
+            <Link href="/about" className="transition hover:text-[#174f47]">عن ضاديوم</Link>
+            <Link href="/founder" className="transition hover:text-[#174f47]">المؤسس</Link>
           </nav>
           <div className="flex items-center gap-2">
             <Link href="/login" className="hidden rounded-xl px-4 py-2.5 text-sm font-black text-[#5d554c] hover:bg-[#f3ead7] sm:inline-flex">دخول</Link>
@@ -149,7 +151,11 @@ export default function HomePage() {
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
           <DadyoomLogo inverse />
           <div className="text-sm">العربية تجمعنا، ولا تُذيب أحدًا.</div>
-          <div className="text-sm">© 2026 ضاديوم</div>
+          <div className="text-sm">
+            <span>© 2026 ضاديوم</span>
+            <span className="mx-2" aria-hidden="true">·</span>
+            <Link href="/founder" className="underline-offset-4 hover:underline">تأسيس وإدارة: أ. أحمد سمير محمد حافظ حمام</Link>
+          </div>
         </div>
       </footer>
           <HomeInteractionPanel />
