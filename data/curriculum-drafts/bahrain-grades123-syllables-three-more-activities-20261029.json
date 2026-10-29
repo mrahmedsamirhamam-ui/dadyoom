@@ -1,0 +1,178 @@
+{
+  "skill": "بناء الكلمة من المقاطع",
+  "countryCode": "BH",
+  "scope": "existing safe Grade 1–3 lessons",
+  "activitiesAdded": 9,
+  "totalActivitiesPerLesson": 6,
+  "hasAnswerKeys": false,
+  "activities": [
+    {
+      "lessonId": "c4b21875-effe-4a47-bf42-29843790b21c",
+      "grade": 1,
+      "order": 4,
+      "title": "أكمل المقطع الأول",
+      "type": "fill_blank",
+      "prompt": "اختر المقطع الأول الصحيح في «كَ + تَ + بَ ← كَتَبَ» وراجع علامة الحركات القصيرة.",
+      "content": {
+        "origin": "DADYOOM_BH_SYLLABLES_ADDITIONAL_V1_20261029",
+        "items": [
+          {
+            "sentence": "___ + تَ + بَ ← كَتَبَ",
+            "options": [
+              "كَ",
+              "كُ",
+              "كِ"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "lessonId": "c4b21875-effe-4a47-bf42-29843790b21c",
+      "grade": 1,
+      "order": 5,
+      "title": "أطابق كل كلمة ببطاقاتها",
+      "type": "matching",
+      "prompt": "صل «كَتَبَ» بالأجزاء «كَ + تَ + بَ» و«لَعِبَ» بالأجزاء «لَ + عِ + بَ» مع المحافظة على الضبط.",
+      "content": {
+        "origin": "DADYOOM_BH_SYLLABLES_ADDITIONAL_V1_20261029",
+        "left": [
+          "كَتَبَ",
+          "لَعِبَ"
+        ],
+        "right": [
+          "لَ + عِ + بَ",
+          "كَ + تَ + بَ"
+        ]
+      }
+    },
+    {
+      "lessonId": "c4b21875-effe-4a47-bf42-29843790b21c",
+      "grade": 1,
+      "order": 6,
+      "title": "أقرأ وأقارن مع المعلم",
+      "type": "reading",
+      "prompt": "اقرأ «كَتَبَ» و«لَعِبَ» جهريًا بعد تركيب المقاطع، واذكر موضع الحركات القصيرة الذي يجب المحافظة عليه عند النطق.",
+      "content": {
+        "origin": "DADYOOM_BH_SYLLABLES_ADDITIONAL_V1_20261029",
+        "text": "كَتَبَ — لَعِبَ",
+        "keywords": [
+          "كَتَبَ",
+          "لَعِبَ"
+        ]
+      }
+    },
+    {
+      "lessonId": "7c3cf296-ddf2-4e87-a57b-b60b5264cfd2",
+      "grade": 2,
+      "order": 4,
+      "title": "أكمل المقطع الأول",
+      "type": "fill_blank",
+      "prompt": "اختر المقطع الأول الصحيح في «مَكْ + تَ + بٌ ← مَكْتَبٌ» وراجع علامة السكون.",
+      "content": {
+        "origin": "DADYOOM_BH_SYLLABLES_ADDITIONAL_V1_20261029",
+        "items": [
+          {
+            "sentence": "___ + تَ + بٌ ← مَكْتَبٌ",
+            "options": [
+              "مَكْ",
+              "مِكْ",
+              "مُكْ"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "lessonId": "7c3cf296-ddf2-4e87-a57b-b60b5264cfd2",
+      "grade": 2,
+      "order": 5,
+      "title": "أطابق كل كلمة ببطاقاتها",
+      "type": "matching",
+      "prompt": "صل «مَكْتَبٌ» بالأجزاء «مَكْ + تَ + بٌ» و«دَفْتَرٌ» بالأجزاء «دَفْ + تَ + رٌ» مع المحافظة على الضبط.",
+      "content": {
+        "origin": "DADYOOM_BH_SYLLABLES_ADDITIONAL_V1_20261029",
+        "left": [
+          "مَكْتَبٌ",
+          "دَفْتَرٌ"
+        ],
+        "right": [
+          "دَفْ + تَ + رٌ",
+          "مَكْ + تَ + بٌ"
+        ]
+      }
+    },
+    {
+      "lessonId": "7c3cf296-ddf2-4e87-a57b-b60b5264cfd2",
+      "grade": 2,
+      "order": 6,
+      "title": "أقرأ وأقارن مع المعلم",
+      "type": "reading",
+      "prompt": "اقرأ «مَكْتَبٌ» و«دَفْتَرٌ» جهريًا بعد تركيب المقاطع، واذكر موضع السكون الذي يجب المحافظة عليه عند النطق.",
+      "content": {
+        "origin": "DADYOOM_BH_SYLLABLES_ADDITIONAL_V1_20261029",
+        "text": "مَكْتَبٌ — دَفْتَرٌ",
+        "keywords": [
+          "مَكْتَبٌ",
+          "دَفْتَرٌ"
+        ]
+      }
+    },
+    {
+      "lessonId": "b620830c-a081-4095-99b4-45f27d6551ad",
+      "grade": 3,
+      "order": 4,
+      "title": "أكمل المقطع الأول",
+      "type": "fill_blank",
+      "prompt": "اختر المقطع الأول الصحيح في «مَدْ + رَ + سَ + ةٌ ← مَدْرَسَةٌ» وراجع علامة السكون والشدة.",
+      "content": {
+        "origin": "DADYOOM_BH_SYLLABLES_ADDITIONAL_V1_20261029",
+        "items": [
+          {
+            "sentence": "___ + رَ + سَ + ةٌ ← مَدْرَسَةٌ",
+            "options": [
+              "مَدْ",
+              "مِدْ",
+              "مُدْ"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "lessonId": "b620830c-a081-4095-99b4-45f27d6551ad",
+      "grade": 3,
+      "order": 5,
+      "title": "أطابق كل كلمة ببطاقاتها",
+      "type": "matching",
+      "prompt": "صل «مَدْرَسَةٌ» بالأجزاء «مَدْ + رَ + سَ + ةٌ» و«تَعَلَّمَ» بالأجزاء «تَ + عَ + لَّ + مَ» مع المحافظة على الضبط.",
+      "content": {
+        "origin": "DADYOOM_BH_SYLLABLES_ADDITIONAL_V1_20261029",
+        "left": [
+          "مَدْرَسَةٌ",
+          "تَعَلَّمَ"
+        ],
+        "right": [
+          "تَ + عَ + لَّ + مَ",
+          "مَدْ + رَ + سَ + ةٌ"
+        ]
+      }
+    },
+    {
+      "lessonId": "b620830c-a081-4095-99b4-45f27d6551ad",
+      "grade": 3,
+      "order": 6,
+      "title": "أقرأ وأقارن مع المعلم",
+      "type": "reading",
+      "prompt": "اقرأ «مَدْرَسَةٌ» و«تَعَلَّمَ» جهريًا بعد تركيب المقاطع، واذكر موضع السكون والشدة الذي يجب المحافظة عليه عند النطق.",
+      "content": {
+        "origin": "DADYOOM_BH_SYLLABLES_ADDITIONAL_V1_20261029",
+        "text": "مَدْرَسَةٌ — تَعَلَّمَ",
+        "keywords": [
+          "مَدْرَسَةٌ",
+          "تَعَلَّمَ"
+        ]
+      }
+    }
+  ]
+}
