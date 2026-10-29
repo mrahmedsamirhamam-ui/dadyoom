@@ -1,3 +1,4 @@
+import { requireAdminResponse } from "@/lib/auth/require-admin";
 import {
   NextResponse,
 } from "next/server";
@@ -724,6 +725,9 @@ async function analyzeBatch(
 export async function POST(
   request: Request
 ) {
+  const rejectedAdminRequest = await requireAdminResponse();
+  if (rejectedAdminRequest) return rejectedAdminRequest;
+
   try {
     const body =
       (await request.json()) as
