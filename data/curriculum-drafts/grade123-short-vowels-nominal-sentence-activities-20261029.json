@@ -1,0 +1,352 @@
+{
+  "generatedOn": "2026-10-29",
+  "description": "Original Dadyoom-grade-differentiated practice; NOT copied from official school textbooks and NOT ministry-verified",
+  "scope": {
+    "countries": 22,
+    "grades": [
+      1,
+      2,
+      3
+    ],
+    "lessonTitles": [
+      "الحركات القصيرة",
+      "الجملة الاسمية البسيطة"
+    ],
+    "expectedLessonCount": 132,
+    "activitiesPerLessonAdded": 3
+  },
+  "containsAnswerKeys": false,
+  "humanReview": "pending_human_review",
+  "templates": [
+    {
+      "topic": "الحركات القصيرة",
+      "grade": 1,
+      "order": 4,
+      "type": "fill_blank",
+      "title": "أكمل الحركة المناسبة",
+      "prompt": "تأمّل كلمة «بِنْتٌ»، ثم اختر الحركة التي نسمعها على حرف الباء في بداية الكلمة.",
+      "content": {
+        "items": [
+          {
+            "sentence": "في «بِنْتٌ» يبدأ حرف الباء بحركة ___ .",
+            "options": [
+              "الفتحة",
+              "الكسرة",
+              "الضمة"
+            ]
+          }
+        ],
+        "concept": "short-vowels",
+        "manualReviewRequired": true
+      }
+    },
+    {
+      "topic": "الحركات القصيرة",
+      "grade": 1,
+      "order": 5,
+      "type": "matching",
+      "title": "أطابق الحرف بالحركة",
+      "prompt": "صِلْ كل حرف مضبوط بالحركة المناسبة له، ثم اقرأ الحرفين قراءة صحيحة.",
+      "content": {
+        "left": [
+          "بَ",
+          "بُ"
+        ],
+        "right": [
+          "ضمة",
+          "فتحة"
+        ],
+        "concept": "short-vowels",
+        "manualReviewRequired": true
+      }
+    },
+    {
+      "topic": "الحركات القصيرة",
+      "grade": 1,
+      "order": 6,
+      "type": "writing",
+      "title": "أكتب الحركات الثلاث",
+      "prompt": "اكتب الحرف باءً ثلاث مرات مع الفتحة والضمة والكسرة: «بَ، بُ، بِ»، ثم انطقها بوضوح أمام المعلّم أو ولي الأمر.",
+      "content": {
+        "text": "أكتب «بَ، بُ، بِ» وأميّز موضع كل حركة.",
+        "concept": "short-vowels",
+        "manualReviewRequired": true
+      }
+    },
+    {
+      "topic": "الحركات القصيرة",
+      "grade": 2,
+      "order": 4,
+      "type": "fill_blank",
+      "title": "أحدّد حركة أول الكلمة",
+      "prompt": "قارن بين «كَتَبَ» و«كُتُبٌ»، ثم اختر حركة الكاف في كلمة «كُتُبٌ».",
+      "content": {
+        "items": [
+          {
+            "sentence": "حركة الكاف في «كُتُبٌ» هي ___ .",
+            "options": [
+              "الكسرة",
+              "الفتحة",
+              "الضمة"
+            ]
+          }
+        ],
+        "concept": "short-vowels",
+        "manualReviewRequired": true
+      }
+    },
+    {
+      "topic": "الحركات القصيرة",
+      "grade": 2,
+      "order": 5,
+      "type": "matching",
+      "title": "أميّز ضبط الكاف",
+      "prompt": "صِلْ كل كلمة بالوصف الصحيح لحركة الكاف، ثم اقرأ الكلمتين لتلاحظ الفرق.",
+      "content": {
+        "left": [
+          "كِتَابٌ",
+          "كُتُبٌ"
+        ],
+        "right": [
+          "ضمة فوق الكاف",
+          "كسرة تحت الكاف"
+        ],
+        "concept": "short-vowels",
+        "manualReviewRequired": true
+      }
+    },
+    {
+      "topic": "الحركات القصيرة",
+      "grade": 2,
+      "order": 6,
+      "type": "writing",
+      "title": "أستعمل الحركات في كلمات",
+      "prompt": "اكتب كلمتين من إنشائك؛ تبدأ الأولى بحرف مكسور، وتبدأ الثانية بحرف مضموم. ضع الحركة الصحيحة، ثم اقرأ ما كتبت.",
+      "content": {
+        "text": "أكتب كلمتين مختلفتين، وأحدد الحركة الأولى في كل كلمة.",
+        "concept": "short-vowels",
+        "manualReviewRequired": true
+      }
+    },
+    {
+      "topic": "الحركات القصيرة",
+      "grade": 3,
+      "order": 4,
+      "type": "fill_blank",
+      "title": "أفسّر تغير الضبط",
+      "prompt": "تأمّل «عِلْمٌ» و«عَلَمٌ»؛ اختر الحركة التي تحت حرف العين في «عِلْمٌ».",
+      "content": {
+        "items": [
+          {
+            "sentence": "في «عِلْمٌ» العين مضبوطة بـ ___ .",
+            "options": [
+              "الفتحة",
+              "الكسرة",
+              "الضمة"
+            ]
+          }
+        ],
+        "concept": "short-vowels",
+        "manualReviewRequired": true
+      }
+    },
+    {
+      "topic": "الحركات القصيرة",
+      "grade": 3,
+      "order": 5,
+      "type": "matching",
+      "title": "أربط المعنى بالحركة",
+      "prompt": "صِلْ كل كلمة بوصف الحركة الأولى فيها، واشرح كيف يتغير المعنى حين تتغير حركة العين.",
+      "content": {
+        "left": [
+          "عِلْمٌ",
+          "عَلَمٌ"
+        ],
+        "right": [
+          "فتحة فوق العين",
+          "كسرة تحت العين"
+        ],
+        "concept": "short-vowels",
+        "manualReviewRequired": true
+      }
+    },
+    {
+      "topic": "الحركات القصيرة",
+      "grade": 3,
+      "order": 6,
+      "type": "writing",
+      "title": "أوظّف كلمتين مختلفتي الضبط",
+      "prompt": "أنشئ جملة مفيدة بكلمة «عِلْمٌ» وجملة أخرى بكلمة «عَلَمٌ»، واضبط العين في الكلمتين ثم وضّح اختلاف المعنى.",
+      "content": {
+        "text": "أكتب جملتين وأبين الفرق بين «عِلْمٌ» و«عَلَمٌ» في الضبط والمعنى.",
+        "concept": "short-vowels",
+        "manualReviewRequired": true
+      }
+    },
+    {
+      "topic": "الجملة الاسمية البسيطة",
+      "grade": 1,
+      "order": 4,
+      "type": "fill_blank",
+      "title": "أكمل جملة اسمية",
+      "prompt": "اقرأ الجملة «السَّمَاءُ ...»، ثم اختر الكلمة التي تتمّ معناها بصورة مناسبة.",
+      "content": {
+        "items": [
+          {
+            "sentence": "السَّمَاءُ ___ .",
+            "options": [
+              "صَافِيَةٌ",
+              "قَلَمٌ",
+              "يَلْعَبُ"
+            ]
+          }
+        ],
+        "concept": "nominal-sentence",
+        "manualReviewRequired": true
+      }
+    },
+    {
+      "topic": "الجملة الاسمية البسيطة",
+      "grade": 1,
+      "order": 5,
+      "type": "matching",
+      "title": "أصل المبتدأ بما يصفه",
+      "prompt": "صِلْ كل مبتدأ بالخبر المناسب له، ثم اقرأ الجملتين كاملتين بصوت مسموع.",
+      "content": {
+        "left": [
+          "الْقَمَرُ",
+          "الزَّهْرَةُ"
+        ],
+        "right": [
+          "جَمِيلَةٌ",
+          "مُنِيرٌ"
+        ],
+        "concept": "nominal-sentence",
+        "manualReviewRequired": true
+      }
+    },
+    {
+      "topic": "الجملة الاسمية البسيطة",
+      "grade": 1,
+      "order": 6,
+      "type": "writing",
+      "title": "أكتب جملة عن مدرستي",
+      "prompt": "ابدأ جملة مفيدة بكلمة «مَدْرَسَتِي»، وأكملها بوصف صحيح، ثم اقرأها أمام زميلك أو أسرتك.",
+      "content": {
+        "text": "أكتب جملة اسمية تبدأ بـ«مَدْرَسَتِي» ولها معنى تام.",
+        "concept": "nominal-sentence",
+        "manualReviewRequired": true
+      }
+    },
+    {
+      "topic": "الجملة الاسمية البسيطة",
+      "grade": 2,
+      "order": 4,
+      "type": "fill_blank",
+      "title": "أضبط الخبر في الجملة",
+      "prompt": "أكمل الجملة «الْحَدِيقَةُ ...» بكلمة مناسبة في المعنى وصحيحة في ضبط آخرها.",
+      "content": {
+        "items": [
+          {
+            "sentence": "الْحَدِيقَةُ ___ .",
+            "options": [
+              "وَاسِعَةً",
+              "وَاسِعٌ",
+              "وَاسِعَةٌ"
+            ]
+          }
+        ],
+        "concept": "nominal-sentence",
+        "manualReviewRequired": true
+      }
+    },
+    {
+      "topic": "الجملة الاسمية البسيطة",
+      "grade": 2,
+      "order": 5,
+      "type": "matching",
+      "title": "أحقق المطابقة في الخبر",
+      "prompt": "صِلْ المبتدأ بخبر يوافقه في التذكير والتأنيث، ثم اشرح اختيارك.",
+      "content": {
+        "left": [
+          "الطَّالِبُ",
+          "الطَّالِبَةُ"
+        ],
+        "right": [
+          "مُجْتَهِدَةٌ",
+          "مُجْتَهِدٌ"
+        ],
+        "concept": "nominal-sentence",
+        "manualReviewRequired": true
+      }
+    },
+    {
+      "topic": "الجملة الاسمية البسيطة",
+      "grade": 2,
+      "order": 6,
+      "type": "writing",
+      "title": "أكتب جملتين اسميتين",
+      "prompt": "كوّن جملة اسمية تبدأ بكلمة «الْكِتَابُ» وأخرى تبدأ بكلمة «الْمَكْتَبَةُ»، ثم ضع خطًّا تحت المبتدأ ودائرة حول الخبر.",
+      "content": {
+        "text": "أكوّن جملتين اسميتين وأميز المبتدأ والخبر فيهما.",
+        "concept": "nominal-sentence",
+        "manualReviewRequired": true
+      }
+    },
+    {
+      "topic": "الجملة الاسمية البسيطة",
+      "grade": 3,
+      "order": 4,
+      "type": "fill_blank",
+      "title": "أكمل الجملة بخبر مرفوع",
+      "prompt": "اختر الخبر المناسب في الجملة «الْعِلْمُ ...»، مع مراعاة المعنى وعلامة الرفع.",
+      "content": {
+        "items": [
+          {
+            "sentence": "الْعِلْمُ ___ .",
+            "options": [
+              "نَافِعًا",
+              "نَافِعٍ",
+              "نَافِعٌ"
+            ]
+          }
+        ],
+        "concept": "nominal-sentence",
+        "manualReviewRequired": true
+      }
+    },
+    {
+      "topic": "الجملة الاسمية البسيطة",
+      "grade": 3,
+      "order": 5,
+      "type": "matching",
+      "title": "أطابق الجمع بخبره",
+      "prompt": "صِلْ كل مبتدأ جمع بخبر يوافقه، ثم بيّن سبب اختيار صيغة الجمع.",
+      "content": {
+        "left": [
+          "الْمُعَلِّمُونَ",
+          "الْمُعَلِّمَاتُ"
+        ],
+        "right": [
+          "مُخْلِصَاتٌ",
+          "مُخْلِصُونَ"
+        ],
+        "concept": "nominal-sentence",
+        "manualReviewRequired": true
+      }
+    },
+    {
+      "topic": "الجملة الاسمية البسيطة",
+      "grade": 3,
+      "order": 6,
+      "type": "writing",
+      "title": "أحلل جملتين اسميتين",
+      "prompt": "أنشئ جملة عن التعاون تبدأ بكلمة «التَّعَاوُنُ»، وجملة عن الأمانة تبدأ بكلمة «الْأَمَانَةُ»، ثم حدّد المبتدأ والخبر في كل منهما.",
+      "content": {
+        "text": "أكتب جملتين صحيحتين عن التعاون والأمانة وأحدد المبتدأ والخبر.",
+        "concept": "nominal-sentence",
+        "manualReviewRequired": true
+      }
+    }
+  ]
+}
