@@ -72,6 +72,10 @@ export const metadata: Metadata = {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim() || undefined,
   },
   manifest: "/manifest.webmanifest",
+  icons: {
+    icon: [{ url: "/brand/dadyoom-mark-2026.png", sizes: "160x160", type: "image/png" }],
+    apple: [{ url: "/brand/dadyoom-mark-2026.png", sizes: "160x160", type: "image/png" }],
+  },
 };
 
 export const viewport: Viewport = {
