@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import DadyoomLogo from "@/components/brand/DadyoomLogo";
 
 export const metadata: Metadata = {
   title: "عن ضاديوم ومؤسسها",
@@ -12,11 +13,15 @@ export default function AboutPage() {
     <main dir="rtl" className="min-h-screen bg-[#fffaf0] px-5 py-12 text-[#27231f] sm:py-20">
       <article className="mx-auto max-w-4xl rounded-3xl border border-[#e2d4b8] bg-white p-7 shadow-sm sm:p-12">
         <Link href="/" className="text-sm font-bold text-[#174f47] hover:underline">العودة إلى ضاديوم</Link>
-        <h1 className="mt-6 text-4xl font-black text-[#174f47]">عن ضاديوم</h1>
+        <section aria-label="هوية ضاديوم" className="mt-7 rounded-3xl border border-[#ddc99d] bg-[#f9f4e9] p-6 sm:p-8">
+          <DadyoomLogo href="" className="items-center" />
+          <h1 className="mt-5 text-3xl font-black text-[#174f47] sm:text-4xl">عن ضاديوم | About Dadyoom</h1>
+          <p className="mt-3 text-sm font-semibold text-[#75623e]">الاسم المعتمد للمنصة والعلامة: ضاديوم — Dadyoom</p>
+        </section>
         <p className="mt-5 text-lg leading-9">ضاديوم (Dadyoom) — بيت العربية الرقمي — مشروع تعليمي يعمل على تقديم تجربة مترابطة لتعلّم اللغة العربية عبر المناهج والمهارات الأربع والتقييم والأنشطة التفاعلية والتقنيات الحديثة.</p>
-        <h2 className="mt-9 text-2xl font-bold text-[#174f47]">كيف يُكتب اسم ضاديوم؟</h2>
+        <h2 className="mt-9 text-2xl font-bold text-[#174f47]">هوية ضاديوم واسمها الصحيح</h2>
         <p className="mt-3 leading-9">
-          «ضاديوم» هو الاسم العربي المعتمد، ويُكتب بالإنجليزية Dadyoom. وقد يكتبه بعض الزوار
+          «ضاديوم» هو الاسم العربي المعتمد للمنصة وهويتها، ويُكتب بالإنجليزية Dadyoom. لا نعرض اسم أي شركة أخرى بوصفه اسم المشروع أو علامته. وقد يكتبه بعض الزوار
           «ضاضيوم» أو «داديوم» أو «ضاديو»، أو Dadyoum بالأحرف الإنجليزية؛
           جميع هذه الصيغ تشير إلى مشروعنا التعليمي نفسه، وعنوانه الرسمي هو
           {" "}<Link href="/" className="font-semibold text-[#174f47] underline underline-offset-4">dadyoom.com</Link>.
