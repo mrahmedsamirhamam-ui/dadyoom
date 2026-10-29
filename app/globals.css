@@ -555,7 +555,7 @@ body {
   line-height: 1.7;
   text-rendering: optimizeLegibility;
 }
-button, input, select, textarea { font: inherit; }
+button, input, select, textarea { font-family: inherit; }
 .font-arabic-display { font-family: var(--font-arabic-kufi); letter-spacing: 0; }
 .font-arabic-reading { font-family: var(--font-arabic-naskh); }
 :focus-visible { outline: 3px solid #3a9180; outline-offset: 3px; }
