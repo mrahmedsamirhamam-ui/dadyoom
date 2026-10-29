@@ -52,22 +52,23 @@ jobs:
           mkdir -p /tmp/dadyoom-preview
           npx wrangler deploy --dry-run --outdir /tmp/dadyoom-preview 2>&1 | tee /tmp/dadyoom-preview/wrangler-dryrun.log
 
-      - name: Report compressed bundle sizes, gate obvious Free-plan oversize
+      - name: Gate Cloudflare's current 64 MiB uncompressed Worker limit
         shell: bash
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import gzip
-          folder = Path("/tmp/dadyoom-preview")
-          bundles = sorted([p for p in folder.rglob("*") if p.suffix in (".js", ".mjs")], key=lambda x:x.stat().st_size, reverse=True)
-          if not bundles:
-              raise SystemExit("Wrangler produced no JavaScript bundle")
-          first = bundles[0]
-          compressed = len(gzip.compress(first.read_bytes()))
-          print(f"Bundled JS: {first.name} raw={first.stat().st_size} bytes gzip={compressed} bytes")
-          print("Other uploaded modules and assets may increase Cloudflare's reported total; inspect the Wrangler dry-run output too.")
-          if compressed > 3*1024*1024:
-              raise SystemExit("The JS alone exceeds the 3 MiB compressed Free Worker limit; no deployment performed.")
+          import re
+          report = Path("/tmp/dadyoom-preview/wrangler-dryrun.log").read_text()
+          m = re.search(r"Total Upload:\s*([\d.,]+)\s*KiB\s*/\s*gzip:\s*([\d.,]+)\s*KiB", report)
+          if not m:
+              raise SystemExit("Cannot verify Wrangler's total upload size; refusing deployment eligibility claim.")
+          total_kib = float(m.group(1).replace(",", ""))
+          gzip_kib = float(m.group(2).replace(",", ""))
+          print(f"Wrangler reports Total Upload={total_kib:.2f} KiB uncompressed, gzip={gzip_kib:.2f} KiB")
+          print("Cloudflare 2026-09-04: 64 MiB uncompressed Worker limit on Free AND Paid; compressed limit removed.")
+          if total_kib > 64*1024:
+              raise SystemExit("Worker exceeds Cloudflare's 64 MiB uncompressed limit; no deployment performed.")
+          print("PASS: Worker bundle is within the published size limit. Runtime, bindings and Cloudflare deployment remain unverified.")
           PY
 
       - name: Commit reproducible dependency manifest and lock to preview branch
