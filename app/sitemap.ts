@@ -1,10 +1,9 @@
 import { createClient } from "@supabase/supabase-js";
 import type { MetadataRoute } from "next";
+import { getSiteUrl } from "@/lib/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base =
-    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/u, "") ||
-    "http://localhost:3000";
+  const base = getSiteUrl();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: base, changeFrequency: "weekly", priority: 1 },
@@ -21,7 +20,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
+  const key =
+    process.env.SUPABASE_SERVICE_ROLE_KEY?.trim() ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.trim();
 
   if (!url || !key) return staticRoutes;
 
@@ -32,18 +33,46 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   });
 
-  const [{ data: courses }, { data: lessons }] = await Promise.all([
-    db
+
+  // PostgREST commonly caps rows per request at 1,000. Without explicit
+  // pagination, the former 5,000-row limit hid thousands of published lessons.
+  const pageSize = 1000;
+  const courses: Array<{ slug: string; updated_at: string | null }> = [];
+  const lessons: Array<{ id: string; updated_at: string | null }> = [];
+
+  for (let offset = 0; ; offset += pageSize) {
+    const { data, error } = await db
       .from("edu_marketplace_courses")
       .select("slug,updated_at")
       .eq("status", "published")
-      .limit(5000),
-    db
+      .order("slug", { ascending: true })
+      .range(offset, offset + pageSize - 1);
+
+    if (error) {
+      console.error("Dadyoom sitemap course pagination failed:", error.message);
+      break;
+    }
+    if (!data?.length) break;
+    courses.push(...data);
+    if (data.length < pageSize) break;
+  }
+
+  for (let offset = 0; ; offset += pageSize) {
+    const { data, error } = await db
       .from("lessons")
       .select("id,updated_at")
       .eq("status", "published")
-      .limit(5000),
-  ]);
+      .order("id", { ascending: true })
+      .range(offset, offset + pageSize - 1);
+
+    if (error) {
+      console.error("Dadyoom sitemap lesson pagination failed:", error.message);
+      break;
+    }
+    if (!data?.length) break;
+    lessons.push(...data);
+    if (data.length < pageSize) break;
+  }
 
   return [
     ...staticRoutes,
