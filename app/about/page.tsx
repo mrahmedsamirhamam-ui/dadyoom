@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "عن ضاديوم ومؤسسها",
-  description: "تعرف على ضاديوم، بيت العربية الرقمي، ورسالتها التعليمية ومؤسسها أ. أحمد سمير محمد حافظ حمام.",
+  description: "تعرف على ضاديوم Dadyoom، بيت العربية الرقمي، ومؤسسها أ. أحمد سمير محمد حافظ حمام، وكيف يُكتب اسم المنصة بالعربية والإنجليزية.",
   alternates: { canonical: "/about" },
 };
 
@@ -14,6 +14,13 @@ export default function AboutPage() {
         <Link href="/" className="text-sm font-bold text-[#174f47] hover:underline">العودة إلى ضاديوم</Link>
         <h1 className="mt-6 text-4xl font-black text-[#174f47]">عن ضاديوم</h1>
         <p className="mt-5 text-lg leading-9">ضاديوم (Dadyoom) — بيت العربية الرقمي — مشروع تعليمي يعمل على تقديم تجربة مترابطة لتعلّم اللغة العربية عبر المناهج والمهارات الأربع والتقييم والأنشطة التفاعلية والتقنيات الحديثة.</p>
+        <h2 className="mt-9 text-2xl font-bold text-[#174f47]">كيف يُكتب اسم ضاديوم؟</h2>
+        <p className="mt-3 leading-9">
+          «ضاديوم» هو الاسم العربي المعتمد، ويُكتب بالإنجليزية Dadyoom. وقد يكتبه بعض الزوار
+          «ضاضيوم» أو «داديوم» أو «ضاديو»، أو Dadyoum بالأحرف الإنجليزية؛
+          جميع هذه الصيغ تشير إلى مشروعنا التعليمي نفسه، وعنوانه الرسمي هو
+          {" "}<Link href="/" className="font-semibold text-[#174f47] underline underline-offset-4">dadyoom.com</Link>.
+        </p>
         <h2 className="mt-9 text-2xl font-bold text-[#174f47]">الرؤية التعليمية</h2>
         <p className="mt-3 leading-9">أن تكون اللغة العربية أقرب إلى كل متعلم، وأن تجمع التجربة بين أصالة اللغة، والابتكار التربوي، ومراعاة الفروق الفردية، ودور المعلم والأسرة والمدرسة.</p>
         <h2 className="mt-9 text-2xl font-bold text-[#174f47]">المؤسس والإدارة</h2>
