@@ -91,3 +91,23 @@ describe("production repair guards for existing 66 lam lessons",()=>{
   expect(nextSql).toMatch(/SET prompt=a.instructions, updated_at=now\(\)/u);
  });
 });
+
+
+describe("guarded 66-lesson madd prompts production repair", () => {
+ const sql=readFileSync(resolve(process.cwd(),"scripts/curriculum-22-countries-grade123-madd-prompts-repair-20261029.sql"),"utf8");
+ it("requires exactly 66 published lessons and 198 old activity prompts",()=>{
+   expect(sql).toContain("<>66");
+   expect(sql).toContain("<>198");
+   expect(sql).toContain("n<>198");
+   expect(sql).toContain("BEGIN ISOLATION LEVEL SERIALIZABLE");
+   expect(sql).toContain("SET LOCAL lock_timeout");
+   expect(sql).toContain("student_lesson_progress");
+   expect(sql).toContain("student_answers");
+   expect(sql).toContain("question_attempts");
+   expect(sql).toContain("lesson_activity_attempts");
+   expect(sql).toContain("lesson_mastery");
+   expect(sql).toContain("SET prompt=a.instructions,updated_at=now()");
+   expect(sql).not.toMatch(/\bDELETE\s+FROM\b/i);
+   expect(sql).not.toContain("UPDATE public.questions");
+ });
+});
