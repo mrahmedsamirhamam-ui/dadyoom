@@ -1,0 +1,54 @@
+name: Grade 1-3 22-country original content audit and release gate
+
+on:
+  push:
+    branches:
+      - feat/grades123-22countries-lam-batch-20261029
+    paths:
+      - 'data/audits/grades123-22countries-*'
+      - 'data/review-queue/20261029-grammar-skills-*'
+      - 'scripts/grade123-release-gate.mjs'
+      - 'tests/curriculum-grades123-*'
+      - '.github/workflows/grades123-22country-batch-integrity.yml'
+  pull_request:
+    paths:
+      - 'data/audits/grades123-22countries-*'
+      - 'data/review-queue/20261029-grammar-skills-*'
+      - 'scripts/grade123-release-gate.mjs'
+      - 'tests/curriculum-grades123-*'
+      - '.github/workflows/grades123-22country-batch-integrity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-real-audits:
+    name: Validate 66 country-grade groups and ensure grade-4 release remains blocked
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependency lockfile
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Test immutable before-and-after snapshots
+        run: npx vitest run tests/curriculum-grades123-live-lam-audit.test.ts tests/curriculum-grades123-two-batch-audit.test.ts
+      - name: Grade 1-3 gate must fail closed while coverage is incomplete
+        shell: bash
+        run: |
+          set +e
+          node scripts/grade123-release-gate.mjs > grade-gate.txt 2>&1
+          status=$?
+          set -e
+          cat grade-gate.txt
+          if [ "$status" -eq 0 ]; then
+            echo "Unexpected release authorization to Grades 4–6"; exit 1
+          fi
+          grep -q 'GATE CLOSED' grade-gate.txt
+          grep -q '"ready": false' grade-gate.txt
+      - name: Typecheck all source
+        run: npx tsc --noEmit
