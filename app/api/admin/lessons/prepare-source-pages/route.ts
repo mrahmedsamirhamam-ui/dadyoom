@@ -1,3 +1,4 @@
+import { requireAdminResponse } from "@/lib/auth/require-admin";
 ﻿import {
   mkdir,
   readFile,
@@ -54,6 +55,9 @@ function normalizePage(
 export async function POST(
   request: Request
 ) {
+  const rejectedAdminRequest = await requireAdminResponse();
+  if (rejectedAdminRequest) return rejectedAdminRequest;
+
   try {
     const body =
       (await request.json()) as RequestBody;
