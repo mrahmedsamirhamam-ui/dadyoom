@@ -6,14 +6,14 @@ type AdvanceAssessmentSessionParams = {
   supabase: SupabaseClient;
   sessionId: string;
   studentId: string;
-  answeredCorrectly: boolean;
+  assessmentId: string;
 };
 
 export async function advanceAssessmentSession({
   supabase,
   sessionId,
   studentId,
-  answeredCorrectly,
+  assessmentId,
 }: AdvanceAssessmentSessionParams) {
   const {
     data: session,
@@ -34,6 +34,40 @@ export async function advanceAssessmentSession({
   if (session.finished) {
     return session;
   }
+
+  // The browser cannot declare its answer correct. Only a verified, saved
+  // answer belonging to this student and session may advance the assessment.
+  const { data: savedAnswer, error: answerError } = await supabase
+    .from("assessment_session_answers")
+    .select("assessment_id, lesson_id, is_correct")
+    .eq("session_id", sessionId)
+    .eq("student_id", studentId)
+    .eq("assessment_id", assessmentId)
+    .maybeSingle();
+
+  if (
+    answerError ||
+    !savedAnswer ||
+    savedAnswer.lesson_id !== session.lesson_id ||
+    typeof savedAnswer.is_correct !== "boolean"
+  ) {
+    throw new Error("لا يمكن الانتقال قبل حفظ إجابة مصححة على الخادم.");
+  }
+
+  const { count: savedAnswerCount, error: countError } = await supabase
+    .from("assessment_session_answers")
+    .select("assessment_id", { count: "exact", head: true })
+    .eq("session_id", sessionId)
+    .eq("student_id", studentId);
+
+  const previousCount = session.correct_answers + session.wrong_answers;
+
+  // Prevent replay of the same answer and skipping ahead using other saved answers.
+  if (countError || savedAnswerCount !== previousCount + 1) {
+    throw new Error("حالة التقييم غير متزامنة. حدّث الصفحة ثم حاول مجددًا.");
+  }
+
+  const answeredCorrectly = savedAnswer.is_correct;
 
   const correctAnswers =
     session.correct_answers +
@@ -89,8 +123,11 @@ export async function advanceAssessmentSession({
     })
     .eq("id", sessionId)
     .eq("student_id", studentId)
+    .eq("current_question", session.current_question)
+    .eq("correct_answers", session.correct_answers)
+    .eq("wrong_answers", session.wrong_answers)
     .select("*")
-    .single();
+    .maybeSingle();
 
   if (
     updateError ||
@@ -98,7 +135,7 @@ export async function advanceAssessmentSession({
   ) {
     throw new Error(
       updateError?.message ||
-        "تعذر تحديث جلسة الاختبار."
+        "تعذر تحديث جلسة الاختبار؛ ربما تم الانتقال بالفعل."
     );
   }
 
