@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const key = "dadyoom.ads-consent.v1";
 export const AD_CONSENT_CHANGED = "dadyoom-ad-consent-change";
@@ -8,9 +9,15 @@ export const AD_CONSENT_CHANGED = "dadyoom-ad-consent-change";
 /** Optional opt-in shown only when the server has confirmed an eligible adult-role free account. */
 export default function AdConsentPrompt() {
   const [visible, setVisible] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     let active = true;
+    setVisible(false);
+    if (pathname.startsWith("/student/") ||
+        pathname.startsWith("/lessons/") ||
+        pathname.startsWith("/skills/") ||
+        pathname.startsWith("/admin/")) return;
     const load = async () => {
       try {
         const response = await fetch("/api/billing/status", {
@@ -28,7 +35,7 @@ export default function AdConsentPrompt() {
     };
     void load();
     return () => { active = false; };
-  }, []);
+  }, [pathname]);
 
   function choose(value: "allow" | "deny") {
     try {
