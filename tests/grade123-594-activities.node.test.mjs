@@ -67,3 +67,22 @@ test("observed 66-cell activity coverage increases from 372 to 570 but is not co
   assert.equal(result.missing.exercises,1176);
   assert.equal(result.qualityGaps.genericQuestionLessons,1);
 });
+
+test("every remaining lesson below six activities is identified exactly once by immutable ID", () => {
+  const queue = JSON.parse(read("data/review-queue/grades123-22countries-1176-lessons-below-six-20261029.json"));
+  assert.equal(queue.count,1176);
+  assert.equal(queue.rows.length,1176);
+  assert.equal(new Set(queue.rows.map(row=>row.lessonId)).size,1176);
+  assert.equal(queue.rows.reduce((n,row)=>n+row.missingToSix,0)>0,true);
+  assert.equal(queue.sourceUnknown,993);
+  assert.equal(queue.shortContents,90);
+  const countryCodes=new Set(JSON.parse(read("data/curriculum-packs/arab-countries.json")).countries.map(c=>c.code));
+  for(const row of queue.rows){
+    assert.ok(countryCodes.has(row.country));
+    assert.ok([1,2,3].includes(row.grade));
+    assert.ok(row.publishedActivities>=0 && row.publishedActivities<6);
+    assert.equal(row.missingToSix,6-row.publishedActivities);
+    assert.match(row.lessonId,/^[0-9a-f-]{36}$/i);
+    assert.ok(row.title.trim());
+  }
+});
