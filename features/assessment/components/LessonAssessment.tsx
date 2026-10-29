@@ -797,7 +797,7 @@ export default function LessonAssessment({
 
           <p className="mt-3 leading-8 text-slate-800">
             {result.explanation ||
-              assessment.explanation}
+              "راجع السؤال واستعن بتلميحات ضاد لتفسير إجابتك."}
           </p>
 
           <button
