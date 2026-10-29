@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;600;700&family=Tajawal:wght@400;500;700;800;900&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -9,7 +9,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-arabic-kufi);
-  --font-heading: var(--font-arabic-kufi);
+  --font-heading: var(--font-arabic-display);
   --font-reading: var(--font-arabic-naskh);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -50,8 +50,10 @@
 }
 
 :root {
-  --font-arabic-kufi: "Noto Kufi Arabic", Tahoma, Arial, sans-serif;
-  --font-arabic-naskh: "Noto Naskh Arabic", "Traditional Arabic", "Times New Roman", serif;
+  /* One typography source of truth, shared across every Dadyoom role. */
+  --font-arabic-kufi: "Tajawal", "Noto Sans Arabic", Tahoma, Arial, sans-serif;
+  --font-arabic-display: "Cairo", "Tajawal", Tahoma, Arial, sans-serif;
+  --font-arabic-naskh: "Noto Naskh Arabic", "Traditional Arabic", serif;
   --background: #fffaf0;
   --foreground: #27231f;
   --card: #fffef9;
@@ -134,8 +136,6 @@
 }
 
 @layer utilities {
-  .font-arabic-display { font-family: var(--font-arabic-kufi), sans-serif; }
-  .font-arabic-reading { font-family: var(--font-arabic-naskh), serif; }
   .arabic-panel {
     background-color: rgb(255 254 249 / 96%);
     background-image:
@@ -193,14 +193,6 @@
   --dadyoom-paper: #fffaf0;
   --dadyoom-paper-soft: #f8f1e4;
   --dadyoom-ink: #302b25;
-}
-
-.font-arabic-display {
-  font-family: var(--font-arabic-kufi), system-ui, sans-serif;
-}
-
-.font-arabic-reading {
-  font-family: var(--font-arabic-naskh), "Noto Naskh Arabic", serif;
 }
 
 .arabic-panel,
@@ -540,27 +532,53 @@ html.dadyoom-native-app .dadyoom-native-nav-item {
 html.dadyoom-native-app .dadyoom-native-nav-item:active { background:#f2e5c9; }
 
 
-/* DADYOOM_DESIGN_SYSTEM_2026_10_29
-   Arabic-first, accessible typography. Network fonts use system fallbacks offline. */
+/* DADYOOM_TYPOGRAPHY_V2_2026_10_29
+   Cairo: headings | Tajawal: interface | Noto Naskh Arabic: lesson reading.
+   display=swap keeps an instant local fallback when Google Fonts is blocked.
+   The font-family tokens are declared ONCE in :root above.
+*/
 :root {
-  --font-arabic-kufi: "IBM Plex Sans Arabic", "Noto Kufi Arabic", Tahoma, Arial, sans-serif;
-  --font-arabic-naskh: "Noto Naskh Arabic", "Traditional Arabic", serif;
   --dadyoom-ui-ink: #173f35;
   --dadyoom-ui-muted: #5a7164;
   --dadyoom-ui-border: #dfe9e2;
 }
-
+html[lang="ar"] {
+  font-family: var(--font-arabic-kufi);
+  font-size: 100%;
+}
 body {
   font-family: var(--font-arabic-kufi);
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.75;
+  letter-spacing: 0;
   text-rendering: optimizeLegibility;
+  font-optical-sizing: auto;
 }
-button, input, select, textarea { font-family: inherit; }
-.font-arabic-display { font-family: var(--font-arabic-kufi); letter-spacing: 0; }
-.font-arabic-reading { font-family: var(--font-arabic-naskh); }
+button, input, select, textarea, option {
+  font-family: inherit;
+  letter-spacing: inherit;
+}
+/* A consistent display hierarchy even on pages without a display utility. */
+:where(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-arabic-display);
+  line-height: 1.5;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+.font-arabic-display {
+  font-family: var(--font-arabic-display);
+  letter-spacing: 0;
+}
+.font-arabic-reading {
+  font-family: var(--font-arabic-naskh);
+  letter-spacing: 0;
+}
+code, pre, kbd, samp {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
 :focus-visible { outline: 3px solid #3a9180; outline-offset: 3px; }
 .dadyoom-management, .lesson-arabic-shell { font-family: var(--font-arabic-kufi); }
-.dadyoom-management :is(h1,h2,h3), .lesson-arabic-shell :is(h1,h2,h3) { letter-spacing: 0; line-height: 1.55; }
+.dadyoom-management :is(h1,h2,h3), .lesson-arabic-shell :is(h1,h2,h3) { letter-spacing: 0; line-height: 1.5; }
 .dadyoom-management :is(a,button), .lesson-arabic-shell :is(a,button) { text-underline-offset: 4px; }
 .lesson-arabic-shell {
   background: radial-gradient(circle at 94% 3%, rgba(58,145,128,.075), transparent 24rem),
@@ -577,7 +595,21 @@ button, input, select, textarea { font-family: inherit; }
 .lesson-arabic-shell :is(button,a) { min-height: 42px; }
 .lesson-arabic-shell .lesson-learning-links a { transition: background-color .16s ease, border-color .16s ease, box-shadow .16s ease; }
 .lesson-arabic-shell .lesson-learning-links a:hover { border-color: #8bbb9e; box-shadow: 0 6px 18px rgba(18,63,57,.07); }
-.dadyoom-learning-content { max-width: 77ch; margin-inline: auto; line-height: 2.1; }
+.dadyoom-learning-content {
+  max-width: 72ch;
+  margin-inline: auto;
+  font-family: var(--font-arabic-naskh);
+  font-size: clamp(1.15rem, 1.1rem + .28vw, 1.3rem);
+  font-weight: 400;
+  line-height: 2.05;
+  letter-spacing: 0;
+  text-align: start;
+}
+.dadyoom-learning-content :is(p, li) {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
 .dadyoom-management .tabular-nums, .lesson-arabic-shell .tabular-nums { font-variant-numeric: tabular-nums; }
 @media (prefers-reduced-motion: reduce) {
   .dadyoom-management *, .lesson-arabic-shell * { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
