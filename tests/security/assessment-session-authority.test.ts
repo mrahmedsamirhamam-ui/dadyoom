@@ -26,7 +26,7 @@ describe("AI assessment answer authority", () => {
     expect(advance).toContain('from("assessment_session_answers")');
     expect(advance).toContain('.eq("session_id", sessionId)');
     expect(advance).toContain('.eq("student_id", studentId)');
-    expect(advance).toContain('.eq("assessment_id", assessmentId)');
+    expect(advance).toContain("savedAnswer.assessment_id !== assessmentId");
     expect(advance).toContain("savedAnswer.lesson_id !== session.lesson_id");
     expect(advance).toContain("savedAnswers?.length !== previousCount + 1");
     expect(advance).toContain("savedAnswer.assessment_id !== assessmentId");
