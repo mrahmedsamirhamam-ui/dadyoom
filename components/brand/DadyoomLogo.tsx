@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
+/** Raster brand asset. Keep Arabic name as accessible HTML text, never as SVG. */
+export const DADYOOM_RASTER_MARK = "/brand/dadyoom-mark-2026.png";
+
 type Props = {
   href?: string;
   compact?: boolean;
@@ -8,7 +11,6 @@ type Props = {
   className?: string;
 };
 
-/** Display the committed raster mark. Never render an inline SVG as a logo. */
 export function DadyoomMark({
   inverse = false,
   className = "",
@@ -19,50 +21,47 @@ export function DadyoomMark({
   return (
     <span
       aria-hidden="true"
-      className={`inline-flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl ${inverse ? "drop-shadow-md" : "drop-shadow-sm"} ${className}`}
+      className={`inline-flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl ${inverse ? "bg-[#fdf6e8]" : "bg-[#f4efdf]"} ${className}`}
     >
       <Image
-        src="/brand/dadyoom-icon.png"
+        src={DADYOOM_RASTER_MARK}
         alt=""
-        width={56}
-        height={56}
+        width={160}
+        height={160}
+        priority={false}
         className="h-full w-full object-contain"
       />
     </span>
   );
 }
 
-/**
- * One image identity in all dashboard headers, the homepage and footer.
- * The light/dark logos are true WebP images with transparent backgrounds.
- */
 export default function DadyoomLogo({
   href = "/",
   compact = false,
   inverse = false,
   className = "",
 }: Props) {
-  const content = compact ? (
-    <span className={`inline-flex items-center ${className}`}>
+  const content = (
+    <span className={`inline-flex items-center gap-3 ${className}`} dir="rtl">
       <DadyoomMark inverse={inverse} />
-    </span>
-  ) : (
-    <span className={`inline-flex min-h-14 items-center ${className}`}>
-      <Image
-        src={inverse
-          ? "/brand/dadyoom-logo-inverse.webp"
-          : "/brand/dadyoom-logo.webp"}
-        alt="ضاديوم — بيت العربية الرقمي"
-        width={1000}
-        height={300}
-        priority
-        className="h-auto w-[205px] max-w-[70vw] object-contain sm:w-[230px]"
-      />
+      {compact ? null : (
+        <span className="leading-none">
+          <span
+            className={`block font-arabic-display text-2xl font-black tracking-[-0.04em] ${inverse ? "text-white" : "text-[#123f39]"}`}
+          >
+            ضاديوم
+          </span>
+          <span
+            className={`mt-1.5 block text-[10px] font-black tracking-wide ${inverse ? "text-[#f7e6bc]" : "text-[#8a6a2a]"}`}
+          >
+            بيت العربية الرقمي
+          </span>
+        </span>
+      )}
     </span>
   );
-
   return href ? (
-    <Link href={href} aria-label="ضاديوم — بيت العربية الرقمي">
+    <Link href={href} aria-label="ضاديوم — بيت العربية الرقمي" className="inline-flex">
       {content}
     </Link>
   ) : content;

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { DadyoomMark } from "@/components/brand/DadyoomLogo";
 
 export const dynamic = "force-static";
 export const revalidate = 86400;
@@ -45,7 +46,10 @@ export default function AboutPage() {
 
         <article className="overflow-hidden rounded-[2rem] border border-[#ddcfb4] bg-[#fffdf8] shadow-sm">
           <div className="bg-[#123f39] p-7 text-white sm:p-10">
-            <p className="text-sm font-black text-[#efcb79]">ضاديوم — Dadyoom</p>
+            <div className="mb-4 flex flex-wrap items-center gap-4">
+              <DadyoomMark inverse className="!h-20 !w-20" />
+              <p className="text-sm font-black text-[#efcb79]">ضاديوم — Dadyoom</p>
+            </div>
             <h1 className="mt-3 font-arabic-display text-4xl font-black sm:text-5xl">عن ضاديوم</h1>
             <p className="mt-5 max-w-3xl font-arabic-reading text-lg leading-9 text-[#dce8e4]">
               ضاديوم منصة تعليمية عربية تجمع المنهج والمهارات الأربع والتقييم والتقدم

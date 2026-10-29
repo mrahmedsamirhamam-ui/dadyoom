@@ -1,4 +1,5 @@
 import Link from "next/link";
+import DadyoomLogo from "@/components/brand/DadyoomLogo";
 import CompactNavigation from "@/components/navigation/CompactNavigation";
 
 export default function Header() {
@@ -8,12 +9,7 @@ export default function Header() {
       dir="rtl"
     >
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-4 sm:px-8">
-        <Link
-          href="/"
-          className="text-3xl font-bold"
-        >
-          ضاديوم
-        </Link>
+        <DadyoomLogo inverse />
 
         <CompactNavigation id="legacy-header-navigation" items={[
           { href: "/", label: "الرئيسية" },

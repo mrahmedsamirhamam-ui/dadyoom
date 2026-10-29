@@ -17,6 +17,12 @@ export default function manifest(): MetadataRoute.Manifest {
     categories: ["education"],
     icons: [
       {
+        src: "/brand/dadyoom-mark-2026.png",
+        sizes: "160x160",
+        type: "image/png",
+        purpose: "any",
+      },
+      {
         src: "/pwa/icon-192.png",
         sizes: "192x192",
         type: "image/png",

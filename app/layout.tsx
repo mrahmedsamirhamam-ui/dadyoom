@@ -129,8 +129,9 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
   },
   icons: {
-    shortcut: ["/favicon.ico"],
+    shortcut: ["/brand/dadyoom-mark-2026.png"],
     icon: [
+      { url: "/brand/dadyoom-mark-2026.png", sizes: "160x160", type: "image/png" },
       { url: "/favicon.ico", type: "image/x-icon" },
       {
         url: "/pwa/icon-192.png",
