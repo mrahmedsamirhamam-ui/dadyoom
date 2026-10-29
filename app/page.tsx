@@ -154,7 +154,7 @@ export default function HomePage() {
           <div className="text-sm">
             <span>© 2026 ضاديوم</span>
             <span className="mx-2" aria-hidden="true">·</span>
-            <Link href="/founder" className="underline-offset-4 hover:underline">تأسيس وإدارة: أحمد سمير حمام</Link>
+            <Link href="/founder" className="underline-offset-4 hover:underline">تأسيس وإدارة: أ. أحمد سمير محمد حافظ حمام</Link>
           </div>
         </div>
       </footer>

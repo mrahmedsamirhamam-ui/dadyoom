@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "عن ضاديوم ومؤسسها",
-  description: "تعرف على ضاديوم، بيت العربية الرقمي، ورسالتها التعليمية ومؤسسها أحمد سمير حمام.",
+  description: "تعرف على ضاديوم، بيت العربية الرقمي، ورسالتها التعليمية ومؤسسها أ. أحمد سمير محمد حافظ حمام.",
   alternates: { canonical: "/about" },
 };
 
@@ -17,7 +17,7 @@ export default function AboutPage() {
         <h2 className="mt-9 text-2xl font-bold text-[#174f47]">الرؤية التعليمية</h2>
         <p className="mt-3 leading-9">أن تكون اللغة العربية أقرب إلى كل متعلم، وأن تجمع التجربة بين أصالة اللغة، والابتكار التربوي، ومراعاة الفروق الفردية، ودور المعلم والأسرة والمدرسة.</p>
         <h2 className="mt-9 text-2xl font-bold text-[#174f47]">المؤسس والإدارة</h2>
-        <p className="mt-3 leading-9">أسّس المشروع ويقود تطويره التربوي أحمد سمير حمام (Mr Ahmed Samir Hamam)، وهو معلم لغة عربية ومتخصص في تطوير التعلم والتقنيات التعليمية، وله خبرة تربوية تزيد على عشرين عامًا.</p>
+        <p className="mt-3 leading-9">أسّس المشروع ويقود تطويره التربوي أ. أحمد سمير محمد حافظ حمام (Mr Ahmed Samir Mohamed Hafez Hamam)، وهو معلم لغة عربية ومتخصص في تطوير التعلم والتقنيات التعليمية، وله خبرة تربوية تزيد على عشرين عامًا.</p>
         <Link href="/founder" className="mt-4 inline-block rounded-xl bg-[#174f47] px-5 py-3 font-bold text-white hover:bg-[#103f39]">تعرّف على مؤسس ضاديوم</Link>
         <h2 className="mt-9 text-2xl font-bold text-[#174f47]">الشفافية</h2>
         <p className="mt-3 leading-9">تُعرض مكونات المنصة وفق حالة تطويرها الفعلية. المحتوى الذي تنتجه ضاديوم يُميَّز عن المواد والمراجع الرسمية، ولا يعني الاستناد إلى منهج دراسي حصول المنصة على اعتماد من جهة تعليمية.</p>

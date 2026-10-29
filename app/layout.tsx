@@ -29,8 +29,8 @@ const websiteStructuredData = {
   creator: {
     "@type": "Person",
     "@id": `${siteUrl}/founder#person`,
-    name: "أحمد سمير حمام",
-    alternateName: "Mr Ahmed Samir Hamam",
+    name: "أ. أحمد سمير محمد حافظ حمام",
+    alternateName: "Mr Ahmed Samir Mohamed Hafez Hamam",
     url: `${siteUrl}/founder`,
   },
 };
@@ -44,8 +44,8 @@ export const metadata: Metadata = {
   },
   description: SITE_DESCRIPTION,
   category: "education",
-  authors: [{ name: "Mr Ahmed Samir Hamam", url: "/founder" }],
-  creator: "Mr Ahmed Samir Hamam",
+  authors: [{ name: "Mr Ahmed Samir Mohamed Hafez Hamam", url: "/founder" }],
+  creator: "Mr Ahmed Samir Mohamed Hafez Hamam",
   openGraph: {
     type: "website",
     locale: "ar_AR",
