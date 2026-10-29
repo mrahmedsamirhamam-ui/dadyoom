@@ -99,7 +99,9 @@
           "type": "reading",
           "prompt": "استمع إلى «سَمَك» و«مَاء» وحدد صوت البداية، ثم قل كلمة أخرى تبدأ بصوت الميم."
         }
-      ]
+      ],
+      "databaseApplicationStatus": "blocked_existing_125_student_activity_attempts",
+      "officalMinistryMatch": false
     },
     {
       "id": "31515005-0805-496f-865e-439e4f7306b6",
@@ -230,7 +232,9 @@
           "type": "writing",
           "prompt": "اكتب جملتين تتضمنان «سَمَك» و«سِتَّة» ثم ضع دائرة على السين واشرح الفرق بين «سَ» و«سِ»."
         }
-      ]
+      ],
+      "databaseApplicationStatus": "applied_verified_2026-10-29",
+      "officalMinistryMatch": false
     },
     {
       "id": "d3ccc8d7-47a5-47f0-a06a-36b9d94b02c7",
@@ -361,7 +365,10 @@
           "type": "writing",
           "prompt": "اكتب جملتين؛ الأولى بكلمة «سَارَ» بمعنى مشى، والثانية بكلمة «صَارَ» بمعنى تحول، ثم فسر أثر تغير الصوت."
         }
-      ]
+      ],
+      "databaseApplicationStatus": "applied_verified_2026-10-29",
+      "officalMinistryMatch": false
     }
-  ]
+  ],
+  "notes": "Grade 1 is a source draft only and was NOT applied to Supabase because student activity attempts already exist; Grades 2-3 were applied without student work. Do not overwrite Grade 1."
 }
