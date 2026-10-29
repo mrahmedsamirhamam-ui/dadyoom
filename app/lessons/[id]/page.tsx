@@ -18,6 +18,7 @@ import WeakQuestionsReview from "@/features/adaptive-learning/components/WeakQue
 
 import LessonProgress from "@/components/lesson/LessonProgress";
 import LessonLearningSlides from "@/components/lesson/LessonLearningSlides";
+import StructuredLessonText from "@/components/lesson/StructuredLessonText";
 import VocabularyCard from "@/components/lesson/VocabularyCard";
 import MultipleChoiceQuestion from "@/components/lesson/MultipleChoiceQuestion";
 import ScoreCard from "@/components/lesson/ScoreCard";
@@ -442,6 +443,7 @@ export default async function LessonPage({
           instructions={lesson.instructions}
         />
         </div>
+        <StructuredLessonText content={lesson.content} />
         <section className="rounded-3xl border border-amber-200 bg-white p-6 shadow-sm sm:p-8">
           <p className="text-sm font-black text-amber-700">
             بعد انتهاء العرض
