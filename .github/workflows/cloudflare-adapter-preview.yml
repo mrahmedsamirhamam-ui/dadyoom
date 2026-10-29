@@ -1,0 +1,83 @@
+name: Dadyoom Cloudflare adapter preview (no deployment)
+
+on:
+  push:
+    branches:
+      - fix/cloudflare-opennext-preview-20261029
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  worker-dry-run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      CI: "true"
+      NODE_OPTIONS: "--max-old-space-size=6144"
+    steps:
+      - name: Checkout preview branch only
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 1
+
+      - name: Use pinned Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Verify existing lockfile and dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Install pinned OpenNext and Wrangler for isolated preview
+        run: npm install --save-exact --save-dev @opennextjs/cloudflare@1.20.13 wrangler@4.154.0 --no-audit --no-fund
+
+      - name: Verify lockfile reproducibility
+        run: npm ci --no-audit --no-fund
+
+      - name: Build OpenNext Worker from actual Next.js app
+        run: npx opennextjs-cloudflare build
+
+      - name: Check worker output exists
+        run: |
+          test -s .open-next/worker.js
+          test -d .open-next/assets
+
+      - name: Wrangler dry-run bundle only (NEVER deploy)
+        run: |
+          mkdir -p /tmp/dadyoom-preview
+          npx wrangler deploy --dry-run --outdir /tmp/dadyoom-preview 2>&1 | tee /tmp/dadyoom-preview/wrangler-dryrun.log
+
+      - name: Report compressed bundle sizes, gate obvious Free-plan oversize
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import gzip
+          folder = Path("/tmp/dadyoom-preview")
+          bundles = sorted([p for p in folder.rglob("*") if p.suffix in (".js", ".mjs")], key=lambda x:x.stat().st_size, reverse=True)
+          if not bundles:
+              raise SystemExit("Wrangler produced no JavaScript bundle")
+          first = bundles[0]
+          compressed = len(gzip.compress(first.read_bytes()))
+          print(f"Bundled JS: {first.name} raw={first.stat().st_size} bytes gzip={compressed} bytes")
+          print("Other uploaded modules and assets may increase Cloudflare's reported total; inspect the Wrangler dry-run output too.")
+          if compressed > 3*1024*1024:
+              raise SystemExit("The JS alone exceeds the 3 MiB compressed Free Worker limit; no deployment performed.")
+          PY
+
+      - name: Commit reproducible dependency manifest and lock to preview branch
+        # No repository files are changed until the actual adapter build and dry-run pass.
+        if: success() && github.ref == 'refs/heads/fix/cloudflare-opennext-preview-20261029'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add package.json package-lock.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'build(cloudflare): pin OpenNext and Wrangler after worker preview validation'
+            git push origin HEAD:fix/cloudflare-opennext-preview-20261029
+          fi
