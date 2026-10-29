@@ -40,3 +40,7 @@
 - Original workflow concluded failure only because its **obsolete 3 MiB compressed Free-tier size gate** rejected the bundle. This was not a Cloudflare API deployment failure and is corrected by a follow-up commit.
 - OpenNext warns: **Node.js middleware support is experimental and not officially maintained by OpenNext**. This project has a server-side `proxy.ts` privilege guard for admin/teacher API routes; this makes authenticated preview/runtime tests mandatory before promoting a Worker. Never switch production to an untested adapter.
 - The true reason the independent Cloudflare dashboard build fails is not yet exposed by the GitHub status; examine the external log in Cloudflare.
+
+## Additional automated route check
+- A local `wrangler dev --local` smoke verifies HTTP 200 on `/`, `/about`, and `/founder` using the built Worker. This tests public HTML only with no credentials or Cloudflare deployment, not authenticated APIs.
+- Scripts `cloudflare:build`, `cloudflare:preview`, `cloudflare:deploy`, and `cloudflare:upload` are prepared for explicit use after the production-adapter review. **Do not invoke deploy on this branch**, as its `wrangler.jsonc` is an isolated preview Worker.

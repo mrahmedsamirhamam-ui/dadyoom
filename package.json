@@ -23,7 +23,11 @@
     "release:audit": "node scripts/release-audit.mjs",
     "curriculum:coverage": "node scripts/curriculum-coverage.mjs",
     "release:final-audit": "node scripts/final-mvp-audit.mjs",
-    "prebuild": "node scripts/write-app-version.mjs"
+    "prebuild": "node scripts/write-app-version.mjs",
+    "cloudflare:build": "opennextjs-cloudflare build",
+    "cloudflare:preview": "opennextjs-cloudflare preview",
+    "cloudflare:deploy": "opennextjs-cloudflare deploy",
+    "cloudflare:upload": "opennextjs-cloudflare upload"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

@@ -71,6 +71,35 @@ jobs:
           print("PASS: Worker bundle is within the published size limit. Runtime, bindings and Cloudflare deployment remain unverified.")
           PY
 
+      - name: Verify public HTML routes in local Cloudflare workerd (no external secrets)
+        shell: bash
+        run: |
+          npx wrangler dev --local --port 8787 --log-level error >/tmp/dadyoom-local-worker.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          ready=0
+          for i in $(seq 1 45); do
+            if curl --silent --max-time 2 http://127.0.0.1:8787/about >/dev/null; then
+              ready=1
+              break
+            fi
+            sleep 2
+          done
+          if [ "$ready" -ne 1 ]; then
+            echo "Local workerd did not become reachable:"
+            tail -n 80 /tmp/dadyoom-local-worker.log
+            exit 1
+          fi
+          for route in "/" "/about" "/founder"; do
+            echo "GET $route"
+            status=$(curl -sS -L --max-time 20 -o /tmp/dadyoom-page.html -w '%{http_code}' "http://127.0.0.1:8787$route")
+            echo "status=$status"
+            if [ "$status" != "200" ]; then
+              tail -n 40 /tmp/dadyoom-local-worker.log
+              exit 1
+            fi
+          done
+
       - name: Commit reproducible dependency manifest and lock to preview branch
         # No repository files are changed until the actual adapter build and dry-run pass.
         if: success() && github.ref == 'refs/heads/fix/cloudflare-opennext-preview-20261029'
