@@ -78,19 +78,42 @@ export async function billingStatus() {
   const db = supabase as unknown as SupabaseClient;
   const { data: { user } } = await supabase.auth.getUser();
 
-  const plan = user ? await currentPlan() : "free";
+  // Advertising MUST fail closed: a plan-RPC failure must never fall back
+  // to displaying ads to a Plus user. Child/student and anonymous audiences
+  // also receive no ads until an age-appropriate, compliant path is proven.
+  const [verifiedSubscription, profile] = user
+    ? await Promise.all([
+        db.rpc("edu_current_plan", { p_user: user.id }),
+        db.from("profiles").select("role").eq("id", user.id).maybeSingle(),
+      ])
+    : [null, null];
 
-  const { data: planRow } = await db
+  const subscriptionVerified = Boolean(user && verifiedSubscription && !verifiedSubscription.error);
+  const plan: DadyoomPlan =
+    subscriptionVerified && verifiedSubscription?.data === "plus" ? "plus" : "free";
+
+  const { data: planRow, error: planError } = await db
     .from("edu_subscription_plans")
     .select("id,name_ar,monthly_price,currency,ads_enabled,limits")
     .eq("id", plan)
     .maybeSingle();
 
+  const role = profile?.data?.role ?? null;
+  const adultAccountRoleVerified =
+    !profile?.error && ["teacher", "parent", "school", "admin"].includes(String(role));
+  const privacyAndAdSettingsReady = process.env.DADYOOM_ADS_COMPLIANCE_READY === "true";
+
   return {
     authenticated: Boolean(user),
     plan,
     plus: plan === "plus",
-    showAds: plan !== "plus" && Boolean(planRow?.ads_enabled ?? true),
+    showAds:
+      subscriptionVerified &&
+      adultAccountRoleVerified &&
+      privacyAndAdSettingsReady &&
+      !planError &&
+      plan !== "plus" &&
+      planRow?.ads_enabled === true,
     limits: (planRow?.limits ?? {}) as Record<string, number>,
     price: Number(planRow?.monthly_price ?? 0),
     currency: String(planRow?.currency ?? "BHD"),
