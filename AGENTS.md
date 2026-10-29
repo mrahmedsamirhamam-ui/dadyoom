@@ -220,3 +220,10 @@ Run `npm run curriculum:grades123:gate` against refreshed database audit evidenc
 ## Evidence refresh — Grades 1–3 across 22 countries, two batches
 
 The latest audit is `data/audits/grades123-22countries-after-two-batches-20261029.json`: 1,803 existing lessons, 1,746 published, 57 drafts; valid exercise-count coverage 108 baseline -> 174 after sun/moon lam -> 240 after singular/plural (13.75%). Two additive Supabase transactions created 396 published exercises in 132 existing lessons with no old student-progress or grading-key mutation. The review IDs and statuses are in `data/review-queue/20261029-grammar-skills-132-lesson-revisions.json`. The Grades 4–6 release gate must stay closed until all 66 country-grade cells genuinely pass, including verified official-or-honestly-general curriculum scope, browser audio and roles, and private grading. Do not rely on green source CI as a substitute for live E2E.
+
+
+## 2026-10-29 Grade123 latest evidence (do not restart)
+
+The current Grades 1–3 × 22-country snapshot is `data/audits/grades123-22countries-after-four-batches-20261029.json`: 1,803 existing, 1,746 published, 57 drafts, 372/1,746 with 6–10 published exercises (21.31%). Four original lesson-topic batches have improved 264 existing lessons via 792 additive activities: sun/moon lam, singular/plural, short vowels, basic nominal sentence. The newest two topics received 396 activities and 130 new evidence-backed writing skill links. Current stored skill-linked lessons 1,078; structural candidates 357, NOT verified official syllabus or production E2E readiness.
+
+Continue only Grades 1–3 until 100% of all 66 country-grade cells passes the release gate. Never copy ministry books, invent syllabus alignment, auto-grade manual writing as academic mastery, overwrite historic attempts, or expose answer keys. Review items for the latest 132 lesson IDs: `data/review-queue/20261029-phonics-nominal-132-lessons.json`.
