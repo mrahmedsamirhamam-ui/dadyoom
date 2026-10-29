@@ -1,0 +1,2900 @@
+{
+  "generatedOn": "2026-10-29",
+  "source": "Supabase production read-only post-commit; frozen 2026-10-29 baseline",
+  "method": "Exercise threshold and skill mapping, NOT ministry/audio/browser production readiness.",
+  "global": {
+    "lessons": 8139,
+    "published": 8036,
+    "before6": 91,
+    "after6": 157,
+    "beforeSkills": 0,
+    "afterSkills": 2651,
+    "afterStruct": 128
+  },
+  "countries": [
+    {
+      "code": "AE",
+      "country": "الإمارات العربية المتحدة",
+      "lessons": 288,
+      "published": 288,
+      "before6": 0,
+      "after6": 3,
+      "beforeSkills": 0,
+      "afterSkills": 42,
+      "afterStruct": 3
+    },
+    {
+      "code": "BH",
+      "country": "مملكة البحرين",
+      "lessons": 1640,
+      "published": 1547,
+      "before6": 24,
+      "after6": 27,
+      "beforeSkills": 0,
+      "afterSkills": 732,
+      "afterStruct": 3
+    },
+    {
+      "code": "DJ",
+      "country": "جيبوتي",
+      "lessons": 384,
+      "published": 384,
+      "before6": 0,
+      "after6": 3,
+      "beforeSkills": 0,
+      "afterSkills": 192,
+      "afterStruct": 3
+    },
+    {
+      "code": "DZ",
+      "country": "الجزائر",
+      "lessons": 354,
+      "published": 354,
+      "before6": 0,
+      "after6": 3,
+      "beforeSkills": 0,
+      "afterSkills": 165,
+      "afterStruct": 3
+    },
+    {
+      "code": "EG",
+      "country": "مصر",
+      "lessons": 373,
+      "published": 373,
+      "before6": 12,
+      "after6": 15,
+      "beforeSkills": 0,
+      "afterSkills": 57,
+      "afterStruct": 15
+    },
+    {
+      "code": "IQ",
+      "country": "العراق",
+      "lessons": 237,
+      "published": 237,
+      "before6": 0,
+      "after6": 3,
+      "beforeSkills": 0,
+      "afterSkills": 42,
+      "afterStruct": 3
+    },
+    {
+      "code": "JO",
+      "country": "الأردن",
+      "lessons": 394,
+      "published": 394,
+      "before6": 25,
+      "after6": 28,
+      "beforeSkills": 0,
+      "afterSkills": 119,
+      "afterStruct": 28
+    },
+    {
+      "code": "KM",
+      "country": "جزر القمر",
+      "lessons": 228,
+      "published": 228,
+      "before6": 0,
+      "after6": 3,
+      "beforeSkills": 0,
+      "afterSkills": 42,
+      "afterStruct": 3
+    },
+    {
+      "code": "KW",
+      "country": "الكويت",
+      "lessons": 303,
+      "published": 303,
+      "before6": 0,
+      "after6": 3,
+      "beforeSkills": 0,
+      "afterSkills": 42,
+      "afterStruct": 3
+    },
+    {
+      "code": "LB",
+      "country": "لبنان",
+      "lessons": 264,
+      "published": 264,
+      "before6": 0,
+      "after6": 3,
+      "beforeSkills": 0,
+      "afterSkills": 74,
+      "afterStruct": 3
+    },
+    {
+      "code": "LY",
+      "country": "ليبيا",
+      "lessons": 349,
+      "published": 349,
+      "before6": 10,
+      "after6": 13,
+      "beforeSkills": 0,
+      "afterSkills": 124,
+      "afterStruct": 13
+    },
+    {
+      "code": "MA",
+      "country": "المغرب",
+      "lessons": 231,
+      "published": 231,
+      "before6": 0,
+      "after6": 3,
+      "beforeSkills": 0,
+      "afterSkills": 42,
+      "afterStruct": 3
+    },
+    {
+      "code": "MR",
+      "country": "موريتانيا",
+      "lessons": 399,
+      "published": 399,
+      "before6": 0,
+      "after6": 3,
+      "beforeSkills": 0,
+      "afterSkills": 211,
+      "afterStruct": 3
+    },
+    {
+      "code": "OM",
+      "country": "عُمان",
+      "lessons": 309,
+      "published": 302,
+      "before6": 5,
+      "after6": 8,
+      "beforeSkills": 0,
+      "afterSkills": 67,
+      "afterStruct": 3
+    },
+    {
+      "code": "PS",
+      "country": "فلسطين",
+      "lessons": 484,
+      "published": 484,
+      "before6": 15,
+      "after6": 18,
+      "beforeSkills": 0,
+      "afterSkills": 119,
+      "afterStruct": 18
+    },
+    {
+      "code": "QA",
+      "country": "قطر",
+      "lessons": 240,
+      "published": 240,
+      "before6": 0,
+      "after6": 3,
+      "beforeSkills": 0,
+      "afterSkills": 42,
+      "afterStruct": 3
+    },
+    {
+      "code": "SA",
+      "country": "السعودية",
+      "lessons": 422,
+      "published": 422,
+      "before6": 0,
+      "after6": 3,
+      "beforeSkills": 0,
+      "afterSkills": 248,
+      "afterStruct": 3
+    },
+    {
+      "code": "SD",
+      "country": "السودان",
+      "lessons": 309,
+      "published": 309,
+      "before6": 0,
+      "after6": 3,
+      "beforeSkills": 0,
+      "afterSkills": 123,
+      "afterStruct": 3
+    },
+    {
+      "code": "SO",
+      "country": "الصومال",
+      "lessons": 228,
+      "published": 228,
+      "before6": 0,
+      "after6": 3,
+      "beforeSkills": 0,
+      "afterSkills": 42,
+      "afterStruct": 3
+    },
+    {
+      "code": "SY",
+      "country": "سوريا",
+      "lessons": 228,
+      "published": 228,
+      "before6": 0,
+      "after6": 3,
+      "beforeSkills": 0,
+      "afterSkills": 42,
+      "afterStruct": 3
+    },
+    {
+      "code": "TN",
+      "country": "تونس",
+      "lessons": 233,
+      "published": 233,
+      "before6": 0,
+      "after6": 3,
+      "beforeSkills": 0,
+      "afterSkills": 42,
+      "afterStruct": 3
+    },
+    {
+      "code": "YE",
+      "country": "اليمن",
+      "lessons": 242,
+      "published": 239,
+      "before6": 0,
+      "after6": 3,
+      "beforeSkills": 0,
+      "afterSkills": 42,
+      "afterStruct": 3
+    }
+  ],
+  "grades": [
+    {
+      "code": "AE",
+      "country": "الإمارات العربية المتحدة",
+      "grade_number": 1,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "AE",
+      "country": "الإمارات العربية المتحدة",
+      "grade_number": 2,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "AE",
+      "country": "الإمارات العربية المتحدة",
+      "grade_number": 3,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "AE",
+      "country": "الإمارات العربية المتحدة",
+      "grade_number": 4,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "AE",
+      "country": "الإمارات العربية المتحدة",
+      "grade_number": 5,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "AE",
+      "country": "الإمارات العربية المتحدة",
+      "grade_number": 6,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "AE",
+      "country": "الإمارات العربية المتحدة",
+      "grade_number": 7,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "AE",
+      "country": "الإمارات العربية المتحدة",
+      "grade_number": 8,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "AE",
+      "country": "الإمارات العربية المتحدة",
+      "grade_number": 9,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "AE",
+      "country": "الإمارات العربية المتحدة",
+      "grade_number": 10,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "AE",
+      "country": "الإمارات العربية المتحدة",
+      "grade_number": 11,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "AE",
+      "country": "الإمارات العربية المتحدة",
+      "grade_number": 12,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "BH",
+      "country": "مملكة البحرين",
+      "grade_number": 1,
+      "lessons": 143,
+      "published": 143,
+      "exercises6to10": 25,
+      "linked_skill_lessons": 13,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "BH",
+      "country": "مملكة البحرين",
+      "grade_number": 2,
+      "lessons": 89,
+      "published": 58,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 15,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "BH",
+      "country": "مملكة البحرين",
+      "grade_number": 3,
+      "lessons": 77,
+      "published": 51,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 18,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "BH",
+      "country": "مملكة البحرين",
+      "grade_number": 4,
+      "lessons": 195,
+      "published": 178,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 32,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "BH",
+      "country": "مملكة البحرين",
+      "grade_number": 5,
+      "lessons": 177,
+      "published": 169,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 43,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "BH",
+      "country": "مملكة البحرين",
+      "grade_number": 6,
+      "lessons": 129,
+      "published": 122,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 10,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "BH",
+      "country": "مملكة البحرين",
+      "grade_number": 7,
+      "lessons": 122,
+      "published": 121,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 26,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "BH",
+      "country": "مملكة البحرين",
+      "grade_number": 8,
+      "lessons": 110,
+      "published": 108,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 90,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "BH",
+      "country": "مملكة البحرين",
+      "grade_number": 9,
+      "lessons": 70,
+      "published": 69,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 51,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "BH",
+      "country": "مملكة البحرين",
+      "grade_number": 10,
+      "lessons": 170,
+      "published": 170,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 145,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "BH",
+      "country": "مملكة البحرين",
+      "grade_number": 11,
+      "lessons": 200,
+      "published": 200,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 166,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "BH",
+      "country": "مملكة البحرين",
+      "grade_number": 12,
+      "lessons": 158,
+      "published": 158,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 123,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "DJ",
+      "country": "جيبوتي",
+      "grade_number": 1,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "DJ",
+      "country": "جيبوتي",
+      "grade_number": 2,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "DJ",
+      "country": "جيبوتي",
+      "grade_number": 3,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "DJ",
+      "country": "جيبوتي",
+      "grade_number": 4,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "DJ",
+      "country": "جيبوتي",
+      "grade_number": 5,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "DJ",
+      "country": "جيبوتي",
+      "grade_number": 6,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "DJ",
+      "country": "جيبوتي",
+      "grade_number": 7,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "DJ",
+      "country": "جيبوتي",
+      "grade_number": 8,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "DJ",
+      "country": "جيبوتي",
+      "grade_number": 9,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "DJ",
+      "country": "جيبوتي",
+      "grade_number": 10,
+      "lessons": 65,
+      "published": 65,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 46,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "DJ",
+      "country": "جيبوتي",
+      "grade_number": 11,
+      "lessons": 82,
+      "published": 82,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 60,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "DJ",
+      "country": "جيبوتي",
+      "grade_number": 12,
+      "lessons": 66,
+      "published": 66,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 44,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "DZ",
+      "country": "الجزائر",
+      "grade_number": 1,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "DZ",
+      "country": "الجزائر",
+      "grade_number": 2,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "DZ",
+      "country": "الجزائر",
+      "grade_number": 3,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "DZ",
+      "country": "الجزائر",
+      "grade_number": 4,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "DZ",
+      "country": "الجزائر",
+      "grade_number": 5,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "DZ",
+      "country": "الجزائر",
+      "grade_number": 6,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "DZ",
+      "country": "الجزائر",
+      "grade_number": 7,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "DZ",
+      "country": "الجزائر",
+      "grade_number": 8,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "DZ",
+      "country": "الجزائر",
+      "grade_number": 9,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "DZ",
+      "country": "الجزائر",
+      "grade_number": 10,
+      "lessons": 64,
+      "published": 64,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 44,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "DZ",
+      "country": "الجزائر",
+      "grade_number": 11,
+      "lessons": 63,
+      "published": 63,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 43,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "DZ",
+      "country": "الجزائر",
+      "grade_number": 12,
+      "lessons": 56,
+      "published": 56,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 36,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "EG",
+      "country": "مصر",
+      "grade_number": 1,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 13,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "EG",
+      "country": "مصر",
+      "grade_number": 2,
+      "lessons": 42,
+      "published": 42,
+      "exercises6to10": 13,
+      "linked_skill_lessons": 26,
+      "structurally_ready_without_audio": 13
+    },
+    {
+      "code": "EG",
+      "country": "مصر",
+      "grade_number": 3,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "EG",
+      "country": "مصر",
+      "grade_number": 4,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "EG",
+      "country": "مصر",
+      "grade_number": 5,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "EG",
+      "country": "مصر",
+      "grade_number": 6,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "EG",
+      "country": "مصر",
+      "grade_number": 7,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "EG",
+      "country": "مصر",
+      "grade_number": 8,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "EG",
+      "country": "مصر",
+      "grade_number": 9,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "EG",
+      "country": "مصر",
+      "grade_number": 10,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 2,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "EG",
+      "country": "مصر",
+      "grade_number": 11,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 1,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "EG",
+      "country": "مصر",
+      "grade_number": 12,
+      "lessons": 31,
+      "published": 31,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 1,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "IQ",
+      "country": "العراق",
+      "grade_number": 1,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "IQ",
+      "country": "العراق",
+      "grade_number": 2,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "IQ",
+      "country": "العراق",
+      "grade_number": 3,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "IQ",
+      "country": "العراق",
+      "grade_number": 4,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "IQ",
+      "country": "العراق",
+      "grade_number": 5,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "IQ",
+      "country": "العراق",
+      "grade_number": 6,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "IQ",
+      "country": "العراق",
+      "grade_number": 7,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "IQ",
+      "country": "العراق",
+      "grade_number": 8,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "IQ",
+      "country": "العراق",
+      "grade_number": 9,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "IQ",
+      "country": "العراق",
+      "grade_number": 10,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "IQ",
+      "country": "العراق",
+      "grade_number": 11,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "IQ",
+      "country": "العراق",
+      "grade_number": 12,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "JO",
+      "country": "الأردن",
+      "grade_number": 1,
+      "lessons": 28,
+      "published": 28,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "JO",
+      "country": "الأردن",
+      "grade_number": 2,
+      "lessons": 28,
+      "published": 28,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "JO",
+      "country": "الأردن",
+      "grade_number": 3,
+      "lessons": 28,
+      "published": 28,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "JO",
+      "country": "الأردن",
+      "grade_number": 4,
+      "lessons": 28,
+      "published": 28,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "JO",
+      "country": "الأردن",
+      "grade_number": 5,
+      "lessons": 28,
+      "published": 28,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "JO",
+      "country": "الأردن",
+      "grade_number": 6,
+      "lessons": 28,
+      "published": 28,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "JO",
+      "country": "الأردن",
+      "grade_number": 7,
+      "lessons": 28,
+      "published": 28,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "JO",
+      "country": "الأردن",
+      "grade_number": 8,
+      "lessons": 28,
+      "published": 28,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "JO",
+      "country": "الأردن",
+      "grade_number": 9,
+      "lessons": 28,
+      "published": 28,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "JO",
+      "country": "الأردن",
+      "grade_number": 10,
+      "lessons": 28,
+      "published": 28,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "JO",
+      "country": "الأردن",
+      "grade_number": 11,
+      "lessons": 48,
+      "published": 48,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 30,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "JO",
+      "country": "الأردن",
+      "grade_number": 12,
+      "lessons": 66,
+      "published": 66,
+      "exercises6to10": 25,
+      "linked_skill_lessons": 47,
+      "structurally_ready_without_audio": 25
+    },
+    {
+      "code": "KM",
+      "country": "جزر القمر",
+      "grade_number": 1,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "KM",
+      "country": "جزر القمر",
+      "grade_number": 2,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "KM",
+      "country": "جزر القمر",
+      "grade_number": 3,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "KM",
+      "country": "جزر القمر",
+      "grade_number": 4,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "KM",
+      "country": "جزر القمر",
+      "grade_number": 5,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "KM",
+      "country": "جزر القمر",
+      "grade_number": 6,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "KM",
+      "country": "جزر القمر",
+      "grade_number": 7,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "KM",
+      "country": "جزر القمر",
+      "grade_number": 8,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "KM",
+      "country": "جزر القمر",
+      "grade_number": 9,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "KM",
+      "country": "جزر القمر",
+      "grade_number": 10,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "KM",
+      "country": "جزر القمر",
+      "grade_number": 11,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "KM",
+      "country": "جزر القمر",
+      "grade_number": 12,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "KW",
+      "country": "الكويت",
+      "grade_number": 1,
+      "lessons": 27,
+      "published": 27,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "KW",
+      "country": "الكويت",
+      "grade_number": 2,
+      "lessons": 27,
+      "published": 27,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "KW",
+      "country": "الكويت",
+      "grade_number": 3,
+      "lessons": 27,
+      "published": 27,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "KW",
+      "country": "الكويت",
+      "grade_number": 4,
+      "lessons": 27,
+      "published": 27,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "KW",
+      "country": "الكويت",
+      "grade_number": 5,
+      "lessons": 27,
+      "published": 27,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "KW",
+      "country": "الكويت",
+      "grade_number": 6,
+      "lessons": 27,
+      "published": 27,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "KW",
+      "country": "الكويت",
+      "grade_number": 7,
+      "lessons": 27,
+      "published": 27,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "KW",
+      "country": "الكويت",
+      "grade_number": 8,
+      "lessons": 27,
+      "published": 27,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "KW",
+      "country": "الكويت",
+      "grade_number": 9,
+      "lessons": 27,
+      "published": 27,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "KW",
+      "country": "الكويت",
+      "grade_number": 10,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "KW",
+      "country": "الكويت",
+      "grade_number": 11,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "KW",
+      "country": "الكويت",
+      "grade_number": 12,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "LB",
+      "country": "لبنان",
+      "grade_number": 1,
+      "lessons": 21,
+      "published": 21,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 16,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "LB",
+      "country": "لبنان",
+      "grade_number": 2,
+      "lessons": 21,
+      "published": 21,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 16,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "LB",
+      "country": "لبنان",
+      "grade_number": 3,
+      "lessons": 21,
+      "published": 21,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 16,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "LB",
+      "country": "لبنان",
+      "grade_number": 4,
+      "lessons": 21,
+      "published": 21,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 2,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "LB",
+      "country": "لبنان",
+      "grade_number": 5,
+      "lessons": 21,
+      "published": 21,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 2,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "LB",
+      "country": "لبنان",
+      "grade_number": 6,
+      "lessons": 21,
+      "published": 21,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 2,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "LB",
+      "country": "لبنان",
+      "grade_number": 7,
+      "lessons": 21,
+      "published": 21,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 2,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "LB",
+      "country": "لبنان",
+      "grade_number": 8,
+      "lessons": 21,
+      "published": 21,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 2,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "LB",
+      "country": "لبنان",
+      "grade_number": 9,
+      "lessons": 21,
+      "published": 21,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 2,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "LB",
+      "country": "لبنان",
+      "grade_number": 10,
+      "lessons": 21,
+      "published": 21,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 2,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "LB",
+      "country": "لبنان",
+      "grade_number": 11,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 4,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "LB",
+      "country": "لبنان",
+      "grade_number": 12,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 8,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "LY",
+      "country": "ليبيا",
+      "grade_number": 1,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 16,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "LY",
+      "country": "ليبيا",
+      "grade_number": 2,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 16,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "LY",
+      "country": "ليبيا",
+      "grade_number": 3,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 16,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "LY",
+      "country": "ليبيا",
+      "grade_number": 4,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 2,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "LY",
+      "country": "ليبيا",
+      "grade_number": 5,
+      "lessons": 34,
+      "published": 34,
+      "exercises6to10": 10,
+      "linked_skill_lessons": 12,
+      "structurally_ready_without_audio": 10
+    },
+    {
+      "code": "LY",
+      "country": "ليبيا",
+      "grade_number": 6,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 4,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "LY",
+      "country": "ليبيا",
+      "grade_number": 7,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 12,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "LY",
+      "country": "ليبيا",
+      "grade_number": 8,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 12,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "LY",
+      "country": "ليبيا",
+      "grade_number": 9,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 6,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "LY",
+      "country": "ليبيا",
+      "grade_number": 10,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 12,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "LY",
+      "country": "ليبيا",
+      "grade_number": 11,
+      "lessons": 42,
+      "published": 42,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 4,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "LY",
+      "country": "ليبيا",
+      "grade_number": 12,
+      "lessons": 33,
+      "published": 33,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 12,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "MA",
+      "country": "المغرب",
+      "grade_number": 1,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "MA",
+      "country": "المغرب",
+      "grade_number": 2,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "MA",
+      "country": "المغرب",
+      "grade_number": 3,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "MA",
+      "country": "المغرب",
+      "grade_number": 4,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "MA",
+      "country": "المغرب",
+      "grade_number": 5,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "MA",
+      "country": "المغرب",
+      "grade_number": 6,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "MA",
+      "country": "المغرب",
+      "grade_number": 7,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "MA",
+      "country": "المغرب",
+      "grade_number": 8,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "MA",
+      "country": "المغرب",
+      "grade_number": 9,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "MA",
+      "country": "المغرب",
+      "grade_number": 10,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "MA",
+      "country": "المغرب",
+      "grade_number": 11,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "MA",
+      "country": "المغرب",
+      "grade_number": 12,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "MR",
+      "country": "موريتانيا",
+      "grade_number": 1,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "MR",
+      "country": "موريتانيا",
+      "grade_number": 2,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "MR",
+      "country": "موريتانيا",
+      "grade_number": 3,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "MR",
+      "country": "موريتانيا",
+      "grade_number": 4,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "MR",
+      "country": "موريتانيا",
+      "grade_number": 5,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "MR",
+      "country": "موريتانيا",
+      "grade_number": 6,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "MR",
+      "country": "موريتانيا",
+      "grade_number": 7,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "MR",
+      "country": "موريتانيا",
+      "grade_number": 8,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "MR",
+      "country": "موريتانيا",
+      "grade_number": 9,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "MR",
+      "country": "موريتانيا",
+      "grade_number": 10,
+      "lessons": 62,
+      "published": 62,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 43,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "MR",
+      "country": "موريتانيا",
+      "grade_number": 11,
+      "lessons": 83,
+      "published": 83,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 63,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "MR",
+      "country": "موريتانيا",
+      "grade_number": 12,
+      "lessons": 83,
+      "published": 83,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 63,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "OM",
+      "country": "عُمان",
+      "grade_number": 1,
+      "lessons": 23,
+      "published": 23,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "OM",
+      "country": "عُمان",
+      "grade_number": 2,
+      "lessons": 23,
+      "published": 23,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "OM",
+      "country": "عُمان",
+      "grade_number": 3,
+      "lessons": 23,
+      "published": 23,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "OM",
+      "country": "عُمان",
+      "grade_number": 4,
+      "lessons": 23,
+      "published": 23,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "OM",
+      "country": "عُمان",
+      "grade_number": 5,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "OM",
+      "country": "عُمان",
+      "grade_number": 6,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "OM",
+      "country": "عُمان",
+      "grade_number": 7,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "OM",
+      "country": "عُمان",
+      "grade_number": 8,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "OM",
+      "country": "عُمان",
+      "grade_number": 9,
+      "lessons": 24,
+      "published": 24,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "OM",
+      "country": "عُمان",
+      "grade_number": 10,
+      "lessons": 24,
+      "published": 20,
+      "exercises6to10": 2,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "OM",
+      "country": "عُمان",
+      "grade_number": 11,
+      "lessons": 24,
+      "published": 21,
+      "exercises6to10": 3,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "OM",
+      "country": "عُمان",
+      "grade_number": 12,
+      "lessons": 49,
+      "published": 49,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 25,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "PS",
+      "country": "فلسطين",
+      "grade_number": 1,
+      "lessons": 60,
+      "published": 60,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "PS",
+      "country": "فلسطين",
+      "grade_number": 2,
+      "lessons": 53,
+      "published": 53,
+      "exercises6to10": 16,
+      "linked_skill_lessons": 29,
+      "structurally_ready_without_audio": 16
+    },
+    {
+      "code": "PS",
+      "country": "فلسطين",
+      "grade_number": 3,
+      "lessons": 49,
+      "published": 49,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "PS",
+      "country": "فلسطين",
+      "grade_number": 4,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "PS",
+      "country": "فلسطين",
+      "grade_number": 5,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 6,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "PS",
+      "country": "فلسطين",
+      "grade_number": 6,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 6,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "PS",
+      "country": "فلسطين",
+      "grade_number": 7,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 8,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "PS",
+      "country": "فلسطين",
+      "grade_number": 8,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 8,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "PS",
+      "country": "فلسطين",
+      "grade_number": 9,
+      "lessons": 30,
+      "published": 30,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 8,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "PS",
+      "country": "فلسطين",
+      "grade_number": 10,
+      "lessons": 36,
+      "published": 36,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 8,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "PS",
+      "country": "فلسطين",
+      "grade_number": 11,
+      "lessons": 42,
+      "published": 42,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 8,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "PS",
+      "country": "فلسطين",
+      "grade_number": 12,
+      "lessons": 64,
+      "published": 64,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 10,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "QA",
+      "country": "قطر",
+      "grade_number": 1,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "QA",
+      "country": "قطر",
+      "grade_number": 2,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "QA",
+      "country": "قطر",
+      "grade_number": 3,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "QA",
+      "country": "قطر",
+      "grade_number": 4,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "QA",
+      "country": "قطر",
+      "grade_number": 5,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "QA",
+      "country": "قطر",
+      "grade_number": 6,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "QA",
+      "country": "قطر",
+      "grade_number": 7,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "QA",
+      "country": "قطر",
+      "grade_number": 8,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "QA",
+      "country": "قطر",
+      "grade_number": 9,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "QA",
+      "country": "قطر",
+      "grade_number": 10,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "QA",
+      "country": "قطر",
+      "grade_number": 11,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "QA",
+      "country": "قطر",
+      "grade_number": 12,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SA",
+      "country": "السعودية",
+      "grade_number": 1,
+      "lessons": 34,
+      "published": 34,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 30,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "SA",
+      "country": "السعودية",
+      "grade_number": 2,
+      "lessons": 34,
+      "published": 34,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 30,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "SA",
+      "country": "السعودية",
+      "grade_number": 3,
+      "lessons": 34,
+      "published": 34,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 30,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "SA",
+      "country": "السعودية",
+      "grade_number": 4,
+      "lessons": 34,
+      "published": 34,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 16,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SA",
+      "country": "السعودية",
+      "grade_number": 5,
+      "lessons": 34,
+      "published": 34,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 16,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SA",
+      "country": "السعودية",
+      "grade_number": 6,
+      "lessons": 34,
+      "published": 34,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 16,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SA",
+      "country": "السعودية",
+      "grade_number": 7,
+      "lessons": 34,
+      "published": 34,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 16,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SA",
+      "country": "السعودية",
+      "grade_number": 8,
+      "lessons": 34,
+      "published": 34,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 16,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SA",
+      "country": "السعودية",
+      "grade_number": 9,
+      "lessons": 34,
+      "published": 34,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 16,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SA",
+      "country": "السعودية",
+      "grade_number": 10,
+      "lessons": 28,
+      "published": 28,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 10,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SA",
+      "country": "السعودية",
+      "grade_number": 11,
+      "lessons": 45,
+      "published": 45,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 27,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SA",
+      "country": "السعودية",
+      "grade_number": 12,
+      "lessons": 43,
+      "published": 43,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 25,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SD",
+      "country": "السودان",
+      "grade_number": 1,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "SD",
+      "country": "السودان",
+      "grade_number": 2,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "SD",
+      "country": "السودان",
+      "grade_number": 3,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "SD",
+      "country": "السودان",
+      "grade_number": 4,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SD",
+      "country": "السودان",
+      "grade_number": 5,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SD",
+      "country": "السودان",
+      "grade_number": 6,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SD",
+      "country": "السودان",
+      "grade_number": 7,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SD",
+      "country": "السودان",
+      "grade_number": 8,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SD",
+      "country": "السودان",
+      "grade_number": 9,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SD",
+      "country": "السودان",
+      "grade_number": 10,
+      "lessons": 79,
+      "published": 79,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 60,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SD",
+      "country": "السودان",
+      "grade_number": 11,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SD",
+      "country": "السودان",
+      "grade_number": 12,
+      "lessons": 40,
+      "published": 40,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 21,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SO",
+      "country": "الصومال",
+      "grade_number": 1,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "SO",
+      "country": "الصومال",
+      "grade_number": 2,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "SO",
+      "country": "الصومال",
+      "grade_number": 3,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "SO",
+      "country": "الصومال",
+      "grade_number": 4,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SO",
+      "country": "الصومال",
+      "grade_number": 5,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SO",
+      "country": "الصومال",
+      "grade_number": 6,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SO",
+      "country": "الصومال",
+      "grade_number": 7,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SO",
+      "country": "الصومال",
+      "grade_number": 8,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SO",
+      "country": "الصومال",
+      "grade_number": 9,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SO",
+      "country": "الصومال",
+      "grade_number": 10,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SO",
+      "country": "الصومال",
+      "grade_number": 11,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SO",
+      "country": "الصومال",
+      "grade_number": 12,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SY",
+      "country": "سوريا",
+      "grade_number": 1,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "SY",
+      "country": "سوريا",
+      "grade_number": 2,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "SY",
+      "country": "سوريا",
+      "grade_number": 3,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "SY",
+      "country": "سوريا",
+      "grade_number": 4,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SY",
+      "country": "سوريا",
+      "grade_number": 5,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SY",
+      "country": "سوريا",
+      "grade_number": 6,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SY",
+      "country": "سوريا",
+      "grade_number": 7,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SY",
+      "country": "سوريا",
+      "grade_number": 8,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SY",
+      "country": "سوريا",
+      "grade_number": 9,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SY",
+      "country": "سوريا",
+      "grade_number": 10,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SY",
+      "country": "سوريا",
+      "grade_number": 11,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "SY",
+      "country": "سوريا",
+      "grade_number": 12,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "TN",
+      "country": "تونس",
+      "grade_number": 1,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "TN",
+      "country": "تونس",
+      "grade_number": 2,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "TN",
+      "country": "تونس",
+      "grade_number": 3,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "TN",
+      "country": "تونس",
+      "grade_number": 4,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "TN",
+      "country": "تونس",
+      "grade_number": 5,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "TN",
+      "country": "تونس",
+      "grade_number": 6,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "TN",
+      "country": "تونس",
+      "grade_number": 7,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "TN",
+      "country": "تونس",
+      "grade_number": 8,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "TN",
+      "country": "تونس",
+      "grade_number": 9,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "TN",
+      "country": "تونس",
+      "grade_number": 10,
+      "lessons": 20,
+      "published": 20,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "TN",
+      "country": "تونس",
+      "grade_number": 11,
+      "lessons": 21,
+      "published": 21,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "TN",
+      "country": "تونس",
+      "grade_number": 12,
+      "lessons": 21,
+      "published": 21,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "YE",
+      "country": "اليمن",
+      "grade_number": 1,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "YE",
+      "country": "اليمن",
+      "grade_number": 2,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "YE",
+      "country": "اليمن",
+      "grade_number": 3,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 1,
+      "linked_skill_lessons": 14,
+      "structurally_ready_without_audio": 1
+    },
+    {
+      "code": "YE",
+      "country": "اليمن",
+      "grade_number": 4,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "YE",
+      "country": "اليمن",
+      "grade_number": 5,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "YE",
+      "country": "اليمن",
+      "grade_number": 6,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "YE",
+      "country": "اليمن",
+      "grade_number": 7,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "YE",
+      "country": "اليمن",
+      "grade_number": 8,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "YE",
+      "country": "اليمن",
+      "grade_number": 9,
+      "lessons": 19,
+      "published": 19,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "YE",
+      "country": "اليمن",
+      "grade_number": 10,
+      "lessons": 25,
+      "published": 24,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "YE",
+      "country": "اليمن",
+      "grade_number": 11,
+      "lessons": 24,
+      "published": 23,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    },
+    {
+      "code": "YE",
+      "country": "اليمن",
+      "grade_number": 12,
+      "lessons": 22,
+      "published": 21,
+      "exercises6to10": 0,
+      "linked_skill_lessons": 0,
+      "structurally_ready_without_audio": 0
+    }
+  ]
+}
