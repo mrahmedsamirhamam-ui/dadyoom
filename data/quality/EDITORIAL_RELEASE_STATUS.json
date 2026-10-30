@@ -1,0 +1,80 @@
+{
+  "policy": "DADYOOM_EXCELLENCE_QUALITY_CHARTER_V1_AR",
+  "version": "1.0",
+  "as_of": "2026-10-30",
+  "disclaimer": "Planning/audit records, not proof of CEFR/ACTFL/WCAG certification or international superiority.",
+  "requiredEvidence": [
+    "pedagogical_objectives_and_scaffolding",
+    "arabic_language_editorial_review",
+    "visual_semantic_review",
+    "assessment_of_learning",
+    "accessibility_and_inclusion",
+    "copyright_and_child_safety",
+    "print_or_runtime_qa",
+    "independent_reviewer_approval"
+  ],
+  "products": [
+    {
+      "id": "coloring-letters",
+      "name": "الحروف والكلمات",
+      "category": "childrens_book",
+      "release_status": "blocked",
+      "blocking_reasons": [
+        "illustrations unclear or not aligned with learning goal",
+        "no verified complete page-by-page instructional audit"
+      ],
+      "evidence": {}
+    },
+    {
+      "id": "coloring-life-skills",
+      "name": "الاكتشاف ومهارات الحياة",
+      "category": "childrens_book",
+      "release_status": "blocked",
+      "blocking_reasons": [
+        "illustrations and activities need pedagogical redesign",
+        "no verified complete page-by-page instructional audit"
+      ],
+      "evidence": {}
+    },
+    {
+      "id": "you-are-the-author",
+      "name": "أنت المؤلف",
+      "category": "childrens_book",
+      "release_status": "in_development",
+      "blocking_reasons": [
+        "36 planned story scenarios not fully written and illustrated"
+      ],
+      "evidence": {}
+    },
+    {
+      "id": "tradition-modernity-en",
+      "name": "Education Between Tradition and Modernity — English",
+      "category": "translation",
+      "release_status": "editorial_review",
+      "blocking_reasons": [
+        "paragraph-level fidelity and references not yet fully independently checked"
+      ],
+      "evidence": {}
+    },
+    {
+      "id": "engineering-thinking-en",
+      "name": "Engineering Thinking and Learning — English",
+      "category": "translation",
+      "release_status": "editorial_review",
+      "blocking_reasons": [
+        "paragraph-level fidelity and references not yet fully independently checked"
+      ],
+      "evidence": {}
+    },
+    {
+      "id": "dadyoom-platform",
+      "name": "ضاديوم — بيت العربية الرقمي",
+      "category": "web_platform",
+      "release_status": "requires_live_audit",
+      "blocking_reasons": [
+        "no complete documented production user-journey and 22-country curriculum quality signoff"
+      ],
+      "evidence": {}
+    }
+  ]
+}
