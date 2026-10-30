@@ -1,6 +1,7 @@
 "use client";
 
 import ListenButton from "@/features/lesson-activities/components/ListenButton";
+import ListeningScriptPlayer from "@/features/lesson-activities/components/ListeningScriptPlayer";
 import LessonActivityImage from "@/features/lesson-activities/components/LessonActivityImage";
 
 import HandwritingCanvas from "@/features/lesson-activities/components/HandwritingCanvas";
@@ -539,6 +540,17 @@ export default function InteractiveLessonActivities({
           typeof imageRegion.width === "number" &&
           typeof imageRegion.height === "number";
 
+          const supervisedListening =
+            activity.activity_type === "listening" &&
+            content.requiresTeacherRead === true &&
+            typeof content.text === "string" &&
+            content.text.trim().length > 0;
+
+          const teacherListeningScript =
+            supervisedListening
+              ? (content.text as string)
+              : null;
+
           const audioText =
             typeof content.audio_text === "string"
               ? content.audio_text
@@ -824,7 +836,12 @@ export default function InteractiveLessonActivities({
                       {activity.title}
                     </h3>
 
-                    {activity.instructions ? (
+                    {supervisedListening ? (
+                      <p className="mt-2 leading-7 text-slate-600">
+                        استمع إلى تعليمات المعلم أو الصوت العربي المتاح على جهازك، ثم نفّذ الخطوات بالترتيب.
+                        لا تعرض النص المكتوب إلا عند الحاجة إلى دعم المعلم أو تسهيلات الوصول.
+                      </p>
+                    ) : activity.instructions ? (
                       <p className="mt-2 leading-7 text-slate-600">
                         {activity.instructions}
                       </p>
@@ -834,7 +851,9 @@ export default function InteractiveLessonActivities({
                 </div>
 
 
-                                                {audioText ? (
+                {teacherListeningScript ? (
+                  <ListeningScriptPlayer script={teacherListeningScript} />
+                ) : audioText ? (
                   <ListenButton
                     text={audioText}
                     audioUrl={audioUrl}
