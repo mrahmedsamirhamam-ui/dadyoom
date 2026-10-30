@@ -29,7 +29,7 @@ BEGIN
  WHERE l.status='published' AND g.grade_number=1 AND co.code='BH' AND l.source_pdf_url IS NOT NULL
  AND (SELECT count(*) FROM public.lesson_activities a WHERE a.lesson_id=l.id AND a.is_published)=1
  AND (SELECT max(a.activity_order) FROM public.lesson_activities a WHERE a.lesson_id=l.id)=1
- AND l.content LIKE '%أنشطة إثرائية%' AND NOT EXISTS(SELECT 1 FROM public.student_lesson_progress p WHERE p.lesson_id=l.id)
+ AND l.content LIKE '%إثراء ضاديوم الأصلي%' AND NOT EXISTS(SELECT 1 FROM public.student_lesson_progress p WHERE p.lesson_id=l.id)
  AND NOT EXISTS(SELECT 1 FROM public.lesson_activity_attempts at JOIN public.lesson_activities a ON a.id=at.activity_id WHERE a.lesson_id=l.id)
  AND NOT EXISTS(SELECT 1 FROM public.question_attempts at JOIN public.questions q ON q.id=at.question_id WHERE q.lesson_id=l.id);
  IF eligible<>12 THEN RAISE EXCEPTION 'Worksheet lesson scope or learner-history changed: % / 12',eligible; END IF;
