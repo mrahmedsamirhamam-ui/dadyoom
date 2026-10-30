@@ -20,6 +20,11 @@ on:
       - 'tests/grade123-20261030-two-198-batches.node.test.mjs'
       - 'tests/grade123-20261030-remaining-1044.node.test.mjs'
       - 'tests/grade123-20261030-three-198-batches.node.test.mjs'
+      - 'tests/grade123-20261030-topic-591-activities.node.test.mjs'
+      - 'scripts/curriculum-g123-letter-forms-198-original-activities-20261030.sql'
+      - 'scripts/curriculum-g123-phonemes-195-protected-original-activities-20261030.sql'
+      - 'scripts/curriculum-g123-main-idea-198-original-reading-activities-20261030.sql'
+      - 'data/review-queue/grades123-22countries-781-activity-gaps-20261030.json'
       - 'scripts/curriculum-g123-sukun-198-original-activities-20261030.sql'
       - 'data/review-queue/grades123-22countries-978-activity-gaps-20261030.json'
       - 'data/review-queue/grades123-22countries-1044-activity-gaps-20261030.json'
@@ -47,6 +52,11 @@ on:
       - 'tests/grade123-20261030-two-198-batches.node.test.mjs'
       - 'tests/grade123-20261030-remaining-1044.node.test.mjs'
       - 'tests/grade123-20261030-three-198-batches.node.test.mjs'
+      - 'tests/grade123-20261030-topic-591-activities.node.test.mjs'
+      - 'scripts/curriculum-g123-letter-forms-198-original-activities-20261030.sql'
+      - 'scripts/curriculum-g123-phonemes-195-protected-original-activities-20261030.sql'
+      - 'scripts/curriculum-g123-main-idea-198-original-reading-activities-20261030.sql'
+      - 'data/review-queue/grades123-22countries-781-activity-gaps-20261030.json'
       - 'scripts/curriculum-g123-sukun-198-original-activities-20261030.sql'
       - 'data/review-queue/grades123-22countries-978-activity-gaps-20261030.json'
       - 'data/review-queue/grades123-22countries-1044-activity-gaps-20261030.json'
@@ -78,7 +88,7 @@ jobs:
       - name: Test immutable before-and-after snapshots
         run: npx vitest run tests/curriculum-grades123-live-lam-audit.test.ts tests/curriculum-grades123-two-batch-audit.test.ts tests/curriculum-grades123-four-batch-audit.test.ts tests/curriculum-grade123-nominal-questions-audit.test.ts tests/brand-dadyoom-about-identity.test.ts
       - name: Unit-test real gaps, fake completion and positive 66-cell control
-        run: node --test tests/grade123-release-gate.node.test.mjs tests/grade123-390-repairs.node.test.mjs tests/grade123-594-activities.node.test.mjs tests/grade123-20261030-two-198-batches.node.test.mjs tests/grade123-20261030-remaining-1044.node.test.mjs tests/grade123-20261030-three-198-batches.node.test.mjs
+        run: node --test tests/grade123-release-gate.node.test.mjs tests/grade123-390-repairs.node.test.mjs tests/grade123-594-activities.node.test.mjs tests/grade123-20261030-two-198-batches.node.test.mjs tests/grade123-20261030-remaining-1044.node.test.mjs tests/grade123-20261030-three-198-batches.node.test.mjs tests/grade123-20261030-topic-591-activities.node.test.mjs
       - name: Grade 1-3 gate must fail closed while coverage is incomplete
         shell: bash
         run: |
