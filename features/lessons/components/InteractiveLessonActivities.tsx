@@ -1001,8 +1001,18 @@ export default function InteractiveLessonActivities({
                           optionIndex
                         ) => {
 
+                          // Four or more distractors do NOT make an
+                          // ordinary multiple-choice question multiselect.
+                          // The server's private single correct answer never
+                          // enters the student page. Explicit public modes
+                          // must request multi-selection by name.
                           const multi =
-                            options.length > 3;
+                            activity.activity_type === "multi_select" ||
+                            content.allowMultiple === true ||
+                            content.allow_multiple === true ||
+                            content.multi_select === true ||
+                            content.selectionMode === "multiple" ||
+                            content.selection_mode === "multiple";
 
                           const active =
                             answer.includes(
