@@ -37,6 +37,10 @@ on:
       - 'tests/grade123-20261030-bahrain-g2-36-exact-story-448-gaps.node.test.mjs'
       - 'tests/grade123-20261030-bahrain-g2-nine-prose-27-and-439-gaps.node.test.mjs'
       - 'tests/grade123-20261030-bahrain-g1-50-worksheets-429-gaps.node.test.mjs'
+      - 'tests/grade123-20261030-bahrain-five-phonics-five-life-50-419-gaps.node.test.mjs'
+      - 'scripts/curriculum-bh-grade1-five-phonics-language-workbooks-25-private-questions-20261030.sql'
+      - 'scripts/curriculum-bh-grade1-five-spatial-health-math-workbooks-25-original-20261030.sql'
+      - 'data/review-queue/grades123-22countries-419-activity-gaps-20261030.json'
       - 'scripts/curriculum-bh-g1-10-original-worksheet-pages-50-topic-specific-activities-20261030.sql'
       - 'data/review-queue/grades123-22countries-429-activity-gaps-20261030.json'
       - 'scripts/curriculum-bh-g2-9-independent-original-reading-stories-27-evidence-questions-20261030.sql'
@@ -121,6 +125,10 @@ on:
       - 'tests/grade123-20261030-bahrain-g2-36-exact-story-448-gaps.node.test.mjs'
       - 'tests/grade123-20261030-bahrain-g2-nine-prose-27-and-439-gaps.node.test.mjs'
       - 'tests/grade123-20261030-bahrain-g1-50-worksheets-429-gaps.node.test.mjs'
+      - 'tests/grade123-20261030-bahrain-five-phonics-five-life-50-419-gaps.node.test.mjs'
+      - 'scripts/curriculum-bh-grade1-five-phonics-language-workbooks-25-private-questions-20261030.sql'
+      - 'scripts/curriculum-bh-grade1-five-spatial-health-math-workbooks-25-original-20261030.sql'
+      - 'data/review-queue/grades123-22countries-419-activity-gaps-20261030.json'
       - 'scripts/curriculum-bh-g1-10-original-worksheet-pages-50-topic-specific-activities-20261030.sql'
       - 'data/review-queue/grades123-22countries-429-activity-gaps-20261030.json'
       - 'scripts/curriculum-bh-g2-9-independent-original-reading-stories-27-evidence-questions-20261030.sql'
@@ -192,7 +200,7 @@ jobs:
       - name: Test immutable before-and-after snapshots
         run: npx vitest run tests/curriculum-grades123-live-lam-audit.test.ts tests/curriculum-grades123-two-batch-audit.test.ts tests/curriculum-grades123-four-batch-audit.test.ts tests/curriculum-grade123-nominal-questions-audit.test.ts tests/brand-dadyoom-about-identity.test.ts
       - name: Unit-test real gaps, fake completion and positive 66-cell control
-        run: node --test tests/grade123-release-gate.node.test.mjs tests/grade123-390-repairs.node.test.mjs tests/grade123-594-activities.node.test.mjs tests/grade123-20261030-two-198-batches.node.test.mjs tests/grade123-20261030-remaining-1044.node.test.mjs tests/grade123-20261030-three-198-batches.node.test.mjs tests/grade123-20261030-topic-591-activities.node.test.mjs tests/grade123-20261030-sequence-questions-reading-591.node.test.mjs tests/grade123-20261030-prose-corrections.node.test.mjs tests/grade123-20261030-listening-media-evidence.node.test.mjs tests/grade123-20261030-listening-198-and-browser-speech.node.test.mjs tests/grade123-20261030-listening-coverage-518-gate.node.test.mjs tests/grade123-20261030-short-90-coverage-node-review.node.test.mjs tests/grade123-20261030-visible-original-reading-and-prompt.node.test.mjs tests/grade123-20261030-bahrain-11-glossaries-55-activities.node.test.mjs tests/grade123-20261030-bahrain-34-journal-phonics-activities.node.test.mjs tests/grade123-20261030-26-private-teacher-answers-and-34-g1-activities.node.test.mjs tests/grade123-20261030-60-worksheets-and-single-select-1059.node.test.mjs tests/grade123-20261030-grade2-35-actual-listening-and-474-lesson-gap.node.test.mjs tests/grade123-20261030-bahrain-g3-62-exact-story-and-listening-activities.node.test.mjs tests/grade123-20261030-bahrain-g2-36-exact-story-448-gaps.node.test.mjs tests/grade123-20261030-bahrain-g2-nine-prose-27-and-439-gaps.node.test.mjs tests/grade123-20261030-bahrain-g1-50-worksheets-429-gaps.node.test.mjs
+        run: node --test tests/grade123-release-gate.node.test.mjs tests/grade123-390-repairs.node.test.mjs tests/grade123-594-activities.node.test.mjs tests/grade123-20261030-two-198-batches.node.test.mjs tests/grade123-20261030-remaining-1044.node.test.mjs tests/grade123-20261030-three-198-batches.node.test.mjs tests/grade123-20261030-topic-591-activities.node.test.mjs tests/grade123-20261030-sequence-questions-reading-591.node.test.mjs tests/grade123-20261030-prose-corrections.node.test.mjs tests/grade123-20261030-listening-media-evidence.node.test.mjs tests/grade123-20261030-listening-198-and-browser-speech.node.test.mjs tests/grade123-20261030-listening-coverage-518-gate.node.test.mjs tests/grade123-20261030-short-90-coverage-node-review.node.test.mjs tests/grade123-20261030-visible-original-reading-and-prompt.node.test.mjs tests/grade123-20261030-bahrain-11-glossaries-55-activities.node.test.mjs tests/grade123-20261030-bahrain-34-journal-phonics-activities.node.test.mjs tests/grade123-20261030-26-private-teacher-answers-and-34-g1-activities.node.test.mjs tests/grade123-20261030-60-worksheets-and-single-select-1059.node.test.mjs tests/grade123-20261030-grade2-35-actual-listening-and-474-lesson-gap.node.test.mjs tests/grade123-20261030-bahrain-g3-62-exact-story-and-listening-activities.node.test.mjs tests/grade123-20261030-bahrain-g2-36-exact-story-448-gaps.node.test.mjs tests/grade123-20261030-bahrain-g2-nine-prose-27-and-439-gaps.node.test.mjs tests/grade123-20261030-bahrain-g1-50-worksheets-429-gaps.node.test.mjs tests/grade123-20261030-bahrain-five-phonics-five-life-50-419-gaps.node.test.mjs
       - name: Grade 1-3 gate must fail closed while coverage is incomplete
         shell: bash
         run: |
