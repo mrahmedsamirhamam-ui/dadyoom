@@ -532,6 +532,21 @@ export default function InteractiveLessonActivities({
                 ? activity.prompt.trim()
                 : null;
 
+            // One full passage or context per lesson is enough when several
+            // questions share the same authored text; avoid long repeated cards.
+            const previouslyShownReading =
+              !!originalReadingText &&
+              sorted.slice(0, index).some((earlier) =>
+                earlier.content?.originalText === originalReadingText
+              );
+
+            const previouslyShownContext =
+              !!originalContextText &&
+              sorted.slice(0, index).some((earlier) =>
+                earlier.content?.originalReference === originalContextText ||
+                earlier.content?.sourceContext === originalContextText
+              );
+
             const showActivityImages =
               content.teacher_media_enabled === true ||
               content.image_source === "teacher";
@@ -872,7 +887,7 @@ export default function InteractiveLessonActivities({
                 </div>
 
 
-                                                                {originalReadingText ? (
+                                                                {originalReadingText && !previouslyShownReading ? (
                   <section aria-label="نص القراءة الخاص بالنشاط"
                     className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-4" dir="rtl">
                     <p className="mb-2 text-sm font-extrabold text-amber-900">
@@ -884,7 +899,7 @@ export default function InteractiveLessonActivities({
                   </section>
                 ) : null}
 
-                {originalContextText ? (
+                {originalContextText && !previouslyShownContext ? (
                   <section aria-label="بطاقة التوضيح الخاصة بالنشاط"
                     className="mt-4 rounded-2xl border border-sky-200 bg-sky-50 p-4" dir="rtl">
                     <p className="mb-2 text-sm font-extrabold text-sky-900">
