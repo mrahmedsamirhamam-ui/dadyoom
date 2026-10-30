@@ -1,0 +1,23 @@
+{
+  "auditDate": "2026-10-30",
+  "project": "Dadyoom",
+  "repository": "mrahmedsamirhamam-ui/dadyoom",
+  "branch": "feat/grades123-22countries-lam-batch-20261029",
+  "source": "Independent production Supabase read-only SQL after fail-closed transactional fix",
+  "scope": "Published Grade1 Bahrain authored learning content and 26 teacher answer guidance lines",
+  "outcome": {
+    "publicTeacherAnswerGuideMarkersRemainingAcrossAllPublishedGrades123": 0,
+    "privateTeacherAnswerNotesArchived": 26,
+    "distinctLessonsArchived": 26,
+    "archivedKeysStillPublic": 0,
+    "lessonTeacherNotesRlsEnabled": true,
+    "anonymousCanSelectTeacherNotes": false,
+    "historicalProgressRecordsForMigratedLessons": 0
+  },
+  "safety": "Private marking text was extracted directly from existing database rows and inserted into lesson_teacher_notes(note_type=assessment); no answer text, student information, access credentials or private row contents written into GitHub.",
+  "caveats": [
+    "Only this exact explicit marker مفتاح الإجابة والإرشاد: was audited and moved. Other indirect explanation text might still include examples; further content QA required.",
+    "No claim that external published lesson fetch or student browser end-to-end has been verified.",
+    "No automatic approval of 57 unpublished Bahrain drafts or official syllabus 2026/2027 mapping."
+  ]
+}
