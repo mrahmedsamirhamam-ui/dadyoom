@@ -10,12 +10,15 @@ const listening=read("features/lesson-activities/components/ListeningScriptPlaye
 test("student page displays each standalone source passage and the exact question before choices",()=>{
  for(const x of ["content.originalText","content.originalReference","content.sourceContext",
    "activity.prompt","{originalReadingText}","{originalContextText}","{visiblePrompt}",
-   "originalReadingText ? (","originalContextText ? ("]){
+   "originalReadingText && !previouslyShownReading ? (","originalContextText && !previouslyShownContext ? ("]){
    assert.ok(page.includes(x),"Missing visible source or question: "+x);
  }
  assert.match(page,/aria-label="نص القراءة الخاص بالنشاط"/);
  assert.match(page,/aria-label="بطاقة التوضيح الخاصة بالنشاط"/);
  assert.ok(page.includes('dir="rtl"'));
+ assert.ok(page.includes('previouslyPlayedListeningScript'));
+ assert.ok(page.includes('previouslyShownReading'));
+ assert.ok(page.includes('previouslyShownContext'));
  assert.ok(!page.includes("activity.answer"),"Private grading keys cannot be inspected on the student page");
 });
 
