@@ -587,6 +587,14 @@ export default function InteractiveLessonActivities({
             ? (content.text as string)
             : null;
 
+          const previouslyPlayedListeningScript =
+            !!teacherListeningScript &&
+            sorted.slice(0, index).some((earlier) =>
+              earlier.activity_type === "listening" &&
+              earlier.content?.requiresTeacherRead === true &&
+              earlier.content?.text === teacherListeningScript
+            );
+
           const listeningQuestion =
             supervisedListening && typeof content.listeningQuestion === "string"
               ? content.listeningQuestion
@@ -923,7 +931,7 @@ export default function InteractiveLessonActivities({
                   </p>
                 ) : null}
 
-{teacherListeningScript ? (
+{teacherListeningScript && !previouslyPlayedListeningScript ? (
                   <ListeningScriptPlayer script={teacherListeningScript} />
                 ) : audioText ? (
                   <ListenButton
