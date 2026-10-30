@@ -909,8 +909,16 @@ export default function InteractiveLessonActivities({
                           optionIndex
                         ) => {
 
+                          // Multiple distractors do not imply a multiple-answer question.
+                          // Do not expose private answer keys to decide UI selection mode.
+                          // A multiselect needs an explicit public content contract.
                           const multi =
-                            options.length > 3;
+                            activity.activity_type === "multi_select" ||
+                            content.allowMultiple === true ||
+                            content.allow_multiple === true ||
+                            content.multi_select === true ||
+                            content.selectionMode === "multiple" ||
+                            content.selection_mode === "multiple";
 
                           const active =
                             answer.includes(
