@@ -1,0 +1,27 @@
+{
+  "auditDate": "2026-10-30",
+  "projectId": "hvqsvtomhlxavmfqoxfz",
+  "scope": "22 countries, Grades 1–3, only published lessons titled الاستماع واتباع التعليمات",
+  "source": "Read-only live Supabase aggregates of public.lesson_activities joined to published Grade1-3 lessons",
+  "evidenceType": "Current structured data fields, not confirmation of playback or browser TTS availability",
+  "summary": {
+    "lessons": 66,
+    "publishedActivities": 198,
+    "listeningActivities": 66,
+    "requiresTeacherRead": 66,
+    "teacherReadScripts": 66,
+    "multipleChoiceActivities": 132,
+    "explicitDirectAudioLinks": 0
+  },
+  "readiness": {
+    "independentStudentAudioPlaybackVerified": false,
+    "teacherModeratedListeningAvailableAsScript": true,
+    "lessonAudioComplete": false
+  },
+  "notes": [
+    "Each listening activity has a text script and requiresTeacherRead=true; the DB does not provide a direct audio URL or media asset.",
+    "No browser speech synthesis, recorded audio, headphone, pause/replay or student E2E test was performed.",
+    "Do not count these 66 as independent audio-ready lessons or infer official textbook compliance.",
+    "Teacher-led activities may still be pedagogically useful in supervised classrooms."
+  ]
+}
