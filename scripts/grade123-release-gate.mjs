@@ -126,7 +126,7 @@ export function evaluateGrade123Audit(snapshot, qualitySnapshot) {
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const i = process.argv.indexOf("--audit");
-  const source = i >= 0 ? process.argv[i + 1] : "data/audits/grades123-22countries-after-198-listening-activities-20261030.json";
+  const source = i >= 0 ? process.argv[i + 1] : "data/audits/grades123-22countries-after-55-bahrain-glossary-activities-20261030.json";
   if (!source) throw Error("Missing --audit path");
   const qualityIndex = process.argv.indexOf("--quality-audit");
   const qualitySource = qualityIndex >= 0 ? process.argv[qualityIndex + 1] :
