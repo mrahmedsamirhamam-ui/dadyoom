@@ -24,7 +24,7 @@ for (const p of data.products) {
     typeof p.evidence[key]?.reviewer === "string" &&
     p.evidence[key].reviewer.trim().length > 0 &&
     typeof p.evidence[key]?.reviewed_at === "string" &&
-    /^\\d{4}-\\d{2}-\\d{2}/.test(p.evidence[key].reviewed_at) &&
+    !Number.isNaN(Date.parse(p.evidence[key].reviewed_at)) &&
     typeof p.evidence[key]?.proof === "string" &&
     p.evidence[key].proof.trim().length > 0);
   if (p.release_status === "approved" && (!ready || p.blocking_reasons.length > 0)) {
