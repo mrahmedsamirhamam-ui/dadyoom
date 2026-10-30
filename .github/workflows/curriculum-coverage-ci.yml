@@ -6,6 +6,10 @@ on:
       - 'app/api/progress/**'
       - 'app/api/lessons/complete/**'
       - 'app/api/questions/answer/**'
+      - 'app/api/ai/assessment/**'
+      - 'features/assessment/**'
+      - 'features/ai-tutor/**'
+      - 'tests/security/assessment-session-authority.test.ts'
       - 'components/lesson/MultipleChoiceQuestion.tsx'
       - 'app/lessons/**/page.tsx'
       - 'features/questions/services/grade-stored-mcq.ts'
@@ -65,6 +69,8 @@ jobs:
         run: npx vitest run tests/curriculum-coverage.test.ts
       - name: Verify canonical lesson completion entry points
         run: npx vitest run tests/security/lesson-completion-entrypoints.test.ts tests/security/lesson-mastery-gates.test.ts
+      - name: Verify AI assessment server authority and answer-key isolation
+        run: npx vitest run tests/security/assessment-session-authority.test.ts
       - name: Verify authoritative lesson question grading
         run: npx vitest run tests/security/server-graded-mcq.test.ts
       - name: Verify student-safe question view migration and quiz cutover

@@ -6,14 +6,14 @@ type AdvanceAssessmentSessionParams = {
   supabase: SupabaseClient;
   sessionId: string;
   studentId: string;
-  answeredCorrectly: boolean;
+  assessmentId: string;
 };
 
 export async function advanceAssessmentSession({
   supabase,
   sessionId,
   studentId,
-  answeredCorrectly,
+  assessmentId,
 }: AdvanceAssessmentSessionParams) {
   const {
     data: session,
@@ -34,6 +34,32 @@ export async function advanceAssessmentSession({
   if (session.finished) {
     return session;
   }
+
+  // The request supplies an assessment identity only; never a verdict.
+  // The newest persisted answer must be exactly the one being advanced.
+  const { data: savedAnswers, error: answersError } = await supabase
+    .from("assessment_session_answers")
+    .select("assessment_id, lesson_id, is_correct")
+    .eq("session_id", sessionId)
+    .eq("student_id", studentId)
+    .order("created_at", { ascending: true });
+
+  const previousCount = session.correct_answers + session.wrong_answers;
+  const savedAnswer = savedAnswers?.at(-1);
+
+  // Reject replays, skipping questions, unrelated answers, and ungraded work.
+  if (
+    answersError ||
+    savedAnswers?.length !== previousCount + 1 ||
+    !savedAnswer ||
+    savedAnswer.assessment_id !== assessmentId ||
+    savedAnswer.lesson_id !== session.lesson_id ||
+    typeof savedAnswer.is_correct !== "boolean"
+  ) {
+    throw new Error("لا يمكن الانتقال دون أحدث إجابة مصححة على الخادم.");
+  }
+
+  const answeredCorrectly = savedAnswer.is_correct;
 
   const correctAnswers =
     session.correct_answers +
@@ -89,8 +115,11 @@ export async function advanceAssessmentSession({
     })
     .eq("id", sessionId)
     .eq("student_id", studentId)
+    .eq("current_question", session.current_question)
+    .eq("correct_answers", session.correct_answers)
+    .eq("wrong_answers", session.wrong_answers)
     .select("*")
-    .single();
+    .maybeSingle();
 
   if (
     updateError ||
@@ -98,7 +127,7 @@ export async function advanceAssessmentSession({
   ) {
     throw new Error(
       updateError?.message ||
-        "تعذر تحديث جلسة الاختبار."
+        "تعذر تحديث جلسة الاختبار؛ ربما تم الانتقال بالفعل."
     );
   }
 
