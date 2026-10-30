@@ -14,6 +14,7 @@ export type StudentLessonActivity = {
   title: string;
   activity_type: string;
   instructions: string | null;
+  prompt: string | null;
   content: Record<string, unknown>;
   activity_order: number;
   points: number;
@@ -82,6 +83,8 @@ export function publicLessonActivities(input: unknown): StudentLessonActivity[] 
       title: item.title,
       activity_type: item.activity_type,
       instructions: typeof item.instructions === "string" ? item.instructions : null,
+      // Only public question wording; NEVER expose the private answer column.
+      prompt: typeof item.prompt === "string" ? item.prompt : null,
       content: safeContent,
       activity_order: typeof item.activity_order === "number" &&
         Number.isFinite(item.activity_order) ? item.activity_order : 0,

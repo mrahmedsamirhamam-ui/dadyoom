@@ -1,6 +1,7 @@
 "use client";
 
 import ListenButton from "@/features/lesson-activities/components/ListenButton";
+import ListeningScriptPlayer from "@/features/lesson-activities/components/ListeningScriptPlayer";
 import LessonActivityImage from "@/features/lesson-activities/components/LessonActivityImage";
 
 import HandwritingCanvas from "@/features/lesson-activities/components/HandwritingCanvas";
@@ -15,6 +16,7 @@ type LessonActivity = {
   title: string;
   activity_type: string;
   instructions: string | null;
+  prompt?: string | null;
   content: Record<string, unknown>;
   activity_order: number;
   points: number;
@@ -509,6 +511,28 @@ export default function InteractiveLessonActivities({
             const content =
               activity.content ?? {};
 
+            // Original reading passages and supplementary instructional cards
+            // are public source text, not answer keys. Display the actual
+            // passage before asking a learner to grade their understanding.
+            const originalReadingText =
+              typeof content.originalText === "string"
+                ? content.originalText.trim()
+                : null;
+
+            const originalContextText =
+              typeof content.originalReference === "string"
+                ? content.originalReference.trim()
+                : typeof content.sourceContext === "string"
+                  ? content.sourceContext.trim()
+                  : null;
+
+            const visiblePrompt =
+              typeof activity.prompt === "string" &&
+              activity.prompt.trim() &&
+              activity.prompt.trim() !== activity.instructions?.trim()
+                ? activity.prompt.trim()
+                : null;
+
             const showActivityImages =
               content.teacher_media_enabled === true ||
               content.image_source === "teacher";
@@ -538,6 +562,23 @@ export default function InteractiveLessonActivities({
           typeof imageRegion.y === "number" &&
           typeof imageRegion.width === "number" &&
           typeof imageRegion.height === "number";
+
+          const supervisedListening =
+            activity.activity_type === "listening" &&
+            content.requiresTeacherRead === true &&
+            typeof content.text === "string" &&
+            content.text.trim().length > 0;
+
+          const teacherListeningScript =
+            supervisedListening
+              ? (content.text as string)
+              : null;
+
+          const listeningQuestion =
+            supervisedListening &&
+            typeof content.listeningQuestion === "string"
+              ? content.listeningQuestion
+              : null;
 
           const audioText =
             typeof content.audio_text === "string"
@@ -824,7 +865,17 @@ export default function InteractiveLessonActivities({
                       {activity.title}
                     </h3>
 
-                    {activity.instructions ? (
+                    {supervisedListening ? (
+                      <p className="mt-2 leading-7 text-slate-600">
+                        استمع إلى تعليمات المعلم أو الصوت العربي المتاح على جهازك، ثم نفّذ الخطوات بالترتيب.
+                        لا تعرض النص المكتوب إلا عند الحاجة إلى دعم المعلم أو تسهيلات الوصول.
+                        {listeningQuestion ? (
+                          <strong className="mt-2 block text-slate-900">
+                            {listeningQuestion}
+                          </strong>
+                        ) : null}
+                      </p>
+                    ) : activity.instructions ? (
                       <p className="mt-2 leading-7 text-slate-600">
                         {activity.instructions}
                       </p>
@@ -834,7 +885,48 @@ export default function InteractiveLessonActivities({
                 </div>
 
 
-                                                {audioText ? (
+                {originalReadingText ? (
+                  <section
+                    aria-label="نص القراءة الخاص بالنشاط"
+                    className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-4"
+                    dir="rtl"
+                  >
+                    <p className="mb-2 text-sm font-extrabold text-amber-900">
+                      اقرأ النص الإثرائي ثم أجب
+                    </p>
+                    <p className="whitespace-pre-wrap leading-8 text-slate-800">
+                      {originalReadingText}
+                    </p>
+                  </section>
+                ) : null}
+
+                {originalContextText ? (
+                  <section
+                    aria-label="بطاقة التوضيح الخاصة بالنشاط"
+                    className="mt-4 rounded-2xl border border-sky-200 bg-sky-50 p-4"
+                    dir="rtl"
+                  >
+                    <p className="mb-2 text-sm font-extrabold text-sky-900">
+                      بطاقة تعليمية إضافية
+                    </p>
+                    <p className="whitespace-pre-wrap leading-8 text-slate-800">
+                      {originalContextText}
+                    </p>
+                  </section>
+                ) : null}
+
+                {visiblePrompt && !supervisedListening ? (
+                  <p
+                    className="mt-4 rounded-xl bg-white p-4 text-base font-extrabold leading-8 text-slate-900 ring-1 ring-violet-200"
+                    dir="rtl"
+                  >
+                    {visiblePrompt}
+                  </p>
+                ) : null}
+
+                {teacherListeningScript ? (
+                  <ListeningScriptPlayer script={teacherListeningScript} />
+                ) : audioText ? (
                   <ListenButton
                     text={audioText}
                     audioUrl={audioUrl}
@@ -909,8 +1001,18 @@ export default function InteractiveLessonActivities({
                           optionIndex
                         ) => {
 
+                          // Four or more distractors do NOT make an
+                          // ordinary multiple-choice question multiselect.
+                          // The server's private single correct answer never
+                          // enters the student page. Explicit public modes
+                          // must request multi-selection by name.
                           const multi =
-                            options.length > 3;
+                            activity.activity_type === "multi_select" ||
+                            content.allowMultiple === true ||
+                            content.allow_multiple === true ||
+                            content.multi_select === true ||
+                            content.selectionMode === "multiple" ||
+                            content.selection_mode === "multiple";
 
                           const active =
                             answer.includes(

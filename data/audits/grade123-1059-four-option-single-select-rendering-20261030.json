@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-30",
+  "source": "Independent Supabase read-only count: published grade 1-3 activities of published lessons across 22 countries",
+  "totalPublishedActivities": 8655,
+  "activitiesWithMoreThanThreeOptions": 1059,
+  "fourPlusOptionsSingleCorrect": 1059,
+  "fourPlusOptionsMultiCorrect": 0,
+  "fourPlusOptionsMarkedMultipleChoice": 1059,
+  "explicitPublicMultiSelectionModes": 0,
+  "bug": "Student UI inferred multiselect from options.length>3, potentially grading an accidentally selected second option wrong, even when the private grading spec is single-choice.",
+  "patch": "Set multi mode only for explicit public activity_type=multi_select or allowMultiple/allow_multiple/multi_select/selectionMode=multiple/selection_mode=multiple. Never infer by option count or reveal answer.",
+  "verificationStatus": {
+    "sqlEvidence": true,
+    "githubCodePatch": true,
+    "realBrowserManualTest": false,
+    "branchMerged": false
+  }
+}

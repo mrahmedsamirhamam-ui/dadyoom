@@ -10,7 +10,7 @@ export default function AboutDadyoom() {
  return (
   <main dir="rtl" className="mx-auto max-w-4xl px-4 py-12 text-[#123f39]">
    <header className="rounded-3xl bg-emerald-950 p-8 text-white">
-    <p className="font-bold text-amber-200">ضاديوم — بيت العربية الرقمي</p>
+    <p className="font-bold text-amber-200" aria-label="الهوية الرسمية للمنصة">ضاديوم | Dadyoom — بيت العربية الرقمي</p>
     <h1 className="mt-3 text-3xl font-extrabold">عن ضاديوم</h1>
     <p className="mt-4 leading-9 text-emerald-50">
      مشروع تربوي رقمي لتيسير تعلم العربية وإثراء مهارات القراءة والكتابة والاستماع والتحدث،
@@ -18,6 +18,8 @@ export default function AboutDadyoom() {
     </p>
    </header>
    <section className="mt-8 space-y-5 leading-9 text-slate-800">
+    <h2 className="text-xl font-extrabold">هوية ضاديوم</h2>
+    <p>الاسم المعتمد للعلامة والمنصة هو <strong>ضاديوم — Dadyoom</strong>. هذا الاسم هو المستخدم في عرض المشروع؛ أما التسجيل التجاري أو الصفة القانونية فيحتاجان إلى مستند مستقل موثّق.</p>
     <h2 className="text-xl font-extrabold">المؤسس</h2>
     <p>مؤسس ضاديوم وصاحب رؤيتها التعليمية: <strong>أ. أحمد سمير محمد حافظ حمام</strong> (Mr Ahmed Samir Mohamed Hafez Hamam)، معلّم لغة عربية ومطوّر محتوى تربوي. لا تعرض هذه الصفحة أسماء شركاء أو مؤسسات لم تثبت علاقتهم بالمشروع.</p>
     <h2 className="text-xl font-extrabold">ما تقدمه المنصة</h2>

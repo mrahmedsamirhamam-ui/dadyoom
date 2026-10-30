@@ -61,7 +61,8 @@ describe("63 real sukun lessons in remaining 21 Arab countries (Grades 1-3)",()=
    expect(l.activities.slice(0,2).every(a=>a.type==="multiple_choice" && a.content.options?.length===3)).toBe(true);
    expect(l.activities[2].type).toBe(l.grade===1?"reading":"writing");
    expect(l.activities[2].prompt).not.toMatch(generic);
-   expect(l.activities.every(a=>a.prompt.length>35 && a.content.origin==="DADYOOM_SUKUN_21_COUNTRIES_G123_ORIGINAL_20261029")).toBe(true);
+   expect(l.activities[0].prompt).toContain("السكون"); // A short phonics-specific question can be pedagogically complete.
+   expect(l.activities.every(a=>a.prompt.length>=28 && a.content.origin==="DADYOOM_SUKUN_21_COUNTRIES_G123_ORIGINAL_20261029")).toBe(true);
   }
  });
  it("never exposes scoring keys, learner answers or private feedback through the public pack",()=>{

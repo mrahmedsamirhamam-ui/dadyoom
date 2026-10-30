@@ -1,0 +1,45 @@
+{
+  "generatedOn": "2026-10-29",
+  "source": "Production Supabase post-commit independent SQL, original question IDs retained",
+  "gradeScope": [
+    1,
+    2,
+    3
+  ],
+  "countries": 22,
+  "lessonTitle": "الجملة الاسمية البسيطة",
+  "lessonCount": 66,
+  "questionsTotal": 330,
+  "replacedGenericQuestions": 254,
+  "preservedOriginalQuestions": 76,
+  "remainingGenericQuestions": 0,
+  "invalidAnswerOptions": 0,
+  "oldQuestion3Preserved": 66,
+  "gradeRows": [
+    {
+      "grade": 1,
+      "lessonCount": 22,
+      "questionCount": 110,
+      "replaced": 86,
+      "preserved": 24
+    },
+    {
+      "grade": 2,
+      "lessonCount": 22,
+      "questionCount": 110,
+      "replaced": 84,
+      "preserved": 26
+    },
+    {
+      "grade": 3,
+      "lessonCount": 22,
+      "questionCount": 110,
+      "replaced": 84,
+      "preserved": 26
+    }
+  ],
+  "scopeNotYetVerifiedByMinistry": true,
+  "humanReviewStatus": "pending_human_review",
+  "childProgressPreserved": "All 66 existing lessons had no records across observed attempt, assessment, and progress tables prior to changing generic prompts; verified no lesson/question IDs changed.",
+  "questionDraftPath": "data/curriculum-drafts/grades123-original-nominal-12-question-templates-20261029.json"
+}

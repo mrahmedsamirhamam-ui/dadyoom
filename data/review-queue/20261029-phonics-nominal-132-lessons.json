@@ -1,0 +1,2390 @@
+{
+  "generatedOn": "2026-10-29",
+  "projectId": "hvqsvtomhlxavmfqoxfz",
+  "status": "pending_human_review",
+  "sourceMarker": "DADYOOM_G123_SHORT_VOWELS_NOMINAL_20261029",
+  "contentPack": "data/curriculum-drafts/grade123-short-vowels-nominal-sentence-activities-20261029.json",
+  "counts": {
+    "lessons": 132,
+    "addedActivities": 396,
+    "writingSkillLinksAdded": 130
+  },
+  "entries": [
+    {
+      "countryCode": "AE",
+      "countryName": "الإمارات العربية المتحدة",
+      "grade": 1,
+      "lessonId": "70e1345b-558d-4355-8cc5-9a3fbf8231b1",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "AE",
+      "countryName": "الإمارات العربية المتحدة",
+      "grade": 1,
+      "lessonId": "9bfbd7e3-77ae-4053-9223-a2b3bd906c77",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "AE",
+      "countryName": "الإمارات العربية المتحدة",
+      "grade": 2,
+      "lessonId": "aa99220e-d3c1-4256-bdff-6940852d0332",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "AE",
+      "countryName": "الإمارات العربية المتحدة",
+      "grade": 2,
+      "lessonId": "cf59d496-e5d2-479f-aaa1-86a723c40944",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "AE",
+      "countryName": "الإمارات العربية المتحدة",
+      "grade": 3,
+      "lessonId": "3fb84a73-4e26-4796-bcd7-6cd1f5e48c76",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "AE",
+      "countryName": "الإمارات العربية المتحدة",
+      "grade": 3,
+      "lessonId": "7f7199d7-3e74-435a-8b2d-ff6ea9b80abd",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "BH",
+      "countryName": "مملكة البحرين",
+      "grade": 1,
+      "lessonId": "63faebff-924b-43f1-8d4f-9ea325bbbfae",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "BH",
+      "countryName": "مملكة البحرين",
+      "grade": 1,
+      "lessonId": "8ce6fe56-d8b6-44a3-82a4-cbf4c40b7c32",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "BH",
+      "countryName": "مملكة البحرين",
+      "grade": 2,
+      "lessonId": "781f5e8a-0712-4139-a530-63954f762953",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "BH",
+      "countryName": "مملكة البحرين",
+      "grade": 2,
+      "lessonId": "28a3e6b4-2031-44a1-b075-5a03741e8394",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "BH",
+      "countryName": "مملكة البحرين",
+      "grade": 3,
+      "lessonId": "8942c7e9-7cc9-4256-a058-b72bde24b898",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "BH",
+      "countryName": "مملكة البحرين",
+      "grade": 3,
+      "lessonId": "da40e5d0-973d-4c16-84ff-2381450f8481",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "DJ",
+      "countryName": "جيبوتي",
+      "grade": 1,
+      "lessonId": "3987e138-abea-432b-8dac-5e6fc83f5abc",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "DJ",
+      "countryName": "جيبوتي",
+      "grade": 1,
+      "lessonId": "1675546a-6ce0-46e5-aa1d-5b0ad135e07d",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "DJ",
+      "countryName": "جيبوتي",
+      "grade": 2,
+      "lessonId": "a8dbf0ef-11fd-4e25-b9da-c0bfb86a040f",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "DJ",
+      "countryName": "جيبوتي",
+      "grade": 2,
+      "lessonId": "fedc6186-c8f1-468a-a04c-5c225f163c37",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "DJ",
+      "countryName": "جيبوتي",
+      "grade": 3,
+      "lessonId": "ce9b4ac3-7d06-4b57-a6f2-a3b0dffa4527",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "DJ",
+      "countryName": "جيبوتي",
+      "grade": 3,
+      "lessonId": "6b5ce8c8-764e-415d-9d0b-d97faa67d36b",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "DZ",
+      "countryName": "الجزائر",
+      "grade": 1,
+      "lessonId": "775669c8-fe56-4e1d-8d6e-b842e0912bd8",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "DZ",
+      "countryName": "الجزائر",
+      "grade": 1,
+      "lessonId": "ab972b95-dd35-496e-af5c-21934f2b3467",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "DZ",
+      "countryName": "الجزائر",
+      "grade": 2,
+      "lessonId": "107851a6-424f-4003-823e-549469e91a06",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "DZ",
+      "countryName": "الجزائر",
+      "grade": 2,
+      "lessonId": "75623484-1808-4c87-b5ed-8eaddea91fae",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "DZ",
+      "countryName": "الجزائر",
+      "grade": 3,
+      "lessonId": "a07ae21e-82d6-4485-8b25-01c86d4fba93",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "DZ",
+      "countryName": "الجزائر",
+      "grade": 3,
+      "lessonId": "631a668e-785a-47b3-b536-35342496d36c",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "EG",
+      "countryName": "مصر",
+      "grade": 1,
+      "lessonId": "3f756a09-c489-439a-900b-5c2a72537ec9",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "EG",
+      "countryName": "مصر",
+      "grade": 1,
+      "lessonId": "ccb9a232-01b7-4536-b3d8-bbb8d9a083f9",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "EG",
+      "countryName": "مصر",
+      "grade": 2,
+      "lessonId": "881d444a-3071-4063-873c-f0349d6fc82e",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "EG",
+      "countryName": "مصر",
+      "grade": 2,
+      "lessonId": "b5c6de8d-c1fa-48e1-9c7e-0cd8f8fab1f8",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "EG",
+      "countryName": "مصر",
+      "grade": 3,
+      "lessonId": "6efbf84d-def6-420f-9918-138b079c23ab",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "EG",
+      "countryName": "مصر",
+      "grade": 3,
+      "lessonId": "c30a6b29-7fdd-4698-9edc-3a5c5e4e4321",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "IQ",
+      "countryName": "العراق",
+      "grade": 1,
+      "lessonId": "cf536e7a-70d5-45ca-ab42-9580fbe989c9",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "IQ",
+      "countryName": "العراق",
+      "grade": 1,
+      "lessonId": "36f55fc6-65a1-4846-9db1-ef06fd3d1bf2",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "IQ",
+      "countryName": "العراق",
+      "grade": 2,
+      "lessonId": "95a3e6ab-933b-4d30-853c-21532d36ef5b",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "IQ",
+      "countryName": "العراق",
+      "grade": 2,
+      "lessonId": "c2c2e638-3dda-4b85-98b1-f1c90ee57aeb",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "IQ",
+      "countryName": "العراق",
+      "grade": 3,
+      "lessonId": "369e0408-0e68-4422-aa16-9318edc39db7",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "IQ",
+      "countryName": "العراق",
+      "grade": 3,
+      "lessonId": "e5bd8b61-daac-42d4-a49f-4c6f72dbf8c8",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "JO",
+      "countryName": "الأردن",
+      "grade": 1,
+      "lessonId": "2b3d32a2-674b-4284-a99a-f1e323ebe67c",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "JO",
+      "countryName": "الأردن",
+      "grade": 1,
+      "lessonId": "bb511868-e047-415b-9dbf-8c57f39e5015",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "JO",
+      "countryName": "الأردن",
+      "grade": 2,
+      "lessonId": "cc1ff9a3-321f-46aa-b22c-0e119549f9c8",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "JO",
+      "countryName": "الأردن",
+      "grade": 2,
+      "lessonId": "9494d99a-6e6f-4cd2-956c-f91512f3150b",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "JO",
+      "countryName": "الأردن",
+      "grade": 3,
+      "lessonId": "e33b8bcb-8ac9-48d4-b3e5-51e1a9b4e291",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "JO",
+      "countryName": "الأردن",
+      "grade": 3,
+      "lessonId": "88599be9-a303-4adc-99f6-da1acee97cff",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "KM",
+      "countryName": "جزر القمر",
+      "grade": 1,
+      "lessonId": "8a55cc29-3623-45a0-b2e0-89ed1329b66d",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "KM",
+      "countryName": "جزر القمر",
+      "grade": 1,
+      "lessonId": "e607196d-cc95-4903-baf6-f235438c4263",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "KM",
+      "countryName": "جزر القمر",
+      "grade": 2,
+      "lessonId": "d0e149eb-7122-473b-b89e-cc4771534f1f",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "KM",
+      "countryName": "جزر القمر",
+      "grade": 2,
+      "lessonId": "8264de04-394a-4d0b-b34b-ca79cb8ff6eb",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "KM",
+      "countryName": "جزر القمر",
+      "grade": 3,
+      "lessonId": "502005be-9fef-41d2-888e-04ac8fc84a91",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "KM",
+      "countryName": "جزر القمر",
+      "grade": 3,
+      "lessonId": "107b8324-43d1-4d6e-b231-f2878f6c3083",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "KW",
+      "countryName": "الكويت",
+      "grade": 1,
+      "lessonId": "da2f8e6f-40db-4965-a2ec-970c04d21d1a",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "KW",
+      "countryName": "الكويت",
+      "grade": 1,
+      "lessonId": "24311622-dc8f-4e2e-beab-d8c00cdff792",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "KW",
+      "countryName": "الكويت",
+      "grade": 2,
+      "lessonId": "98887d48-22d8-4e23-9329-cc85899df9ed",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "KW",
+      "countryName": "الكويت",
+      "grade": 2,
+      "lessonId": "a476dd91-d7c2-46df-999f-7edf3a3d81aa",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "KW",
+      "countryName": "الكويت",
+      "grade": 3,
+      "lessonId": "c4b485c0-81dc-4fe8-917f-709ea8d55298",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "KW",
+      "countryName": "الكويت",
+      "grade": 3,
+      "lessonId": "8bdc6c1a-ed65-4322-8aa2-ea0ddf1c8204",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "LB",
+      "countryName": "لبنان",
+      "grade": 1,
+      "lessonId": "5d3ebb02-6842-4cc5-a85c-ee08cb229885",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "LB",
+      "countryName": "لبنان",
+      "grade": 1,
+      "lessonId": "8a2cc9b3-a61a-420e-b50e-7982d6af2e66",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "LB",
+      "countryName": "لبنان",
+      "grade": 2,
+      "lessonId": "9bdab04b-8cda-4bfe-b47e-52a4f1a5d7d1",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "LB",
+      "countryName": "لبنان",
+      "grade": 2,
+      "lessonId": "28f69bbd-1a22-4dd5-b7f4-e05493d103dc",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "LB",
+      "countryName": "لبنان",
+      "grade": 3,
+      "lessonId": "61b8b481-153e-496d-87d0-f773c9eeb8b8",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "LB",
+      "countryName": "لبنان",
+      "grade": 3,
+      "lessonId": "fef365c9-9e8f-46fe-8c87-2d0c511aad20",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "LY",
+      "countryName": "ليبيا",
+      "grade": 1,
+      "lessonId": "cc73de3e-8d8c-4625-98fb-e6694c52f644",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "LY",
+      "countryName": "ليبيا",
+      "grade": 1,
+      "lessonId": "1014d988-b8c7-4a04-a234-51ce1528ea93",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "LY",
+      "countryName": "ليبيا",
+      "grade": 2,
+      "lessonId": "1a32572e-498c-40fa-9efc-6fc6405d42aa",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "LY",
+      "countryName": "ليبيا",
+      "grade": 2,
+      "lessonId": "c447f555-b75e-41e8-808e-df87ee090e32",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "LY",
+      "countryName": "ليبيا",
+      "grade": 3,
+      "lessonId": "ea6d266d-024b-4d8f-a289-b798236021dc",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "LY",
+      "countryName": "ليبيا",
+      "grade": 3,
+      "lessonId": "a1c4c321-56a0-4baa-9bad-dd20e5846b68",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "MA",
+      "countryName": "المغرب",
+      "grade": 1,
+      "lessonId": "6c6f7881-8014-4e94-809a-e79d823d4e27",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "MA",
+      "countryName": "المغرب",
+      "grade": 1,
+      "lessonId": "77ccb835-5028-4b4a-a8cd-03c200e19562",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "MA",
+      "countryName": "المغرب",
+      "grade": 2,
+      "lessonId": "70d92b85-c8b2-4379-862a-99ca99a9aef2",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "MA",
+      "countryName": "المغرب",
+      "grade": 2,
+      "lessonId": "bc7e66e2-e137-4c08-b7b2-fe1791a16aef",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "MA",
+      "countryName": "المغرب",
+      "grade": 3,
+      "lessonId": "4b095fc9-2b5b-4939-bab3-1df00386906b",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "MA",
+      "countryName": "المغرب",
+      "grade": 3,
+      "lessonId": "444b3f8b-8c5e-42de-8fcd-10fe2f3f65bd",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "MR",
+      "countryName": "موريتانيا",
+      "grade": 1,
+      "lessonId": "a6fb6043-345f-4efa-88ad-3757eea1e526",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "MR",
+      "countryName": "موريتانيا",
+      "grade": 1,
+      "lessonId": "6a0f1a37-588a-4aac-ac6e-43fb9b52dd26",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "MR",
+      "countryName": "موريتانيا",
+      "grade": 2,
+      "lessonId": "3f588abd-dc84-42f8-adae-d5b78ab9097b",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "MR",
+      "countryName": "موريتانيا",
+      "grade": 2,
+      "lessonId": "cc210f85-082f-45e2-9384-2b6e56cde42e",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "MR",
+      "countryName": "موريتانيا",
+      "grade": 3,
+      "lessonId": "058c2de2-1cee-4277-8e17-5635acf19194",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "MR",
+      "countryName": "موريتانيا",
+      "grade": 3,
+      "lessonId": "30b05618-9988-4750-8861-fee922fb335e",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "OM",
+      "countryName": "عُمان",
+      "grade": 1,
+      "lessonId": "c24cb569-3c06-4f4a-8b78-161324ebcf93",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "OM",
+      "countryName": "عُمان",
+      "grade": 1,
+      "lessonId": "020a2992-88d6-48b1-89f8-ca6cfde9f112",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "OM",
+      "countryName": "عُمان",
+      "grade": 2,
+      "lessonId": "a1ead473-1ba6-43e0-84ff-84473608597f",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "OM",
+      "countryName": "عُمان",
+      "grade": 2,
+      "lessonId": "faf76b57-0394-466c-bfbd-d15c35744d86",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "OM",
+      "countryName": "عُمان",
+      "grade": 3,
+      "lessonId": "175e2dba-c030-450a-ad0b-3047d6f2be14",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "OM",
+      "countryName": "عُمان",
+      "grade": 3,
+      "lessonId": "97b40d39-bb9c-4bc9-810c-0eaa9b7ff9e0",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "PS",
+      "countryName": "فلسطين",
+      "grade": 1,
+      "lessonId": "155b542f-4664-4455-a520-cf558b1778ec",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "PS",
+      "countryName": "فلسطين",
+      "grade": 1,
+      "lessonId": "adb24852-79bd-4a1b-a19a-38cb203a318b",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "PS",
+      "countryName": "فلسطين",
+      "grade": 2,
+      "lessonId": "278c2cda-06f1-48ec-a282-4f2ad13adbd8",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "PS",
+      "countryName": "فلسطين",
+      "grade": 2,
+      "lessonId": "1f14df5b-175c-4bba-8360-d1e409e0c10c",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "PS",
+      "countryName": "فلسطين",
+      "grade": 3,
+      "lessonId": "50d04a32-f292-4e4a-9bbe-6096d2397909",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "PS",
+      "countryName": "فلسطين",
+      "grade": 3,
+      "lessonId": "f6ee9819-ddb1-4edf-a3c7-8faf3fbc5684",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "QA",
+      "countryName": "قطر",
+      "grade": 1,
+      "lessonId": "5debaf2c-8d10-45a8-9812-493f6c962944",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "QA",
+      "countryName": "قطر",
+      "grade": 1,
+      "lessonId": "09b47283-f809-48e5-ae7c-141e29e22516",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "QA",
+      "countryName": "قطر",
+      "grade": 2,
+      "lessonId": "526610ac-5445-4939-bb38-a222617faeae",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "QA",
+      "countryName": "قطر",
+      "grade": 2,
+      "lessonId": "0b7cc2ef-57dc-408f-bc9d-4903dad6af8c",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "QA",
+      "countryName": "قطر",
+      "grade": 3,
+      "lessonId": "52231365-889f-4304-8137-7ba4389e0734",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "QA",
+      "countryName": "قطر",
+      "grade": 3,
+      "lessonId": "25d94d6e-9bff-4fe8-8baf-2aaf492bfc79",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SA",
+      "countryName": "السعودية",
+      "grade": 1,
+      "lessonId": "c3517b47-8017-4a33-ae25-08e9f8545aa2",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SA",
+      "countryName": "السعودية",
+      "grade": 1,
+      "lessonId": "cc765200-50ec-4a8d-a87e-edf858994622",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SA",
+      "countryName": "السعودية",
+      "grade": 2,
+      "lessonId": "c223cb9a-9c2c-401d-8a82-eafcbeecabc1",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SA",
+      "countryName": "السعودية",
+      "grade": 2,
+      "lessonId": "5f6e0170-8cea-456d-8cd6-9d3aa5deb272",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SA",
+      "countryName": "السعودية",
+      "grade": 3,
+      "lessonId": "7cf5cbcb-0f16-4c7b-870f-8e8fb4601e35",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SA",
+      "countryName": "السعودية",
+      "grade": 3,
+      "lessonId": "89ed4b58-aad9-4bab-98c7-1351a9f3c165",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SD",
+      "countryName": "السودان",
+      "grade": 1,
+      "lessonId": "3f624e7d-8c76-4048-9a33-36eaeb0158aa",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SD",
+      "countryName": "السودان",
+      "grade": 1,
+      "lessonId": "549ced93-9b8c-45e9-96be-c9b3c2f56c82",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SD",
+      "countryName": "السودان",
+      "grade": 2,
+      "lessonId": "11b5999a-5a42-4f30-a116-f808f3a43793",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SD",
+      "countryName": "السودان",
+      "grade": 2,
+      "lessonId": "4e0317e0-c89f-4ca5-9fb1-f20610c34c7f",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SD",
+      "countryName": "السودان",
+      "grade": 3,
+      "lessonId": "2a7d768c-c430-4734-9091-61b093c8c069",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SD",
+      "countryName": "السودان",
+      "grade": 3,
+      "lessonId": "1c6aba23-ba80-4d92-9afa-652a1474eec1",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SO",
+      "countryName": "الصومال",
+      "grade": 1,
+      "lessonId": "dc56b6cb-8fb5-4f86-ae9c-78caa7fd8671",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SO",
+      "countryName": "الصومال",
+      "grade": 1,
+      "lessonId": "b2c120e7-a13b-4f5d-9b65-a5bb51e57733",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SO",
+      "countryName": "الصومال",
+      "grade": 2,
+      "lessonId": "548a5d06-9037-4ab2-b9bd-83f52c1b3424",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SO",
+      "countryName": "الصومال",
+      "grade": 2,
+      "lessonId": "99ce13c7-fb03-4bab-b9bf-f14aaa740c6d",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SO",
+      "countryName": "الصومال",
+      "grade": 3,
+      "lessonId": "19e3e6f5-6833-46d0-abe2-b1ec3b3f892f",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SO",
+      "countryName": "الصومال",
+      "grade": 3,
+      "lessonId": "e40da63e-1362-40f4-a9ad-078f16c4e206",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SY",
+      "countryName": "سوريا",
+      "grade": 1,
+      "lessonId": "957539c8-23ef-4b8d-820f-bb697f427345",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SY",
+      "countryName": "سوريا",
+      "grade": 1,
+      "lessonId": "08b98be6-2250-4c38-8577-719c7db880e6",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SY",
+      "countryName": "سوريا",
+      "grade": 2,
+      "lessonId": "38bbacc9-4072-40b8-802f-19b603c5e2c2",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SY",
+      "countryName": "سوريا",
+      "grade": 2,
+      "lessonId": "a55c2b98-0f62-4e09-9c06-87efaced5825",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SY",
+      "countryName": "سوريا",
+      "grade": 3,
+      "lessonId": "e7a0afac-7145-41b4-970e-62473872637b",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "SY",
+      "countryName": "سوريا",
+      "grade": 3,
+      "lessonId": "3919fb94-60b5-4ca8-ba5b-9f8035201cc1",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "TN",
+      "countryName": "تونس",
+      "grade": 1,
+      "lessonId": "768a6376-9df6-4fb2-bdf9-e0192112d7e2",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "TN",
+      "countryName": "تونس",
+      "grade": 1,
+      "lessonId": "4878e626-16c4-4b04-bebd-6e699ef71633",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "TN",
+      "countryName": "تونس",
+      "grade": 2,
+      "lessonId": "b472eca3-aca7-429e-ad83-635e6fc7c2cf",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "TN",
+      "countryName": "تونس",
+      "grade": 2,
+      "lessonId": "1a290e78-7fe0-45b5-b8b0-15f0ce0bb671",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "TN",
+      "countryName": "تونس",
+      "grade": 3,
+      "lessonId": "edabae10-fa35-4733-9de9-50516fafd967",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "TN",
+      "countryName": "تونس",
+      "grade": 3,
+      "lessonId": "f8fb3d15-f7ec-4d42-bcc9-ca1e5fe27c7a",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "YE",
+      "countryName": "اليمن",
+      "grade": 1,
+      "lessonId": "0a03e125-1124-450f-882a-245ad4cdcaa1",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "YE",
+      "countryName": "اليمن",
+      "grade": 1,
+      "lessonId": "14d37c62-485b-444f-9a2f-61eb2bbd6eff",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "YE",
+      "countryName": "اليمن",
+      "grade": 2,
+      "lessonId": "6acc1ed8-31c1-4817-8cd2-967fd6b06c6c",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "YE",
+      "countryName": "اليمن",
+      "grade": 2,
+      "lessonId": "c2e58cdf-74dc-4491-9cf3-e7e396e13da2",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "YE",
+      "countryName": "اليمن",
+      "grade": 3,
+      "lessonId": "88b095e6-0163-4ac5-842f-c5867cf14ca6",
+      "title": "الجملة الاسمية البسيطة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    },
+    {
+      "countryCode": "YE",
+      "countryName": "اليمن",
+      "grade": 3,
+      "lessonId": "8124d263-dad4-4323-add6-77a976bd422c",
+      "title": "الحركات القصيرة",
+      "addedActivities": 3,
+      "publishedActivities": 6,
+      "writingLinked": true,
+      "humanReviewStatus": "pending_human_review",
+      "reviewRequires": [
+        "grade-appropriate original Arabic and tashkeel",
+        "exercise answers tested server-side and subjective task manual grading",
+        "official-or-explicitly-general source scope mapping",
+        "Arabic playback/browser with parent support",
+        "child-data and grading security"
+      ]
+    }
+  ]
+}

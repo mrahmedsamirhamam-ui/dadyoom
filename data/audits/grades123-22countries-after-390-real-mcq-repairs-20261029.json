@@ -1,0 +1,619 @@
+{
+  "auditDate": "2026-10-29",
+  "databaseProject": "hvqsvtomhlxavmfqoxfz",
+  "source": "Read-only live production SQL after atomic 390 MCQ repairs, disaggregated by 66 country-grade cells",
+  "evidenceLevel": "live-published-lesson-and-known-pattern-audit",
+  "replaces": "data/audits/grades123-22countries-live-quality-snapshot-20261029.json",
+  "repairedGenericQuestionRows": 390,
+  "preservedGenericQuestionRowsDueToLearnerProgress": 2,
+  "rights": "Original supplementary questions, no official curriculum matching or release approval asserted",
+  "warnings": [
+    "Historic 6-10 activity coverage stored in different earlier snapshot; not re-measured here",
+    "One Egyptian Grade1 lesson retains two generic questions to protect its preexisting learner progress",
+    "No learner records, answer keys, or individual attempts included",
+    "Audio, teacher review and official source mapping remain unverified"
+  ],
+  "cells": [
+    {
+      "grade": 1,
+      "total": 24,
+      "drafts": 0,
+      "country": "AE",
+      "published": 24,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 24,
+      "drafts": 0,
+      "country": "AE",
+      "published": 24,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 24,
+      "drafts": 0,
+      "country": "AE",
+      "published": 24,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 143,
+      "drafts": 0,
+      "country": "BH",
+      "published": 143,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 89,
+      "drafts": 31,
+      "country": "BH",
+      "published": 58,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 77,
+      "drafts": 26,
+      "country": "BH",
+      "published": 51,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 19,
+      "drafts": 0,
+      "country": "DJ",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 19,
+      "drafts": 0,
+      "country": "DJ",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 19,
+      "drafts": 0,
+      "country": "DJ",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 19,
+      "drafts": 0,
+      "country": "DZ",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 19,
+      "drafts": 0,
+      "country": "DZ",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 19,
+      "drafts": 0,
+      "country": "DZ",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 30,
+      "drafts": 0,
+      "country": "EG",
+      "published": 30,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 1
+    },
+    {
+      "grade": 2,
+      "total": 42,
+      "drafts": 0,
+      "country": "EG",
+      "published": 42,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 30,
+      "drafts": 0,
+      "country": "EG",
+      "published": 30,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 19,
+      "drafts": 0,
+      "country": "IQ",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 19,
+      "drafts": 0,
+      "country": "IQ",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 19,
+      "drafts": 0,
+      "country": "IQ",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 28,
+      "drafts": 0,
+      "country": "JO",
+      "published": 28,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 28,
+      "drafts": 0,
+      "country": "JO",
+      "published": 28,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 28,
+      "drafts": 0,
+      "country": "JO",
+      "published": 28,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 19,
+      "drafts": 0,
+      "country": "KM",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 19,
+      "drafts": 0,
+      "country": "KM",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 19,
+      "drafts": 0,
+      "country": "KM",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 27,
+      "drafts": 0,
+      "country": "KW",
+      "published": 27,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 27,
+      "drafts": 0,
+      "country": "KW",
+      "published": 27,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 27,
+      "drafts": 0,
+      "country": "KW",
+      "published": 27,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 21,
+      "drafts": 0,
+      "country": "LB",
+      "published": 21,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 21,
+      "drafts": 0,
+      "country": "LB",
+      "published": 21,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 21,
+      "drafts": 0,
+      "country": "LB",
+      "published": 21,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 24,
+      "drafts": 0,
+      "country": "LY",
+      "published": 24,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 24,
+      "drafts": 0,
+      "country": "LY",
+      "published": 24,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 24,
+      "drafts": 0,
+      "country": "LY",
+      "published": 24,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 19,
+      "drafts": 0,
+      "country": "MA",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 19,
+      "drafts": 0,
+      "country": "MA",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 19,
+      "drafts": 0,
+      "country": "MA",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 19,
+      "drafts": 0,
+      "country": "MR",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 19,
+      "drafts": 0,
+      "country": "MR",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 19,
+      "drafts": 0,
+      "country": "MR",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 23,
+      "drafts": 0,
+      "country": "OM",
+      "published": 23,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 23,
+      "drafts": 0,
+      "country": "OM",
+      "published": 23,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 23,
+      "drafts": 0,
+      "country": "OM",
+      "published": 23,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 60,
+      "drafts": 0,
+      "country": "PS",
+      "published": 60,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 53,
+      "drafts": 0,
+      "country": "PS",
+      "published": 53,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 49,
+      "drafts": 0,
+      "country": "PS",
+      "published": 49,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 20,
+      "drafts": 0,
+      "country": "QA",
+      "published": 20,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 20,
+      "drafts": 0,
+      "country": "QA",
+      "published": 20,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 20,
+      "drafts": 0,
+      "country": "QA",
+      "published": 20,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 34,
+      "drafts": 0,
+      "country": "SA",
+      "published": 34,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 34,
+      "drafts": 0,
+      "country": "SA",
+      "published": 34,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 34,
+      "drafts": 0,
+      "country": "SA",
+      "published": 34,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 19,
+      "drafts": 0,
+      "country": "SD",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 19,
+      "drafts": 0,
+      "country": "SD",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 19,
+      "drafts": 0,
+      "country": "SD",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 19,
+      "drafts": 0,
+      "country": "SO",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 19,
+      "drafts": 0,
+      "country": "SO",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 19,
+      "drafts": 0,
+      "country": "SO",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 19,
+      "drafts": 0,
+      "country": "SY",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 19,
+      "drafts": 0,
+      "country": "SY",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 19,
+      "drafts": 0,
+      "country": "SY",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 19,
+      "drafts": 0,
+      "country": "TN",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 19,
+      "drafts": 0,
+      "country": "TN",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 19,
+      "drafts": 0,
+      "country": "TN",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 1,
+      "total": 19,
+      "drafts": 0,
+      "country": "YE",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 2,
+      "total": 19,
+      "drafts": 0,
+      "country": "YE",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    },
+    {
+      "grade": 3,
+      "total": 19,
+      "drafts": 0,
+      "country": "YE",
+      "published": 19,
+      "genericScaffolds": 0,
+      "genericQuestionLessons": 0
+    }
+  ],
+  "total": 1803,
+  "drafts": 57,
+  "countries": 22,
+  "published": 1746,
+  "genericScaffolds": 0,
+  "countryGradeCells": 66,
+  "genericQuestionLessons": 1
+}

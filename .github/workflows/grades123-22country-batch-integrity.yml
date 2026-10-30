@@ -1,0 +1,225 @@
+name: Grade 1-3 22-country original content audit and release gate
+
+on:
+  push:
+    branches:
+      - feat/grades123-22countries-lam-batch-20261029
+    paths:
+      - 'data/audits/grades123-22countries-*'
+      - 'data/review-queue/20261029-grammar-skills-*'
+      - 'data/review-queue/20261029-phonics-nominal-*'
+      - 'data/review-queue/grades123-live-specific-lesson-gaps-*'
+      - 'data/review-queue/grades123-after-390-mcq-repairs-*'
+      - 'data/review-queue/grades123-22countries-1176-lessons-below-six-*'
+      - 'data/curriculum-drafts/grade123-short-vowels-nominal-*'
+      - 'data/curriculum-drafts/grades123-original-nominal-*'
+      - 'scripts/grade123-release-gate.mjs'
+      - 'tests/grade123-release-gate.node.test.mjs'
+      - 'tests/grade123-390-repairs.node.test.mjs'
+      - 'tests/grade123-594-activities.node.test.mjs'
+      - 'tests/grade123-20261030-two-198-batches.node.test.mjs'
+      - 'tests/grade123-20261030-remaining-1044.node.test.mjs'
+      - 'tests/grade123-20261030-three-198-batches.node.test.mjs'
+      - 'tests/grade123-20261030-topic-591-activities.node.test.mjs'
+      - 'tests/grade123-20261030-sequence-questions-reading-591.node.test.mjs'
+      - 'tests/grade123-20261030-prose-corrections.node.test.mjs'
+      - 'tests/grade123-20261030-listening-media-evidence.node.test.mjs'
+      - 'tests/grade123-20261030-listening-198-and-browser-speech.node.test.mjs'
+      - 'tests/grade123-20261030-listening-coverage-518-gate.node.test.mjs'
+      - 'tests/grade123-20261030-short-90-coverage-node-review.node.test.mjs'
+      - 'tests/grade123-20261030-visible-original-reading-and-prompt.node.test.mjs'
+      - 'tests/grade123-20261030-bahrain-11-glossaries-55-activities.node.test.mjs'
+      - 'tests/grade123-20261030-bahrain-34-journal-phonics-activities.node.test.mjs'
+      - 'tests/grade123-20261030-26-private-teacher-answers-and-34-g1-activities.node.test.mjs'
+      - 'tests/grade123-20261030-60-worksheets-and-single-select-1059.node.test.mjs'
+      - 'tests/grade123-20261030-grade2-35-actual-listening-and-474-lesson-gap.node.test.mjs'
+      - 'tests/grade123-20261030-bahrain-g3-62-exact-story-and-listening-activities.node.test.mjs'
+      - 'tests/grade123-20261030-bahrain-g2-36-exact-story-448-gaps.node.test.mjs'
+      - 'tests/grade123-20261030-bahrain-g2-nine-prose-27-and-439-gaps.node.test.mjs'
+      - 'tests/grade123-20261030-bahrain-g1-50-worksheets-429-gaps.node.test.mjs'
+      - 'tests/grade123-20261030-bahrain-five-phonics-five-life-50-419-gaps.node.test.mjs'
+      - 'scripts/curriculum-bh-grade1-five-phonics-language-workbooks-25-private-questions-20261030.sql'
+      - 'scripts/curriculum-bh-grade1-five-spatial-health-math-workbooks-25-original-20261030.sql'
+      - 'data/review-queue/grades123-22countries-419-activity-gaps-20261030.json'
+      - 'scripts/curriculum-bh-g1-10-original-worksheet-pages-50-topic-specific-activities-20261030.sql'
+      - 'data/review-queue/grades123-22countries-429-activity-gaps-20261030.json'
+      - 'scripts/curriculum-bh-g2-9-independent-original-reading-stories-27-evidence-questions-20261030.sql'
+      - 'data/review-queue/grades123-22countries-439-activity-gaps-20261030.json'
+      - 'scripts/curriculum-bh-grade2-12-original-reading-stories-36-source-exact-questions-20261030.sql'
+      - 'data/review-queue/grades123-22countries-448-activity-gaps-20261030.json'
+      - 'scripts/curriculum-bh-g3-6-original-listening-passages-30-comprehension-20261030.sql'
+      - 'scripts/curriculum-bh-g3-8-source-exact-reading-passages-32-comprehension-20261030.sql'
+      - 'data/review-queue/grades123-22countries-460-activity-gaps-20261030.json'
+      - 'scripts/curriculum-bh-grade2-6-original-listening-stories-and-phonics-35-activities-20261030.sql'
+      - 'data/review-queue/grades123-22countries-474-activity-gaps-20261030.json'
+      - 'scripts/curriculum-bh-g1-12-unique-worksheets-60-original-differentiated-activities-20261030.sql'
+      - 'data/audits/grade123-1059-four-option-single-select-rendering-20261030.json'
+      - 'data/review-queue/grades123-22countries-481-activity-gaps-20261030.json'
+      - 'scripts/security-bahrain-g1-26-public-answer-guide-lines-into-private-teacher-notes-20261030.sql'
+      - 'data/audits/bh-grade1-26-public-answer-keys-secured-20261030.json'
+      - 'scripts/curriculum-bh-g1-5-learning-journals-25-source-specific-activities-20261030.sql'
+      - 'scripts/curriculum-bh-g1-9-verified-letter-lessons-single-phonics-questions-20261030.sql'
+      - 'data/review-queue/grades123-22countries-493-activity-gaps-20261030.json'
+      - 'scripts/curriculum-bahrain-grade1-11-distinct-glossaries-55-optional-exercises-20261030.sql'
+      - 'data/review-queue/grades123-22countries-507-activity-gaps-20261030.json'
+      - 'data/audits/grades123-22countries-activity-context-rendering-gap-fixed-20261030.json'
+      - 'scripts/curriculum-g123-expose-student-activity-prompt-without-answers-20261030.sql'
+      - 'features/lesson-activities/services/public-lesson-activities.ts'
+      - 'features/lessons/queries/getLessonPageBundle.ts'
+      - 'data/review-queue/grades123-90-short-published-coverage-nodes-20261030.json'
+      - 'features/lesson-activities/components/ListeningScriptPlayer.tsx'
+      - 'features/lessons/components/InteractiveLessonActivities.tsx'
+      - 'scripts/curriculum-g123-listening-198-voice-or-teacher-original-activities-20261030.sql'
+      - 'data/review-queue/grades123-22countries-518-activity-gaps-20261030.json'
+      - 'data/audits/grades123-listening-66-scripts-no-direct-audio-20261030.json'
+      - 'scripts/curriculum-g123-24-original-story-language-corrections-20261030.sql'
+      - 'scripts/curriculum-g123-sequence-198-original-activities-20261030.sql'
+      - 'scripts/curriculum-g123-interrogatives-195-original-activities-20261030.sql'
+      - 'scripts/curriculum-g123-reading-198-original-activities-20261030.sql'
+      - 'data/review-queue/grades123-22countries-584-activity-gaps-20261030.json'
+      - 'scripts/curriculum-g123-letter-forms-198-original-activities-20261030.sql'
+      - 'scripts/curriculum-g123-phonemes-195-protected-original-activities-20261030.sql'
+      - 'scripts/curriculum-g123-main-idea-198-original-reading-activities-20261030.sql'
+      - 'data/review-queue/grades123-22countries-781-activity-gaps-20261030.json'
+      - 'scripts/curriculum-g123-sukun-198-original-activities-20261030.sql'
+      - 'data/review-queue/grades123-22countries-978-activity-gaps-20261030.json'
+      - 'data/review-queue/grades123-22countries-1044-activity-gaps-20261030.json'
+      - 'scripts/curriculum-g123-madd-198-verified-activities-20261030.sql'
+      - 'scripts/curriculum-g123-shadda-tanween-198-original-activities-20261030.sql'
+      - 'scripts/curriculum-22countries-g123-add-594-grounded-activities-20261029.sql'
+      - 'data/review-queue/bahrain-g123-57-draft-source-readiness-20261029.json'
+      - 'scripts/curriculum-22countries-g123-repair-390-safe-mcqs-20261029.sql'
+      - 'tests/curriculum-grades123-*'
+      - '.github/workflows/grades123-22country-batch-integrity.yml'
+  pull_request:
+    paths:
+      - 'data/audits/grades123-22countries-*'
+      - 'data/review-queue/20261029-grammar-skills-*'
+      - 'data/review-queue/20261029-phonics-nominal-*'
+      - 'data/review-queue/grades123-live-specific-lesson-gaps-*'
+      - 'data/review-queue/grades123-after-390-mcq-repairs-*'
+      - 'data/review-queue/grades123-22countries-1176-lessons-below-six-*'
+      - 'data/curriculum-drafts/grade123-short-vowels-nominal-*'
+      - 'data/curriculum-drafts/grades123-original-nominal-*'
+      - 'scripts/grade123-release-gate.mjs'
+      - 'tests/grade123-release-gate.node.test.mjs'
+      - 'tests/grade123-390-repairs.node.test.mjs'
+      - 'tests/grade123-594-activities.node.test.mjs'
+      - 'tests/grade123-20261030-two-198-batches.node.test.mjs'
+      - 'tests/grade123-20261030-remaining-1044.node.test.mjs'
+      - 'tests/grade123-20261030-three-198-batches.node.test.mjs'
+      - 'tests/grade123-20261030-topic-591-activities.node.test.mjs'
+      - 'tests/grade123-20261030-sequence-questions-reading-591.node.test.mjs'
+      - 'tests/grade123-20261030-prose-corrections.node.test.mjs'
+      - 'tests/grade123-20261030-listening-media-evidence.node.test.mjs'
+      - 'tests/grade123-20261030-listening-198-and-browser-speech.node.test.mjs'
+      - 'tests/grade123-20261030-listening-coverage-518-gate.node.test.mjs'
+      - 'tests/grade123-20261030-short-90-coverage-node-review.node.test.mjs'
+      - 'tests/grade123-20261030-visible-original-reading-and-prompt.node.test.mjs'
+      - 'tests/grade123-20261030-bahrain-11-glossaries-55-activities.node.test.mjs'
+      - 'tests/grade123-20261030-bahrain-34-journal-phonics-activities.node.test.mjs'
+      - 'tests/grade123-20261030-26-private-teacher-answers-and-34-g1-activities.node.test.mjs'
+      - 'tests/grade123-20261030-60-worksheets-and-single-select-1059.node.test.mjs'
+      - 'tests/grade123-20261030-grade2-35-actual-listening-and-474-lesson-gap.node.test.mjs'
+      - 'tests/grade123-20261030-bahrain-g3-62-exact-story-and-listening-activities.node.test.mjs'
+      - 'tests/grade123-20261030-bahrain-g2-36-exact-story-448-gaps.node.test.mjs'
+      - 'tests/grade123-20261030-bahrain-g2-nine-prose-27-and-439-gaps.node.test.mjs'
+      - 'tests/grade123-20261030-bahrain-g1-50-worksheets-429-gaps.node.test.mjs'
+      - 'tests/grade123-20261030-bahrain-five-phonics-five-life-50-419-gaps.node.test.mjs'
+      - 'scripts/curriculum-bh-grade1-five-phonics-language-workbooks-25-private-questions-20261030.sql'
+      - 'scripts/curriculum-bh-grade1-five-spatial-health-math-workbooks-25-original-20261030.sql'
+      - 'data/review-queue/grades123-22countries-419-activity-gaps-20261030.json'
+      - 'scripts/curriculum-bh-g1-10-original-worksheet-pages-50-topic-specific-activities-20261030.sql'
+      - 'data/review-queue/grades123-22countries-429-activity-gaps-20261030.json'
+      - 'scripts/curriculum-bh-g2-9-independent-original-reading-stories-27-evidence-questions-20261030.sql'
+      - 'data/review-queue/grades123-22countries-439-activity-gaps-20261030.json'
+      - 'scripts/curriculum-bh-grade2-12-original-reading-stories-36-source-exact-questions-20261030.sql'
+      - 'data/review-queue/grades123-22countries-448-activity-gaps-20261030.json'
+      - 'scripts/curriculum-bh-g3-6-original-listening-passages-30-comprehension-20261030.sql'
+      - 'scripts/curriculum-bh-g3-8-source-exact-reading-passages-32-comprehension-20261030.sql'
+      - 'data/review-queue/grades123-22countries-460-activity-gaps-20261030.json'
+      - 'scripts/curriculum-bh-grade2-6-original-listening-stories-and-phonics-35-activities-20261030.sql'
+      - 'data/review-queue/grades123-22countries-474-activity-gaps-20261030.json'
+      - 'scripts/curriculum-bh-g1-12-unique-worksheets-60-original-differentiated-activities-20261030.sql'
+      - 'data/audits/grade123-1059-four-option-single-select-rendering-20261030.json'
+      - 'data/review-queue/grades123-22countries-481-activity-gaps-20261030.json'
+      - 'scripts/security-bahrain-g1-26-public-answer-guide-lines-into-private-teacher-notes-20261030.sql'
+      - 'data/audits/bh-grade1-26-public-answer-keys-secured-20261030.json'
+      - 'scripts/curriculum-bh-g1-5-learning-journals-25-source-specific-activities-20261030.sql'
+      - 'scripts/curriculum-bh-g1-9-verified-letter-lessons-single-phonics-questions-20261030.sql'
+      - 'data/review-queue/grades123-22countries-493-activity-gaps-20261030.json'
+      - 'scripts/curriculum-bahrain-grade1-11-distinct-glossaries-55-optional-exercises-20261030.sql'
+      - 'data/review-queue/grades123-22countries-507-activity-gaps-20261030.json'
+      - 'data/audits/grades123-22countries-activity-context-rendering-gap-fixed-20261030.json'
+      - 'scripts/curriculum-g123-expose-student-activity-prompt-without-answers-20261030.sql'
+      - 'features/lesson-activities/services/public-lesson-activities.ts'
+      - 'features/lessons/queries/getLessonPageBundle.ts'
+      - 'data/review-queue/grades123-90-short-published-coverage-nodes-20261030.json'
+      - 'features/lesson-activities/components/ListeningScriptPlayer.tsx'
+      - 'features/lessons/components/InteractiveLessonActivities.tsx'
+      - 'scripts/curriculum-g123-listening-198-voice-or-teacher-original-activities-20261030.sql'
+      - 'data/review-queue/grades123-22countries-518-activity-gaps-20261030.json'
+      - 'data/audits/grades123-listening-66-scripts-no-direct-audio-20261030.json'
+      - 'scripts/curriculum-g123-24-original-story-language-corrections-20261030.sql'
+      - 'scripts/curriculum-g123-sequence-198-original-activities-20261030.sql'
+      - 'scripts/curriculum-g123-interrogatives-195-original-activities-20261030.sql'
+      - 'scripts/curriculum-g123-reading-198-original-activities-20261030.sql'
+      - 'data/review-queue/grades123-22countries-584-activity-gaps-20261030.json'
+      - 'scripts/curriculum-g123-letter-forms-198-original-activities-20261030.sql'
+      - 'scripts/curriculum-g123-phonemes-195-protected-original-activities-20261030.sql'
+      - 'scripts/curriculum-g123-main-idea-198-original-reading-activities-20261030.sql'
+      - 'data/review-queue/grades123-22countries-781-activity-gaps-20261030.json'
+      - 'scripts/curriculum-g123-sukun-198-original-activities-20261030.sql'
+      - 'data/review-queue/grades123-22countries-978-activity-gaps-20261030.json'
+      - 'data/review-queue/grades123-22countries-1044-activity-gaps-20261030.json'
+      - 'scripts/curriculum-g123-madd-198-verified-activities-20261030.sql'
+      - 'scripts/curriculum-g123-shadda-tanween-198-original-activities-20261030.sql'
+      - 'scripts/curriculum-22countries-g123-add-594-grounded-activities-20261029.sql'
+      - 'data/review-queue/bahrain-g123-57-draft-source-readiness-20261029.json'
+      - 'scripts/curriculum-22countries-g123-repair-390-safe-mcqs-20261029.sql'
+      - 'tests/curriculum-grades123-*'
+      - '.github/workflows/grades123-22country-batch-integrity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-real-audits:
+    name: Validate 66 country-grade groups and ensure grade-4 release remains blocked
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependency lockfile
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Test immutable before-and-after snapshots
+        run: npx vitest run tests/curriculum-grades123-live-lam-audit.test.ts tests/curriculum-grades123-two-batch-audit.test.ts tests/curriculum-grades123-four-batch-audit.test.ts tests/curriculum-grade123-nominal-questions-audit.test.ts tests/brand-dadyoom-about-identity.test.ts
+      - name: Unit-test real gaps, fake completion and positive 66-cell control
+        run: node --test tests/grade123-release-gate.node.test.mjs tests/grade123-390-repairs.node.test.mjs tests/grade123-594-activities.node.test.mjs tests/grade123-20261030-two-198-batches.node.test.mjs tests/grade123-20261030-remaining-1044.node.test.mjs tests/grade123-20261030-three-198-batches.node.test.mjs tests/grade123-20261030-topic-591-activities.node.test.mjs tests/grade123-20261030-sequence-questions-reading-591.node.test.mjs tests/grade123-20261030-prose-corrections.node.test.mjs tests/grade123-20261030-listening-media-evidence.node.test.mjs tests/grade123-20261030-listening-198-and-browser-speech.node.test.mjs tests/grade123-20261030-listening-coverage-518-gate.node.test.mjs tests/grade123-20261030-short-90-coverage-node-review.node.test.mjs tests/grade123-20261030-visible-original-reading-and-prompt.node.test.mjs tests/grade123-20261030-bahrain-11-glossaries-55-activities.node.test.mjs tests/grade123-20261030-bahrain-34-journal-phonics-activities.node.test.mjs tests/grade123-20261030-26-private-teacher-answers-and-34-g1-activities.node.test.mjs tests/grade123-20261030-60-worksheets-and-single-select-1059.node.test.mjs tests/grade123-20261030-grade2-35-actual-listening-and-474-lesson-gap.node.test.mjs tests/grade123-20261030-bahrain-g3-62-exact-story-and-listening-activities.node.test.mjs tests/grade123-20261030-bahrain-g2-36-exact-story-448-gaps.node.test.mjs tests/grade123-20261030-bahrain-g2-nine-prose-27-and-439-gaps.node.test.mjs tests/grade123-20261030-bahrain-g1-50-worksheets-429-gaps.node.test.mjs tests/grade123-20261030-bahrain-five-phonics-five-life-50-419-gaps.node.test.mjs
+      - name: Grade 1-3 gate must fail closed while coverage is incomplete
+        shell: bash
+        run: |
+          set +e
+          node scripts/grade123-release-gate.mjs --report grade123-gap-report.json > grade-gate.txt 2>&1
+          status=$?
+          set -e
+          cat grade-gate.txt
+          if [ "$status" -eq 0 ]; then
+            echo "Unexpected release authorization to Grades 4–6"; exit 1
+          fi
+          grep -q 'GATE CLOSED' grade-gate.txt
+          grep -q '"ready": false' grade-gate.txt
+      - name: Publish structured 66-cell remediation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grade123-gap-report
+          path: grade123-gap-report.json
+          if-no-files-found: error
+      - name: Typecheck all source
+        run: npx tsc --noEmit

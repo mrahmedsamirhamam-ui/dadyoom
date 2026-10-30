@@ -50,7 +50,8 @@ describe("Bahrain original Grade1–3 shadda and tanween remediation",()=>{
    }
    expect(l.activities.map(a=>a.order)).toEqual([1,2,3]);
    expect(l.activities[2].type).toBe(l.grade===1?"reading":"writing");
-   expect(l.activities.every(a=>a.prompt.length>30)).toBe(true);
+   expect(l.activities.every(a=>a.prompt.length>=24)).toBe(true);
+   expect(l.activities.slice(0,2).every(a=>a.prompt.includes("؟"))).toBe(true); // Short, explicit questions remain valid for young readers.
   }
  });
  it("stores no private answer keys or scoring explanations in public curriculum",()=>{

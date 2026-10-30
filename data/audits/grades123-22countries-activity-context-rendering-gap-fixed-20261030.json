@@ -1,0 +1,44 @@
+{
+  "auditDate": "2026-10-30",
+  "projectId": "hvqsvtomhlxavmfqoxfz",
+  "source": "Live, read-only Supabase analysis of published lesson_activities attached to published lessons, Grades 1–3, 22 countries",
+  "frontendBranch": "feat/grades123-22countries-lam-batch-20261029",
+  "originalContextKeys": [
+    "content.originalText",
+    "content.originalReference",
+    "content.sourceContext"
+  ],
+  "publicPromptFlow": "get_lesson_page_bundle activity prompt -> publicLessonActivities strips private answer -> InteractiveLessonActivities renders prompt",
+  "counts": {
+    "publishedActivityRows": 8566,
+    "withNonemptyPrompt": 8383,
+    "originalTextActivities": 789,
+    "originalReferenceActivities": 195,
+    "sourceContextActivities": 198,
+    "voiceListeningQuestions": 198,
+    "originalContextWithMissingPrompt": 0,
+    "observedTopLevelAnswerOrCorrectInContent": 0
+  },
+  "productionRPC": {
+    "name": "public.get_lesson_page_bundle(p_lesson_id uuid)",
+    "afterPatchPromptPresent": true,
+    "securityDefiner": false,
+    "validatedExampleActivityCount": 6,
+    "validatedExamplePrompts": 6,
+    "validatedExampleAnswerKeyLeaks": 0
+  },
+  "frontendStatus": {
+    "branchCodeUpdated": true,
+    "mergedToMain": false,
+    "cloudflareProductionDeploymentVerified": false,
+    "learnerBrowserEndToEndVerified": false
+  },
+  "requiredQA": [
+    "Ensure selected activity displays original reading text or context before answer choices",
+    "Ensure prompt rendered for RPC and authorized private Bahrain preview",
+    "Confirm content projection still removes nested answer keys and correct options",
+    "Test browser actual listening voice (Arabic speech synthesis may not be installed)",
+    "Verify production Cloudflare deploy only after PR review and release approval"
+  ],
+  "claim": "Published DB row coverage and server RPC projection tested; frontend visual E2E not yet tested"
+}
