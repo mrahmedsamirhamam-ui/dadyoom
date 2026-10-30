@@ -16,6 +16,7 @@ type LessonActivity = {
   title: string;
   activity_type: string;
   instructions: string | null;
+  prompt?: string | null;
   content: Record<string, unknown>;
   activity_order: number;
   points: number;
@@ -510,6 +511,28 @@ export default function InteractiveLessonActivities({
             const content =
               activity.content ?? {};
 
+            // Original reading passages and supplementary instructional cards
+            // are public source text, not answer keys. Display the actual
+            // passage before asking a learner to grade their understanding.
+            const originalReadingText =
+              typeof content.originalText === "string"
+                ? content.originalText.trim()
+                : null;
+
+            const originalContextText =
+              typeof content.originalReference === "string"
+                ? content.originalReference.trim()
+                : typeof content.sourceContext === "string"
+                  ? content.sourceContext.trim()
+                  : null;
+
+            const visiblePrompt =
+              typeof activity.prompt === "string" &&
+              activity.prompt.trim() &&
+              activity.prompt.trim() !== activity.instructions?.trim()
+                ? activity.prompt.trim()
+                : null;
+
             const showActivityImages =
               content.teacher_media_enabled === true ||
               content.image_source === "teacher";
@@ -861,6 +884,45 @@ export default function InteractiveLessonActivities({
                   </div>
                 </div>
 
+
+                {originalReadingText ? (
+                  <section
+                    aria-label="نص القراءة الخاص بالنشاط"
+                    className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-4"
+                    dir="rtl"
+                  >
+                    <p className="mb-2 text-sm font-extrabold text-amber-900">
+                      اقرأ النص الإثرائي ثم أجب
+                    </p>
+                    <p className="whitespace-pre-wrap leading-8 text-slate-800">
+                      {originalReadingText}
+                    </p>
+                  </section>
+                ) : null}
+
+                {originalContextText ? (
+                  <section
+                    aria-label="بطاقة التوضيح الخاصة بالنشاط"
+                    className="mt-4 rounded-2xl border border-sky-200 bg-sky-50 p-4"
+                    dir="rtl"
+                  >
+                    <p className="mb-2 text-sm font-extrabold text-sky-900">
+                      بطاقة تعليمية إضافية
+                    </p>
+                    <p className="whitespace-pre-wrap leading-8 text-slate-800">
+                      {originalContextText}
+                    </p>
+                  </section>
+                ) : null}
+
+                {visiblePrompt && !supervisedListening ? (
+                  <p
+                    className="mt-4 rounded-xl bg-white p-4 text-base font-extrabold leading-8 text-slate-900 ring-1 ring-violet-200"
+                    dir="rtl"
+                  >
+                    {visiblePrompt}
+                  </p>
+                ) : null}
 
                 {teacherListeningScript ? (
                   <ListeningScriptPlayer script={teacherListeningScript} />
