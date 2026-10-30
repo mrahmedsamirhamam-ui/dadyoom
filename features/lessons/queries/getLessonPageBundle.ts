@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { publicLessonActivities } from "@/features/lesson-activities/services/public-lesson-activities";
 import {
   publicLessonQuestions,
   type StudentQuestion,
@@ -27,6 +28,7 @@ export type BundledLessonActivity = {
     | "fill_blank"
     | string;
   instructions: string | null;
+  prompt: string | null;
   content: Record<string, unknown>;
   activity_order: number;
   points: number;
@@ -152,6 +154,7 @@ export async function getLessonPageBundle(
       return {
         ...bundle,
         questions: safeQuestions,
+        activities: publicLessonActivities(bundle.activities),
         activityAttempts: [],
       };
     }
@@ -186,6 +189,7 @@ export async function getLessonPageBundle(
     return {
       ...bundle,
       questions: safeQuestions,
+      activities: publicLessonActivities(bundle.activities),
 
       activityAttempts:
         (
@@ -465,7 +469,7 @@ export async function getLessonPageBundle(
 
       admin
         .from("lesson_activities")
-        .select("id,lesson_id,title,activity_type,instructions,content,activity_order,points,is_published,section,created_at,updated_at")
+        .select("id,lesson_id,title,activity_type,instructions,prompt,content,activity_order,points,is_published,section,created_at,updated_at")
         .eq(
           "lesson_id",
           lesson.id
@@ -696,9 +700,7 @@ export async function getLessonPageBundle(
     questions:
       publicLessonQuestions(questions),
 
-    activities:
-      activities as unknown as
-        BundledLessonActivity[],
+    activities: publicLessonActivities(activities),
 
     student: {
       id: user.id,

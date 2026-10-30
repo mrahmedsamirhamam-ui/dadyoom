@@ -1,6 +1,7 @@
 "use client";
 
 import ListenButton from "@/features/lesson-activities/components/ListenButton";
+import ListeningScriptPlayer from "@/features/lesson-activities/components/ListeningScriptPlayer";
 import LessonActivityImage from "@/features/lesson-activities/components/LessonActivityImage";
 
 import HandwritingCanvas from "@/features/lesson-activities/components/HandwritingCanvas";
@@ -15,6 +16,7 @@ type LessonActivity = {
   title: string;
   activity_type: string;
   instructions: string | null;
+  prompt?: string | null;
   content: Record<string, unknown>;
   activity_order: number;
   points: number;
@@ -509,6 +511,42 @@ export default function InteractiveLessonActivities({
             const content =
               activity.content ?? {};
 
+            // The original passage and learning context are safe student-facing
+            // lesson content, not the teacher-only grading answer.
+            const originalReadingText =
+              typeof content.originalText === "string"
+                ? content.originalText.trim()
+                : null;
+
+            const originalContextText =
+              typeof content.originalReference === "string"
+                ? content.originalReference.trim()
+                : typeof content.sourceContext === "string"
+                  ? content.sourceContext.trim()
+                  : null;
+
+            const visiblePrompt =
+              typeof activity.prompt === "string" &&
+              activity.prompt.trim() &&
+              activity.prompt.trim() !== activity.instructions?.trim()
+                ? activity.prompt.trim()
+                : null;
+
+            // One full passage or context per lesson is enough when several
+            // questions share the same authored text; avoid long repeated cards.
+            const previouslyShownReading =
+              !!originalReadingText &&
+              sorted.slice(0, index).some((earlier) =>
+                earlier.content?.originalText === originalReadingText
+              );
+
+            const previouslyShownContext =
+              !!originalContextText &&
+              sorted.slice(0, index).some((earlier) =>
+                earlier.content?.originalReference === originalContextText ||
+                earlier.content?.sourceContext === originalContextText
+              );
+
             const showActivityImages =
               content.teacher_media_enabled === true ||
               content.image_source === "teacher";
@@ -538,6 +576,29 @@ export default function InteractiveLessonActivities({
           typeof imageRegion.y === "number" &&
           typeof imageRegion.width === "number" &&
           typeof imageRegion.height === "number";
+
+          const supervisedListening =
+            activity.activity_type === "listening" &&
+            content.requiresTeacherRead === true &&
+            typeof content.text === "string" &&
+            content.text.trim().length > 0;
+
+          const teacherListeningScript = supervisedListening
+            ? (content.text as string)
+            : null;
+
+          const previouslyPlayedListeningScript =
+            !!teacherListeningScript &&
+            sorted.slice(0, index).some((earlier) =>
+              earlier.activity_type === "listening" &&
+              earlier.content?.requiresTeacherRead === true &&
+              earlier.content?.text === teacherListeningScript
+            );
+
+          const listeningQuestion =
+            supervisedListening && typeof content.listeningQuestion === "string"
+              ? content.listeningQuestion
+              : null;
 
           const audioText =
             typeof content.audio_text === "string"
@@ -834,7 +895,45 @@ export default function InteractiveLessonActivities({
                 </div>
 
 
-                                                {audioText ? (
+                                                                {originalReadingText && !previouslyShownReading ? (
+                  <section aria-label="نص القراءة الخاص بالنشاط"
+                    className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-4" dir="rtl">
+                    <p className="mb-2 text-sm font-extrabold text-amber-900">
+                      اقرأ النص الإثرائي ثم أجب
+                    </p>
+                    <p className="whitespace-pre-wrap leading-8 text-slate-800">
+                      {originalReadingText}
+                    </p>
+                  </section>
+                ) : null}
+
+                {originalContextText && !previouslyShownContext ? (
+                  <section aria-label="بطاقة التوضيح الخاصة بالنشاط"
+                    className="mt-4 rounded-2xl border border-sky-200 bg-sky-50 p-4" dir="rtl">
+                    <p className="mb-2 text-sm font-extrabold text-sky-900">
+                      بطاقة تعليمية إضافية
+                    </p>
+                    <p className="whitespace-pre-wrap leading-8 text-slate-800">
+                      {originalContextText}
+                    </p>
+                  </section>
+                ) : null}
+
+                {visiblePrompt && !supervisedListening ? (
+                  <p className="mt-4 rounded-xl bg-white p-4 text-base font-extrabold leading-8 text-slate-900 ring-1 ring-violet-200" dir="rtl">
+                    {visiblePrompt}
+                  </p>
+                ) : null}
+
+                {listeningQuestion ? (
+                  <p className="mt-4 rounded-xl bg-white p-4 text-base font-extrabold leading-8 text-slate-900 ring-1 ring-violet-200" dir="rtl">
+                    {listeningQuestion}
+                  </p>
+                ) : null}
+
+{teacherListeningScript && !previouslyPlayedListeningScript ? (
+                  <ListeningScriptPlayer script={teacherListeningScript} />
+                ) : audioText ? (
                   <ListenButton
                     text={audioText}
                     audioUrl={audioUrl}
