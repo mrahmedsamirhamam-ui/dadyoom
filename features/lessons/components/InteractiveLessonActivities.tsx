@@ -551,6 +551,12 @@ export default function InteractiveLessonActivities({
               ? (content.text as string)
               : null;
 
+          const listeningQuestion =
+            supervisedListening &&
+            typeof content.listeningQuestion === "string"
+              ? content.listeningQuestion
+              : null;
+
           const audioText =
             typeof content.audio_text === "string"
               ? content.audio_text
@@ -840,6 +846,11 @@ export default function InteractiveLessonActivities({
                       <p className="mt-2 leading-7 text-slate-600">
                         استمع إلى تعليمات المعلم أو الصوت العربي المتاح على جهازك، ثم نفّذ الخطوات بالترتيب.
                         لا تعرض النص المكتوب إلا عند الحاجة إلى دعم المعلم أو تسهيلات الوصول.
+                        {listeningQuestion ? (
+                          <strong className="mt-2 block text-slate-900">
+                            {listeningQuestion}
+                          </strong>
+                        ) : null}
                       </p>
                     ) : activity.instructions ? (
                       <p className="mt-2 leading-7 text-slate-600">
