@@ -35,7 +35,7 @@ test("198 source-owned listening assessments are optional, genuinely differentia
 
 test("zero-cost browser Arabic reading has manual activation, language guard and teacher fallback",()=>{
  assert.match(client,/"use client"/);
- assert.match(client,/window\.speechSynthesis\.getVoices\(\)/);
+ assert.match(client,/synth\.getVoices\(\)/);
  assert.match(client,/SpeechSynthesisUtterance/);
  assert.match(client,/\.startsWith\("ar"\)/);
  assert.match(client,/onClick=\{play\}/);
