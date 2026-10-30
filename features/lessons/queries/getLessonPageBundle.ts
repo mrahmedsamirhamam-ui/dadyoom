@@ -434,7 +434,7 @@ export async function getLessonPageBundle(
 
       admin
         .from("lesson_activities")
-        .select("id,lesson_id,title,activity_type,instructions,content,activity_order,points,is_published,section,created_at,updated_at")
+        .select("id,lesson_id,title,activity_type,instructions,prompt,content,activity_order,points,is_published,section,created_at,updated_at")
         .eq(
           "lesson_id",
           lesson.id
