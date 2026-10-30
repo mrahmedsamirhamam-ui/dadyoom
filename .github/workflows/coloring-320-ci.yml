@@ -1,0 +1,44 @@
+name: Coloring 320 digital activity quality
+on:
+  pull_request:
+    paths:
+      - 'app/activities/coloring/**'
+      - 'components/coloring/**'
+      - 'lib/coloring/**'
+      - 'data/coloring/**'
+      - 'tests/coloring-320-activities.test.ts'
+      - '.github/workflows/coloring-320-ci.yml'
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci --no-audit --no-fund
+      - run: npx tsc --noEmit
+      - run: npx eslint 'app/activities/coloring/[volume]/[page]/page.tsx' components/coloring/ColoringActivityClient.tsx lib/coloring/activities.ts tests/coloring-320-activities.test.ts
+      - run: npx vitest run tests/coloring-320-activities.test.ts
+      - run: npm run build
+      - name: Smoke test first and last activities
+        shell: bash
+        run: |
+          npm run start -- -p 3035 >/tmp/dadyoom-coloring.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          ready=0
+          for attempt in $(seq 1 25); do
+            if curl -fsS http://127.0.0.1:3035/activities/coloring/volume-1/page-001 -o /tmp/col1.html; then ready=1; break; fi
+            sleep 2
+          done
+          if [ "$ready" != '1' ]; then cat /tmp/dadyoom-coloring.log; exit 1; fi
+          grep -q 'أ - أرنب' /tmp/col1.html
+          curl -fsS http://127.0.0.1:3035/activities/coloring/volume-2/page-160 -o /tmp/col320.html
+          grep -q 'أرسم حلمي' /tmp/col320.html
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:3035/activities/coloring/volume-1/page-161)" = '404'
