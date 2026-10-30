@@ -20,16 +20,16 @@ BEGIN
     count(DISTINCT a.activity_order) positions,max(a.activity_order) max_order
   FROM public.lessons l JOIN public.units u ON u.id=l.unit_id JOIN public.grades g ON g.id=u.grade_id
   LEFT JOIN public.lesson_activities a ON a.lesson_id=l.id
-  WHERE l.title='أدوات الاستفهام' AND l.status='published' AND g.grade_number BETWEEN 1 AND 3 AND l.content LIKE '%الاستفهام%' AND l.content LIKE '%السؤال%'
+  WHERE l.title='أدوات الاستفهام' AND l.status='published' AND g.grade_number BETWEEN 1 AND 3 AND l.content LIKE '%الاستفهام%' AND length(l.content)>=500
   GROUP BY l.id
  )
  SELECT count(*) INTO candidates FROM found WHERE n=3 AND positions=3 AND max_order=3;
  IF candidates<>66 THEN RAISE EXCEPTION 'Expected 66 original lesson IDs with three existing activities, found %',candidates; END IF;
  SELECT count(*) INTO protected_count FROM public.lessons l JOIN public.units u ON u.id=l.unit_id JOIN public.grades g ON g.id=u.grade_id
- WHERE l.title='أدوات الاستفهام' AND l.status='published' AND g.grade_number BETWEEN 1 AND 3 AND l.content LIKE '%الاستفهام%' AND l.content LIKE '%السؤال%' AND NOT (NOT EXISTS(SELECT 1 FROM public.student_lesson_progress p WHERE p.lesson_id=l.id) AND NOT EXISTS(SELECT 1 FROM public.lesson_activity_attempts at JOIN public.lesson_activities la ON la.id=at.activity_id WHERE la.lesson_id=l.id) AND NOT EXISTS(SELECT 1 FROM public.question_attempts at JOIN public.questions q ON q.id=at.question_id WHERE q.lesson_id=l.id));
+ WHERE l.title='أدوات الاستفهام' AND l.status='published' AND g.grade_number BETWEEN 1 AND 3 AND l.content LIKE '%الاستفهام%' AND length(l.content)>=500 AND NOT (NOT EXISTS(SELECT 1 FROM public.student_lesson_progress p WHERE p.lesson_id=l.id) AND NOT EXISTS(SELECT 1 FROM public.lesson_activity_attempts at JOIN public.lesson_activities la ON la.id=at.activity_id WHERE la.lesson_id=l.id) AND NOT EXISTS(SELECT 1 FROM public.question_attempts at JOIN public.questions q ON q.id=at.question_id WHERE q.lesson_id=l.id));
  IF protected_count<>1 THEN RAISE EXCEPTION 'Protected learner-history count drift, expected 1, found %', protected_count; END IF;
  SELECT count(*) INTO safe_candidates FROM public.lessons l JOIN public.units u ON u.id=l.unit_id JOIN public.grades g ON g.id=u.grade_id
- WHERE l.title='أدوات الاستفهام' AND l.status='published' AND g.grade_number BETWEEN 1 AND 3 AND l.content LIKE '%الاستفهام%' AND l.content LIKE '%السؤال%' AND NOT EXISTS(SELECT 1 FROM public.student_lesson_progress p WHERE p.lesson_id=l.id) AND NOT EXISTS(SELECT 1 FROM public.lesson_activity_attempts at JOIN public.lesson_activities la ON la.id=at.activity_id WHERE la.lesson_id=l.id) AND NOT EXISTS(SELECT 1 FROM public.question_attempts at JOIN public.questions q ON q.id=at.question_id WHERE q.lesson_id=l.id);
+ WHERE l.title='أدوات الاستفهام' AND l.status='published' AND g.grade_number BETWEEN 1 AND 3 AND l.content LIKE '%الاستفهام%' AND length(l.content)>=500 AND NOT EXISTS(SELECT 1 FROM public.student_lesson_progress p WHERE p.lesson_id=l.id) AND NOT EXISTS(SELECT 1 FROM public.lesson_activity_attempts at JOIN public.lesson_activities la ON la.id=at.activity_id WHERE la.lesson_id=l.id) AND NOT EXISTS(SELECT 1 FROM public.question_attempts at JOIN public.questions q ON q.id=at.question_id WHERE q.lesson_id=l.id);
  IF safe_candidates<>65 THEN RAISE EXCEPTION 'Expected 65 safe lesson IDs, got %',safe_candidates; END IF;
  IF EXISTS (SELECT 1 FROM public.lesson_activities a WHERE a.content->>'origin'='DADYOOM_G123_INTERROGATIVES_195_ORIGINAL_20261030')
  THEN RAISE EXCEPTION 'Batch DADYOOM_G123_INTERROGATIVES_195_ORIGINAL_20261030 already inserted'; END IF;
@@ -39,7 +39,7 @@ BEGIN
         t.content,t.activity_order,5,true,t.section,t.prompt,t.answer,false
  FROM public.lessons l JOIN public.units u ON u.id=l.unit_id JOIN public.grades g ON g.id=u.grade_id
  JOIN pg_temp.g123_interrogatives_activities t ON t.grade=g.grade_number
- WHERE l.title='أدوات الاستفهام' AND l.status='published' AND g.grade_number BETWEEN 1 AND 3 AND l.content LIKE '%الاستفهام%' AND l.content LIKE '%السؤال%' AND NOT EXISTS(SELECT 1 FROM public.student_lesson_progress p WHERE p.lesson_id=l.id) AND NOT EXISTS(SELECT 1 FROM public.lesson_activity_attempts at JOIN public.lesson_activities la ON la.id=at.activity_id WHERE la.lesson_id=l.id) AND NOT EXISTS(SELECT 1 FROM public.question_attempts at JOIN public.questions q ON q.id=at.question_id WHERE q.lesson_id=l.id);
+ WHERE l.title='أدوات الاستفهام' AND l.status='published' AND g.grade_number BETWEEN 1 AND 3 AND l.content LIKE '%الاستفهام%' AND length(l.content)>=500 AND NOT EXISTS(SELECT 1 FROM public.student_lesson_progress p WHERE p.lesson_id=l.id) AND NOT EXISTS(SELECT 1 FROM public.lesson_activity_attempts at JOIN public.lesson_activities la ON la.id=at.activity_id WHERE la.lesson_id=l.id) AND NOT EXISTS(SELECT 1 FROM public.question_attempts at JOIN public.questions q ON q.id=at.question_id WHERE q.lesson_id=l.id);
  GET DIAGNOSTICS inserted=ROW_COUNT;
  IF inserted<>195 THEN RAISE EXCEPTION 'Atomic rollback: inserted % instead of 195',inserted; END IF;
  RAISE NOTICE 'DADYOOM_G123_INTERROGATIVES_195_ORIGINAL_20261030=%',inserted;
