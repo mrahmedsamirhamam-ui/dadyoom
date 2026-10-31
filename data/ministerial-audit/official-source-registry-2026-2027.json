@@ -136,22 +136,46 @@
     {
       "country": "EG",
       "nameAr": "مصر",
-      "approvedDomains": [],
-      "portals": [],
+      "approvedDomains": [
+        "moe.gov.eg"
+      ],
+      "portals": [
+        {
+          "url": "https://moe.gov.eg/",
+          "kind": "official-ministry-home-to-locate-current-books",
+          "year": null
+        }
+      ],
       "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
     },
     {
       "country": "JO",
       "nameAr": "الأردن",
-      "approvedDomains": [],
-      "portals": [],
+      "approvedDomains": [
+        "moe.gov.jo"
+      ],
+      "portals": [
+        {
+          "url": "https://moe.gov.jo/",
+          "kind": "official-ministry-home-to-locate-current-textbooks",
+          "year": null
+        }
+      ],
       "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
     },
     {
       "country": "LB",
       "nameAr": "لبنان",
-      "approvedDomains": [],
-      "portals": [],
+      "approvedDomains": [
+        "mehe.gov.lb"
+      ],
+      "portals": [
+        {
+          "url": "https://madristi.mehe.gov.lb/",
+          "kind": "official-ebooks-and-arabic-resources",
+          "year": null
+        }
+      ],
       "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
     },
     {
@@ -200,29 +224,61 @@
     {
       "country": "MA",
       "nameAr": "المغرب",
-      "approvedDomains": [],
-      "portals": [],
+      "approvedDomains": [
+        "men.gov.ma"
+      ],
+      "portals": [
+        {
+          "url": "https://www.men.gov.ma/node/1118",
+          "kind": "official-digital-resources",
+          "year": null
+        }
+      ],
       "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
     },
     {
       "country": "DZ",
       "nameAr": "الجزائر",
-      "approvedDomains": [],
-      "portals": [],
+      "approvedDomains": [
+        "education.gov.dz"
+      ],
+      "portals": [
+        {
+          "url": "https://www.education.gov.dz/2016/02/24/%D8%B9%D9%86%D8%A7%D9%88%D9%8A%D9%86-%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9/",
+          "kind": "archival-official-book-list-not-current-edition",
+          "year": "2016"
+        }
+      ],
       "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
     },
     {
       "country": "TN",
       "nameAr": "تونس",
-      "approvedDomains": [],
-      "portals": [],
+      "approvedDomains": [
+        "education.gov.tn"
+      ],
+      "portals": [
+        {
+          "url": "https://www.education.gov.tn/",
+          "kind": "official-2026-27-primary-and-secondary-book-lists",
+          "year": "2026-2027"
+        }
+      ],
       "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
     },
     {
       "country": "LY",
       "nameAr": "ليبيا",
-      "approvedDomains": [],
-      "portals": [],
+      "approvedDomains": [
+        "moe.gov.ly"
+      ],
+      "portals": [
+        {
+          "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-basic",
+          "kind": "official-previous-year-curriculum-library",
+          "year": "2025-2026"
+        }
+      ],
       "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
     },
     {
