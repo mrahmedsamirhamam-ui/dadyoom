@@ -181,8 +181,16 @@
     {
       "country": "SY",
       "nameAr": "سوريا",
-      "approvedDomains": [],
-      "portals": [],
+      "approvedDomains": [
+        "moed.gov.sy"
+      ],
+      "portals": [
+        {
+          "url": "https://moed.gov.sy/guides",
+          "kind": "official-activity-guides-not-language-textbooks",
+          "year": null
+        }
+      ],
       "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
     },
     {
@@ -217,9 +225,20 @@
     {
       "country": "YE",
       "nameAr": "اليمن",
-      "approvedDomains": [],
-      "portals": [],
-      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+      "approvedDomains": [
+        "moe.gov.ye"
+      ],
+      "portals": [
+        {
+          "url": "https://nataeji.moe.gov.ye/deleted-curriculum/",
+          "kind": "curriculum-deletions-partial-coverage-not-complete-textbooks",
+          "year": null
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED",
+      "warnings": [
+        "Authority and edition must be verified locally for the specific school and curriculum; a ministry-related exam portal alone is not a textbook TOC."
+      ]
     },
     {
       "country": "MA",
