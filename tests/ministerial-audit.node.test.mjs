@@ -4,7 +4,7 @@ import fs from "node:fs";
 import { auditCurriculum,normalizeArabic,checkOfficialManifest } from "../lib/ministerial-audit/engine.mjs";
 const countries=JSON.parse(fs.readFileSync("data/curriculum-packs/arab-countries.json","utf8")).countries;
 const sourceRegistry=JSON.parse(fs.readFileSync("data/ministerial-audit/official-source-registry-2026-2027.json","utf8")).countries;
-const source={url:"https://moe.gov.bh/ar/official-arabic.pdf",sha256:"a".repeat(64),
+const source={url:"https://moe.gov.bh/ar/official-arabic.pdf",sha256:"a".repeat(64),documentType:"textbook",edition:"2026-2027",
   extractionStatus:"reviewed",retrievedAt:"2026-10-31",reviewedAt:"2026-10-31",reviewedBy:"qualified-reviewer"};
 const official=(titles=["أصدقائي"])=>({country:"BH",grade:1,semester:1,track:"general",academicYear:"2026-2027",subject:"arabic",
   source,units:[{title:"الوحدة الأولى",lessons:titles.map((title,i)=>({title,page:i+3}))}]});
@@ -14,6 +14,7 @@ const lesson=(title="أصدقائي")=>({id:"x",country:"BH",grade:1,semester:1,
   objectives:["يستخرج الفكرة الرئيسة","يكتب جملة معبرة"],
   questionCount:3,questionsWithExplanation:3,publishedActivities:6,
   activityTypes:["reading","writing","listening","speaking"],
+  gamesCount:5,gamesReview:{status:"approved"},answerKeyReview:{status:"approved"},browserE2E:{status:"passed"},audioReview:{status:"approved"},
   linguisticReview:{status:"approved"},pedagogicalReview:{status:"approved"},
   officialTextReview:{status:"approved",sourceSha256:"a".repeat(64)}});
 function audit(manifests=[],platformLessons=[],extra={}){return auditCurriculum({countries,registry:sourceRegistry,
