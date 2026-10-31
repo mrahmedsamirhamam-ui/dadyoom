@@ -8,11 +8,12 @@ const sourceRegistry=JSON.parse(fs.readFileSync("data/ministerial-audit/official
 const source={url:"https://moe.gov.bh/ar/official-arabic.pdf",sha256:"a".repeat(64),documentType:"textbook",edition:"2026-2027",
   extractionStatus:"reviewed",retrievedAt:"2026-10-31",reviewedAt:"2026-10-31",reviewedBy:"qualified-reviewer"};
 const official=(titles=["أصدقائي"])=>({country:"BH",grade:1,semester:1,track:"general",academicYear:"2026-2027",subject:"arabic",
-  source,units:[{title:"الوحدة الأولى",lessons:titles.map((title,i)=>({title,page:i+3,topics:[{id:"topic-1",title:"الدرس ومفاهيمه الأساسية",page:i+3}]}))}]});
+  source,tocReview:{complete:true,reviewedBy:"qualified-reviewer",reviewedAt:"2026-10-31",officialUnitCount:1},units:[{title:"الوحدة الأولى",lessons:titles.map((title,i)=>({title,page:i+3,topics:[{id:"topic-1",title:"الدرس ومفاهيمه الأساسية",page:i+3}]}))}]});
 const lesson=(title="أصدقائي")=>{
  const content="يوضح هذا الدرس كيف نتعامل مع أصدقائنا باحترام؛ لأن التعاون يساعدنا على الفهم ونستنتج من الموقف أن الصديق الصالح يساند صديقه في المواقف الصعبة. ".repeat(3);
  return {id:"x",country:"BH",grade:1,semester:1,track:"general",academicYear:"2026-2027",
   title,unitTitle:"الوحدة الأولى",status:"published",content,
+  livePageReview:{status:"passed",checkedAt:"2026-10-31",contentSha256:textHash(content)},
   subjectReview:{status:"approved",reviewedBy:"teacher-qa",reviewedAt:"2026-10-31",
     sourceSha256:"a".repeat(64),contentSha256:textHash(content)},
   topicEvidence:[{topicId:"topic-1",start:0,end:content.length,
@@ -130,4 +131,17 @@ test("lesson title matching official does not hide a missing required ministry s
  const r=audit([m],[lesson()]);
  assert.equal(r.verifiedScopes,0);
  assert.ok(r.findings.some(x=>x.code==="TITLE_MATCH_SUBJECT_NOT_CERTIFIED"&&x.missingOrUnverifiedTopics.some(y=>y.topicId==="topic-2")));
+});
+
+test("a partial official TOC is never mistaken for a complete Ministry course",()=>{
+ const m=official();m.tocReview.complete=false;
+ const r=audit([m],[lesson()]);
+ assert.equal(r.verifiedScopes,0);
+ assert.ok(r.findings.some(x=>x.code==="OFFICIAL_MANIFEST_INVALID"&&x.reasons.includes("FULL_OFFICIAL_TABLE_OF_CONTENTS_NOT_APPROVED")));
+});
+test("database lesson is not complete if the student cannot open its verified live content",()=>{
+ const p=lesson();p.livePageReview={status:"not_checked"};
+ const r=audit([official()],[p]);
+ assert.equal(r.verifiedScopes,0);
+ assert.ok(r.findings.some(x=>x.code==="TITLE_MATCH_SUBJECT_NOT_CERTIFIED"&&x.subjectIssues.includes("LIVE_STUDENT_LESSON_PAGE_NOT_VERIFIED")));
 });
