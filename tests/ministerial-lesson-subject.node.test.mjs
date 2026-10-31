@@ -4,7 +4,7 @@ import {auditLessonTopicCompleteness,screenLessonSubject,textHash} from "../lib/
 const hash="c".repeat(64);
 const original="في هذه الوحدة نتعلم مفهوم المبتدأ والخبر؛ لأن الجملة الاسمية تبدأ باسم، ومثال ذلك: الطالب مجتهد. نستنتج أن المبتدأ هو الاسم الذي نبدأ به الجملة، وأن الخبر يتمم معنى الكلام.".repeat(3);
 function target(){
-  return {content:original,subjectReview:{status:"approved",reviewedBy:"qualified-Arabic-editor",reviewedAt:"2026-10-31",sourceSha256:hash,contentSha256:textHash(original)},
+  return {content:original,livePageReview:{status:"passed",checkedAt:"2026-10-31",contentSha256:textHash(original)},subjectReview:{status:"approved",reviewedBy:"qualified-Arabic-editor",reviewedAt:"2026-10-31",sourceSha256:hash,contentSha256:textHash(original)},
     topicEvidence:[{topicId:"topic-1",start:0,end:original.length,status:"approved",reviewedBy:"qualified-Arabic-editor",sourceSha256:hash,excerptSha256:textHash(original)}]};
 }
 const official={title:"المبتدأ والخبر",page:18,topics:[{id:"topic-1",title:"تعريف المبتدأ والخبر",page:18}]};
