@@ -25,7 +25,7 @@ describe("Palestinian grades 1-3 original supplementary tasks", () => {
     expect(sql).toContain("requiresTeacherRead");
     expect(sql).toContain("originalText");
     expect(sql).toContain("0, true, v.section, v.prompt, '{}'::jsonb, false");
-    expect(sql).toContain("NOT a graded mastery".toLowerCase().split(" ").slice(-2).join(" ").split(" ").length ? "completion-only" : "");
+    expect(sql).toContain("completion-only");
     expect(sql).not.toMatch(/service_role|GRANT\s|REVOKE\s|TRUNCATE\s/i);
     expect(postAudit).toContain("graded_or_secret_bearing");
     expect(postAudit).toContain("without_published_activities");
