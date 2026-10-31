@@ -44,6 +44,8 @@ on:
       - 'tests/curriculum-bh-g13-six-source-linked-static.test.ts'
       - 'data/curriculum-audits/bh-g23-57-drafts-classification-20261031.json'
       - 'tests/curriculum-bh-g23-unpublished-drafts-snapshot.test.ts'
+      - 'scripts/curriculum-bh-g1-sem2-six-independent-original-bodies-30-formative-20261031.sql'
+      - 'tests/curriculum-bh-g1-sem2-six-independent-bodies.test.ts'
       - 'app/quiz/**'
       - 'tests/security/safe-questions-view.test.ts'
       - 'supabase/migrations/20261022150911_create_dadyoom_student_safe_questions_view.sql'
@@ -88,6 +90,8 @@ jobs:
         run: npx vitest run tests/curriculum-bh-g13-six-source-linked-static.test.ts
       - name: Verify Bahrain grades 2-3 OCR-import drafts remain quarantined
         run: npx vitest run tests/curriculum-bh-g23-unpublished-drafts-snapshot.test.ts
+      - name: Verify independent BH grade-1 semester-2 source texts and safe student tasks
+        run: npx vitest run tests/curriculum-bh-g1-sem2-six-independent-bodies.test.ts
       - name: Verify canonical lesson completion entry points
         run: npx vitest run tests/security/lesson-completion-entrypoints.test.ts tests/security/lesson-mastery-gates.test.ts
       - name: Verify authoritative lesson question grading
