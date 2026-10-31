@@ -196,9 +196,20 @@
     {
       "country": "IQ",
       "nameAr": "العراق",
-      "approvedDomains": [],
-      "portals": [],
-      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+      "approvedDomains": [
+        "manahj.edu.iq"
+      ],
+      "portals": [
+        {
+          "url": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=164",
+          "kind": "ministry-2026-27-grade1-qiraati-book-and-workbook-reference",
+          "year": "2026-2027"
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED",
+      "warnings": [
+        "Specific course publication announced in October 2026; may not provide an entire approved textbook index for every grade or semester."
+      ]
     },
     {
       "country": "PS",
@@ -303,36 +314,91 @@
     {
       "country": "SD",
       "nameAr": "السودان",
-      "approvedDomains": [],
-      "portals": [],
+      "approvedDomains": [
+        "gmoe.gov.sd"
+      ],
+      "portals": [
+        {
+          "url": "https://gmoe.gov.sd/",
+          "kind": "government-education-curriculum-index-needs-jurisdiction-check",
+          "year": null
+        }
+      ],
       "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
     },
     {
       "country": "SO",
       "nameAr": "الصومال",
-      "approvedDomains": [],
-      "portals": [],
+      "approvedDomains": [
+        "moe.gov.so"
+      ],
+      "portals": [
+        {
+          "url": "https://moe.gov.so/",
+          "kind": "federal-ministry-of-education-home",
+          "year": null
+        }
+      ],
       "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
     },
     {
       "country": "DJ",
       "nameAr": "جيبوتي",
-      "approvedDomains": [],
-      "portals": [],
+      "approvedDomains": [
+        "cripen.dj",
+        "gouv.dj"
+      ],
+      "portals": [
+        {
+          "url": "https://cripen.dj/",
+          "kind": "official-national-curriculum-research-and-publishing-center",
+          "year": null
+        },
+        {
+          "url": "https://elearning-menfop.gouv.dj/?lang=en",
+          "kind": "ministry-learning-portal",
+          "year": null
+        }
+      ],
       "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
     },
     {
       "country": "KM",
       "nameAr": "جزر القمر",
-      "approvedDomains": [],
-      "portals": [],
-      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+      "approvedDomains": [
+        "egouv.km",
+        "gouv.km"
+      ],
+      "portals": [
+        {
+          "url": "https://mineduc.egouv.km/fr/services/individuals-services/e-shiyo/",
+          "kind": "government-primary-official-digital-textbook-app-description",
+          "year": null
+        },
+        {
+          "url": "https://mineducomores.gouv.km/",
+          "kind": "education-ministry-home",
+          "year": null
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED",
+      "warnings": [
+        "E-Shiyo app contains official primary textbooks; inspect book/edition and subject."
+      ]
     },
     {
       "country": "MR",
       "nameAr": "موريتانيا",
-      "approvedDomains": [],
-      "portals": [],
+      "approvedDomains": [
+        "education.gov.mr"
+      ],
+      "portals": [
+        {
+          "url": "https://education.gov.mr/",
+          "kind": "education-ministry-home",
+          "year": null
+        }
+      ],
       "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
     }
   ]
