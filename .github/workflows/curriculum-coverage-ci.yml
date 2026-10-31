@@ -29,6 +29,9 @@ on:
       - 'features/student-progress/services/completion-gates.ts'
       - 'scripts/curriculum-coverage.mjs'
       - 'scripts/curriculum-production-audit.sql'
+      - 'scripts/curriculum-ps-grades123-57-source-grounded-formative-20261031.sql'
+      - 'scripts/curriculum-ps-grades123-formative-readonly-audit-20261031.sql'
+      - 'tests/curriculum-ps-g123-original-formative-static.test.ts'
       - 'app/quiz/**'
       - 'tests/security/safe-questions-view.test.ts'
       - 'supabase/migrations/20261022150911_create_dadyoom_student_safe_questions_view.sql'
@@ -63,6 +66,8 @@ jobs:
         run: npm run curriculum:coverage
       - name: Test that missing packs never report full country coverage
         run: npx vitest run tests/curriculum-coverage.test.ts
+      - name: Verify Palestinian grades 1–3 original tasks cannot leak grading keys
+        run: npx vitest run tests/curriculum-ps-g123-original-formative-static.test.ts
       - name: Verify canonical lesson completion entry points
         run: npx vitest run tests/security/lesson-completion-entrypoints.test.ts tests/security/lesson-mastery-gates.test.ts
       - name: Verify authoritative lesson question grading
