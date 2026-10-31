@@ -22,6 +22,6 @@ test("objective change is transactional and guarded against alterations to learn
  assert.ok(sql.includes("question_attempts"));
  assert.ok(sql.includes("lesson_activity_attempts"));
  assert.ok(sql.includes("IF passed<>12"));
- assert.ok(!/\\b(?:DELETE|TRUNCATE|GRANT|REVOKE)\\b/i.test(sql));
- assert.ok(!/UPDATE\\s+(?:public\\.)?(?:student|questions|lesson_activities)/i.test(sql));
+ assert.ok(!/\b(?:DELETE|TRUNCATE|GRANT|REVOKE)\b/i.test(sql));
+ assert.ok(!/UPDATE\s+(?:public\.)?(?:student|questions|lesson_activities)/i.test(sql));
 });
