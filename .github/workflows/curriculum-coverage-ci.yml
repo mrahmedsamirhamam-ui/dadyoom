@@ -35,6 +35,10 @@ on:
       - 'scripts/curriculum-bh-grade1-17-objective-repairs-five-original-tasks-20261031.sql'
       - 'scripts/curriculum-bh-grade1-three-unit-reviews-15-formative-20261031.sql'
       - 'tests/curriculum-bh-g1-20-original-formative-static.test.ts'
+      - 'scripts/curriculum-bh-grade2-nine-original-reviews-27-formative-20261031.sql'
+      - 'scripts/curriculum-bh-grade2-three-original-poetry-support-9-formative-20261031.sql'
+      - 'scripts/curriculum-bh-grade3-three-original-speaking-units-12-formative-20261031.sql'
+      - 'tests/curriculum-bh-g23-original-formative-static.test.ts'
       - 'app/quiz/**'
       - 'tests/security/safe-questions-view.test.ts'
       - 'supabase/migrations/20261022150911_create_dadyoom_student_safe_questions_view.sql'
@@ -73,6 +77,8 @@ jobs:
         run: npx vitest run tests/curriculum-ps-g123-original-formative-static.test.ts
       - name: Verify Bahrain first-grade 20 reviewed lesson objective repairs and original tasks
         run: npx vitest run tests/curriculum-bh-g1-20-original-formative-static.test.ts
+      - name: Verify original Bahrain grades 2-3 formative tasks and safe learner history
+        run: npx vitest run tests/curriculum-bh-g23-original-formative-static.test.ts
       - name: Verify canonical lesson completion entry points
         run: npx vitest run tests/security/lesson-completion-entrypoints.test.ts tests/security/lesson-mastery-gates.test.ts
       - name: Verify authoritative lesson question grading
