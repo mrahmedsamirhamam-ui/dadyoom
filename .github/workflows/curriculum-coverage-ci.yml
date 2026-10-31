@@ -48,6 +48,8 @@ on:
       - 'tests/curriculum-bh-g1-sem2-six-independent-bodies.test.ts'
       - 'scripts/curriculum-bh-g3-ten-stored-source-34-optional-practices-20261031.sql'
       - 'tests/curriculum-bh-g3-ten-source-anchored-static.test.ts'
+      - 'scripts/curriculum-bh-g1-t1-20-worksheet-specific-100-activities-20261031.sql'
+      - 'tests/curriculum-bh-g1-20-topic-anchored-worksheet-static.test.ts'
       - 'app/quiz/**'
       - 'tests/security/safe-questions-view.test.ts'
       - 'supabase/migrations/20261022150911_create_dadyoom_student_safe_questions_view.sql'
@@ -96,6 +98,8 @@ jobs:
         run: npx vitest run tests/curriculum-bh-g1-sem2-six-independent-bodies.test.ts
       - name: Verify 10 Bahrain G3 original paragraphs, 34 practices and protected unpublished rows
         run: npx vitest run tests/curriculum-bh-g3-ten-source-anchored-static.test.ts
+      - name: Verify 20 first-grade Bahrain title-based enrichment worksheets are safe and source-anchored
+        run: npx vitest run tests/curriculum-bh-g1-20-topic-anchored-worksheet-static.test.ts
       - name: Verify canonical lesson completion entry points
         run: npx vitest run tests/security/lesson-completion-entrypoints.test.ts tests/security/lesson-mastery-gates.test.ts
       - name: Verify authoritative lesson question grading
