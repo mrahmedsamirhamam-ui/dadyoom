@@ -66,29 +66,71 @@
     {
       "country": "AE",
       "nameAr": "الإمارات",
-      "approvedDomains": [],
-      "portals": [],
+      "approvedDomains": [
+        "u.ae"
+      ],
+      "portals": [
+        {
+          "url": "https://u.ae/en/information-and-services/education/school-education-k-12/curricula-and-language-of-instruction-",
+          "kind": "government-curriculum-overview",
+          "year": null
+        },
+        {
+          "url": "https://u.ae/en/information-and-services/education/online-training/diwan-ebook-reader",
+          "kind": "government-diwan-textbooks-reference",
+          "year": null
+        }
+      ],
       "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
     },
     {
       "country": "QA",
       "nameAr": "قطر",
-      "approvedDomains": [],
-      "portals": [],
+      "approvedDomains": [
+        "edu.gov.qa"
+      ],
+      "portals": [
+        {
+          "url": "https://www.edu.gov.qa/en/Content/CurriculumSection",
+          "kind": "official-curriculum-department",
+          "year": null
+        }
+      ],
       "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
     },
     {
       "country": "KW",
       "nameAr": "الكويت",
-      "approvedDomains": [],
-      "portals": [],
+      "approvedDomains": [
+        "moe.edu.kw"
+      ],
+      "portals": [
+        {
+          "url": "https://moe.edu.kw/",
+          "kind": "ministry-portal-and-library-link",
+          "year": null
+        }
+      ],
       "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
     },
     {
       "country": "OM",
       "nameAr": "عُمان",
-      "approvedDomains": [],
-      "portals": [],
+      "approvedDomains": [
+        "moe.gov.om"
+      ],
+      "portals": [
+        {
+          "url": "https://ict.moe.gov.om/eBooks/index.php",
+          "kind": "ministry-digital-textbook-list",
+          "year": null
+        },
+        {
+          "url": "https://home.moe.gov.om/ar/manaheg",
+          "kind": "ministry-curriculum-library",
+          "year": null
+        }
+      ],
       "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
     },
     {
