@@ -22,7 +22,8 @@ function audit(manifests=[],platformLessons=[],extra={}){return auditCurriculum(
 test("registry contains exactly 22 real codes, no invented official approval",()=>{
  assert.equal(sourceRegistry.length,22);
  assert.equal(new Set(sourceRegistry.map(x=>x.country)).size,22);
- assert.ok(sourceRegistry.filter(x=>(x.portals??[]).length===0).length>=1);
+ assert.ok(sourceRegistry.every(x=>(x.portals??[]).length>=1));
+ assert.equal(sourceRegistry.reduce((n,x)=>n+(x.portals??[]).length,0),29);
  assert.ok(sourceRegistry.every(x=>x.verificationStatus==="SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"));
 });
 test("no official textbook: all 528 grade/semester scopes must fail closed",()=>{
