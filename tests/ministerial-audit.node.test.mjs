@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { auditCurriculum,normalizeArabic,checkOfficialManifest } from "../lib/ministerial-audit/engine.mjs";
+import { auditCurriculum,normalizeArabic,normalizeStrictTitle,checkOfficialManifest } from "../lib/ministerial-audit/engine.mjs";
 const countries=JSON.parse(fs.readFileSync("data/curriculum-packs/arab-countries.json","utf8")).countries;
 const sourceRegistry=JSON.parse(fs.readFileSync("data/ministerial-audit/official-source-registry-2026-2027.json","utf8")).countries;
 const source={url:"https://moe.gov.bh/ar/official-arabic.pdf",sha256:"a".repeat(64),documentType:"textbook",edition:"2026-2027",
@@ -78,4 +78,24 @@ test("optional grade13 is checked, not assumed to be an official curriculum",()=
 test("Arabic normalization is conservative for spelling variants but not evidence",()=>{
  assert.equal(normalizeArabic("أَصْدِقَائِي"),normalizeArabic("اصدقائي"));
  assert.notEqual(normalizeArabic("مدينة"),normalizeArabic("مدرسة"));
+});
+
+test("single wrong Arabic hamza or alif-maqsura cannot pass exact ministerial title match",()=>{
+ assert.notEqual(normalizeStrictTitle("إلى المدرسة"), normalizeStrictTitle("الى المدرسة"));
+ assert.notEqual(normalizeStrictTitle("على"),normalizeStrictTitle("علي"));
+ const r=audit([official(["إلى المدرسة"])],[lesson("الى المدرسة")]);
+ assert.equal(r.verifiedScopes,0);
+ assert.ok(r.findings.some(x=>x.code==="OFFICIAL_LESSON_MISSING_OR_RENAMED"));
+});
+test("an old official source edition never certifies today's academic year",()=>{
+ const m=official();m.academicYear="2024-2025";m.source={...source,edition:"2024-2025"};
+ const r=audit([m],[lesson()]);
+ assert.equal(r.verifiedScopes,0);
+ assert.ok(r.findings.some(x=>x.code==="OFFICIAL_MANIFEST_INVALID"&&x.reasons.includes("EDITION_YEAR_MISMATCH")));
+});
+test("missing semester and missing current published-content year are blockers",()=>{
+ const p=lesson();p.semester=null;p.academicYear="2025-2026";
+ const r=audit([official()],[p]);
+ assert.equal(r.verifiedScopes,0);
+ assert.ok(r.findings.some(x=>x.code==="PLATFORM_SEMESTER_UNASSIGNED"));
 });
