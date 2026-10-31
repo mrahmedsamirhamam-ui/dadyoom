@@ -35,7 +35,7 @@ test("matching title cannot hide source mismatch, unreviewed edits or different 
 });
 test("genuinely approved content with exact explanatory anchor is technically eligible",()=>{
  const r=auditLessonTopicCompleteness(official,target(),manifest);
- assert.equal(r.isComplete,true);
+ assert.equal(r.isComplete,true,JSON.stringify(r));
  assert.equal(r.status,"LESSON_SUBJECT_VERIFIED");
  assert.equal(r.requiredTopics,1);
 });
