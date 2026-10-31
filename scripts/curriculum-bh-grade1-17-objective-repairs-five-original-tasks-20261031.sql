@@ -15,7 +15,7 @@ WITH activity_count AS (
   FROM public.lesson_activities GROUP BY lesson_id
 )
 SELECT l.id AS lesson_id,l.title,l.content,
-  trim(split_part(split_part(l.content,'الكلمات المفتاحية:',2),E'\n',1)) AS keyword_line,
+  trim(split_part(split_part(split_part(l.content,'الكلمات المفتاحية:',2),E'\n',1),'.',1)) AS keyword_line,
   trim(split_part(split_part(l.content,'أطبق بنفسي:',2),E'\n',1)) AS apply_instruction,
   l.learning_objectives AS previous_objectives
 FROM public.lessons l
