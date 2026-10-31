@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {auditLessonTopicCompleteness,screenLessonSubject,textHash} from "../lib/ministerial-audit/topic-coverage.mjs";
 const hash="c".repeat(64);
-const original="في هذه الوحدة نتعلم مفهوم المبتدأ والخبر؛ لأن الجملة الاسمية تبدأ باسم، ومثال ذلك: الطالب مجتهد. نستنتج أن المبتدأ هو الاسم الذي نبدأ به الجملة، وأن الخبر يتمم معنى الكلام.".repeat(2);
+const original="في هذه الوحدة نتعلم مفهوم المبتدأ والخبر؛ لأن الجملة الاسمية تبدأ باسم، ومثال ذلك: الطالب مجتهد. نستنتج أن المبتدأ هو الاسم الذي نبدأ به الجملة، وأن الخبر يتمم معنى الكلام.".repeat(3);
 function target(){
   return {content:original,subjectReview:{status:"approved",reviewedBy:"qualified-Arabic-editor",reviewedAt:"2026-10-31",sourceSha256:hash,contentSha256:textHash(original)},
     topicEvidence:[{topicId:"topic-1",start:0,end:original.length,status:"approved",reviewedBy:"qualified-Arabic-editor",sourceSha256:hash,excerptSha256:textHash(original)}]};
