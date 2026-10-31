@@ -67,31 +67,24 @@ async function readPlatformFromSupabase(){
   const key=process.env.SUPABASE_SERVICE_ROLE_KEY;
   if(!url||!key)throw new Error("Provide secret env NEXT_PUBLIC_SUPABASE_URL/SUPABASE_SERVICE_ROLE_KEY on a trusted machine. No credentials in repository.");
   const db=createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false}});
-  const [cs,cur,grades,units,lessons,questions,activities]=await Promise.all([
+  // Teaching subject is the only audit target. We deliberately do not fetch activities,
+  // question counts, games or answer keys; these cannot prove that a lesson's topic exists.
+  const [cs,cur,grades,units,lessons]=await Promise.all([
     fetchAll(db,"countries","id,code"),
     fetchAll(db,"curricula","id,country_id,academic_year"),
     fetchAll(db,"grades","id,curriculum_id,grade_number"),
     fetchAll(db,"units","id,grade_id,title"),
-    fetchAll(db,"lessons","id,unit_id,title,content,status,semester,learning_objectives"),
-    // Do NOT export correct_answer or activity answer: prevents answer key leakage.
-    fetchAll(db,"questions","id,lesson_id,explanation"),
-    fetchAll(db,"lesson_activities","id,lesson_id,activity_type,is_published")
+    fetchAll(db,"lessons","id,unit_id,title,content,status,semester,source_pdf_url,official_content_scope")
   ]);
   const index=(a)=>new Map(a.map(x=>[x.id,x]));
   const [ci,cu,gi,ui]=[index(cs),index(cur),index(grades),index(units)];
-  const qs=new Map(), as=new Map();
-  for(const q of questions){const v=qs.get(q.lesson_id)??{n:0,explained:0};v.n++;if(String(q.explanation??"").trim())v.explained++;qs.set(q.lesson_id,v);}
-  for(const a of activities){const v=as.get(a.lesson_id)??{n:0,types:[]};if(a.is_published){v.n++;v.types.push(a.activity_type);}as.set(a.lesson_id,v);}
   return lessons.map(l=>{
     const u=ui.get(l.unit_id), g=gi.get(u?.grade_id), cr=cu.get(g?.curriculum_id),c=ci.get(cr?.country_id);
     return {id:l.id,country:c?.code??"UNKNOWN",grade:g?.grade_number??0,
       semester:l.semester,academicYear:cr?.academic_year??null,track:"general",
       unitTitle:u?.title??"",title:l.title,status:l.status,content:l.content??"",
-      objectives:Array.isArray(l.learning_objectives)?l.learning_objectives:[],
-      questionCount:qs.get(l.id)?.n??0,questionsWithExplanation:qs.get(l.id)?.explained??0,
-      publishedActivities:as.get(l.id)?.n??0,activityTypes:as.get(l.id)?.types??[],
-      linguisticReview:{status:"not_verified"},pedagogicalReview:{status:"not_verified"},
-      officialTextReview:{status:"not_verified"}};
+      sourcePdfUrl:l.source_pdf_url??null,officialContentScope:l.official_content_scope??null,
+      subjectReview:{status:"not_verified"},topicEvidence:[]};
   });
 }
 function fromManifestDir(dir){
@@ -120,6 +113,20 @@ async function main(){
   if(live && platformFile)throw new Error("Select only one of --live or --platform");
   const platform=live?await readPlatformFromSupabase():platformFile?read(platformFile):[];
   if(!Array.isArray(platform))throw new Error("PLATFORM_EXPORT_MUST_BE_ARRAY");
+  const reviewFile=arg("--subject-reviews");
+  if(reviewFile){
+    const bundle=read(reviewFile);
+    if(!Array.isArray(bundle))throw new Error("SUBJECT_REVIEW_BUNDLE_MUST_BE_ARRAY");
+    const reviews=new Map();
+    for(const record of bundle){
+      if(!record.lessonId||reviews.has(record.lessonId))throw new Error("DUPLICATE_OR_MISSING_REVIEW_LESSON_ID");
+      reviews.set(record.lessonId,record);
+    }
+    for(const item of platform){
+      const signed=reviews.get(item.id);
+      if(signed){item.subjectReview=signed.subjectReview;item.topicEvidence=signed.topicEvidence;}
+    }
+  }
   const report=auditCurriculum({countries,registry:registry.countries,
     manifests:fromManifestDir(arg("--official-dir")),
     platformLessons:platform,academicYear:year,includeGrade13:flag("--include-grade13")});
