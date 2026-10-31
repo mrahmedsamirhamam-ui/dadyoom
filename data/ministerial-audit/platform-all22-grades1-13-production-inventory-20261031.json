@@ -1,0 +1,2162 @@
+{
+  "snapshot": "2026-10-31",
+  "source": "Production Supabase read-only: countries→curricula→grades→units→lessons; no private/student/answer data",
+  "countries": 22,
+  "gradeCells": 266,
+  "totals": {
+    "lessons": 8259,
+    "published": 8156,
+    "drafts": 103,
+    "source_urls": 3315
+  },
+  "grade13PresentInDatabase": [
+    {
+      "country": "MR",
+      "grade": 13,
+      "lessons": 98,
+      "published": 98,
+      "drafts": 0,
+      "source_urls": 80
+    },
+    {
+      "country": "TN",
+      "grade": 13,
+      "lessons": 22,
+      "published": 22,
+      "drafts": 0,
+      "source_urls": 4
+    }
+  ],
+  "grade13OfficiallyVerified": false,
+  "warning": "Counts prove only database inventory, NOT ministerial coverage, source edition, lesson correctness, grade-13 school-stage status, or public website deploy.",
+  "records": [
+    {
+      "country": "AE",
+      "grade": 1,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "AE",
+      "grade": 2,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "AE",
+      "grade": 3,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "AE",
+      "grade": 4,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "AE",
+      "grade": 5,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "AE",
+      "grade": 6,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "AE",
+      "grade": 7,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "AE",
+      "grade": 8,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "AE",
+      "grade": 9,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "AE",
+      "grade": 10,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "AE",
+      "grade": 11,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "AE",
+      "grade": 12,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "BH",
+      "grade": 1,
+      "lessons": 143,
+      "published": 143,
+      "drafts": 0,
+      "source_urls": 125
+    },
+    {
+      "country": "BH",
+      "grade": 2,
+      "lessons": 89,
+      "published": 58,
+      "drafts": 31,
+      "source_urls": 59
+    },
+    {
+      "country": "BH",
+      "grade": 3,
+      "lessons": 77,
+      "published": 51,
+      "drafts": 26,
+      "source_urls": 45
+    },
+    {
+      "country": "BH",
+      "grade": 4,
+      "lessons": 195,
+      "published": 178,
+      "drafts": 17,
+      "source_urls": 160
+    },
+    {
+      "country": "BH",
+      "grade": 5,
+      "lessons": 177,
+      "published": 169,
+      "drafts": 8,
+      "source_urls": 151
+    },
+    {
+      "country": "BH",
+      "grade": 6,
+      "lessons": 129,
+      "published": 122,
+      "drafts": 7,
+      "source_urls": 104
+    },
+    {
+      "country": "BH",
+      "grade": 7,
+      "lessons": 122,
+      "published": 121,
+      "drafts": 1,
+      "source_urls": 103
+    },
+    {
+      "country": "BH",
+      "grade": 8,
+      "lessons": 110,
+      "published": 108,
+      "drafts": 2,
+      "source_urls": 90
+    },
+    {
+      "country": "BH",
+      "grade": 9,
+      "lessons": 70,
+      "published": 69,
+      "drafts": 1,
+      "source_urls": 51
+    },
+    {
+      "country": "BH",
+      "grade": 10,
+      "lessons": 170,
+      "published": 170,
+      "drafts": 0,
+      "source_urls": 152
+    },
+    {
+      "country": "BH",
+      "grade": 11,
+      "lessons": 200,
+      "published": 200,
+      "drafts": 0,
+      "source_urls": 182
+    },
+    {
+      "country": "BH",
+      "grade": 12,
+      "lessons": 158,
+      "published": 158,
+      "drafts": 0,
+      "source_urls": 140
+    },
+    {
+      "country": "DJ",
+      "grade": 1,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "DJ",
+      "grade": 2,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "DJ",
+      "grade": 3,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "DJ",
+      "grade": 4,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "DJ",
+      "grade": 5,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "DJ",
+      "grade": 6,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "DJ",
+      "grade": 7,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "DJ",
+      "grade": 8,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "DJ",
+      "grade": 9,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "DJ",
+      "grade": 10,
+      "lessons": 65,
+      "published": 65,
+      "drafts": 0,
+      "source_urls": 47
+    },
+    {
+      "country": "DJ",
+      "grade": 11,
+      "lessons": 82,
+      "published": 82,
+      "drafts": 0,
+      "source_urls": 64
+    },
+    {
+      "country": "DJ",
+      "grade": 12,
+      "lessons": 66,
+      "published": 66,
+      "drafts": 0,
+      "source_urls": 48
+    },
+    {
+      "country": "DZ",
+      "grade": 1,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "DZ",
+      "grade": 2,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "DZ",
+      "grade": 3,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "DZ",
+      "grade": 4,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "DZ",
+      "grade": 5,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "DZ",
+      "grade": 6,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "DZ",
+      "grade": 7,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "DZ",
+      "grade": 8,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "DZ",
+      "grade": 9,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "DZ",
+      "grade": 10,
+      "lessons": 64,
+      "published": 64,
+      "drafts": 0,
+      "source_urls": 46
+    },
+    {
+      "country": "DZ",
+      "grade": 11,
+      "lessons": 63,
+      "published": 63,
+      "drafts": 0,
+      "source_urls": 45
+    },
+    {
+      "country": "DZ",
+      "grade": 12,
+      "lessons": 56,
+      "published": 56,
+      "drafts": 0,
+      "source_urls": 38
+    },
+    {
+      "country": "EG",
+      "grade": 1,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "EG",
+      "grade": 2,
+      "lessons": 42,
+      "published": 42,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "EG",
+      "grade": 3,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "EG",
+      "grade": 4,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "EG",
+      "grade": 5,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "EG",
+      "grade": 6,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "EG",
+      "grade": 7,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "EG",
+      "grade": 8,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "EG",
+      "grade": 9,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "EG",
+      "grade": 10,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "EG",
+      "grade": 11,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "EG",
+      "grade": 12,
+      "lessons": 31,
+      "published": 31,
+      "drafts": 0,
+      "source_urls": 13
+    },
+    {
+      "country": "IQ",
+      "grade": 1,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "IQ",
+      "grade": 2,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "IQ",
+      "grade": 3,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "IQ",
+      "grade": 4,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "IQ",
+      "grade": 5,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "IQ",
+      "grade": 6,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "IQ",
+      "grade": 7,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "IQ",
+      "grade": 8,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "IQ",
+      "grade": 9,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "IQ",
+      "grade": 10,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "IQ",
+      "grade": 11,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "IQ",
+      "grade": 12,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "JO",
+      "grade": 1,
+      "lessons": 28,
+      "published": 28,
+      "drafts": 0,
+      "source_urls": 10
+    },
+    {
+      "country": "JO",
+      "grade": 2,
+      "lessons": 28,
+      "published": 28,
+      "drafts": 0,
+      "source_urls": 10
+    },
+    {
+      "country": "JO",
+      "grade": 3,
+      "lessons": 28,
+      "published": 28,
+      "drafts": 0,
+      "source_urls": 10
+    },
+    {
+      "country": "JO",
+      "grade": 4,
+      "lessons": 28,
+      "published": 28,
+      "drafts": 0,
+      "source_urls": 10
+    },
+    {
+      "country": "JO",
+      "grade": 5,
+      "lessons": 28,
+      "published": 28,
+      "drafts": 0,
+      "source_urls": 10
+    },
+    {
+      "country": "JO",
+      "grade": 6,
+      "lessons": 28,
+      "published": 28,
+      "drafts": 0,
+      "source_urls": 10
+    },
+    {
+      "country": "JO",
+      "grade": 7,
+      "lessons": 28,
+      "published": 28,
+      "drafts": 0,
+      "source_urls": 10
+    },
+    {
+      "country": "JO",
+      "grade": 8,
+      "lessons": 28,
+      "published": 28,
+      "drafts": 0,
+      "source_urls": 10
+    },
+    {
+      "country": "JO",
+      "grade": 9,
+      "lessons": 28,
+      "published": 28,
+      "drafts": 0,
+      "source_urls": 10
+    },
+    {
+      "country": "JO",
+      "grade": 10,
+      "lessons": 28,
+      "published": 28,
+      "drafts": 0,
+      "source_urls": 10
+    },
+    {
+      "country": "JO",
+      "grade": 11,
+      "lessons": 48,
+      "published": 48,
+      "drafts": 0,
+      "source_urls": 30
+    },
+    {
+      "country": "JO",
+      "grade": 12,
+      "lessons": 66,
+      "published": 66,
+      "drafts": 0,
+      "source_urls": 48
+    },
+    {
+      "country": "KM",
+      "grade": 1,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "KM",
+      "grade": 2,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "KM",
+      "grade": 3,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "KM",
+      "grade": 4,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "KM",
+      "grade": 5,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "KM",
+      "grade": 6,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "KM",
+      "grade": 7,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "KM",
+      "grade": 8,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "KM",
+      "grade": 9,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "KM",
+      "grade": 10,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "KM",
+      "grade": 11,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "KM",
+      "grade": 12,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "KW",
+      "grade": 1,
+      "lessons": 27,
+      "published": 27,
+      "drafts": 0,
+      "source_urls": 9
+    },
+    {
+      "country": "KW",
+      "grade": 2,
+      "lessons": 27,
+      "published": 27,
+      "drafts": 0,
+      "source_urls": 9
+    },
+    {
+      "country": "KW",
+      "grade": 3,
+      "lessons": 27,
+      "published": 27,
+      "drafts": 0,
+      "source_urls": 9
+    },
+    {
+      "country": "KW",
+      "grade": 4,
+      "lessons": 27,
+      "published": 27,
+      "drafts": 0,
+      "source_urls": 9
+    },
+    {
+      "country": "KW",
+      "grade": 5,
+      "lessons": 27,
+      "published": 27,
+      "drafts": 0,
+      "source_urls": 9
+    },
+    {
+      "country": "KW",
+      "grade": 6,
+      "lessons": 27,
+      "published": 27,
+      "drafts": 0,
+      "source_urls": 9
+    },
+    {
+      "country": "KW",
+      "grade": 7,
+      "lessons": 27,
+      "published": 27,
+      "drafts": 0,
+      "source_urls": 9
+    },
+    {
+      "country": "KW",
+      "grade": 8,
+      "lessons": 27,
+      "published": 27,
+      "drafts": 0,
+      "source_urls": 9
+    },
+    {
+      "country": "KW",
+      "grade": 9,
+      "lessons": 27,
+      "published": 27,
+      "drafts": 0,
+      "source_urls": 9
+    },
+    {
+      "country": "KW",
+      "grade": 10,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "KW",
+      "grade": 11,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "KW",
+      "grade": 12,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "LB",
+      "grade": 1,
+      "lessons": 21,
+      "published": 21,
+      "drafts": 0,
+      "source_urls": 3
+    },
+    {
+      "country": "LB",
+      "grade": 2,
+      "lessons": 21,
+      "published": 21,
+      "drafts": 0,
+      "source_urls": 3
+    },
+    {
+      "country": "LB",
+      "grade": 3,
+      "lessons": 21,
+      "published": 21,
+      "drafts": 0,
+      "source_urls": 3
+    },
+    {
+      "country": "LB",
+      "grade": 4,
+      "lessons": 21,
+      "published": 21,
+      "drafts": 0,
+      "source_urls": 3
+    },
+    {
+      "country": "LB",
+      "grade": 5,
+      "lessons": 21,
+      "published": 21,
+      "drafts": 0,
+      "source_urls": 3
+    },
+    {
+      "country": "LB",
+      "grade": 6,
+      "lessons": 21,
+      "published": 21,
+      "drafts": 0,
+      "source_urls": 3
+    },
+    {
+      "country": "LB",
+      "grade": 7,
+      "lessons": 21,
+      "published": 21,
+      "drafts": 0,
+      "source_urls": 3
+    },
+    {
+      "country": "LB",
+      "grade": 8,
+      "lessons": 21,
+      "published": 21,
+      "drafts": 0,
+      "source_urls": 3
+    },
+    {
+      "country": "LB",
+      "grade": 9,
+      "lessons": 21,
+      "published": 21,
+      "drafts": 0,
+      "source_urls": 3
+    },
+    {
+      "country": "LB",
+      "grade": 10,
+      "lessons": 21,
+      "published": 21,
+      "drafts": 0,
+      "source_urls": 3
+    },
+    {
+      "country": "LB",
+      "grade": 11,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "LB",
+      "grade": 12,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "LY",
+      "grade": 1,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "LY",
+      "grade": 2,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "LY",
+      "grade": 3,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "LY",
+      "grade": 4,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "LY",
+      "grade": 5,
+      "lessons": 34,
+      "published": 34,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "LY",
+      "grade": 6,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "LY",
+      "grade": 7,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "LY",
+      "grade": 8,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "LY",
+      "grade": 9,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "LY",
+      "grade": 10,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "LY",
+      "grade": 11,
+      "lessons": 42,
+      "published": 42,
+      "drafts": 0,
+      "source_urls": 24
+    },
+    {
+      "country": "LY",
+      "grade": 12,
+      "lessons": 33,
+      "published": 33,
+      "drafts": 0,
+      "source_urls": 15
+    },
+    {
+      "country": "MA",
+      "grade": 1,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "MA",
+      "grade": 2,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "MA",
+      "grade": 3,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "MA",
+      "grade": 4,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "MA",
+      "grade": 5,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "MA",
+      "grade": 6,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "MA",
+      "grade": 7,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "MA",
+      "grade": 8,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "MA",
+      "grade": 9,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "MA",
+      "grade": 10,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "MA",
+      "grade": 11,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "MA",
+      "grade": 12,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "MR",
+      "grade": 1,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "MR",
+      "grade": 2,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "MR",
+      "grade": 3,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "MR",
+      "grade": 4,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "MR",
+      "grade": 5,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "MR",
+      "grade": 6,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "MR",
+      "grade": 7,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "MR",
+      "grade": 8,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "MR",
+      "grade": 9,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "MR",
+      "grade": 10,
+      "lessons": 62,
+      "published": 62,
+      "drafts": 0,
+      "source_urls": 44
+    },
+    {
+      "country": "MR",
+      "grade": 11,
+      "lessons": 83,
+      "published": 83,
+      "drafts": 0,
+      "source_urls": 65
+    },
+    {
+      "country": "MR",
+      "grade": 12,
+      "lessons": 83,
+      "published": 83,
+      "drafts": 0,
+      "source_urls": 65
+    },
+    {
+      "country": "MR",
+      "grade": 13,
+      "lessons": 98,
+      "published": 98,
+      "drafts": 0,
+      "source_urls": 80
+    },
+    {
+      "country": "OM",
+      "grade": 1,
+      "lessons": 23,
+      "published": 23,
+      "drafts": 0,
+      "source_urls": 5
+    },
+    {
+      "country": "OM",
+      "grade": 2,
+      "lessons": 23,
+      "published": 23,
+      "drafts": 0,
+      "source_urls": 5
+    },
+    {
+      "country": "OM",
+      "grade": 3,
+      "lessons": 23,
+      "published": 23,
+      "drafts": 0,
+      "source_urls": 5
+    },
+    {
+      "country": "OM",
+      "grade": 4,
+      "lessons": 23,
+      "published": 23,
+      "drafts": 0,
+      "source_urls": 5
+    },
+    {
+      "country": "OM",
+      "grade": 5,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "OM",
+      "grade": 6,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "OM",
+      "grade": 7,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "OM",
+      "grade": 8,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "OM",
+      "grade": 9,
+      "lessons": 24,
+      "published": 24,
+      "drafts": 0,
+      "source_urls": 6
+    },
+    {
+      "country": "OM",
+      "grade": 10,
+      "lessons": 24,
+      "published": 20,
+      "drafts": 4,
+      "source_urls": 6
+    },
+    {
+      "country": "OM",
+      "grade": 11,
+      "lessons": 24,
+      "published": 21,
+      "drafts": 3,
+      "source_urls": 6
+    },
+    {
+      "country": "OM",
+      "grade": 12,
+      "lessons": 49,
+      "published": 49,
+      "drafts": 0,
+      "source_urls": 31
+    },
+    {
+      "country": "PS",
+      "grade": 1,
+      "lessons": 60,
+      "published": 60,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "PS",
+      "grade": 2,
+      "lessons": 53,
+      "published": 53,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "PS",
+      "grade": 3,
+      "lessons": 49,
+      "published": 49,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "PS",
+      "grade": 4,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "PS",
+      "grade": 5,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "PS",
+      "grade": 6,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "PS",
+      "grade": 7,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "PS",
+      "grade": 8,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "PS",
+      "grade": 9,
+      "lessons": 30,
+      "published": 30,
+      "drafts": 0,
+      "source_urls": 12
+    },
+    {
+      "country": "PS",
+      "grade": 10,
+      "lessons": 36,
+      "published": 36,
+      "drafts": 0,
+      "source_urls": 18
+    },
+    {
+      "country": "PS",
+      "grade": 11,
+      "lessons": 42,
+      "published": 42,
+      "drafts": 0,
+      "source_urls": 24
+    },
+    {
+      "country": "PS",
+      "grade": 12,
+      "lessons": 64,
+      "published": 64,
+      "drafts": 0,
+      "source_urls": 46
+    },
+    {
+      "country": "QA",
+      "grade": 1,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "QA",
+      "grade": 2,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "QA",
+      "grade": 3,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "QA",
+      "grade": 4,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "QA",
+      "grade": 5,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "QA",
+      "grade": 6,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "QA",
+      "grade": 7,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "QA",
+      "grade": 8,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "QA",
+      "grade": 9,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "QA",
+      "grade": 10,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "QA",
+      "grade": 11,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "QA",
+      "grade": 12,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "SA",
+      "grade": 1,
+      "lessons": 34,
+      "published": 34,
+      "drafts": 0,
+      "source_urls": 16
+    },
+    {
+      "country": "SA",
+      "grade": 2,
+      "lessons": 34,
+      "published": 34,
+      "drafts": 0,
+      "source_urls": 16
+    },
+    {
+      "country": "SA",
+      "grade": 3,
+      "lessons": 34,
+      "published": 34,
+      "drafts": 0,
+      "source_urls": 16
+    },
+    {
+      "country": "SA",
+      "grade": 4,
+      "lessons": 34,
+      "published": 34,
+      "drafts": 0,
+      "source_urls": 16
+    },
+    {
+      "country": "SA",
+      "grade": 5,
+      "lessons": 34,
+      "published": 34,
+      "drafts": 0,
+      "source_urls": 16
+    },
+    {
+      "country": "SA",
+      "grade": 6,
+      "lessons": 34,
+      "published": 34,
+      "drafts": 0,
+      "source_urls": 16
+    },
+    {
+      "country": "SA",
+      "grade": 7,
+      "lessons": 34,
+      "published": 34,
+      "drafts": 0,
+      "source_urls": 16
+    },
+    {
+      "country": "SA",
+      "grade": 8,
+      "lessons": 34,
+      "published": 34,
+      "drafts": 0,
+      "source_urls": 16
+    },
+    {
+      "country": "SA",
+      "grade": 9,
+      "lessons": 34,
+      "published": 34,
+      "drafts": 0,
+      "source_urls": 16
+    },
+    {
+      "country": "SA",
+      "grade": 10,
+      "lessons": 28,
+      "published": 28,
+      "drafts": 0,
+      "source_urls": 10
+    },
+    {
+      "country": "SA",
+      "grade": 11,
+      "lessons": 45,
+      "published": 45,
+      "drafts": 0,
+      "source_urls": 27
+    },
+    {
+      "country": "SA",
+      "grade": 12,
+      "lessons": 43,
+      "published": 43,
+      "drafts": 0,
+      "source_urls": 25
+    },
+    {
+      "country": "SD",
+      "grade": 1,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SD",
+      "grade": 2,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SD",
+      "grade": 3,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SD",
+      "grade": 4,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SD",
+      "grade": 5,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SD",
+      "grade": 6,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SD",
+      "grade": 7,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SD",
+      "grade": 8,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SD",
+      "grade": 9,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SD",
+      "grade": 10,
+      "lessons": 79,
+      "published": 79,
+      "drafts": 0,
+      "source_urls": 61
+    },
+    {
+      "country": "SD",
+      "grade": 11,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SD",
+      "grade": 12,
+      "lessons": 40,
+      "published": 40,
+      "drafts": 0,
+      "source_urls": 22
+    },
+    {
+      "country": "SO",
+      "grade": 1,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SO",
+      "grade": 2,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SO",
+      "grade": 3,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SO",
+      "grade": 4,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SO",
+      "grade": 5,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SO",
+      "grade": 6,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SO",
+      "grade": 7,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SO",
+      "grade": 8,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SO",
+      "grade": 9,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SO",
+      "grade": 10,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SO",
+      "grade": 11,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SO",
+      "grade": 12,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SY",
+      "grade": 1,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SY",
+      "grade": 2,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SY",
+      "grade": 3,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SY",
+      "grade": 4,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SY",
+      "grade": 5,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SY",
+      "grade": 6,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SY",
+      "grade": 7,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SY",
+      "grade": 8,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SY",
+      "grade": 9,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SY",
+      "grade": 10,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SY",
+      "grade": 11,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "SY",
+      "grade": 12,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "TN",
+      "grade": 1,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "TN",
+      "grade": 2,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "TN",
+      "grade": 3,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "TN",
+      "grade": 4,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "TN",
+      "grade": 5,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "TN",
+      "grade": 6,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "TN",
+      "grade": 7,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "TN",
+      "grade": 8,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "TN",
+      "grade": 9,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "TN",
+      "grade": 10,
+      "lessons": 20,
+      "published": 20,
+      "drafts": 0,
+      "source_urls": 2
+    },
+    {
+      "country": "TN",
+      "grade": 11,
+      "lessons": 21,
+      "published": 21,
+      "drafts": 0,
+      "source_urls": 3
+    },
+    {
+      "country": "TN",
+      "grade": 12,
+      "lessons": 21,
+      "published": 21,
+      "drafts": 0,
+      "source_urls": 3
+    },
+    {
+      "country": "TN",
+      "grade": 13,
+      "lessons": 22,
+      "published": 22,
+      "drafts": 0,
+      "source_urls": 4
+    },
+    {
+      "country": "YE",
+      "grade": 1,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "YE",
+      "grade": 2,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "YE",
+      "grade": 3,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "YE",
+      "grade": 4,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "YE",
+      "grade": 5,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "YE",
+      "grade": 6,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "YE",
+      "grade": 7,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "YE",
+      "grade": 8,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "YE",
+      "grade": 9,
+      "lessons": 19,
+      "published": 19,
+      "drafts": 0,
+      "source_urls": 1
+    },
+    {
+      "country": "YE",
+      "grade": 10,
+      "lessons": 25,
+      "published": 24,
+      "drafts": 1,
+      "source_urls": 7
+    },
+    {
+      "country": "YE",
+      "grade": 11,
+      "lessons": 24,
+      "published": 23,
+      "drafts": 1,
+      "source_urls": 6
+    },
+    {
+      "country": "YE",
+      "grade": 12,
+      "lessons": 22,
+      "published": 21,
+      "drafts": 1,
+      "source_urls": 4
+    }
+  ]
+}
