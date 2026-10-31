@@ -100,3 +100,11 @@ test("missing semester and missing current published-content year are blockers",
  assert.equal(r.verifiedScopes,0);
  assert.ok(r.findings.some(x=>x.code==="PLATFORM_SEMESTER_UNASSIGNED"));
 });
+
+test("grade13 records are never ignored silently when grade13 is not enabled",()=>{
+ const p={...lesson(),id:"grade13",country:"MR",grade:13,semester:2};
+ const r=audit([],[p]);
+ assert.equal(r.scopes,528);
+ assert.equal(r.verifiedScopes,0);
+ assert.ok(r.findings.some(x=>x.code==="UNMAPPED_GRADE13_REQUIRES_EDUCATION_STAGE_PROOF"&&x.country==="MR"));
+});
