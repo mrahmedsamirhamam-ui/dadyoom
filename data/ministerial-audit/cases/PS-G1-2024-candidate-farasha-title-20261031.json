@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-31",
+  "country": "PS",
+  "grade": 1,
+  "subject": "arabic",
+  "status": "SOURCE_EDITION_MISMATCH_VISUAL_REVIEW_REQUIRED",
+  "dadyoom": {
+    "id": "1032f811-f6f0-4b5a-9699-2ebb180adb8b",
+    "title": "الفراشة والنحلة",
+    "semester": 2,
+    "academicYear": "2026-2027",
+    "status": "published"
+  },
+  "sourceCandidate": {
+    "url": "https://moe.edu.ps/uploads/new_pal_books/arabic1.pdf",
+    "publisher": "وزارة التربية والتعليم الفلسطينية",
+    "documentTitle": "لغتنا الجميلة — الرزمة التعليمية",
+    "documentYear": "2024",
+    "tocTitleFromExtractedText": "الفراشة والنخلة",
+    "tocPrintedPage": 100,
+    "extractionNotVisualProof": true
+  },
+  "problem": "Possible one-word lesson-title discrepancy from an older 2024 government PDF; it cannot establish the current 2026–27 edition. Do NOT rename the platform lesson without comparing actual 2026–27 textbook page and verified cover/TOC.",
+  "nextActions": [
+    "Obtain official current Palestinian grade1 semester2 book from ministry and record SHA256/edition",
+    "Visually verify source front matter and title page 100; PDF text extraction may be wrong",
+    "Check whether lesson was renamed or reallocated for the newer edition",
+    "If confirmed, correct the original Dadyoom title/content, inspect student progress and editorial review before publishing"
+  ],
+  "safeToAutoCorrect": false
+}
