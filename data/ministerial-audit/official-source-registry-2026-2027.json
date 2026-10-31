@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-31",
+  "purpose": "Official ministry source candidates only; not textbook proof or source-to-lesson validation.",
+  "academicYearTarget": "2026-2027",
+  "gradeRange": {
+    "minimum": 1,
+    "maximum": 12,
+    "optional13WhenOfficiallyConfirmed": true
+  },
+  "subject": "arabic",
+  "countries": [
+    {
+      "country": "BH",
+      "nameAr": "البحرين",
+      "approvedDomains": [
+        "edunet.bh",
+        "moe.gov.bh"
+      ],
+      "portals": [
+        {
+          "url": "https://www.edunet.bh/Econtent/BooksGuide",
+          "kind": "official-book-list",
+          "year": "2026-2027"
+        },
+        {
+          "url": "https://www.edunet.bh/Econtent/LessonsGuide",
+          "kind": "official-lesson-plans",
+          "year": "2026-2027"
+        },
+        {
+          "url": "https://moe.gov.bh/ar/moe-educational-resources",
+          "kind": "ministry-resources",
+          "year": null
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "SA",
+      "nameAr": "السعودية",
+      "approvedDomains": [
+        "moe.gov.sa"
+      ],
+      "portals": [
+        {
+          "url": "https://www.moe.gov.sa/ar/knowledgecenter/eservices/Pages/ien.aspx",
+          "kind": "official-portal-description",
+          "year": null
+        },
+        {
+          "url": "https://www.moe.gov.sa/ar/mediacenter/MOEnews/Pages/i-85976-t.aspx",
+          "kind": "archive-portal-instructions",
+          "year": "older"
+        }
+      ],
+      "candidatePortals": [
+        {
+          "url": "https://ien.edu.sa",
+          "kind": "book-download-portal",
+          "state": "requires-grade-edition-check"
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "AE",
+      "nameAr": "الإمارات",
+      "approvedDomains": [],
+      "portals": [],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "QA",
+      "nameAr": "قطر",
+      "approvedDomains": [],
+      "portals": [],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "KW",
+      "nameAr": "الكويت",
+      "approvedDomains": [],
+      "portals": [],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "OM",
+      "nameAr": "عُمان",
+      "approvedDomains": [],
+      "portals": [],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "EG",
+      "nameAr": "مصر",
+      "approvedDomains": [],
+      "portals": [],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "JO",
+      "nameAr": "الأردن",
+      "approvedDomains": [],
+      "portals": [],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "LB",
+      "nameAr": "لبنان",
+      "approvedDomains": [],
+      "portals": [],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "SY",
+      "nameAr": "سوريا",
+      "approvedDomains": [],
+      "portals": [],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "IQ",
+      "nameAr": "العراق",
+      "approvedDomains": [],
+      "portals": [],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "PS",
+      "nameAr": "فلسطين",
+      "approvedDomains": [
+        "moe.edu.ps"
+      ],
+      "portals": [
+        {
+          "url": "https://moe.edu.ps/pal-books",
+          "kind": "official-textbooks",
+          "year": null
+        }
+      ],
+      "candidatePortals": [
+        {
+          "url": "https://elearn.edu.ps/c1/",
+          "kind": "candidate-lesson-index",
+          "state": "not-verified-for-book-edition"
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "YE",
+      "nameAr": "اليمن",
+      "approvedDomains": [],
+      "portals": [],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "MA",
+      "nameAr": "المغرب",
+      "approvedDomains": [],
+      "portals": [],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "DZ",
+      "nameAr": "الجزائر",
+      "approvedDomains": [],
+      "portals": [],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "TN",
+      "nameAr": "تونس",
+      "approvedDomains": [],
+      "portals": [],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "LY",
+      "nameAr": "ليبيا",
+      "approvedDomains": [],
+      "portals": [],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "SD",
+      "nameAr": "السودان",
+      "approvedDomains": [],
+      "portals": [],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "SO",
+      "nameAr": "الصومال",
+      "approvedDomains": [],
+      "portals": [],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "DJ",
+      "nameAr": "جيبوتي",
+      "approvedDomains": [],
+      "portals": [],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "KM",
+      "nameAr": "جزر القمر",
+      "approvedDomains": [],
+      "portals": [],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "MR",
+      "nameAr": "موريتانيا",
+      "approvedDomains": [],
+      "portals": [],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    }
+  ]
+}
