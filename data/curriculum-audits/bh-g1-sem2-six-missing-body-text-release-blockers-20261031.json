@@ -1,0 +1,56 @@
+{
+  "snapshotDate": "2026-10-31",
+  "country": "BH",
+  "grade": 1,
+  "semester": 2,
+  "status": "published but editorial release-blocked",
+  "source": "Dadyoom Supabase lessons.content spot-check, not a verified Ministry PDF",
+  "total": 6,
+  "lessonIds": [
+    "b240a275-dff3-4e13-bf27-5ac23ccba783",
+    "0b2fadc8-2986-464e-a20f-4d80eb701464",
+    "b1399c8a-a218-484b-b4c2-a007114d9d78",
+    "86743b0e-68e5-4916-9dbc-14db16ece6e1",
+    "1438079a-19fc-4fb3-b31b-7bb1f3134ad2",
+    "c9e0b182-0348-4508-8780-68cd0e3e5dbc"
+  ],
+  "remediation": "Locate and verify official teacher syllabus/book edition, author a distinct supported Dadyoom story/chant where legally and pedagogically appropriate, create accurate listening experience and comprehension activities, obtain teacher/editor sign-off and run learner E2E. Do not invent ministry text or count generic lesson scaffolding as matching the original published story.",
+  "lessons": [
+    {
+      "lesson_id": "b240a275-dff3-4e13-bf27-5ac23ccba783",
+      "title": "أنشودة الوحدة الأولى: بحرين يا أغلى وطن",
+      "kind": "listening",
+      "issue": "Contains generic listening procedures but not authored/verified stanza or source audio for the named chant."
+    },
+    {
+      "lesson_id": "0b2fadc8-2986-464e-a20f-4d80eb701464",
+      "title": "أنشودة الوحدة الثالثة: في حينا حديقة",
+      "kind": "listening",
+      "issue": "Contains generic listening procedures but not authored/verified stanza or source audio for the named chant."
+    },
+    {
+      "lesson_id": "b1399c8a-a218-484b-b4c2-a007114d9d78",
+      "title": "أنشودة الوحدة الثانية: هيا نقرأ",
+      "kind": "listening",
+      "issue": "Contains generic listening procedures but not authored/verified stanza or source audio for the named chant."
+    },
+    {
+      "lesson_id": "86743b0e-68e5-4916-9dbc-14db16ece6e1",
+      "title": "قصة الوحدة الأولى: حمدان يزور مملكة البحرين",
+      "kind": "reading",
+      "issue": "Contains before/during/after reading guidance and explicit reliance on externally supplied story, not the story text."
+    },
+    {
+      "lesson_id": "1438079a-19fc-4fb3-b31b-7bb1f3134ad2",
+      "title": "قصة الوحدة الثالثة: كيف أحافظ على صحتي؟",
+      "kind": "reading",
+      "issue": "Contains before/during/after reading guidance and explicit reliance on externally supplied story, not the story text."
+    },
+    {
+      "lesson_id": "c9e0b182-0348-4508-8780-68cd0e3e5dbc",
+      "title": "قصة الوحدة الثانية: فاطمة تحب القراءة",
+      "kind": "reading",
+      "issue": "Contains before/during/after reading guidance and explicit reliance on externally supplied story, not the story text."
+    }
+  ]
+}
