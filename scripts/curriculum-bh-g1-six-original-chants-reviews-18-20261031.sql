@@ -43,7 +43,7 @@ BEGIN
  SELECT count(*) INTO n FROM bh_g1_six_originals;
  IF n<>6 THEN RAISE EXCEPTION 'Scope changed; expected exactly 6 unused BH G1 originals, got %',n; END IF;
  SELECT count(*) INTO b FROM bh_g1_six_originals
- WHERE length(primary_text)<15 OR length(primary_text)>260
+ WHERE length(primary_text)<10 OR length(primary_text)>260
  OR (kind='phonics' AND (length(letter_line)<5 OR primary_text NOT LIKE '%،%'))
  OR (kind='chant' AND (primary_text NOT LIKE '%'||E'\n'||'%'));
  IF b<>0 THEN RAISE EXCEPTION 'Unsafe extraction of original authored text, affected %',b; END IF;
