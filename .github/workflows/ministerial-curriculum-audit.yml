@@ -10,6 +10,8 @@ on:
       - 'tests/ministerial-lesson-subject.node.test.mjs'
       - 'scripts/curriculum-bh-g1-four-ministry-component-original-subjects-20261031.sql'
       - 'tests/curriculum-bh-first-ministry-subjects.node.test.mjs'
+      - 'scripts/curriculum-bh-g1-units23-eight-independent-subjects-20261031.sql'
+      - 'tests/curriculum-bh-g1-units23-original-subjects.node.test.mjs'
       - 'data/ministerial-audit/**'
       - '.github/workflows/ministerial-curriculum-audit.yml'
   push:
@@ -31,7 +33,7 @@ jobs:
         with:
           node-version: '22'
       - name: Static ministerial audit engine tests
-        run: node --test tests/ministerial-audit.node.test.mjs tests/ministerial-lesson-subject.node.test.mjs tests/curriculum-bh-first-ministry-subjects.node.test.mjs
+        run: node --test tests/ministerial-audit.node.test.mjs tests/ministerial-lesson-subject.node.test.mjs tests/curriculum-bh-first-ministry-subjects.node.test.mjs tests/curriculum-bh-g1-units23-original-subjects.node.test.mjs
       - name: Verify official-source incomplete is BLOCKED, not 100 percent
         run: |
           node scripts/ministerial-audit.mjs --out "$RUNNER_TEMP/dadyoom-audit"
