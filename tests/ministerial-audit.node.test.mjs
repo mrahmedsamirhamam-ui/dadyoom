@@ -54,7 +54,7 @@ test("content weak or human approval missing means matching title is NOT complet
  const l=lesson();l.content="ضع النص هنا";l.subjectReview={status:"pending"};
  const r=audit([official()],[l]);
  assert.equal(r.verifiedScopes,0);
- assert.ok(r.findings.some(x=>x.code==="PLACEHOLDER_TEXT"));
+ assert.ok(r.findings.some(x=>x.code==="PLACEHOLDER_IN_LESSON_BODY"));
  assert.ok(r.findings.some(x=>x.code==="SHORT_LESSON_SUBJECT_REVIEW"||x.code==="VERY_SHORT_LESSON_SUBJECT_REVIEW"));
  assert.ok(r.findings.some(x=>x.code==="TITLE_MATCH_SUBJECT_NOT_CERTIFIED"));
 });
