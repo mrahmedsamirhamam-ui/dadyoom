@@ -23,7 +23,7 @@ describe("Dadyoom Bahrain grade 1 reviewed original formative batches", () => {
       expect(sql).toMatch(/COMMIT;/);
       expect(sql).toContain("n<>"+lessons);
       expect(sql).toContain("n<>"+records);
-      expect(sql).toMatch(/answer,'\{\}'::jsonb,false/);
+      expect(sql).toContain("v.prompt,'{}'::jsonb,false");
       expect(sql).toMatch(/0,true/);
       expect(sql).toMatch(/bookContentUnverified/);
       expect(sql).toMatch(/learning_objectives=jsonb_build_array/);
