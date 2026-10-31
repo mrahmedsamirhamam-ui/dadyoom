@@ -1,0 +1,74 @@
+{
+  "recordedAt": "2026-10-31",
+  "country": "BH",
+  "academicYear": "2026-2027",
+  "sourcePage": "https://www.edunet.bh/Econtent/LessonsGuide",
+  "sourcePublisher": "Bahrain Education Ministry Edunet",
+  "scope": "Officially linked first-semester Arabic course plan PDFs. Each covers a different study track; no PDF has yet been visually reviewed for specific lesson titles.",
+  "status": "MINISTRY_LINKS_DISCOVERED_DOCUMENT_CONTENT_NOT_YET_VERIFIED",
+  "documents": [
+    {
+      "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "displayLabel": "اللغة العربية — التعليم الأساسي",
+      "semester": 1,
+      "contentRetrieved": false,
+      "visuallyReviewed": false,
+      "officialTocApproved": false
+    },
+    {
+      "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan2.pdf",
+      "displayLabel": "اللغة العربية — توحيد المسارات",
+      "semester": 1,
+      "contentRetrieved": false,
+      "visuallyReviewed": false,
+      "officialTocApproved": false
+    },
+    {
+      "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan3.pdf",
+      "displayLabel": "اللغة العربية — التعليم الفني والمهني",
+      "semester": 1,
+      "contentRetrieved": false,
+      "visuallyReviewed": false,
+      "officialTocApproved": false
+    },
+    {
+      "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan4.pdf",
+      "displayLabel": "اللغة العربية — التعليم الديني",
+      "semester": 1,
+      "contentRetrieved": false,
+      "visuallyReviewed": false,
+      "officialTocApproved": false
+    },
+    {
+      "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan5.pdf",
+      "displayLabel": "اللغة العربية — المسار الإداري والتكنولوجي والهندسي",
+      "semester": 1,
+      "contentRetrieved": false,
+      "visuallyReviewed": false,
+      "officialTocApproved": false
+    },
+    {
+      "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan6.pdf",
+      "displayLabel": "اللغة العربية — التعليم المستمر",
+      "semester": 1,
+      "contentRetrieved": false,
+      "visuallyReviewed": false,
+      "officialTocApproved": false
+    },
+    {
+      "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan7.pdf",
+      "displayLabel": "اللغة والأدب — MYP الصف الثامن",
+      "semester": 1,
+      "contentRetrieved": false,
+      "visuallyReviewed": false,
+      "officialTocApproved": false
+    }
+  ],
+  "bookListing": {
+    "sourcePage": "https://www.edunet.bh/Econtent/BooksGuide",
+    "bookListForBasicEducation": "https://edunet.bh/manual/books2026/books1.pdf",
+    "tocRead": false
+  },
+  "blocker": "Direct PDF content not retrievable for visual inspection from current browser; no claim about exact lesson list or completed textbooks may be made.",
+  "next": "Retrieve PDF through approved source/browser, verify pages and 2026-27 cover, extract full grade+semester+track lesson TOC, compare to Dadyoom and repair missing subjects."
+}
