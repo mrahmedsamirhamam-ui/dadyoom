@@ -1,0 +1,50 @@
+name: Arabic for Life pilot quality checks
+
+on:
+  pull_request:
+    paths:
+      - 'app/arabic-for-life/**'
+      - 'components/arabic-for-life/**'
+      - 'lib/arabic-for-life/**'
+      - 'tests/arabic-for-life.test.ts'
+      - 'app/page.tsx'
+      - 'app/sitemap.ts'
+      - 'components/Navbar.tsx'
+      - '.github/workflows/arabic-for-life-ci.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci --no-audit --no-fund
+      - run: npx tsc --noEmit
+      - run: npx eslint app/arabic-for-life/page.tsx components/arabic-for-life/ArabicLifeExperience.tsx lib/arabic-for-life/units.ts tests/arabic-for-life.test.ts
+      - run: npx vitest run tests/arabic-for-life.test.ts
+      - run: npm run build
+      - name: Route smoke — Arabic for Life
+        shell: bash
+        run: |
+          npm run start -- -p 3034 >/tmp/arabic-for-life-next.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          ready=0
+          for attempt in $(seq 1 25); do
+            if curl -fsS http://127.0.0.1:3034/arabic-for-life -o /tmp/arabic-for-life.html; then
+              ready=1
+              break
+            fi
+            sleep 2
+          done
+          if [ "$ready" != '1' ]; then cat /tmp/arabic-for-life-next.log; exit 1; fi
+          grep -q 'العربية للحياة' /tmp/arabic-for-life.html
+          grep -q 'نتعارف بالعربية' /tmp/arabic-for-life.html
+          grep -q 'في المتجر' /tmp/arabic-for-life.html

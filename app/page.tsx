@@ -70,6 +70,7 @@ export default function HomePage() {
               <Link href="/ask" className="underline-offset-4 hover:underline">اسأل ضاد</Link>
               <Link href="/labs/letters" className="underline-offset-4 hover:underline">مختبر الحروف</Link>
               <Link href="/level-check" className="underline-offset-4 hover:underline">اكتشف مستواك</Link>
+              <Link href="/arabic-for-life" className="underline-offset-4 hover:underline">العربية للحياة: محادثات ومواقف</Link>
               <Link href="/how-to-use" className="underline-offset-4 hover:underline">كيف تستخدم ضاديوم؟</Link>
             </nav>
             <div className="mt-9 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
