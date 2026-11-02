@@ -1,0 +1,236 @@
+{
+  "createdAt": "2026-11-02",
+  "scope": {
+    "country": "BH",
+    "grade": 3,
+    "term": 1,
+    "subject": "Arabic",
+    "academicYear": "2026-2027"
+  },
+  "source": {
+    "url": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+    "documentType": "official_lesson_schedule",
+    "sourceDocumentStatus": "PDF text extracted from Ministry linked schedule, but full visual original textbook audit NOT conducted",
+    "sourcePagesInPlan": "printed pages 14–16"
+  },
+  "scopePolicy": "Exactly 18 scheduled core subject headings: 12 reading including 3 poetry, 3 listening, 3 speaking; excludes workbook exercises as separate lessons.",
+  "result": {
+    "scheduledSubjectHeadings": 18,
+    "uniqueDadyoomPublishedRecords": 18,
+    "titlePresenceMatches": 18,
+    "originalMinistryTextBookLessonContentVerified": 0,
+    "poetryTextsToVerify": 3,
+    "lessonSubjectQualityUnverified": 18
+  },
+  "units": {
+    "u1": "قيم ومبادئ",
+    "u2": "ألعاب وهوايات",
+    "u3": "مواقف وعبر"
+  },
+  "matches": [
+    {
+      "unit": "u1",
+      "type": "listening",
+      "officialScheduledHeading": "أريد أن ألعب معكم",
+      "dadyoomId": "652648df-d730-448d-89e2-240980456c4d",
+      "dadyoomPublishedAtAudit": true,
+      "printedBookPageRange": "8–13",
+      "officialSubjectTextVerified": false,
+      "originalPoetryVersesVerified": null,
+      "editorialReviewStatus": "unverified"
+    },
+    {
+      "unit": "u1",
+      "type": "speaking",
+      "officialScheduledHeading": "تحدث (الوحدة الأولى)",
+      "dadyoomId": "3eeb992f-6111-4a41-aac2-b61b7a4c3b8a",
+      "dadyoomPublishedAtAudit": true,
+      "printedBookPageRange": "10",
+      "officialSubjectTextVerified": false,
+      "originalPoetryVersesVerified": null,
+      "editorialReviewStatus": "unverified"
+    },
+    {
+      "unit": "u1",
+      "type": "reading",
+      "officialScheduledHeading": "الأصدقاء الأربعة (1)",
+      "dadyoomId": "c76caccf-b10c-4e96-830e-eac297305ee1",
+      "dadyoomPublishedAtAudit": true,
+      "printedBookPageRange": "11–20",
+      "officialSubjectTextVerified": false,
+      "originalPoetryVersesVerified": null,
+      "editorialReviewStatus": "unverified"
+    },
+    {
+      "unit": "u1",
+      "type": "reading",
+      "officialScheduledHeading": "الأصدقاء الأربعة (2)",
+      "dadyoomId": "4509390f-419a-4944-8c52-c0fa6e0d9478",
+      "dadyoomPublishedAtAudit": true,
+      "printedBookPageRange": "21–30",
+      "officialSubjectTextVerified": false,
+      "originalPoetryVersesVerified": null,
+      "editorialReviewStatus": "unverified"
+    },
+    {
+      "unit": "u1",
+      "type": "poetry",
+      "officialScheduledHeading": "حكمة أب",
+      "dadyoomId": "4b1a9c90-6023-4d03-a739-b7e98139a936",
+      "dadyoomPublishedAtAudit": true,
+      "printedBookPageRange": "31–37",
+      "officialSubjectTextVerified": false,
+      "originalPoetryVersesVerified": false,
+      "editorialReviewStatus": "unverified"
+    },
+    {
+      "unit": "u1",
+      "type": "reading",
+      "officialScheduledHeading": "وتعاونوا",
+      "dadyoomId": "3a754fd2-c6d1-4e81-ae69-95c9abf8c3de",
+      "dadyoomPublishedAtAudit": true,
+      "printedBookPageRange": "38–47",
+      "officialSubjectTextVerified": false,
+      "originalPoetryVersesVerified": null,
+      "editorialReviewStatus": "unverified"
+    },
+    {
+      "unit": "u2",
+      "type": "listening",
+      "officialScheduledHeading": "التصوير الفوتوغرافي",
+      "dadyoomId": "ce650924-9d00-4ad6-b5ab-c1302ae33a90",
+      "dadyoomPublishedAtAudit": true,
+      "printedBookPageRange": "48–52",
+      "officialSubjectTextVerified": false,
+      "originalPoetryVersesVerified": null,
+      "editorialReviewStatus": "unverified"
+    },
+    {
+      "unit": "u2",
+      "type": "speaking",
+      "officialScheduledHeading": "تحدث (الوحدة الثانية)",
+      "dadyoomId": "24344b9b-0a49-466b-ab1b-ed381fda4089",
+      "dadyoomPublishedAtAudit": true,
+      "printedBookPageRange": "50",
+      "officialSubjectTextVerified": false,
+      "originalPoetryVersesVerified": null,
+      "editorialReviewStatus": "unverified"
+    },
+    {
+      "unit": "u2",
+      "type": "reading",
+      "officialScheduledHeading": "الولع بالرسم (1)",
+      "dadyoomId": "71c3fd3a-73c3-4fb6-8ccb-376f7e8d1c48",
+      "dadyoomPublishedAtAudit": true,
+      "printedBookPageRange": "51–62",
+      "officialSubjectTextVerified": false,
+      "originalPoetryVersesVerified": null,
+      "editorialReviewStatus": "unverified"
+    },
+    {
+      "unit": "u2",
+      "type": "reading",
+      "officialScheduledHeading": "الولع بالرسم (2)",
+      "dadyoomId": "14d27121-7ec1-40d5-b705-d65271c89b0a",
+      "dadyoomPublishedAtAudit": true,
+      "printedBookPageRange": "63–75",
+      "officialSubjectTextVerified": false,
+      "originalPoetryVersesVerified": null,
+      "editorialReviewStatus": "unverified"
+    },
+    {
+      "unit": "u2",
+      "type": "poetry",
+      "officialScheduledHeading": "وقت الراحات",
+      "dadyoomId": "9954bcf1-2b6b-4e3d-8bd8-ad60e966f1f1",
+      "dadyoomPublishedAtAudit": true,
+      "printedBookPageRange": "76–84",
+      "officialSubjectTextVerified": false,
+      "originalPoetryVersesVerified": false,
+      "editorialReviewStatus": "unverified"
+    },
+    {
+      "unit": "u2",
+      "type": "reading",
+      "officialScheduledHeading": "لعبة يحبها الملايين",
+      "dadyoomId": "28123a61-ef4f-457b-a848-c0b6f9a63517",
+      "dadyoomPublishedAtAudit": true,
+      "printedBookPageRange": "85–97",
+      "officialSubjectTextVerified": false,
+      "originalPoetryVersesVerified": null,
+      "editorialReviewStatus": "unverified"
+    },
+    {
+      "unit": "u3",
+      "type": "listening",
+      "officialScheduledHeading": "حقيقة الكنز",
+      "dadyoomId": "34cb7a04-47d8-4b59-ba62-a0af0b1bf0cf",
+      "dadyoomPublishedAtAudit": true,
+      "printedBookPageRange": "90–94",
+      "officialSubjectTextVerified": false,
+      "originalPoetryVersesVerified": null,
+      "editorialReviewStatus": "unverified"
+    },
+    {
+      "unit": "u3",
+      "type": "speaking",
+      "officialScheduledHeading": "تحدث (الوحدة الثالثة)",
+      "dadyoomId": "6f697bfc-8542-4455-b197-244bd8d21fd9",
+      "dadyoomPublishedAtAudit": true,
+      "printedBookPageRange": "100",
+      "officialSubjectTextVerified": false,
+      "originalPoetryVersesVerified": null,
+      "editorialReviewStatus": "unverified"
+    },
+    {
+      "unit": "u3",
+      "type": "reading",
+      "officialScheduledHeading": "الأمانة (1)",
+      "dadyoomId": "acaaaeb9-3feb-4936-9117-6e58719d189d",
+      "dadyoomPublishedAtAudit": true,
+      "printedBookPageRange": "101–112",
+      "officialSubjectTextVerified": false,
+      "originalPoetryVersesVerified": null,
+      "editorialReviewStatus": "unverified"
+    },
+    {
+      "unit": "u3",
+      "type": "reading",
+      "officialScheduledHeading": "الأمانة (2)",
+      "dadyoomId": "55cae677-e109-444d-a2f3-ad7e3bffc4c3",
+      "dadyoomPublishedAtAudit": true,
+      "printedBookPageRange": "113–125",
+      "officialSubjectTextVerified": false,
+      "originalPoetryVersesVerified": null,
+      "editorialReviewStatus": "unverified"
+    },
+    {
+      "unit": "u3",
+      "type": "poetry",
+      "officialScheduledHeading": "جزاء المعتدي",
+      "dadyoomId": "ef98f22d-b9ae-4a1f-9288-d9f5f81220a2",
+      "dadyoomPublishedAtAudit": true,
+      "printedBookPageRange": "126–136",
+      "officialSubjectTextVerified": false,
+      "originalPoetryVersesVerified": false,
+      "editorialReviewStatus": "unverified"
+    },
+    {
+      "unit": "u3",
+      "type": "reading",
+      "officialScheduledHeading": "دروس من حياة توماس إديسون",
+      "dadyoomId": "4bc90e75-a293-4106-9b52-3b5d72c15311",
+      "dadyoomPublishedAtAudit": true,
+      "printedBookPageRange": "137–150",
+      "officialSubjectTextVerified": false,
+      "originalPoetryVersesVerified": null,
+      "editorialReviewStatus": "unverified"
+    }
+  ],
+  "warnings": [
+    "This proves 18 scheduled heading-to-published-record matches, not full workbook TOC, original text or official subject completeness.",
+    "All 3 scheduled poetry units demand checking the actual textbook and memorization verses; independently authored summaries cannot replace original Ministry poetry.",
+    "No claims for term2, other grades or the 22 countries on this per-grade report.",
+    "Ministry text extraction may reorder RTL cells: final visual source page inspection remains mandatory."
+  ]
+}
