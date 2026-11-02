@@ -48,3 +48,16 @@ test("short template and replacement character get flagged as content quality ri
  assert.ok(screenLessonSubject({content:"ضع النص هنا"}).includes("PLACEHOLDER_IN_LESSON_BODY"));
  assert.ok(screenLessonSubject({content:"شرح \ufffd"}).includes("INVALID_CHARACTERS_IN_LESSON_BODY"));
 });
+
+test("OCR plan-layout instructions cannot be certified as actual lesson titles",()=>{
+ const suspect=["يقسم الدّرس إلى جزأين","يُقسّم الدّرس إلى3","يقسم الدّرس إلى ثالثة أجزاء",":القراءة"];
+ for(const title of suspect){
+  const flags=screenLessonSubject({title,content:"هذا النص يبدو طويلا لكنه ليس درسا مستقلا. لأن خطة الوزارة فيها تقسيم للعمل وليس هذا عنوان مقرر. ".repeat(8)});
+  assert.ok(flags.includes("OCR_PLAN_INSTRUCTION_MISLABELED_AS_LESSON")||flags.includes("BARE_SECTION_HEADING_MISLABELED_AS_LESSON"),title+" "+JSON.stringify(flags));
+ }
+});
+test("empty secondary textbook title cannot certify a complete lesson",()=>{
+ const flags=screenLessonSubject({title:"كتاب النصوص — رياضة",content:""});
+ assert.ok(flags.includes("EMPTY_TEXTBOOK_TITLE_NOT_INDIVIDUAL_LESSON"));
+ assert.ok(flags.includes("EMPTY_LESSON_SUBJECT"));
+});
