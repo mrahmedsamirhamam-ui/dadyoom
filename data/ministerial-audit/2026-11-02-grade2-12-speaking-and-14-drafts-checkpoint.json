@@ -54,7 +54,7 @@
     "ciLastSuccessfulRunBeforeLatest": 41391409274,
     "ciLatestStartedRun": 41391873356,
     "latestCheckStatus": "needs terminal run check",
-    "liveGrade2Pages": "20 out of 12? No: exactly 12 of 12 distinct grade2 public lesson pages passed",
+    "liveGrade2Pages": "12 distinct Bahrain grade2 public lesson pages validated for original speaking-subject sections",
     "liveGrade2SuccessCount": 12,
     "explanationsAreOriginalNotMinistryText": true
   },
