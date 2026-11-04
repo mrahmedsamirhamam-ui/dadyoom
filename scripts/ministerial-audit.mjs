@@ -73,7 +73,7 @@ async function readPlatformFromSupabase(){
     fetchAll(db,"countries","id,code"),
     fetchAll(db,"curricula","id,country_id,academic_year"),
     fetchAll(db,"grades","id,curriculum_id,grade_number"),
-    fetchAll(db,"units","id,grade_id,title"),
+    fetchAll(db,"units","id,grade_id,title,semester"),
     fetchAll(db,"lessons","id,unit_id,title,content,status,semester,source_pdf_url,official_content_scope")
   ]);
   const index=(a)=>new Map(a.map(x=>[x.id,x]));
@@ -81,7 +81,8 @@ async function readPlatformFromSupabase(){
   return lessons.map(l=>{
     const u=ui.get(l.unit_id), g=gi.get(u?.grade_id), cr=cu.get(g?.curriculum_id),c=ci.get(cr?.country_id);
     return {id:l.id,country:c?.code??"UNKNOWN",grade:g?.grade_number??0,
-      semester:l.semester,academicYear:cr?.academic_year??null,track:"general",
+      semester:l.semester??u?.semester??null,lessonSemester:l.semester??null,unitSemester:u?.semester??null,
+      academicYear:cr?.academic_year??null,track:"general",
       unitTitle:u?.title??"",title:l.title,status:l.status,content:l.content??"",
       sourcePdfUrl:l.source_pdf_url??null,officialContentScope:l.official_content_scope??null,
       subjectReview:{status:"not_verified"},topicEvidence:[]};
