@@ -104,6 +104,32 @@ test("missing semester and missing current published-content year are blockers",
  assert.ok(r.findings.some(x=>x.code==="PLATFORM_SEMESTER_UNASSIGNED"));
 });
 
+test("published cross-country skills without semester assignment block official-grade scope certification",()=>{
+ const orphan={...lesson("مهارة إثرائية غير مرتبطة بالفصل"),id:"shared-skill",semester:null,unitTitle:"مهارات مشتركة"};
+ const r=audit([official()],[lesson(),orphan]);
+ const term1=r.summary.find(x=>x.country==="BH"&&x.grade===1&&x.semester===1);
+ const term2=r.summary.find(x=>x.country==="BH"&&x.grade===1&&x.semester===2);
+ assert.equal(term1.exactTitleMatches,1);
+ assert.equal(term1.approvedContentMatches,1);
+ assert.equal(term1.unassignedPublished,1);
+ assert.equal(term1.status,"REVIEW_REQUIRED");
+ assert.equal(term2.unassignedPublished,1);
+ assert.equal(r.verifiedScopes,0);
+ assert.equal(r.releaseReady,false);
+ assert.ok(r.findings.some(x=>x.code==="PUBLISHED_UNASSIGNED_LESSONS_REQUIRE_CLASSIFICATION"&&x.count===1));
+ // Do not misclassify a shared enrichment lesson as an official grade1 book chapter.
+ assert.ok(r.findings.some(x=>x.code==="PLATFORM_SEMESTER_UNASSIGNED"&&x.lesson.id==="shared-skill"));
+});
+
+test("an unassigned draft is visible for triage but does not falsely add a published lesson",()=>{
+ const draft={...lesson("مهارة مؤجلة"),id:"enrichment-draft",semester:null,status:"draft"};
+ const r=audit([official()],[lesson(),draft]);
+ const scope=r.summary.find(x=>x.country==="BH"&&x.grade===1&&x.semester===1);
+ assert.equal(scope.unassignedPublished,0);
+ assert.equal(scope.unassignedTotal,1);
+ assert.equal(scope.status,"CONTENT_VERIFIED");
+ assert.equal(r.releaseReady,false);
+});
 test("grade13 records are never ignored silently when grade13 is not enabled",()=>{
  const p={...lesson(),id:"grade13",country:"MR",grade:13,semester:2};
  const r=audit([],[p]);
