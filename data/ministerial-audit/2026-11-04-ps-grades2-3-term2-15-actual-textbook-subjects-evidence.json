@@ -1,0 +1,117 @@
+{
+  "asOf": "2026-11-04",
+  "project": "Dadyoom",
+  "country": "PS",
+  "grades": [
+    2,
+    3
+  ],
+  "semester": 2,
+  "goal": "Every actual book topic exists and the lesson body explains its real source story, rather than only lessons, activities or titles",
+  "bookSources": [
+    {
+      "grade": 2,
+      "editionPrintYear": 2020,
+      "sourceURL": "https://www.wepal.net/library/upload/03-2021/content/603e883c5c134.pdf",
+      "sourceType": "Complete printed Ministry student textbook mirrored by educational site; not 2026-27 government certification"
+    },
+    {
+      "grade": 3,
+      "editionPrintYear": 2020,
+      "sourceURL": "https://wepal.net/upload/legacy/2021/03-2021/content/603e83f9c0ac4.pdf",
+      "sourceType": "Complete printed Ministry student textbook mirrored by educational site; not 2026-27 government certification"
+    }
+  ],
+  "fixes": {
+    "newCompleteSubjectLessons": {
+      "grade2": [
+        "النمر والحطاب",
+        "صباح جديد",
+        "حيلة فلاح",
+        "يوم الطفل الفلسطيني",
+        "لدي حلم",
+        "الببغاء الثرثار",
+        "في البقالة"
+      ],
+      "grade3": [
+        "الراعي والذئب",
+        "أحب أن أكون",
+        "الغراب والثعلب",
+        "في حديقة الحيوان",
+        "طبيب الأسد",
+        "الصديق وقت الضيق",
+        "أول فدائي في الإسلام"
+      ],
+      "count": 14,
+      "scripts": [
+        "scripts/ps-g2g3-term2-add14-actual-textbook-2020-story-subjects-20261104.sql"
+      ],
+      "livePagesPassed": 14,
+      "livePagesTested": 14
+    },
+    "existingFullSubjectCorrections": {
+      "grade2": [
+        "نبني ونبني",
+        "العصفورة والأفعى",
+        "في مدينة الخليل",
+        "عمر والغلام",
+        "والدي الحبيب",
+        "من نوادر أشعب"
+      ],
+      "grade3": [
+        "يوم الشجرة",
+        "ذكاء القاضي إياس"
+      ],
+      "count": 8,
+      "scripts": [
+        "scripts/ps-g2g3-term2-correct8-existing-real-book-chapter-stories-20261104.sql"
+      ],
+      "livePagesPassed": 8,
+      "livePagesTested": 8
+    },
+    "existingOrderCorrection": {
+      "grade2OriginalLessonsReordered": 8,
+      "chapter15CorrectedTitle": "من نوادر أشعب",
+      "genericLessonPseudoRecordsDrafted": 6,
+      "script": "scripts/ps-g2-t2-reorder-eight-existing-and-draft-six-pseudo-chapters-20261104.sql"
+    },
+    "productionBookInventory": {
+      "grade2": {
+        "correctTitleCount": 15,
+        "published": 15,
+        "pseudoDrafts": 6,
+        "sortOrderFrom": 31,
+        "sortOrderTo": 45,
+        "minSubjectCharacters": 2975
+      },
+      "grade3": {
+        "correctTitleCount": 15,
+        "published": 15,
+        "pseudoDrafts": 6,
+        "sortOrderFrom": 31,
+        "sortOrderTo": 45,
+        "minSubjectCharacters": 2622
+      }
+    },
+    "studentLessonProgressRowsInTheseTwoUnits": 0,
+    "studentDataDeleted": false,
+    "quizAttemptsDeleted": false
+  },
+  "proof": {
+    "databasePostWriteSelectPassed": true,
+    "liveBookSubjectPagesPassed": "22/22",
+    "note": "Live page spot checks verify subject explanation and referenced 2020 original book link, not authentic teacher login or every original scanned graphic",
+    "githubWorkflow": "Ministerial curriculum audit engine - CI tests after source implementation"
+  },
+  "limitations": [
+    "2020 print edition; 2026-27 current exact mandated edition not confirmed",
+    "2024 Ministry educational packages are partial and distinct from complete 2020 textbooks",
+    "Not yet full original listening scripts, poems, exercises, image transcription or authenticated teacher/learner session",
+    "Full grade1 second semester and 22-country curricula not yet audited or approved",
+    "Content is independent paraphrased educational explanation, not photocopy of official book, and not a teacher-approved 2026-27 fidelity certificate"
+  ],
+  "fullOfficialCurrentYearCoverageCertified": false,
+  "branch": "feat/ministerial-curriculum-audit-engine-20261031",
+  "pr": 97,
+  "prStillDraft": true
+}
