@@ -49,14 +49,34 @@ describe("evidence-based teacher feedback", () => {
     expect(buildFeedbackDraft({ ...base, correct: 1, total: 0 }).ready).toBe(false);
   });
 
-  it("bounds the follow-up interval and includes a transfer task", () => {
-    const draft = buildFeedbackDraft({
+  it("rejects out-of-range review days rather than silently changing them", () => {
+    const invalid = buildFeedbackDraft({
       ...base,
       evidence: "استدل من النص في النشاط العملي اليوم.",
       reviewDays: 90,
     });
-    expect(draft.measurement).toContain("30 يومًا");
-    expect(draft.measurement).toContain("مهمة انتقال");
+    expect(invalid.ready).toBe(false);
+    expect(invalid.issue).toContain("1 إلى 30");
+    const valid = buildFeedbackDraft({
+      ...base,
+      evidence: "استدل من النص في النشاط العملي اليوم.",
+      reviewDays: 30,
+    });
+    expect(valid.ready).toBe(true);
+    expect(valid.measurement).toContain("30 يومًا");
+    expect(valid.measurement).toContain("مهمة انتقال");
+  });
+
+  it("blocks written observations when optional entered scores are inconsistent", () => {
+    const invalid = buildFeedbackDraft({
+      ...base,
+      evidence: "قرأ نصًا جديدًا لكنه أخطأ في كلمات متعددة.",
+      correct: 8,
+      total: 5,
+    });
+    expect(invalid.ready).toBe(false);
+    expect(invalid.issue).toContain("عددين صحيحين صالحين");
+    expect(invalid.exportText).toBe("");
   });
 
   it("provides a unique practice and measure for each supported skill", () => {
