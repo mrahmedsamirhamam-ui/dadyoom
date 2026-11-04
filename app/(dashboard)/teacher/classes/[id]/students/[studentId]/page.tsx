@@ -1,4 +1,5 @@
 ﻿import Link from "next/link";
+import TeacherFeedbackPanel from "@/features/teacher-feedback/components/TeacherFeedbackPanel";
 
 import {
   notFound,
@@ -463,6 +464,9 @@ export default async function TeacherStudentPage({
           </article>
 
         </section>
+
+
+        <TeacherFeedbackPanel context="student" />
 
 
         <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">

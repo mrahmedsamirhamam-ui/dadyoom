@@ -1,0 +1,60 @@
+name: Teacher formative feedback quality
+
+on:
+  pull_request:
+    paths:
+      - 'features/teacher-feedback/**'
+      - 'app/resources/teacher-feedback/**'
+      - 'app/(dashboard)/teacher/classes/**/students/**'
+      - 'tests/teacher-feedback-plan.test.ts'
+      - 'tests/teacher-feedback-progress.test.ts'
+      - 'scripts/smoke-teacher-feedback.mjs'
+      - 'docs/DADYOOM_NEXT_EDTECH_DELIVERY_2026-11-04.md'
+      - '.github/workflows/teacher-feedback-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Install pinned packages
+        run: npm ci --no-audit --no-fund
+      - name: Behavior and evidence-gate tests
+        run: npx vitest run tests/teacher-feedback-plan.test.ts tests/teacher-feedback-progress.test.ts
+      - name: TypeScript integration
+        run: npx tsc --noEmit
+      - name: Lint changed feature files
+        run: npx eslint features/teacher-feedback app/resources/teacher-feedback tests/teacher-feedback-plan.test.ts tests/teacher-feedback-progress.test.ts 'app/(dashboard)/teacher/classes/[id]/students/[studentId]/page.tsx'
+      - name: Production build
+        run: npm run build
+      - name: Public resources page renders
+        shell: bash
+        run: |
+          npm run start -- -p 3035 >/tmp/dadyoom-teacher-feedback.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          READY=0
+          for attempt in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:3035/resources/teacher-feedback >/tmp/feedback-page.html; then
+              READY=1
+              break
+            fi
+            sleep 2
+          done
+          if [ "$READY" != 1 ]; then
+            cat /tmp/dadyoom-teacher-feedback.log
+            exit 1
+          fi
+          grep -q 'من الملاحظة إلى خطوة تحسن' /tmp/feedback-page.html
+          node scripts/smoke-teacher-feedback.mjs
