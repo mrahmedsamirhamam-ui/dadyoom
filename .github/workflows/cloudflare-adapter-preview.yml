@@ -114,6 +114,30 @@ jobs:
             fi
           done
 
+      - name: Deny anonymous teacher media and AI endpoints on actual local workerd
+        shell: bash
+        run: |
+          npx wrangler dev --local --port 8788 --log-level error --var NEXT_PUBLIC_SUPABASE_URL:https://example.supabase.co --var NEXT_PUBLIC_SUPABASE_ANON_KEY:preview-fake-anon-key >/tmp/dadyoom-teacher-workerd.log 2>&1 &
+          PID=$!
+          trap 'kill "$PID" 2>/dev/null || true' EXIT
+          started=0
+          for i in $(seq 1 45); do
+            if curl -fsS --max-time 2 http://127.0.0.1:8788/about >/dev/null; then started=1; break; fi
+            sleep 2
+          done
+          test "$started" -eq 1
+          for url in "/api/teacher/lesson-media" "/api/teacher/assignment-ai"; do
+            response=$(curl -sS -o /tmp/dadyoom-teacher-denied.json -w '%{http_code}' --max-time 20 \
+              -X POST -H 'Content-Type: application/json' --data '{"malformed":true}' \
+              "http://127.0.0.1:8788$url")
+            echo "anonymous POST $url: $response"
+            if [ "$response" != "401" ] && [ "$response" != "403" ]; then
+              echo "FAIL: teacher endpoint must reject unauthenticated access under workerd"
+              tail -n 50 /tmp/dadyoom-teacher-workerd.log
+              exit 1
+            fi
+          done
+
       - name: Commit reproducible dependency manifest and lock to preview branch
         # No repository files are changed until the actual adapter build and dry-run pass.
         if: success() && github.ref == 'refs/heads/fix/cloudflare-opennext-preview-20261029'
