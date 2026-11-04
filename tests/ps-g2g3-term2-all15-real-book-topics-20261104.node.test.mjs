@@ -6,8 +6,10 @@ const reorder=read("ps-g2-t2-reorder-eight-existing-and-draft-six-pseudo-chapter
 const newLessons=read("ps-g2g3-term2-add14-actual-textbook-2020-story-subjects-20261104.sql");
 const corrected=read("ps-g2g3-term2-correct8-existing-real-book-chapter-stories-20261104.sql");
 const getBodies=(src,prefix)=>[...src.matchAll(new RegExp("\\$"+prefix+"(\\d+)\\$([\\s\\S]*?)\\$"+prefix+"\\1\\$","g"))].map(m=>m[2]);
-function mustGuard(s){
- for(const token of ["BEGIN;","COMMIT;","student_lesson_progress","question_attempts","lesson_activity_attempts","RAISE EXCEPTION"])assert.ok(s.includes(token),token);
+function mustGuard(s,{insertsOnly=false}={}){
+ const basics=["BEGIN;","COMMIT;","RAISE EXCEPTION"];
+ const history=insertsOnly?[]:["student_lesson_progress","question_attempts","lesson_activity_attempts"];
+ for(const token of [...basics,...history])assert.ok(s.includes(token),token);
  assert.ok(!/\bDELETE\s+FROM\b|\bTRUNCATE\b|\bDROP\s+TABLE\s+(?:public\.)?(?:lessons|student)/i.test(s));
 }
 test("14 previously missing chapters are complete original explanations (7 Grade2 + 7 Grade3) from actual 2020 books, not generic title shells",()=>{
@@ -36,7 +38,9 @@ test("14 previously missing chapters are complete original explanations (7 Grade
  assert.ok(newLessons.includes("(SELECT count(*) FROM book_missing)<>14"));
  assert.ok(newLessons.includes("SELECT count(*) FROM book_missing WHERE grade_number=2)<>7"));
  assert.ok(newLessons.includes("SELECT count(*) FROM book_missing WHERE grade_number=3)<>7"));
- mustGuard(newLessons);
+ // Insert-only transaction protects students by refusing duplicate titles/order and never touching existing rows.
+ assert.ok(newLessons.includes("A schoolbook title already exists; refuse duplicate"));
+ mustGuard(newLessons,{insertsOnly:true});
 });
 test("Eight original 2020 schoolbook topics missing their genuine story explanations now have complete prefixes without losing older enrichment",()=>{
  const bodies=getBodies(corrected,"actual");
