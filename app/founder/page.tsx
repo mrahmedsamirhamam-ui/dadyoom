@@ -32,6 +32,7 @@ export default function FounderPage() {
         url: `${base}/founder`,
         jobTitle: ["مؤسس ضاديوم", "مدير ضاديوم", "Arabic Language Educator"],
         description: "مؤسس مشروع ضاديوم، وخبير في تعليم العربية والتطوير التربوي.",
+        sameAs: ["https://www.linkedin.com/in/ahmedsamirmohamedhafez", "https://www.instagram.com/mrahmedsamirhamam/", "https://www.facebook.com/share/1A2Uag89ay/", "https://www.tiktok.com/@mr.ahmed.samir.ha6", "https://www.youtube.com/@mrahmedsamirhamam"],
       },
     },
     {
@@ -62,6 +63,17 @@ export default function FounderPage() {
           <li>التعليم بين التقليد والعصرنة: نحو نموذج عربي متوازن في عصر الذكاء الاصطناعي.</li>
           <li>هندسة التفكير والتعلّم: نحو تصميم أنظمة تعليمية عربية أصيلة.</li>
         </ul>
+        <section className="mt-9 rounded-2xl border border-[#d7e5dc] bg-[#f8faf6] p-6">
+          <h2 className="text-2xl font-bold text-[#174f47]">الحسابات المهنية والاجتماعية للمؤسس</h2>
+          <div className="mt-4 flex flex-wrap gap-4">
+            <a href="https://www.linkedin.com/in/ahmedsamirmohamedhafez" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#174f47] underline">لينكدإن</a>
+            <a href="https://www.facebook.com/share/1A2Uag89ay/" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#174f47] underline">فيسبوك</a>
+            <a href="https://www.instagram.com/mrahmedsamirhamam/" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#174f47] underline">إنستغرام</a>
+            <a href="https://www.tiktok.com/@mr.ahmed.samir.ha6" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#174f47] underline">تيك توك</a>
+            <a href="https://www.youtube.com/@mrahmedsamirhamam" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#174f47] underline">يوتيوب</a>
+          </div>
+          <p className="mt-4 text-sm text-[#655c51]">هذه الروابط للتعريف بالمؤسس ولا تُعد بمفردها إثباتًا قانونيًا للملكية.</p>
+        </section>
         <section lang="en" dir="ltr" className="mt-10 rounded-2xl bg-[#f5f0e5] p-6 text-left">
           <h2 className="text-2xl font-bold text-[#174f47]">About the Founder</h2>
           <p className="mt-3 leading-8">Mr Ahmed Samir Mohamed Hafez Hamam is the founder and director of Dadyoom, an Arabic-language education initiative. With more than 20 years of experience in teaching, he works to connect Arabic curricula, interactive learning, assessment, and educational technology.</p>
