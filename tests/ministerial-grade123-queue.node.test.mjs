@@ -53,9 +53,13 @@ test("editorial bundle with wrong date or duplicate lesson IDs cannot pass",()=>
  const source=JSON.parse(fs.readFileSync("data/ministerial-audit/2026-11-04-g123-yearless-and-short-subject-review.json","utf8"));
  assert.throws(()=>buildGrade123Queue(snapshot,{...source,asOf:"2025-01-01"}),/INVALID_EDITORIAL_EVIDENCE/);
  assert.throws(()=>buildGrade123Queue(snapshot,{...source,unknownYear:[...source.unknownYear.slice(0,-1),source.unknownYear[0]]}),/DUPLICATE_OR_INVALID_EDITORIAL_LESSON/);
+ const crossCountry={...source,unknownYear:source.unknownYear.map((r,i)=>i===0?{...r,country:"XX"}:r)};
+ assert.throws(()=>buildGrade123Queue(snapshot,crossCountry),/EDITORIAL_SCOPE_NOT_IN_PRODUCTION_SNAPSHOT/);
 });
 test("missing country-grade, invalid grade and duplicate input cannot become a certified list",()=>{
  assert.throws(()=>buildGrade123Queue({...snapshot,rows:snapshot.rows.filter(r=>r.country!=="YE")}),/MISSING_COUNTRIES/);
  assert.throws(()=>buildGrade123Queue({...snapshot,rows:snapshot.rows.filter(r=>!(r.country==="BH"&&r.grade===3))}),/66_COUNTRY_GRADE_CELLS/);
  assert.throws(()=>buildGrade123Queue({...snapshot,rows:[...snapshot.rows,{...snapshot.rows[0],grade:5}]}),/INVALID_G123_SCOPE/);
+ assert.throws(()=>buildGrade123Queue({...snapshot,rows:[...snapshot.rows,snapshot.rows[0]]}),/DUPLICATE_G123_COUNTRY_GRADE_TERM/);
+ assert.throws(()=>buildGrade123Queue({...snapshot,summary:{...snapshot.summary,published:2000}}),/G123_SNAPSHOT_AGGREGATE_MISMATCH/);
 });
