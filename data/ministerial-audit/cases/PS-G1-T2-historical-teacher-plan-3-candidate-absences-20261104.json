@@ -1,0 +1,51 @@
+{
+  "asOf": "2026-11-04",
+  "country": "PS",
+  "grade": 1,
+  "semester": 2,
+  "academicYearTarget": "2026-2027",
+  "scope": "historical teacher-plan candidate titles contrasted with live platform; NOT approved textbook TOC",
+  "sourceCaveat": "Wepal teacher-preparation resources are historical, potentially 2019-era lesson plans; separate complete 2020 mirror book mentioned at https://www.wepal.net/lms.resourceItemShow.100299 has NOT been visually reviewed. None of these sources proves 2026-27 mandated edition.",
+  "historicalPlanSources": [
+    {
+      "unit": 11,
+      "title": "نساعد الكبير",
+      "source": "https://www.wepal.net/lms.resourceList?category_id=5&level_id=1&semester_id=2",
+      "publishedInPlatform": false
+    },
+    {
+      "unit": 12,
+      "title": "وطني أجمل",
+      "source": "https://www.wepal.net/lms.resourceItemShow.110098",
+      "publishedInPlatform": true,
+      "lessonId": "fa18a511-4d88-4852-a5f5-2dfb9f3bfee5"
+    },
+    {
+      "unit": 13,
+      "title": "الماء",
+      "source": "https://www.wepal.net/lms.resourceList?category_id=5&level_id=1&semester_id=2",
+      "publishedInPlatform": false
+    },
+    {
+      "unit": 14,
+      "title": "الفراشة والنحلة",
+      "source": "https://www.wepal.net/lms.resourceItemShow.110100",
+      "publishedInPlatform": true,
+      "lessonId": "1032f811-f6f0-4b5a-9699-2ebb180adb8b"
+    },
+    {
+      "unit": 15,
+      "title": "القرد الطماع",
+      "source": "https://www.wepal.net/lms.resourceItemShow.110101",
+      "publishedInPlatform": false
+    }
+  ],
+  "liveRead": "Supabase read-only SELECT on public lessons joined to countries/curricula/grades/units; exact titles confirmed only two existing in grade1, semester2.",
+  "candidateAbsentHistoricalTitles": [
+    "نساعد الكبير",
+    "الماء",
+    "القرد الطماع"
+  ],
+  "publicationGate": "BLOCKED: obtain complete actual current 2026-27 Ministry textbook/student-book TOC, inspect each chapter image/pages and narrative, confirm the term and rights, then author original full lesson body with review. No automatic publication.",
+  "noChangesToProduction": true
+}
