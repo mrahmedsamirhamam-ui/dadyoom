@@ -6,7 +6,9 @@ import {buildGrade123Queue} from "../lib/ministerial-audit/grade123-queue.mjs";
 const args=process.argv.slice(2);
 const option=(name,fallback)=>{const i=args.indexOf(name);return i===-1?fallback:args[i+1];};
 const input=path.resolve(option("--input","data/ministerial-audit/2026-11-04-live-grade123-all22-source-body-triage.json"));
-const queue=buildGrade123Queue(JSON.parse(fs.readFileSync(input,"utf8")));
+const editorialFile=option("--editorial","data/ministerial-audit/2026-11-04-g123-yearless-and-short-subject-review.json");
+const editorial=editorialFile==="none"?null:JSON.parse(fs.readFileSync(path.resolve(editorialFile),"utf8"));
+const queue=buildGrade123Queue(JSON.parse(fs.readFileSync(input,"utf8")),editorial);
 const output=option("--out",null);
 if(output){
  const dest=path.resolve(output);
