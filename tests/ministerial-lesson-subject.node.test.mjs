@@ -56,6 +56,29 @@ test("OCR plan-layout instructions cannot be certified as actual lesson titles",
   assert.ok(flags.includes("OCR_PLAN_INSTRUCTION_MISLABELED_AS_LESSON")||flags.includes("BARE_SECTION_HEADING_MISLABELED_AS_LESSON"),title+" "+JSON.stringify(flags));
  }
 });
+test("large generic subject-area description is not an individual ministerial lesson",()=>{
+ const body="نقدم للمتعلمين معلومات عن مهارات العربية؛ لأن القراءة والكتابة والاستماع تساعد على التعبير بأمثلة مناسبة. ".repeat(15);
+ for(const unitTitle of [
+  "النطاق السنوي — مجالات اللغة العربية",
+  "الفصل الدراسي الأول — مجالات اللغة العربية",
+  "الفصل الدراسي الثاني — مجالات اللغة العربية",
+ ]) {
+  const flags=screenLessonSubject({title:"النحو والبناء اللغوي — الفصل الأول",unitTitle,content:body});
+  assert.ok(flags.includes("GENERIC_SUBJECT_AREA_NOT_INDIVIDUAL_TEXTBOOK_TOPIC"),unitTitle);
+ }
+ const lessonCase=target();
+ lessonCase.title="النحو والبناء اللغوي — الفصل الأول";
+ lessonCase.unitTitle="الفصل الدراسي الأول — مجالات اللغة العربية";
+ const verdict=auditLessonTopicCompleteness(official,lessonCase,manifest);
+ assert.equal(verdict.isComplete,false);
+ assert.ok(verdict.problems.includes("GENERIC_SUBJECT_AREA_NOT_INDIVIDUAL_TEXTBOOK_TOPIC"));
+});
+
+test("real lesson in a normal textbook unit is not mistakenly marked as generic",()=>{
+ const flags=screenLessonSubject({title:"المبتدأ والخبر",unitTitle:"الوحدة الأولى: أسرتي",content:original});
+ assert.ok(!flags.includes("GENERIC_SUBJECT_AREA_NOT_INDIVIDUAL_TEXTBOOK_TOPIC"));
+});
+
 test("empty secondary textbook title cannot certify a complete lesson",()=>{
  const flags=screenLessonSubject({title:"كتاب النصوص — رياضة",content:""});
  assert.ok(flags.includes("EMPTY_TEXTBOOK_TITLE_NOT_INDIVIDUAL_LESSON"));
