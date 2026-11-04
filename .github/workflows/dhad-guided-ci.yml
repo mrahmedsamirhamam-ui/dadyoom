@@ -1,0 +1,34 @@
+name: Dhad guided tutoring policy
+
+on:
+  pull_request:
+    paths:
+      - 'lib/ai/dhad-guided-lesson-policy.ts'
+      - 'features/ai-tutor/**'
+      - 'tests/ai/dhad-guided-lesson-policy.test.ts'
+      - '.github/workflows/dhad-guided-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify Dhad policy contract
+        run: npx vitest run tests/ai/dhad-guided-lesson-policy.test.ts
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: ESLint
+        run: npm run lint
