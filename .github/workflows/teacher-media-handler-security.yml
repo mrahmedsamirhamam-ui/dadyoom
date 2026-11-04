@@ -1,0 +1,32 @@
+name: Teacher media handler security
+on:
+  pull_request:
+    paths:
+      - 'app/api/teacher/lesson-media/route.ts'
+      - 'tests/security/teacher-media-handler-gate.node.test.mjs'
+      - '.github/workflows/teacher-media-handler-security.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Install pinned dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify role gate before request parse
+        run: node --test tests/security/teacher-media-handler-gate.node.test.mjs
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: ESLint
+        run: npx eslint app/api/teacher/lesson-media/route.ts
+      - name: Next build
+        run: npm run build
