@@ -24,6 +24,18 @@ test("2026-11-04 snapshot keeps published term-unassigned and timetable source c
  assert.ok(bh.nextChecks.includes("REPLACE_SCHEDULE_ONLY_CITATIONS_WITH_REVIEWED_TEXTBOOK_EVIDENCE"));
  assert.ok(q.jobs.some(r=>r.country==="PS"&&r.nextChecks.includes("SEPARATE_PARTIAL_EDUCATIONAL_PACK_FROM_COMPLETE_STUDENT_BOOK")));
 });
+test("live editorial queue captures 31 generic short subjects and 12 yearless Egyptian lessons",()=>{
+ const q=JSON.parse(fs.readFileSync("data/ministerial-audit/2026-11-04-g123-yearless-and-short-subject-review.json","utf8"));
+ assert.equal(q.summary.shortBodies,31);
+ assert.equal(q.summary.unknownYearPublished,12);
+ assert.equal(q.summary.commonCrossCountryTitleGradeCombos,54);
+ assert.equal(q.summary.totalCommonRows,1188);
+ assert.ok(q.shorts.every(v=>v.lesson_id&&v.characters>0&&v.characters<400));
+ assert.ok(q.unknownYear.every(v=>v.country==="EG"&&v.grade===2));
+ assert.equal(new Set(q.unknownYear.map(v=>v.lesson_id)).size,12);
+ assert.equal(q.certification.ministerialComplete,false);
+});
+
 test("missing country-grade, invalid grade and duplicate input cannot become a certified list",()=>{
  assert.throws(()=>buildGrade123Queue({...snapshot,rows:snapshot.rows.filter(r=>r.country!=="YE")}),/MISSING_COUNTRIES/);
  assert.throws(()=>buildGrade123Queue({...snapshot,rows:snapshot.rows.filter(r=>!(r.country==="BH"&&r.grade===3))}),/66_COUNTRY_GRADE_CELLS/);
