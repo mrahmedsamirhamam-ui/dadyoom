@@ -162,3 +162,15 @@ test("renaming ministry lesson PLAN PDF to textbook documentType cannot bypass e
  const r=audit([m],[lesson()]);
  assert.equal(r.verifiedScopes,0);
 });
+
+
+test("2024 Palestinian Ministry partial textbook pack cannot be disguised as complete student book",()=>{
+ const m=official();m.source={...source,documentType:"textbook",url:"https://moe.edu.ps/uploads/new_pal_books/arabic3.pdf"};
+ assert.ok(checkOfficialManifest(m,sourceRegistry,"2026-2027").includes("EDUCATIONAL_PACK_NOT_FULL_TEXTBOOK"));
+});
+test("2024 partial educational pack can prove titles, not full Ministry book completion",()=>{
+ const m=official();m.source={...source,documentType:"official_educational_pack"};
+ const r=audit([m],[lesson()]);
+ assert.equal(r.verifiedScopes,0);
+ assert.ok(r.findings.some(x=>x.code==="TITLE_MATCH_SUBJECT_NOT_CERTIFIED"&&x.subjectIssues.includes("PARTIAL_EDUCATIONAL_PACK_NOT_FULL_BOOK")));
+});
