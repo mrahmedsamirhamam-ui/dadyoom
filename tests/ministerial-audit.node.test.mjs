@@ -190,6 +190,22 @@ test("official Ministry timetable permits title inventory but must NOT certify t
  assert.ok(r.findings.some(x=>x.code==="TITLE_MATCH_SUBJECT_NOT_CERTIFIED"&&
   x.subjectIssues.includes("OFFICIAL_SCHEDULE_NOT_TEXTBOOK_SUBJECT_EVIDENCE")));
 });
+test("official-domain catalogue passed as a textbook URL is rejected at source-manifest gate",()=>{
+ for (const url of [
+  "https://www.edunet.bh/Econtent/BooksGuide",
+  "https://edunet.bh/Econtent/LessonsGuide"
+ ]) {
+  const m=official();
+  m.source={...source,url,documentType:"textbook"};
+  const errors=checkOfficialManifest(m,sourceRegistry,"2026-2027");
+  assert.ok(errors.includes("OFFICIAL_CATALOGUE_PAGE_NOT_STUDENT_TEXTBOOK"),url);
+  const result=audit([m],[lesson()]);
+  assert.equal(result.verifiedScopes,0);
+  assert.ok(result.findings.some(f=>f.code==="OFFICIAL_MANIFEST_INVALID"&&
+    f.reasons.includes("OFFICIAL_CATALOGUE_PAGE_NOT_STUDENT_TEXTBOOK")));
+ }
+});
+
 test("ministry library and catalogue landing pages cannot certify a textbook lesson",()=>{
  for(const [url,scope] of [
   ["https://cerc.moe.gov.ly/educational-curricul/","LY"],
