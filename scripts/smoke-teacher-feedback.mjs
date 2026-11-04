@@ -40,6 +40,28 @@ try {
   assert.ok(await copy.isDisabled(), "Any edit must revoke an earlier approval");
   assert.ok(!await approval.isChecked());
 
+  const progressCopy = page.getByRole("button", { name: "نسخ تقرير إعادة القياس بعد اعتماد المعلم" });
+  assert.ok(await progressCopy.isDisabled(), "Recheck cannot copy without before/after evidence");
+
+  await page.getByRole("spinbutton", { name: "عدد الإجابات الصحيحة (اختياري)" }).fill("2");
+  await page.getByRole("spinbutton", { name: "إجمالي فرص الأداء (اختياري)" }).fill("5");
+  await page.getByRole("spinbutton", { name: "الصحيح في المهمة اللاحقة" }).fill("4");
+  await page.getByRole("spinbutton", { name: "إجمالي فرص المهمة اللاحقة" }).fill("5");
+  await page.getByRole("textbox", { name: "شاهد أداء جديد بعد الدعم (دون اسم الطالب)" })
+    .fill("أجاب عن أربع أسئلة من خمس في نص جديد بمستوى مشابه.");
+  assert.ok(await progressCopy.isDisabled(), "No comparison without explicit comparability");
+
+  await page.getByRole("checkbox", { name: /أؤكد أن المهمتين/ }).check();
+  assert.ok(await progressCopy.isDisabled(), "Recheck needs independent teacher approval");
+
+  const progressApproval = page.getByRole("checkbox", { name: /راجعتُ المقارنة/ });
+  await progressApproval.check();
+  assert.ok(await progressCopy.isEnabled());
+
+  await page.getByRole("spinbutton", { name: "الصحيح في المهمة اللاحقة" }).fill("3");
+  assert.ok(await progressCopy.isDisabled(), "Changing recheck data must invalidate approval");
+  assert.ok(!await progressApproval.isChecked());
+
   assert.equal(submitted, false, "Personalized evidence must not be POSTed to any API");
   assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 2), "RTL mobile page must not overflow");
   console.log("Teacher feedback mobile browser smoke: PASS");
