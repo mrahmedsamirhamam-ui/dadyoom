@@ -61,7 +61,7 @@ describe("evidence-based teacher feedback", () => {
 
   it("provides a unique practice and measure for each supported skill", () => {
     const practices = FEEDBACK_SKILLS.map((skill) => skill.practice);
-    expect(FEEDBACK_SKILLS).toHaveLength(9);
+    expect(FEEDBACK_SKILLS).toHaveLength(18);
     expect(new Set(practices).size).toBe(9);
     for (const skill of FEEDBACK_SKILLS) {
       const draft = buildFeedbackDraft({
