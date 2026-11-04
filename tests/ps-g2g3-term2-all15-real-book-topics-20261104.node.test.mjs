@@ -1,0 +1,64 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+const read=p=>readFileSync("scripts/"+p,"utf8");
+const reorder=read("ps-g2-t2-reorder-eight-existing-and-draft-six-pseudo-chapters-20261104.sql");
+const newLessons=read("ps-g2g3-term2-add14-actual-textbook-2020-story-subjects-20261104.sql");
+const corrected=read("ps-g2g3-term2-correct8-existing-real-book-chapter-stories-20261104.sql");
+const getBodies=(src,prefix)=>[...src.matchAll(new RegExp("\\$"+prefix+"(\\d+)\\$([\\s\\S]*?)\\$"+prefix+"\\1\\$","g"))].map(m=>m[2]);
+function mustGuard(s){
+ for(const token of ["BEGIN;","COMMIT;","student_lesson_progress","question_attempts","lesson_activity_attempts","RAISE EXCEPTION"])assert.ok(s.includes(token),token);
+ assert.ok(!/\bDELETE\s+FROM\b|\bTRUNCATE\b|\bDROP\s+TABLE\s+(?:public\.)?(?:lessons|student)/i.test(s));
+}
+test("14 previously missing chapters are complete original explanations (7 Grade2 + 7 Grade3) from actual 2020 books, not generic title shells",()=>{
+ const bodies=getBodies(newLessons,"body");
+ assert.equal(bodies.length,14);
+ const headings=[
+ "النمر والحطاب","صباح جديد","حيلة فلاح","يوم الطفل الفلسطيني","لدي حلم","الببغاء الثرثار","في البقالة",
+ "الراعي والذئب","أحب أن أكون","الغراب والثعلب","في حديقة الحيوان","طبيب الأسد","الصديق وقت الضيق","أول فدائي في الإسلام"
+ ];
+ assert.equal(new Set(headings).size,14);
+ for(let i=0;i<14;i++){
+  const s=bodies[i];
+  assert.ok(s.includes(headings[i]),"real chapter "+headings[i]);
+  assert.ok(s.length>2900,headings[i]+" is only a title or brief placeholder");
+  for(const section of ["أولًا: أتعرف","ثانيًا: أفهم","ثالثًا: أكتسب","رابعًا: أتدرب","خامسًا: أفكر","سادسًا: أفرق","[نهاية شرح ضاديوم الأصلي المبني على أحداث الكتاب 2020]"])
+  assert.ok(s.includes(section),headings[i]+": "+section);
+  assert.ok(s.includes("2020")&&s.includes("2026–2027"),"clear source-edition distinction");
+ }
+ assert.ok(bodies[0].includes("الحطاب")&&bodies[0].includes("النمر")&&bodies[0].includes("شجرة"));
+ assert.ok(bodies[6].includes("سليم")&&bodies[6].includes("مريم")&&bodies[6].includes("الصلاحية"));
+ assert.ok(bodies[11].includes("القرد")&&bodies[11].includes("الأسد")&&bodies[11].includes("أنيابه"));
+ assert.ok(bodies[12].includes("الدب")&&bodies[12].includes("الصديق"));
+ assert.ok(bodies[13].includes("علي بن أبي طالب")&&bodies[13].includes("الهجرة"));
+ assert.ok(newLessons.includes("https://www.wepal.net/library/upload/03-2021/content/603e883c5c134.pdf"));
+ assert.ok(newLessons.includes("https://wepal.net/upload/legacy/2021/03-2021/content/603e83f9c0ac4.pdf"));
+ assert.ok(newLessons.includes("(SELECT count(*) FROM book_missing)<>14"));
+ assert.ok(newLessons.includes("SELECT count(*) FROM book_missing WHERE grade_number=2)<>7"));
+ assert.ok(newLessons.includes("SELECT count(*) FROM book_missing WHERE grade_number=3)<>7"));
+ mustGuard(newLessons);
+});
+test("Eight original 2020 schoolbook topics missing their genuine story explanations now have complete prefixes without losing older enrichment",()=>{
+ const bodies=getBodies(corrected,"actual");
+ assert.equal(bodies.length,8);
+ const names=["نبني ونبني","العصفورة والأفعى","في مدينة الخليل","عمر والغلام","والدي الحبيب","من نوادر أشعب","يوم الشجرة","ذكاء القاضي إياس"];
+ for(let i=0;i<8;i++){
+  assert.ok(bodies[i].length>2450,names[i]+" short/fake content");
+  assert.ok(bodies[i].includes(names[i]));
+  assert.ok(bodies[i].includes("أحداث")&&bodies[i].includes("مفردات"));
+  assert.ok(bodies[i].includes("[نهاية تصحيح نص الدرس المدرسي الفعلي، طبعة 2020]"));
+ }
+ assert.ok(bodies[2].includes("علياء")&&bodies[2].includes("الخليل"));
+ assert.ok(bodies[3].includes("عمر بن الخطاب")&&bodies[3].includes("الغلام"));
+ assert.ok(bodies[7].includes("القاضي إياس")&&bodies[7].includes("الفطائري"));
+ assert.ok(corrected.includes("المادة الإثرائية السابقة من ضاديوم منفصلة"));
+ mustGuard(corrected);
+});
+test("G2 old book lessons re-ordered to fifteen unique chapters, six broad misleading pages draft; no student data altered",()=>{
+ assert.ok(reorder.includes("من نوادر أشعب")&&reorder.includes("نوادر أشعب"));
+ assert.ok(reorder.includes("sort_order=30+x.book_chapter"));
+ assert.ok(reorder.includes("status='draft'"));
+ assert.ok(reorder.includes("COUNT(*) FROM existing_book_rows") || reorder.includes("count(*) FROM existing_book_rows"));
+ assert.ok(reorder.includes("count(DISTINCT book_chapter)"));
+ mustGuard(reorder);
+});
