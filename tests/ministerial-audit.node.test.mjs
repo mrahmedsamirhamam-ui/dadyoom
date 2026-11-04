@@ -190,6 +190,22 @@ test("official Ministry timetable permits title inventory but must NOT certify t
  assert.ok(r.findings.some(x=>x.code==="TITLE_MATCH_SUBJECT_NOT_CERTIFIED"&&
   x.subjectIssues.includes("OFFICIAL_SCHEDULE_NOT_TEXTBOOK_SUBJECT_EVIDENCE")));
 });
+test("ministry library and catalogue landing pages cannot certify a textbook lesson",()=>{
+ for(const [url,scope] of [
+  ["https://cerc.moe.gov.ly/educational-curricul/","LY"],
+  ["https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597","EG"],
+  ["https://moe.edu.ps/pal-books","PS"],
+  ["https://edunet.bh/Econtent/BooksGuide","BH"],
+ ]) {
+  const p={...lesson(),sourcePdfUrl:url};
+  const result=audit([official()],[p]);
+  assert.equal(result.verifiedScopes,0,scope);
+  assert.ok(result.findings.some(f=>f.code==="LESSON_SOURCE_LINK_IS_CATALOGUE_NOT_TEXTBOOK"),scope);
+  assert.ok(result.findings.some(f=>f.code==="TITLE_MATCH_SUBJECT_NOT_CERTIFIED"&&
+    f.subjectIssues.includes("LESSON_SOURCE_LINK_IS_CATALOGUE_NOT_TEXTBOOK")),scope);
+ }
+});
+
 test("lesson source itself cannot be a timetable when claiming official book-content match",()=>{
  const p={...lesson(),sourcePdfUrl:"https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf"};
  const r=audit([official()],[p]);
