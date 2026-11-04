@@ -55,3 +55,4 @@ jobs:
             exit 1
           fi
           grep -q 'من الملاحظة إلى خطوة تحسن' /tmp/feedback-page.html
+          node scripts/smoke-teacher-feedback.mjs
