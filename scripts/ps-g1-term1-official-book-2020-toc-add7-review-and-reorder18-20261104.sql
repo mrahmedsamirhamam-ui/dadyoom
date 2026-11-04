@@ -9,27 +9,27 @@ SET LOCAL lock_timeout='5s';
 SET LOCAL statement_timeout='120s';
 CREATE TEMP TABLE book_existing(
  lesson_id uuid PRIMARY KEY,exact_title text NOT NULL,old_sort integer NOT NULL,
- book_page integer NOT NULL,new_sort integer NOT NULL
+ book_page integer NOT NULL,new_sort integer NOT NULL,book_page_end integer NOT NULL
 ) ON COMMIT DROP;
 INSERT INTO book_existing VALUES
-('4a2c6d63-67be-4df4-8c0b-a2f6d239d7c3'::uuid,'حرف الراء',60,17,11),
-('05242f62-c67e-49d7-84ee-1d10268f8e42'::uuid,'حرف الدال',61,23,12),
-('5e8dfb7e-3432-42fd-bc27-f06bb570e867'::uuid,'حرف الباء',62,29,13),
-('befa9c82-8b00-40bd-a4c1-3415ced5d642'::uuid,'حرف الميم',63,39,15),
-('0c0f4f7e-f875-46f5-8cab-4f0f0f86a0b7'::uuid,'حرف النون',64,45,16),
-('8eff3ac3-7697-4dd0-abc3-1cde3bcab35b'::uuid,'حرف السين',70,53,17),
-('17330c93-0cf4-40db-9ef6-a3fb17c67e3f'::uuid,'حرف الزاي',71,65,19),
-('6c7fda35-8df3-4a39-94eb-9307fc462fdc'::uuid,'حرف الحاء',72,73,20),
-('69cf998b-b3c1-4cc7-8c2c-1cdcd2453e6b'::uuid,'حرف اللام',73,81,21),
-('07bb5aa3-3495-4cfe-97fe-99b2aa90a419'::uuid,'حرف التاء',74,93,23),
-('77a92dbb-4301-494a-b74d-66abd90aab03'::uuid,'حرف الجيم',76,103,24),
-('bc38410b-2150-40ca-ab28-4118266d043a'::uuid,'حرف الفاء',77,113,25),
-('cf4ee866-1ba7-4cb1-9c56-ac3964505f07'::uuid,'حرف العين',78,125,27),
-('f9d04861-cb7d-4241-a274-c1333fb06d89'::uuid,'حرف الشين',79,133,28),
-('36df5a88-e849-4989-be4a-e792168a9cb4'::uuid,'حرف الصاد',80,141,29),
-('89f48bf4-641c-4d34-96e8-17e61a4a06d8'::uuid,'حرف القاف',81,153,31),
-('2322ac62-e304-4b77-8196-faa8d8da7a6c'::uuid,'حرف الثاء',75,161,32),
-('e9625718-0fc0-4c39-94eb-9307fc462fdc'::uuid,'حرف الخاء',82,169,33);
+('4a2c6d63-67be-4df4-8c0b-a2f6d239d7c3'::uuid,'حرف الراء',60,17,11,22),
+('05242f62-c67e-49d7-84ee-1d10268f8e42'::uuid,'حرف الدال',61,23,12,28),
+('5e8dfb7e-3432-42fd-bc27-f06bb570e867'::uuid,'حرف الباء',62,29,13,35),
+('befa9c82-8b00-40bd-a4c1-3415ced5d642'::uuid,'حرف الميم',63,39,15,44),
+('0c0f4f7e-f875-46f5-8cab-4f0f0f86a0b7'::uuid,'حرف النون',64,45,16,52),
+('8eff3ac3-7697-4dd0-abc3-1cde3bcab35b'::uuid,'حرف السين',70,53,17,60),
+('17330c93-0cf4-40db-9ef6-a3fb17c67e3f'::uuid,'حرف الزاي',71,65,19,72),
+('6c7fda35-8df3-4a39-94eb-9307fc462fdc'::uuid,'حرف الحاء',72,73,20,80),
+('69cf998b-b3c1-4cc7-8c2c-1cdcd2453e6b'::uuid,'حرف اللام',73,81,21,89),
+('07bb5aa3-3495-4cfe-97fe-99b2aa90a419'::uuid,'حرف التاء',74,93,23,102),
+('77a92dbb-4301-494a-b74d-66abd90aab03'::uuid,'حرف الجيم',76,103,24,112),
+('bc38410b-2150-40ca-ab28-4118266d043a'::uuid,'حرف الفاء',77,113,25,121),
+('cf4ee866-1ba7-4cb1-9c56-ac3964505f07'::uuid,'حرف العين',78,125,27,132),
+('f9d04861-cb7d-4241-a274-c1333fb06d89'::uuid,'حرف الشين',79,133,28,140),
+('36df5a88-e849-4989-be4a-e792168a9cb4'::uuid,'حرف الصاد',80,141,29,149),
+('89f48bf4-641c-4d34-96e8-17e61a4a06d8'::uuid,'حرف القاف',81,153,31,160),
+('2322ac62-e304-4b77-8196-faa8d8da7a6c'::uuid,'حرف الثاء',75,161,32,168),
+('e9625718-0fc0-4c39-94eb-9307fc462fdc'::uuid,'حرف الخاء',82,169,33,178);
 CREATE TEMP TABLE book_new(
  title text PRIMARY KEY,new_sort integer NOT NULL,book_page_start integer NOT NULL,
  book_page_end integer NOT NULL,topic text NOT NULL,subject_body text NOT NULL,
@@ -251,7 +251,7 @@ UPDATE lessons l
 SET sort_order=b.new_sort,
   source_pdf_url='https://elearn.azureedge.net/Books/c1/ar1-p1.pdf',
   source_page_start=b.book_page,
-  source_page_end=b.book_page+1,
+  source_page_end=b.book_page_end,
   updated_at=now()
 FROM book_existing b WHERE b.lesson_id=l.id;
 INSERT INTO lessons(
@@ -270,7 +270,7 @@ DO $verify$
 DECLARE good int;
 BEGIN
  SELECT count(*) INTO good FROM book_existing b JOIN lessons l ON l.id=b.lesson_id
- WHERE l.sort_order=b.new_sort AND l.source_pdf_url='https://elearn.azureedge.net/Books/c1/ar1-p1.pdf' AND l.status='published';
+ WHERE l.sort_order=b.new_sort AND l.source_pdf_url='https://elearn.azureedge.net/Books/c1/ar1-p1.pdf' AND l.source_page_end=b.book_page_end AND l.status='published';
  IF good<>18 THEN RAISE EXCEPTION 'ROLLBACK: only % of 18 original letters sourced/reordered',good; END IF;
  SELECT count(*) INTO good FROM book_new b JOIN lessons l ON l.unit_id='67c87e69-2bbd-4ec7-a565-48c9989fce0e'::uuid AND l.title=b.title
  WHERE l.status='published' AND l.sort_order=b.new_sort
