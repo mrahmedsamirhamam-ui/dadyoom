@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 
+import { evaluateFeedbackRecheck } from "@/features/teacher-feedback/feedback-progress";
+
 import {
   buildFeedbackDraft,
   FEEDBACK_SKILLS,
@@ -21,6 +23,11 @@ export default function TeacherFeedbackPanel({ context = "public" }: Props) {
   const [total, setTotal] = useState("");
   const [days, setDays] = useState(14);
   const [reviewed, setReviewed] = useState(false);
+  const [recheckCorrect, setRecheckCorrect] = useState("");
+  const [recheckTotal, setRecheckTotal] = useState("");
+  const [recheckEvidence, setRecheckEvidence] = useState("");
+  const [comparable, setComparable] = useState(false);
+  const [recheckReviewed, setRecheckReviewed] = useState(false);
   const [notice, setNotice] = useState("");
 
   const draft = useMemo(
@@ -35,7 +42,25 @@ export default function TeacherFeedbackPanel({ context = "public" }: Props) {
     [skill, stage, evidence, correct, total, days]
   );
 
+  const recheck = useMemo(
+    () => evaluateFeedbackRecheck({
+      baselineCorrect: correct === "" ? null : Number(correct),
+      baselineTotal: total === "" ? null : Number(total),
+      recheckCorrect: recheckCorrect === "" ? null : Number(recheckCorrect),
+      recheckTotal: recheckTotal === "" ? null : Number(recheckTotal),
+      recheckEvidence,
+      comparable,
+    }),
+    [correct, total, recheckCorrect, recheckTotal, recheckEvidence, comparable]
+  );
+
+  function resetRecheckApproval() {
+    setRecheckReviewed(false);
+    setNotice("");
+  }
+
   function resetApproval() {
+    resetRecheckApproval();
     setReviewed(false);
     setNotice("");
   }
@@ -49,6 +74,16 @@ export default function TeacherFeedbackPanel({ context = "public" }: Props) {
       setNotice("نُسخت المسودة المعتمدة من المعلم إلى الحافظة. لم تُحفظ في ضاديوم.");
     } catch {
       setNotice("تعذّر النسخ التلقائي؛ حدّد النص الظاهر وانسخه يدويًا.");
+    }
+  }
+
+  async function copyRecheck() {
+    if (!recheck.ready || !recheckReviewed) return;
+    try {
+      await navigator.clipboard.writeText(recheck.exportText);
+      setNotice("نُسخت مقارنة القياس بعد مراجعة المعلم. لم تحفظ في ضاديوم.");
+    } catch {
+      setNotice("تعذر النسخ التلقائي؛ يمكن تحديد النص ونسخه يدويًا.");
     }
   }
 
@@ -137,6 +172,46 @@ export default function TeacherFeedbackPanel({ context = "public" }: Props) {
       >
         نسخ الملاحظة والخطة بعد اعتماد المعلم
       </button>
+
+      <section aria-labelledby="recheck-title" className="mt-8 rounded-2xl border border-slate-200 bg-white p-5">
+        <p className="text-xs font-black text-emerald-800">الخطوة التالية — بعد تنفيذ الدعم</p>
+        <h3 id="recheck-title" className="mt-1 text-lg font-black text-slate-900">
+          إعادة القياس ومتابعة الأثر
+        </h3>
+        <p className="mt-2 text-sm leading-7 text-slate-600">
+          أدخل نتائج مهمتين مختلفتين تقيسان المهارة نفسها وفق معيار تصحيح متقارب.
+          لا تُعد مقارنة النسب وحدها شهادة بالإتقان.
+        </p>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <label className="space-y-2 text-sm font-bold text-slate-800">
+            <span>الصحيح في المهمة اللاحقة</span>
+            <input type="number" inputMode="numeric" min={0} max={100} value={recheckCorrect} onChange={(event) => { setRecheckCorrect(event.target.value); resetRecheckApproval(); }} className="w-full rounded-xl border border-slate-300 bg-white p-3" />
+          </label>
+          <label className="space-y-2 text-sm font-bold text-slate-800">
+            <span>إجمالي فرص المهمة اللاحقة</span>
+            <input type="number" inputMode="numeric" min={1} max={100} value={recheckTotal} onChange={(event) => { setRecheckTotal(event.target.value); resetRecheckApproval(); }} className="w-full rounded-xl border border-slate-300 bg-white p-3" />
+          </label>
+          <label className="space-y-2 text-sm font-bold text-slate-800 sm:col-span-2">
+            <span>شاهد أداء جديد بعد الدعم (دون اسم الطالب)</span>
+            <textarea value={recheckEvidence} onChange={(event) => { setRecheckEvidence(event.target.value.slice(0, 600)); resetRecheckApproval(); }} maxLength={600} rows={2} placeholder="مثال: حل أسئلة النص الجديد دون مساعدة، وحدد فكرتين واستدل على إجابته." className="w-full rounded-xl border border-slate-300 bg-white p-3 font-normal" />
+          </label>
+        </div>
+        <label className="mt-4 flex items-start gap-3 text-sm leading-7 text-slate-800">
+          <input type="checkbox" checked={comparable} onChange={(event) => { setComparable(event.target.checked); resetRecheckApproval(); }} className="mt-2 h-4 w-4 accent-emerald-700" />
+          <span>أؤكد أن المهمتين تقيسان المهارة نفسها وأن الصعوبة ومعيار التصحيح قابلان للمقارنة.</span>
+        </label>
+        <div aria-live="polite" className="mt-4 rounded-xl bg-slate-50 p-4">
+          <p className="text-sm leading-8 text-slate-800">{recheck.summary}</p>
+          <p className="mt-2 text-sm leading-8 text-slate-800">{recheck.nextAction}</p>
+        </div>
+        <label className="mt-4 flex items-start gap-3 text-sm leading-7 text-slate-800">
+          <input type="checkbox" disabled={!recheck.ready} checked={recheckReviewed} onChange={(event) => { setRecheckReviewed(event.target.checked); setNotice(""); }} className="mt-2 h-4 w-4 accent-emerald-700" />
+          <span>راجعتُ المقارنة وشاهد المهمة اللاحقة وأوافق على نسخ التقرير التكويني.</span>
+        </label>
+        <button type="button" onClick={copyRecheck} disabled={!recheck.ready || !recheckReviewed} className="mt-3 rounded-xl bg-emerald-800 px-5 py-3 text-sm font-black text-white disabled:cursor-not-allowed disabled:bg-slate-300">
+          نسخ تقرير إعادة القياس بعد اعتماد المعلم
+        </button>
+      </section>
       {notice && <p role="status" className="mt-3 text-sm font-semibold text-emerald-900">{notice}</p>}
       <p className="mt-4 text-xs leading-6 text-slate-600">
         المخرجات مسودات تكوينية؛ لا تغيّر درجات الطالب أو حالة إكمال دروسه، ولا تعتبر تشخيصًا طبيًا أو شهادة مطابقة لمنهج رسمي.
