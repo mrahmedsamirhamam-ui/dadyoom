@@ -1,0 +1,127 @@
+{
+  "asOf": "2026-11-04",
+  "priority": "Actual subject from real textbook; not activity counts",
+  "bookSources": [
+    {
+      "country": "BH",
+      "grade": 1,
+      "origin": "Ministry teacher lesson guide for letter د and ministry digital flipbook",
+      "sourceURL": "https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_1/lessons/G1--Latter-D---alaistimae%281%29/G1--Latter-D---alaistimae%281%29.pdf",
+      "lessonAnalyzed": "الاستعداد للاحتفال",
+      "visualReview": "not signed off"
+    },
+    {
+      "country": "BH",
+      "grade": 2,
+      "origin": "Ministry teacher guide for Photographer",
+      "sourceURL": "https://www.edunet.bh/e_content/level_1/stage_2/subject_ID_1/Part_1/lessons/G2-L5-Wb-little-photographer-Ins/G2-L5-Wb-little-photographer-Ins.pdf",
+      "lessonAnalyzed": "المصوّر الصغير",
+      "visualReview": "not signed off"
+    },
+    {
+      "country": "PS",
+      "grade": 1,
+      "schoolYearClaim": "Ministry elearn.edu.ps/c1/ portal still links this official book",
+      "sourceURL": "https://elearn.azureedge.net/Books/c1/ar1-p1.pdf",
+      "printedEdition": "2020 fourth printing",
+      "sourceType": "full actual student textbook read as text",
+      "limitations": "Not proof this is a 2026-27 revised edition; image-by-image editorial verification pending"
+    },
+    {
+      "country": "PS",
+      "grade": 2,
+      "schoolYearClaim": "Ministry elearn.edu.ps/c2/ portal still links this official book",
+      "sourceURL": "https://elearn.azureedge.net/Books/c2/ar2-p1.pdf",
+      "printedEdition": "2020 fourth printing",
+      "sourceType": "full actual student textbook read as text",
+      "limitations": "Not proof this is a 2026-27 revised edition; image-by-image editorial verification pending"
+    },
+    {
+      "country": "PS",
+      "grade": 3,
+      "schoolYearClaim": "Ministry elearn.edu.ps/c3/ portal still links this official book",
+      "sourceURL": "https://elearn.azureedge.net/Books/c3/ar3-p1.pdf",
+      "printedEdition": "2020 fourth printing",
+      "sourceType": "full actual student textbook read as text",
+      "limitations": "Not proof this is a 2026-27 revised edition; image-by-image editorial verification pending"
+    }
+  ],
+  "productionFixes": {
+    "PSGrade1": {
+      "semester": 1,
+      "bookChapterCount": 25,
+      "publishedOfficialUnitLessons": 25,
+      "existingLetterLessonsReorderedAndLinked": 18,
+      "newChapterPages": [
+        2,
+        36,
+        61,
+        90,
+        122,
+        150,
+        179
+      ],
+      "newReadinessChapters": 1,
+      "newReviewChapters": 6,
+      "genericSubjectAreaPseudoLessonsHidden": 6,
+      "newLivePagesTested": 7,
+      "newLivePagesSuccess": 7,
+      "script": "scripts/ps-g1-term1-official-book-2020-toc-add7-review-and-reorder18-20261104.sql"
+    },
+    "PSGrade2": {
+      "semester": 1,
+      "bookChapterCount": 15,
+      "existingRealLessonsMovedToCanonicalOfficialCurriculum": 15,
+      "sourcePagesAnchored": 15,
+      "genericSubjectAreaPseudoLessonsHidden": 6,
+      "sourcePlotCorrections": [
+        "الحرية أجمل",
+        "الرسامة الصغيرة"
+      ],
+      "script": "scripts/ps-g2-term1-move15-real-book-chapters-into-official-curriculum-20261104.sql"
+    },
+    "PSGrade3": {
+      "semester": 1,
+      "bookChapterCount": 15,
+      "existingLessonsReordered": 13,
+      "newTextbookChapters": [
+        "مكتبتي صديقتي",
+        "حذاء الحكيم"
+      ],
+      "genericSubjectAreaPseudoLessonsHidden": 6,
+      "newLivePagesSuccess": 2,
+      "sourcePlotCorrections": [
+        "ذهب الأرض"
+      ],
+      "script": "scripts/ps-g3-term1-actual-book-2020-add2-and-reorder15-20261104.sql"
+    },
+    "BahrainCorrectedSubjects": [
+      "الاستعداد للاحتفال — بدر وأمه وسادس عيد ميلاد",
+      "المصور الصغير — تحليل الجملة والمقاطع والمد بالألف والضميران أنا ونحن"
+    ],
+    "sourcePlotCorrectedLessonCount": 5,
+    "sourcePlotCorrectionsPublicPagesTested": 5,
+    "sourcePlotCorrectionsPublicPagesSuccess": 5,
+    "studentHistoryDeleted": false,
+    "questionOrActivityGradingModified": false,
+    "sourceCorrectionScripts": [
+      "scripts/ministerial-real-book-bh-g1-d-g2-photographer-source-grounded-20261104.sql",
+      "scripts/ps-real-books-correct-g2-freedom-drawing-g3-gold-land-20261104.sql"
+    ]
+  },
+  "verification": {
+    "productionPostSqlVerified": true,
+    "liveNewLessonsPassed": "9 of 9",
+    "liveSourcePlotCorrectionsPassed": "5 of 5",
+    "staticCI": "Latest workflow after regression test update queued at report generation"
+  },
+  "gaps": [
+    "Ministry 2026–27 current edition proof for Palestinian print 2020 books",
+    "Original listening scripts, photos, poems, workbook requirements and every individual subject fidelity beyond sampled text",
+    "Second semester actual books unavailable through source fetch in this turn",
+    "20 other nations as well as remaining grades",
+    "Human-certified visual textbook-by-page and authenticated student E2E"
+  ],
+  "officialCoverageCertified": false,
+  "PRStatus": "draft, not merged"
+}
