@@ -171,10 +171,19 @@ export function buildFeedbackDraft(input: FeedbackInput): FeedbackDraft {
   const evidence = (input.evidence ?? "").trim().slice(0, 600);
   const hasEvidence = evidence.length >= 12;
   const hasCounts = validCounts(input.correct, input.total);
-  const days = Number.isInteger(input.reviewDays)
-    ? Math.min(30, Math.max(1, input.reviewDays))
-    : 14;
-  const ready = hasEvidence || hasCounts;
+  const hasAnyCount = input.correct != null || input.total != null;
+  const invalidCounts = hasAnyCount && !hasCounts;
+  const validDays = Number.isInteger(input.reviewDays) &&
+    input.reviewDays >= 1 && input.reviewDays <= 30;
+  const days = validDays ? input.reviewDays : 14;
+  const ready = (hasEvidence || hasCounts) && !invalidCounts && validDays;
+  const issue = invalidCounts
+    ? "العدد الصحيح والإجمالي يجب أن يكونا عددين صحيحين صالحين؛ لا تعتمد بيانات عددية غير مكتملة."
+    : !validDays
+      ? "اختر موعدًا صحيحًا لإعادة القياس من 1 إلى 30 يومًا."
+      : ready
+        ? null
+        : "لا تعتمد ملاحظة فردية بلا دليل على أداء المتعلم.";
   const fact = [
     hasEvidence ? evidence : "",
     hasCounts ? ("أصاب في " + input.correct + " من " + input.total + " فرص موثقة") : "",
@@ -190,7 +199,7 @@ export function buildFeedbackDraft(input: FeedbackInput): FeedbackDraft {
     : "سيجري المعلم ملاحظة أداء المتعلم أولًا لتحديد المهارة والخطوة المناسبة.";
   return {
     ready,
-    issue: ready ? null : "لا تعتمد ملاحظة فردية بلا دليل على أداء المتعلم.",
+    issue,
     skillTitle: skill.title,
     observation,
     intervention,
