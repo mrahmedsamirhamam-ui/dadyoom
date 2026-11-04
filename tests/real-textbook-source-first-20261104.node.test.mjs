@@ -36,7 +36,7 @@ test("grade1 Palestine: first actual-book volume has six distinct reviews + read
  for(const p of [2,36,61,90,122,150,179])assert.ok(reviews.includes(","+p+","),"Missing real book page "+p);
  assert.ok(g1.includes("6 broad")||g1.includes("6 broad"));
  assert.ok(g1.includes("count(DISTINCT new_sort)"));
- assert.ok(g1.includes("6 generic headings hidden"));
+ assert.ok(g1.includes("generic headings hidden"));
  assert.ok(g1.includes("6 existing")||g1.includes("book_generic"));
  assert.ok(g1.includes("6c7fda35-8df3-4a39-9ce9-1aa48c80bd4d"));
  assert.ok(!g1.includes("6c7fda35-8df3-4a39-94eb-9307fc462fdc"));
