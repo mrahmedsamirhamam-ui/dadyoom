@@ -190,6 +190,25 @@ test("official Ministry timetable permits title inventory but must NOT certify t
  assert.ok(r.findings.some(x=>x.code==="TITLE_MATCH_SUBJECT_NOT_CERTIFIED"&&
   x.subjectIssues.includes("OFFICIAL_SCHEDULE_NOT_TEXTBOOK_SUBJECT_EVIDENCE")));
 });
+test("lesson source itself cannot be a timetable when claiming official book-content match",()=>{
+ const p={...lesson(),sourcePdfUrl:"https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf"};
+ const r=audit([official()],[p]);
+ const scope=r.summary.find(x=>x.country==="BH"&&x.grade===1&&x.semester===1);
+ assert.equal(scope.exactTitleMatches,1);
+ assert.equal(scope.approvedContentMatches,0);
+ assert.equal(scope.status,"REVIEW_REQUIRED");
+ assert.ok(r.findings.some(x=>x.code==="LESSON_SOURCE_LINK_IS_SCHEDULE_NOT_TEXTBOOK"));
+ assert.ok(r.findings.some(x=>x.code==="TITLE_MATCH_SUBJECT_NOT_CERTIFIED"&&
+   x.subjectIssues.includes("LESSON_SOURCE_LINK_IS_SCHEDULE_NOT_TEXTBOOK")));
+});
+
+test("Palestinian partial educational pack link cannot masquerade as full textbook reference",()=>{
+ const p={...lesson(),sourcePdfUrl:"https://moe.edu.ps/uploads/new_pal_books/arabic3.pdf"};
+ const r=audit([official()],[p]);
+ assert.equal(r.verifiedScopes,0);
+ assert.ok(r.findings.some(x=>x.code==="LESSON_SOURCE_LINK_IS_PARTIAL_PACK_NOT_FULL_TEXTBOOK"));
+});
+
 test("renaming ministry lesson PLAN PDF to textbook documentType cannot bypass evidence",()=>{
  const m=official();m.source={...source,url:"https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",documentType:"textbook"};
  const errors=checkOfficialManifest(m,sourceRegistry,"2026-2027");
