@@ -36,6 +36,24 @@ test("live editorial queue captures 31 generic short subjects and 12 yearless Eg
  assert.equal(q.certification.ministerialComplete,false);
 });
 
+test("editorial queue attaches specific lesson IDs and does not reassign years",()=>{
+ const editorial=JSON.parse(fs.readFileSync("data/ministerial-audit/2026-11-04-g123-yearless-and-short-subject-review.json","utf8"));
+ const q=buildGrade123Queue(snapshot,editorial);
+ const eg2=q.jobs.find(j=>j.country==="EG"&&j.grade===2);
+ const ly1=q.jobs.find(j=>j.country==="LY"&&j.grade===1);
+ assert.equal(eg2.unknownCurriculumYearLessonIds.length,12);
+ assert.equal(eg2.shortLessonReviewIds.length,6);
+ assert.equal(ly1.shortLessonReviewIds.length,4);
+ assert.ok(eg2.nextChecks.includes("VERIFY_CURRICULUM_YEAR_AND_ORIGINAL_NATURE_BEFORE_REASSIGNING"));
+ assert.equal(q.jobs.reduce((n,j)=>n+j.shortLessonReviewIds.length,0),31);
+ assert.equal(q.jobs.reduce((n,j)=>n+j.unknownCurriculumYearLessonIds.length,0),12);
+ assert.equal(q.officialFullYearCertified,false);
+});
+test("editorial bundle with wrong date or duplicate lesson IDs cannot pass",()=>{
+ const source=JSON.parse(fs.readFileSync("data/ministerial-audit/2026-11-04-g123-yearless-and-short-subject-review.json","utf8"));
+ assert.throws(()=>buildGrade123Queue(snapshot,{...source,asOf:"2025-01-01"}),/INVALID_EDITORIAL_EVIDENCE/);
+ assert.throws(()=>buildGrade123Queue(snapshot,{...source,unknownYear:[...source.unknownYear.slice(0,-1),source.unknownYear[0]]}),/DUPLICATE_OR_INVALID_EDITORIAL_LESSON/);
+});
 test("missing country-grade, invalid grade and duplicate input cannot become a certified list",()=>{
  assert.throws(()=>buildGrade123Queue({...snapshot,rows:snapshot.rows.filter(r=>r.country!=="YE")}),/MISSING_COUNTRIES/);
  assert.throws(()=>buildGrade123Queue({...snapshot,rows:snapshot.rows.filter(r=>!(r.country==="BH"&&r.grade===3))}),/66_COUNTRY_GRADE_CELLS/);
