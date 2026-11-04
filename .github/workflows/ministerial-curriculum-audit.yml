@@ -22,6 +22,10 @@ on:
       - 'tests/curriculum-bh-g3-official18-20261102.node.test.mjs'
       - 'tests/real-textbook-source-first-20261104.node.test.mjs'
       - 'tests/ministerial-real-book-continuation-20261104.node.test.mjs'
+      - 'tests/ps-g2g3-term2-all15-real-book-topics-20261104.node.test.mjs'
+      - 'scripts/ps-g2-t2-reorder-eight-existing-and-draft-six-pseudo-chapters-20261104.sql'
+      - 'scripts/ps-g2g3-term2-add14-actual-textbook-2020-story-subjects-20261104.sql'
+      - 'scripts/ps-g2g3-term2-correct8-existing-real-book-chapter-stories-20261104.sql'
       - 'scripts/ps-g2g3-thirteen-real-book-subject-corrections-20261104.sql'
       - 'scripts/ps-g3-term2-2024-ministry-pack-add-2-fix-4-and-order-20261104.sql'
       - 'scripts/ps-g2-term2-2024-ministry-pack-2-real-subject-corrections-20261104.sql'
@@ -53,7 +57,7 @@ jobs:
         with:
           node-version: '22'
       - name: Static ministerial audit engine tests
-        run: node --test tests/ministerial-audit.node.test.mjs tests/ministerial-lesson-subject.node.test.mjs tests/curriculum-bh-first-ministry-subjects.node.test.mjs tests/curriculum-bh-g1-units23-original-subjects.node.test.mjs tests/curriculum-bh-g1-12-objectives.node.test.mjs tests/curriculum-20261102-real-subject-and-phantom-guards.node.test.mjs tests/curriculum-bh-g2-eight-speaking-20261102.node.test.mjs tests/curriculum-bh-g3-official18-20261102.node.test.mjs tests/real-textbook-source-first-20261104.node.test.mjs tests/ministerial-real-book-continuation-20261104.node.test.mjs
+        run: node --test tests/ministerial-audit.node.test.mjs tests/ministerial-lesson-subject.node.test.mjs tests/curriculum-bh-first-ministry-subjects.node.test.mjs tests/curriculum-bh-g1-units23-original-subjects.node.test.mjs tests/curriculum-bh-g1-12-objectives.node.test.mjs tests/curriculum-20261102-real-subject-and-phantom-guards.node.test.mjs tests/curriculum-bh-g2-eight-speaking-20261102.node.test.mjs tests/curriculum-bh-g3-official18-20261102.node.test.mjs tests/real-textbook-source-first-20261104.node.test.mjs tests/ministerial-real-book-continuation-20261104.node.test.mjs tests/ps-g2g3-term2-all15-real-book-topics-20261104.node.test.mjs
       - name: Verify official-source incomplete is BLOCKED, not 100 percent
         run: |
           node scripts/ministerial-audit.mjs --out "$RUNNER_TEMP/dadyoom-audit"
