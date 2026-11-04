@@ -20,6 +20,12 @@ on:
       - 'scripts/curriculum-bh-g2-eight-remaining-speaking-subjects-20261102.sql'
       - 'tests/curriculum-bh-g2-eight-speaking-20261102.node.test.mjs'
       - 'tests/curriculum-bh-g3-official18-20261102.node.test.mjs'
+      - 'tests/real-textbook-source-first-20261104.node.test.mjs'
+      - 'scripts/ministerial-real-book-bh-g1-d-g2-photographer-source-grounded-20261104.sql'
+      - 'scripts/ps-g1-term1-official-book-2020-toc-add7-review-and-reorder18-20261104.sql'
+      - 'scripts/ps-g2-term1-move15-real-book-chapters-into-official-curriculum-20261104.sql'
+      - 'scripts/ps-g3-term1-actual-book-2020-add2-and-reorder15-20261104.sql'
+      - 'scripts/ps-real-books-correct-g2-freedom-drawing-g3-gold-land-20261104.sql'
       - 'data/ministerial-audit/cases/BH-G3-T1-2026-27-18-headings-vs-live-records-20261102.json'
       - 'data/ministerial-audit/**'
       - '.github/workflows/ministerial-curriculum-audit.yml'
@@ -42,7 +48,7 @@ jobs:
         with:
           node-version: '22'
       - name: Static ministerial audit engine tests
-        run: node --test tests/ministerial-audit.node.test.mjs tests/ministerial-lesson-subject.node.test.mjs tests/curriculum-bh-first-ministry-subjects.node.test.mjs tests/curriculum-bh-g1-units23-original-subjects.node.test.mjs tests/curriculum-bh-g1-12-objectives.node.test.mjs tests/curriculum-20261102-real-subject-and-phantom-guards.node.test.mjs tests/curriculum-bh-g2-eight-speaking-20261102.node.test.mjs tests/curriculum-bh-g3-official18-20261102.node.test.mjs
+        run: node --test tests/ministerial-audit.node.test.mjs tests/ministerial-lesson-subject.node.test.mjs tests/curriculum-bh-first-ministry-subjects.node.test.mjs tests/curriculum-bh-g1-units23-original-subjects.node.test.mjs tests/curriculum-bh-g1-12-objectives.node.test.mjs tests/curriculum-20261102-real-subject-and-phantom-guards.node.test.mjs tests/curriculum-bh-g2-eight-speaking-20261102.node.test.mjs tests/curriculum-bh-g3-official18-20261102.node.test.mjs tests/real-textbook-source-first-20261104.node.test.mjs
       - name: Verify official-source incomplete is BLOCKED, not 100 percent
         run: |
           node scripts/ministerial-audit.mjs --out "$RUNNER_TEMP/dadyoom-audit"
