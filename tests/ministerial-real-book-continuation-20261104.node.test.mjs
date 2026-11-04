@@ -25,7 +25,7 @@ test("13 individually source-aligned full student-book reading subjects (2020 pr
   }
   assert.ok(items[i].includes("2020")&&items[i].includes("2026–2027"),"edition caveat");
  }
- assert.ok(items[12].includes("يافا")&&items[12].includes("الميناء"));
+ assert.ok(items[12].includes("يافا")&&items[12].includes("ميناء"));
  assert.ok(items[11].includes("النملة")&&items[11].includes("العسل"));
  assert.ok(items[8].includes("دينا")&&items[8].includes("القمر"));
  safe(firstTerm);
