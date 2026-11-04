@@ -13,6 +13,7 @@ const links = [
   { href: "/courses", label: "منهجي", icon: "" },
   { href: "/journey", label: "رحلتي", icon: "" },
   { href: "/skills", label: "المهارات", icon: "" },
+  { href: "/labs/arabic", label: "مختبر العربية الذكي", icon: "" },
   { href: "/reading-challenge", label: "تحدي القراءة", icon: "" },
   { href: "/dictionary", label: "قاموس السياق", icon: "" },
 ];
