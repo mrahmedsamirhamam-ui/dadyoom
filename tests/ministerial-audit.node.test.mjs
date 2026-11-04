@@ -104,6 +104,15 @@ test("missing semester and missing current published-content year are blockers",
  assert.ok(r.findings.some(x=>x.code==="PLATFORM_SEMESTER_UNASSIGNED"));
 });
 
+test("a lesson and unit reporting different terms generate a critical conflict without a silent correction",()=>{
+ const p={...lesson(),semester:1,lessonSemester:1,unitSemester:2};
+ const r=audit([official()],[p]);
+ assert.ok(r.findings.some(x=>x.code==="LESSON_UNIT_SEMESTER_CONFLICT"&&
+   x.lessonSemester===1&&x.unitSemester===2));
+ assert.equal(p.semester,1);
+ assert.equal(r.releaseReady,false);
+});
+
 test("published cross-country skills without semester assignment block official-grade scope certification",()=>{
  const orphan={...lesson("مهارة إثرائية غير مرتبطة بالفصل"),id:"shared-skill",semester:null,unitTitle:"مهارات مشتركة"};
  const r=audit([official()],[lesson(),orphan]);
