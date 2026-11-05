@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import {
-  ANCHOR,
+  ANCHOR_FORMS,
   DIAGNOSTIC,
   HALL_GOAL,
   PATHS,
@@ -98,6 +98,7 @@ export default function AdaptiveHaalPilot() {
   const [recommended, setRecommended] = useState<LearningPath | null>(null);
   const [diagnostic, setDiagnostic] = useState<Record<string, string>>({});
   const [anchor, setAnchor] = useState<Record<string, string>>({});
+  const [anchorFormIndex, setAnchorFormIndex] = useState(0);
   const [practiceIndex, setPracticeIndex] = useState(0);
   const [practiceAnswer, setPracticeAnswer] = useState<string>("");
   const [feedbackShown, setFeedbackShown] = useState(false);
@@ -111,8 +112,9 @@ export default function AdaptiveHaalPilot() {
 
   const content = PATH_CONTENT[path];
   const question = PRACTICE[path][practiceIndex];
-  const anchorReady = ANCHOR.every(item => typeof anchor[item.id] === "string");
-  const anchorResult = assessAnchor(anchor);
+  const currentAnchor = ANCHOR_FORMS[anchorFormIndex];
+  const anchorReady = currentAnchor.every(item => typeof anchor[item.id] === "string");
+  const anchorResult = assessAnchor(anchor, currentAnchor);
 
   function choosePath(chosen: LearningPath) {
     setPath(chosen);
@@ -329,8 +331,8 @@ export default function AdaptiveHaalPilot() {
         {stage === "anchor" && (
           <section className="space-y-4">
             <h2 className="text-xl font-extrabold">تحقق مشترك من الهدف</h2>
-            <p className="text-sm leading-7">الأسئلة الخمسة ومعيار النجاح واحد لجميع المسارات: أربع إجابات صحيحة على الأقل. هذا التحقق لا يُعتمد نهائيًا أو يُحفظ من المتصفح.</p>
-            {ANCHOR.map(item => (
+            <p className="text-sm leading-7">معيار النجاح واحد لجميع المسارات: أربع إجابات صحيحة من خمس على الأقل. هذه صيغة {anchorFormIndex + 1} من {ANCHOR_FORMS.length}، بأمثلة تختلف عن الصيغة السابقة. الإعادة في الجلسة نفسها ليست تحققًا متباعدًا ولا تمنح إتقانًا نهائيًا.</p>
+            {currentAnchor.map(item => (
               <QuestionCard key={item.id} question={item} value={anchor[item.id]}
                 onAnswer={answer => setAnchor(current => ({ ...current, [item.id]: answer }))} showFeedback={false}/>
             ))}
@@ -355,15 +357,15 @@ export default function AdaptiveHaalPilot() {
             <button type="button" className="min-h-11 rounded-lg border border-stone-300 px-4 font-bold" onClick={() => setShowExplanation(value => !value)}>
               {showExplanation ? "أخفِ التصحيح" : "راجع سبب الإجابات"}
             </button>
-            {showExplanation && ANCHOR.map(item => (
+            {showExplanation && currentAnchor.map(item => (
               <QuestionCard key={item.id} question={item} value={anchor[item.id]} onAnswer={() => {}}
                 showFeedback showExplanation/>
             ))}
             <div className="flex flex-wrap gap-3">
               <button type="button" onClick={() => { setStage("lesson"); setPracticeAnswer(""); setPracticeIndex(0); setFeedbackShown(false); }}
                 className="min-h-12 rounded-xl bg-[#174f47] px-5 font-bold text-white">مراجعة شرح المسار</button>
-              <button type="button" onClick={() => { setStage("anchor"); setAnchor({}); setShowExplanation(false); }}
-                className="min-h-12 rounded-xl border border-[#174f47] px-5 font-bold">أعيد التحقق</button>
+              <button type="button" onClick={() => { setAnchorFormIndex(index => (index + 1) % ANCHOR_FORMS.length); setStage("anchor"); setAnchor({}); setShowExplanation(false); }}
+                className="min-h-12 rounded-xl border border-[#174f47] px-5 font-bold">أتحقق بأمثلة جديدة</button>
             </div>
           </section>
         )}
