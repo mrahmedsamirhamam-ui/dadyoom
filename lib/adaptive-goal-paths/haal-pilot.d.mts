@@ -19,6 +19,7 @@ export const HALL_GOAL: Readonly<{
 }>;
 export const DIAGNOSTIC: ReadonlyArray<TeachingQuestion>;
 export const ANCHOR: ReadonlyArray<TeachingQuestion>;
+export const ANCHOR_FORMS: ReadonlyArray<ReadonlyArray<TeachingQuestion>>;
 export type PathContent = Readonly<{
   heading: string;
   intro: string;
@@ -51,7 +52,7 @@ export function assessQuestions(
   ratio: number;
   rows: { id: string; correct: boolean; answered: boolean; errorKind: string | null }[];
 };
-export function assessAnchor(answers: Record<string, string>): ReturnType<typeof assessQuestions> & {
+export function assessAnchor(answers: Record<string, string>, form?: ReadonlyArray<TeachingQuestion>): ReturnType<typeof assessQuestions> & {
   passedThisCheck: boolean;
   certifiedMastery: boolean;
   note: string;
