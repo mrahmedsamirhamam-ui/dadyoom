@@ -102,7 +102,7 @@ export default function AdaptiveHaalPilot() {
   const [practiceAnswer, setPracticeAnswer] = useState<string>("");
   const [feedbackShown, setFeedbackShown] = useState(false);
   const [hintCount, setHintCount] = useState(0);
-  const [hintsUsed, setHintsUsed] = useState(0);
+  const [diagnosticHints, setDiagnosticHints] = useState<Record<string, boolean>>({});
   const [consecutiveSuccess, setConsecutiveSuccess] = useState(0);
   const [consecutiveStruggles, setConsecutiveStruggles] = useState(0);
   const [offer, setOffer] = useState<LearningPath | null>(null);
@@ -131,7 +131,8 @@ export default function AdaptiveHaalPilot() {
     const scored = assessQuestions(DIAGNOSTIC, diagnostic);
     const selection = recommendPath({
       correct: scored.correct, total: scored.total,
-      hintsUsed, errorKinds: scored.rows.filter(row => !row.correct).map(row => row.errorKind),
+      hintsUsed: Object.values(diagnosticHints).filter(Boolean).length,
+      errorKinds: scored.rows.filter(row => !row.correct && row.errorKind !== null).map(row => row.errorKind!).filter(Boolean),
     });
     setRecommended(selection);
     choosePath(selection);
@@ -178,6 +179,9 @@ export default function AdaptiveHaalPilot() {
           <Link href="/courses" className="inline-flex min-h-11 items-center text-sm font-semibold underline underline-offset-4">
             العودة إلى مستكشف الدروس
           </Link>
+          <Link href="/pilot/haal/teacher" className="inline-flex min-h-11 items-center text-sm font-semibold underline underline-offset-4">
+            معاينة لوحة المعلم (بيانات افتراضية)
+          </Link>
           <p className="text-sm font-semibold text-[#587d71]">ضاديوم • تجربة تعليم متمايز • الصف السابع</p>
           <h1 className="text-3xl font-extrabold leading-tight sm:text-4xl">درس الحال، بطريقتك أنت</h1>
           <p className="rounded-xl bg-white px-4 py-3 text-sm leading-7">{HALL_GOAL.objective}</p>
@@ -209,8 +213,20 @@ export default function AdaptiveHaalPilot() {
             <h2 className="text-xl font-extrabold">اكتشف نقطة البداية</h2>
             <p className="text-sm leading-7">أربع أسئلة قصيرة لا تُسجّل في حسابك، ولا تدخل في التقدير النهائي. يمكنك تجاوزها باختيار أي مسار أعلاه.</p>
             {DIAGNOSTIC.map(item => (
-              <QuestionCard key={item.id} question={item} value={diagnostic[item.id]}
-                onAnswer={answer => setDiagnostic(current => ({ ...current, [item.id]: answer }))} showFeedback={false} />
+              <div key={item.id} className="space-y-2">
+                <QuestionCard question={item} value={diagnostic[item.id]}
+                  onAnswer={answer => setDiagnostic(current => ({ ...current, [item.id]: answer }))} showFeedback={false} />
+                <button type="button" disabled={Boolean(diagnosticHints[item.id])}
+                  onClick={() => setDiagnosticHints(current => ({ ...current, [item.id]: true }))}
+                  className="min-h-11 rounded-xl border border-[#b3c9ba] px-3 py-2 text-sm font-semibold disabled:cursor-default disabled:opacity-60">
+                  {diagnosticHints[item.id] ? "تم فتح المساعدة" : "أحتاج تلميحًا لفهم السؤال"}
+                </button>
+                {diagnosticHints[item.id] && (
+                  <p role="status" className="rounded-xl bg-[#f5f0df] p-3 text-sm leading-7">
+                    ابحث عن كلمة تصف هيئة شخص وقت حدوث الفعل، ثم حدد من كان بهذه الهيئة. لا يلزم أن تكون الحال أول كلمة بعد الفعل.
+                  </p>
+                )}
+              </div>
             ))}
             <button type="button" disabled={!DIAGNOSTIC.every(item => diagnostic[item.id])} onClick={finishDiagnostic}
               className="min-h-12 w-full rounded-xl bg-[#174f47] px-5 py-3 font-bold text-white disabled:cursor-not-allowed disabled:opacity-40">
@@ -280,7 +296,7 @@ export default function AdaptiveHaalPilot() {
                     </p>}
                     <div className="flex flex-wrap gap-2">
                       {hintCount < 3 && <button type="button" className="min-h-11 rounded-lg border border-amber-700 px-4 text-sm font-bold"
-                        onClick={() => { setHintCount(n => n + 1); setHintsUsed(n => n + 1); }}>
+                        onClick={() => { setHintCount(n => n + 1); }}>
                         تلميح آخر
                       </button>}
                       <button type="button" className="min-h-11 rounded-lg border border-amber-700 px-4 text-sm font-bold"
