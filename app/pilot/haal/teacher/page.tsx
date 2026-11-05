@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { checkAdaptiveLessonRelease, HALL_PILOT_MANIFEST } from "@/lib/adaptive-goal-paths/release-gate.mjs";
 import {
   ASSESSMENT_TOOLS,
   HALL_RUBRIC,
@@ -16,6 +17,7 @@ export const metadata = {
 export default function TeacherGoalPilotPage() {
   // Static fictional class, NOT a school/classroom Supabase query.
   const overview = buildTeacherGoalOverview(createFictionalClass(30));
+  const release = checkAdaptiveLessonRelease(HALL_PILOT_MANIFEST);
   const ratio = (count: number) => overview.total ? Math.round((count / overview.total) * 100) : 0;
 
   return (
@@ -162,6 +164,26 @@ export default function TeacherGoalPilotPage() {
               </tbody>
             </table>
           </div>
+        </section>
+
+        <section className="rounded-2xl border border-[#d9e5db] bg-white p-5" aria-label="شروط اعتماد الدرس">
+          <h2 className="text-xl font-extrabold">قبل تعميم النموذج على مناهج الدول الـ22</h2>
+          <p className="mt-2 text-sm leading-8">
+            <strong>حالة النموذج الحالية: {release.ready ? "استوفى فحص المتطلبات المسجلة" : "غير جاهز للاعتماد أو النشر"}</strong>.
+            هذا التحقق لا يثبت صحة الكتاب الرسمي؛ يلزم أن يتحقق منه مختص تربوي مستقل.
+          </p>
+          <ul className="mt-3 list-disc space-y-2 pr-5 text-sm leading-7">
+            {[
+              "مطابقة موضوع الدرس بفهرس ونص كتاب وزاري معتمد للطبعة الحالية.",
+              "مراجعة لغوية وتربوية وحماية الطفل قبل النشر.",
+              "تقييم خادمي آمن وفصل بيانات الأدوار والمدارس.",
+              "تجربة مضبوطة مع 30 طالبًا ومراجعة نتائجها.",
+              "تحقق الإتقان عبر ثلاث جلسات متباعدة، لا محاولة واحدة.",
+            ].map(item => <li key={item}>{item}</li>)}
+          </ul>
+          <p className="mt-2 text-xs leading-7 text-[#58736a]">
+            عدد حواجز الاستعداد التي لم تُستوفَ في المعاينة: {release.blockers.length}.
+          </p>
         </section>
 
         <footer className="rounded-xl border border-amber-300 bg-[#fff9e9] p-4 text-sm leading-8">
