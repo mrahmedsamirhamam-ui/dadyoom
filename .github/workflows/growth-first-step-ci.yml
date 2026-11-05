@@ -1,0 +1,36 @@
+name: Growth baseline and guest learning
+
+on:
+  pull_request:
+    paths:
+      - "lib/growth/**"
+      - "app/try/**"
+      - "app/admin/growth/**"
+      - "app/admin/layout.tsx"
+      - "app/admin/page.tsx"
+      - "app/page.tsx"
+      - "tests/guest-trial.test.ts"
+      - "tests/growth-metrics.test.ts"
+      - ".github/workflows/growth-first-step-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  baseline-and-activation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install from lockfile
+        run: npm ci --no-audit --no-fund
+      - name: Test the privacy-preserving guest and metric definitions
+        run: npx vitest run tests/guest-trial.test.ts tests/growth-metrics.test.ts
+      - name: Typecheck the app
+        run: npx tsc --noEmit
+      - name: Lint modified app and growth files
+        run: npx eslint lib/growth app/try app/admin/growth app/admin/layout.tsx app/admin/page.tsx app/page.tsx tests/guest-trial.test.ts tests/growth-metrics.test.ts
