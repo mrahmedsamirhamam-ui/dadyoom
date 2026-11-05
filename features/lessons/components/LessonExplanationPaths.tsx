@@ -21,7 +21,9 @@ type Props = {
  * No Supabase request, inferred diagnosis, browser storage, or answer keys.
  */
 export default function LessonExplanationPaths({ lessonTitle, content, objectives }: Props) {
-  const [path, setPath] = useState<ReadingPath>("start");
+  // Show the full published text by default for accessibility and search indexing.
+  // The learner may switch to a small-step or challenge view at any time.
+  const [path, setPath] = useState<ReadingPath>("progress");
   const [goalIndex, setGoalIndex] = useState(0);
   const [step, setStep] = useState(0);
   const [reflection, setReflection] = useState("");
