@@ -1,10 +1,7 @@
 import {
   createClient as createAdminClient,
 } from "@supabase/supabase-js";
-import {
-  after,
-  NextResponse,
-} from "next/server";
+import { NextResponse } from "next/server";
 
 import {
   consumeFeature,
@@ -16,6 +13,7 @@ import {
   runAgent,
   runAgentJson,
 } from "@/lib/ai/agents";
+import { buildGroundedLessonDeck } from "@/lib/lesson-slides/grounded-deck";
 
 export const runtime = "nodejs";
 
@@ -30,42 +28,18 @@ type Task =
   | "custom_summary"
   | "custom_slides";
 
-type RichSlide = {
-  kind?:
-    | "cover"
-    | "objectives"
-    | "concept"
-    | "compare"
-    | "activity"
-    | "review";
-  title: string;
-  subtitle?: string;
-  bullets?: string[];
-  callout?: string;
-  leftTitle?: string;
-  leftItems?: string[];
-  rightTitle?: string;
-  rightItems?: string[];
-  question?: string;
-  answer?: string;
-  narration?: string;
-  seconds?: number;
-};
-
-type Deck = {
-  title?: string;
-  slides: RichSlide[];
-};
-
 type LessonRow = {
   id: string;
   title: string;
   summary: string | null;
   content: string | null;
+  learning_objectives?: unknown;
+  vocabulary?: unknown;
+  instructions?: unknown;
 };
 
 const SLIDE_PROMPT_VERSION =
-  "upgrade3-notebookdeck-v1";
+  "source-grounded-teaching-v2";
 
 function adminClient() {
   const url =
@@ -81,142 +55,6 @@ function adminClient() {
       autoRefreshToken: false,
     },
   });
-}
-
-function cleanText(value: unknown) {
-  return String(value ?? "")
-    .replace(/[\r\t]+/gu, " ")
-    .replace(/\s+/gu, " ")
-    .trim();
-}
-
-function sourceSentences(
-  lesson: LessonRow,
-) {
-  const rows = [
-    lesson.summary ?? "",
-    lesson.content ?? "",
-  ]
-    .join("\n")
-    .split(/[.!؟!\n؛]+/u)
-    .map(cleanText)
-    .filter(
-      (item) =>
-        item.length >= 18 &&
-        item.length <= 180,
-    );
-
-  return [
-    ...new Set(rows),
-  ].slice(0, 24);
-}
-
-function fallbackDeck(
-  lesson: LessonRow,
-): Deck {
-  const source =
-    sourceSentences(lesson);
-
-  const rows = source.length
-    ? source
-    : [
-        `هذا العرض يراجع أهم أفكار درس ${lesson.title}.`,
-        "اقرأ الفكرة ثم حاول شرحها بأسلوبك.",
-        "اربط بين المفردات والمعنى العام للدرس.",
-        "راجع الأسئلة في النهاية لتقيس فهمك.",
-      ];
-
-  const slides: RichSlide[] = [
-    {
-      kind: "cover",
-      title: lesson.title,
-      subtitle:
-        "عرض ضاديوم للدرس • مبني على محتوى الدرس",
-      bullets: [],
-    },
-    {
-      kind: "objectives",
-      title: "ماذا سنتعلم؟",
-      bullets: [
-        "فهم الفكرة الرئيسية للدرس.",
-        "تفسير الكلمات والمعاني في السياق.",
-        "ربط الأفكار بالأمثلة والأسئلة.",
-        "مراجعة الفهم بأسلوب مختصر وواضح.",
-      ],
-    },
-    {
-      kind: "concept",
-      title: "الفكرة الأساسية",
-      callout:
-        cleanText(
-          lesson.summary ??
-            rows[0] ??
-            "",
-        ),
-      bullets:
-        rows.slice(0, 4),
-    },
-  ];
-
-  if (rows.length > 4) {
-    slides.push({
-      kind: "concept",
-      title: "نفهم أكثر",
-      bullets:
-        rows.slice(4, 8),
-    });
-  }
-
-  if (rows.length > 8) {
-    slides.push({
-      kind: "concept",
-      title: "أفكار مهمة",
-      bullets:
-        rows.slice(8, 12),
-    });
-  }
-
-  if (rows.length >= 6) {
-    slides.push({
-      kind: "compare",
-      title: "نقارن ونفهم",
-      leftTitle: "الفكرة",
-      leftItems:
-        rows.slice(0, 3),
-      rightTitle:
-        "ما يرتبط بها",
-      rightItems:
-        rows.slice(3, 6),
-      bullets: [],
-    });
-  }
-
-  slides.push(
-    {
-      kind: "activity",
-      title: "فكر وأجب",
-      question:
-        "ما أهم فكرة فهمتها من الدرس؟",
-      answer:
-        "اكتب إجابتك بأسلوبك ثم ارجع إلى الدرس للمراجعة.",
-      bullets:
-        rows.slice(0, 3),
-    },
-    {
-      kind: "review",
-      title: "مراجعة سريعة",
-      bullets: [
-        ...rows.slice(-4),
-        "أستطيع الآن تلخيص الدرس بأسلوبي.",
-      ],
-    },
-  );
-
-  return {
-    title: lesson.title,
-    slides:
-      slides.slice(0, 10),
-  };
 }
 
 function slidePrompt(
@@ -278,70 +116,6 @@ function preferredSlideProviders() {
         "groq",
         "ollama",
       ];
-}
-
-async function generateAndCacheCoreSlides(
-  lesson: LessonRow,
-) {
-  const db = adminClient();
-
-  if (!db) return;
-
-  const result =
-    await runAgentJson<Deck>({
-      agent: "slide-designer",
-      profile: "quality",
-      preferredProviders:
-        preferredSlideProviders(),
-      maxTokens: 3200,
-      context: [
-        `عنوان الدرس: ${lesson.title}`,
-        lesson.summary
-          ? `الملخص الحالي: ${lesson.summary}`
-          : "",
-        lesson.content
-          ? `محتوى الدرس:\n${String(
-              lesson.content,
-            ).slice(0, 18000)}`
-          : "",
-      ]
-        .filter(Boolean)
-        .join("\n\n"),
-      prompt:
-        slidePrompt(false),
-    });
-
-  if (
-    !result.data?.slides?.length
-  ) {
-    return;
-  }
-
-  await db
-    .from(
-      "edu_lesson_ai_artifacts",
-    )
-    .upsert(
-      {
-        lesson_id:
-          lesson.id,
-        kind: "slides",
-        prompt_version:
-          SLIDE_PROMPT_VERSION,
-        content:
-          result.data,
-        provider:
-          result.provider,
-        model:
-          result.model,
-        updated_at:
-          new Date().toISOString(),
-      },
-      {
-        onConflict:
-          "lesson_id,kind,prompt_version",
-      },
-    );
 }
 
 function usageFeature(
@@ -624,7 +398,7 @@ export async function POST(
       await supabase
         .from("lessons")
         .select(
-          "id,title,summary,content",
+          "id,title,summary,content,learning_objectives,vocabulary,instructions",
         )
         .eq(
           "id",
@@ -670,7 +444,22 @@ export async function POST(
               data.content,
             )
           : null,
+      learning_objectives: data.learning_objectives,
+      vocabulary: data.vocabulary,
+      instructions: data.instructions,
     };
+
+    if (task === "slides") {
+      const deck = buildGroundedLessonDeck(lesson);
+      return NextResponse.json({
+        data: deck,
+        provider: "dadyoom-source",
+        model: "grounded-teaching-v2",
+        cached: false,
+        coreLessonAsset: true,
+        needsReview: deck.needsContentReview,
+      });
+    }
 
     if (
       task === "summary" &&
@@ -746,54 +535,10 @@ export async function POST(
               "cache",
             cached: true,
             coreLessonAsset:
-              task === "summary" ||
-              task === "slides",
+              task === "summary",
           },
         );
       }
-    }
-
-    if (
-      task === "slides" &&
-      !body.refresh
-    ) {
-      after(async () => {
-        try {
-          await generateAndCacheCoreSlides(
-            lesson,
-          );
-        } catch (error) {
-          console.error(
-            "CORE_SLIDES_BACKGROUND_ENRICH_FAILED",
-            {
-              lessonId,
-              error:
-                error instanceof Error
-                  ? error.message
-                  : String(
-                      error,
-                    ),
-            },
-          );
-        }
-      });
-
-      return NextResponse.json(
-        {
-          data:
-            fallbackDeck(
-              lesson,
-            ),
-          provider:
-            "dadyoom-instant",
-          model:
-            "source-grounded-v1",
-          cached: false,
-          coreLessonAsset: true,
-          enrichingInBackground:
-            true,
-        },
-      );
     }
 
     const feature =
@@ -840,9 +585,7 @@ export async function POST(
       .join("\n\n");
 
     const profile =
-      task === "slides" ||
-      task ===
-        "custom_slides" ||
+      task === "custom_slides" ||
       task ===
         "video_storyboard"
         ? "quality"
@@ -893,9 +636,7 @@ export async function POST(
         context,
         profile,
         preferredProviders:
-          task === "slides" ||
-          task ===
-            "custom_slides"
+          task === "custom_slides"
             ? preferredSlideProviders()
             : undefined,
         maxTokens:
@@ -903,8 +644,6 @@ export async function POST(
           "video_storyboard"
             ? 3200
             : task ===
-                "slides" ||
-              task ===
                 "custom_slides"
               ? 3200
               : 2400,
@@ -958,8 +697,7 @@ export async function POST(
           result.model,
         cached: false,
         coreLessonAsset:
-          task === "summary" ||
-          task === "slides",
+          task === "summary",
       },
     );
   } catch (error) {

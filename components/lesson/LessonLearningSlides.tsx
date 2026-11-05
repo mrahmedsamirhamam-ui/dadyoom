@@ -1,21 +1,11 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
+import { buildGroundedLessonDeck } from "@/lib/lesson-slides/grounded-deck";
 
 type VocabularyItem = {
   word: string;
   meaning: string;
-};
-
-type TeachingSlideSource = {
-  slide?: number;
-  title?: string;
-  body?: string;
-};
-
-type InstructionEntry = {
-  kind?: string;
-  items?: TeachingSlideSource[];
 };
 
 type DeckSlide = {
@@ -39,49 +29,6 @@ type Props = {
   questions?: unknown;
 };
 
-function extractTeachingSlides(instructions: unknown): TeachingSlideSource[] {
-  if (!Array.isArray(instructions)) return [];
-
-  const entry = instructions.find((item) => {
-    if (!item || typeof item !== "object") return false;
-    return (item as InstructionEntry).kind === "slides";
-  }) as InstructionEntry | undefined;
-
-  if (!entry || !Array.isArray(entry.items)) return [];
-
-  return entry.items.filter(
-    (item) =>
-      Boolean(
-        item &&
-          typeof item === "object" &&
-          (typeof item.title === "string" || typeof item.body === "string")
-      )
-  );
-}
-
-function text(value: unknown) {
-  return String(value ?? "").trim();
-}
-
-function compact(value: string, max = 360) {
-  return value.replace(/\s+/g, " ").trim().slice(0, max);
-}
-
-function splitContent(content: string | null | undefined) {
-  const lines = text(content)
-    .split(/\n+/)
-    .map((line) => line.trim())
-    .filter(Boolean);
-
-  if (lines.length === 0) return [];
-
-  const chunks: string[] = [];
-  for (let i = 0; i < lines.length; i += 3) {
-    chunks.push(compact(lines.slice(i, i + 3).join("\n"), 380));
-  }
-  return chunks;
-}
-
 function buildDeck({
   title,
   summary,
@@ -90,108 +37,40 @@ function buildDeck({
   vocabulary = [],
   instructions,
 }: Props): DeckSlide[] {
-  const sourceSlides = extractTeachingSlides(instructions);
-  const contentChunks = splitContent(content);
+  const grounded = buildGroundedLessonDeck({
+    title: title ?? "درس العربية",
+    summary,
+    content,
+    learning_objectives: objectives,
+    vocabulary,
+    instructions,
+  });
 
-  const teachingBodies = sourceSlides
-    .map((slide) => ({
-      title: text(slide.title),
-      body: compact(text(slide.body), 380),
-    }))
-    .filter((slide) => slide.title || slide.body);
-
-  const fallbackBody =
-    contentChunks[0] ||
-    teachingBodies[0]?.body ||
-    text(summary) ||
-    "ابدأ الدرس خطوة بخطوة، واقرأ الأمثلة بهدوء.";
-
-  const secondBody =
-    teachingBodies[1]?.body ||
-    contentChunks[1] ||
-    teachingBodies[0]?.body ||
-    fallbackBody;
-
-  const thirdBody =
-    teachingBodies[2]?.body ||
-    contentChunks[2] ||
-    secondBody;
-
-  const practiceBody =
-    contentChunks.find((chunk) =>
-      /اقرأ|اكتب|تحد|تحدث|ردد|جرّب|صنّف|لاحظ/.test(chunk)
-    ) ||
-    "اقرأ المثال مرة أخرى، ثم طبّق الفكرة بنفسك.";
-
-  const lessonTitle = text(title) || "درس العربية";
-  const lessonSummary = text(summary) || fallbackBody;
-
-  return [
-    {
-      key: "cover",
-      kicker: "درس ضاديوم",
-      title: lessonTitle,
-      subtitle: lessonSummary,
-      emblem: "ض",
-    },
-    {
-      key: "objectives",
-      kicker: "هدفنا اليوم",
-      title: "ماذا سنتعلم؟",
-      items:
-        objectives.length > 0
-          ? objectives.slice(0, 4)
-          : ["نفهم فكرة الدرس.", "نقرأ الأمثلة.", "نطبّق ما تعلمناه."],
-      emblem: "✓",
-    },
-    {
-      key: "concept",
-      kicker: teachingBodies[0]?.title || "الفكرة الأساسية",
-      title: lessonTitle,
-      body: fallbackBody,
-      emblem: "ف",
-    },
-    {
-      key: "vocabulary",
-      kicker: "كلمات الدرس",
-      title: "نتعرّف الكلمات",
-      words: vocabulary.slice(0, 5),
-      body:
-        vocabulary.length === 0
-          ? secondBody
-          : undefined,
-      emblem: "ك",
-    },
-    {
-      key: "learn",
-      kicker: teachingBodies[1]?.title || "نتعلم معًا",
-      title: "ركّز معي",
-      body: secondBody,
-      emblem: "ض",
-    },
-    {
-      key: "example",
-      kicker: teachingBodies[2]?.title || "مثال واضح",
-      title: "اقرأ ولاحظ",
-      body: thirdBody,
-      emblem: "م",
-    },
-    {
-      key: "practice",
-      kicker: "تطبيق سريع",
-      title: "جرّب بنفسك",
-      body: practiceBody,
-      emblem: "✎",
-    },
-    {
-      key: "finish",
-      kicker: "أحسنت",
-      title: "أنت الآن جاهز",
-      subtitle: lessonSummary,
-      body: "بعد انتهاء العرض، أكمل أسئلة ضاديوم التفاعلية الأصلية الخاصة بالدرس.",
-      emblem: "★",
-    },
-  ];
+  return grounded.slides.map((slide, index) => ({
+    key: `${slide.kind}-${index}`,
+    kicker: slide.kind === "concept"
+      ? "شرح الدرس"
+      : slide.kind === "objectives"
+        ? "أهداف التعلم"
+        : slide.kind === "activity"
+          ? "تطبيق"
+          : slide.kind === "review"
+            ? "مراجعة"
+            : "درس ضاديوم",
+    title: slide.title,
+    subtitle: slide.subtitle,
+    body: slide.callout ?? slide.question,
+    items: slide.bullets,
+    emblem: slide.kind === "concept"
+      ? "ف"
+      : slide.kind === "objectives"
+        ? "✓"
+        : slide.kind === "activity"
+          ? "✎"
+          : slide.kind === "review"
+            ? "★"
+            : "ض",
+  }));
 }
 
 export default function LessonLearningSlides(props: Props) {
@@ -240,7 +119,7 @@ export default function LessonLearningSlides(props: Props) {
       </div>
 
       <div className="relative flex min-h-[22rem] items-center justify-center sm:min-h-[30rem] lg:min-h-[34rem] bg-[#efe8da] p-3 sm:p-5">
-        <article className="relative min-h-[29rem] w-full max-w-[1120px] overflow-hidden sm:aspect-video sm:min-h-0 rounded-[1.5rem] border border-white/20 bg-[radial-gradient(circle_at_50%_36%,rgba(224,181,77,0.18),transparent_28%),linear-gradient(135deg,#0b2f2b_0%,#1f665c_52%,#123f39_100%)] text-[#fffdf8] shadow-2xl">
+        <article className="relative min-h-[32rem] w-full max-w-[1120px] rounded-[1.5rem] border border-white/20 bg-[radial-gradient(circle_at_50%_36%,rgba(224,181,77,0.18),transparent_28%),linear-gradient(135deg,#0b2f2b_0%,#1f665c_52%,#123f39_100%)] text-[#fffdf8] shadow-2xl">
           <div
             aria-hidden="true"
             className="absolute inset-0 opacity-[0.13]"
@@ -273,11 +152,11 @@ export default function LessonLearningSlides(props: Props) {
             </div>
 
             {slide.items ? (
-              <div className="mt-4 grid max-w-full gap-2 sm:mt-7 sm:max-w-[82%] sm:grid-cols-2">
+              <div className="mt-4 grid max-w-full gap-3 sm:mt-7 sm:max-w-[85%] sm:grid-cols-1">
                 {slide.items.map((item, index) => (
                   <div
                     key={`${item}-${index}`}
-                    className="border-t-2 border-[#e0b54d]/80 pt-2 text-sm font-semibold leading-7 text-[#fffdf8] sm:pt-3 sm:text-2xl"
+                    className="border-t-2 border-[#e0b54d]/80 pt-2 text-base font-semibold leading-8 text-[#fffdf8] sm:pt-3 sm:text-lg"
                   >
                     {index + 1}. {item}
                   </div>
@@ -309,7 +188,7 @@ export default function LessonLearningSlides(props: Props) {
             ) : null}
 
             {slide.body ? (
-              <p className="mt-4 max-w-full whitespace-pre-line text-sm font-medium leading-7 text-[#f5fbf8] sm:mt-7 sm:max-w-[84%] sm:text-2xl lg:text-3xl">
+              <p className="mt-4 max-w-full whitespace-pre-line text-base font-medium leading-8 text-[#f5fbf8] sm:mt-7 sm:max-w-[84%] sm:text-xl">
                 {slide.body}
               </p>
             ) : null}
