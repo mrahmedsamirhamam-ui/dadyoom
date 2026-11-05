@@ -1,0 +1,39 @@
+name: Real lesson learner-choice reading paths
+
+on:
+  push:
+    branches:
+      - feat/lesson-reading-paths-20261106
+  pull_request:
+    paths:
+      - 'features/lessons/components/LessonExplanationPaths.tsx'
+      - 'app/lessons/**'
+      - 'lib/adaptive-goal-paths/grounded-lesson-reading.*'
+      - 'tests/adaptive-grounded-real-lessons.node.test.mjs'
+      - '.github/workflows/real-lesson-reading-paths.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  real-lesson-reading:
+    name: Verify full textbook explanation stays intact on three reading paths
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Validate full published text, authentic goals and opt-in support
+        run: node --test tests/adaptive-grounded-real-lessons.node.test.mjs
+      - name: Install dependencies from the locked repository versions
+        run: npm ci --no-audit --no-fund
+      - name: Type-check existing lesson page and new reading UI
+        run: npx tsc --noEmit
+      - name: Lint changed lesson components
+        run: npx eslint 'app/lessons/[id]/page.tsx' features/lessons/components/LessonExplanationPaths.tsx
