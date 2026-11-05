@@ -37,7 +37,7 @@ export default function StudyCountryGradePicker({
   }, [countries]);
 
   const list = useMemo(() => countries.filter(item =>
-    `${item.name} ${item.code}`.toLocaleLowerCase("ar").includes(query.trim().toLocaleLowerCase("ar")),
+    `${item.name} ${item.code}`.toLocaleLowerCase("ar").includes(query.trim().toLocaleLowerCase("ar"))),
     [countries, query]);
   const selected = countries.find(item => item.code === country);
   function save(nextCountry: string, nextGrade: number | null) {
