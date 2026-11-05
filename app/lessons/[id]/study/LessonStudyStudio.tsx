@@ -872,7 +872,7 @@ function SlideCard({
     );
 
   return (
-    <div className="aspect-video min-w-0 overflow-hidden rounded-2xl border border-[#dcc899] bg-[#fffdf8] p-4 shadow-sm sm:p-5">
+    <div className="min-w-0 rounded-2xl border border-[#dcc899] bg-[#fffdf8] p-5 shadow-sm sm:p-7">
       <div className="flex items-center justify-between gap-3 text-xs font-black text-[#9f7426]">
         <span>
           {label} {index + 1}
@@ -883,18 +883,18 @@ function SlideCard({
         </span>
       </div>
 
-      <h2 className="mt-2 line-clamp-2 text-xl font-black text-[#123f39] sm:text-2xl">
+      <h2 className="mt-2 break-words text-xl font-black leading-8 text-[#123f39] sm:text-2xl">
         {item.title}
       </h2>
 
       {item.subtitle ? (
-        <p className="mt-1 line-clamp-2 text-xs font-bold text-[#756b5f] sm:text-sm">
+        <p className="mt-1 text-sm font-bold leading-7 text-[#756b5f]">
           {item.subtitle}
         </p>
       ) : null}
 
       {item.callout ? (
-        <div className="mt-3 line-clamp-3 rounded-xl border border-[#a8cbbf] bg-[#eef8f4] p-3 text-xs font-black leading-6 text-[#173f38] sm:text-sm">
+        <div className="mt-3 whitespace-pre-line break-words rounded-xl border border-[#a8cbbf] bg-[#eef8f4] p-3 text-sm font-bold leading-7 text-[#173f38]">
           {item.callout}
         </div>
       ) : null}
@@ -912,7 +912,7 @@ function SlideCard({
                 .map((row) => (
                   <li
                     key={row}
-                    className="line-clamp-2"
+                    className="break-words"
                   >
                     • {row}
                   </li>
@@ -931,7 +931,7 @@ function SlideCard({
                 .map((row) => (
                   <li
                     key={row}
-                    className="line-clamp-2"
+                    className="break-words"
                   >
                     • {row}
                   </li>
@@ -942,26 +942,26 @@ function SlideCard({
       ) : null}
 
       {item.question ? (
-        <div className="mt-3 line-clamp-3 rounded-xl bg-[#123f39] p-3 text-xs font-black leading-6 text-white sm:text-sm">
+        <div className="mt-3 break-words rounded-xl bg-[#123f39] p-3 text-sm font-black leading-7 text-white">
           {item.question}
         </div>
       ) : null}
 
       {item.answer ? (
-        <div className="mt-2 line-clamp-2 text-xs font-bold leading-6 text-[#755f30] sm:text-sm">
+        <div className="mt-2 text-sm font-bold leading-7 text-[#755f30]">
           {item.answer}
         </div>
       ) : null}
 
       {!hasCompare ? (
-        <ul className="mt-3 list-disc space-y-1 overflow-hidden pr-5 text-xs leading-5 sm:text-sm sm:leading-6">
+        <ul className="mt-3 list-disc space-y-3 pr-5 text-sm leading-7 sm:text-base sm:leading-8">
           {item.bullets
             .slice(0, 5)
             .map(
               (bullet) => (
                 <li
                   key={bullet}
-                  className="line-clamp-2"
+                  className="break-words"
                 >
                   {bullet}
                 </li>
