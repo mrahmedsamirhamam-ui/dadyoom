@@ -6,6 +6,7 @@ on:
       - feat/auth-clean-mobile-login-20261106
   pull_request:
     paths:
+      - 'app/page.tsx'
       - 'app/login/**'
       - 'app/signup/**'
       - 'app/onboarding/**'
@@ -42,4 +43,4 @@ jobs:
       - name: TypeScript strict check
         run: npx tsc --noEmit
       - name: Lint modified interfaces and auth routes
-        run: npx eslint components/auth/EmailPasswordAuthForm.tsx components/roles/RolePortalLayout.tsx app/forgot-password/page.tsx app/auth/update-password/page.tsx app/onboarding/page.tsx app/api/auth/destination/route.ts app/api/auth/complete-profile/route.ts app/auth/callback/route.ts
+        run: npx eslint app/page.tsx components/auth/EmailPasswordAuthForm.tsx components/roles/RolePortalLayout.tsx app/forgot-password/page.tsx app/auth/update-password/page.tsx app/onboarding/page.tsx app/api/auth/destination/route.ts app/api/auth/complete-profile/route.ts app/auth/callback/route.ts
