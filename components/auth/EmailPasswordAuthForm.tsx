@@ -82,7 +82,7 @@ async function trustedDestination(): Promise<string> {
   return result.destination;
 }
 
-export default function EmailPasswordAuthForm({ mode }: { mode: Mode }) {
+export default function EmailPasswordAuthForm({ mode, passwordWasReset = false }: { mode: Mode; passwordWasReset?: boolean }) {
   const signup = mode === "signup";
   const router = useRouter();
   const countries = useMemo(() => getArabicCountryOptions(), []);
@@ -192,6 +192,7 @@ export default function EmailPasswordAuthForm({ mode }: { mode: Mode }) {
           </Link>
         </div>
 
+        {passwordWasReset && !signup && <p role="status" className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm font-semibold leading-7 text-emerald-900">تم تغيير كلمة المرور. يمكنك تسجيل الدخول باستخدام الكلمة الجديدة.</p>}
         <form onSubmit={submit} aria-busy={busy} className="space-y-4">
           {signup && (
             <>
