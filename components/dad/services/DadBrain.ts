@@ -39,6 +39,7 @@ export default class DadBrain {
     const result = await askDadyoomHybrid(
       input.message,
       input,
+      { signal: options.signal },
     );
 
     if (options.signal?.aborted) {
