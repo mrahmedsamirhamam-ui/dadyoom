@@ -9,6 +9,7 @@ import { getDashboardStats } from "@/lib/admin/dashboard";
 type Shortcut = { title: string; href: string; icon: LucideIcon; detail: string; category: string };
 const shortcuts: Shortcut[] = [
   { title: "بوابة المناهج", href: "/admin/curriculum", icon: Layers, detail: "الدول والصفوف والوحدات والمناهج", category: "المناهج" },
+  { title: "تدقيق النمو والتفعيل", href: "/admin/growth", icon: LayoutDashboard, detail: "التسجيل والتفاعل والمؤشرات غير المتاحة", category: "النمو" },
   { title: "مكتبة الدروس", href: "/admin/lessons", icon: BookOpen, detail: "راجع الدروس والأنشطة المنشورة", category: "الدروس" },
   { title: "حزم المناهج", href: "/admin/curriculum/packs", icon: LibraryBig, detail: "الحزم والإصدارات ومصادر المحتوى", category: "المناهج" },
   { title: "الطلاب", href: "/admin/students", icon: GraduationCap, detail: "الحسابات وتقدم الطلاب", category: "المجتمع" },
