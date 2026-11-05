@@ -85,6 +85,9 @@ test("Teacher pilot is explicitly fictional and has no production data integrati
   assert.doesNotMatch(source, /createClient|createAdminClient|fetch\(|supabase\.|service_role|student_id/);
   const learner = readFileSync(new URL("../app/pilot/haal/page.tsx", import.meta.url), "utf8");
   assert.match(learner, /diagnosticHints/);
+  assert.match(learner, /supportLanguage/);
+  assert.match(learner, /cefr/);
+  assert.match(learner, /الدعم اللغوي منفصل عن تقييم فهم/);
   assert.match(learner, /hintsUsed: Object\.values\(diagnosticHints\)/);
   assert.match(learner, /\/pilot\/haal\/teacher/);
   assert.doesNotMatch(learner, /localStorage|sessionStorage|createAdminClient/);
