@@ -21,6 +21,9 @@ export default async function StudentPage() {
 
   const countryCode = profile?.country?.trim().toUpperCase() || "";
   const grade = profile?.grade_number;
+  const preferences = user.user_metadata?.dadyoom_learning_preferences;
+  const studyMode = preferences?.mode === "dadyoom" ? "dadyoom" : "ministry";
+  const nonNative = preferences?.track === "non_native";
   let lessons: LessonRow[] = [];
   let progresses: ProgressRow[] = [];
   let issue = "";
@@ -31,9 +34,14 @@ export default async function StudentPage() {
       .eq("code", countryCode).maybeSingle();
     if (country) {
       const { data: curricula, error: curriculumError } = await db.from("curricula")
-        .select("id").eq("country_id", country.id);
+        .select("id,name_ar,academic_year").eq("country_id", country.id);
       if (curriculumError) issue = "تعذر تحميل المنهج حاليًا.";
-      const curriculumIds = (curricula ?? []).map((item) => item.id);
+      const curriculumIds = (curricula ?? [])
+        .filter((item) => item.academic_year === "2026-2027")
+        .filter((item) => studyMode === "dadyoom"
+          ? item.name_ar?.includes("المسار العربي الأساسي لضاديوم")
+          : !item.name_ar?.includes("المسار العربي الأساسي لضاديوم"))
+        .map((item) => item.id);
       if (curriculumIds.length) {
         const { data: grades, error: gradesError } = await db.from("grades")
           .select("id").in("curriculum_id", curriculumIds).eq("grade_number", grade);
@@ -117,6 +125,9 @@ export default async function StudentPage() {
               <span className="text-sm text-[#61736b]">أنجزت {completed} من {lessons.length} من الدروس المحمّلة</span>
             </div>
             {issue ? <p role="alert" className="mt-4 text-rose-700">{issue}</p> : null}
+            {nonNative ? <p className="mt-3 rounded-xl bg-amber-50 p-3 text-sm leading-7 text-amber-900">
+              اختيارك «العربية للناطقين بغيرها» محفوظ. يتطلب اعتماد محتوى هذا المسار مراجعة تربوية خاصة؛ لا تُعد دروس الوزارة بديلًا معتمدًا تلقائيًا عنه.
+            </p> : null}
             {lessons.length ? (
               <div className="mt-4 divide-y divide-[#edf2ed]">
                 {lessons.slice(0, 8).map((lesson) => (
@@ -131,7 +142,7 @@ export default async function StudentPage() {
                 ))}
               </div>
             ) : <p className="mt-4 text-sm leading-8 text-[#667a70]">
-              لم تظهر دروس منشورة لهذا الصف في البيانات الحالية. لن نعرض لك دروس دولة أو صف مختلف.
+              لم تظهر دروس منشورة لهذا الصف والمسار في البيانات الحالية. لن نعرض لك دروس دولة أو صف أو مسار مختلف.
             </p>}
           </section>
         ) : null}
