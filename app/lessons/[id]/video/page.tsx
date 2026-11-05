@@ -1,3 +1,4 @@
+import LazyLessonVideoPlayer from "@/components/video/LazyLessonVideoPlayer";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
@@ -10,6 +11,8 @@ type LessonVideoPageProps = {
 
 type LessonVideo = {
   video_id: string;
+  duration_seconds?: number | null;
+  metadata?: Record<string, unknown> | null;
   video_url: string;
   title: string;
   channel_name: string | null;
@@ -46,7 +49,7 @@ export default async function LessonVideoPage({
     error: lessonError,
   } = await supabase
     .from("lessons")
-    .select("id,title,status")
+    .select("id,title,status,content")
     .eq("id", id)
     .eq("status", "published")
     .maybeSingle();
@@ -65,7 +68,7 @@ export default async function LessonVideoPage({
   } = await supabase
     .from("lesson_videos")
     .select(
-      "video_id,video_url,title,channel_name,channel_url,source_tier,source_reason,confidence,is_official,is_cartoon",
+      "video_id,video_url,title,channel_name,channel_url,source_tier,source_reason,confidence,is_official,is_cartoon,duration_seconds,metadata",
     )
     .eq("lesson_id", id)
     .eq("status", "published")
@@ -115,17 +118,38 @@ export default async function LessonVideoPage({
 
         {lessonVideo ? (
           <>
-            <section className="overflow-hidden rounded-3xl border border-slate-200 bg-black shadow-lg">
-              <div className="aspect-video w-full">
-                <iframe
-                  className="h-full w-full"
-                  src={`https://www.youtube-nocookie.com/embed/${lessonVideo.video_id}?rel=0`}
-                  title={lessonVideo.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                />
-              </div>
+            <LazyLessonVideoPlayer videoId={lessonVideo.video_id} title={lessonVideo.title} />
+            {lessonVideo.duration_seconds && (lessonVideo.duration_seconds < 120 || lessonVideo.duration_seconds > 240)
+              ? <p role="status" className="rounded-xl bg-amber-50 p-4 text-sm text-amber-950">
+                مدة الفيديو ليست بين دقيقتين وأربع دقائق؛ يحتاج إلى مراجعة قبل اعتباره مطابقًا لمعيار الفيديو القصير.
+              </p> : null}
+            <section className="rounded-2xl border border-[#e0e9e2] bg-white p-5">
+              <h2 className="text-xl font-bold text-[#193b31]">نص الفيديو وإمكانية الوصول</h2>
+              {typeof lessonVideo.metadata?.transcript === "string" &&
+                lessonVideo.metadata.transcript.trim() ? (
+                <details className="mt-4">
+                  <summary className="cursor-pointer font-semibold">عرض التفريغ النصي للفيديو</summary>
+                  <p className="mt-3 whitespace-pre-wrap leading-9">{lessonVideo.metadata.transcript}</p>
+                </details>
+              ) : (
+                <p className="mt-3 text-sm leading-7 text-[#62746a]">
+                  لم يتوفر تفريغ موثّق لهذا الفيديو بعد. لا نعرض شرح الدرس على أنه تفريغ للفيديو.
+                </p>
+              )}
+              {lesson.content?.trim() ? (
+                <details className="mt-3"><summary className="cursor-pointer font-semibold">اقرأ محتوى الدرس بدل الفيديو</summary>
+                  <p className="mt-3 whitespace-pre-wrap leading-9">{lesson.content}</p>
+                </details>
+              ) : null}
+              {typeof lessonVideo.metadata?.interactive_question === "string" &&
+                lessonVideo.metadata.interactive_question.trim() ? (
+                  <div className="mt-4 rounded-xl bg-[#eef7f0] p-4">
+                    <p className="text-sm font-semibold">سؤال بعد المشاهدة</p>
+                    <p className="mt-2">{lessonVideo.metadata.interactive_question}</p>
+                  </div>
+                ) : (
+                  <p className="mt-3 text-xs text-[#6b7a70]">السؤال التفاعلي الخاص بهذا الفيديو لم يُعتمد بعد.</p>
+                )}
             </section>
 
             <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
