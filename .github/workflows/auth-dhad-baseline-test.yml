@@ -1,0 +1,26 @@
+name: Auth and Dhad phase0 static audit tests
+on:
+  push:
+    branches:
+      - audit/auth-dhad-baseline-20261105
+    paths:
+      - 'scripts/audit-auth-dhad-baseline.mjs'
+      - 'tests/auth-dhad-baseline.node.test.mjs'
+      - '.github/workflows/auth-dhad-baseline-test.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify read-only and non-PII baseline measurement
+        run: node --test tests/auth-dhad-baseline.node.test.mjs
+# Deliberately no live server probes or deployment until baseline is approved.
