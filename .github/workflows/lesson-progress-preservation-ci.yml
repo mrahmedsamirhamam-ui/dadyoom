@@ -1,0 +1,33 @@
+name: Lesson completion integrity
+
+on:
+  pull_request:
+    paths:
+      - "lib/lesson-progress/**"
+      - "app/api/lesson-activities/check/route.ts"
+      - "app/lessons/[id]/page.tsx"
+      - "tests/lesson-progress-preservation.test.ts"
+      - ".github/workflows/lesson-progress-preservation-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lesson-progress:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Run progress preservation regression tests
+        run: npx vitest run tests/lesson-progress-preservation.test.ts tests/security/lesson-mastery-gates.test.ts tests/security/lesson-completion-entrypoints.test.ts
+      - name: Typecheck
+        run: npx tsc --noEmit
+      - name: Lint changed files
+        run: npx eslint lib/lesson-progress/activity-progress.ts app/api/lesson-activities/check/route.ts 'app/lessons/[id]/page.tsx' tests/lesson-progress-preservation.test.ts
