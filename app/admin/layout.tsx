@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { BookOpen, Bot, CreditCard, GraduationCap, LayoutDashboard, Layers, LibraryBig, Settings2, Users, Wallet } from "lucide-react";
+import { BookOpen, Bot, CreditCard, GraduationCap, LayoutDashboard, Layers, LibraryBig, Settings2, TrendingUp, Users, Wallet } from "lucide-react";
 import DadyoomLogo from "@/components/brand/DadyoomLogo";
 import LogoutButton from "@/components/auth/LogoutButton";
 import { createClient } from "@/lib/supabase/server";
@@ -8,6 +8,7 @@ import { createClient } from "@/lib/supabase/server";
 const sections = [
   { title: "المحتوى والمناهج", items: [
     { href: "/admin", label: "نظرة عامة", icon: LayoutDashboard },
+    { href: "/admin/growth", label: "النمو والتفعيل", icon: TrendingUp },
     { href: "/admin/curriculum", label: "بوابة المناهج", icon: Layers },
     { href: "/admin/curriculum/packs", label: "حزم المناهج", icon: LibraryBig },
     { href: "/admin/lessons", label: "الدروس", icon: BookOpen },

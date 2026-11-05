@@ -1,5 +1,5 @@
 import path from "node:path";
-import { defineConfig } from "vitest/config";
+import { configDefaults, defineConfig } from "vitest/config";
 
 export default defineConfig({
   resolve: {
@@ -14,5 +14,8 @@ export default defineConfig({
 
   test: {
     environment: "node",
+    // These use node:test; running them inside Vitest executes assertions but
+    // misreports "No test suite found". Run them explicitly with node --test.
+    exclude: [...configDefaults.exclude, "**/*.node.test.mjs"],
   },
 });
