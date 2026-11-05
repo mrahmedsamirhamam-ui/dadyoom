@@ -101,6 +101,10 @@ export default function EmailPasswordAuthForm({
   const [country, setCountry] = useState("BH");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [grade, setGrade] = useState(1);
+  const [track, setTrack] = useState<"native" | "non_native">("native");
+  const [studyMode, setStudyMode] = useState<"ministry" | "dadyoom">("ministry");
 
   const [loading, setLoading] = useState(false);
   const [phase, setPhase] = useState("");
@@ -144,7 +148,7 @@ export default function EmailPasswordAuthForm({
       return;
     }
 
-    if (password.length < 8) {
+    if (mode === "signup" && password.length < 8) {
       setError("كلمة المرور يجب أن تكون 8 أحرف على الأقل.");
       return;
     }
@@ -210,6 +214,8 @@ export default function EmailPasswordAuthForm({
               full_name: cleanName,
               role,
               country: cleanCountry,
+              grade_number: grade,
+              dadyoom_learning_preferences: { track, mode: studyMode },
             },
           },
         });
@@ -238,6 +244,7 @@ export default function EmailPasswordAuthForm({
         full_name: cleanName,
         role,
         country: cleanCountry,
+        ...(["student", "child"].includes(role) ? { grade_number: grade } : {}),
       };
 
       const { error: profileError } = await supabase
@@ -367,6 +374,38 @@ export default function EmailPasswordAuthForm({
                     ))}
                   </select>
                 </label>
+                {["student", "child"].includes(role) ? (
+                  <div className="space-y-3 rounded-xl border border-[#e1e9e3] bg-[#fbfdfa] p-4">
+                    <label className="block text-sm font-bold text-[#173f35]">الصف
+                      <select value={grade} onChange={event => setGrade(Number(event.target.value))}
+                        className="mt-2 w-full rounded-xl border border-[#d8c7a6] bg-white px-4 py-3">
+                        {Array.from({length:13},(_,i)=>i+1).map(value => (
+                          <option key={value} value={value}>الصف {value}</option>
+                        ))}
+                      </select>
+                    </label>
+                    <fieldset className="space-y-2"><legend className="text-sm font-bold">نوع تعلم العربية</legend>
+                      <label className="flex items-center gap-2 text-sm">
+                        <input type="radio" name="track" checked={track==="native"}
+                          onChange={()=>setTrack("native")}/> ناطق بالعربية
+                      </label>
+                      <label className="flex items-center gap-2 text-sm">
+                        <input type="radio" name="track" checked={track==="non_native"}
+                          onChange={()=>setTrack("non_native")}/> غير ناطق بالعربية
+                      </label>
+                    </fieldset>
+                    <fieldset className="space-y-2"><legend className="text-sm font-bold">المسار المفضل</legend>
+                      <label className="flex items-center gap-2 text-sm">
+                        <input type="radio" name="study-mode" checked={studyMode==="ministry"}
+                          onChange={()=>setStudyMode("ministry")}/> منهج الوزارة
+                      </label>
+                      <label className="flex items-center gap-2 text-sm">
+                        <input type="radio" name="study-mode" checked={studyMode==="dadyoom"}
+                          onChange={()=>setStudyMode("dadyoom")}/> مسار ضاديوم الإثرائي
+                      </label>
+                    </fieldset>
+                  </div>
+                ) : null}
               </>
             ) : null}
 
@@ -380,7 +419,7 @@ export default function EmailPasswordAuthForm({
                 onChange={(event) =>
                   setEmail(event.target.value)
                 }
-                autoComplete="email"
+                autoComplete={signup ? "email" : "username"}
                 inputMode="email"
                 required
                 className="w-full rounded-xl border border-[#d8c7a6] px-4 py-3 text-base outline-none focus:border-[#123f39]"
@@ -393,7 +432,7 @@ export default function EmailPasswordAuthForm({
                 كلمة المرور
               </span>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(event) =>
                   setPassword(event.target.value)
@@ -404,11 +443,16 @@ export default function EmailPasswordAuthForm({
                     : "current-password"
                 }
                 required
-                minLength={8}
+                minLength={signup ? 8 : undefined}
                 className="w-full rounded-xl border border-[#d8c7a6] px-4 py-3 text-base outline-none focus:border-[#123f39]"
                 placeholder="8 أحرف على الأقل"
               />
             </label>
+
+            <button type="button" onClick={() => setShowPassword(value => !value)}
+              className="text-sm font-semibold text-[#17564b] underline underline-offset-4">
+              {showPassword ? "إخفاء كلمة المرور" : "إظهار كلمة المرور"}
+            </button>
 
             <button
               type="submit"
@@ -454,6 +498,9 @@ export default function EmailPasswordAuthForm({
             fullName={fullName}
             role={role}
             country={country}
+            grade={grade}
+            track={track}
+            studyMode={studyMode}
           />
 
           <p className="text-center text-sm font-bold text-[#685b47]">
