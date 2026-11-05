@@ -2,7 +2,10 @@ import CurriculumCatalogClient from "./CurriculumCatalogClient";
 import { getStudentCurriculumCatalog } from "@/services/lessons/student-curriculum-catalog";
 import { createClient } from "@/lib/supabase/server";
 
-export default async function CoursesPage() {
+export default async function CoursesPage({ searchParams }: {
+  searchParams: Promise<{ country?: string; grade?: string }>;
+}) {
+  const params = await searchParams;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   let defaultCountryCode = "BH";
@@ -22,6 +25,14 @@ export default async function CoursesPage() {
     if (typeof profile?.grade_number === "number" && profile.grade_number >= 1 && profile.grade_number <= 13) {
       defaultGradeNumber = profile.grade_number;
     }
+  }
+
+  // Shareable study links override the display selection only, never the user's saved profile.
+  const countryCandidate = String(params.country ?? "").trim().toUpperCase();
+  const gradeCandidate = Number(params.grade);
+  if (/^[A-Z]{2}$/.test(countryCandidate)) defaultCountryCode = countryCandidate;
+  if (Number.isInteger(gradeCandidate) && gradeCandidate >= 1 && gradeCandidate <= 12) {
+    defaultGradeNumber = gradeCandidate;
   }
 
   return (
