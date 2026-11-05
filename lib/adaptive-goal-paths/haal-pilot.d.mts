@@ -6,6 +6,7 @@ export type TeachingQuestion = Readonly<{
   correctId: string;
   why: string;
   errorKind: string;
+  errorsByChoice?: Readonly<Record<string, string>>;
 }>;
 export const PATHS: ReadonlyArray<LearningPath>;
 export const PATH_LABELS: Readonly<Record<LearningPath, string>>;
@@ -20,6 +21,7 @@ export const HALL_GOAL: Readonly<{
 export const DIAGNOSTIC: ReadonlyArray<TeachingQuestion>;
 export const ANCHOR: ReadonlyArray<TeachingQuestion>;
 export const ANCHOR_FORMS: ReadonlyArray<ReadonlyArray<TeachingQuestion>>;
+export const PRACTICE_BANK: Readonly<Record<LearningPath, ReadonlyArray<TeachingQuestion>>>;
 export type PathContent = Readonly<{
   heading: string;
   intro: string;
