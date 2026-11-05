@@ -6,6 +6,8 @@ on:
       - "lib/lesson-content/publication-readiness.ts"
       - "app/lessons/[id]/page.tsx"
       - "app/sitemap.ts"
+      - "app/admin/curriculum/source-review/page.tsx"
+      - "app/admin/layout.tsx"
       - "tests/lesson-publication-readiness.test.ts"
       - ".github/workflows/lesson-source-readiness-ci.yml"
   workflow_dispatch:
@@ -26,4 +28,4 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npx vitest run tests/lesson-publication-readiness.test.ts tests/seo-dadyoom.test.ts
       - run: npx tsc --noEmit
-      - run: npx eslint lib/lesson-content/publication-readiness.ts 'app/lessons/[id]/page.tsx' app/sitemap.ts tests/lesson-publication-readiness.test.ts
+      - run: npx eslint lib/lesson-content/publication-readiness.ts 'app/lessons/[id]/page.tsx' app/sitemap.ts app/admin/curriculum/source-review/page.tsx app/admin/layout.tsx tests/lesson-publication-readiness.test.ts
