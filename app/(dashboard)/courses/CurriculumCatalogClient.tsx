@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { formatArabicCount } from "@/lib/i18n/arabic-count";
 import { useState } from "react";
 
 import type {
@@ -527,10 +528,7 @@ export default function CurriculumCatalogClient({
             </span>
 
             <span className="rounded-full bg-[#eef4f0] px-3 py-2">
-              {
-                currentTrackLessonCount
-              }{" "}
-              درسًا في المسار
+              {formatArabicCount(currentTrackLessonCount, "lesson")} في المسار
             </span>
 
             {curricula.length >
@@ -568,11 +566,7 @@ export default function CurriculumCatalogClient({
                   </div>
 
                   <span className="shrink-0 rounded-full bg-white px-4 py-2 text-sm font-black">
-                    {
-                      item.lessons
-                        .length
-                    }{" "}
-                    درسًا
+                    {formatArabicCount(item.lessons.length, "lesson")}
                   </span>
                 </header>
 

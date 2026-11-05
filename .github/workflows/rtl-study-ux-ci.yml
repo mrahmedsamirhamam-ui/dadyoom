@@ -1,0 +1,32 @@
+name: RTL study UX and Arabic numbers
+on:
+  pull_request:
+    paths:
+      - 'app/study/**'
+      - 'app/page.tsx'
+      - 'app/(dashboard)/courses/**'
+      - 'lib/i18n/**'
+      - 'tests/arabic-count.test.ts'
+      - '.github/workflows/rtl-study-ux-ci.yml'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Arabic grammar unit tests
+        run: npx vitest run tests/arabic-count.test.ts
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: ESLint changed UX files
+        run: npx eslint app/study app/page.tsx 'app/(dashboard)/courses' lib/i18n/arabic-count.ts tests/arabic-count.test.ts

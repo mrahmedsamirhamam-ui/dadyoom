@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const pillars = [
-  { icon: "📚", title: "منهج حقيقي منظم", text: "بوابة مبنية للدول العربية: من الدولة والمنهج والصف إلى الوحدة والدرس، مع حزم محتوى موثقة قابلة للإضافة دون إعادة برمجة." },
+  { icon: "📚", title: "مسارات تعلم منظمة", text: "بوابة مبنية للدول العربية: من الدولة والمنهج والصف إلى الوحدة والدرس، مع حزم محتوى موثقة قابلة للإضافة دون إعادة برمجة." },
   { icon: "ض", title: "ضاد رفيق العربية", text: "شرح وتلميحات وتدريب يفهم لهجتك ويعلّمك بفصحى سهلة دون أن يستبدل المعلم." },
   { icon: "✦", title: "رحلة تناسب المتعلم", text: "تقدم وتقييم وتوصيات ومكافآت تجعل الخطوة التالية واضحة بدل التنقل العشوائي." },
   { icon: "👥", title: "منظومة تعليم كاملة", text: "تجارب مترابطة للطالب والمعلم وولي الأمر والمدرسة مع صلاحيات واضحة لكل دور." },
@@ -42,7 +42,7 @@ export default async function HomePage() {
           </nav>
           <div className="flex items-center gap-2">
             <Link href="/login" className="hidden rounded-xl px-4 py-2.5 text-sm font-black text-[#5d554c] hover:bg-[#f3ead7] sm:inline-flex">دخول</Link>
-            <Link href="/signup" className="rounded-xl bg-[#174f47] px-4 py-2.5 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#103f39]">ابدأ مجانًا</Link>
+            
           </div>
         </div>
       </header>
@@ -68,7 +68,7 @@ export default async function HomePage() {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/signup" className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#174f47] px-7 py-3.5 font-bold text-white shadow-lg shadow-[#174f47]/15 transition-colors hover:bg-[#103f39] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47]">ابدأ رحلتك مجانًا</Link>
-              <Link href="/courses" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[#bdd7c6] bg-white px-7 py-3.5 font-bold text-[#174f47] transition-colors hover:bg-[#edf5f0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47]">استكشف المناهج</Link>
+              <Link href="/study" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[#bdd7c6] bg-white px-7 py-3.5 font-bold text-[#174f47] transition-colors hover:bg-[#edf5f0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47]">استكشف المناهج</Link>
             </div>
             <nav aria-label="تجارب تعليمية يمكنك تجربتها" className="mt-5 flex flex-wrap gap-x-5 gap-y-3 text-sm font-semibold text-[#41685a]">
               <Link href="/ask" className="underline-offset-4 hover:underline">اسأل ضاد</Link>
@@ -77,8 +77,8 @@ export default async function HomePage() {
               <Link href="/how-to-use" className="underline-offset-4 hover:underline">كيف تستخدم ضاديوم؟</Link>
             </nav>
             <div className="mt-9 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
-              <MiniStat value="22" label="دولة عربية في البنية" />
-              <MiniStat value="1" label="حزمة منهج منشورة" />
+              <MiniStat value="12" label="صفًّا في المسار المدرسي" />
+              <MiniStat value="22" label="دولة في هيكل المنصة" />
               <MiniStat value="4" label="مهارات" />
               <MiniStat value="24/7" label="ضاد" />
             </div>
@@ -149,7 +149,7 @@ export default async function HomePage() {
               <h2 className="mt-3 font-arabic-display text-3xl font-black sm:text-4xl">اختر دولتك ودورك، وابدأ من مكان واضح</h2>
               <p className="mt-3 max-w-2xl font-arabic-reading text-lg leading-8 text-[#e7f0ec]">يمكنك التسجيل بالبريد أو Google. وعندما لا يتوفر منهج دولتك بعد، تبقى المهارات الأربع وقاموس السياق وضاد متاحة لك.</p>
             </div>
-            <Link href="/signup" className="inline-flex shrink-0 justify-center rounded-2xl bg-[#f5cf7a] px-7 py-4 font-black text-[#493814] transition hover:-translate-y-0.5 hover:bg-[#ffe39e]">ابدأ رحلتك</Link>
+            
           </div>
         </div>
       </section>
