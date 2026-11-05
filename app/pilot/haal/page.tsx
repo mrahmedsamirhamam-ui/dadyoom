@@ -109,6 +109,8 @@ export default function AdaptiveHaalPilot() {
   const [offer, setOffer] = useState<LearningPath | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
   const [showTranslation, setShowTranslation] = useState(false);
+  const [supportLanguage, setSupportLanguage] = useState<"ar" | "en">("ar");
+  const [cefr, setCefr] = useState<"unspecified" | "A1" | "A2" | "B1" | "B2" | "C1" | "C2">("unspecified");
 
   const content = PATH_CONTENT[path];
   const question = PRACTICE[path][practiceIndex];
@@ -265,15 +267,42 @@ export default function AdaptiveHaalPilot() {
               <div className="mt-4 rounded-xl bg-amber-50 p-4 text-sm leading-7">
                 <strong>تطبيق وربط:</strong> {content.practice}
               </div>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2" aria-label="إعدادات المساعدة اللغوية الاختيارية">
+                <label className="text-sm font-bold">
+                  لغة المساعدة
+                  <select value={supportLanguage} onChange={event => setSupportLanguage(event.target.value as "ar" | "en")}
+                    className="mt-2 min-h-12 w-full rounded-xl border border-[#b5c9b9] bg-white px-3 font-normal">
+                    <option value="ar">عربية مبسطة</option>
+                    <option value="en">English (support)</option>
+                  </select>
+                </label>
+                <label className="text-sm font-bold">
+                  مستوى العربية الذي تختاره لنفسك (اختياري)
+                  <select value={cefr} onChange={event => setCefr(event.target.value as typeof cefr)}
+                    className="mt-2 min-h-12 w-full rounded-xl border border-[#b5c9b9] bg-white px-3 font-normal">
+                    <option value="unspecified">لا أرغب في التحديد</option>
+                    {(["A1", "A2", "B1", "B2", "C1", "C2"] as const).map(level => <option key={level} value={level}>{level}</option>)}
+                  </select>
+                </label>
+              </div>
+              <p className="mt-2 text-xs leading-7 text-[#58736a]">
+                هذه اختيارات للمساندة فقط؛ لا تصنفك ولا تغيّر مسار النحو أو درجة اختبار الهدف، ولا تُحفظ.
+              </p>
               <button type="button" onClick={() => setShowTranslation(value => !value)}
                 aria-expanded={showTranslation} className="mt-3 min-h-11 rounded-lg border border-[#d6c391] px-4 text-sm font-semibold">
                 {showTranslation ? "إخفاء معاني الكلمات" : "مساعدة لغوية اختيارية"}
               </button>
               {showTranslation && (
                 <div className="mt-2 rounded-xl bg-stone-50 p-4 text-sm leading-7">
-                  <p>{content.glossary}</p>
-                  <p lang="en" dir="ltr" className="mt-2 text-left">Circumstantial accusative (ḥāl): a word describing how someone or something is during an action.</p>
-                  <p className="mt-1">الدعم اللغوي لا يغيّر درجة فهمك للمفهوم النحوي.</p>
+                  <p>{cefr === "A1" || cefr === "A2" ?
+                    "الحال تصف كيف كان الشخص وقت الفعل. مثال: جاءَ الطفلُ سعيدًا. كيف جاء؟ سعيدًا. مَن صاحب الحال؟ الطفل." :
+                    content.glossary}</p>
+                  {supportLanguage === "en" ? (
+                    <p lang="en" dir="ltr" className="mt-2 text-left">The ḥāl describes someone's state when an action happens. The ṣāḥib al-ḥāl is the person or thing being described.</p>
+                  ) : (
+                    <p className="mt-2">اسأل: كيف حدث الفعل؟ ثم من الذي وُصف بهذه الهيئة؟</p>
+                  )}
+                  <p className="mt-1">الدعم اللغوي منفصل عن تقييم فهم مفهوم الحال. هذا تقدير اختياري، وليس اختبار CEFR رسميًا.</p>
                 </div>
               )}
             </div>
