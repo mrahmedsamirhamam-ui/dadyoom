@@ -535,8 +535,7 @@ export async function POST(
               "cache",
             cached: true,
             coreLessonAsset:
-              task === "summary" ||
-              task === "slides",
+              task === "summary",
           },
         );
       }
@@ -586,9 +585,7 @@ export async function POST(
       .join("\n\n");
 
     const profile =
-      task === "slides" ||
-      task ===
-        "custom_slides" ||
+      task === "custom_slides" ||
       task ===
         "video_storyboard"
         ? "quality"
@@ -639,9 +636,7 @@ export async function POST(
         context,
         profile,
         preferredProviders:
-          task === "slides" ||
-          task ===
-            "custom_slides"
+          task === "custom_slides"
             ? preferredSlideProviders()
             : undefined,
         maxTokens:
@@ -649,8 +644,6 @@ export async function POST(
           "video_storyboard"
             ? 3200
             : task ===
-                "slides" ||
-              task ===
                 "custom_slides"
               ? 3200
               : 2400,
@@ -704,8 +697,7 @@ export async function POST(
           result.model,
         cached: false,
         coreLessonAsset:
-          task === "summary" ||
-          task === "slides",
+          task === "summary",
       },
     );
   } catch (error) {
