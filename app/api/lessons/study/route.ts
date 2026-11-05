@@ -476,6 +476,17 @@ export async function POST(
       instructions: data.instructions,
     };
 
+    if (task === "slides") {
+      return NextResponse.json({
+        data: buildGroundedLessonDeck(lesson),
+        provider: "dadyoom-source",
+        model: "grounded-teaching-v2",
+        cached: false,
+        coreLessonAsset: true,
+        needsReview: buildGroundedLessonDeck(lesson).needsContentReview,
+      });
+    }
+
     if (
       task === "summary" &&
       lesson.summary &&
@@ -555,17 +566,6 @@ export async function POST(
           },
         );
       }
-    }
-
-    if (task === "slides" && !body.refresh) {
-      return NextResponse.json({
-        data: buildGroundedLessonDeck(lesson),
-        provider: "dadyoom-source",
-        model: "grounded-teaching-v2",
-        cached: false,
-        coreLessonAsset: true,
-        needsReview: false,
-      });
     }
 
     const feature =
