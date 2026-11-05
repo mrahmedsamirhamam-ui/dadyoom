@@ -47,7 +47,7 @@ export default async function GrowthDashboardPage() {
   ];
 
   return (
-    <main dir="rtl" className="p-4 sm:p-8">
+    <div dir="rtl" className="p-4 sm:p-8">
       <div className="mx-auto max-w-6xl space-y-7">
         <header>
           <p className="text-sm font-bold text-[#8b6f2e]">لوحة الإدارة / نمو ضاديوم</p>
@@ -94,6 +94,6 @@ export default async function GrowthDashboardPage() {
           </Link>
         </section>
       </div>
-    </main>
+    </div>
   );
 }
