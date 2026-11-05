@@ -307,3 +307,27 @@ test("read-only export refuses duplicated records instead of misleading official
  })})})})};
  await assert.rejects(fetchAll(client,"lessons","id"),/DUPLICATE_OR_MISSING_PAGINATED_ID/);
 });
+
+test("official Bahrain one-lesson teacher PDF cannot be disguised as a full student textbook",()=>{
+ const url="https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_1/lessons/Lesson-1---Baa--Ektashef-Alharf/Lesson-1---Baa--Ektashef-Alharf.pdf";
+ const m=official(); m.source={...source,url,documentType:"textbook"};
+ assert.ok(checkOfficialManifest(m,sourceRegistry,"2026-2027").includes("MINISTRY_TEACHER_LESSON_GUIDE_NOT_FULL_TEXTBOOK"));
+ const r=audit([m],[lesson()]);
+ assert.equal(r.verifiedScopes,0);
+ assert.ok(r.findings.some(f=>f.code==="OFFICIAL_MANIFEST_INVALID"));
+});
+test("teacher lesson guide can be classified as a partial official aid but cannot certify an entire book",()=>{
+ const url="https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_1/lessons/Lesson-1---Baa--Ektashef-Alharf/Lesson-1---Baa--Ektashef-Alharf.pdf";
+ const m=official();m.source={...source,url,documentType:"official_lesson_guide"};
+ assert.deepEqual(checkOfficialManifest(m,sourceRegistry,"2026-2027"),[]);
+ const r=audit([m],[lesson()]);
+ assert.equal(r.verifiedScopes,0);
+ assert.ok(r.findings.some(f=>f.code==="TITLE_MATCH_SUBJECT_NOT_CERTIFIED"&&f.subjectIssues.includes("OFFICIAL_SCHEDULE_NOT_TEXTBOOK_SUBJECT_EVIDENCE")));
+});
+test("published lesson pointing only to a Ministry teacher PDF needs actual student textbook verification",()=>{
+ const p=lesson();
+ p.sourcePdfUrl="https://www.edunet.bh/e_content/level_1/stage_1/subject_ID_1/Part_1/lessons/Lesson-1---Baa--Ektashef-Alharf/Lesson-1---Baa--Ektashef-Alharf.pdf";
+ const r=audit([official()],[p]);
+ assert.equal(r.verifiedScopes,0);
+ assert.ok(r.findings.some(f=>f.code==="LESSON_SOURCE_LINK_IS_TEACHER_GUIDE_NOT_STUDENT_TEXTBOOK"));
+});
