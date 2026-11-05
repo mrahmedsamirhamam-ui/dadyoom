@@ -66,3 +66,23 @@ test("G2 old book lessons re-ordered to fifteen unique chapters, six broad misle
  assert.ok(reorder.includes("count(DISTINCT book_chapter)"));
  mustGuard(reorder);
 });
+
+test("14 book-based grade2+3 objectives are individualized, guarded against duplicate records, and the solar/lunar lesson error is corrected",()=>{
+ const s=read("ps-g2g3-term2-14-specific-objectives-lam-correction-20261105.sql");
+ const rows=[...s.matchAll(/\('([0-9a-f-]{36})'::uuid,([23]),'([^']+)','(\[[^\n]+\])'::jsonb\)/g)];
+ assert.equal(rows.length,14,"14 exact existing lesson IDs and objective rows");
+ assert.equal(new Set(rows.map(r=>r[1])).size,14,"never reuse lesson ID");
+ assert.equal(rows.filter(r=>r[2]==="2").length,7);
+ assert.equal(rows.filter(r=>r[2]==="3").length,7);
+ assert.equal(new Set(rows.map(r=>r[2]+"|"+r[3])).size,14,"no duplicate grade+title");
+ for(const row of rows){
+   const goals=JSON.parse(row[4]);
+   assert.equal(goals.length,3,row[3]);
+   assert.ok(goals.every(goal=>goal.length>=35),row[3]);
+   assert.ok(goals.join(" ").includes("أن "),row[3]);
+ }
+ for(const guard of ["BEGIN;","COMMIT;","RAISE EXCEPTION","Duplicate lesson title detected","WHERE l.id=t.id AND l.title=t.title","l.source_pdf_url LIKE '%wepal.net%'"])assert.ok(s.includes(guard),guard);
+ assert.ok(s.includes("اللام الشمسية في «الثور» و«السوق» و«الناس»، واللام القمرية في «الفلاح» و«الغطاء»"));
+ assert.ok(!/\bDELETE\s+FROM\b|\bTRUNCATE\b|\bDROP\s+TABLE\s+(?:public\.)?(?:lessons|student)/i.test(s));
+ assert.ok(s.includes("NO certification of 2024 educational packs or 2026–27 full textbook"));
+});
