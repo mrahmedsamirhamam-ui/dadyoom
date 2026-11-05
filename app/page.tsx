@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+import { signedInDestination } from "@/lib/auth/signed-in-destination";
 import type { Metadata } from "next";
 import Link from "next/link";
 import DadyoomLogo, { DadyoomMark } from "@/components/brand/DadyoomLogo";
@@ -21,7 +23,9 @@ const skills = [
   { icon: "🎙️", title: "التحدث", text: "النطق والتعبير", href: "/skills/speaking/practice" },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const destination = await signedInDestination();
+  if (destination) redirect(destination);
   return (
     <main dir="rtl" className="min-h-screen bg-[#f8faf6] text-[#24382f]">
       <header className="sticky top-0 z-50 border-b border-[#e5d8bf]/90 bg-[#fffef9]/94 backdrop-blur">
