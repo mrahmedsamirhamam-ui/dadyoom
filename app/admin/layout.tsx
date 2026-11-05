@@ -10,6 +10,7 @@ const sections = [
     { href: "/admin", label: "نظرة عامة", icon: LayoutDashboard },
     { href: "/admin/growth", label: "النمو والتفعيل", icon: TrendingUp },
     { href: "/admin/curriculum", label: "بوابة المناهج", icon: Layers },
+    { href: "/admin/curriculum/source-review", label: "مراجعة مصادر الدروس", icon: Layers },
     { href: "/admin/curriculum/packs", label: "حزم المناهج", icon: LibraryBig },
     { href: "/admin/lessons", label: "الدروس", icon: BookOpen },
   ] },
