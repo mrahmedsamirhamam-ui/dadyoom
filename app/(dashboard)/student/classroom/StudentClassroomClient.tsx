@@ -9,6 +9,7 @@ import {
 } from "@/features/classroom/actions";
 
 type Props = {
+  requestedClassId?: string;
   studentId: string;
   classes: Array<{
     id: string;
@@ -64,7 +65,11 @@ type Props = {
 
 export default function StudentClassroomClient(props: Props) {
   const router = useRouter();
-  const [classId, setClassId] = useState(props.classes[0]?.id ?? "");
+  const [classId, setClassId] = useState(
+  props.classes.find((item) => item.id === props.requestedClassId)?.id ??
+    props.classes[0]?.id ??
+    "",
+);
   const [status, setStatus] = useState("");
 
   const activeClass =
@@ -233,7 +238,8 @@ export default function StudentClassroomClient(props: Props) {
                 return (
                   <form
                     key={assignment.id}
-                    className="rounded-[1.5rem] border bg-[#fffdf8] p-4"
+                    id={`assignment-${assignment.id}`}
+                    className="scroll-mt-24 rounded-[1.5rem] border bg-[#fffdf8] p-4"
                     onSubmit={async (event) => {
                       event.preventDefault();
                       const result = await submitAssignmentAction(
