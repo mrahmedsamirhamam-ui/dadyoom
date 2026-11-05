@@ -608,7 +608,7 @@ export default function CurriculumCatalogClient({
                         </h3>
 
                         <p className="mt-2 line-clamp-2 break-words text-sm leading-7 text-[#766c60]">
-                          "افتح الدرس لقراءة شرحه ومحتواه."
+                          افتح الدرس لقراءة شرحه ومحتواه.
                         </p>
 
                         <div className="mt-3 flex justify-between border-t pt-3 text-xs font-black text-[#887d70]">
