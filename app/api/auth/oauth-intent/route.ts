@@ -4,7 +4,7 @@ import { isCountryCode } from "@/lib/countries";
 const allowedRoles = new Set(["student", "child", "teacher", "parent", "school"]);
 
 export async function POST(request: Request) {
-  let body: { fullName?: string; role?: string; country?: string };
+  let body: { fullName?: string; role?: string; country?: string; grade?: number; track?: string; studyMode?: string };
   try {
     body = (await request.json()) as typeof body;
   } catch {
@@ -19,10 +19,17 @@ export async function POST(request: Request) {
   if (!allowedRoles.has(role)) return NextResponse.json({ error: "نوع الحساب غير صالح." }, { status: 400 });
   if (!isCountryCode(country)) return NextResponse.json({ error: "اختر الدولة أولًا." }, { status: 400 });
 
+  const student = role === "student" || role === "child";
+  const grade = Number(body.grade);
+  const track = body.track === "non_native" ? "non_native" : "native";
+  const studyMode = body.studyMode === "dadyoom" ? "dadyoom" : "ministry";
+  if (student && (!Number.isInteger(grade) || grade < 1 || grade > 13)) {
+    return NextResponse.json({ error: "اختر الصف الدراسي أولًا." }, { status: 400 });
+  }
   const response = NextResponse.json({ ok: true });
   response.cookies.set(
     "dadyoom_oauth_intent",
-    Buffer.from(JSON.stringify({ fullName, role, country }), "utf8").toString("base64url"),
+    Buffer.from(JSON.stringify({ fullName, role, country, ...(student ? { grade, track, studyMode } : {}) }), "utf8").toString("base64url"),
     {
       httpOnly: true,
       sameSite: "lax",

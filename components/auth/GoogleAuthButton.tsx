@@ -11,6 +11,9 @@ type Props = {
   fullName?: string;
   role?: string;
   country?: string;
+  grade?: number;
+  track?: "native" | "non_native";
+  studyMode?: "ministry" | "dadyoom";
 };
 
 const NATIVE_CALLBACK = "dadyoom://auth/callback";
@@ -30,6 +33,9 @@ export default function GoogleAuthButton({
   fullName = "",
   role = "student",
   country = "",
+  grade = 1,
+  track = "native",
+  studyMode = "ministry",
 }: Props) {
   const [loading, setLoading] = useState(false);
   const [providerEnabled, setProviderEnabled] =
@@ -85,6 +91,9 @@ export default function GoogleAuthButton({
           fullName: fullName.trim(),
           role: role.trim(),
           country: country.trim(),
+          grade,
+          track,
+          studyMode,
         };
 
         const intentResponse = await fetch(

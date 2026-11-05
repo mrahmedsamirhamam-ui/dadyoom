@@ -129,7 +129,7 @@ async function askCloud(
     if (!controller.signal.aborted) {
       controller.abort("DADYOOM_CLOUD_TIMEOUT");
     }
-  }, 60000);
+  }, 28000);
 
   try {
     const response = await fetch("/api/dad/chat", {

@@ -119,8 +119,9 @@ export default function DadCompanion({
         setMessages((current) => [...current, { role: "assistant", content: reply }]);
         DadAI.talk();
 
+        // Speech must never hold the chat send state open after text arrives.
         if (voiceEnabled) {
-          await DadVoice.speak(reply, { mood: "normal" }).catch(() => undefined);
+          void DadVoice.speak(reply, { mood: "normal" }).catch(() => undefined);
         }
       } catch (error) {
         if (error instanceof DOMException && error.name === "AbortError") return;

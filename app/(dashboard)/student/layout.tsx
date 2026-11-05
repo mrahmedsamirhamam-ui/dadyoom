@@ -1,4 +1,3 @@
-import StudentPlanBar from "@/components/billing/StudentPlanBar";
 import RolePortalLayout from "@/components/roles/RolePortalLayout";
 
 const links = [
@@ -27,7 +26,6 @@ export default function StudentLayout({
       role="student"
       links={links}
     >
-      <StudentPlanBar />
         {children}
     </RolePortalLayout>
   );

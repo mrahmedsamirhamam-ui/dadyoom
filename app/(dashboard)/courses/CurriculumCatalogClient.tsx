@@ -11,6 +11,7 @@ type Props = {
   units: StudentCatalogUnit[];
   defaultCountryCode?: string;
   defaultGradeNumber?: number | null;
+  defaultCurriculumMode?: "ministry" | "dadyoom";
 };
 
 const diff = {
@@ -32,6 +33,7 @@ const gradeNames: Record<number, string> = {
   10: "الصف الأول الثانوي",
   11: "الصف الثاني الثانوي",
   12: "الصف الثالث الثانوي",
+  13: "الصف الإضافي",
 };
 
 function uniq<T extends { id: string }>(
@@ -93,6 +95,7 @@ export default function CurriculumCatalogClient({
   units,
   defaultCountryCode = "BH",
   defaultGradeNumber = null,
+  defaultCurriculumMode = "ministry",
 }: Props) {
   const [
     country,
@@ -262,7 +265,12 @@ export default function CurriculumCatalogClient({
         curriculum,
     )
       ? curriculum
-      : curricula.find((item) => item.name.trim() === "اللغة العربية")?.id ??
+      : curricula.find((item) => defaultCurriculumMode === "dadyoom"
+          ? item.name.includes("المسار العربي الأساسي لضاديوم")
+          : item.name.trim() === "اللغة العربية")?.id ??
+        curricula.find((item) => defaultCurriculumMode === "ministry"
+          ? !item.name.includes("المسار العربي الأساسي لضاديوم")
+          : item.name.includes("المسار العربي الأساسي لضاديوم"))?.id ??
         curricula[0]?.id ?? "";
 
   const gradeUnits = units
@@ -345,11 +353,11 @@ export default function CurriculumCatalogClient({
               </div>
 
               <h1 className="mt-3 text-3xl font-black sm:text-4xl">
-                اختر صفك ثم المسار
+                منهجك جاهز هنا
               </h1>
 
               <p className="mt-2 leading-8 text-[#e9f3ef]">
-                من الأول الابتدائي حتى الثالث الثانوي، مع كل المسارات المنشورة وكل الدروس بلا حدّ 6 دروس.
+                تُفتح دولتك وصفك ومسارك المحفوظ تلقائيًا. ويمكنك تغيير الاختيار عند الحاجة فقط.
               </p>
             </div>
 
@@ -379,7 +387,9 @@ export default function CurriculumCatalogClient({
         </section>
 
         <section className="min-w-0 rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-4 sm:p-6">
-          <div className="grid min-w-0 gap-3 sm:grid-cols-2 lg:grid-cols-6">
+          <details className="rounded-xl border border-[#e6ede6] p-3">
+            <summary className="cursor-pointer text-sm font-semibold text-[#346d5f]">تغيير الدولة أو الصف أو المسار عند الحاجة</summary>
+          <div className="mt-4 grid min-w-0 gap-3 sm:grid-cols-2 lg:grid-cols-6">
             <SelectBox
               label="الدولة"
               value={countryId}
@@ -498,6 +508,8 @@ export default function CurriculumCatalogClient({
             />
           </div>
 
+          </details>
+
           <div className="mt-4 flex flex-wrap gap-2 text-xs font-black text-[#6f572c]">
             <span className="rounded-full bg-[#fff2d5] px-3 py-2">
               المرحلة{" "}
@@ -596,8 +608,7 @@ export default function CurriculumCatalogClient({
                         </h3>
 
                         <p className="mt-2 line-clamp-2 break-words text-sm leading-7 text-[#766c60]">
-                          {lesson.objective ??
-                            "درس عربي تفاعلي ضمن مسارك."}
+                          افتح الدرس لقراءة شرحه ومحتواه.
                         </p>
 
                         <div className="mt-3 flex justify-between border-t pt-3 text-xs font-black text-[#887d70]">
