@@ -62,6 +62,7 @@ test("Published lesson page integrates the grounded reading UI without replacing
   assert.match(ui, /splitPublishedLessonIntoSteps\(content\)/);
   assert.match(ui, /listPublishedGoalChoices\(objectives\)/);
   assert.match(ui, /<StructuredLessonText content=\{content\} \/>/);
+  assert.match(ui, /useState<ReadingPath>\("progress"\)/); // Full lesson is default for SEO and accessibility.
   assert.match(ui, /role="group" aria-label="مسارات عرض الشرح"/);
   assert.match(ui, /aria-pressed=\{path === choice.id\}/);
   assert.match(ui, /هذه أدوات مساندة للقراءة وليست اختبارًا تشخيصيًا/);
