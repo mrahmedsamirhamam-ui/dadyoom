@@ -11,6 +11,8 @@ on:
       - 'tests/haal-adaptive-pilot.node.test.mjs'
       - 'tests/haal-adaptive-teacher-overview.node.test.mjs'
       - 'tests/haal-adaptive-release-gate.node.test.mjs'
+      - 'tests/haal-adaptive-server-grading.node.test.mjs'
+      - 'app/api/pilot/haal/**'
       - '.github/workflows/adaptive-goal-path-pilot.yml'
   workflow_dispatch:
 
@@ -31,7 +33,7 @@ jobs:
           node-version: '22'
           cache: npm
       - name: Student agency, goal and mastery safety tests
-        run: node --test tests/haal-adaptive-pilot.node.test.mjs tests/haal-adaptive-teacher-overview.node.test.mjs tests/haal-adaptive-release-gate.node.test.mjs
+        run: node --test tests/haal-adaptive-pilot.node.test.mjs tests/haal-adaptive-teacher-overview.node.test.mjs tests/haal-adaptive-release-gate.node.test.mjs tests/haal-adaptive-server-grading.node.test.mjs
       - name: Install locked dependencies
         run: npm ci --no-audit --no-fund
       - name: TypeScript strict check
