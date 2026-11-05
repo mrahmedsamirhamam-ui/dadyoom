@@ -101,10 +101,11 @@ test("Client pilot shows student choice and explicitly avoids persisted child da
   assert.match(client, /finishDiagnostic/);
   assert.match(client, /recommendPath/);
   assert.match(client, /currentAnchor\.map/);
-  assert.match(client, /ANCHOR_FORMS/);
+  assert.match(client, /bank\.anchorForms/);
+  assert.match(client, /\/api\/pilot\/haal/);
   assert.match(client, /aria-pressed/);
   assert.match(client, /dir="rtl"/);
-  assert.match(client, /certifiedMastery|الإتقان النهائي|التقدير النهائي/);
-  assert.doesNotMatch(client, /localStorage|sessionStorage|fetch\(|createAdminClient|service_role/);
+  assert.match(client, /الإتقان الرسمي|الإتقان النهائي|التقدير النهائي/);
+  assert.doesNotMatch(client, /localStorage|sessionStorage|createAdminClient|service_role|correctId|\.why|\/haal-pilot\.mjs/);
   assert.doesNotMatch(client, /INSERT INTO|UPDATE students|public\.student/);
 });
