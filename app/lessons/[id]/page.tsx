@@ -352,7 +352,7 @@ export default async function LessonPage({
           <LessonProgress
             progress={
               learningProgress?.progress_percent ??
-              (initialCompleted ? 100 : 20)
+              (initialCompleted ? 100 : 0)
             }
           />
 
