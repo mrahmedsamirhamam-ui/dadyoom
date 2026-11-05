@@ -32,6 +32,15 @@ describe("official-curriculum transparency", () => {
       .toBe("شرح تمهيدي لدرس اللغة العربية");
   });
 
+  it("keeps the source review list behind explicit admin authorization", () => {
+    const page = readFileSync(resolve(process.cwd(), "app/admin/curriculum/source-review/page.tsx"), "utf8");
+    expect(page).toContain("session.auth.getUser()");
+    expect(page).toContain('profile?.role?.trim().toLowerCase() !== "admin"');
+    expect(page).toContain('source_publication_ready: false');
+    expect(page).toContain('count: "exact"');
+    expect(page).toContain('href={`/lessons/${lesson.id}`}');
+  });
+
   it("prevents source-unready lessons from advertising official readiness to search engines", () => {
     const page = readFileSync(resolve(process.cwd(), "app/lessons/[id]/page.tsx"), "utf8");
     const sitemap = readFileSync(resolve(process.cwd(), "app/sitemap.ts"), "utf8");
