@@ -10,9 +10,9 @@ export type AdaptiveLessonManifest = Readonly<{
     lessonTextChecked: boolean;
   }>;
   paths: Readonly<Record<string, Readonly<{ intro: string; example: string; explanation: string; practice: string; hints: ReadonlyArray<string> }>>>;
-  sharedCheck: ReadonlyArray<Readonly<{
+  sharedChecks: ReadonlyArray<ReadonlyArray<Readonly<{
     id: string; correctId: string; choices: ReadonlyArray<Readonly<{ id: string; label: string }>>;
-  }>>;
+  }>>>;
   reviews: Readonly<{ linguistic: boolean; pedagogical: boolean; studentSafety: boolean }>;
   trial: Readonly<{ completed: boolean; participants: number; controlsReviewed: boolean }>;
   security: Readonly<{ authenticatedServerAssessment: boolean; roleIsolationVerified: boolean }>;
