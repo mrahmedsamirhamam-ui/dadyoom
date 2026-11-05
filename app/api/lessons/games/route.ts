@@ -121,12 +121,8 @@ function resolveAnswer(
 }
 
 function takeFive<T>(items: T[]) {
-  if (!items.length) return [];
-
-  return Array.from(
-    { length: 5 },
-    (_, index) => items[index % items.length],
-  );
+  // Do not repeat a single invented question five times to inflate a round.
+  return items.slice(0, 3);
 }
 
 function buildPack(
@@ -200,22 +196,8 @@ function buildPack(
       };
     });
 
-  const source =
-    quizSeed.length
-      ? quizSeed
-      : matchSeed.length
-        ? matchSeed
-        : [
-            {
-              prompt:
-                `ما عنوان الدرس الذي تتعلمه الآن؟`,
-              options: [
-                lessonTitle,
-                "درس آخر",
-              ],
-              answer: lessonTitle,
-            },
-          ];
+  // No fabricated title-based quiz when validated teaching questions are absent.
+  const source = quizSeed.length ? quizSeed : matchSeed;
 
   const quiz = takeFive(source);
   const match = takeFive(
