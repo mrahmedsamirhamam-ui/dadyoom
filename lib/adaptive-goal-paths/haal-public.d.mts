@@ -14,6 +14,16 @@ export type PathContent = Readonly<{
   hints: ReadonlyArray<string>;
   feedback: string;
 }>;
+/** Public key-free fixture; includes no answer or explanation. */
+export type QuestionBank = Readonly<{
+  goalId: string;
+  diagnostic: ReadonlyArray<PublicQuestion>;
+  anchorForms: ReadonlyArray<ReadonlyArray<PublicQuestion>>;
+  practice: Readonly<Record<LearningPath, ReadonlyArray<PublicQuestion>>>;
+  gradedOnServer: true;
+  certifiedMasteryAvailable: false;
+  storage: "none";
+}>;
 export const PATHS: ReadonlyArray<LearningPath>;
 export const PATH_LABELS: Readonly<Record<LearningPath, string>>;
 export const HALL_GOAL: Readonly<{
