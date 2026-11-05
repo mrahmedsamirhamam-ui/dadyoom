@@ -86,3 +86,34 @@ test("14 book-based grade2+3 objectives are individualized, guarded against dupl
  assert.ok(!/\bDELETE\s+FROM\b|\bTRUNCATE\b|\bDROP\s+TABLE\s+(?:public\.)?(?:lessons|student)/i.test(s));
  assert.ok(s.includes("NO certification of 2024 educational packs or 2026–27 full textbook"));
 });
+
+test("November 2026 Palestine source cross-check separates full 2020 book, 2024 selective packs and 2025-26 government tender without declaring 2026-27 coverage",()=>{
+ const doc=JSON.parse(readFileSync("data/ministerial-audit/2026-11-05-ps-g2g3-term2-2020-2024-2026-source-crosscheck.json","utf8"));
+ assert.ok(doc.status.includes("BLOCKED"),"current term official completeness remains unverified");
+ assert.equal(doc.lessons_from_2020_additions.length,14);
+ assert.equal(doc.lessons_from_2020_additions.filter(t=>t.grade===2).length,7);
+ assert.equal(doc.lessons_from_2020_additions.filter(t=>t.grade===3).length,7);
+ assert.equal(new Set(doc.lessons_from_2020_additions.map(t=>t.grade+"|"+t.title)).size,14);
+ for(const item of doc.lessons_from_2020_additions) {
+   assert.ok(item.lesson_url.endsWith(item.id),item.title);
+   assert.ok(item.source_edition.includes("2020"),item.title);
+ }
+ assert.equal(doc.verified_2024_official_pack_topics.length,11);
+ assert.equal(doc.verified_2024_official_pack_topics.filter(t=>t.grade===2).length,5);
+ assert.equal(doc.verified_2024_official_pack_topics.filter(t=>t.grade===3).length,6);
+ assert.equal(new Set(doc.verified_2024_official_pack_topics.map(t=>t.grade+"|"+t.title)).size,11);
+ assert.equal(doc.government_sources[0].topical_chapters_in_pack,5);
+ assert.equal(doc.government_sources[1].topical_chapters_in_pack,6);
+ assert.ok(doc.government_sources[0].url.endsWith("arabic2.pdf"));
+ assert.ok(doc.government_sources[1].url.endsWith("arabic3.pdf"));
+ const tender=doc.government_sources[2];
+ assert.equal(tender.academic_year,"2025-2026");
+ assert.equal(tender.second_grade_full_book_page_count,160);
+ assert.equal(tender.second_grade_educational_pack_page_count,41);
+ assert.equal(tender.third_grade_educational_pack_page_count,56);
+ assert.equal(doc.checks.existing14_live_rendered,14);
+ assert.equal(doc.checks.pack2024_web_page_visual_clicks,0,"do not claim 2024 pack UI was tested here");
+ assert.equal(doc.checks.interactive_browser_automation.startsWith("not run"),true);
+ assert.equal(doc.checks.raw_http_response_codes.startsWith("not observed"),true);
+ assert.equal(doc.checks.student_login_and_progress,"not tested");
+});
