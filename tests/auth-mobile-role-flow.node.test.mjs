@@ -109,3 +109,14 @@ test("Existing production role trigger gap is documented as not deployed", () =>
   assert.match(sql, /NEW\.role IS DISTINCT FROM OLD\.role/);
   assert.match(sql, /Profile role changes require an authorized administrator/);
 });
+
+
+test("Mobile home has visible login and two legible CTAs with adequate touch targets", () => {
+  const home = root("app/page.tsx");
+  assert.match(home, /href="\/login" className="inline-flex min-h-11/);
+  assert.match(home, /href="\/signup"/);
+  assert.match(home, /جرّب درسًا الآن دون تسجيل/);
+  assert.match(home, /أنشئ حسابًا لحفظ تقدمك/);
+  assert.match(home, /min-h-12 w-full items-center justify-center/);
+  assert.doesNotMatch(home, /href="\/login" className="hidden/);
+});
