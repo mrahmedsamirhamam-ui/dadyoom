@@ -7,10 +7,13 @@ on:
   pull_request:
     paths:
       - 'app/pilot/haal/**'
+      - 'app/lessons/[[]id[]]/page.tsx'
+      - 'features/lessons/components/LessonExplanationPaths.tsx'
       - 'lib/adaptive-goal-paths/**'
       - 'tests/haal-adaptive-pilot.node.test.mjs'
       - 'tests/haal-adaptive-teacher-overview.node.test.mjs'
       - 'tests/haal-adaptive-release-gate.node.test.mjs'
+      - 'tests/adaptive-grounded-real-lessons.node.test.mjs'
       - 'tests/haal-adaptive-server-grading.node.test.mjs'
       - 'app/api/pilot/haal/**'
       - '.github/workflows/adaptive-goal-path-pilot.yml'
@@ -33,10 +36,10 @@ jobs:
           node-version: '22'
           cache: npm
       - name: Student agency, goal and mastery safety tests
-        run: node --test tests/haal-adaptive-pilot.node.test.mjs tests/haal-adaptive-teacher-overview.node.test.mjs tests/haal-adaptive-release-gate.node.test.mjs tests/haal-adaptive-server-grading.node.test.mjs
+        run: node --test tests/haal-adaptive-pilot.node.test.mjs tests/haal-adaptive-teacher-overview.node.test.mjs tests/haal-adaptive-release-gate.node.test.mjs tests/adaptive-grounded-real-lessons.node.test.mjs tests/haal-adaptive-server-grading.node.test.mjs
       - name: Install locked dependencies
         run: npm ci --no-audit --no-fund
       - name: TypeScript strict check
         run: npx tsc --noEmit
       - name: ESLint for pilot pages
-        run: npx eslint app/pilot/haal/page.tsx app/pilot/haal/teacher/page.tsx
+        run: npx eslint app/pilot/haal/page.tsx app/pilot/haal/teacher/page.tsx 'app/lessons/[id]/page.tsx' features/lessons/components/LessonExplanationPaths.tsx
