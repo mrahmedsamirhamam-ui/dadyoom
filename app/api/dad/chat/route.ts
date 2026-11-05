@@ -181,13 +181,10 @@ export async function POST(request: Request) {
       },
     );
   } catch (error) {
+    console.error("DAD_CHAT_PROVIDER_FAILURE",
+      error instanceof Error ? error.message.slice(0, 300) : "unknown");
     return NextResponse.json(
-      {
-        error:
-          error instanceof Error
-            ? error.message
-            : "تعذر الحصول على رد من ضاد.",
-      },
+      { error: "تعذر الرد الآن. حاول مرة أخرى أو اكتب سؤالًا أقصر." },
       { status: 503 },
     );
   }
