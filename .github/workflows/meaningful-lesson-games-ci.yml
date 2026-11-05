@@ -1,0 +1,28 @@
+name: Meaningful lesson games
+
+on:
+  pull_request:
+    paths:
+      - "app/api/lessons/games/route.ts"
+      - "app/lessons/**/games/LessonGamesClient.tsx"
+      - "lib/lesson-games/**"
+      - "tests/meaningful-lesson-games.test.ts"
+      - ".github/workflows/meaningful-lesson-games-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  gameplay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+      - run: npm ci --no-audit --no-fund
+      - run: npx vitest run tests/meaningful-lesson-games.test.ts
+      - run: npx tsc --noEmit
+      - run: npx eslint app/api/lessons/games/route.ts 'app/lessons/[id]/games/LessonGamesClient.tsx' lib/lesson-games tests/meaningful-lesson-games.test.ts

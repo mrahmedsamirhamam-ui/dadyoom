@@ -3,7 +3,7 @@ import {
 } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
 
-import { currentPlan } from "@/lib/billing/access";
+import { takeDistinctRounds } from "@/lib/lesson-games/meaningful-rounds";
 import { createClient } from "@/lib/supabase/server";
 
 export const runtime = "nodejs";
@@ -82,7 +82,7 @@ function resolveAnswer(
   const clean = String(raw ?? "").trim();
 
   if (!clean) {
-    return options[0] ?? "";
+    return "";
   }
 
   if (options.includes(clean)) {
@@ -120,17 +120,11 @@ function resolveAnswer(
   return clean;
 }
 
-function takeFive<T>(items: T[]) {
-  if (!items.length) return [];
-
-  return Array.from(
-    { length: 5 },
-    (_, index) => items[index % items.length],
-  );
+function takeFive(items: GameItem[]) {
+  return takeDistinctRounds(items);
 }
 
 function buildPack(
-  lessonTitle: string,
   questions: QuestionRow[],
   vocabulary: VocabularyRow[],
 ): GamePack {
@@ -145,7 +139,7 @@ function buildPack(
         options,
       );
 
-      if (!answer) return null;
+      if (!answer || !options.includes(answer) || !row.question.trim()) return null;
 
       return {
         prompt: row.question,
@@ -189,33 +183,13 @@ function buildPack(
 
       return {
         prompt: `اختر معنى: ${row.word}`,
-        options:
-          options.length >= 2
-            ? options
-            : [
-                row.meaning,
-                "معنى آخر",
-              ],
+        options,
         answer: row.meaning,
       };
-    });
+    })
+    .filter((item) => (item.options?.length ?? 0) >= 2);
 
-  const source =
-    quizSeed.length
-      ? quizSeed
-      : matchSeed.length
-        ? matchSeed
-        : [
-            {
-              prompt:
-                `ما عنوان الدرس الذي تتعلمه الآن؟`,
-              options: [
-                lessonTitle,
-                "درس آخر",
-              ],
-              answer: lessonTitle,
-            },
-          ];
+  const source = quizSeed.length ? quizSeed : matchSeed;
 
   const quiz = takeFive(source);
   const match = takeFive(
@@ -319,7 +293,6 @@ export async function GET(request: Request) {
       );
     }
 
-    const plan = await currentPlan();
     const admin = adminClient();
 
     if (admin) {
@@ -335,24 +308,16 @@ export async function GET(request: Request) {
       if (
         cached?.content &&
         cached.prompt_version ===
-          "prebuilt-db-v1"
+          "prebuilt-db-v2-source-grounded"
       ) {
         return NextResponse.json({
           pack: cached.content,
-          plan,
-          freeModes: [
-            "quiz",
-            "trueFalse",
-            "match",
-          ],
-          plusModes: [
-            "order",
-            "treasure",
-            "challenge",
-          ],
+          plan: "open-trial",
+          freeModes: ["quiz", "trueFalse", "match", "order", "treasure", "challenge"],
+          plusModes: [],
           cached: true,
           generator:
-            "prebuilt-db-v1",
+            "prebuilt-db-v2-source-grounded",
         });
       }
     }
@@ -400,13 +365,26 @@ export async function GET(request: Request) {
       );
     }
 
+    if (questionsResult.error || vocabularyResult.error) {
+      return NextResponse.json(
+        { error: "تعذر قراءة أسئلة الدرس. أعد المحاولة لاحقًا." },
+        { status: 503 },
+      );
+    }
+
     const pack = buildPack(
-      String(lessonResult.data.title),
       (questionsResult.data ??
         []) as QuestionRow[],
       (vocabularyResult.data ??
         []) as VocabularyRow[],
     );
+
+    if (!pack.quiz.length && !pack.match.length) {
+      return NextResponse.json(
+        { error: "هذا الدرس يحتاج أسئلة ومفردات تعليمية مدققة قبل تفعيل ألعابه." },
+        { status: 422 },
+      );
+    }
 
     if (admin) {
       await admin
@@ -419,7 +397,7 @@ export async function GET(request: Request) {
               "prebuilt-database",
             model: null,
             prompt_version:
-              "prebuilt-db-v1",
+              "prebuilt-db-v2-source-grounded",
             updated_at:
               new Date().toISOString(),
           },
@@ -431,19 +409,11 @@ export async function GET(request: Request) {
 
     return NextResponse.json({
       pack,
-      plan,
-      freeModes: [
-        "quiz",
-        "trueFalse",
-        "match",
-      ],
-      plusModes: [
-        "order",
-        "treasure",
-        "challenge",
-      ],
+      plan: "open-trial",
+      freeModes: ["quiz", "trueFalse", "match", "order", "treasure", "challenge"],
+      plusModes: [],
       cached: false,
-      generator: "prebuilt-db-v1",
+      generator: "prebuilt-db-v2-source-grounded",
     });
   } catch (error) {
     return NextResponse.json(
