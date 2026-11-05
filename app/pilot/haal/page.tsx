@@ -4,9 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   HALL_GOAL, PATHS, PATH_LABELS, PATH_CONTENT, recommendPath, suggestSupport,
-  type LearningPath, type PublicQuestion,
+  type LearningPath, type PublicQuestion, type QuestionBank,
 } from "@/lib/adaptive-goal-paths/haal-public.mjs";
-import type { QuestionBank } from "@/lib/adaptive-goal-paths/haal-service.mjs";
 
 type Stage = "diagnostic" | "lesson" | "anchor" | "results";
 
