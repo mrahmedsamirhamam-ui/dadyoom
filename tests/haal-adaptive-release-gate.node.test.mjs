@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { checkAdaptiveLessonRelease, HALL_PILOT_MANIFEST } from "../lib/adaptive-goal-paths/release-gate.mjs";
-import { ANCHOR, HALL_GOAL, PATH_CONTENT } from "../lib/adaptive-goal-paths/haal-pilot.mjs";
+import { ANCHOR, ANCHOR_FORMS, HALL_GOAL, PATH_CONTENT } from "../lib/adaptive-goal-paths/haal-pilot.mjs";
 
 test("The grade-seven model is never production-ready by default", () => {
   const status = checkAdaptiveLessonRelease(HALL_PILOT_MANIFEST);
@@ -28,7 +28,7 @@ test("Only a complete evidence record can pass the readiness schema", () => {
     scope: { country: "TEST", ministry: "FAKE MINISTRY FOR UNIT TEST", grade: 7, term: 1 },
     source: { status: "verified", edition: "SYNTHETIC TEST ONLY", officialBookUrl: "https://example.invalid/book.pdf", tableOfContentsChecked: true, lessonTextChecked: true },
     paths: PATH_CONTENT,
-    sharedCheck: ANCHOR,
+    sharedChecks: ANCHOR_FORMS,
     reviews: { linguistic: true, pedagogical: true, studentSafety: true },
     trial: { completed: true, participants: 30, controlsReviewed: true },
     security: { authenticatedServerAssessment: true, roleIsolationVerified: true },
@@ -37,7 +37,8 @@ test("Only a complete evidence record can pass the readiness schema", () => {
   assert.equal(checkAdaptiveLessonRelease({ ...fixture, source: { ...fixture.source, lessonTextChecked: false } }).ready, false);
   assert.equal(checkAdaptiveLessonRelease({ ...fixture, reviews: { ...fixture.reviews, pedagogical: false } }).ready, false);
   assert.equal(checkAdaptiveLessonRelease({ ...fixture, goal: { ...fixture.goal, mastery: { minimumCorrect: 3, questionsPerCheck: 5, spacedChecks: 3 } } }).ready, false);
-  assert.equal(checkAdaptiveLessonRelease({ ...fixture, sharedCheck: ANCHOR.slice(1) }).ready, false);
+  assert.equal(checkAdaptiveLessonRelease({ ...fixture, sharedChecks: [ANCHOR] }).ready, false);
+  assert.equal(checkAdaptiveLessonRelease({ ...fixture, sharedChecks: [ANCHOR, ANCHOR, ANCHOR] }).ready, false);
   assert.equal(checkAdaptiveLessonRelease({ ...fixture, scope: { ...fixture.scope, country: null } }).ready, false);
 });
 
