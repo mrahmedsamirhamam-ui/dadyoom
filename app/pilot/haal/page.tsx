@@ -1,21 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
-  ANCHOR_FORMS,
-  DIAGNOSTIC,
-  HALL_GOAL,
-  PATHS,
-  PATH_LABELS,
-  PATH_CONTENT,
-  assessAnchor,
-  assessQuestions,
-  recommendPath,
-  suggestSupport,
-  type LearningPath,
-  type TeachingQuestion,
-} from "@/lib/adaptive-goal-paths/haal-pilot.mjs";
+  HALL_GOAL, PATHS, PATH_LABELS, PATH_CONTENT, recommendPath, suggestSupport,
+  type LearningPath, type PublicQuestion,
+} from "@/lib/adaptive-goal-paths/haal-public.mjs";
+import type { QuestionBank } from "@/lib/adaptive-goal-paths/haal-service.mjs";
 
 type Stage = "diagnostic" | "lesson" | "anchor" | "results";
 
@@ -30,44 +21,36 @@ const PATH_ICONS: Record<LearningPath, string> = {
   challenge: "✨",
 };
 
-// Different supported practice, identical objective and identical exit check.
-const PRACTICE: Record<LearningPath, readonly TeachingQuestion[]> = {
-  start: [
-    { id: "s1", stem: "دخلَ الطفلُ ضاحكًا. من الذي كان يضحك؟ وما الكلمة التي تصف هيئته؟",
-      choices: [{ id: "a", label: "الطفل — ضاحكًا" }, { id: "b", label: "ضاحكًا — الطفل" }, { id: "c", label: "دخل — الطفل" }],
-      correctId: "a", why: "الطفل هو صاحب الحال؛ وضاحكًا الحال التي تجيب عن سؤال: كيف دخل؟", errorKind: "grammar" },
-    { id: "s2", stem: "جلستْ الفتاةُ هادئةً. حدد الحال وصاحب الحال.",
-      choices: [{ id: "a", label: "الفتاة — هادئةً" }, { id: "b", label: "هادئةً — الفتاة" }, { id: "c", label: "جلست — الفتاة" }],
-      correctId: "b", why: "هادئةً حال؛ والفتاة صاحبة الحال.", errorKind: "grammar" },
-  ],
-  progress: [
-    { id: "p1", stem: "رأيتُ القمرَ ساطعًا. ما الحال وصاحبه؟",
-      choices: [{ id: "a", label: "القمر — ساطعًا" }, { id: "b", label: "رأيت — القمر" }, { id: "c", label: "ساطعًا — القمر" }],
-      correctId: "c", why: "ساطعًا حال من القمر، رغم أن القمر مفعول به.", errorKind: "grammar" },
-    { id: "p2", stem: "دخلَ المسافرُ متعبًا. ما الحال وصاحبه؟",
-      choices: [{ id: "a", label: "متعبًا — المسافر" }, { id: "b", label: "المسافر — متعبًا" }, { id: "c", label: "دخل — المسافر" }],
-      correctId: "a", why: "متعبًا يبين هيئة المسافر عند دخوله.", errorKind: "grammar" },
-  ],
-  challenge: [
-    { id: "c1", stem: "شاهدتُ المتسابقين متفوقين. ما الحال وصاحبه؟",
-      choices: [{ id: "a", label: "المتسابقين — متفوقين" }, { id: "b", label: "متفوقين — المتسابقين" }, { id: "c", label: "شاهدت — المتسابقين" }],
-      correctId: "b", why: "متفوقين حال منصوبة بالياء لجمع المذكر السالم، وصاحبها المتسابقين.", errorKind: "grammar" },
-    { id: "c2", stem: "قابلتُ المعلماتِ سعيداتٍ. ما الحال وصاحبها؟",
-      choices: [{ id: "a", label: "سعيداتٍ — المعلمات" }, { id: "b", label: "المعلمات — سعيداتٍ" }, { id: "c", label: "قابلت — المعلمات" }],
-      correctId: "a", why: "سعيداتٍ حال جمع مؤنث سالم، وصاحبها المعلمات.", errorKind: "grammar" },
-  ],
-};
+type PracticeFeedback = { correct: boolean; explanation: string | null };
+type AnchorFeedback = { id: string; correct: boolean; explanation: string };
+type AnchorResult = { correct: number; total: number; passedThisCheck: boolean; note: string; feedback: AnchorFeedback[] };
+type DiagnosticResult = { correct: number; total: number; errorKinds: string[] };
+
+async function gradePilot<T>(body: Record<string, unknown>): Promise<T> {
+  const response = await fetch("/api/pilot/haal", {
+    method: "POST",
+    cache: "no-store",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ goalId: HALL_GOAL.id, ...body }),
+  });
+  const result: unknown = await response.json();
+  if (!response.ok || !result || typeof result !== "object" || !("ok" in result) || result.ok !== true) {
+    throw new Error("تعذر تصحيح الإجابة. حاول مرة أخرى.");
+  }
+  return result as T;
+}
 
 function QuestionCard({
-  question, value, onAnswer, showFeedback, showExplanation,
+  question, value, onAnswer, showFeedback, feedback, showExplanation,
 }: {
-  question: TeachingQuestion;
+  question: PublicQuestion;
   value?: string;
   onAnswer: (id: string) => void;
   showFeedback: boolean;
+  feedback?: PracticeFeedback;
   showExplanation?: boolean;
 }) {
-  const isCorrect = value === question.correctId;
+  const isCorrect = feedback?.correct === true;
   return (
     <fieldset className="rounded-2xl border border-stone-200 bg-white p-4 sm:p-5">
       <legend className="px-1 text-base font-bold leading-8 text-[#173f38]">{question.stem}</legend>
@@ -85,7 +68,7 @@ function QuestionCard({
         <div role="status" className={"mt-3 rounded-xl p-3 text-sm leading-7 " +
           (isCorrect ? "bg-emerald-50 text-emerald-900" : "bg-amber-50 text-amber-950")}>
           {isCorrect ? "أحسنت. لقد ربطت الوصف بصاحبه." : "هذه محاولة مفيدة. اسأل: كيف كانت هيئة صاحب الفعل؟"}
-          {(isCorrect || showExplanation) && <p className="mt-1">{question.why}</p>}
+          {(isCorrect || showExplanation) && feedback?.explanation && <p className="mt-1">{feedback.explanation}</p>}
         </div>
       ) : null}
     </fieldset>
@@ -93,6 +76,12 @@ function QuestionCard({
 }
 
 export default function AdaptiveHaalPilot() {
+  const [bank, setBank] = useState<QuestionBank | null>(null);
+  const [loadError, setLoadError] = useState("");
+  const [apiError, setApiError] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [practiceFeedback, setPracticeFeedback] = useState<PracticeFeedback | null>(null);
+  const [anchorResult, setAnchorResult] = useState<AnchorResult | null>(null);
   const [stage, setStage] = useState<Stage>("diagnostic");
   const [path, setPath] = useState<LearningPath>("start");
   const [recommended, setRecommended] = useState<LearningPath | null>(null);
@@ -113,10 +102,27 @@ export default function AdaptiveHaalPilot() {
   const [cefr, setCefr] = useState<"unspecified" | "A1" | "A2" | "B1" | "B2" | "C1" | "C2">("unspecified");
 
   const content = PATH_CONTENT[path];
-  const question = PRACTICE[path][practiceIndex];
-  const currentAnchor = ANCHOR_FORMS[anchorFormIndex];
-  const anchorReady = currentAnchor.every(item => typeof anchor[item.id] === "string");
-  const anchorResult = assessAnchor(anchor, currentAnchor);
+  const question = bank?.practice[path]?.[practiceIndex];
+  const currentAnchor = bank?.anchorForms[anchorFormIndex] ?? [];
+  const anchorReady = currentAnchor.length === 5 && currentAnchor.every(item => typeof anchor[item.id] === "string");
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch("/api/pilot/haal", { cache: "no-store", signal: controller.signal })
+      .then(async response => {
+        if (!response.ok) throw new Error("تعذر تحميل أسئلة الدرس.");
+        const incoming: QuestionBank = await response.json();
+        if (incoming.goalId !== HALL_GOAL.id || incoming.diagnostic.length !== 4 ||
+            incoming.anchorForms.length !== 3 || incoming.anchorForms.some(form => form.length !== 5)) {
+          throw new Error("بيانات التقييم غير مكتملة.");
+        }
+        setBank(incoming);
+      })
+      .catch(error => {
+        if (!controller.signal.aborted) setLoadError(error instanceof Error ? error.message : "تعذر تحميل الدرس.");
+      });
+    return () => controller.abort();
+  }, []);
 
   function choosePath(chosen: LearningPath) {
     setPath(chosen);
@@ -127,42 +133,86 @@ export default function AdaptiveHaalPilot() {
     setConsecutiveSuccess(0);
     setOffer(null);
     setFeedbackShown(false);
+    setPracticeFeedback(null);
+    setApiError("");
     setStage("lesson");
   }
 
-  function finishDiagnostic() {
-    if (!DIAGNOSTIC.every(item => diagnostic[item.id])) return;
-    const scored = assessQuestions(DIAGNOSTIC, diagnostic);
-    const selection = recommendPath({
-      correct: scored.correct, total: scored.total,
-      hintsUsed: Object.values(diagnosticHints).filter(Boolean).length,
-      errorKinds: scored.rows.filter(row => !row.correct && row.errorKind !== null).map(row => row.errorKind!).filter(Boolean),
-    });
-    setRecommended(selection);
-    choosePath(selection);
+  async function finishDiagnostic() {
+    if (!bank || busy || !bank.diagnostic.every(item => diagnostic[item.id])) return;
+    setBusy(true);
+    setApiError("");
+    try {
+      const result = await gradePilot<DiagnosticResult>({
+        kind: "diagnostic", answers: diagnostic,
+      });
+      const selection = recommendPath({
+        correct: result.correct, total: result.total,
+        hintsUsed: Object.values(diagnosticHints).filter(Boolean).length,
+        errorKinds: result.errorKinds,
+      });
+      setRecommended(selection);
+      choosePath(selection);
+    } catch (error) {
+      setApiError(error instanceof Error ? error.message : "تعذر تشخيص المسار.");
+    } finally {
+      setBusy(false);
+    }
   }
 
-  function checkPractice() {
-    if (!practiceAnswer || !question || feedbackShown) return;
-    const correct = practiceAnswer === question.correctId;
-    setFeedbackShown(true);
-    const success = correct ? consecutiveSuccess + 1 : 0;
-    const struggles = correct ? 0 : consecutiveStruggles + 1;
-    setConsecutiveSuccess(success);
-    setConsecutiveStruggles(struggles);
-    const suggested = suggestSupport({ path, consecutiveSuccess: success, consecutiveStruggles: struggles });
-    setOffer(suggested !== path ? suggested : null);
+  async function checkPractice() {
+    if (!practiceAnswer || !question || feedbackShown || busy) return;
+    setBusy(true);
+    setApiError("");
+    try {
+      const result = await gradePilot<PracticeFeedback>({
+        kind: "practice", path, questionId: question.id,
+        answers: { [question.id]: practiceAnswer },
+      });
+      const correct = result.correct;
+      setPracticeFeedback(result);
+      setFeedbackShown(true);
+      const success = correct ? consecutiveSuccess + 1 : 0;
+      const struggles = correct ? 0 : consecutiveStruggles + 1;
+      setConsecutiveSuccess(success);
+      setConsecutiveStruggles(struggles);
+      const suggested = suggestSupport({ path, consecutiveSuccess: success, consecutiveStruggles: struggles });
+      setOffer(suggested !== path ? suggested : null);
+    } catch (error) {
+      setApiError(error instanceof Error ? error.message : "تعذر تصحيح التمرين.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function submitAnchor() {
+    if (!anchorReady || busy) return;
+    setBusy(true);
+    setApiError("");
+    try {
+      const result = await gradePilot<AnchorResult>({
+        kind: "anchor", formIndex: anchorFormIndex, answers: anchor,
+      });
+      setAnchorResult(result);
+      setStage("results");
+    } catch (error) {
+      setApiError(error instanceof Error ? error.message : "تعذر تصحيح التحقق.");
+    } finally {
+      setBusy(false);
+    }
   }
 
   function nextPractice() {
-    if (practiceIndex + 1 >= PRACTICE[path].length) {
+    if (practiceIndex + 1 >= (bank?.practice[path]?.length ?? 0)) {
       setStage("anchor");
       setAnchor({});
+      setAnchorResult(null);
       setShowExplanation(false);
     } else {
       setPracticeIndex(index => index + 1);
       setPracticeAnswer("");
       setFeedbackShown(false);
+      setPracticeFeedback(null);
       setHintCount(0);
     }
   }
@@ -197,7 +247,7 @@ export default function AdaptiveHaalPilot() {
           <p className="mt-1 text-sm leading-6">لا يوجد تصنيف دائم أو مقارنة بطلاب آخرين.</p>
           <div className="mt-4 grid gap-3 sm:grid-cols-3">
             {PATHS.map(item => (
-              <button key={item} type="button" onClick={() => choosePath(item)}
+              <button key={item} type="button" disabled={!bank || busy} onClick={() => choosePath(item)}
                 aria-pressed={stage !== "diagnostic" && path === item}
                 className={"min-h-24 rounded-xl border-2 p-3 text-right transition focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#d9ac55] " +
                   (stage !== "diagnostic" && path === item ? PATH_STYLES[item] : "border-stone-200 bg-stone-50 hover:border-stone-400")}>
@@ -212,11 +262,15 @@ export default function AdaptiveHaalPilot() {
           </p>}
         </section>
 
-        {stage === "diagnostic" && (
+        {!bank && !loadError && <p role="status" className="rounded-xl bg-white p-4 text-sm">تحميل أسئلة الدرس...</p>}
+        {loadError && <p role="alert" className="rounded-xl bg-amber-50 p-4 text-sm">{loadError}</p>}
+        {apiError && <p role="alert" className="rounded-xl bg-amber-50 p-4 text-sm">{apiError}</p>}
+
+        {stage === "diagnostic" && bank && (
           <section className="space-y-4">
             <h2 className="text-xl font-extrabold">اكتشف نقطة البداية</h2>
             <p className="text-sm leading-7">أربع أسئلة قصيرة لا تُسجّل في حسابك، ولا تدخل في التقدير النهائي. يمكنك تجاوزها باختيار أي مسار أعلاه.</p>
-            {DIAGNOSTIC.map(item => (
+            {bank.diagnostic.map(item => (
               <div key={item.id} className="space-y-2">
                 <QuestionCard question={item} value={diagnostic[item.id]}
                   onAnswer={answer => setDiagnostic(current => ({ ...current, [item.id]: answer }))} showFeedback={false} />
@@ -232,14 +286,14 @@ export default function AdaptiveHaalPilot() {
                 )}
               </div>
             ))}
-            <button type="button" disabled={!DIAGNOSTIC.every(item => diagnostic[item.id])} onClick={finishDiagnostic}
+            <button type="button" disabled={busy || !bank.diagnostic.every(item => diagnostic[item.id])} onClick={finishDiagnostic}
               className="min-h-12 w-full rounded-xl bg-[#174f47] px-5 py-3 font-bold text-white disabled:cursor-not-allowed disabled:opacity-40">
               اقترح لي مسارًا مناسبًا
             </button>
           </section>
         )}
 
-        {stage === "lesson" && (
+        {stage === "lesson" && bank && (
           <section className="space-y-4">
             <div className="rounded-2xl border border-[#dce8e0] bg-white p-5">
               <p className="text-sm font-bold text-[#587d71]">{PATH_LABELS[path]} • نفس الهدف التعليمي</p>
@@ -308,18 +362,18 @@ export default function AdaptiveHaalPilot() {
             </div>
             {question && (
               <div className="space-y-3">
-                <p className="text-sm font-bold">تدريب {practiceIndex + 1} من {PRACTICE[path].length}</p>
+                <p className="text-sm font-bold">تدريب {practiceIndex + 1} من {bank.practice[path].length}</p>
                 <QuestionCard question={question} value={practiceAnswer} onAnswer={value => {
                   if (feedbackShown) return;
                   setPracticeAnswer(value);
-                }} showFeedback={feedbackShown} />
+                }} showFeedback={feedbackShown} feedback={practiceFeedback ?? undefined} />
                 {!feedbackShown && (
-                  <button type="button" disabled={!practiceAnswer} onClick={checkPractice}
+                  <button type="button" disabled={busy || !practiceAnswer} onClick={checkPractice}
                     className="min-h-12 rounded-xl bg-[#174f47] px-5 py-3 font-bold text-white disabled:opacity-40">
                     تحقق من إجابتي
                   </button>
                 )}
-                {feedbackShown && practiceAnswer !== question.correctId && (
+                {feedbackShown && practiceFeedback?.correct === false && (
                   <div className="space-y-3 rounded-xl border border-amber-200 bg-amber-50 p-4">
                     <p className="text-sm leading-7">يمكنك طلب تلميح، أو محاولة ثانية. لا تظهر الإجابة الصحيحة تلقائيًا.</p>
                     {hintCount > 0 && <p role="status" className="text-sm leading-7">
@@ -331,7 +385,7 @@ export default function AdaptiveHaalPilot() {
                         تلميح آخر
                       </button>}
                       <button type="button" className="min-h-11 rounded-lg border border-amber-700 px-4 text-sm font-bold"
-                        onClick={() => { setPracticeAnswer(""); setFeedbackShown(false); }}>
+                        onClick={() => { setPracticeAnswer(""); setFeedbackShown(false); setPracticeFeedback(null); }}>
                         أحاول مرة أخرى
                       </button>
                     </div>
@@ -343,9 +397,9 @@ export default function AdaptiveHaalPilot() {
                     جرّب هذا المسار
                   </button>
                 </div>}
-                {feedbackShown && practiceAnswer === question.correctId && (
+                {feedbackShown && practiceFeedback?.correct === true && (
                   <button type="button" onClick={nextPractice} className="min-h-12 rounded-xl bg-[#174f47] px-5 py-3 font-bold text-white">
-                    {practiceIndex + 1 === PRACTICE[path].length ? "الاختبار المشترك لجميع المسارات" : "التدريب التالي"}
+                    {practiceIndex + 1 === bank.practice[path].length ? "الاختبار المشترك لجميع المسارات" : "التدريب التالي"}
                   </button>
                 )}
                 <button type="button" onClick={() => { setStage("anchor"); setAnchor({}); }}
@@ -357,22 +411,22 @@ export default function AdaptiveHaalPilot() {
           </section>
         )}
 
-        {stage === "anchor" && (
+        {stage === "anchor" && bank && (
           <section className="space-y-4">
             <h2 className="text-xl font-extrabold">تحقق مشترك من الهدف</h2>
-            <p className="text-sm leading-7">معيار النجاح واحد لجميع المسارات: أربع إجابات صحيحة من خمس على الأقل. هذه صيغة {anchorFormIndex + 1} من {ANCHOR_FORMS.length}، بأمثلة تختلف عن الصيغة السابقة. الإعادة في الجلسة نفسها ليست تحققًا متباعدًا ولا تمنح إتقانًا نهائيًا.</p>
+            <p className="text-sm leading-7">معيار النجاح واحد لجميع المسارات: أربع إجابات صحيحة من خمس على الأقل. هذه صيغة {anchorFormIndex + 1} من {bank.anchorForms.length}، بأمثلة تختلف عن الصيغة السابقة. الإعادة في الجلسة نفسها ليست تحققًا متباعدًا ولا تمنح إتقانًا نهائيًا.</p>
             {currentAnchor.map(item => (
               <QuestionCard key={item.id} question={item} value={anchor[item.id]}
                 onAnswer={answer => setAnchor(current => ({ ...current, [item.id]: answer }))} showFeedback={false}/>
             ))}
-            <button type="button" disabled={!anchorReady} onClick={() => setStage("results")}
+            <button type="button" disabled={busy || !anchorReady} onClick={submitAnchor}
               className="min-h-12 w-full rounded-xl bg-[#174f47] px-5 py-3 font-bold text-white disabled:opacity-40">
               اعرض نتيجة التحقق
             </button>
           </section>
         )}
 
-        {stage === "results" && (
+        {stage === "results" && anchorResult && bank && (
           <section className="space-y-4">
             <div className="rounded-2xl border border-stone-200 bg-white p-5">
               <h2 className="text-2xl font-extrabold">النتيجة: {anchorResult.correct} من {anchorResult.total}</h2>
@@ -388,20 +442,20 @@ export default function AdaptiveHaalPilot() {
             </button>
             {showExplanation && currentAnchor.map(item => (
               <QuestionCard key={item.id} question={item} value={anchor[item.id]} onAnswer={() => {}}
-                showFeedback showExplanation/>
+                showFeedback feedback={anchorResult.feedback.find(row => row.id === item.id)} showExplanation/>
             ))}
             <div className="flex flex-wrap gap-3">
-              <button type="button" onClick={() => { setStage("lesson"); setPracticeAnswer(""); setPracticeIndex(0); setFeedbackShown(false); }}
+              <button type="button" onClick={() => { setStage("lesson"); setPracticeAnswer(""); setPracticeIndex(0); setFeedbackShown(false); setPracticeFeedback(null); }}
                 className="min-h-12 rounded-xl bg-[#174f47] px-5 font-bold text-white">مراجعة شرح المسار</button>
-              <button type="button" onClick={() => { setAnchorFormIndex(index => (index + 1) % ANCHOR_FORMS.length); setStage("anchor"); setAnchor({}); setShowExplanation(false); }}
+              <button type="button" onClick={() => { setAnchorFormIndex(index => (index + 1) % bank.anchorForms.length); setStage("anchor"); setAnchor({}); setAnchorResult(null); setShowExplanation(false); }}
                 className="min-h-12 rounded-xl border border-[#174f47] px-5 font-bold">أتحقق بأمثلة جديدة</button>
             </div>
           </section>
         )}
 
         <footer className="rounded-xl border border-[#e8debf] bg-[#fffdf3] p-4 text-xs leading-7">
-          {HALL_GOAL.disclaimer} لا تُحفظ الإجابات أو مدة الاستجابة أو المسار في الخادم أو التخزين المحلي.
-          الحكم الرسمي بالإتقان يحتاج ثلاث جلسات متباعدة وتقييمًا آمنًا من الخادم ومراجعة المعلم.
+          {HALL_GOAL.disclaimer} ترسل الإجابات مؤقتًا إلى واجهة التصحيح التجريبي للخادم، دون تسجيل درجات أو حفظ بيانات الطالب في قاعدة البيانات أو التخزين المحلي.
+          هذه خدمة تعليمية عامة وليست آلية امتحان مؤمنة بمصادقة الطالب؛ الإتقان الرسمي يحتاج جلسات متباعدة وتصحيحًا مُصادقًا عليه وسجل محاولات محميًا ومراجعة المعلم.
         </footer>
       </div>
     </main>
