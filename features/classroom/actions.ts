@@ -314,6 +314,7 @@ export async function submitAssignmentAction(
     const maxScore = Number(row?.max_score ?? 0);
 
     revalidatePath("/student/classroom");
+    revalidatePath("/student");
     revalidatePath("/teacher/classroom");
 
     return {

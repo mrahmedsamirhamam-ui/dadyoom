@@ -2,6 +2,10 @@ import { redirect } from "next/navigation";
 import StudentGamificationHub from "@/features/gamification/components/StudentGamificationHub";
 import SkillsProgressCard from "@/components/dashboard/student/skills-progress-card";
 import Link from "next/link";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import StudentNextStepCard from "@/components/dashboard/student/next-step-card";
+import { getPendingStudentAssignments } from "@/features/learning-journey/get-pending-student-assignments";
+import { selectNextStudentStep, type StudentAssignmentCandidate } from "@/features/learning-journey/student-next-step";
 
 import { buildAdaptiveLearningPlan } from "@/features/learning-plan/services/buildAdaptiveLearningPlan";
 import { getAdaptiveLearningSteps } from "@/features/learning-plan/services/getAdaptiveLearningSteps";
@@ -427,6 +431,30 @@ if (masterySkillsError) {
     recommendedLesson?.title ?? "ابدأ الدرس المقترح";
 
 
+  let pendingAssignmentCandidates: StudentAssignmentCandidate[] = [];
+  let submittedAssignmentIds: ReadonlySet<string> = new Set<string>();
+  try {
+    const pending = await getPendingStudentAssignments(
+      supabase as unknown as SupabaseClient,
+      user.id,
+      teacherClasses.map((teacherClass) => teacherClass.class_id),
+    );
+    pendingAssignmentCandidates = pending.assignments;
+    submittedAssignmentIds = pending.submittedAssignmentIds;
+  } catch {
+    // The student still needs a functional dashboard if the assignment
+    // service is unavailable. Never expose another student's assignment.
+    console.warn("STUDENT_ASSIGNMENTS_UNAVAILABLE");
+  }
+
+  const nextStep = selectNextStudentStep({
+    assignments: pendingAssignmentCandidates,
+    submittedAssignmentIds,
+    continueLessonId: dashboard.continueLesson?.id ?? continueLesson?.lesson_id,
+    recommendedLessonId: recommendedLessonIsId ? recommendedLessonValue : null,
+    firstLessonId: dashboard.lessons.find((lesson) => !lesson.completed)?.id ?? null,
+  });
+
   return (
     <main dir="rtl" className="dadyoom-role-page min-h-screen w-full min-w-0 overflow-x-hidden bg-[#f7faf8] px-3 py-5 sm:px-5 lg:px-7">
       <div className="mx-auto w-full min-w-0 max-w-7xl">
@@ -442,23 +470,7 @@ if (masterySkillsError) {
                 تابع تقدمك، وواصل الدرس التالي، واجعل العربية جزءًا ممتعًا من يومك.
               </p>
 
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link
-                  href={                     dashboard.continueLesson                       ? `/lessons/${dashboard.continueLesson.id}`                       : dashboard.lessons[0]                       ? `/lessons/${dashboard.lessons[0].id}`                       : "/courses"                   }
-                  className="inline-flex items-center rounded-xl bg-emerald-600 px-5 py-3 font-semibold text-white hover:bg-emerald-700"
-                >
-                  {dashboard.completedLessons > 0
-                    ? "واصل التعلم"
-                    : "ابدأ أول درس"}
-                </Link>
-
-                <Link
-                  href="/ask"
-                  className="rounded-xl border border-white/40 bg-white/10 px-5 py-3 font-black text-white backdrop-blur transition hover:bg-white/20"
-                >
-                  اسأل ضاد
-                </Link>
-              </div>
+              <p className="mt-6 text-sm font-bold text-teal-100">خطوة واحدة واضحة تنتظرك بعد هذه البطاقة.</p>
             </div>
 
             <div className="grid min-w-[280px] grid-cols-2 gap-3">
@@ -469,6 +481,8 @@ if (masterySkillsError) {
             </div>
           </div>
         </section>
+
+        <StudentNextStepCard step={nextStep} />
 
         <StudentParentLinkCard code={parentLinkCode} />
 

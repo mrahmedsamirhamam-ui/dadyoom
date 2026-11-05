@@ -279,6 +279,12 @@ export default async function TeacherPage() {
           <p className="mt-3 max-w-3xl leading-7 text-emerald-50">
             أدر فصولك وطلابك ومحتواك التعليمي من مكان واحد.
           </p>
+          <Link
+            href="/teacher/classroom#assignment-creation"
+            className="mt-5 inline-flex min-h-12 items-center justify-center rounded-xl bg-[#f5cf7a] px-6 py-3 font-black text-[#123f39] hover:bg-[#ffe09a]"
+          >
+            أسند واجبًا أو نشاطًا الآن
+          </Link>
 
           <div className="mt-7 grid gap-3 sm:grid-cols-3">
             <Metric
