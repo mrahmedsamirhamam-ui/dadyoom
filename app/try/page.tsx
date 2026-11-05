@@ -52,7 +52,7 @@ export default function GuestLessonPage() {
             <section aria-live="polite" className="p-6 sm:p-8">
               <div className="text-5xl" aria-hidden="true">🏅</div>
               <h2 className="mt-3 text-2xl font-black">إنجاز تجريبي</h2>
-              <p className="mt-3 leading-8">أجبت إجابة صحيحة من المحاولة الأولى عن {correctCount} من {guestQuestions.length} سؤالين. المهم أنك تعلمت شيئًا جديدًا.</p>
+              <p className="mt-3 leading-8">أجبت إجابة صحيحة عن {correctCount} من أصل سؤالين. المهم أنك تعلمت شيئًا جديدًا.</p>
               <p className="mt-3 text-sm leading-7 text-[#52685b]">
                 لا نحفظ بياناتك الشخصية أو نتائج هذه التجربة. أنشئ حسابًا إذا أردت حفظ تقدم دروسك القادمة.
               </p>
