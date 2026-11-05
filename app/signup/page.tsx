@@ -1,5 +1,9 @@
+import { redirect } from "next/navigation";
 import EmailPasswordAuthForm from "@/components/auth/EmailPasswordAuthForm";
+import { signedInDestination } from "@/lib/auth/signed-in-destination";
 
-export default function SignupPage() {
+export default async function SignupPage() {
+  const destination = await signedInDestination();
+  if (destination) redirect(destination);
   return <EmailPasswordAuthForm mode="signup" />;
 }
