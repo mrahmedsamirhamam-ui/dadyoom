@@ -34,7 +34,7 @@ test("Long unpunctuated text, non-Arabic characters and literal HTML remain unch
   const steps = splitPublishedLessonIntoSteps(text, 100);
   assert.ok(steps.length > 5);
   assert.equal(steps.join(""), text);
-  assert.equal(splitPublishedLessonIntoSteps(""), [].join(""));
+  assert.deepEqual(splitPublishedLessonIntoSteps(""), []);
   assert.deepEqual(splitPublishedLessonIntoSteps(null), []);
   assert.deepEqual(splitPublishedLessonIntoSteps(undefined), []);
   assert.throws(() => splitPublishedLessonIntoSteps(text, 0), RangeError);
