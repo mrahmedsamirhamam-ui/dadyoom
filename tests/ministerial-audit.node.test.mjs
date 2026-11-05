@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import { auditCurriculum,normalizeArabic,normalizeStrictTitle,checkOfficialManifest } from "../lib/ministerial-audit/engine.mjs";
 import { textHash } from "../lib/ministerial-audit/topic-coverage.mjs";
+import { attachSubjectReviews, fetchAll } from "../scripts/ministerial-audit.mjs";
 const countries=JSON.parse(fs.readFileSync("data/curriculum-packs/arab-countries.json","utf8")).countries;
 const sourceRegistry=JSON.parse(fs.readFileSync("data/ministerial-audit/official-source-registry-2026-2027.json","utf8")).countries;
 const source={url:"https://moe.gov.bh/ar/official-arabic.pdf",sha256:"a".repeat(64),documentType:"textbook",edition:"2026-2027",
@@ -259,4 +260,50 @@ test("2024 partial educational pack can prove titles, not full Ministry book com
  const r=audit([m],[lesson()]);
  assert.equal(r.verifiedScopes,0);
  assert.ok(r.findings.some(x=>x.code==="TITLE_MATCH_SUBJECT_NOT_CERTIFIED"&&x.subjectIssues.includes("PARTIAL_EDUCATIONAL_PACK_NOT_FULL_BOOK")));
+});
+
+test("subject review import includes live lesson proof and can certify only the reviewed scope",()=>{
+ const reviewed=lesson();
+ const exported={...reviewed,subjectReview:{status:"not_verified"},topicEvidence:[],livePageReview:undefined};
+ const bundle=[{lessonId:reviewed.id,subjectReview:reviewed.subjectReview,
+   topicEvidence:reviewed.topicEvidence,livePageReview:reviewed.livePageReview}];
+ attachSubjectReviews([exported],bundle);
+ const r=audit([official()],[exported]);
+ assert.equal(r.verifiedScopes,1);
+ assert.equal(r.releaseReady,false); // Other 527 term scopes remain unverified.
+ assert.equal(exported.livePageReview.contentSha256,textHash(exported.content));
+});
+test("review import rejects orphan IDs, duplicated reviews, and duplicated platform IDs",()=>{
+ const p=lesson();
+ assert.throws(()=>attachSubjectReviews([p],[{lessonId:"unknown"}]),/REVIEW_REFERENCES_UNKNOWN_PLATFORM_LESSON/);
+ assert.throws(()=>attachSubjectReviews([p],[{lessonId:p.id},{lessonId:p.id}]),/DUPLICATE_OR_MISSING_REVIEW_LESSON_ID/);
+ assert.throws(()=>attachSubjectReviews([p,{...p}],[{lessonId:p.id}]),/DUPLICATE_OR_MISSING_PLATFORM_LESSON_ID/);
+});
+test("review bundle cannot approve a content body changed after the live browser check",()=>{
+ const reviewed=lesson(),changed={...reviewed,content:reviewed.content+" altered",subjectReview:null,topicEvidence:[],livePageReview:null};
+ attachSubjectReviews([changed],[{lessonId:reviewed.id,subjectReview:reviewed.subjectReview,
+   topicEvidence:reviewed.topicEvidence,livePageReview:reviewed.livePageReview}]);
+ const r=audit([official()],[changed]);
+ assert.equal(r.verifiedScopes,0);
+ const issues=r.findings.filter(f=>f.code==="TITLE_MATCH_SUBJECT_NOT_CERTIFIED").flatMap(f=>f.subjectIssues);
+ assert.ok(issues.includes("SUBJECT_CHANGED_SINCE_LAST_REVIEW"));
+ assert.ok(issues.includes("LIVE_STUDENT_LESSON_PAGE_NOT_VERIFIED"));
+});
+test("read-only Supabase export uses stable id order across pages",async()=>{
+ const rows=Array.from({length:503},(_,i)=>({id:String(i).padStart(5,"0")}));
+ const seen=[];
+ const client={from:table=>{assert.equal(table,"lessons");return {select:columns=>{assert.equal(columns,"id");return {
+  order:(column,opts)=>{seen.push([column,opts.ascending]);return {range:async(start,end)=>({data:rows.slice(start,end+1),error:null})};}
+ };}}}};
+ const result=await fetchAll(client,"lessons","id");
+ assert.equal(result.length,503);
+ assert.deepEqual(seen,[["id",true],["id",true]]);
+ assert.equal(new Set(result.map(r=>r.id)).size,503);
+});
+test("read-only export refuses duplicated records instead of misleading official coverage",async()=>{
+ const rows=Array.from({length:500},(_,i)=>({id:String(i)}));
+ const client={from:()=>({select:()=>({order:()=>({range:async(start)=>({
+  data:start===0?rows:[{id:"499"}],error:null
+ })})})})};
+ await assert.rejects(fetchAll(client,"lessons","id"),/DUPLICATE_OR_MISSING_PAGINATED_ID/);
 });

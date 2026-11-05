@@ -50,12 +50,20 @@ async function probeOfficialSources() {
   save("official-portal-probes.json",{createdAt:new Date().toISOString(),note:"Cryptographic SHA-256 of portal response proves only which bytes were retrieved; not that a textbook was audited or is current.",results});
   return results;
 }
-async function fetchAll(client,table,columns){
-  const data=[];
+export async function fetchAll(client,table,columns){
+  // Stable primary-key ordering is mandatory for offset pagination. Without it,
+  // rows can be silently omitted or counted twice across pages.
+  const data=[], seen=new Set();
   for(let offset=0;offset<250000;offset+=500){
-    const {data:page,error}=await client.from(table).select(columns).range(offset,offset+499);
+    const {data:page,error}=await client.from(table).select(columns)
+      .order("id",{ascending:true}).range(offset,offset+499);
     if(error)throw new Error("READ_ONLY_DB_EXPORT_FAILED:"+table+":"+error.message);
     if(!Array.isArray(page))throw new Error("NON_ARRAY_DB_RESPONSE:"+table);
+    for(const row of page){
+      if(row?.id==null || seen.has(String(row.id)))
+        throw new Error("DUPLICATE_OR_MISSING_PAGINATED_ID:"+table+":"+String(row?.id));
+      seen.add(String(row.id));
+    }
     data.push(...page);
     if(page.length<500)return data;
   }
@@ -94,6 +102,33 @@ function fromManifestDir(dir){
   if(!fs.existsSync(full))throw new Error("OFFICIAL_MANIFEST_DIR_MISSING:"+full);
   return fs.readdirSync(full).filter(f=>f.endsWith(".json")).sort().map(f=>read(path.join(full,f)));
 }
+// Combine human-reviewed evidence with the matching teaching-body snapshot only.
+// Never count an unrecognized/stale lesson ID as having passed review.
+export function attachSubjectReviews(platform,bundle){
+  if(!Array.isArray(platform)||!Array.isArray(bundle))
+    throw new Error("SUBJECT_REVIEW_BUNDLE_MUST_BE_ARRAY");
+  const byId=new Map();
+  for(const item of platform){
+    if(!item?.id||byId.has(item.id))throw new Error("DUPLICATE_OR_MISSING_PLATFORM_LESSON_ID");
+    byId.set(item.id,item);
+  }
+  const seen=new Set();
+  for(const record of bundle){
+    if(!record?.lessonId||seen.has(record.lessonId))
+      throw new Error("DUPLICATE_OR_MISSING_REVIEW_LESSON_ID");
+    seen.add(record.lessonId);
+    const item=byId.get(record.lessonId);
+    if(!item)throw new Error("REVIEW_REFERENCES_UNKNOWN_PLATFORM_LESSON:"+record.lessonId);
+    item.subjectReview=record.subjectReview;
+    item.topicEvidence=record.topicEvidence;
+    // Previously omitted: auditLessonTopicCompleteness verifies the live page's
+    // hash against the actual subject body. Without this, reviewed lessons could
+    // never pass even with genuine screenshot/browser-check evidence.
+    item.livePageReview=record.livePageReview;
+  }
+  return platform;
+}
+
 function makeMarkdown(result){
   const lines=["# ضاديوم — تدقيق المصدر الوزاري مقابل الدروس", "", "السنة: "+result.academicYear,
     "الدول: "+result.countries+"؛ الصفوف: 1–"+result.gradeMax+"؛ نطاقات دولة × صف × فصل: "+result.scopes,
@@ -115,19 +150,7 @@ async function main(){
   const platform=live?await readPlatformFromSupabase():platformFile?read(platformFile):[];
   if(!Array.isArray(platform))throw new Error("PLATFORM_EXPORT_MUST_BE_ARRAY");
   const reviewFile=arg("--subject-reviews");
-  if(reviewFile){
-    const bundle=read(reviewFile);
-    if(!Array.isArray(bundle))throw new Error("SUBJECT_REVIEW_BUNDLE_MUST_BE_ARRAY");
-    const reviews=new Map();
-    for(const record of bundle){
-      if(!record.lessonId||reviews.has(record.lessonId))throw new Error("DUPLICATE_OR_MISSING_REVIEW_LESSON_ID");
-      reviews.set(record.lessonId,record);
-    }
-    for(const item of platform){
-      const signed=reviews.get(item.id);
-      if(signed){item.subjectReview=signed.subjectReview;item.topicEvidence=signed.topicEvidence;}
-    }
-  }
+  if(reviewFile) attachSubjectReviews(platform,read(reviewFile));
   const report=auditCurriculum({countries,registry:registry.countries,
     manifests:fromManifestDir(arg("--official-dir")),
     platformLessons:platform,academicYear:year,includeGrade13:flag("--include-grade13")});
