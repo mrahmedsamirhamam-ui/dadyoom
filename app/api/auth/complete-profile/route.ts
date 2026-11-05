@@ -21,7 +21,7 @@ export async function POST(request: Request) {
 
   if (existing?.role && existing?.country && existing?.full_name?.trim()) {
     const role = existing.role.trim().toLowerCase();
-    return NextResponse.json({ ok: true, destination: destinationForStoredRole(existingRole || role) });
+    return NextResponse.json({ ok: true, destination: destinationForStoredRole(role) });
   }
 
   let body: { fullName?: string; role?: string; country?: string };
@@ -75,5 +75,5 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true, destination: destinationForStoredRole(racedRole) });
   }
 
-  return NextResponse.json({ ok: true, destination: destinations[role] || "/student" });
+  return NextResponse.json({ ok: true, destination: destinationForStoredRole(existingRole || role) });
 }
