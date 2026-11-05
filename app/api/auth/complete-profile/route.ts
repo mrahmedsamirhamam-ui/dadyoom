@@ -2,16 +2,8 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { isCountryCode } from "@/lib/countries";
+import { destinationForStoredRole, isSelfSignupRole } from "@/lib/auth/role-destination.mjs";
 
-const allowedRoles = new Set(["student", "child", "teacher", "parent", "school"]);
-const destinations: Record<string, string> = {
-  student: "/student",
-  child: "/child",
-  teacher: "/teacher",
-  parent: "/parent",
-  school: "/school",
-  admin: "/admin",
-};
 
 export async function POST(request: Request) {
   const supabase = await createClient();
@@ -29,7 +21,7 @@ export async function POST(request: Request) {
 
   if (existing?.role && existing?.country && existing?.full_name?.trim()) {
     const role = existing.role.trim().toLowerCase();
-    return NextResponse.json({ ok: true, destination: destinations[role] || "/student" });
+    return NextResponse.json({ ok: true, destination: destinationForStoredRole(existingRole || role) });
   }
 
   let body: { fullName?: string; role?: string; country?: string };
@@ -44,22 +36,28 @@ export async function POST(request: Request) {
   const country = typeof body.country === "string" ? body.country.trim().toUpperCase() : "";
 
   if (!fullName) return NextResponse.json({ error: "اكتب الاسم الكامل." }, { status: 400 });
-  if (!allowedRoles.has(role)) return NextResponse.json({ error: "نوع الحساب غير صالح." }, { status: 400 });
+  if (!isSelfSignupRole(role)) return NextResponse.json({ error: "نوع الحساب غير صالح." }, { status: 400 });
   if (!isCountryCode(country)) return NextResponse.json({ error: "اختر دولة صحيحة." }, { status: 400 });
 
+  // A pre-existing role is authoritative, even for an incomplete profile.
+  // No self-service role changes, including student -> teacher or school.
+  const existingRole = typeof existing?.role === "string"
+    ? existing.role.trim().toLowerCase() : "";
+  if (existingRole && existingRole !== role) {
+    return NextResponse.json(
+      { error: "هذا الحساب مسجل بدور مختلف. لا يمكن تغيير الصلاحيات من صفحة التسجيل." },
+      { status: 409, headers: { "Cache-Control": "no-store" } },
+    );
+  }
   const admin = createAdminClient();
-  const { error: insertError } = await admin.from("profiles").upsert(
-    {
-      id: user.id,
-      email: user.email,
-      full_name: fullName,
-      role,
-      country,
-    },
-    {
-      onConflict: "id",
-    }
-  );
+  const { error: insertError } = existingRole
+    ? await admin.from("profiles")
+      .update({ email: user.email, full_name: fullName, country })
+      .eq("id", user.id)
+    : await admin.from("profiles").upsert(
+      { id: user.id, email: user.email, full_name: fullName, role, country },
+      { onConflict: "id" },
+    );
 
   if (insertError) {
     const { data: racedProfile } = await supabase
@@ -74,7 +72,7 @@ export async function POST(request: Request) {
     }
 
     const racedRole = racedProfile.role.trim().toLowerCase();
-    return NextResponse.json({ ok: true, destination: destinations[racedRole] || "/student" });
+    return NextResponse.json({ ok: true, destination: destinationForStoredRole(racedRole) });
   }
 
   return NextResponse.json({ ok: true, destination: destinations[role] || "/student" });
