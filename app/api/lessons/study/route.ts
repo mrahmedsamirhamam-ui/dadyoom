@@ -28,33 +28,6 @@ type Task =
   | "custom_summary"
   | "custom_slides";
 
-type RichSlide = {
-  kind?:
-    | "cover"
-    | "objectives"
-    | "concept"
-    | "compare"
-    | "activity"
-    | "review";
-  title: string;
-  subtitle?: string;
-  bullets?: string[];
-  callout?: string;
-  leftTitle?: string;
-  leftItems?: string[];
-  rightTitle?: string;
-  rightItems?: string[];
-  question?: string;
-  answer?: string;
-  narration?: string;
-  seconds?: number;
-};
-
-type Deck = {
-  title?: string;
-  slides: RichSlide[];
-};
-
 type LessonRow = {
   id: string;
   title: string;
@@ -477,13 +450,14 @@ export async function POST(
     };
 
     if (task === "slides") {
+      const deck = buildGroundedLessonDeck(lesson);
       return NextResponse.json({
-        data: buildGroundedLessonDeck(lesson),
+        data: deck,
         provider: "dadyoom-source",
         model: "grounded-teaching-v2",
         cached: false,
         coreLessonAsset: true,
-        needsReview: buildGroundedLessonDeck(lesson).needsContentReview,
+        needsReview: deck.needsContentReview,
       });
     }
 
