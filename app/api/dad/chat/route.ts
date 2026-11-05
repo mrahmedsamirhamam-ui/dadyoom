@@ -106,6 +106,7 @@ export async function POST(request: Request) {
 
     const first = await routeAi({
       profile: "economy",
+      deadlineMs: 19000,
       temperature: 0.28,
       maxTokens: 900,
       messages: [
@@ -141,6 +142,7 @@ export async function POST(request: Request) {
     if (!arabicEnough(reply) || leaked(reply)) {
       const repair = await routeAi({
         profile: "quality",
+        deadlineMs: 7000,
         excludeProviders: [first.provider],
         temperature: 0.2,
         maxTokens: 900,
