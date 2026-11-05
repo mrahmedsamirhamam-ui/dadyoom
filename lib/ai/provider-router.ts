@@ -15,6 +15,8 @@ export type AiRequest = {
   maxTokens?: number;
   excludeProviders?: string[];
   preferredProviders?: string[];
+  signal?: AbortSignal;
+  deadlineMs?: number;
 };
 
 export type AiResult = {
@@ -27,14 +29,14 @@ export type AiResult = {
 type ProviderError = Error & { status?: number };
 
 const DEFAULT_ECONOMY = [
-  "ollama",
   "gemini",
+  "groq",
   "deepseek",
   "openrouter",
-  "anthropic",
-  "groq",
   "mistral",
+  "anthropic",
   "openai",
+  "ollama",
 ];
 
 const DEFAULT_QUALITY = [
@@ -86,6 +88,10 @@ function makeError(message: string, status?: number): ProviderError {
 
 async function fetchTimed(url: string, init: RequestInit): Promise<Response> {
   const controller = new AbortController();
+  const callerSignal = init.signal;
+  const cancelFromCaller = () => controller.abort(callerSignal?.reason);
+  if (callerSignal?.aborted) cancelFromCaller();
+  else callerSignal?.addEventListener("abort", cancelFromCaller, { once: true });
   const configured = Number(process.env.AI_TIMEOUT_MS ?? 45000);
   const timeout = Number.isFinite(configured)
     ? Math.max(5000, Math.min(180000, configured))
@@ -101,6 +107,7 @@ async function fetchTimed(url: string, init: RequestInit): Promise<Response> {
     });
   } finally {
     clearTimeout(timer);
+    callerSignal?.removeEventListener("abort", cancelFromCaller);
   }
 }
 
@@ -113,11 +120,13 @@ async function openAiCompatible(params: {
   maxTokens: number;
   extraBody?: Record<string, unknown>;
   extraHeaders?: Record<string, string>;
+  signal?: AbortSignal;
 }): Promise<string> {
   const response = await fetchTimed(
     `${params.baseUrl.replace(/\/+$/u, "")}/chat/completions`,
     {
       method: "POST",
+      signal: params.signal,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${params.apiKey}`,
@@ -187,6 +196,7 @@ async function callOllama(input: AiRequest): Promise<AiResult> {
       const text = await openAiCompatible({
         baseUrl,
         apiKey: "ollama",
+        signal: input.signal,
         model,
         messages: input.messages,
         temperature: input.temperature ?? 0.3,
@@ -238,6 +248,7 @@ async function callGemini(input: AiRequest): Promise<AiResult> {
         )}:generateContent?key=${encodeURIComponent(apiKey)}`,
         {
           method: "POST",
+          signal: input.signal,
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             contents: [{ parts: [{ text: prompt }] }],
@@ -333,6 +344,7 @@ async function callAnthropic(input: AiRequest): Promise<AiResult> {
         "https://api.anthropic.com/v1/messages",
         {
           method: "POST",
+          signal: input.signal,
           headers: {
             "Content-Type": "application/json",
             "x-api-key": apiKey,
@@ -437,6 +449,7 @@ async function callGeneric(
       const text = await openAiCompatible({
         baseUrl: config.baseUrl,
         apiKey,
+        signal: input.signal,
         model,
         messages: input.messages,
         temperature: input.temperature ?? 0.3,
@@ -567,34 +580,41 @@ export async function routeAi(input: AiRequest): Promise<AiResult> {
   const profile = input.profile ?? "economy";
   const excluded = new Set(input.excludeProviders ?? []);
   const failures: string[] = [];
+  // One budget for the entire cascade, rather than 45 seconds for each provider.
+  const configured = Number(input.deadlineMs ?? 60000);
+  const budgetMs = Number.isFinite(configured)
+    ? Math.max(3000, Math.min(120000, configured))
+    : 60000;
+  const controller = new AbortController();
+  const cancelFromCaller = () => controller.abort(input.signal?.reason);
+  if (input.signal?.aborted) cancelFromCaller();
+  else input.signal?.addEventListener("abort", cancelFromCaller, { once: true });
+  const timer = setTimeout(() => controller.abort("AI_DEADLINE_EXCEEDED"), budgetMs);
+  const order = input.preferredProviders?.length
+    ? input.preferredProviders : providerOrder(profile);
 
-  const order =
-    input.preferredProviders?.length
-      ? input.preferredProviders
-      : providerOrder(profile);
-
-  for (const provider of order) {
-    if (excluded.has(provider)) continue;
-
-    try {
-      return await callProvider(provider, {
-        ...input,
-        profile,
-      });
-    } catch (error) {
-      failures.push(
-        `${provider}:${
-          error instanceof Error
-            ? error.message
-            : "unknown"
-        }`,
-      );
+  try {
+    for (const provider of order) {
+      if (controller.signal.aborted) break;
+      if (excluded.has(provider)) continue;
+      // Do not try a loopback Ollama URL on hosted production without an explicit server.
+      if (provider === "ollama" && process.env.NODE_ENV === "production" &&
+          !process.env.OLLAMA_BASE_URL?.trim()) continue;
+      try {
+        return await callProvider(provider, {
+          ...input, profile, signal: controller.signal,
+        });
+      } catch (error) {
+        failures.push(`${provider}:${error instanceof Error ? error.message : "unknown"}`);
+      }
     }
+  } finally {
+    clearTimeout(timer);
+    input.signal?.removeEventListener("abort", cancelFromCaller);
   }
-
-  throw new Error(
-    `AI_ALL_PROVIDERS_FAILED:${failures.join(" | ").slice(0, 1800)}`,
-  );
+  throw new Error(controller.signal.aborted
+    ? "AI_DEADLINE_EXCEEDED"
+    : `AI_ALL_PROVIDERS_FAILED:${failures.join(" | ").slice(0, 1800)}`);
 }
 
 export function stripThinking(value: string): string {
