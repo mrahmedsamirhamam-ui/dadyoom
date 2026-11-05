@@ -22,12 +22,17 @@ function parseIntent(raw: string | undefined) {
   if (!raw) return null;
   try {
     const json = Buffer.from(raw, "base64url").toString("utf8");
-    const value = JSON.parse(json) as { fullName?: string; role?: string; country?: string };
+    const value = JSON.parse(json) as { fullName?: string; role?: string; country?: string; grade?: number; track?: string; studyMode?: string };
     const role = typeof value.role === "string" ? value.role.trim().toLowerCase() : "student";
     const country = typeof value.country === "string" ? value.country.trim().toUpperCase() : "";
     const fullName = typeof value.fullName === "string" ? value.fullName.trim().slice(0, 120) : "";
     if (!fullName || !new Set(["student", "child", "teacher", "parent", "school"]).has(role) || !isCountryCode(country)) return null;
-    return { fullName, role, country };
+    const grade = Number(value.grade);
+    const student = role === "student" || role === "child";
+    if (student && (!Number.isInteger(grade) || grade < 1 || grade > 13)) return null;
+    const track = value.track === "non_native" ? "non_native" : "native";
+    const studyMode = value.studyMode === "dadyoom" ? "dadyoom" : "ministry";
+    return { fullName, role, country, grade: student ? grade : null, track, studyMode };
   } catch {
     return null;
   }
@@ -83,6 +88,7 @@ export async function GET(request: Request) {
       full_name: fullName,
       role: intent.role,
       country: intent.country,
+      ...(intent.grade ? { grade_number: intent.grade } : {}),
     },
     {
       onConflict: "id",
@@ -101,6 +107,13 @@ export async function GET(request: Request) {
     }
     const racedRole = racedProfile.role.trim().toLowerCase();
     return NextResponse.redirect(new URL(roleDestinations[racedRole] || "/student", origin));
+  }
+
+  if (intent.grade) {
+    const { error: preferenceError } = await supabase.auth.updateUser({
+      data: { dadyoom_learning_preferences: { track: intent.track, mode: intent.studyMode } },
+    });
+    if (preferenceError) console.error("GOOGLE_LEARNING_PREFERENCE_WARNING", preferenceError.message);
   }
 
   const response = NextResponse.redirect(new URL(requestedNext || roleDestinations[intent.role] || "/student", origin));
