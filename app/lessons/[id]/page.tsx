@@ -389,17 +389,18 @@ export default async function LessonPage({
               />
             ) : null}
 
-            {learningProgress &&
-            learningProgress.status !==
-              "mastered" ? (
-              <LearningCompleteLessonButton
-                progressId={learningProgress.id}
-                nextLessonId={
-                  lesson.nextLesson?.id ??
-                  null
-                }
-              />
-            ) : null}
+            {learningProgress?.status !== "mastered" ? (
+              <a
+                href="#lesson-assessment"
+                className="inline-flex min-h-11 items-center rounded-xl bg-[#174f47] px-5 py-3 text-sm font-bold text-white hover:bg-[#103d36] focus-visible:outline-2 focus-visible:outline-offset-2"
+              >
+                انتقل إلى أسئلة الدرس وأنشطته ↓
+              </a>
+            ) : (
+              <p className="text-sm font-bold text-emerald-700">
+                أحسنت، هذا الدرس مُتقَن بالفعل. يمكنك مراجعته دون فقدان إنجازك.
+              </p>
+            )}
           </section>
         ) : (
           <section className="rounded-3xl bg-amber-50 p-6 text-center">
@@ -444,7 +445,7 @@ export default async function LessonPage({
         />
         </div>
         <StructuredLessonText content={lesson.content} />
-        <section className="rounded-3xl border border-amber-200 bg-white p-6 shadow-sm sm:p-8">
+        <section id="lesson-assessment" className="scroll-mt-28 rounded-3xl border border-amber-200 bg-white p-6 shadow-sm sm:p-8">
           <p className="text-sm font-black text-amber-700">
             بعد انتهاء العرض
           </p>
@@ -533,6 +534,20 @@ export default async function LessonPage({
           <InteractiveLessonActivities
             activities={lessonActivities}
           />
+        ) : null}
+
+        {user && learningProgress && learningProgress.status !== "mastered" ? (
+          <section aria-label="إنهاء الدرس" className="lesson-arabic-card space-y-4 rounded-3xl border border-emerald-200 bg-white p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#173f35]">هل أنهيت التقويم؟</h2>
+            <p className="text-sm leading-7 text-slate-600">
+              أجب عن أسئلة الدرس وأنشطته أولًا، ثم تحقّق من الإتقان هنا.
+              إذا لم تبلغ درجة الإتقان المطلوبة، يمكنك إعادة المحاولة دون فقدان تقدمك.
+            </p>
+            <LearningCompleteLessonButton
+              progressId={learningProgress.id}
+              nextLessonId={lesson.nextLesson?.id ?? null}
+            />
+          </section>
         ) : null}
 
 
