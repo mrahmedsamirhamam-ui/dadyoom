@@ -41,6 +41,7 @@ on:
       - 'scripts/ps-g3-term1-actual-book-2020-add2-and-reorder15-20261104.sql'
       - 'scripts/ps-real-books-correct-g2-freedom-drawing-g3-gold-land-20261104.sql'
       - 'data/ministerial-audit/cases/BH-G3-T1-2026-27-18-headings-vs-live-records-20261102.json'
+      - 'scripts/ps-g2g3-term2-live-http-ui-smoke.mjs'
       - 'data/ministerial-audit/**'
       - '.github/workflows/ministerial-curriculum-audit.yml'
   push:
@@ -73,3 +74,25 @@ jobs:
             if(r.counts.OFFICIAL_MANIFEST_REQUIRED!==528)process.exit(2);
             console.log("RELEASE_GATE=BLOCKED_UNTIL_OFFICIAL_TOC_AND_CONTENT_EVIDENCE");
           ' "$RUNNER_TEMP/dadyoom-audit/report.json"
+
+  public-lesson-live-smoke:
+    name: Palestine G2/G3 live HTTP and SSR UI (14 lessons)
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: GET live lessons and verify response + actual rendered HTML
+        run: node scripts/ps-g2g3-term2-live-http-ui-smoke.mjs
+        env:
+          DADYOOM_LIVE_SMOKE_REPORT: ${{ runner.temp }}/ps-g2g3-live-smoke.json
+      - name: Preserve HTTP statuses, UI check results and errors as evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ps-g2g3-public-live-http-ui-smoke
+          path: ${{ runner.temp }}/ps-g2g3-live-smoke.json
+          if-no-files-found: warn
+          retention-days: 30
