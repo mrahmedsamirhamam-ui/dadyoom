@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import DadyoomLogo from "@/components/brand/DadyoomLogo";
 import { createClient } from "@/lib/supabase/server";
 
 export type PortalRole = "student" | "teacher" | "parent" | "school";
@@ -43,7 +42,6 @@ export default async function RolePortalLayout({role,links,children}:{
     <div dir="rtl" className="min-h-screen bg-[#f8faf9]">
       <div className="border-b border-[#e5ebe6] bg-white">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3 px-4 py-3 sm:px-6">
-          <DadyoomLogo />
           <span className="rounded-lg bg-[#f1f6f2] px-3 py-1.5 text-xs font-semibold text-[#477368]">
             {roleLabels[role]}
           </span>
