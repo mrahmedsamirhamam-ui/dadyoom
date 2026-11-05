@@ -45,6 +45,7 @@ describe("official-curriculum transparency", () => {
     const page = readFileSync(resolve(process.cwd(), "app/lessons/[id]/page.tsx"), "utf8");
     const sitemap = readFileSync(resolve(process.cwd(), "app/sitemap.ts"), "utf8");
     expect(page).toContain("sourceReviewRequired");
+    expect(page).toContain("(initialCompleted ? 100 : 0)");
     expect(page).toContain("robots: { index: false, follow: true }");
     expect(page).toContain("!sourceReviewRequired && Array.isArray(lesson.learning_objectives)");
     expect(page).toContain("instructions={sourceReviewRequired ? [] : lesson.instructions}");
