@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {
-  ArrowUpLeft, BookOpen, Bot, CheckCircle2, GraduationCap, Layers,
+  ArrowUpLeft, BookOpen, Bot, CheckCircle2, GraduationCap, Layers, LayoutDashboard,
   LibraryBig, MessageCircle, School, Sparkles, Users, UserRound,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
