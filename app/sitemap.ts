@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import type { MetadataRoute } from "next";
 import { getSiteUrl } from "@/lib/site";
+import { needsSourcePublicationReview } from "@/lib/lesson-content/publication-readiness";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = getSiteUrl();
@@ -60,7 +61,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (let offset = 0; ; offset += pageSize) {
     const { data, error } = await db
       .from("lessons")
-      .select("id,updated_at")
+      .select("id,updated_at,instructions")
       .eq("status", "published")
       .order("id", { ascending: true })
       .range(offset, offset + pageSize - 1);
@@ -70,7 +71,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       break;
     }
     if (!data?.length) break;
-    lessons.push(...data);
+    // Imported draft enrichments can have status=published in the DB.
+    // Never advertise records explicitly marked not publication-ready to bots.
+    for (const lesson of data) {
+      if (!needsSourcePublicationReview(lesson.instructions)) {
+        lessons.push({ id: lesson.id, updated_at: lesson.updated_at });
+      }
+    }
     if (data.length < pageSize) break;
   }
 

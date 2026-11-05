@@ -6,6 +6,7 @@ import LessonMasteryCard from "@/features/lesson-mastery/components/LessonMaster
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { SITE_DESCRIPTION } from "@/lib/site";
+import { needsSourcePublicationReview, publicLessonDescription } from "@/lib/lesson-content/publication-readiness";
 import {
   getLessonPageBundle,
 } from "@/features/lessons/queries/getLessonPageBundle";
@@ -42,7 +43,7 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
 
   const { data, error } = await supabase
     .from("lessons")
-    .select("title,summary")
+    .select("title,summary,instructions")
     .eq("id", id)
     .eq("status", "published")
     .maybeSingle();
@@ -56,14 +57,16 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
   }
 
   const title = data.title?.trim() || "درس العربية";
+  const sourceReviewRequired = needsSourcePublicationReview(data.instructions);
   const description =
-    data.summary?.trim().slice(0, 170) ||
+    publicLessonDescription(data.summary, data.instructions).slice(0, 170) ||
     `تعلّم ${title} في ضاديوم من خلال المحتوى والأنشطة والأسئلة التفاعلية.`;
 
   return {
     title,
     description,
     alternates: { canonical: `/lessons/${id}` },
+    ...(sourceReviewRequired ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       type: "article",
       url: `/lessons/${id}`,
@@ -131,6 +134,11 @@ export default async function LessonPage({
 
   const lesson =
     bundle.lesson;
+
+  const sourceReviewRequired =
+    needsSourcePublicationReview(lesson.instructions);
+  const safeDescription =
+    publicLessonDescription(lesson.summary, lesson.instructions);
 
   const lessonQuestions =
     bundle.questions;
@@ -246,7 +254,7 @@ export default async function LessonPage({
       );
   }
   const objectives: string[] =
-    Array.isArray(lesson.learning_objectives)
+    !sourceReviewRequired && Array.isArray(lesson.learning_objectives)
       ? lesson.learning_objectives.filter(
           (item: unknown): item is string =>
             typeof item === "string"
@@ -344,11 +352,15 @@ export default async function LessonPage({
           <LessonProgress
             progress={
               learningProgress?.progress_percent ??
-              (initialCompleted ? 100 : 20)
+              (initialCompleted ? 100 : 0)
             }
           />
 
-          {lesson.summary ? (
+          {sourceReviewRequired ? (
+            <div role="status" className="mt-4 rounded-2xl border border-amber-300 bg-amber-50 px-5 py-4 text-sm font-bold leading-8 text-amber-950">
+              {safeDescription}
+            </div>
+          ) : lesson.summary ? (
             <p className="mt-4 leading-8 text-slate-600">
               {lesson.summary}
             </p>
@@ -437,11 +449,11 @@ export default async function LessonPage({
         <div id="lesson-presentation">
         <LessonLearningSlides
           title={lesson.title}
-          summary={lesson.summary}
+          summary={safeDescription}
           content={lesson.content}
           objectives={objectives}
           vocabulary={vocabulary}
-          instructions={lesson.instructions}
+          instructions={sourceReviewRequired ? [] : lesson.instructions}
         />
         </div>
         <StructuredLessonText content={lesson.content} />
