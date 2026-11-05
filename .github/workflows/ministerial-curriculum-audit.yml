@@ -1,0 +1,98 @@
+name: Ministerial curriculum audit engine
+
+on:
+  pull_request:
+    paths:
+      - 'lib/ministerial-audit/**'
+      - 'scripts/ministerial-audit.mjs'
+      - 'scripts/ministerial-extract-pdf.mjs'
+      - 'tests/ministerial-audit.node.test.mjs'
+      - 'tests/ministerial-live-20261105.node.test.mjs'
+      - 'tests/ministerial-grade123-queue.node.test.mjs'
+      - 'tests/ps-g1-t2-historical-candidates.node.test.mjs'
+      - 'lib/ministerial-audit/grade123-queue.mjs'
+      - 'scripts/ministerial-grade123-queue.mjs'
+      - 'tests/ministerial-lesson-subject.node.test.mjs'
+      - 'scripts/curriculum-bh-g1-four-ministry-component-original-subjects-20261031.sql'
+      - 'tests/curriculum-bh-first-ministry-subjects.node.test.mjs'
+      - 'scripts/curriculum-bh-g1-units23-eight-independent-subjects-20261031.sql'
+      - 'tests/curriculum-bh-g1-units23-original-subjects.node.test.mjs'
+      - 'tests/curriculum-bh-g1-12-objectives.node.test.mjs'
+      - 'scripts/curriculum-bh-g1-12-subject-based-learning-objectives-20261031.sql'
+      - 'scripts/curriculum-unpublish-14-unverified-book-or-ocr-headings-20261102.sql'
+      - 'scripts/curriculum-bh-g2-four-reading-speaking-subjects-20261102.sql'
+      - 'tests/curriculum-20261102-real-subject-and-phantom-guards.node.test.mjs'
+      - 'scripts/curriculum-bh-g2-eight-remaining-speaking-subjects-20261102.sql'
+      - 'tests/curriculum-bh-g2-eight-speaking-20261102.node.test.mjs'
+      - 'tests/curriculum-bh-g3-official18-20261102.node.test.mjs'
+      - 'tests/real-textbook-source-first-20261104.node.test.mjs'
+      - 'tests/ministerial-real-book-continuation-20261104.node.test.mjs'
+      - 'tests/ps-g2g3-term2-all15-real-book-topics-20261104.node.test.mjs'
+      - 'scripts/ps-g2-t2-reorder-eight-existing-and-draft-six-pseudo-chapters-20261104.sql'
+      - 'scripts/ps-g2g3-term2-add14-actual-textbook-2020-story-subjects-20261104.sql'
+      - 'scripts/ps-g2g3-term2-correct8-existing-real-book-chapter-stories-20261104.sql'
+      - 'scripts/ps-g2g3-thirteen-real-book-subject-corrections-20261104.sql'
+      - 'scripts/ps-g3-term2-2024-ministry-pack-add-2-fix-4-and-order-20261104.sql'
+      - 'scripts/ps-g2-term2-2024-ministry-pack-2-real-subject-corrections-20261104.sql'
+      - 'scripts/ps-g3-term2-2024-pack-ordinal-vs-2020-book-sequence-20261104.sql'
+      - 'scripts/ministerial-real-book-bh-g1-d-g2-photographer-source-grounded-20261104.sql'
+      - 'scripts/ps-g1-term1-official-book-2020-toc-add7-review-and-reorder18-20261104.sql'
+      - 'scripts/ps-g2-term1-move15-real-book-chapters-into-official-curriculum-20261104.sql'
+      - 'scripts/ps-g3-term1-actual-book-2020-add2-and-reorder15-20261104.sql'
+      - 'scripts/ps-real-books-correct-g2-freedom-drawing-g3-gold-land-20261104.sql'
+      - 'data/ministerial-audit/cases/BH-G3-T1-2026-27-18-headings-vs-live-records-20261102.json'
+      - 'scripts/ps-g2g3-term2-live-http-ui-smoke.mjs'
+      - 'data/ministerial-audit/**'
+      - '.github/workflows/ministerial-curriculum-audit.yml'
+  push:
+    branches:
+      - 'feat/ministerial-curriculum-audit-engine-*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit-engine:
+    name: Verify 22-country official syllabus fail-closed safety
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Static ministerial audit engine tests
+        run: node --test tests/ps-g1-t2-historical-candidates.node.test.mjs tests/ministerial-grade123-queue.node.test.mjs tests/ministerial-live-20261105.node.test.mjs tests/ministerial-audit.node.test.mjs tests/ministerial-lesson-subject.node.test.mjs tests/curriculum-bh-first-ministry-subjects.node.test.mjs tests/curriculum-bh-g1-units23-original-subjects.node.test.mjs tests/curriculum-bh-g1-12-objectives.node.test.mjs tests/curriculum-20261102-real-subject-and-phantom-guards.node.test.mjs tests/curriculum-bh-g2-eight-speaking-20261102.node.test.mjs tests/curriculum-bh-g3-official18-20261102.node.test.mjs tests/real-textbook-source-first-20261104.node.test.mjs tests/ministerial-real-book-continuation-20261104.node.test.mjs tests/ps-g2g3-term2-all15-real-book-topics-20261104.node.test.mjs
+      - name: Verify official-source incomplete is BLOCKED, not 100 percent
+        run: |
+          node scripts/ministerial-audit.mjs --out "$RUNNER_TEMP/dadyoom-audit"
+          node --input-type=module -e '
+            import fs from "node:fs";
+            const r=JSON.parse(fs.readFileSync(process.argv[1],"utf8"));
+            if(r.countries!==22||r.gradeMax!==12||r.scopes!==528||r.releaseReady||r.verifiedScopes!==0)process.exit(1);
+            if(r.counts.OFFICIAL_MANIFEST_REQUIRED!==528)process.exit(2);
+            console.log("RELEASE_GATE=BLOCKED_UNTIL_OFFICIAL_TOC_AND_CONTENT_EVIDENCE");
+          ' "$RUNNER_TEMP/dadyoom-audit/report.json"
+
+  public-lesson-live-smoke:
+    name: Palestine G2/G3 live HTTP and SSR UI (14 lessons)
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: GET live lessons and verify response + actual rendered HTML
+        run: node scripts/ps-g2g3-term2-live-http-ui-smoke.mjs
+        env:
+          DADYOOM_LIVE_SMOKE_REPORT: ${{ runner.temp }}/ps-g2g3-live-smoke.json
+      - name: Preserve HTTP statuses, UI check results and errors as evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ps-g2g3-public-live-http-ui-smoke
+          path: ${{ runner.temp }}/ps-g2g3-live-smoke.json
+          if-no-files-found: warn
+          retention-days: 30

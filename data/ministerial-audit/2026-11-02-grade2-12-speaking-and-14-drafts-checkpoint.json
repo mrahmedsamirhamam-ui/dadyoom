@@ -1,0 +1,68 @@
+{
+  "recordedAt": "2026-11-02",
+  "goal": "actual Ministry-listed lessons + complete teaching subjects, not number of activities",
+  "subject": "Arabic",
+  "source": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+  "sourceStatus": "2026-27 official Ministry plan text reviewed as source for scheduled topics; original textbooks not yet visually verified or editorially certified",
+  "progress": [
+    {
+      "kind": "Bahrain G1",
+      "scope": "First term phonics",
+      "storedOriginalTeachingSections": 12,
+      "publicLessonPagesVerifiedPreviousTurn": 12,
+      "officialBookFidelity": "pending"
+    },
+    {
+      "kind": "Bahrain G2",
+      "scope": "First term 12 named speaking topics tied to reading lessons",
+      "officialSpeakingTopicsFromPlan": [
+        "صديقات في المدرسة",
+        "أمّي الحنون",
+        "أساعد الكبار",
+        "في حيّنا",
+        "مشاهد من بلادي",
+        "ألعابنا",
+        "هواياتي الجميلة",
+        "في مدينة الألعاب",
+        "كيف أغسل يديّ",
+        "نظافتي الصباحية",
+        "فوائد الرياضة",
+        "من أجل صحة سليمة"
+      ],
+      "originalTopicsAdded": 12,
+      "DBContentVerified": 12,
+      "publicPagesVerified": 12,
+      "sourceBookFidelity": "pending",
+      "sqlBatches": [
+        "scripts/curriculum-bh-g2-four-reading-speaking-subjects-20261102.sql",
+        "scripts/curriculum-bh-g2-eight-remaining-speaking-subjects-20261102.sql"
+      ]
+    },
+    {
+      "kind": "Mislabelled lesson protection",
+      "tunisiaEmptyTextbookShellsToDraft": 8,
+      "bahrainOcrInstructionHeadingsToDraft": 6,
+      "removedRecords": 0,
+      "studentHistoryAltered": false,
+      "suspectWithStudentProgressLeftUnchanged": true,
+      "script": "scripts/curriculum-unpublish-14-unverified-book-or-ocr-headings-20261102.sql",
+      "sampleNowDraftURLsReturning404": 3
+    }
+  ],
+  "evidence": {
+    "ciWorkflow": "Ministerial curriculum audit engine",
+    "ciLastSuccessfulRunBeforeLatest": 41391409274,
+    "ciLatestStartedRun": 41391873356,
+    "latestCheckStatus": "needs terminal run check",
+    "liveGrade2Pages": "12 distinct Bahrain grade2 public lesson pages validated for original speaking-subject sections",
+    "liveGrade2SuccessCount": 12,
+    "explanationsAreOriginalNotMinistryText": true
+  },
+  "blockers": [
+    "Complete actual Ministry textbook TOCs and full lesson subject matching for all 22 countries and both terms",
+    "Language-specialist and Ministry source-text editorial approval",
+    "Authenticated student/teacher completion and progress workflow",
+    "Year 13 school-stage model and Tunisia individual subject book splits"
+  ],
+  "releaseReady": false
+}

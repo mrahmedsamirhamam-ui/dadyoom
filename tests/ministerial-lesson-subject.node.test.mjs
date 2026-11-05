@@ -1,0 +1,86 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {auditLessonTopicCompleteness,screenLessonSubject,textHash} from "../lib/ministerial-audit/topic-coverage.mjs";
+const hash="c".repeat(64);
+const original="في هذه الوحدة نتعلم مفهوم المبتدأ والخبر؛ لأن الجملة الاسمية تبدأ باسم، ومثال ذلك: الطالب مجتهد. نستنتج أن المبتدأ هو الاسم الذي نبدأ به الجملة، وأن الخبر يتمم معنى الكلام.".repeat(3);
+function target(){
+  return {content:original,livePageReview:{status:"passed",checkedAt:"2026-10-31",contentSha256:textHash(original)},subjectReview:{status:"approved",reviewedBy:"qualified-Arabic-editor",reviewedAt:"2026-10-31",sourceSha256:hash,contentSha256:textHash(original)},
+    topicEvidence:[{topicId:"topic-1",start:0,end:original.length,status:"approved",reviewedBy:"qualified-Arabic-editor",sourceSha256:hash,excerptSha256:textHash(original)}]};
+}
+const official={title:"المبتدأ والخبر",page:18,topics:[{id:"topic-1",title:"تعريف المبتدأ والخبر",page:18}]};
+const manifest={source:{sha256:hash}};
+test("textbook-only referral is a subject blocker despite any number of activities",()=>{
+ const p=target();p.content="راجع الكتاب الرسمي أو نسخة مرخصة منه، ثم استخدم ضاديوم للفهم والتطبيق دون إعادة نشر نص الكتاب.";
+ const r=auditLessonTopicCompleteness(official,p,manifest);
+ assert.equal(r.isComplete,false);
+ assert.ok(r.problems.includes("EXTERNAL_BOOK_REFERENCE_REQUIRES_STANDALONE_EXPLANATION"));
+});
+test("all ministry microtopics must have their own evidence in actual lesson body",()=>{
+ const o={...official,topics:[...official.topics,{id:"topic-2",title:"إعراب المبتدأ والخبر",page:19}]};
+ const r=auditLessonTopicCompleteness(o,target(),manifest);
+ assert.equal(r.requiredTopics,2);
+ assert.equal(r.verifiedTopics,1);
+ assert.equal(r.isComplete,false);
+ assert.equal(r.topics[1].status,"MISSING_TOPIC_EXPLANATION");
+});
+test("matching title cannot hide source mismatch, unreviewed edits or different textbook",()=>{
+ const a=target();a.content="الدرس لم يعد مطابقا";
+ const r=auditLessonTopicCompleteness(official,a,manifest);
+ assert.equal(r.isComplete,false);
+ assert.ok(r.problems.includes("SUBJECT_CHANGED_SINCE_LAST_REVIEW"));
+ const b=target();b.subjectReview.sourceSha256="d".repeat(64);
+ const q=auditLessonTopicCompleteness(official,b,manifest);
+ assert.equal(q.isComplete,false);
+ assert.ok(q.problems.includes("APPROVAL_NOT_LINKED_TO_OFFICIAL_EDITION"));
+});
+test("genuinely approved content with exact explanatory anchor is technically eligible",()=>{
+ const r=auditLessonTopicCompleteness(official,target(),manifest);
+ assert.equal(r.isComplete,true,JSON.stringify(r));
+ assert.equal(r.status,"LESSON_SUBJECT_VERIFIED");
+ assert.equal(r.requiredTopics,1);
+});
+test("no unverifiable unofficial topic outline can be certified",()=>{
+ const r=auditLessonTopicCompleteness({title:"المبتدأ والخبر"},target(),manifest);
+ assert.equal(r.isComplete,false);
+ assert.ok(r.problems.includes("OFFICIAL_LESSON_TOPIC_OUTLINE_NOT_REVIEWED"));
+});
+test("short template and replacement character get flagged as content quality risks",()=>{
+ assert.ok(screenLessonSubject({content:"ضع النص هنا"}).includes("PLACEHOLDER_IN_LESSON_BODY"));
+ assert.ok(screenLessonSubject({content:"شرح \ufffd"}).includes("INVALID_CHARACTERS_IN_LESSON_BODY"));
+});
+
+test("OCR plan-layout instructions cannot be certified as actual lesson titles",()=>{
+ const suspect=["يقسم الدّرس إلى جزأين","يُقسّم الدّرس إلى3","يقسم الدّرس إلى ثالثة أجزاء",":القراءة"];
+ for(const title of suspect){
+  const flags=screenLessonSubject({title,content:"هذا النص يبدو طويلا لكنه ليس درسا مستقلا. لأن خطة الوزارة فيها تقسيم للعمل وليس هذا عنوان مقرر. ".repeat(8)});
+  assert.ok(flags.includes("OCR_PLAN_INSTRUCTION_MISLABELED_AS_LESSON")||flags.includes("BARE_SECTION_HEADING_MISLABELED_AS_LESSON"),title+" "+JSON.stringify(flags));
+ }
+});
+test("large generic subject-area description is not an individual ministerial lesson",()=>{
+ const body="نقدم للمتعلمين معلومات عن مهارات العربية؛ لأن القراءة والكتابة والاستماع تساعد على التعبير بأمثلة مناسبة. ".repeat(15);
+ for(const unitTitle of [
+  "النطاق السنوي — مجالات اللغة العربية",
+  "الفصل الدراسي الأول — مجالات اللغة العربية",
+  "الفصل الدراسي الثاني — مجالات اللغة العربية",
+ ]) {
+  const flags=screenLessonSubject({title:"النحو والبناء اللغوي — الفصل الأول",unitTitle,content:body});
+  assert.ok(flags.includes("GENERIC_SUBJECT_AREA_NOT_INDIVIDUAL_TEXTBOOK_TOPIC"),unitTitle);
+ }
+ const lessonCase=target();
+ lessonCase.title="النحو والبناء اللغوي — الفصل الأول";
+ lessonCase.unitTitle="الفصل الدراسي الأول — مجالات اللغة العربية";
+ const verdict=auditLessonTopicCompleteness(official,lessonCase,manifest);
+ assert.equal(verdict.isComplete,false);
+ assert.ok(verdict.problems.includes("GENERIC_SUBJECT_AREA_NOT_INDIVIDUAL_TEXTBOOK_TOPIC"));
+});
+
+test("real lesson in a normal textbook unit is not mistakenly marked as generic",()=>{
+ const flags=screenLessonSubject({title:"المبتدأ والخبر",unitTitle:"الوحدة الأولى: أسرتي",content:original});
+ assert.ok(!flags.includes("GENERIC_SUBJECT_AREA_NOT_INDIVIDUAL_TEXTBOOK_TOPIC"));
+});
+
+test("empty secondary textbook title cannot certify a complete lesson",()=>{
+ const flags=screenLessonSubject({title:"كتاب النصوص — رياضة",content:""});
+ assert.ok(flags.includes("EMPTY_TEXTBOOK_TITLE_NOT_INDIVIDUAL_LESSON"));
+ assert.ok(flags.includes("EMPTY_LESSON_SUBJECT"));
+});

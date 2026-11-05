@@ -1,0 +1,40 @@
+{
+  "asOf": "2026-11-02",
+  "scope": "Bahrain grades 1-3 Arabic, 2026-2027",
+  "sourceAudit": "Read-only SELECT on Supabase project hvqsvtomhlxavmfqoxfz; official Ministry first-term plan PDF text extraction through edunet.bh; original books not visually certified",
+  "lessonLinks": {
+    "totalPublished": 252,
+    "sourceLinkPresent": 198,
+    "linksToMinistryTeachingPlansNotTextbooks": 175,
+    "otherSourceLinks": 23,
+    "noSourceLink": 54
+  },
+  "meaning": "A ministry lesson schedule URL is evidence of a timetable, not of the official textbook's complete lesson body, poem verses, dialogue or imagery. These links must never certify full subject completeness.",
+  "bahrainGrade3FirstTerm": {
+    "scheduledHeadingCount": 18,
+    "mappedPublishedRecords": 18,
+    "reading": 9,
+    "poetry": 3,
+    "listening": 3,
+    "speaking": 3,
+    "confirmedOriginalTextbookContent": 0,
+    "publicPagesSpotChecked": 5,
+    "publicPagesPassed": 5,
+    "evidence": "data/ministerial-audit/cases/BH-G3-T1-2026-27-18-headings-vs-live-records-20261102.json",
+    "caveats": [
+      "The title comparison covers 18 core first-term headings only, excluding workbook exercise records and term2",
+      "Official poetry and memorization verses are not yet certified against current textbook pages",
+      "Five representative public pages rendered but authenticated student flow not tested"
+    ]
+  },
+  "engineCorrection": {
+    "file": "lib/ministerial-audit/engine.mjs",
+    "notes": [
+      "Official course plan cannot be masqueraded as a textbook by documentType metadata",
+      "Official lesson schedule/TOC can establish existence of headings but cannot certify content or topics",
+      "Physical source textbook and review evidence remain prerequisites to mark a lesson text verified"
+    ],
+    "githubActionsSuccessfulRun": 41403076949
+  },
+  "all22CompletionCertified": false
+}

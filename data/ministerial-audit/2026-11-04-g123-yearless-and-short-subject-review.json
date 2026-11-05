@@ -1,0 +1,890 @@
+{
+  "asOf": "2026-11-04",
+  "scope": "Dadyoom Arabic 22-country grades1-3, production read-only SQL; not 2026-27 verified book coverage",
+  "rules": {
+    "shortBody": "1-399 characters; editorial triage, not missing ministry topic claim",
+    "unknownYear": "published lesson has linked curriculum academic_year NULL; DO NOT silently assign year",
+    "crossCountry": "same public lesson title present in >=20 countries with neither lesson nor unit semester; possible shared enrichment, NOT evidence of country textbook chapter"
+  },
+  "summary": {
+    "shortBodies": 31,
+    "unknownYearPublished": 12,
+    "commonCrossCountryTitleGradeCombos": 54,
+    "totalCommonRows": 1188
+  },
+  "shorts": [
+    {
+      "country": "EG",
+      "grade": 1,
+      "lesson_id": "3ef4f864-8bca-4166-822a-b7823104e85e",
+      "lesson_title": "الاستماع والتحدث — الفصل الأول",
+      "unit_title": "الفصل الدراسي الأول — مجالات اللغة العربية",
+      "semester": 1,
+      "characters": 395,
+      "source_url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1585",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "EG",
+      "grade": 1,
+      "lesson_id": "4ce1f5f5-b126-44e7-bf1d-d3ecb2e7e2eb",
+      "lesson_title": "الاستماع والتحدث — الفصل الثاني",
+      "unit_title": "الفصل الدراسي الثاني — مجالات اللغة العربية",
+      "semester": 2,
+      "characters": 396,
+      "source_url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1585",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "EG",
+      "grade": 1,
+      "lesson_id": "1fc2d5ba-cf4f-4e7a-955e-0289b36fc059",
+      "lesson_title": "الكتابة والتعبير — الفصل الأول",
+      "unit_title": "الفصل الدراسي الأول — مجالات اللغة العربية",
+      "semester": 1,
+      "characters": 379,
+      "source_url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1585",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "EG",
+      "grade": 1,
+      "lesson_id": "cfaa5c76-1bb1-44fc-8860-906862a4b497",
+      "lesson_title": "الكتابة والتعبير — الفصل الثاني",
+      "unit_title": "الفصل الدراسي الثاني — مجالات اللغة العربية",
+      "semester": 2,
+      "characters": 380,
+      "source_url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1585",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "EG",
+      "grade": 1,
+      "lesson_id": "f5d6219f-b0bf-4d65-b7b1-3912a7747914",
+      "lesson_title": "النحو والبناء اللغوي — الفصل الأول",
+      "unit_title": "الفصل الدراسي الأول — مجالات اللغة العربية",
+      "semester": 1,
+      "characters": 375,
+      "source_url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1585",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "EG",
+      "grade": 1,
+      "lesson_id": "8195925f-f285-4a9c-bcbd-dec5f40c5320",
+      "lesson_title": "النحو والبناء اللغوي — الفصل الثاني",
+      "unit_title": "الفصل الدراسي الثاني — مجالات اللغة العربية",
+      "semester": 2,
+      "characters": 376,
+      "source_url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1585",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "EG",
+      "grade": 2,
+      "lesson_id": "38db442d-c279-4fee-b867-b19c95fb216d",
+      "lesson_title": "الاستماع والتحدث — الفصل الأول",
+      "unit_title": "الفصل الدراسي الأول — مجالات اللغة العربية",
+      "semester": 1,
+      "characters": 396,
+      "source_url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1932",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "EG",
+      "grade": 2,
+      "lesson_id": "c1c08e41-3738-4a81-9105-e7bdb9e78f4b",
+      "lesson_title": "الاستماع والتحدث — الفصل الثاني",
+      "unit_title": "الفصل الدراسي الثاني — مجالات اللغة العربية",
+      "semester": 2,
+      "characters": 397,
+      "source_url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1932",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "EG",
+      "grade": 2,
+      "lesson_id": "30987ab1-f0f1-45f8-a16e-6f20b799768b",
+      "lesson_title": "الكتابة والتعبير — الفصل الأول",
+      "unit_title": "الفصل الدراسي الأول — مجالات اللغة العربية",
+      "semester": 1,
+      "characters": 380,
+      "source_url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1932",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "EG",
+      "grade": 2,
+      "lesson_id": "31ab6f92-b721-4072-a1af-8d0595cb844b",
+      "lesson_title": "الكتابة والتعبير — الفصل الثاني",
+      "unit_title": "الفصل الدراسي الثاني — مجالات اللغة العربية",
+      "semester": 2,
+      "characters": 381,
+      "source_url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1932",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "EG",
+      "grade": 2,
+      "lesson_id": "5c8294ef-a7db-4dbe-bd97-14d92b2a06bc",
+      "lesson_title": "النحو والبناء اللغوي — الفصل الأول",
+      "unit_title": "الفصل الدراسي الأول — مجالات اللغة العربية",
+      "semester": 1,
+      "characters": 376,
+      "source_url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1932",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "EG",
+      "grade": 2,
+      "lesson_id": "b71c4c4f-b921-4df3-9c60-1e1ec4c7a3a5",
+      "lesson_title": "النحو والبناء اللغوي — الفصل الثاني",
+      "unit_title": "الفصل الدراسي الثاني — مجالات اللغة العربية",
+      "semester": 2,
+      "characters": 377,
+      "source_url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1932",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "EG",
+      "grade": 3,
+      "lesson_id": "b0f09719-b9e5-41a5-984c-4c1efceb0985",
+      "lesson_title": "الاستماع والتحدث — الفصل الأول",
+      "unit_title": "الفصل الدراسي الأول — مجالات اللغة العربية",
+      "semester": 1,
+      "characters": 396,
+      "source_url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1933",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "EG",
+      "grade": 3,
+      "lesson_id": "56c0789e-c8db-4c7a-a9f5-8841b69bdf50",
+      "lesson_title": "الاستماع والتحدث — الفصل الثاني",
+      "unit_title": "الفصل الدراسي الثاني — مجالات اللغة العربية",
+      "semester": 2,
+      "characters": 397,
+      "source_url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1933",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "EG",
+      "grade": 3,
+      "lesson_id": "b237dcd8-f490-406f-8f23-3d8df3342af0",
+      "lesson_title": "الكتابة والتعبير — الفصل الأول",
+      "unit_title": "الفصل الدراسي الأول — مجالات اللغة العربية",
+      "semester": 1,
+      "characters": 380,
+      "source_url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1933",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "EG",
+      "grade": 3,
+      "lesson_id": "1eb4c09d-5822-4f50-beab-f71e63dfb6ab",
+      "lesson_title": "الكتابة والتعبير — الفصل الثاني",
+      "unit_title": "الفصل الدراسي الثاني — مجالات اللغة العربية",
+      "semester": 2,
+      "characters": 381,
+      "source_url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1933",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "EG",
+      "grade": 3,
+      "lesson_id": "221511d4-4ef2-43e9-aee4-b269e1a5f8e6",
+      "lesson_title": "النحو والبناء اللغوي — الفصل الأول",
+      "unit_title": "الفصل الدراسي الأول — مجالات اللغة العربية",
+      "semester": 1,
+      "characters": 376,
+      "source_url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1933",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "EG",
+      "grade": 3,
+      "lesson_id": "0946a34c-b3a8-4b45-862b-2faae2211e96",
+      "lesson_title": "النحو والبناء اللغوي — الفصل الثاني",
+      "unit_title": "الفصل الدراسي الثاني — مجالات اللغة العربية",
+      "semester": 2,
+      "characters": 377,
+      "source_url": "https://moe.gov.eg/ar/elearningenterypage/e-learning/?contentTypeId=7597&schoolStageId=1582&schoolYearId=1933",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "LY",
+      "grade": 1,
+      "lesson_id": "4964c917-aca0-4929-be32-05286f8c35b3",
+      "lesson_title": "الإملاء والخط",
+      "unit_title": "النطاق السنوي — مجالات اللغة العربية",
+      "semester": null,
+      "characters": 351,
+      "source_url": "https://cerc.moe.gov.ly/educational-curricul/",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "LY",
+      "grade": 1,
+      "lesson_id": "19943193-1495-469e-bbbc-3c0264052e0f",
+      "lesson_title": "الاستماع والتحدث",
+      "unit_title": "النطاق السنوي — مجالات اللغة العربية",
+      "semester": null,
+      "characters": 359,
+      "source_url": "https://cerc.moe.gov.ly/educational-curricul/",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "LY",
+      "grade": 1,
+      "lesson_id": "50d6ba3b-c8ec-40de-91f2-b841ae0a7a30",
+      "lesson_title": "القراءة والمطالعة",
+      "unit_title": "النطاق السنوي — مجالات اللغة العربية",
+      "semester": null,
+      "characters": 373,
+      "source_url": "https://cerc.moe.gov.ly/educational-curricul/",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "LY",
+      "grade": 1,
+      "lesson_id": "0035e0c7-f91b-4d10-afa8-c3993b009333",
+      "lesson_title": "النصوص والتذوق الأدبي",
+      "unit_title": "النطاق السنوي — مجالات اللغة العربية",
+      "semester": null,
+      "characters": 377,
+      "source_url": "https://cerc.moe.gov.ly/educational-curricul/",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "LY",
+      "grade": 2,
+      "lesson_id": "8450871e-3b90-4f55-b61b-80cf59bcb94f",
+      "lesson_title": "الإملاء والخط",
+      "unit_title": "النطاق السنوي — مجالات اللغة العربية",
+      "semester": null,
+      "characters": 352,
+      "source_url": "https://cerc.moe.gov.ly/educational-curricul/",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "LY",
+      "grade": 2,
+      "lesson_id": "3922a191-b244-451d-a750-528bc0554bf4",
+      "lesson_title": "الاستماع والتحدث",
+      "unit_title": "النطاق السنوي — مجالات اللغة العربية",
+      "semester": null,
+      "characters": 360,
+      "source_url": "https://cerc.moe.gov.ly/educational-curricul/",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "LY",
+      "grade": 2,
+      "lesson_id": "0c070be8-73bb-497f-9fe2-a92dfd53b328",
+      "lesson_title": "القراءة والمطالعة",
+      "unit_title": "النطاق السنوي — مجالات اللغة العربية",
+      "semester": null,
+      "characters": 374,
+      "source_url": "https://cerc.moe.gov.ly/educational-curricul/",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "LY",
+      "grade": 2,
+      "lesson_id": "1d1f317e-2e26-49a2-b3c6-714a06c24626",
+      "lesson_title": "النصوص والتذوق الأدبي",
+      "unit_title": "النطاق السنوي — مجالات اللغة العربية",
+      "semester": null,
+      "characters": 378,
+      "source_url": "https://cerc.moe.gov.ly/educational-curricul/",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "LY",
+      "grade": 3,
+      "lesson_id": "464be73a-b792-408d-a92e-97062f707d2f",
+      "lesson_title": "الإملاء والخط",
+      "unit_title": "النطاق السنوي — مجالات اللغة العربية",
+      "semester": null,
+      "characters": 352,
+      "source_url": "https://cerc.moe.gov.ly/educational-curricul/",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "LY",
+      "grade": 3,
+      "lesson_id": "65718ddb-1f8a-4f6b-9844-bf23190dfd95",
+      "lesson_title": "الاستماع والتحدث",
+      "unit_title": "النطاق السنوي — مجالات اللغة العربية",
+      "semester": null,
+      "characters": 360,
+      "source_url": "https://cerc.moe.gov.ly/educational-curricul/",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "LY",
+      "grade": 3,
+      "lesson_id": "b5f76b1a-c0f5-4a5a-9cb5-2d4a27f4a653",
+      "lesson_title": "القراءة والمطالعة",
+      "unit_title": "النطاق السنوي — مجالات اللغة العربية",
+      "semester": null,
+      "characters": 374,
+      "source_url": "https://cerc.moe.gov.ly/educational-curricul/",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "LY",
+      "grade": 3,
+      "lesson_id": "81eec2d3-5898-4c7f-b583-6fb86c0b9dc0",
+      "lesson_title": "النصوص والتذوق الأدبي",
+      "unit_title": "النطاق السنوي — مجالات اللغة العربية",
+      "semester": null,
+      "characters": 378,
+      "source_url": "https://cerc.moe.gov.ly/educational-curricul/",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    },
+    {
+      "country": "PS",
+      "grade": 1,
+      "lesson_id": "bc0e940c-5bd7-4db6-af81-ee94797575e4",
+      "lesson_title": "النحو والبناء اللغوي — الفصل الثاني",
+      "unit_title": "الفصل الدراسي الثاني — مجالات اللغة العربية",
+      "semester": 2,
+      "characters": 389,
+      "source_url": "https://moe.edu.ps/pal-books",
+      "issue": "REVIEW_GENERIC_DOMAIN_NOT_FULL_SUBJECT",
+      "action": "Review actual student book TOC, edition and teaching topic. If domain-level resource, retain as labeled enrichment, not a ministry lesson."
+    }
+  ],
+  "unknownYear": [
+    {
+      "country": "EG",
+      "grade": 2,
+      "curriculum_id": "fc714efc-f4c6-495f-9f36-67093562055d",
+      "curriculum_name": "ضاديوم — اللغة العربية — مصر — الصف الثاني — الفصل 1",
+      "lesson_id": "fbe31c5b-6c43-4bd0-96a7-99ab8af85ba0",
+      "lesson_title": "أحب أصدقائي",
+      "unit_title": "المعاملة الطيبة",
+      "semester": null,
+      "source_class": "self-authored-current-edition-unverified",
+      "source_url": null,
+      "issue": "PUBLISHED_CURRICULUM_YEAR_NULL",
+      "action": "Compare to certified 2026-27 official TOC. Preserve original student IDs and history; no assignment of year without evidence."
+    },
+    {
+      "country": "EG",
+      "grade": 2,
+      "curriculum_id": "fc714efc-f4c6-495f-9f36-67093562055d",
+      "curriculum_name": "ضاديوم — اللغة العربية — مصر — الصف الثاني — الفصل 1",
+      "lesson_id": "a34510ca-a38e-488f-ab31-e6f066485553",
+      "lesson_title": "أرتب حياتي",
+      "unit_title": "عادات صحية",
+      "semester": null,
+      "source_class": "self-authored-current-edition-unverified",
+      "source_url": null,
+      "issue": "PUBLISHED_CURRICULUM_YEAR_NULL",
+      "action": "Compare to certified 2026-27 official TOC. Preserve original student IDs and history; no assignment of year without evidence."
+    },
+    {
+      "country": "EG",
+      "grade": 2,
+      "curriculum_id": "fc714efc-f4c6-495f-9f36-67093562055d",
+      "curriculum_name": "ضاديوم — اللغة العربية — مصر — الصف الثاني — الفصل 1",
+      "lesson_id": "fd8bc3f6-da6e-4849-b529-4fb18ba40ab0",
+      "lesson_title": "أسناني قوية",
+      "unit_title": "عادات صحية",
+      "semester": null,
+      "source_class": "self-authored-current-edition-unverified",
+      "source_url": null,
+      "issue": "PUBLISHED_CURRICULUM_YEAR_NULL",
+      "action": "Compare to certified 2026-27 official TOC. Preserve original student IDs and history; no assignment of year without evidence."
+    },
+    {
+      "country": "EG",
+      "grade": 2,
+      "curriculum_id": "fc714efc-f4c6-495f-9f36-67093562055d",
+      "curriculum_name": "ضاديوم — اللغة العربية — مصر — الصف الثاني — الفصل 1",
+      "lesson_id": "696f4e8d-8419-4275-8361-08035cdf929c",
+      "lesson_title": "البطل الصغير",
+      "unit_title": "عادات صحية",
+      "semester": null,
+      "source_class": "self-authored-current-edition-unverified",
+      "source_url": null,
+      "issue": "PUBLISHED_CURRICULUM_YEAR_NULL",
+      "action": "Compare to certified 2026-27 official TOC. Preserve original student IDs and history; no assignment of year without evidence."
+    },
+    {
+      "country": "EG",
+      "grade": 2,
+      "curriculum_id": "fc714efc-f4c6-495f-9f36-67093562055d",
+      "curriculum_name": "ضاديوم — اللغة العربية — مصر — الصف الثاني — الفصل 1",
+      "lesson_id": "7dfe9bfa-cd89-4a29-8aa0-52866e371583",
+      "lesson_title": "الرياضة لنا جميعا",
+      "unit_title": "الرياضة والتكنولوجيا",
+      "semester": null,
+      "source_class": "self-authored-current-edition-unverified",
+      "source_url": null,
+      "issue": "PUBLISHED_CURRICULUM_YEAR_NULL",
+      "action": "Compare to certified 2026-27 official TOC. Preserve original student IDs and history; no assignment of year without evidence."
+    },
+    {
+      "country": "EG",
+      "grade": 2,
+      "curriculum_id": "fc714efc-f4c6-495f-9f36-67093562055d",
+      "curriculum_name": "ضاديوم — اللغة العربية — مصر — الصف الثاني — الفصل 1",
+      "lesson_id": "90b800ea-5104-42ea-9d1f-9f124e666943",
+      "lesson_title": "الطفل المهذب",
+      "unit_title": "المعاملة الطيبة",
+      "semester": null,
+      "source_class": "self-authored-current-edition-unverified",
+      "source_url": null,
+      "issue": "PUBLISHED_CURRICULUM_YEAR_NULL",
+      "action": "Compare to certified 2026-27 official TOC. Preserve original student IDs and history; no assignment of year without evidence."
+    },
+    {
+      "country": "EG",
+      "grade": 2,
+      "curriculum_id": "fc714efc-f4c6-495f-9f36-67093562055d",
+      "curriculum_name": "ضاديوم — اللغة العربية — مصر — الصف الثاني — الفصل 1",
+      "lesson_id": "037a8757-f31e-4651-850d-9e8e308344d1",
+      "lesson_title": "حسام والكمبيوتر",
+      "unit_title": "الرياضة والتكنولوجيا",
+      "semester": null,
+      "source_class": "self-authored-current-edition-unverified",
+      "source_url": null,
+      "issue": "PUBLISHED_CURRICULUM_YEAR_NULL",
+      "action": "Compare to certified 2026-27 official TOC. Preserve original student IDs and history; no assignment of year without evidence."
+    },
+    {
+      "country": "EG",
+      "grade": 2,
+      "curriculum_id": "fc714efc-f4c6-495f-9f36-67093562055d",
+      "curriculum_name": "ضاديوم — اللغة العربية — مصر — الصف الثاني — الفصل 1",
+      "lesson_id": "140877dd-dbb4-4fe8-8bce-6b2d19b60bfb",
+      "lesson_title": "رياضاتي",
+      "unit_title": "الرياضة والتكنولوجيا",
+      "semester": null,
+      "source_class": "self-authored-current-edition-unverified",
+      "source_url": null,
+      "issue": "PUBLISHED_CURRICULUM_YEAR_NULL",
+      "action": "Compare to certified 2026-27 official TOC. Preserve original student IDs and history; no assignment of year without evidence."
+    },
+    {
+      "country": "EG",
+      "grade": 2,
+      "curriculum_id": "fc714efc-f4c6-495f-9f36-67093562055d",
+      "curriculum_name": "ضاديوم — اللغة العربية — مصر — الصف الثاني — الفصل 1",
+      "lesson_id": "74a25b06-41b1-4dc4-b86d-ad91f7a68da0",
+      "lesson_title": "طعامي الصحي",
+      "unit_title": "عادات صحية",
+      "semester": null,
+      "source_class": "self-authored-current-edition-unverified",
+      "source_url": null,
+      "issue": "PUBLISHED_CURRICULUM_YEAR_NULL",
+      "action": "Compare to certified 2026-27 official TOC. Preserve original student IDs and history; no assignment of year without evidence."
+    },
+    {
+      "country": "EG",
+      "grade": 2,
+      "curriculum_id": "fc714efc-f4c6-495f-9f36-67093562055d",
+      "curriculum_name": "ضاديوم — اللغة العربية — مصر — الصف الثاني — الفصل 1",
+      "lesson_id": "c6032e90-102c-47e2-8bf2-c70f69ab3b3e",
+      "lesson_title": "في النادي",
+      "unit_title": "الرياضة والتكنولوجيا",
+      "semester": null,
+      "source_class": "self-authored-current-edition-unverified",
+      "source_url": null,
+      "issue": "PUBLISHED_CURRICULUM_YEAR_NULL",
+      "action": "Compare to certified 2026-27 official TOC. Preserve original student IDs and history; no assignment of year without evidence."
+    },
+    {
+      "country": "EG",
+      "grade": 2,
+      "curriculum_id": "fc714efc-f4c6-495f-9f36-67093562055d",
+      "curriculum_name": "ضاديوم — اللغة العربية — مصر — الصف الثاني — الفصل 1",
+      "lesson_id": "d88150a8-62af-4b77-84c4-6d52533eb41f",
+      "lesson_title": "كلماتي الجميلة",
+      "unit_title": "المعاملة الطيبة",
+      "semester": null,
+      "source_class": "self-authored-current-edition-unverified",
+      "source_url": null,
+      "issue": "PUBLISHED_CURRICULUM_YEAR_NULL",
+      "action": "Compare to certified 2026-27 official TOC. Preserve original student IDs and history; no assignment of year without evidence."
+    },
+    {
+      "country": "EG",
+      "grade": 2,
+      "curriculum_id": "fc714efc-f4c6-495f-9f36-67093562055d",
+      "curriculum_name": "ضاديوم — اللغة العربية — مصر — الصف الثاني — الفصل 1",
+      "lesson_id": "0ece79c0-1dfc-4dee-986a-a307980e1c83",
+      "lesson_title": "يوم جميل",
+      "unit_title": "المعاملة الطيبة",
+      "semester": null,
+      "source_class": "self-authored-current-edition-unverified",
+      "source_url": null,
+      "issue": "PUBLISHED_CURRICULUM_YEAR_NULL",
+      "action": "Compare to certified 2026-27 official TOC. Preserve original student IDs and history; no assignment of year without evidence."
+    }
+  ],
+  "crossCountry": [
+    {
+      "grade": 1,
+      "title": "أدوات الاستفهام",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 1,
+      "title": "أشكال الحرف في الكلمة",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 1,
+      "title": "الأصوات والحروف",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 1,
+      "title": "الاستماع واتباع التعليمات",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 1,
+      "title": "الجملة الاسمية البسيطة",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 1,
+      "title": "الجملة الفعلية البسيطة",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 1,
+      "title": "الحركات القصيرة",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 1,
+      "title": "السكون والمقطع",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 1,
+      "title": "الشدة والتنوين",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 1,
+      "title": "الفكرة الرئيسة",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 1,
+      "title": "اللام الشمسية والقمرية",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 1,
+      "title": "المفرد والجمع",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 1,
+      "title": "بناء الكلمة من المقاطع",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 1,
+      "title": "ترتيب الأحداث",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 1,
+      "title": "حروف المد",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 1,
+      "title": "قراءة نص قصير",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 1,
+      "title": "كتابة جملة واضحة",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 1,
+      "title": "مراجعة مهاراتي الأساسية",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 2,
+      "title": "أدوات الاستفهام",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 2,
+      "title": "أشكال الحرف في الكلمة",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 2,
+      "title": "الأصوات والحروف",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 2,
+      "title": "الاستماع واتباع التعليمات",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 2,
+      "title": "الجملة الاسمية البسيطة",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 2,
+      "title": "الجملة الفعلية البسيطة",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 2,
+      "title": "الحركات القصيرة",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 2,
+      "title": "السكون والمقطع",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 2,
+      "title": "الشدة والتنوين",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 2,
+      "title": "الفكرة الرئيسة",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 2,
+      "title": "اللام الشمسية والقمرية",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 2,
+      "title": "المفرد والجمع",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 2,
+      "title": "بناء الكلمة من المقاطع",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 2,
+      "title": "ترتيب الأحداث",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 2,
+      "title": "حروف المد",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 2,
+      "title": "قراءة نص قصير",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 2,
+      "title": "كتابة جملة واضحة",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 2,
+      "title": "مراجعة مهاراتي الأساسية",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 3,
+      "title": "أدوات الاستفهام",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 3,
+      "title": "أشكال الحرف في الكلمة",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 3,
+      "title": "الأصوات والحروف",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 3,
+      "title": "الاستماع واتباع التعليمات",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 3,
+      "title": "الجملة الاسمية البسيطة",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 3,
+      "title": "الجملة الفعلية البسيطة",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 3,
+      "title": "الحركات القصيرة",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 3,
+      "title": "السكون والمقطع",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 3,
+      "title": "الشدة والتنوين",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 3,
+      "title": "الفكرة الرئيسة",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 3,
+      "title": "اللام الشمسية والقمرية",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 3,
+      "title": "المفرد والجمع",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 3,
+      "title": "بناء الكلمة من المقاطع",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 3,
+      "title": "ترتيب الأحداث",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 3,
+      "title": "حروف المد",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 3,
+      "title": "قراءة نص قصير",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 3,
+      "title": "كتابة جملة واضحة",
+      "countries": 22,
+      "entries": 22
+    },
+    {
+      "grade": 3,
+      "title": "مراجعة مهاراتي الأساسية",
+      "countries": 22,
+      "entries": 22
+    }
+  ],
+  "certification": {
+    "ministerialComplete": false,
+    "reviewedCurrentTextbooks": false,
+    "studentHistoryModified": false
+  }
+}

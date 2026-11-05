@@ -1,0 +1,405 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-31",
+  "purpose": "Official ministry source candidates only; not textbook proof or source-to-lesson validation.",
+  "academicYearTarget": "2026-2027",
+  "gradeRange": {
+    "minimum": 1,
+    "maximum": 12,
+    "optional13WhenOfficiallyConfirmed": true
+  },
+  "subject": "arabic",
+  "countries": [
+    {
+      "country": "BH",
+      "nameAr": "البحرين",
+      "approvedDomains": [
+        "edunet.bh",
+        "moe.gov.bh"
+      ],
+      "portals": [
+        {
+          "url": "https://www.edunet.bh/Econtent/BooksGuide",
+          "kind": "official-book-list",
+          "year": "2026-2027"
+        },
+        {
+          "url": "https://www.edunet.bh/Econtent/LessonsGuide",
+          "kind": "official-lesson-plans",
+          "year": "2026-2027"
+        },
+        {
+          "url": "https://moe.gov.bh/ar/moe-educational-resources",
+          "kind": "ministry-resources",
+          "year": null
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "SA",
+      "nameAr": "السعودية",
+      "approvedDomains": [
+        "moe.gov.sa"
+      ],
+      "portals": [
+        {
+          "url": "https://www.moe.gov.sa/ar/knowledgecenter/eservices/Pages/ien.aspx",
+          "kind": "official-portal-description",
+          "year": null
+        },
+        {
+          "url": "https://www.moe.gov.sa/ar/mediacenter/MOEnews/Pages/i-85976-t.aspx",
+          "kind": "archive-portal-instructions",
+          "year": "older"
+        }
+      ],
+      "candidatePortals": [
+        {
+          "url": "https://ien.edu.sa",
+          "kind": "book-download-portal",
+          "state": "requires-grade-edition-check"
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "AE",
+      "nameAr": "الإمارات",
+      "approvedDomains": [
+        "u.ae"
+      ],
+      "portals": [
+        {
+          "url": "https://u.ae/en/information-and-services/education/school-education-k-12/curricula-and-language-of-instruction-",
+          "kind": "government-curriculum-overview",
+          "year": null
+        },
+        {
+          "url": "https://u.ae/en/information-and-services/education/online-training/diwan-ebook-reader",
+          "kind": "government-diwan-textbooks-reference",
+          "year": null
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "QA",
+      "nameAr": "قطر",
+      "approvedDomains": [
+        "edu.gov.qa"
+      ],
+      "portals": [
+        {
+          "url": "https://www.edu.gov.qa/en/Content/CurriculumSection",
+          "kind": "official-curriculum-department",
+          "year": null
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "KW",
+      "nameAr": "الكويت",
+      "approvedDomains": [
+        "moe.edu.kw"
+      ],
+      "portals": [
+        {
+          "url": "https://moe.edu.kw/",
+          "kind": "ministry-portal-and-library-link",
+          "year": null
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "OM",
+      "nameAr": "عُمان",
+      "approvedDomains": [
+        "moe.gov.om"
+      ],
+      "portals": [
+        {
+          "url": "https://ict.moe.gov.om/eBooks/index.php",
+          "kind": "ministry-digital-textbook-list",
+          "year": null
+        },
+        {
+          "url": "https://home.moe.gov.om/ar/manaheg",
+          "kind": "ministry-curriculum-library",
+          "year": null
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "EG",
+      "nameAr": "مصر",
+      "approvedDomains": [
+        "moe.gov.eg"
+      ],
+      "portals": [
+        {
+          "url": "https://moe.gov.eg/",
+          "kind": "official-ministry-home-to-locate-current-books",
+          "year": null
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "JO",
+      "nameAr": "الأردن",
+      "approvedDomains": [
+        "moe.gov.jo"
+      ],
+      "portals": [
+        {
+          "url": "https://moe.gov.jo/",
+          "kind": "official-ministry-home-to-locate-current-textbooks",
+          "year": null
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "LB",
+      "nameAr": "لبنان",
+      "approvedDomains": [
+        "mehe.gov.lb"
+      ],
+      "portals": [
+        {
+          "url": "https://madristi.mehe.gov.lb/",
+          "kind": "official-ebooks-and-arabic-resources",
+          "year": null
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "SY",
+      "nameAr": "سوريا",
+      "approvedDomains": [
+        "moed.gov.sy"
+      ],
+      "portals": [
+        {
+          "url": "https://moed.gov.sy/guides",
+          "kind": "official-activity-guides-not-language-textbooks",
+          "year": null
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "IQ",
+      "nameAr": "العراق",
+      "approvedDomains": [
+        "manahj.edu.iq"
+      ],
+      "portals": [
+        {
+          "url": "https://manahj.edu.iq/index.php?name=Pages&op=page&pid=164",
+          "kind": "ministry-2026-27-grade1-qiraati-book-and-workbook-reference",
+          "year": "2026-2027"
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED",
+      "warnings": [
+        "Specific course publication announced in October 2026; may not provide an entire approved textbook index for every grade or semester."
+      ]
+    },
+    {
+      "country": "PS",
+      "nameAr": "فلسطين",
+      "approvedDomains": [
+        "moe.edu.ps"
+      ],
+      "portals": [
+        {
+          "url": "https://moe.edu.ps/pal-books",
+          "kind": "official-textbooks",
+          "year": null
+        }
+      ],
+      "candidatePortals": [
+        {
+          "url": "https://elearn.edu.ps/c1/",
+          "kind": "candidate-lesson-index",
+          "state": "not-verified-for-book-edition"
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "YE",
+      "nameAr": "اليمن",
+      "approvedDomains": [
+        "moe.gov.ye"
+      ],
+      "portals": [
+        {
+          "url": "https://nataeji.moe.gov.ye/deleted-curriculum/",
+          "kind": "curriculum-deletions-partial-coverage-not-complete-textbooks",
+          "year": null
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED",
+      "warnings": [
+        "Authority and edition must be verified locally for the specific school and curriculum; a ministry-related exam portal alone is not a textbook TOC."
+      ]
+    },
+    {
+      "country": "MA",
+      "nameAr": "المغرب",
+      "approvedDomains": [
+        "men.gov.ma"
+      ],
+      "portals": [
+        {
+          "url": "https://www.men.gov.ma/node/1118",
+          "kind": "official-digital-resources",
+          "year": null
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "DZ",
+      "nameAr": "الجزائر",
+      "approvedDomains": [
+        "education.gov.dz"
+      ],
+      "portals": [
+        {
+          "url": "https://www.education.gov.dz/2016/02/24/%D8%B9%D9%86%D8%A7%D9%88%D9%8A%D9%86-%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9/",
+          "kind": "archival-official-book-list-not-current-edition",
+          "year": "2016"
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "TN",
+      "nameAr": "تونس",
+      "approvedDomains": [
+        "education.gov.tn"
+      ],
+      "portals": [
+        {
+          "url": "https://www.education.gov.tn/",
+          "kind": "official-2026-27-primary-and-secondary-book-lists",
+          "year": "2026-2027"
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "LY",
+      "nameAr": "ليبيا",
+      "approvedDomains": [
+        "moe.gov.ly"
+      ],
+      "portals": [
+        {
+          "url": "https://cerc.moe.gov.ly/educational-curricul/?_educational-stage=education-basic",
+          "kind": "official-previous-year-curriculum-library",
+          "year": "2025-2026"
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "SD",
+      "nameAr": "السودان",
+      "approvedDomains": [
+        "gmoe.gov.sd"
+      ],
+      "portals": [
+        {
+          "url": "https://gmoe.gov.sd/",
+          "kind": "government-education-curriculum-index-needs-jurisdiction-check",
+          "year": null
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "SO",
+      "nameAr": "الصومال",
+      "approvedDomains": [
+        "moe.gov.so"
+      ],
+      "portals": [
+        {
+          "url": "https://moe.gov.so/",
+          "kind": "federal-ministry-of-education-home",
+          "year": null
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "DJ",
+      "nameAr": "جيبوتي",
+      "approvedDomains": [
+        "cripen.dj",
+        "gouv.dj"
+      ],
+      "portals": [
+        {
+          "url": "https://cripen.dj/",
+          "kind": "official-national-curriculum-research-and-publishing-center",
+          "year": null
+        },
+        {
+          "url": "https://elearning-menfop.gouv.dj/?lang=en",
+          "kind": "ministry-learning-portal",
+          "year": null
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    },
+    {
+      "country": "KM",
+      "nameAr": "جزر القمر",
+      "approvedDomains": [
+        "egouv.km",
+        "gouv.km"
+      ],
+      "portals": [
+        {
+          "url": "https://mineduc.egouv.km/fr/services/individuals-services/e-shiyo/",
+          "kind": "government-primary-official-digital-textbook-app-description",
+          "year": null
+        },
+        {
+          "url": "https://mineducomores.gouv.km/",
+          "kind": "education-ministry-home",
+          "year": null
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED",
+      "warnings": [
+        "E-Shiyo app contains official primary textbooks; inspect book/edition and subject."
+      ]
+    },
+    {
+      "country": "MR",
+      "nameAr": "موريتانيا",
+      "approvedDomains": [
+        "education.gov.mr"
+      ],
+      "portals": [
+        {
+          "url": "https://education.gov.mr/",
+          "kind": "education-ministry-home",
+          "year": null
+        }
+      ],
+      "verificationStatus": "SOURCE_INDEX_ONLY_NOT_SYLLABUS_VERIFIED"
+    }
+  ]
+}

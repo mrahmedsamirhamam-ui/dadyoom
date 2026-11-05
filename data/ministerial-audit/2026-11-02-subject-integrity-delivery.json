@@ -1,0 +1,72 @@
+{
+  "recordedAt": "2026-11-02",
+  "countryScope": [
+    "BH",
+    "TN"
+  ],
+  "overallMission": "all 22 countries / grades1-12 plus separately verified 13: full official lesson inventory and actual teaching subject; no activity-count success metric",
+  "ministrySourceForBH": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+  "ministrySourceReviewedVia": "Public PDF text extraction; official grade2 reading/speaking timetable sections; scanned original textbook pages NOT visually signed off.",
+  "fixes": [
+    {
+      "kind": "subject-enrichment",
+      "country": "BH",
+      "grade": 2,
+      "semester": 1,
+      "records": 4,
+      "topics": [
+        "صديقات في المدرسة",
+        "أساعد الكبار",
+        "في حيّنا",
+        "مشاهد من بلادي"
+      ],
+      "verified": "DB and real public lesson page show original five-part explanation for all 4",
+      "notVerified": "exact original book subject text and editor approval",
+      "file": "scripts/curriculum-bh-g2-four-reading-speaking-subjects-20261102.sql"
+    },
+    {
+      "kind": "quarantine-misleading-published",
+      "country": "TN",
+      "records": 8,
+      "reason": "whole-book title records with empty lesson body",
+      "action": "published -> draft only, no deletion, no student history",
+      "verified": "8 empty books are drafts and 0 blank published records in TN",
+      "file": "scripts/curriculum-unpublish-14-unverified-book-or-ocr-headings-20261102.sql"
+    },
+    {
+      "kind": "quarantine-ocr",
+      "country": "BH",
+      "grades": [
+        4,
+        5,
+        6
+      ],
+      "records": 6,
+      "reason": "ministry lesson-plan formatting instructions mislabeled as individual lessons",
+      "action": "published -> draft only, no deletion, no student history",
+      "verified": "BH published count decreased by 6; titles remain draft",
+      "file": "scripts/curriculum-unpublish-14-unverified-book-or-ocr-headings-20261102.sql"
+    }
+  ],
+  "warnings": [
+    "One other Bahrain G5 malformed-looking published title had an existing student progress record and was not modified",
+    "Do not use published lesson count as official Ministry completeness; verify the ministry TOC across all countries, grades and semesters",
+    "School pages from now-draft records correctly return public 404, as sampled on three selected URLs",
+    "Only the four updated grade2 teaching-topic pages were browser-smoke tested; not all future student/teacher login and grading workflows."
+  ],
+  "liveChecks": {
+    "newGrade2SubjectPages": 4,
+    "newGrade2SubjectPublicVisible": 4,
+    "draftedPagesSampled": 3,
+    "draftedPagesReturned404": 3,
+    "liveTests": "read-only public rendering; not authenticated classroom E2E"
+  },
+  "ci": {
+    "workflow": "Ministerial curriculum audit engine",
+    "runId": 41391409274,
+    "conclusion": "success",
+    "tests": "22-country fail-closed, source topic content and OCR/book-heading gates"
+  },
+  "status": "PARTIAL_SUBJECT_INTEGRITY_FIX_NOT_FULL_OFFICIAL_COVERAGE",
+  "followUpPriority": "First full official catalog and actual subject review for grades1-3 across all 22 countries, then higher grades and all subject streams, no fake 100%."
+}

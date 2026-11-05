@@ -1,0 +1,155 @@
+{
+  "asOf": "2026-11-04",
+  "objective": "Only actual Ministry lesson subjects (not activity totals, titles alone, or AI-original substitutes)",
+  "sourceEvidence": {
+    "realBooks2020": [
+      {
+        "grade": 2,
+        "term": 1,
+        "url": "https://elearn.azureedge.net/Books/c2/ar2-p1.pdf",
+        "edition": "fourth print 2020",
+        "type": "actual student textbook"
+      },
+      {
+        "grade": 3,
+        "term": 1,
+        "url": "https://elearn.azureedge.net/Books/c3/ar3-p1.pdf",
+        "edition": "fourth print 2020",
+        "type": "actual student textbook"
+      }
+    ],
+    "actualMinistry2024Packs": [
+      {
+        "grade": 2,
+        "url": "https://moe.edu.ps/uploads/new_pal_books/arabic2.pdf",
+        "type": "educational pack (not entire textbook)",
+        "scope": "semester2 selected chapters"
+      },
+      {
+        "grade": 3,
+        "url": "https://moe.edu.ps/uploads/new_pal_books/arabic3.pdf",
+        "type": "educational pack (not entire textbook)",
+        "scope": "six selected chapters of sem2"
+      }
+    ],
+    "main2020Term2BookTOC": [
+      {
+        "grade": 2,
+        "url": "https://www.sh-pal.com/2017/12/2018_88.html",
+        "evidence": "Secondary publisher reproduces complete 2020 15-chapter TOC (check against original scanned book before authoritative signoff)"
+      },
+      {
+        "grade": 3,
+        "url": "https://www.sh-pal.com/2017/12/2018_68.html",
+        "evidence": "Secondary publisher reproduces complete 2020 15-chapter TOC (check against original scanned book before authoritative signoff)"
+      }
+    ]
+  },
+  "productionVerified": {
+    "PSGrade2Term1": {
+      "existingTopicsCorrected": 7,
+      "script": "scripts/ps-g2g3-thirteen-real-book-subject-corrections-20261104.sql",
+      "publicPagesPassed": 7
+    },
+    "PSGrade3Term1": {
+      "existingTopicsCorrected": 6,
+      "script": "scripts/ps-g2g3-thirteen-real-book-subject-corrections-20261104.sql",
+      "publicPagesPassed": 6
+    },
+    "PSGrade3Term2": {
+      "existingTopicsCorrected": 4,
+      "newFullLessonSubjectsAdded": [
+        "في ميناء غزة",
+        "زيارة إلى مدينة العنب"
+      ],
+      "ministryPackChaptersNowVisible": 6,
+      "actualPackPublicPagesPassed": 6,
+      "genericNotIndividualLessonsDrafted": 6,
+      "true2024PackOrdinals": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "fullBook2020Positions": [
+        1,
+        5,
+        6,
+        8,
+        11,
+        13
+      ],
+      "scripts": [
+        "scripts/ps-g3-term2-2024-ministry-pack-add-2-fix-4-and-order-20261104.sql",
+        "scripts/ps-g3-term2-2024-pack-ordinal-vs-2020-book-sequence-20261104.sql"
+      ]
+    },
+    "PSGrade2Term2": {
+      "existingTopicsCorrected": 2,
+      "titles": [
+        "وطن يسكن فينا",
+        "سعيد والصقر"
+      ],
+      "publicPagesPassed": 2,
+      "script": "scripts/ps-g2-term2-2024-ministry-pack-2-real-subject-corrections-20261104.sql"
+    },
+    "uniqueExistingSubjectCorrections": 19,
+    "uniqueNewPublishedSubjects": 2,
+    "webPageSmokeTestsPassed": "21 of 21",
+    "safeDatabaseWrites": true,
+    "studentHistoryAltered": false,
+    "sourceTopicEditsPublished": true
+  },
+  "preliminaryMissingIn2020FullTextbook": {
+    "notCertifiedAs2026Syllabus": true,
+    "note": "Derived from full 2020 term2 TOC mirrored by educational library and compared with DB; not proof newest 2026/27 required lesson set; original full term2 PDF text not successfully fetched in current turn.",
+    "PSG2": [
+      "النمر والحطاب",
+      "صباح جديد",
+      "حيلة فلاح",
+      "يوم الطفل الفلسطيني",
+      "لدي حلم",
+      "الببغاء الثرثار",
+      "في البقالة"
+    ],
+    "PSG3": [
+      "الراعي والذئب",
+      "أحب أن أكون",
+      "الغراب والثعلب",
+      "في حديقة الحيوان",
+      "طبيب الأسد",
+      "الصديق وقت الضيق",
+      "أول فدائي في الإسلام"
+    ],
+    "titleVariantNeedsReview": [
+      {
+        "grade": 2,
+        "platform": "نوادر أشعب",
+        "book": "من نوادر أشعب"
+      }
+    ]
+  },
+  "engineHardening": {
+    "sourceType": "official_educational_pack",
+    "newFailureCodes": [
+      "EDUCATIONAL_PACK_NOT_FULL_TEXTBOOK",
+      "PARTIAL_EDUCATIONAL_PACK_NOT_FULL_BOOK"
+    ],
+    "fullTextbookCertificateIssued": false,
+    "reason": "A partial 2024 education package must never be treated as the entire curriculum just because published on a government website.",
+    "tests": "tests/ministerial-real-book-continuation-20261104.node.test.mjs; tests/ministerial-audit.node.test.mjs",
+    "lastSuccessfulGitHubActionsRun": 41817350604
+  },
+  "remaining": [
+    "Get authoritative, complete 2026/27 textbook contents for first through third grades in all 22 countries and all terms",
+    "Verify the 14 preliminary missing grade2/3 term2 2020 full-book titles against current official actual textbooks before creating complete lessons",
+    "Review 2024 packs vs 2020 books and grade1 semester2",
+    "Visually audit original images, listening texts, poetry and teacher source approvals",
+    "Authenticated learner/teacher E2E and student-history-safe edits"
+  ],
+  "verifiedCurriculumCoveragePercent": null,
+  "releaseReady": false,
+  "pr97StillDraft": true
+}

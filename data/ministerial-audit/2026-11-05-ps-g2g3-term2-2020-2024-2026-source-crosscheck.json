@@ -1,0 +1,334 @@
+{
+  "audit_date": "2026-11-05",
+  "scope": "Palestine (PS), grades 2 and 3, semester 2, 14 2020-book based additions and 11 official 2024 pack titles",
+  "status": "Historical title coverage confirmed; CURRENT 2026-2027 completeness BLOCKED without ministry source/teacher attestations",
+  "government_sources": [
+    {
+      "kind": "2024 official ministry educational pack, grade 2",
+      "url": "https://moe.edu.ps/uploads/new_pal_books/arabic2.pdf",
+      "years_represented": [
+        2024
+      ],
+      "topical_chapters_in_pack": 5,
+      "not_full_textbook": true
+    },
+    {
+      "kind": "2024 official ministry educational pack, grade 3",
+      "url": "https://moe.edu.ps/uploads/new_pal_books/arabic3.pdf",
+      "years_represented": [
+        2024
+      ],
+      "topical_chapters_in_pack": 6,
+      "not_full_textbook": true
+    },
+    {
+      "kind": "January 5 2026 Palestinian Government General Supplies Directorate tender MEHE-GSD/MOF/2025/174 (not textbook itself)",
+      "url": "https://gs.pmof.ps/Documents/2026-01-05-12-43-29pm.pdf",
+      "academic_year": "2025-2026",
+      "second_grade_full_book_page_count": 160,
+      "second_grade_educational_pack_page_count": 41,
+      "third_grade_educational_pack_page_count": 56,
+      "notes": "Lists printed copies and page counts, does NOT contain a signed 2026-27 detailed course TOC or prove each 2020 topic is still assigned"
+    }
+  ],
+  "prior_source_reference": "2020 printed 15-chapter student textbook edition, details in 2026-11-04-ps-grades2-3-term2-15-actual-textbook-subjects-evidence.json",
+  "database_check": {
+    "fourteen_existing": 14,
+    "fourteen_published": 14,
+    "fourteen_duplicate_titles_within_grade_and_term": 0,
+    "pack2024_exact_titles_published": 11,
+    "pack2024_exact_titles_count": 11,
+    "writes_applied": "2026-11-05 updated each of 14 existing objective arrays, and corrected solar/lunar examples in حيلة فلاح via guarded SQL, no new lesson rows"
+  },
+  "checks": {
+    "existing14_live_rendered": 14,
+    "pack2024_web_page_visual_clicks": 0,
+    "refreshed_three_pages": [
+      "حيلة فلاح",
+      "يوم الطفل الفلسطيني",
+      "أول فدائي في الإسلام"
+    ],
+    "observed_new_objectives_and_phonics_live": true,
+    "raw_http_response_codes": "not observed by read-only extracted-content tool; DO NOT mark 14 x HTTP 200",
+    "interactive_browser_automation": "not run: external browser agent wallet out of funds",
+    "student_login_and_progress": "not tested",
+    "github_workflow_id": 403005142,
+    "github_ci_run_id": 42090675888,
+    "github_ci_conclusion": "success",
+    "github_commit": "bb614873004f695e4831e99fbc4ecb9ff946b958"
+  },
+  "source_quality_alerts": [
+    "2024 educational pack contains a selected subset, cannot replace the full printed student textbook inventory",
+    "Grade 2: three 2024-pack titles currently point to the older full textbook PDF in lesson source field; do not silently switch citation without content/page audit",
+    "2026 tender refers to 2025–26 print procurement, NOT an approval of 2026–27 syllabus",
+    "Source PDF page-by-page visual human approval, listening, poetry, classroom assessments and logged-in teacher/student routes remain pending"
+  ],
+  "lessons_from_2020_additions": [
+    {
+      "grade": 2,
+      "title": "النمر والحطاب",
+      "id": "0ff4bdb7-f245-4885-a820-1b45a551bb1e",
+      "source_edition": "2020 full textbook, not established as 2026-27",
+      "page_start": 15,
+      "page_end": 24,
+      "lesson_url": "https://dadyoom.com/lessons/0ff4bdb7-f245-4885-a820-1b45a551bb1e",
+      "database": "published, once per grade/term",
+      "rendered_ui_check": "passed: title, objectives, substantive explanation, source/caveat; actual HTTP status not directly captured"
+    },
+    {
+      "grade": 2,
+      "title": "صباح جديد",
+      "id": "3c48bea9-016c-4f28-90aa-7d3c23d6aca3",
+      "source_edition": "2020 full textbook, not established as 2026-27",
+      "page_start": 55,
+      "page_end": 64,
+      "lesson_url": "https://dadyoom.com/lessons/3c48bea9-016c-4f28-90aa-7d3c23d6aca3",
+      "database": "published, once per grade/term",
+      "rendered_ui_check": "passed: title, objectives, substantive explanation, source/caveat; actual HTTP status not directly captured"
+    },
+    {
+      "grade": 2,
+      "title": "حيلة فلاح",
+      "id": "01aaabd0-1826-4cec-a6db-10bf52796908",
+      "source_edition": "2020 full textbook, not established as 2026-27",
+      "page_start": 65,
+      "page_end": 74,
+      "lesson_url": "https://dadyoom.com/lessons/01aaabd0-1826-4cec-a6db-10bf52796908",
+      "database": "published, once per grade/term",
+      "rendered_ui_check": "passed: title, objectives, substantive explanation, source/caveat; actual HTTP status not directly captured"
+    },
+    {
+      "grade": 2,
+      "title": "يوم الطفل الفلسطيني",
+      "id": "c2b76e9a-794b-4a7c-b8f1-d2d02d408135",
+      "source_edition": "2020 full textbook, not established as 2026-27",
+      "page_start": 75,
+      "page_end": 84,
+      "lesson_url": "https://dadyoom.com/lessons/c2b76e9a-794b-4a7c-b8f1-d2d02d408135",
+      "database": "published, once per grade/term",
+      "rendered_ui_check": "passed: title, objectives, substantive explanation, source/caveat; actual HTTP status not directly captured"
+    },
+    {
+      "grade": 2,
+      "title": "لدي حلم",
+      "id": "dfb59b2a-6694-4072-b4c4-f4f9b43fb424",
+      "source_edition": "2020 full textbook, not established as 2026-27",
+      "page_start": 95,
+      "page_end": 104,
+      "lesson_url": "https://dadyoom.com/lessons/dfb59b2a-6694-4072-b4c4-f4f9b43fb424",
+      "database": "published, once per grade/term",
+      "rendered_ui_check": "passed: title, objectives, substantive explanation, source/caveat; actual HTTP status not directly captured"
+    },
+    {
+      "grade": 2,
+      "title": "الببغاء الثرثار",
+      "id": "5a8109d7-c8f0-4b9c-9abe-ae393e7180ea",
+      "source_edition": "2020 full textbook, not established as 2026-27",
+      "page_start": 115,
+      "page_end": 124,
+      "lesson_url": "https://dadyoom.com/lessons/5a8109d7-c8f0-4b9c-9abe-ae393e7180ea",
+      "database": "published, once per grade/term",
+      "rendered_ui_check": "passed: title, objectives, substantive explanation, source/caveat; actual HTTP status not directly captured"
+    },
+    {
+      "grade": 2,
+      "title": "في البقالة",
+      "id": "039e51a0-f035-4180-946c-a8d5adbcb2d8",
+      "source_edition": "2020 full textbook, not established as 2026-27",
+      "page_start": 135,
+      "page_end": 144,
+      "lesson_url": "https://dadyoom.com/lessons/039e51a0-f035-4180-946c-a8d5adbcb2d8",
+      "database": "published, once per grade/term",
+      "rendered_ui_check": "passed: title, objectives, substantive explanation, source/caveat; actual HTTP status not directly captured"
+    },
+    {
+      "grade": 3,
+      "title": "الراعي والذئب",
+      "id": "3cbac251-9120-4180-a9ef-2656b43a9a30",
+      "source_edition": "2020 full textbook, not established as 2026-27",
+      "page_start": 25,
+      "page_end": 36,
+      "lesson_url": "https://dadyoom.com/lessons/3cbac251-9120-4180-a9ef-2656b43a9a30",
+      "database": "published, once per grade/term",
+      "rendered_ui_check": "passed: title, objectives, substantive explanation, source/caveat; actual HTTP status not directly captured"
+    },
+    {
+      "grade": 3,
+      "title": "أحب أن أكون",
+      "id": "4eb20fb4-5859-415f-86e0-294bf14ff6c8",
+      "source_edition": "2020 full textbook, not established as 2026-27",
+      "page_start": 37,
+      "page_end": 46,
+      "lesson_url": "https://dadyoom.com/lessons/4eb20fb4-5859-415f-86e0-294bf14ff6c8",
+      "database": "published, once per grade/term",
+      "rendered_ui_check": "passed: title, objectives, substantive explanation, source/caveat; actual HTTP status not directly captured"
+    },
+    {
+      "grade": 3,
+      "title": "الغراب والثعلب",
+      "id": "fe4f76b8-7984-4623-ba6f-1ca9e10bdd2d",
+      "source_edition": "2020 full textbook, not established as 2026-27",
+      "page_start": 67,
+      "page_end": 76,
+      "lesson_url": "https://dadyoom.com/lessons/fe4f76b8-7984-4623-ba6f-1ca9e10bdd2d",
+      "database": "published, once per grade/term",
+      "rendered_ui_check": "passed: title, objectives, substantive explanation, source/caveat; actual HTTP status not directly captured"
+    },
+    {
+      "grade": 3,
+      "title": "في حديقة الحيوان",
+      "id": "9e78ee24-df40-4899-bbbc-5cde06a885f0",
+      "source_edition": "2020 full textbook, not established as 2026-27",
+      "page_start": 97,
+      "page_end": 106,
+      "lesson_url": "https://dadyoom.com/lessons/9e78ee24-df40-4899-bbbc-5cde06a885f0",
+      "database": "published, once per grade/term",
+      "rendered_ui_check": "passed: title, objectives, substantive explanation, source/caveat; actual HTTP status not directly captured"
+    },
+    {
+      "grade": 3,
+      "title": "طبيب الأسد",
+      "id": "150bdd0a-9a4f-45d1-afa9-a892b7a3e01b",
+      "source_edition": "2020 full textbook, not established as 2026-27",
+      "page_start": 117,
+      "page_end": 126,
+      "lesson_url": "https://dadyoom.com/lessons/150bdd0a-9a4f-45d1-afa9-a892b7a3e01b",
+      "database": "published, once per grade/term",
+      "rendered_ui_check": "passed: title, objectives, substantive explanation, source/caveat; actual HTTP status not directly captured"
+    },
+    {
+      "grade": 3,
+      "title": "الصديق وقت الضيق",
+      "id": "3713ff45-3c5a-4535-af2f-6aa7177cdbe3",
+      "source_edition": "2020 full textbook, not established as 2026-27",
+      "page_start": 137,
+      "page_end": 146,
+      "lesson_url": "https://dadyoom.com/lessons/3713ff45-3c5a-4535-af2f-6aa7177cdbe3",
+      "database": "published, once per grade/term",
+      "rendered_ui_check": "passed: title, objectives, substantive explanation, source/caveat; actual HTTP status not directly captured"
+    },
+    {
+      "grade": 3,
+      "title": "أول فدائي في الإسلام",
+      "id": "375f5229-940e-44e4-bf39-47ea5bbd1a64",
+      "source_edition": "2020 full textbook, not established as 2026-27",
+      "page_start": 147,
+      "page_end": 156,
+      "lesson_url": "https://dadyoom.com/lessons/375f5229-940e-44e4-bf39-47ea5bbd1a64",
+      "database": "published, once per grade/term",
+      "rendered_ui_check": "passed: title, objectives, substantive explanation, source/caveat; actual HTTP status not directly captured"
+    }
+  ],
+  "verified_2024_official_pack_topics": [
+    {
+      "grade": 2,
+      "pack_sequence": 7,
+      "title": "وطن يسكن فينا",
+      "id": "0bd2e9d2-de43-49e9-ae8a-a12e9a76e3ba",
+      "linked_source_in_database": "2024 official pack",
+      "lesson_url": "https://dadyoom.com/lessons/0bd2e9d2-de43-49e9-ae8a-a12e9a76e3ba",
+      "db_check": "one published record by title, grade and term",
+      "teacher_2026_27_approval": "not attested"
+    },
+    {
+      "grade": 2,
+      "pack_sequence": 9,
+      "title": "في مدينة الخليل",
+      "id": "920d781e-7051-46a0-aad0-33ec3ca360e5",
+      "linked_source_in_database": "2020 full textbook",
+      "lesson_url": "https://dadyoom.com/lessons/920d781e-7051-46a0-aad0-33ec3ca360e5",
+      "db_check": "one published record by title, grade and term",
+      "teacher_2026_27_approval": "not attested"
+    },
+    {
+      "grade": 2,
+      "pack_sequence": 10,
+      "title": "عمر والغلام",
+      "id": "f3a33709-33d9-4d23-98b0-2e63f1fa9148",
+      "linked_source_in_database": "2020 full textbook",
+      "lesson_url": "https://dadyoom.com/lessons/f3a33709-33d9-4d23-98b0-2e63f1fa9148",
+      "db_check": "one published record by title, grade and term",
+      "teacher_2026_27_approval": "not attested"
+    },
+    {
+      "grade": 2,
+      "pack_sequence": 11,
+      "title": "والدي الحبيب",
+      "id": "4c2b9f13-9781-4ae9-b102-1d2a6823fccd",
+      "linked_source_in_database": "2020 full textbook",
+      "lesson_url": "https://dadyoom.com/lessons/4c2b9f13-9781-4ae9-b102-1d2a6823fccd",
+      "db_check": "one published record by title, grade and term",
+      "teacher_2026_27_approval": "not attested"
+    },
+    {
+      "grade": 2,
+      "pack_sequence": 12,
+      "title": "سعيد والصقر",
+      "id": "c6ecb516-c5a5-4180-921c-99599a7472cd",
+      "linked_source_in_database": "2024 official pack",
+      "lesson_url": "https://dadyoom.com/lessons/c6ecb516-c5a5-4180-921c-99599a7472cd",
+      "db_check": "one published record by title, grade and term",
+      "teacher_2026_27_approval": "not attested"
+    },
+    {
+      "grade": 3,
+      "pack_sequence": 7,
+      "title": "حيفا والنورس",
+      "id": "c72e8198-4a4f-4387-aa95-73641cbc4b04",
+      "linked_source_in_database": "2024 official pack",
+      "lesson_url": "https://dadyoom.com/lessons/c72e8198-4a4f-4387-aa95-73641cbc4b04",
+      "db_check": "one published record by title, grade and term",
+      "teacher_2026_27_approval": "not attested"
+    },
+    {
+      "grade": 3,
+      "pack_sequence": 8,
+      "title": "من أخلاقنا",
+      "id": "11507260-e858-4954-a8a9-1bb51a06249c",
+      "linked_source_in_database": "2024 official pack",
+      "lesson_url": "https://dadyoom.com/lessons/11507260-e858-4954-a8a9-1bb51a06249c",
+      "db_check": "one published record by title, grade and term",
+      "teacher_2026_27_approval": "not attested"
+    },
+    {
+      "grade": 3,
+      "pack_sequence": 9,
+      "title": "في ميناء غزة",
+      "id": "f8319854-d862-40f7-b192-5f7dcbd0cb7f",
+      "linked_source_in_database": "2024 official pack",
+      "lesson_url": "https://dadyoom.com/lessons/f8319854-d862-40f7-b192-5f7dcbd0cb7f",
+      "db_check": "one published record by title, grade and term",
+      "teacher_2026_27_approval": "not attested"
+    },
+    {
+      "grade": 3,
+      "pack_sequence": 10,
+      "title": "المبدعة الصغيرة",
+      "id": "21be89a2-d4de-40db-afcd-61722bf03739",
+      "linked_source_in_database": "2024 official pack",
+      "lesson_url": "https://dadyoom.com/lessons/21be89a2-d4de-40db-afcd-61722bf03739",
+      "db_check": "one published record by title, grade and term",
+      "teacher_2026_27_approval": "not attested"
+    },
+    {
+      "grade": 3,
+      "pack_sequence": 11,
+      "title": "قمح بلادي",
+      "id": "bffd6410-33bd-4697-af99-e812e206e14c",
+      "linked_source_in_database": "2024 official pack",
+      "lesson_url": "https://dadyoom.com/lessons/bffd6410-33bd-4697-af99-e812e206e14c",
+      "db_check": "one published record by title, grade and term",
+      "teacher_2026_27_approval": "not attested"
+    },
+    {
+      "grade": 3,
+      "pack_sequence": 12,
+      "title": "زيارة إلى مدينة العنب",
+      "id": "1d6e4ded-565d-4862-9727-cc9c620ba0d1",
+      "linked_source_in_database": "2024 official pack",
+      "lesson_url": "https://dadyoom.com/lessons/1d6e4ded-565d-4862-9727-cc9c620ba0d1",
+      "db_check": "one published record by title, grade and term",
+      "teacher_2026_27_approval": "not attested"
+    }
+  ]
+}
