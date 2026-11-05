@@ -37,8 +37,8 @@ export default function HomePage() {
             <Link href="/founder" className="transition hover:text-[#174f47]">المؤسس</Link>
           </nav>
           <div className="flex items-center gap-2">
-            <Link href="/login" className="hidden rounded-xl px-4 py-2.5 text-sm font-black text-[#5d554c] hover:bg-[#f3ead7] sm:inline-flex">دخول</Link>
-            <Link href="/signup" className="rounded-xl bg-[#174f47] px-4 py-2.5 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#103f39]">ابدأ مجانًا</Link>
+            <Link href="/login" className="inline-flex min-h-11 items-center rounded-xl px-3 py-2.5 text-sm font-black text-[#5d554c] hover:bg-[#f3ead7] focus-visible:outline-2 focus-visible:outline-[#174f47] sm:px-4">دخول</Link>
+            <Link href="/signup" className="inline-flex min-h-11 items-center rounded-xl bg-[#174f47] px-3 py-2.5 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#103f39] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47] sm:px-4">ابدأ مجانًا</Link>
           </div>
         </div>
       </header>
@@ -63,8 +63,8 @@ export default function HomePage() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/try" className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#174f47] px-7 py-3.5 font-bold text-white shadow-lg shadow-[#174f47]/15 transition-colors hover:bg-[#103f39] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47]">جرّب درسًا الآن دون تسجيل</Link>
-              <Link href="/signup" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[#bdd7c6] bg-white px-7 py-3.5 font-bold text-[#174f47] transition-colors hover:bg-[#edf5f0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47]">أنشئ حسابًا لحفظ تقدمك</Link>
+              <Link href="/try" className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-[#174f47] px-7 py-3.5 font-bold text-white shadow-lg shadow-[#174f47]/15 transition-colors hover:bg-[#103f39] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47] sm:w-auto">جرّب درسًا الآن دون تسجيل</Link>
+              <Link href="/signup" className="inline-flex min-h-12 w-full items-center justify-center rounded-xl border border-[#bdd7c6] bg-white px-7 py-3.5 font-bold text-[#174f47] transition-colors hover:bg-[#edf5f0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47] sm:w-auto">أنشئ حسابًا لحفظ تقدمك</Link>
             </div>
             <nav aria-label="تجارب تعليمية يمكنك تجربتها" className="mt-5 flex flex-wrap gap-x-5 gap-y-3 text-sm font-semibold text-[#41685a]">
               <Link href="/ask" className="underline-offset-4 hover:underline">اسأل ضاد</Link>
