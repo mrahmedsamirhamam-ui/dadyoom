@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.0",
+  "as_of": "2026-11-05",
+  "purpose": "Baseline before ANY auth or Dhād performance production change.",
+  "deploy_status": "NOT_DEPLOYED",
+  "source": "GitHub main review, read-only Supabase, anonymous public route extraction",
+  "methodology_notes": [
+    "Static source measurements and public route availability are known.",
+    "No browser timing from a real mobile device.",
+    "No authenticated Dhād run or actual streaming TTFT captured.",
+    "No sampled conversion or abandonment data; all ratios unavailable."
+  ],
+  "auth": {
+    "signup_required_fields": {
+      "value": 5,
+      "status": "SOURCE_VERIFIED",
+      "fields": [
+        "full_name",
+        "role",
+        "country",
+        "email",
+        "password"
+      ]
+    },
+    "login_required_fields": {
+      "value": 2,
+      "status": "SOURCE_VERIFIED",
+      "fields": [
+        "email",
+        "password"
+      ]
+    },
+    "google_provider_configured": {
+      "value": true,
+      "status": "PUBLIC_ENDPOINT_VERIFIED"
+    },
+    "apple_provider_configured": {
+      "value": null,
+      "status": "NOT_VERIFIED"
+    },
+    "guest_study_landing_accessible": {
+      "value": true,
+      "status": "PUBLIC_ROUTE_VERIFIED"
+    },
+    "protected_role_routes": {
+      "value": 4,
+      "status": "PUBLIC_ROUTE_VERIFIED"
+    },
+    "guest_to_account_conversion_pct": {
+      "value": null,
+      "status": "NOT_MEASURED"
+    },
+    "signup_completion_pct": {
+      "value": null,
+      "status": "NOT_MEASURED"
+    },
+    "first_guest_lesson_p95_ms": {
+      "value": null,
+      "status": "NOT_MEASURED"
+    },
+    "first_registered_lesson_p95_ms": {
+      "value": null,
+      "status": "NOT_MEASURED"
+    },
+    "auth_error_rate_pct": {
+      "value": null,
+      "status": "NOT_MEASURED"
+    }
+  },
+  "dhad": {
+    "ask_endpoint": "/api/ask",
+    "current_provider_operation": "generateContent",
+    "current_response_format": "application/json; complete body",
+    "source_status": "SOURCE_VERIFIED",
+    "current_history_message_limit": 20,
+    "max_output_tokens": 700,
+    "streaming_enabled": {
+      "value": false,
+      "status": "SOURCE_VERIFIED_FOR_ASK_ENDPOINT_ONLY"
+    },
+    "first_visible_token_p50_ms": {
+      "value": null,
+      "status": "NOT_MEASURED"
+    },
+    "first_visible_token_p95_ms": {
+      "value": null,
+      "status": "NOT_MEASURED"
+    },
+    "complete_short_response_p95_ms": {
+      "value": null,
+      "status": "NOT_MEASURED"
+    },
+    "question_abandonment_pct": {
+      "value": null,
+      "status": "NOT_MEASURED"
+    },
+    "failed_request_pct": {
+      "value": null,
+      "status": "NOT_MEASURED"
+    },
+    "model_name": {
+      "value": null,
+      "status": "RUNTIME_ENV_NOT_READ"
+    },
+    "provider_tokens_p95": {
+      "value": null,
+      "status": "NOT_MEASURED"
+    }
+  },
+  "dashboard_display_rules": [
+    "Render null as 'لم يُقَس بعد', not 0.",
+    "Never show child identifiers, prompts, emails, IP addresses, precise location or raw voice.",
+    "Require a minimum group size of 20 in country and device segments before display; provisional threshold pending privacy review.",
+    "Separate backend provider-first-chunk from actual UI first-visible-token.",
+    "Do not label a static source inspection as performance benchmark."
+  ],
+  "go_nogo": {
+    "production_deploy_approved": false,
+    "blockers": [
+      "authenticated baseline TTFT not measured",
+      "real-mobile slow-network route timings not measured",
+      "RBAC and child consent test identities not approved",
+      "100 reference Arabic accuracy safety questions unavailable"
+    ]
+  }
+}
