@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import {
-  ANCHOR, DIAGNOSTIC, HALL_GOAL, PATHS, PATH_LABELS, PATH_CONTENT,
+  ANCHOR, ANCHOR_FORMS, DIAGNOSTIC, HALL_GOAL, PATHS, PATH_LABELS, PATH_CONTENT,
   assessAnchor, assessQuestions, recommendPath, suggestSupport,
 } from "../lib/adaptive-goal-paths/haal-pilot.mjs";
 
@@ -72,12 +72,36 @@ test("Common anchor uses 4/5 threshold and never claims mastery from one session
   assert.equal(assessQuestions(DIAGNOSTIC, {}).correct, 0);
 });
 
+test("Three equivalent independent anchor forms avoid replaying the same test items", () => {
+  assert.equal(ANCHOR_FORMS.length, HALL_GOAL.mastery.spacedChecks);
+  const ids = new Set();
+  const stems = new Set();
+  for (const form of ANCHOR_FORMS) {
+    assert.equal(form.length, HALL_GOAL.mastery.questionsPerCheck);
+    const correct = Object.fromEntries(form.map(q => [q.id, q.correctId]));
+    assert.equal(assessAnchor(correct, form).passedThisCheck, true);
+    for (const q of form) {
+      assert.ok(q.stem.includes("الحال"));
+      assert.equal(q.choices.length, 3);
+      assert.ok(q.choices.some(choice => choice.id === q.correctId));
+      assert.equal(ids.has(q.id), false, q.id);
+      assert.equal(stems.has(q.stem), false, q.stem);
+      ids.add(q.id);
+      stems.add(q.stem);
+    }
+  }
+  assert.equal(ids.size, 15);
+  assert.equal(stems.size, 15);
+  assert.match(assessAnchor({}, ANCHOR_FORMS[2]).note, /ثلاث جلسات متباعدة/);
+});
+
 test("Client pilot shows student choice and explicitly avoids persisted child data", () => {
   const client = readFileSync(new URL("../app/pilot/haal/page.tsx", import.meta.url), "utf8");
   assert.match(client, /choosePath\(item\)/);
   assert.match(client, /finishDiagnostic/);
   assert.match(client, /recommendPath/);
-  assert.match(client, /ANCHOR\.map/);
+  assert.match(client, /currentAnchor\.map/);
+  assert.match(client, /ANCHOR_FORMS/);
   assert.match(client, /aria-pressed/);
   assert.match(client, /dir="rtl"/);
   assert.match(client, /certifiedMastery|الإتقان النهائي|التقدير النهائي/);
