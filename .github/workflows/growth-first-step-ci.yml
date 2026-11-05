@@ -12,6 +12,7 @@ on:
       - "tests/guest-trial.test.ts"
       - "tests/growth-metrics.test.ts"
       - ".github/workflows/growth-first-step-ci.yml"
+      - "vitest.config.mts"
 
 permissions:
   contents: read
@@ -30,6 +31,8 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Test the privacy-preserving guest and metric definitions
         run: npx vitest run tests/guest-trial.test.ts tests/growth-metrics.test.ts
+      - name: Run standalone node:test checks
+        run: node --test tests/*.node.test.mjs
       - name: Typecheck the app
         run: npx tsc --noEmit
       - name: Lint modified app and growth files
