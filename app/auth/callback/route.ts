@@ -3,20 +3,7 @@ import { cookies } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { isCountryCode } from "@/lib/countries";
-
-const roleDestinations: Record<string, string> = {
-  student: "/student",
-  child: "/child",
-  teacher: "/teacher",
-  parent: "/parent",
-  school: "/school",
-  admin: "/admin",
-};
-
-function safeNext(value: string | null) {
-  if (!value || !value.startsWith("/") || value.startsWith("//")) return null;
-  return value;
-}
+import { destinationForStoredRole } from "@/lib/auth/role-destination.mjs";
 
 function parseIntent(raw: string | undefined) {
   if (!raw) return null;
@@ -36,7 +23,6 @@ function parseIntent(raw: string | undefined) {
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const code = url.searchParams.get("code");
-  const requestedNext = safeNext(url.searchParams.get("next"));
   const origin = url.origin;
 
   if (!code) return NextResponse.redirect(new URL("/login?error=oauth_callback", origin));
@@ -59,7 +45,15 @@ export async function GET(request: Request) {
 
   if (existingProfile?.role && existingProfile?.country && existingProfile?.full_name?.trim()) {
     const role = existingProfile.role.trim().toLowerCase();
-    const response = NextResponse.redirect(new URL(requestedNext || roleDestinations[role] || "/student", origin));
+    const response = NextResponse.redirect(new URL(destinationForStoredRole(role), origin));
+    response.cookies.delete("dadyoom_oauth_intent");
+    return response;
+  }
+
+  // An existing stored role is authoritative even if a profile is incomplete.
+  // Never overwrite it using an untrusted signup intent cookie.
+  if (existingProfile?.role) {
+    const response = NextResponse.redirect(new URL("/onboarding", origin));
     response.cookies.delete("dadyoom_oauth_intent");
     return response;
   }
@@ -100,10 +94,10 @@ export async function GET(request: Request) {
       return NextResponse.redirect(new URL("/onboarding?error=profile_create", origin));
     }
     const racedRole = racedProfile.role.trim().toLowerCase();
-    return NextResponse.redirect(new URL(roleDestinations[racedRole] || "/student", origin));
+    return NextResponse.redirect(new URL(destinationForStoredRole(racedRole), origin));
   }
 
-  const response = NextResponse.redirect(new URL(requestedNext || roleDestinations[intent.role] || "/student", origin));
+  const response = NextResponse.redirect(new URL(destinationForStoredRole(intent.role), origin));
   response.cookies.delete("dadyoom_oauth_intent");
   return response;
 }
