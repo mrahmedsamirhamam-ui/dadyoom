@@ -5,7 +5,7 @@ import Link from "next/link";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import StudentNextStepCard from "@/components/dashboard/student/next-step-card";
 import { getPendingStudentAssignments } from "@/features/learning-journey/get-pending-student-assignments";
-import { selectNextStudentStep } from "@/features/learning-journey/student-next-step";
+import { selectNextStudentStep, type StudentAssignmentCandidate } from "@/features/learning-journey/student-next-step";
 
 import { buildAdaptiveLearningPlan } from "@/features/learning-plan/services/buildAdaptiveLearningPlan";
 import { getAdaptiveLearningSteps } from "@/features/learning-plan/services/getAdaptiveLearningSteps";
@@ -431,12 +431,21 @@ if (masterySkillsError) {
     recommendedLesson?.title ?? "ابدأ الدرس المقترح";
 
 
-  const { assignments: pendingAssignmentCandidates, submittedAssignmentIds } =
-    await getPendingStudentAssignments(
+  let pendingAssignmentCandidates: StudentAssignmentCandidate[] = [];
+  let submittedAssignmentIds: ReadonlySet<string> = new Set<string>();
+  try {
+    const pending = await getPendingStudentAssignments(
       supabase as unknown as SupabaseClient,
       user.id,
       teacherClasses.map((teacherClass) => teacherClass.class_id),
     );
+    pendingAssignmentCandidates = pending.assignments;
+    submittedAssignmentIds = pending.submittedAssignmentIds;
+  } catch {
+    // The student still needs a functional dashboard if the assignment
+    // service is unavailable. Never expose another student's assignment.
+    console.warn("STUDENT_ASSIGNMENTS_UNAVAILABLE");
+  }
 
   const nextStep = selectNextStudentStep({
     assignments: pendingAssignmentCandidates,
