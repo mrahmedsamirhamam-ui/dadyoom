@@ -792,7 +792,7 @@ export async function POST(
 
       totalActivities,
 
-      progressPercent,
+      progressPercent: progressValues.progress_percent,
     });
 
   } catch (error) {
