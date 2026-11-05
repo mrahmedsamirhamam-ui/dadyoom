@@ -21,7 +21,7 @@ export type GradeRequest = {
 export type GradeResponse =
   | { ok: false; status: 400; error: string }
   | { ok: true; status: 200; kind: "diagnostic"; correct: number; total: number; errorKinds: (string | null)[]; recommendationIsBinding: false; certifiedMastery: false }
-  | { ok: true; status: 200; kind: "practice"; correct: boolean; explanation: string; certifiedMastery: false }
+  | { ok: true; status: 200; kind: "practice"; correct: boolean; explanation: string | null; certifiedMastery: false }
   | { ok: true; status: 200; kind: "anchor"; correct: number; total: number; passedThisCheck: boolean; certifiedMastery: false; note: string; feedback: { id: string; correct: boolean; explanation: string }[] };
 export function getPublicHaalPilotQuestions(): QuestionBank;
 export function gradeHaalPilotRequest(body: unknown): GradeResponse;
