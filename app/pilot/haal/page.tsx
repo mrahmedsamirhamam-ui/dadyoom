@@ -298,7 +298,7 @@ export default function AdaptiveHaalPilot() {
                     "الحال تصف كيف كان الشخص وقت الفعل. مثال: جاءَ الطفلُ سعيدًا. كيف جاء؟ سعيدًا. مَن صاحب الحال؟ الطفل." :
                     content.glossary}</p>
                   {supportLanguage === "en" ? (
-                    <p lang="en" dir="ltr" className="mt-2 text-left">The ḥāl describes someone's state when an action happens. The ṣāḥib al-ḥāl is the person or thing being described.</p>
+                    <p lang="en" dir="ltr" className="mt-2 text-left">The ḥāl describes the state of a person or thing when an action happens. The ṣāḥib al-ḥāl is the person or thing being described.</p>
                   ) : (
                     <p className="mt-2">اسأل: كيف حدث الفعل؟ ثم من الذي وُصف بهذه الهيئة؟</p>
                   )}
