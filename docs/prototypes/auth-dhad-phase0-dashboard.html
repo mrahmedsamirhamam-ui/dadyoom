@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ضاديوم | لوحة قياس الدخول وضاد — مسودة المرحلة 0</title>
+<style>
+:root{color-scheme:light;--ink:#173e38;--gold:#b48a36;--muted:#61726f;--bg:#f7f6f1;--border:#dbdfd8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font:16px system-ui,"Noto Naskh Arabic",sans-serif;color:#182e2b;line-height:1.65}
+header{background:#123c36;color:white;padding:28px max(24px,calc((100% - 1120px)/2))}
+h1{margin:0;font-size:clamp(25px,4vw,36px);line-height:1.3}h2{font-size:21px;color:var(--ink)}
+p{margin:.4rem 0}header p{color:#f0dba1}main{max-width:1120px;margin:auto;padding:22px}
+.lede{border-inline-start:4px solid var(--gold);padding:12px 18px;background:white;border-radius:9px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:14px;margin:18px 0}
+article{border:1px solid var(--border);border-radius:14px;background:#fff;padding:19px;box-shadow:0 2px 8px #153e3410}
+.metric{font-size:32px;line-height:1.5;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums}
+.unknown{font-size:19px;color:#745c23}.key{font-size:13px;color:var(--muted)}
+small{color:var(--muted)}table{width:100%;border-collapse:collapse;background:white;border-radius:12px;overflow:hidden}
+th,td{text-align:right;padding:12px;border-bottom:1px solid var(--border)}th{background:#ecf1ee}
+mark{background:#f8e8be;padding:2px 6px;border-radius:7px;color:#513c11}
+section{margin-block:30px}.foot{margin-top:26px;font-size:13px;color:#586966}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+@media(max-width:500px){header{padding:22px 18px}main{padding:16px}table{font-size:13px}td,th{padding:7px}}
+</style>
+</head>
+<body>
+<header>
+<h1>ضاديوم — لوحة الدخول وسرعة «ضاد»</h1>
+<p>تصوّر توثيقي للمرحلة صفر • 5 نوفمبر 2026 • غير منشور • بيانات حقيقية ثابتة فقط</p>
+</header>
+<main>
+<p class="lede"><strong>تنبيه جودة البيانات:</strong> هذه واجهة تجريبية للقياس؛ ليست لوحة إنتاجية متصلة بمستخدمين. أي مؤشر غير مقاس يظهر صراحة «لم يُقَس» ولا يُعامل كصفر. لا تحتوي بيانات شخصية ولا محادثات أطفال.</p>
+<section aria-labelledby="login">
+<h2 id="login">1. الدخول والتسجيل</h2>
+<div class="cards">
+<article><div class="key">حقول التسجيل الحالية</div><div class="metric">5</div><small>تم التحقق من نموذج الإنتاج</small></article>
+<article><div class="key">حقول تسجيل الدخول</div><div class="metric">2</div><small>بريد وكلمة مرور</small></article>
+<article><div class="key">تحويل الضيف إلى حساب</div><div class="metric unknown">لم يُقَس</div><small>يستلزم أحداثًا بموافقة</small></article>
+<article><div class="key">وقت الوصول لأول درس p95</div><div class="metric unknown">لم يُقَس</div><small>هدف تجريبي: ضيف أقل من 30 ثانية</small></article>
+</div>
+</section>
+<section aria-labelledby="ai">
+<h2 id="ai">2. سرعة «ضاد» وجودة الخدمة</h2>
+<div class="cards">
+<article><div class="key">الإجابة في مسار /api/ask</div><div class="metric" style="font-size:23px">دفعية</div><small>generateContent بلا بث • مراجعة الكود</small></article>
+<article><div class="key">زمن أول كلمة TTFT p50</div><div class="metric unknown">لم يُقَس</div><small>يُقاس عند ظهور النص للمتعلم</small></article>
+<article><div class="key">زمن أول كلمة TTFT p95</div><div class="metric unknown">لم يُقَس</div><small>الهدف التجريبي: أقل من 1.5 ثانية</small></article>
+<article><div class="key">الزمن الكلي p95</div><div class="metric unknown">لم يُقَس</div><small>الهدف التجريبي: إجابة قصيرة خلال 5 ثوان</small></article>
+</div>
+</section>
+<section aria-labelledby="quality">
+<h2 id="quality">3. جاهزية الإطلاق</h2>
+<table><thead><tr><th>البند</th><th>الحالة</th><th>شرط القبول</th></tr></thead><tbody>
+<tr><td>قراءة الواجهات ومسارات الدخول</td><td>تم</td><td>5 حقول تسجيل / 2 دخول / 4 أدوار محمية</td></tr>
+<tr><td>قياس مسارات GET من عدّاء خارجي</td><td>جاهز للتشغيل</td><td>عينة route baseline p50/p95</td></tr>
+<tr><td>قياس طلب ضاد المصادق عليه</td><td><mark>معلّق</mark></td><td>حساب اختبار بالغ + إذن + نقاط قياس</td></tr>
+<tr><td>اختبار جهاز فعلي وشبكة ضعيفة</td><td><mark>معلّق</mark></td><td>Android/desktop + مسارات الأدوار الأربعة</td></tr>
+<tr><td>نشر بث/OTP/دمج تقدم الضيف</td><td><mark>غير مصرح بعد</mark></td><td>قياس قبل/بعد + 100 سؤال مرجعي + RLS</td></tr>
+</tbody></table>
+</section>
+<p class="foot">المصدر: وثيقة <code>docs/AUTH_DHAD_PHASE0_BASELINE_2026-11-05.md</code> وملف <code>data/product-audits/auth-dhad-dashboard-baseline-20261105.json</code> على فرع تدقيق غير منشور. عدم ظهور مقياس يعني عدم توافر عينة مؤهلة، لا انعدام التأخير أو الخطأ.</p>
+</main>
+</body></html>
