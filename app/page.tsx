@@ -63,8 +63,8 @@ export default function HomePage() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/signup" className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#174f47] px-7 py-3.5 font-bold text-white shadow-lg shadow-[#174f47]/15 transition-colors hover:bg-[#103f39] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47]">ابدأ رحلتك مجانًا</Link>
-              <Link href="/courses" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[#bdd7c6] bg-white px-7 py-3.5 font-bold text-[#174f47] transition-colors hover:bg-[#edf5f0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47]">استكشف المناهج</Link>
+              <Link href="/try" className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#174f47] px-7 py-3.5 font-bold text-white shadow-lg shadow-[#174f47]/15 transition-colors hover:bg-[#103f39] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47]">جرّب درسًا الآن دون تسجيل</Link>
+              <Link href="/signup" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[#bdd7c6] bg-white px-7 py-3.5 font-bold text-[#174f47] transition-colors hover:bg-[#edf5f0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47]">أنشئ حسابًا لحفظ تقدمك</Link>
             </div>
             <nav aria-label="تجارب تعليمية يمكنك تجربتها" className="mt-5 flex flex-wrap gap-x-5 gap-y-3 text-sm font-semibold text-[#41685a]">
               <Link href="/ask" className="underline-offset-4 hover:underline">اسأل ضاد</Link>
