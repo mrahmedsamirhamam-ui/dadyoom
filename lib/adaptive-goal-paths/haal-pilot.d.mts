@@ -49,7 +49,7 @@ export function assessQuestions(
   correct: number;
   total: number;
   ratio: number;
-  rows: { id: string; correct: boolean; answered: boolean; errorKind: string }[];
+  rows: { id: string; correct: boolean; answered: boolean; errorKind: string | null }[];
 };
 export function assessAnchor(answers: Record<string, string>): ReturnType<typeof assessQuestions> & {
   passedThisCheck: boolean;
