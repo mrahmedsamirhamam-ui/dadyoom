@@ -2,6 +2,7 @@ import "server-only";
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { requireAdminResponse } from "@/lib/auth/require-admin";
 
 /** The existing admin must explicitly verify every new teacher/school. */
 export const runtime = "nodejs";
@@ -11,6 +12,8 @@ const refuse = (message: string, status: number) =>
   NextResponse.json({ error: message }, { status, headers: { "Cache-Control": "no-store" } });
 
 export async function POST(request: Request) {
+  const rejectedAdminRequest = await requireAdminResponse();
+  if (rejectedAdminRequest) return rejectedAdminRequest;
   const origin = request.headers.get("origin");
   try {
     if (!origin || new URL(origin).origin !== new URL(request.url).origin) {
