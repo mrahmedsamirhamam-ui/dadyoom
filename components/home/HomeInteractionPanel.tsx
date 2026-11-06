@@ -82,7 +82,7 @@ export default function HomeInteractionPanel() {
               <Link
                 key={skill.href}
                 href={skill.href}
-                className="touch-manipulation rounded-2xl border border-[#dfcfad] bg-white p-5 shadow-sm transition active:scale-[0.97] active:bg-[#fff4dc]"
+                className="touch-manipulation rounded-2xl border-2 border-[#b7a076] bg-white p-5 shadow-sm transition hover:border-[#174d44] hover:shadow-md active:scale-[0.97] active:bg-[#fff4dc] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174d44]"
               >
                 <span className="text-3xl">
                   {skill.icon}
@@ -90,7 +90,7 @@ export default function HomeInteractionPanel() {
                 <h3 className="mt-3 text-xl font-black text-[#123f39]">
                   {skill.title}
                 </h3>
-                <p className="mt-1 text-sm font-bold text-[#766c60]">
+                <p className="mt-1 text-sm font-bold text-[#3d4a46]">
                   {skill.text}
                 </p>
               </Link>
