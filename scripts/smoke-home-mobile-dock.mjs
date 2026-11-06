@@ -44,6 +44,18 @@ try {
     await page.screenshot({path:"artifacts/home/mobile-"+width+".png",fullPage:true,animations:"disabled"});
     metrics.push({width,...await page.evaluate(()=>window.__homeVitals)});
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),"Horizontal overflow at "+width);
+    let keyboardCanReachHero = false;
+    for (let tab = 0; tab < 18; tab++) {
+      await page.keyboard.press("Tab");
+      if (await page.locator(".hero-cta").evaluate((el) => document.activeElement === el)) {
+        keyboardCanReachHero = true;
+        break;
+      }
+    }
+    assert.ok(keyboardCanReachHero,"Keyboard Tab cannot reach hero CTA at "+width);
+    await page.keyboard.press("Enter");
+    await page.waitForURL("**/try",{timeout:15000});
+    assert.ok(await page.getByRole("heading",{name:"خطوة صغيرة في العربية"}).isVisible(),"Guest lesson not reachable by keyboard");
     await page.close();
   }
   const desktop=await browser.newPage({viewport:{width:1366,height:900},locale:"ar-BH",reducedMotion:"reduce"});
