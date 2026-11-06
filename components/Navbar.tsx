@@ -93,20 +93,12 @@ export default async function Navbar() {
             <LogoutButton compact />
           </div>
         ) : (
-          <div className="flex items-center gap-2">
-            <Link
-              href="/login"
-              className="rounded-full border border-[#d7c59f] bg-[#fffaf0] px-4 py-2.5 text-sm font-black text-[#6b5d45] transition hover:border-[#b88a34] hover:text-[#123f39]"
-            >
-              دخول
-            </Link>
-            <Link
-              href="/signup"
-              className="rounded-full bg-[#123f39] px-4 py-2.5 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#0c332e]"
-            >
-              حساب جديد
-            </Link>
-          </div>
+          <Link
+            href="/login"
+            className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-xl border border-[#cbd9cb] bg-white px-5 py-2.5 text-sm font-bold text-[#174f47] hover:bg-[#edf5f0] focus-visible:outline-2 focus-visible:outline-[#174f47]"
+          >
+            دخول
+          </Link>
         )}
       </div>
     </header>
