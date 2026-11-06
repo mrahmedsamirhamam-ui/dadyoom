@@ -62,21 +62,37 @@ export default async function Navbar() {
       <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <DadyoomLogo href={user ? "/my" : "/"} className="ml-auto" />
 
-        <nav
-          aria-label="التنقل الرئيسي"
-          className="order-3 flex w-full gap-1 overflow-x-auto py-1 text-sm font-semibold text-[#416054] lg:order-none lg:w-auto lg:flex-1 lg:justify-center lg:overflow-visible"
-        >
-          {links.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="inline-flex min-h-11 items-center whitespace-nowrap rounded-xl px-4 py-2.5 transition-colors hover:bg-[#edf5f0] hover:text-[#123f39] focus-visible:outline-2 focus-visible:outline-[#174f47]"
-            >
+        <nav aria-label="تنقل مختصر" className="order-3 flex w-full items-center gap-2 border-t border-[#edf2eb] pt-3 text-sm font-semibold text-[#416054] lg:hidden">
+          {links.slice(0, 2).map(item => (
+            <Link key={item.href} href={item.href}
+              className="inline-flex min-h-11 flex-1 items-center justify-center rounded-xl bg-[#f4f8f3] px-2 py-2.5 text-center hover:bg-[#e7f1e9] focus-visible:outline-2 focus-visible:outline-[#174f47]">
               {item.label}
             </Link>
           ))}
-                <NotificationBell />
-    </nav>
+          <details className="group relative flex-1">
+            <summary className="flex min-h-11 cursor-pointer list-none items-center justify-center rounded-xl border border-[#dfe9df] bg-white px-2 py-2.5 text-center font-bold focus-visible:outline-2 focus-visible:outline-[#174f47]">
+              المزيد
+            </summary>
+            <div className="absolute left-0 right-0 top-full z-50 mt-2 grid min-w-[9rem] gap-1 rounded-xl border border-[#dfe9df] bg-white p-2 shadow-lg">
+              {links.slice(2).map(item => (
+                <Link key={item.href} href={item.href}
+                  className="flex min-h-11 items-center rounded-lg px-3 text-sm hover:bg-[#edf5f0] focus-visible:outline-2 focus-visible:outline-[#174f47]">
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </details>
+        </nav>
+
+        <nav aria-label="التنقل الرئيسي" className="hidden flex-1 items-center justify-center gap-1 text-sm font-semibold text-[#416054] lg:flex">
+          {links.map(item => (
+            <Link key={item.href} href={item.href}
+              className="inline-flex min-h-11 items-center whitespace-nowrap rounded-xl px-3 py-2.5 hover:bg-[#edf5f0] focus-visible:outline-2 focus-visible:outline-[#174f47]">
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+        {user && <NotificationBell />}
 
         {user ? (
           <div className="flex items-center gap-2">
