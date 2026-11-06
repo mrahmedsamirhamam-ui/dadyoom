@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
+import { GraduationCap, Presentation, UsersRound, School } from "lucide-react";
+import HomeTrustStrip from "@/components/home/HomeTrustStrip";
 import DadyoomLogo, { DadyoomMark } from "@/components/brand/DadyoomLogo";
 
 import HomeInteractionPanel from "@/components/home/HomeInteractionPanel";
@@ -13,6 +16,13 @@ const pillars = [
   { icon: "✦", title: "رحلة تناسب المتعلم", text: "تقدم وتقييم وتوصيات ومكافآت تجعل الخطوة التالية واضحة بدل التنقل العشوائي." },
   { icon: "👥", title: "منظومة تعليم كاملة", text: "تجارب مترابطة للطالب والمعلم وولي الأمر والمدرسة مع صلاحيات واضحة لكل دور." },
 ];
+
+const entryPoints = [
+  { title: "الطالب", icon: GraduationCap, href: "/student", detail: "تعلّم من دروسك، وتابع تقدّمك.", action: "بوابة الطالب" },
+  { title: "المعلم", icon: Presentation, href: "/teacher", detail: "نظّم دروسك، وتابع تعلّم طلابك.", action: "بوابة المعلم" },
+  { title: "ولي الأمر", icon: UsersRound, href: "/parent", detail: "تابع تعلّم أبنائك في مكان واحد.", action: "بوابة ولي الأمر" },
+  { title: "المدرسة", icon: School, href: "/school", detail: "نظّم الفصول والتواصل والمتابعة.", action: "بوابة المدرسة" },
+] as const;
 
 const skills = [
   { icon: "📖", title: "القراءة", text: "فهم النص والسياق", href: "/skills/reading/practice" },
@@ -38,7 +48,7 @@ export default function HomePage() {
           </nav>
           <div className="flex items-center gap-2">
             <Link href="/login" className="hidden rounded-xl px-4 py-2.5 text-sm font-black text-[#5d554c] hover:bg-[#f3ead7] sm:inline-flex">دخول</Link>
-            <Link href="/signup" className="rounded-xl bg-[#174f47] px-4 py-2.5 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#103f39]">ابدأ مجانًا</Link>
+            <Link href="/try" className="dadyoom-home-header-cta inline-flex min-h-11 items-center justify-center rounded-xl bg-[#174d44] px-4 py-2.5 text-sm font-black text-white shadow-sm transition hover:bg-[#103f39] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174d44]">ابدأ مجانًا</Link>
           </div>
         </div>
       </header>
@@ -50,36 +60,22 @@ export default function HomePage() {
             <div className="inline-flex items-center gap-2 rounded-full border border-[#d8c18a] bg-[#fffef9] px-4 py-2 text-sm font-black text-[#72551c] shadow-sm">
               <span>✦</span><span>العربية تجمعنا، ولا تُذيب أحدًا</span>
             </div>
-            <h1 className="mt-7 max-w-3xl font-arabic-display text-4xl font-bold leading-[1.5] text-[#173f35] sm:text-5xl lg:text-[3.55rem]">
+            <h1 className="dadyoom-home-title mt-7 max-w-3xl font-arabic-display text-4xl font-bold leading-[1.5] text-[#173f35] sm:text-5xl lg:text-[3.55rem]">
               ضاديوم — بيت عربي رقمي يجعل
-              <span className="block text-[#a8782f]">التعلّم رحلة مفهومة ومحبوبة</span>
+              <span className="block text-[#80551b]">التعلّم رحلة مفهومة ومحبوبة</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-9 text-[#50685b] sm:text-xl">
               ضاديوم (Dadyoom) يجمع منهجًا منظمًا، والمهارات الأربع، والتقييم والتقدم، و«ضاد» رفيقًا ذكيًا يساعد الطالب في اللحظة التي يحتاج فيها إلى شرح أو تدريب.
             </p>
-            <p className="dadyoom-home-intro mt-3 font-bold">
-              الاسم الرسمي هو «ضاديوم» (Dadyoom). وإذا وصلت إلينا بالبحث عن «ضاضيوم» أو «داديوم» أو «ضاديو» أو Dadyoum، فأنت تبحث عن المنصة نفسها.
-              <Link href="/about" className="mr-1 underline underline-offset-4 hover:text-[#174f47]">تعرّف على ضاديوم</Link>
-            </p>
+            <Link href="/try" className="hero-cta">ابدأ مجانًا</Link>
+            <p className="mt-3 text-center text-sm font-bold leading-7 text-[#3d4a46]">جرّب درسًا قصيرًا دون تسجيل، ثم <Link href="/signup" className="underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-[#174d44]">أنشئ حسابًا لحفظ تقدّمك</Link>.</p>
 
-            <Link href="/signup" className="hero-cta">ابدأ مجانًا</Link>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/try" className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#174f47] px-7 py-3.5 font-bold text-white shadow-lg shadow-[#174f47]/15 transition-colors hover:bg-[#103f39] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47]">جرّب درسًا الآن دون تسجيل</Link>
-              <Link href="/signup" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[#bdd7c6] bg-white px-7 py-3.5 font-bold text-[#174f47] transition-colors hover:bg-[#edf5f0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47]">أنشئ حسابًا لحفظ تقدمك</Link>
-            </div>
             <nav aria-label="تجارب تعليمية يمكنك تجربتها" className="mt-5 flex flex-wrap gap-x-5 gap-y-3 text-sm font-semibold text-[#41685a]">
               <Link href="/ask" className="underline-offset-4 hover:underline">اسأل ضاد</Link>
               <Link href="/labs/letters" className="underline-offset-4 hover:underline">مختبر الحروف</Link>
               <Link href="/level-check" className="underline-offset-4 hover:underline">اكتشف مستواك</Link>
               <Link href="/how-to-use" className="underline-offset-4 hover:underline">كيف تستخدم ضاديوم؟</Link>
             </nav>
-            <div className="mt-9 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
-              <MiniStat value="22" label="دولة عربية في البنية" />
-              <MiniStat value="1" label="حزمة منهج منشورة" />
-              <MiniStat value="4" label="مهارات" />
-              <MiniStat value="24/7" label="ضاد" />
-            </div>
           </div>
 
           <div className="relative">
@@ -108,6 +104,28 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <section aria-labelledby="home-roles-title" className="border-b border-[#e2d4b8] bg-[#fffdf8] py-12 sm:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 id="home-roles-title" className="font-arabic-display text-2xl font-black text-[#173f35] sm:text-3xl">ابدأ من بوابتك</h2>
+          <p className="mt-2 max-w-2xl text-base leading-8 text-[#3d4a46]">اختر دورك للوصول إلى أدوات التعلم والتعليم المناسبة لك.</p>
+          <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {entryPoints.map((entry) => (
+              <article key={entry.href} className="flex min-w-0 flex-col rounded-3xl border border-[#dfd0b3] bg-white p-5 shadow-sm">
+                <entry.icon aria-hidden="true" className="h-9 w-9 text-[#174d44]" strokeWidth={1.75} />
+                <h3 className="mt-3 font-arabic-display text-xl font-black text-[#173f35]">{entry.title}</h3>
+                <p className="mt-2 flex-1 text-sm leading-7 text-[#3d4a46]">{entry.detail}</p>
+                <Link href={entry.href} className="mt-5 inline-flex min-h-11 items-center justify-center rounded-xl border border-[#174d44] px-4 py-2 text-sm font-bold text-[#174d44] hover:bg-[#edf5f0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174d44]">{entry.action}</Link>
+              </article>
+            ))}
+          </div>
+          <p className="mt-4 text-sm leading-7 text-[#3d4a46]">لوحات الأدوار تحتاج تسجيل الدخول. ويمكن للزائر <Link href="/try" className="font-bold underline underline-offset-4">تجربة درس مجانًا</Link> أولًا.</p>
+        </div>
+      </section>
+
+      <Suspense fallback={null}>
+        <HomeTrustStrip />
+      </Suspense>
 
       <section id="mvp" className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -152,6 +170,17 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section aria-labelledby="home-about-title" className="border-t border-[#dfcfad] bg-[#fffdf8] py-10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 id="home-about-title" className="font-arabic-display text-xl font-black text-[#173f35]">عن ضاديوم</h2>
+          <p className="dadyoom-home-intro mt-3 max-w-4xl font-bold">
+            الاسم الرسمي هو «ضاديوم» (Dadyoom). وإذا وصلت إلينا بالبحث عن «ضاضيوم» أو «داديوم» أو «ضاديو» أو Dadyoum، فأنت تبحث عن المنصة نفسها.
+            <Link href="/about" className="mr-1 underline underline-offset-4 hover:text-[#174f47]">تعرّف على ضاديوم</Link>
+          </p>
+        </div>
+      </section>
+      <HomeInteractionPanel />
+
       <footer className="border-t border-[#315e57] bg-[#123f39] py-10 text-[#d9e8e3]">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
           <DadyoomLogo inverse />
@@ -163,8 +192,7 @@ export default function HomePage() {
           </div>
         </div>
       </footer>
-          <HomeInteractionPanel />
-</main>
+    </main>
   );
 }
 
@@ -174,15 +202,6 @@ function SectionHeading({ eyebrow, title, text }: { eyebrow: string; title: stri
       <div className="text-sm font-black text-[#a8782f]">{eyebrow}</div>
       <h2 className="mt-3 font-arabic-display text-3xl font-black text-[#213b36] sm:text-4xl">{title}</h2>
       <p className="mt-4 font-arabic-reading text-lg leading-9 text-[#6a6258]">{text}</p>
-    </div>
-  );
-}
-
-function MiniStat({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="rounded-2xl border border-[#dfd2b9] bg-[#fffef9] p-4 text-center shadow-sm">
-      <div className="text-xl font-black text-[#174f47]">{value}</div>
-      <div className="mt-1 text-xs font-bold text-[#746b60]">{label}</div>
     </div>
   );
 }
