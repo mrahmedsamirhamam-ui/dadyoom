@@ -1,8 +1,17 @@
 import { NextResponse } from "next/server";
 
 import { createClient } from "@/lib/supabase/server";
+import { liveCheckoutApproved } from "@/lib/payments/checkout-gate";
 
 export async function POST() {
+  // The API must remain paused independently of any visible pricing button.
+  if (!liveCheckoutApproved("paddle")) {
+    return NextResponse.json({ error: "PAYMENTS_PAUSED" }, {
+      status: 503,
+      headers: { "Cache-Control": "no-store" },
+    });
+  }
+
   const supabase = await createClient();
 
   const {
