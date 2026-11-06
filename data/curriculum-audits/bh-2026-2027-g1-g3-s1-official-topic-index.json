@@ -17,7 +17,7 @@
       "category": "preparation_worksheet",
       "sequence": 1,
       "title": "علم بلادي",
-      "bookPage": null,
+      "bookPage": "16",
       "aliases": [
         "ورقة عمل (1)"
       ],
@@ -31,7 +31,7 @@
       "category": "preparation_worksheet",
       "sequence": 2,
       "title": "مرافق مدرستي",
-      "bookPage": null,
+      "bookPage": "17",
       "aliases": [
         "ورقة عمل (2)"
       ],
@@ -45,7 +45,7 @@
       "category": "preparation_worksheet",
       "sequence": 3,
       "title": "هذا صفنا",
-      "bookPage": null,
+      "bookPage": "20-21",
       "aliases": [
         "ورقة عمل (3)"
       ],
@@ -59,7 +59,7 @@
       "category": "preparation_worksheet",
       "sequence": 4,
       "title": "أشياء في صفي",
-      "bookPage": null,
+      "bookPage": "22",
       "aliases": [
         "ورقة عمل (4)"
       ],
@@ -73,7 +73,7 @@
       "category": "preparation_worksheet",
       "sequence": 5,
       "title": "أتعرف الأشكال المستوية",
-      "bookPage": null,
+      "bookPage": "23",
       "aliases": [
         "ورقة عمل (5)"
       ],
@@ -87,7 +87,7 @@
       "category": "preparation_worksheet",
       "sequence": 6,
       "title": "الأشكال المستوية",
-      "bookPage": null,
+      "bookPage": "24",
       "aliases": [
         "ورقة عمل (6)"
       ],
@@ -101,7 +101,7 @@
       "category": "preparation_worksheet",
       "sequence": 7,
       "title": "ألوان علم بلادي",
-      "bookPage": null,
+      "bookPage": "25",
       "aliases": [
         "ورقة عمل (7)"
       ],
@@ -115,7 +115,7 @@
       "category": "preparation_worksheet",
       "sequence": 8,
       "title": "أدواتي المدرسية",
-      "bookPage": null,
+      "bookPage": "28",
       "aliases": [
         "ورقة عمل (8)"
       ],
@@ -129,7 +129,7 @@
       "category": "preparation_worksheet",
       "sequence": 9,
       "title": "أبتكر شكلا غريبا",
-      "bookPage": null,
+      "bookPage": "29",
       "aliases": [
         "ورقة عمل (9)"
       ],
@@ -143,7 +143,7 @@
       "category": "preparation_worksheet",
       "sequence": 10,
       "title": "الأشكال المستوية",
-      "bookPage": null,
+      "bookPage": "30",
       "aliases": [
         "ورقة عمل (10)"
       ],
@@ -157,7 +157,7 @@
       "category": "preparation_worksheet",
       "sequence": 11,
       "title": "أطابق بين الأشياء",
-      "bookPage": null,
+      "bookPage": "31",
       "aliases": [
         "ورقة عمل (11)"
       ],
@@ -171,7 +171,7 @@
       "category": "preparation_worksheet",
       "sequence": 12,
       "title": "قوانين صفي",
-      "bookPage": null,
+      "bookPage": "32-33",
       "aliases": [
         "ورقة عمل (12)"
       ],
@@ -185,7 +185,7 @@
       "category": "preparation_worksheet",
       "sequence": 13,
       "title": "أعمل وأتعلم في المدرسة",
-      "bookPage": null,
+      "bookPage": "36",
       "aliases": [
         "ورقة عمل (13)"
       ],
@@ -199,7 +199,7 @@
       "category": "preparation_worksheet",
       "sequence": 14,
       "title": "أفكر لأبدع",
-      "bookPage": null,
+      "bookPage": "37",
       "aliases": [
         "ورقة عمل (14)"
       ],
@@ -213,7 +213,7 @@
       "category": "preparation_worksheet",
       "sequence": 15,
       "title": "أعبر عن مشاعري",
-      "bookPage": null,
+      "bookPage": "38",
       "aliases": [
         "ورقة عمل (15)"
       ],
@@ -227,7 +227,7 @@
       "category": "preparation_worksheet",
       "sequence": 16,
       "title": "الأحجام والأطوال",
-      "bookPage": null,
+      "bookPage": "39",
       "aliases": [
         "ورقة عمل (16)"
       ],
@@ -241,7 +241,7 @@
       "category": "preparation_worksheet",
       "sequence": 17,
       "title": "المختلف",
-      "bookPage": null,
+      "bookPage": "40",
       "aliases": [
         "ورقة عمل (17)"
       ],
@@ -255,7 +255,7 @@
       "category": "preparation_worksheet",
       "sequence": 18,
       "title": "أميز سمعيا",
-      "bookPage": null,
+      "bookPage": "41",
       "aliases": [
         "ورقة عمل (18)"
       ],
@@ -269,7 +269,7 @@
       "category": "preparation_worksheet",
       "sequence": 19,
       "title": "أميز بصريا",
-      "bookPage": null,
+      "bookPage": "42",
       "aliases": [
         "ورقة عمل (19)"
       ],
@@ -283,7 +283,7 @@
       "category": "preparation_worksheet",
       "sequence": 20,
       "title": "ألون المختلف",
-      "bookPage": null,
+      "bookPage": "46",
       "aliases": [
         "ورقة عمل (20)"
       ],
@@ -297,7 +297,7 @@
       "category": "preparation_worksheet",
       "sequence": 21,
       "title": "الوزن والكمية",
-      "bookPage": null,
+      "bookPage": "47",
       "aliases": [
         "ورقة عمل (21)"
       ],
@@ -311,7 +311,7 @@
       "category": "preparation_worksheet",
       "sequence": 22,
       "title": "أصوات الحروف والمقاطع",
-      "bookPage": null,
+      "bookPage": "48-49",
       "aliases": [
         "ورقة عمل (22)"
       ],
@@ -325,7 +325,7 @@
       "category": "preparation_worksheet",
       "sequence": 23,
       "title": "فواكه وخضروات وطني",
-      "bookPage": null,
+      "bookPage": "50",
       "aliases": [
         "ورقة عمل (23)"
       ],
@@ -339,7 +339,7 @@
       "category": "preparation_worksheet",
       "sequence": 24,
       "title": "أنا فنان",
-      "bookPage": null,
+      "bookPage": "51",
       "aliases": [
         "ورقة عمل (24)"
       ],
@@ -353,7 +353,7 @@
       "category": "preparation_worksheet",
       "sequence": 25,
       "title": "أتعرف الزمن",
-      "bookPage": null,
+      "bookPage": "54",
       "aliases": [
         "ورقة عمل (25)"
       ],
@@ -367,7 +367,7 @@
       "category": "preparation_worksheet",
       "sequence": 26,
       "title": "يمين ويسار",
-      "bookPage": null,
+      "bookPage": "55",
       "aliases": [
         "ورقة عمل (26)"
       ],
@@ -381,7 +381,7 @@
       "category": "preparation_worksheet",
       "sequence": 27,
       "title": "أتعرف المكان",
-      "bookPage": null,
+      "bookPage": "56",
       "aliases": [
         "ورقة عمل (27)"
       ],
@@ -395,7 +395,7 @@
       "category": "preparation_worksheet",
       "sequence": 28,
       "title": "قانوني المفضل",
-      "bookPage": null,
+      "bookPage": "57",
       "aliases": [
         "ورقة عمل (28)"
       ],
@@ -409,7 +409,7 @@
       "category": "preparation_worksheet",
       "sequence": 29,
       "title": "أصوات الحروف والمقاطع",
-      "bookPage": null,
+      "bookPage": "58",
       "aliases": [
         "ورقة عمل (29)"
       ],
@@ -423,7 +423,7 @@
       "category": "preparation_worksheet",
       "sequence": 30,
       "title": "ألاحظ وأتعلم",
-      "bookPage": null,
+      "bookPage": "59",
       "aliases": [
         "ورقة عمل (30)"
       ],
@@ -437,7 +437,7 @@
       "category": "preparation_worksheet",
       "sequence": 31,
       "title": "الأجزاء الناقصة",
-      "bookPage": null,
+      "bookPage": "60",
       "aliases": [
         "ورقة عمل (31)"
       ],
@@ -451,7 +451,7 @@
       "category": "preparation_worksheet",
       "sequence": 32,
       "title": "أجزاء جسمي",
-      "bookPage": null,
+      "bookPage": "64",
       "aliases": [
         "ورقة عمل (32)"
       ],
@@ -465,7 +465,7 @@
       "category": "preparation_worksheet",
       "sequence": 33,
       "title": "أنشد وأتعلم",
-      "bookPage": null,
+      "bookPage": "65",
       "aliases": [
         "ورقة عمل (33)"
       ],
@@ -479,7 +479,7 @@
       "category": "preparation_worksheet",
       "sequence": 34,
       "title": "أنا نظيف",
-      "bookPage": null,
+      "bookPage": "66",
       "aliases": [
         "ورقة عمل (34)"
       ],
@@ -493,7 +493,7 @@
       "category": "preparation_worksheet",
       "sequence": 35,
       "title": "في غرفة مريم",
-      "bookPage": null,
+      "bookPage": "67",
       "aliases": [
         "ورقة عمل (35)"
       ],
@@ -507,7 +507,7 @@
       "category": "preparation_worksheet",
       "sequence": 36,
       "title": "سلامة مرافق مدرستي",
-      "bookPage": null,
+      "bookPage": "68",
       "aliases": [
         "ورقة عمل (36)"
       ],
@@ -521,7 +521,7 @@
       "category": "preparation_worksheet",
       "sequence": 37,
       "title": "الجزء والكل",
-      "bookPage": null,
+      "bookPage": "69",
       "aliases": [
         "ورقة عمل (37)"
       ],
@@ -535,7 +535,7 @@
       "category": "preparation_worksheet",
       "sequence": 38,
       "title": "الكلمات المتشابهة صوتا",
-      "bookPage": null,
+      "bookPage": "70",
       "aliases": [
         "ورقة عمل (38)"
       ],
@@ -549,7 +549,7 @@
       "category": "preparation_worksheet",
       "sequence": 39,
       "title": "أميز الجملة والكلمة والحرف",
-      "bookPage": null,
+      "bookPage": "71",
       "aliases": [
         "ورقة عمل (39)"
       ],
@@ -563,7 +563,7 @@
       "category": "preparation_worksheet",
       "sequence": 40,
       "title": "أرسم وجهي",
-      "bookPage": null,
+      "bookPage": "72",
       "aliases": [
         "ورقة عمل (40)"
       ],
@@ -577,7 +577,7 @@
       "category": "preparation_worksheet",
       "sequence": 41,
       "title": "القراءة المشتركة قصة في المدرسة",
-      "bookPage": null,
+      "bookPage": "76-80",
       "aliases": [
         "ورقة عمل (41)"
       ],
@@ -591,7 +591,7 @@
       "category": "preparation_worksheet",
       "sequence": 42,
       "title": "حيوانات من حولي",
-      "bookPage": null,
+      "bookPage": "81-82",
       "aliases": [
         "ورقة عمل (42)"
       ],
@@ -605,7 +605,7 @@
       "category": "preparation_worksheet",
       "sequence": 43,
       "title": "ألاحظ وأكتشف الفروق",
-      "bookPage": null,
+      "bookPage": "83",
       "aliases": [
         "ورقة عمل (43)"
       ],
@@ -619,7 +619,7 @@
       "category": "preparation_worksheet",
       "sequence": 44,
       "title": "بيتنا",
-      "bookPage": null,
+      "bookPage": "86",
       "aliases": [
         "ورقة عمل (44)"
       ],
@@ -633,7 +633,7 @@
       "category": "preparation_worksheet",
       "sequence": 45,
       "title": "مواصلاتي واتصالاتي",
-      "bookPage": null,
+      "bookPage": "87",
       "aliases": [
         "ورقة عمل (45)"
       ],
@@ -647,7 +647,7 @@
       "category": "preparation_worksheet",
       "sequence": 46,
       "title": "المواصلات",
-      "bookPage": null,
+      "bookPage": "88",
       "aliases": [
         "ورقة عمل (46)"
       ],
@@ -661,7 +661,7 @@
       "category": "preparation_worksheet",
       "sequence": 47,
       "title": "الاتصالات",
-      "bookPage": null,
+      "bookPage": "89",
       "aliases": [
         "ورقة عمل (47)"
       ],
@@ -675,7 +675,7 @@
       "category": "preparation_worksheet",
       "sequence": 48,
       "title": "أسمع وأميز",
-      "bookPage": null,
+      "bookPage": "90",
       "aliases": [
         "ورقة عمل (48)"
       ],
@@ -689,7 +689,7 @@
       "category": "preparation_worksheet",
       "sequence": 49,
       "title": "حافلة المدرسة",
-      "bookPage": null,
+      "bookPage": "94",
       "aliases": [
         "ورقة عمل (49)"
       ],
@@ -703,7 +703,7 @@
       "category": "preparation_worksheet",
       "sequence": 50,
       "title": "العاملون في المدرسة",
-      "bookPage": null,
+      "bookPage": "95",
       "aliases": [
         "ورقة عمل (50)"
       ],
@@ -717,7 +717,7 @@
       "category": "preparation_worksheet",
       "sequence": 51,
       "title": "المهن في وطني",
-      "bookPage": null,
+      "bookPage": "96",
       "aliases": [
         "ورقة عمل (51)"
       ],
@@ -731,7 +731,7 @@
       "category": "preparation_worksheet",
       "sequence": 52,
       "title": "ملابسي متنوعة",
-      "bookPage": null,
+      "bookPage": "97",
       "aliases": [
         "ورقة عمل (52)"
       ],
@@ -745,7 +745,7 @@
       "category": "preparation_worksheet",
       "sequence": 53,
       "title": "ملابس المهن",
-      "bookPage": null,
+      "bookPage": "98",
       "aliases": [
         "ورقة عمل (53)"
       ],
@@ -759,7 +759,7 @@
       "category": "preparation_worksheet",
       "sequence": 54,
       "title": "أسمع وأتعلم",
-      "bookPage": null,
+      "bookPage": "99",
       "aliases": [
         "ورقة عمل (54)"
       ],
@@ -773,7 +773,7 @@
       "category": "preparation_worksheet",
       "sequence": 55,
       "title": "ألعابي المفضلة",
-      "bookPage": null,
+      "bookPage": "102",
       "aliases": [
         "ورقة عمل (55)"
       ],
@@ -787,7 +787,7 @@
       "category": "preparation_worksheet",
       "sequence": 56,
       "title": "ألعب مع النمط",
-      "bookPage": null,
+      "bookPage": "103",
       "aliases": [
         "ورقة عمل (56)"
       ],
@@ -801,7 +801,7 @@
       "category": "preparation_worksheet",
       "sequence": 57,
       "title": "الطقس من حولي",
-      "bookPage": null,
+      "bookPage": "104",
       "aliases": [
         "ورقة عمل (57)"
       ],
@@ -815,7 +815,7 @@
       "category": "preparation_worksheet",
       "sequence": 58,
       "title": "أنا والطقس",
-      "bookPage": null,
+      "bookPage": "105",
       "aliases": [
         "ورقة عمل (58)"
       ],
@@ -829,7 +829,7 @@
       "category": "preparation_worksheet",
       "sequence": 59,
       "title": "ألاحظ وأتحدث",
-      "bookPage": null,
+      "bookPage": "106",
       "aliases": [
         "ورقة عمل (59)"
       ],
@@ -1571,7 +1571,7 @@
       "category": "speaking",
       "sequence": 1,
       "title": "تحدث الوحدة 1 قيم ومبادئ",
-      "bookPage": null,
+      "bookPage": "10",
       "aliases": [
         "الوحدة 1"
       ],
@@ -1585,7 +1585,7 @@
       "category": "speaking",
       "sequence": 2,
       "title": "تحدث الوحدة 2 ألعاب وهوايات",
-      "bookPage": null,
+      "bookPage": "50",
       "aliases": [
         "الوحدة 2"
       ],
@@ -1599,7 +1599,7 @@
       "category": "speaking",
       "sequence": 3,
       "title": "تحدث الوحدة 3 مواقف وعبر",
-      "bookPage": null,
+      "bookPage": "100",
       "aliases": [
         "الوحدة 3"
       ],
