@@ -22,6 +22,7 @@
     "curriculum:import": "node scripts/import-curriculum-pack.mjs",
     "release:audit": "node scripts/release-audit.mjs",
     "curriculum:coverage": "node scripts/curriculum-coverage.mjs",
+    "curriculum:source-audit": "node scripts/audit-primary-official-source-readiness.mjs",
     "release:final-audit": "node scripts/final-mvp-audit.mjs",
     "prebuild": "node scripts/write-app-version.mjs"
   },
