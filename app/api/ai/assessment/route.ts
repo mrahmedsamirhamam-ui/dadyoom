@@ -751,12 +751,6 @@ ${generationAttempt}
           savedAssessment.question,
         choices:
           savedAssessment.choices,
-        correctAnswer:
-          savedAssessment
-            .correct_answer,
-        explanation:
-          savedAssessment
-            .explanation,
         skill:
           savedAssessment.skill,
         difficulty:
