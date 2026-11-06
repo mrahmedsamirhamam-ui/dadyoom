@@ -61,9 +61,9 @@ export default function HomePage() {
               <span>✦</span><span>العربية تجمعنا، ولا تُذيب أحدًا</span>
             </div>
             <h1 className="dadyoom-home-title mt-7 max-w-3xl font-arabic-display text-4xl font-bold leading-[1.5] text-[#173f35] sm:text-5xl lg:text-[3.55rem]">
-              ضاديوم — بيت عربي رقمي يجعل
-              <span className="block text-[#80551b]">التعلّم رحلة مفهومة ومحبوبة</span>
+              ضاديوم — بيت العربية الرقمي
             </h1>
+            <p className="dadyoom-home-hero-tagline mt-2 font-bold text-[#80551b]">التعلّم رحلة مفهومة ومحبوبة</p>
             <p className="mt-6 max-w-2xl text-lg leading-9 text-[#50685b] sm:text-xl">
               ضاديوم (Dadyoom) يجمع منهجًا منظمًا، والمهارات الأربع، والتقييم والتقدم، و«ضاد» رفيقًا ذكيًا يساعد الطالب في اللحظة التي يحتاج فيها إلى شرح أو تدريب.
             </p>
