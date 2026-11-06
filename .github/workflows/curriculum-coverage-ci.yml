@@ -30,6 +30,9 @@ on:
       - 'scripts/curriculum-coverage.mjs'
       - 'scripts/audit-primary-official-source-readiness.mjs'
       - 'tests/primary-official-source-readiness.node.test.mjs'
+      - 'scripts/compare-bahrain-primary-ministry-topics.mjs'
+      - 'tests/bahrain-primary-ministry-topics.node.test.mjs'
+      - 'data/curriculum-audits/**'
       - 'scripts/curriculum-production-audit.sql'
       - 'app/quiz/**'
       - 'tests/security/safe-questions-view.test.ts'
@@ -72,11 +75,20 @@ jobs:
           echo '### Primary curriculum official source audit' >> "$GITHUB_STEP_SUMMARY"
           echo 'This audit checks local packs and source links; it does NOT certify official textbook coverage or production data.' >> "$GITHUB_STEP_SUMMARY"
           node -e 'const r=require("./audit-out/primary-source-readiness.json");console.log("Countries "+r.scope.registeredCountries+", planning slots "+r.scope.planningSlots+", local pack slots "+r.summary.localPlanningSlotsWithPack+", unlinked lesson rows "+r.summary.localPackLessonRowsWithoutSourceUrl);' >> "$GITHUB_STEP_SUMMARY"
+      - name: Compare Bahrain 2026-27 Ministry topics against anonymized title baseline
+        run: |
+          node --test tests/bahrain-primary-ministry-topics.node.test.mjs
+          npm run curriculum:ministry:compare
+          node scripts/compare-bahrain-primary-ministry-topics.mjs --json > audit-out/bahrain-primary-ministry-topic-triage.json
+          echo '### Bahrain official first-term topic matching (NOT content certification)' >> "$GITHUB_STEP_SUMMARY"
+          node -e 'const x=require("./audit-out/bahrain-primary-ministry-topic-triage.json").summary;console.log("Official topics selected "+x.officialTopicChecks+", titles found "+x.titleMatchesWithoutContentCertification+", no published title "+x.noPublishedTitle+", explicit different text "+x.explicitNonMinistrySubstitutionTopics+". Ministry content not certified.")' >> "$GITHUB_STEP_SUMMARY"
       - name: Save curriculum source readiness JSON (nonproduction)
         uses: actions/upload-artifact@v4
         with:
           name: primary-source-readiness
-          path: audit-out/primary-source-readiness.json
+          path: |
+            audit-out/primary-source-readiness.json
+            audit-out/bahrain-primary-ministry-topic-triage.json
           retention-days: 14
 
       - name: Test that missing packs never report full country coverage
