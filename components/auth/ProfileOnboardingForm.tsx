@@ -19,9 +19,10 @@ type Props = {
   defaultRole: Role;
   defaultCountry: string;
   lockedRole?: boolean;
+  pendingRole?: "teacher" | "school" | null;
 };
 
-export default function ProfileOnboardingForm({ defaultName, defaultRole, defaultCountry, lockedRole = false }: Props) {
+export default function ProfileOnboardingForm({ defaultName, defaultRole, defaultCountry, lockedRole = false, pendingRole = null }: Props) {
   const router = useRouter();
   const countries = useMemo(() => getArabicCountryOptions(), []);
   const [fullName, setFullName] = useState(defaultName);
@@ -59,8 +60,12 @@ export default function ProfileOnboardingForm({ defaultName, defaultRole, defaul
         <div className="mb-2 text-sm font-black text-[#4d4438]">نوع الحساب</div>
         {lockedRole ? (
           <div role="status" className="rounded-2xl border border-[#b8d5c7] bg-[#edf5f1] px-4 py-3 text-sm leading-7">
-            <strong>نوع حسابك الحالي: {role === "admin" ? "مدير" : roles.find(item => item.value === role)?.label || "حساب مسجل"}</strong>
-            <p className="text-[#42655a]">يمكنك إكمال اسمك ودولتك دون تغيير صلاحيات الحساب. لتغيير نوع الحساب تواصل مع إدارة ضاديوم.</p>
+            <strong>{pendingRole
+              ? `طلب حساب ${pendingRole === "teacher" ? "معلم" : "مدرسة"} قيد المراجعة`
+              : `نوع حسابك الحالي: ${role === "admin" ? "مدير" : roles.find(item => item.value === role)?.label || "حساب مسجل"}`}</strong>
+            <p className="text-[#42655a]">{pendingRole
+              ? "أكمل اسمك ودولتك؛ لن تظهر صلاحيات المعلم أو المدرسة قبل موافقة الإدارة."
+              : "يمكنك إكمال اسمك ودولتك دون تغيير صلاحيات الحساب. لتغيير نوع الحساب تواصل مع إدارة ضاديوم."}</p>
           </div>
         ) : (
           <div className="grid grid-cols-2 gap-2">
