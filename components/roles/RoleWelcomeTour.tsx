@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useState, useSyncExternalStore } from "react";
 import type { WarmPortalRole } from "@/lib/ui/portal-experience";
 import { PORTAL_EXPERIENCE } from "@/lib/ui/portal-experience";
 
@@ -9,26 +9,50 @@ import { PORTAL_EXPERIENCE } from "@/lib/ui/portal-experience";
 const tourKey = (role: WarmPortalRole) => `dadyoom:welcome-tour:v1:${role}`;
 
 export default function RoleWelcomeTour({ role }: { role: WarmPortalRole }) {
-  const [visible, setVisible] = useState(false);
+  const [forceOpen, setForceOpen] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
   const [stepIndex, setStepIndex] = useState(0);
   const steps = PORTAL_EXPERIENCE[role].steps;
 
-  useEffect(() => {
+  // useSyncExternalStore preserves consistent SSR hydration and listens for
+  // cross-tab updates without a synchronous setState inside a React effect.
+  const subscribe = useCallback((notify: () => void) => {
+    const onStorage = (event: StorageEvent) => {
+      if (event.key === tourKey(role)) notify();
+    };
+    window.addEventListener("storage", onStorage);
+    window.addEventListener("dadyoom:tour-changed", notify);
+    return () => {
+      window.removeEventListener("storage", onStorage);
+      window.removeEventListener("dadyoom:tour-changed", notify);
+    };
+  }, [role]);
+
+  const getSnapshot = useCallback((): "new" | "completed" => {
     try {
-      setVisible(window.localStorage.getItem(tourKey(role)) !== "completed");
+      return window.localStorage.getItem(tourKey(role)) === "completed"
+        ? "completed" : "new";
     } catch {
-      // Private storage unavailable: tour remains optional through the button.
-      setVisible(false);
+      // The tour can always be reopened manually; no storage is required.
+      return "completed";
     }
   }, [role]);
+  const completed = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    () => "completed" as const,
+  );
+  const visible = forceOpen || (completed === "new" && !dismissed);
 
   const finish = () => {
     try {
       window.localStorage.setItem(tourKey(role), "completed");
+      window.dispatchEvent(new Event("dadyoom:tour-changed"));
     } catch {
-      // Accessibility and closing do not require persistent browser storage.
+      // Local preference is not a security mechanism or a requirement.
     }
-    setVisible(false);
+    setDismissed(true);
+    setForceOpen(false);
     setStepIndex(0);
   };
 
@@ -37,7 +61,7 @@ export default function RoleWelcomeTour({ role }: { role: WarmPortalRole }) {
       <div className="mt-3 flex justify-start">
         <button
           type="button"
-          onClick={() => { setStepIndex(0); setVisible(true); }}
+          onClick={() => { setStepIndex(0); setDismissed(false); setForceOpen(true); }}
           className="min-h-11 rounded-xl border border-[#bfd2cc] bg-white px-4 py-2 text-sm font-semibold text-[#164f47] underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#20645b]"
         >
           إعادة جولة التعريف
