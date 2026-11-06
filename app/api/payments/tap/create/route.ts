@@ -10,8 +10,12 @@ import {
 } from "@/lib/payments/tap";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
+import { checkoutPausedResponse } from "@/lib/payments/checkout-guard";
 
 export async function POST(request: Request) {
+  const paused = checkoutPausedResponse();
+  if (paused) return paused;
+
   try {
     const supabase = await createClient();
 
@@ -157,18 +161,12 @@ export async function POST(request: Request) {
       marketplaceSplit: Boolean(destination),
     });
   } catch (error) {
-    const message =
-      error instanceof Error
-        ? error.message
-        : "تعذر بدء الدفع بالبطاقة.";
+    const isUnsupportedCard = error instanceof Error &&
+      error.message.includes("VISA_MASTERCARD_ONLY");
 
     return NextResponse.json(
-      { error: message },
-      {
-        status: message.includes("VISA_MASTERCARD_ONLY")
-          ? 400
-          : 500,
-      },
+      { error: isUnsupportedCard ? "VISA_MASTERCARD_ONLY" : "PAYMENT_CREATION_FAILED" },
+      { status: isUnsupportedCard ? 400 : 500 },
     );
   }
 }
