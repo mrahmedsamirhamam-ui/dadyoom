@@ -10,6 +10,8 @@ on:
       - 'features/adaptive-learning/services/resolve-curriculum-alignment.ts'
       - 'features/adaptive-learning/examples/subject-predicate-demo.ts'
       - 'tests/unified-objective-three-paths.test.ts'
+      - 'tests/nominal-verbal-sentences-lesson.test.ts'
+      - 'features/adaptive-learning/examples/nominal-verbal-sentences-demo.ts'
       - 'tests/curriculum-alignment-exact-match.test.ts'
       - 'docs/architecture/REVIEW_ONLY_UNIFIED_OBJECTIVE_PATHS_20261107.sql'
       - '.github/workflows/golden-objective-paths.yml'
@@ -31,8 +33,8 @@ jobs:
       - name: Install pinned lockfile packages
         run: npm ci --no-audit --no-fund
       - name: Existing mastery policy and differentiated lesson contract tests
-        run: npx vitest run tests/adaptive-evidence-policy.test.ts tests/unified-objective-three-paths.test.ts tests/curriculum-alignment-exact-match.test.ts
+        run: npx vitest run tests/adaptive-evidence-policy.test.ts tests/unified-objective-three-paths.test.ts tests/nominal-verbal-sentences-lesson.test.ts tests/curriculum-alignment-exact-match.test.ts
       - name: TypeScript strict check
         run: npx tsc --noEmit
       - name: ESLint changed code
-        run: npx eslint features/adaptive-learning/services/unified-objective-contract.ts features/adaptive-learning/services/recommend-objective-path.ts features/adaptive-learning/services/resolve-curriculum-alignment.ts features/adaptive-learning/examples/subject-predicate-demo.ts tests/unified-objective-three-paths.test.ts tests/curriculum-alignment-exact-match.test.ts
+        run: npx eslint features/adaptive-learning/services/unified-objective-contract.ts features/adaptive-learning/services/recommend-objective-path.ts features/adaptive-learning/services/resolve-curriculum-alignment.ts features/adaptive-learning/examples/subject-predicate-demo.ts features/adaptive-learning/examples/nominal-verbal-sentences-demo.ts tests/unified-objective-three-paths.test.ts tests/nominal-verbal-sentences-lesson.test.ts tests/curriculum-alignment-exact-match.test.ts
