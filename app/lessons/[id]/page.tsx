@@ -325,10 +325,10 @@ export default async function LessonPage({
       <div className="mx-auto max-w-6xl space-y-6 sm:space-y-8">
         <div>
           <Link
-            href="/student"
-            className="text-sm font-semibold text-emerald-700 hover:underline"
+            href="/my"
+            className="inline-flex min-h-11 items-center text-sm font-semibold text-emerald-700 underline-offset-4 hover:underline"
           >
-            العودة إلى لوحة الطالب
+            العودة إلى مساحتي
           </Link>
         </div>
 

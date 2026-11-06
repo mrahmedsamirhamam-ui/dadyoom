@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { createClient } from "@/lib/supabase/server";
+import { destinationForStoredRole } from "@/lib/auth/role-destination.mjs";
 import DadyoomLogo, { DadyoomMark } from "@/components/brand/DadyoomLogo";
 
 import HomeInteractionPanel from "@/components/home/HomeInteractionPanel";
@@ -21,7 +24,25 @@ const skills = [
   { icon: "🎙️", title: "التحدث", text: "النطق والتعبير", href: "/skills/speaking/practice" },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  // Logged-in learners return to their own role dashboard, rather than the
+  // marketing homepage when a lesson/feature navigates back to "/".
+  // Anonymous visitors still receive the public homepage as before.
+  const supabase = await createClient();
+  const { data: { user }, error: authError } = await supabase.auth.getUser();
+  if (!authError && user) {
+    const { data: profile, error: profileError } = await supabase
+      .from("profiles")
+      .select("role,country,full_name,requested_role")
+      .eq("id", user.id)
+      .maybeSingle();
+    if (profileError) throw new Error("تعذر تحديد صفحة حسابك.");
+    if (!profile?.full_name?.trim() || !profile?.country?.trim()) redirect("/onboarding");
+    if (profile.role === "student" && ["teacher", "school"].includes(profile.requested_role ?? "")) {
+      redirect("/account/role-request");
+    }
+    redirect(destinationForStoredRole(profile.role));
+  }
   return (
     <main dir="rtl" className="min-h-screen bg-[#f8faf6] text-[#24382f]">
       <header className="sticky top-0 z-50 border-b border-[#e5d8bf]/90 bg-[#fffef9]/94 backdrop-blur">
@@ -36,9 +57,8 @@ export default function HomePage() {
             <Link href="/about" className="transition hover:text-[#174f47]">عن ضاديوم</Link>
             <Link href="/founder" className="transition hover:text-[#174f47]">المؤسس</Link>
           </nav>
-          <div className="flex items-center gap-2">
-            <Link href="/login" className="hidden rounded-xl px-4 py-2.5 text-sm font-black text-[#5d554c] hover:bg-[#f3ead7] sm:inline-flex">دخول</Link>
-            <Link href="/signup" className="rounded-xl bg-[#174f47] px-4 py-2.5 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#103f39]">ابدأ مجانًا</Link>
+          <div className="shrink-0">
+            <Link href="/login" className="inline-flex min-h-11 items-center justify-center rounded-xl border border-[#bdd7c6] bg-white px-5 py-2.5 text-sm font-black text-[#174f47] transition hover:bg-[#e9f3eb] focus-visible:outline-2 focus-visible:outline-[#174f47]">دخول</Link>
           </div>
         </div>
       </header>
@@ -62,9 +82,9 @@ export default function HomePage() {
               <Link href="/about" className="mr-1 underline underline-offset-4 hover:text-[#174f47]">تعرّف على ضاديوم</Link>
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/try" className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#174f47] px-7 py-3.5 font-bold text-white shadow-lg shadow-[#174f47]/15 transition-colors hover:bg-[#103f39] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47]">جرّب درسًا الآن دون تسجيل</Link>
-              <Link href="/signup" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[#bdd7c6] bg-white px-7 py-3.5 font-bold text-[#174f47] transition-colors hover:bg-[#edf5f0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47]">أنشئ حسابًا لحفظ تقدمك</Link>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
+              <Link href="/try" className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-[#174f47] px-7 py-3.5 font-bold text-white shadow-lg shadow-[#174f47]/15 transition-colors hover:bg-[#103f39] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47] sm:w-auto">جرّب درسًا الآن دون تسجيل</Link>
+              <Link href="/signup" className="inline-flex min-h-12 w-full items-center justify-center rounded-xl border border-[#bdd7c6] bg-white px-7 py-3.5 font-bold text-[#174f47] transition-colors hover:bg-[#edf5f0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47] sm:w-auto">أنشئ حسابًا لحفظ تقدمك</Link>
             </div>
             <nav aria-label="تجارب تعليمية يمكنك تجربتها" className="mt-5 flex flex-wrap gap-x-5 gap-y-3 text-sm font-semibold text-[#41685a]">
               <Link href="/ask" className="underline-offset-4 hover:underline">اسأل ضاد</Link>
@@ -133,19 +153,6 @@ export default function HomePage() {
                 <p className="mt-2 text-sm font-bold text-[#766c60]">{skill.text}</p>
               </Link>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20">
-        <div className="mx-auto max-w-5xl overflow-hidden rounded-[2.5rem] bg-[#174f47] p-8 text-white shadow-xl sm:p-12">
-          <div className="flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between">
-            <div>
-              <div className="text-sm font-black text-[#f5cf7a]">أول إنجاز يبدأ في دقائق</div>
-              <h2 className="mt-3 font-arabic-display text-3xl font-black sm:text-4xl">اختر دولتك ودورك، وابدأ من مكان واضح</h2>
-              <p className="mt-3 max-w-2xl font-arabic-reading text-lg leading-8 text-[#e7f0ec]">يمكنك التسجيل بالبريد أو Google. وعندما لا يتوفر منهج دولتك بعد، تبقى المهارات الأربع وقاموس السياق وضاد متاحة لك.</p>
-            </div>
-            <Link href="/signup" className="inline-flex shrink-0 justify-center rounded-2xl bg-[#f5cf7a] px-7 py-4 font-black text-[#493814] transition hover:-translate-y-0.5 hover:bg-[#ffe39e]">ابدأ رحلتك</Link>
           </div>
         </div>
       </section>

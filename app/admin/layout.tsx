@@ -17,6 +17,7 @@ const sections = [
   { title: "المجتمع التعليمي", items: [
     { href: "/admin/students", label: "الطلاب", icon: GraduationCap },
     { href: "/admin/teachers", label: "المعلمون", icon: Users },
+    { href: "/admin/role-requests", label: "اعتماد حسابات المعلمين والمدارس", icon: Users },
     { href: "/admin/ai-lesson", label: "مساعد المحتوى", icon: Bot },
   ] },
   { title: "الخدمات", items: [
@@ -33,7 +34,7 @@ export default async function AdminLayout({ children }: Readonly<{ children: Rea
   if (userError || !user) redirect("/login");
   const { data: profile, error: profileError } = await supabase
     .from("profiles").select("role,full_name").eq("id", user.id).maybeSingle();
-  if (profileError || profile?.role?.trim().toLowerCase() !== "admin") redirect("/");
+  if (profileError || profile?.role?.trim().toLowerCase() !== "admin") redirect("/my");
   const displayName = profile.full_name?.trim() || user.email?.split("@")[0] || "مدير ضاديوم";
 
   return (
@@ -42,7 +43,7 @@ export default async function AdminLayout({ children }: Readonly<{ children: Rea
       <header className="sticky top-0 z-40 border-b border-[#dfe9e2] bg-white/95 shadow-[0_3px_22px_rgba(18,63,57,.05)] backdrop-blur">
         <div className="mx-auto flex max-w-[1600px] flex-wrap items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
           <div className="flex min-w-0 items-center gap-4">
-            <DadyoomLogo className="shrink-0" />
+            <DadyoomLogo href="/admin" className="shrink-0" />
             <div className="hidden border-r border-[#dfe9e2] pr-4 md:block">
               <p className="text-sm font-bold text-[#174f47]">مركز إدارة ضاديوم</p>
               <p className="text-xs text-[#687e72]">بيت العربية الرقمي</p>

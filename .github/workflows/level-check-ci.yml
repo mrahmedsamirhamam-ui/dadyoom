@@ -9,6 +9,7 @@ on:
       - 'tests/level-check.test.ts'
       - 'scripts/smoke-level-check.mjs'
       - 'app/page.tsx'
+      - 'proxy.ts'
       - '.github/workflows/level-check-ci.yml'
   workflow_dispatch:
 

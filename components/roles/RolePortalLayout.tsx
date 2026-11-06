@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 
 import DadyoomLogo from "@/components/brand/DadyoomLogo";
 import { createClient } from "@/lib/supabase/server";
+import { destinationForStoredRole } from "@/lib/auth/role-destination.mjs";
 
 export type PortalRole =
   | "student"
@@ -16,19 +17,19 @@ export type PortalLink = {
   icon: string;
 };
 
-const destinations: Record<string, string> = {
-  student: "/student",
-  teacher: "/teacher",
-  parent: "/parent",
-  school: "/school",
-  admin: "/admin",
-};
-
 const roleLabels: Record<PortalRole, string> = {
   student: "مساحة الطالب",
   teacher: "مساحة المعلم",
   parent: "مساحة ولي الأمر",
   school: "مساحة المدرسة",
+};
+
+/** The first screen on mobile should expose the actual daily actions, not commercial links. */
+const primaryHrefs: Record<PortalRole, readonly string[]> = {
+  student: ["/student", "/courses", "/journey", "/skills"],
+  teacher: ["/teacher", "/teacher/classroom", "/courses", "/skills"],
+  parent: ["/parent", "/courses", "/skills", "/ask"],
+  school: ["/school", "/school/reports", "/courses", "/ask"],
 };
 
 const roleMessages: Record<PortalRole, string> = {
@@ -84,10 +85,7 @@ export default async function RolePortalLayout({
     actualRole !== role &&
     actualRole !== "admin"
   ) {
-    redirect(
-      destinations[actualRole] ??
-        "/"
-    );
+    redirect(destinationForStoredRole(actualRole));
   }
 
   const displayName =
@@ -103,7 +101,7 @@ export default async function RolePortalLayout({
       <section className="border-b border-[#dfcfad] bg-[#fffdf8]">
         <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center gap-4">
-            <DadyoomLogo className="ml-auto" />
+            <DadyoomLogo href="/my" className="ml-auto" />
 
             <div className="rounded-full border border-[#d5c199] bg-[#fff8e9] px-4 py-2 text-xs font-black text-[#785e2f]">
               {roleLabels[role]}
@@ -143,22 +141,35 @@ export default async function RolePortalLayout({
             </Link>
           </div>
 
-          <nav
-            aria-label={roleLabels[role]}
-            className="mt-4 flex gap-2 overflow-x-auto pb-1"
-          >
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="flex shrink-0 items-center gap-2 rounded-full border border-[#ddcbaa] bg-[#fffdf8] px-4 py-2.5 text-sm font-black text-[#5c554c] transition hover:border-[#b68d46] hover:bg-[#fff7e5] hover:text-[#123f39]"
-              >
-                <span aria-hidden="true">
-                  {link.icon}
-                </span>
-                <span>{link.label}</span>
-              </Link>
-            ))}
+          <nav aria-label={roleLabels[role]} className="mt-5 space-y-3">
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+              {primaryHrefs[role]
+                .map(href => links.find(item => item.href === href))
+                .filter((item): item is PortalLink => Boolean(item))
+                .map(item => (
+                  <Link key={item.href} href={item.href}
+                    className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[#cbdccf] bg-white px-3 py-3 text-center text-sm font-bold text-[#174f47] shadow-sm transition hover:bg-[#eaf4ed] focus-visible:outline-4 focus-visible:outline-[#d5ad59]">
+                    <span aria-hidden="true">{item.icon}</span>
+                    <span>{item.label}</span>
+                  </Link>
+                ))}
+            </div>
+            {links.some(item => !primaryHrefs[role].includes(item.href)) && (
+              <details className="group rounded-xl border border-[#ddcbaa] bg-[#fffdf8]">
+                <summary className="flex min-h-12 cursor-pointer items-center justify-between px-4 py-3 text-sm font-bold text-[#315c4b] focus-visible:outline-4 focus-visible:outline-[#d5ad59]">
+                  <span>المزيد من خدمات {roleLabels[role]}</span><span aria-hidden="true">⌄</span>
+                </summary>
+                <div className="grid gap-2 border-t border-[#eee1cc] p-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {links.filter(item => !primaryHrefs[role].includes(item.href)).map(item => (
+                    <Link key={item.href} href={item.href}
+                      className="flex min-h-11 items-center gap-2 rounded-lg bg-[#f6f8f3] px-4 py-3 text-sm font-semibold text-[#315c4b] hover:bg-[#eaf4ed]">
+                      <span aria-hidden="true">{item.icon}</span>
+                      <span>{item.label}</span>
+                    </Link>
+                  ))}
+                </div>
+              </details>
+            )}
           </nav>
         </div>
       </section>

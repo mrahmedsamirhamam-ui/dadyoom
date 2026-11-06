@@ -1,0 +1,60 @@
+name: Dadyoom auth and mobile UX safety checks
+
+on:
+  push:
+    branches:
+      - feat/auth-clean-mobile-login-20261106
+  pull_request:
+    paths:
+      - 'app/page.tsx'
+      - 'app/login/**'
+      - 'app/signup/**'
+      - 'app/onboarding/**'
+      - 'app/forgot-password/**'
+      - 'app/auth/**'
+      - 'app/api/auth/**'
+      - 'components/auth/**'
+      - 'components/roles/RolePortalLayout.tsx'
+      - 'lib/auth/role-destination.*'
+      - 'proxy.ts'
+      - 'tests/auth-persistent-session-focused-ux.node.test.mjs'
+      - 'tests/auth-mobile-role-flow.node.test.mjs'
+      - 'tests/auth-role-home-navigation.node.test.mjs'
+      - 'tests/auth-onboarding-race-role-lock.node.test.mjs'
+      - 'tests/auth-profile-role-request-p0.node.test.mjs'
+      - 'supabase/migrations/20261106_p0_profile_role_request_guard.sql'
+      - 'app/account/role-request/**'
+      - 'app/admin/role-requests/**'
+      - 'app/api/admin/role-requests/**'
+      - 'app/my/**'
+      - 'app/lessons/[id]/page.tsx'
+      - 'components/Navbar.tsx'
+      - 'components/child/EarlyLearningRoom.tsx'
+      - 'app/admin/layout.tsx'
+      - '.github/workflows/auth-mobile-ux-safety.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  auth-mobile-safety:
+    name: Test safe role routing, accessible login and TypeScript
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Role, password recovery and interface regression tests
+        run: node --test tests/auth-mobile-role-flow.node.test.mjs tests/auth-role-home-navigation.node.test.mjs tests/auth-onboarding-race-role-lock.node.test.mjs tests/auth-persistent-session-focused-ux.node.test.mjs tests/auth-profile-role-request-p0.node.test.mjs
+      - name: Install dependencies from lockfile
+        run: npm ci --no-audit --no-fund
+      - name: TypeScript strict check
+        run: npx tsc --noEmit
+      - name: Lint modified interfaces and auth routes
+        run: npx eslint proxy.ts app/login/page.tsx app/signup/page.tsx components/auth/AuthShell.tsx app/page.tsx app/my/page.tsx app/lessons/\[id\]/page.tsx components/Navbar.tsx components/child/EarlyLearningRoom.tsx app/admin/layout.tsx components/auth/LogoutButton.tsx components/auth/EmailPasswordAuthForm.tsx components/auth/ProfileOnboardingForm.tsx components/roles/RolePortalLayout.tsx app/forgot-password/page.tsx app/auth/update-password/page.tsx app/onboarding/page.tsx app/api/auth/destination/route.ts app/api/auth/complete-profile/route.ts app/auth/callback/route.ts app/api/admin/role-requests/route.ts app/admin/role-requests/page.tsx app/account/role-request/page.tsx
