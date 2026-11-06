@@ -147,6 +147,10 @@ const result = {
     noPublishedTitle:comparisons.filter(x=>x.publishedTitleCandidates.length===0).length,
     explicitNonMinistrySubstitutionTopics:comparisons.filter(x=>x.originalTextSubstitutionNotices>0).length,
     explicitOriginalWorksheetEnrichmentTopics:comparisons.filter(x=>x.originalWorksheetEnrichmentNotices>0).length,
+    explicitOriginalEnrichmentPublishedRows:dbRows.filter(x=>x.status==="published" && x.explicit_original_enrichment_notice).length,
+    explicitEnrichmentSupportingRowsNotSelectedAsMainWorksheets:
+      dbRows.filter(x=>x.status==="published" && x.explicit_original_enrichment_notice).length -
+      comparisons.filter(x=>x.category==="preparation_worksheet" && x.originalWorksheetEnrichmentNotices>0).length,
     shortOrGarbleDraftCandidates:draftTitleAnomalies.length,
     certifiedOfficialCoveragePercent:null,
     contentReviewedTopics:0,
@@ -160,6 +164,7 @@ else {
   console.log("NO_PUBLISHED_TITLE_MATCH="+result.summary.noPublishedTitle);
   console.log("EXPLICIT_DIFFERENT_TEXT_TOPICS="+result.summary.explicitNonMinistrySubstitutionTopics);
   console.log("EXPLICIT_ENRICHMENT_WORKSHEETS="+result.summary.explicitOriginalWorksheetEnrichmentTopics);
+  console.log("EXPLICIT_ENRICHMENT_SUPPORTING_ROWS="+result.summary.explicitEnrichmentSupportingRowsNotSelectedAsMainWorksheets);
   console.log("DRAFT_GARBLED_OR_SHORT_CANDIDATES="+result.summary.shortOrGarbleDraftCandidates);
   console.log("CERTIFIED_OFFICIAL_COVERAGE=NOT_VERIFIED");
   for(const g of groups) console.log("GRADE_"+g.grade+"="+JSON.stringify(g.statuses));
