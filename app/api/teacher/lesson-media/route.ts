@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { authorizeSession } from "@/lib/auth/authorization";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -97,6 +98,16 @@ async function uploadMedia(
 
 export async function POST(request: Request) {
   try {
+    // Defense in depth: a Cloudflare adapter may not execute Next.js proxy.ts.
+    // Authenticate AND authorize before parsing untrusted multipart data, before
+    // any storage bucket operations or service-role access.
+    const gate = await authorizeSession(await createClient(), ["teacher", "admin"]);
+    if (!gate.ok) {
+      return NextResponse.json(
+        { error: gate.error },
+        { status: gate.status, headers: { "Cache-Control": "no-store" } },
+      );
+    }
     const formData = await request.formData();
     const lessonId = clean(formData.get("lesson_id"), 100);
     let activityId = clean(formData.get("activity_id"), 100);
