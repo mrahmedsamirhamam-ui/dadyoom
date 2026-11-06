@@ -54,9 +54,8 @@ export default async function HomePage() {
             <Link href="/about" className="transition hover:text-[#174f47]">عن ضاديوم</Link>
             <Link href="/founder" className="transition hover:text-[#174f47]">المؤسس</Link>
           </nav>
-          <div className="flex items-center gap-2">
-            <Link href="/login" className="inline-flex min-h-11 items-center rounded-xl px-3 py-2.5 text-sm font-black text-[#5d554c] hover:bg-[#f3ead7] focus-visible:outline-2 focus-visible:outline-[#174f47] sm:px-4">دخول</Link>
-            <Link href="/signup" className="inline-flex min-h-11 items-center rounded-xl bg-[#174f47] px-3 py-2.5 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#103f39] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47] sm:px-4">ابدأ مجانًا</Link>
+          <div className="shrink-0">
+            <Link href="/login" className="inline-flex min-h-11 items-center justify-center rounded-xl border border-[#bdd7c6] bg-white px-5 py-2.5 text-sm font-black text-[#174f47] transition hover:bg-[#e9f3eb] focus-visible:outline-2 focus-visible:outline-[#174f47]">دخول</Link>
           </div>
         </div>
       </header>
@@ -80,7 +79,7 @@ export default async function HomePage() {
               <Link href="/about" className="mr-1 underline underline-offset-4 hover:text-[#174f47]">تعرّف على ضاديوم</Link>
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
               <Link href="/try" className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-[#174f47] px-7 py-3.5 font-bold text-white shadow-lg shadow-[#174f47]/15 transition-colors hover:bg-[#103f39] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47] sm:w-auto">جرّب درسًا الآن دون تسجيل</Link>
               <Link href="/signup" className="inline-flex min-h-12 w-full items-center justify-center rounded-xl border border-[#bdd7c6] bg-white px-7 py-3.5 font-bold text-[#174f47] transition-colors hover:bg-[#edf5f0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47] sm:w-auto">أنشئ حسابًا لحفظ تقدمك</Link>
             </div>
