@@ -1,0 +1,64 @@
+name: Mobile Chrome login and signup smoke (anonymous, no production data)
+
+on:
+  push:
+    branches:
+      - feat/auth-clean-mobile-login-20261106
+  pull_request:
+    paths:
+      - 'app/login/**'
+      - 'app/signup/**'
+      - 'app/my/**'
+      - 'app/account/role-request/**'
+      - 'components/auth/**'
+      - 'scripts/smoke-auth-mobile.mjs'
+      - '.github/workflows/auth-mobile-browser-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mobile-chrome:
+    name: Test Arabic RTL login at 390px on actual Chrome
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+      # Harmless synthetic values: no real Supabase or child/user access.
+      NEXT_PUBLIC_SUPABASE_URL: 'https://example.supabase.co'
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: 'ci-fake-key-no-production-data'
+      SUPABASE_SERVICE_ROLE_KEY: ''
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned packages
+        run: npm ci --no-audit --no-fund
+      - name: Build Next.js with fake browser-auth config
+        run: npm run build
+      - name: Start isolated Next.js and test mobile Chrome
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run start -- -p 3037 >/tmp/dadyoom-auth-mobile.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          ready=0
+          for i in $(seq 1 45); do
+            code=$(curl -s -o /tmp/dadyoom-ready.html -w '%{http_code}' --max-time 3 http://127.0.0.1:3037/login || true)
+            if [ "$code" = '200' ]; then ready=1; break; fi
+            sleep 2
+          done
+          if [ "$ready" != '1' ]; then
+            echo "Login healthcheck failed; status last: $code"
+            tail -n 100 /tmp/dadyoom-auth-mobile.log
+            exit 1
+          fi
+          if ! node scripts/smoke-auth-mobile.mjs; then
+            echo "Mobile auth browser smoke failed; inspect server errors"
+            tail -n 100 /tmp/dadyoom-auth-mobile.log
+            exit 1
+          fi
