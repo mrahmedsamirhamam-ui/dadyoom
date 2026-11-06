@@ -139,3 +139,7 @@ _curriculum-forensic-baseline-*/
 temp/
 diagnostics/
 PROJECT/
+# Cloudflare OpenNext worker outputs (never commit generated code or env)
+.open-next/
+.dev.vars
+.wrangler/
