@@ -6,11 +6,15 @@ export async function proxy(request: NextRequest) {
   const pathname =
     request.nextUrl.pathname;
 
-  const roles = /^\/api\/admin(?:\/|$)/u.test(pathname)
-    ? ["admin"]
-    : /^\/api\/teacher(?:\/|$)/u.test(pathname)
-      ? ["teacher", "admin"]
-      : undefined;
+  const apiRoleRules = [
+    { match: /^\/api\/admin(?:\/|$)/u, roles: ["admin"] },
+    { match: /^\/api\/teacher(?:\/|$)/u, roles: ["teacher", "admin"] },
+    { match: /^\/api\/school(?:\/|$)/u, roles: ["school", "admin"] },
+    { match: /^\/api\/parent(?:\/|$)/u, roles: ["parent", "admin"] },
+    { match: /^\/api\/student(?:\/|$)/u, roles: ["student", "child", "admin"] },
+    { match: /^\/api\/child(?:\/|$)/u, roles: ["child", "admin"] },
+  ] as const;
+  const roles = apiRoleRules.find((rule) => rule.match.test(pathname))?.roles;
 
   // Gate privileged API namespaces before any handler can run.
   if (
@@ -99,5 +103,9 @@ export const config = {
   matcher: [
     "/api/admin/:path*",
     "/api/teacher/:path*",
+    "/api/school/:path*",
+    "/api/parent/:path*",
+    "/api/student/:path*",
+    "/api/child/:path*",
   ],
 };
