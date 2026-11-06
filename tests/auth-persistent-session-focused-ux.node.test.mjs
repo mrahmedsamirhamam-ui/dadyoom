@@ -87,3 +87,16 @@ test("Exit explicitly ends the session; closing a lesson or returning to the sit
   assert.doesNotMatch(home, /signOut/);
   assert.doesNotMatch(form, /signOut/);
 });
+
+test("Compact mobile navigation keeps two high-value links and accessible More for others", () => {
+  const navbar = read("components/Navbar.tsx");
+  assert.match(navbar, /aria-label="تنقل مختصر"/);
+  assert.match(navbar, /links\.slice\(0, 2\)/);
+  assert.match(navbar, /<details/);
+  assert.match(navbar, /<summary/);
+  assert.match(navbar, /links\.slice\(2\)/);
+  assert.match(navbar, /aria-label="التنقل الرئيسي"/);
+  assert.match(navbar, /lg:hidden/);
+  assert.match(navbar, /lg:flex/);
+  assert.match(navbar, /\{user && <NotificationBell \/>\}/);
+});
