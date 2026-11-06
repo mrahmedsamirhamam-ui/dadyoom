@@ -90,6 +90,9 @@ BEGIN
 END $$;
 
 RESET ROLE;
+-- A backend service-role request carries no end-user JWT subject. SET ROLE
+-- resets DB privileges, not request.jwt.claim.sub; clear our synthetic claim.
+SELECT set_config('request.jwt.claim.sub','',false);
 -- Verified backend (postgres simulation) may approve; not exposed to clients.
 UPDATE public.profiles SET role='teacher' WHERE id='aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa';
 DO $$
