@@ -14,7 +14,7 @@ export default async function OnboardingPage() {
 
   const { data: existing } = await supabase
     .from("profiles")
-    .select("role,country,full_name")
+    .select("role,country,full_name,requested_role")
     .eq("id", user.id)
     .maybeSingle();
 
@@ -23,6 +23,9 @@ export default async function OnboardingPage() {
   const existingDestination = destinationForStoredRole(existing?.role);
   if (existingDestination !== "/onboarding" &&
       existing?.country?.trim() && existing?.full_name?.trim()) {
+    if (existing?.role === "student" && ["teacher", "school"].includes(existing?.requested_role ?? "")) {
+      redirect("/account/role-request");
+    }
     redirect(existingDestination);
   }
 
@@ -49,6 +52,7 @@ export default async function OnboardingPage() {
         defaultName={existing?.full_name?.trim() || metadataName || user.email?.split("@")[0] || ""}
         defaultRole={(allowedRoles.has(metadataRole) || (lockedRole && metadataRole === "admin")) ? metadataRole as "student" | "child" | "teacher" | "parent" | "school" | "admin" : "student"}
         lockedRole={lockedRole}
+        pendingRole={existing?.requested_role === "teacher" || existing?.requested_role === "school" ? existing.requested_role : null}
         defaultCountry={isCountryCode(metadataCountry) ? metadataCountry : "BH"}
       />
     </AuthShell>
