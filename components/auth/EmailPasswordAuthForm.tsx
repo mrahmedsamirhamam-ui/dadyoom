@@ -175,23 +175,10 @@ export default function EmailPasswordAuthForm({ mode, passwordWasReset = false }
 
   return (
     <AuthShell
-      title={signup ? "أنشئ حسابك بسهولة" : "مرحبًا بعودتك"}
-      description={signup ? "حساب واحد، وتجربة تناسب دورك في بيت العربية الرقمي." : "تابع من حيث توقفت، وتعلّم بطريقتك في ضاديوم."}
+      title={signup ? "إنشاء حساب جديد" : "تسجيل الدخول"}
+      description={signup ? "اختر نوع الحساب وأدخل بياناتك مرة واحدة." : "أدخل بياناتك إذا لم تكن مسجّلًا بالفعل."}
     >
-      <div dir="rtl" className="mx-auto w-full max-w-lg space-y-5">
-        <div className="grid grid-cols-2 gap-2 rounded-2xl bg-[#f0f4ee] p-1.5" role="navigation" aria-label="طرق الدخول">
-          <Link href="/login" aria-current={!signup ? "page" : undefined}
-            className={"flex min-h-12 items-center justify-center rounded-xl px-4 text-center text-sm font-extrabold transition " +
-              (!signup ? "bg-white text-[#174f47] shadow-sm" : "text-[#577165] hover:bg-white/70")}>
-            تسجيل الدخول
-          </Link>
-          <Link href="/signup" aria-current={signup ? "page" : undefined}
-            className={"flex min-h-12 items-center justify-center rounded-xl px-4 text-center text-sm font-extrabold transition " +
-              (signup ? "bg-white text-[#174f47] shadow-sm" : "text-[#577165] hover:bg-white/70")}>
-            حساب جديد
-          </Link>
-        </div>
-
+      <div dir="rtl" className="mx-auto w-full max-w-lg space-y-7">
         {passwordWasReset && !signup && <p role="status" className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm font-semibold leading-7 text-emerald-900">تم تغيير كلمة المرور. يمكنك تسجيل الدخول باستخدام الكلمة الجديدة.</p>}
         <form onSubmit={submit} aria-busy={busy} className="space-y-4">
           {signup && (
@@ -274,9 +261,18 @@ export default function EmailPasswordAuthForm({ mode, passwordWasReset = false }
           {error && <p role="alert" className="rounded-xl border border-rose-200 bg-rose-50 p-3 text-sm leading-7 text-rose-900">{error}</p>}
         </form>
 
-        <div className="flex items-center gap-3"><span className="h-px flex-1 bg-[#e4e9df]"/><span className="text-xs font-semibold text-[#718376]">أو تابع بواسطة</span><span className="h-px flex-1 bg-[#e4e9df]"/></div>
-        <GoogleAuthButton mode={mode} fullName={fullName} role={role} country={country}/>
-        <p className="text-center text-xs leading-7 text-[#738277]">ضاديوم — بيت العربية الرقمي. لن نطلب منك كلمة مرورك خارج هذه الصفحة.</p>
+        <div className="space-y-4 border-t border-[#e4e9df] pt-6">
+          <p className="text-center text-xs font-semibold text-[#718376]">أو استخدم حساب Google</p>
+          <GoogleAuthButton mode={mode} fullName={fullName} role={role} country={country}/>
+        </div>
+
+        <nav aria-label={signup ? "لديك حساب بالفعل" : "إنشاء حساب جديد"}
+          className="mt-8 border-t border-[#e4e9df] pt-6">
+          <Link href={signup ? "/login" : "/signup"}
+            className="flex min-h-12 w-full items-center justify-center rounded-xl border-2 border-[#b7cfc0] bg-white px-5 py-3 text-center text-sm font-extrabold text-[#174f47] transition hover:bg-[#edf5f0] focus-visible:outline-4 focus-visible:outline-[#d2ac58]">
+            {signup ? "لدي حساب بالفعل — تسجيل الدخول" : "ليس لدي حساب — إنشاء حساب جديد"}
+          </Link>
+        </nav>
       </div>
     </AuthShell>
   );
