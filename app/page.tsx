@@ -23,7 +23,7 @@ const skills = [
 
 export default function HomePage() {
   return (
-    <main dir="rtl" className="min-h-screen bg-[#f8faf6] text-[#24382f]">
+    <main dir="rtl" className="dadyoom-home-page min-h-screen bg-[#f8faf6] text-[#24382f]">
       <header className="sticky top-0 z-50 border-b border-[#e5d8bf]/90 bg-[#fffef9]/94 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
           <DadyoomLogo />
@@ -57,10 +57,12 @@ export default function HomePage() {
             <p className="mt-6 max-w-2xl text-lg leading-9 text-[#50685b] sm:text-xl">
               ضاديوم (Dadyoom) يجمع منهجًا منظمًا، والمهارات الأربع، والتقييم والتقدم، و«ضاد» رفيقًا ذكيًا يساعد الطالب في اللحظة التي يحتاج فيها إلى شرح أو تدريب.
             </p>
-            <p className="mt-3 text-sm font-bold text-[#7b7165]">
+            <p className="dadyoom-home-intro mt-3 font-bold">
               الاسم الرسمي هو «ضاديوم» (Dadyoom). وإذا وصلت إلينا بالبحث عن «ضاضيوم» أو «داديوم» أو «ضاديو» أو Dadyoum، فأنت تبحث عن المنصة نفسها.
               <Link href="/about" className="mr-1 underline underline-offset-4 hover:text-[#174f47]">تعرّف على ضاديوم</Link>
             </p>
+
+            <Link href="/signup" className="hero-cta">ابدأ مجانًا</Link>
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/try" className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#174f47] px-7 py-3.5 font-bold text-white shadow-lg shadow-[#174f47]/15 transition-colors hover:bg-[#103f39] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47]">جرّب درسًا الآن دون تسجيل</Link>
