@@ -696,3 +696,27 @@ body:has([data-dadyoom-install-dialog="true"]) [data-dad-floating-root] {
 @media print {
   .floating-dock, [data-dad-floating-root] { display: none !important; }
 }
+
+
+/* Homepage conversion: balanced Arabic text and accessible mobile controls. */
+.dadyoom-home-page .dadyoom-home-title,
+.dadyoom-home-page .dadyoom-home-title span {
+  text-wrap: balance;
+}
+@media (max-width: 639px) {
+  .dadyoom-home-page .dadyoom-home-title {
+    font-size: clamp(2rem, 7.5vw, 2.45rem);
+    line-height: 1.6;
+  }
+  .dadyoom-home-page .dadyoom-home-header-cta {
+    min-height: 44px;
+    flex-shrink: 0;
+    padding-inline: 12px;
+  }
+}
+
+.dadyoom-home-page .dadyoom-home-hero-tagline {
+  text-wrap: balance;
+  font-size: clamp(1.05rem, 3vw, 1.5rem);
+  line-height: 1.8;
+}
