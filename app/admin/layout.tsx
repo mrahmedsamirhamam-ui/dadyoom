@@ -17,6 +17,7 @@ const sections = [
   { title: "المجتمع التعليمي", items: [
     { href: "/admin/students", label: "الطلاب", icon: GraduationCap },
     { href: "/admin/teachers", label: "المعلمون", icon: Users },
+    { href: "/admin/role-requests", label: "اعتماد حسابات المعلمين والمدارس", icon: Users },
     { href: "/admin/ai-lesson", label: "مساعد المحتوى", icon: Bot },
   ] },
   { title: "الخدمات", items: [
