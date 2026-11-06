@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { isCountryCode } from "@/lib/countries";
+import { checkOnboardingRole } from "@/lib/auth/profile-role-policy.mjs";
 
 const roleDestinations: Record<string, string> = {
   student: "/student",
@@ -48,11 +49,13 @@ export async function GET(request: Request) {
   const { data: { user }, error: userError } = await supabase.auth.getUser();
   if (userError || !user || !user.email) return NextResponse.redirect(new URL("/login?error=oauth_user", origin));
 
-  const { data: existingProfile } = await supabase
+  const { data: existingProfile, error: lookupError } = await supabase
     .from("profiles")
     .select("role,country,full_name")
     .eq("id", user.id)
     .maybeSingle();
+
+  if (lookupError) return NextResponse.redirect(new URL("/login?error=profile_lookup", origin));
 
   const cookieStore = await cookies();
   const intent = parseIntent(cookieStore.get("dadyoom_oauth_intent")?.value);
@@ -70,22 +73,30 @@ export async function GET(request: Request) {
     return response;
   }
 
+  // OAuth intent is a browser-controlled cookie, not an approval record.
+  const rolePolicy = checkOnboardingRole({
+    storedRole: existingProfile?.role,
+    requestedRole: intent.role,
+  });
+  if (!rolePolicy.ok) {
+    const denied = NextResponse.redirect(new URL("/onboarding?error=role_approval", origin));
+    denied.cookies.delete("dadyoom_oauth_intent");
+    return denied;
+  }
+
   const fullName = intent.fullName ||
     (typeof user.user_metadata?.full_name === "string" ? user.user_metadata.full_name.trim() : "") ||
     (typeof user.user_metadata?.name === "string" ? user.user_metadata.name.trim() : "") ||
     user.email.split("@")[0];
 
   const admin = createAdminClient();
-  const { error: profileError } = await admin.from("profiles").upsert(
+  const { error: profileError } = await admin.from("profiles").insert(
     {
       id: user.id,
       email: user.email,
       full_name: fullName,
-      role: intent.role,
+      role: rolePolicy.role,
       country: intent.country,
-    },
-    {
-      onConflict: "id",
     }
   );
 

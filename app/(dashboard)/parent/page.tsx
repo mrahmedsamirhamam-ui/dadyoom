@@ -239,7 +239,7 @@ export default async function ParentPage() {
             />
 
             <Metric
-              label="إجمالي XP"
+              label="إجمالي نقاط الخبرة"
               value={totalXP}
             />
           </div>

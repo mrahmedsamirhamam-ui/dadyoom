@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { isCountryCode } from "@/lib/countries";
 
-const allowedRoles = new Set(["student", "child", "teacher", "parent", "school"]);
+import { checkOnboardingRole } from "@/lib/auth/profile-role-policy.mjs";
 
 export async function POST(request: Request) {
   let body: { fullName?: string; role?: string; country?: string };
@@ -16,7 +16,12 @@ export async function POST(request: Request) {
   const country = typeof body.country === "string" ? body.country.trim().toUpperCase() : "";
 
   if (!fullName) return NextResponse.json({ error: "اكتب الاسم الكامل قبل المتابعة بجوجل." }, { status: 400 });
-  if (!allowedRoles.has(role)) return NextResponse.json({ error: "نوع الحساب غير صالح." }, { status: 400 });
+  const policy = checkOnboardingRole({ requestedRole: role });
+  if (!policy.ok) {
+    return NextResponse.json({
+      error: "تفعيل صلاحيات المعلم والمدرسة يحتاج موافقة موثقة من إدارة ضاديوم.",
+    }, { status: 403, headers: { "Cache-Control": "no-store" } });
+  }
   if (!isCountryCode(country)) return NextResponse.json({ error: "اختر الدولة أولًا." }, { status: 400 });
 
   const response = NextResponse.json({ ok: true });

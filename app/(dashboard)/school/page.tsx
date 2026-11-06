@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { formatArabicCount } from "@/lib/arabic/counts.mjs";
 import SchoolTeacherLinkCard from "@/features/school-link/components/SchoolTeacherLinkCard";
 import {
   redirect,
@@ -954,15 +955,15 @@ const teacherCount =
             <div className="flex flex-wrap gap-2">
 
               <span className="rounded-full bg-rose-50 px-4 py-2 text-sm font-black text-rose-700">
-                {highPriorityInsights.length} عاجل
+                تنبيهات عاجلة: {highPriorityInsights.length}
               </span>
 
               <span className="rounded-full bg-amber-50 px-4 py-2 text-sm font-black text-amber-700">
-                {mediumPriorityInsights.length} متابعة
+                تحتاج متابعة: {mediumPriorityInsights.length}
               </span>
 
               <span className="rounded-full bg-emerald-50 px-4 py-2 text-sm font-black text-emerald-700">
-                {positiveInsights.length} إيجابي
+                مؤشرات إيجابية: {positiveInsights.length}
               </span>
 
             </div>
@@ -1205,15 +1206,15 @@ const teacherCount =
             <div className="flex flex-wrap gap-2">
 
               <span className="rounded-full bg-rose-50 px-4 py-2 text-sm font-black text-rose-700">
-                {openInterventions.length} مفتوح
+                إجراءات مفتوحة: {openInterventions.length}
               </span>
 
               <span className="rounded-full bg-amber-50 px-4 py-2 text-sm font-black text-amber-700">
-                {inProgressInterventions.length} قيد المتابعة
+                إجراءات قيد المتابعة: {inProgressInterventions.length}
               </span>
 
               <span className="rounded-full bg-emerald-50 px-4 py-2 text-sm font-black text-emerald-700">
-                {resolvedInterventions.length} تم الحل
+                إجراءات أُنجزت: {resolvedInterventions.length}
               </span>
 
             </div>
@@ -1245,7 +1246,7 @@ const teacherCount =
               </div>
 
               <div className="rounded-full bg-white px-4 py-2 text-sm font-black text-indigo-700 ring-1 ring-slate-200">
-                {filteredSchoolInterventions.length} من {schoolInterventions.length} نتيجة
+                {formatArabicCount(filteredSchoolInterventions.length, "result")} من أصل {formatArabicCount(schoolInterventions.length, "result")}
               </div>
 
             </div>
@@ -1720,7 +1721,7 @@ const teacherCount =
             </div>
 
             <div className="rounded-full bg-violet-50 px-4 py-2 text-sm font-black text-violet-700">
-              {teacherClassAnalytics.length} فصل
+              {formatArabicCount(teacherClassAnalytics.length, "classroom")}
             </div>
 
           </div>
@@ -1940,7 +1941,7 @@ const teacherCount =
         </div>
 
         <div className="rounded-full bg-indigo-50 px-4 py-2 text-sm font-black text-indigo-700">
-          {schoolTeachers.length} معلم
+          {formatArabicCount(schoolTeachers.length, "teacher")}
         </div>
 
       </div>
@@ -2008,11 +2009,11 @@ const teacherCount =
                         <div className="mt-3 flex flex-wrap gap-2">
 
                           <span className="rounded-full bg-violet-50 px-3 py-1 text-xs font-black text-violet-700">
-                            {teacherClassCount} فصل
+                            {formatArabicCount(teacherClassCount, "classroom")}
                           </span>
 
                           <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-black text-emerald-700">
-                            {teacherStudentCount} طالب
+                            {formatArabicCount(teacherStudentCount, "student")}
                           </span>
 
                         </div>
