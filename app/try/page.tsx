@@ -105,7 +105,7 @@ export default function GuestLessonPage() {
                 أنهيت التجربة القصيرة
               </h2>
               <p className="mt-3 leading-8">
-                أجبت إجابة صحيحة عن {correctCount} من أصل {guestQuestions.length} أسئلة تدريبية.
+                الإجابات الصحيحة في هذه المحاولة: {correctCount} من أصل {guestQuestions.length} أسئلة.
               </p>
               <p className="mt-3 rounded-2xl bg-[#f6f1e7] p-4 leading-8">
                 {checkPassed
