@@ -771,3 +771,12 @@ html.dadyoom-home-footer-visible body:has(.dadyoom-home-page) [data-dad-floating
     transition: none;
   }
 }
+
+
+/* Hide each float individually when it would physically cover visible text or links. */
+html.dadyoom-home-left-obscured body:has(.dadyoom-home-page) .floating-dock,
+html.dadyoom-home-right-obscured body:has(.dadyoom-home-page) [data-dad-floating-root] {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
