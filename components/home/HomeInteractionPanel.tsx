@@ -61,10 +61,10 @@ export default function HomeInteractionPanel() {
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-sm font-black text-[#a17425]">
-              اختبر الأزرار الآن
+              استكشف أدوات ضاديوم
             </p>
             <h2 className="mt-1 text-3xl font-black text-[#123f39]">
-              ابدأ من الواجهة الرئيسية
+              ابدأ رحلتك في ضاديوم
             </h2>
           </div>
 
@@ -72,7 +72,7 @@ export default function HomeInteractionPanel() {
             href="/ask"
             className="touch-manipulation rounded-2xl bg-[#123f39] px-6 py-3.5 text-center font-black text-white shadow-md transition active:scale-95 active:opacity-80"
           >
-            🤖 افتح شات ضاد
+            🤖 افتح محادثة ضاد
           </Link>
         </div>
 
