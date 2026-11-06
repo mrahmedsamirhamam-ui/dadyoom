@@ -28,6 +28,8 @@ on:
       - 'tests/security/lesson-mastery-gates.test.ts'
       - 'features/student-progress/services/completion-gates.ts'
       - 'scripts/curriculum-coverage.mjs'
+      - 'scripts/audit-primary-official-source-readiness.mjs'
+      - 'tests/primary-official-source-readiness.node.test.mjs'
       - 'scripts/curriculum-production-audit.sql'
       - 'app/quiz/**'
       - 'tests/security/safe-questions-view.test.ts'
@@ -61,6 +63,22 @@ jobs:
         run: npm run curriculum:verify
       - name: Verify country coverage report
         run: npm run curriculum:coverage
+      - name: Audit ministry source readiness, not registered lesson counts
+        run: |
+          node --test tests/primary-official-source-readiness.node.test.mjs
+          npm run curriculum:source-audit
+          mkdir -p audit-out
+          node scripts/audit-primary-official-source-readiness.mjs --json > audit-out/primary-source-readiness.json
+          echo '### Primary curriculum official source audit' >> "$GITHUB_STEP_SUMMARY"
+          echo 'This audit checks local packs and source links; it does NOT certify official textbook coverage or production data.' >> "$GITHUB_STEP_SUMMARY"
+          node -e 'const r=require("./audit-out/primary-source-readiness.json");console.log("Countries "+r.scope.registeredCountries+", planning slots "+r.scope.planningSlots+", local pack slots "+r.summary.localPlanningSlotsWithPack+", unlinked lesson rows "+r.summary.localPackLessonRowsWithoutSourceUrl);' >> "$GITHUB_STEP_SUMMARY"
+      - name: Save curriculum source readiness JSON (nonproduction)
+        uses: actions/upload-artifact@v4
+        with:
+          name: primary-source-readiness
+          path: audit-out/primary-source-readiness.json
+          retention-days: 14
+
       - name: Test that missing packs never report full country coverage
         run: npx vitest run tests/curriculum-coverage.test.ts
       - name: Verify canonical lesson completion entry points
