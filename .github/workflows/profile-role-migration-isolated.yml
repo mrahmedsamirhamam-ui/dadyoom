@@ -1,0 +1,54 @@
+name: Isolated profile role security SQL tests (no production DB)
+
+on:
+  push:
+    branches:
+      - feat/auth-clean-mobile-login-20261106
+  pull_request:
+    paths:
+      - 'supabase/migrations/20261106_p0_profile_role_request_guard.sql'
+      - 'tests/sql/profile-role-rls-*.sql'
+      - '.github/workflows/profile-role-migration-isolated.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  postgres-rls-smoke:
+    name: Validate roles using disposable PostgreSQL 16
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: disposable-ci-only
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 15
+    env:
+      PGHOST: 127.0.0.1
+      PGPORT: '5432'
+      PGUSER: postgres
+      PGPASSWORD: disposable-ci-only
+      PGDATABASE: postgres
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify PostgreSQL client exists
+        run: |
+          if ! command -v psql >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y postgresql-client
+          fi
+          psql --version
+      - name: Create synthetic Supabase role fixture (NO real users)
+        run: psql -v ON_ERROR_STOP=1 -f tests/sql/profile-role-rls-fixture.sql
+      - name: Apply proposed migration to the disposable database ONLY
+        run: psql -v ON_ERROR_STOP=1 -f supabase/migrations/20261106_p0_profile_role_request_guard.sql
+      - name: Verify role isolation and approval simulation
+        run: psql -v ON_ERROR_STOP=1 -f tests/sql/profile-role-rls-verify.sql
