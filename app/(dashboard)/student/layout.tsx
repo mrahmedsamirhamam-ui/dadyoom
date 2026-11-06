@@ -1,5 +1,6 @@
 import StudentPlanBar from "@/components/billing/StudentPlanBar";
 import RolePortalLayout from "@/components/roles/RolePortalLayout";
+import PendingRoleRequestNotice from "@/components/auth/PendingRoleRequestNotice";
 
 const links = [
   { href: "/shorts", label: "شورتس العربية", icon: "" },
@@ -27,8 +28,9 @@ export default function StudentLayout({
       role="student"
       links={links}
     >
+      <PendingRoleRequestNotice />
       <StudentPlanBar />
-        {children}
+      {children}
     </RolePortalLayout>
   );
 }
