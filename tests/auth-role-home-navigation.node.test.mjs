@@ -70,6 +70,11 @@ test("Lesson return is account-aware, accessible, and sign-out is a separate act
   assert.match(lesson, /العودة إلى مساحتي/);
   assert.doesNotMatch(lesson, /العودة إلى لوحة الطالب/);
   assert.match(logout, /supabase\.auth\.signOut\(\)/);
+  assert.match(logout, /if \(signOutError\) throw signOutError/);
+  assert.match(logout, /catch \{/);
+  assert.match(logout, /تعذر تسجيل الخروج/);
+  assert.match(logout, /role="alert"/);
+
   assert.match(logout, /تسجيل الخروج من الحساب/);
   assert.match(logout, /تسجيل الخروج/);
   assert.doesNotMatch(logout, /router\.replace\("\/my"\)/);
