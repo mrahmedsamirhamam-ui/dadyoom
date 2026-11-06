@@ -23,8 +23,12 @@ function dashboardForRole(role?: string | null) {
       return { href: "/school", label: "لوحة المدرسة" };
     case "admin":
       return { href: "/admin", label: "لوحة الإدارة" };
+    case "child":
+      return { href: "/child", label: "مساحة الطفل" };
+    case "student":
+      return { href: "/student", label: "لوحة الطالب" };
     default:
-      return { href: "/student", label: "لوحتي" };
+      return { href: "/my", label: "مساحتي" };
   }
 }
 
@@ -56,7 +60,7 @@ export default async function Navbar() {
       className="sticky top-0 z-40 border-b border-[#dfe9e2] bg-white/95 shadow-[0_4px_24px_rgba(18,63,57,.05)] backdrop-blur"
     >
       <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
-        <DadyoomLogo className="ml-auto" />
+        <DadyoomLogo href={user ? "/my" : "/"} className="ml-auto" />
 
         <nav
           aria-label="التنقل الرئيسي"
@@ -78,7 +82,7 @@ export default async function Navbar() {
           <div className="flex items-center gap-2">
             <div className="hidden max-w-[17rem] min-w-0 text-left sm:block" dir="auto">
               <div className="break-words text-xs font-semibold leading-5 text-[#315f57]" title={displayName}>{displayName}</div>
-              <div className="text-[10px] font-bold text-[#8a7c69]">{role === "teacher" ? "معلم" : role === "parent" ? "ولي أمر" : role === "school" ? "مدرسة" : role === "admin" ? "إدارة" : "طالب"}</div>
+              <div className="text-[10px] font-bold text-[#8a7c69]">{role === "teacher" ? "معلم" : role === "parent" ? "ولي أمر" : role === "school" ? "مدرسة" : role === "admin" ? "إدارة" : role === "child" ? "طفل" : "طالب"}</div>
             </div>
             <Link
               href={dashboard.href}
