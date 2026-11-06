@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import CheckoutButtons from "@/components/billing/CheckoutButtons";
 import { billingStatus } from "@/lib/billing/access";
+import { liveCheckoutApproved } from "@/lib/payments/checkout-gate";
 
 export const metadata: Metadata = {
   title: "ضاديوم Plus | اشتراك التعلم العربي الذكي",
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 export default async function PricingPage() {
   const status = await billingStatus();
   // Never expose checkout during the zero-cost introductory phase unless explicitly enabled.
-  const liveBillingEnabled = process.env.DADYOOM_LIVE_BILLING_ENABLED === "true";
+  const liveBillingEnabled = liveCheckoutApproved("paddle");
 
   return (
     <main
