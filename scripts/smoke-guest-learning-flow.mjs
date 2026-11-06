@@ -15,6 +15,8 @@ try {
     });
     await page.goto(base + "/try", { waitUntil: "domcontentloaded" });
     await page.getByRole("heading", { name: "قبل أن نبدأ" }).waitFor();
+    assert.equal(await page.getByRole("button", { name: "فتح ضاد" }).count(), 0, "No floating AI interruption on /try");
+    assert.equal(await page.getByRole("button", { name: "تنزيل ضاديوم على الهاتف" }).count(), 0, "No installer interruption on /try");
     assert.equal(await page.locator("html").getAttribute("dir"), "rtl");
     assert.equal(await page.getByRole("progressbar", { name: "تقدم التجربة" }).getAttribute("aria-valuenow"), "0");
     await page.getByRole("button", { name: "ابدأ التطبيق" }).click();
