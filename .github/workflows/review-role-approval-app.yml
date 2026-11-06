@@ -15,6 +15,11 @@ on:
       - 'components/auth/ProfileOnboardingForm.tsx'
       - 'app/(dashboard)/student/layout.tsx'
       - 'tests/auth-pending-role-flow.node.test.mjs'
+      - 'tests/security/verified-role-authorization.test.ts'
+      - 'lib/auth/authorization.ts'
+      - 'components/roles/RolePortalLayout.tsx'
+      - 'app/api/teacher/assignment-ai/route.ts'
+      - 'app/api/teacher/lesson-media/route.ts'
       - '.github/workflows/review-role-approval-app.yml'
   workflow_dispatch:
 
@@ -38,7 +43,9 @@ jobs:
         run: node --test tests/auth-pending-role-flow.node.test.mjs
       - name: Install locked dependencies
         run: npm ci --no-audit --no-fund
+      - name: Functional API and reviewed role guard tests
+        run: npx vitest run tests/security/verified-role-authorization.test.ts
       - name: TypeScript
         run: npx tsc --noEmit
       - name: ESLint review-only account files
-        run: npx eslint lib/auth/pending-role-request.ts app/api/auth/complete-profile/route.ts app/auth/callback/route.ts app/account/role-status/page.tsx components/auth/PendingRoleRequestNotice.tsx components/auth/EmailPasswordAuthForm.tsx components/auth/ProfileOnboardingForm.tsx 'app/(dashboard)/student/layout.tsx'
+        run: npx eslint lib/auth/pending-role-request.ts app/api/auth/complete-profile/route.ts app/auth/callback/route.ts app/account/role-status/page.tsx components/auth/PendingRoleRequestNotice.tsx components/auth/EmailPasswordAuthForm.tsx components/auth/ProfileOnboardingForm.tsx 'app/(dashboard)/student/layout.tsx' lib/auth/authorization.ts components/roles/RolePortalLayout.tsx app/api/teacher/assignment-ai/route.ts app/api/teacher/lesson-media/route.ts tests/security/verified-role-authorization.test.ts
