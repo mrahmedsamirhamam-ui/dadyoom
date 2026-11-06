@@ -216,7 +216,7 @@ export default async function JourneyPage() {
                     "الدولة من ملفك"}
                 </span>
                 <span className="rounded-full bg-white/10 px-4 py-2">
-                  {completedLessons} درس مكتمل
+                  الدروس المكتملة: {completedLessons}
                 </span>
                 <span className="rounded-full bg-white/10 px-4 py-2">
                   {Number(
@@ -254,8 +254,7 @@ export default async function JourneyPage() {
 
               <p className="mt-3 text-sm font-bold text-[#e6f1ed]">
                 {completedLessons} من{" "}
-                {totalLessons} درس
-                ظاهر في مسارك الحالي.
+                إجمالي الدروس الظاهرة في مسارك الحالي ({totalLessons}).
               </p>
             </div>
           </div>
