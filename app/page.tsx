@@ -48,7 +48,7 @@ export default function HomePage() {
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:py-20 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:px-8">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#d8c18a] bg-[#fffef9] px-4 py-2 text-sm font-black text-[#72551c] shadow-sm">
-              <span>✦</span><span>العربية تجمعنا، ولا تُذيب أحدًا</span>
+              <span>✦</span><span>العربية تجمعنا، وتحفظ خصوصية هويتنا</span>
             </div>
             <h1 className="mt-7 max-w-3xl font-arabic-display text-4xl font-bold leading-[1.5] text-[#173f35] sm:text-5xl lg:text-[3.55rem]">
               ضاديوم — بيت عربي رقمي يجعل
@@ -153,7 +153,7 @@ export default function HomePage() {
       <footer className="border-t border-[#315e57] bg-[#123f39] py-10 text-[#d9e8e3]">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
           <DadyoomLogo inverse />
-          <div className="text-sm">العربية تجمعنا، ولا تُذيب أحدًا.</div>
+          <div className="text-sm">العربية تجمعنا، وتحفظ خصوصية هويتنا.</div>
           <div className="text-sm">
             <span>© 2026 ضاديوم</span>
             <span className="mx-2" aria-hidden="true">·</span>
