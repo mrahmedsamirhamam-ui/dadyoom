@@ -16,6 +16,7 @@ on:
       - 'components/home/HomeInteractionPanel.tsx'
       - 'components/roles/RolePortalLayout.tsx'
       - 'tests/p0-arabic-ui-auth-grade.node.test.mjs'
+      - 'scripts/qa/audit-arabic-ui-counts.mjs'
       - 'tests/security/question-answer-route-runtime.test.ts'
       - 'tests/security/skill-progress-no-forged-xp.test.ts'
       - '.github/workflows/p0-arabic-role-grade-qa.yml'
@@ -38,6 +39,8 @@ jobs:
           cache: npm
       - name: Prove Arabic tamyiz, role guards, and trusted grading contracts
         run: node --test tests/p0-arabic-ui-auth-grade.node.test.mjs tests/auth-profile-role-request-p0.node.test.mjs
+      - name: Audit dynamic Arabic count labels in all UI and block role-page regressions
+        run: node scripts/qa/audit-arabic-ui-counts.mjs --strict
       - name: Install locked dependencies
         run: npm ci --no-audit --no-fund
       - name: Exercise real grading routes with synthetic data and mocked sessions
