@@ -76,14 +76,14 @@ jobs:
           --health-interval 5s
           --health-timeout 5s
           --health-retries 12
-    env:
-      PG_CONTAINER_ID: ${{ job.services.postgres.id }}
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
       - name: Create only disposable fixture roles and databases
         shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
         run: |
           set -euo pipefail
           docker exec "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres \
@@ -93,6 +93,8 @@ jobs:
           done
       - name: Deny private question key in sandbox; allow approved lesson view
         shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
         run: |
           set -euo pipefail
           docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_question_privacy < tests/security/shadow-question-key-cutover-setup.sql
@@ -107,6 +109,8 @@ jobs:
           } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_question_privacy
       - name: Deny private activity answer in sandbox; preserve published content
         shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
         run: |
           set -euo pipefail
           docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_privacy < tests/security/shadow-activity-answer-cutover-setup.sql
@@ -121,6 +125,8 @@ jobs:
           } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_privacy
       - name: Rehearse fake earned-XP and daily bonus cutover without browser writes
         shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
         run: |
           set -euo pipefail
           docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_skill_rewards < tests/security/shadow-skill-daily-rewards-setup.sql
@@ -135,6 +141,8 @@ jobs:
           } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_skill_rewards
       - name: Rehearse grade forgery, grant cutover and restoration on fake student rows
         shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
         run: |
           set -euo pipefail
           docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_grading < tests/security/shadow-grade-write-grants.sql
