@@ -55,6 +55,8 @@ describe("Homepage mobile dock, RTL and CTA", () => {
     expect(css).toContain("text-wrap: balance");
     expect(css).toContain("clamp(2rem, 7.5vw, 2.45rem)");
     expect(home).toContain("text-[#80551b]");
+    expect(home).toContain("ضاديوم — بيت العربية الرقمي");
+    expect(home).toContain("dadyoom-home-hero-tagline");
     const trust = read("components/home/HomeTrustStrip.tsx");
     expect(trust).toContain('.eq("status", "published")');
     expect(trust).toContain('.eq("is_active", true)');
