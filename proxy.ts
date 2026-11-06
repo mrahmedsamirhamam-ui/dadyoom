@@ -1,16 +1,13 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { authorizeSession } from "@/lib/auth/authorization";
+import { rolesForProtectedApiPath } from "@/lib/auth/api-role-guard.mjs";
 
 export async function proxy(request: NextRequest) {
   const pathname =
     request.nextUrl.pathname;
 
-  const roles = /^\/api\/admin(?:\/|$)/u.test(pathname)
-    ? ["admin"]
-    : /^\/api\/teacher(?:\/|$)/u.test(pathname)
-      ? ["teacher", "admin"]
-      : undefined;
+  const roles = rolesForProtectedApiPath(pathname);
 
   // Gate privileged API namespaces before any handler can run.
   if (
@@ -124,5 +121,9 @@ export const config = {
     "/((?!api/|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|css|js|map|woff2?|ttf|otf|txt|json|xml|webmanifest)$).*)",
     "/api/admin/:path*",
     "/api/teacher/:path*",
+    "/api/parent/:path*",
+    "/api/school/:path*",
+    "/api/student/:path*",
+    "/api/child/:path*",
   ],
 };
