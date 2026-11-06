@@ -2,9 +2,13 @@
   "schemaVersion": 1,
   "snapshotAt": "2026-11-06",
   "scope": "BH/2026-2027/Arabic/G1-G3/S1",
-  "source": "Supabase live project read-only SELECT; lessons/units/grades/curricula/countries; title/status/scope/length ONLY",
-  "privacy": "No student details, profiles, emails or user identifiers",
-  "liveRowsNotMinistryVerification": true,
+  "source": "Supabase production read-only SELECT; no learner identifiers",
+  "privacy": "Titles, grade, semester, publication, content-length and boolean editorial disclaimer only",
+  "caveats": [
+    "Public lesson title is not proof of Ministry lesson text or objective being taught",
+    "explicit_non_ministry_substitution_notice detects limited exact disclaimers only, not all content differences",
+    "No formal content audit or licensing review implied"
+  ],
   "lessonRows": [
     {
       "grade_number": 1,
@@ -12,7 +16,8 @@
       "title": "أنشودة الوحدة",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1311
+      "content_characters": 1311,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -20,7 +25,8 @@
       "title": "أنشودة الوحدة: أسرتي",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1099
+      "content_characters": 1099,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -28,7 +34,8 @@
       "title": "أنشودة الوحدة: جاري",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1090
+      "content_characters": 1090,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -36,7 +43,8 @@
       "title": "أنشودة الوحدة: مدرستي",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1093
+      "content_characters": 1093,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -44,7 +52,8 @@
       "title": "التقويم النهائي للوحدة",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1545
+      "content_characters": 1545,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -52,7 +61,8 @@
       "title": "الدرس الأول: حرف (ب) (1)",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3093
+      "content_characters": 3093,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -60,7 +70,8 @@
       "title": "الدرس التاسع: حرف (ل)",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3589
+      "content_characters": 3589,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -68,7 +79,8 @@
       "title": "الدرس الثالث عشر: حرف (ع)",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3631
+      "content_characters": 3631,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -76,7 +88,8 @@
       "title": "الدرس الثالث: حرف (م)",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 2919
+      "content_characters": 2919,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -84,7 +97,8 @@
       "title": "الدرس الثامن: حرف (س)",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3566
+      "content_characters": 3566,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -92,7 +106,8 @@
       "title": "الدرس الثاني عشر: حرف (ن)",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3554
+      "content_characters": 3554,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -100,7 +115,8 @@
       "title": "الدرس الثاني: حرف (ب) (2)",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3131
+      "content_characters": 3131,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -108,7 +124,8 @@
       "title": "الدرس الحادي عشر: حرف (ج)",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3555
+      "content_characters": 3555,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -116,7 +133,8 @@
       "title": "الدرس الخامس عشر: أعزز مكتسباتي",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1087
+      "content_characters": 1087,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -124,7 +142,8 @@
       "title": "الدرس الخامس: أعزز مكتسباتي",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1105
+      "content_characters": 1105,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -132,7 +151,8 @@
       "title": "الدرس الرابع عشر: حرف (ت)",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3636
+      "content_characters": 3636,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -140,7 +160,8 @@
       "title": "الدرس الرابع: حرف (د)",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 5548
+      "content_characters": 5548,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -148,7 +169,8 @@
       "title": "الدرس السابع: حرف (ر)",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3586
+      "content_characters": 3586,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -156,7 +178,8 @@
       "title": "الدرس السادس: حرف (ح)",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3597
+      "content_characters": 3597,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -164,7 +187,8 @@
       "title": "الدرس العاشر: أعزز مكتسباتي",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1108
+      "content_characters": 1108,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -172,7 +196,8 @@
       "title": "تابع ورقة عمل (12) قوانين صفي",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1341
+      "content_characters": 1341,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -180,7 +205,8 @@
       "title": "تابع ورقة عمل (22) أصوات الحروف والمقاطع",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1314
+      "content_characters": 1314,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -188,7 +214,8 @@
       "title": "تابع ورقة عمل (3) هذا صفنا",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1302
+      "content_characters": 1302,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -196,7 +223,8 @@
       "title": "تابع ورقة عمل (41) القراءة المشتركة: أعبر عن مشاعري",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1357
+      "content_characters": 1357,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -204,7 +232,8 @@
       "title": "تابع ورقة عمل (41) القراءة المشتركة: ماذا نعمل في المدرسة؟ (1)",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1340
+      "content_characters": 1340,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -212,7 +241,8 @@
       "title": "تابع ورقة عمل (41) القراءة المشتركة: ماذا نعمل في المدرسة؟ (2)",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1348
+      "content_characters": 1348,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -220,7 +250,8 @@
       "title": "تابع ورقة عمل (41) القراءة المشتركة: مدارسنا ومدارس أجدادنا",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1425
+      "content_characters": 1425,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -228,7 +259,8 @@
       "title": "تابع ورقة عمل (42) حيواني المفضل",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1472
+      "content_characters": 1472,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -236,7 +268,8 @@
       "title": "قاموسي المصور",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1278
+      "content_characters": 1278,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -244,7 +277,8 @@
       "title": "قاموسي المصور",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1479
+      "content_characters": 1479,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -252,7 +286,8 @@
       "title": "قاموسي المصور",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1282
+      "content_characters": 1282,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -260,7 +295,8 @@
       "title": "قاموسي المصور",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1466
+      "content_characters": 1466,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -268,7 +304,8 @@
       "title": "قاموسي المصور",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1297
+      "content_characters": 1297,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -276,7 +313,8 @@
       "title": "قاموسي المصور",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1278
+      "content_characters": 1278,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -284,7 +322,8 @@
       "title": "قاموسي المصور",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1268
+      "content_characters": 1268,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -292,7 +331,8 @@
       "title": "قاموسي المصور",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1487
+      "content_characters": 1487,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -300,7 +340,8 @@
       "title": "قاموسي المصور",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1287
+      "content_characters": 1287,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -308,7 +349,8 @@
       "title": "قاموسي المصور",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1453
+      "content_characters": 1453,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -316,7 +358,8 @@
       "title": "قاموسي المصور",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1290
+      "content_characters": 1290,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -324,7 +367,8 @@
       "title": "لوحة الوحدة",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 959
+      "content_characters": 959,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -332,7 +376,8 @@
       "title": "مفكرة التعلم",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1293
+      "content_characters": 1293,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -340,7 +385,8 @@
       "title": "مفكرة التعلم",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1298
+      "content_characters": 1298,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -348,7 +394,8 @@
       "title": "مفكرة التعلم",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1289
+      "content_characters": 1289,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -356,7 +403,8 @@
       "title": "مفكرة التعلم",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1489
+      "content_characters": 1489,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -364,7 +412,8 @@
       "title": "مفكرة التعلم",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1470
+      "content_characters": 1470,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -372,7 +421,8 @@
       "title": "ورقة عمل (1) علم بلادي",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1299
+      "content_characters": 1299,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -380,7 +430,8 @@
       "title": "ورقة عمل (10) الأشكال المستوية",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1309
+      "content_characters": 1309,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -388,7 +439,8 @@
       "title": "ورقة عمل (11) أطابق بين الأشياء",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1327
+      "content_characters": 1327,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -396,7 +448,8 @@
       "title": "ورقة عمل (12) قوانين صفي",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1307
+      "content_characters": 1307,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -404,7 +457,8 @@
       "title": "ورقة عمل (13) أعمل وأتعلم في المدرسة",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1305
+      "content_characters": 1305,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -412,7 +466,8 @@
       "title": "ورقة عمل (14) أفكر لأبدع",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1308
+      "content_characters": 1308,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -420,7 +475,8 @@
       "title": "ورقة عمل (15) أعبر عن مشاعري",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1315
+      "content_characters": 1315,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -428,7 +484,8 @@
       "title": "ورقة عمل (16) الأحجام والأطوال",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1298
+      "content_characters": 1298,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -436,7 +493,8 @@
       "title": "ورقة عمل (17) المختلف",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1305
+      "content_characters": 1305,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -444,7 +502,8 @@
       "title": "ورقة عمل (18) أميز سمعيًا",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1303
+      "content_characters": 1303,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -452,7 +511,8 @@
       "title": "ورقة عمل (19) أميز بصريًا",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1326
+      "content_characters": 1326,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -460,7 +520,8 @@
       "title": "ورقة عمل (2) مرافق مدرستي",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1288
+      "content_characters": 1288,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -468,7 +529,8 @@
       "title": "ورقة عمل (20) ألون المختلف",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1331
+      "content_characters": 1331,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -476,7 +538,8 @@
       "title": "ورقة عمل (21) الوزن والكمية",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1339
+      "content_characters": 1339,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -484,7 +547,8 @@
       "title": "ورقة عمل (22) أصوات الحروف والمقاطع",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1334
+      "content_characters": 1334,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -492,7 +556,8 @@
       "title": "ورقة عمل (23) فواكه وخضروات وطني",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1319
+      "content_characters": 1319,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -500,7 +565,8 @@
       "title": "ورقة عمل (24) أنا فنان",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1292
+      "content_characters": 1292,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -508,7 +574,8 @@
       "title": "ورقة عمل (25) أتعرف الزمن",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1307
+      "content_characters": 1307,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -516,7 +583,8 @@
       "title": "ورقة عمل (26) يمين ويسار",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1303
+      "content_characters": 1303,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -524,7 +592,8 @@
       "title": "ورقة عمل (27) أتعرف المكان",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1292
+      "content_characters": 1292,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -532,7 +601,8 @@
       "title": "ورقة عمل (28) قانوني المفضل",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1301
+      "content_characters": 1301,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -540,7 +610,8 @@
       "title": "ورقة عمل (29) أصوات الحروف والمقاطع",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1303
+      "content_characters": 1303,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -548,7 +619,8 @@
       "title": "ورقة عمل (3) هذا صفنا",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1304
+      "content_characters": 1304,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -556,7 +628,8 @@
       "title": "ورقة عمل (30) ألاحظ وأتعلم",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1303
+      "content_characters": 1303,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -564,7 +637,8 @@
       "title": "ورقة عمل (31) الأجزاء الناقصة",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1327
+      "content_characters": 1327,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -572,7 +646,8 @@
       "title": "ورقة عمل (32) أجزاء جسمي",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1284
+      "content_characters": 1284,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -580,7 +655,8 @@
       "title": "ورقة عمل (33) أنشد وأتعلم",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1316
+      "content_characters": 1316,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -588,7 +664,8 @@
       "title": "ورقة عمل (34) أنا نظيف",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1291
+      "content_characters": 1291,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -596,7 +673,8 @@
       "title": "ورقة عمل (35) في غرفة مريم",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1330
+      "content_characters": 1330,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -604,7 +682,8 @@
       "title": "ورقة عمل (36) سلامة مرافق مدرستي",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1307
+      "content_characters": 1307,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -612,7 +691,8 @@
       "title": "ورقة عمل (37) الجزء والكل",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1310
+      "content_characters": 1310,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -620,7 +700,8 @@
       "title": "ورقة عمل (38) الكلمات المتشابهة صوتًا",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1331
+      "content_characters": 1331,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -628,7 +709,8 @@
       "title": "ورقة عمل (39) أميز: الجملة / الكلمة / الحرف",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1347
+      "content_characters": 1347,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -636,7 +718,8 @@
       "title": "ورقة عمل (4) أشياء في صفي",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1299
+      "content_characters": 1299,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -644,7 +727,8 @@
       "title": "ورقة عمل (40) أرسم وجهي",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1272
+      "content_characters": 1272,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -652,7 +736,8 @@
       "title": "ورقة عمل (41) القراءة المشتركة: قصة (في المدرسة)",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1373
+      "content_characters": 1373,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -660,7 +745,8 @@
       "title": "ورقة عمل (42) حيوانات من حولي",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1466
+      "content_characters": 1466,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -668,7 +754,8 @@
       "title": "ورقة عمل (43) ألاحظ وأكتشف الفروق",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1504
+      "content_characters": 1504,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -676,7 +763,8 @@
       "title": "ورقة عمل (44) بيتنا",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1460
+      "content_characters": 1460,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -684,7 +772,8 @@
       "title": "ورقة عمل (45) مواصلاتي واتصالاتي",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1505
+      "content_characters": 1505,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -692,7 +781,8 @@
       "title": "ورقة عمل (46) المواصلات",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1476
+      "content_characters": 1476,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -700,7 +790,8 @@
       "title": "ورقة عمل (47) الاتصالات",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1478
+      "content_characters": 1478,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -708,7 +799,8 @@
       "title": "ورقة عمل (48) أسمع وأميز",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1485
+      "content_characters": 1485,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -716,7 +808,8 @@
       "title": "ورقة عمل (49) حافلة المدرسة",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1492
+      "content_characters": 1492,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -724,7 +817,8 @@
       "title": "ورقة عمل (5) أتعرف الأشكال المستوية",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1295
+      "content_characters": 1295,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -732,7 +826,8 @@
       "title": "ورقة عمل (50) العاملون في المدرسة",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1496
+      "content_characters": 1496,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -740,7 +835,8 @@
       "title": "ورقة عمل (51) المهن في وطني",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1478
+      "content_characters": 1478,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -748,7 +844,8 @@
       "title": "ورقة عمل (52) ملابسي متنوعة",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1475
+      "content_characters": 1475,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -756,7 +853,8 @@
       "title": "ورقة عمل (53) ملابس المهن",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1500
+      "content_characters": 1500,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -764,7 +862,8 @@
       "title": "ورقة عمل (54) أسمع وأتعلم",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1499
+      "content_characters": 1499,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -772,7 +871,8 @@
       "title": "ورقة عمل (55) ألعابي المفضلة",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1476
+      "content_characters": 1476,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -780,7 +880,8 @@
       "title": "ورقة عمل (56) ألعب مع النمط",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1506
+      "content_characters": 1506,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -788,7 +889,8 @@
       "title": "ورقة عمل (57) الطقس من حولي",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1479
+      "content_characters": 1479,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -796,7 +898,8 @@
       "title": "ورقة عمل (58) أنا والطقس",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1463
+      "content_characters": 1463,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -804,7 +907,8 @@
       "title": "ورقة عمل (59) ألاحظ وأتحدث",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1508
+      "content_characters": 1508,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -812,7 +916,8 @@
       "title": "ورقة عمل (6) الأشكال المستوية",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1291
+      "content_characters": 1291,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -820,7 +925,8 @@
       "title": "ورقة عمل (7) ألوان علم بلادي",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1329
+      "content_characters": 1329,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -828,7 +934,8 @@
       "title": "ورقة عمل (8) أدواتي المدرسية",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1305
+      "content_characters": 1305,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 1,
@@ -836,7 +943,8 @@
       "title": "ورقة عمل (9) أبتكر شكلاً غريبًا",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1326
+      "content_characters": 1326,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -844,7 +952,8 @@
       "title": "\"القراءة: \"صديقتي مريم",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1442
+      "content_characters": 1442,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -852,7 +961,8 @@
       "title": "( َأُراجِّعُ اإلِّمْالءَ وَالتَّعْبير1 ) التّدريبات اللّغويّة-",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1493
+      "content_characters": 1493,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -860,7 +970,8 @@
       "title": "( َأُراجِّعُ اإلِّمْالءَ وَالتَّعْبير2 ) التّدريبات اللّغويّة-",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1537
+      "content_characters": 1537,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -868,7 +979,8 @@
       "title": "( َأُراجِّعُ القِّراءَة1",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1418
+      "content_characters": 1418,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -876,7 +988,8 @@
       "title": "( َأُراجِّعُ القِّراءَة2",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1399
+      "content_characters": 1399,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -884,7 +997,8 @@
       "title": "(الوحدة) الدّرس عنوان الدرس ورقمه الكتاب الصفحة",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 204
+      "content_characters": 204,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -892,7 +1006,8 @@
       "title": ")(القراءة- براعم العربية ج1",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 184
+      "content_characters": 184,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -900,7 +1015,8 @@
       "title": ")(الوحدة الدّرس عنوان الدرس ورقمه",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 190
+      "content_characters": 190,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -908,7 +1024,8 @@
       "title": ")القراءة: بالرّوح أفديها (شعر/ : دراسة القصيدة كاملة",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1494
+      "content_characters": 1494,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -916,7 +1033,8 @@
       "title": ")القراءة: درّاجتي (شعر/ : دراسة القصيدة كاملة",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1466
+      "content_characters": 1466,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -924,7 +1042,8 @@
       "title": "أُراجِّعُ الإِّمْلاءَ وَالتَّعْبيرَ ( 2 ) التّدريبات اللّغويّة -",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1510
+      "content_characters": 1510,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -932,7 +1051,8 @@
       "title": "أراجع الحروف (4)",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1378
+      "content_characters": 1378,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -940,7 +1060,8 @@
       "title": "الاستماع: السلحفاة والبطتان",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1817
+      "content_characters": 1817,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -948,7 +1069,8 @@
       "title": "الاستماع: الوقاية خير من العلاج",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1768
+      "content_characters": 1768,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -956,7 +1078,8 @@
       "title": "الاستماع: عطلة نهاية الأسبوع",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1758
+      "content_characters": 1758,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -964,7 +1087,8 @@
       "title": "الدّرس األوّل",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1444
+      "content_characters": 1444,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -972,7 +1096,8 @@
       "title": "الدّرس الأول",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1407
+      "content_characters": 1407,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -980,7 +1105,8 @@
       "title": "الدّرس التّاسع",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 171
+      "content_characters": 171,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -988,7 +1114,8 @@
       "title": "الدّرس الثّالث",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 171
+      "content_characters": 171,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -996,7 +1123,8 @@
       "title": "الدّرس الثّامن",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 171
+      "content_characters": 171,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1004,7 +1132,8 @@
       "title": "الدّرس الثّاني",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 171
+      "content_characters": 171,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1012,7 +1141,8 @@
       "title": "الدّرس الحادي",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1438
+      "content_characters": 1438,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1020,7 +1150,8 @@
       "title": "الدّرس الخامس",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 170
+      "content_characters": 170,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1028,7 +1159,8 @@
       "title": "الدّرس الرّابع",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 171
+      "content_characters": 171,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1036,7 +1168,8 @@
       "title": "الدّرس السّابع",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 171
+      "content_characters": 171,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1044,7 +1177,8 @@
       "title": "الدّرس السّادس",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 171
+      "content_characters": 171,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1052,7 +1186,8 @@
       "title": "الدّرس العاشر",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 170
+      "content_characters": 170,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1060,7 +1195,8 @@
       "title": "القراءة: \"صديقتي مريم\"",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 5002
+      "content_characters": 5002,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 2,
@@ -1068,7 +1204,8 @@
       "title": "القراءة: الرياضة غيّرت حياتي براعم العربيّة",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 5093
+      "content_characters": 5093,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 2,
@@ -1076,7 +1213,8 @@
       "title": "القراءة: الرياضة غيّرت حياتي براعم العربيّة 73",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1488
+      "content_characters": 1488,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1084,7 +1222,8 @@
       "title": "القراءة: الطّائرةُ الورقيّة",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 5091
+      "content_characters": 5091,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 2,
@@ -1092,7 +1231,8 @@
       "title": "ّالقراءة: الغذاء الصحي براعم العربيّة",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1453
+      "content_characters": 1453,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1100,7 +1240,8 @@
       "title": "القراءة: الغذاء الصحيّ براعم العربيّة 80",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 5045
+      "content_characters": 5045,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 2,
@@ -1108,7 +1249,8 @@
       "title": "القراءة: الـمصوّر الصّغير براعم العربيّة",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 7138
+      "content_characters": 7138,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 2,
@@ -1116,7 +1258,8 @@
       "title": "القراءة: الـمصوّر الصّغير براعم العربيّة 32",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1461
+      "content_characters": 1461,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1124,7 +1267,8 @@
       "title": "القراءة: بالرّوح أفديها (شعر) : دراسة القصيدة كاملة / (حفظ من 1 إلى4)",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3104
+      "content_characters": 3104,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1132,7 +1276,8 @@
       "title": "القراءة: تعاون النّمل براعم العربيّة",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 5040
+      "content_characters": 5040,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 2,
@@ -1140,7 +1285,8 @@
       "title": "القراءة: تعاون النّمل براعم العربيّة 26",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1466
+      "content_characters": 1466,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1148,7 +1294,8 @@
       "title": "القراءة: جولة في محميّة محمّد ب",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1450
+      "content_characters": 1450,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1156,7 +1303,8 @@
       "title": "القراءة: جولة في محميّة محمّد ب ن زايد الطّبيعيّة براعم العربيّة 42",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 5242
+      "content_characters": 5242,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 2,
@@ -1164,7 +1312,8 @@
       "title": "القراءة: درّاجتي (شعر): دراسة القصيدة كاملة / (حفظ من 1 إلى6) براعم العربيّة 37",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 5088
+      "content_characters": 5088,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 2,
@@ -1172,7 +1321,8 @@
       "title": "القراءة: سالمٌ مريض براعم العربيّة",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 4956
+      "content_characters": 4956,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 2,
@@ -1180,7 +1330,8 @@
       "title": "القراءة: سالمٌ مريض براعم العربيّة 20",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1448
+      "content_characters": 1448,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1188,7 +1339,8 @@
       "title": "القراءة: في عيادة العيون براعم العربيّة",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 5036
+      "content_characters": 5036,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 2,
@@ -1196,7 +1348,8 @@
       "title": "القراءة: في عيادة العيون براعم العربيّة 58",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1471
+      "content_characters": 1471,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1204,7 +1357,8 @@
       "title": "القراءة: نظافتي : دراسة القصيدة كاملة / (حفظ من 1 إلى4 ) براعم العربيّة 67",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3066
+      "content_characters": 3066,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1212,7 +1366,8 @@
       "title": "القراءة: نظافتي/ : دراسة القصيدة كاملة",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1459
+      "content_characters": 1459,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1220,7 +1375,8 @@
       "title": "مراجعة الإملاء والتعبير (1) — جملة سليمة",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1079
+      "content_characters": 1079,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1228,7 +1384,8 @@
       "title": "مراجعة الإملاء والتعبير (2) — كتابة ومراجعة",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1085
+      "content_characters": 1085,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1236,7 +1393,8 @@
       "title": "مراجعة التراكيب (1) — جملة اسمية بسيطة",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1101
+      "content_characters": 1101,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1244,7 +1402,8 @@
       "title": "مراجعة التراكيب (2) — الفعل والفاعل",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1075
+      "content_characters": 1075,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1252,7 +1411,8 @@
       "title": "مراجعة الحروف (1) — أول الكلمة وآخرها",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1050
+      "content_characters": 1050,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1260,7 +1420,8 @@
       "title": "مراجعة الحروف (2) — الحركة وموقع الحرف",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1054
+      "content_characters": 1054,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1268,7 +1429,8 @@
       "title": "مراجعة الحروف (3) — المدود",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1028
+      "content_characters": 1028,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1276,7 +1438,8 @@
       "title": "مراجعة القراءة (1) — فهم نص قصير",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1044
+      "content_characters": 1044,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 2,
@@ -1284,7 +1447,8 @@
       "title": "مراجعة القراءة (2) — ملاحظة وتفسير",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1030
+      "content_characters": 1030,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1292,7 +1456,8 @@
       "title": ":القراءة",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1425
+      "content_characters": 1425,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1300,7 +1465,8 @@
       "title": ":القراءة ..وتعاونوا براعم العربيّة",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1506
+      "content_characters": 1506,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1308,7 +1474,8 @@
       "title": ":القراءة دروس من حياة توماس إديسون براعم العربيّة",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1559
+      "content_characters": 1559,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1316,7 +1483,8 @@
       "title": ":القراءة لعبة يحبّها املاليين براعم العربيّة",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1522
+      "content_characters": 1522,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1324,7 +1492,8 @@
       "title": ":القراءة( األصدقاء األربعة1",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1505
+      "content_characters": 1505,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1332,7 +1501,8 @@
       "title": ":القراءة( األصدقاء األربعة2",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1497
+      "content_characters": 1497,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1340,7 +1510,8 @@
       "title": ":القراءة( األمانة1",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1450
+      "content_characters": 1450,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1348,7 +1519,8 @@
       "title": ":القراءة( األمانة2",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1469
+      "content_characters": 1469,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1356,7 +1528,8 @@
       "title": ":القراءة( الولع بالرّسم1",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1462
+      "content_characters": 1462,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1364,7 +1537,8 @@
       "title": ":القراءة( الولع بالرّسم2",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1480
+      "content_characters": 1480,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1372,7 +1546,8 @@
       "title": ")(القراءة-",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 167
+      "content_characters": 167,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1380,7 +1555,8 @@
       "title": "اسم الكتاب: براعم العربية ج 1 (القراءة - براعم العربية ج 1 (التّدريبات الصف: الثالث",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 240
+      "content_characters": 240,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1388,7 +1564,8 @@
       "title": "الاستماع: أريد أن ألعب معكم",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1866
+      "content_characters": 1866,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1396,7 +1573,8 @@
       "title": "الاستماع: التصوير الفوتوغرافي",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1859
+      "content_characters": 1859,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1404,7 +1582,8 @@
       "title": "الاستماع: حقيقة الكنز",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1860
+      "content_characters": 1860,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1412,7 +1591,8 @@
       "title": "التحدث — الوحدة الأولى: قيم ومبادئ",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1810
+      "content_characters": 1810,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1420,7 +1600,8 @@
       "title": "التحدث — الوحدة الثالثة: مواقف وعبر",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1776
+      "content_characters": 1776,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1428,7 +1609,8 @@
       "title": "التحدث — الوحدة الثانية: ألعاب وهوايات",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1782
+      "content_characters": 1782,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1436,7 +1618,8 @@
       "title": "الدّرس",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 163
+      "content_characters": 163,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1444,7 +1627,8 @@
       "title": "الدّرس األوّل",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1468
+      "content_characters": 1468,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1452,7 +1636,8 @@
       "title": "الدّرس الأوّل",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 170
+      "content_characters": 170,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1460,7 +1645,8 @@
       "title": "الدّرس التّاسع",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 171
+      "content_characters": 171,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1468,7 +1654,8 @@
       "title": "الدّرس الثّالث",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 171
+      "content_characters": 171,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1476,7 +1663,8 @@
       "title": "الدّرس الثّامن",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 171
+      "content_characters": 171,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1484,7 +1672,8 @@
       "title": "الدّرس الثّاني",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 171
+      "content_characters": 171,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1492,7 +1681,8 @@
       "title": "الدّرس الحادي",
       "status": "draft",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1476
+      "content_characters": 1476,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1500,7 +1690,8 @@
       "title": "الدّرس الخامس",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 170
+      "content_characters": 170,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1508,7 +1699,8 @@
       "title": "الدّرس الرّابع",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 171
+      "content_characters": 171,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1516,7 +1708,8 @@
       "title": "الدّرس السّابع",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 171
+      "content_characters": 171,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1524,7 +1717,8 @@
       "title": "الدّرس السّادس",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 171
+      "content_characters": 171,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1532,7 +1726,8 @@
       "title": "الدّرس العاشر",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 170
+      "content_characters": 170,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1540,7 +1735,8 @@
       "title": "القراءة: الأصدقاء الأربعة (1 ) براعم العربيّة 11-20",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3175
+      "content_characters": 3175,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 3,
@@ -1548,7 +1744,8 @@
       "title": "القراءة: الأصدقاء الأربعة (2 ) براعم العربيّة 21-30",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3194
+      "content_characters": 3194,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 3,
@@ -1556,7 +1753,8 @@
       "title": "القراءة: الأمانة ( 1 ) براعم العربيّة 101-112",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3087
+      "content_characters": 3087,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 3,
@@ -1564,7 +1762,8 @@
       "title": "القراءة: الأمانة ( 2 ) براعم العربيّة 113-125",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3096
+      "content_characters": 3096,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 3,
@@ -1572,7 +1771,8 @@
       "title": "القراءة: الولع بالرّسم (1 ) براعم العربيّة 51-62",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3180
+      "content_characters": 3180,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 3,
@@ -1580,7 +1780,8 @@
       "title": "القراءة: الولع بالرّسم (2 ) براعم العربيّة 63-75",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3146
+      "content_characters": 3146,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 3,
@@ -1588,7 +1789,8 @@
       "title": "القراءة: جزاء المعتدي : دراسة القصيدة كاملة براعم العربيّة 126-136",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1384
+      "content_characters": 1384,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 3,
@@ -1596,7 +1798,8 @@
       "title": "القراءة: حكمة أب: دراسة القصيدة كاملة / (حفظ من 1 إلى5 ) براعم العربيّة 31-37",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 1328
+      "content_characters": 1328,
+      "explicit_non_ministry_substitution_notice": false
     },
     {
       "grade_number": 3,
@@ -1604,7 +1807,8 @@
       "title": "القراءة: دروس من حياة توماس إديسون براعم العربيّة 137-150",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3365
+      "content_characters": 3365,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 3,
@@ -1612,7 +1816,8 @@
       "title": "القراءة: لعبة يحبّها الملايين براعم العربيّة 85-97",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3166
+      "content_characters": 3166,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 3,
@@ -1620,7 +1825,8 @@
       "title": "القراءة: وتعاونوا.. براعم العربيّة 38-47",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3144
+      "content_characters": 3144,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 3,
@@ -1628,7 +1834,8 @@
       "title": "القراءة: وقت الرّاحات: دراسة القصيدة كاملة / (حفظ من 1 إلى5 ) براعم العربيّة 76-84",
       "status": "published",
       "official_content_scope": "plan-scheduled",
-      "content_characters": 3213
+      "content_characters": 3213,
+      "explicit_non_ministry_substitution_notice": true
     },
     {
       "grade_number": 3,
@@ -1636,7 +1843,8 @@
       "title": "ورقمه",
       "status": "draft",
       "official_content_scope": null,
-      "content_characters": 162
+      "content_characters": 162,
+      "explicit_non_ministry_substitution_notice": false
     }
   ]
 }
