@@ -36,7 +36,7 @@ export async function GET(request: Request) {
 
   const { data: existingProfile, error: existingProfileError } = await supabase
     .from("profiles")
-    .select("role,country,full_name")
+    .select("role,country,full_name,requested_role")
     .eq("id", user.id)
     .maybeSingle();
 
@@ -51,7 +51,9 @@ export async function GET(request: Request) {
 
   if (existingProfile?.role && existingProfile?.country && existingProfile?.full_name?.trim()) {
     const role = existingProfile.role.trim().toLowerCase();
-    const response = NextResponse.redirect(new URL(destinationForStoredRole(role), origin));
+    const dest = role === "student" && ["teacher", "school"].includes(existingProfile.requested_role ?? "")
+      ? "/account/role-request" : destinationForStoredRole(role);
+    const response = NextResponse.redirect(new URL(dest, origin));
     response.cookies.delete("dadyoom_oauth_intent");
     return response;
   }
@@ -82,14 +84,16 @@ export async function GET(request: Request) {
     id: user.id,
     email: user.email,
     full_name: fullName,
-    role: intent.role,
+    role: ["teacher", "school"].includes(intent.role) ? "student" : intent.role,
     country: intent.country,
+    requested_role: ["teacher", "school"].includes(intent.role) ? intent.role : null,
+    requested_role_at: ["teacher", "school"].includes(intent.role) ? new Date().toISOString() : null,
   });
 
   if (profileError) {
     const { data: racedProfile, error: racedError } = await supabase
       .from("profiles")
-      .select("role,country,full_name")
+      .select("role,country,full_name,requested_role")
       .eq("id", user.id)
       .maybeSingle();
     if (racedError || !racedProfile?.role || !racedProfile?.country || !racedProfile?.full_name?.trim()) {
@@ -97,10 +101,14 @@ export async function GET(request: Request) {
       return NextResponse.redirect(new URL("/onboarding?error=profile_create", origin));
     }
     const racedRole = racedProfile.role.trim().toLowerCase();
-    return NextResponse.redirect(new URL(destinationForStoredRole(racedRole), origin));
+    const racedDest = racedRole === "student" && ["teacher","school"].includes(racedProfile.requested_role ?? "")
+      ? "/account/role-request" : destinationForStoredRole(racedRole);
+    return NextResponse.redirect(new URL(racedDest, origin));
   }
 
-  const response = NextResponse.redirect(new URL(destinationForStoredRole(intent.role), origin));
+  const response = NextResponse.redirect(new URL(
+    ["teacher","school"].includes(intent.role) ? "/account/role-request" : destinationForStoredRole(intent.role), origin
+  ));
   response.cookies.delete("dadyoom_oauth_intent");
   return response;
 }
