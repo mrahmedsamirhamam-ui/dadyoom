@@ -33,6 +33,11 @@ test("All 120 selected ministry topics get a concrete human-review checklist, no
     r.teacherActions.length>0 && r.ministryTitle.length>0));
   assert.equal(report.gradeBreakdown.reduce((n,x)=>n+x.items,0),120);
   assert.equal(report.gradeBreakdown.reduce((n,x)=>n+x.P0+x.P1+x.P2,0),120);
+  assert.deepEqual([...new Set(report.review.map(r=>r.grade))],[1,2,3]);
+  for(const grade of [1,2,3]){
+    const ordered=report.review.filter(r=>r.grade===grade).map(r=>({P0:0,P1:1,P2:2})[r.priority]);
+    assert.ok(ordered.every((v,i)=>i===0||v>=ordered[i-1]),"Priority order within grade "+grade);
+  }
 });
 
 test("Known alternative reading stories remain release-blocking priority for source/content review",()=>{
