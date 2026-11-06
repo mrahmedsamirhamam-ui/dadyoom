@@ -32,6 +32,8 @@ on:
       - 'tests/primary-official-source-readiness.node.test.mjs'
       - 'scripts/compare-bahrain-primary-ministry-topics.mjs'
       - 'tests/bahrain-primary-ministry-topics.node.test.mjs'
+      - 'scripts/build-bahrain-ministry-teacher-review-queue.mjs'
+      - 'tests/bahrain-ministry-teacher-review-queue.node.test.mjs'
       - 'data/curriculum-audits/**'
       - 'scripts/curriculum-production-audit.sql'
       - 'app/quiz/**'
@@ -82,6 +84,13 @@ jobs:
           node scripts/compare-bahrain-primary-ministry-topics.mjs --json > audit-out/bahrain-primary-ministry-topic-triage.json
           echo '### Bahrain official first-term topic matching (NOT content certification)' >> "$GITHUB_STEP_SUMMARY"
           node -e 'const x=require("./audit-out/bahrain-primary-ministry-topic-triage.json").summary;console.log("Official topics selected "+x.officialTopicChecks+", titles found "+x.titleMatchesWithoutContentCertification+", no published title "+x.noPublishedTitle+", explicit different text "+x.explicitNonMinistrySubstitutionTopics+". Ministry content not certified.")' >> "$GITHUB_STEP_SUMMARY"
+      - name: Generate source-aware teacher review queue and content keyword quality triage
+        run: |
+          node --test tests/bahrain-ministry-teacher-review-queue.node.test.mjs
+          npm run curriculum:ministry:review-queue
+          node scripts/build-bahrain-ministry-teacher-review-queue.mjs --json > audit-out/bahrain-teacher-review-queue.json
+          echo '### Teacher content quality review queue (NOT Ministry certification)' >> "$GITHUB_STEP_SUMMARY"
+          node -e 'const x=require("./audit-out/bahrain-teacher-review-queue.json");console.log("Priorities: "+JSON.stringify(x.summary.byPriority)+", independently reviewed: "+x.summary.teacherReviewCompleted+", certified: "+x.summary.topicsCertifiedComplete)' >> "$GITHUB_STEP_SUMMARY"
       - name: Save curriculum source readiness JSON (nonproduction)
         uses: actions/upload-artifact@v4
         with:
@@ -89,6 +98,7 @@ jobs:
           path: |
             audit-out/primary-source-readiness.json
             audit-out/bahrain-primary-ministry-topic-triage.json
+            audit-out/bahrain-teacher-review-queue.json
           retention-days: 14
 
       - name: Test that missing packs never report full country coverage
