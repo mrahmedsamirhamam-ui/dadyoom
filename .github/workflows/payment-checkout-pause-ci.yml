@@ -1,0 +1,41 @@
+name: Payment pause and gateway safety
+
+on:
+  pull_request:
+    paths:
+      - "app/api/payments/tap/create/route.ts"
+      - "app/api/payments/tap/config/route.ts"
+      - "app/api/payments/paddle/config/route.ts"
+      - "app/pricing/page.tsx"
+      - "lib/payments/readiness.ts"
+      - "lib/payments/checkout-guard.ts"
+      - "tests/security/payment-checkout-paused.test.ts"
+      - ".github/workflows/payment-checkout-pause-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  payment-checkout-paused:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      DADYOOM_LIVE_BILLING_ENABLED: "false"
+      DADYOOM_PAYMENT_ACTIVATION_APPROVED: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Verify fail-closed payments and existing provider webhook behavior
+        run: npx vitest run tests/security/payment-checkout-paused.test.ts tests/security/paddle-webhook.test.ts tests/security/tap-webhook.test.ts
+      - name: Type check
+        run: npx tsc --noEmit
+      - name: Lint checkout protection
+        run: npx eslint lib/payments/readiness.ts lib/payments/checkout-guard.ts app/api/payments/tap/create/route.ts app/api/payments/tap/config/route.ts app/api/payments/paddle/config/route.ts app/pricing/page.tsx tests/security/payment-checkout-paused.test.ts
+      - name: Production build with payment collection paused
+        run: npm run build
