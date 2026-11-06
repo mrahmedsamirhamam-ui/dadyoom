@@ -27,7 +27,7 @@ test("Role home requires authenticated verified user, reads own stored role, nev
   assert.match(page, /if \(authError \|\| !user\) redirect\("\/login"\)/);
   assert.match(page, /\.from\("profiles"\)/);
   assert.match(page, /\.eq\("id", user\.id\)/);
-  assert.match(page, /\.select\("role,country,full_name"\)/);
+  assert.match(page, /\.select\("role,country,full_name,requested_role"\)/);
   assert.match(page, /redirect\(destinationForStoredRole\(profile\.role\)\)/);
   assert.match(page, /redirect\("\/onboarding"\)/);
   assert.match(page, /force-dynamic/);
