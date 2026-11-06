@@ -21,7 +21,7 @@ export default async function ChildPage() {
   const role = profile?.role?.trim().toLowerCase();
 
   if (role !== "child" && role !== "admin") {
-    redirect("/student");
+    redirect("/my");
   }
 
   return (
