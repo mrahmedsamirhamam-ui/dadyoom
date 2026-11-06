@@ -16,6 +16,8 @@ on:
       - 'components/home/HomeInteractionPanel.tsx'
       - 'components/roles/RolePortalLayout.tsx'
       - 'tests/p0-arabic-ui-auth-grade.node.test.mjs'
+      - 'tests/security/question-answer-route-runtime.test.ts'
+      - 'tests/security/skill-progress-no-forged-xp.test.ts'
       - '.github/workflows/p0-arabic-role-grade-qa.yml'
   workflow_dispatch:
 
@@ -38,6 +40,8 @@ jobs:
         run: node --test tests/p0-arabic-ui-auth-grade.node.test.mjs tests/auth-profile-role-request-p0.node.test.mjs
       - name: Install locked dependencies
         run: npm ci --no-audit --no-fund
+      - name: Exercise real grading routes with synthetic data and mocked sessions
+        run: npx vitest run tests/security/question-answer-route-runtime.test.ts tests/security/skill-progress-no-forged-xp.test.ts
       - name: Strict TypeScript check
         run: npx tsc --noEmit
       - name: ESLint changed TSX routes and guards
