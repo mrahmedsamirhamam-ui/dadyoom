@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import CheckoutButtons from "@/components/billing/CheckoutButtons";
 import { billingStatus } from "@/lib/billing/access";
+import { liveCheckoutApproved } from "@/lib/payments/checkout-gate";
 
 export const metadata: Metadata = {
   title: "ضاديوم Plus | اشتراك التعلم العربي الذكي",
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 export default async function PricingPage() {
   const status = await billingStatus();
   // Never expose checkout during the zero-cost introductory phase unless explicitly enabled.
-  const liveBillingEnabled = process.env.DADYOOM_LIVE_BILLING_ENABLED === "true";
+  const liveBillingEnabled = liveCheckoutApproved("paddle");
 
   return (
     <main
@@ -55,6 +56,26 @@ export default async function PricingPage() {
             للطلاب وأولياء الأمور والمعلمين والمدارس: ابدأوا بحساب مجاني. عقود المدارس والخدمات المؤسسية
             تُناقش على حدة، ولا تُنشأ أي مدفوعات تلقائيًا من صفحة التعريف.
           </p>
+        </section>
+
+        <section
+          aria-labelledby="school-pilot-heading"
+          className="rounded-[2rem] border border-[#dbc18b] bg-white p-6 text-[#123f39]"
+        >
+          <h2 id="school-pilot-heading" className="text-2xl font-black">
+            للمدارس والمؤسسات: جرّبوا ضاديوم قبل اختيار أي عقد
+          </h2>
+          <p className="mt-3 max-w-3xl text-base leading-8">
+            نناقش معكم الصفوف والمهارات المطلوبة، ونعرض المحتوى المتاح فعلًا
+            وحدود التغطية والمراجعة. لا نطلب بيانات الطلاب لبدء الحوار،
+            ولا يوجد دفع إلكتروني أو اشتراك تلقائي عند طلب العرض.
+          </p>
+          <Link
+            href="/contact"
+            className="mt-5 inline-flex min-h-12 items-center justify-center rounded-xl bg-[#174d44] px-6 py-3 text-base font-black text-white hover:bg-[#123f39] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174d44]"
+          >
+            اطلب عرضًا توضيحيًا للمدرسة أو المؤسسة
+          </Link>
         </section>
 
         <section className="grid gap-5 lg:grid-cols-2">

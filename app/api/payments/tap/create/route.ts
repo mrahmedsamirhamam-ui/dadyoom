@@ -10,8 +10,17 @@ import {
 } from "@/lib/payments/tap";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
+import { liveCheckoutApproved } from "@/lib/payments/checkout-gate";
 
 export async function POST(request: Request) {
+  // Fail closed before authentication, input parsing or creating a charge.
+  if (!liveCheckoutApproved("tap")) {
+    return NextResponse.json({ error: "PAYMENTS_PAUSED" }, {
+      status: 503,
+      headers: { "Cache-Control": "no-store" },
+    });
+  }
+
   try {
     const supabase = await createClient();
 

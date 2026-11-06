@@ -1,0 +1,42 @@
+name: Payments checkout safety gate
+
+on:
+  pull_request:
+    paths:
+      - "lib/payments/checkout-gate.ts"
+      - "app/pricing/page.tsx"
+      - "app/api/payments/paddle/config/route.ts"
+      - "app/api/payments/tap/config/route.ts"
+      - "app/api/payments/tap/create/route.ts"
+      - "tests/payments-checkout-gate.test.ts"
+      - ".github/workflows/payments-checkout-gate-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checkout-safety:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      DADYOOM_LIVE_BILLING_ENABLED: "false"
+      DADYOOM_PAYMENT_OWNER_APPROVED: "false"
+      DADYOOM_PADDLE_LIVE_ENABLED: "false"
+      DADYOOM_TAP_LIVE_ENABLED: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Verify payments are paused without owner approval
+        run: npx vitest run tests/payments-checkout-gate.test.ts
+      - name: Typecheck
+        run: npx tsc --noEmit
+      - name: Lint changed paths
+        run: npx eslint lib/payments/checkout-gate.ts app/pricing/page.tsx app/api/payments/paddle/config/route.ts app/api/payments/tap/config/route.ts app/api/payments/tap/create/route.ts tests/payments-checkout-gate.test.ts
+      - name: Production build
+        run: npm run build
