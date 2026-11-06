@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 
 import DadyoomLogo from "@/components/brand/DadyoomLogo";
 import { createClient } from "@/lib/supabase/server";
+import { destinationForStoredRole } from "@/lib/auth/role-destination.mjs";
 
 export type PortalRole =
   | "student"
@@ -14,14 +15,6 @@ export type PortalLink = {
   href: string;
   label: string;
   icon: string;
-};
-
-const destinations: Record<string, string> = {
-  student: "/student",
-  teacher: "/teacher",
-  parent: "/parent",
-  school: "/school",
-  admin: "/admin",
 };
 
 const roleLabels: Record<PortalRole, string> = {
@@ -92,10 +85,7 @@ export default async function RolePortalLayout({
     actualRole !== role &&
     actualRole !== "admin"
   ) {
-    redirect(
-      destinations[actualRole] ??
-        "/"
-    );
+    redirect(destinationForStoredRole(actualRole));
   }
 
   const displayName =
@@ -111,7 +101,7 @@ export default async function RolePortalLayout({
       <section className="border-b border-[#dfcfad] bg-[#fffdf8]">
         <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center gap-4">
-            <DadyoomLogo className="ml-auto" />
+            <DadyoomLogo href="/my" className="ml-auto" />
 
             <div className="rounded-full border border-[#d5c199] bg-[#fff8e9] px-4 py-2 text-xs font-black text-[#785e2f]">
               {roleLabels[role]}
