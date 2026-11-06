@@ -85,11 +85,14 @@ const comparisons = officialRows.map(entry => {
   const fullLabel = norm(entry.title);
   const exactName = published.filter(row => norm(row.title).includes(fullLabel));
   const editorialWarnings = published.filter(row => row.explicit_non_ministry_substitution_notice);
+  const worksheetEnrichmentWarnings = published.filter(row => row.explicit_original_enrichment_notice);
   let status;
   if (published.length === 0)
     status = drafts.length ? "DRAFT_TITLE_CANDIDATE_NO_PUBLISHED_TITLE" : "NO_PUBLISHED_TITLE_MATCH";
   else if (editorialWarnings.length)
     status = "PUBLISHED_TITLE_WITH_EXPLICIT_NON_MINISTRY_TEXT";
+  else if (entry.category === "preparation_worksheet" && worksheetEnrichmentWarnings.length)
+    status = "PUBLISHED_WORKSHEET_ENRICHMENT_NOT_BOOK_CONTENT";
   else if (entry.category === "review" && exactName.length === 0)
     status = "REVIEW_SKILL_NUMBER_FOUND_SPECIFIC_TOPIC_NOT_IN_TITLE";
   else if (entry.category === "preparation_worksheet" && exactName.length === 0)
@@ -105,6 +108,7 @@ const comparisons = officialRows.map(entry => {
     otherTitleCandidates: drafts.map(r => r.title),
     multiplePublishedCandidates: published.length > 1,
     originalTextSubstitutionNotices: editorialWarnings.length,
+    originalWorksheetEnrichmentNotices: worksheetEnrichmentWarnings.length,
     sourceContentAlignment: "NOT_HUMAN_REVIEWED",
     certifiedComplete: false,
   };
@@ -139,6 +143,7 @@ const result = {
     titleMatchesWithoutContentCertification:comparisons.filter(x=>x.publishedTitleCandidates.length>0).length,
     noPublishedTitle:comparisons.filter(x=>x.publishedTitleCandidates.length===0).length,
     explicitNonMinistrySubstitutionTopics:comparisons.filter(x=>x.originalTextSubstitutionNotices>0).length,
+    explicitOriginalWorksheetEnrichmentTopics:comparisons.filter(x=>x.originalWorksheetEnrichmentNotices>0).length,
     shortOrGarbleDraftCandidates:draftTitleAnomalies.length,
     certifiedOfficialCoveragePercent:null,
     contentReviewedTopics:0,
@@ -151,6 +156,7 @@ else {
   console.log("TITLE_MATCHES_ONLY="+result.summary.titleMatchesWithoutContentCertification);
   console.log("NO_PUBLISHED_TITLE_MATCH="+result.summary.noPublishedTitle);
   console.log("EXPLICIT_DIFFERENT_TEXT_TOPICS="+result.summary.explicitNonMinistrySubstitutionTopics);
+  console.log("EXPLICIT_ENRICHMENT_WORKSHEETS="+result.summary.explicitOriginalWorksheetEnrichmentTopics);
   console.log("DRAFT_GARBLED_OR_SHORT_CANDIDATES="+result.summary.shortOrGarbleDraftCandidates);
   console.log("CERTIFIED_OFFICIAL_COVERAGE=NOT_VERIFIED");
   for(const g of groups) console.log("GRADE_"+g.grade+"="+JSON.stringify(g.statuses));
