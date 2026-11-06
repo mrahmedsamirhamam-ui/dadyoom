@@ -79,7 +79,8 @@ test("Onboarding only redirects complete profiles and preserves incomplete store
   assert.match(onboarding, /\.select\("role,country,full_name"\)/);
   assert.match(onboarding, /existing\?\.country\?\.trim\(\)/);
   assert.match(onboarding, /existing\?\.full_name\?\.trim\(\)/);
-  assert.match(onboarding, /const existingDestination = destinationForStoredRole\(existing\?\.role\)/);\n  assert.match(onboarding, /existingDestination !== "\/onboarding"/);
+  assert.match(onboarding, /const existingDestination = destinationForStoredRole\(existing\?\.role\)/);
+  assert.match(onboarding, /existingDestination !== "\/onboarding"/);
 });
 
 test("Forgot password is real recoverable route and sends no enumeration signal", () => {
