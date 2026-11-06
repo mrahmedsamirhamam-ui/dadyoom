@@ -1,8 +1,17 @@
 -- Synthetic, disposable PostgreSQL only. Never run against production.
 \set ON_ERROR_STOP on
 
--- Base fixture has an existing pending teacher request. Create a trusted
--- test administrator through a controlled DB operation (not browser metadata).
+-- Create synthetic, untrusted student/teacher/school signup intents.
+-- The base SQL under test must persist teacher/school only as student + pending.
+INSERT INTO auth.users(id,email,raw_user_meta_data) VALUES
+  ('aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa','teacher@invalid.example',
+   '{"role":"teacher","full_name":"Teacher Test"}'::jsonb),
+  ('bbbbbbbb-bbbb-4bbb-bbbb-bbbbbbbbbbbb','school@invalid.example',
+   '{"role":"school","full_name":"School Test"}'::jsonb),
+  ('cccccccc-cccc-4ccc-cccc-cccccccccccc','student@invalid.example',
+   '{"role":"student","full_name":"Student Test"}'::jsonb);
+
+-- Create a trusted test admin by a privileged DB operation, not browser metadata.
 INSERT INTO auth.users(id,email,raw_user_meta_data)
 VALUES ('ffffffff-ffff-4fff-8fff-ffffffffffff','admin@invalid.example','{}'::jsonb);
 UPDATE public.profiles SET role='admin'
