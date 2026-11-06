@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { usePathname } from "next/navigation";
 
 const DadyoomAds = dynamic(
   () => import("@/components/ads/DadyoomAds"),
@@ -33,14 +34,19 @@ const DadCompanion = dynamic(
 );
 
 export default function DadyoomClientRuntime() {
+  const pathname = usePathname();
+  // A first-time guest should finish the micro-lesson before being prompted
+  // to install the app or open a separate assistant. Other routes are unchanged.
+  const inGuestLesson = pathname === "/try";
+
   return (
     <>
       <DadyoomAds />
       <MobileOAuthBridge />
       <NativeMobileShell />
-      <DadyoomInstallPrompt />
+      {!inGuestLesson ? <DadyoomInstallPrompt /> : null}
       <DadyoomAutoUpdate />
-      <DadCompanion />
+      {!inGuestLesson ? <DadCompanion /> : null}
     </>
   );
 }

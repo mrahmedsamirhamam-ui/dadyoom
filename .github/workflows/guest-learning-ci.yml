@@ -1,0 +1,54 @@
+name: Guest learning experience
+
+on:
+  pull_request:
+    paths:
+      - "app/try/**"
+      - "lib/growth/guest-trial.ts"
+      - "tests/guest-trial.test.ts"
+      - "scripts/smoke-guest-learning-flow.mjs"
+      - ".github/workflows/guest-learning-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  guest-learning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Focused unit tests
+        run: npx vitest run tests/guest-trial.test.ts
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: ESLint
+        run: npx eslint app/try/page.tsx lib/growth/guest-trial.ts tests/guest-trial.test.ts
+      - name: Production build
+        run: npm run build
+      - name: 'Browser: mobile RTL and desktop learning journey'
+        shell: bash
+        run: |
+          npm run start -- -p 3033 >/tmp/dadyoom-guest-learning.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 25); do
+            if curl -fsS http://127.0.0.1:3033/try >/dev/null; then break; fi
+            sleep 2
+          done
+          node scripts/smoke-guest-learning-flow.mjs
+      - name: Upload browser screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: guest-learning-browser-screenshots
+          path: artifacts/
+          if-no-files-found: ignore
