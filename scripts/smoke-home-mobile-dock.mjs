@@ -36,6 +36,11 @@ try {
     assert.ok(!intersects(left,right),"Floating widgets overlap at "+width);
     assert.ok(left.x+left.width<=right.x-8,"No 8px horizontal separation at "+width);
     assert.ok(await page.locator(".hero-cta").isVisible(),"Hero CTA missing");
+    const headlineLines=await page.locator("h1.dadyoom-home-title").evaluate((element) => {
+      const style=getComputedStyle(element);
+      return Math.round(element.getBoundingClientRect().height / parseFloat(style.lineHeight));
+    });
+    assert.ok(headlineLines <= 2,"Homepage headline exceeds two lines at "+width+": "+headlineLines);
     assert.equal(await page.locator(".hero-cta").getAttribute("href"),"/try");
     assert.equal(await page.locator(".dadyoom-home-header-cta").getAttribute("href"),"/try");
     for(const path of ["/student","/teacher","/parent","/school"]){
