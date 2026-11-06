@@ -17,6 +17,12 @@ on:
       - 'components/roles/RolePortalLayout.tsx'
       - 'lib/auth/role-destination.*'
       - 'tests/auth-mobile-role-flow.node.test.mjs'
+      - 'tests/auth-role-home-navigation.node.test.mjs'
+      - 'app/my/**'
+      - 'app/lessons/[id]/page.tsx'
+      - 'components/Navbar.tsx'
+      - 'components/child/EarlyLearningRoom.tsx'
+      - 'app/admin/layout.tsx'
       - '.github/workflows/auth-mobile-ux-safety.yml'
   workflow_dispatch:
 
@@ -37,10 +43,10 @@ jobs:
           node-version: '22'
           cache: npm
       - name: Role, password recovery and interface regression tests
-        run: node --test tests/auth-mobile-role-flow.node.test.mjs
+        run: node --test tests/auth-mobile-role-flow.node.test.mjs tests/auth-role-home-navigation.node.test.mjs
       - name: Install dependencies from lockfile
         run: npm ci --no-audit --no-fund
       - name: TypeScript strict check
         run: npx tsc --noEmit
       - name: Lint modified interfaces and auth routes
-        run: npx eslint app/page.tsx components/auth/EmailPasswordAuthForm.tsx components/roles/RolePortalLayout.tsx app/forgot-password/page.tsx app/auth/update-password/page.tsx app/onboarding/page.tsx app/api/auth/destination/route.ts app/api/auth/complete-profile/route.ts app/auth/callback/route.ts
+        run: npx eslint app/page.tsx app/my/page.tsx app/lessons/\[id\]/page.tsx components/Navbar.tsx components/child/EarlyLearningRoom.tsx app/admin/layout.tsx components/auth/LogoutButton.tsx components/auth/EmailPasswordAuthForm.tsx components/roles/RolePortalLayout.tsx app/forgot-password/page.tsx app/auth/update-password/page.tsx app/onboarding/page.tsx app/api/auth/destination/route.ts app/api/auth/complete-profile/route.ts app/auth/callback/route.ts
