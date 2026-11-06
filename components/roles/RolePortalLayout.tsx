@@ -140,6 +140,7 @@ export default async function RolePortalLayout({
             <h2 className="font-arabic-display text-lg font-bold text-[#17324d]">الوصول السريع</h2>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
               {primaryHrefs[role]
+                .filter(href => href !== experience.primaryAction.href)
                 .map(href => links.find(item => item.href === href))
                 .filter((item): item is PortalLink => Boolean(item))
                 .map(item => (
