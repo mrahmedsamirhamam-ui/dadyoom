@@ -636,3 +636,63 @@ code, pre, kbd, samp {
 @media (prefers-reduced-motion: reduce) {
   .dadyoom-role-page * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+
+/* Homepage mobile dock: LTR physical edges are intentional in an RTL interface. */
+.dadyoom-home-page {
+  padding-bottom: calc(140px + env(safe-area-inset-bottom, 0px));
+}
+.dadyoom-home-intro {
+  color: #3d4a46;
+  font-size: 0.95rem;
+  line-height: 1.9;
+}
+.dadyoom-home-page .hero-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 420px;
+  margin: 20px auto 0;
+  padding: 16px 24px;
+  border-radius: 9999px;
+  background: #174d44;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 5px 16px rgb(23 77 68 / 14%);
+  transition: background-color .15s ease;
+}
+.dadyoom-home-page .hero-cta:hover { background: #103f39; }
+.dadyoom-home-page .hero-cta:focus-visible { outline-offset: 4px; }
+.floating-dock {
+  position: fixed;
+  left: max(12px, env(safe-area-inset-left, 0px));
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  width: min(208px, calc(100vw - 128px));
+  max-width: calc(100vw - 24px);
+}
+.floating-dock > button, .floating-dock > a {
+  position: static;
+  max-width: 100%;
+  width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+/* A full chat panel or install dialog must never compete with the other floating control. */
+body:has([data-dad-chat-open="true"]) .floating-dock,
+body:has([data-dadyoom-install-dialog="true"]) [data-dad-floating-root] {
+  display: none;
+}
+@media (min-width: 768px) {
+  .floating-dock { width: min(260px, calc(100vw - 128px)); }
+}
+@media print {
+  .floating-dock, [data-dad-floating-root] { display: none !important; }
+}
