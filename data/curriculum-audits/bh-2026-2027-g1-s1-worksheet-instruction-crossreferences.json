@@ -1,0 +1,174 @@
+{
+  "year": "2026-2027",
+  "grade": 1,
+  "scope": "PUBLISHED_MAIN_PREPARATION_WORKSHEETS_FIRST_ACTIVITY_AND_ASSESSMENT; LEARNING_OBJECTIVES_CROSSREFERENCES",
+  "country": "BH",
+  "semester": 1,
+  "capturedAt": "2026-11-06T12:58:50.946466+00:00",
+  "flaggedRows": [
+    {
+      "worksheetTitle": "ورقة عمل (1) علم بلادي",
+      "malformedReference": true,
+      "citedDifferentLesson": "«)الدّرس الثّالث: حرف (م»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": false
+    },
+    {
+      "worksheetTitle": "ورقة عمل (13) أعمل وأتعلم في المدرسة",
+      "malformedReference": true,
+      "citedDifferentLesson": "«)الدّرس الثّامن: حرف (س»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": true
+    },
+    {
+      "worksheetTitle": "ورقة عمل (14) أفكر لأبدع",
+      "malformedReference": true,
+      "citedDifferentLesson": "«)الدّرس السّابع: حرف (ر»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": true
+    },
+    {
+      "worksheetTitle": "ورقة عمل (15) أعبر عن مشاعري",
+      "malformedReference": true,
+      "citedDifferentLesson": "«)الدّرس السّادس: حرف (ح»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": true
+    },
+    {
+      "worksheetTitle": "ورقة عمل (16) الأحجام والأطوال",
+      "malformedReference": false,
+      "citedDifferentLesson": "«الدّرس الثّامن: حرف (س»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": true
+    },
+    {
+      "worksheetTitle": "ورقة عمل (17) المختلف",
+      "malformedReference": false,
+      "citedDifferentLesson": "«الدّرس الخامس»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": true
+    },
+    {
+      "worksheetTitle": "ورقة عمل (18) أميز سمعيًا",
+      "malformedReference": false,
+      "citedDifferentLesson": "«الدّرس الخامس أعزّز مكتسباتي 62-65»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": false
+    },
+    {
+      "worksheetTitle": "ورقة عمل (19) أميز بصريًا",
+      "malformedReference": false,
+      "citedDifferentLesson": "«الدّرس الرّابع: حرف (د)»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": false
+    },
+    {
+      "worksheetTitle": "ورقة عمل (2) مرافق مدرستي",
+      "malformedReference": true,
+      "citedDifferentLesson": "«)الدّرس الرّابع: حرف (د»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": false
+    },
+    {
+      "worksheetTitle": "ورقة عمل (26) يمين ويسار",
+      "malformedReference": true,
+      "citedDifferentLesson": "«)الدّرس التّاسع: حرف (ل»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": true
+    },
+    {
+      "worksheetTitle": "ورقة عمل (27) أتعرف المكان",
+      "malformedReference": true,
+      "citedDifferentLesson": "«)الدّرس الثّالث عشر: حرف (ع»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": true
+    },
+    {
+      "worksheetTitle": "ورقة عمل (28) قانوني المفضل",
+      "malformedReference": true,
+      "citedDifferentLesson": "«)الدّرس الثّاني عشر: حرف (ن»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": false
+    },
+    {
+      "worksheetTitle": "ورقة عمل (29) أصوات الحروف والمقاطع",
+      "malformedReference": true,
+      "citedDifferentLesson": "«)الدّرس الحادي عشر: حرف (ج»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": false
+    },
+    {
+      "worksheetTitle": "ورقة عمل (30) ألاحظ وأتعلم",
+      "malformedReference": false,
+      "citedDifferentLesson": "«الدّرس التّاسع: حرف (ل)»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": false
+    },
+    {
+      "worksheetTitle": "ورقة عمل (31) الأجزاء الناقصة",
+      "malformedReference": false,
+      "citedDifferentLesson": "«الدّرس الثّالث عشر: حرف (ع»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": false
+    },
+    {
+      "worksheetTitle": "ورقة عمل (32) أجزاء جسمي",
+      "malformedReference": false,
+      "citedDifferentLesson": "«الدّرس العاشر أعزّز مكتسباتي»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": false
+    },
+    {
+      "worksheetTitle": "ورقة عمل (33) أنشد وأتعلم",
+      "malformedReference": false,
+      "citedDifferentLesson": "«الدّرس العاشر أعزّز مكتسباتي 124-129»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": false
+    },
+    {
+      "worksheetTitle": "ورقة عمل (4) أشياء في صفي",
+      "malformedReference": false,
+      "citedDifferentLesson": "«الدّرس الأوّل: حرف (ب) ( 1)»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": true
+    },
+    {
+      "worksheetTitle": "ورقة عمل (41) القراءة المشتركة: قصة (في المدرسة)",
+      "malformedReference": false,
+      "citedDifferentLesson": "«الدّرس الخامس عشر»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": false
+    },
+    {
+      "worksheetTitle": "ورقة عمل (5) أتعرف الأشكال المستوية",
+      "malformedReference": false,
+      "citedDifferentLesson": "«الدّرس الثّالث: حرف (م»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": true
+    },
+    {
+      "worksheetTitle": "ورقة عمل (6) الأشكال المستوية",
+      "malformedReference": false,
+      "citedDifferentLesson": "«الدّرس الثّاني: حرف (ب 2)»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": true
+    },
+    {
+      "worksheetTitle": "ورقة عمل (7) ألوان علم بلادي",
+      "malformedReference": false,
+      "citedDifferentLesson": "«الدّرس الرّابع: حرف (د»",
+      "assessmentRefersToAnotherLesson": true,
+      "objectiveRefersToAnotherLesson": true
+    }
+  ],
+  "flaggedCount": 22,
+  "allWorksheets": 59,
+  "schemaVersion": 1,
+  "limitations": [
+    "Only the first structured activity prompt and first structured assessment item were examined. Other data fields can contain additional errors.",
+    "An unrelated lesson mention is a real editorial anomaly, not a Ministry content-completeness judgment.",
+    "Captured using read-only queries. Production was not edited; results may become stale.",
+    "Eleven of the 22 flagged worksheet records also have learning-objective text referencing another lesson."
+  ],
+  "objectiveFlagCount": 11
+}

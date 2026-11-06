@@ -28,6 +28,13 @@ on:
       - 'tests/security/lesson-mastery-gates.test.ts'
       - 'features/student-progress/services/completion-gates.ts'
       - 'scripts/curriculum-coverage.mjs'
+      - 'scripts/audit-primary-official-source-readiness.mjs'
+      - 'tests/primary-official-source-readiness.node.test.mjs'
+      - 'scripts/compare-bahrain-primary-ministry-topics.mjs'
+      - 'tests/bahrain-primary-ministry-topics.node.test.mjs'
+      - 'scripts/build-bahrain-ministry-teacher-review-queue.mjs'
+      - 'tests/bahrain-ministry-teacher-review-queue.node.test.mjs'
+      - 'data/curriculum-audits/**'
       - 'scripts/curriculum-production-audit.sql'
       - 'app/quiz/**'
       - 'tests/security/safe-questions-view.test.ts'
@@ -61,6 +68,39 @@ jobs:
         run: npm run curriculum:verify
       - name: Verify country coverage report
         run: npm run curriculum:coverage
+      - name: Audit ministry source readiness, not registered lesson counts
+        run: |
+          node --test tests/primary-official-source-readiness.node.test.mjs
+          npm run curriculum:source-audit
+          mkdir -p audit-out
+          node scripts/audit-primary-official-source-readiness.mjs --json > audit-out/primary-source-readiness.json
+          echo '### Primary curriculum official source audit' >> "$GITHUB_STEP_SUMMARY"
+          echo 'This audit checks local packs and source links; it does NOT certify official textbook coverage or production data.' >> "$GITHUB_STEP_SUMMARY"
+          node -e 'const r=require("./audit-out/primary-source-readiness.json");console.log("Countries "+r.scope.registeredCountries+", planning slots "+r.scope.planningSlots+", local pack slots "+r.summary.localPlanningSlotsWithPack+", unlinked lesson rows "+r.summary.localPackLessonRowsWithoutSourceUrl);' >> "$GITHUB_STEP_SUMMARY"
+      - name: Compare Bahrain 2026-27 Ministry topics against anonymized title baseline
+        run: |
+          node --test tests/bahrain-primary-ministry-topics.node.test.mjs
+          npm run curriculum:ministry:compare
+          node scripts/compare-bahrain-primary-ministry-topics.mjs --json > audit-out/bahrain-primary-ministry-topic-triage.json
+          echo '### Bahrain official first-term topic matching (NOT content certification)' >> "$GITHUB_STEP_SUMMARY"
+          node -e 'const x=require("./audit-out/bahrain-primary-ministry-topic-triage.json").summary;console.log("Official topics selected "+x.officialTopicChecks+", titles found "+x.titleMatchesWithoutContentCertification+", no published title "+x.noPublishedTitle+", explicit different text "+x.explicitNonMinistrySubstitutionTopics+". Ministry content not certified.")' >> "$GITHUB_STEP_SUMMARY"
+      - name: Generate source-aware teacher review queue and content keyword quality triage
+        run: |
+          node --test tests/bahrain-ministry-teacher-review-queue.node.test.mjs
+          npm run curriculum:ministry:review-queue
+          node scripts/build-bahrain-ministry-teacher-review-queue.mjs --json > audit-out/bahrain-teacher-review-queue.json
+          echo '### Teacher content quality review queue (NOT Ministry certification)' >> "$GITHUB_STEP_SUMMARY"
+          node -e 'const x=require("./audit-out/bahrain-teacher-review-queue.json");console.log("Priorities: "+JSON.stringify(x.summary.byPriority)+", independently reviewed: "+x.summary.teacherReviewCompleted+", certified: "+x.summary.topicsCertifiedComplete)' >> "$GITHUB_STEP_SUMMARY"
+      - name: Save curriculum source readiness JSON (nonproduction)
+        uses: actions/upload-artifact@v4
+        with:
+          name: primary-source-readiness
+          path: |
+            audit-out/primary-source-readiness.json
+            audit-out/bahrain-primary-ministry-topic-triage.json
+            audit-out/bahrain-teacher-review-queue.json
+          retention-days: 14
+
       - name: Test that missing packs never report full country coverage
         run: npx vitest run tests/curriculum-coverage.test.ts
       - name: Verify canonical lesson completion entry points

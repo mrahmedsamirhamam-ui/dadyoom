@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "country": "BH",
+  "year": "2026-2027",
+  "semester": 1,
+  "grade": 1,
+  "proposals": [
+    {
+      "officialId": "BH-G1-S1-PREPARATION_WORKSHEET-01",
+      "worksheetTitle": "ورقة عمل (1) علم بلادي",
+      "preserveExistingObjectives": true,
+      "proposedLearningObjectives": null,
+      "proposedActivities": [
+        {
+          "level": "أساسي",
+          "title": "ألاحظ",
+          "instructions": "انظر إلى علم مملكة البحرين، ثم أشر إلى اللون الأحمر واللون الأبيض بمساعدة المعلم."
+        },
+        {
+          "level": "متوسط",
+          "title": "ألوّن",
+          "instructions": "لوّن رسمًا مبسطًا لعلم البحرين باللونين الصحيحين، ثم سمِّ كل لون."
+        },
+        {
+          "level": "متقدم",
+          "title": "أصف",
+          "instructions": "صف علم البحرين بجملة قصيرة تبدأ بـ«علم بلادي»، وشارك جملتك شفهيًا."
+        }
+      ],
+      "proposedAssessments": [
+        {
+          "question": "ما لونَا علم مملكة البحرين؟",
+          "answer": "الأحمر والأبيض."
+        },
+        {
+          "question": "ما اسم بلدنا الذي نتعرّف علمه؟",
+          "answer": "مملكة البحرين."
+        },
+        {
+          "question": "اذكر جملة قصيرة تصف علم البحرين.",
+          "answer": "مثال مقبول: علم البحرين أحمر وأبيض."
+        }
+      ],
+      "source": "DADYOOM_ORIGINAL_ENRICHMENT_TEXT_NOT_OFFICIAL_TEXTBOOK",
+      "reviewState": "PROPOSED_NOT_HUMAN_APPROVED",
+      "productionApplied": false,
+      "updatePolicy": "Review lesson row and patch only wrong structured objectives, activities and assessments; retain other valid metadata"
+    },
+    {
+      "officialId": "BH-G1-S1-PREPARATION_WORKSHEET-02",
+      "worksheetTitle": "ورقة عمل (2) مرافق مدرستي",
+      "preserveExistingObjectives": true,
+      "proposedLearningObjectives": null,
+      "proposedActivities": [
+        {
+          "level": "أساسي",
+          "title": "أسمّي",
+          "instructions": "انظر إلى صور الصف والمكتبة والساحة، ثم سمِّ مكانًا واحدًا منها."
+        },
+        {
+          "level": "متوسط",
+          "title": "أصل",
+          "instructions": "صل صورة المكتبة باستعارة الكتب، وصورة الصف بالتعلم، وصورة الساحة باللعب الآمن."
+        },
+        {
+          "level": "متقدم",
+          "title": "أصف",
+          "instructions": "صف مرفقين من مرافق مدرستك، واذكر ما تفعله في كل منهما."
+        }
+      ],
+      "proposedAssessments": [
+        {
+          "question": "أين نقرأ الكتب أو نستعيرها في المدرسة؟",
+          "answer": "في المكتبة."
+        },
+        {
+          "question": "أين نتعلم داخل الحصة؟",
+          "answer": "في الصف."
+        },
+        {
+          "question": "اذكر مرفقًا آخر من مرافق المدرسة ووظيفته.",
+          "answer": "مثال مقبول: الساحة نلعب فيها بأمان."
+        }
+      ],
+      "source": "DADYOOM_ORIGINAL_ENRICHMENT_TEXT_NOT_OFFICIAL_TEXTBOOK",
+      "reviewState": "PROPOSED_NOT_HUMAN_APPROVED",
+      "productionApplied": false,
+      "updatePolicy": "Review lesson row and patch only wrong structured objectives, activities and assessments; retain other valid metadata"
+    },
+    {
+      "officialId": "BH-G1-S1-PREPARATION_WORKSHEET-04",
+      "worksheetTitle": "ورقة عمل (4) أشياء في صفي",
+      "preserveExistingObjectives": false,
+      "proposedLearningObjectives": [
+        "أن يسمّي المتعلم ثلاث أدوات صفية: قلمًا وكتابًا وممحاة.",
+        "أن يصل المتعلم أداتين صفيتين بوظيفتيهما بعد عرض صور مناسبة.",
+        "أن يصف المتعلم أداة يستخدمها في الصف بجملة شفوية بسيطة."
+      ],
+      "proposedActivities": [
+        {
+          "level": "أساسي",
+          "title": "أتعرف",
+          "instructions": "انظر إلى صور القلم والكتاب والممحاة، وأشر إلى الأداة التي يسميها المعلم."
+        },
+        {
+          "level": "متوسط",
+          "title": "أصل",
+          "instructions": "صل القلم بالكتابة، والكتاب بالقراءة، والممحاة بمسح أثر قلم الرصاص."
+        },
+        {
+          "level": "متقدم",
+          "title": "أعبّر",
+          "instructions": "ارسم أداتك المفضلة في الصف، وقل جملة تصف كيف تستخدمها."
+        }
+      ],
+      "proposedAssessments": [
+        {
+          "question": "ما الأداة التي نمحو بها أثر قلم الرصاص؟",
+          "answer": "الممحاة."
+        },
+        {
+          "question": "بأي أداة نكتب على الورق؟",
+          "answer": "القلم."
+        },
+        {
+          "question": "اذكر أداة من صفك وكيف تستخدمها.",
+          "answer": "مثال مقبول: أقرأ في الكتاب."
+        }
+      ],
+      "source": "DADYOOM_ORIGINAL_ENRICHMENT_TEXT_NOT_OFFICIAL_TEXTBOOK",
+      "reviewState": "PROPOSED_NOT_HUMAN_APPROVED",
+      "productionApplied": false,
+      "updatePolicy": "Review lesson row and patch only wrong structured objectives, activities and assessments; retain other valid metadata"
+    }
+  ],
+  "authoritativeMinistryContentCertified": false
+}
