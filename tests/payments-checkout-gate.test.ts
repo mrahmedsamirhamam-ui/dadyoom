@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const {
@@ -62,6 +63,13 @@ afterEach(() => {
 });
 
 describe("zero-charge payment initiation gate", () => {
+  it("uses the same server checkout gate in pricing and offers a contact-only school demo", () => {
+    const page = readFileSync(new URL("../app/pricing/page.tsx", import.meta.url), "utf8");
+    expect(page).toContain('liveCheckoutApproved("paddle")');
+    expect(page).toContain('href="/contact"');
+    expect(page).toContain("لا نطلب بيانات الطلاب لبدء الحوار");
+  });
+
   it("defaults to paused for both Paddle and Tap", () => {
     expect(liveCheckoutApproved("paddle")).toBe(false);
     expect(liveCheckoutApproved("tap")).toBe(false);
