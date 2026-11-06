@@ -4,6 +4,8 @@ import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import { hasVerifiedPrivilegedRole } from "@/lib/auth/pending-role-request";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -50,6 +52,13 @@ async function requireLessonAccess(lessonId: string) {
 
   if (lessonError || !lesson) return { error: "الدرس غير موجود.", status: 404 } as const;
   const role = profile?.role?.trim().toLowerCase() ?? "";
+
+  if (
+    role === "teacher" &&
+    !(await hasVerifiedPrivilegedRole(supabase as unknown as SupabaseClient, user.id, role))
+  ) {
+    return { error: "اعتماد حساب المعلم مطلوب.", status: 403 } as const;
+  }
 
   if (role !== "admin" && !(role === "teacher" && lesson.created_by === user.id)) {
     return { error: "غير مصرح لك بتعديل وسائط هذا الدرس.", status: 403 } as const;
