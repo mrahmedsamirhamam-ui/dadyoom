@@ -120,7 +120,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true, destination: destinationForStoredRole(racedRole) });
   }
 
-  if (matchesPendingApplication || (!existingRole && isApprovalRequired(role))) {
+  if (matchesPendingApplication ||
+      (existingRole === "student" && application && isApprovalRequired(application.requested_role)) ||
+      (!existingRole && isApprovalRequired(role))) {
     if (isApprovalRequired(role)) {
       const pending = await ensurePendingRoleRequest(admin, user.id, role);
       if (!pending.ok) {
