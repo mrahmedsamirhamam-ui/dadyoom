@@ -18,6 +18,18 @@ if (quality.snapshotDate !== triage.productionSnapshotAt ||
   throw new Error("Two mismatched live snapshots: re-run a coordinated read-only audit before comparing");
 }
 
+const worksheetCrossrefs = JSON.parse(readFileSync(
+  "data/curriculum-audits/bh-2026-2027-g1-s1-worksheet-instruction-crossreferences.json", "utf8"
+));
+if (worksheetCrossrefs.country !== "BH" || worksheetCrossrefs.grade !== 1 ||
+    worksheetCrossrefs.semester !== 1 || worksheetCrossrefs.allWorksheets !== 59 ||
+    worksheetCrossrefs.flaggedCount !== worksheetCrossrefs.flaggedRows.length ||
+    new Set(worksheetCrossrefs.flaggedRows.map(x => x.worksheetTitle)).size !== worksheetCrossrefs.flaggedCount) {
+  throw new Error("Invalid read-only worksheet instruction-integrity snapshot");
+}
+const mismatchedWorksheetTitles = new Set(
+  worksheetCrossrefs.flaggedRows.map(x => x.worksheetTitle)
+);
 const expectedCoreG1Skills = ["listening_word", "speaking_word", "reading_word", "writing_word", "expression_word"];
 const skillNames = {
   listening_word: "الاستماع",
@@ -46,6 +58,11 @@ const review = triage.comparisons.map(item => {
     warningCodes.add("ORIGINAL_WORKSHEET_ENRICHMENT");
     checks.push("مقارنة المهمة التعليمية بورقة الوزارة رقم " + item.officialId.split("-").at(-1) +
       "؛ إبقاء إثراء ضاديوم منفصلًا عن المحتوى المقرر");
+  }
+  if (item.grade === 1 && item.category === "preparation_worksheet" &&
+      evidence.some(e => mismatchedWorksheetTitles.has(e.title))) {
+    warningCodes.add("WORKSHEET_INSTRUCTIONS_REFERENCE_DIFFERENT_LESSON");
+    checks.push("تصحيح التعليمات والأسئلة المنظمة التي تسأل عن درس آخر بدل موضوع ورقة العمل؛ مراجعة أهداف الورقة ثم إعادة التقييم قبل اعتمادها");
   }
   if (item.status === "REVIEW_SKILL_NUMBER_FOUND_SPECIFIC_TOPIC_NOT_IN_TITLE") {
     warningCodes.add("OFFICIAL_REVIEW_STORY_UNVERIFIED");
@@ -89,6 +106,16 @@ const review = triage.comparisons.map(item => {
     warningCodes.size > 0 ? "P1" : "P2";
   return {
     officialId: item.officialId,
+    country: "BH", semester: 1,
+    officialBook: null, officialUnit: null,
+    publishedCandidateTitle: item.publishedTitleCandidates[0] ?? null,
+    publicationEvidence: item.publishedTitleCandidates.length ? "PUBLISHED_TITLE_CANDIDATE" : "NO_PUBLISHED_TITLE_CANDIDATE",
+    contentCompleteness: "NOT_HUMAN_VERIFIED", missingSkills: null,
+    hasNonMinistrySubstituteNotice: item.originalTextSubstitutionNotices > 0,
+    hasOriginalEnrichmentNotice: item.originalWorksheetEnrichmentNotices > 0,
+    assessmentCoverage: "NOT_HUMAN_REVIEWED",
+    reviewerApproved: false,
+    worksheetInstructionCrossReferenceFlag: item.grade === 1 && item.category === "preparation_worksheet" && evidence.some(e => mismatchedWorksheetTitles.has(e.title)),
     grade: item.grade,
     category: item.category,
     ministryTitle: item.officialTitle,
@@ -135,6 +162,7 @@ const report={
     topicsCertifiedComplete:0,
     officialCoveragePercent:null,
     teacherReviewCompleted:0,
+    gradeOneCrossTopicWorksheetInstructionFlags: worksheetCrossrefs.flaggedCount,
   },gradeBreakdown,review
 };
 if (process.argv.includes("--json")) {

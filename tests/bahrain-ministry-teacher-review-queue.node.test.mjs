@@ -66,6 +66,21 @@ test("Published worksheet enrichment and unresolved official review story are no
   assert.equal(review.certifiedComplete,false);
 });
 
+test("22 live grade-one worksheet instruction cross-references are flagged, not certified",()=>{
+  const rows=report.review.filter(x=>x.warningCodes.includes("WORKSHEET_INSTRUCTIONS_REFERENCE_DIFFERENT_LESSON"));
+  assert.equal(report.summary.gradeOneCrossTopicWorksheetInstructionFlags,22);
+  assert.equal(rows.length,22);
+  assert.ok(rows.every(x=>x.grade===1 && x.category==="preparation_worksheet" &&
+    x.worksheetInstructionCrossReferenceFlag===true && x.certifiedComplete===false));
+  for (const title of ["علم بلادي","مرافق مدرستي","أشياء في صفي"]) {
+    const row=find(1,"preparation_worksheet",title);
+    assert.ok(row.warningCodes.includes("WORKSHEET_INSTRUCTIONS_REFERENCE_DIFFERENT_LESSON"));
+    assert.equal(row.reviewerApproved,false);
+  }
+  assert.ok(report.review.every(x=>x.contentCompleteness==="NOT_HUMAN_VERIFIED" &&
+    x.assessmentCoverage==="NOT_HUMAN_REVIEWED" && x.missingSkills===null));
+});
+
 test("Review queue is usable without database access, and prints explicit no-certification warning",()=>{
   const out=execFileSync(process.execPath,[
     "scripts/build-bahrain-ministry-teacher-review-queue.mjs"
