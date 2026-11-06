@@ -75,7 +75,7 @@ async function trustedDestination(): Promise<string> {
   if (!response.ok) throw new Error("تعذر تحديد صفحة حسابك حاليًا. يمكنك المحاولة مرة أخرى.");
   const result = await response.json() as { destination?: string };
   // Never follow an untrusted external URL or arbitrary browser metadata.
-  const allowed = ["/student", "/child", "/teacher", "/parent", "/school", "/admin", "/onboarding"];
+  const allowed = ["/student", "/child", "/teacher", "/parent", "/school", "/admin", "/onboarding", "/account/role-request"];
   if (!result.destination || !allowed.includes(result.destination)) {
     throw new Error("تعذر تحديد صفحة حسابك حاليًا. يمكنك المحاولة مرة أخرى.");
   }
