@@ -26,14 +26,19 @@ export default async function OnboardingPage() {
     redirect(existingDestination);
   }
 
+  // Only a persisted, recognized role is locked. Auth metadata is a
+  // convenience to prefill sign-up, never proof of teacher/admin privileges.
+  const storedRole = typeof existing?.role === "string"
+    ? existing.role.trim().toLowerCase() : "";
+  const lockedRole = allowedRoles.has(storedRole) || storedRole === "admin";
+
   const metadata = user.user_metadata ?? {};
   const metadataName = typeof metadata.full_name === "string" ? metadata.full_name.trim() :
     typeof metadata.name === "string" ? metadata.name.trim() : "";
   // Metadata may prefill a registration form but cannot authorize a role.
   // An existing persisted role takes precedence for an incomplete profile.
-  const metadataRole = typeof existing?.role === "string" && existing.role.trim()
-    ? existing.role.trim().toLowerCase()
-    : typeof metadata.role === "string" ? metadata.role.trim().toLowerCase() : "student";
+  const metadataRole = lockedRole ? storedRole :
+    typeof metadata.role === "string" ? metadata.role.trim().toLowerCase() : "student";
   const metadataCountry = typeof existing?.country === "string" && existing.country.trim()
     ? existing.country.trim().toUpperCase()
     : typeof metadata.country === "string" ? metadata.country.trim().toUpperCase() : "BH";
@@ -42,7 +47,8 @@ export default async function OnboardingPage() {
     <AuthShell title="أكمل ملفك" description="خطوة واحدة فقط لنختار التجربة الأنسب لك داخل ضاديوم.">
       <ProfileOnboardingForm
         defaultName={existing?.full_name?.trim() || metadataName || user.email?.split("@")[0] || ""}
-        defaultRole={allowedRoles.has(metadataRole) ? metadataRole as "student" | "child" | "teacher" | "parent" | "school" : "student"}
+        defaultRole={(allowedRoles.has(metadataRole) || (lockedRole && metadataRole === "admin")) ? metadataRole as "student" | "child" | "teacher" | "parent" | "school" | "admin" : "student"}
+        lockedRole={lockedRole}
         defaultCountry={isCountryCode(metadataCountry) ? metadataCountry : "BH"}
       />
     </AuthShell>
