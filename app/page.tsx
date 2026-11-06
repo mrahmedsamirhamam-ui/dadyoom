@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { createClient } from "@/lib/supabase/server";
+import { destinationForStoredRole } from "@/lib/auth/role-destination.mjs";
 import DadyoomLogo, { DadyoomMark } from "@/components/brand/DadyoomLogo";
 
 import HomeInteractionPanel from "@/components/home/HomeInteractionPanel";
@@ -21,7 +24,22 @@ const skills = [
   { icon: "🎙️", title: "التحدث", text: "النطق والتعبير", href: "/skills/speaking/practice" },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  // Logged-in learners return to their own role dashboard, rather than the
+  // marketing homepage when a lesson/feature navigates back to "/".
+  // Anonymous visitors still receive the public homepage as before.
+  const supabase = await createClient();
+  const { data: { user }, error: authError } = await supabase.auth.getUser();
+  if (!authError && user) {
+    const { data: profile, error: profileError } = await supabase
+      .from("profiles")
+      .select("role,country,full_name")
+      .eq("id", user.id)
+      .maybeSingle();
+    if (profileError) throw new Error("تعذر تحديد صفحة حسابك.");
+    if (!profile?.full_name?.trim() || !profile?.country?.trim()) redirect("/onboarding");
+    redirect(destinationForStoredRole(profile.role));
+  }
   return (
     <main dir="rtl" className="min-h-screen bg-[#f8faf6] text-[#24382f]">
       <header className="sticky top-0 z-50 border-b border-[#e5d8bf]/90 bg-[#fffef9]/94 backdrop-blur">
