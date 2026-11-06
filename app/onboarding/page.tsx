@@ -20,8 +20,10 @@ export default async function OnboardingPage() {
 
   // A partially created profile must be editable here; redirecting based on
   // role alone caused /onboarding <-> dashboard infinite loops.
-  if (existing?.role && existing?.country?.trim() && existing?.full_name?.trim()) {
-    redirect(destinationForStoredRole(existing.role));
+  const existingDestination = destinationForStoredRole(existing?.role);
+  if (existingDestination !== "/onboarding" &&
+      existing?.country?.trim() && existing?.full_name?.trim()) {
+    redirect(existingDestination);
   }
 
   const metadata = user.user_metadata ?? {};
