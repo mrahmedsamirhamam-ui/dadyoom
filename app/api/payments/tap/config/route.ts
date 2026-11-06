@@ -2,10 +2,18 @@ import { NextResponse } from "next/server";
 
 import { offerFor } from "@/lib/payments/orders";
 import { createClient } from "@/lib/supabase/server";
+import { liveCheckoutApproved } from "@/lib/payments/checkout-gate";
 
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
+  if (!liveCheckoutApproved("tap")) {
+    return NextResponse.json({ error: "PAYMENTS_PAUSED" }, {
+      status: 503,
+      headers: { "Cache-Control": "no-store" },
+    });
+  }
+
   try {
     const supabase = await createClient();
 
