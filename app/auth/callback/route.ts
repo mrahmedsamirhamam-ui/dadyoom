@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { isCountryCode } from "@/lib/countries";
 import { destinationForStoredRole } from "@/lib/auth/role-destination.mjs";
+import { ensurePendingRoleRequest, isApprovalRequired } from "@/lib/auth/pending-role-request";
 
 function parseIntent(raw: string | undefined) {
   if (!raw) return null;
@@ -48,10 +49,24 @@ export async function GET(request: Request) {
 
   const cookieStore = await cookies();
   const intent = parseIntent(cookieStore.get("dadyoom_oauth_intent")?.value);
+  const storedRole = typeof existingProfile?.role === "string"
+    ? existingProfile.role.trim().toLowerCase() : "";
+  const requestedPrivilegedRole = intent && isApprovalRequired(intent.role)
+    ? intent.role : null;
+  // OAuth registration intent is user input, not authorization. It can
+  // create an application only, and only for an ordinary student profile.
+  if (storedRole === "student" && requestedPrivilegedRole) {
+    const applied = await ensurePendingRoleRequest(createAdminClient(), user.id, requestedPrivilegedRole);
+    if (!applied.ok) {
+      return NextResponse.redirect(new URL("/onboarding?error=pending_request", origin));
+    }
+  }
 
   if (existingProfile?.role && existingProfile?.country && existingProfile?.full_name?.trim()) {
     const role = existingProfile.role.trim().toLowerCase();
-    const response = NextResponse.redirect(new URL(destinationForStoredRole(role), origin));
+    const destination = role === "student" && requestedPrivilegedRole
+      ? "/account/role-status" : destinationForStoredRole(role);
+    const response = NextResponse.redirect(new URL(destination, origin));
     response.cookies.delete("dadyoom_oauth_intent");
     return response;
   }
@@ -82,7 +97,7 @@ export async function GET(request: Request) {
     id: user.id,
     email: user.email,
     full_name: fullName,
-    role: intent.role,
+    role: requestedPrivilegedRole ? "student" : intent.role,
     country: intent.country,
   });
 
@@ -97,10 +112,24 @@ export async function GET(request: Request) {
       return NextResponse.redirect(new URL("/onboarding?error=profile_create", origin));
     }
     const racedRole = racedProfile.role.trim().toLowerCase();
-    return NextResponse.redirect(new URL(destinationForStoredRole(racedRole), origin));
+    let destination = destinationForStoredRole(racedRole);
+    if (racedRole === "student" && requestedPrivilegedRole) {
+      const pending = await ensurePendingRoleRequest(admin, user.id, requestedPrivilegedRole);
+      if (!pending.ok) return NextResponse.redirect(new URL("/onboarding?error=pending_request", origin));
+      destination = "/account/role-status";
+    }
+    const response = NextResponse.redirect(new URL(destination, origin));
+    response.cookies.delete("dadyoom_oauth_intent");
+    return response;
   }
 
-  const response = NextResponse.redirect(new URL(destinationForStoredRole(intent.role), origin));
+  let destination = destinationForStoredRole(intent.role);
+  if (requestedPrivilegedRole) {
+    const pending = await ensurePendingRoleRequest(admin, user.id, requestedPrivilegedRole);
+    if (!pending.ok) return NextResponse.redirect(new URL("/onboarding?error=pending_request", origin));
+    destination = "/account/role-status";
+  }
+  const response = NextResponse.redirect(new URL(destination, origin));
   response.cookies.delete("dadyoom_oauth_intent");
   return response;
 }
