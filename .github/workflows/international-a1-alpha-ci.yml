@@ -1,0 +1,27 @@
+name: International A1 Draft Validation
+
+on:
+  pull_request:
+    paths:
+      - "data/international/**"
+      - "docs/international/**"
+      - "scripts/verify-international-a1.mjs"
+      - "tests/international-a1-curriculum.node.test.mjs"
+      - ".github/workflows/international-a1-alpha-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-a1-catalog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate machine-readable A1 lesson outline
+        run: node scripts/verify-international-a1.mjs
+      - name: Run independent draft and non-destructive-schema tests
+        run: node --test tests/international-a1-curriculum.node.test.mjs
