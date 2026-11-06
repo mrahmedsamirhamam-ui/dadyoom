@@ -46,7 +46,7 @@ export default function FreeLevelCheck() {
             {summary.bandLabel}
           </h2>
           <p className="mt-4 text-lg leading-9 text-[#574d43]">
-            أجبت إجابة صحيحة عن {summary.correct} من {summary.total} أسئلة ({summary.percent}%). هذه
+            الإجابات الصحيحة: {summary.correct} من إجمالي الأسئلة ({summary.total})، بنسبة {summary.percent}%. هذه
             مؤشرات أولية لتوجيه التدريب، وليست تحديدًا رسميًا للصف أو المستوى.
           </p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
