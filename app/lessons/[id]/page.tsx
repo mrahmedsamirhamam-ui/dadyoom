@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
 
   const { data, error } = await supabase
     .from("lessons")
-    .select("title,summary,instructions")
+    .select("title,summary,instructions,content")
     .eq("id", id)
     .eq("status", "published")
     .maybeSingle();
@@ -57,9 +57,9 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
   }
 
   const title = data.title?.trim() || "درس العربية";
-  const sourceReviewRequired = needsSourcePublicationReview(data.instructions);
+  const sourceReviewRequired = needsSourcePublicationReview(data.instructions, data.content);
   const description =
-    publicLessonDescription(data.summary, data.instructions).slice(0, 170) ||
+    publicLessonDescription(data.summary, data.instructions, data.content).slice(0, 170) ||
     `تعلّم ${title} في ضاديوم من خلال المحتوى والأنشطة والأسئلة التفاعلية.`;
 
   return {
@@ -136,9 +136,9 @@ export default async function LessonPage({
     bundle.lesson;
 
   const sourceReviewRequired =
-    needsSourcePublicationReview(lesson.instructions);
+    needsSourcePublicationReview(lesson.instructions, lesson.content);
   const safeDescription =
-    publicLessonDescription(lesson.summary, lesson.instructions);
+    publicLessonDescription(lesson.summary, lesson.instructions, lesson.content);
 
   const lessonQuestions =
     bundle.questions;

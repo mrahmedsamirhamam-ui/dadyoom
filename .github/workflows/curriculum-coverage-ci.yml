@@ -37,6 +37,8 @@ on:
       - 'lib/curriculum-packs/**'
       - 'data/curriculum-packs/**'
       - 'tests/curriculum-coverage.test.ts'
+      - 'lib/lesson-content/publication-readiness.ts'
+      - 'tests/lesson-source-disclosure.test.ts'
       - '.github/workflows/curriculum-coverage-ci.yml'
   workflow_dispatch:
 
@@ -79,6 +81,8 @@ jobs:
         run: npx vitest run tests/security/server-only-answer-key-read.test.ts
       - name: Verify public lesson bundle excludes answer keys
         run: npx vitest run tests/security/public-lesson-bundle-rpc.test.ts
+      - name: Verify explicit original lesson text is disclosed before students and robots
+        run: npx vitest run tests/lesson-source-disclosure.test.ts
       - name: TypeScript
         run: npx tsc --noEmit
       - name: ESLint
