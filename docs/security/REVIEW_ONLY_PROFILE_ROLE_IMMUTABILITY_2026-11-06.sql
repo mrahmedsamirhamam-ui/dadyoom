@@ -2,6 +2,19 @@
 -- Dadyoom profiles existing trigger trg_protect_profile_role_escalation is already in production.
 -- On 2026-11-06 its handler forbids assigning 'admin' directly, but allows
 -- self-service role changes student -> teacher/parent/school.
+--
+-- ADDITIONAL VERIFIED INSERT RISK (Issue #117):
+-- The RLS policy "Users insert own profile" currently permits client-side
+-- INSERT with new role = teacher or school for the authenticated user's UID.
+-- Correcting UPDATE does NOT fix INSERT. The registration API also currently
+-- permits user selection of a teacher/school role through privileged server
+-- insertion. These require an explicit verification/approval model before
+-- anyone treats such role names as privileged or verified membership.
+--
+-- PLEASE DO NOT DEPLOY THIS FILE ALONE: it is a partial UPDATE-only proposal.
+-- It must be paired with reviewed INSERT policy/role approval changes and
+-- tested against child/teacher/school flows in a nonproduction environment.
+-- Reference: https://github.com/mrahmedsamirhamam-ui/dadyoom/issues/117
 -- This change protects all persisted roles from authenticated self-updates.
 -- DO NOT run before validating signup, onboarding, teacher enrollment and
 -- support-admin profile workflows in a nonproduction copy.
