@@ -67,6 +67,6 @@ test("Admin approval is authenticated, scoped, CSRF-checked, records approver, a
   assert.match(route, /\.eq\("role", "student"\)/);
   assert.match(route, /\.eq\("requested_role", requestedRole\)/);
   assert.match(page, /\.limit\(100\)/);
-  assert.match(page, /role="student"/); // intentional fix if page has no exact attr?
+  assert.match(page, /\.eq\("role", "student"\)/);
   assert.match(layout, /\/admin\/role-requests/);
 });
