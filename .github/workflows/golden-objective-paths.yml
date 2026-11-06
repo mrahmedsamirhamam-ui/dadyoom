@@ -1,0 +1,40 @@
+name: Golden adaptive objective contract - isolated verification
+on:
+  push:
+    branches:
+      - feat/unified-objective-three-paths-20261107
+  pull_request:
+    paths:
+      - 'features/adaptive-learning/services/unified-objective-contract.ts'
+      - 'features/adaptive-learning/services/recommend-objective-path.ts'
+      - 'features/adaptive-learning/services/resolve-curriculum-alignment.ts'
+      - 'features/adaptive-learning/examples/subject-predicate-demo.ts'
+      - 'tests/unified-objective-three-paths.test.ts'
+      - 'tests/nominal-verbal-sentences-lesson.test.ts'
+      - 'features/adaptive-learning/examples/nominal-verbal-sentences-demo.ts'
+      - 'tests/curriculum-alignment-exact-match.test.ts'
+      - 'docs/architecture/REVIEW_ONLY_UNIFIED_OBJECTIVE_PATHS_20261107.sql'
+      - '.github/workflows/golden-objective-paths.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned lockfile packages
+        run: npm ci --no-audit --no-fund
+      - name: Existing mastery policy and differentiated lesson contract tests
+        run: npx vitest run tests/adaptive-evidence-policy.test.ts tests/unified-objective-three-paths.test.ts tests/nominal-verbal-sentences-lesson.test.ts tests/curriculum-alignment-exact-match.test.ts
+      - name: TypeScript strict check
+        run: npx tsc --noEmit
+      - name: ESLint changed code
+        run: npx eslint features/adaptive-learning/services/unified-objective-contract.ts features/adaptive-learning/services/recommend-objective-path.ts features/adaptive-learning/services/resolve-curriculum-alignment.ts features/adaptive-learning/examples/subject-predicate-demo.ts features/adaptive-learning/examples/nominal-verbal-sentences-demo.ts tests/unified-objective-three-paths.test.ts tests/nominal-verbal-sentences-lesson.test.ts tests/curriculum-alignment-exact-match.test.ts
