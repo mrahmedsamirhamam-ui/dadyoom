@@ -89,14 +89,25 @@ export async function proxy(request: NextRequest) {
     }
     response.headers.set("Cache-Control", "no-store");
   } else {
+    // Refresh expiring access tokens on every page visit and carry the new
+    // cookies into the current server-rendered request and browser response.
+    // A session is never silently created for a guest.
     await supabase.auth.getUser();
   }
 
+  if (["/", "/login", "/signup", "/my", "/onboarding"].includes(pathname)) {
+    response.headers.set("Cache-Control", "private, no-store");
+  }
   return response;
 }
 
 export const config = {
+  // @supabase/ssr uses request cookies + response cookies to refresh retained
+  // sessions. Server Components cannot reliably persist refreshed cookies.
+  // Apply this to page requests (including /, /login, /signup and /my) while
+  // leaving static files and unrelated API routes alone.
   matcher: [
+    "/((?!api/|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|css|js|map|woff2?|ttf|otf|txt|json|xml|webmanifest)$).*)",
     "/api/admin/:path*",
     "/api/teacher/:path*",
   ],
