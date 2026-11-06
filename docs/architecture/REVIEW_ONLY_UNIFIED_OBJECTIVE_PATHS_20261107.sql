@@ -104,6 +104,50 @@ GRANT SELECT, INSERT, UPDATE, DELETE
 GRANT USAGE, SELECT ON SEQUENCE public.objective_curriculum_alignments_id_seq
   TO service_role;
 
+-- A cross-country *concept* registry gives semantically identical objectives
+-- one stable reference while preserving the official wording of each lesson.
+CREATE TABLE IF NOT EXISTS public.objective_concept_registry (
+  concept_code text PRIMARY KEY
+    CHECK (length(trim(concept_code)) >= 8),
+  canonical_description text NOT NULL
+    CHECK (length(trim(canonical_description)) > 0),
+  language_skill text NOT NULL,
+  status text NOT NULL DEFAULT 'draft'
+    CHECK (status IN ('draft','reviewed','retired')),
+  reviewed_by uuid REFERENCES auth.users(id),
+  reviewed_at timestamptz,
+  CONSTRAINT concept_review_consistency CHECK (
+    (status='reviewed' AND reviewed_by IS NOT NULL AND reviewed_at IS NOT NULL)
+    OR (status<>'reviewed' AND reviewed_by IS NULL AND reviewed_at IS NULL)
+  )
+);
+
+CREATE TABLE IF NOT EXISTS public.lesson_objective_concept_map (
+  learning_objective_id uuid PRIMARY KEY
+    REFERENCES public.lesson_learning_objectives(id) ON DELETE RESTRICT,
+  concept_code text NOT NULL
+    REFERENCES public.objective_concept_registry(concept_code) ON DELETE RESTRICT,
+  mapping_relation text NOT NULL CHECK (mapping_relation IN ('exact','partial','extension')),
+  review_status text NOT NULL DEFAULT 'draft'
+    CHECK (review_status IN ('draft','reviewed','rejected')),
+  reviewed_by uuid REFERENCES auth.users(id),
+  reviewed_at timestamptz,
+  CONSTRAINT concept_mapping_review_consistency CHECK (
+    (review_status='reviewed' AND reviewed_by IS NOT NULL AND reviewed_at IS NOT NULL)
+    OR (review_status<>'reviewed' AND reviewed_by IS NULL AND reviewed_at IS NULL)
+  )
+);
+CREATE INDEX IF NOT EXISTS ix_lesson_objective_concept_code
+  ON public.lesson_objective_concept_map(concept_code);
+
+ALTER TABLE public.objective_concept_registry ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.lesson_objective_concept_map ENABLE ROW LEVEL SECURITY;
+REVOKE ALL ON public.objective_concept_registry,
+   public.lesson_objective_concept_map FROM PUBLIC, anon, authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON
+   public.objective_concept_registry,
+   public.lesson_objective_concept_map TO service_role;
+
 COMMIT;
 
 -- REVIEW GATES: isolated PostgreSQL tests; student JWT read/write denial;
