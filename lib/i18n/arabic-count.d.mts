@@ -1,6 +1,6 @@
 export type ArabicCountNoun =
   | "grade" | "classroom" | "lesson" | "skill" | "student"
-  | "teacher" | "school" | "activity" | "question";
+  | "teacher" | "school" | "activity" | "question" | "unit" | "minute" | "point";
 export type ArabicNounForms = Readonly<{
   one: string; two: string; few: string; many: string; other: string; zero: string;
 }>;
