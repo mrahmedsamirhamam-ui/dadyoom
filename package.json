@@ -23,7 +23,11 @@
     "release:audit": "node scripts/release-audit.mjs",
     "curriculum:coverage": "node scripts/curriculum-coverage.mjs",
     "release:final-audit": "node scripts/final-mvp-audit.mjs",
-    "prebuild": "node scripts/write-app-version.mjs"
+    "prebuild": "node scripts/write-app-version.mjs",
+    "cloudflare:build": "opennextjs-cloudflare build",
+    "cloudflare:preview": "opennextjs-cloudflare preview",
+    "cloudflare:deploy": "opennextjs-cloudflare deploy",
+    "cloudflare:upload": "opennextjs-cloudflare upload"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
@@ -65,6 +69,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "8.5.0",
+    "@opennextjs/cloudflare": "1.20.13",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/pdf-parse": "^1.1.5",
@@ -78,6 +83,7 @@
     "tailwindcss": "^4",
     "tsx": "^4.23.5",
     "typescript": "^5",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.10",
+    "wrangler": "4.154.0"
   }
 }
