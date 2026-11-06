@@ -2,10 +2,14 @@ import { NextResponse } from "next/server";
 
 import { offerFor } from "@/lib/payments/orders";
 import { createClient } from "@/lib/supabase/server";
+import { checkoutPausedResponse } from "@/lib/payments/checkout-guard";
 
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
+  const paused = checkoutPausedResponse();
+  if (paused) return paused;
+
   try {
     const supabase = await createClient();
 
@@ -47,10 +51,10 @@ export async function POST(request: Request) {
         email: user.email ?? "",
       },
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       {
-        error: error instanceof Error ? error.message : "تعذر تجهيز الدفع.",
+        error: "PAYMENT_CONFIGURATION_FAILED",
       },
       { status: 500 },
     );
