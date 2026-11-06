@@ -714,3 +714,9 @@ body:has([data-dadyoom-install-dialog="true"]) [data-dad-floating-root] {
     padding-inline: 12px;
   }
 }
+
+.dadyoom-home-page .dadyoom-home-hero-tagline {
+  text-wrap: balance;
+  font-size: clamp(1.05rem, 3vw, 1.5rem);
+  line-height: 1.8;
+}
