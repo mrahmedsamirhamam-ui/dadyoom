@@ -1,3 +1,4 @@
+import { formatArabicCount } from "@/lib/i18n/arabic-count.mjs";
 type Props = {
   rhythm: {
     currentStreak: number;
@@ -115,7 +116,7 @@ export default function LearningRhythmCard({
             <div className="mt-1 text-sm text-slate-500">
               {rhythm.dailyGoal.finished
                 ? "أحسنت! أنجزت هدف اليوم."
-                : `بقي ${rhythm.dailyGoal.remaining} درس للوصول إلى هدفك.`}
+                : `للوصول إلى هدفك، المتبقي: ${formatArabicCount(rhythm.dailyGoal.remaining, "lesson")}.`}
             </div>
           </div>
 

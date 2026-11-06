@@ -1,0 +1,157 @@
+name: P0 Arabic UI, role and grading protections
+
+on:
+  push:
+    branches:
+      - fix/p0-ui-arabic-roles-grades-20261107
+  pull_request:
+    paths:
+      - 'lib/i18n/arabic-count.*'
+      - 'lib/auth/api-role-guard.*'
+      - 'lib/http/read-bounded-json.ts'
+      - 'proxy.ts'
+      - 'app/api/questions/answer/route.ts'
+      - 'app/api/skills/progress/route.ts'
+      - 'app/(dashboard)/**'
+      - 'components/home/HomeInteractionPanel.tsx'
+      - 'components/roles/RolePortalLayout.tsx'
+      - 'tests/p0-arabic-ui-auth-grade.node.test.mjs'
+      - 'scripts/qa/audit-arabic-ui-counts.mjs'
+      - 'tests/security/question-answer-route-runtime.test.ts'
+      - 'tests/security/skill-progress-no-forged-xp.test.ts'
+      - '.github/workflows/p0-arabic-role-grade-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unit-linguistic-security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Prove Arabic tamyiz, role guards, and trusted grading contracts
+        run: node --test tests/p0-arabic-ui-auth-grade.node.test.mjs tests/auth-profile-role-request-p0.node.test.mjs
+      - name: Audit dynamic Arabic count labels in all UI and block role-page regressions
+        run: node scripts/qa/audit-arabic-ui-counts.mjs --strict
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Exercise real grading routes with synthetic data and mocked sessions
+        run: npx vitest run tests/security/question-answer-route-runtime.test.ts tests/security/skill-progress-no-forged-xp.test.ts
+      - name: Strict TypeScript check
+        run: npx tsc --noEmit
+      - name: ESLint changed TSX routes and guards
+        run: >
+          npx eslint
+          proxy.ts
+          app/api/questions/answer/route.ts
+          app/api/skills/progress/route.ts
+          app/'(dashboard)'/student/page.tsx
+          app/'(dashboard)'/teacher/page.tsx
+          app/'(dashboard)'/parent/page.tsx
+          app/'(dashboard)'/school/page.tsx
+          components/roles/RolePortalLayout.tsx
+          components/home/HomeInteractionPanel.tsx
+          lib/http/read-bounded-json.ts
+      - name: Next production compilation (NOT Cloudflare deployment)
+        run: npm run build
+  shadow-privileges:
+    name: Deny unverified browser writes and private answer reads in disposable Postgres
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_PASSWORD: disposable-ci-only
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Create only disposable fixture roles and databases
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          docker exec "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres \
+            -c "CREATE ROLE anon NOLOGIN;" -c "CREATE ROLE authenticated NOLOGIN;"
+          for db in shadow_question_privacy shadow_activity_privacy shadow_grading shadow_skill_rewards; do
+            docker exec "$PG_CONTAINER_ID" createdb -U postgres "$db"
+          done
+      - name: Deny private question key in sandbox; allow approved lesson view
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_question_privacy < tests/security/shadow-question-key-cutover-setup.sql
+          if out=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_question_privacy < scripts/security/proposed-question-key-column-cutover.sql 2>&1); then
+            echo "Candidate accepted absent rehearsal flag" >&2; exit 1
+          fi
+          echo "$out" | grep -q 'PRODUCTION_QUESTION_KEY_CUTOVER_BLOCKED'
+          {
+            echo "SET dadyoom.question_privacy_rehearsal='enabled';"
+            cat scripts/security/proposed-question-key-column-cutover.sql
+            cat tests/security/shadow-question-key-cutover-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_question_privacy
+      - name: Deny private activity answer in sandbox; preserve published content
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_privacy < tests/security/shadow-activity-answer-cutover-setup.sql
+          if out=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_privacy < scripts/security/proposed-activity-answer-column-cutover.sql 2>&1); then
+            echo "Candidate accepted absent rehearsal flag" >&2; exit 1
+          fi
+          echo "$out" | grep -q 'PRODUCTION_ACTIVITY_ANSWER_CUTOVER_BLOCKED'
+          {
+            echo "SET dadyoom.activity_privacy_rehearsal='enabled';"
+            cat scripts/security/proposed-activity-answer-column-cutover.sql
+            cat tests/security/shadow-activity-answer-cutover-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_privacy
+      - name: Rehearse fake earned-XP and daily bonus cutover without browser writes
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_skill_rewards < tests/security/shadow-skill-daily-rewards-setup.sql
+          if out=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_skill_rewards < scripts/security/proposed-skill-daily-reward-grants.sql 2>&1); then
+            echo "XP candidate accepted absent rehearsal flag" >&2; exit 1
+          fi
+          echo "$out" | grep -q 'PRODUCTION_SKILL_REWARD_REVOKE_BLOCKED_SHADOW_ONLY'
+          {
+            echo "SET dadyoom.skill_rewards_rehearsal='enabled';"
+            cat scripts/security/proposed-skill-daily-reward-grants.sql
+            cat tests/security/shadow-skill-daily-rewards-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_skill_rewards
+      - name: Rehearse grade forgery, grant cutover and restoration on fake student rows
+        shell: bash
+        env:
+          PG_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          set -euo pipefail
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_grading < tests/security/shadow-grade-write-grants.sql
+          if out=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_grading < scripts/security/proposed-grade-write-restrictions.sql 2>&1); then
+            echo "Candidate accepted absent rehearsal flag" >&2; exit 1
+          fi
+          echo "$out" | grep -q 'PRODUCTION_REVOKE_BLOCKED_DISPOSABLE_TEST_ONLY'
+          {
+            echo "SET dadyoom.grade_grant_rehearsal='enabled';"
+            cat scripts/security/proposed-grade-write-restrictions.sql
+            cat tests/security/shadow-proposed-grade-grants-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_grading

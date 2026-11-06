@@ -1,3 +1,4 @@
+import { formatArabicCount } from "@/lib/i18n/arabic-count.mjs";
 ﻿import Link from "next/link";
 
 import {
@@ -530,7 +531,7 @@ export default async function SchoolReportsPage() {
 
                         <div className="mt-1 text-xs text-slate-500">
                           {row.teacher_name ?? "معلم"} ·{" "}
-                          {toNumber(row.student_count)} طالب
+                          {formatArabicCount(toNumber(row.student_count), "student")}
                         </div>
 
                       </div>

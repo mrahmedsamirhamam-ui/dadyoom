@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { formatArabicCount } from "@/lib/i18n/arabic-count.mjs";
 import SchoolTeacherLinkCard from "@/features/school-link/components/SchoolTeacherLinkCard";
 import {
   redirect,
@@ -1051,19 +1052,11 @@ const teacherCount =
                             </Link>
 
                             <span className="rounded-full bg-white/70 px-3 py-1">
-                              👨‍🎓 {
-                                toNumber(
-                                  insight.student_count
-                                )
-                              } طالب
+                              👨‍🎓 {formatArabicCount(toNumber(insight.student_count), "student")}
                             </span>
 
                             <span className="rounded-full bg-white/70 px-3 py-1">
-                              ⚡ {
-                                toNumber(
-                                  insight.active_student_count
-                                )
-                              } نشط
+                              ⚡ الطلاب النشطون: {toNumber(insight.active_student_count)}
                             </span>
 
                             <span className="rounded-full bg-white/70 px-3 py-1">
@@ -1720,7 +1713,7 @@ const teacherCount =
             </div>
 
             <div className="rounded-full bg-violet-50 px-4 py-2 text-sm font-black text-violet-700">
-              {teacherClassAnalytics.length} فصل
+              {formatArabicCount(teacherClassAnalytics.length, "classroom")}
             </div>
 
           </div>
@@ -1940,7 +1933,7 @@ const teacherCount =
         </div>
 
         <div className="rounded-full bg-indigo-50 px-4 py-2 text-sm font-black text-indigo-700">
-          {schoolTeachers.length} معلم
+          {formatArabicCount(schoolTeachers.length, "teacher")}
         </div>
 
       </div>
@@ -2008,11 +2001,11 @@ const teacherCount =
                         <div className="mt-3 flex flex-wrap gap-2">
 
                           <span className="rounded-full bg-violet-50 px-3 py-1 text-xs font-black text-violet-700">
-                            {teacherClassCount} فصل
+                            {formatArabicCount(teacherClassCount, "classroom")}
                           </span>
 
                           <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-black text-emerald-700">
-                            {teacherStudentCount} طالب
+                            {formatArabicCount(teacherStudentCount, "student")}
                           </span>
 
                         </div>
@@ -2069,7 +2062,7 @@ const teacherCount =
 
           <p className="mt-2 leading-7 text-indigo-800">
             تم تفعيل نظام ربط المعلمين بالمدرسة،
-            والخطوة التالية هي إضافة صفحة تفاصيل كل معلم وفصوله وطلابه.
+            ويمكنك مراجعة المعلمين والفصول والطلاب المرتبطين بالحساب من أقسام الإدارة المتاحة.
           </p>
 
         </section>

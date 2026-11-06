@@ -1,3 +1,4 @@
+import { formatArabicCount } from "@/lib/i18n/arabic-count.mjs";
 import Link from "next/link";
 
 import {
@@ -366,7 +367,7 @@ export default async function TeacherClassPage({
             </div>
 
             <span className="rounded-full bg-emerald-50 px-4 py-2 text-sm font-black text-emerald-700">
-              {totalStudents} طالب
+              {formatArabicCount(totalStudents, "student")}
             </span>
           </div>
 

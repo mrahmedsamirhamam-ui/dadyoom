@@ -2,6 +2,7 @@ import { getActiveSchoolTeacherLinkCode, type ActiveSchoolTeacherLinkCode } from
 import TeacherSchoolLinkCard from "@/features/school-link/components/TeacherSchoolLinkCard";
 
 import Link from "next/link";
+import { formatArabicCount } from "@/lib/i18n/arabic-count.mjs";
 import {
   redirect,
 } from "next/navigation";
@@ -399,7 +400,7 @@ export default async function TeacherPage() {
               </div>
 
               <div className="rounded-full bg-slate-100 px-4 py-2 text-sm font-black text-slate-600">
-                {classes.length} فصل
+                {formatArabicCount(classes.length, "classroom")}
               </div>
             </div>
 
@@ -469,13 +470,11 @@ export default async function TeacherPage() {
                         <div className="mt-5 grid grid-cols-2 gap-3">
                           <div className="rounded-xl bg-slate-50 p-3 text-center">
                             <div className="text-xl font-black text-slate-900">
-                              {
-                                studentCount
-                              }
+                              {formatArabicCount(studentCount, "student")}
                             </div>
 
                             <div className="text-xs font-bold text-slate-500">
-                              طالب
+                              في هذا الفصل
                             </div>
                           </div>
 

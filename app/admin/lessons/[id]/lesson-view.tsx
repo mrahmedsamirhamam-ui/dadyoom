@@ -1,5 +1,7 @@
 "use client";
 
+import { formatArabicCount } from "@/lib/i18n/arabic-count.mjs";
+
 import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 
@@ -106,15 +108,15 @@ export default function LessonView({ lesson }: LessonViewProps) {
           <div className="grid gap-3 sm:grid-cols-3">
             <div className="rounded-2xl border bg-background p-4">
               <p className="text-sm text-muted-foreground">مدة الدرس</p>
-              <p className="mt-1 text-lg font-bold">⏱️ {lesson.estimatedMinutes} دقيقة</p>
+              <p className="mt-1 text-lg font-bold">⏱️ {formatArabicCount(Number(lesson.estimatedMinutes), "minute")}</p>
             </div>
             <div className="rounded-2xl border bg-background p-4">
               <p className="text-sm text-muted-foreground">نقاط الدرس</p>
-              <p className="mt-1 text-lg font-bold">⭐ {lesson.points} نقطة</p>
+              <p className="mt-1 text-lg font-bold">⭐ {formatArabicCount(Number(lesson.points), "point")}</p>
             </div>
             <div className="rounded-2xl border bg-background p-4">
               <p className="text-sm text-muted-foreground">عدد الأنشطة</p>
-              <p className="mt-1 text-lg font-bold">🎮 {lesson.activities.length} نشاط</p>
+              <p className="mt-1 text-lg font-bold">🎮 {formatArabicCount(lesson.activities.length, "activity")}</p>
             </div>
           </div>
         </div>

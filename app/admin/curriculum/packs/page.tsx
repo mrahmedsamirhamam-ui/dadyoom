@@ -1,3 +1,4 @@
+import { formatArabicCount } from "@/lib/i18n/arabic-count.mjs";
 import Link from "next/link";
 
 import {
@@ -224,10 +225,10 @@ export default function CurriculumPacksPage() {
 
                     <div className="mt-4 flex flex-wrap gap-2 text-xs font-black text-[#61584d]">
                       <span className="rounded-full bg-[#f6f0e4] px-3 py-2">
-                        {pack.unitCount} وحدة
+                        {formatArabicCount(Number(pack.unitCount), "unit")}
                       </span>
                       <span className="rounded-full bg-[#f6f0e4] px-3 py-2">
-                        {pack.lessonCount} درس
+                        {formatArabicCount(Number(pack.lessonCount), "lesson")}
                       </span>
                       <span className="rounded-full bg-[#f6f0e4] px-3 py-2">
                         {pack.fileName}

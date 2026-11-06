@@ -532,7 +532,7 @@ if (masterySkillsError) {
               <div>
                 <h2 className="text-xl font-black text-slate-900">مسار التعلم</h2>
                 <p className="mt-1 text-sm text-slate-500">
-                  {dashboard.completedLessons} من {dashboard.totalLessons} دروس مكتملة
+                  الدروس المكتملة: {dashboard.completedLessons} من {dashboard.totalLessons}
                 </p>
               </div>
               <Link href="/courses" className="text-sm font-black text-teal-700 hover:underline">
@@ -928,12 +928,12 @@ if (masterySkillsError) {
                   </div>
                   <div className="rounded-2xl bg-amber-50 p-4">
                     <p className="font-black text-amber-900">
-                      تحتاج إلى تحسين
+                      فرص للتحسن
                     </p>
                     <p className="mt-2 text-sm leading-7 text-slate-700">
                       {latestAssessmentAnalytics.weaknesses.length > 0
                         ? latestAssessmentAnalytics.weaknesses.join("، ")
-                        : "رائع، لا توجد مهارة ضعيفة في الاختبار الأخير."}
+                        : "أحسنت! لم تظهر في الاختبار الأخير مهارات تحتاج إلى دعم إضافي."}
                     </p>
                   </div>
                 </div>

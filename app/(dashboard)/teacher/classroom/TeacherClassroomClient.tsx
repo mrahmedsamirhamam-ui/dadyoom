@@ -1,5 +1,7 @@
 "use client";
 
+import { formatArabicCount } from "@/lib/i18n/arabic-count.mjs";
+
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -108,7 +110,9 @@ export default function TeacherClassroomClient(props: Props) {
 
       setInstructions(payload.instructions ?? "");
       setQuestions(payload.questions ?? []);
-      setStatus(`تم إنشاء ${payload.questions?.length ?? 0} أسئلة.`);
+      setStatus((payload.questions?.length ?? 0) > 0
+        ? `تم إنشاء ${formatArabicCount(payload.questions?.length ?? 0, "question")}.`
+        : "لم تُنشأ أسئلة بعد.");
     } catch (error) {
       setStatus(error instanceof Error ? error.message : "تعذر التوليد.");
     } finally {

@@ -77,7 +77,7 @@ export default async function AdminPage() {
               <div role="progressbar" aria-label="نسبة الدروس المنشورة" aria-valuenow={publishingRate} aria-valuemin={0} aria-valuemax={100} className="mt-4 h-2.5 overflow-hidden rounded-full bg-white/20">
                 <div className="h-full rounded-full bg-[#f2cf87]" style={{ width: publishingRate + "%" }} />
               </div>
-              <p className="mt-3 text-xs text-[#d6e9df]">{stats.publishedLessons.toLocaleString("en-US")} من أصل {stats.lessons.toLocaleString("en-US")} درس</p>
+              <p className="mt-3 text-xs text-[#d6e9df]">الدروس المنشورة: {stats.publishedLessons.toLocaleString("en-US")} من {stats.lessons.toLocaleString("en-US")}</p>
             </div>
           </div>
         </section>

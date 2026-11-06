@@ -1,3 +1,4 @@
+import { formatArabicCount } from "@/lib/i18n/arabic-count.mjs";
 import Link from "next/link";
 
 import {
@@ -47,7 +48,7 @@ export default function ArabicFromZeroCoursePage() {
             <div className="mt-6 flex flex-wrap gap-2 text-xs font-black">
               <Tag>{course.audience}</Tag>
               <Tag>المستوى: {course.level}</Tag>
-              <Tag>{course.estimatedLessons} دروس</Tag>
+              <Tag>{formatArabicCount(Number(course.estimatedLessons), "lesson")}</Tag>
             </div>
           </div>
         </section>
