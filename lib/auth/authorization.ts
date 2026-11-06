@@ -1,6 +1,7 @@
 import "server-only";
 
 import type { SupabaseClient, User } from "@supabase/supabase-js";
+import { hasVerifiedPrivilegedRole } from "@/lib/auth/pending-role-request";
 
 type Authorization =
   | { ok: true; user: User }
@@ -36,6 +37,11 @@ export async function authorizeSession(
 
       if (error || !roles.includes(role)) {
         return { ok: false, status: 403, error: "FORBIDDEN" };
+      }
+
+      // Direct profile-role writes are not evidence of institutional approval.
+      if (!(await hasVerifiedPrivilegedRole(client, user.id, role))) {
+        return { ok: false, status: 403, error: "ROLE_APPROVAL_REQUIRED" };
       }
     } catch {
       return { ok: false, status: 403, error: "FORBIDDEN" };
