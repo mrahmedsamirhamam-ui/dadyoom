@@ -64,3 +64,17 @@ SELECT worksheet_title,
 FROM worksheet_prompts
 WHERE first_activity_prompt LIKE '%الدّرس%'
 ORDER BY worksheet_title;
+
+-- Second read-only G1 worksheet check: structured learning objectives may
+-- refer to an unrelated letter lesson even when the lesson content topic is
+-- correct. Run independently; count 11 confirmed suspicious rows on 2026-11-06.
+SELECT l.title AS worksheet_title, left(l.learning_objectives::text, 300) AS wrong_objective_excerpt
+FROM public.lessons l
+JOIN public.units u ON u.id=l.unit_id
+JOIN public.grades g ON g.id=u.grade_id
+JOIN public.curricula c ON c.id=g.curriculum_id
+JOIN public.countries co ON co.id=c.country_id
+WHERE co.code='BH' AND g.grade_number=1 AND l.semester=1
+  AND l.status='published' AND l.title LIKE 'ورقة عمل (%'
+  AND l.learning_objectives::text LIKE '%الدّرس%'
+ORDER BY l.title;

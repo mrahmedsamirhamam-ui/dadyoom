@@ -30,6 +30,19 @@ if (worksheetCrossrefs.country !== "BH" || worksheetCrossrefs.grade !== 1 ||
 const mismatchedWorksheetTitles = new Set(
   worksheetCrossrefs.flaggedRows.map(x => x.worksheetTitle)
 );
+const incorrectObjectives = new Set(worksheetCrossrefs.flaggedRows
+  .filter(row => row.objectiveRefersToAnotherLesson)
+  .map(row => row.worksheetTitle));
+if (incorrectObjectives.size !== worksheetCrossrefs.objectiveFlagCount)
+  throw new Error("Invalid objective cross-reference evidence");
+const proposedRepairs = JSON.parse(readFileSync(
+  "data/curriculum-audits/bh-2026-2027-g1-worksheet-targeted-repair-proposals.json", "utf8"
+));
+const draftRepairTitles = new Set(proposedRepairs.proposals.map(x => x.worksheetTitle));
+if (draftRepairTitles.size !== proposedRepairs.proposals.length ||
+    proposedRepairs.proposals.some(x => !mismatchedWorksheetTitles.has(x.worksheetTitle) ||
+      x.productionApplied !== false || x.reviewState !== "PROPOSED_NOT_HUMAN_APPROVED"))
+  throw new Error("Unapproved draft repair proposal metadata invalid");
 const expectedCoreG1Skills = ["listening_word", "speaking_word", "reading_word", "writing_word", "expression_word"];
 const skillNames = {
   listening_word: "الاستماع",
@@ -63,6 +76,15 @@ const review = triage.comparisons.map(item => {
       evidence.some(e => mismatchedWorksheetTitles.has(e.title))) {
     warningCodes.add("WORKSHEET_INSTRUCTIONS_REFERENCE_DIFFERENT_LESSON");
     checks.push("تصحيح التعليمات والأسئلة المنظمة التي تسأل عن درس آخر بدل موضوع ورقة العمل؛ مراجعة أهداف الورقة ثم إعادة التقييم قبل اعتمادها");
+  }
+  if (item.grade === 1 && item.category === "preparation_worksheet" &&
+      evidence.some(e => incorrectObjectives.has(e.title))) {
+    warningCodes.add("WORKSHEET_OBJECTIVES_REFERENCE_DIFFERENT_LESSON");
+    checks.push("تصحيح أهداف التعلم المنظمة التي تشير إلى درس آخر؛ صياغة أهداف قابلة للقياس تتناول موضوع ورقة العمل نفسها");
+  }
+  if (item.grade === 1 && item.category === "preparation_worksheet" &&
+      evidence.some(e => draftRepairTitles.has(e.title))) {
+    checks.push("توجد مسودة تصحيح خاصة بهذا الموضوع، لكنها لم تُعتمد بشريًا ولم تُطبق على الإنتاج");
   }
   if (item.status === "REVIEW_SKILL_NUMBER_FOUND_SPECIFIC_TOPIC_NOT_IN_TITLE") {
     warningCodes.add("OFFICIAL_REVIEW_STORY_UNVERIFIED");
@@ -116,6 +138,8 @@ const review = triage.comparisons.map(item => {
     assessmentCoverage: "NOT_HUMAN_REVIEWED",
     reviewerApproved: false,
     worksheetInstructionCrossReferenceFlag: item.grade === 1 && item.category === "preparation_worksheet" && evidence.some(e => mismatchedWorksheetTitles.has(e.title)),
+    worksheetObjectiveCrossReferenceFlag: item.grade === 1 && item.category === "preparation_worksheet" && evidence.some(e => incorrectObjectives.has(e.title)),
+    proposedRepairDraftReady: item.grade === 1 && item.category === "preparation_worksheet" && evidence.some(e => draftRepairTitles.has(e.title)),
     grade: item.grade,
     category: item.category,
     ministryTitle: item.officialTitle,
@@ -163,6 +187,8 @@ const report={
     officialCoveragePercent:null,
     teacherReviewCompleted:0,
     gradeOneCrossTopicWorksheetInstructionFlags: worksheetCrossrefs.flaggedCount,
+    gradeOneCrossTopicWorksheetObjectiveFlags: worksheetCrossrefs.objectiveFlagCount,
+    proposedWorksheetRepairDrafts: proposedRepairs.proposals.length,
   },gradeBreakdown,review
 };
 if (process.argv.includes("--json")) {

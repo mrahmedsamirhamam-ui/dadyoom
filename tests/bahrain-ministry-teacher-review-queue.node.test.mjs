@@ -81,6 +81,24 @@ test("22 live grade-one worksheet instruction cross-references are flagged, not 
     x.assessmentCoverage==="NOT_HUMAN_REVIEWED" && x.missingSkills===null));
 });
 
+test("11 worksheet objectives wrongly refer to another lesson, and three original repairs are drafts only",()=>{
+  const mismatch=report.review.filter(x=>x.warningCodes.includes("WORKSHEET_OBJECTIVES_REFERENCE_DIFFERENT_LESSON"));
+  assert.equal(mismatch.length,11);
+  assert.equal(report.summary.gradeOneCrossTopicWorksheetObjectiveFlags,11);
+  assert.ok(mismatch.every(x=>x.grade===1 && x.category==="preparation_worksheet" &&
+    x.worksheetInstructionCrossReferenceFlag && !x.reviewerApproved));
+  assert.equal(report.summary.proposedWorksheetRepairDrafts,3);
+  const drafts=report.review.filter(x=>x.proposedRepairDraftReady);
+  assert.equal(drafts.length,3);
+  const proposals=JSON.parse(readFileSync("data/curriculum-audits/bh-2026-2027-g1-worksheet-targeted-repair-proposals.json","utf8"));
+  assert.equal(proposals.proposals.length,3);
+  assert.ok(proposals.proposals.every(p=>p.productionApplied===false &&
+    p.reviewState==="PROPOSED_NOT_HUMAN_APPROVED" &&
+    p.proposedActivities.length===3 &&
+    p.proposedAssessments.length===3 &&
+    p.proposedAssessments.every(a=>a.question.length>8 && a.answer.length>4 && !a.question.includes("الدّرس"))));
+});
+
 test("Review queue is usable without database access, and prints explicit no-certification warning",()=>{
   const out=execFileSync(process.execPath,[
     "scripts/build-bahrain-ministry-teacher-review-queue.mjs"
