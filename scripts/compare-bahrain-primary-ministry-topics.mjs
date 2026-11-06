@@ -2,8 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
-const ministryFile = path.resolve(root, "data/curriculum-packs/bh-2026-2027-g1-g3-s1-official-topic-index.json");
-const snapshotFile = path.resolve(root, "data/curriculum-packs/bh-2026-2027-g1-g3-s1-production-topic-snapshot.json");
+const ministryFile = path.resolve(root, "data/curriculum-audits/bh-2026-2027-g1-g3-s1-official-topic-index.json");
+const snapshotFile = path.resolve(root, "data/curriculum-audits/bh-2026-2027-g1-g3-s1-production-topic-snapshot.json");
 const ministry = JSON.parse(fs.readFileSync(ministryFile, "utf8"));
 const snapshot = JSON.parse(fs.readFileSync(snapshotFile, "utf8"));
 
