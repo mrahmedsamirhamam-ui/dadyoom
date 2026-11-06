@@ -107,27 +107,17 @@ export default function EmailPasswordAuthForm({
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  async function resolveDestination(
-    userId: string,
-    metadataRole?: string,
-  ) {
+  async function resolveDestination(userId: string) {
     const supabase = getSupabaseBrowserClient();
 
-    const { data } = await supabase
+    const { data, error: lookupError } = await supabase
       .from("profiles")
       .select("role")
       .eq("id", userId)
       .maybeSingle();
-
-    const resolvedRole =
-      data?.role ||
-      metadataRole ||
-      (mode === "signup" ? role : "");
-
-    return (
-      roleDestinations[resolvedRole] ||
-      (resolvedRole ? "/student" : "/onboarding")
-    );
+    if (lookupError) throw new Error("تعذر التحقق من صلاحيات الحساب.");
+    const resolvedRole = typeof data?.role === "string" ? data.role.trim().toLowerCase() : "";
+    return roleDestinations[resolvedRole] || "/onboarding";
   }
 
   async function submit(
@@ -154,6 +144,11 @@ export default function EmailPasswordAuthForm({
       (!fullName.trim() || !role || !country.trim())
     ) {
       setError("أكمل الاسم ونوع الحساب والدولة.");
+      return;
+    }
+
+    if (mode === "signup" && (role === "teacher" || role === "school")) {
+      setError("حسابات المعلم والمدرسة تحتاج اعتمادًا إداريًا قبل تفعيل صلاحياتها. يُرجى التواصل مع إدارة ضاديوم.");
       return;
     }
 
@@ -184,12 +179,7 @@ export default function EmailPasswordAuthForm({
 
         setPhase("تم الدخول. جارٍ فتح حسابك…");
 
-        const destination = await resolveDestination(
-          data.user.id,
-          typeof data.user.user_metadata?.role === "string"
-            ? data.user.user_metadata.role
-            : undefined,
-        );
+        const destination = await resolveDestination(data.user.id);
 
         router.replace(destination);
         router.refresh();
@@ -232,51 +222,27 @@ export default function EmailPasswordAuthForm({
 
       setPhase("جارٍ تجهيز ملفك الشخصي…");
 
-      const profilePayload = {
-        id: data.user.id,
-        email: cleanEmail,
-        full_name: cleanName,
-        role,
-        country: cleanCountry,
-      };
-
-      const { error: profileError } = await supabase
-        .from("profiles")
-        .upsert(profilePayload, {
-          onConflict: "id",
-        });
-
-      if (profileError) {
-        console.warn(
-          "DADYOOM_PROFILE_UPSERT_WARNING",
-          profileError,
-        );
-
-        try {
-          await fetch("/api/auth/complete-profile", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              fullName: cleanName,
-              role,
-              country: cleanCountry,
-            }),
-          });
-        } catch (profileRouteError) {
-          console.warn(
-            "DADYOOM_COMPLETE_PROFILE_WARNING",
-            profileRouteError,
-          );
-        }
+      // Never UPSERT profiles from an untrusted browser client.
+      // The server verifies the session, stored role, and role approval.
+      const profileResponse = await fetch("/api/auth/complete-profile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: cleanName,
+          role,
+          country: cleanCountry,
+        }),
+      });
+      const profileResult = (await profileResponse.json().catch(() => null)) as
+        | { ok?: boolean; destination?: string; error?: string }
+        | null;
+      if (!profileResponse.ok || !profileResult?.ok) {
+        throw new Error(profileResult?.error || "تعذر إنشاء الملف الشخصي على الخادم.");
       }
 
       setPhase("تم إنشاء الحساب. جارٍ فتح ضاديوم…");
 
-      router.replace(
-        roleDestinations[role] || "/student",
-      );
+      router.replace(profileResult.destination || "/onboarding");
       router.refresh();
     } catch (cause) {
       const message =
