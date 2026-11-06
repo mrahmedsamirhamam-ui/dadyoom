@@ -1,0 +1,185 @@
+name: Dadyoom secure auth + Cloudflare Worker smoke (dry-run only)
+
+on:
+  push:
+    branches:
+      - fix/dadyoom-auth-opennext-preview-20261106
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  worker-dry-run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      CI: "true"
+      NODE_OPTIONS: "--max-old-space-size=6144"
+    steps:
+      - name: Checkout preview branch only
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 1
+
+      - name: Use pinned Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Verify existing lockfile and dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Verify lockfile reproducibility
+        run: npm ci --no-audit --no-fund
+
+      - name: Build OpenNext Worker from actual Next.js app
+        run: npx opennextjs-cloudflare build
+
+      - name: Check worker output exists
+        run: |
+          test -s .open-next/worker.js
+          test -d .open-next/assets
+
+      - name: Wrangler dry-run bundle only (NEVER deploy)
+        run: |
+          mkdir -p /tmp/dadyoom-preview
+          npx wrangler deploy --dry-run --outdir /tmp/dadyoom-preview 2>&1 | tee /tmp/dadyoom-preview/wrangler-dryrun.log
+
+      - name: Gate Cloudflare's current 64 MiB uncompressed Worker limit
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          report = Path("/tmp/dadyoom-preview/wrangler-dryrun.log").read_text()
+          m = re.search(r"Total Upload:\s*([\d.,]+)\s*KiB\s*/\s*gzip:\s*([\d.,]+)\s*KiB", report)
+          if not m:
+              raise SystemExit("Cannot verify Wrangler's total upload size; refusing deployment eligibility claim.")
+          total_kib = float(m.group(1).replace(",", ""))
+          gzip_kib = float(m.group(2).replace(",", ""))
+          print(f"Wrangler reports Total Upload={total_kib:.2f} KiB uncompressed, gzip={gzip_kib:.2f} KiB")
+          print("Cloudflare 2026-09-04: 64 MiB uncompressed Worker limit on Free AND Paid; compressed limit removed.")
+          if total_kib > 64*1024:
+              raise SystemExit("Worker exceeds Cloudflare's 64 MiB uncompressed limit; no deployment performed.")
+          print("PASS: Worker bundle is within the published size limit. Runtime, bindings and Cloudflare deployment remain unverified.")
+          PY
+
+      - name: Verify public routes and anonymous API authorization in local Cloudflare workerd
+        shell: bash
+        run: |
+          npx wrangler dev --local --port 8787 --log-level error --var NEXT_PUBLIC_SUPABASE_URL:https://example.supabase.co --var NEXT_PUBLIC_SUPABASE_ANON_KEY:preview-fake-anon-key >/tmp/dadyoom-local-worker.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          ready=0
+          for i in $(seq 1 45); do
+            if curl --silent --max-time 2 http://127.0.0.1:8787/about >/dev/null; then
+              ready=1
+              break
+            fi
+            sleep 2
+          done
+          if [ "$ready" -ne 1 ]; then
+            echo "Local workerd did not become reachable:"
+            tail -n 80 /tmp/dadyoom-local-worker.log
+            exit 1
+          fi
+          for route in "/" "/about" "/founder"; do
+            echo "GET $route"
+            status=$(curl -sS -L --max-time 20 -o /tmp/dadyoom-page.html -w '%{http_code}' "http://127.0.0.1:8787$route")
+            echo "status=$status"
+            if [ "$status" != "200" ]; then
+              tail -n 40 /tmp/dadyoom-local-worker.log
+              exit 1
+            fi
+          done
+
+          # The app must refuse privileged data even if Cloudflare drops Next.js proxy.
+          # These are read-only GET requests with no cookies and no production secrets.
+          for route in "/api/admin/lessons/quality-audit" "/api/admin/lessons/runtime-mcq-dump"; do
+            echo "Anonymous GET $route"
+            status=$(curl -sS --max-time 20 -o /tmp/dadyoom-admin-response.json -w '%{http_code}' "http://127.0.0.1:8787$route")
+            echo "admin status=$status"
+            if [ "$status" != "401" ] && [ "$status" != "403" ]; then
+              echo "SECURITY GATE FAILED: privileged API did not explicitly reject an anonymous user."
+              cat /tmp/dadyoom-admin-response.json
+              tail -n 40 /tmp/dadyoom-local-worker.log
+              exit 1
+            fi
+          done
+
+      - name: Deny anonymous teacher media and AI endpoints on actual local workerd
+        shell: bash
+        run: |
+          npx wrangler dev --local --port 8788 --log-level error --var NEXT_PUBLIC_SUPABASE_URL:https://example.supabase.co --var NEXT_PUBLIC_SUPABASE_ANON_KEY:preview-fake-anon-key >/tmp/dadyoom-teacher-workerd.log 2>&1 &
+          PID=$!
+          trap 'kill "$PID" 2>/dev/null || true' EXIT
+          started=0
+          for i in $(seq 1 45); do
+            if curl -fsS --max-time 2 http://127.0.0.1:8788/about >/dev/null; then started=1; break; fi
+            sleep 2
+          done
+          test "$started" -eq 1
+          for url in "/api/teacher/lesson-media" "/api/teacher/assignment-ai"; do
+            response=$(curl -sS -o /tmp/dadyoom-teacher-denied.json -w '%{http_code}' --max-time 20 \
+              -X POST -H 'Content-Type: application/json' --data '{"malformed":true}' \
+              "http://127.0.0.1:8788$url")
+            echo "anonymous POST $url: $response"
+            if [ "$response" != "401" ] && [ "$response" != "403" ]; then
+              echo "FAIL: teacher endpoint must reject unauthenticated access under workerd"
+              tail -n 50 /tmp/dadyoom-teacher-workerd.log
+              exit 1
+            fi
+          done
+
+
+      - name: Check guest sign-in and protected role request page in real workerd
+        shell: bash
+        run: |
+          npx wrangler dev --local --port 8789 --log-level error \
+            --var NEXT_PUBLIC_SUPABASE_URL:https://example.supabase.co \
+            --var NEXT_PUBLIC_SUPABASE_ANON_KEY:preview-fake-anon-key \
+            >/tmp/dadyoom-auth-worker.log 2>&1 &
+          PID=$!
+          trap 'kill "$PID" 2>/dev/null || true' EXIT
+          ready=0
+          for i in $(seq 1 45); do
+            if curl --silent --max-time 2 http://127.0.0.1:8789/about >/dev/null; then
+              ready=1
+              break
+            fi
+            sleep 2
+          done
+          if [ "$ready" -ne 1 ]; then
+            tail -n 80 /tmp/dadyoom-auth-worker.log
+            exit 1
+          fi
+          login=$(curl -sS --max-time 20 -o /tmp/dadyoom-login.html -w '%{http_code}' \
+            http://127.0.0.1:8789/login)
+          echo "Guest /login: $login"
+          test "$login" = "200"
+
+          # A pending account page must require authentication.
+          pending=$(curl -sS --max-time 20 -o /tmp/dadyoom-pending.html -w '%{http_code}' \
+            http://127.0.0.1:8789/account/role-request)
+          echo "Guest pending page: $pending"
+          if [ "$pending" != "307" ] && [ "$pending" != "302" ] && [ "$pending" != "303" ]; then
+            echo "SECURITY FAIL: pending account page must redirect an unauthenticated visitor"
+            tail -n 60 /tmp/dadyoom-auth-worker.log
+            exit 1
+          fi
+
+          admin=$(curl -sS --max-time 20 -o /tmp/dadyoom-approval-denied.json -w '%{http_code}' \
+            -X POST -H "Origin: http://127.0.0.1:8789" \
+            -H 'Content-Type: application/x-www-form-urlencoded' \
+            --data 'userId=11111111-1111-4111-8111-111111111111&requestedRole=teacher&decision=approve' \
+            http://127.0.0.1:8789/api/admin/role-requests)
+          echo "Anonymous admin approval: $admin"
+          if [ "$admin" != "401" ] && [ "$admin" != "403" ]; then
+            echo "SECURITY FAIL: unauthenticated role approval must fail closed"
+            cat /tmp/dadyoom-approval-denied.json
+            exit 1
+          fi
