@@ -34,11 +34,17 @@ export async function GET(request: Request) {
   const { data: { user }, error: userError } = await supabase.auth.getUser();
   if (userError || !user || !user.email) return NextResponse.redirect(new URL("/login?error=oauth_user", origin));
 
-  const { data: existingProfile } = await supabase
+  const { data: existingProfile, error: existingProfileError } = await supabase
     .from("profiles")
     .select("role,country,full_name")
     .eq("id", user.id)
     .maybeSingle();
+
+  if (existingProfileError) {
+    // Fail closed rather than using service-role privileges when the user's
+    // persisted role cannot be inspected.
+    return NextResponse.redirect(new URL("/onboarding?error=profile_lookup", origin));
+  }
 
   const cookieStore = await cookies();
   const intent = parseIntent(cookieStore.get("dadyoom_oauth_intent")?.value);
@@ -70,26 +76,23 @@ export async function GET(request: Request) {
     user.email.split("@")[0];
 
   const admin = createAdminClient();
-  const { error: profileError } = await admin.from("profiles").upsert(
-    {
-      id: user.id,
-      email: user.email,
-      full_name: fullName,
-      role: intent.role,
-      country: intent.country,
-    },
-    {
-      onConflict: "id",
-    }
-  );
+  // Insert only; if a profile was created concurrently, read the existing
+  // authoritative role below instead of replacing it with OAuth cookie data.
+  const { error: profileError } = await admin.from("profiles").insert({
+    id: user.id,
+    email: user.email,
+    full_name: fullName,
+    role: intent.role,
+    country: intent.country,
+  });
 
   if (profileError) {
-    const { data: racedProfile } = await supabase
+    const { data: racedProfile, error: racedError } = await supabase
       .from("profiles")
       .select("role,country,full_name")
       .eq("id", user.id)
       .maybeSingle();
-    if (!racedProfile?.role || !racedProfile?.country || !racedProfile?.full_name?.trim()) {
+    if (racedError || !racedProfile?.role || !racedProfile?.country || !racedProfile?.full_name?.trim()) {
       console.error("GOOGLE_PROFILE_INSERT_ERROR:", profileError.message);
       return NextResponse.redirect(new URL("/onboarding?error=profile_create", origin));
     }
