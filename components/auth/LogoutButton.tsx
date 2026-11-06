@@ -26,11 +26,11 @@ export default function LogoutButton({ compact = false }: { compact?: boolean })
       type="button"
       onClick={logout}
       disabled={loading}
-      aria-label="تسجيل الخروج"
-      title="تسجيل الخروج"
+      aria-label="تسجيل الخروج من الحساب"
+      title="تسجيل الخروج من الحساب"
       className="rounded-full border border-[#d8c9aa] bg-[#fffaf0] px-3 py-2.5 text-xs font-black text-[#765f3d] transition hover:border-[#b98a35] hover:bg-[#fff4dc] hover:text-[#123f39] disabled:opacity-60"
     >
-      {loading ? "…" : compact ? "خروج" : "تسجيل الخروج"}
+      {loading ? "جارٍ الخروج..." : "تسجيل الخروج"}
     </button>
   );
 }
