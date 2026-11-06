@@ -57,7 +57,10 @@ function titleCandidate(entry, row) {
   }
   if (entry.category === "review") {
     const family = reviewFamily(entry.title);
-    return Boolean(family && label.includes(family) &&
+    // A review slot must map to a review lesson, not to an unrelated reading
+    // lesson that happens to include the same numbered parenthesis.
+    return Boolean(family && /^(?:مراجعه|اراجع) /.test(label) &&
+      label.includes(family) &&
       reviewIndex(row.title) === reviewIndex(entry.title));
   }
   if (entry.category === "speaking") {
