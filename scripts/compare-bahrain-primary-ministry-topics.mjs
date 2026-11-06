@@ -39,7 +39,7 @@ const ordinalInEntry = entry => entry.category === "core" && entry.grade === 1 &
     ? norm(entry.aliases[0]) : null;
 const reviewFamily = title => {
   const label = norm(title);
-  for (const family of ["القراءه","الحروف","التراكيب اللغويه","الاملاء والتعبير"]) {
+  for (const family of ["القراءه","الحروف","التراكيب","الاملاء والتعبير"]) {
     if (label.includes(family)) return family;
   }
   return null;
