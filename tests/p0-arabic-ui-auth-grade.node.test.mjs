@@ -21,7 +21,10 @@ test("Arabic-count zero, one, dual, 3–10, 11–99, hundreds and large values",
   assert.equal(formatArabicCount(112, "activity"), "112 نشاطًا");
   assert.equal(formatArabicCount(0, "question"), "لا توجد أسئلة");
   assert.equal(formatArabicCount(2, "school"), "مدرستان");
-  assert.equal(Object.keys(ARABIC_COUNT_NOUNS).length, 9);
+  assert.equal(Object.keys(ARABIC_COUNT_NOUNS).length, 12);
+  assert.equal(formatArabicCount(2, "unit"), "وحدتان");
+  assert.equal(formatArabicCount(5, "minute"), "5 دقائق");
+  assert.equal(formatArabicCount(10, "point"), "10 نقاط");
 });
 test("Never silently format invalid numeric input into grammatically wrong labels", () => {
   for (const value of [NaN, Infinity, -1, 2.3, Number.MAX_SAFE_INTEGER + 1]) {
