@@ -51,5 +51,11 @@ describe("Honest source disclosures in student lessons and SEO", () => {
     expect(page).toContain("publicLessonDescription(lesson.summary, lesson.instructions, lesson.content)");
     expect(page).toContain("robots: { index: false, follow: true }");
     expect(page).toContain('role="status"');
+    const studio = readFileSync("app/lessons/[id]/study/page.tsx", "utf8");
+    expect(studio).toContain('.select("id,title,summary,content,instructions")');
+    expect(studio).toContain("needsSourcePublicationReview(lesson.instructions, lesson.content)");
+    expect(studio).toContain("robots: { index: false, follow: true }");
+    expect(studio).toContain('role="status"');
+    expect(studio).toContain("summary: sourceReviewRequired ? safeDescription : lesson.summary");
   });
 });
