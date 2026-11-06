@@ -1,8 +1,12 @@
 import { NextResponse } from "next/server";
 
 import { createClient } from "@/lib/supabase/server";
+import { checkoutPausedResponse } from "@/lib/payments/checkout-guard";
 
 export async function POST() {
+  const paused = checkoutPausedResponse();
+  if (paused) return paused;
+
   const supabase = await createClient();
 
   const {
