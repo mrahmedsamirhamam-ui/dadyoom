@@ -1,0 +1,41 @@
+name: Adaptive Evidence Policy Alpha (safe, no database)
+
+on:
+  pull_request:
+    paths:
+      - "features/adaptive-learning/services/evidence-based-mastery.ts"
+      - "tests/adaptive-evidence-policy.test.ts"
+      - "docs/ADAPTIVE_EVIDENCE_GOLD_STANDARD_ALPHA_20261106.md"
+      - ".github/workflows/adaptive-evidence-policy-alpha.yml"
+  push:
+    branches:
+      - feat/adaptive-evidence-policy-pilot-20261106
+    paths:
+      - "features/adaptive-learning/services/evidence-based-mastery.ts"
+      - "tests/adaptive-evidence-policy.test.ts"
+      - "docs/ADAPTIVE_EVIDENCE_GOLD_STANDARD_ALPHA_20261106.md"
+      - ".github/workflows/adaptive-evidence-policy-alpha.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  verify-evidence-policy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Run functional unit tests on 13 independent cases
+        run: npx vitest run tests/adaptive-evidence-policy.test.ts
+      - name: Check TypeScript
+        run: npx tsc --noEmit
+      - name: Check policy and tests with ESLint
+        run: npx eslint features/adaptive-learning/services/evidence-based-mastery.ts tests/adaptive-evidence-policy.test.ts
