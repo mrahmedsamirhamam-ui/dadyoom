@@ -1052,19 +1052,11 @@ const teacherCount =
                             </Link>
 
                             <span className="rounded-full bg-white/70 px-3 py-1">
-                              👨‍🎓 {
-                                toNumber(
-                                  insight.student_count
-                                )
-                              } {formatArabicCount(toNumber(insight.student_count), "student")}
+                              👨‍🎓 {formatArabicCount(toNumber(insight.student_count), "student")}
                             </span>
 
                             <span className="rounded-full bg-white/70 px-3 py-1">
-                              ⚡ {
-                                toNumber(
-                                  insight.active_student_count
-                                )
-                              } نشط
+                              ⚡ الطلاب النشطون: {toNumber(insight.active_student_count)}
                             </span>
 
                             <span className="rounded-full bg-white/70 px-3 py-1">
