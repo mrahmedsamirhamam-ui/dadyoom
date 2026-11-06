@@ -6,6 +6,9 @@ on:
       - "app/globals.css"
       - "components/pwa/DadyoomInstallPrompt.tsx"
       - "components/dad-ai/DadCompanion.tsx"
+      - "components/home/HomeFloatingGuard.tsx"
+      - "components/home/HomeInteractionPanel.tsx"
+      - "components/home/HomeTrustStrip.tsx"
       - "tests/home-mobile-floating-dock.test.ts"
       - "scripts/smoke-home-mobile-dock.mjs"
       - ".github/workflows/home-mobile-dock-ci.yml"
@@ -26,7 +29,9 @@ jobs:
           cache: npm
       - run: npm ci --no-audit --no-fund
       - run: npx vitest run tests/home-mobile-floating-dock.test.ts
+      - run: npm run test:run
       - run: npx tsc --noEmit
+      - run: npm run lint
       - run: npx eslint app/page.tsx components/pwa/DadyoomInstallPrompt.tsx components/dad-ai/DadCompanion.tsx tests/home-mobile-floating-dock.test.ts
       - run: npm run build
       - name: Check curated home source
