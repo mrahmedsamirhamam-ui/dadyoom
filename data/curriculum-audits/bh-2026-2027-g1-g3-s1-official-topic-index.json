@@ -1,0 +1,1621 @@
+{
+  "schemaVersion": 1,
+  "country": "BH",
+  "year": "2026-2027",
+  "semester": 1,
+  "subject": "arabic",
+  "officialPlanUrl": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+  "officialPlanTitle": "خطة المحتوى الدراسي لمادة اللغة العربية للتعليم الأساسي الحلقة الأولى، الفصل الأول 2026-2027",
+  "methodology": "Headings curated from Ministry plan for index comparison only; no full protected textbook text. Exercises, oral, songs and workbook worksheets are separate entries; matches do not establish lesson-body completeness.",
+  "humanVerifiedMinistryContent": false,
+  "officialFullCoverageCertified": false,
+  "items": [
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-01",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 1,
+      "title": "علم بلادي",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (1)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-02",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 2,
+      "title": "مرافق مدرستي",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (2)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-03",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 3,
+      "title": "هذا صفنا",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (3)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-04",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 4,
+      "title": "أشياء في صفي",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (4)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-05",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 5,
+      "title": "أتعرف الأشكال المستوية",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (5)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-06",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 6,
+      "title": "الأشكال المستوية",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (6)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-07",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 7,
+      "title": "ألوان علم بلادي",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (7)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-08",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 8,
+      "title": "أدواتي المدرسية",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (8)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-09",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 9,
+      "title": "أبتكر شكلا غريبا",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (9)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-10",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 10,
+      "title": "الأشكال المستوية",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (10)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-11",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 11,
+      "title": "أطابق بين الأشياء",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (11)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-12",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 12,
+      "title": "قوانين صفي",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (12)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-13",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 13,
+      "title": "أعمل وأتعلم في المدرسة",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (13)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-14",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 14,
+      "title": "أفكر لأبدع",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (14)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-15",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 15,
+      "title": "أعبر عن مشاعري",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (15)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-16",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 16,
+      "title": "الأحجام والأطوال",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (16)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-17",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 17,
+      "title": "المختلف",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (17)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-18",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 18,
+      "title": "أميز سمعيا",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (18)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-19",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 19,
+      "title": "أميز بصريا",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (19)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-20",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 20,
+      "title": "ألون المختلف",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (20)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-21",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 21,
+      "title": "الوزن والكمية",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (21)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-22",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 22,
+      "title": "أصوات الحروف والمقاطع",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (22)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-23",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 23,
+      "title": "فواكه وخضروات وطني",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (23)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-24",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 24,
+      "title": "أنا فنان",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (24)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-25",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 25,
+      "title": "أتعرف الزمن",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (25)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-26",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 26,
+      "title": "يمين ويسار",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (26)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-27",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 27,
+      "title": "أتعرف المكان",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (27)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-28",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 28,
+      "title": "قانوني المفضل",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (28)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-29",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 29,
+      "title": "أصوات الحروف والمقاطع",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (29)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-30",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 30,
+      "title": "ألاحظ وأتعلم",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (30)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-31",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 31,
+      "title": "الأجزاء الناقصة",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (31)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-32",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 32,
+      "title": "أجزاء جسمي",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (32)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-33",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 33,
+      "title": "أنشد وأتعلم",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (33)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-34",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 34,
+      "title": "أنا نظيف",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (34)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-35",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 35,
+      "title": "في غرفة مريم",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (35)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-36",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 36,
+      "title": "سلامة مرافق مدرستي",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (36)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-37",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 37,
+      "title": "الجزء والكل",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (37)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-38",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 38,
+      "title": "الكلمات المتشابهة صوتا",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (38)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-39",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 39,
+      "title": "أميز الجملة والكلمة والحرف",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (39)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-40",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 40,
+      "title": "أرسم وجهي",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (40)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-41",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 41,
+      "title": "القراءة المشتركة قصة في المدرسة",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (41)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-42",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 42,
+      "title": "حيوانات من حولي",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (42)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-43",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 43,
+      "title": "ألاحظ وأكتشف الفروق",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (43)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-44",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 44,
+      "title": "بيتنا",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (44)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-45",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 45,
+      "title": "مواصلاتي واتصالاتي",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (45)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-46",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 46,
+      "title": "المواصلات",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (46)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-47",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 47,
+      "title": "الاتصالات",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (47)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-48",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 48,
+      "title": "أسمع وأميز",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (48)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-49",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 49,
+      "title": "حافلة المدرسة",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (49)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-50",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 50,
+      "title": "العاملون في المدرسة",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (50)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-51",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 51,
+      "title": "المهن في وطني",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (51)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-52",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 52,
+      "title": "ملابسي متنوعة",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (52)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-53",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 53,
+      "title": "ملابس المهن",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (53)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-54",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 54,
+      "title": "أسمع وأتعلم",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (54)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-55",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 55,
+      "title": "ألعابي المفضلة",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (55)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-56",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 56,
+      "title": "ألعب مع النمط",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (56)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-57",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 57,
+      "title": "الطقس من حولي",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (57)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-58",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 58,
+      "title": "أنا والطقس",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (58)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-PREPARATION_WORKSHEET-59",
+      "grade": 1,
+      "semester": 1,
+      "category": "preparation_worksheet",
+      "sequence": 59,
+      "title": "ألاحظ وأتحدث",
+      "bookPage": null,
+      "aliases": [
+        "ورقة عمل (59)"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-CORE-01",
+      "grade": 1,
+      "semester": 1,
+      "category": "core",
+      "sequence": 1,
+      "title": "حرف (ب) (1)",
+      "bookPage": "8-21",
+      "aliases": [
+        "الدرس الأول"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-CORE-02",
+      "grade": 1,
+      "semester": 1,
+      "category": "core",
+      "sequence": 2,
+      "title": "حرف (ب) (2)",
+      "bookPage": "22-34",
+      "aliases": [
+        "الدرس الثاني"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-CORE-03",
+      "grade": 1,
+      "semester": 1,
+      "category": "core",
+      "sequence": 3,
+      "title": "حرف (م)",
+      "bookPage": "35-48",
+      "aliases": [
+        "الدرس الثالث"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-CORE-04",
+      "grade": 1,
+      "semester": 1,
+      "category": "core",
+      "sequence": 4,
+      "title": "حرف (د)",
+      "bookPage": "49-61",
+      "aliases": [
+        "الدرس الرابع"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-CORE-05",
+      "grade": 1,
+      "semester": 1,
+      "category": "core",
+      "sequence": 5,
+      "title": "أعزز مكتسباتي",
+      "bookPage": "62-65",
+      "aliases": [
+        "الدرس الخامس"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-CORE-06",
+      "grade": 1,
+      "semester": 1,
+      "category": "core",
+      "sequence": 6,
+      "title": "حرف (ح)",
+      "bookPage": "68-81",
+      "aliases": [
+        "الدرس السادس"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-CORE-07",
+      "grade": 1,
+      "semester": 1,
+      "category": "core",
+      "sequence": 7,
+      "title": "حرف (ر)",
+      "bookPage": "82-96",
+      "aliases": [
+        "الدرس السابع"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-CORE-08",
+      "grade": 1,
+      "semester": 1,
+      "category": "core",
+      "sequence": 8,
+      "title": "حرف (س)",
+      "bookPage": "97-109",
+      "aliases": [
+        "الدرس الثامن"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-CORE-09",
+      "grade": 1,
+      "semester": 1,
+      "category": "core",
+      "sequence": 9,
+      "title": "حرف (ل)",
+      "bookPage": "110-123",
+      "aliases": [
+        "الدرس التاسع"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-CORE-10",
+      "grade": 1,
+      "semester": 1,
+      "category": "core",
+      "sequence": 10,
+      "title": "أعزز مكتسباتي",
+      "bookPage": "124-129",
+      "aliases": [
+        "الدرس العاشر"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-CORE-11",
+      "grade": 1,
+      "semester": 1,
+      "category": "core",
+      "sequence": 11,
+      "title": "حرف (ج)",
+      "bookPage": "132-144",
+      "aliases": [
+        "الدرس الحادي عشر"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-CORE-12",
+      "grade": 1,
+      "semester": 1,
+      "category": "core",
+      "sequence": 12,
+      "title": "حرف (ن)",
+      "bookPage": "145-156",
+      "aliases": [
+        "الدرس الثاني عشر"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-CORE-13",
+      "grade": 1,
+      "semester": 1,
+      "category": "core",
+      "sequence": 13,
+      "title": "حرف (ع)",
+      "bookPage": "157-168",
+      "aliases": [
+        "الدرس الثالث عشر"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-CORE-14",
+      "grade": 1,
+      "semester": 1,
+      "category": "core",
+      "sequence": 14,
+      "title": "حرف (ت)",
+      "bookPage": "169-181",
+      "aliases": [
+        "الدرس الرابع عشر"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-CORE-15",
+      "grade": 1,
+      "semester": 1,
+      "category": "core",
+      "sequence": 15,
+      "title": "أعزز مكتسباتي",
+      "bookPage": "182-186",
+      "aliases": [
+        "الدرس الخامس عشر"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-SONG-01",
+      "grade": 1,
+      "semester": 1,
+      "category": "song",
+      "sequence": 1,
+      "title": "أسرتي",
+      "bookPage": "66",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-SONG-02",
+      "grade": 1,
+      "semester": 1,
+      "category": "song",
+      "sequence": 2,
+      "title": "مدرستي",
+      "bookPage": "130",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G1-S1-SONG-03",
+      "grade": 1,
+      "semester": 1,
+      "category": "song",
+      "sequence": 3,
+      "title": "جاري",
+      "bookPage": "187",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-REVIEW-01",
+      "grade": 2,
+      "semester": 1,
+      "category": "review",
+      "sequence": 1,
+      "title": "القراءة (1) الحمامة والنملة",
+      "bookPage": "7-10",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-REVIEW-02",
+      "grade": 2,
+      "semester": 1,
+      "category": "review",
+      "sequence": 2,
+      "title": "الحروف (1)",
+      "bookPage": "11-16",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-REVIEW-03",
+      "grade": 2,
+      "semester": 1,
+      "category": "review",
+      "sequence": 3,
+      "title": "التراكيب اللغوية (1)",
+      "bookPage": "17-21",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-REVIEW-04",
+      "grade": 2,
+      "semester": 1,
+      "category": "review",
+      "sequence": 4,
+      "title": "الحروف (2)",
+      "bookPage": "22-28",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-REVIEW-05",
+      "grade": 2,
+      "semester": 1,
+      "category": "review",
+      "sequence": 5,
+      "title": "الإملاء والتعبير (1)",
+      "bookPage": "29-31",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-REVIEW-06",
+      "grade": 2,
+      "semester": 1,
+      "category": "review",
+      "sequence": 6,
+      "title": "القراءة (2) البلبل البحريني",
+      "bookPage": "32-35",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-REVIEW-07",
+      "grade": 2,
+      "semester": 1,
+      "category": "review",
+      "sequence": 7,
+      "title": "الحروف (3)",
+      "bookPage": "36-41",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-REVIEW-08",
+      "grade": 2,
+      "semester": 1,
+      "category": "review",
+      "sequence": 8,
+      "title": "التراكيب اللغوية (2)",
+      "bookPage": "42-49",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-REVIEW-09",
+      "grade": 2,
+      "semester": 1,
+      "category": "review",
+      "sequence": 9,
+      "title": "الحروف (4)",
+      "bookPage": "50-56",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-REVIEW-10",
+      "grade": 2,
+      "semester": 1,
+      "category": "review",
+      "sequence": 10,
+      "title": "الإملاء والتعبير (2)",
+      "bookPage": "57-60",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-CORE-01",
+      "grade": 2,
+      "semester": 1,
+      "category": "core",
+      "sequence": 1,
+      "title": "صديقتي مريم",
+      "bookPage": "11-14",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-CORE-02",
+      "grade": 2,
+      "semester": 1,
+      "category": "core",
+      "sequence": 2,
+      "title": "بالروح أفديها",
+      "bookPage": "16-19",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-CORE-03",
+      "grade": 2,
+      "semester": 1,
+      "category": "core",
+      "sequence": 3,
+      "title": "سالم مريض",
+      "bookPage": "21-25",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-CORE-04",
+      "grade": 2,
+      "semester": 1,
+      "category": "core",
+      "sequence": 4,
+      "title": "تعاون النمل",
+      "bookPage": "27-30",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-CORE-05",
+      "grade": 2,
+      "semester": 1,
+      "category": "core",
+      "sequence": 5,
+      "title": "المصور الصغير",
+      "bookPage": "33-36",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-CORE-06",
+      "grade": 2,
+      "semester": 1,
+      "category": "core",
+      "sequence": 6,
+      "title": "دراجتي",
+      "bookPage": "38-41",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-CORE-07",
+      "grade": 2,
+      "semester": 1,
+      "category": "core",
+      "sequence": 7,
+      "title": "جولة في محمية محمد بن زايد الطبيعية",
+      "bookPage": "43-48",
+      "aliases": [
+        "جولة في محمية محمد ب ن زايد الطبيعية"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-CORE-08",
+      "grade": 2,
+      "semester": 1,
+      "category": "core",
+      "sequence": 8,
+      "title": "الطائرة الورقية",
+      "bookPage": "50-56",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-CORE-09",
+      "grade": 2,
+      "semester": 1,
+      "category": "core",
+      "sequence": 9,
+      "title": "في عيادة العيون",
+      "bookPage": "59-66",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-CORE-10",
+      "grade": 2,
+      "semester": 1,
+      "category": "core",
+      "sequence": 10,
+      "title": "نظافتي",
+      "bookPage": "68-72",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-CORE-11",
+      "grade": 2,
+      "semester": 1,
+      "category": "core",
+      "sequence": 11,
+      "title": "الرياضة غيرت حياتي",
+      "bookPage": "74-79",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-CORE-12",
+      "grade": 2,
+      "semester": 1,
+      "category": "core",
+      "sequence": 12,
+      "title": "الغذاء الصحي",
+      "bookPage": "81-87",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-LISTENING-01",
+      "grade": 2,
+      "semester": 1,
+      "category": "listening",
+      "sequence": 1,
+      "title": "السلحفاة والبطتان",
+      "bookPage": "8-10",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-LISTENING-02",
+      "grade": 2,
+      "semester": 1,
+      "category": "listening",
+      "sequence": 2,
+      "title": "عطلة نهاية الأسبوع",
+      "bookPage": "66-68",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G2-S1-LISTENING-03",
+      "grade": 2,
+      "semester": 1,
+      "category": "listening",
+      "sequence": 3,
+      "title": "الوقاية خير من العلاج",
+      "bookPage": "122-124",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G3-S1-CORE-01",
+      "grade": 3,
+      "semester": 1,
+      "category": "core",
+      "sequence": 1,
+      "title": "الأصدقاء الأربعة (1)",
+      "bookPage": "11-20",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G3-S1-CORE-02",
+      "grade": 3,
+      "semester": 1,
+      "category": "core",
+      "sequence": 2,
+      "title": "الأصدقاء الأربعة (2)",
+      "bookPage": "21-30",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G3-S1-CORE-03",
+      "grade": 3,
+      "semester": 1,
+      "category": "core",
+      "sequence": 3,
+      "title": "حكمة أب",
+      "bookPage": "31-37",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G3-S1-CORE-04",
+      "grade": 3,
+      "semester": 1,
+      "category": "core",
+      "sequence": 4,
+      "title": "وتعاونوا",
+      "bookPage": "38-47",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G3-S1-CORE-05",
+      "grade": 3,
+      "semester": 1,
+      "category": "core",
+      "sequence": 5,
+      "title": "الولع بالرسم (1)",
+      "bookPage": "51-62",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G3-S1-CORE-06",
+      "grade": 3,
+      "semester": 1,
+      "category": "core",
+      "sequence": 6,
+      "title": "الولع بالرسم (2)",
+      "bookPage": "63-75",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G3-S1-CORE-07",
+      "grade": 3,
+      "semester": 1,
+      "category": "core",
+      "sequence": 7,
+      "title": "وقت الراحات",
+      "bookPage": "76-84",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G3-S1-CORE-08",
+      "grade": 3,
+      "semester": 1,
+      "category": "core",
+      "sequence": 8,
+      "title": "لعبة يحبها الملايين",
+      "bookPage": "85-97",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G3-S1-CORE-09",
+      "grade": 3,
+      "semester": 1,
+      "category": "core",
+      "sequence": 9,
+      "title": "الأمانة (1)",
+      "bookPage": "101-112",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G3-S1-CORE-10",
+      "grade": 3,
+      "semester": 1,
+      "category": "core",
+      "sequence": 10,
+      "title": "الأمانة (2)",
+      "bookPage": "113-125",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G3-S1-CORE-11",
+      "grade": 3,
+      "semester": 1,
+      "category": "core",
+      "sequence": 11,
+      "title": "جزاء المعتدي",
+      "bookPage": "126-136",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G3-S1-CORE-12",
+      "grade": 3,
+      "semester": 1,
+      "category": "core",
+      "sequence": 12,
+      "title": "دروس من حياة توماس إديسون",
+      "bookPage": "137-150",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G3-S1-LISTENING-01",
+      "grade": 3,
+      "semester": 1,
+      "category": "listening",
+      "sequence": 1,
+      "title": "أريد أن ألعب معكم",
+      "bookPage": "8-13",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G3-S1-LISTENING-02",
+      "grade": 3,
+      "semester": 1,
+      "category": "listening",
+      "sequence": 2,
+      "title": "التصوير الفوتوغرافي",
+      "bookPage": "48-52",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G3-S1-LISTENING-03",
+      "grade": 3,
+      "semester": 1,
+      "category": "listening",
+      "sequence": 3,
+      "title": "حقيقة الكنز",
+      "bookPage": "90-94",
+      "aliases": [],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G3-S1-SPEAKING-01",
+      "grade": 3,
+      "semester": 1,
+      "category": "speaking",
+      "sequence": 1,
+      "title": "تحدث الوحدة 1 قيم ومبادئ",
+      "bookPage": null,
+      "aliases": [
+        "الوحدة 1"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G3-S1-SPEAKING-02",
+      "grade": 3,
+      "semester": 1,
+      "category": "speaking",
+      "sequence": 2,
+      "title": "تحدث الوحدة 2 ألعاب وهوايات",
+      "bookPage": null,
+      "aliases": [
+        "الوحدة 2"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    },
+    {
+      "id": "BH-G3-S1-SPEAKING-03",
+      "grade": 3,
+      "semester": 1,
+      "category": "speaking",
+      "sequence": 3,
+      "title": "تحدث الوحدة 3 مواقف وعبر",
+      "bookPage": null,
+      "aliases": [
+        "الوحدة 3"
+      ],
+      "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
+      "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
+    }
+  ],
+  "countsByGradeAndCategory": {
+    "grade_1_preparation_worksheet": 59,
+    "grade_1_core": 15,
+    "grade_1_song": 3,
+    "grade_2_review": 10,
+    "grade_2_core": 12,
+    "grade_2_listening": 3,
+    "grade_3_core": 12,
+    "grade_3_listening": 3,
+    "grade_3_speaking": 3
+  }
+}
