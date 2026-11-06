@@ -17,6 +17,8 @@ describe("Arabic cardinal number agreement across all role dashboards", () => {
     [103, "grade", "103 صفوف"],
     [110, "lesson", "110 دروس"],
     [112, "lesson", "112 درسًا"],
+    [3, "teacher", "3 معلمين"],
+    [10, "teacher", "10 معلمين"],
     [20, "teacher", "20 معلمًا"],
     [3, "school", "3 مدارس"],
   ] as const)("renders %i %s => %s", (count, noun, expected) => {
