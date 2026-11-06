@@ -15,7 +15,7 @@ export async function GET() {
   }
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
-    .select("role,country,full_name")
+    .select("role,country,full_name,requested_role")
     .eq("id", user.id)
     .maybeSingle();
 
@@ -29,6 +29,7 @@ export async function GET() {
     profile?.full_name?.trim() && profile?.country?.trim() &&
     destinationForStoredRole(profile?.role) !== "/onboarding",
   );
-  const destination = complete ? destinationForStoredRole(profile?.role) : "/onboarding";
+  const pending = complete && profile?.role === "student" && ["teacher", "school"].includes(profile?.requested_role ?? "");
+  const destination = !complete ? "/onboarding" : pending ? "/account/role-request" : destinationForStoredRole(profile?.role);
   return NextResponse.json({ destination }, { headers: noStore });
 }
