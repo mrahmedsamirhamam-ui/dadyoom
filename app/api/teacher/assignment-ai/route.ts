@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import { authorizeSession } from "@/lib/auth/authorization";
 
 import {
   createClient,
@@ -25,27 +27,15 @@ export async function POST(request: Request) {
   try {
     const supabase = await createClient();
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    if (!user) {
+    // Authorize before parsing user input or spending AI tokens.
+    const access = await authorizeSession(
+      supabase as unknown as SupabaseClient,
+      ["teacher", "admin"],
+    );
+    if (!access.ok) {
       return NextResponse.json(
-        { error: "يجب تسجيل الدخول." },
-        { status: 401 },
-      );
-    }
-
-    const { data: profile } = await supabase
-      .from("profiles")
-      .select("role")
-      .eq("id", user.id)
-      .maybeSingle();
-
-    if (profile?.role !== "teacher" && profile?.role !== "admin") {
-      return NextResponse.json(
-        { error: "هذه الأداة للمعلم." },
-        { status: 403 },
+        { error: access.error },
+        { status: access.status, headers: { "Cache-Control": "no-store" } },
       );
     }
 
