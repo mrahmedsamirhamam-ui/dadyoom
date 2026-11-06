@@ -9,6 +9,7 @@ on:
       - 'tests/letter-lab.test.ts'
       - 'scripts/smoke-letter-lab.mjs'
       - 'app/page.tsx'
+      - 'proxy.ts'
       - '.github/workflows/letter-lab-ci.yml'
   workflow_dispatch:
 
