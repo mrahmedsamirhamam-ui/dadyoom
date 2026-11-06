@@ -44,7 +44,11 @@ test("Password login stays rate-limited, and browser no longer trusts editable r
 test("Both mobile auth forms are accessible, role-aware and have one principal CTA", () => {
   const form = root("components/auth/EmailPasswordAuthForm.tsx");
   assert.match(form, /<AuthShell/);
-  assert.match(form, /aria-label="طرق الدخول"/);
+  assert.match(form, /border-t border-\[#e4e9df\] pt-6/);
+  assert.match(form, /ليس لدي حساب — إنشاء حساب جديد/);
+  assert.match(form, /لدي حساب بالفعل — تسجيل الدخول/);
+  assert.doesNotMatch(form, /aria-label="طرق الدخول"/);
+  assert.match(form, /aria-label=\{signup \? "لديك حساب بالفعل" : "إنشاء حساب جديد"\}/);
   assert.match(form, /aria-pressed=\{role === item.value\}/);
   assert.match(form, /<GoogleAuthButton/);
   assert.match(form, /إظهار كلمة المرور/);
