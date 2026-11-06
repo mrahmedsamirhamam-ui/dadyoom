@@ -40,7 +40,7 @@ jobs:
           set -euo pipefail
           docker exec "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d postgres \
             -c "CREATE ROLE anon NOLOGIN;" -c "CREATE ROLE authenticated NOLOGIN;"
-          for db in shadow_question_privacy shadow_activity_privacy shadow_grading; do
+          for db in shadow_question_privacy shadow_activity_privacy shadow_grading shadow_skill_rewards; do
             docker exec "$PG_CONTAINER_ID" createdb -U postgres "$db"
           done
       - name: Deny private question key in sandbox; allow approved lesson view
@@ -71,6 +71,20 @@ jobs:
             cat scripts/security/proposed-activity-answer-column-cutover.sql
             cat tests/security/shadow-activity-answer-cutover-verify.sql
           } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_activity_privacy
+      - name: Rehearse fake earned-XP and daily bonus cutover without browser writes
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_skill_rewards < tests/security/shadow-skill-daily-rewards-setup.sql
+          if out=$(docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_skill_rewards < scripts/security/proposed-skill-daily-reward-grants.sql 2>&1); then
+            echo "XP candidate accepted absent rehearsal flag" >&2; exit 1
+          fi
+          echo "$out" | grep -q 'PRODUCTION_SKILL_REWARD_REVOKE_BLOCKED_SHADOW_ONLY'
+          {
+            echo "SET dadyoom.skill_rewards_rehearsal='enabled';"
+            cat scripts/security/proposed-skill-daily-reward-grants.sql
+            cat tests/security/shadow-skill-daily-rewards-verify.sql
+          } | docker exec -i "$PG_CONTAINER_ID" psql -X -v ON_ERROR_STOP=1 -U postgres -d shadow_skill_rewards
       - name: Rehearse grade forgery, grant cutover and restoration on fake student rows
         shell: bash
         run: |
