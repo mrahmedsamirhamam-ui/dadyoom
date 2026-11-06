@@ -1,0 +1,40 @@
+name: P0 review only - grade payload and Arabic UI
+on:
+  push:
+    branches:
+      - fix/p0-guards-grades-arabic-ui-20261107
+  pull_request:
+    paths:
+      - 'proxy.ts'
+      - 'lib/security/answer-submission.ts'
+      - 'lib/i18n/arabic-count.ts'
+      - 'app/api/questions/answer/route.ts'
+      - 'app/api/admin/role-requests/approve/route.ts'
+      - 'tests/security/answer-submission.test.ts'
+      - 'tests/arabic-count.test.ts'
+      - '.github/workflows/p0-core-guards-ui-review.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install lockfile dependencies (no network write)
+        run: npm ci --no-audit --no-fund
+      - name: Security payload, server grading, Arabic count unit tests
+        run: npx vitest run tests/security/answer-submission.test.ts tests/security/server-graded-mcq.test.ts tests/security/server-only-answer-key-read.test.ts tests/arabic-count.test.ts
+      - name: TypeScript strict check
+        run: npx tsc --noEmit
+      - name: ESLint changed files
+        run: npx eslint lib/security/answer-submission.ts lib/i18n/arabic-count.ts app/api/questions/answer/route.ts app/api/admin/role-requests/approve/route.ts tests/security/answer-submission.test.ts tests/arabic-count.test.ts
+      - name: Detect potential Arabic agreement errors for editorial review
+        run: node scripts/audit-arabic-ui.mjs

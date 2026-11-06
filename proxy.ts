@@ -10,7 +10,11 @@ export async function proxy(request: NextRequest) {
     ? ["admin"]
     : /^\/api\/teacher(?:\/|$)/u.test(pathname)
       ? ["teacher", "admin"]
-      : undefined;
+      : /^\/api\/school(?:\/|$)/u.test(pathname)
+        ? ["school", "admin"]
+        : /^\/api\/parent(?:\/|$)/u.test(pathname)
+          ? ["parent", "admin"]
+          : undefined;
 
   // Gate privileged API namespaces before any handler can run.
   if (
@@ -110,5 +114,7 @@ export const config = {
     "/((?!api/|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|css|js|map|woff2?|ttf|otf|txt|json|xml|webmanifest)$).*)",
     "/api/admin/:path*",
     "/api/teacher/:path*",
+    "/api/school/:path*",
+    "/api/parent/:path*",
   ],
 };
