@@ -63,6 +63,11 @@ test("Reading review stories are not credited merely because same numbered skill
   assert.match(reading2.status,/REVIEW_SKILL_NUMBER_FOUND_SPECIFIC_TOPIC_NOT_IN_TITLE/);
   assert.ok(reading1.publishedTitleCandidates.length>=1);
   assert.ok(reading2.publishedTitleCandidates.length>=1);
+  const grammar1=find(2,"review",3);
+  const grammar2=find(2,"review",8);
+  assert.ok(grammar1.publishedTitleCandidates.length>=1);
+  assert.ok(grammar2.publishedTitleCandidates.length>=1);
+  assert.match(grammar1.status,/REVIEW_SKILL_NUMBER_FOUND_SPECIFIC_TOPIC_NOT_IN_TITLE/);
 });
 
 test("OCR-damaged draft fragments are highlighted and never treated as a missing official textbook lesson",()=>{
