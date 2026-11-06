@@ -1282,7 +1282,9 @@
       "sequence": 7,
       "title": "جولة في محمية محمد بن زايد الطبيعية",
       "bookPage": "43-48",
-      "aliases": [],
+      "aliases": [
+        "جولة في محمية محمد ب ن زايد الطبيعية"
+      ],
       "sourcePdf": "https://edunet.bh/manual/plans1-2026-2027/Arabic/Plan1.pdf",
       "verification": "MINISTRY_PLAN_TITLE_EXTRACTED_CONTENT_NOT_REVIEWED"
     },
