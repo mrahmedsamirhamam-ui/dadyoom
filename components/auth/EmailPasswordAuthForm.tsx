@@ -309,9 +309,9 @@ export default function EmailPasswordAuthForm({
                   >
                     <option value="child">طفل</option>
                     <option value="student">طالب</option>
-                    <option value="teacher">معلم</option>
+                    <option value="teacher">معلم (يتطلب موافقة الإدارة)</option>
                     <option value="parent">ولي أمر</option>
-                    <option value="school">مدرسة</option>
+                    <option value="school">مدرسة (يتطلب موافقة الإدارة)</option>
                   </select>
                 </label>
 
