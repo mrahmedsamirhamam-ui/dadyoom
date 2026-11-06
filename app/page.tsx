@@ -48,7 +48,7 @@ export default function HomePage() {
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:py-20 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:px-8">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#d8c18a] bg-[#fffef9] px-4 py-2 text-sm font-black text-[#72551c] shadow-sm">
-              <span>✦</span><span>العربية تجمعنا، وتحفظ خصوصية هويتنا</span>
+              <span>✦</span><span>العربية تجمعنا، والمعرفة توسّع آفاقنا</span>
             </div>
             <h1 className="mt-7 max-w-3xl font-arabic-display text-4xl font-bold leading-[1.5] text-[#173f35] sm:text-5xl lg:text-[3.55rem]">
               ضاديوم — بيت عربي رقمي يجعل
