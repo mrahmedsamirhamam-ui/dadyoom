@@ -1,0 +1,57 @@
+name: P0 Arabic UI, role and grading protections
+
+on:
+  push:
+    branches:
+      - fix/p0-ui-arabic-roles-grades-20261107
+  pull_request:
+    paths:
+      - 'lib/i18n/arabic-count.*'
+      - 'lib/auth/api-role-guard.*'
+      - 'lib/http/read-bounded-json.ts'
+      - 'proxy.ts'
+      - 'app/api/questions/answer/route.ts'
+      - 'app/api/skills/progress/route.ts'
+      - 'app/(dashboard)/**'
+      - 'components/home/HomeInteractionPanel.tsx'
+      - 'components/roles/RolePortalLayout.tsx'
+      - 'tests/p0-arabic-ui-auth-grade.node.test.mjs'
+      - '.github/workflows/p0-arabic-role-grade-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unit-linguistic-security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Prove Arabic tamyiz, role guards, and trusted grading contracts
+        run: node --test tests/p0-arabic-ui-auth-grade.node.test.mjs tests/auth-profile-role-request-p0.node.test.mjs
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Strict TypeScript check
+        run: npx tsc --noEmit
+      - name: ESLint changed TSX routes and guards
+        run: >
+          npx eslint
+          proxy.ts
+          app/api/questions/answer/route.ts
+          app/api/skills/progress/route.ts
+          app/'(dashboard)'/student/page.tsx
+          app/'(dashboard)'/teacher/page.tsx
+          app/'(dashboard)'/parent/page.tsx
+          app/'(dashboard)'/school/page.tsx
+          components/roles/RolePortalLayout.tsx
+          components/home/HomeInteractionPanel.tsx
+          lib/http/read-bounded-json.ts
+      - name: Next production compilation (NOT Cloudflare deployment)
+        run: npm run build
