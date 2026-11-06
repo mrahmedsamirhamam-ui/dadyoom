@@ -1,0 +1,37 @@
+name: Warm role portals UX - review checks
+on:
+  push:
+    branches:
+      - feat/role-portal-warm-ux-20261107
+  pull_request:
+    paths:
+      - 'components/roles/RolePortalLayout.tsx'
+      - 'components/roles/RoleWelcomeTour.tsx'
+      - 'lib/ui/portal-experience.ts'
+      - 'tests/role-warm-ux.test.ts'
+      - '.github/workflows/role-portal-warm-ux-review.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  accessibility-and-types:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install lockfile dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Role experience contract and existing auth navigation tests
+        run: npx vitest run tests/role-warm-ux.test.ts
+      - name: Existing role home and onboarding safety assertions
+        run: node --test tests/auth-pending-role-flow.node.test.mjs tests/auth-role-home-navigation.node.test.mjs
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: Lint changed UI
+        run: npx eslint components/roles/RolePortalLayout.tsx components/roles/RoleWelcomeTour.tsx lib/ui/portal-experience.ts tests/role-warm-ux.test.ts
