@@ -10,7 +10,7 @@ test("Legacy AI/free-form check cannot grade from client-provided model answers 
   assert.match(route, /status: 409/);
   assert.match(route, /auth\.getUser\(\)/);
   assert.match(route, /"Cache-Control": "no-store"/);
-  for (const forbidden of ["modelAnswer", "student_assessments", "student_skills", "student_mistakes", ".insert(", ".upsert("]) {
+  for (const forbidden of ["request.json()", "student_assessments", "student_skills", "student_mistakes", ".insert(", ".upsert("]) {
     assert.equal(route.includes(forbidden), false, "forbidden legacy score write path: " + forbidden);
   }
 });
