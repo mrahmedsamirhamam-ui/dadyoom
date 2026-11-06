@@ -157,10 +157,15 @@ export default function EmailPasswordAuthForm({ mode, passwordWasReset = false }
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ fullName: cleanName, role, country }),
       });
-      const completed = await response.json() as { destination?: string; error?: string };
+      const completed = await response.json() as { destination?: string; error?: string; pendingApproval?: boolean };
       if (!response.ok) {
         setSuccess("تم إنشاء الحساب، لكن الملف الشخصي يحتاج إكمالًا.");
         throw new Error(completed.error || "تعذر إكمال الملف الشخصي. افتح صفحة استكمال الحساب.");
+      }
+      if (completed.pendingApproval) {
+        router.replace("/account/role-status");
+        router.refresh();
+        return;
       }
       const destination = await trustedDestination();
       router.replace(destination);
