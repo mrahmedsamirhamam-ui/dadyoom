@@ -46,3 +46,34 @@ export async function ensurePendingRoleRequest(
     requestedRole: data.requested_role,
   };
 }
+
+
+/**
+ * A stored teacher/school role alone is not authorization. Approval must be
+ * present in the separately controlled role-request table, with audit fields.
+ * Old privileged profiles need individual verification; database failures
+ * and missing approval rows always fail closed.
+ */
+export async function hasVerifiedPrivilegedRole(
+  client: SupabaseClient,
+  userId: string,
+  role: string,
+): Promise<boolean> {
+  if (!isApprovalRequired(role)) return true;
+  if (!userId) return false;
+  try {
+    const { data, error } = await client.from("profile_role_requests")
+      .select("requested_role,status,reviewed_by,reviewed_at")
+      .eq("user_id", userId)
+      .maybeSingle();
+    return !error &&
+      data?.requested_role === role &&
+      data.status === "approved" &&
+      typeof data.reviewed_by === "string" &&
+      data.reviewed_by.length > 0 &&
+      typeof data.reviewed_at === "string" &&
+      data.reviewed_at.length > 0;
+  } catch {
+    return false;
+  }
+}
