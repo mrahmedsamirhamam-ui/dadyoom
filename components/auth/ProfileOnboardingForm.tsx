@@ -42,10 +42,10 @@ export default function ProfileOnboardingForm({ defaultName, defaultRole, defaul
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ fullName, role, country }),
       });
-      const data = (await response.json()) as { error?: string; destination?: string };
+      const data = (await response.json()) as { error?: string; destination?: string; pendingApproval?: boolean };
       if (!response.ok) throw new Error(data.error || "تعذر إكمال الحساب.");
       // Re-resolve the role from the authenticated server, never assume student.
-      router.replace("/my");
+      router.replace(data.pendingApproval ? "/account/role-status" : "/my");
       router.refresh();
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "تعذر إكمال الحساب.");
