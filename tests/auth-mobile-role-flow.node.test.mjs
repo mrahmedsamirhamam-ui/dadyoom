@@ -80,7 +80,7 @@ test("Google callback won't trust a requested next path or overwrite incomplete 
 
 test("Onboarding only redirects complete profiles and preserves incomplete stored role", () => {
   const onboarding = root("app/onboarding/page.tsx");
-  assert.match(onboarding, /\.select\("role,country,full_name"\)/);
+  assert.match(onboarding, /\.select\("role,country,full_name,requested_role"\)/);
   assert.match(onboarding, /existing\?\.country\?\.trim\(\)/);
   assert.match(onboarding, /existing\?\.full_name\?\.trim\(\)/);
   assert.match(onboarding, /const existingDestination = destinationForStoredRole\(existing\?\.role\)/);
