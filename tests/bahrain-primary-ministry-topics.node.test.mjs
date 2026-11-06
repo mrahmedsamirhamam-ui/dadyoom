@@ -54,6 +54,9 @@ test("Published alternative reading text is flagged as a content gap, not a comp
   assert.equal(find(3,"core",1).status,"PUBLISHED_TITLE_WITH_EXPLICIT_NON_MINISTRY_TEXT");
   assert.equal(find(3,"core",11).status,"PUBLISHED_TITLE_WITH_EXPLICIT_NON_MINISTRY_TEXT");
   assert.ok(report.summary.explicitNonMinistrySubstitutionTopics >= 18);
+  assert.equal(report.summary.explicitOriginalWorksheetEnrichmentTopics,41);
+  assert.equal(report.summary.explicitOriginalEnrichmentPublishedRows,59);
+  assert.equal(report.summary.explicitEnrichmentSupportingRowsNotSelectedAsMainWorksheets,18);
 });
 
 test("Reading review stories are not credited merely because same numbered skill is published",()=>{
