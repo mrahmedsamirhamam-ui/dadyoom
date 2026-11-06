@@ -57,11 +57,11 @@ export default async function HomeTrustStrip() {
         <div className="mt-5 grid gap-3 sm:grid-cols-2">
           <div className="rounded-2xl border border-[#dac7a0] bg-white p-4">
             <p className="text-sm font-bold text-[#3d4a46]">دروس منشورة</p>
-            <p className="mt-1 text-3xl font-black text-[#174d44]" aria-label={format.format(lessons) + " درسًا منشورًا"}>{format.format(lessons)}</p>
+            <p className="mt-1 text-3xl font-black text-[#174d44]" aria-label={format.format(lessons) + " درسًا منشورًا"}><bdi dir="ltr">{format.format(lessons)}</bdi></p>
           </div>
           <div className="rounded-2xl border border-[#dac7a0] bg-white p-4">
             <p className="text-sm font-bold text-[#3d4a46]">مناهج نشطة</p>
-            <p className="mt-1 text-3xl font-black text-[#174d44]" aria-label={format.format(curricula) + " منهجًا نشطًا"}>{format.format(curricula)}</p>
+            <p className="mt-1 text-3xl font-black text-[#174d44]" aria-label={format.format(curricula) + " منهجًا نشطًا"}><bdi dir="ltr">{format.format(curricula)}</bdi></p>
           </div>
         </div>
         {sample ? (
