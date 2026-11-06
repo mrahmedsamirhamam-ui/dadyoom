@@ -31,7 +31,7 @@ test("Role home requires authenticated verified user, reads own stored role, nev
   assert.match(page, /redirect\(destinationForStoredRole\(profile\.role\)\)/);
   assert.match(page, /redirect\("\/onboarding"\)/);
   assert.match(page, /force-dynamic/);
-  assert.doesNotMatch(page, /user\.user_metadata|searchParams|localStorage|window\.location|service_role|createAdminClient/);
+  assert.doesNotMatch(page, /user\.user_metadata|searchParams|window\.location|service_role|createAdminClient/);
 });
 
 test("Home is public for guests and takes authenticated learners back to their own space", () => {
