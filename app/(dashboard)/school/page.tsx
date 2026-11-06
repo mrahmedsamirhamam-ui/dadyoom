@@ -1,3 +1,4 @@
+import { formatArabicCount } from "@/lib/i18n/arabic-count";
 import Link from "next/link";
 import SchoolTeacherLinkCard from "@/features/school-link/components/SchoolTeacherLinkCard";
 import {
@@ -1940,7 +1941,7 @@ const teacherCount =
         </div>
 
         <div className="rounded-full bg-indigo-50 px-4 py-2 text-sm font-black text-indigo-700">
-          {schoolTeachers.length} معلم
+          {formatArabicCount(schoolTeachers.length, "teacher")}
         </div>
 
       </div>
