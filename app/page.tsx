@@ -33,11 +33,14 @@ export default async function HomePage() {
   if (!authError && user) {
     const { data: profile, error: profileError } = await supabase
       .from("profiles")
-      .select("role,country,full_name")
+      .select("role,country,full_name,requested_role")
       .eq("id", user.id)
       .maybeSingle();
     if (profileError) throw new Error("تعذر تحديد صفحة حسابك.");
     if (!profile?.full_name?.trim() || !profile?.country?.trim()) redirect("/onboarding");
+    if (profile.role === "student" && ["teacher", "school"].includes(profile.requested_role ?? "")) {
+      redirect("/account/role-request");
+    }
     redirect(destinationForStoredRole(profile.role));
   }
   return (
