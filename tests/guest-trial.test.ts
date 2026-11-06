@@ -45,4 +45,11 @@ describe("no-signup Arabic micro lesson", () => {
     expect(page).not.toMatch(/localStorage|sessionStorage|fetch\(|sendBeacon\(/);
     expect(page).toContain('href="/signup"');
   });
+  it("does not interrupt the first guest lesson with a global install or chat overlay", () => {
+    const runtime = readFileSync(new URL("../components/runtime/DadyoomClientRuntime.tsx", import.meta.url), "utf8");
+    expect(runtime).toContain('const inGuestLesson = pathname === "/try"');
+    expect(runtime).toContain("!inGuestLesson ? <DadyoomInstallPrompt /> : null");
+    expect(runtime).toContain("!inGuestLesson ? <DadCompanion /> : null");
+    expect(runtime).toContain("<DadyoomAds />");
+  });
 });
