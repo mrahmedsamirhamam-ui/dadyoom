@@ -154,19 +154,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="mx-auto max-w-5xl overflow-hidden rounded-[2.5rem] bg-[#174f47] p-8 text-white shadow-xl sm:p-12">
-          <div className="flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between">
-            <div>
-              <div className="text-sm font-black text-[#f5cf7a]">أول إنجاز يبدأ في دقائق</div>
-              <h2 className="mt-3 font-arabic-display text-3xl font-black sm:text-4xl">اختر دولتك ودورك، وابدأ من مكان واضح</h2>
-              <p className="mt-3 max-w-2xl font-arabic-reading text-lg leading-8 text-[#e7f0ec]">يمكنك التسجيل بالبريد أو Google. وعندما لا يتوفر منهج دولتك بعد، تبقى المهارات الأربع وقاموس السياق وضاد متاحة لك.</p>
-            </div>
-            <Link href="/signup" className="inline-flex shrink-0 justify-center rounded-2xl bg-[#f5cf7a] px-7 py-4 font-black text-[#493814] transition hover:-translate-y-0.5 hover:bg-[#ffe39e]">ابدأ رحلتك</Link>
-          </div>
-        </div>
-      </section>
-
       <footer className="border-t border-[#315e57] bg-[#123f39] py-10 text-[#d9e8e3]">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
           <DadyoomLogo inverse />
