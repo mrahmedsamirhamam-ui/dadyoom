@@ -11,7 +11,7 @@ test("Profile completion denies new self-assigned admin but lets an existing inc
   assert.match(route, /existingRole && existingRole !== role/);
   assert.match(route, /status: 409/);
   assert.match(route, /\.update\(\{ email: user\.email, full_name: fullName, country \}\)/);
-  assert.match(route, /destinationForStoredRole\(existingRole \|\| role\)/);
+  assert.match(route, /destinationForStoredRole\(existingRole \|\| initialRole\)/);
 });
 
 test("Existing role lookup errors fail closed and cannot reach privileged insert", () => {
@@ -46,7 +46,7 @@ test("Role is read from persisted profiles in onboarding, and a preexisting role
   assert.match(page, /existingDestination !== "\/onboarding"/);
   assert.match(form, /lockedRole \? \(/);
   assert.match(form, /role === "admin" \? "مدير"/);
-  assert.match(form, /router\.replace\("\/my"\)/);
+  assert.match(form, /data\.pendingApproval \? "\/account\/role-status" : "\/my"/);
   assert.doesNotMatch(form, /router\.replace\(data\.destination \|\| "\/student"\)/);
   assert.match(form, /role="alert"/);
 });

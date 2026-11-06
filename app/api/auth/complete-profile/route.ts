@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { isCountryCode } from "@/lib/countries";
 import { destinationForStoredRole, isSelfSignupRole } from "@/lib/auth/role-destination.mjs";
+import { ensurePendingRoleRequest, isApprovalRequired } from "@/lib/auth/pending-role-request";
 
 
 export async function POST(request: Request) {
@@ -28,9 +29,29 @@ export async function POST(request: Request) {
     );
   }
 
+  // Pending status is informational. Only verified profiles.role grants rights.
+  // This table is created by the reviewed (NOT YET DEPLOYED) SQL proposal.
+  const originalRole = typeof existing?.role === "string"
+    ? existing.role.trim().toLowerCase() : "";
+  const { data: application, error: applicationError } = originalRole === "student"
+    ? await supabase.from("profile_role_requests")
+      .select("requested_role,status")
+      .eq("user_id", user.id)
+      .maybeSingle()
+    : { data: null, error: null };
+  if (applicationError) {
+    return NextResponse.json(
+      { error: "تعذر مراجعة حالة طلب الحساب." },
+      { status: 503, headers: { "Cache-Control": "no-store" } },
+    );
+  }
+
   if (destinationForStoredRole(existing?.role) !== "/onboarding" &&
       existing?.country?.trim() && existing?.full_name?.trim()) {
     const role = existing.role.trim().toLowerCase();
+    if (application && isApprovalRequired(application.requested_role)) {
+      return NextResponse.json({ ok: true, pendingApproval: true, destination: "/account/role-status" });
+    }
     return NextResponse.json({ ok: true, destination: destinationForStoredRole(role) });
   }
 
@@ -57,13 +78,17 @@ export async function POST(request: Request) {
 
   // A pre-existing role is authoritative, even for an incomplete profile.
   // No self-service role changes, including student -> teacher or school.
-  if (existingRole && existingRole !== role) {
+  const matchesPendingApplication =
+    existingRole === "student" && isApprovalRequired(role) &&
+    application?.requested_role === role;
+  if (existingRole && existingRole !== role && !matchesPendingApplication) {
     return NextResponse.json(
       { error: "هذا الحساب مسجل بدور مختلف. لا يمكن تغيير الصلاحيات من صفحة التسجيل." },
       { status: 409, headers: { "Cache-Control": "no-store" } },
     );
   }
   const admin = createAdminClient();
+  const initialRole = isApprovalRequired(role) ? "student" : role;
   const { error: insertError } = existingRole
     ? await admin.from("profiles")
       .update({ email: user.email, full_name: fullName, country })
@@ -71,7 +96,7 @@ export async function POST(request: Request) {
     // INSERT is intentional: an UPSERT could overwrite a concurrently
     // created profile role with an unverified value from the request body.
     : await admin.from("profiles").insert(
-      { id: user.id, email: user.email, full_name: fullName, role, country },
+      { id: user.id, email: user.email, full_name: fullName, role: initialRole, country },
     );
 
   if (insertError) {
@@ -87,8 +112,24 @@ export async function POST(request: Request) {
     }
 
     const racedRole = racedProfile.role.trim().toLowerCase();
+    if (racedRole === "student" && isApprovalRequired(role)) {
+      const pending = await ensurePendingRoleRequest(admin, user.id, role);
+      if (!pending.ok) return NextResponse.json({ error: "تعذر تسجيل طلب اعتماد الحساب." }, { status: 503 });
+      return NextResponse.json({ ok: true, pendingApproval: true, destination: "/account/role-status" });
+    }
     return NextResponse.json({ ok: true, destination: destinationForStoredRole(racedRole) });
   }
 
-  return NextResponse.json({ ok: true, destination: destinationForStoredRole(existingRole || role) });
+  if (matchesPendingApplication ||
+      (existingRole === "student" && application && isApprovalRequired(application.requested_role)) ||
+      (!existingRole && isApprovalRequired(role))) {
+    if (isApprovalRequired(role)) {
+      const pending = await ensurePendingRoleRequest(admin, user.id, role);
+      if (!pending.ok) {
+        return NextResponse.json({ error: "تعذر تسجيل طلب اعتماد الحساب." }, { status: 503 });
+      }
+    }
+    return NextResponse.json({ ok: true, pendingApproval: true, destination: "/account/role-status" });
+  }
+  return NextResponse.json({ ok: true, destination: destinationForStoredRole(existingRole || initialRole) });
 }
