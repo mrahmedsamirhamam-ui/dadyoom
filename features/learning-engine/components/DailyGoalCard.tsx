@@ -1,3 +1,4 @@
+import { formatArabicCount } from "@/lib/i18n/arabic-count.mjs";
 type Props = {
   goal: {
     target: number;
@@ -31,7 +32,7 @@ export default function DailyGoalCard({
 
         {goal.finished
           ? "أحسنت! أنجزت هدف اليوم."
-          : `بقي ${goal.remaining} درس.`}
+          : `الدروس المتبقية: ${formatArabicCount(goal.remaining, "lesson")}.`}
 
       </p>
 
