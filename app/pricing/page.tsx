@@ -58,6 +58,26 @@ export default async function PricingPage() {
           </p>
         </section>
 
+        <section
+          aria-labelledby="school-pilot-heading"
+          className="rounded-[2rem] border border-[#dbc18b] bg-white p-6 text-[#123f39]"
+        >
+          <h2 id="school-pilot-heading" className="text-2xl font-black">
+            للمدارس والمؤسسات: جرّبوا ضاديوم قبل اختيار أي عقد
+          </h2>
+          <p className="mt-3 max-w-3xl text-base leading-8">
+            نناقش معكم الصفوف والمهارات المطلوبة، ونعرض المحتوى المتاح فعلًا
+            وحدود التغطية والمراجعة. لا نطلب بيانات الطلاب لبدء الحوار،
+            ولا يوجد دفع إلكتروني أو اشتراك تلقائي عند طلب العرض.
+          </p>
+          <Link
+            href="/contact"
+            className="mt-5 inline-flex min-h-12 items-center justify-center rounded-xl bg-[#174d44] px-6 py-3 text-base font-black text-white hover:bg-[#123f39] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174d44]"
+          >
+            اطلب عرضًا توضيحيًا للمدرسة أو المؤسسة
+          </Link>
+        </section>
+
         <section className="grid gap-5 lg:grid-cols-2">
           <PlanCard
             title="ضاديوم العادي"
