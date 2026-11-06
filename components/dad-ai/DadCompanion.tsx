@@ -175,7 +175,7 @@ export default function DadCompanion({
   const hasLessonContext = Boolean(context.lessonTitle && context.lessonContent);
 
   return (
-    <div dir="rtl" className="fixed bottom-4 left-4 z-[9999] sm:bottom-6 sm:left-6">
+    <div dir="rtl" data-dad-floating-root data-dad-chat-open={isOpen ? "true" : undefined} className="fixed bottom-3 right-3 z-[9999] sm:bottom-6 sm:right-6">
       <AnimatePresence>
         {isOpen ? (
           <motion.section

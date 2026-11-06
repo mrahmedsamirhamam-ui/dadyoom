@@ -149,22 +149,25 @@ export default function DadyoomInstallPrompt() {
 
   return (
     <>
+      <div className="floating-dock" data-dadyoom-floating-control="install">
       <button
         type="button"
         onClick={() => {
           setOpen(true);
           setHelpMode(null);
         }}
-        className="fixed bottom-4 left-4 z-[80] rounded-2xl border border-[#d7bd78] bg-[#123f39] px-4 py-3 text-sm font-black text-white shadow-xl shadow-black/15 transition hover:-translate-y-0.5 hover:bg-[#174f47] active:translate-y-0"
+        className="rounded-2xl border border-[#d7bd78] bg-[#123f39] px-4 py-3 text-sm font-black text-white shadow-xl shadow-black/15 transition hover:-translate-y-0.5 hover:bg-[#174f47] active:translate-y-0"
         aria-haspopup="dialog"
         aria-expanded={open}
         aria-label="تنزيل ضاديوم على الهاتف"
       >
         تنزيل ضاديوم على الهاتف
       </button>
+      </div>
 
       {open ? (
         <div
+          data-dadyoom-install-dialog="true"
           className="fixed inset-0 z-[100] flex items-end justify-center bg-black/45 p-3 sm:items-center"
           role="presentation"
           onMouseDown={(event) => {
