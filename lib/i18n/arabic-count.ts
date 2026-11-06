@@ -9,7 +9,7 @@ export const COUNT_NOUNS = {
   lesson:  { one: "درس واحد", two: "درسان", plural: "دروس", accusative: "درسًا", hundred: "درس" },
   skill:   { one: "مهارة واحدة", two: "مهارتان", plural: "مهارات", accusative: "مهارةً", hundred: "مهارة" },
   student: { one: "طالب واحد", two: "طالبان", plural: "طلاب", accusative: "طالبًا", hundred: "طالب" },
-  teacher: { one: "معلم واحد", two: "معلمان", plural: "معلمون", accusative: "معلمًا", hundred: "معلم" },
+  teacher: { one: "معلم واحد", two: "معلمان", plural: "معلمين", accusative: "معلمًا", hundred: "معلم" },
   parent:  { one: "ولي أمر واحد", two: "وليا أمر", plural: "أولياء أمور", accusative: "ولي أمر", hundred: "ولي أمر" },
   school:  { one: "مدرسة واحدة", two: "مدرستان", plural: "مدارس", accusative: "مدرسةً", hundred: "مدرسة" },
 } as const;
