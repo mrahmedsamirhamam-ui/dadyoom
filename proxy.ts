@@ -19,6 +19,20 @@ export async function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // CI's publicly accessible Arabic learning labs intentionally run without
+  // Supabase credentials. Preserve anonymous content when env is absent while
+  // failing closed for privileged APIs. With real config, existing sessions
+  // still refresh through Supabase SSR as normal.
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    if (roles) {
+      return NextResponse.json({ error: "AUTH_UNAVAILABLE" }, {
+        status: 503,
+        headers: { "Cache-Control": "no-store" },
+      });
+    }
+    return NextResponse.next();
+  }
+
   let response =
     NextResponse.next({
       request: {

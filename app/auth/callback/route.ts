@@ -49,9 +49,46 @@ export async function GET(request: Request) {
   const cookieStore = await cookies();
   const intent = parseIntent(cookieStore.get("dadyoom_oauth_intent")?.value);
 
-  if (existingProfile?.role && existingProfile?.country && existingProfile?.full_name?.trim()) {
-    const role = existingProfile.role.trim().toLowerCase();
-    const dest = role === "student" && ["teacher", "school"].includes(existingProfile.requested_role ?? "")
+  // Supabase's auth.users trigger creates a safe student profile before the
+  // first Google callback runs. Without this branch, a teacher/school request
+  // is silently lost and the new user is treated as a student. Record ONLY
+  // the non-privileged request, never assign teacher/school rights here.
+  let currentProfile = existingProfile;
+  if (
+    intent && (intent.role === "teacher" || intent.role === "school") &&
+    existingProfile?.role?.trim().toLowerCase() === "student" &&
+    !existingProfile?.requested_role
+  ) {
+    const changes: {
+      requested_role: "teacher" | "school";
+      requested_role_at: string;
+      full_name?: string;
+      country?: string;
+    } = {
+      requested_role: intent.role as "teacher" | "school",
+      requested_role_at: new Date().toISOString(),
+    };
+    if (!existingProfile.full_name?.trim()) changes.full_name = intent.fullName;
+    if (!existingProfile.country?.trim()) changes.country = intent.country;
+    const { error: requestError } = await createAdminClient()
+      .from("profiles").update(changes)
+      .eq("id", user.id).eq("role", "student").is("requested_role", null);
+    if (requestError) {
+      console.error("OAUTH_ROLE_REQUEST_ERROR:", requestError.code);
+      return NextResponse.redirect(new URL("/onboarding?error=role_request", origin));
+    }
+    const { data: refreshed, error: refreshError } = await supabase
+      .from("profiles").select("role,country,full_name,requested_role")
+      .eq("id", user.id).maybeSingle();
+    if (refreshError || !refreshed) {
+      return NextResponse.redirect(new URL("/onboarding?error=profile_lookup", origin));
+    }
+    currentProfile = refreshed;
+  }
+
+  if (currentProfile?.role && currentProfile?.country && currentProfile?.full_name?.trim()) {
+    const role = currentProfile.role.trim().toLowerCase();
+    const dest = role === "student" && ["teacher", "school"].includes(currentProfile.requested_role ?? "")
       ? "/account/role-request" : destinationForStoredRole(role);
     const response = NextResponse.redirect(new URL(dest, origin));
     response.cookies.delete("dadyoom_oauth_intent");
@@ -60,7 +97,7 @@ export async function GET(request: Request) {
 
   // An existing stored role is authoritative even if a profile is incomplete.
   // Never overwrite it using an untrusted signup intent cookie.
-  if (existingProfile?.role) {
+  if (currentProfile?.role) {
     const response = NextResponse.redirect(new URL("/onboarding", origin));
     response.cookies.delete("dadyoom_oauth_intent");
     return response;

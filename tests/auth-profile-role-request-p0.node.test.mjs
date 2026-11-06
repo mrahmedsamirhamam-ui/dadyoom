@@ -70,3 +70,23 @@ test("Admin approval is authenticated, scoped, CSRF-checked, records approver, a
   assert.match(page, /\.eq\("role", "student"\)/);
   assert.match(layout, /\/admin\/role-requests/);
 });
+
+test("Google signup preserves a pending request created after Supabase's auth.users trigger", () => {
+  const callback = read("app/auth/callback/route.ts");
+  assert.match(callback, /existingProfile\?\.role\?\.trim\(\)\.toLowerCase\(\) === "student"/);
+  assert.match(callback, /!existingProfile\?\.requested_role/);
+  assert.match(callback, /requested_role: intent\.role as "teacher" \| "school"/);
+  assert.match(callback, /\.eq\("id", user\.id\)\.eq\("role", "student"\)\.is\("requested_role", null\)/);
+  assert.match(callback, /currentProfile = refreshed/);
+  assert.match(callback, /currentProfile\.requested_role/);
+  assert.doesNotMatch(callback, /role: intent\.role,\s*country:/);
+});
+
+test("Password login accepts only a server-confirmed pending-role path", () => {
+  const form = read("components/auth/EmailPasswordAuthForm.tsx");
+  const route = read("app/api/auth/destination/route.ts");
+  assert.match(form, /"\/account\/role-request"/);
+  assert.match(form, /\/api\/auth\/destination/);
+  assert.match(route, /profile\?\.requested_role/);
+  assert.match(route, /"\/account\/role-request"/);
+});
