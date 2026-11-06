@@ -66,7 +66,8 @@ test("Signup profile completion is server verified and a persisted role is not o
   assert.match(route, /status: 409/);
   assert.match(route, /isSelfSignupRole\(role\)/);
   assert.match(route, /\.update\(\{ email: user.email, full_name: fullName, country \}\)/);
-  assert.match(route, /destinationForStoredRole\(existingRole \|\| initialRole\)/);\n  assert.match(route, /pendingApproval: true/);
+  assert.match(route, /destinationForStoredRole\(existingRole \|\| initialRole\)/);
+  assert.match(route, /pendingApproval: true/);
   assert.doesNotMatch(route, /new Set\(\["admin"/);
 });
 
