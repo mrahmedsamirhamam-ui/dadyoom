@@ -1,11 +1,23 @@
 /**
- * Default-deny payment initiation. The public pricing page is not a security gate:
- * API routes must independently require an explicit owner activation.
+ * All payment initiation defaults to paused, even when payment credentials exist.
+ * The UI's pricing toggle alone must not authorize checkout or charge creation.
  *
- * Both variables are server-only. Do not set them in a public client bundle.
- * Changing production environment values requires explicit owner approval.
+ * These server-side values must only be enabled after owner approval and
+ * a payment-provider sandbox + legal/security acceptance test.
  */
-export function liveCheckoutApproved(): boolean {
-  return process.env.DADYOOM_LIVE_BILLING_ENABLED === "true" &&
+export type CheckoutProvider = "paddle" | "tap";
+
+export function liveCheckoutApproved(provider: CheckoutProvider): boolean {
+  const globalApproval =
+    process.env.DADYOOM_LIVE_BILLING_ENABLED === "true" &&
     process.env.DADYOOM_PAYMENT_OWNER_APPROVED === "true";
+
+  if (!globalApproval) return false;
+
+  if (provider === "paddle") {
+    return process.env.DADYOOM_PADDLE_LIVE_ENABLED === "true" &&
+      process.env.NEXT_PUBLIC_PADDLE_ENV === "production";
+  }
+
+  return process.env.DADYOOM_TAP_LIVE_ENABLED === "true";
 }
