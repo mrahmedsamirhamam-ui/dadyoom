@@ -34,7 +34,7 @@ const primaryHrefs: Record<PortalRole, readonly string[]> = {
 
 const roleMessages: Record<PortalRole, string> = {
   student:
-    "تعلم من منهجك، تدرب على المهارات الأربع، تابع تقدمك واستعن بضاد للفهم.",
+    "تعلّم من منهجك، وتدرّب على المهارات الأربع، وتابع تقدّمك، واستعن بضاد للفهم.",
   teacher:
     "تابع طلابك وفصولك وأثرِ الدروس الجاهزة دون إعادة بناء المنهج من الصفر.",
   parent:
@@ -125,7 +125,7 @@ export default async function RolePortalLayout({
               </div>
 
               <h1 className="mt-2 font-arabic-display text-2xl font-black sm:text-3xl">
-                أهلاً {displayName}
+                أهلًا {displayName}
               </h1>
 
               <p className="mt-2 max-w-3xl font-arabic-reading text-base leading-8 text-[#e4efeb]">
