@@ -74,3 +74,10 @@ test("Lesson return is account-aware, accessible, and sign-out is a separate act
   assert.match(logout, /تسجيل الخروج/);
   assert.doesNotMatch(logout, /router\.replace\("\/my"\)/);
 });
+
+
+test("Onboarding never redirects back to itself for unknown stored roles", () => {
+  const onboarding = read("app/onboarding/page.tsx");
+  assert.match(onboarding, /existingDestination !== "\/onboarding"/);
+  assert.match(onboarding, /redirect\(existingDestination\)/);
+});
