@@ -1,0 +1,44 @@
+name: REVIEW ONLY - pending role account flow and TypeScript
+
+on:
+  push:
+    branches:
+      - security/profile-role-approval-review-20261106
+  pull_request:
+    paths:
+      - 'lib/auth/pending-role-request.ts'
+      - 'app/api/auth/complete-profile/route.ts'
+      - 'app/auth/callback/route.ts'
+      - 'app/account/role-status/**'
+      - 'components/auth/PendingRoleRequestNotice.tsx'
+      - 'components/auth/EmailPasswordAuthForm.tsx'
+      - 'components/auth/ProfileOnboardingForm.tsx'
+      - 'app/(dashboard)/student/layout.tsx'
+      - 'tests/auth-pending-role-flow.node.test.mjs'
+      - '.github/workflows/review-role-approval-app.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pending-role-flow:
+    name: Test pending account UI and strict TypeScript
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Profile request acceptance and no self-elevation guards
+        run: node --test tests/auth-pending-role-flow.node.test.mjs
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: ESLint review-only account files
+        run: npx eslint lib/auth/pending-role-request.ts app/api/auth/complete-profile/route.ts app/auth/callback/route.ts app/account/role-status/page.tsx components/auth/PendingRoleRequestNotice.tsx components/auth/EmailPasswordAuthForm.tsx components/auth/ProfileOnboardingForm.tsx 'app/(dashboard)/student/layout.tsx'
