@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   robots:{ index:false, follow:false },
 };
 export default function AdaptiveHalPage() {
-  return <main dir="rtl" className="min-h-screen bg-[#fffaf0] text-[#24382f]">
+  return <main dir="rtl" className="min-h-screen bg-[#fffaf0] pb-[calc(12rem+env(safe-area-inset-bottom,0px))] text-[#24382f]">
     <header className="border-b border-[#e5d8bf] bg-[#fffef9] px-4 py-4">
       <div className="mx-auto flex max-w-3xl justify-between gap-4">
         <strong className="text-[#174d44]">ضاديوم · بيت العربية الرقمي</strong>
