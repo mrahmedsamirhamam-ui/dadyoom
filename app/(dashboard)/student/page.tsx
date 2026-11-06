@@ -532,7 +532,7 @@ if (masterySkillsError) {
               <div>
                 <h2 className="text-xl font-black text-slate-900">مسار التعلم</h2>
                 <p className="mt-1 text-sm text-slate-500">
-                  {dashboard.completedLessons} من {dashboard.totalLessons} دروس مكتملة
+                  الدروس المكتملة: {dashboard.completedLessons} من {dashboard.totalLessons}
                 </p>
               </div>
               <Link href="/courses" className="text-sm font-black text-teal-700 hover:underline">
