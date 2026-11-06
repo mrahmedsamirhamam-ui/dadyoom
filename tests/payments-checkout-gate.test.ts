@@ -33,6 +33,12 @@ const request = (route: string) =>
     body: "{}",
   });
 
+const endpoints: Array<readonly [string, (request: Request) => Promise<Response>]> = [
+  ["paddle/config", () => paddleConfig()],
+  ["tap/config", (request) => tapConfig(request)],
+  ["tap/create", (request) => tapCreate(request)],
+];
+
 beforeEach(() => {
   vi.clearAllMocks();
   for (const key of [
@@ -75,11 +81,7 @@ describe("zero-charge payment initiation gate", () => {
     expect(liveCheckoutApproved("tap")).toBe(true);
   });
 
-  it.each([
-    ["paddle/config", paddleConfig],
-    ["tap/config", tapConfig],
-    ["tap/create", tapCreate],
-  ])("keeps %s paused with no authorization flags, before any provider action", async (name, handler) => {
+  it.each(endpoints)("keeps %s paused with no authorization flags, before any provider action", async (name, handler) => {
     const response = await handler(request(name));
     expect(response.status).toBe(503);
     expect(await response.json()).toEqual({ error: "PAYMENTS_PAUSED" });
@@ -89,11 +91,7 @@ describe("zero-charge payment initiation gate", () => {
     expect(createPaymentRecord).not.toHaveBeenCalled();
   });
 
-  it.each([
-    ["paddle/config", paddleConfig],
-    ["tap/config", tapConfig],
-    ["tap/create", tapCreate],
-  ])("remains paused on %s if only the visible pricing flag is set", async (name, handler) => {
+  it.each(endpoints)("remains paused on %s if only the visible pricing flag is set", async (name, handler) => {
     vi.stubEnv("DADYOOM_LIVE_BILLING_ENABLED", "true");
     const response = await handler(request(name));
     expect(response.status).toBe(503);
@@ -114,11 +112,7 @@ describe("zero-charge payment initiation gate", () => {
     vi.stubEnv("DADYOOM_PADDLE_LIVE_ENABLED", "true");
     vi.stubEnv("NEXT_PUBLIC_PADDLE_ENV", "production");
     vi.stubEnv("DADYOOM_TAP_LIVE_ENABLED", "true");
-    for (const [name, handler] of [
-      ["paddle/config", paddleConfig],
-      ["tap/config", tapConfig],
-      ["tap/create", tapCreate],
-    ] as const) {
+    for (const [name, handler] of endpoints) {
       const response = await handler(request(name));
       expect(response.status).toBe(401);
     }
