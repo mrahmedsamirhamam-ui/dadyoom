@@ -41,7 +41,8 @@ try {
       return Math.round(element.getBoundingClientRect().height / parseFloat(style.lineHeight));
     });
     assert.ok(headlineLines <= 2,"Homepage headline exceeds two lines at "+width+": "+headlineLines);
-    assert.equal(await page.locator(".hero-cta").getAttribute("href"),"/try");
+    assert.equal(await page.locator(".hero-cta").getAttribute("href"),"/signup");
+    assert.equal(await page.locator(".hero-secondary").getAttribute("href"),"/try");
     assert.equal(await page.locator(".dadyoom-home-header-cta").getAttribute("href"),"/try");
     for(const path of ["/student","/teacher","/parent","/school"]){
       assert.equal(await page.locator('a[href="'+path+'"]').count(),1,"Role link missing: "+path);
@@ -49,18 +50,38 @@ try {
     await page.screenshot({path:"artifacts/home/mobile-"+width+".png",fullPage:true,animations:"disabled"});
     metrics.push({width,...await page.evaluate(()=>window.__homeVitals)});
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),"Horizontal overflow at "+width);
+    // Scroll to the end as in the reported screen recording: links must never sit behind fixed controls.
+    const footer=page.locator("footer[data-dadyoom-home-footer]");
+    await footer.scrollIntoViewIfNeeded();
+    await page.waitForFunction(()=>document.documentElement.classList.contains("dadyoom-home-footer-visible"));
+    assert.equal(await dock.evaluate(el=>getComputedStyle(el).visibility),"hidden","Install launcher covers footer at "+width);
+    assert.equal(await dad.evaluate(el=>getComputedStyle(el).visibility),"hidden","Dad bubble covers footer at "+width);
+    for (const a of await footer.locator("a").all()) {
+      const rect=await a.boundingBox();
+      assert.ok(rect && rect.height>=44,"Footer link has an undersized target at "+width);
+    }
+    await page.screenshot({path:"artifacts/home/footer-"+width+".png",animations:"disabled"});
+    await page.evaluate(()=>window.scrollTo({top:0,behavior:"instant"}));
+    await page.waitForFunction(()=>!document.documentElement.classList.contains("dadyoom-home-footer-visible"));
     let keyboardCanReachHero = false;
-    for (let tab = 0; tab < 18; tab++) {
+    for (let tab = 0; tab < 25; tab++) {
       await page.keyboard.press("Tab");
-      if (await page.locator(".hero-cta").evaluate((el) => document.activeElement === el)) {
+      if (await page.locator(".hero-cta").evaluate(el=>document.activeElement===el)) {
         keyboardCanReachHero = true;
         break;
       }
     }
     assert.ok(keyboardCanReachHero,"Keyboard Tab cannot reach hero CTA at "+width);
+    await page.keyboard.press("Tab");
+    assert.ok(await page.locator(".hero-secondary").evaluate(el=>document.activeElement===el),"Keyboard next Tab cannot reach free trial button at "+width);
     await page.keyboard.press("Enter");
     await page.waitForURL("**/try",{timeout:15000});
     assert.ok(await page.getByRole("heading",{name:"خطوة صغيرة في العربية"}).isVisible(),"Guest lesson not reachable by keyboard");
+    await page.goto(base+"/",{waitUntil:"domcontentloaded"});
+    await page.locator("[data-dadyoom-install-dismiss]").click();
+    await page.locator(".floating-dock").waitFor({state:"hidden"});
+    await page.reload({waitUntil:"domcontentloaded"});
+    await page.locator(".floating-dock").waitFor({state:"hidden",timeout:15000});
     await page.close();
   }
   const desktop=await browser.newPage({viewport:{width:1366,height:900},locale:"ar-BH",reducedMotion:"reduce"});
@@ -70,5 +91,5 @@ try {
   assert.ok(await desktop.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),"Desktop overflow");
   await desktop.close();
   writeFileSync("artifacts/home/mobile-web-vitals.json",JSON.stringify({note:"single-run lab approximations, not Lighthouse or a baseline comparison",metrics},null,2));
-  console.log("Home smoke PASS for 360/390/430/1366; screenshots and lab web-vitals saved");
+  console.log("Home mobile polish smoke PASS: 360/390/430/1366, full page, footer, RTL, keyboard and PWA dismiss persistence");
 } finally {await browser.close();}

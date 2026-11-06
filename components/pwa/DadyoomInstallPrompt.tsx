@@ -13,6 +13,8 @@ interface BeforeInstallPromptEvent extends Event {
 type Platform = "android" | "ios" | "other";
 type HelpMode = "android" | "ios" | null;
 
+const INSTALL_DISMISSED_KEY = "dadyoom:install-launcher-dismissed";
+
 function detectPlatform(): Platform {
   if (typeof navigator === "undefined") return "other";
 
@@ -76,6 +78,7 @@ export default function DadyoomInstallPrompt() {
   const [installed, setInstalled] = useState(false);
   const [busy, setBusy] = useState(false);
   const [nativeApp, setNativeApp] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
 
   const platform = useMemo(() => detectPlatform(), []);
 
@@ -83,6 +86,11 @@ export default function DadyoomInstallPrompt() {
     const environmentTimer = window.setTimeout(() => {
       setInstalled(isStandalone());
       setNativeApp(isNativeCapacitor());
+      try {
+        setDismissed(window.localStorage.getItem(INSTALL_DISMISSED_KEY) === "1");
+      } catch {
+        // Browsers with blocked storage must still allow the user to dismiss this launcher.
+      }
     }, 0);
 
     if (
@@ -145,24 +153,47 @@ export default function DadyoomInstallPrompt() {
     }
   }
 
-  if (installed || nativeApp) return null;
+  function dismissInstallLauncher() {
+    setOpen(false);
+    setHelpMode(null);
+    setDismissed(true);
+    try {
+      window.localStorage.setItem(INSTALL_DISMISSED_KEY, "1");
+    } catch {
+      // Browser storage can be disabled or full; local UI still closes.
+    }
+  }
+
+  if (installed || nativeApp || dismissed) return null;
 
   return (
     <>
       <div className="floating-dock" data-dadyoom-floating-control="install">
-      <button
-        type="button"
-        onClick={() => {
-          setOpen(true);
-          setHelpMode(null);
-        }}
-        className="rounded-2xl border border-[#d7bd78] bg-[#123f39] px-4 py-3 text-sm font-black text-white shadow-xl shadow-black/15 transition hover:-translate-y-0.5 hover:bg-[#174f47] active:translate-y-0"
-        aria-haspopup="dialog"
-        aria-expanded={open}
-        aria-label="تنزيل ضاديوم على الهاتف"
-      >
-        تنزيل ضاديوم على الهاتف
-      </button>
+        <div className="floating-dock-install-row flex items-stretch gap-2">
+          <button
+            type="button"
+            onClick={() => {
+              setOpen(true);
+              setHelpMode(null);
+            }}
+            className="min-h-11 min-w-0 flex-1 rounded-2xl border border-[#d7bd78] bg-[#123f39] px-2 py-2 text-sm font-black leading-5 text-white shadow-xl shadow-black/15 transition hover:bg-[#174f47] active:scale-[0.98]"
+            aria-haspopup="dialog"
+            aria-expanded={open}
+            aria-label="تنزيل ضاديوم على الهاتف"
+          >
+            تنزيل ضاديوم على الهاتف
+          </button>
+          <button
+            type="button"
+            onClick={dismissInstallLauncher}
+            className="grid min-h-11 min-w-11 place-items-center rounded-xl border border-[#b9a372] bg-[#fffdf8] text-xl font-black text-[#174d44] shadow-md hover:bg-[#f8edd9] active:scale-[0.98]"
+            aria-label="إخفاء زر تطبيق ضاديوم"
+            title="إخفاء زر التطبيق"
+            data-dadyoom-install-dismiss
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
       </div>
 
       {open ? (
@@ -172,7 +203,7 @@ export default function DadyoomInstallPrompt() {
           role="presentation"
           onMouseDown={(event) => {
             if (event.currentTarget === event.target) {
-              setOpen(false);
+              dismissInstallLauncher();
             }
           }}
         >
@@ -201,8 +232,8 @@ export default function DadyoomInstallPrompt() {
 
               <button
                 type="button"
-                onClick={() => setOpen(false)}
-                className="rounded-full border border-[#dfd2b6] bg-white px-3 py-1.5 text-lg font-black text-[#625b50]"
+                onClick={dismissInstallLauncher}
+                className="grid min-h-11 min-w-11 place-items-center rounded-full border border-[#dfd2b6] bg-white text-lg font-black text-[#625b50]"
                 aria-label="إغلاق"
               >
                 ×

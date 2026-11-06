@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { GraduationCap, Presentation, UsersRound, School } from "lucide-react";
 import HomeTrustStrip from "@/components/home/HomeTrustStrip";
+import HomeFloatingGuard from "@/components/home/HomeFloatingGuard";
 import DadyoomLogo, { DadyoomMark } from "@/components/brand/DadyoomLogo";
 
 import HomeInteractionPanel from "@/components/home/HomeInteractionPanel";
@@ -34,6 +35,7 @@ const skills = [
 export default function HomePage() {
   return (
     <main dir="rtl" className="dadyoom-home-page min-h-screen bg-[#f8faf6] text-[#24382f]">
+      <HomeFloatingGuard />
       <header className="sticky top-0 z-50 border-b border-[#e5d8bf]/90 bg-[#fffef9]/94 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
           <DadyoomLogo />
@@ -67,10 +69,14 @@ export default function HomePage() {
             <p className="mt-6 max-w-2xl text-lg leading-9 text-[#50685b] sm:text-xl">
               ضاديوم (Dadyoom) يجمع منهجًا منظمًا، والمهارات الأربع، والتقييم والتقدم، و«ضاد» رفيقًا ذكيًا يساعد الطالب في اللحظة التي يحتاج فيها إلى شرح أو تدريب.
             </p>
-            <Link href="/try" className="hero-cta">ابدأ مجانًا</Link>
-            <p className="mt-3 text-center text-sm font-bold leading-7 text-[#3d4a46]">جرّب درسًا قصيرًا دون تسجيل، ثم <Link href="/signup" className="underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-[#174d44]">أنشئ حسابًا لحفظ تقدّمك</Link>.</p>
+            <div className="dadyoom-home-hero-actions mt-7 grid gap-3 sm:max-w-[740px] sm:grid-cols-2">
+              <Link href="/signup" className="hero-cta">ابدأ رحلتك</Link>
+              <Link href="/try" className="hero-secondary">ذاكر العربية الآن، دون تسجيل</Link>
+            </div>
+            <p className="mt-3 max-w-2xl text-center text-sm font-bold leading-7 text-[#3d4a46]">جرّب درسًا قصيرًا دون تسجيل، ثم <Link href="/signup" className="underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-[#174d44]">أنشئ حسابًا لحفظ تقدّمك</Link>.</p>
 
             <nav aria-label="تجارب تعليمية يمكنك تجربتها" className="mt-5 flex flex-wrap gap-x-5 gap-y-3 text-sm font-semibold text-[#41685a]">
+              <Link href="/courses" className="underline-offset-4 hover:underline">استكشف مناهج الدول</Link>
               <Link href="/ask" className="underline-offset-4 hover:underline">اسأل ضاد</Link>
               <Link href="/labs/letters" className="underline-offset-4 hover:underline">مختبر الحروف</Link>
               <Link href="/level-check" className="underline-offset-4 hover:underline">اكتشف مستواك</Link>
@@ -147,10 +153,11 @@ export default function HomePage() {
           <SectionHeading eyebrow="المهارات الأربع" title="نتعلم العربية كما نستخدمها" text="القراءة والكتابة والاستماع والتحدث متصلة بالتقدم والتدريب، وليست صفحات منفصلة للعرض فقط." />
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {skills.map((skill) => (
-              <Link key={skill.title} href={skill.href} className="rounded-3xl border border-[#dfd0b3] bg-[#fffef9] p-6 transition hover:-translate-y-1 hover:border-[#7fa79d] hover:shadow-md">
-                <div className="text-4xl">{skill.icon}</div>
-                <h3 className="mt-4 font-arabic-display text-xl font-black text-[#174f47]">{skill.title}</h3>
-                <p className="mt-2 text-sm font-bold text-[#766c60]">{skill.text}</p>
+              <Link key={skill.title} href={skill.href} className="dadyoom-home-skill-card flex min-h-44 flex-col rounded-3xl border-2 border-[#b7a076] bg-[#fffef9] p-6 shadow-sm transition duration-150 hover:-translate-y-1 hover:border-[#174d44] hover:shadow-lg active:scale-[0.98] active:bg-[#eaf4ee] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174d44]">
+                <div className="text-4xl" aria-hidden="true">{skill.icon}</div>
+                <h3 className="mt-4 font-arabic-display text-xl font-black text-[#174d44]">{skill.title}</h3>
+                <p className="mt-2 text-sm font-bold text-[#3d4a46]">{skill.text}</p>
+                <span className="mt-4 inline-flex min-h-11 items-center font-black text-[#174d44]">ابدأ التدريب <span className="mr-2" aria-hidden="true">←</span></span>
               </Link>
             ))}
           </div>
@@ -181,14 +188,19 @@ export default function HomePage() {
       </section>
       <HomeInteractionPanel />
 
-      <footer className="border-t border-[#315e57] bg-[#123f39] py-10 text-[#d9e8e3]">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+      <footer data-dadyoom-home-footer className="border-t border-[#315e57] bg-[#123f39] py-10 text-[#d9e8e3]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <DadyoomLogo inverse />
-          <div className="text-sm">العربية تجمعنا، ولا تُذيب أحدًا.</div>
-          <div className="text-sm">
+          <p className="mt-3 text-sm">العربية تجمعنا، ولا تُذيب أحدًا.</p>
+          <nav aria-label="روابط تعريفية" className="mt-6 grid grid-cols-2 gap-x-4 gap-y-3 md:max-w-xl">
+            <Link href="/about" className="inline-flex min-h-11 items-center rounded-lg py-2 text-sm font-bold text-white underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2">عن ضاديوم</Link>
+            <Link href="/how-to-use" className="inline-flex min-h-11 items-center rounded-lg py-2 text-sm font-bold text-white underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2">كيف تستخدم ضاديوم؟</Link>
+            <Link href="/courses" className="inline-flex min-h-11 items-center rounded-lg py-2 text-sm font-bold text-white underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2">استكشف المناهج</Link>
+            <Link href="/founder" className="inline-flex min-h-11 items-center rounded-lg py-2 text-sm font-bold text-white underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2">المؤسس</Link>
+          </nav>
+          <div className="mt-6 flex flex-col gap-2 border-t border-[#66837a] pt-5 text-sm sm:flex-row sm:items-center sm:justify-between">
             <span>© 2026 ضاديوم</span>
-            <span className="mx-2" aria-hidden="true">·</span>
-            <Link href="/founder" className="underline-offset-4 hover:underline">تأسيس وإدارة: أ. أحمد سمير محمد حافظ حمام</Link>
+            <Link href="/founder" className="inline-flex min-h-11 items-center rounded-lg text-[#d9e8e3] underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2">تأسيس وإدارة: أ. أحمد سمير محمد حافظ حمام</Link>
           </div>
         </div>
       </footer>
