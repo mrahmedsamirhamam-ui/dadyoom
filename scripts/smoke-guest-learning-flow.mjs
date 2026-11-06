@@ -33,7 +33,7 @@ try {
     await page.getByRole("status").getByText("الإجابة الصحيحة: يكتب مازن رسالة").waitFor();
     await page.getByRole("button", { name: "اعرض ملخص التجربة" }).click();
     await page.getByRole("heading", { name: "أنهيت التجربة القصيرة" }).waitFor();
-    assert.ok(await page.getByText("ليست حكمًا نهائيًا بإتقان المهارة").count() === 0);
+    assert.equal(await page.getByText("نجحت في سؤال التحقق الجديد", { exact: false }).count(), 0);
     await page.getByText("سؤال التحقق الجديد يحتاج مراجعة", { exact: false }).waitFor();
     assert.equal(await page.getByRole("progressbar").getAttribute("aria-valuenow"), "3");
     assert.equal(await page.getByRole("link", { name: "أنشئ حسابًا لحفظ تقدمك القادم" }).getAttribute("href"), "/signup");
