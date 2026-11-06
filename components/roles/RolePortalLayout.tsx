@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import DadyoomLogo from "@/components/brand/DadyoomLogo";
 import { createClient } from "@/lib/supabase/server";
 import { destinationForStoredRole } from "@/lib/auth/role-destination.mjs";
+import { hasVerifiedPrivilegedRole } from "@/lib/auth/pending-role-request";
 
 export type PortalRole =
   | "student"
@@ -86,6 +87,15 @@ export default async function RolePortalLayout({
     actualRole !== "admin"
   ) {
     redirect(destinationForStoredRole(actualRole));
+  }
+
+  // Server-side gate for privileged portal data, not just navigation links.
+  if (
+    (role === "teacher" || role === "school") &&
+    actualRole !== "admin" &&
+    !(await hasVerifiedPrivilegedRole(supabase, user.id, actualRole))
+  ) {
+    redirect("/account/role-status");
   }
 
   const displayName =
