@@ -3,17 +3,11 @@ import "server-only";
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { parseTrustedAnswerInput } from "@/lib/security/answer-payload.mjs";
 import {
   feedbackForStudent,
   gradeStoredMcq,
 } from "@/features/questions/services/grade-stored-mcq";
-
-type AnswerRequest = {
-  questionId?: unknown;
-  selectedAnswer?: unknown;
-};
-
-const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 export async function POST(request: Request) {
   try {
@@ -28,14 +22,14 @@ export async function POST(request: Request) {
       );
     }
 
-    const raw = (await request.json().catch(() => null)) as AnswerRequest | null;
-    const questionId = raw?.questionId;
-    if (typeof questionId !== "string" || !UUID.test(questionId)) {
+    const parsed = parseTrustedAnswerInput(await request.json().catch(() => null));
+    if (!parsed.ok) {
       return NextResponse.json(
-        { success: false, error: "معرّف السؤال غير صحيح." },
-        { status: 400 }
+        { success: false, error: "بيانات الإجابة غير صالحة، أو تحتوي على حقول غير مسموح بها." },
+        { status: 400, headers: { "Cache-Control": "no-store" } },
       );
     }
+    const questionId = parsed.questionId;
 
     // Server-only access to the answer key: this continues to work after
     // revoking browser SELECT privileges for questions.correct_answer.
@@ -76,7 +70,7 @@ export async function POST(request: Request) {
         options: question.options,
         correct_answer: question.correct_answer,
       },
-      raw?.selectedAnswer
+      parsed.selectedAnswer
     );
 
     if (!grade.valid) {
@@ -97,7 +91,7 @@ export async function POST(request: Request) {
         {
           user_id: user.id,
           question_id: question.id,
-          selected_answer: raw?.selectedAnswer as string,
+          selected_answer: parsed.selectedAnswer,
           is_correct: grade.isCorrect,
           answered_at: new Date().toISOString(),
         },
