@@ -23,17 +23,17 @@ function record(value: unknown): SourceRecord | null {
  * A text not matching the phrases is NEVER certified by this predicate.
  */
 const explicitNonMinistryDisclosures = [
-  /ليست?\\s+نص\\s+الكتاب\\s+الرسمي/u,
-  /لا\\s+يمثل(?:ان)?\\s+قصيد[هة]\\s+الكتاب\\s+الوزاري/u,
-  /ليس\\s+نقلا\\s+من\\s+كتاب\\s+الوزار[هة]/u,
-  /هذا\\s+اثراء\\s+تعليمي\\s+اصلي\\s+من\\s+ضاديوم/u,
-  /ليست?\\s+من\\s+نص\\s+الكتاب\\s+الرسمي/u,
+  /ليست?\s+نص\s+الكتاب\s+الرسمي/u,
+  /لا\s+يمثل(?:ان)?\s+قصيد[هة]\s+الكتاب\s+الوزاري/u,
+  /ليس\s+نقلا\s+من\s+كتاب\s+الوزار[هة]/u,
+  /هذا\s+اثراء\s+تعليمي\s+اصلي\s+من\s+ضاديوم/u,
+  /ليست?\s+من\s+نص\s+الكتاب\s+الرسمي/u,
 ];
 
 function normalizedArabicText(value: string): string {
   return value
     .normalize("NFKC")
-    .replace(/[\\u064B-\\u065F\\u0670\\u06D6-\\u06ED]/gu, "")
+    .replace(/[\u064B-\u065F\u0670\u06D6-\u06ED]/gu, "")
     .replace(/ـ/gu, "")
     .replace(/[إأآٱ]/gu, "ا")
     .replace(/ى/gu, "ي");
