@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { formatArabicCount } from "@/lib/arabic/counts.mjs";
 import StudentGamificationHub from "@/features/gamification/components/StudentGamificationHub";
 import SkillsProgressCard from "@/components/dashboard/student/skills-progress-card";
 import Link from "next/link";
@@ -532,7 +533,7 @@ if (masterySkillsError) {
               <div>
                 <h2 className="text-xl font-black text-slate-900">مسار التعلم</h2>
                 <p className="mt-1 text-sm text-slate-500">
-                  {dashboard.completedLessons} من {dashboard.totalLessons} دروس مكتملة
+                  {formatArabicCount(dashboard.completedLessons, "lesson")} من أصل {formatArabicCount(dashboard.totalLessons, "lesson")}
                 </p>
               </div>
               <Link href="/courses" className="text-sm font-black text-teal-700 hover:underline">
