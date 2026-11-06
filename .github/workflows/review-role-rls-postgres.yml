@@ -9,6 +9,9 @@ on:
       - 'docs/security/REVIEW_ONLY_ROLE_APPROVAL_AND_RLS_2026-11-06.sql'
       - 'tests/fixtures/auth-profile-role-postgres-setup.sql'
       - 'tests/auth-profile-role-postgres-integration.sql'
+      - 'docs/security/REVIEW_ONLY_PRIVILEGED_TEACHER_WRITES_2026-11-06.sql'
+      - 'tests/fixtures/role-approved-writes-postgres-setup.sql'
+      - 'tests/approved-teacher-writes-postgres-integration.sql'
       - '.github/workflows/review-role-rls-postgres.yml'
   workflow_dispatch:
 
@@ -55,3 +58,9 @@ jobs:
         run: psql -v ON_ERROR_STOP=1 -f docs/security/REVIEW_ONLY_ROLE_APPROVAL_AND_RLS_2026-11-06.sql
       - name: Verify signup isolation, immutable roles and pending approvals
         run: psql -v ON_ERROR_STOP=1 -f tests/auth-profile-role-postgres-integration.sql
+      - name: Create disposable teacher-resource owner-write fixtures
+        run: psql -v ON_ERROR_STOP=1 -f tests/fixtures/role-approved-writes-postgres-setup.sql
+      - name: Apply restrictive teacher write policies to disposable database only
+        run: psql -v ON_ERROR_STOP=1 -f docs/security/REVIEW_ONLY_PRIVILEGED_TEACHER_WRITES_2026-11-06.sql
+      - name: Deny unapproved Data API writes and allow approved only
+        run: psql -v ON_ERROR_STOP=1 -f tests/approved-teacher-writes-postgres-integration.sql
