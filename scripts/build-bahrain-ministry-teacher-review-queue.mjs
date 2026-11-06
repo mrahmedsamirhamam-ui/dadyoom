@@ -105,8 +105,10 @@ const review = triage.comparisons.map(item => {
 });
 
 const priorityOrder = { P0: 0, P1: 1, P2: 2 };
-review.sort((a,b) => priorityOrder[a.priority]-priorityOrder[b.priority] ||
-  a.grade-b.grade || a.officialId.localeCompare(b.officialId,"en"));
+// Honour the agreed work sequence: grade 1, then 2, then 3. Priorities rank
+// the teacher tasks WITHIN each grade, never skip grade-one curriculum work.
+review.sort((a,b) => a.grade-b.grade || priorityOrder[a.priority]-priorityOrder[b.priority] ||
+  a.officialId.localeCompare(b.officialId,"en"));
 const gradeBreakdown = [1,2,3].map(grade => {
   const subset=review.filter(x=>x.grade===grade);
   return {grade, reviewed:0, items:subset.length,
