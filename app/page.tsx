@@ -8,10 +8,10 @@ export const metadata: Metadata = {
 };
 
 const pillars = [
-  { icon: "📚", title: "منهج حقيقي منظم", text: "بوابة مبنية للدول العربية: من الدولة والمنهج والصف إلى الوحدة والدرس، مع حزم محتوى موثقة قابلة للإضافة دون إعادة برمجة." },
-  { icon: "ض", title: "ضاد رفيق العربية", text: "شرح وتلميحات وتدريب يفهم لهجتك ويعلّمك بفصحى سهلة دون أن يستبدل المعلم." },
-  { icon: "✦", title: "رحلة تناسب المتعلم", text: "تقدم وتقييم وتوصيات ومكافآت تجعل الخطوة التالية واضحة بدل التنقل العشوائي." },
-  { icon: "👥", title: "منظومة تعليم كاملة", text: "تجارب مترابطة للطالب والمعلم وولي الأمر والمدرسة مع صلاحيات واضحة لكل دور." },
+  { icon: "📚", title: "منهج حقيقي منظم", text: "اختر الدولة والصف، ثم افتح الوحدة والدرس المتاحين." },
+  { icon: "ض", title: "ضاد رفيق العربية", text: "اسأل ضاد عن كلمة أو قاعدة، وراجع الإجابة مع معلمك." },
+  { icon: "✦", title: "رحلة تناسب المتعلم", text: "تدرّب على ما تعلمته، ثم انتقل إلى الدرس التالي." },
+  { icon: "👥", title: "منظومة تعليم كاملة", text: "مسارات مخصصة للطالب والمعلم وولي الأمر والمدرسة." },
 ];
 
 const skills = [
@@ -112,7 +112,7 @@ export default function HomePage() {
 
       <section id="mvp" className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow="بوابة مناهج عربية" title="المنهج الأساسي جاهز، والمعلم يثريه بدل أن يبدأ من الصفر" text="البحرين هي أول حزمة منشورة، وليست حدود ضاديوم. بنية المنصة مصممة لتستقبل حزم الدول والصفوف والفصول الدراسية مع الحفاظ على مصدر وإصدار كل منهج." />
+          <SectionHeading eyebrow="بوابة مناهج عربية" title="اختر بلدك وصفّك، ثم افتح الدرس المتاح" text="تختلف الدروس المتاحة من بلد إلى آخر ومن صف إلى آخر. راجع قائمة الدروس المنشورة قبل البدء." />
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {pillars.map((item) => (
               <article key={item.title} className="arabic-panel rounded-3xl border border-[#e2d4b8] p-6 shadow-sm transition hover:-translate-y-1 hover:border-[#c8ab68] hover:shadow-lg">
@@ -148,6 +148,19 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section aria-labelledby="roles-title" className="px-4 py-10">
+        <div className="mx-auto max-w-6xl">
+          <h2 id="roles-title" className="text-xl font-black text-[#174f47]">ضاديوم لكل من يتعلّم ويعلّم</h2>
+          <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
+            {[{ title: "طالب", detail: "تعلّم وتدرّب", href: "/signup" }, { title: "معلم", detail: "أنشئ فصلك في أقل من دقيقة", href: "/signup" }, { title: "ولي أمر", detail: "تابع رحلة التعلم", href: "/signup" }, { title: "مدرسة", detail: "تعرّف على ضاديوم", href: "/about" }].map((role) => (
+              <Link key={role.title} href={role.href} className="rounded-2xl border border-[#dfd2b9] bg-white p-4">
+                <h3 className="font-black">{role.title}</h3><p className="mt-1 text-sm text-[#50685b]">{role.detail}</p>
+              </Link>
+            ))}
+          </div>
+          <p className="mt-2 text-xs text-[#655c51]">الروابط تفتح التسجيل أو التعريف؛ لم يُتحقق من زمن إنشاء الفصل أو صفحة المعلم المستقلة.</p>
+        </div>
+      </section>
       <section className="py-20">
         <div className="mx-auto max-w-5xl overflow-hidden rounded-[2.5rem] bg-[#174f47] p-8 text-white shadow-xl sm:p-12">
           <div className="flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between">
