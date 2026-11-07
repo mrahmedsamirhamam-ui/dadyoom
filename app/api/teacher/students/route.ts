@@ -38,6 +38,11 @@ export async function GET() {
     .in("id", studentIds);
   if (profileError) return NextResponse.json({ error: "Unable to load students" }, { status: 503 });
 
+  // RLS may hide linked profiles. Never present a partial roster as complete.
+  if ((profiles ?? []).length !== studentIds.length) {
+    return NextResponse.json({ error: "Linked profile access is incomplete" }, { status: 503 });
+  }
+
   return NextResponse.json({
     students: (profiles ?? []).map((profile) => ({
       id: profile.id,
