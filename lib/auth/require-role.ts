@@ -8,9 +8,9 @@ export type RoleCheckResult =
   | { ok: false; reason: "unauthenticated" | "forbidden" | "unavailable" };
 
 /**
- * Server-only role check using the authenticated user's own profile under RLS.
- * Fail closed: absent/unknown roles and query errors never grant access.
- * School/ministry tenant scope must be checked separately on each resource.
+ * Validate the current session and read the server-trusted profile role.
+ * Production profiles has id and role, but no is_active column (verified).
+ * Tenant/resource ownership must be checked independently for every request.
  */
 export async function requireRole(
   allowedRoles: readonly AppRole[],
@@ -23,14 +23,12 @@ export async function requireRole(
 
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
-    .select("role, is_active")
+    .select("role")
     .eq("id", identity.user.id)
     .maybeSingle();
 
   if (profileError) return { ok: false, reason: "unavailable" };
-  if (!profile || profile.is_active !== true) {
-    return { ok: false, reason: "forbidden" };
-  }
+  if (!profile) return { ok: false, reason: "forbidden" };
 
   const role = normalizeAppRole(profile.role);
   if (!hasAnyRole(role, allowedRoles)) {
