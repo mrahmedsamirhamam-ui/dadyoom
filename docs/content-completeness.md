@@ -1,0 +1,99 @@
+# تقرير اكتمال المحتوى
+
+**النطاق:** منصة ضاديوم الأساسية فقط. فحص قراءة فقط بتاريخ 2026-11-07. لا مساس بمشاريع المدارس الستة أو بيانات الإنتاج.
+
+## تخزين البيانات
+`countries(id,name_ar,code,is_active)` ← `curricula(id,country_id,academic_year,is_active)` ← `grades(id,curriculum_id,grade_number,is_active)` ← `units(id,grade_id,title,semester)` ← `lessons(id,unit_id,title,status,content,summary,official_content_scope)`. النشر بحسب `lessons.status = 'published'`.
+
+## الإجمالي الفعلي
+**8,461 سجلًا، منها 8,314 منشورًا و147 مسودة.** الأرقام المتوقعة 590/468/122 لا تطابق جدول الدروس الحالي.
+
+## ترتيب الدول بحسب نسبة السجلات المنشورة
+| الدولة | الكلي | المنشور | النسبة |
+|---|---:|---:|---:|
+| الأردن | 394 | 394 | 100% |
+| الإمارات | 288 | 288 | 100% |
+| الجزائر | 354 | 354 | 100% |
+| السعودية | 422 | 422 | 100% |
+| السودان | 309 | 309 | 100% |
+| الصومال | 228 | 228 | 100% |
+| العراق | 237 | 237 | 100% |
+| الكويت | 303 | 303 | 100% |
+| المغرب | 231 | 231 | 100% |
+| جزر القمر | 228 | 228 | 100% |
+| جيبوتي | 384 | 384 | 100% |
+| سوريا | 228 | 228 | 100% |
+| قطر | 240 | 240 | 100% |
+| لبنان | 264 | 264 | 100% |
+| ليبيا | 349 | 349 | 100% |
+| مصر | 373 | 373 | 100% |
+| موريتانيا | 497 | 497 | 100% |
+| اليمن | 242 | 239 | 98.76% |
+| عُمان | 309 | 302 | 97.73% |
+| تونس | 255 | 247 | 96.86% |
+| البحرين | 1817 | 1718 | 94.55% |
+| فلسطين | 509 | 479 | 94.11% |
+
+**تنبيه:** 100% هنا نسبة حالة نشر السجلات فقط، وليست نسبة اكتمال المنهج الرسمي. مصر والسعودية مرشحتان مبدئيًا للترويج لتنوع الجمهور المصري والخليجي مع عدم وجود مسودات في بياناتهما؛ لا توجد أدلة كافية لترتيبهما فوق بقية الدول المتساوية في نسبة النشر بناء على الجودة أو الطلب.
+
+## جدول الدولة ← الصف ← الوحدة (استعلام التقرير التفصيلي)
+لم يُسترجع كامل الجدول التفصيلي داخل هذه الجلسة، لذا لا أعرض صفوفًا أو نسبًا مختلقة. الاستعلام التالي **قراءة فقط** ويولد الجدول المطلوب:
+
+```sql
+select c.name_ar as country,g.grade_number as grade,u.title as unit,
+ count(l.id) as total,
+ count(l.id) filter (where l.status='published') as published,
+ round(100.0*count(l.id) filter (where l.status='published')/nullif(count(l.id),0),2) as published_percent
+from public.units u
+join public.grades g on g.id=u.grade_id
+join public.curricula cu on cu.id=g.curriculum_id
+join public.countries c on c.id=cu.country_id
+left join public.lessons l on l.unit_id=u.id
+group by c.name_ar,g.grade_number,u.id,u.title
+order by c.name_ar,g.grade_number,u.title;
+```
+
+## الدروس غير المنشورة
+147 مسودة: **البحرين 99، فلسطين 30، تونس 8، عُمان 7، اليمن 3**. من قراءة السجلات، تشمل مسودات البحرين الصفوف 2–9، وفلسطين الصفوف 1–3، وتونس الصفوف 10–13، وعُمان 10–11، واليمن 10–12. **ثمانية سجلات تونسية** بلا نص درس؛ بعضها فهارس كتب، فلا يجوز تصنيفها تلقائيًا محتوى ناقصًا. بقية المسودات ليس لها سبب تحريري موثّق في الأعمدة التي فُحصت.
+
+لإظهار القائمة التفصيلية:
+```sql
+select c.name_ar country,g.grade_number grade,u.title unit,l.title lesson,l.status,
+case when nullif(btrim(coalesce(l.content,'')),'') is null then 'نص غير موجود أو فهرس كتاب'
+when nullif(btrim(coalesce(l.summary,'')),'') is null then 'ملخص غير موجود'
+else 'مسودة؛ السبب التحريري غير مسجل' end diagnostic_hint
+from public.lessons l join public.units u on u.id=l.unit_id
+join public.grades g on g.id=u.grade_id
+join public.curricula cu on cu.id=g.curriculum_id
+join public.countries c on c.id=cu.country_id
+where l.status is distinct from 'published'
+order by c.name_ar,g.grade_number,u.title,l.title;
+```
+
+## المسارات الفارغة
+**9 وحدات** لا تحتوي أي درس منشور وفق استعلام قاعدة البيانات. أسماء الوحدات التسع وظهورها للزائر **غير متحقق منهما في هذا التسليم**. لاسترجاعها:
+```sql
+select c.name_ar country,g.grade_number grade,u.title unit
+from public.units u join public.grades g on g.id=u.grade_id
+join public.curricula cu on cu.id=g.curriculum_id
+join public.countries c on c.id=cu.country_id
+where not exists(select 1 from public.lessons l where l.unit_id=u.id and l.status='published')
+order by c.name_ar,g.grade_number,u.title;
+```
+
+## الواجهة والروابط
+فُحص `app/page.tsx`: يحتوي روابط `/courses` و`/try`. فُحص `app/try/page.tsx`: يعرض تجربة قصيرة من سؤالين. لم يُعثر على `app/courses/page.tsx` أو `app/study/page.tsx` بالفحص المباشر، لكن لا يجوز استنتاج تعطل الرابط من ذلك وحده. **لم يتم إجراء اختبار HTTP أو تصفح حي**؛ لا روابط معطلة مؤكدة ولا إثبات ظهور الوحدات الفارغة للزائر.
+
+## خطة مقترحة دون تنفيذ (الأقل جهدًا والأعلى أثرًا)
+1. تصفية الوحدات والصفوف التي لا تحتوي دروسًا منشورة من الروابط العامة؛ عرض «قريبًا» دون رابط فارغ.
+2. اختبار جميع روابط الدليل والدروس كزائر غير مسجل، وتوثيق صفحات 404 أو القوائم الفارغة.
+3. مراجعة مسودات البحرين في الصفين الثاني والثالث، ثم فلسطين في الصفوف الأولى، وتحديد السبب التحريري لكل سجل.
+4. فصل فهارس الكتب عن الدروس الحقيقية في مؤشرات الاكتمال.
+5. تدقيق عينات مصر والسعودية ومطابقة مصادرها الرسمية قبل إبرازها على الواجهة.
+
+## غير متحقق منه
+- الجدول الكامل لكل دولة/صف/وحدة وقائمة أسماء المسودات الـ147 داخل ملف التقرير؛ الاستعلامات أعلاه قابلة للتنفيذ ولم تُنفّذ بالكامل في هذا التسليم.
+- أسماء الوحدات التسع الفارغة، والصفوف بلا وحدات، وظهور هذه المسارات للزائر.
+- أي رابط معطل بالفعل، ونتائج اختبار المتصفح.
+- اكتمال المناهج الرسمية وجودة الدروس المنشورة.
+- لم تُشغّل اختبارات البناء أو التطبيق؛ لم يُغيّر أي كود أو بيانات.
