@@ -33,6 +33,7 @@ export default function HomePage() {
             <Link href="/courses" className="transition hover:text-[#174f47]">استكشف الدروس</Link>
             <Link href="/ask" className="transition hover:text-[#174f47]">اسأل ضاد</Link>
             <Link href="/how-to-use" className="transition hover:text-[#174f47]">كيف تستخدم ضاديوم؟</Link>
+            <Link href="/pricing" className="transition hover:text-[#174f47]">الأسعار</Link>
             <Link href="/about" className="transition hover:text-[#174f47]">عن ضاديوم</Link>
             <Link href="/founder" className="transition hover:text-[#174f47]">المؤسس</Link>
           </nav>
@@ -51,11 +52,10 @@ export default function HomePage() {
               <span>✦</span><span>العربية تجمعنا، ولا تُذيب أحدًا</span>
             </div>
             <h1 className="mt-7 max-w-3xl font-arabic-display text-4xl font-bold leading-[1.5] text-[#173f35] sm:text-5xl lg:text-[3.55rem]">
-              ضاديوم — بيت عربي رقمي يجعل
-              <span className="block text-[#a8782f]">التعلّم رحلة مفهومة ومحبوبة</span>
+              تعلّم العربية بمنهج بلدك وصفّك، مجانًا
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-9 text-[#50685b] sm:text-xl">
-              ضاديوم (Dadyoom) يجمع منهجًا منظمًا، والمهارات الأربع، والتقييم والتقدم، و«ضاد» رفيقًا ذكيًا يساعد الطالب في اللحظة التي يحتاج فيها إلى شرح أو تدريب.
+              اختر بلدك وصفّك، وتعلّم من الدروس المتاحة، واسأل ضاد عندما تحتاج إلى شرح.
             </p>
             <p className="mt-3 text-sm font-bold text-[#7b7165]">
               الاسم الرسمي هو «ضاديوم» (Dadyoom). وإذا وصلت إلينا بالبحث عن «ضاضيوم» أو «داديوم» أو «ضاديو» أو Dadyoum، فأنت تبحث عن المنصة نفسها.
@@ -63,8 +63,8 @@ export default function HomePage() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/try" className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#174f47] px-7 py-3.5 font-bold text-white shadow-lg shadow-[#174f47]/15 transition-colors hover:bg-[#103f39] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47]">جرّب درسًا الآن دون تسجيل</Link>
-              <Link href="/signup" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[#bdd7c6] bg-white px-7 py-3.5 font-bold text-[#174f47] transition-colors hover:bg-[#edf5f0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47]">أنشئ حسابًا لحفظ تقدمك</Link>
+              <Link href="/try" className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#174f47] px-7 py-3.5 font-bold text-white shadow-lg shadow-[#174f47]/15 transition-colors hover:bg-[#103f39] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47]">ذاكر الآن دون تسجيل</Link>
+              <Link href="/signup" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[#bdd7c6] bg-white px-7 py-3.5 font-bold text-[#174f47] transition-colors hover:bg-[#edf5f0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#174f47]">إنشاء حساب مجاني</Link>
             </div>
             <nav aria-label="تجارب تعليمية يمكنك تجربتها" className="mt-5 flex flex-wrap gap-x-5 gap-y-3 text-sm font-semibold text-[#41685a]">
               <Link href="/ask" className="underline-offset-4 hover:underline">اسأل ضاد</Link>
@@ -72,11 +72,14 @@ export default function HomePage() {
               <Link href="/level-check" className="underline-offset-4 hover:underline">اكتشف مستواك</Link>
               <Link href="/how-to-use" className="underline-offset-4 hover:underline">كيف تستخدم ضاديوم؟</Link>
             </nav>
-            <div className="mt-9 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
-              <MiniStat value="22" label="دولة عربية في البنية" />
-              <MiniStat value="1" label="حزمة منهج منشورة" />
-              <MiniStat value="4" label="مهارات" />
-              <MiniStat value="24/7" label="ضاد" />
+            <div className="mt-7 rounded-2xl border border-[#dfd2b9] bg-white p-4">
+              <p className="font-bold text-[#174f47]">ابدأ ببلدك</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <Link href="/courses" className="rounded-xl bg-[#174f47] px-4 py-2 font-bold text-white">مصر</Link>
+                <Link href="/courses" className="rounded-xl bg-[#174f47] px-4 py-2 font-bold text-white">السعودية</Link>
+                <Link href="/courses" className="rounded-xl border px-4 py-2 font-bold">بقية الدول في دليل المناهج</Link>
+              </div>
+              <p className="mt-2 text-xs text-[#655c51]">اختر الدولة والصف من دليل المناهج؛ لا يعني ظهور الدولة اكتمال جميع دروسها.</p>
             </div>
           </div>
 
@@ -137,6 +140,14 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section aria-labelledby="real-lesson-title" className="border-y border-[#e3ebe2] bg-white px-4 py-12">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 id="real-lesson-title" className="text-3xl font-black text-[#174f47]">جرّب درسًا قصيرًا دون تسجيل</h2>
+          <p className="mt-3 text-[#50685b]">تجربة تفاعلية أصلية من سؤالين. لا نقدّمها على أنها درس منشور من منهج رسمي.</p>
+          <Link href="/try" className="mt-5 inline-flex min-h-12 items-center rounded-xl bg-[#174f47] px-6 py-3 font-bold text-white">ابدأ التجربة</Link>
+        </div>
+      </section>
+
       <section className="py-20">
         <div className="mx-auto max-w-5xl overflow-hidden rounded-[2.5rem] bg-[#174f47] p-8 text-white shadow-xl sm:p-12">
           <div className="flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between">
@@ -153,7 +164,7 @@ export default function HomePage() {
       <footer className="border-t border-[#315e57] bg-[#123f39] py-10 text-[#d9e8e3]">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
           <DadyoomLogo inverse />
-          <div className="text-sm">العربية تجمعنا، ولا تُذيب أحدًا.</div>
+          <div className="text-sm">العربية تجمعنا، ولا تُذيب أحدًا. <Link href="/pricing" className="mr-3 underline">الأسعار والخطط</Link></div>
           <div className="text-sm">
             <span>© 2026 ضاديوم</span>
             <span className="mx-2" aria-hidden="true">·</span>
