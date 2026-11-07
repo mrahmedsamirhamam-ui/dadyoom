@@ -187,15 +187,6 @@ function SectionHeading({ eyebrow, title, text }: { eyebrow: string; title: stri
   );
 }
 
-function MiniStat({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="rounded-2xl border border-[#dfd2b9] bg-[#fffef9] p-4 text-center shadow-sm">
-      <div className="text-xl font-black text-[#174f47]">{value}</div>
-      <div className="mt-1 text-xs font-bold text-[#746b60]">{label}</div>
-    </div>
-  );
-}
-
 function InfoCard({ icon, title, text }: { icon: string; title: string; text: string }) {
   return (
     <div className="rounded-2xl border border-[#e5d8bf] bg-[#faf5eb] p-4">
