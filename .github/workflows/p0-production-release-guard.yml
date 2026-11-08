@@ -1,0 +1,21 @@
+name: P0 production release guard (fail closed)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  security-release-decision:
+    name: Verify mandatory security evidence before any release
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify release decision is GO and independently evidenced
+        run: node scripts/security/assert-release-ready.mjs
+      - name: Unit-test guard against bypasses
+        run: node --test tests/security/release-ready-gate.node.test.mjs
+# No deploy job intentionally. Existing production deploy workflows and Cloudflare
+# integrations must be separately configured to depend on this check.
