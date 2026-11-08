@@ -1,0 +1,25 @@
+name: P0 profile completion fail-closed review
+on:
+  pull_request:
+    paths:
+      - 'app/api/auth/complete-profile/route.ts'
+      - 'tests/security/profile-completion-guard.node.test.mjs'
+      - '.github/workflows/p0-profile-completion-review.yml'
+  push:
+    branches: [fix/p0-profile-completion-fail-closed-20261108]
+permissions:
+  contents: read
+jobs:
+  profile-completion:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: node --test tests/security/profile-completion-guard.node.test.mjs
+      - run: npm ci --no-audit --no-fund
+      - run: npx tsc --noEmit
+      - run: npx eslint app/api/auth/complete-profile/route.ts
