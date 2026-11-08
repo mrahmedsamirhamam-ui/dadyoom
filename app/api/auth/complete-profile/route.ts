@@ -58,20 +58,23 @@ export async function POST(request: Request) {
   const admin = createAdminClient();
   // Existing profiles: update only non-authorization fields. New profiles:
   // INSERT, never UPSERT, to prevent a race overwriting a verified role.
-  const { error: writeError } = storedRole
+  const { data: writtenProfile, error: writeError } = storedRole
     ? await admin.from("profiles").update({ full_name: fullName, country })
-      .eq("id", user.id).eq("role", storedRole)
+      .eq("id", user.id).eq("role", storedRole).select("id,role").maybeSingle()
     : await admin.from("profiles").insert({
       id: user.id, email: user.email, full_name: fullName, role, country,
-    });
-  if (writeError) {
+    }).select("id,role").maybeSingle();
+  if (writeError || !writtenProfile || writtenProfile.role !== (storedRole || role)) {
     const { data: racedProfile, error: racedError } = await supabase
       .from("profiles").select("role,country,full_name").eq("id", user.id).maybeSingle();
     if (racedError || !racedProfile?.role || !racedProfile?.country || !racedProfile?.full_name?.trim()) {
       return NextResponse.json({ error: "تعذر إكمال ملف الحساب." }, { status: 503 });
     }
     const racedRole = racedProfile.role.trim().toLowerCase();
-    // Never report a successful role change based on a racing insert.
+    // A concurrent privileged-role change must never be treated as successful completion.
+    if (racedRole !== (storedRole || role)) {
+      return NextResponse.json({ error: "تغيرت صلاحيات الحساب؛ أعد تسجيل الدخول للتحقق." }, { status: 409 });
+    }
     return NextResponse.json({ ok: true, destination: destinations[racedRole] || "/student" });
   }
   return NextResponse.json({ ok: true, destination: destinations[storedRole || role] || "/student" });
