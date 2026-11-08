@@ -1,0 +1,34 @@
+name: P0 security evidence gate (no deployment)
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [ci/p0-security-evidence-gate-20261108]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  security-unit:
+    name: Server grading and answer-key safety
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Server-only grading and answer-key regression tests
+        run: npx vitest run tests/security/server-graded-mcq.test.ts tests/security/server-only-answer-key-read.test.ts
+      - name: Verify security evidence manifest is structurally valid
+        run: node scripts/security/verify-p0-evidence.mjs
+      - name: Upload review-only evidence summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p0-security-evidence
+          path: docs/security/P0_RELEASE_EVIDENCE.json
+          if-no-files-found: error
