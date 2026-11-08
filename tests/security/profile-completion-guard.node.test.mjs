@@ -20,3 +20,9 @@ test("profile lookup errors fail closed", () => {
   assert.match(source, /if \(lookupError\)/);
   assert.match(source, /status: 503/);
 });
+
+test("concurrent role changes cannot silently succeed", () => {
+  assert.match(source, /\.select\("id,role"\)\.maybeSingle\(\)/);
+  assert.match(source, /!writtenProfile \|\| writtenProfile\.role !== \(storedRole \|\| role\)/);
+  assert.match(source, /racedRole !== \(storedRole \|\| role\)/);
+});
