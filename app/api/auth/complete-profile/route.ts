@@ -9,6 +9,10 @@ const destinations: Record<string, string> = {
   parent: "/parent", school: "/school", admin: "/admin",
 };
 
+function storedExistingRole(profile: { role?: string | null } | null): string {
+  return typeof profile?.role === "string" ? profile.role.trim().toLowerCase() : "";
+}
+
 export async function POST(request: Request) {
   const supabase = await createClient();
   const { data: { user }, error: userError } = await supabase.auth.getUser();
@@ -41,13 +45,13 @@ export async function POST(request: Request) {
 
   // A requested teacher/school role is NEVER proof of entitlement.
   // Do not create a privileged profile through the service-role client.
-  if (!allowedSelfSignupRoles.has(role)) {
+  if (!allowedSelfSignupRoles.has(role) && !(storedExistingRole(existing) === role)) {
     return NextResponse.json(
       { error: "صلاحيات المعلم والمدرسة تتطلب اعتمادًا إداريًا منفصلًا." },
       { status: 403, headers: { "Cache-Control": "no-store" } },
     );
   }
-  const storedRole = typeof existing?.role === "string" ? existing.role.trim().toLowerCase() : "";
+  const storedRole = storedExistingRole(existing);
   if (storedRole && storedRole !== role) {
     return NextResponse.json(
       { error: "لا يمكن تغيير نوع الحساب من صفحة إكمال البيانات." },
