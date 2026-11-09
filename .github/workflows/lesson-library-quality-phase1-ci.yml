@@ -1,0 +1,37 @@
+name: Lesson library quality phase 1 — no deploy
+on:
+  push:
+    branches:
+      - feat/lesson-library-quality-phase1-20261109
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  code-only-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      # Never inject production keys into this review-only build.
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install from lockfile
+        run: npm ci --no-audit --no-fund
+      - name: Arabic QA data and scoring
+        run: |
+          node --test tests/dad-arabic-qa.node.test.mjs
+          node scripts/dad-arabic-benchmark.mjs
+      - name: Workflow and badge rules
+        run: npx vitest run tests/lesson-review-model.test.ts
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: Lint changed code
+        run: npx eslint lib/lesson-review app/admin/quality app/api/admin/quality tests/lesson-review-model.test.ts
+      - name: Build only (no deploy)
+        run: npm run build
