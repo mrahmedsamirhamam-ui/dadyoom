@@ -70,7 +70,7 @@ UPDATE public.profile_role_requests SET status='rejected', reviewed_at=now(),
 WHERE user_id='aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa';
 SET ROLE authenticated;
 SELECT set_config('request.jwt.claim.sub','aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa',false);
-DO $
+DO $$
 BEGIN
   -- UPDATE with a restrictive USING policy can affect zero rows rather than
   -- raising 42501. Verify the protected field, not only the HTTP/SQL status.
@@ -78,6 +78,6 @@ BEGIN
   IF EXISTS (SELECT 1 FROM public.teacher_classes WHERE title='after-revocation') THEN
     RAISE EXCEPTION 'Revoked teacher could update own class';
   END IF;
-END $;
+END $$;
 RESET ROLE;
 \echo 'DISPOSABLE APPROVAL-GATED TEACHER DATA API REGRESSION PASSED'
