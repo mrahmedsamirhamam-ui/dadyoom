@@ -74,6 +74,22 @@ CREATE TRIGGER trg_lesson_quality_axis_audit
 AFTER INSERT OR UPDATE ON public.lesson_quality_axis_reviews
 FOR EACH ROW EXECUTE FUNCTION public.log_lesson_quality_axis();
 
+-- Once approved, axes are frozen. Reopening is a separate reviewed process.
+CREATE OR REPLACE FUNCTION public.guard_lesson_quality_axis()
+RETURNS trigger LANGUAGE plpgsql SET search_path=pg_catalog,public AS $
+BEGIN
+ IF EXISTS (SELECT 1 FROM public.lesson_review_workflows
+            WHERE lesson_id=NEW.lesson_id AND stage IN ('approved','published')) THEN
+    RAISE EXCEPTION 'APPROVED_LESSON_AXES_ARE_FROZEN';
+ END IF;
+ RETURN NEW;
+END;
+$;
+DROP TRIGGER IF EXISTS trg_lesson_quality_axis_guard ON public.lesson_quality_axis_reviews;
+CREATE TRIGGER trg_lesson_quality_axis_guard
+BEFORE INSERT OR UPDATE ON public.lesson_quality_axis_reviews
+FOR EACH ROW EXECUTE FUNCTION public.guard_lesson_quality_axis();
+
 -- Only the server service_role may read/write these private review records.
 -- Do not expose through anon or authenticated PostgREST access.
 ALTER TABLE public.lesson_review_workflows ENABLE ROW LEVEL SECURITY;
@@ -86,7 +102,7 @@ REVOKE ALL ON public.lesson_review_workflows, public.lesson_quality_axis_reviews
  FROM PUBLIC, anon, authenticated;
 GRANT SELECT, INSERT, UPDATE ON public.lesson_review_workflows, public.lesson_quality_axis_reviews TO service_role;
 GRANT SELECT, INSERT ON public.lesson_review_events, public.lesson_review_versions, public.lesson_quality_axis_events TO service_role;
-GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO service_role;
+GRANT USAGE, SELECT ON SEQUENCE public.lesson_review_events_id_seq, public.lesson_quality_axis_events_id_seq TO service_role;
 
 -- Atomic monotonic transitions. No change to lessons.status or the public site.
 CREATE OR REPLACE FUNCTION public.advance_lesson_review(
