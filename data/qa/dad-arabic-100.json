@@ -1,0 +1,907 @@
+{
+  "name": "ضاد: مجموعة 100 سؤال لغوي",
+  "dataset_version": "phase1-20261109",
+  "approval": "not_approved",
+  "questions": [
+    {
+      "id": "DAD-AR-001",
+      "category": "نحو",
+      "question": "ما نوع كلمة «الطالبُ» في جملة «حضر الطالبُ»؟",
+      "expected_answer": "فاعل",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-002",
+      "category": "نحو",
+      "question": "ما إعراب «مجتهدٌ» في «الطالبُ مجتهدٌ»؟",
+      "expected_answer": "خبر مرفوع",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-003",
+      "category": "نحو",
+      "question": "ما نوع الجملة «العلمُ نورٌ»؟",
+      "expected_answer": "جملة اسمية",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-004",
+      "category": "نحو",
+      "question": "ما نوع الجملة «كتبَ الطفلُ»؟",
+      "expected_answer": "جملة فعلية",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-005",
+      "category": "نحو",
+      "question": "ما علامة رفع المثنى؟",
+      "expected_answer": "الألف",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-006",
+      "category": "نحو",
+      "question": "ما علامة نصب جمع المذكر السالم؟",
+      "expected_answer": "الياء",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-007",
+      "category": "نحو",
+      "question": "ما نوع «في» في «في المدرسة»؟",
+      "expected_answer": "حرف جر",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-008",
+      "category": "نحو",
+      "question": "ما إعراب «الكتابَ» في «قرأ الطالبُ الكتابَ»؟",
+      "expected_answer": "مفعول به منصوب",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-009",
+      "category": "نحو",
+      "question": "أي كلمة هي المبتدأ في «الحديقةُ جميلةٌ»؟",
+      "expected_answer": "الحديقةُ",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-010",
+      "category": "نحو",
+      "question": "ما علامة جزم الفعل المضارع الصحيح الآخر؟",
+      "expected_answer": "السكون",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-011",
+      "category": "صرف",
+      "question": "ما الماضي من الفعل «يكتب»؟",
+      "expected_answer": "كتب",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-012",
+      "category": "صرف",
+      "question": "ما المضارع من «ذهب»؟",
+      "expected_answer": "يذهب",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-013",
+      "category": "صرف",
+      "question": "ما الأمر من «جلس» للمفرد المذكر؟",
+      "expected_answer": "اجلس",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-014",
+      "category": "صرف",
+      "question": "ما جمع «قلم»؟",
+      "expected_answer": "أقلام",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-015",
+      "category": "صرف",
+      "question": "ما مفرد «مدارس»؟",
+      "expected_answer": "مدرسة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-016",
+      "category": "صرف",
+      "question": "ما جمع المذكر السالم لكلمة «معلم» في حالة الرفع؟",
+      "expected_answer": "معلمون",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-017",
+      "category": "صرف",
+      "question": "ما جمع المؤنث السالم لكلمة «معلمة»؟",
+      "expected_answer": "معلمات",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-018",
+      "category": "صرف",
+      "question": "ما اسم الفاعل من «كتب»؟",
+      "expected_answer": "كاتب",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-019",
+      "category": "صرف",
+      "question": "ما اسم المفعول من «كتب»؟",
+      "expected_answer": "مكتوب",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-020",
+      "category": "صرف",
+      "question": "ما الفعل الثلاثي المجرد من «استخرج»؟",
+      "expected_answer": "خرج",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-021",
+      "category": "إملاء",
+      "question": "اختر الكتابة الصحيحة: «مدرسة» أم «مدرسا»؟",
+      "expected_answer": "مدرسة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-022",
+      "category": "إملاء",
+      "question": "اختر الكتابة الصحيحة: «اللغة» أم «الغلة» للدلالة على اللسان؟",
+      "expected_answer": "اللغة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-023",
+      "category": "إملاء",
+      "question": "اختر الكتابة الصحيحة: «مسؤول» أم «مسئول» وفق الرسم المدرسي الشائع؟",
+      "expected_answer": "مسؤول",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-024",
+      "category": "إملاء",
+      "question": "أيّهما أصحّ للكلمة الدالة على الفهم: «قراءة» أم «قرائة»؟",
+      "expected_answer": "قراءة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-025",
+      "category": "إملاء",
+      "question": "اختر: «تلميذ» أم «تلميز»؟",
+      "expected_answer": "تلميذ",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-026",
+      "category": "إملاء",
+      "question": "اختر: «كتاب» أم «كتتب»؟",
+      "expected_answer": "كتاب",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-027",
+      "category": "إملاء",
+      "question": "اختر: «مكتبة» أم «مكتبه» لمكان الكتب؟",
+      "expected_answer": "مكتبة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-028",
+      "category": "إملاء",
+      "question": "اختر: «صديق» أم «صديك»؟",
+      "expected_answer": "صديق",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-029",
+      "category": "إملاء",
+      "question": "اختر: «سماء» أم «سما» عند قصد الاسم المنوّن؟",
+      "expected_answer": "سماء",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-030",
+      "category": "إملاء",
+      "question": "اختر كتابة اللون: «أحمر» أم «احمر»؟",
+      "expected_answer": "أحمر",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-031",
+      "category": "همزات",
+      "question": "ما نوع الهمزة في «أحمد»؟",
+      "expected_answer": "همزة قطع",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-032",
+      "category": "همزات",
+      "question": "ما نوع الهمزة في «اسم»؟",
+      "expected_answer": "همزة وصل",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-033",
+      "category": "همزات",
+      "question": "ما نوع الهمزة في «ابن»؟",
+      "expected_answer": "همزة وصل",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-034",
+      "category": "همزات",
+      "question": "ما نوع الهمزة في «إلى»؟",
+      "expected_answer": "همزة قطع",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-035",
+      "category": "همزات",
+      "question": "اختر الصحيح: «أكرم» أم «اكرم» عند قصد الفعل الماضي؟",
+      "expected_answer": "أكرم",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-036",
+      "category": "همزات",
+      "question": "اختر الصحيح: «استمع» أم «إستمع»؟",
+      "expected_answer": "استمع",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-037",
+      "category": "همزات",
+      "question": "اختر الصحيح: «إنسان» أم «انسان»؟",
+      "expected_answer": "إنسان",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-038",
+      "category": "همزات",
+      "question": "اختر الصحيح: «سؤال» أم «سئال»؟",
+      "expected_answer": "سؤال",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-039",
+      "category": "همزات",
+      "question": "اختر الصحيح: «مؤمن» أم «مأمن» للمُصدِّق؟",
+      "expected_answer": "مؤمن",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-040",
+      "category": "همزات",
+      "question": "اختر الصحيح: «شاطئ» أم «شاطأ»؟",
+      "expected_answer": "شاطئ",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-041",
+      "category": "التاء والهاء",
+      "question": "ما الحرف الأخير في «شجرة»؟",
+      "expected_answer": "تاء مربوطة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-042",
+      "category": "التاء والهاء",
+      "question": "ما الحرف الأخير في «بيت»؟",
+      "expected_answer": "تاء مفتوحة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-043",
+      "category": "التاء والهاء",
+      "question": "ما الحرف الأخير في «وجه»؟",
+      "expected_answer": "هاء",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-044",
+      "category": "التاء والهاء",
+      "question": "اختر كلمة تنتهي بتاء مربوطة: «حديقة» أم «حديقت»؟",
+      "expected_answer": "حديقة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-045",
+      "category": "التاء والهاء",
+      "question": "اختر الصحيح في جمع «معلمة»: «معلمات» أم «معلمةات»؟",
+      "expected_answer": "معلمات",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-046",
+      "category": "التاء والهاء",
+      "question": "هل التاء في «بنت» مفتوحة أم مربوطة؟",
+      "expected_answer": "مفتوحة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-047",
+      "category": "التاء والهاء",
+      "question": "هل التاء في «نافذة» مربوطة أم مفتوحة؟",
+      "expected_answer": "مربوطة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-048",
+      "category": "التاء والهاء",
+      "question": "ما الحرف الأخير في «كتابُه»؟",
+      "expected_answer": "هاء",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-049",
+      "category": "التاء والهاء",
+      "question": "اختر الصحيح لاسم صفة: «جميلة» أم «جميله»؟",
+      "expected_answer": "جميلة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-050",
+      "category": "التاء والهاء",
+      "question": "اختر الصحيح: «رحمة» أم «رحمت» في حالة الوقف كتابةً؟",
+      "expected_answer": "رحمة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-051",
+      "category": "الضاد والظاء",
+      "question": "اختر الصحيح: «ضوء» أم «ظوء»؟",
+      "expected_answer": "ضوء",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-052",
+      "category": "الضاد والظاء",
+      "question": "اختر الصحيح: «ظل» أم «ضل» بمعنى الفيء؟",
+      "expected_answer": "ظل",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-053",
+      "category": "الضاد والظاء",
+      "question": "اختر الصحيح: «أرض» أم «أرظ»؟",
+      "expected_answer": "أرض",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-054",
+      "category": "الضاد والظاء",
+      "question": "اختر الصحيح: «عظيم» أم «عضيم»؟",
+      "expected_answer": "عظيم",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-055",
+      "category": "الضاد والظاء",
+      "question": "اختر الصحيح: «أبيض» أم «أبيظ»؟",
+      "expected_answer": "أبيض",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-056",
+      "category": "الضاد والظاء",
+      "question": "اختر الصحيح: «ظرف» أم «ضرف» بمعنى غلاف الرسالة؟",
+      "expected_answer": "ظرف",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-057",
+      "category": "الضاد والظاء",
+      "question": "اختر الصحيح: «رياضة» أم «رياظة»؟",
+      "expected_answer": "رياضة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-058",
+      "category": "الضاد والظاء",
+      "question": "اختر الصحيح: «حفظ» أم «حفض»؟",
+      "expected_answer": "حفظ",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-059",
+      "category": "الضاد والظاء",
+      "question": "اختر الصحيح: «حضور» أم «حظور»؟",
+      "expected_answer": "حضور",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-060",
+      "category": "الضاد والظاء",
+      "question": "اختر الصحيح: «نظيف» أم «نضيف» بمعنى غير متّسخ؟",
+      "expected_answer": "نظيف",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-061",
+      "category": "الترقيم",
+      "question": "ما العلامة التي توضع نهاية السؤال المباشر بالعربية؟",
+      "expected_answer": "؟",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-062",
+      "category": "الترقيم",
+      "question": "ما العلامة التي توضع نهاية الجملة الخبرية التامة؟",
+      "expected_answer": ".",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-063",
+      "category": "الترقيم",
+      "question": "ما اسم العلامة «،»؟",
+      "expected_answer": "الفاصلة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-064",
+      "category": "الترقيم",
+      "question": "ما اسم العلامة «؛»؟",
+      "expected_answer": "الفاصلة المنقوطة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-065",
+      "category": "الترقيم",
+      "question": "ما اسم العلامة «:»؟",
+      "expected_answer": "النقطتان الرأسيتان",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-066",
+      "category": "الترقيم",
+      "question": "أي علامة تناسب «ما أجمل السماء» عند التعجب؟",
+      "expected_answer": "!",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-067",
+      "category": "الترقيم",
+      "question": "ما العلامة التي تحيط بالكلام المنقول حرفيًا؟",
+      "expected_answer": "علامتا التنصيص",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-068",
+      "category": "الترقيم",
+      "question": "ما العلامة التي تفصل بين عناصر تعداد قصير؟",
+      "expected_answer": "الفاصلة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-069",
+      "category": "الترقيم",
+      "question": "ما العلامة التي تأتي غالبًا قبل تفصيل ما أُجمل؟",
+      "expected_answer": "النقطتان الرأسيتان",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-070",
+      "category": "الترقيم",
+      "question": "ما العلامة التي توضع في نهاية «أين كتابك»؟",
+      "expected_answer": "؟",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-071",
+      "category": "أساليب",
+      "question": "ما نوع الأسلوب «هل قرأت الدرس؟»؟",
+      "expected_answer": "استفهام",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-072",
+      "category": "أساليب",
+      "question": "ما نوع الأسلوب «لا تُهمِلْ واجبك»؟",
+      "expected_answer": "نهي",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-073",
+      "category": "أساليب",
+      "question": "ما نوع الأسلوب «اكتبْ بخط واضح»؟",
+      "expected_answer": "أمر",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-074",
+      "category": "أساليب",
+      "question": "ما نوع الأسلوب «ما أجملَ الربيعَ!»؟",
+      "expected_answer": "تعجب",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-075",
+      "category": "أساليب",
+      "question": "ما نوع الأسلوب «يا محمدُ»؟",
+      "expected_answer": "نداء",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-076",
+      "category": "أساليب",
+      "question": "ما أداة الاستفهام للسؤال عن المكان؟",
+      "expected_answer": "أين",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-077",
+      "category": "أساليب",
+      "question": "ما أداة الاستفهام للسؤال عن الزمان؟",
+      "expected_answer": "متى",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-078",
+      "category": "أساليب",
+      "question": "ما أداة الاستفهام للسؤال عن السبب؟",
+      "expected_answer": "لماذا",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-079",
+      "category": "أساليب",
+      "question": "ما أداة النفي في «لم يلعبْ الطفل»؟",
+      "expected_answer": "لم",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-080",
+      "category": "أساليب",
+      "question": "ما نوع الأسلوب «ليت الشباب يعود»؟",
+      "expected_answer": "تمنٍّ",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-081",
+      "category": "تشكيل",
+      "question": "ما حركة الحرف الأخير من الفاعل المفرد في «جاءَ الطفلُ»؟",
+      "expected_answer": "الضمة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-082",
+      "category": "تشكيل",
+      "question": "ما حركة الحرف الأخير من المفعول به المفرد في «رأيتُ الطفلَ»؟",
+      "expected_answer": "الفتحة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-083",
+      "category": "تشكيل",
+      "question": "ما حركة الحرف الأخير من الاسم المفرد بعد «في» في «في البيتِ»؟",
+      "expected_answer": "الكسرة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-084",
+      "category": "تشكيل",
+      "question": "ما حركة الراء في «رَسَمَ»؟",
+      "expected_answer": "الفتحة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-085",
+      "category": "تشكيل",
+      "question": "ما حركة السين في «سُمِعَ»؟",
+      "expected_answer": "الضمة",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-086",
+      "category": "تشكيل",
+      "question": "ما حركة اللام في «عِلْم»؟",
+      "expected_answer": "السكون",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-087",
+      "category": "تشكيل",
+      "question": "ما علامة تنوين الرفع؟",
+      "expected_answer": "ضمتان",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-088",
+      "category": "تشكيل",
+      "question": "ما علامة تنوين النصب؟",
+      "expected_answer": "فتحتان",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-089",
+      "category": "تشكيل",
+      "question": "ما علامة تنوين الجر؟",
+      "expected_answer": "كسرتان",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-090",
+      "category": "تشكيل",
+      "question": "ما الحركة التي تظهر على آخر «كتابٌ»؟",
+      "expected_answer": "تنوين الضم",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-091",
+      "category": "معجم ودلالة",
+      "question": "ما ضد «كبير»؟",
+      "expected_answer": "صغير",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-092",
+      "category": "معجم ودلالة",
+      "question": "ما ضد «الصدق»؟",
+      "expected_answer": "الكذب",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-093",
+      "category": "معجم ودلالة",
+      "question": "ما مرادف «سعيد»؟",
+      "expected_answer": "فرح",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-094",
+      "category": "معجم ودلالة",
+      "question": "ما مفرد «أصدقاء»؟",
+      "expected_answer": "صديق",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-095",
+      "category": "معجم ودلالة",
+      "question": "ما جمع «ولد»؟",
+      "expected_answer": "أولاد",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-096",
+      "category": "معجم ودلالة",
+      "question": "ما ضد «قريب»؟",
+      "expected_answer": "بعيد",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-097",
+      "category": "معجم ودلالة",
+      "question": "ما ضد «سريع»؟",
+      "expected_answer": "بطيء",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-098",
+      "category": "معجم ودلالة",
+      "question": "ما مرادف «طريق»؟",
+      "expected_answer": "سبيل",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-099",
+      "category": "معجم ودلالة",
+      "question": "ما مرادف «بيت»؟",
+      "expected_answer": "منزل",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    },
+    {
+      "id": "DAD-AR-100",
+      "category": "معجم ودلالة",
+      "question": "ما ضد «نهار»؟",
+      "expected_answer": "ليل",
+      "review_status": "needs_teacher_review",
+      "review_note": "تحتاج مراجعة معلم لغة",
+      "approved": false
+    }
+  ]
+}
