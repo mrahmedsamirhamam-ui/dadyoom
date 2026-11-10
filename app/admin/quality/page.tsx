@@ -27,7 +27,7 @@ export default async function QualityBoard({searchParams}:{
   const page=parsePage(s.page);
   const db=createAdminClient();
   const countriesRequest=db.from("countries").select("code,name_ar").order("name_ar");
-  const reviewRequest=db.rpc("lesson_review_dashboard",{
+  const reviewRequest=db.rpc("dadyoom_lq1_review_dashboard",{
     p_country:country,p_grade:gradeFilter,p_stage:stage,p_limit:40,p_offset:(page-1)*40,
   });
   const [countryResult,reviewResult]=await Promise.all([countriesRequest,reviewRequest]);
