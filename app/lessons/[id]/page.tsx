@@ -5,7 +5,8 @@ import LessonSemanticSearch from "@/features/semantic-search/components/LessonSe
 import LessonMasteryCard from "@/features/lesson-mastery/components/LessonMasteryCard";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { SITE_DESCRIPTION } from "@/lib/site";
+import { getSiteUrl, SITE_DESCRIPTION } from "@/lib/site";
+import { buildPublicLessonStructuredData } from "@/lib/seo/lesson-structured-data";
 import { needsSourcePublicationReview, publicLessonDescription } from "@/lib/lesson-content/publication-readiness";
 import {
   getLessonPageBundle,
@@ -139,6 +140,16 @@ export default async function LessonPage({
     needsSourcePublicationReview(lesson.instructions);
   const safeDescription =
     publicLessonDescription(lesson.summary, lesson.instructions);
+
+  // Search metadata only: never imply that a lesson has passed human review.
+  const lessonStructuredData = buildPublicLessonStructuredData({
+    id: lesson.id,
+    title: lesson.title,
+    summary: lesson.summary,
+    instructions: lesson.instructions,
+    status: lesson.status,
+    siteUrl: getSiteUrl(),
+  });
 
   const lessonQuestions =
     bundle.questions;
@@ -317,6 +328,14 @@ export default async function LessonPage({
       dir="rtl"
       className="lesson-arabic-shell min-h-screen px-4 py-8"
     >
+      {lessonStructuredData ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(lessonStructuredData).replace(/</g, "\\u003c"),
+          }}
+        />
+      ) : null}
       <DadLessonContext
         pageTitle={`درس: ${lesson.title}`}
         lessonTitle={lesson.title}
