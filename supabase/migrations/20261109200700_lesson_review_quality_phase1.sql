@@ -1,15 +1,16 @@
 -- Dadyoom lesson quality governance, REVIEW-ONLY proposal.
+-- This creates only uniquely prefixed objects; collisions must fail rather than replace data.
 -- DO NOT APPLY to production without explicit approval and isolated staging validation.
 -- Intentionally keeps lessons.status, public pages and SEO unchanged.
 BEGIN;
 
-CREATE TABLE IF NOT EXISTS public.lesson_review_workflows (
+CREATE TABLE public.dadyoom_lq1_review_workflows (
   lesson_id uuid PRIMARY KEY REFERENCES public.lessons(id) ON DELETE RESTRICT,
   stage text NOT NULL CHECK(stage IN ('draft','language_review','curriculum_review','limited_trial','approved','published')),
   updated_at timestamptz NOT NULL DEFAULT now()
 );
 
-CREATE TABLE IF NOT EXISTS public.lesson_quality_axis_reviews (
+CREATE TABLE public.dadyoom_lq1_quality_axis_reviews (
   lesson_id uuid NOT NULL REFERENCES public.lessons(id) ON DELETE RESTRICT,
   axis text NOT NULL CHECK(axis IN ('language','curriculum','audio','four_skills','mastery','usability')),
   state text NOT NULL CHECK(state IN ('unreviewed','in_review','approved','needs_changes')),
@@ -24,7 +25,7 @@ CREATE TABLE IF NOT EXISTS public.lesson_quality_axis_reviews (
      AND reviewed_at IS NOT NULL AND nullif(btrim(notes),'') IS NOT NULL))
 );
 
-CREATE TABLE IF NOT EXISTS public.lesson_review_events (
+CREATE TABLE public.dadyoom_lq1_review_events (
   id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   lesson_id uuid NOT NULL REFERENCES public.lessons(id) ON DELETE RESTRICT,
   from_stage text NOT NULL,
@@ -37,7 +38,7 @@ CREATE TABLE IF NOT EXISTS public.lesson_review_events (
   UNIQUE(lesson_id,version_number)
 );
 
-CREATE TABLE IF NOT EXISTS public.lesson_review_versions (
+CREATE TABLE public.dadyoom_lq1_review_versions (
   lesson_id uuid NOT NULL REFERENCES public.lessons(id) ON DELETE RESTRICT,
   version_number integer NOT NULL CHECK(version_number >= 1),
   lesson_snapshot jsonb NOT NULL,
@@ -48,7 +49,7 @@ CREATE TABLE IF NOT EXISTS public.lesson_review_versions (
 );
 
 -- Auditable changes to each axis, append-only for reviewer accountability.
-CREATE TABLE IF NOT EXISTS public.lesson_quality_axis_events (
+CREATE TABLE public.dadyoom_lq1_quality_axis_events (
   id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   lesson_id uuid NOT NULL REFERENCES public.lessons(id) ON DELETE RESTRICT,
   axis text NOT NULL,
@@ -59,53 +60,51 @@ CREATE TABLE IF NOT EXISTS public.lesson_quality_axis_events (
   reviewer_name text,
   occurred_at timestamptz NOT NULL DEFAULT now()
 );
-CREATE OR REPLACE FUNCTION public.log_lesson_quality_axis()
+CREATE FUNCTION public.dadyoom_lq1_log_quality_axis()
 RETURNS trigger LANGUAGE plpgsql SET search_path=pg_catalog,public AS $$
 BEGIN
- INSERT INTO public.lesson_quality_axis_events
+ INSERT INTO public.dadyoom_lq1_quality_axis_events
    (lesson_id,axis,from_state,to_state,notes,reviewer_id,reviewer_name)
  VALUES(NEW.lesson_id,NEW.axis, CASE WHEN TG_OP='UPDATE' THEN OLD.state ELSE NULL END,
         NEW.state,NEW.notes,NEW.reviewer_id,NEW.reviewer_name);
  RETURN NEW;
 END;
 $$;
-DROP TRIGGER IF EXISTS trg_lesson_quality_axis_audit ON public.lesson_quality_axis_reviews;
-CREATE TRIGGER trg_lesson_quality_axis_audit
-AFTER INSERT OR UPDATE ON public.lesson_quality_axis_reviews
-FOR EACH ROW EXECUTE FUNCTION public.log_lesson_quality_axis();
+CREATE TRIGGER dadyoom_lq1_trg_quality_axis_audit
+AFTER INSERT OR UPDATE ON public.dadyoom_lq1_quality_axis_reviews
+FOR EACH ROW EXECUTE FUNCTION public.dadyoom_lq1_log_quality_axis();
 
 -- Once approved, axes are frozen. Reopening is a separate reviewed process.
-CREATE OR REPLACE FUNCTION public.guard_lesson_quality_axis()
-RETURNS trigger LANGUAGE plpgsql SET search_path=pg_catalog,public AS $
+CREATE FUNCTION public.dadyoom_lq1_guard_quality_axis()
+RETURNS trigger LANGUAGE plpgsql SET search_path=pg_catalog,public AS $$
 BEGIN
- IF EXISTS (SELECT 1 FROM public.lesson_review_workflows
+ IF EXISTS (SELECT 1 FROM public.dadyoom_lq1_review_workflows
             WHERE lesson_id=NEW.lesson_id AND stage IN ('approved','published')) THEN
     RAISE EXCEPTION 'APPROVED_LESSON_AXES_ARE_FROZEN';
  END IF;
  RETURN NEW;
 END;
-$;
-DROP TRIGGER IF EXISTS trg_lesson_quality_axis_guard ON public.lesson_quality_axis_reviews;
-CREATE TRIGGER trg_lesson_quality_axis_guard
-BEFORE INSERT OR UPDATE ON public.lesson_quality_axis_reviews
-FOR EACH ROW EXECUTE FUNCTION public.guard_lesson_quality_axis();
+$$;
+CREATE TRIGGER dadyoom_lq1_trg_quality_axis_guard
+BEFORE INSERT OR UPDATE ON public.dadyoom_lq1_quality_axis_reviews
+FOR EACH ROW EXECUTE FUNCTION public.dadyoom_lq1_guard_quality_axis();
 
 -- Only the server service_role may read/write these private review records.
 -- Do not expose through anon or authenticated PostgREST access.
-ALTER TABLE public.lesson_review_workflows ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.lesson_quality_axis_reviews ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.lesson_review_events ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.lesson_review_versions ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.lesson_quality_axis_events ENABLE ROW LEVEL SECURITY;
-REVOKE ALL ON public.lesson_review_workflows, public.lesson_quality_axis_reviews,
- public.lesson_review_events, public.lesson_review_versions, public.lesson_quality_axis_events
+ALTER TABLE public.dadyoom_lq1_review_workflows ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.dadyoom_lq1_quality_axis_reviews ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.dadyoom_lq1_review_events ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.dadyoom_lq1_review_versions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.dadyoom_lq1_quality_axis_events ENABLE ROW LEVEL SECURITY;
+REVOKE ALL ON public.dadyoom_lq1_review_workflows, public.dadyoom_lq1_quality_axis_reviews,
+ public.dadyoom_lq1_review_events, public.dadyoom_lq1_review_versions, public.dadyoom_lq1_quality_axis_events
  FROM PUBLIC, anon, authenticated;
-GRANT SELECT, INSERT, UPDATE ON public.lesson_review_workflows, public.lesson_quality_axis_reviews TO service_role;
-GRANT SELECT, INSERT ON public.lesson_review_events, public.lesson_review_versions, public.lesson_quality_axis_events TO service_role;
-GRANT USAGE, SELECT ON SEQUENCE public.lesson_review_events_id_seq, public.lesson_quality_axis_events_id_seq TO service_role;
+GRANT SELECT, INSERT, UPDATE ON public.dadyoom_lq1_review_workflows, public.dadyoom_lq1_quality_axis_reviews TO service_role;
+GRANT SELECT, INSERT ON public.dadyoom_lq1_review_events, public.dadyoom_lq1_review_versions, public.dadyoom_lq1_quality_axis_events TO service_role;
+GRANT USAGE, SELECT ON SEQUENCE public.dadyoom_lq1_review_events_id_seq, public.dadyoom_lq1_quality_axis_events_id_seq TO service_role;
 
 -- Atomic monotonic transitions. No change to lessons.status or the public site.
-CREATE OR REPLACE FUNCTION public.advance_lesson_review(
+CREATE FUNCTION public.dadyoom_lq1_advance_lesson_review(
  p_lesson_id uuid, p_next_stage text, p_reviewer_id uuid, p_reviewer_name text, p_notes text)
 RETURNS jsonb LANGUAGE plpgsql SET search_path=pg_catalog,public AS $$
 DECLARE
@@ -121,7 +120,7 @@ BEGIN
  END IF;
  SELECT * INTO v_lesson FROM public.lessons WHERE id=p_lesson_id FOR UPDATE;
  IF NOT FOUND THEN RAISE EXCEPTION 'LESSON_NOT_FOUND'; END IF;
- SELECT stage INTO v_stored FROM public.lesson_review_workflows WHERE lesson_id=p_lesson_id FOR UPDATE;
+ SELECT stage INTO v_stored FROM public.dadyoom_lq1_review_workflows WHERE lesson_id=p_lesson_id FOR UPDATE;
  v_from:=COALESCE(v_stored, CASE WHEN v_lesson.status='published' THEN 'published_unreviewed' ELSE 'draft' END);
  v_expected:=CASE v_from
   WHEN 'published_unreviewed' THEN 'draft'
@@ -136,29 +135,29 @@ BEGIN
  END IF;
  IF p_next_stage IN ('approved','published') THEN
    SELECT count(*) INTO v_axis_count
-   FROM public.lesson_quality_axis_reviews
+   FROM public.dadyoom_lq1_quality_axis_reviews
    WHERE lesson_id=p_lesson_id AND state='approved'
    AND reviewer_id IS NOT NULL AND reviewed_at IS NOT NULL AND btrim(notes)<>'';
    IF v_axis_count <> 6 THEN RAISE EXCEPTION 'SIX_APPROVED_AXES_REQUIRED'; END IF;
  END IF;
  SELECT COALESCE(MAX(version_number),0)+1 INTO v_version
-   FROM public.lesson_review_events WHERE lesson_id=p_lesson_id;
- INSERT INTO public.lesson_review_workflows(lesson_id,stage,updated_at)
+   FROM public.dadyoom_lq1_review_events WHERE lesson_id=p_lesson_id;
+ INSERT INTO public.dadyoom_lq1_review_workflows(lesson_id,stage,updated_at)
  VALUES(p_lesson_id,p_next_stage,now())
  ON CONFLICT (lesson_id) DO UPDATE SET stage=EXCLUDED.stage,updated_at=EXCLUDED.updated_at;
- INSERT INTO public.lesson_review_events
+ INSERT INTO public.dadyoom_lq1_review_events
    (lesson_id,from_stage,to_stage,reviewer_id,reviewer_name,notes,version_number)
  VALUES(p_lesson_id,v_from,p_next_stage,p_reviewer_id,btrim(p_reviewer_name),btrim(p_notes),v_version);
- INSERT INTO public.lesson_review_versions(lesson_id,version_number,lesson_snapshot,stage,reviewer_id)
+ INSERT INTO public.dadyoom_lq1_review_versions(lesson_id,version_number,lesson_snapshot,stage,reviewer_id)
  VALUES(p_lesson_id,v_version,to_jsonb(v_lesson),p_next_stage,p_reviewer_id);
  RETURN jsonb_build_object('lesson_id',p_lesson_id,'from',v_from,'to',p_next_stage,'version',v_version);
 END;
 $$;
-REVOKE ALL ON FUNCTION public.advance_lesson_review(uuid,text,uuid,text,text) FROM PUBLIC, anon, authenticated;
-GRANT EXECUTE ON FUNCTION public.advance_lesson_review(uuid,text,uuid,text,text) TO service_role;
+REVOKE ALL ON FUNCTION public.dadyoom_lq1_advance_lesson_review(uuid,text,uuid,text,text) FROM PUBLIC, anon, authenticated;
+GRANT EXECUTE ON FUNCTION public.dadyoom_lq1_advance_lesson_review(uuid,text,uuid,text,text) TO service_role;
 
 -- Private counts + paged rows, scoped by country/grade/stage.
-CREATE OR REPLACE FUNCTION public.lesson_review_dashboard(
+CREATE FUNCTION public.dadyoom_lq1_review_dashboard(
  p_country text DEFAULT NULL,p_grade integer DEFAULT NULL,
  p_stage text DEFAULT NULL,p_limit integer DEFAULT 40,p_offset integer DEFAULT 0)
 RETURNS jsonb LANGUAGE sql STABLE SET search_path=pg_catalog,public AS $$
@@ -172,7 +171,7 @@ RETURNS jsonb LANGUAGE sql STABLE SET search_path=pg_catalog,public AS $$
  JOIN public.grades g ON g.id=u.grade_id
  JOIN public.curricula cu ON cu.id=g.curriculum_id
  JOIN public.countries c ON c.id=cu.country_id
- LEFT JOIN public.lesson_review_workflows w ON w.lesson_id=l.id
+ LEFT JOIN public.dadyoom_lq1_review_workflows w ON w.lesson_id=l.id
  WHERE (p_country IS NULL OR c.code=p_country)
    AND (p_grade IS NULL OR g.grade_number=p_grade)
  ), filtered AS (SELECT * FROM base WHERE p_stage IS NULL OR review_stage=p_stage),
@@ -183,7 +182,7 @@ RETURNS jsonb LANGUAGE sql STABLE SET search_path=pg_catalog,public AS $$
       (SELECT review_stage,COUNT(*) AS n FROM base GROUP BY review_stage) grouped),'{}'::jsonb),
    'items',COALESCE((SELECT jsonb_agg(to_jsonb(paged)) FROM paged),'[]'::jsonb));
 $$;
-REVOKE ALL ON FUNCTION public.lesson_review_dashboard(text,integer,text,integer,integer) FROM PUBLIC, anon, authenticated;
-GRANT EXECUTE ON FUNCTION public.lesson_review_dashboard(text,integer,text,integer,integer) TO service_role;
+REVOKE ALL ON FUNCTION public.dadyoom_lq1_review_dashboard(text,integer,text,integer,integer) FROM PUBLIC, anon, authenticated;
+GRANT EXECUTE ON FUNCTION public.dadyoom_lq1_review_dashboard(text,integer,text,integer,integer) TO service_role;
 
 COMMIT;
