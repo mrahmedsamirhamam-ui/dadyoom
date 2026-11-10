@@ -46,7 +46,7 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Node test — 100 Arabic questions and visitor badge route source
         run: |
-          node --test tests/dad-arabic-qa.node.test.mjs tests/visitor-review-badge.node.test.mjs
+          node --test tests/dad-arabic-qa.node.test.mjs tests/visitor-review-badge.node.test.mjs tests/seo-publishing-safety.node.test.mjs
           node scripts/dad-arabic-benchmark.mjs
       - name: Vitest — model and six reviewed axes
         run: npx vitest run tests/lesson-review-model.test.ts tests/lesson-structured-data.test.ts
