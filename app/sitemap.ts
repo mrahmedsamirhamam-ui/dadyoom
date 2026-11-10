@@ -2,6 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import type { MetadataRoute } from "next";
 import { getSiteUrl } from "@/lib/site";
 import { needsSourcePublicationReview } from "@/lib/lesson-content/publication-readiness";
+import { safeSitemapLastModified } from "@/lib/seo/sitemap-lastmod";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = getSiteUrl();
@@ -87,7 +88,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${base}/marketplace/${course.slug}`,
       lastModified:
         course.updated_at
-          ? new Date(course.updated_at)
+          ? safeSitemapLastModified(course.updated_at)
           : undefined,
       changeFrequency: "weekly" as const,
       priority: 0.8,
@@ -96,7 +97,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${base}/lessons/${lesson.id}`,
       lastModified:
         lesson.updated_at
-          ? new Date(lesson.updated_at)
+          ? safeSitemapLastModified(lesson.updated_at)
           : undefined,
       changeFrequency: "monthly" as const,
       priority: 0.7,
