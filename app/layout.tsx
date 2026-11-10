@@ -40,6 +40,7 @@ const organizationStructuredData = {
   name: `${SITE_NAME} - ${SITE_NAME_LATIN}`,
   alternateName: [SITE_NAME, ...SITE_NAME_ALTERNATES],
   url: siteUrl,
+  logo: `${siteUrl}/brand/dadyoom-mark-2026.png`,
   description:
     "ضاديوم — بيت العربية الرقمي، منصة رقمية لتعليم اللغة العربية للناطقين بها ولغير الناطقين بها، تجمع مناهج ودروسًا وأنشطة تفاعلية ومسارات تعلم للطلاب والمعلمين.",
   founder: {
