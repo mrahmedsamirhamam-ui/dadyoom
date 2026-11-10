@@ -21,7 +21,7 @@ test("unready published lessons remain noindex, while public pages retain canoni
   assert.match(source, /robots:\s*\{\s*index:\s*false,\s*follow:\s*true\s*\}/);
   assert.match(source, /alternates:\s*\{\s*canonical:\s*`\/lessons\/\$\{id\}`\s*\}/);
   assert.match(source, /lessonStructuredData\s*\?\s*\(/);
-  assert.match(source, /JSON\.stringify\(lessonStructuredData\)\.replace\(\/<\/g/);
+  assert.ok(source.includes("JSON.stringify(lessonStructuredData).replace(/</g"), "Escaped JSON-LD serializer missing");
 });
 
 test("robots and home organization schema stay connected", () => {
