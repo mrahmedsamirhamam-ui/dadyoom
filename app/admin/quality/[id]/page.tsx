@@ -17,9 +17,9 @@ export default async function ReviewLessonDetail({params}: {params:Promise<{id:s
   const db=createAdminClient();
   const [lesson,flow,axes,history]=await Promise.all([
     db.from("lessons").select("id,title,status").eq("id",id).maybeSingle(),
-    db.from("lesson_review_workflows").select("stage").eq("lesson_id",id).maybeSingle(),
-    db.from("lesson_quality_axis_reviews").select("axis,state,notes,reviewer_name,reviewed_at").eq("lesson_id",id),
-    db.from("lesson_review_events").select("from_stage,to_stage,reviewer_name,notes,occurred_at,version_number")
+    db.from("dadyoom_lq1_review_workflows").select("stage").eq("lesson_id",id).maybeSingle(),
+    db.from("dadyoom_lq1_quality_axis_reviews").select("axis,state,notes,reviewer_name,reviewed_at").eq("lesson_id",id),
+    db.from("dadyoom_lq1_review_events").select("from_stage,to_stage,reviewer_name,notes,occurred_at,version_number")
       .eq("lesson_id",id).order("version_number",{ascending:false}).limit(30),
   ]);
   if(lesson.error||!lesson.data) notFound();
