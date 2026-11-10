@@ -32,6 +32,25 @@ const websiteStructuredData = {
   },
 };
 
+
+const organizationStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "@id": `${siteUrl}/#organization`,
+  name: `${SITE_NAME} - ${SITE_NAME_LATIN}`,
+  alternateName: [SITE_NAME, ...SITE_NAME_ALTERNATES],
+  url: siteUrl,
+  description:
+    "ضاديوم — بيت العربية الرقمي، منصة رقمية لتعليم اللغة العربية للناطقين بها ولغير الناطقين بها، تجمع مناهج ودروسًا وأنشطة تفاعلية ومسارات تعلم للطلاب والمعلمين.",
+  founder: {
+    "@type": "Person",
+    "@id": `${siteUrl}/founder#person`,
+    name: "أحمد سمير محمد حافظ حمام",
+    jobTitle: "Senior Arabic Language Teacher & Author",
+    url: `${siteUrl}/founder`,
+  },
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: SITE_NAME,
@@ -102,6 +121,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(websiteStructuredData).replace(/</g, "\\u003c"),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationStructuredData).replace(/</g, "\\u003c"),
           }}
         />
         <DadyoomClientRuntime />
