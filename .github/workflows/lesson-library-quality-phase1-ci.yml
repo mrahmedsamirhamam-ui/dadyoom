@@ -49,7 +49,7 @@ jobs:
           node --test tests/dad-arabic-qa.node.test.mjs tests/visitor-review-badge.node.test.mjs
           node scripts/dad-arabic-benchmark.mjs
       - name: Vitest — model and six reviewed axes
-        run: npx vitest run tests/lesson-review-model.test.ts
+        run: npx vitest run tests/lesson-review-model.test.ts tests/lesson-structured-data.test.ts
       - name: TypeScript
         run: npx tsc --noEmit
       - name: ESLint changed review code and tests
