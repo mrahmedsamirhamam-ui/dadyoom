@@ -103,6 +103,12 @@ GRANT SELECT, INSERT, UPDATE ON public.dadyoom_lq1_review_workflows, public.dady
 GRANT SELECT, INSERT ON public.dadyoom_lq1_review_events, public.dadyoom_lq1_review_versions, public.dadyoom_lq1_quality_axis_events TO service_role;
 GRANT USAGE, SELECT ON SEQUENCE public.dadyoom_lq1_review_events_id_seq, public.dadyoom_lq1_quality_axis_events_id_seq TO service_role;
 
+-- Do not leave helper trigger functions with PostgreSQL's default PUBLIC execute permission.
+REVOKE ALL ON FUNCTION public.dadyoom_lq1_log_quality_axis() FROM PUBLIC, anon, authenticated;
+REVOKE ALL ON FUNCTION public.dadyoom_lq1_guard_quality_axis() FROM PUBLIC, anon, authenticated;
+GRANT EXECUTE ON FUNCTION public.dadyoom_lq1_log_quality_axis() TO service_role;
+GRANT EXECUTE ON FUNCTION public.dadyoom_lq1_guard_quality_axis() TO service_role;
+
 -- Atomic monotonic transitions. No change to lessons.status or the public site.
 CREATE FUNCTION public.dadyoom_lq1_advance_lesson_review(
  p_lesson_id uuid, p_next_stage text, p_reviewer_id uuid, p_reviewer_name text, p_notes text)
