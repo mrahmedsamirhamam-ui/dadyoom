@@ -38,16 +38,30 @@ const organizationStructuredData = {
   "@type": "EducationalOrganization",
   "@id": `${siteUrl}/#organization`,
   name: `${SITE_NAME} - ${SITE_NAME_LATIN}`,
-  alternateName: [SITE_NAME, ...SITE_NAME_ALTERNATES],
+  alternateName: [
+    SITE_NAME,
+    "منصة ضاديوم لتعليم اللغة العربية",
+    ...SITE_NAME_ALTERNATES,
+  ],
   url: siteUrl,
   logo: `${siteUrl}/brand/dadyoom-mark-2026.png`,
   description:
-    "ضاديوم — بيت العربية الرقمي، منصة رقمية لتعليم اللغة العربية للناطقين بها ولغير الناطقين بها، تجمع مناهج ودروسًا وأنشطة تفاعلية ومسارات تعلم للطلاب والمعلمين.",
+    "ضاديوم — بيت العربية الرقمي، منصة رقمية لتعليم اللغة العربية للناطقين بها ولغير الناطقين بها، تقدم مناهج ودروسًا وأنشطة تفاعلية للصفوف من الأول إلى الثاني عشر، وأدوات للتعلم والتقييم.",
+  knowsAbout: [
+    "تعليم اللغة العربية",
+    "المناهج التعليمية التفاعلية",
+    "التقنيات التعليمية الحديثة",
+    "الذكاء الاصطناعي في التعليم",
+  ],
   founder: {
     "@type": "Person",
     "@id": `${siteUrl}/founder#person`,
     name: "أحمد سمير محمد حافظ حمام",
-    jobTitle: "Senior Arabic Language Teacher & Author",
+    alternateName: [
+      "أحمد سمير حمام",
+      "Mr Ahmed Samir Mohamed Hafez Hamam",
+    ],
+    jobTitle: "Senior Arabic Language Teacher & Educational Innovator",
     url: `${siteUrl}/founder`,
   },
 };
