@@ -1,4 +1,4 @@
-name: Lesson library quality phase 1 — no deploy
+name: Lesson library quality phase 1 — isolated verification, no deploy
 on:
   push:
     branches:
@@ -9,29 +9,67 @@ permissions:
   contents: read
 
 jobs:
-  code-only-checks:
+  code-and-isolated-postgres:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
+    services:
+      pg:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: qa_owner
+          POSTGRES_PASSWORD: local_qa_only
+          POSTGRES_DB: dadyoom_lq1_ci_isolated
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U qa_owner -d dadyoom_lq1_ci_isolated"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     env:
-      # Never inject production keys into this review-only build.
+      PGHOST: 127.0.0.1
+      PGPORT: "5432"
+      PGUSER: qa_owner
+      PGPASSWORD: local_qa_only
+      PGDATABASE: dadyoom_lq1_ci_isolated
       NEXT_TELEMETRY_DISABLED: "1"
+      # Public build-time placeholders are NOT production secrets or endpoints.
+      NEXT_PUBLIC_SUPABASE_URL: http://127.0.0.1:54321
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: local_fake_key_for_ci_only
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
           cache: npm
-      - name: Install from lockfile
+      - name: Install pinned dependencies
         run: npm ci --no-audit --no-fund
-      - name: Arabic QA data and scoring
+      - name: Node test — 100 Arabic questions and visitor badge route source
         run: |
-          node --test tests/dad-arabic-qa.node.test.mjs
+          node --test tests/dad-arabic-qa.node.test.mjs tests/visitor-review-badge.node.test.mjs
           node scripts/dad-arabic-benchmark.mjs
-      - name: Workflow and badge rules
+      - name: Vitest — model and six reviewed axes
         run: npx vitest run tests/lesson-review-model.test.ts
       - name: TypeScript
         run: npx tsc --noEmit
-      - name: Lint changed code
+      - name: ESLint changed review code and tests
         run: npx eslint lib/lesson-review app/admin/quality app/api/admin/quality tests/lesson-review-model.test.ts
-      - name: Build only (no deploy)
+      - name: Full production build (build only, no publish)
         run: npm run build
+      - name: Install PostgreSQL client in isolated runner
+        run: |
+          if ! command -v psql >/dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y postgresql-client
+          fi
+          psql --version
+      - name: SQL isolated fixture and object-name preflight
+        run: |
+          psql -v ON_ERROR_STOP=1 -f tests/sql/dadyoom-lq1-fixture.sql
+          psql -v ON_ERROR_STOP=1 -f tests/sql/dadyoom-lq1-preflight.sql
+      - name: Apply SQL migration to ephemeral PostgreSQL ONLY
+        run: psql -v ON_ERROR_STOP=1 -f supabase/migrations/20261109200700_lesson_review_quality_phase1.sql
+      - name: SQL integration — publication stays untouched after decisions
+        run: psql -v ON_ERROR_STOP=1 -f tests/sql/dadyoom-lq1-integration.sql
+      - name: SQL rollback and verify all review objects removed
+        run: psql -v ON_ERROR_STOP=1 -f tests/sql/dadyoom-lq1-rollback.sql
