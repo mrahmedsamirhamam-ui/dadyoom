@@ -32,7 +32,7 @@ export async function POST(request:NextRequest) {
     const state=String(form.get("state")??"") as AxisState;
     if(!QUALITY_AXES.some(x=>x.key===axis)||!states.has(state))
       return response("محور الجودة أو حالته غير صالح.",400);
-    const {error}=await db.from("lesson_quality_axis_reviews").upsert({
+    const {error}=await db.from("dadyoom_lq1_quality_axis_reviews").upsert({
       lesson_id:id,axis,state,notes,
       reviewer_id:reviewer.id,reviewer_name:reviewer.name,
       reviewed_at:new Date().toISOString(),updated_at:new Date().toISOString(),
@@ -41,14 +41,14 @@ export async function POST(request:NextRequest) {
   } else if(intent==="transition") {
     const next=String(form.get("next_stage")??"") as ReviewStage;
     const [flow,lesson]=await Promise.all([
-      db.from("lesson_review_workflows").select("stage").eq("lesson_id",id).maybeSingle(),
+      db.from("dadyoom_lq1_review_workflows").select("stage").eq("lesson_id",id).maybeSingle(),
       db.from("lessons").select("status").eq("id",id).maybeSingle(),
     ]);
     if(flow.error||lesson.error||!lesson.data) return response("تعذر التحقق من حالة الدرس الحالية.",409);
     const from=(flow.data?.stage??(lesson.data.status==="published"?"published_unreviewed":"draft")) as ReviewStage;
     if(NEXT_REVIEW_STAGE[from]!==next) return response("لا يجوز تخطي مراحل المراجعة.",409);
     // The DB function uses SELECT FOR UPDATE and repeats all checks atomically.
-    const {error}=await db.rpc("advance_lesson_review",{
+    const {error}=await db.rpc("dadyoom_lq1_advance_lesson_review",{
       p_lesson_id:id,p_next_stage:next,p_reviewer_id:reviewer.id,
       p_reviewer_name:reviewer.name,p_notes:notes,
     });
