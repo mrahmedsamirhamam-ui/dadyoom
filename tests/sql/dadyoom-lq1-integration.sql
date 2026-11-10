@@ -66,6 +66,10 @@ BEGIN
  IF has_function_privilege('anon','public.dadyoom_lq1_advance_lesson_review(uuid,text,uuid,text,text)','EXECUTE') THEN
    RAISE EXCEPTION 'ANON_CAN_EXECUTE_REVIEW_FUNCTION';
  END IF;
+ IF has_function_privilege('anon','public.dadyoom_lq1_log_quality_axis()','EXECUTE')
+    OR has_function_privilege('authenticated','public.dadyoom_lq1_guard_quality_axis()','EXECUTE') THEN
+   RAISE EXCEPTION 'REVIEW_HELPER_FUNCTION_EXPOSED';
+ END IF;
  RAISE NOTICE 'INTEGRATION_PASS: six axis decisions, six transitions, denied stage skip, immutable public record, six versions, frozen approvals, no anon reviewer grant';
 END;
 $$;
