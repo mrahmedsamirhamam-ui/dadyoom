@@ -46,6 +46,10 @@ export function auditPrimaryCurriculum(snapshot, options={}) {
     const summary=clean(l.summary);
     const objectives=Array.isArray(l.learning_objectives)?l.learning_objectives.filter(s=>clean(s)):[];
     const explicitlyUnready=Array.isArray(l.instructions) && l.instructions.some(s=>s?.kind==="dadyoom_source"&&s.source_publication_ready===false);
+    const claimsOfficial=/(?:محتوى رسمي|نص كتاب الوزارة|من كتاب الوزارة|مطابق للمنهج|معتمد من الوزارة)/u.test([l.title,l.summary,l.content].map(x=>clean(x)).join(" "));
+    const editorialFlags=claimsOfficial && (l.content_kind==="original_enrichment" || explicitlyUnready)
+      ? ["EDITORIAL_OFFICIAL_CLAIM_CONFLICT"] : [];
+
     const sourceOk=!!(index && index.country===l.country && index.grade===l.grade && validSource(index,year)
       && signed(proof.source,"status","matched"));
     if(!sourceOk)reasons.push("SOURCE_INDEX_EDITION_OR_HUMAN_MATCH_MISSING");
@@ -68,12 +72,12 @@ export function auditPrimaryCurriculum(snapshot, options={}) {
       tested_interactions:activityOk,independent_review:reviewOk};
     const eligible=l.status==="published"&&kind==="official_candidate"&&Object.values(gates).every(Boolean);
     reportRows.push({
-      id:l.id,country:l.country,grade:l.grade,status:l.status,content_kind:kind,
+      id:l.id,title:clean(l.title),country:l.country,grade:l.grade,status:l.status,content_kind:kind,editorial_flags:editorialFlags,
       evidence:gates,question_count:questionCount,published_activity_count:activityCount,
       OFFICIAL_SYLLABUS_MATCH:"NOT_VERIFIED",
       eligible_for_independent_human_decision:eligible,
       requiresExternalHumanConfirmation:eligible,
-      issues:[...new Set(reasons)]
+      issues:[...new Set([...reasons,...editorialFlags])]
     });
   }
   const countryGrades=scope.flatMap(s=>s.grades.map(grade=>{
