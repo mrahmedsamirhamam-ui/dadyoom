@@ -14,8 +14,14 @@ export const ownerBookCandidates: readonly LibraryBook[] = [
   { id: "thinking-learning-engineering", title: "هندسة التفكير والتعلّم", author: "أحمد سمير حمام", rightsStatus: "غير متحقق منه", canPublishFullText: false, contentUrl: null, questions: [] },
 ];
 
-/** Only explicitly rights-cleared books with 2–3 teacher-reviewed questions can be approved. */
+/** Catalog eligibility only; never constitutes approval of a reader's answers. */
 export function isBookApprovable(book: LibraryBook): boolean {
-  return book.rightsStatus === "موثق" && book.questions.length >= 2 &&
-    book.questions.length <= 3 && book.questions.every((q) => Boolean(q.reviewedBy.trim() && q.prompt.trim()));
+  if (book.rightsStatus !== "موثق" || book.questions.length < 2 || book.questions.length > 3) return false;
+  const ids = new Set<string>();
+  for (const question of book.questions) {
+    const id = question.id.trim();
+    if (!id || ids.has(id) || !question.prompt.trim() || !question.reviewedBy.trim()) return false;
+    ids.add(id);
+  }
+  return true;
 }
