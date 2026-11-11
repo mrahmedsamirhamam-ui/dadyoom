@@ -1,9 +1,11 @@
 import "server-only";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getVerifiedLessonReviewer } from "@/lib/lesson-review/authorization";
 import PrimaryPilotBoard from "./PrimaryPilotBoard";
 
+export const metadata: Metadata = { robots: { index: false, follow: false } };
 export const dynamic = "force-dynamic";
 
 export default async function BahrainPrimaryPilotPage() {
