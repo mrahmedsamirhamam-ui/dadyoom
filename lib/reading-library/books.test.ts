@@ -24,5 +24,7 @@ describe("owner-authored book catalog safeguards", () => {
     expect(isBookApprovable({ ...candidate, questions: reviewed(4) })).toBe(false);
     expect(isBookApprovable({ ...candidate, rightsStatus: "غير متحقق منه" })).toBe(false);
     expect(isBookApprovable({ ...candidate, questions: [{ id: "1", prompt: "سؤال", reviewedBy: "" }, reviewed(1)[0]] })).toBe(false);
+    expect(isBookApprovable({ ...candidate, questions: [{ id: "1", prompt: "سؤال", reviewedBy: "معلم" }, { id: "1", prompt: "سؤال آخر", reviewedBy: "معلم" }] })).toBe(false);
+    expect(isBookApprovable({ ...candidate, questions: [{ id: " ", prompt: "سؤال", reviewedBy: "معلم" }, reviewed(1)[0]] })).toBe(false);
   });
 });
