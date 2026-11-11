@@ -77,6 +77,8 @@ DECLARE
   v_summary text := NULL;
   v_question_count bigint;
   v_activity_count bigint;
+  v_question_modified timestamptz;
+  v_activity_modified timestamptz;
   v_axes_count bigint;
   v_objectives_valid boolean;
 BEGIN
@@ -133,18 +135,26 @@ BEGIN
        OR v_evidence.content_checked_at IS NULL THEN
       RAISE EXCEPTION 'CM1_CONTENT_EVIDENCE_MISSING';
     END IF;
-    SELECT count(*) INTO v_question_count FROM public.questions WHERE lesson_id=p_lesson_id;
-    SELECT count(*) INTO v_activity_count FROM public.lesson_activities
-      WHERE lesson_id=p_lesson_id AND is_published=true;
+    SELECT count(*),max(updated_at) INTO v_question_count,v_question_modified
+      FROM public.questions WHERE lesson_id=p_lesson_id;
+    SELECT count(*),max(updated_at) INTO v_activity_count,v_activity_modified
+      FROM public.lesson_activities WHERE lesson_id=p_lesson_id AND is_published=true;
     IF v_question_count<3 OR v_activity_count<1
        OR nullif(btrim(v_evidence.runtime_evidence_ref),'') IS NULL
        OR nullif(btrim(v_evidence.runtime_checked_by),'') IS NULL
-       OR v_evidence.runtime_checked_at IS NULL THEN
+       OR v_evidence.runtime_checked_at IS NULL
+       OR v_evidence.runtime_checked_at < greatest(
+         coalesce(v_question_modified,v_lesson.updated_at),
+         coalesce(v_activity_modified,v_lesson.updated_at),
+         v_lesson.updated_at) THEN
       RAISE EXCEPTION 'CM1_RUNTIME_EVIDENCE_MISSING';
     END IF;
     IF nullif(btrim(v_evidence.final_evidence_ref),'') IS NULL
        OR nullif(btrim(v_evidence.final_checked_by),'') IS NULL
-       OR v_evidence.final_checked_at IS NULL THEN
+       OR v_evidence.final_checked_at IS NULL
+       OR v_evidence.final_checked_at < greatest(
+         v_lesson.updated_at,v_evidence.source_checked_at,
+         v_evidence.content_checked_at,v_evidence.runtime_checked_at) THEN
       RAISE EXCEPTION 'CM1_INDEPENDENT_REVIEW_MISSING';
     END IF;
     SELECT count(DISTINCT axis) INTO v_axes_count
