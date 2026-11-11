@@ -51,7 +51,9 @@ export async function POST(request:NextRequest) {
   try {
     if (!request.headers.get("content-type")?.startsWith("application/json"))
       return reply({error:"تنسيق الطلب غير مدعوم."},415);
-    const parsed:unknown=await request.json();
+    const raw=await request.text();
+    if (raw.length>10000) return reply({error:"طلب كبير جدًا."},413);
+    const parsed:unknown=JSON.parse(raw);
     if (!parsed || typeof parsed!=="object" || Array.isArray(parsed)) throw Error("INVALID_BODY");
     input=parsed as Record<string,unknown>;
   } catch {return reply({error:"طلب غير صالح."},400);}
