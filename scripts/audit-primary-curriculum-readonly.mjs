@@ -10,7 +10,7 @@ import { pathToFileURL } from "node:url";
 
 export const PRIORITY_SCOPE = Object.freeze([{country:"BH",grades:[1,2,3]},{country:"PS",grades:[1,2,3]}]);
 const clean = (v) => typeof v==="string" ? v.trim() : "";
-const actualDate = (v) => typeof v==="string" && /^\d{4}-\d\d-\d\d$/.test(v) && !Number.isNaN(Date.parse(v));
+const actualDate = (v) => {if(typeof v!=="string"||!/^\d{4}-\d\d-\d\d$/.test(v))return false;const date=new Date(v+"T00:00:00.000Z");return Number.isFinite(date.valueOf())&&date.toISOString().slice(0,10)===v;};
 const signed = (v, flag="status", status="passed") => !!(v && v[flag]===status && clean(v.reviewer) && actualDate(v.checked_on) && clean(v.evidence_ref));
 const validSource = (v, expectedYear) => !!(v && v.kind==="official" && v.edition_year===expectedYear &&
  v.index_checked===true && /^https:\/\//.test(clean(v.url)) && clean(v.document_title) && clean(v.page_reference));
@@ -25,7 +25,10 @@ export function auditPrimaryCurriculum(snapshot, options={}) {
   const evidence=Array.isArray(snapshot.evidence)?snapshot.evidence:[];
   const scope=options.scope ?? PRIORITY_SCOPE;
   const scopeKeys=new Set(scope.flatMap(s=>s.grades.map(g=>s.country+":"+g)));
-  const sourceMap=new Map(sources.filter(s=>s && scopeKeys.has(s.country+":"+s.grade)).map(s=>[s.id,s]));
+  const inScopeSources=sources.filter(s=>s && scopeKeys.has(s.country+":"+s.grade));
+  if(new Set(inScopeSources.map(s=>s.id)).size!==inScopeSources.length)throw new Error("DUPLICATE_OFFICIAL_INDEX_IDS");
+  if(new Set(evidence.map(e=>e?.lesson_id)).size!==evidence.length)throw new Error("DUPLICATE_LESSON_EVIDENCE_IDS");
+  const sourceMap=new Map(inScopeSources.map(s=>[s.id,s]));
   const evidenceMap=new Map(evidence.map(e=>[e.lesson_id,e]));
   const questionsById=new Map();
   for (const q of questions) {if(q && typeof q.lesson_id==="string")questionsById.set(q.lesson_id,(questionsById.get(q.lesson_id)??0)+1);}
@@ -67,7 +70,8 @@ export function auditPrimaryCurriculum(snapshot, options={}) {
     reportRows.push({
       id:l.id,country:l.country,grade:l.grade,status:l.status,content_kind:kind,
       evidence:gates,question_count:questionCount,published_activity_count:activityCount,
-      OFFICIAL_SYLLABUS_MATCH:eligible?"VERIFIED_IN_SUPPLIED_EVIDENCE_ONLY":"NOT_VERIFIED",
+      OFFICIAL_SYLLABUS_MATCH:"NOT_VERIFIED",
+      eligible_for_independent_human_decision:eligible,
       requiresExternalHumanConfirmation:eligible,
       issues:[...new Set(reasons)]
     });
@@ -81,7 +85,7 @@ export function auditPrimaryCurriculum(snapshot, options={}) {
       draft_snapshot:subset.filter(x=>x.status!=="published").length,
       official_index_entries_supplied:expected.length,
       official_index_entries_unmapped:expected.filter(x=>!mapped.has(x.id)).map(x=>x.id),
-      verified_in_supplied_evidence_only:subset.filter(x=>x.OFFICIAL_SYLLABUS_MATCH.startsWith("VERIFIED")).length,
+      eligible_for_independent_human_decision:subset.filter(x=>x.eligible_for_independent_human_decision).length,
       OFFICIAL_SYLLABUS_MATCH:"NOT_VERIFIED",
       collection_complete: !!snapshot.collection_metadata?.complete && expected.length>0,
     };
