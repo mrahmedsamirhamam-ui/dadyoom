@@ -19,7 +19,8 @@ const snapshot={
 const audit=(input)=>auditPrimaryCurriculum(input,{scope:[{country:"BH",grades:[1,2,3]}]});
 test("four independent synthetic attestations are still never propagated to global VERIFIED",()=>{
  const report=audit(snapshot);
- assert.equal(report.lesson_audit[0].OFFICIAL_SYLLABUS_MATCH,"VERIFIED_IN_SUPPLIED_EVIDENCE_ONLY");
+ assert.equal(report.lesson_audit[0].OFFICIAL_SYLLABUS_MATCH,"NOT_VERIFIED");
+ assert.equal(report.lesson_audit[0].eligible_for_independent_human_decision,true);
  assert.equal(report.scopes[0].OFFICIAL_SYLLABUS_MATCH,"NOT_VERIFIED");
  assert.equal(report.status,"REVIEW_ONLY_NO_DB_WRITES");
  assert.equal(report.lesson_audit[0].requiresExternalHumanConfirmation,true);
@@ -67,4 +68,9 @@ test("out-of-scope grades and countries do not enter audit",()=>{
 });
 test("read-only audit rejects non-object input",()=>{
  assert.throws(()=>auditPrimaryCurriculum(null),/EXPECTED_LOCAL_SNAPSHOT_OBJECT/);
+});
+
+test("duplicate sources and evidence fail closed",()=>{
+ assert.throws(()=>audit({...snapshot, official_index:[snapshot.official_index[0],snapshot.official_index[0]]}),/DUPLICATE_OFFICIAL_INDEX_IDS/);
+ assert.throws(()=>audit({...snapshot, evidence:[snapshot.evidence[0],snapshot.evidence[0]]}),/DUPLICATE_LESSON_EVIDENCE_IDS/);
 });
