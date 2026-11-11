@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import LocalReadingPanel from "@/components/library/LocalReadingPanel";
 
 export const metadata: Metadata = {
   title: "مكتبة ضاديوم العالمية | رحلة القارئ العربي",
@@ -56,6 +57,7 @@ export default function LibraryPage() {
             ))}
           </ol>
         </section>
+        <LocalReadingPanel />
         <p className="mt-10 border-t pt-5 text-sm text-[#52685c]">يُسمح بعرض النصوص الكاملة فقط بعد إثبات الترخيص أو الملكية العامة. تدريب ضاديوم مستقل وغير تابع للجهة المنظمة لتحدي القراءة العربي.</p>
       </div>
     </main>
