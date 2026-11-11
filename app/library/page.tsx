@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import LocalReadingPanel from "@/components/library/LocalReadingPanel";
+import { curriculumReadingLinks } from "@/lib/reading-library/curriculum-links";
 
 export const metadata: Metadata = {
   title: "مكتبة ضاديوم التعليمية التفاعلية | رحلة القارئ العربي",
@@ -40,7 +41,7 @@ export default function LibraryPage() {
             نجهّز ربطًا بين الدروس والقراءات الإثرائية المناسبة للدولة والصف. لم تُعتمد روابط دروس في هذه النسخة بعد؛
             ولن يظهر أي كتاب على أنه مطابق لمنهج رسمي دون مراجعة موثقة.
           </p>
-          <p className="mt-3 text-sm font-semibold text-amber-800">الحالة الحالية: روابط إثرائية موثقة — 0</p>
+          <p className="mt-3 text-sm font-semibold text-amber-800">الحالة الحالية: روابط إثرائية موثقة — {curriculumReadingLinks.length}</p>
         </section>
         <LocalReadingPanel />
         <p className="mt-10 border-t pt-5 text-sm text-[#52685c]">النصوص الكاملة لا تُعرض دون توثيق حقوق إتاحتها. الجوازات تدريبية مستقلة وغير رسمية.</p>
