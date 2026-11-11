@@ -34,6 +34,14 @@ export default function LibraryPage() {
             ))}
           </div>
         </section>
+        <section aria-labelledby="curriculum-reading" className="mt-10 rounded-2xl border border-[#e5dfd2] bg-white p-6">
+          <h2 id="curriculum-reading" className="text-2xl font-black">القراءة المرتبطة بالمناهج</h2>
+          <p className="mt-3 leading-8 text-[#52685c]">
+            نجهّز ربطًا بين الدروس والقراءات الإثرائية المناسبة للدولة والصف. لم تُعتمد روابط دروس في هذه النسخة بعد؛
+            ولن يظهر أي كتاب على أنه مطابق لمنهج رسمي دون مراجعة موثقة.
+          </p>
+          <p className="mt-3 text-sm font-semibold text-amber-800">الحالة الحالية: روابط إثرائية موثقة — 0</p>
+        </section>
         <LocalReadingPanel />
         <p className="mt-10 border-t pt-5 text-sm text-[#52685c]">النصوص الكاملة لا تُعرض دون توثيق حقوق إتاحتها. الجوازات تدريبية مستقلة وغير رسمية.</p>
       </div>
