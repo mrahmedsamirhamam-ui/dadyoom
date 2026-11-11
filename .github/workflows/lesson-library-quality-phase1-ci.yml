@@ -49,13 +49,14 @@ jobs:
           node --test tests/dad-arabic-qa.node.test.mjs tests/visitor-review-badge.node.test.mjs tests/seo-publishing-safety.node.test.mjs
           node --experimental-strip-types --test tests/sitemap-lastmod.node.test.mjs
           node --test tests/audit-exported-lessons-seo.node.test.mjs
+          node --test tests/audit-primary-curriculum-readonly.node.test.mjs tests/primary-pilot-safety.node.test.mjs
           node scripts/dad-arabic-benchmark.mjs
       - name: Vitest — model and six reviewed axes
-        run: npx vitest run tests/lesson-review-model.test.ts tests/lesson-structured-data.test.ts
+        run: npx vitest run tests/lesson-review-model.test.ts tests/lesson-structured-data.test.ts tests/primary-pilot-board.test.ts
       - name: TypeScript
         run: npx tsc --noEmit
       - name: ESLint changed review code and tests
-        run: npx eslint lib/lesson-review app/admin/quality app/api/admin/quality tests/lesson-review-model.test.ts lib/seo/sitemap-lastmod.ts tests/lesson-structured-data.test.ts scripts/audit-exported-lessons-seo.mjs tests/audit-exported-lessons-seo.node.test.mjs
+        run: npx eslint lib/lesson-review app/admin/quality app/api/admin/quality tests/lesson-review-model.test.ts lib/seo/sitemap-lastmod.ts tests/lesson-structured-data.test.ts scripts/audit-exported-lessons-seo.mjs tests/audit-exported-lessons-seo.node.test.mjs lib/curriculum-review/primary-pilot.ts lib/curriculum-review/primary-pilot-server.ts app/admin/curriculum/primary-pilot app/api/admin/curriculum/primary-pilot tests/primary-pilot-board.test.ts
       - name: Full production build (build only, no publish)
         run: npm run build
       - name: Install PostgreSQL client in isolated runner
