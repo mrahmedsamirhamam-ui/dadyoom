@@ -1,4 +1,5 @@
 import "server-only";
+import { hasVerifiedPrivilegedRole } from "@/lib/auth/pending-role-request";
 
 import type { SupabaseClient, User } from "@supabase/supabase-js";
 
@@ -34,7 +35,8 @@ export async function authorizeSession(
         ? profile.role.trim().toLowerCase()
         : "";
 
-      if (error || !roles.includes(role)) {
+      if (error || !roles.includes(role) ||
+          !(await hasVerifiedPrivilegedRole(client, user.id, role))) {
         return { ok: false, status: 403, error: "FORBIDDEN" };
       }
     } catch {
