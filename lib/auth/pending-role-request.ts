@@ -59,7 +59,7 @@ export async function hasVerifiedPrivilegedRole(
   userId: string,
   role: string,
 ): Promise<boolean> {
-  if (!isApprovalRequired(role)) return true;
+  if (!["teacher","school","admin"].includes(role)) return true;
   if (!userId) return false;
   try {
     const { data, error } = await client.from("profile_role_requests")
