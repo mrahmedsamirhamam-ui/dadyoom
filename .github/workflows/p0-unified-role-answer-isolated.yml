@@ -1,0 +1,91 @@
+name: P0 unified role and answer-key isolation verification (NO DEPLOY)
+on:
+  push:
+    branches: [security/p0-unified-role-answer-guard-20261112]
+  pull_request:
+    paths:
+      - "docs/security/**"
+      - "tests/security/p0-*"
+      - "scripts/security/p0-*"
+      - "app/api/auth/complete-profile/route.ts"
+      - "app/auth/callback/route.ts"
+      - "app/api/admin/role-requests/approve/route.ts"
+      - "lib/auth/authorization.ts"
+      - "lib/auth/pending-role-request.ts"
+      - ".github/workflows/p0-unified-role-answer-isolated.yml"
+permissions:
+  contents: read
+jobs:
+  p0-security-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: disposable_fake_password
+          POSTGRES_DB: dadyoom_p0_disposable
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres -d dadyoom_p0_disposable"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 20
+    env:
+      PGHOST: 127.0.0.1
+      PGPORT: "5432"
+      PGUSER: postgres
+      PGPASSWORD: disposable_fake_password
+      PGDATABASE: dadyoom_p0_disposable
+      DATABASE_URL: ""
+      SUPABASE_URL: ""
+      NEXT_PUBLIC_SUPABASE_URL: ""
+      STAGING_SUPABASE_URL: ""
+      SUPABASE_DB_URL: ""
+      STAGING_DATABASE_URL: ""
+      STAGING_SUPABASE_PROJECT_REF: local-only
+      PRODUCTION_SUPABASE_PROJECT_REF: \${{ secrets.DADYOOM_PRODUCTION_PROJECT_REF }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Fail closed before touching any database
+        run: node scripts/security/p0-assert-isolated-env.mjs
+      - name: node --test isolated-environment negative controls
+        run: node --test scripts/security/p0-assert-isolated-env.node.mjs
+      - name: Prepare local PostgreSQL client
+        run: |
+          if ! command -v psql >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq postgresql-client
+          fi
+          psql --version
+      - name: Disposable PostgreSQL fixtures (no production URLs)
+        run: |
+          node scripts/security/p0-assert-isolated-env.mjs
+          psql -v ON_ERROR_STOP=1 -f tests/security/p0-disposable-schema.sql
+      - name: Apply review-only proposed SQL to disposable instance
+        run: |
+          node scripts/security/p0-assert-isolated-env.mjs
+          psql -v ON_ERROR_STOP=1 -f docs/security/REVIEW_ONLY_P0_UNIFIED_ROLES_ANSWERS_20261112.sql
+      - name: Adversarial roles / anonymous / answer keys / ownership / RPC
+        run: |
+          node scripts/security/p0-assert-isolated-env.mjs
+          psql -v ON_ERROR_STOP=1 -f tests/security/p0-adversarial-isolated.sql
+      - name: Rehearse security-preserving rollback on disposable DB
+        run: |
+          node scripts/security/p0-assert-isolated-env.mjs
+          psql -v ON_ERROR_STOP=1 -f docs/security/P0_SECURITY_PRESERVING_ROLLBACK.sql
+          psql -v ON_ERROR_STOP=1 -f tests/security/p0-rollback-isolated.sql
+      - name: Install exact locked dependencies
+        run: npm ci
+      - name: Existing Vitest unit regressions
+        run: npm run test:run
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: Scoped ESLint
+        run: npx eslint app/api/auth/complete-profile/route.ts app/auth/callback/route.ts app/api/admin/role-requests/approve/route.ts lib/auth/authorization.ts lib/auth/pending-role-request.ts scripts/security/p0-assert-isolated-env.mjs scripts/security/p0-assert-isolated-env.node.mjs
+      - name: Build without deployment
+        run: npm run build
