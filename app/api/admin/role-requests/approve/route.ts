@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { authorizeSession } from "@/lib/auth/authorization";
+import { requireAdminResponse } from "@/lib/auth/require-admin";
 
 export const dynamic = "force-dynamic";
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -12,6 +13,8 @@ const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
  * atomic SQL function is installed. Never accept proposed role or score.
  */
 export async function POST(request: Request) {
+  const rejectedAdminRequest = await requireAdminResponse();
+  if (rejectedAdminRequest) return rejectedAdminRequest;
   // Handler-local fail-closed guard even if the hosting adapter bypasses proxy.
   const expectedOrigin = new URL(
     process.env.NEXT_PUBLIC_SITE_URL || request.url,
