@@ -33,7 +33,7 @@ function query(sql) {
   if (p.status !== 0) throw new Error("local postgres query failed: " + p.stderr.slice(0,300));
   return p.stdout.trim();
 }
-const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const run=process.env.GITHUB_RUN_ID||"synthetic";
 const password="P0-local-test_Only!9A";
 const users={};
