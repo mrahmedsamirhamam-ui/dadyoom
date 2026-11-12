@@ -66,10 +66,10 @@ jobs:
           set -a
           source "$RUNNER_TEMP/p0-local-keys.env"
           set +a
-          : "$\{API_URL:?missing_local_api}"
-          : "$\{DB_URL:?missing_local_db}"
-          : "$\{ANON_KEY:?missing_local_anon_key}"
-          : "$\{SERVICE_ROLE_KEY:?missing_local_service_role_key}"
+          : "${API_URL:?missing_local_api}"
+          : "${DB_URL:?missing_local_db}"
+          : "${ANON_KEY:?missing_local_anon_key}"
+          : "${SERVICE_ROLE_KEY:?missing_local_service_role_key}"
           [[ "$API_URL" =~ ^http://(127\.0\.0\.1|localhost):[0-9]+$ ]] || exit 2
           [[ "$DB_URL" =~ ^postgresql://postgres:postgres@(127\.0\.0\.1|localhost):[0-9]+/postgres$ ]] || exit 2
           echo "P0_LOCAL_ENV_GATE=PASS api=loopback db=loopback"
@@ -176,14 +176,14 @@ jobs:
         if: always()
         shell: bash
         run: |
-          echo "SUPABASE_LOCAL_AUDIT: startup=$\{{ steps.stack.outcome }} auth_rls=$\{{ steps.e2e.outcome }} quality=$\{{ steps.quality.outcome }} rollback=$\{{ steps.rollback.outcome }}"
+          echo "SUPABASE_LOCAL_AUDIT: startup=${{ steps.stack.outcome }} auth_rls=${{ steps.e2e.outcome }} quality=${{ steps.quality.outcome }} rollback=${{ steps.rollback.outcome }}"
           echo "PRODUCTION_SCHEMA_PARITY=NOT_VERIFIED"
           echo "APPROVED_RELEASE=NO_GO"
-          if [[ "$\{{ steps.stack.outcome }}" != success ||
-                "$\{{ steps.fixture.outcome }}" != success ||
-                "$\{{ steps.e2e.outcome }}" != success ||
-                "$\{{ steps.quality.outcome }}" != success ||
-                "$\{{ steps.rollback.outcome }}" != success ]]; then exit 1; fi
+          if [[ "${{ steps.stack.outcome }}" != success ||
+                "${{ steps.fixture.outcome }}" != success ||
+                "${{ steps.e2e.outcome }}" != success ||
+                "${{ steps.quality.outcome }}" != success ||
+                "${{ steps.rollback.outcome }}" != success ]]; then exit 1; fi
       - name: Stop disposable Supabase stack
         if: always()
         shell: bash
