@@ -79,9 +79,9 @@ GRANT SELECT ON TABLE public.profiles TO authenticated;
 GRANT UPDATE(full_name,country) ON TABLE public.profiles TO authenticated;
 CREATE POLICY p0_own_profile_read ON public.profiles FOR SELECT TO authenticated
  USING (id=(SELECT auth.uid()));
-CREATE POLICY p0_profile_read_restrict AS RESTRICTIVE ON public.profiles FOR SELECT
+CREATE POLICY p0_profile_read_restrict ON public.profiles AS RESTRICTIVE FOR SELECT
  TO authenticated USING (id=(SELECT auth.uid()));
-CREATE POLICY p0_profile_update_restrict AS RESTRICTIVE ON public.profiles FOR UPDATE
+CREATE POLICY p0_profile_update_restrict ON public.profiles AS RESTRICTIVE FOR UPDATE
  TO authenticated USING (id=(SELECT auth.uid())) WITH CHECK(id=(SELECT auth.uid()));
 -- Trusted reviewer: separately allowlisted, stored admin, not self, audited atomically.
 CREATE OR REPLACE FUNCTION public.approve_profile_role_request(
@@ -125,7 +125,7 @@ GRANT SELECT ON TABLE public.question_attempts TO authenticated;
 ALTER TABLE public.question_attempts ENABLE ROW LEVEL SECURITY;
 CREATE POLICY p0_own_attempt_read ON public.question_attempts FOR SELECT TO authenticated
  USING(user_id=(SELECT auth.uid()));
-CREATE POLICY p0_attempt_read_restrict AS RESTRICTIVE ON public.question_attempts
+CREATE POLICY p0_attempt_read_restrict ON public.question_attempts AS RESTRICTIVE
  FOR SELECT TO authenticated USING(user_id=(SELECT auth.uid()));
 COMMIT;
 -- Do not backfill privileged accounts or enable approval authorities automatically.
