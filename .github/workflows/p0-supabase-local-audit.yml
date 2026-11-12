@@ -136,7 +136,7 @@ jobs:
           fi
           node - "$RUNNER_TEMP" <<'NODE'
           const fs=require('node:fs'),path=require('node:path'),tmp=process.argv[2];
-          const fix=s=>s.replace(/\bDO \$(?=\n)/g,'DO $$')
+          const fix=s=>s.replace(/\bDO \$(?=\n)/g,()=> 'DO $')
             .replaceAll('dadyoom_lq1_ci_isolated','postgres');
           for (const name of ['preflight','integration','rollback']) {
             const p=path.join(tmp,'p0-quality-'+name+'-original.sql');
