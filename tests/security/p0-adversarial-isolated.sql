@@ -93,7 +93,7 @@ BEGIN
  EXCEPTION WHEN insufficient_privilege THEN NULL;
  END;
  BEGIN
-  PERFORM id FROM public.question_attempts;
+  PERFORM user_id FROM public.question_attempts;
   RAISE EXCEPTION 'FAIL: anonymous attempt read';
  EXCEPTION WHEN insufficient_privilege THEN NULL;
  END;
