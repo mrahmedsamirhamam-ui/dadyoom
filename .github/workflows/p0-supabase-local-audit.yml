@@ -100,6 +100,7 @@ jobs:
           psql "$DB_URL" -v ON_ERROR_STOP=1 -f tests/security/supabase-local/p0-local-fixture.sql
           psql "$DB_URL" -v ON_ERROR_STOP=1 -f supabase/migrations/20261022150911_create_dadyoom_student_safe_questions_view.sql
           psql "$DB_URL" -v ON_ERROR_STOP=1 -f docs/security/REVIEW_ONLY_P0_UNIFIED_ROLES_ANSWERS_20261112.sql
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -f docs/security/REVIEW_ONLY_P0_Q57_SAFE_PUBLIC_QUESTIONS_20261112.sql
           psql "$DB_URL" -v ON_ERROR_STOP=1 -c "NOTIFY pgrst, 'reload schema'"
           sleep 3
           echo "P0_LOCAL_FIXTURE_AND_PROPOSAL=APPLIED"
