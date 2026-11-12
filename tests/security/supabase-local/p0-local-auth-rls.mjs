@@ -85,14 +85,58 @@ check("student_cannot_read_correct_answer",Boolean(key.error),key.error?.message
 const anonymousKey=await ANON.from("questions").select("correct_answer").eq("id",qid);
 check("anon_cannot_read_correct_answer",Boolean(anonymousKey.error),anonymousKey.error?.message);
 const options=await student.client.from("questions").select("options").eq("id",qid).maybeSingle();
-check("raw_options_do_not_leak_correctness",!options.error && !JSON.stringify(options.data?.options||[]).includes('"correct"'),options.error?.message||"raw options contain correctness flags");
+check("raw_options_do_not_leak_correctness",Boolean(options.error),options.error?.message||"raw options readable from public.questions");
 const safeView=await student.client.from("dadyoom_student_questions").select("id,options").eq("id",qid);
 check("student_safe_view_still_operational",!safeView.error&&safeView.data?.length===1,safeView.error?.message);
+const projected= safeView.data?.[0]?.options;
+check("safe_view_options_strict_allowlist", !safeView.error && Array.isArray(projected) &&
+  projected.every(opt=> Object.keys(opt).every(k=>["id","text"].includes(k)) && !("correct" in opt) && !("is_correct" in opt)),
+  JSON.stringify(projected||[]));
+const alias = await student.client.from("v_secure_questions").select("question_text,safe_options").eq("id",qid);
+check("v_secure_questions_student_projection",!alias.error&&alias.data?.length===1 &&
+  Array.isArray(alias.data[0].safe_options) &&
+  alias.data[0].safe_options.every(opt=>Object.keys(opt).every(k=>["id","text"].includes(k))),alias.error?.message);
+const anonAlias = await ANON.from("v_secure_questions").select("question_text,safe_options").eq("id",qid);
+check("v_secure_questions_anon_published_only",!anonAlias.error&&anonAlias.data?.length===1,anonAlias.error?.message);
+const anonRaw = await ANON.from("questions").select("id").eq("id",qid);
+check("anonymous_direct_questions_denied",Boolean(anonRaw.error),anonRaw.error?.message);
+const studentRaw = await student.client.from("questions").select("id").eq("id",qid);
+check("student_direct_questions_denied",Boolean(studentRaw.error),studentRaw.error?.message);
+const draftLessonId="bbbb1111-1111-4111-8111-111111111111";
+const draftQuestionId="cccc1111-1111-4111-8111-111111111111";
+const privateLesson=await service.from("lessons").insert({
+ id:draftLessonId,unit_id:"66666666-6666-4666-8666-666666666666",
+ title:"Hidden synthetic QA",status:"draft",content:"non public draft"
+});
+if(privateLesson.error)throw new Error("Draft lesson fixture missing: "+privateLesson.error.message);
+const privateQuestion=await service.from("questions").insert({
+ id:draftQuestionId,lesson_id:draftLessonId,question_order:1,question:"SECRET draft",
+ question_type:"mcq",options:[{id:"A",text:"Private",is_correct:true}],points:1,
+ correct_answer:"A"
+});
+if(privateQuestion.error)throw new Error("Draft question fixture missing: "+privateQuestion.error.message);
+for(const [name,client] of [["anon",ANON],["student",student.client]]) {
+ const hidden=await client.from("dadyoom_student_questions").select("id").eq("id",draftQuestionId);
+ check("unpublished_sanitized_question_hidden_"+name,!hidden.error&&hidden.data?.length===0,hidden.error?.message);
+ const hiddenAlias=await client.from("v_secure_questions").select("question_text").eq("id",draftQuestionId);
+ check("unpublished_alias_question_hidden_"+name,!hiddenAlias.error&&hiddenAlias.data?.length===0,hiddenAlias.error?.message);
+}
+
 const anonView=await ANON.from("dadyoom_student_questions").select("id").eq("id",qid);
 check("anonymous_safe_view_still_operational",!anonView.error&&anonView.data?.length===1,anonView.error?.message);
 const overwritten=await student.client.from("questions").update({correct_answer:"B"}).eq("id",qid).select("id");
 const afterKey=await service.from("questions").select("correct_answer").eq("id",qid).single();
 check("student_cannot_write_correct_answer",Boolean(overwritten.error)&&afterKey.data?.correct_answer==="A",overwritten.error?.message);
+const insertByStudent=await student.client.from("questions").insert({
+ id:"dddd1111-1111-4111-8111-111111111111",lesson_id:lid,question:"Injected question",
+ question_type:"mcq",options:[],correct_answer:"C"
+});
+check("student_cannot_insert_question",Boolean(insertByStudent.error),insertByStudent.error?.message);
+const deleteByStudent=await student.client.from("questions").delete().eq("id",qid).select("id");
+const persistedKey=await service.from("questions").select("id,correct_answer").eq("id",qid).single();
+check("student_cannot_delete_question",Boolean(deleteByStudent.error) &&
+ persistedKey.data?.correct_answer==="A",deleteByStudent.error?.message);
+
 if(afterKey.data?.correct_answer!=="A")
   await service.from("questions").update({correct_answer:"A"}).eq("id",qid);
 const attempts=await service.from("question_attempts").insert([
@@ -128,6 +172,10 @@ check("trusted_approval_atomic_and_audited",!fromService.error&&fromService.data
 const teacherEsc=await teacher.client.from("profiles").update({role:"admin"}).eq("id",teacher.id);
 const teacherStored=await service.from("profiles").select("role").eq("id",teacher.id).single();
 check("teacher_cannot_become_admin",Boolean(teacherEsc.error)&&teacherStored.data?.role==="teacher",teacherEsc.error?.message);
+const directAdminEdit=await admin.client.from("questions").update({correct_answer:"B"}).eq("id",qid).select("id");
+const unchangedAdmin=await service.from("questions").select("correct_answer").eq("id",qid).single();
+check("admin_editor_must_use_trusted_server_route",Boolean(directAdminEdit.error)&&unchangedAdmin.data?.correct_answer==="A",directAdminEdit.error?.message);
+
 await import("node:fs").then(fs=>fs.writeFileSync(
  process.env.P0_LOCAL_IDS_PATH || "/tmp/p0-local-test-ids.json",
  JSON.stringify({reviewerId:admin.id,lessonId:lid,questionId:qid})
