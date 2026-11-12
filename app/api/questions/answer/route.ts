@@ -3,17 +3,11 @@ import "server-only";
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { parseAnswerSubmission } from "@/lib/security/answer-submission";
 import {
   feedbackForStudent,
   gradeStoredMcq,
 } from "@/features/questions/services/grade-stored-mcq";
-
-type AnswerRequest = {
-  questionId?: unknown;
-  selectedAnswer?: unknown;
-};
-
-const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 export async function POST(request: Request) {
   try {
@@ -28,14 +22,31 @@ export async function POST(request: Request) {
       );
     }
 
-    const raw = (await request.json().catch(() => null)) as AnswerRequest | null;
-    const questionId = raw?.questionId;
-    if (typeof questionId !== "string" || !UUID.test(questionId)) {
+    // JSON is required: browsers cannot submit a text/plain CSRF form.
+    if (!request.headers.get("content-type")?.startsWith("application/json")) {
       return NextResponse.json(
-        { success: false, error: "معرّف السؤال غير صحيح." },
-        { status: 400 }
+        { success: false, error: "صيغة الطلب غير مدعومة." },
+        { status: 415, headers: { "Cache-Control": "no-store" } },
       );
     }
+    const bodyText = await request.text().catch(() => "");
+    if (bodyText.length > 4096) {
+      return NextResponse.json(
+        { success: false, error: "حجم الطلب أكبر من المسموح." },
+        { status: 413, headers: { "Cache-Control": "no-store" } },
+      );
+    }
+    let parsed: unknown;
+    try { parsed = JSON.parse(bodyText); }
+    catch { parsed = null; }
+    const submission = parseAnswerSubmission(parsed);
+    if (!submission) {
+      return NextResponse.json(
+        { success: false, error: "معرّف السؤال أو الإجابة غير صحيح." },
+        { status: 400, headers: { "Cache-Control": "no-store" } },
+      );
+    }
+    const questionId = submission.questionId;
 
     // Server-only access to the answer key: this continues to work after
     // revoking browser SELECT privileges for questions.correct_answer.
@@ -76,7 +87,7 @@ export async function POST(request: Request) {
         options: question.options,
         correct_answer: question.correct_answer,
       },
-      raw?.selectedAnswer
+      submission.selectedAnswer
     );
 
     if (!grade.valid) {
@@ -97,7 +108,7 @@ export async function POST(request: Request) {
         {
           user_id: user.id,
           question_id: question.id,
-          selected_answer: raw?.selectedAnswer as string,
+          selected_answer: submission.selectedAnswer,
           is_correct: grade.isCorrect,
           answered_at: new Date().toISOString(),
         },
@@ -116,10 +127,11 @@ export async function POST(request: Request) {
     return NextResponse.json({
       success: true,
       ...feedback,
-    });
+    }, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     // Avoid leaking database details, service keys or internal queries.
-    console.error("LESSON_QUESTION_GRADE_FAILED", error);
+    // Avoid logging raw answer keys or possibly sensitive DB error payloads.
+    console.error("LESSON_QUESTION_GRADE_FAILED", error instanceof Error ? error.name : "unknown");
     return NextResponse.json(
       { success: false, error: "تعذر تصحيح الإجابة وحفظها. حاول مرة أخرى." },
       { status: 500 }
