@@ -61,7 +61,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "REQUEST_TOO_LARGE" }, { status: 413 });
     }
     const raw = await request.text();
-    if (raw.length > 32768) {
+    if (Buffer.byteLength(raw, "utf8") > 32768) {
       return NextResponse.json({ error: "REQUEST_TOO_LARGE" }, { status: 413 });
     }
     let parsed: unknown;
