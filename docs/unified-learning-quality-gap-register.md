@@ -1,0 +1,72 @@
+# سجل فجوات ضاديوم الموحّد — 2026-11-12
+
+**الحالة:** تدقيق أولي قائم على ملفات مستودع محددة؛ لا يمثل جردًا شاملًا للدروس أو اختبار مستخدمين. **NO_GO** للدمج والنشر. الفجوة المثبتة هنا تعني أن الشيفرة أو آلية التحقق تُظهر المشكلة، وليس أن ضررًا وقع في الإنتاج.
+
+## ترتيب الأولوية
+| ID | التصنيف | المجال والموقع | الدليل القابل للتحقق | الأثر على التعلم/الوصول | الخطورة (مبررها) | الأثر التعليمي (مبرره) | الأولوية والإجراء التالي | معيار الإغلاق القابل للقياس |
+|---|---|---|---|---|---|---|---|---|
+| GAP-001 | عيب مثبت في نسخة main؛ إصلاح مقترح غير مثبت في PR #148 | أمان المساعد `app/api/dad/chat/route.ts` | نسخة main تضع سياق العميل في رسالة `system` وتعيد `error.message`؛ PR #148 يغير السلوك لكن لم تثبت اختبارات API | إجابة غير موثوقة قد تُضلل الطالب، وإفشاء تفاصيل خادم | عالية: حد ثقة وسرية | عالٍ: يؤثر على موثوقية شرح الدرس | P0: اختبارات API سلبية وحالات حقن ثم Staging | 100% من حالات 400/413/429/503 المقصودة، لا تسرب رسائل داخلية، لا تجاوز لتعليمات النظام في مجموعة هجوم محددة وموثقة |
+| GAP-002 | عائق تحقق مثبت | أمان الأدوار وبيانات الطلاب `proxy.ts`, `lib/auth/authorization.ts`, سياسات Supabase | يوجد حارس لبعض مسارات API لكن لا دليل هنا على فحوص RLS/RPC/Storage بحسابات معزولة | تعريض بيانات الطلاب أو تعطيل وصولهم المصرح | حرجة كمتطلب بوابة، لا ثغرة مؤكدة: بيانات قاصرين | عالٍ: ثقة الأسرة والمدرسة شرط للاستعمال | P0: جرد جميع المسارات والجداول ودوال RPC واختبار مستخدمين معزولين | صفر وصول غير مصرح في مصفوفة الأدوار والموارد، مع سجلات الاختبار |
+| GAP-003 | قصور مثبت في معيار الفحص، لا إثبات عيب دروس | رحلة التعلم `scripts/check-learning-experience.mjs` | يطبع `LEARNING_EXPERIENCE_GATE=PASS` عند وجود ملفات وعلامات نصية؛ لا يشغّل رحلة طالب أو يقيس اكتمال المحتوى | احتمال إظهار جاهزية لا تثبت قدرة الطالب على التعلم | متوسطة: تضليل قرار الاعتماد | عالٍ: لا يثبت إتمام شرح أو تقويم | P1: استكمال فحوص E2E وحالات درس | اجتياز رحلة اختيار بلد/صف → درس → تمرين → تغذية راجعة على عينة محددة من كل مبحث |
+| GAP-004 | قصور مثبت في معيار الفحص | المناهج `scripts/curriculum-coverage.mjs` | التقرير يعلن `OFFICIAL_SYLLABUS_MATCH=NOT_VERIFIED`؛ يحصي الحزم والدروس ولا يثبت مطابقة أهداف الدرس للمصدر | احتمال مسار غير مطابق أو أهداف ناقصة | متوسطة: خطر محتوى | عالٍ: تسلسل المنهج يؤثر في اكتساب المهارة | P1: مراجعة عينة البحرين صفوف 1–3 بالمصدر الرسمي وأربعة أدلة لكل درس | لكل درس معتمد: مرجع رسمي وتطابق موضوع/صف/فصل/هدف، وإلا تصنيف إثراء أو غير مكتمل |
+| GAP-005 | عائق تحقق مثبت | القراءة `app/(dashboard)/reading-challenge/page.tsx` | يجري استعلامات للتقدم والجوازات لكن فحص الأخطاء الظاهر يتعامل مع `lessonsResult.error` فقط | قد تظهر مؤشرات ناقصة/صفرية عند تعذر جلب تقدم الطالب | متوسطة: مؤشرات مضللة عند فشل الاستعلام | متوسط إلى عالٍ: يحجب تقدم القراءة | P1: اختبار أخطاء كل استعلام وإظهار حالة غير متاحة بدل رقم صفر | في اختبارات محاكاة فشل كل استعلام، لا تعرض بيانات التقدم الناقصة كمؤشرات موثوقة |
+| GAP-006 | يحتاج تحقق ميداني | دروس العربية والرياضيات والعلوم والاجتماعيات والإسلامية والإنجليزية | لا توجد في الفحص الحالي عينة متصفح موثقة تربط أهداف التعلم بشرح وتمرين وتصحيح لكل مبحث | تعثر التعلم عند وجود درس ناقص | غير محددة: غياب دليل تشغيل | محتمل عالٍ: محور المنتج | P1: جرد الدروس المنشورة وعينة طبقية مع روابط ولقطات | لكل مبحث وصف: عدد العينة، عدد الأخطاء المثبتة، ونسبة إتمام درس مع تقويم |
+| GAP-007 | يحتاج تحقق ميداني | UX وإمكانية الوصول `app/onboarding/page.tsx`, `CurriculumCatalogClient.tsx` | الملفات موجودة؛ لم تُشغّل اختبارات لوحة مفاتيح/قارئ شاشة/جوال أو قياس إتمام الدخول | قد يعوق طالبًا أو ولي أمر عن الوصول | غير محددة: لم يختبر | عالٍ محتمل: الوصول شرط للتعلم | P1: اختبارات WCAG 2.2 AA، هاتف، RTL، رحلة تسجيل | لا عوائق حرجة بلوحة المفاتيح/قارئ الشاشة، ونجاح سيناريوهات الدخول والاختيار الموثقة |
+| GAP-008 | يحتاج تحقق ميداني | عروض الدروس، الفيديوهات، الألعاب و«ضاد» | لا سجلات تشغيل حقيقية أو عينات قابلة للتكرار في هذا التدقيق | احتمال انقطاع الشرح أو التغذية الراجعة | غير محددة | عالٍ محتمل | P1: اختبارات تشغيل على عينات وروابط فعلية | تشغيل وسائط وإتمام لعبة مع تغذية راجعة وتوثيق الأخطاء ونسبة النجاح |
+
+## نتائج PR #148 / الأوامر
+- جرى **فحص PR #148 عبر GitHub**: Draft، غير مدمج، تغيير `app/api/dad/chat/route.ts`، والتزام أولي `2ce1c130...`.
+- جرى **جلب patch وحالات الالتزام**: لا تشغيلات GitHub Actions ظاهرة للالتزام الأولي؛ حالة `netlify/dadyoom/deploy-preview` كانت `success`. هذا **ليس** نجاح اختبار أمان أو موافقة على النشر، وقد يكون إنشاء معاينة آلية من إعدادات الاستضافة.
+- أُضيف فحص مصدر ثابت `node --test scripts/dad-chat-security-contract.test.mjs` وملف سير عمل لتشغيل `npm ci`, `npm run test:run`, `npx tsc --noEmit`, `npx eslint app/api/dad/chat/route.ts`, `npm run build`. **لم تنفذ هذه الأوامر في بيئة المستودع ضمن هذه الجلسة**؛ لا توجد نتائج نجاح مسجلة.
+- محاولة `git ls-remote https://github.com/mrahmedsamirhamam-ui/dadyoom.git HEAD` في الحاوية فشلت: `Could not resolve host: github.com`. لذلك لا يمكن الادعاء بتشغيل الاختبارات محليًا.
+- فحوص المصدر الثابت ليست اختبارات API سلوكية، ولا تثبت مقاومة حقن التعليمات؛ يلزم تشغيل حالات تكامل واختبار حسابات Staging معزولة.
+
+## نطاق التغيير
+- فرع مستقل `fix/dad-chat-security-20261112`، PR #148 Draft.
+- تصحيح حد حجم الطلب إلى بايتات UTF-8 بدل طول سلسلة JavaScript.
+- إضافة اختبار عقود مصدر ثابت وسير عمل تحقق دون خطوة نشر.
+- إضافة هذا السجل؛ لا تعديل للمناهج أو قاعدة الإنتاج أو مشاريع المدارس الستة.
+
+## قاعدة الترتيب
+الأولوية = خطر الأمان ودرجة أثر التعلم، ثم انتشار الأثر والإلحاح؛ عدم معرفة عدد المتضررين لا يساوي صفرًا. لا يُحوّل «غير مختبر» إلى «فشل مثبت»، ولا يُعتمد «PASS» قائم على وجود ملف بوصفه دليل تعلم فعلي.
+
+## CI evidence update — 2026-11-12
+- **Proven CI failure / GAP-009 (P0 release blocker):** run [43149254716](https://github.com/mrahmedsamirhamam-ui/dadyoom/actions/runs/43149254716), job `130954280393`, Ubuntu runner, Node 22. `npm ci` PASS; `node --test scripts/dad-chat-security-contract.test.mjs` PASS; `npm run test:run` FAIL (exit 1): `No test suite found in file scripts/dad-chat-security-contract.test.mjs`; Vitest reports **31 files passed, 1 file failed, 226 tests passed**. `npx tsc --noEmit`, `npx eslint app/api/dad/chat/route.ts`, `npm run build` were SKIPPED due to the failed test step.
+- **Reproduce:** On PR head prior to CI fix, `npm ci && npm run test:run`; Vitest collects Node's `node:test` file as a Vitest suite. **Impact:** CI gate cannot finish, so security and student-facing build changes cannot be trusted. **Severity:** high release-blocker (not confirmed runtime exploit). **Educational impact:** indirect/high, blocks validated student experience. **Fix:** workflow excludes the Node-only file from Vitest while separately running it with Node; subsequent diagnostics run even if unit tests fail. **Closure:** rerun full CI on new head and require zero failed tests, successful TypeScript, ESLint and build. This item remains OPEN until that run is verified.
+- **Important:** `netlify/dadyoom/deploy-preview=success` for earlier SHA is a preview status, not an application security test. No API behavioral tests, isolated Supabase RLS/RPC/Storage tests, or actual learning outcomes were verified by this run.
+
+## GAP-009 closure evidence and environment gate — 2026-11-12
+
+**GAP-009 status: CLOSED (CI configuration defect only).** This is not a closure of GAP-001 or the platform security gate.
+
+1. **Failing reproduction, before fix:** [GitHub Actions run 43149254716](https://github.com/mrahmedsamirhamam-ui/dadyoom/actions/runs/43149254716), job 130954280393: `npm run test:run` exit 1, `No test suite found in file scripts/dad-chat-security-contract.test.mjs`; 31 Vitest files and 226 tests passed, but one test file failed collection. `node --test scripts/dad-chat-security-contract.test.mjs` separately passed. TypeScript, ESLint, build skipped.
+2. **Fix:** commit `e95e0669ed1da59b1722c5cd2f092acbe87d9fc2` changed workflow to run Node's contract tests separately and exclude that file from Vitest: `npm run test:run -- --exclude scripts/dad-chat-security-contract.test.mjs`. Commit `22c8f5492ce749bc97cb88cc976ef18415c4983d` is the verified PR head.
+3. **Passing regression and acceptance:** [GitHub Actions run 43149590313](https://github.com/mrahmedsamirhamam-ui/dadyoom/actions/runs/43149590313), job 130955351420, `completed/success` on commit `22c8f5492ce749bc97cb88cc976ef18415c4983d`: `npm ci` PASS; `node --test scripts/dad-chat-security-contract.test.mjs` **4/4 PASS**; `npm run test:run -- --exclude scripts/dad-chat-security-contract.test.mjs` **226/226 PASS (31 files)**; `npx tsc --noEmit` PASS; `npx eslint app/api/dad/chat/route.ts` PASS; `npm run build` PASS (Next.js 16.3.3). **Acceptance met:** previously failing collection is excluded from Vitest, still tested under Node, all required CI checks complete successfully. This closes only the test-runner configuration defect.
+4. **Non-blocking follow-up:** `[DEP0040]` deprecated `punycode` module; GitHub Actions warns `actions/checkout@v4` and `actions/setup-node@v4` target deprecated Node 20 runtime and are being forced onto Node 24. Investigate dependency source and action upgrades separately; neither made this run fail.
+5. **API environment gate: NOT VERIFIED.** Repository `.env.example` is explicitly a *production* environment template, with empty `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` values. `lib/supabase/server.ts` reads runtime environment variables. A Netlify deploy-preview status or preview URL is **not** evidence of separate backing data or credentials. No independently verified test API origin, runtime configuration, test identity, or isolated database mapping was available in this review. **No API requests sent.** To proceed, obtain read-only evidence of deployment identity, backing Supabase project ref, nonproduction test credentials and nonproduction data, and prove these differ from production before any request.
+6. **Supabase isolation gate: NOT VERIFIED.** No RLS, RPC or Storage calls made. Require documented production project ref and separate staging project ref, environment-to-project binding and isolated test users; compare refs without printing credentials. Then authorize a separate isolated test run.
+7. **Other gaps:** GAP-001 through GAP-008 remain OPEN/UNVERIFIED as previously classified. Static checks and successful build are not API behavioral tests, security penetration tests, or measurements of student learning. Overall merge/deployment gate stays **NO_GO**.
+
+## Learning validation plan and environment hold — 2026-11-12
+
+**Evidence classification:** The following is a test plan and source observation, NOT an executed student journey, API test, or verified learning outcome. GAP-005 to GAP-008 remain OPEN. GAP-009 remains CLOSED for CI configuration only.
+
+### Environment preconditions
+- **API:** verify deployment identity and exact nonproduction API origin from deployment settings, verify its runtime Supabase project reference differs from production, and verify test-only credentials and fixtures. Do not send any request until all are proven. A deploy-preview URL is insufficient.
+- **Supabase:** verify isolated project reference and connection settings against production through read-only configuration evidence; provision distinct test users, roles and buckets. Do not call RLS/RPC/Storage until verified. No database tests were run.
+
+### GAP-005 reproducible test matrix
+- **Source evidence:** `app/(dashboard)/reading-challenge/page.tsx` checks `lessonsResult.error` but not `progressResult.error` or `passportResult.error`, and substitutes `?? []` before calculating completed lessons, completed passports and average comprehension score.
+- **Test design (NOT RUN):** mock each of three query responses independently with a database error, retaining successful results for other queries; assert an explicit unavailable/error state rather than zero or trustworthy-looking metrics; test normal empty datasets separately to distinguish valid zero from failed retrieval. Run in isolated component/server test harness, then regression tests for successful progress and passports.
+- **Acceptance:** 3/3 injected query failures are surfaced safely; 0/3 failures displayed as valid zero progress; normal empty and populated cases pass. Do not close before recorded before/after reproduction and regression.
+
+### GAP-006–008 student-learning validation protocol (NOT RUN)
+- **Sampling:** start with 12 synthetic test journeys: Bahrain grades 1–3 × four subjects/lesson types selected from available published content, then expand to cover every subject before platform-wide conclusions. Record exact lesson IDs, curriculum country/grade/subject, content version and sampling method. If fewer eligible lessons exist, report the shortfall, do not substitute fictitious data.
+- **Journey:** country → grade → subject → lesson → explanation → one interaction → exercise → feedback → completion → comprehension assessment. Use synthetic test accounts only and an isolated backend.
+- **Recorded fields per journey:** environment identity, test ID, lesson ID, viewport/device, start/end timestamp, step outcomes, error code and redacted screenshot/log, completion (0/1), assessment questions and anonymized scores, whether feedback was pedagogically accurate, tester notes.
+- **Predefined pilot gates (provisional, not evidence):** 12/12 journeys accessible without blocker; at least 11/12 complete end-to-end; 100% of attempted assessments record feedback and a result; 0 critical accessibility blockers; 0 unauthorized data access. Do not claim learning gain from completion alone; assess comprehension against teacher-reviewed questions and report distribution without claiming causal improvement.
+- **GAP-007:** test keyboard-only flow, screen reader, mobile 360px RTL, labels, focus order, error recovery and authentication; record WCAG 2.2 AA findings. No actual device tests conducted.
+- **GAP-008:** independently verify slide display, video playback, captions/controls and game scoring/feedback on selected lesson IDs, with actual browser/network logs. No media tests conducted.
+- **Retest:** rerun identical journeys on the same lesson revisions after each fix, compare before/after results, and preserve failures and environment details. Missing safe environment or test accounts is a BLOCKER, not a PASS.
+
+**Priority:** P0 API authorization/data isolation gates before any remote tests; P1 GAP-005 reading metrics integrity and GAP-006 core learning; P1 GAP-007 accessibility and GAP-008 media interactions, adjusted upward if actual user-blocking evidence is collected. **Overall NO_GO; no merge/deploy/production mutation.**
