@@ -1,0 +1,45 @@
+name: Reading library verification
+
+on:
+  push:
+    branches:
+      - feature/reading-library-foundation-20261111
+    paths:
+      - 'app/library/**'
+      - 'components/library/**'
+      - 'lib/reading-library/**'
+      - 'docs/reading-library-*.md'
+      - '.github/workflows/reading-library-checks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: reading-library-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Tests, types, lint and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CI: 'true'
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Reading library unit tests
+        run: npx vitest run lib/reading-library/books.test.ts lib/reading-library/local-progress.test.ts lib/reading-library/passports.test.ts lib/reading-library/curriculum-links.test.ts
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: Scoped ESLint
+        run: npx eslint app/library/page.tsx components/library/LocalReadingPanel.tsx lib/reading-library
+      - name: Production build (verification only, no deploy)
+        run: npm run build
