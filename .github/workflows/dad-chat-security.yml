@@ -28,10 +28,13 @@ jobs:
       - name: Static security regression contracts (not API penetration tests)
         run: node --test scripts/dad-chat-security-contract.test.mjs
       - name: Existing unit tests
-        run: npm run test:run
+        run: npm run test:run -- --exclude scripts/dad-chat-security-contract.test.mjs
       - name: TypeScript
+        if: always()
         run: npx tsc --noEmit
       - name: Scoped ESLint
+        if: always()
         run: npx eslint app/api/dad/chat/route.ts
       - name: Build without publishing
+        if: always()
         run: npm run build
