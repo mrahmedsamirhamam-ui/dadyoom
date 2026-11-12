@@ -1,0 +1,37 @@
+name: Dad chat security verification
+
+on:
+  pull_request:
+    paths:
+      - 'app/api/dad/chat/route.ts'
+      - 'scripts/dad-chat-security-contract.test.mjs'
+      - '.github/workflows/dad-chat-security.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      CI: 'true'
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Static security regression contracts (not API penetration tests)
+        run: node --test scripts/dad-chat-security-contract.test.mjs
+      - name: Existing unit tests
+        run: npm run test:run
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: Scoped ESLint
+        run: npx eslint app/api/dad/chat/route.ts
+      - name: Build without publishing
+        run: npm run build
