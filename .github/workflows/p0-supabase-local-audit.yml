@@ -1,0 +1,192 @@
+name: P0 Supabase Local Auth-RLS and lesson-quality audit (NO DEPLOY)
+on:
+  push:
+    branches:
+      - security/p0-unified-role-answer-guard-20261112
+    paths:
+      - "tests/security/supabase-local/**"
+      - ".github/workflows/p0-supabase-local-audit.yml"
+permissions:
+  contents: read
+jobs:
+  supabase-local-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      SUPABASE_ACCESS_TOKEN: ""
+      SUPABASE_DB_PASSWORD: ""
+      SUPABASE_URL: ""
+      NEXT_PUBLIC_SUPABASE_URL: ""
+      STAGING_SUPABASE_URL: ""
+      DATABASE_URL: ""
+      STAGING_DATABASE_URL: ""
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install locked project CLI and dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Confirm Docker and initialize UNLINKED Supabase workspace
+        id: init
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker info >/dev/null
+          "$GITHUB_WORKSPACE/node_modules/.bin/supabase" --version
+          "$GITHUB_WORKSPACE/node_modules/.bin/supabase" start --help >/dev/null
+          mkdir -p "$RUNNER_TEMP/dadyoom-p0-supabase-unlinked"
+          cd "$RUNNER_TEMP/dadyoom-p0-supabase-unlinked"
+          "$GITHUB_WORKSPACE/node_modules/.bin/supabase" init --yes
+          test ! -f supabase/.branches/_current_branch
+          echo "UNLINKED_SUPABASE_WORKSPACE=PASS"
+      - name: Start real LOCAL Supabase Auth/PostgREST stack
+        id: stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/dadyoom-p0-supabase-unlinked"
+          "$GITHUB_WORKSPACE/node_modules/.bin/supabase" start \
+            --exclude studio,realtime,storage-api,imgproxy,edge-runtime,logflare,vector,supavisor,postgres-meta,mailpit \
+            >"$RUNNER_TEMP/p0-supabase-start.log" 2>&1 || {
+              echo "SUPABASE_LOCAL_START=FAILED"
+              sed -E 's/(secret|token|key|password)([=: ])[^ ]+/\1\2[REDACTED]/Ig' "$RUNNER_TEMP/p0-supabase-start.log" | tail -45
+              exit 1
+            }
+          echo "SUPABASE_LOCAL_START=PASS"
+      - name: Extract local URLs only and install psql
+        id: localenv
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/dadyoom-p0-supabase-unlinked"
+          "$GITHUB_WORKSPACE/node_modules/.bin/supabase" status -o env >"$RUNNER_TEMP/p0-local-keys.env"
+          set -a
+          source "$RUNNER_TEMP/p0-local-keys.env"
+          set +a
+          : "$\{API_URL:?missing_local_api}"
+          : "$\{DB_URL:?missing_local_db}"
+          : "$\{ANON_KEY:?missing_local_anon_key}"
+          : "$\{SERVICE_ROLE_KEY:?missing_local_service_role_key}"
+          [[ "$API_URL" =~ ^http://(127\.0\.0\.1|localhost):[0-9]+$ ]] || exit 2
+          [[ "$DB_URL" =~ ^postgresql://postgres:postgres@(127\.0\.0\.1|localhost):[0-9]+/postgres$ ]] || exit 2
+          echo "P0_LOCAL_ENV_GATE=PASS api=loopback db=loopback"
+          if ! command -v psql >/dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq postgresql-client
+          fi
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -tAc "SELECT current_database(),current_setting('server_version')"
+      - name: Document whether repository contains a reproducible production baseline
+        id: baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          source "$RUNNER_TEMP/p0-local-keys.env"
+          if [[ "$(psql "$DB_URL" -tAc "SELECT (to_regclass('public.profiles') IS NOT NULL)::int")" == 0 ]]; then
+            echo "MAIN_BASELINE=INCOMPLETE (local Supabase lacks public.profiles before synthetic fixture)"
+          fi
+          if [[ "$(psql "$DB_URL" -tAc "SELECT (to_regclass('public.lessons') IS NOT NULL)::int")" == 0 ]]; then
+            echo "MAIN_BASELINE_LESSONS=ABSENT"
+          fi
+          echo "BASELINE_MATCH_TO_PRODUCTION=NOT_VERIFIED"
+      - name: Set up test-only schema on actual Supabase Auth database
+        id: fixture
+        shell: bash
+        run: |
+          set -euo pipefail
+          source "$RUNNER_TEMP/p0-local-keys.env"
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -f tests/security/supabase-local/p0-local-fixture.sql
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -f supabase/migrations/20261022150911_create_dadyoom_student_safe_questions_view.sql
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -f docs/security/REVIEW_ONLY_P0_UNIFIED_ROLES_ANSWERS_20261112.sql
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -c "NOTIFY pgrst, 'reload schema'"
+          sleep 3
+          echo "P0_LOCAL_FIXTURE_AND_PROPOSAL=APPLIED"
+      - name: Real GoTrue signup, issued JWT and PostgREST / RLS adversarial checks
+        id: e2e
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          source "$RUNNER_TEMP/p0-local-keys.env"
+          export P0_LOCAL_API_URL="$API_URL"
+          export P0_LOCAL_DB_URL="$DB_URL"
+          export P0_LOCAL_ANON_KEY="$ANON_KEY"
+          export P0_LOCAL_SERVICE_KEY="$SERVICE_ROLE_KEY"
+          export P0_LOCAL_IDS_PATH="$RUNNER_TEMP/p0-ids.json"
+          node tests/security/supabase-local/p0-local-auth-rls.mjs
+      - name: Execute lesson-quality migration / rollback on Supabase Local (synthetic schema)
+        id: quality
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          source "$RUNNER_TEMP/p0-local-keys.env"
+          git fetch -q --depth=1 origin feat/lesson-library-quality-phase1-20261109
+          git show FETCH_HEAD:supabase/migrations/20261109200700_lesson_review_quality_phase1.sql > "$RUNNER_TEMP/p0-quality-migration.sql"
+          git show FETCH_HEAD:tests/sql/dadyoom-lq1-preflight.sql > "$RUNNER_TEMP/p0-quality-preflight-original.sql"
+          git show FETCH_HEAD:tests/sql/dadyoom-lq1-integration.sql > "$RUNNER_TEMP/p0-quality-integration-original.sql"
+          git show FETCH_HEAD:tests/sql/dadyoom-lq1-rollback.sql > "$RUNNER_TEMP/p0-quality-rollback-original.sql"
+          if psql "$DB_URL" -v ON_ERROR_STOP=1 -f "$RUNNER_TEMP/p0-quality-preflight-original.sql" >"$RUNNER_TEMP/p0-preflight.log" 2>&1; then
+            echo "LQ1_ORIGINAL_PREFLIGHT=PASS"
+          else
+            echo "LQ1_ORIGINAL_PREFLIGHT=FAILED (source SQL syntax or database guard)"
+            grep -E 'ERROR:|LINE ' "$RUNNER_TEMP/p0-preflight.log" | head -8 || true
+          fi
+          node - "$RUNNER_TEMP" <<'NODE'
+          const fs=require('node:fs'),path=require('node:path'),tmp=process.argv[2];
+          const fix=s=>s.replace(/\bDO \$(?=\n)/g,'DO $$')
+            .replaceAll('dadyoom_lq1_ci_isolated','postgres');
+          for (const name of ['preflight','integration','rollback']) {
+            const p=path.join(tmp,'p0-quality-'+name+'-original.sql');
+            fs.writeFileSync(path.join(tmp,'p0-quality-'+name+'-local.sql'),fix(fs.readFileSync(p,'utf8')));
+          }
+          const ids=JSON.parse(fs.readFileSync(path.join(tmp,'p0-ids.json'),'utf8'));
+          const p=path.join(tmp,'p0-quality-integration-local.sql');
+          const q=fs.readFileSync(p,'utf8').replaceAll('22222222-2222-4222-8222-222222222222',ids.reviewerId);
+          fs.writeFileSync(p,q);
+          NODE
+          before="$(psql "$DB_URL" -tAc "SELECT md5(row_to_json(l)::text) FROM public.lessons l WHERE id='11111111-1111-4111-8111-111111111111'")"
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -f "$RUNNER_TEMP/p0-quality-preflight-local.sql"
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -f "$RUNNER_TEMP/p0-quality-migration.sql"
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -f "$RUNNER_TEMP/p0-quality-integration-local.sql"
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -f "$RUNNER_TEMP/p0-quality-rollback-local.sql"
+          after="$(psql "$DB_URL" -tAc "SELECT md5(row_to_json(l)::text) FROM public.lessons l WHERE id='11111111-1111-4111-8111-111111111111'")"
+          test -n "$before" && test "$before" = "$after"
+          echo "LQ1_SYNTHETIC_LOCAL_MIGRATE_ROLLBACK_CORE_DATA=PASS"
+      - name: Rehearse security-preserving P0 rollback
+        id: rollback
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          source "$RUNNER_TEMP/p0-local-keys.env"
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -f docs/security/P0_SECURITY_PRESERVING_ROLLBACK.sql
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -c "
+            DO \$\$BEGIN
+              IF has_function_privilege('service_role',
+                 'public.approve_profile_role_request(uuid,uuid,text,text)', 'EXECUTE')
+              THEN RAISE EXCEPTION 'ROLLBACK_REOPENED_APPROVAL'; END IF;
+              IF has_column_privilege('authenticated','public.questions','correct_answer','SELECT')
+              THEN RAISE EXCEPTION 'ROLLBACK_REOPENED_ANSWER_KEY'; END IF;
+            END\$\$;"
+          echo "P0_SECURITY_PRESERVING_ROLLBACK=PASS"
+      - name: Explicit FAIL-CLOSED audit gate
+        if: always()
+        shell: bash
+        run: |
+          echo "SUPABASE_LOCAL_AUDIT: startup=$\{{ steps.stack.outcome }} auth_rls=$\{{ steps.e2e.outcome }} quality=$\{{ steps.quality.outcome }} rollback=$\{{ steps.rollback.outcome }}"
+          echo "PRODUCTION_SCHEMA_PARITY=NOT_VERIFIED"
+          echo "APPROVED_RELEASE=NO_GO"
+          if [[ "$\{{ steps.stack.outcome }}" != success ||
+                "$\{{ steps.fixture.outcome }}" != success ||
+                "$\{{ steps.e2e.outcome }}" != success ||
+                "$\{{ steps.quality.outcome }}" != success ||
+                "$\{{ steps.rollback.outcome }}" != success ]]; then exit 1; fi
+      - name: Stop disposable Supabase stack
+        if: always()
+        shell: bash
+        run: |
+          cd "$RUNNER_TEMP/dadyoom-p0-supabase-unlinked" 2>/dev/null || exit 0
+          "$GITHUB_WORKSPACE/node_modules/.bin/supabase" stop || true
