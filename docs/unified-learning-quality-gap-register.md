@@ -29,3 +29,8 @@
 
 ## قاعدة الترتيب
 الأولوية = خطر الأمان ودرجة أثر التعلم، ثم انتشار الأثر والإلحاح؛ عدم معرفة عدد المتضررين لا يساوي صفرًا. لا يُحوّل «غير مختبر» إلى «فشل مثبت»، ولا يُعتمد «PASS» قائم على وجود ملف بوصفه دليل تعلم فعلي.
+
+## CI evidence update — 2026-11-12
+- **Proven CI failure / GAP-009 (P0 release blocker):** run [43149254716](https://github.com/mrahmedsamirhamam-ui/dadyoom/actions/runs/43149254716), job `130954280393`, Ubuntu runner, Node 22. `npm ci` PASS; `node --test scripts/dad-chat-security-contract.test.mjs` PASS; `npm run test:run` FAIL (exit 1): `No test suite found in file scripts/dad-chat-security-contract.test.mjs`; Vitest reports **31 files passed, 1 file failed, 226 tests passed**. `npx tsc --noEmit`, `npx eslint app/api/dad/chat/route.ts`, `npm run build` were SKIPPED due to the failed test step.
+- **Reproduce:** On PR head prior to CI fix, `npm ci && npm run test:run`; Vitest collects Node's `node:test` file as a Vitest suite. **Impact:** CI gate cannot finish, so security and student-facing build changes cannot be trusted. **Severity:** high release-blocker (not confirmed runtime exploit). **Educational impact:** indirect/high, blocks validated student experience. **Fix:** workflow excludes the Node-only file from Vitest while separately running it with Node; subsequent diagnostics run even if unit tests fail. **Closure:** rerun full CI on new head and require zero failed tests, successful TypeScript, ESLint and build. This item remains OPEN until that run is verified.
+- **Important:** `netlify/dadyoom/deploy-preview=success` for earlier SHA is a preview status, not an application security test. No API behavioral tests, isolated Supabase RLS/RPC/Storage tests, or actual learning outcomes were verified by this run.
