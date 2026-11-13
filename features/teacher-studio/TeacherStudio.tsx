@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import {
   generateStudioDraft, studioDraftAsText,
   type StudioDraft, type StudioInput
@@ -15,21 +15,21 @@ export default function TeacherStudio() {
   const [draft, setDraft] = useState<StudioDraft | null>(null);
   const [error, setError] = useState("");
   const [reviewed, setReviewed] = useState(false);
-  const output = useMemo(
-    () => draft ? studioDraftAsText(input, draft) : "",
-    [input, draft]
-  );
+  const [editedText, setEditedText] = useState("");
 
   function change<K extends keyof StudioInput>(name: K, value: StudioInput[K]) {
     setInput((previous) => ({ ...previous, [name]: value }));
     setDraft(null);
     setReviewed(false);
+    setEditedText("");
     setError("");
   }
 
   function build() {
     try {
-      setDraft(generateStudioDraft(input));
+      const nextDraft = generateStudioDraft(input);
+      setDraft(nextDraft);
+      setEditedText(studioDraftAsText(input, nextDraft));
       setReviewed(false);
       setError("");
     } catch (caught) {
@@ -40,7 +40,7 @@ export default function TeacherStudio() {
 
   function download() {
     if (!draft || !reviewed) return;
-    const blob = new Blob(["\uFEFF" + output], { type: "text/plain;charset=utf-8" });
+    const blob = new Blob(["\uFEFF" + editedText], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
@@ -121,12 +121,18 @@ export default function TeacherStudio() {
             <ul className="mt-2 list-inside list-disc space-y-2 text-sm leading-7 text-amber-900">
               {draft.reviewChecklist.map((item) => <li key={item}>{item}</li>)}
             </ul>
+            <label className="mt-6 block space-y-2 text-sm font-bold">
+              <span className="block">3. راجع وعدّل نص التحضير قبل تنزيله</span>
+              <textarea rows={13} maxLength={15000} value={editedText}
+                onChange={(event) => { setEditedText(event.target.value); setReviewed(false); }}
+                className="w-full rounded-xl border border-slate-300 p-4 text-sm leading-7" />
+            </label>
             <label className="mt-6 flex items-start gap-3 rounded-xl bg-slate-50 p-4 text-sm">
               <input type="checkbox" className="mt-1" checked={reviewed}
                 onChange={(event) => setReviewed(event.target.checked)} />
               <span>راجعت النص والهدفين والأسئلة والمصدر، وسأعتمد المحتوى بنفسي قبل استخدامه.</span>
             </label>
-            <button type="button" disabled={!reviewed} onClick={download}
+            <button type="button" disabled={!reviewed || !editedText.trim()} onClick={download}
               className="mt-4 rounded-xl bg-[#123f39] px-6 py-3 font-bold text-white disabled:cursor-not-allowed disabled:opacity-40">
               تنزيل نص المسودة (TXT)
             </button>
