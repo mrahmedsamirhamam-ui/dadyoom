@@ -533,7 +533,28 @@ export default function CurriculumCatalogClient({
           </div>
         </section>
 
-        <section className="min-w-0 space-y-5">
+        <section className="min-w-0 space-y-5" aria-live="polite">
+          {shown.length === 0 ? (
+            <div className="rounded-[2rem] border border-[#dfcfad] bg-[#fffdf8] p-7 text-center">
+              <h2 className="text-xl font-black text-[#123f39]">
+                لا توجد دروس متاحة لهذه الاختيارات حاليًا
+              </h2>
+              <p className="mt-3 leading-8 text-[#766c60]">
+                قد لا تكون دروس هذا الفصل أو المسار منشورة بعد. جرّب عرض كل الفصول والوحدات،
+                أو اختر صفًا آخر. لا يعني ذلك أن المنهج الرسمي غير موجود.
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  setSemester("");
+                  setUnit("");
+                }}
+                className="mt-4 rounded-full bg-[#123f39] px-5 py-3 font-black text-white"
+              >
+                عرض كل الفصول والوحدات
+              </button>
+            </div>
+          ) : null}
           {shown.map(
             (item) => (
               <article
