@@ -1,7 +1,7 @@
 /** STAGING ONLY. No production tokens. Node 20+; no extra dependencies.
  * Usage: STAGING_SUPABASE_URL=... STAGING_ANON_KEY=... STAGING_STUDENT_A_JWT=...
  * STAGING_STUDENT_B_JWT=... STAGING_ATTEMPT_ID=... STAGING_QUESTION_ID=...
- * STAGING_STUDENT_B_ATTEMPT_ID=... node security/staging/verify-assessment.mjs
+ * STAGING_STUDENT_B_ATTEMPT_ID=... STAGING_CONFIRMED_ISOLATED=YES node security/staging/verify-assessment.mjs
  * Seed two synthetic students and a question owned by student A in an isolated DB.
  */
 import assert from "node:assert/strict";
@@ -9,10 +9,11 @@ const required = ["STAGING_SUPABASE_URL","STAGING_ANON_KEY","STAGING_STUDENT_A_J
 "STAGING_STUDENT_B_JWT","STAGING_ATTEMPT_ID","STAGING_QUESTION_ID","STAGING_STUDENT_B_ATTEMPT_ID"];
 for (const key of required) assert.ok(process.env[key], `Missing ${key}`);
 const url = new URL(process.env.STAGING_SUPABASE_URL);
-assert.ok(url.hostname.endsWith(".supabase.co") && url.protocol==="https:", "Invalid Supabase URL");
+assert.ok((url.hostname.endsWith(".supabase.co") && url.protocol==="https:") || (["localhost","127.0.0.1"].includes(url.hostname) && url.protocol==="http:"), "Only local or Supabase staging URL allowed");
 assert.notEqual(url.hostname,"hvqsvtomhlxavmfqoxfz.supabase.co","REFUSE PRODUCTION");
 assert.notEqual(url.hostname,"wqldqqqzvvtfhpjuiwuc.supabase.co","REFUSE SCHOOL");
 const base=url.origin, key=process.env.STAGING_ANON_KEY;
+assert.ok(process.env.STAGING_CONFIRMED_ISOLATED==="YES", "Confirm isolation with STAGING_CONFIRMED_ISOLATED=YES");
 const a=process.env.STAGING_STUDENT_A_JWT,b=process.env.STAGING_STUDENT_B_JWT;
 async function req(path,token,method="GET",body){
  const response=await fetch(base+"/rest/v1/"+path,{method,headers:{
@@ -44,7 +45,7 @@ check("10-way concurrency",successes.length===1&&conflicts.length===9,
  `success=${successes.length} conflicts=${conflicts.length}`);
 const answers=await req(`assessment_session_answers?select=id&session_id=eq.${attempts}&assessment_id=eq.${question}`,a);
 check("one recorded answer",answers.status===200&&answers.data?.length===1,answers.status);
-const rewards=await req(`assessment_reward_outbox?select=id&session_id=eq.${attempts}&assessment_id=eq.${question}`,a);
-check("one reward row (requires controlled read policy)",rewards.status===200&&rewards.data?.length===1,rewards.status);
+// Never grant student access to the reward ledger just for testing.
+// Verify exactly one outbox row using a separate LOCAL privileged SQL query.
 console.log(JSON.stringify({passed:results.filter(x=>x.pass).length,total:results.length},null,2));
 if(results.some(x=>!x.pass))process.exitCode=1;
