@@ -17,6 +17,20 @@ REVOKE ALL PRIVILEGES ON TABLE public.ai_assessments FROM PUBLIC, anon, authenti
 REVOKE ALL PRIVILEGES ON TABLE public.assessment_session_answers FROM PUBLIC, anon, authenticated;
 REVOKE ALL PRIVILEGES ON TABLE public.assessment_sessions FROM PUBLIC, anon, authenticated;
 
+-- Remove previously granted COLUMN-level rights as well: table REVOKE alone does
+-- not clear independent per-column grants. This includes score and secret columns.
+DO $
+DECLARE t text; c text;
+BEGIN
+ FOREACH t IN ARRAY ARRAY['questions','ai_assessments',
+    'assessment_session_answers','assessment_sessions'] LOOP
+  FOR c IN SELECT column_name FROM information_schema.columns
+    WHERE table_schema='public' AND table_name=t LOOP
+   EXECUTE format('REVOKE SELECT (%I), UPDATE (%I), INSERT (%I) ON public.%I FROM PUBLIC, anon, authenticated',c,c,c,t);
+  END LOOP;
+ END LOOP;
+END $;
+
 -- Restrict SELECT to explicitly enumerated non-secret columns.
 -- Table SELECT is deliberately NOT re-granted.
 GRANT SELECT (id,lesson_id,question_order,question,question_type,options,points)
