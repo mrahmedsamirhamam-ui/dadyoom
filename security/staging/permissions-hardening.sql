@@ -19,7 +19,7 @@ REVOKE ALL PRIVILEGES ON TABLE public.assessment_sessions FROM PUBLIC, anon, aut
 
 -- Remove previously granted COLUMN-level rights as well: table REVOKE alone does
 -- not clear independent per-column grants. This includes score and secret columns.
-DO $
+DO $guard$
 DECLARE t text; c text;
 BEGIN
  FOREACH t IN ARRAY ARRAY['questions','ai_assessments',
@@ -29,7 +29,7 @@ BEGIN
    EXECUTE format('REVOKE SELECT (%I), UPDATE (%I), INSERT (%I) ON public.%I FROM PUBLIC, anon, authenticated',c,c,c,t);
   END LOOP;
  END LOOP;
-END $;
+END $guard$;
 
 -- Restrict SELECT to explicitly enumerated non-secret columns.
 -- Table SELECT is deliberately NOT re-granted.
