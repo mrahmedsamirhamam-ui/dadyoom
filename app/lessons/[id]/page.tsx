@@ -6,6 +6,7 @@ import LessonMasteryCard from "@/features/lesson-mastery/components/LessonMaster
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { SITE_DESCRIPTION } from "@/lib/site";
+import { needsSourcePublicationReview, publicLessonDescription } from "@/lib/lesson-content/publication-readiness";
 import {
   getLessonPageBundle,
 } from "@/features/lessons/queries/getLessonPageBundle";
@@ -18,6 +19,7 @@ import WeakQuestionsReview from "@/features/adaptive-learning/components/WeakQue
 
 import LessonProgress from "@/components/lesson/LessonProgress";
 import LessonLearningSlides from "@/components/lesson/LessonLearningSlides";
+import StructuredLessonText from "@/components/lesson/StructuredLessonText";
 import VocabularyCard from "@/components/lesson/VocabularyCard";
 import MultipleChoiceQuestion from "@/components/lesson/MultipleChoiceQuestion";
 import ScoreCard from "@/components/lesson/ScoreCard";
@@ -41,7 +43,7 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
 
   const { data, error } = await supabase
     .from("lessons")
-    .select("title,summary")
+    .select("title,summary,instructions")
     .eq("id", id)
     .eq("status", "published")
     .maybeSingle();
@@ -55,14 +57,16 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
   }
 
   const title = data.title?.trim() || "درس العربية";
+  const sourceReviewRequired = needsSourcePublicationReview(data.instructions);
   const description =
-    data.summary?.trim().slice(0, 170) ||
+    publicLessonDescription(data.summary, data.instructions).slice(0, 170) ||
     `تعلّم ${title} في ضاديوم من خلال المحتوى والأنشطة والأسئلة التفاعلية.`;
 
   return {
     title,
     description,
     alternates: { canonical: `/lessons/${id}` },
+    ...(sourceReviewRequired ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       type: "article",
       url: `/lessons/${id}`,
@@ -130,6 +134,11 @@ export default async function LessonPage({
 
   const lesson =
     bundle.lesson;
+
+  const sourceReviewRequired =
+    needsSourcePublicationReview(lesson.instructions);
+  const safeDescription =
+    publicLessonDescription(lesson.summary, lesson.instructions);
 
   const lessonQuestions =
     bundle.questions;
@@ -245,7 +254,7 @@ export default async function LessonPage({
       );
   }
   const objectives: string[] =
-    Array.isArray(lesson.learning_objectives)
+    !sourceReviewRequired && Array.isArray(lesson.learning_objectives)
       ? lesson.learning_objectives.filter(
           (item: unknown): item is string =>
             typeof item === "string"
@@ -313,64 +322,7 @@ export default async function LessonPage({
         lessonTitle={lesson.title}
         lessonContent={lesson.content ?? ""}
       />
-      <div className="mx-auto max-w-5xl space-y-6">
-        <section className="lesson-arabic-card rounded-3xl border border-[#d7bd83] bg-[#fff7e3] p-5 shadow-sm">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <div className="text-xs font-black text-[#9f7426]">العب وتعلّم</div>
-              <h2 className="mt-1 font-arabic-display text-xl font-black text-[#173f38]">
-                ألعاب عربية من نفس الدرس
-              </h2>
-            </div>
-            <Link
-              href={`/lessons/${lesson.id}/games`}
-              className="dadyoom-arabic-button rounded-2xl px-5 py-3 text-center font-black text-white"
-            >
-              افتح الألعاب
-            </Link>
-          </div>
-        </section>
-        <section className="lesson-arabic-card rounded-3xl border border-[#dcc899] bg-[#fffaf0] p-5 shadow-sm">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <div className="text-xs font-black text-[#a16f18]">
-                استوديو الدرس الذكي
-              </div>
-              <h2 className="mt-1 font-arabic-display text-xl font-black text-[#173f38]">
-                ملخص • PowerPoint • دفتري • فيديو AI
-              </h2>
-            </div>
-            <Link
-              href={`/lessons/${lesson.id}/study`}
-              className="rounded-2xl bg-[#173f38] px-5 py-3 text-center font-black text-white"
-            >
-              افتح استوديو الدرس
-            </Link>
-          </div>
-        </section>
-        {/* DADYOOM_LESSON_VIDEO_BUTTON_V1 */}
-        <section className="lesson-arabic-card rounded-3xl border border-[#d7bd83] bg-[#fff7e3] p-5 shadow-sm">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <div className="text-xs font-black text-[#9f7426]">
-                شاهد وتعلّم
-              </div>
-              <h2 className="mt-1 font-arabic-display text-xl font-black text-[#173f38]">
-                فيديو شرح الدرس
-              </h2>
-              <p className="mt-1 text-sm leading-6 text-slate-600">
-                مصدر رسمي من الدولة أولًا، ثم شرح من نفس الدولة أو المنهج، ثم فيديو كرتوني تعليمي مناسب.
-              </p>
-            </div>
-            <Link
-              href={`/lessons/${lesson.id}/video`}
-              className="rounded-2xl bg-[#b5842b] px-5 py-3 text-center font-black text-white"
-            >
-              شاهد الفيديو
-            </Link>
-          </div>
-        </section>
-
+      <div className="mx-auto max-w-6xl space-y-6 sm:space-y-8">
         <div>
           <Link
             href="/student"
@@ -380,7 +332,7 @@ export default async function LessonPage({
           </Link>
         </div>
 
-        <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm">
+        <section className="lesson-arabic-card rounded-3xl bg-white p-6 shadow-sm sm:p-8">
           <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-slate-500">
             <span>
               الدرس {lesson.lesson_number}
@@ -400,15 +352,40 @@ export default async function LessonPage({
           <LessonProgress
             progress={
               learningProgress?.progress_percent ??
-              (initialCompleted ? 100 : 20)
+              (initialCompleted ? 100 : 0)
             }
           />
 
-          {lesson.summary ? (
+          {sourceReviewRequired ? (
+            <div role="status" className="mt-4 rounded-2xl border border-amber-300 bg-amber-50 px-5 py-4 text-sm font-bold leading-8 text-amber-950">
+              {safeDescription}
+            </div>
+          ) : lesson.summary ? (
             <p className="mt-4 leading-8 text-slate-600">
               {lesson.summary}
             </p>
           ) : null}
+        </section>
+
+        <section aria-label="طرق تعلم الدرس" className="lesson-learning-links grid gap-3 sm:grid-cols-3">
+          <Link href={`/lessons/${lesson.id}/study`} className="group flex flex-col rounded-2xl border border-[#dce9df] bg-white p-5 focus-visible:outline-2 focus-visible:outline-[#174f47]">
+            <span className="text-xs font-semibold text-[#719584]">01 · افهم</span>
+            <span className="mt-2 text-lg font-bold text-[#174f47]">استوديو الدرس</span>
+            <span className="mt-2 text-sm leading-7 text-[#647a6e]">اقرأ الملخص، واستعرض الشرح، واكتب ملاحظاتك.</span>
+            <span className="mt-auto pt-4 text-sm font-semibold text-[#276d56]">افتح الاستوديو ←</span>
+          </Link>
+          <Link href={`/lessons/${lesson.id}/games`} className="group flex flex-col rounded-2xl border border-[#dce9df] bg-white p-5 focus-visible:outline-2 focus-visible:outline-[#174f47]">
+            <span className="text-xs font-semibold text-[#719584]">02 · تدرب</span>
+            <span className="mt-2 text-lg font-bold text-[#174f47]">العب وتعلّم</span>
+            <span className="mt-2 text-sm leading-7 text-[#647a6e]">راجع الأفكار والمفردات في أنشطة مرتبطة بالدرس.</span>
+            <span className="mt-auto pt-4 text-sm font-semibold text-[#276d56]">افتح الألعاب ←</span>
+          </Link>
+          <Link href={`/lessons/${lesson.id}/video`} className="group flex flex-col rounded-2xl border border-[#dce9df] bg-white p-5 focus-visible:outline-2 focus-visible:outline-[#174f47]">
+            <span className="text-xs font-semibold text-[#719584]">03 · شاهد</span>
+            <span className="mt-2 text-lg font-bold text-[#174f47]">شرح بالفيديو</span>
+            <span className="mt-2 text-sm leading-7 text-[#647a6e]">استفد من الفيديو التعليمي المتاح لهذا الدرس.</span>
+            <span className="mt-auto pt-4 text-sm font-semibold text-[#276d56]">شاهد الشرح ←</span>
+          </Link>
         </section>
 
         {user ? (
@@ -424,17 +401,18 @@ export default async function LessonPage({
               />
             ) : null}
 
-            {learningProgress &&
-            learningProgress.status !==
-              "mastered" ? (
-              <LearningCompleteLessonButton
-                progressId={learningProgress.id}
-                nextLessonId={
-                  lesson.nextLesson?.id ??
-                  null
-                }
-              />
-            ) : null}
+            {learningProgress?.status !== "mastered" ? (
+              <a
+                href="#lesson-assessment"
+                className="inline-flex min-h-11 items-center rounded-xl bg-[#174f47] px-5 py-3 text-sm font-bold text-white hover:bg-[#103d36] focus-visible:outline-2 focus-visible:outline-offset-2"
+              >
+                انتقل إلى أسئلة الدرس وأنشطته ↓
+              </a>
+            ) : (
+              <p className="text-sm font-bold text-emerald-700">
+                أحسنت، هذا الدرس مُتقَن بالفعل. يمكنك مراجعته دون فقدان إنجازك.
+              </p>
+            )}
           </section>
         ) : (
           <section className="rounded-3xl bg-amber-50 p-6 text-center">
@@ -468,15 +446,18 @@ export default async function LessonPage({
           </section>
         ) : null}
 
+        <div id="lesson-presentation">
         <LessonLearningSlides
           title={lesson.title}
-          summary={lesson.summary}
+          summary={safeDescription}
           content={lesson.content}
           objectives={objectives}
           vocabulary={vocabulary}
-          instructions={lesson.instructions}
+          instructions={sourceReviewRequired ? [] : lesson.instructions}
         />
-        <section className="rounded-3xl border border-amber-200 bg-white p-6 shadow-sm sm:p-8">
+        </div>
+        <StructuredLessonText content={lesson.content} />
+        <section id="lesson-assessment" className="scroll-mt-28 rounded-3xl border border-amber-200 bg-white p-6 shadow-sm sm:p-8">
           <p className="text-sm font-black text-amber-700">
             بعد انتهاء العرض
           </p>
@@ -565,6 +546,20 @@ export default async function LessonPage({
           <InteractiveLessonActivities
             activities={lessonActivities}
           />
+        ) : null}
+
+        {user && learningProgress && learningProgress.status !== "mastered" ? (
+          <section aria-label="إنهاء الدرس" className="lesson-arabic-card space-y-4 rounded-3xl border border-emerald-200 bg-white p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#173f35]">هل أنهيت التقويم؟</h2>
+            <p className="text-sm leading-7 text-slate-600">
+              أجب عن أسئلة الدرس وأنشطته أولًا، ثم تحقّق من الإتقان هنا.
+              إذا لم تبلغ درجة الإتقان المطلوبة، يمكنك إعادة المحاولة دون فقدان تقدمك.
+            </p>
+            <LearningCompleteLessonButton
+              progressId={learningProgress.id}
+              nextLessonId={lesson.nextLesson?.id ?? null}
+            />
+          </section>
         ) : null}
 
 

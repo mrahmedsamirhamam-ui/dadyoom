@@ -53,20 +53,20 @@ export default async function Navbar() {
   return (
     <header
       dir="rtl"
-      className="sticky top-0 z-40 border-b border-[#dfcfaf] bg-[#fffdf7]/95 shadow-[0_8px_30px_rgba(38,63,55,.06)] backdrop-blur"
+      className="sticky top-0 z-40 border-b border-[#dfe9e2] bg-white/95 shadow-[0_4px_24px_rgba(18,63,57,.05)] backdrop-blur"
     >
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-4 px-4 py-2.5 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <DadyoomLogo className="ml-auto" />
 
         <nav
           aria-label="التنقل الرئيسي"
-          className="order-3 flex w-full gap-1 overflow-x-auto pb-1 text-sm font-black text-[#5c554d] lg:order-none lg:w-auto lg:flex-1 lg:justify-center lg:overflow-visible lg:pb-0"
+          className="order-3 flex w-full gap-1 overflow-x-auto py-1 text-sm font-semibold text-[#416054] lg:order-none lg:w-auto lg:flex-1 lg:justify-center lg:overflow-visible"
         >
           {links.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="whitespace-nowrap rounded-full px-4 py-2.5 transition hover:bg-[#f3ead7] hover:text-[#123f39]"
+              className="inline-flex min-h-11 items-center whitespace-nowrap rounded-xl px-4 py-2.5 transition-colors hover:bg-[#edf5f0] hover:text-[#123f39] focus-visible:outline-2 focus-visible:outline-[#174f47]"
             >
               {item.label}
             </Link>
@@ -76,8 +76,8 @@ export default async function Navbar() {
 
         {user ? (
           <div className="flex items-center gap-2">
-            <div className="hidden max-w-40 text-left sm:block">
-              <div className="truncate text-xs font-black text-[#315f57]">{displayName}</div>
+            <div className="hidden max-w-[17rem] min-w-0 text-left sm:block" dir="auto">
+              <div className="break-words text-xs font-semibold leading-5 text-[#315f57]" title={displayName}>{displayName}</div>
               <div className="text-[10px] font-bold text-[#8a7c69]">{role === "teacher" ? "معلم" : role === "parent" ? "ولي أمر" : role === "school" ? "مدرسة" : role === "admin" ? "إدارة" : "طالب"}</div>
             </div>
             <Link

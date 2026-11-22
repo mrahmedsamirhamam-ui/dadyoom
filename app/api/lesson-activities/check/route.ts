@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { buildActivityProgressPatch } from "@/lib/lesson-progress/activity-progress";
 import {
   getCorrectAnswerSpec,
 } from "@/lib/lesson-activities/grading";
@@ -661,7 +662,7 @@ export async function POST(
           "student_lesson_progress"
         )
         .select(
-          "id,best_score,attempts,status"
+          "id,best_score,attempts,status,progress_percent"
         )
         .eq(
           "student_id",
@@ -680,53 +681,16 @@ export async function POST(
     }
 
 
-    const previousBest =
-      Number(
-        existingProgress
-          ?.best_score ??
-        0
-      );
-
-    const newBest =
-      Math.max(
-        previousBest,
-        currentScore
-      );
-
-
-    /*
-     * لا نغيّر status إلى completed/mastered هنا.
-     *
-     * CompleteLesson الحالي هو المسؤول عن:
-     * - completion
-     * - mastery
-     * - XP
-     */
-    const progressValues = {
-      status:
-        "in_progress",
-
-      progress_percent:
+    // Retrying a practice activity cannot revoke a completed lesson.
+    const progressValues =
+      buildActivityProgressPatch(
+        existingProgress,
         progressPercent,
-
-      last_score:
         currentScore,
+        new Date().toISOString()
+      );
 
-      best_score:
-        newBest,
-
-      attempts:
-        Number(
-          existingProgress
-            ?.attempts ??
-          0
-        ) + 1,
-
-      updated_at:
-        new Date()
-          .toISOString(),
-    };
-
+    const newBest = progressValues.best_score;
 
     if (
       existingProgress
@@ -746,6 +710,11 @@ export async function POST(
           .eq(
             "id",
             existingProgress.id
+          )
+          // A concurrent completion may update the status after our read.
+          .eq(
+            "status",
+            existingProgress.status
           );
 
       if (
@@ -823,7 +792,7 @@ export async function POST(
 
       totalActivities,
 
-      progressPercent,
+      progressPercent: progressValues.progress_percent,
     });
 
   } catch (error) {

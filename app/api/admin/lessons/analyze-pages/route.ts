@@ -1,3 +1,4 @@
+import { requireAdminResponse } from "@/lib/auth/require-admin";
 import {
   NextResponse,
 } from "next/server";
@@ -930,6 +931,9 @@ const regionSchema = {
 export async function POST(
   request: Request
 ) {
+  const rejectedAdminRequest = await requireAdminResponse();
+  if (rejectedAdminRequest) return rejectedAdminRequest;
+
   try {
     const apiKey =
       process.env

@@ -1,0 +1,37 @@
+name: Dadyoom PNG identity and About branding integrity
+
+on:
+  pull_request:
+    paths:
+      - "app/about/page.tsx"
+      - "app/layout.tsx"
+      - "app/icon.png"
+      - "app/manifest.ts"
+      - "components/brand/DadyoomLogo.tsx"
+      - "components/layout/Header.tsx"
+      - "public/brand/dadyoom-mark-2026.png"
+      - "tests/branding/dadyoom-png-brand.test.ts"
+      - ".github/workflows/dadyoom-png-brand-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  brand-verification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Verify true PNG, correct brand name and no SVG logo component
+        run: npx vitest run tests/branding/dadyoom-png-brand.test.ts
+      - name: Typecheck site interfaces
+        run: npx tsc --noEmit

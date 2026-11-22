@@ -29,9 +29,9 @@ export default function manifest(): MetadataRoute.Manifest {
         purpose: "any",
       },
       {
-        src: "/icon.svg",
-        sizes: "any",
-        type: "image/svg+xml",
+        src: "/brand/dadyoom-mark-2026.png",
+        sizes: "160x160",
+        type: "image/png",
         purpose: "any",
       },
     ],

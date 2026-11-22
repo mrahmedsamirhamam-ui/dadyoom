@@ -1,0 +1,32 @@
+name: Arabic brand discoverability and SEO
+on:
+  pull_request:
+    paths:
+      - "app/robots.ts"
+      - "app/sitemap.ts"
+      - "app/layout.tsx"
+      - "lib/site.ts"
+      - "tests/seo-dadyoom.test.ts"
+      - ".github/workflows/seo-dadyoom-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  seo-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+      - run: npm ci --no-audit --no-fund
+      - run: npx vitest run tests/seo-dadyoom.test.ts
+      - run: npx tsc --noEmit
+      - run: npm run lint
+      - run: npm run build

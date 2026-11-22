@@ -1,13 +1,15 @@
 import { createClient } from "@supabase/supabase-js";
 import type { MetadataRoute } from "next";
+import { getSiteUrl } from "@/lib/site";
+import { needsSourcePublicationReview } from "@/lib/lesson-content/publication-readiness";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base =
-    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/u, "") ||
-    "http://localhost:3000";
+  const base = getSiteUrl();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: base, changeFrequency: "weekly", priority: 1 },
+    { url: `${base}/about`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/founder`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/courses`, changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/courses/arabic-from-zero`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/courses/rooms`, changeFrequency: "monthly", priority: 0.8 },
@@ -19,7 +21,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
+  const key =
+    process.env.SUPABASE_SERVICE_ROLE_KEY?.trim() ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.trim();
 
   if (!url || !key) return staticRoutes;
 
@@ -30,18 +34,52 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   });
 
-  const [{ data: courses }, { data: lessons }] = await Promise.all([
-    db
+
+  // PostgREST commonly caps rows per request at 1,000. Without explicit
+  // pagination, the former 5,000-row limit hid thousands of published lessons.
+  const pageSize = 1000;
+  const courses: Array<{ slug: string; updated_at: string | null }> = [];
+  const lessons: Array<{ id: string; updated_at: string | null }> = [];
+
+  for (let offset = 0; ; offset += pageSize) {
+    const { data, error } = await db
       .from("edu_marketplace_courses")
       .select("slug,updated_at")
       .eq("status", "published")
-      .limit(5000),
-    db
+      .order("slug", { ascending: true })
+      .range(offset, offset + pageSize - 1);
+
+    if (error) {
+      console.error("Dadyoom sitemap course pagination failed:", error.message);
+      break;
+    }
+    if (!data?.length) break;
+    courses.push(...data);
+    if (data.length < pageSize) break;
+  }
+
+  for (let offset = 0; ; offset += pageSize) {
+    const { data, error } = await db
       .from("lessons")
-      .select("id,updated_at")
+      .select("id,updated_at,instructions")
       .eq("status", "published")
-      .limit(5000),
-  ]);
+      .order("id", { ascending: true })
+      .range(offset, offset + pageSize - 1);
+
+    if (error) {
+      console.error("Dadyoom sitemap lesson pagination failed:", error.message);
+      break;
+    }
+    if (!data?.length) break;
+    // Imported draft enrichments can have status=published in the DB.
+    // Never advertise records explicitly marked not publication-ready to bots.
+    for (const lesson of data) {
+      if (!needsSourcePublicationReview(lesson.instructions)) {
+        lessons.push({ id: lesson.id, updated_at: lesson.updated_at });
+      }
+    }
+    if (data.length < pageSize) break;
+  }
 
   return [
     ...staticRoutes,

@@ -4,7 +4,14 @@ import StudentClassroomClient from "./StudentClassroomClient";
 
 import { createClient } from "@/lib/supabase/server";
 
-export default async function StudentClassroomPage() {
+type StudentClassroomPageProps = {
+  searchParams: Promise<{ classId?: string }>;
+};
+
+export default async function StudentClassroomPage({
+  searchParams,
+}: StudentClassroomPageProps) {
+  const { classId: requestedClassId } = await searchParams;
   const supabase = await createClient();
   const db = supabase as unknown as SupabaseClient;
 
@@ -105,6 +112,7 @@ export default async function StudentClassroomPage() {
 
   return (
     <StudentClassroomClient
+      requestedClassId={requestedClassId}
       studentId={user.id}
       classes={classes as Array<{
         id: string;

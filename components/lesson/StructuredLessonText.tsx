@@ -85,7 +85,7 @@ export default function StructuredLessonText({
   return (
     <section
       aria-labelledby="lesson-content-title"
-      className="rounded-3xl bg-white p-5 shadow-sm sm:p-7"
+      className="lesson-arabic-card rounded-3xl border border-[#dce9df] bg-white p-5 shadow-sm sm:p-8"
     >
       <div className="mb-6 flex items-center gap-3">
         <span
@@ -101,7 +101,7 @@ export default function StructuredLessonText({
           </p>
           <h2
             id="lesson-content-title"
-            className="text-2xl font-black text-slate-900 sm:text-3xl"
+            className="font-arabic-display text-2xl font-bold text-[#173f35] sm:text-3xl"
           >
             نتعلم خطوة بخطوة
           </h2>
@@ -116,12 +116,12 @@ export default function StructuredLessonText({
             <article
               key={`${block.title ?? "intro"}-${index}`}
               className={[
-                "rounded-3xl border p-5 sm:p-6",
+                "rounded-2xl border p-5 sm:p-6",
                 isRemember
-                  ? "border-amber-300 bg-amber-50"
+                  ? "border-[#e9d7ac] bg-[#fffaf0]"
                   : block.tone === "intro"
-                    ? "border-emerald-200 bg-emerald-50/60"
-                    : "border-slate-200 bg-white",
+                    ? "border-[#d0e8d7] bg-[#f3faf5]"
+                    : "border-[#e1eae4] bg-white",
               ].join(" ")}
             >
               {block.title ? (
@@ -130,7 +130,7 @@ export default function StructuredLessonText({
                 </h3>
               ) : null}
 
-              <div className="space-y-3 text-lg leading-9 text-slate-800">
+              <div className="dadyoom-learning-content space-y-4 text-lg leading-10 text-[#304a3e]">
                 {block.lines.map((line, lineIndex) => (
                   <p
                     key={`${lineIndex}-${line}`}

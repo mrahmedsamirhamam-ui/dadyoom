@@ -1,3 +1,4 @@
+import { requireAdminResponse } from "@/lib/auth/require-admin";
 import {
   NextResponse,
 } from "next/server";
@@ -135,6 +136,9 @@ async function getAdminClient() {
 export async function GET(
   request: Request
 ) {
+  const rejectedAdminRequest = await requireAdminResponse();
+  if (rejectedAdminRequest) return rejectedAdminRequest;
+
   try {
     const {
       error:
@@ -247,6 +251,9 @@ export async function GET(
 export async function PATCH(
   request: Request
 ) {
+  const rejectedAdminRequest = await requireAdminResponse();
+  if (rejectedAdminRequest) return rejectedAdminRequest;
+
   try {
     const {
       error:
@@ -625,6 +632,9 @@ export async function PATCH(
 export async function DELETE(
   request: Request
 ) {
+  const rejectedAdminRequest = await requireAdminResponse();
+  if (rejectedAdminRequest) return rejectedAdminRequest;
+
   try {
     const {
       error:

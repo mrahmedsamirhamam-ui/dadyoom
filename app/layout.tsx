@@ -3,7 +3,7 @@ import {
   getSiteUrl,
   SITE_DESCRIPTION,
   SITE_NAME,
-  SITE_NAME_ARABIC_ALT,
+  SITE_NAME_ALTERNATES,
   SITE_NAME_LATIN,
   SITE_TAGLINE,
 } from "@/lib/site";
@@ -20,12 +20,16 @@ const websiteStructuredData = {
   "@id": `${siteUrl}/#website`,
   url: siteUrl,
   name: SITE_NAME,
-  alternateName: [
-      SITE_NAME_LATIN,
-      SITE_NAME_ARABIC_ALT,
-    ],
+  alternateName: [...SITE_NAME_ALTERNATES],
   description: SITE_DESCRIPTION,
   inLanguage: "ar",
+  creator: {
+    "@type": "Person",
+    "@id": `${siteUrl}/founder#person`,
+    name: "أ. أحمد سمير محمد حافظ حمام",
+    alternateName: "Mr Ahmed Samir Mohamed Hafez Hamam",
+    url: `${siteUrl}/founder`,
+  },
 };
 
 export const metadata: Metadata = {
@@ -37,6 +41,8 @@ export const metadata: Metadata = {
   },
   description: SITE_DESCRIPTION,
   category: "education",
+  authors: [{ name: "Mr Ahmed Samir Mohamed Hafez Hamam", url: "/founder" }],
+  creator: "Mr Ahmed Samir Mohamed Hafez Hamam",
   openGraph: {
     type: "website",
     locale: "ar_AR",
@@ -61,7 +67,15 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+  // Only enable when a verified Search Console property issues the token.
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim() || undefined,
+  },
   manifest: "/manifest.webmanifest",
+  icons: {
+    icon: [{ url: "/brand/dadyoom-mark-2026.png", sizes: "160x160", type: "image/png" }],
+    apple: [{ url: "/brand/dadyoom-mark-2026.png", sizes: "160x160", type: "image/png" }],
+  },
 };
 
 export const viewport: Viewport = {

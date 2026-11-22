@@ -1,4 +1,5 @@
 import Link from "next/link";
+import DadyoomLogo from "@/components/brand/DadyoomLogo";
 
 export default function Header() {
   return (
@@ -7,12 +8,7 @@ export default function Header() {
       dir="rtl"
     >
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-4 sm:px-8">
-        <Link
-          href="/"
-          className="text-3xl font-bold"
-        >
-          ضاديوم
-        </Link>
+        <DadyoomLogo inverse />
 
         <nav className="flex flex-wrap gap-5 text-base sm:text-lg">
           <Link

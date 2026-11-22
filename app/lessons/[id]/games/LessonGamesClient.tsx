@@ -44,12 +44,6 @@ const sourceKey: Record<ArcadeMode, keyof Pack> = {
   mission: "challenge",
 };
 
-const plusModes = new Set<ArcadeMode>([
-  "runner",
-  "guardian",
-  "mission",
-]);
-
 function expectedValue(item: Item) {
   if (typeof item.answer === "boolean") {
     return item.answer ? "صح" : "خطأ";
@@ -82,7 +76,6 @@ export default function LessonGamesClient({
   };
 }) {
   const [pack, setPack] = useState<Pack | null>(null);
-  const [plan, setPlan] = useState("free");
   const [mode, setMode] = useState<ArcadeMode>("maze");
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -103,7 +96,6 @@ export default function LessonGamesClient({
       .then(async (response) => {
         const payload = (await response.json()) as {
           pack?: Pack;
-          plan?: string;
           error?: string;
         };
 
@@ -116,7 +108,6 @@ export default function LessonGamesClient({
         if (cancelled) return;
 
         setPack(payload.pack);
-        setPlan(payload.plan === "plus" ? "plus" : "free");
         setMessage("");
       })
       .catch((error) => {
@@ -192,13 +183,6 @@ export default function LessonGamesClient({
   }
 
   function selectMode(next: ArcadeMode) {
-    if (plan !== "plus" && plusModes.has(next)) {
-      setMessage(
-        "هذه الساحة من مزايا Plus. اختر إحدى الألعاب المفتوحة."
-      );
-      return;
-    }
-
     setMode(next);
     setIndex(0);
     setScore(0);
@@ -241,9 +225,6 @@ export default function LessonGamesClient({
                 }`}
               >
                 {labels[item]}
-                {plan !== "plus" && plusModes.has(item)
-                  ? " · Plus"
-                  : ""}
               </button>
             )
           )}
@@ -255,13 +236,10 @@ export default function LessonGamesClient({
           </div>
         ) : null}
 
-        {plan !== "plus" ? (
-          <Link
-            href="/pricing"
-            className="inline-flex rounded-xl border border-[#cba752] bg-white px-4 py-2 font-black text-[#715313]"
-          >
-            افتح ساحات Plus
-          </Link>
+        {pack && !current && !message ? (
+          <div role="status" className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm font-bold text-amber-900">
+            لا توجد أسئلة مدققة كافية لهذه اللعبة في الدرس الحالي. جرّب لعبة أخرى أو راجع الدرس.
+          </div>
         ) : null}
 
         {current && !finished ? (

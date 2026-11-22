@@ -1,3 +1,4 @@
+import { requireAdminResponse } from "@/lib/auth/require-admin";
 import {
   NextResponse,
 } from "next/server";
@@ -30,6 +31,9 @@ type LessonRow = {
 };
 
 export async function GET() {
+  const rejectedAdminRequest = await requireAdminResponse();
+  if (rejectedAdminRequest) return rejectedAdminRequest;
+
   try {
     const supabase =
       await createClient();

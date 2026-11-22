@@ -323,7 +323,7 @@ export default async function SchoolPage({
     return (
       <main
         dir="rtl"
-        className="min-h-screen bg-slate-50 px-4 py-10"
+        className="dadyoom-role-page min-h-screen bg-[#f7faf8] px-4 py-10"
       >
         <div className="mx-auto max-w-3xl">
 
@@ -698,7 +698,7 @@ const teacherCount =
   return (
     <main
       dir="rtl"
-      className="min-h-screen bg-slate-50 px-4 py-8 sm:px-6 lg:px-8"
+      className="dadyoom-role-page min-h-screen bg-[#f7faf8] px-4 py-8 sm:px-6 lg:px-8"
     >
       <div className="mx-auto max-w-7xl space-y-7">
 
@@ -715,7 +715,7 @@ const teacherCount =
 
 
 
-        <section className="rounded-3xl bg-gradient-to-l from-indigo-800 via-violet-700 to-purple-700 p-7 text-white shadow-sm">
+        <section className="rounded-3xl bg-gradient-to-l from-[#193f4d] via-[#285f68] to-[#397b76] p-7 text-white shadow-sm">
 
           <p className="text-sm font-black text-indigo-100">
             🏫 لوحة المدرسة

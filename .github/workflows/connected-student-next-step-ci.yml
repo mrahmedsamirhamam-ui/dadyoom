@@ -1,0 +1,27 @@
+name: Connected student next step
+on:
+  pull_request:
+    paths:
+      - "features/learning-journey/**"
+      - "components/dashboard/student/next-step-card.tsx"
+      - "app/(dashboard)/student/**"
+      - "app/(dashboard)/teacher/**"
+      - "features/classroom/actions.ts"
+      - "tests/student-next-step.test.ts"
+      - ".github/workflows/connected-student-next-step-ci.yml"
+permissions:
+  contents: read
+jobs:
+  learning-flow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npx vitest run tests/student-next-step.test.ts
+      - run: npx tsc --noEmit
+      - run: npx eslint features/learning-journey components/dashboard/student/next-step-card.tsx 'app/(dashboard)/student/page.tsx' 'app/(dashboard)/student/classroom/page.tsx' 'app/(dashboard)/student/classroom/StudentClassroomClient.tsx' 'app/(dashboard)/teacher/page.tsx' 'app/(dashboard)/teacher/classroom/TeacherClassroomClient.tsx' features/classroom/actions.ts tests/student-next-step.test.ts

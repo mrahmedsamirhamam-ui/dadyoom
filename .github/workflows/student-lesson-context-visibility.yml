@@ -1,0 +1,42 @@
+name: Student source lessons, prompts and safe answers
+on:
+  push:
+    branches:
+      - 'fix/published-lesson-prompts-original-context-20261030'
+    paths:
+      - 'features/lessons/queries/getLessonPageBundle.ts'
+      - 'features/lessons/components/InteractiveLessonActivities.tsx'
+      - 'features/lesson-activities/services/public-lesson-activities.ts'
+      - 'features/lesson-activities/components/ListeningScriptPlayer.tsx'
+      - 'tests/public-lesson-activity-projection-source-content.test.ts'
+      - 'tests/student-lesson-content-visible-and-private-20261030.node.test.mjs'
+      - '.github/workflows/student-lesson-context-visibility.yml'
+  pull_request:
+    paths:
+      - 'features/lessons/queries/getLessonPageBundle.ts'
+      - 'features/lessons/components/InteractiveLessonActivities.tsx'
+      - 'features/lesson-activities/services/public-lesson-activities.ts'
+      - 'features/lesson-activities/components/ListeningScriptPlayer.tsx'
+      - 'tests/public-lesson-activity-projection-source-content.test.ts'
+      - 'tests/student-lesson-content-visible-and-private-20261030.node.test.mjs'
+      - '.github/workflows/student-lesson-context-visibility.yml'
+permissions:
+  contents: read
+jobs:
+  content_visible:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Static lesson content and privacy integrity
+        run: node --test tests/student-lesson-content-visible-and-private-20261030.node.test.mjs
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install pinned app dependencies without running install hooks
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Execute real activity field sanitization tests
+        run: npx vitest run tests/public-lesson-activity-projection-source-content.test.ts
+      - name: Verify Next.js TypeScript contract
+        run: npx tsc --noEmit

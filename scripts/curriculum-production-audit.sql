@@ -291,3 +291,34 @@ SELECT course_label,lesson_type,count(*) published_records,
                     AND jsonb_typeof(vocabulary)='array' AND jsonb_array_length(vocabulary)>=3
                     AND question_count>=3) with_full_minimum_fields
 FROM scoped GROUP BY course_label,lesson_type ORDER BY course_label,lesson_type;
+
+
+-- 12. Bahrain Grade 11 Semester 2: first-semester parity / lesson-type gaps.
+-- Read-only. 'official-book-unscheduled' tracks are *not* verified against the current ministry plan.
+WITH qc AS (
+ SELECT lesson_id,COUNT(*)::integer n,
+ COUNT(*) FILTER(WHERE question_type='multiple_choice'
+  AND jsonb_typeof(options)='array' AND jsonb_array_length(options)=4
+  AND correct_answer IN ('a','b','c','d')
+  AND EXISTS(SELECT 1 FROM jsonb_array_elements(options) o WHERE o->>'id'=correct_answer)
+  AND LENGTH(COALESCE(explanation,''))>=32)::integer structural_mcq
+ FROM public.questions GROUP BY lesson_id
+), scope AS (
+ SELECT l.lesson_type,l.official_content_scope,l.learning_objectives,l.vocabulary,
+ COALESCE(qc.n,0) question_count,COALESCE(qc.structural_mcq,0) structural_mcq
+ FROM public.lessons l
+ JOIN public.units u ON u.id=l.unit_id
+ JOIN public.grades g ON g.id=u.grade_id
+ JOIN public.curricula c ON c.id=g.curriculum_id
+ JOIN public.countries co ON co.id=c.country_id
+ LEFT JOIN qc ON qc.lesson_id=l.id
+ WHERE co.code='BH' AND g.grade_number=11 AND l.semester=2 AND l.status='published'
+)
+SELECT lesson_type,official_content_scope,COUNT(*) published_records,
+ COUNT(*) FILTER(WHERE question_count=0) missing_saved_questions,
+ COUNT(*) FILTER(WHERE question_count>=3) with_three_plus_questions,
+ COUNT(*) FILTER(WHERE jsonb_typeof(learning_objectives)='array' AND jsonb_array_length(learning_objectives)>=3
+   AND jsonb_typeof(vocabulary)='array' AND jsonb_array_length(vocabulary)>=3
+   AND question_count>=3) enriched_minimum,
+ SUM(structural_mcq) structurally_valid_mcq
+FROM scope GROUP BY lesson_type,official_content_scope ORDER BY lesson_type,official_content_scope;

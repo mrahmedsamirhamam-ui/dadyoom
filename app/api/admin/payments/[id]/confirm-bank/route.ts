@@ -1,3 +1,4 @@
+import { requireAdminResponse } from "@/lib/auth/require-admin";
 import { createClient as createAdminClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
 
@@ -11,6 +12,9 @@ export async function POST(
     params: Promise<{ id: string }>;
   },
 ) {
+  const rejectedAdminRequest = await requireAdminResponse();
+  if (rejectedAdminRequest) return rejectedAdminRequest;
+
   const supabase = await createClient();
   const access = await authorizeSession(supabase, ["admin"]);
   if (!access.ok) {

@@ -1,3 +1,4 @@
+import { requireAdminResponse } from "@/lib/auth/require-admin";
 ﻿import {
   NextResponse,
 } from "next/server";
@@ -13,6 +14,9 @@ type Body = {
 export async function POST(
   request: Request
 ) {
+  const rejectedAdminRequest = await requireAdminResponse();
+  if (rejectedAdminRequest) return rejectedAdminRequest;
+
   try {
     const body =
       (await request.json()) as Body;

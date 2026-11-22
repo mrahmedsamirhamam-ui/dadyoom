@@ -1,3 +1,4 @@
+import { requireAdminResponse } from "@/lib/auth/require-admin";
 import {
   NextResponse,
 } from "next/server";
@@ -371,6 +372,9 @@ const fixes: Fix[] = [
 
 
 export async function POST() {
+  const rejectedAdminRequest = await requireAdminResponse();
+  if (rejectedAdminRequest) return rejectedAdminRequest;
+
   try {
     const supabase =
       await createClient();

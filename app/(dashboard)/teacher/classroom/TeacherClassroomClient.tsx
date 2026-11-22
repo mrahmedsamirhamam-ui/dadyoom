@@ -255,7 +255,7 @@ export default function TeacherClassroomClient(props: Props) {
           </article>
         </section>
 
-        <article className="rounded-[2rem] border bg-white p-5">
+        <article id="assignment-creation" className="scroll-mt-24 rounded-[2rem] border bg-white p-5">
           <h2 className="text-xl font-black"> واجب أو اختبار</h2>
 
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

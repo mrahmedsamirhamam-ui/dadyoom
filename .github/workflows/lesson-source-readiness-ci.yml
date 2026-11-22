@@ -1,0 +1,31 @@
+name: Honest lesson source readiness
+
+on:
+  pull_request:
+    paths:
+      - "lib/lesson-content/publication-readiness.ts"
+      - "app/lessons/[id]/page.tsx"
+      - "app/sitemap.ts"
+      - "app/admin/curriculum/source-review/page.tsx"
+      - "app/admin/layout.tsx"
+      - "tests/lesson-publication-readiness.test.ts"
+      - ".github/workflows/lesson-source-readiness-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npx vitest run tests/lesson-publication-readiness.test.ts tests/seo-dadyoom.test.ts
+      - run: npx tsc --noEmit
+      - run: npx eslint lib/lesson-content/publication-readiness.ts 'app/lessons/[id]/page.tsx' app/sitemap.ts app/admin/curriculum/source-review/page.tsx app/admin/layout.tsx tests/lesson-publication-readiness.test.ts

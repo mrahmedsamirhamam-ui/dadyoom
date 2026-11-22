@@ -1,0 +1,32 @@
+name: Four-option MCQ remains single-select
+on:
+  push:
+    branches:
+      - 'fix/mcq-single-choice-four-options-20261030'
+    paths:
+      - 'features/lessons/components/InteractiveLessonActivities.tsx'
+      - 'tests/activity-four-option-single-choice.node.test.mjs'
+      - '.github/workflows/activity-four-option-single-choice-integrity.yml'
+  pull_request:
+    paths:
+      - 'features/lessons/components/InteractiveLessonActivities.tsx'
+      - 'tests/activity-four-option-single-choice.node.test.mjs'
+      - '.github/workflows/activity-four-option-single-choice-integrity.yml'
+permissions:
+  contents: read
+jobs:
+  single_choice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check student UI selection mode and server grading boundary
+        run: node --test tests/activity-four-option-single-choice.node.test.mjs
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install exact dependency lockfile
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Typecheck without deploy
+        run: npx tsc --noEmit
