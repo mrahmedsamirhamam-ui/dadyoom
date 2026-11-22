@@ -7,6 +7,7 @@ on:
       - 'app/api/lessons/complete/**'
       - 'app/api/questions/answer/**'
       - 'components/lesson/MultipleChoiceQuestion.tsx'
+      - 'components/runtime/DadyoomClientRuntime.tsx'
       - 'app/lessons/**/page.tsx'
       - 'features/questions/services/grade-stored-mcq.ts'
       - 'features/questions/queries/getLessonQuestions.ts'
