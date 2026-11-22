@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { usePathname } from "next/navigation";
 
 const DadyoomAds = dynamic(
   () => import("@/components/ads/DadyoomAds"),
@@ -33,14 +34,18 @@ const DadCompanion = dynamic(
 );
 
 export default function DadyoomClientRuntime() {
+  const pathname = usePathname();
+  // Floating launchers must not cover answer choices or the submit control.
+  const answeringQuestions = /^\/(?:quiz|assessment)(?:\/|$)/u.test(pathname ?? "");
+
   return (
     <>
       <DadyoomAds />
       <MobileOAuthBridge />
       <NativeMobileShell />
-      <DadyoomInstallPrompt />
+      {!answeringQuestions && <DadyoomInstallPrompt />}
       <DadyoomAutoUpdate />
-      <DadCompanion />
+      {!answeringQuestions && <DadCompanion />}
     </>
   );
 }

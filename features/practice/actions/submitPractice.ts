@@ -11,15 +11,15 @@ import {
   createClient,
 } from "@/lib/supabase/server";
 
+import { createAdminClient } from "@/lib/supabase/admin";
+import { gradeStoredMcq, type StoredMcq } from "@/features/questions/services/grade-stored-mcq";
+
 type PracticeAnswer = {
   questionId: string;
   optionId: string;
 };
 
-type PracticeQuestionRow = {
-  id: string;
-  correct_answer: string;
-};
+type PracticeQuestionRow = StoredMcq & { id: string };
 
 const PRACTICE_PASS_SCORE = 70;
 
@@ -54,96 +54,57 @@ export async function submitPracticeAction(
     );
   }
 
-  const {
-    data,
-    error,
-  } = await supabase
+  if (!Array.isArray(answers) || answers.length === 0 || answers.length > 1000) {
+    throw new Error("قائمة الإجابات غير صالحة.");
+  }
+
+  // The caller must see the published lesson through its own RLS-bound
+  // session before the trusted server reads any answer keys.
+  const { data: visible, error: visibilityError } = await supabase
+    .from("dadyoom_student_questions")
+    .select("id")
+    .eq("lesson_id", normalizedLessonId)
+    .order("question_order", { ascending: true });
+  if (visibilityError) throw visibilityError;
+  if (!visible?.length) throw new Error("لا توجد أسئلة متاحة لهذا التدريب.");
+
+  const questionIds = visible.map(question => question.id);
+  const allowed = new Set(questionIds);
+  const answerMap = new Map<string, string>();
+  for (const entry of answers) {
+    if (!entry || typeof entry !== "object" ||
+        typeof entry.questionId !== "string" || typeof entry.optionId !== "string") {
+      throw new Error("إحدى الإجابات غير صالحة.");
+    }
+    const questionId = entry.questionId.trim();
+    const optionId = entry.optionId.trim();
+    if (!allowed.has(questionId) || answerMap.has(questionId) || !optionId) {
+      throw new Error("توجد إجابة مكررة أو سؤال غير متاح في هذا التدريب.");
+    }
+    answerMap.set(questionId, optionId);
+  }
+  const missing = questionIds.filter(id => !answerMap.has(id));
+  if (missing.length) throw new Error(`أجب عن جميع أسئلة التدريب أولًا. المتبقي ${missing.length}.`);
+
+  const admin = createAdminClient();
+  const { data: stored, error: storedError } = await admin
     .from("questions")
-    .select(`
-      id,
-      correct_answer
-    `)
-    .eq(
-      "lesson_id",
-      normalizedLessonId
-    )
-    .order(
-      "question_order",
-      {
-        ascending: true,
-      }
-    );
-
-  if (error) {
-    throw error;
+    .select("id,question_type,options,correct_answer")
+    .eq("lesson_id", normalizedLessonId)
+    .in("id", questionIds);
+  if (storedError) throw storedError;
+  const questions = (stored ?? []) as PracticeQuestionRow[];
+  const keys = new Map(questions.map(question => [question.id, question]));
+  if (keys.size !== questionIds.length || questions.length !== questionIds.length) {
+    throw new Error("تغيّرت أسئلة التدريب. حدّث الصفحة وحاول مجددًا.");
   }
-
-  const questions =
-    (data ?? []) as
-      PracticeQuestionRow[];
-
-  if (
-    questions.length === 0
-  ) {
-    throw new Error(
-      "لا توجد أسئلة متاحة لهذا التدريب."
-    );
-  }
-
-  const answerMap =
-    new Map<string, string>();
-
-  for (
-    const answer of
-    answers
-  ) {
-    const questionId =
-      answer.questionId?.trim();
-
-    const optionId =
-      answer.optionId?.trim();
-
-    if (
-      questionId &&
-      optionId
-    ) {
-      answerMap.set(
-        questionId,
-        optionId
-      );
-    }
-  }
-
-  const missingAnswers =
-    questions.filter(
-      (question) =>
-        !answerMap.has(
-          question.id
-        )
-    );
-
-  if (
-    missingAnswers.length > 0
-  ) {
-    throw new Error(
-      `أجب عن جميع أسئلة التدريب أولًا. المتبقي ${missingAnswers.length}.`
-    );
-  }
-
   let correctAnswers = 0;
-
-  for (
-    const question of
-    questions
-  ) {
-    if (
-      answerMap.get(
-        question.id
-      ) ===
-      question.correct_answer
-    ) {
-      correctAnswers += 1;
-    }
+  for (const id of questionIds) {
+    const question = keys.get(id);
+    if (!question) throw new Error("تعذر تحميل سؤال التدريب.");
+    const grade = gradeStoredMcq(question, answerMap.get(id));
+    if (!grade.valid) throw new Error("الإجابة أو إعداد السؤال غير صالح للتصحيح.");
+    if (grade.isCorrect) correctAnswers++;
   }
 
   const score =
