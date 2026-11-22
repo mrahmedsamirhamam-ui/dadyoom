@@ -9,6 +9,11 @@ on:
       - 'components/lesson/MultipleChoiceQuestion.tsx'
       - 'app/lessons/**/page.tsx'
       - 'features/questions/services/grade-stored-mcq.ts'
+      - 'features/questions/queries/getLessonQuestions.ts'
+      - 'features/adaptive-learning/queries/getAdaptiveLessonData.ts'
+      - 'features/practice/actions/submitPractice.ts'
+      - 'tests/security/student-practice-authority.test.ts'
+      - 'tests/security/question-answer-route.test.ts'
       - 'tests/security/server-graded-mcq.test.ts'
       - 'tests/security/server-only-answer-key-read.test.ts'
       - 'tests/security/public-lesson-bundle-rpc.test.ts'
@@ -79,6 +84,8 @@ jobs:
         run: npx vitest run tests/security/server-only-answer-key-read.test.ts
       - name: Verify public lesson bundle excludes answer keys
         run: npx vitest run tests/security/public-lesson-bundle-rpc.test.ts
+      - name: Verify trusted practice grading and safe student readers
+        run: npx vitest run tests/security/student-practice-authority.test.ts tests/security/question-answer-route.test.ts
       - name: TypeScript
         run: npx tsc --noEmit
       - name: ESLint

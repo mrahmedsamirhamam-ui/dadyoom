@@ -71,7 +71,7 @@ export async function getAdaptiveLessonData(
       data,
       error,
     } = await supabase
-      .from("questions")
+      .from("dadyoom_student_questions")
       .select("id")
       .eq("lesson_id", lessonId);
 

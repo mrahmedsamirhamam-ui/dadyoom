@@ -15,6 +15,13 @@ type AnswerRequest = {
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
+function studentJson(body: unknown, init?: { status: number }) {
+  return NextResponse.json(body, {
+    ...init,
+    headers: { "Cache-Control": "private, no-store" },
+  });
+}
+
 export async function POST(request: Request) {
   try {
     // Cookie-authenticated user, not a userId supplied by the requester.
@@ -22,16 +29,26 @@ export async function POST(request: Request) {
     const { data: { user }, error: authError } = await supabase.auth.getUser();
 
     if (authError || !user) {
-      return NextResponse.json(
+      return studentJson(
         { success: false, error: "يجب تسجيل الدخول أولًا." },
         { status: 401 }
+      );
+    }
+
+    // Reject browser form submissions; the JSON client must pass CORS
+    // preflight when cross-origin. Feedback is always private and uncached.
+    const mediaType = request.headers.get("content-type")?.split(";")[0].trim().toLowerCase();
+    if (mediaType !== "application/json") {
+      return studentJson(
+        { success: false, error: "نوع الطلب غير مدعوم." },
+        { status: 415 }
       );
     }
 
     const raw = (await request.json().catch(() => null)) as AnswerRequest | null;
     const questionId = raw?.questionId;
     if (typeof questionId !== "string" || !UUID.test(questionId)) {
-      return NextResponse.json(
+      return studentJson(
         { success: false, error: "معرّف السؤال غير صحيح." },
         { status: 400 }
       );
@@ -50,7 +67,7 @@ export async function POST(request: Request) {
 
     if (questionError) throw questionError;
     if (!question) {
-      return NextResponse.json(
+      return studentJson(
         { success: false, error: "السؤال غير متاح." },
         { status: 404 }
       );
@@ -64,7 +81,7 @@ export async function POST(request: Request) {
 
     if (lessonError) throw lessonError;
     if (!lesson || lesson.status !== "published") {
-      return NextResponse.json(
+      return studentJson(
         { success: false, error: "الدرس غير متاح للتقويم." },
         { status: 404 }
       );
@@ -80,7 +97,7 @@ export async function POST(request: Request) {
     );
 
     if (!grade.valid) {
-      return NextResponse.json(
+      return studentJson(
         { success: false, error: "الإجابة أو إعداد السؤال غير صالح للتصحيح." },
         { status: 400 }
       );
@@ -113,14 +130,14 @@ export async function POST(request: Request) {
       question.explanation ?? null
     );
 
-    return NextResponse.json({
+    return studentJson({
       success: true,
       ...feedback,
     });
   } catch (error) {
     // Avoid leaking database details, service keys or internal queries.
     console.error("LESSON_QUESTION_GRADE_FAILED", error);
-    return NextResponse.json(
+    return studentJson(
       { success: false, error: "تعذر تصحيح الإجابة وحفظها. حاول مرة أخرى." },
       { status: 500 }
     );
