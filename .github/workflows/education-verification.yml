@@ -1,0 +1,49 @@
+name: Education modules verification (manual, no deploy)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: education-verification-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  education:
+    name: Curriculum and platform source checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      CI: 'true'
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Curriculum pack validation
+        if: always()
+        run: npm run curriculum:verify
+      - name: Curriculum coverage report
+        if: always()
+        run: npm run curriculum:coverage
+      - name: All unit tests
+        if: always()
+        run: npm run test:run
+      - name: TypeScript validation
+        if: always()
+        run: npx tsc --noEmit
+      - name: Source release audit
+        if: always()
+        run: npm run release:audit
+      - name: Final MVP source audit
+        if: always()
+        run: npm run release:final-audit
+      - name: Build without deployment
+        if: always()
+        run: npm run build
