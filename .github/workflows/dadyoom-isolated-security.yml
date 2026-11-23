@@ -1,0 +1,84 @@
+name: Dadyoom isolated database security gate
+on:
+  pull_request:
+    paths:
+      - 'security/staging/**'
+      - 'security/review-only/atomic-assessment-draft.sql'
+      - '.github/workflows/dadyoom-isolated-security.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  isolated-security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: local-only-test
+          POSTGRES_DB: dadyoom_staging
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d dadyoom_staging"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      PGHOST: localhost
+      PGPORT: '5432'
+      PGUSER: postgres
+      PGPASSWORD: local-only-test
+      PGDATABASE: dadyoom_staging
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PostgreSQL client
+        run: sudo apt-get update -qq && sudo apt-get install -y postgresql-client
+      - name: Create synthetic fixture
+        run: psql -v ON_ERROR_STOP=1 -f security/staging/ci-fixture.sql
+      - name: Apply draft RPC to synthetic database
+        run: psql -v ON_ERROR_STOP=1 -f security/review-only/atomic-assessment-draft.sql
+      - name: Apply draft hardening to synthetic database
+        run: psql -v ON_ERROR_STOP=1 -f security/staging/permissions-hardening.sql
+      - name: Assert grants, FORCE RLS and row isolation
+        run: psql -v ON_ERROR_STOP=1 -f security/staging/ci-assertions.sql
+      - name: Race ten concurrent submissions
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/grade-race
+          for i in $(seq 1 10); do
+            (
+              psql -X -v ON_ERROR_STOP=1 -Atc "
+                BEGIN;
+                SET LOCAL ROLE authenticated;
+                SELECT set_config('request.jwt.claim.sub','aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',true);
+                SELECT set_config('request.jwt.claims','{\"email\":\"student-a@test.invalid\"}',true);
+                SELECT public.submit_atomic_assessment_answer(
+                  '22222222-2222-4222-8222-222222222222',
+                  '44444444-4444-4444-8444-444444444444',1);
+                COMMIT;" > "/tmp/grade-race/$i.log" 2>&1
+            ) &
+          done
+          wait || true
+          psql -v ON_ERROR_STOP=1 -Atc "
+            DO \$\$
+            BEGIN
+              IF (SELECT count(*) FROM public.assessment_session_answers
+                  WHERE session_id='22222222-2222-4222-8222-222222222222') <> 1
+              OR (SELECT correct_answers FROM public.assessment_sessions
+                  WHERE id='22222222-2222-4222-8222-222222222222') <> 1
+              OR (SELECT count(*) FROM public.assessment_reward_outbox
+                  WHERE session_id='22222222-2222-4222-8222-222222222222') <> 1
+              THEN RAISE EXCEPTION 'duplicate or missing grade/reward'; END IF;
+            END \$\$;"
+          success=$(grep -l '"correct": true' /tmp/grade-race/*.log | wc -l)
+          duplicate=$(grep -l 'duplicate_answer' /tmp/grade-race/*.log | wc -l)
+          echo "successful submissions=$success duplicate rejected=$duplicate"
+          test "$success" -eq 1
+          test "$duplicate" -eq 9
+      - name: Publish summary
+        if: always()
+        run: |
+          echo '## Isolated PostgreSQL security gate' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Synthetic database only; NO production access; NO-GO remains.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'This does not replace Supabase Auth/PostgREST integration tests.' >> "$GITHUB_STEP_SUMMARY"

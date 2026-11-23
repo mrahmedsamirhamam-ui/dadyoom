@@ -1,197 +1,55 @@
-import {
-  NextResponse,
-} from "next/server";
+import { NextResponse } from "next/server";
+import { createClient } from "@/lib/supabase/server";
 
-import {
-  createClient,
-} from "@/lib/supabase/server";
-
-import {
-  advanceAssessmentSession,
-} from "@/features/assessment/services/advanceAssessmentSession";
-
-import {
-  getAssessmentSessionAnalytics,
-} from "@/features/assessment/services/getAssessmentSessionAnalytics";
-
-import {
-  completeAdaptiveStep,
-} from "@/features/learning-plan/services/adaptive-path-lifecycle";
-
-type NextQuestionBody = {
-  sessionId?: string;
-  correct?: boolean;
+type AnswerPayload = {
+  attemptId?: unknown;
+  questionId?: unknown;
+  selectedOption?: unknown;
 };
 
-export async function POST(
-  request: Request
-) {
-  try {
-    const body =
-      (await request.json()) as
-        NextQuestionBody;
-
-    const sessionId =
-      body.sessionId?.trim();
-
-    if (
-      !sessionId ||
-      typeof body.correct !==
-        "boolean"
-    ) {
-      return NextResponse.json(
-        {
-          success: false,
-          error:
-            "بيانات جلسة الاختبار غير صالحة.",
-        },
-        {
-          status: 400,
-        }
-      );
-    }
-
-    const supabase =
-      await createClient();
-
-    const {
-      data: { user },
-      error: userError,
-    } =
-      await supabase.auth.getUser();
-
-    if (
-      userError ||
-      !user
-    ) {
-      return NextResponse.json(
-        {
-          success: false,
-          error:
-            "يجب تسجيل الدخول أولًا.",
-        },
-        {
-          status: 401,
-        }
-      );
-    }
-
-    const session =
-      await advanceAssessmentSession({
-        supabase,
-        sessionId,
-        studentId: user.id,
-        answeredCorrectly:
-          body.correct,
-      });
-
-    const answeredQuestions =
-      session.correct_answers +
-      session.wrong_answers;
-
-    const score =
-      Math.round(
-        (
-          session.correct_answers /
-          Math.max(
-            answeredQuestions,
-            1
-          )
-        ) * 100
-      );
-
-    const analytics =
-      session.finished
-        ? await getAssessmentSessionAnalytics({
-            supabase,
-            sessionId:
-              session.id,
-            studentId:
-              user.id,
-          })
-        : null;
-
-    /*
-     * لا نغلق خطوة assessment إلا عندما
-     * تنتهي جلسة الاختبار فعليًا.
-     *
-     * completeAdaptiveStep عملية idempotent،
-     * لذلك إعادة الطلب بعد اكتمال الخطوة
-     * لا تعيد إكمالها مرة أخرى.
-     */
-    const adaptiveAssessmentStep =
-      session.finished &&
-      session.lesson_id
-        ? await completeAdaptiveStep({
-            supabase,
-            studentId:
-              user.id,
-            lessonId:
-              session.lesson_id,
-            stepType:
-              "assessment",
-          })
-        : null;
-
-    return NextResponse.json({
-      success: true,
-      session: {
-        id: session.id,
-        lessonId:
-          session.lesson_id,
-        currentQuestion:
-          session.current_question,
-        totalQuestions:
-          session.total_questions,
-        correctAnswers:
-          session.correct_answers,
-        wrongAnswers:
-          session.wrong_answers,
-        difficulty:
-          session.difficulty,
-        finished:
-          session.finished,
-        score,
-      },
-      analytics,
-
-      adaptivePath:
-        adaptiveAssessmentStep
-          ? {
-              updated:
-                adaptiveAssessmentStep.updated,
-
-              reason:
-                adaptiveAssessmentStep.reason,
-
-              pathCompleted:
-                adaptiveAssessmentStep.pathCompleted,
-
-              currentStep:
-                adaptiveAssessmentStep.currentStep,
-
-              nextStep:
-                adaptiveAssessmentStep.nextStep,
-            }
-          : null,
-    });
-  } catch (error) {
-    console.error(
-      "ADVANCE_ASSESSMENT_SESSION_FAILED",
-      error
-    );
-
-    return NextResponse.json(
-      {
-        success: false,
-        error:
-          error instanceof Error
-            ? error.message
-            : "تعذر الانتقال إلى السؤال التالي.",
-      },
-      {
-        status: 500,
-      }
-    );
+/**
+ * DRAFT / NO-GO: requires review-only SQL migration and isolated integration tests.
+ * No browser-provided correctness or score is accepted.
+ */
+export async function POST(request: Request) {
+  const supabase = await createClient();
+  const { data: { user }, error: authError } = await supabase.auth.getUser();
+  if (authError || !user) {
+    return NextResponse.json({ success: false, error: "يجب تسجيل الدخول أولًا." }, { status: 401 });
   }
+
+  let body: AnswerPayload;
+  try {
+    body = (await request.json()) as AnswerPayload;
+  } catch {
+    return NextResponse.json({ success: false, error: "بيانات غير صالحة." }, { status: 400 });
+  }
+  if (!body || typeof body.attemptId !== "string" ||
+      typeof body.questionId !== "string" ||
+      typeof body.selectedOption !== "number" ||
+      !Number.isInteger(body.selectedOption) || body.selectedOption < 0 ||
+      !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(body.attemptId) ||
+      !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(body.questionId)) {
+    return NextResponse.json({ success: false, error: "بيانات الإجابة غير صالحة." }, { status: 400 });
+  }
+
+  const { data, error } = await supabase.rpc("submit_atomic_assessment_answer", {
+    p_attempt_id: body.attemptId,
+    p_question_id: body.questionId,
+    p_selected_option: body.selectedOption,
+  });
+  if (error) {
+    if (error.code === "23505") {
+      return NextResponse.json({ success: false, error: "تم تسجيل هذه الإجابة سابقًا." }, { status: 409 });
+    }
+    if (error.code === "42501" || error.code === "28000") {
+      return NextResponse.json({ success: false, error: "غير مصرح." }, { status: 403 });
+    }
+    if (error.code === "22023") {
+      return NextResponse.json({ success: false, error: "المحاولة أو الإجابة غير صالحة." }, { status: 400 });
+    }
+    console.error("ATOMIC_ASSESSMENT_RPC_FAILED", { code: error.code });
+    return NextResponse.json({ success: false, error: "تعذر تصحيح الإجابة." }, { status: 500 });
+  }
+  return NextResponse.json({ success: true, result: data }, { headers: { "Cache-Control": "no-store" } });
 }

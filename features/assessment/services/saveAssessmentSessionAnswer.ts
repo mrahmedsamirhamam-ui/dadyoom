@@ -25,36 +25,20 @@ export async function saveAssessmentSessionAnswer({
   correctAnswer,
   isCorrect,
 }: SaveAssessmentSessionAnswerParams): Promise<void> {
-  const {
-    error,
-  } = await supabase
+  // An already-recorded answer is a conflict, not a successful no-op.
+  // This avoids running downstream XP/mastery updates after a silent duplicate.
+  const { error } = await supabase
     .from("assessment_session_answers")
-    .upsert(
-      {
-        session_id:
-          sessionId,
-        assessment_id:
-          assessmentId,
-        student_id:
-          studentId,
-        lesson_id:
-          lessonId,
-        skill:
-          skill.trim() ||
-          "الاستيعاب",
-        selected_answer:
-          selectedAnswer,
-        correct_answer:
-          correctAnswer,
-        is_correct:
-          isCorrect,
-      },
-      {
-        onConflict:
-          "session_id,assessment_id",
-        ignoreDuplicates: true,
-      }
-    );
+    .insert({
+      session_id: sessionId,
+      assessment_id: assessmentId,
+      student_id: studentId,
+      lesson_id: lessonId,
+      skill: skill.trim() || "الاستيعاب",
+      selected_answer: selectedAnswer,
+      correct_answer: correctAnswer,
+      is_correct: isCorrect,
+    });
 
   if (error) {
     throw error;
