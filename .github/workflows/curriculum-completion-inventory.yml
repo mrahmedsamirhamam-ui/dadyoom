@@ -1,0 +1,40 @@
+name: Curriculum completion inventory (read only)
+on:
+  pull_request:
+    paths:
+      - 'scripts/curriculum-completion-matrix.mjs'
+      - 'data/curriculum-packs/**'
+      - '.github/workflows/curriculum-completion-inventory.yml'
+  push:
+    branches: [feature/curriculum-completion-audit-20261116]
+    paths:
+      - 'scripts/curriculum-completion-matrix.mjs'
+      - 'data/curriculum-packs/**'
+      - '.github/workflows/curriculum-completion-inventory.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  curriculum-inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify existing curriculum pack schema
+        run: node scripts/verify-curriculum-packs.mjs
+      - name: Generate curriculum gaps from versioned packs only
+        run: node scripts/curriculum-completion-matrix.mjs --out curriculum-completion-report.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: curriculum-completion-report
+          path: curriculum-completion-report.json
+          if-no-files-found: warn
+      - name: Explain scope
+        if: always()
+        run: |
+          echo 'This is a repository content inventory, NOT a production database coverage measurement.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'No deployment, database writes, or security test performed.' >> "$GITHUB_STEP_SUMMARY"
