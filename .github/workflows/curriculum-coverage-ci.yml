@@ -57,6 +57,8 @@ jobs:
       NEXT_TELEMETRY_DISABLED: '1'
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -87,13 +89,7 @@ jobs:
         run: npx vitest run tests/security/public-lesson-bundle-rpc.test.ts
       - name: Verify trusted practice grading and safe student readers
         run: npx vitest run tests/security/student-practice-authority.test.ts tests/security/question-answer-route.test.ts
-      - name: Full Vitest and independent Node regression suites
-        run: |
-          npm run test:run
-          node --test tests/*.node.test.mjs
-      - name: TypeScript
-        run: npx tsc --noEmit
-      - name: ESLint
-        run: npm run lint
-      - name: Production build
-        run: npm run build
+
+  baseline-on-demand:
+    if: github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/pr-baseline-ci.yml
