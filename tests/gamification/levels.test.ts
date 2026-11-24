@@ -10,7 +10,7 @@ describe("Level Engine", () => {
   });
 
   it("reaches level 2 at 100 XP", () => {
-    const level = getLevelProgress(99);
+    const level = getLevelProgress(100);
 
     expect(level.current.level).toBe(2);
   });
