@@ -47,9 +47,17 @@ BEGIN
   IF current_database() ~* '(^|[^a-z0-9])(prod|production)([^a-z0-9]|$)' THEN
     RAISE EXCEPTION 'TASK03D_REFUSED: production-like database name';
   END IF;
+  -- The workflow fails closed unless the client-side DB_URL is loopback.
+  -- Supabase Local publishes that port from Docker, so the backend may report
+  -- a private bridge address. Public server IPs remain refused here.
   IF inet_server_addr() IS NOT NULL
-     AND NOT (inet_server_addr() <<= inet '127.0.0.0/8') THEN
-    RAISE EXCEPTION 'TASK03D_REFUSED: database endpoint is not loopback';
+     AND NOT (
+       inet_server_addr() <<= inet '127.0.0.0/8'
+       OR inet_server_addr() <<= inet '10.0.0.0/8'
+       OR inet_server_addr() <<= inet '172.16.0.0/12'
+       OR inet_server_addr() <<= inet '192.168.0.0/16'
+     ) THEN
+    RAISE EXCEPTION 'TASK03D_REFUSED: database endpoint is not loopback or private container network';
   END IF;
 END
 $isolation$;

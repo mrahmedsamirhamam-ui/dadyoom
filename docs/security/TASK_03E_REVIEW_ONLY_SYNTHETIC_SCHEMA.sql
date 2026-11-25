@@ -19,9 +19,18 @@ BEGIN
   IF current_database() !~ '^[a-z0-9_]+$' THEN
     RAISE EXCEPTION 'TASK03E_FIXTURE_REFUSED: unexpected database name';
   END IF;
+  -- psql reaches Supabase Local through a loopback-published port, but the
+  -- PostgreSQL backend reports its Docker bridge address (for example
+  -- 172.18.0.2). The workflow already fails closed unless the client-side
+  -- DB_URL is loopback; this guard additionally refuses public server IPs.
   IF inet_server_addr() IS NOT NULL
-     AND NOT (inet_server_addr() <<= inet '127.0.0.0/8') THEN
-    RAISE EXCEPTION 'TASK03E_FIXTURE_REFUSED: endpoint is not loopback';
+     AND NOT (
+       inet_server_addr() <<= inet '127.0.0.0/8'
+       OR inet_server_addr() <<= inet '10.0.0.0/8'
+       OR inet_server_addr() <<= inet '172.16.0.0/12'
+       OR inet_server_addr() <<= inet '192.168.0.0/16'
+     ) THEN
+    RAISE EXCEPTION 'TASK03E_FIXTURE_REFUSED: endpoint is not loopback or private container network';
   END IF;
 END
 $guard$;
