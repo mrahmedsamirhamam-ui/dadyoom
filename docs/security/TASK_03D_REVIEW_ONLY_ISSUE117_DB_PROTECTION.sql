@@ -124,6 +124,7 @@ ALTER TABLE public.profile_role_requests ENABLE ROW LEVEL SECURITY;
 REVOKE ALL ON TABLE public.profile_role_requests
   FROM PUBLIC, anon, authenticated;
 GRANT SELECT ON TABLE public.profile_role_requests TO authenticated;
+GRANT SELECT ON TABLE public.profile_role_requests TO service_role;
 
 -- Permissive owner-read policy: RLS has no implicit allow, so a restrictive
 -- policy alone would hide every row. No client INSERT/UPDATE/DELETE grant exists.
@@ -182,6 +183,13 @@ ALTER TABLE public.profile_onboarding_repair_audit ENABLE ROW LEVEL SECURITY;
 REVOKE ALL ON TABLE public.profile_onboarding_repair_audit
   FROM PUBLIC, anon, authenticated;
 
+-- Server-held verification reads only. These grants never reach anon or
+-- authenticated clients; RLS and column grants remain client barriers.
+GRANT SELECT ON TABLE public.profile_role_review_audit TO service_role;
+GRANT SELECT ON TABLE public.profile_self_signup_audit TO service_role;
+GRANT SELECT ON TABLE public.profile_onboarding_pending TO service_role;
+GRANT SELECT ON TABLE public.profile_onboarding_repair_audit TO service_role;
+
 -- ---------------------------------------------------------------------
 -- 2. Safe auth trigger. SECURITY DEFINER is required only to create the
 --    baseline profile when auth.users is inserted by GoTrue. It NEVER reads
@@ -236,6 +244,7 @@ GRANT EXECUTE ON FUNCTION public.handle_new_user()
 -- ---------------------------------------------------------------------
 REVOKE ALL ON TABLE public.profiles FROM PUBLIC, anon, authenticated;
 GRANT SELECT ON TABLE public.profiles TO authenticated;
+GRANT SELECT ON TABLE public.profiles TO service_role;
 GRANT UPDATE (full_name, country) ON TABLE public.profiles TO authenticated;
 -- Deliberately NO table-wide INSERT/UPDATE/DELETE and NO UPDATE(role/id/email).
 
@@ -458,7 +467,11 @@ DECLARE
   v_country text;
   v_reason text := btrim(coalesce(p_reason, ''));
 BEGIN
-  IF coalesce(current_setting('request.jwt.claim.role', true), '') <> 'service_role' THEN
+  IF coalesce(
+       current_setting('request.jwt.claim.role', true),
+       current_setting('request.jwt.claims', true)::jsonb ->> 'role',
+       ''
+     ) <> 'service_role' THEN
     RAISE EXCEPTION 'TASK03D_LEGACY_REPAIR_NOT_SERVER_ONLY' USING ERRCODE = '42501';
   END IF;
   IF p_target_user_id IS NULL OR p_operator_id IS NULL
@@ -535,7 +548,11 @@ DECLARE
   v_decision text := lower(btrim(coalesce(p_decision, '')));
   v_reason text := btrim(coalesce(p_reason, ''));
 BEGIN
-  IF coalesce(current_setting('request.jwt.claim.role', true), '') <> 'service_role' THEN
+  IF coalesce(
+       current_setting('request.jwt.claim.role', true),
+       current_setting('request.jwt.claims', true)::jsonb ->> 'role',
+       ''
+     ) <> 'service_role' THEN
     RAISE EXCEPTION 'TASK03D_APPROVAL_NOT_SERVER_ONLY' USING ERRCODE = '42501';
   END IF;
   IF p_target_user_id IS NULL OR p_reviewer_id IS NULL
