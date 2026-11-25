@@ -15,8 +15,6 @@ type Assessment = {
   passage: string;
   question: string;
   choices: string[];
-  correctAnswer: number;
-  explanation: string;
   skill: string;
   difficulty: string;
   completed: boolean;
@@ -341,6 +339,7 @@ export default function LessonAssessment({
   async function moveToNextQuestion() {
     if (
       !session ||
+      !assessment ||
       typeof result?.correct !==
         "boolean" ||
       isMovingNext
@@ -364,8 +363,8 @@ export default function LessonAssessment({
             body: JSON.stringify({
               sessionId:
                 session.id,
-              correct:
-                result.correct,
+              assessmentId:
+                assessment?.id,
             }),
           }
         );
@@ -798,7 +797,7 @@ export default function LessonAssessment({
 
           <p className="mt-3 leading-8 text-slate-800">
             {result.explanation ||
-              assessment.explanation}
+              "راجع السؤال واستعن بتلميحات ضاد لتفسير إجابتك."}
           </p>
 
           <button

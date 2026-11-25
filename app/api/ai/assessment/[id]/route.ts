@@ -59,8 +59,6 @@ export async function GET(
       passage: data.passage,
       question: data.question,
       choices: data.choices,
-      correctAnswer: data.correct_answer,
-      explanation: data.explanation,
       skill: data.skill,
       difficulty: data.difficulty,
       completed: data.completed,

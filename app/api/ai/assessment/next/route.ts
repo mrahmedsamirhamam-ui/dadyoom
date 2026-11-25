@@ -20,7 +20,7 @@ import {
 
 type NextQuestionBody = {
   sessionId?: string;
-  correct?: boolean;
+  assessmentId?: string;
 };
 
 export async function POST(
@@ -34,10 +34,12 @@ export async function POST(
     const sessionId =
       body.sessionId?.trim();
 
+    const assessmentId =
+      body.assessmentId?.trim();
+
     if (
       !sessionId ||
-      typeof body.correct !==
-        "boolean"
+      !assessmentId
     ) {
       return NextResponse.json(
         {
@@ -81,8 +83,7 @@ export async function POST(
         supabase,
         sessionId,
         studentId: user.id,
-        answeredCorrectly:
-          body.correct,
+        assessmentId,
       });
 
     const answeredQuestions =
