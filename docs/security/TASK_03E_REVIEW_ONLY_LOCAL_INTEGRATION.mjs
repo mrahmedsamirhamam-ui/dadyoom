@@ -127,9 +127,11 @@ async function main() {
     users[key] = await createUser(key, metadataRole);
   }
 
+  let adminFakeInitialRole;
   for (const [key] of specs) {
     const row = await service.from("profiles").select("role").eq("id", users[key].id).single();
     check(`metadata_role_downgraded_${key}`, row.data?.role === "student", row.error?.message || row.data?.role);
+    if (key === "adminfake") adminFakeInitialRole = row.data?.role;
   }
 
   for (const key of ["teacher", "school"]) {
@@ -294,8 +296,10 @@ async function main() {
 
   const schoolRow = await service.from("profiles").select("role").eq("id", users.school.id).single();
   check("school_metadata_never_self_grants", schoolRow.data?.role === "student", schoolRow.data?.role);
-  const adminRow = await service.from("profiles").select("role").eq("id", users.adminfake.id).single();
-  check("admin_metadata_never_self_grants", adminRow.data?.role === "student", adminRow.data?.role);
+  // adminfake is deliberately promoted to stored admin above so it can act as
+  // the independently enrolled reviewer. Assert its original signup result,
+  // captured before that server-side promotion, instead of the operator role.
+  check("admin_metadata_never_self_grants", adminFakeInitialRole === "student", adminFakeInitialRole);
 
   const anonymousProfile = await anon.from("profiles").select("id").eq("id", users.student.id);
   check("anonymous_profile_read_denied", Boolean(anonymousProfile.error), anonymousProfile.error?.message);
