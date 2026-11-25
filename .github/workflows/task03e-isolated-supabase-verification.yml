@@ -14,11 +14,8 @@
 name: TASK 03-E isolated Supabase security verification (REVIEW ONLY / NO DEPLOY)
 
 "on":
-  # TEMPORARY REGISTRATION BOOTSTRAP ONLY. Job is gated off for push events.
-  push:
-    branches:
-      - security/p0-minimal-role-isolated
   workflow_dispatch:
+  # No push or pull_request trigger is enabled until activation is approved.
 
 permissions:
   contents: read
@@ -43,8 +40,6 @@ env:
 
 jobs:
   isolated-supabase-verification:
-    # TEMPORARY REGISTRATION BOOTSTRAP ONLY; removed before dispatch.
-    if: github.event_name == 'workflow_dispatch'
     name: Isolated Auth/PostgREST/RLS/RPC verification
     runs-on: ubuntu-latest
     timeout-minutes: 45
