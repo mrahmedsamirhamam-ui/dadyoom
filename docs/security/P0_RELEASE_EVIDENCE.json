@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "releaseDecision": "NO_GO",
+  "verifiedAt": null,
+  "scope": "main",
+  "securityReadinessScore": null,
+  "requiredGates": [
+    {
+      "id": "role_escalation",
+      "status": "unverified",
+      "issue": 117
+    },
+    {
+      "id": "tenant_isolation",
+      "status": "unverified"
+    },
+    {
+      "id": "student_isolation",
+      "status": "unverified"
+    },
+    {
+      "id": "parent_child_isolation",
+      "status": "unverified"
+    },
+    {
+      "id": "answer_key_and_grades",
+      "status": "unverified",
+      "issue": 57
+    },
+    {
+      "id": "jwt_idor_injection",
+      "status": "unverified"
+    },
+    {
+      "id": "audit_logs",
+      "status": "unverified"
+    },
+    {
+      "id": "backup_restore",
+      "status": "unverified"
+    },
+    {
+      "id": "staging_pilot",
+      "status": "unverified"
+    }
+  ],
+  "note": "Manifest tracks unresolved release evidence. CI unit tests alone do not prove production security. No live changes or deployment."
+}
