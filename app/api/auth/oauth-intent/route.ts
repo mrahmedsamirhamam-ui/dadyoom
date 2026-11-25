@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { isCountryCode } from "@/lib/countries";
-
-const allowedRoles = new Set(["student", "child", "teacher", "parent", "school"]);
+import { isKnownRole, isSelfSignupRole, normalizeRole } from "@/lib/auth/role-policy";
 
 export async function POST(request: Request) {
   let body: { fullName?: string; role?: string; country?: string };
@@ -12,11 +11,17 @@ export async function POST(request: Request) {
   }
 
   const fullName = typeof body.fullName === "string" ? body.fullName.trim().slice(0, 120) : "";
-  const role = typeof body.role === "string" ? body.role.trim().toLowerCase() : "student";
+  const role = normalizeRole(body.role ?? "student");
   const country = typeof body.country === "string" ? body.country.trim().toUpperCase() : "";
 
   if (!fullName) return NextResponse.json({ error: "اكتب الاسم الكامل قبل المتابعة بجوجل." }, { status: 400 });
-  if (!allowedRoles.has(role)) return NextResponse.json({ error: "نوع الحساب غير صالح." }, { status: 400 });
+  if (!isKnownRole(role)) return NextResponse.json({ error: "نوع الحساب غير صالح." }, { status: 400 });
+  if (!isSelfSignupRole(role)) {
+    return NextResponse.json(
+      { error: "صلاحيات المعلم والمدرسة تتطلب اعتمادًا إداريًا منفصلًا." },
+      { status: 403 },
+    );
+  }
   if (!isCountryCode(country)) return NextResponse.json({ error: "اختر الدولة أولًا." }, { status: 400 });
 
   const response = NextResponse.json({ ok: true });

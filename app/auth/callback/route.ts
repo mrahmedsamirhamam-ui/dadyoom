@@ -3,6 +3,16 @@ import { cookies } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { isCountryCode } from "@/lib/countries";
+import {
+  isKnownRole,
+  isSelfSignupRole,
+  normalizeRole,
+  safeSelfSignupRole,
+} from "@/lib/auth/role-policy";
+import {
+  isOnboardingRpcEnabled,
+  ONBOARDING_COMPLETE_RPC,
+} from "@/lib/auth/onboarding-activation";
 
 const roleDestinations: Record<string, string> = {
   student: "/student",
@@ -23,10 +33,10 @@ function parseIntent(raw: string | undefined) {
   try {
     const json = Buffer.from(raw, "base64url").toString("utf8");
     const value = JSON.parse(json) as { fullName?: string; role?: string; country?: string };
-    const role = typeof value.role === "string" ? value.role.trim().toLowerCase() : "student";
+    const role = normalizeRole(value.role);
     const country = typeof value.country === "string" ? value.country.trim().toUpperCase() : "";
     const fullName = typeof value.fullName === "string" ? value.fullName.trim().slice(0, 120) : "";
-    if (!fullName || !new Set(["student", "child", "teacher", "parent", "school"]).has(role) || !isCountryCode(country)) return null;
+    if (!fullName || !isKnownRole(role) || !isCountryCode(country)) return null;
     return { fullName, role, country };
   } catch {
     return null;
@@ -48,18 +58,40 @@ export async function GET(request: Request) {
   const { data: { user }, error: userError } = await supabase.auth.getUser();
   if (userError || !user || !user.email) return NextResponse.redirect(new URL("/login?error=oauth_user", origin));
 
-  const { data: existingProfile } = await supabase
+  const { data: existingProfile, error: profileError } = await supabase
     .from("profiles")
     .select("role,country,full_name")
     .eq("id", user.id)
     .maybeSingle();
 
+  if (profileError) {
+    return NextResponse.redirect(new URL("/onboarding?error=profile_lookup", origin));
+  }
+
   const cookieStore = await cookies();
   const intent = parseIntent(cookieStore.get("dadyoom_oauth_intent")?.value);
+  const rpcEnabled = isOnboardingRpcEnabled();
+  const storedRole = normalizeRole(existingProfile?.role);
+  const profileIsComplete = Boolean(
+    existingProfile?.country?.trim() && existingProfile?.full_name?.trim(),
+  );
+  const incompleteBaseline =
+    (!storedRole || storedRole === "student") && !profileIsComplete;
+  const canUseRpc =
+    rpcEnabled &&
+    Boolean(intent) &&
+    isSelfSignupRole(intent!.role) &&
+    incompleteBaseline;
 
-  if (existingProfile?.role && existingProfile?.country && existingProfile?.full_name?.trim()) {
-    const role = existingProfile.role.trim().toLowerCase();
-    const response = NextResponse.redirect(new URL(requestedNext || roleDestinations[role] || "/student", origin));
+  if (
+    existingProfile?.role &&
+    existingProfile?.country &&
+    existingProfile?.full_name?.trim() &&
+    !canUseRpc
+  ) {
+    // The stored role is authoritative. OAuth intent is registration input
+    // only and can never override an existing authorization decision.
+    const response = NextResponse.redirect(new URL(requestedNext || roleDestinations[storedRole] || "/student", origin));
     response.cookies.delete("dadyoom_oauth_intent");
     return response;
   }
@@ -70,40 +102,62 @@ export async function GET(request: Request) {
     return response;
   }
 
-  const fullName = intent.fullName ||
-    (typeof user.user_metadata?.full_name === "string" ? user.user_metadata.full_name.trim() : "") ||
-    (typeof user.user_metadata?.name === "string" ? user.user_metadata.name.trim() : "") ||
-    user.email.split("@")[0];
+  // A teacher/school OAuth selection is not proof of approval. Downgrade to a
+  // self-signup role; privileged issuance needs a separate verified workflow.
+  const initialRole = safeSelfSignupRole(intent.role);
+
+  if (canUseRpc) {
+    const { data: rpcRole, error: rpcError } = await supabase.rpc(
+      ONBOARDING_COMPLETE_RPC,
+      {
+        p_full_name: intent.fullName,
+        p_country: intent.country,
+        p_role: initialRole,
+      },
+    );
+    const response = NextResponse.redirect(
+      new URL(
+        rpcError || normalizeRole(rpcRole) !== initialRole
+          ? "/onboarding?error=profile_onboarding"
+          : requestedNext || roleDestinations[initialRole] || "/student",
+        origin,
+      ),
+    );
+    response.cookies.delete("dadyoom_oauth_intent");
+    return response;
+  }
 
   const admin = createAdminClient();
-  const { error: profileError } = await admin.from("profiles").upsert(
-    {
+  const { error: profileWriteError } = await admin.from("profiles")
+    .insert({
       id: user.id,
       email: user.email,
-      full_name: fullName,
-      role: intent.role,
+      full_name: intent.fullName,
+      role: initialRole,
       country: intent.country,
-    },
-    {
-      onConflict: "id",
-    }
-  );
+    })
+    .select("id,role")
+    .maybeSingle();
 
-  if (profileError) {
-    const { data: racedProfile } = await supabase
+  if (profileWriteError) {
+    const { data: racedProfile, error: racedError } = await supabase
       .from("profiles")
       .select("role,country,full_name")
       .eq("id", user.id)
       .maybeSingle();
-    if (!racedProfile?.role || !racedProfile?.country || !racedProfile?.full_name?.trim()) {
-      console.error("GOOGLE_PROFILE_INSERT_ERROR:", profileError.message);
+    if (racedError || !racedProfile?.role || !racedProfile?.country?.trim() || !racedProfile?.full_name?.trim()) {
+      console.error("GOOGLE_PROFILE_INSERT_ERROR:", profileWriteError.message);
       return NextResponse.redirect(new URL("/onboarding?error=profile_create", origin));
     }
-    const racedRole = racedProfile.role.trim().toLowerCase();
-    return NextResponse.redirect(new URL(roleDestinations[racedRole] || "/student", origin));
+    const racedRole = normalizeRole(racedProfile.role);
+    const response = NextResponse.redirect(new URL(requestedNext || roleDestinations[racedRole] || "/student", origin));
+    response.cookies.delete("dadyoom_oauth_intent");
+    return response;
   }
 
-  const response = NextResponse.redirect(new URL(requestedNext || roleDestinations[intent.role] || "/student", origin));
+  const response = NextResponse.redirect(
+    new URL(requestedNext || roleDestinations[initialRole] || "/student", origin),
+  );
   response.cookies.delete("dadyoom_oauth_intent");
   return response;
 }

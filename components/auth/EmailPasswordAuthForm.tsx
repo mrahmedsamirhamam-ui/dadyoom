@@ -7,6 +7,7 @@ import { FormEvent, useMemo, useState } from "react";
 import GoogleAuthButton from "@/components/auth/GoogleAuthButton";
 import { getSupabaseBrowserClient } from "@/lib/auth/supabase-browser";
 import { getArabicCountryOptions } from "@/lib/countries";
+import { safeSelfSignupRole } from "@/lib/auth/role-policy";
 
 type Mode = "login" | "signup";
 
@@ -106,11 +107,10 @@ export default function EmailPasswordAuthForm({
   const [phase, setPhase] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  // Client state is presentation only; the server route owns authorization.
+  const safeRole = safeSelfSignupRole(role);
 
-  async function resolveDestination(
-    userId: string,
-    metadataRole?: string,
-  ) {
+  async function resolveDestination(userId: string) {
     const supabase = getSupabaseBrowserClient();
 
     const { data } = await supabase
@@ -119,10 +119,10 @@ export default function EmailPasswordAuthForm({
       .eq("id", userId)
       .maybeSingle();
 
+    // Stored profile role is authoritative; user_metadata is never authority.
     const resolvedRole =
-      data?.role ||
-      metadataRole ||
-      (mode === "signup" ? role : "");
+      (typeof data?.role === "string" ? data.role.trim().toLowerCase() : "") ||
+      (mode === "signup" ? safeSelfSignupRole(role) : "");
 
     return (
       roleDestinations[resolvedRole] ||
@@ -184,12 +184,7 @@ export default function EmailPasswordAuthForm({
 
         setPhase("تم الدخول. جارٍ فتح حسابك…");
 
-        const destination = await resolveDestination(
-          data.user.id,
-          typeof data.user.user_metadata?.role === "string"
-            ? data.user.user_metadata.role
-            : undefined,
-        );
+        const destination = await resolveDestination(data.user.id);
 
         router.replace(destination);
         router.refresh();
@@ -208,7 +203,6 @@ export default function EmailPasswordAuthForm({
           options: {
             data: {
               full_name: cleanName,
-              role,
               country: cleanCountry,
             },
           },
@@ -232,50 +226,32 @@ export default function EmailPasswordAuthForm({
 
       setPhase("جارٍ تجهيز ملفك الشخصي…");
 
-      const profilePayload = {
-        id: data.user.id,
-        email: cleanEmail,
-        full_name: cleanName,
-        role,
-        country: cleanCountry,
+      // No browser-side profiles upsert: it permitted direct privileged
+      // INSERT/UPDATE from the Data API. Profile creation goes through the
+      // server route, which verifies the session and the stored role.
+      const profileResponse = await fetch("/api/auth/complete-profile", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName: cleanName,
+          role: safeRole,
+          country: cleanCountry,
+        }),
+      });
+      const profilePayload = (await profileResponse.json()) as {
+        error?: string;
+        destination?: string;
       };
-
-      const { error: profileError } = await supabase
-        .from("profiles")
-        .upsert(profilePayload, {
-          onConflict: "id",
-        });
-
-      if (profileError) {
-        console.warn(
-          "DADYOOM_PROFILE_UPSERT_WARNING",
-          profileError,
-        );
-
-        try {
-          await fetch("/api/auth/complete-profile", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              fullName: cleanName,
-              role,
-              country: cleanCountry,
-            }),
-          });
-        } catch (profileRouteError) {
-          console.warn(
-            "DADYOOM_COMPLETE_PROFILE_WARNING",
-            profileRouteError,
-          );
-        }
+      if (!profileResponse.ok) {
+        throw new Error(profilePayload.error || "تعذر إكمال ملف الحساب.");
       }
 
       setPhase("تم إنشاء الحساب. جارٍ فتح ضاديوم…");
 
       router.replace(
-        roleDestinations[role] || "/student",
+        profilePayload.destination || roleDestinations[safeRole] || "/student",
       );
       router.refresh();
     } catch (cause) {
@@ -452,7 +428,7 @@ export default function EmailPasswordAuthForm({
           <GoogleAuthButton
             mode={mode}
             fullName={fullName}
-            role={role}
+            role={safeRole}
             country={country}
           />
 

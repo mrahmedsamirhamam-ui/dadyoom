@@ -3,16 +3,20 @@
 import { FormEvent, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getArabicCountryOptions } from "@/lib/countries";
+import { SELF_SIGNUP_ROLES, type SelfSignupRole } from "@/lib/auth/role-policy";
 
-const roles = [
-  { value: "child", label: "طفل", note: "أتعلم من الصغر" },
-  { value: "student", label: "طالب", note: "أتعلم وأتدرب" },
-  { value: "teacher", label: "معلم", note: "أدرّس وأتابع طلابي" },
-  { value: "parent", label: "ولي أمر", note: "أتابع تقدّم أبنائي" },
-  { value: "school", label: "مدرسة", note: "أدير المعلمين والطلاب" },
-] as const;
+const roleLabels: Record<SelfSignupRole, { label: string; note: string }> = {
+  child: { label: "طفل", note: "أتعلم من الصغر" },
+  student: { label: "طالب", note: "أتعلم وأتدرب" },
+  parent: { label: "ولي أمر", note: "أتابع تقدّم أبنائي" },
+};
 
-type Role = (typeof roles)[number]["value"];
+const roles = SELF_SIGNUP_ROLES.map((value) => ({
+  value,
+  ...roleLabels[value],
+}));
+
+type Role = SelfSignupRole;
 
 type Props = {
   defaultName: string;
@@ -68,6 +72,9 @@ export default function ProfileOnboardingForm({ defaultName, defaultRole, defaul
             </button>
           ))}
         </div>
+        <p className="mt-2 text-xs font-semibold text-[#6b6251]">
+          صلاحيات المعلم والمدرسة تتطلب اعتمادًا إداريًا منفصلًا.
+        </p>
       </div>
 
       <label className="block">

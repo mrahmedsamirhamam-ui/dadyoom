@@ -1,0 +1,261 @@
+# =====================================================================
+# TASK 03-E — REVIEW ONLY GITHUB ACTIONS WORKFLOW. NOT ACTIVE.
+# =====================================================================
+# This file is deliberately stored under docs/security/, NOT under
+# .github/workflows/. GitHub will not execute it from this location.
+# Copy it to .github/workflows/ only after explicit security, schema-owner and
+# release-owner review. Keep workflow_dispatch as the initial activation.
+#
+# Scope: disposable, unlinked, loopback Supabase Local + synthetic users.
+# No production endpoint, credential, deployment, preview or publish step.
+# Synthetic schema testing only: PRODUCTION_SCHEMA_PARITY=NOT_VERIFIED.
+# =====================================================================
+
+name: TASK 03-E isolated Supabase security verification (REVIEW ONLY / NO DEPLOY)
+
+"on":
+  workflow_dispatch:
+  # No push or pull_request trigger is enabled until activation is approved.
+
+permissions:
+  contents: read
+
+env:
+  SUPABASE_ACCESS_TOKEN: ""
+  SUPABASE_DB_PASSWORD: ""
+  SUPABASE_URL: ""
+  NEXT_PUBLIC_SUPABASE_URL: ""
+  STAGING_SUPABASE_URL: ""
+  SUPABASE_DB_URL: ""
+  DATABASE_URL: ""
+  STAGING_DATABASE_URL: ""
+  PRODUCTION_SUPABASE_URL: ""
+  PRODUCTION_DATABASE_URL: ""
+  PRODUCTION_SUPABASE_PROJECT_REF: ""
+  STAGING_SUPABASE_PROJECT_REF: ""
+  VERCEL_TOKEN: ""
+  CLOUDFLARE_API_TOKEN: ""
+  NETLIFY_AUTH_TOKEN: ""
+  NEXT_TELEMETRY_DISABLED: "1"
+
+jobs:
+  isolated-supabase-verification:
+    name: Isolated Auth/PostgREST/RLS/RPC verification
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout with no persisted credentials
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Node from lockfile-compatible runtime
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Fail closed on any remote endpoint or credential before touching anything
+        id: preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          TASK03E_GATE_MODE=preflight node docs/security/TASK03E_REVIEW_ONLY_ISOLATION_GATE.mjs
+
+      - name: Install exact locked dependencies
+        id: deps
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f package-lock.json
+          npm ci --no-audit --no-fund
+          test -x node_modules/.bin/supabase
+          node --version
+          npm --version
+
+      - name: Confirm Docker and initialize an UNLINKED Supabase workspace in RUNNER_TEMP
+        id: init
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker info >/dev/null
+          "$GITHUB_WORKSPACE/node_modules/.bin/supabase" --version
+          mkdir -p "$RUNNER_TEMP/task03e-supabase-unlinked"
+          cd "$RUNNER_TEMP/task03e-supabase-unlinked"
+          "$GITHUB_WORKSPACE/node_modules/.bin/supabase" init --yes
+          test ! -f supabase/.branches/_current_branch
+          echo "TASK03E_UNLINKED_SUPABASE=PASS"
+
+      - name: Start real LOCAL Supabase Auth and PostgREST only
+        id: stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/task03e-supabase-unlinked"
+          "$GITHUB_WORKSPACE/node_modules/.bin/supabase" start \
+            --exclude studio,realtime,storage-api,imgproxy,edge-runtime,logflare,vector,supavisor,postgres-meta,mailpit \
+            >"$RUNNER_TEMP/task03e-supabase-start.log" 2>&1 || {
+              echo "TASK03E_SUPABASE_LOCAL_START=FAILED"
+              sed -E 's/(secret|token|key|password)([=: ])[^ ]+/\1\2[REDACTED]/Ig' \
+                "$RUNNER_TEMP/task03e-supabase-start.log" | tail -50
+              exit 1
+            }
+          echo "TASK03E_SUPABASE_LOCAL_START=PASS"
+
+      - name: Extract local URLs, verify loopback, and install psql
+        id: localenv
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/task03e-supabase-unlinked"
+          "$GITHUB_WORKSPACE/node_modules/.bin/supabase" status -o env >"$RUNNER_TEMP/task03e-local.env"
+          set -a
+          source "$RUNNER_TEMP/task03e-local.env"
+          set +a
+          : "${API_URL:?missing local API URL}"
+          : "${DB_URL:?missing local DB URL}"
+          : "${ANON_KEY:?missing local anon key}"
+          : "${SERVICE_ROLE_KEY:?missing local service key}"
+          export P0_LOCAL_API_URL="$API_URL"
+          export P0_LOCAL_DB_URL="$DB_URL"
+          export P0_LOCAL_ANON_KEY="$ANON_KEY"
+          export P0_LOCAL_SERVICE_KEY="$SERVICE_ROLE_KEY"
+          TASK03E_GATE_MODE=post-stack node "$GITHUB_WORKSPACE/docs/security/TASK03E_REVIEW_ONLY_ISOLATION_GATE.mjs"
+          if ! command -v psql >/dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq postgresql-client
+          fi
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -tAc "SELECT current_database(), inet_server_addr(), current_user"
+
+      - name: Apply synthetic schema and review-only protection SQL to disposable database
+        id: fixture
+        shell: bash
+        run: |
+          set -euo pipefail
+          source "$RUNNER_TEMP/task03e-local.env"
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -f docs/security/TASK03E_REVIEW_ONLY_SYNTHETIC_SCHEMA.sql
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -f docs/security/TASK_03D_REVIEW_ONLY_ISSUE117_DB_PROTECTION.sql
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -c "NOTIFY pgrst, 'reload schema'"
+          sleep 3
+          echo "TASK03E_SYNTHETIC_FIXTURE_AND_REVIEW_SQL=APPLIED"
+          echo "BASELINE_MATCH_TO_PRODUCTION=NOT_VERIFIED"
+
+      - name: Real GoTrue JWT and PostgREST/RLS/RPC adversarial matrix
+        id: integration
+        shell: bash
+        run: |
+          set -euo pipefail
+          source "$RUNNER_TEMP/task03e-local.env"
+          export P0_LOCAL_API_URL="$API_URL"
+          export P0_LOCAL_DB_URL="$DB_URL"
+          export P0_LOCAL_ANON_KEY="$ANON_KEY"
+          export P0_LOCAL_SERVICE_KEY="$SERVICE_ROLE_KEY"
+          node docs/security/TASK03E_REVIEW_ONLY_LOCAL_INTEGRATION.mjs \
+            2>&1 | tee "$RUNNER_TEMP/task03e-integration.log"
+          {
+            echo "## TASK 03-E isolated database verification"
+            echo "PRODUCTION_SCHEMA_PARITY=NOT_VERIFIED"
+            echo "APPROVED_RELEASE=NO_GO"
+            sed -E 's/(secret|token|key|password)([=: ])[^ ]+/\1\2[REDACTED]/Ig' \
+              "$RUNNER_TEMP/task03e-integration.log" | tail -60
+          } >>"$GITHUB_STEP_SUMMARY"
+
+      - name: Rehearse security-preserving rollback on the disposable database
+        id: rollback
+        shell: bash
+        run: |
+          set -euo pipefail
+          source "$RUNNER_TEMP/task03e-local.env"
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -f docs/security/TASK_03D_REVIEW_ONLY_ROLLBACK.sql
+          psql "$DB_URL" -v ON_ERROR_STOP=1 <<'SQL'
+          DO $verify$
+          BEGIN
+            IF EXISTS (
+              SELECT 1 FROM pg_proc p
+               WHERE p.oid = to_regprocedure(
+                   'public.task03d_approve_profile_role_request(uuid,uuid,text,text)'
+                 )
+                 AND has_function_privilege('service_role', p.oid, 'EXECUTE')
+            ) THEN
+              RAISE EXCEPTION 'TASK03E_ROLLBACK_REOPENED_APPROVAL';
+            END IF;
+            IF EXISTS (
+              SELECT 1 FROM pg_proc p
+               WHERE p.oid = to_regprocedure(
+                   'public.task03d_issue_legacy_onboarding_token(uuid,uuid,text)'
+                 )
+                 AND has_function_privilege('service_role', p.oid, 'EXECUTE')
+            ) THEN
+              RAISE EXCEPTION 'TASK03E_ROLLBACK_REOPENED_LEGACY_REPAIR';
+            END IF;
+            IF has_table_privilege('authenticated','public.profiles','INSERT')
+               OR has_table_privilege('anon','public.profiles','INSERT')
+               OR has_table_privilege('authenticated','public.profiles','UPDATE') THEN
+              RAISE EXCEPTION 'TASK03E_ROLLBACK_REOPENED_PROFILE_WRITE';
+            END IF;
+            IF to_regprocedure(
+                 'public.task03d_complete_self_signup(text,text,text)'
+               ) IS NOT NULL THEN
+              RAISE EXCEPTION 'TASK03E_ROLLBACK_LEFT_BROKEN_COMPLETION_RPC';
+            END IF;
+            IF to_regclass('public.profile_onboarding_pending') IS NOT NULL THEN
+              RAISE EXCEPTION 'TASK03E_ROLLBACK_LEFT_TOKEN_TABLE';
+            END IF;
+            IF EXISTS (
+              SELECT 1 FROM pg_proc p
+               WHERE p.oid = to_regprocedure('public.handle_new_user()')
+                 AND pg_get_functiondef(p.oid) ~* '(profile_onboarding_pending|profile_role_requests)'
+            ) THEN
+              RAISE EXCEPTION 'TASK03E_ROLLBACK_BASELINE_REFERENCES_DROPPED_TABLE';
+            END IF;
+            IF NOT EXISTS (
+              SELECT 1 FROM pg_proc
+               WHERE oid = 'public.handle_new_user()'::regprocedure
+                 AND prosecdef
+            ) THEN
+              RAISE EXCEPTION 'TASK03E_ROLLBACK_LOST_SAFE_BASELINE_FUNCTION';
+            END IF;
+          END
+          $verify$;
+          SQL
+          echo "TASK03E_SECURITY_PRESERVING_ROLLBACK=PASS"
+
+      - name: Application regression checks without deployment
+        id: app
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run test:run
+          npx tsc --noEmit
+          npm run lint
+
+      - name: Explicit fail-closed summary gate
+        if: always()
+        shell: bash
+        run: |
+          echo "TASK03E_CI_SUMMARY preflight=${{ steps.preflight.outcome }} deps=${{ steps.deps.outcome }} init=${{ steps.init.outcome }} stack=${{ steps.stack.outcome }} localenv=${{ steps.localenv.outcome }} fixture=${{ steps.fixture.outcome }} integration=${{ steps.integration.outcome }} rollback=${{ steps.rollback.outcome }} app=${{ steps.app.outcome }}"
+          echo "PRODUCTION_SCHEMA_PARITY=NOT_VERIFIED"
+          echo "APPROVED_RELEASE=NO_GO"
+          if [[ "${{ steps.preflight.outcome }}" != success ||
+                "${{ steps.deps.outcome }}" != success ||
+                "${{ steps.init.outcome }}" != success ||
+                "${{ steps.stack.outcome }}" != success ||
+                "${{ steps.localenv.outcome }}" != success ||
+                "${{ steps.fixture.outcome }}" != success ||
+                "${{ steps.integration.outcome }}" != success ||
+                "${{ steps.rollback.outcome }}" != success ||
+                "${{ steps.app.outcome }}" != success ]]; then
+            exit 1
+          fi
+
+      - name: Stop and remove the temporary local environment
+        if: always()
+        shell: bash
+        run: |
+          cd "$RUNNER_TEMP/task03e-supabase-unlinked" 2>/dev/null || exit 0
+          "$GITHUB_WORKSPACE/node_modules/.bin/supabase" stop || true
+          rm -rf \
+            "$RUNNER_TEMP/task03e-supabase-unlinked" \
+            "$RUNNER_TEMP/task03e-local.env" \
+            "$RUNNER_TEMP/task03e-supabase-start.log" \
+            "$RUNNER_TEMP/task03e-integration.log"
