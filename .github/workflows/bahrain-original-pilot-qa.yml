@@ -1,0 +1,34 @@
+name: Bahrain Original Lesson Pilot QA (No Deploy)
+
+on:
+  push:
+    branches:
+      - feature/bahrain-goal-evidence-interactive-20261126
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bahrain-pilot-qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps --no-package-lock
+      - name: Verify educational pilot contracts
+        run: npx vitest run tests/learning/goal-evidence.test.ts tests/learning/original-bahrain-pilots.test.ts
+      - name: Lint changed TS/TSX files
+        run: npx eslint lib/lesson-learning/goal-evidence.ts lib/lesson-learning/original-bahrain-pilots.ts components/lesson/LessonLearningSlides.tsx components/lesson/BahrainOriginalLearningPilots.tsx app/interactive-lab/bahrain-original-pilots/page.tsx tests/learning/goal-evidence.test.ts tests/learning/original-bahrain-pilots.test.ts
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: Vinext build (never deploy)
+        run: npm run build:vinext
