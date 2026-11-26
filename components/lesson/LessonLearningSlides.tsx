@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { alignLearningEvidence } from "@/lib/lesson-learning/goal-evidence";
 import { useMemo, useRef, useState } from "react";
 
 type VocabularyItem = { word: string; meaning: string };
@@ -134,6 +135,13 @@ function plan(props: Props): Slide[] {
   const questions = validQuestions(props.questions);
   const activities = usableActivities(props.activities);
   const goals = plannedGoals(props.objectives, explanations.length > 0);
+  // Never attach the next stored question to a goal solely by array position.
+  // If objectives are missing or text alignment is weak, use teacher review.
+  const hasAuthoredGoals = Array.isArray(props.objectives) &&
+    props.objectives.some((goal) => clean(goal).length > 12);
+  const alignedQuestions = alignLearningEvidence(goals, questions.map((q) => q.question));
+  const alignedActivities = alignLearningEvidence(goals, activities.map((a) => a.title + " " + a.prompt));
+  const alignedExplanations = alignLearningEvidence(goals, explanations);
   const vocab = (props.vocabulary ?? []).filter((v) => clean(v.word) && clean(v.meaning)).slice(0, 3);
   const slides: Slide[] = [
     { id: "welcome", phase: "welcome", eyebrow: "ضاديوم | حصة العربية", title: label,
@@ -144,13 +152,19 @@ function plan(props: Props): Slide[] {
 
   goals.forEach((goal, index) => {
     const number = index + 1;
-    const exercise = activities[index % (activities.length || 1)];
-    const storedQuestion = questions[index];
+    const exerciseIndex = alignedActivities[index];
+    const questionIndex = alignedQuestions[index];
+    const explanationIndex = alignedExplanations[index];
+    const exercise = hasAuthoredGoals && exerciseIndex !== null ? activities[exerciseIndex] : undefined;
+    const storedQuestion = hasAuthoredGoals && questionIndex !== null ? questions[questionIndex] : undefined;
+    const alignedExplanation = hasAuthoredGoals && explanationIndex !== null
+      ? explanations[explanationIndex] : undefined;
     slides.push({ id: "goal-" + number, phase: "goal", eyebrow: "الهدف " + number,
       title: "ماذا سأستطيع أن أفعل؟", body: goal, goalNumber: number });
-    slides.push({ id: "explain-" + number, phase: "teach", eyebrow: "أفهم الهدف " + number,
-      title: index === 0 ? "نقرأ ونفهم" : index === 1 ? "نلاحظ ونحلّل" : "نربط ونستنتج",
-      body: explanations[index] || "ارجع إلى الشرح الكامل الموجود أسفل العرض، واقرأ المثال من مصدره الصحيح.",
+    slides.push({ id: "explain-" + number, phase: "teach",
+      eyebrow: alignedExplanation ? "أفهم الهدف " + number : "مقتطف من الشرح العام — غير معتمد لتقويم الهدف",
+      title: alignedExplanation ? (index === 0 ? "نقرأ ونفهم" : index === 1 ? "نلاحظ ونحلّل" : "نربط ونستنتج") : "أقرأ وأبحث عن الدليل",
+      body: alignedExplanation || explanations[index] || "ارجع إلى الشرح الكامل الموجود أسفل العرض، واقرأ المثال من مصدره الصحيح.",
       goalNumber: number, words: index === 0 ? vocab : undefined });
     slides.push({ id: "activity-" + number, phase: "do", eyebrow: "تطبيق الهدف " + number,
       title: exercise?.title || "أنشطتي لهذا الهدف",
@@ -173,6 +187,7 @@ export default function LessonLearningSlides(props: Props) {
   const deck = useMemo(() => plan(props), [props]);
   const [page, setPage] = useState(0);
   const [chosen, setChosen] = useState<Record<string, string>>({});
+  const [drafts, setDrafts] = useState<Record<string, string>>({});
   const finger = useRef<number | null>(null);
   const index = Math.min(page, deck.length - 1);
   const slide = deck[index];
@@ -252,6 +267,24 @@ export default function LessonLearningSlides(props: Props) {
                 </div>
               ))}
             </dl>
+          ) : null}
+          {slide.phase === "do" ? (
+            <div className="mt-5 rounded-2xl border border-[#b7d0c6] bg-white p-4 text-[#123f39] sm:p-5">
+              <label htmlFor={`learning-draft-${slide.id}`} className="block text-lg font-black leading-8">
+                دوري الآن: أكتب محاولتي وأفكر في سبب اختياري
+              </label>
+              <textarea id={`learning-draft-${slide.id}`} dir="rtl" rows={3} maxLength={1400}
+                value={drafts[slide.id] ?? ""}
+                onChange={(event) => setDrafts((current) => ({ ...current, [slide.id]: event.target.value }))}
+                placeholder="اكتب إجابتك أو مثالك هنا، ثم قارنه بالشرح وناقشه مع معلمك."
+                className="mt-3 w-full rounded-xl border border-[#a8c7bc] bg-[#fbfdf9] p-3 text-base leading-8 outline-none focus-visible:ring-2 focus-visible:ring-[#277564]" />
+              <p role="status" className="mt-2 text-xs leading-6 text-[#476459]">
+                {(drafts[slide.id] ?? "").trim().length > 0
+                  ? "هذه محاولة تدريبية مكتوبة؛ راجع صحتها مع المعلم أو الشرح، ولا تُعد درجة إتقان."
+                  : "ابدأ بمحاولة فردية قبل الاطلاع على أي تصحيح."}
+                {" "}لا تُحفظ هذه الكتابة في حسابك؛ ستختفي عند إعادة تحميل الصفحة.
+              </p>
+            </div>
           ) : null}
           {slide.quiz ? (
             <fieldset className="mt-5 space-y-3 rounded-2xl border border-[#b7d0c6] bg-white p-4 text-[#123f39] sm:p-5">

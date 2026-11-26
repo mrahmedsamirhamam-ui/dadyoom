@@ -45,6 +45,18 @@ export default function InteractiveLabPage() {
             ))}
           </div>
         </section>
+        <section className="rounded-[2rem] border border-[#b5d5c9] bg-[#eef7f2] p-6">
+          <p className="text-xs font-black text-[#176252]">تجربة تربوية تجريبية • قيد المراجعة</p>
+          <h2 className="mt-2 text-xl font-black text-[#174f47]">مختبر البحرين: افهم ثم جرّب</h2>
+          <p className="mt-2 max-w-3xl font-arabic-reading text-sm leading-8 text-[#365e52]">
+            ثلاثة دروس داعمة أصلية للصف السادس: التذوق الأدبي، ورفع المضارع المعتل الآخر،
+            وبناء النص السردي. أسئلة مع تفسير السبب، وتحدّيات كتابية غير مصححة آليًا.
+            لا تمثل الأنشطة نصوص الكتاب أو اعتمادًا رسميًا، ولا تسجّل نتائج الطلاب.
+          </p>
+          <Link href="/interactive-lab/bahrain-original-pilots" className="mt-4 inline-flex rounded-xl bg-[#174f47] px-5 py-3 text-sm font-black text-white">
+            استكشف المختبر التجريبي
+          </Link>
+        </section>
         <section className="rounded-[2rem] border border-[#d9c5a0] bg-[#f6ecda] p-6">
           <h2 className="text-xl font-black text-[#174f47]">👩‍🏫 اصنع هرمًا لدرسك</h2>
           <p className="mt-2 font-arabic-reading text-sm leading-8 text-[#645a4f]">للمعلم مساحة تجريبية لتحرير أسئلة المستويات الستة، وتحديد الإجابات والتلميحات، وتجربة النشاط قبل اعتماده. تُصدّر المسودة محليًا دون نشرها تلقائيًا للطلاب.</p>
